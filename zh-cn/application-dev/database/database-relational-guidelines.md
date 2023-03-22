@@ -63,10 +63,9 @@
 
   - 直接调用查询接口。使用该接口，会将包含查询条件的谓词自动拼接成完整的SQL语句进行查询操作，无需用户传入原生的SQL语句。
   - 执行原生的SQL语句进行查询操作。
-  - remoteQuery中的device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
-  
+
   **表5** 数据库查询API
-  
+
   | 类名       | 接口名                                                       | 描述                                                         |
   | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，使用Promise异步回调。<br/>-predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
@@ -133,9 +132,9 @@
 
 **表9** 根据本地表名获取指定远程设备的分布式表名
 
-| 类名     | 接口名                                                       | 描述                                                         |
-| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string> | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。<br/>-device：远程设备。<br/>-table：远程设备的本地表名。 |
+| 类名       | 接口名                                                       | 描述                                                         |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string> | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。<br/>-device：远程设备。<br/>-table：本地表名。 |
 
 **在设备之间同步数据**
 
@@ -294,7 +293,7 @@
     const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
     let insertPromise = store.insert("test", valueBucket);
     ```
-
+   
     ```js
     //使用事务插入数据
     try {
@@ -338,20 +337,20 @@
 
 4. 设置分布式同步表。
 
-   (1) 权限配置文件中增加以下配置。    
+    (1) 权限配置文件中增加以下配置。    
 
-   ```json
-   "requestPermissions": 
-   {
-     "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-   }
-   ```
+    ```json
+    "requestPermissions": 
+    {
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
+    ```
 
-   (2) 获取应用权限。
+    (2) 获取应用权限。
 
-   (3) 数据库调用接口设置分布式同步列表。
+    (3) 数据库调用接口设置分布式同步列表。
 
-   (4) 判断是否设置成功。
+    (4) 判断是否设置成功。
 
    示例代码如下：
 
@@ -393,7 +392,7 @@
     ```
 
 6. 分布式数据订阅。
-
+  
     (1) 调用分布式数据订阅接口，注册数据库的观察者。
 
     (2) 当分布式数据库中的数据发生更改时，将调用回调。
@@ -415,16 +414,16 @@
     ```
 
 7. 跨设备查询。
+   
+    (1) 根据本地表名获取指定远程设备的分布式表名。
 
-   (1) 根据本地表名获取指定远程设备的分布式表名。
+    (2) 调用结果集接口，返回查询结果。
 
-   (2) 调用结果集接口，返回查询结果。
+    示例代码如下：
 
-   示例代码如下：
-
-   ```js
+    ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager'
-    
+  
    let deviceIds = [];
    deviceManager.createDeviceManager('bundleName', (err, value) => {
      if (!err) {
@@ -441,14 +440,14 @@
    
    let tableName = store.obtainDistributedTableName(deviceIds[0], "test");
    let resultSet = store.querySql("SELECT * FROM " + tableName);
-   ```
-
+    ```
+    
 8. 远程查询。
-
+   
    (1) 构造用于查询分布式表的谓词对象，指定组网内的远程分布式表名和设备。
-
+   
    (2) 调用结果集接口，返回查询结果。
-
+   
    示例代码如下：
 
    ```js
@@ -482,7 +481,7 @@
       console.error(`Backup failed, err: ${err}`);
     })
    ```
-
+   
    (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
 
    示例代码如下：
