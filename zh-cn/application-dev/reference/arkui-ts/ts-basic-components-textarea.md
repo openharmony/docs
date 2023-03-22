@@ -72,6 +72,18 @@ caretPosition(value: number): void
 | ------ | -------- | ---- | -------------------------------------- |
 | value  | number   | 是   | 从字符串开始到光标所在位置的字符长度。 |
 
+### setTextSelection<sup>10+</sup>
+
+setTextSelection(selectionStart: number, selectionEnd: number): void
+
+设置文本选择范围。
+
+**参数：**
+
+| 参数名         | 参数类型 | 必填 | 参数描述           |
+| -------------- | -------- | ---- | ------------------ |
+| selectionStart | number   | 是   | 选择范围起始位置。 |
+| selectionEnd   | number   | 是   | 选择范围结束位置。 |
 
 ## 示例
 
