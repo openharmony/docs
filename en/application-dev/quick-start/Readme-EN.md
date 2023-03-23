@@ -1,4 +1,5 @@
 # Quick Start
+
 - Getting Started
   - [Before You Start](start-overview.md)
   - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
@@ -10,7 +11,6 @@
     - Application Package Structure
       - [Application Package Structure in Stage Model](application-package-structure-stage.md)
       - [Application Package Structure in FA Model](application-package-structure-fa.md)
-      - [HAR File Structure](har-structure.md)
     - Multi-HAP Mechanism
       - [Multi-HAP Design Objectives](multi-hap-objective.md)
       - [Multi-HAP Build View](multi-hap-build-view.md)
@@ -19,6 +19,11 @@
       - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
     - [Application Installation and Uninstallation Process](application-package-install-uninstall.md)
     - [Application Package Update Process](application-package-update.md)
+    - Shared Package
+      - [Shared Package Overview](shared-guide.md)
+      - [HAR](har-package.md)
+      - HSP
+        - [In-Application HSP Development](in-app-hsp.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
@@ -43,3 +48,8 @@
       - [Dynamic UI Element Building](arkts-dynamic-ui-elememt-building.md)
       - [Rendering Control](arkts-rendering-control.md)
       - [Restrictions and Extensions](arkts-restrictions-and-extensions.md)
+- FAQs
+    - [Full SDK Compilation Guide](full-sdk-compile-guide.md)
+    - [Guide to Switching to Full SDK](full-sdk-switch-guide.md)
+- Tools
+    - [DevEco Studio (OpenHarmony) User Guide](deveco-studio-user-guide-for-openharmony.md)
