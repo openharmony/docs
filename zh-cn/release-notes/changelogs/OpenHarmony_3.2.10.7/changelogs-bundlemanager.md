@@ -231,3 +231,9 @@ module.json配置文件中的ability的[name](../../../application-dev/quick-sta
 
 **适配指导**<br>
 删除module.json中[distroFilter](../../../application-dev/quick-start/module-configuration-file.md)标签，使用distributionFilter替代
+
+## cl.bundlemanager.20 module.json配置文件中launchTypede标签standard模式修改为multiton
+删除module.json中[launchType](../../../application-dev/quick-start/module-configuration-file.md)标签的standard模式修改为multiton
+
+**适配指导**<br>
+删除module.json中[launchType](../../../application-dev/quick-start/module-configuration-file.md)标签的standard模式，使用multiton替代
