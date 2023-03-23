@@ -14,7 +14,7 @@ An unsigned HAP is in  **.zip**  format and consists of a file block, central di
 After the HAP is signed, a signature block is added between the file block and the central directory. The integrated signature block consists of a profile signature block, HAP signature block, and signature header. The following figure shows the structure of a signed HAP.
 
 **Figure  1**  Structure of a signed HAP<a name="fig157962397486"></a>  
-![](figure/structure-of-a-signed-hap.png "structure-of-a-signed-hap")
+![](figures/structure-of-a-signed-hap.png "structure-of-a-signed-hap")
 
 The signature verification process consists of three steps: HAP signature verification, profile signature verification, and profile content verification.
 

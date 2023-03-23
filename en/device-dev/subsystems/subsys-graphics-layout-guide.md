@@ -87,7 +87,7 @@ Layout container components consist of basic view classes. You can set the view 
     **Figure  1**  Horizontal swiping effect of  **UISwipeView**<a name="fig933862020262"></a>  
     
 
-    ![](figure/en-us_image_0000001053247975.gif)
+    ![](figures/en-us_image_0000001053247975.gif)
 
 
 ##   Development Procedure \(Cyclic Horizontal Swiping\)<a name="section1976914915282"></a>
@@ -121,7 +121,7 @@ Layout container components consist of basic view classes. You can set the view 
     **Figure  2**  Cyclic horizontal swiping effect of  **UISwipeView**<a name="fig1533902042618"></a>  
     
 
-    ![](figure/en-us_image_0000001053207924.gif)
+    ![](figures/en-us_image_0000001053207924.gif)
 
 
 ## GridLayout<a name="section46819199173"></a>
@@ -201,6 +201,6 @@ Layout container components consist of basic view classes. You can set the view 
 4.  Verify the layout of buttons, as shown in the following figure.
 
     **Figure  3**  Setting a 2x2 grid and adding four buttons in a layout<a name="fig898719135314"></a>  
-    ![](figure/setting-a-2x2-grid-and-adding-four-buttons-in-a-layout.png "setting-a-2x2-grid-and-adding-four-buttons-in-a-layout")
+    ![](figures/setting-a-2x2-grid-and-adding-four-buttons-in-a-layout.png "setting-a-2x2-grid-and-adding-four-buttons-in-a-layout")
 
 

@@ -25,7 +25,7 @@ The OpenHarmony RDB provides a common operation interface (**RdbStore**) for ext
 
 **Figure 1** How RDB works
 
-![](figure/en-us_image_0000001115980740.png)
+![](figures/en-us_image_0000001115980740.png)
 
 ## Default Settings
 - The default database logging mode is write-ahead logging (WAL).
