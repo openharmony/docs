@@ -1,7 +1,10 @@
 # div
 
-
 基础容器，用作页面结构的根节点或将内容进行分组。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -55,7 +58,7 @@
 
 1. Flex样式
   
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
      <div class="flex-box">
@@ -67,7 +70,7 @@
    ```
 
    
-   ```
+   ```css
    /* xxx.css */
    .container {
      flex-direction: column;
@@ -103,7 +106,7 @@
 
 2. Flex Wrap样式
   
-   ```
+   ```html
    <!-- xxx.hml -->
    <div class="container">
      <div class="flex-box">
@@ -115,7 +118,7 @@
    ```
 
    
-   ```
+   ```css
    /* xxx.css */
    .container {
      flex-direction: column;

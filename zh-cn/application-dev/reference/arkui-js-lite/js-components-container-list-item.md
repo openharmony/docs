@@ -1,7 +1,10 @@
 # list-item
 
-
 &lt;[list](js-components-container-list.md)&gt;的子组件，用来展示列表具体item。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -42,3 +45,9 @@
 | background-color | &lt;color&gt; | - | 否 | 设置背景颜色。 |
 | opacity<sup>5+</sup> | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
+
+
+
+## 示例
+
+参考 [list示例](js-components-container-list.md)

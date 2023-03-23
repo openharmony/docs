@@ -1,7 +1,10 @@
 # list
 
-
 列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -27,6 +30,8 @@
 | click | - | 点击动作触发该事件。 |
 | longpress | - | 长按动作触发该事件。 |
 | swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | 组件上快速滑动后触发。 |
+| scrolltop<sup>8+</sup> | - | 当前列表已滑动到顶部位置。 |
+| scrollbottom<sup>8+</sup> | - | 当前列表已滑动到底部位置。 |
 
 
 ## 样式
@@ -115,4 +120,4 @@ export default {
 }
 ```
 
-![zh-cn_image_0000001380789196](figures/zh-cn_image_0000001380789196.png)
+![list](figures/list.png)

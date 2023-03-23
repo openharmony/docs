@@ -5,7 +5,7 @@
 
 **示例：**
 
-```
+```html
 <!-- xxx.hml -->
 <canvas ref="canvas1" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
 <input type="button" style="width: 180px; height: 60px;" value="fillStyle" onclick="handleClick" />
@@ -13,7 +13,7 @@
 ```
 
 
-```
+```javascript
 // xxx.js
 export default {
   handleClick() {
@@ -47,7 +47,7 @@ export default {
  ![zh-cn_image_0000001431388525](figures/zh-cn_image_0000001431388525.png)
 
 
-  ```
+  ```javascript
   ctx.fillRect(20, 20, 200, 150);
   ```
 
@@ -67,7 +67,7 @@ export default {
   ![zh-cn_image_0000001431388505](figures/zh-cn_image_0000001431388505.png)
 
 
-  ```
+  ```javascript
   ctx.fillStyle = '#0000ff';
   ctx.fillRect(20, 20, 150, 100);
   ```
@@ -91,7 +91,7 @@ export default {
   ![zh-cn_image_0000001381268264](figures/zh-cn_image_0000001381268264.png)
 
 
-  ```
+  ```javascript
   ctx.strokeRect(30, 30, 200, 150);
   ```
 
@@ -113,7 +113,7 @@ export default {
   ![zh-cn_image_0000001431548109](figures/zh-cn_image_0000001431548109.png)
 
 
-  ```
+  ```javascript
   ctx.font = '35px sans-serif';
   ctx.fillText("Hello World!", 20, 60);
   ```
@@ -134,7 +134,7 @@ export default {
   ![zh-cn_image_0000001431548121](figures/zh-cn_image_0000001431548121.png)
 
 
-  ```
+  ```javascript
   ctx.lineWidth = 5;
   ctx.strokeRect(25, 25, 85, 105);
   ```
@@ -155,7 +155,7 @@ export default {
   ![zh-cn_image_0000001380789172](figures/zh-cn_image_0000001380789172.png)
 
 
-  ```
+  ```javascript
   ctx.lineWidth = 10;
   ctx.strokeStyle = '#0000ff';
   ctx.strokeRect(25, 25, 155, 105);
@@ -170,7 +170,7 @@ export default {
 
 ![zh-cn_image_0000001431388513](figures/zh-cn_image_0000001431388513.png)
 
-  ```
+  ```javascript
   ctx.moveTo(25, 25);
   ctx.lineTo(25, 105);
   ctx.strokeStyle = 'rgb(0,0,255)';
@@ -187,7 +187,7 @@ export default {
   ![zh-cn_image_0000001431548125](figures/zh-cn_image_0000001431548125.png)
 
 
-  ```
+  ```javascript
   ctx.beginPath();              
   ctx.lineWidth = '6';
   ctx.strokeStyle = '#0000ff';
@@ -212,7 +212,7 @@ export default {
 
   ![zh-cn_image_0000001431388529](figures/zh-cn_image_0000001431388529.png)
 
-  ```
+  ```javascript
   ctx.beginPath();
   ctx.moveTo(10, 10);
   ctx.lineTo(280, 160);
@@ -235,7 +235,7 @@ export default {
 
 ![zh-cn_image_0000001431148365](figures/zh-cn_image_0000001431148365.png)
 
-  ```
+  ```javascript
   ctx.beginPath();
   ctx.moveTo(10, 10);
   ctx.lineTo(280, 160);
@@ -252,7 +252,7 @@ export default {
   ![zh-cn_image_0000001381268284](figures/zh-cn_image_0000001381268284.png)
 
 
-  ```
+  ```javascript
   ctx.beginPath();
   ctx.moveTo(30, 30);
   ctx.lineTo(110, 30);
@@ -277,7 +277,7 @@ export default {
   ![zh-cn_image_0000001381108328](figures/zh-cn_image_0000001381108328.png)
 
 
-  ```
+  ```javascript
   ctx.font = '30px sans-serif';
   ctx.fillText("Hello World", 20, 60);
   ```
@@ -298,7 +298,7 @@ export default {
   ![zh-cn_image_0000001431388517](figures/zh-cn_image_0000001431388517.png)
 
 
-  ```
+  ```javascript
   ctx.strokeStyle = '#0000ff';
   ctx.moveTo(140, 10);
   ctx.lineTo(140, 160);
@@ -335,7 +335,7 @@ export default {
 
 ![zh-cn_image_0000001381108320](figures/zh-cn_image_0000001381108320.png)
 
-  ```
+  ```javascript
   ctx.beginPath();
   ctx.arc(100, 75, 50, 0, 6.28);
   ctx.stroke();
@@ -359,7 +359,7 @@ export default {
 
 ![zh-cn_image_0000001381108312](figures/zh-cn_image_0000001381108312.png)
 
-  ```
+  ```javascript
   ctx.rect(20, 20, 100, 100); // Create a 100*100 rectangle at (20, 20)
   ctx.stroke(); // Draw it
   ```

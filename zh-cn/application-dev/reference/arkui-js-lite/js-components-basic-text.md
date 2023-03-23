@@ -1,7 +1,10 @@
 # text
 
-
 文本，用于呈现一段信息。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -51,3 +54,45 @@
 | opacity<sup>5+</sup> | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
+
+## 示例
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <text class="title">
+        Hello {{ title }}
+    </text>
+</div>
+```
+
+```CSS
+/* xxx.css */
+.container {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    width: 100px;
+    font-size: 30px;
+    text-align: center;
+    color: red;
+}
+```
+
+```javascript
+// xxx.js
+export default {
+    data: {
+        title: ""
+    },
+    onInit() {
+        this.title = "World";
+    }
+}
+```
+
+![text](figures/text.png)

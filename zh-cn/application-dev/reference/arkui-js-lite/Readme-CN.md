@@ -13,6 +13,7 @@
     - [通用属性](js-common-attributes.md)
     - [通用样式](js-common-styles.md)
     - [动画样式](js-components-common-animation.md)
+    - [媒体查询](js-components-common-mediaquery.md)
 - 容器组件
     - [div](js-components-container-div.md)
     - [list](js-components-container-list.md)

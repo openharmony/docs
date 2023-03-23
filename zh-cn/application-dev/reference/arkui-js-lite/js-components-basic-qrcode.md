@@ -3,10 +3,9 @@
 
 生成并显示二维码。
 
-
 > **说明：**
 >
-> 本组件从从API version 5 开始支持。
+> 该组件从从API version 5 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -61,6 +60,66 @@
 ## 示例
 
 
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <qrcode value="{{qr_value}}" class="qrCode" style="color: {{qr_color}};background-color: {{qr_bcol}};"></qrcode>
+  <input type="button" onclick="changeColor" class="button">Color</input>
+  <input type="button" onclick="changeBackgroundColor" class="button">BackgroundColor</input>
+  <input type="button" onclick="changeColor" class="button">Value</input>
+</div>
 ```
-<qrcode value="https://huawei.com"></qrcode>
+
+```css
+/* xxx.css */
+.container {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.qrCode {
+  width: 200px;
+  height: 200px;
+}
+.button {
+  width: 30%;
+  height: 10%;
+  margin-top: 5%;
+}
 ```
+
+```javascript
+// xxx.js
+export default {
+  data: {
+    qr_col: '#87ceeb',
+    qr_bcol: '#f0ffff',
+    qr_value: 'value'
+  },
+  changeColor() {
+    if (this.qr_col == '#87ceeb') {
+      this.qr_col = '#fa8072';
+    } else {
+      this.qr_col = '#87ceeb';
+    }
+  },
+  changeBackgroundColor() {
+    if (this.qr_bcol == '#f0ffff') {
+      this.qr_bcol = '#ffffe0';
+    } else {
+      this.qr_bcol = '#f0ffff';
+    }
+  },
+  changeValue() {
+    if (this.qr_value == 'value') {
+      this.qr_value = 'change';
+    } else {
+      this.qr_value = 'value';
+    }
+  }
+}
+```
+
+![qrcode](figures/qrcode.gif)

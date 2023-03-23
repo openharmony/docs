@@ -2,6 +2,10 @@
 
 嵌入页面的滑动选择器。
 
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 ## 子组件
 
@@ -138,4 +142,4 @@ export default {
 }
 ```
 
-![sssssss](figures/sssssss.PNG)
+![picker-view](figures/picker-view.png)
