@@ -45,7 +45,7 @@ HUKS supports key lifecycle management, which covers the following:
 The following uses the key generation process as an example to describe the communication between the HUKS Service and HUKS Core. Other key operations are similar.
 The upper-layer application invokes the HUKS Service through the key management SDK. The HUKS Service invokes the HUKS Core, which invokes the key management module to generate a key. The HUKS Core uses a work key derived from the root key to encrypt the generated key and sends the encrypted key to the HUKS Service. The HUKS Service stores the encrypted key in a file.
 
-![](figure/HUKS-GenerateKey1.png)
+![](figures/HUKS-GenerateKey1.png)
 
 ### Constraints
 
@@ -53,13 +53,13 @@ The upper-layer application invokes the HUKS Service through the key management 
 
 * The certificate chain returned by **HuksHdiAttestKey** must be in the sequence of the application certificate, device certificate, CA certificate, and root certificate, with the certificate length added before each certificate. The certificate chain and its length are assembled in the binary large object (BLOB) format. If you want to define the certificate format, the format must be the same as that parsed by the server.
 
-![CertChain format](figure/HUKS-CertChain.png)
+![CertChain format](figures/HUKS-CertChain.png)
 
 * The key returned by the API must be assembled into a **KeyBlob** based on the key storage status. For details about the APIs that must comply with this constraint, see [Available APIs](#available-apis).
 
    The **KeyBlob** stores both the key and its attributes. The figure below shows the **KeyBlob** structure. For details about how to construct a **KeyBlob**, see [hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c).
 
-![KeyBlob format](figure/HUKS-KeyBlob.png)
+![KeyBlob format](figures/HUKS-KeyBlob.png)
 
 ## Development Guidelines
 
