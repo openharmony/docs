@@ -5,14 +5,16 @@
 The DFX subsystem provides the following functions:
 
 - HiLog: implements the logging function. It is applicable to mini-system devices \(reference memory ≥ 128 KiB\), small-system devices \(reference memory ≥ 1 MiB\), and standard-system devices \(reference memory ≥ 128 MB\).
-
 - HiTraceChain: implements distributed call chain tracing. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
+- HiTraceMeter: implements performance trace. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiCollie: implements thread suspension detection. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiSysEvent: implements system event logging. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
-- HiChecker: implements defect scanning. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - HiDumper: exports system information. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - FaultLogger: implements crash detection. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
 - Hiview: implements device maintenance across different platforms. It is applicable to standard-system devices \(reference memory ≥ 128 MiB\).
+- HiAppEvent and HiChecker are only hap developer oriented。
+
+![dfx features overview](figure/dfx-overview.png)
 
 ## Basic Concepts<a name="section5635178134811"></a>
 
