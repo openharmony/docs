@@ -1463,5 +1463,4 @@
   - [Native API使用常见问题](faqs/faqs-native.md)
   - [三四方库使用常见问题](faqs/faqs-third-party-library.md)
   - [IDE使用常见问题](faqs/faqs-ide.md)
-  - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
   - [开发板使用常见问题](faqs/faqs-development-board.md)
