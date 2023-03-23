@@ -2,7 +2,7 @@
 
 本模块提供当前设备的信息。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.deviceInfo`](js-apis-device-info.md)进行设备信息查询。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -19,7 +19,7 @@ getInfo(options?: GetDeviceOptions): void
 
 获取当前设备的信息。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**<br>
 > 在首页的onShow生命周期之前不建议调用device.getInfo接口。
 
 **系统能力：** SystemCapability.Startup.SystemInfo
@@ -34,11 +34,11 @@ getInfo(options?: GetDeviceOptions): void
 
 定义设备信息获取的参数选项。
 
-**系统能力： ** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Startup.SystemInfo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | (data：DeviceResponse）=> void | 否 | 接口调用成功的回调函数。 data为成功返回的设备信息，具体参考[DeviceResponse]。|
+| success | (data：DeviceResponse）=> void | 否 | 接口调用成功的回调函数。 data为成功返回的设备信息，具体参考[DeviceResponse](#deviceresponse)。|
 | fail | (data：any,code:number）=> void | 否 | 接口调用失败的回调函数。 code为失败返回的错误码。<br>code:200，表示返回结果中存在无法获得的信息。|
 | complete | （）=> void | 否 | 接口调用结束的回调函数。 |
 
@@ -46,7 +46,7 @@ getInfo(options?: GetDeviceOptions): void
 
 设备信息。
 
-##系统能力：** SystemCapability.Startup.SystemInfo
+**系统能力：** SystemCapability.Startup.SystemInfo
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
