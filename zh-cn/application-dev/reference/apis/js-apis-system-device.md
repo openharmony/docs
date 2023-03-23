@@ -20,7 +20,7 @@ getInfo(options?: GetDeviceOptions): void
 
 获取当前设备的信息。
 
-> **说明：**
+> **说明：**<br>
 > 在首页的onShow生命周期之前不建议调用device.getInfo接口。
 
 **系统能力：** SystemCapability.Startup.SystemInfo
