@@ -103,6 +103,8 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 异步方式创建音视频录制实例。通过注册回调函数获取返回值。
 一台设备只允许创建一个录制实例。
 
+*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
@@ -140,6 +142,8 @@ createAVRecorder(): Promise\<AVRecorder>
 
 异步方式创建音视频录制实例。通过Promise获取返回值。
 一台设备只允许创建一个录制实例。
+
+*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1697,6 +1701,8 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 音视频录制demo可参考：[音视频录制开发指导](../../media/avrecorder.md)
 
+*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
@@ -1714,8 +1720,6 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 **需要权限：** ohos.permission.MICROPHONE
 
 不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
-
-使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1780,8 +1784,6 @@ prepare(config: AVRecorderConfig): Promise\<void>
 **需要权限：** ohos.permission.MICROPHONE
 
 不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
-
-使用相机视频录制还需要与相机模块配合，权限获取以及接口使用详见[相机管理](js-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 

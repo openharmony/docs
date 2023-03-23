@@ -20,15 +20,15 @@
 
 ## 约束与限制
 
-开发者在进行录制功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE）和相机权限（ohos.permission.CAMERA），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)
+涉及音频录制时，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)。
+
+涉及相机视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 ## 开发指导
 
 详细API含义可参考：[媒体服务API文档AVRecorder](../reference/apis/js-apis-media.md#avrecorder9)
 
 媒体库相关流程含义可参考：[媒体库管理](../reference/apis/js-apis-medialibrary.md)
-
-相机相关流程含义可参考：[相机管理](../reference/apis/js-apis-camera.md)
 
 ### 音视频录制全流程场景
 
