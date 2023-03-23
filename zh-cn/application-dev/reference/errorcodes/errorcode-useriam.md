@@ -4,18 +4,6 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
 
-## 201 权限验证失败
-
-具体参见[通用错误码](./errorcode-universal.md)
-
-## 202 调用方不是一个系统应用
-
-具体参见[通用错误码](./errorcode-universal.md)
-
-## 401 参数不正确
-
-具体参见[通用错误码](./errorcode-universal.md)
-
 ## 12500001 认证失败
 
 **错误信息**
