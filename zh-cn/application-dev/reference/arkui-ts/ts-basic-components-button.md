@@ -25,7 +25,6 @@
 | type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
 | stateEffect | boolean    | 否    |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
 
-
 **方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
   使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
@@ -46,6 +45,7 @@
 | ----------- | ----------- | --------------------------------- |
 | type        | ButtonType  | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置Button组件label文本和字体的样式。 |
 
 ## ButtonType枚举说明
 
@@ -63,6 +63,16 @@
 >  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
 >  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
 
+## LabelStyle<sup>10+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。 |
+| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。 |
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。 |
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#TextHeightAdaptivePolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
+| font                 | [Font](ts-types.md#Font)                                     | 否   | 设置Label文本字体样式。                                      |
 
 ## 示例
 
