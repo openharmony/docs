@@ -63,6 +63,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 | allowAbilityExcludeFromMissions | bool | false| 是否允许Ability不在任务栈中显示。 |
 | allowAppUsePrivilegeExtension | bool | false|是否允许应用使用ServiceExtension、DataExtension。 |
 | allowFormVisibleNotify | bool | false| 是否允许桌面卡片可见。 |
+| allowAppShareLibrary | bool | false | 是否允许为其它应用提供[应用间`HSP`](../../application-dev/quick-start/cross-app-hsp.md)能力。
 
 ### 配置方式
 
@@ -90,6 +91,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
             "allowAbilityExcludeFromMissions": true, // 允许Ability不在任务栈中显示
             "allowAppUsePrivilegeExtension": true, // 允许应用使用ServiceExtension、DataExtension
             "allowFormVisibleNotify": true // 允许桌面卡片可见
+            "allowAppShareLibrary": true // 允许应用提供应用间HSP能力
         },
 }
 ```

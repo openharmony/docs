@@ -27,7 +27,7 @@ artifactType字段有以下两种取值，默认缺省为original。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时APPScope中的内容不会打包到HAR中，导致HAR资源引用失败。
 
 ## 导出HAR的ArkUI组件、接口、资源
-index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的package.json文件中的main字段配置入口声明文件，配置如下所示：
+index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，统一在index.ets文件中导出。index.ets文件是DevEco Studio默认自动生成的，用户也可以自定义，在模块的oh-package.json5文件中的main字段配置入口声明文件，配置如下所示：
 ```json
 {
   "main": "index.ets"
