@@ -25,6 +25,12 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)：ENTERPRISE_ADMIN类型的ExtensionAbility组件，用于提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。
 
+> **说明：**
+> 1. OpenHarmony不支持三方应用实现ServiceExtensionAbility、DataShareExtensionAbility、StaticSubscriberExtensionAbility和WindowExtensionAbility。
+>
+> 2. 如果三方开发者想要实现后台处理相关事务的功能，无法使用ServiceExtensionAbility，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
+>
+> 3. 三方应用只能使用当前系统已定义的上述类型的ExtensionAbility。
 
 ## 使用指定类型的ExtensionAbility组件
 
@@ -48,11 +54,11 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 同一应用内的所有同类型的ExtensionAbility运行在同一独立进程（除ServiceExtensionAbility、DataShareExtensionAbility外），跟UIAbility组件不在同一进程，Stage模型的进程模型请参见[进程模型](process-model-stage.md)。
-> 
+>
 > 例如一个应用有1个UIAbility组件、1个ServiceExtensionAbility、1个DataShareExtensionAbility、2个FormExtensionAbility、1个ImeExtensionAbility。则该应用在运行时，有三个进程：
-> 
+>
 > - UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个进程。
-> 
+>
 > - FormExtensionAbility运行在一个独立进程。
-> 
+>
 > - ImeExtensionAbility运行在一个独立进程。
