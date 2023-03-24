@@ -57,7 +57,7 @@ The Compilation and Build subsystem implements compilation and packaging through
 
 **Figure 1** Relationships between product, subsystem, component, and module
 
-![](figure/product_subsystem_component_module_relationships.png)
+![](figures/product_subsystem_component_module_relationships.png)
 
 The relationships between the product, subsystem, component, and module are as follows:
 
@@ -73,7 +73,7 @@ A product, component, and module can be built, but a subsystem cannot. The figur
 
 **Figure 2** Build process
 
-![Build process](figure/build_process.png)
+![Build process](figures/build_process.png)
 
 1. Run **hb set** to set the product to build.
 

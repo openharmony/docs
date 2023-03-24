@@ -3,7 +3,7 @@
 Container components are capable of containing UI components and inherit from  **UIViewGroup**. Components that are commonly used and need to contain child components are placed in the container class inheritance structure. For example, you need to call the  **Add**  function to add information such as time statistics and icons to  **UIAnalogClock**.
 
 **Figure  1**  Structure of common container components<a name="fig1931013319293"></a>  
-![](figure/structure-of-common-container-components.png "structure-of-common-container-components")
+![](figures/structure-of-common-container-components.png "structure-of-common-container-components")
 
 The  **RootView**,  **UIAbstractScroll**, and  **UIPicker**  components inherit from  **UIViewGroup**, and the  **UIList**,  **UIScrollView**, and  **UISwipeView**  components inherit from  **UIAbstractScroll**.
 
@@ -14,7 +14,7 @@ The  **RootView**,  **UIAbstractScroll**, and  **UIPicker**  components inherit 
 **UIViewGroup**  is a base class for container components. For example, you can call the functions in this class to add, remove, and insert container components. Also, you can call the  **Add**  function to add child components for a container component. You need to set the position information for child components in a common container component. The position information is the coordinates relative to those of their parent component. The following figure shows the tree structure of components.
 
 **Figure  2**  Component tree structure<a name="fig279970183012"></a>  
-![](figure/component-tree-structure.png "component-tree-structure")
+![](figures/component-tree-structure.png "component-tree-structure")
 
 As shown in the figure, the container component  **ViewGroup1**  and the component  **View1**  are added to  **RootView**, the component  **View2**  and the container component  **ViewGroup2**  are added to  **ViewGroup1**, and then the component  **View3**  \(as a sibling of  **View1**\) is also added to  **ViewGroup1**.
 
@@ -117,7 +117,7 @@ As shown in the figure, the container component  **ViewGroup1**  and the compone
 4.  The following figure shows the effect of adding view instances to a  **ViewGroup**.
 
     **Figure  3**  Effect of adding view instances to a ViewGroup<a name="fig33041856184219"></a>  
-    ![](figure/effect-of-adding-view-instances-to-a-viewgroup.png "effect-of-adding-view-instances-to-a-viewgroup")
+    ![](figures/effect-of-adding-view-instances-to-a-viewgroup.png "effect-of-adding-view-instances-to-a-viewgroup")
 
 
 ## UIScrollView<a name="section174961523161315"></a>
@@ -231,5 +231,5 @@ scroll->Add(button2);
 ```
 
 **Figure  4**  Scrolling effect in both horizontal and vertical directions<a name="fig99017432114"></a>  
-![](figure/scrolling-effect-in-both-horizontal-and-vertical-directions.gif "scrolling-effect-in-both-horizontal-and-vertical-directions")
+![](figures/scrolling-effect-in-both-horizontal-and-vertical-directions.gif "scrolling-effect-in-both-horizontal-and-vertical-directions")
 

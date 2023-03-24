@@ -79,7 +79,7 @@ HiTraceMeter provides the hitrace CLI tool for capturing trace data in user mode
 
 
 
-![HiTraceMeter architecture](figure/HiTraceMeter.png)
+![HiTraceMeter architecture](figures/HiTraceMeter.png)
 
 
 

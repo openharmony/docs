@@ -18,7 +18,7 @@ The following figure shows the process of handling a process crash based on the 
 
   **Figure 1** Process crash handling flowchart
 
-![process_crash_handling](figure/process_crash_handling.png)
+![process_crash_handling](figures/process_crash_handling.png)
 
 1. After the signal processor is installed, the **DFX_SignalHandler** function detects and responds to the process crash exception signal.
 
