@@ -169,7 +169,7 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
 
         -   Add resource files in the  **res/drawable**  directory based on the following directory structure.
 
-        ![](figure/unnaming.png)
+        ![](figures/unnaming.png)
 
         -   Compress the  **libLauncher.so**,  **config.json**, and resource files into a ZIP package and change the file name extension to  **.hap**, for example,  **Launcher.hap**.
 
@@ -195,7 +195,7 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
     ```
 
     **Figure  1**  Output of the system attribute dumping command for the LiteOS Cortex-M kernel<a name="fig15179161863016"></a>  
-    ![](figure/output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-m-kernel.png "output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-m-kernel")
+    ![](figures/output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-m-kernel.png "output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-m-kernel")
 
 
 ### Dumping System Attributes on the Platform That Uses the LiteOS Cortex-A Kernel<a name="section3179121853017"></a>
@@ -219,4 +219,4 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
     ```
 
     **Figure  2**  Output of the system attribute dumping command for the LiteOS Cortex-A kernel<a name="fig2179718143018"></a>  
-    ![](figure/output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel.png "output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel")
+    ![](figures/output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel.png "output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel")

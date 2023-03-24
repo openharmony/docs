@@ -10,7 +10,7 @@ Hiview is a module that provides toolkits for device maintenance across differen
 
 **Figure 1** Data interaction between Hiview modules
 
-![Hiview_module_data_interaction](figure/Hiview_module_data_interaction.png)
+![Hiview_module_data_interaction](figures/Hiview_module_data_interaction.png)
 
 1. The service process calls the event logging API to report logged event information and writes the information to the node file.
 2. SysEventSource of the Hiview process asynchronously reads event information from the node file and distributes the event to SysEventPipeline for processing.

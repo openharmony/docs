@@ -114,7 +114,7 @@ hb set
 ```
 
 **Figure 1** Setting page<a name="fig7947145854013"></a>  
-![](figure/setting-page.png "setting-page")
+![](figures/setting-page.png "setting-page")
 
 > **NOTE**<br>
 > The mapping between the development board and the building GUI:

@@ -338,7 +338,7 @@ The figure below illustrates the process for adding a module. A module belongs t
 
 - Add a module to a new subsystem.
 
-  ![](figure/module_addition_process.png)
+  ![](figures/module_addition_process.png)
 
 **Adding a Module to an Existing Component**
 

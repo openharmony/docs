@@ -13,7 +13,7 @@ Under this framework, AI algorithm APIs will be standardized to facilitate distr
 The following figure shows the AI engine framework.
 
   **Figure 1** AI engine framework
-  ![en-us_image_0000001200128073](figure/en-us_image_0000001200128073.png)
+  ![en-us_image_0000001200128073](figures/en-us_image_0000001200128073.png)
 
 ### Setting Up the Environment
 
@@ -34,7 +34,7 @@ The following figure shows the code dependency between modules of the AI engine 
 
   **Figure 2** Code dependency
 
-  ![en-us_image_0000001151931738](figure/en-us_image_0000001151931738.jpg)
+  ![en-us_image_0000001151931738](figures/en-us_image_0000001151931738.jpg)
 
 
 #### Recommendation: Develop plug-ins and SDKs in the directories specified by the AI engine.

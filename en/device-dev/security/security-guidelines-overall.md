@@ -9,7 +9,7 @@ This environment combines chip security and system security features with upper-
 
 **Figure 1** Security assurance
 
-![](figure/security-assurance-framework.png)
+![](figures/security-assurance-framework.png)
 
 
 ## Hardware Security
@@ -74,7 +74,7 @@ For device with 128 KB to 128 MB of memory, the OpenHarmony lite kernel is recom
 
 **Figure 2** How DAC works
 
-![](figure/how-dac-works.png)
+![](figures/how-dac-works.png)
 
 - Capability mechanism
 
@@ -103,7 +103,7 @@ OpenHarmony Universal KeyStore (HUKS) provides key and certificate management. F
 
 **Figure 3** HUKS functions
 
-![](figure/huks-functions.png)
+![](figures/huks-functions.png)
 
 The following algorithms are supported:
 
@@ -145,7 +145,7 @@ To ensure secure transmit of user data between devices, a trust relationship and
 
 **Figure 4** Process of establishing a trust relationship between devices
 
-![](figure/how-an-iot-controller-and-an-iot-device-establish-a-trust-relationship.png)
+![](figures/how-an-iot-controller-and-an-iot-device-establish-a-trust-relationship.png)
 
 
 - IoT device interconnection security

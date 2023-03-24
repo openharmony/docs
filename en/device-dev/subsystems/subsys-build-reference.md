@@ -6,7 +6,7 @@ When adding a module, you must declare its dependencies in **BUILD.gn**. **deps*
 
 **Dependency Types**
 
-![Dependency Types](figure/dependency_types.png)
+![Dependency Types](figures/dependency_types.png)
 
 The dependency between modules can be classified into **deps** (left in the figure above) and **external_deps** (right in the figure above).
 
@@ -179,7 +179,7 @@ The **out/rk3568/.ninja_log** file records the build start time and end time (ms
 
 The four columns are start time, end time, modified timestamp (mtime), and command hash from left to right.
 
-![Ninja_Trace](figure/Ninja_Trace.png)
+![Ninja_Trace](figures/Ninja_Trace.png)
 
 You can graphically display the build time as follows:
 
