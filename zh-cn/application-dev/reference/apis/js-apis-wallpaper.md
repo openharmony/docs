@@ -26,13 +26,15 @@ import wallpaper from '@ohos.wallpaper';
 | WALLPAPER_LOCKSCREEN | 1 |锁屏壁纸标识。 |
 
 
-## RgbaColor<sup>9+</sup>
+## RgbaColor<sup>(deprecated)</sup>
 
 定义壁纸颜色信息结构。
 
-**系统能力**: SystemCapability.MiscServices.Wallpaper
+> **说明：**
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。
 
-**系统接口**：此接口为系统接口。
+**系统能力**: SystemCapability.MiscServices.Wallpaper
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
