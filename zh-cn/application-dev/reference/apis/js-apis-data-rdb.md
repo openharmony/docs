@@ -386,7 +386,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
 })
                                   
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
 ```
 
