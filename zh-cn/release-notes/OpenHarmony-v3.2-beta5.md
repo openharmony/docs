@@ -45,9 +45,9 @@ ArkUI适配了根据资源名称获取资源的能力。
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta5 | NA |
-| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| HUAWEI DevEco Studio（可选） | *待发布* | OpenHarmony应用开发推荐使用。 |
-| HUAWEI DevEco Device Tool（可选） | *待发布* | OpenHarmony智能设备集成开发环境推荐使用。 |
+| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br />通过DevEco Studio默认获取的SDK为Public SDK。 |
+| HUAWEI DevEco Studio（可选） | 3.1 Beta1 | OpenHarmony应用开发推荐使用。 <br />[请点击此处获取](https://developer.harmonyos.com/cn/develop/deveco-studio#download) |
+| HUAWEI DevEco Device Tool（可选） | 3.1 Beta2 | OpenHarmony智能设备集成开发环境推荐使用。 <br />[请点击此处获取](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
 ## 源码获取
