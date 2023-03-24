@@ -21,6 +21,10 @@
         - [多HAP使用规则](quick-start/multi-hap-rules.md)
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
+      - [应用程序包更新流程](quick-start/application-package-update.md)
+      - 应用程序包快速修复
+        - [快速修复概述](quick-start/quickfix-principles.md)
+        - [快速修复调试指导](quick-start/quickfix-debug.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -63,6 +67,7 @@
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
           - [DataShareExtensionAbility（仅对系统应用开放）](application-models/datashareextensionability.md)
           - [FormExtensionAbility（服务卡片）](application-models/widget-development-stage.md)
+          - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
         - [AbilityStage组件容器](application-models/abilitystage.md)
         - [应用上下文Context](application-models/application-context-stage.md)
         - 信息传递载体Want
@@ -81,9 +86,12 @@
         - [进程模型](application-models/process-model-stage.md)
         - 公共事件
           - [公共事件简介](application-models/common-event-overview.md)
-          - [公共事件订阅](application-models/common-event-subscription.md)
+          - 公共事件订阅
+            - [公共事件订阅概述](application-models/common-event-subscription-overview.md)
+            - [动态订阅公共事件](application-models/common-event-subscription.md)
+            - [静态订阅公共事件（仅对系统应用开放）](application-models/common-event-static-subscription.md)
+            - [取消动态订阅公共事件](application-models/common-event-unsubscription.md)
           - [公共事件发布](application-models/common-event-publish.md)
-          - [公共事件取消订阅](application-models/common-event-unsubscription.md)
         - [后台服务](application-models/background-services.md)
       - 线程间通信
         - [线程模型](application-models/thread-model-stage.md)
