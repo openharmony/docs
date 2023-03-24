@@ -1,7 +1,7 @@
 # OpenHarmony开源项目
 
 > 说明：
-> 您当前正在浏览OpenHarmony 3.2 Beta5版本的配套文档，请获取与该版本[配套的SDK](release-notes/OpenHarmony-v3.2-beta5.md#配套关系)进行开发活动。
+> 您当前正在浏览OpenHarmony 3.2 Beta5版本的配套文档，请获取与该版本[配套的SDK](release-notes/OpenHarmony-v3.2-beta5.md#配套关系)进行开发。
 
 ## 项目介绍
 
