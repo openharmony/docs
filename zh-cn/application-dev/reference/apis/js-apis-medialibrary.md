@@ -1,10 +1,8 @@
 # @ohos.multimedia.medialibrary (媒体库管理)
 
 > **说明：**
-> - 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 从API Version 9开始废弃。保留至API Version 13版本。
-> - 部分功能变更为系统接口，仅供系统应用使用，请使用[@ohos.filemanagement.userFileManager](js-apis-userFileManager.md)相应接口替代。
-> - 媒体资源选择和保存功能仍开放给普通应用，请使用[@ohos.file.picker](js-apis-file-picker.md)相应接口替代。
+> 该组件从API Version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 ## 导入模块
 ```js
@@ -609,7 +607,7 @@ release(): Promise&lt;void&gt;
 media.release()
 ```
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
@@ -644,8 +642,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (error, value) => {
 });
 ```
 
-
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
@@ -684,7 +681,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -728,7 +725,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -770,7 +767,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
@@ -817,7 +814,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
 ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -854,7 +851,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (error, value) => {
 ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -2627,9 +2624,11 @@ async function example() {
 | width  | number | 是    | 是    | 宽（单位：像素） |
 | height | number | 是    | 是    | 高（单位：像素） |
 
-## MediaAssetOption
+## MediaAssetOption<sup>(deprecated)</sup>
 
 媒体资源选项。
+
+> **说明：** 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2640,9 +2639,11 @@ async function example() {
 | mimeType     | string | 是   | 是   | 媒体MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型。<br/>包括：'image/\*'、'video/\*'、'audio/\*'、 'file\*'。 |
 | relativePath | string | 是   | 是   | 自定义媒体资源保存位置，例：Pictures/ 不填则保存到默认路径。 <br/> image类型默认路径Pictures/ <br/> video类型默认路径Videos/ <br/> audio类型默认路径Audios/ <br/> file类型默认路径Documents/ 。 |
 
-## MediaSelectOption
+## MediaSelectOption<sup>(deprecated)</sup>
 
 媒体资源类型选项。
+
+> **说明：** 从API Version 9开始废弃。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
