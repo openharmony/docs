@@ -237,8 +237,8 @@
 | 名称   | 描述                                               |
 | ------ | -------------------------------------------------- |
 | All    | 指定当前的Transition动效生效在组件的所有变化场景。 |
-| Insert | 指定当前的Transition动效生效在组件的插入场景。     |
-| Delete | 指定当前的Transition动效生效在组件的删除场景。     |
+| Insert | 指定当前的Transition动效生效在组件的插入显示场景。 |
+| Delete | 指定当前的Transition动效生效在组件的删除隐藏场景。 |
 
 ## RelateType
 
