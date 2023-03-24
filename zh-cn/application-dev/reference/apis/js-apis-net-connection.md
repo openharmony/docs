@@ -1097,7 +1097,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 使用默认网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1134,7 +1134,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用默认网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1639,7 +1639,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 使用对应网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1678,7 +1678,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1721,7 +1721,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 使用对应网络解析主机名以获取第一个IP地址，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1760,7 +1760,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 使用对应网络解析主机名以获取第一个IP地址，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.GET_NETWORK_INFO
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
