@@ -44,6 +44,17 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | barWidth          | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。     |
 | barHeight         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。     |
 | animationDuration | number | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：200 |
+| divider<sup>10+</sup> |  [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
+| FadingEdge<sup>10+</sup> | boolean | 设置页签超过容器宽度时是否渐隐消失<br />默认值：true         |
+
+## DividerStyle<sup>10+</sup>对象说明
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| strokeWidth | [Length](ts-types.md#length) | 是 | 分割线的线宽。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 分割线的颜色。<br/>默认值：#33182431 |
+| startMargin | [Length](ts-types.md#length) | 否 | 分割线与侧边栏顶端的距离。<br/>默认值：0.0vp |
+| endMargin | [Length](ts-types.md#length) | 否 | 分割线与侧边栏底端的距离。<br/>默认值：0.0vp |
 
 ## BarMode枚举说明
 
