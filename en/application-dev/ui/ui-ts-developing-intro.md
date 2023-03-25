@@ -62,7 +62,7 @@ You can update page content by updating component status. Below is a simple exam
 
 > **NOTE**
 >
-> Before updating the status of a component, initialize its member variables. The member variables of a custom component can be initialized in either of the following methods: [local initialization](../quick-start/arkts-restrictions-and-extensions.md#initialization-and-restrictions-of-custom-components-member-variables) or [initialization using constructor parameters](../quick-start/arkts-restrictions-and-extensions.md#initialization-and-restrictions-of-custom-components-member-variables). Select the appropriate method based on the decorator used by the variable.
+> Before updating the status of a component, initialize its member variables. The member variables of a custom component can be initialized in either of the following methods: [local initialization](../quick-start/arkts-restrictions-and-extensions.md#initialization-rules-and-restrictions-of-custom-components-member-variables) or [initialization using constructor parameters](../quick-start/arkts-restrictions-and-extensions.md#initialization-rules-and-restrictions-of-custom-components-member-variables). Select the appropriate method based on the decorator used by the variable.
 
 **Example**
 
