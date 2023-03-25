@@ -1058,6 +1058,8 @@
       - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
+      - data/rdb
+        - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
       - [@ohos.file.environment (目录环境能力)](reference/apis/js-apis-file-environment.md)
       - [@ohos.file.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
@@ -1248,8 +1250,6 @@
         - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
         - [remoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
         - [shortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
-      - data/rdb
-        - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
   - 错误码参考
     - [通用错误码](reference/errorcodes/errorcode-universal.md)
     - Ability框架
