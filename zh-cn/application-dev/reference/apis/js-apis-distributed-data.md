@@ -3845,6 +3845,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     }
   }
 });
+```
 
 ### setSyncParam<sup>8+</sup> ###
 
