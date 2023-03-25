@@ -17,7 +17,6 @@
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility（仅对系统应用开放）](datashareextensionability.md)
       - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
     - [AbilityStage组件容器](abilitystage.md)

@@ -5,9 +5,24 @@
 
 UIAbility组件是一种包含UI界面的应用组件，主要用于和用户交互。
 
-UIAbility组件是系统调度的基本单元，为应用提供绘制界面的窗口。一个应用可以包含一个或多个UIAbility组件。例如，在支付应用中，可以将入口功能和收付款功能分别配置为独立的UIAbility。建议将相同的功能模块放在同一个UIAbility中，以多页面的形式呈现。
+UIAbility的设计理念：
+
+1. 原生支持应用组件级的[跨端迁移](hop-cross-device-migration.md)和[多端协同](hop-multi-device-collaboration.md)
+
+2. 支持多设备和多窗口形态
+
+关于UIAbility的设计理念，请详细参考[Stage模型的设计理念。](application-model-description.md)
+
+UIAbility划分原则与建议：
+UIAbility组件是系统调度的基本单元，为应用提供绘制界面的窗口。一个应用可以包含一个或多个UIAbility组件。例如，在支付应用中，可以将入口功能和收付款功能分别配置为独立的UIAbility。
 
 每一个UIAbility组件实例都会在最近任务列表中显示一个对应的任务。
+
+对于开发者而言，可以根据具体场景选择单个还是多个UIAbility，划分建议如下:
+
+- 如果开发者希望在任务视图中看到一个任务，则建议使用一个UIAbility，多个页面的方式。
+
+- 如果开发者希望在任务视图中看到多个任务，或者需要同时开启多个窗口，则建议使用多个UIAbility开发不同的模块功能。
 
 
 ## 声明配置
