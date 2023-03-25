@@ -83,7 +83,7 @@ function addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promi
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[LocalServiceInfo](#localServiceInfo)> | 以Promise形式返回添加的mdns服务信息。 |
+| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回添加的mdns服务信息。 |
 
 **错误码：**
 
@@ -194,7 +194,7 @@ function removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Pr
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[LocalServiceInfo](#localServiceInfo)> | 以Promise形式返回移除的mdns服务信息。 |
+| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回移除的mdns服务信息。 |
 
 **错误码：**
 
