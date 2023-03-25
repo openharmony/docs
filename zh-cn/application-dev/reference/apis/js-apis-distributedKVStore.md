@@ -2112,6 +2112,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2161,6 +2162,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2202,6 +2204,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2269,6 +2272,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2329,6 +2333,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2386,6 +2391,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2434,6 +2440,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2489,6 +2496,7 @@ delete(key: string): Promise&lt;void&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2537,6 +2545,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2587,6 +2596,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2636,6 +2646,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -2704,6 +2715,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -3223,8 +3235,10 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+
 
 **示例：**
 
@@ -3297,6 +3311,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3360,6 +3375,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3428,6 +3444,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3490,6 +3507,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3551,6 +3569,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4030,6 +4049,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -4098,6 +4118,7 @@ startTransaction(): Promise&lt;void&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
+|  14800047    | WAL file size exceeds the default limit|
 
 **示例：**
 
@@ -4646,7 +4667,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max subscribe limits.             |
+| 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4757,9 +4778,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.
 
 | 参数名       | 类型                                      | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
@@ -5634,6 +5653,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5708,6 +5728,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5772,6 +5793,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5828,6 +5850,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5875,6 +5898,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5952,6 +5976,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6025,6 +6050,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6091,6 +6117,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6161,6 +6188,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6222,6 +6250,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6275,6 +6304,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6337,6 +6367,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
