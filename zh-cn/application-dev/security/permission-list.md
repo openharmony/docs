@@ -1737,3 +1737,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
+
+允许应用使用超声波感知。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
