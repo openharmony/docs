@@ -4778,7 +4778,9 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 取消订阅同步完成事件回调通知。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
 
 | 参数名       | 类型                                      | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
