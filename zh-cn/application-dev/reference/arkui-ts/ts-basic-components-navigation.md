@@ -30,11 +30,11 @@ Navigation()
 | toolBar        | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
 | hideToolBar    | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar   | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
-| hideBackButton | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 |
+| hideBackButton | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 |不支持隐藏NavDestination组件标题栏中的返回图标。|
 | navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | 导航栏宽度。<br/>默认值：200vp |
 | navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition枚举说明)             | 导航栏位置。<br/>默认值：NavBarPosition.Start |
 | mode<sup>9+</sup> | [NavigationMode](#navigationmode枚举说明)                       | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto |
-| backButtonIcon<sup>9+</sup> | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)   | 设置导航栏返回图标。 |
+| backButtonIcon<sup>9+</sup> | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)   | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。|
 | hideNavBar<sup>9+</sup> | boolean                         | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
 
 
