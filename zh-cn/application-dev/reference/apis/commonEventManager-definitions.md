@@ -1,7 +1,7 @@
 # 系统公共事件定义
 
 本文档提供OpenHarmony系统所定义的公共事件类型的索引。
-公共事件类型定义在[ohos.commonEvent模块的Support枚举](./js-apis-commonEventManager.md#support)中。
+公共事件类型定义在[ohos.commonEventManager模块的Support枚举](./js-apis-commonEventManager.md#support)中。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -11,7 +11,7 @@
 - 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
-（预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
+（废弃）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
 - 值： usual.event.LOCKED_BOOT_COMPLETED
 - 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -61,7 +61,7 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_PRESENT
-（预留事件，暂未支持）用户解锁设备的公共事件的动作。
+（废弃）用户解锁设备的公共事件的动作。
 - 值： usual.event.USER_PRESENT
 - 订阅者所需权限： 无
 
@@ -76,7 +76,7 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DATE_CHANGED
-（预留事件，暂未支持）表示系统日期已更改的公共事件的动作。
+（废弃）表示系统日期已更改的公共事件的动作。
 - 值： usual.event.DATE_CHANGED
 - 订阅者所需权限： 无
 
@@ -86,7 +86,7 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
-（预留事件，暂未支持）表示用户关闭临时系统对话框的公共事件的动作。
+（废弃）表示用户关闭临时系统对话框的公共事件的动作。
 - 值： usual.event.CLOSE_SYSTEM_DIALOGS
 - 订阅者所需权限： 无
 
@@ -96,12 +96,12 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_REPLACED
-（预留事件，暂未支持）表示已安装的应用程序包的新版本已替换设备上的旧版本的公共事件的操作。
+（废弃）表示已安装的应用程序包的新版本已替换设备上的旧版本的公共事件的操作。
 - 值： usual.event.PACKAGE_REPLACED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_MY_PACKAGE_REPLACED
-（预留事件，暂未支持）表示应用程序包的新版本已取代前一个版本的公共事件的操作。
+（废弃）表示应用程序包的新版本已取代前一个版本的公共事件的操作。
 - 值： usual.event.MY_PACKAGE_REPLACED
 - 订阅者所需权限： 无
 
@@ -111,12 +111,12 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_BUNDLE_REMOVED
-（预留事件，暂未支持）表示已从设备中卸载已安装的捆绑包，但应用程序数据仍保留的公共事件的操作。
+（废弃）表示已从设备中卸载已安装的捆绑包，但应用程序数据仍保留的公共事件的操作。
 - 值： usual.event.BUNDLE_REMOVED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_FULLY_REMOVED
-（预留事件，暂未支持）表示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）的公共事件的操作。
+（废弃）表示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）的公共事件的操作。
 - 值： usual.event.PACKAGE_FULLY_REMOVED
 - 订阅者所需权限： 无
 
@@ -126,7 +126,7 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_RESTARTED
-表示用户重启应用包并杀死其所有进程的普通事件的动作。
+（废弃）表示用户重启应用包并杀死其所有进程的普通事件的动作。
 - 值： usual.event.PACKAGE_RESTARTED
 - 订阅者所需权限： 无
 
@@ -141,67 +141,67 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGES_SUSPENDED
-（预留事件，暂未支持）表示应用包已挂起的公共事件的动作。
+（废弃）表示应用包已挂起的公共事件的动作。
 - 值： usual.event.PACKAGES_SUSPENDED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGES_UNSUSPENDED
-（预留事件，暂未支持）表示应用包未挂起的公共事件的动作。
+（废弃）表示应用包未挂起的公共事件的动作。
 - 值： usual.event.PACKAGES_UNSUSPENDED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_MY_PACKAGE_SUSPENDED
-应用包被挂起的公共事件的动作。
+（废弃）应用包被挂起的公共事件的动作。
 - 值： usual.event.MY_PACKAGE_SUSPENDED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_MY_PACKAGE_UNSUSPENDED
-表示应用包未挂起的公共事件的动作。
+（废弃）表示应用包未挂起的公共事件的动作。
 - 值： usual.event.MY_PACKAGE_UNSUSPENDED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_UID_REMOVED
-（预留事件，暂未支持）表示用户ID已从系统中删除的公共事件的动作。
+（废弃）表示用户ID已从系统中删除的公共事件的动作。
 - 值： usual.event.UID_REMOVED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_FIRST_LAUNCH
-（预留事件，暂未支持）表示首次启动已安装应用程序的公共事件的动作。
+（废弃）表示首次启动已安装应用程序的公共事件的动作。
 - 值： usual.event.PACKAGE_FIRST_LAUNCH
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
-（预留事件，暂未支持）表示应用需要系统校验的公共事件的动作。
+（废弃）表示应用需要系统校验的公共事件的动作。
 - 值： usual.event.PACKAGE_NEEDS_VERIFICATION
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_VERIFIED
-（预留事件，暂未支持）表示应用已被系统校验的公共事件的动作。
+（废弃）表示应用已被系统校验的公共事件的动作。
 - 值： usual.event.PACKAGE_VERIFIED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE
-（预留事件，暂未支持）表示安装在外部存储上的应用程序对系统可用的公共事件的操作。
+（废弃）表示安装在外部存储上的应用程序对系统可用的公共事件的操作。
 - 值： usual.event.EXTERNAL_APPLICATIONS_AVAILABLE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE
-（预留事件，暂未支持）表示安装在外部存储上的应用程序对系统不可用的公共事件的操作。
+（废弃）表示安装在外部存储上的应用程序对系统不可用的公共事件的操作。
 - 值： usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_CONFIGURATION_CHANGED
-（预留事件，暂未支持）表示设备状态（例如，方向和区域设置）已更改的公共事件的操作。
+（废弃）表示设备状态（例如，方向和区域设置）已更改的公共事件的操作。
 - 值： usual.event.CONFIGURATION_CHANGED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_LOCALE_CHANGED
-（预留事件，暂未支持）表示设备区域设置已更改的公共事件的操作。
+（废弃）表示设备区域设置已更改的公共事件的操作。
 - 值： usual.event.LOCALE_CHANGED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_MANAGE_PACKAGE_STORAGE
-（预留事件，暂未支持）设备存储空间不足的公共事件的动作。
+（废弃）设备存储空间不足的公共事件的动作。
 - 值： usual.event.MANAGE_PACKAGE_STORAGE
 - 订阅者所需权限： 无
 
@@ -211,27 +211,27 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_HOME_MODE
-（预留事件，暂未支持）表示系统处于HOME模式的公共事件的动作。
+（废弃）表示系统处于HOME模式的公共事件的动作。
 - 值： common.event.HOME_MODE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_OFFICE_MODE
-（预留事件，暂未支持）表示系统处于办公模式的公共事件的动作。
+（废弃）表示系统处于办公模式的公共事件的动作。
 - 值： common.event.OFFICE_MODE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_STARTED
-（预留事件，暂未支持）表示用户已启动的公共事件的动作。
+（废弃）表示用户已启动的公共事件的动作。
 - 值： usual.event.USER_STARTED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_BACKGROUND
-（预留事件，暂未支持）表示用户已被带到后台的公共事件的动作。
+（废弃）表示用户已被带到后台的公共事件的动作。
 - 值： usual.event.USER_BACKGROUND
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_FOREGROUND
-（预留事件，暂未支持）表示用户已被带到前台的公共事件的动作。
+（废弃）表示用户已被带到前台的公共事件的动作。
 - 值： usual.event.USER_FOREGROUND
 - 订阅者所需权限： 无
 
@@ -241,7 +241,7 @@
 - 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 ## COMMON_EVENT_USER_STARTING
-（预留事件，暂未支持）表示要启动用户的公共事件的动作。
+（废弃）表示要启动用户的公共事件的动作。
 - 值： usual.event.USER_STARTING
 - 订阅者所需权限： ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -251,12 +251,12 @@
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_STOPPING
-（预留事件，暂未支持）表示要停止用户的公共事件的动作。
+（废弃）表示要停止用户的公共事件的动作。
 - 值： usual.event.USER_STOPPING
 - 订阅者所需权限： ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 ## COMMON_EVENT_USER_STOPPED
-（预留事件，暂未支持）表示用户已停止的公共事件的动作。
+（废弃）表示用户已停止的公共事件的动作。
 - 值： usual.event.USER_STOPPED
 - 订阅者所需权限： 无
 
@@ -526,12 +526,12 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE
-（预留事件，暂未支持）蓝牙A2DP宿播放状态改变的普通事件的动作。
+（废弃）蓝牙A2DP宿播放状态改变的普通事件的动作。
 - 值： usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE
-（预留事件，暂未支持）表示蓝牙A2DP宿的音频状态已更改的公共事件的动作。
+（废弃）表示蓝牙A2DP宿的音频状态已更改的公共事件的动作。
 - 值： usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
@@ -561,7 +561,7 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件，暂未支持）表示系统空闲模式已更改的公共事件的动作。
+（废弃）表示系统空闲模式已更改的公共事件的动作。
 - 值： usual.event.DEVICE_IDLE_MODE_CHANGED
 - 订阅者所需权限： 无
 
@@ -581,17 +581,17 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 ## COMMON_EVENT_ABILITY_ADDED
-（预留事件，暂未支持）表示已添加能力的公共事件的动作。
+（废弃）表示已添加能力的公共事件的动作。
 - 值： usual.event.ABILITY_ADDED
 - 订阅者所需权限： ohos.permission.LISTEN_BUNDLE_CHANGE
 
 ## COMMON_EVENT_ABILITY_REMOVED
-（预留事件，暂未支持）表示已删除能力的公共事件的动作。
+（废弃）表示已删除能力的公共事件的动作。
 - 值： usual.event.ABILITY_REMOVED
 - 订阅者所需权限： ohos.permission.LISTEN_BUNDLE_CHANGE
 
 ## COMMON_EVENT_ABILITY_UPDATED
-（预留事件，暂未支持）表示能力已更新的公共事件的动作。
+（废弃）表示能力已更新的公共事件的动作。
 - 值： usual.event.ABILITY_UPDATED
 - 订阅者所需权限： ohos.permission.LISTEN_BUNDLE_CHANGE
 
@@ -601,57 +601,57 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_SLEEP
-（预留事件，暂未支持）表示表示车辆的车载信息娱乐（IVI）系统正在休眠的常见事件的动作。
+（废弃）表示表示车辆的车载信息娱乐（IVI）系统正在休眠的常见事件的动作。
 - 值： common.event.IVI_SLEEP
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_PAUSE
-（预留事件，暂未支持）表示IVI已休眠，并通知应用程序停止播放。
+（废弃）表示IVI已休眠，并通知应用程序停止播放。
 - 值： common.event.IVI_PAUSE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_STANDBY
-（预留事件，暂未支持）表示第三方应用暂停当前工作的公共事件的动作。
+（废弃）表示第三方应用暂停当前工作的公共事件的动作。
 - 值： common.event.IVI_STANDBY
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_LASTMODE_SAVE
-（预留事件，暂未支持）表示第三方应用保存其最后一个模式的公共事件的动作。
+（废弃）表示第三方应用保存其最后一个模式的公共事件的动作。
 - 值： common.event.IVI_LASTMODE_SAVE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
-（预留事件，暂未支持）表示车辆电源系统电压异常的公共事件的动作。
+（废弃）表示车辆电源系统电压异常的公共事件的动作。
 - 值： common.event.IVI_VOLTAGE_ABNORMAL
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_HIGH_TEMPERATURE
-（预留事件，暂未支持）表示IVI温度过高。
+（废弃）表示IVI温度过高。
 - 值： common.event.IVI_HIGH_TEMPERATURE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_EXTREME_TEMPERATURE
-（预留事件，暂未支持）表示IVI温度极高。
+（废弃）表示IVI温度极高。
 - 值： common.event.IVI_EXTREME_TEMPERATURE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL
-（预留事件，暂未支持）表示车载系统具有极端温度的常见事件的动作。
+（废弃）表示车载系统具有极端温度的常见事件的动作。
 - 值： common.event.IVI_TEMPERATURE_ABNORMAL
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_VOLTAGE_RECOVERY
-（预留事件，暂未支持）表示车辆电源系统电压恢复正常的公共事件的动作。
+（废弃）表示车辆电源系统电压恢复正常的公共事件的动作。
 - 值： common.event.IVI_VOLTAGE_RECOVERY
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_TEMPERATURE_RECOVERY
-（预留事件，暂未支持）表示车载系统温度恢复正常的公共事件的动作。
+（废弃）表示车载系统温度恢复正常的公共事件的动作。
 - 值： common.event.IVI_TEMPERATURE_RECOVERY
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_IVI_ACTIVE
-（预留事件，暂未支持）表示电池服务处于活动状态的公共事件的动作。
+（废弃）表示电池服务处于活动状态的公共事件的动作。
 - 值： common.event.IVI_ACTIVE
 - 订阅者所需权限： 无
 
@@ -686,32 +686,32 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DISK_REMOVED
-（预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
+（废弃）外部存储设备状态变更为移除时发送此公共事件。
 - 值： usual.event.data.DISK_BAD_REMOVAL
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_DISK_UNMOUNTED
-（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
+（废弃）部存储设备状态变更为卸载时发送此公共事件。
 - 值： usual.event.data.DISK_UNMOUNTABLE
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_DISK_MOUNTED
-（预留事件，暂未支持）外部存储设备状态变更为挂载时发送此公共事件。
+（废弃）外部存储设备状态变更为挂载时发送此公共事件。
 - 值： usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_DISK_BAD_REMOVAL
-（预留事件，暂未支持）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
+（废弃）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
 - 值： usual.event.data.DISK_REMOVED
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_DISK_UNMOUNTABLE
-（预留事件，暂未支持）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
+（废弃）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
 - 值： usual.event.data.DISK_UNMOUNTED
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_DISK_EJECT
-（预留事件，暂未支持）用户已表示希望删除外部存储介质时发送此公共事件。
+（废弃）用户已表示希望删除外部存储介质时发送此公共事件。
 - 值： usual.event.data.DISK_EJECT
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
@@ -741,17 +741,17 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-（预留事件，暂未支持）表示帐户可见更改的公共事件的动作。
+（废弃）表示帐户可见更改的公共事件的动作。
 - 值： usual.event.data.VISIBLE_ACCOUNTS_UPDATED
 - 订阅者所需权限： ohos.permission.GET_APP_ACCOUNTS
 
 ## COMMON_EVENT_ACCOUNT_DELETED
-（预留事件，暂未支持）删除帐户的公共事件的动作。
+（废弃）删除帐户的公共事件的动作。
 - 值： usual.event.data.ACCOUNT_DELETED
 - 订阅者所需权限： ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 ## COMMON_EVENT_FOUNDATION_READY
-（预留事件，暂未支持）表示foundation已准备好的公共事件的动作。
+（废弃）表示foundation已准备好的公共事件的动作。
 - 值： usual.event.data.FOUNDATION_READY
 - 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
