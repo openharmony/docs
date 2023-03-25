@@ -3,6 +3,7 @@
 The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
+
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -118,6 +119,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install because without allow app shared bundle permission. |
 
 **Example**
 
@@ -164,7 +166,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -204,6 +206,119 @@ try {
 }
 ```
 
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+
+Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                                                    |
+| -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.                            |
+| callback       | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+
+Uninstalls a shared bundle. This API uses a promise to return the result.
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
 ## BundleInstaller.recover
 
 recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
@@ -221,7 +336,7 @@ Recovers a bundle. This API uses an asynchronous callback to return the result.
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovering.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -288,3 +403,17 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | isKeepData                     | boolean                        | Yes                      | Whether to retain the data directory during bundle uninstall.|
 | hashParams        | Array<[HashParam](#hashparam)> | Yes| Hash parameters.        |
 | crowdtestDeadline| number                         | Yes                       |End date of crowdtesting.|
+| sharedBundleDirPaths | Array\<String> | No|Paths of the shared bundle files.|
+
+## UninstallParam<sup>10+</sup>
+
+Defines the parameters required for the uninstallation of a shared bundle.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API and cannot be called by third-party applications.
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Name of the shared bundle.                                                |
+| versionCode | number | No  | Version number of the shared bundle. If this parameter is not set, all shared bundles of the specified name are uninstalled.|
