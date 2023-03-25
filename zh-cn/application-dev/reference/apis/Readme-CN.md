@@ -227,8 +227,6 @@
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
-  - data/rdb
-    - [resultSet (结果集)](js-apis-data-resultset.md)
 
 - 文件管理
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
@@ -434,3 +432,5 @@
     - [PermissionDef](js-apis-bundle-PermissionDef.md)
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
+  - data/rdb
+    - [resultSet (结果集)](js-apis-data-resultset.md)
