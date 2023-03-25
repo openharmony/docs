@@ -5177,6 +5177,10 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
+> **说明：**
+>
+> 其中devicesId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
