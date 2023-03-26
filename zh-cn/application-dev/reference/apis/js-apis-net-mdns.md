@@ -1,6 +1,6 @@
 # @ohos.net.mdns (MDNS管理)
 
-MDNS管理提供管理MDNS的一些基础能力，包括创建本地服务、移除本地服务、解析本地服务、监听本地服务等功能。
+MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
 
 > **说明：**
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -469,7 +469,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceFound')
 
-on(type: 'serviceFound', callback: Callback<LocalServiceInfo>): void;
+on(type: 'serviceFound', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void;
 
 订阅发现mDNS服务的通知。
 
@@ -480,7 +480,7 @@ on(type: 'serviceFound', callback: Callback<LocalServiceInfo>): void;
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'serviceFound'。<br>serviceFound：监听发现mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                 | 是        |   mDNS服务的信息      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息      |
 
 **示例：**
 
@@ -497,7 +497,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceLost')
 
-on(type: 'serviceLost', callback: Callback<LocalServiceInfo>): void;
+on(type: 'serviceLost', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void;
 
 订阅移除mDNS服务的通知。
 
