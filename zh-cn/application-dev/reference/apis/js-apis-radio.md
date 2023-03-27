@@ -31,6 +31,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -75,6 +76,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -116,6 +118,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -154,6 +157,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -198,6 +202,7 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 | Promise\<[NetworkState](#networkstate)\> | 以Promise形式返回网络状态。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -238,6 +243,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -279,6 +285,7 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | 以Promise形式返回当前选网模式。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -318,6 +325,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -359,6 +367,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 | Promise\<string\> | 以Promise形式返回注册网络所在国家的ISO国家码，例如CN（中国）。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -397,6 +406,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 | callback | AsyncCallback\<number\> | 是   | 回调函数 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -431,6 +441,7 @@ getPrimarySlotId\(\): Promise\<number\>
 | Promise\<number\> | 以Promise形式返回获取设备主卡所在卡槽的索引号的结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -469,6 +480,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -510,6 +522,7 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -658,6 +671,7 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -696,6 +710,7 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -740,6 +755,7 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 | Promise\<boolean\> | 以Promise形式返回判断Radio是否打开的结果。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -780,6 +796,7 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，返回运营商名称，例如：中国移动。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -821,6 +838,7 @@ getOperatorName\(slotId: number\): Promise<string\>
 | Promise\<string\> | 以Promise形式返回运营商名称，例如：中国移动。                |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -863,6 +881,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -879,8 +898,8 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.setPrimarySlotId(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setPrimarySlotId(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -910,6 +929,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -927,9 +947,9 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 ```js
 let slotId = 0;
 let promise = radio.setPrimarySlotId(slotId);
-promise.then(data => {
-    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setPrimarySlotId success.`);
+}).catch((err) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -953,6 +973,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -993,6 +1014,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1039,6 +1061,7 @@ getIMEI(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1081,6 +1104,7 @@ getMEID(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1121,6 +1145,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1167,6 +1192,7 @@ getMEID(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1209,6 +1235,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1249,6 +1276,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1295,6 +1323,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的唯一设备ID。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1337,6 +1366,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1351,8 +1381,8 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-radio.sendUpdateCellLocationRequest((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1376,6 +1406,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1391,8 +1422,8 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 ```js
 let slotId = 0;
-radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1421,6 +1452,7 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1436,10 +1468,9 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.sendUpdateCellLocationRequest(slotId);
-promise.then(data => {
-    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.sendUpdateCellLocationRequest(slotId).then(() => {
+    console.log(`sendUpdateCellLocationRequest success.`);
+}).catch((err) => {
     console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1463,6 +1494,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1503,6 +1535,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1549,6 +1582,7 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1592,6 +1626,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1618,8 +1653,8 @@ let networkSelectionModeOptions={
     networkInformation: networkInformation,
     resumeSelection: true
 }
-radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1648,6 +1683,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1675,9 +1711,9 @@ let networkSelectionModeOptions={
     resumeSelection: true
 }
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
-promise.then(data => {
-    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setNetworkSelectionMode success.`);
+}).catch((err) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1702,6 +1738,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1746,6 +1783,7 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1785,6 +1823,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -1822,6 +1861,7 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -1865,6 +1905,7 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 | Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
@@ -1906,6 +1947,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1920,8 +1962,8 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-radio.turnOnRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1946,6 +1988,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -1961,8 +2004,8 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.turnOnRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1992,6 +2035,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2007,10 +2051,9 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.turnOnRadio(slotId);
-promise.then(data => {
-    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOnRadio(slotId).then(() => {
+    console.log(`turnOnRadio success.`);
+}).catch((err) => {
     console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2034,6 +2077,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2048,8 +2092,8 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-radio.turnOffRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2074,6 +2118,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2089,8 +2134,8 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.turnOffRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2120,6 +2165,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2135,10 +2181,9 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.turnOffRadio(slotId);
-promise.then(data => {
-    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOffRadio(slotId).then(() => {
+    console.log(`turnOffRadio success.`);
+}).catch((err) => {
     console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2164,6 +2209,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2178,8 +2224,9 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 **示例：**
 
 ```js
-radio.setPreferredNetwork(0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2209,9 +2256,10 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
-| 错误码ID |                  错误信息                    |
+| 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
@@ -2223,10 +2271,10 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 **示例：**
 
 ```js
-let promise = radio.setPreferredNetwork(0, 1);
-promise.then(data => {
-    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM).then(() => {
+    console.log(`setPreferredNetwork success.`);
+}).catch((err) => {
     console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2251,6 +2299,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2295,6 +2344,7 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2338,6 +2388,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2383,6 +2434,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2427,6 +2479,7 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
@@ -2468,6 +2521,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
