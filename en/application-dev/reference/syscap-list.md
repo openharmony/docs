@@ -1,6 +1,6 @@
 # SystemCapability List
 
-SysCap, short for System Capability, refers to a standalone feature in the OpenHarmony system.
+SystemCapability (SysCap) is a standalone feature in the OpenHarmony system.
 
 Before using an API for development, you are advised to familiarize yourself with [SysCap](syscap.md), and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
 
@@ -172,14 +172,6 @@ Basic network management services
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
 
-## SystemCapability.Communication.NetManager.Extension
-
-Extended network management services
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
-
 ## SystemCapability.Communication.NetStack
 
 Basic network stack capability
@@ -315,14 +307,6 @@ Input device management
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
 
-## SystemCapability.MultimodalInput.Input.RemoteInputDevice
-
-Distributed input device management
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
-
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 Input event listener
@@ -342,14 +326,6 @@ Input event consumer
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 Input event simulator
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
-
-## SystemCapability.MultimodalInput.Input.InputFilter
-
-Input event filter
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -453,7 +429,7 @@ Media audio recorder capability
 
 ## SystemCapability.Multimedia.Media.VideoPlayer
 
-Media video player capability
+Video player capability
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1347,7 +1323,7 @@ Contacts
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | No    | No          | No    |
 
-## SystemCapability.Applictaions.settings.Core
+## SystemCapability.Applications.settings.Core
 
 API setting
 
@@ -1658,3 +1634,35 @@ Quick fix
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.MultimodalInput.Input.Pointer
+
+Pointer input enhancement
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Communication.SecureElement
+
+Secure element access
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| No     | No    | No    | No  | No  | No    | No          | No    |
+
+## SystemCapability.Msdp.DeviceStatus.Stationarty
+
+Device status awareness
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.Base
+
+General type
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
