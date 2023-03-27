@@ -46,7 +46,6 @@ let observer = {
             console.log('onException, stack: ', errorObj.stack);
         }
     }
-
 };
 let observerId = -1;
 try {
