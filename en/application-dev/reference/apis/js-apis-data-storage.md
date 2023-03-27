@@ -20,8 +20,8 @@ import data_storage from '@ohos.data.storage';
 
 | Name            | Type| Readable| Writable| Description                                 |
 | ---------------- | -------- | ---- | ---- | ------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. It must be less than 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. It must be less than 8192 bytes.|
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
 ## data_storage.getStorageSync
