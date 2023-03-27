@@ -87,6 +87,8 @@ module.json5配置文件包含以下标签。
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，标签值为数组类型，只对当前ExtensionAbility生效。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](#requestpermissions标签) | 标识当前应用运行时需向系统申请的权限集合。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [testRunner](#testrunner标签) | 标识当前Module用于支持对测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
+| [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
+| [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 
 
 ## deviceTypes标签
@@ -226,7 +228,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
       }]
     }],
     ...
-    
+
   }
 }
 ```
@@ -456,7 +458,7 @@ extensionAbilities示例：
       "icon": "$media:icon",
       "label" : "$string:extension_name",
       "description": "$string:form_description",
-      "type": "form", 
+      "type": "form",
       "permissions": ["ohos.abilitydemo.permission.PROVIDER"],
       "readPermission": "",
       "writePermission": "",
@@ -470,7 +472,7 @@ extensionAbilities示例：
       "metadata": [
         {
           "name": "ohos.extension.form",
-          "resource": "$profile:form_config", 
+          "resource": "$profile:form_config",
         }
       ]
     }
@@ -528,7 +530,7 @@ metadata中指定shortcut信息，其中：
 - name：指定shortcuts的名称。使用ohos.ability.shortcuts作为shortcuts信息的标识。
 
 - resource：指定shortcuts信息的资源位置。
-  
+
 | 属性 | 含义 | 类型  | 默认值 |
 | -------- | -------- | -------- | -------- |
 | shortcutId | 标识快捷方式的ID。字符串的最大长度为63字节。 | 字符串 | 该标签不可缺省。 |
@@ -538,7 +540,7 @@ metadata中指定shortcut信息，其中：
 
 
 1. 在/resource/base/profile/目录下配置shortcuts_config.json配置文件。
-   
+
    ```json
    {
      "shortcuts": [
@@ -558,7 +560,7 @@ metadata中指定shortcut信息，其中：
    ```
 
 2. 在module.json5配置文件的abilities标签中，针对需要添加快捷方式的UIAbility进行配置metadata标签，使shortcut配置文件对该UIAbility生效。
-   
+
    ```json
    {
      "module": {
@@ -711,6 +713,82 @@ testRunner标签示例：
       "name": "myTestRunnerName",
       "srcPath": "etc/test/TestRunner.ts"
     }
+  }
+}
+```
+
+## atomicService标签
+
+此标签用于支持对原子化服务的配置。此标签仅在app.json中bundleType指定为atomicService时使能。
+
+**表14** **atomicService标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| preloads | 标识原子化服务中预加载列表 | 对象数组 | 可缺省，缺省值为空。 |
+
+atomicService标签示例：
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## preloads标签
+
+此标签标识原子化服务中预加载列表。
+
+**表14** **preloads标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| moduleName | 标识原子化服务中，当前模块被加载时，需预加载的模块名 | 字符串 | 不可缺省。 |
+
+preloads标签示例：
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## dependencies标签
+
+此标签标识模块运行时依赖的共享库列表。
+
+**表14** **dependencies标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| moduleName | 标识当前模块依赖的共享库模块名 | 字符串 | 不可缺省。 |
+
+dependencies标签示例：
+
+```json
+{
+  "module": {
+    "dependencies": [
+      {
+        "moduleName": "library"
+      }
+    ]
   }
 }
 ```

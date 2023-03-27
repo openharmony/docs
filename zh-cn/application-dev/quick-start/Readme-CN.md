@@ -4,7 +4,7 @@
   - [开发准备](start-overview.md)
   - [使用ArkTS语言开发（Stage模型）](start-with-ets-stage.md)
   - [使用ArkTS语言开发（FA模型）](start-with-ets-fa.md)
-  - [使用JS语言开发（FA模型）](start-with-js-fa.md)  
+  - [使用JS语言开发（FA模型）](start-with-js-fa.md)
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -24,6 +24,8 @@
       - [HAR](har-package.md)
       - HSP
         - [应用内HSP开发指导](in-app-hsp.md)
+    - 原子化服务
+      - [原子化服务开发指导](atomicService.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复调试指导](quickfix-debug.md)
