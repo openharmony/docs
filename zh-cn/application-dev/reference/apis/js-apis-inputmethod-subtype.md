@@ -21,7 +21,7 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 | 名称 | 类型 | 可读 | 可写 | 必选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
-| name | string | 是 | 否 | 是 | 输入法内部名称。 |
+| name | string | 是 | 否 | 是 | 输入法内部名称(bundleName)。 |
 | id | string | 是 | 否 | 是 | 输入法子类型的id。 |
 | mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper（大写）和lower（小写）。 |
 | locale | string | 是 | 否 | 是 | 输入法子类型的方言版本。 |
