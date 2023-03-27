@@ -23,7 +23,7 @@ import data_rdb from '@ohos.data.rdb';
 
 getRdbStoreV9(context: Context, config: StoreConfigV9, version: number, callback: AsyncCallback&lt;RdbStoreV9&gt;): void
 
-Obtains an **RdbStoreV9** instance. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RDB store instance. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -31,10 +31,10 @@ Obtains an **RdbStoreV9** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                                        | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config   | [StoreConfigV9](#storeconfigv99)               | Yes  | Configuration of the RDB store.                               |
 | version  | number                                         | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
-| callback | AsyncCallback&lt;[RdbStoreV9](#rdbstorev99)&gt; | Yes  | Callback invoked to return the **RdbStoreV9** instance obtained.                  |
+| callback | AsyncCallback&lt;[RdbStoreV9](#rdbstorev99)&gt; | Yes  | Callback invoked to return the RDB store instance obtained.                  |
 
 **Error codes**
 
@@ -94,7 +94,7 @@ data_rdb.getRdbStoreV9(context, STORE_CONFIGV9, 1, function (err, rdbStoreV9) {
 
 getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise&lt;RdbStoreV9&gt;
 
-Obtains an **RdbStoreV9** instance. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RDB store instance. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -102,7 +102,7 @@ Obtains an **RdbStoreV9** instance. This API uses a promise to return the result
 
 | Name | Type                            | Mandatory| Description                                                        |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context                          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config  | [StoreConfigV9](#storeconfigv99) | Yes  | Configuration of the RDB store.                               |
 | version | number                           | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
@@ -110,7 +110,7 @@ Obtains an **RdbStoreV9** instance. This API uses a promise to return the result
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStoreV9](#rdbstorev999)&gt; | Promise used to return the **RdbStoreV9** instance obtained.|
+| Promise&lt;[RdbStoreV9](#rdbstorev999)&gt; | Promise used to return the RDB store instance obtained.|
 
 **Error codes**
 
@@ -176,7 +176,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
@@ -241,7 +241,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
@@ -309,7 +309,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
 | version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
@@ -369,7 +369,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name | Type                       | Mandatory| Description                                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | version | number                      | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
@@ -432,7 +432,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
@@ -489,7 +489,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
@@ -547,7 +547,7 @@ Defines predicates for an RDB store. This class determines whether the condition
 constructor(name: string)
 
 
-A constructor used to create an **RdbPredicates** object.
+A constructor used to create a predicate object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -568,7 +568,7 @@ let predicatesV9 = new data_rdb.RdbPredicatesV9("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicatesV9
 
 
-Sets an **RdbPredicatesV9** to specify the remote devices to connect on the network during distributed database synchronization.
+Sets a predicate object to specify the remote devices to connect on the network during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -582,7 +582,7 @@ Sets an **RdbPredicatesV9** to specify the remote devices to connect on the netw
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -596,7 +596,7 @@ predicatesV9.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicatesV9
 
 
-Sets an **RdbPredicatesV9** to specify all remote devices on the network to connect during distributed database synchronization.
+Sets a predicate object to specify all remote devices on the network to connect during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -604,7 +604,7 @@ Sets an **RdbPredicatesV9** to specify all remote devices on the network to conn
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesv9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesv9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -618,7 +618,7 @@ predicatesV9.inAllDevices()
 equalTo(field: string, value: ValueType): RdbPredicatesV9
 
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value equal to the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value equal to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -627,13 +627,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -648,7 +648,7 @@ predicatesV9.equalTo("NAME", "lisi")
 notEqualTo(field: string, value: ValueType): RdbPredicatesV9
 
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value not equal to the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value not equal to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -657,13 +657,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -678,7 +678,7 @@ predicatesV9.notEqualTo("NAME", "lisi")
 beginWrap(): RdbPredicatesV9
 
 
-Adds a left parenthesis to the **RdbPredicatesV9**.
+Adds a left parenthesis to the predicate object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -686,7 +686,7 @@ Adds a left parenthesis to the **RdbPredicatesV9**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** with a left parenthesis.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object with a left parenthesis.|
 
 **Example**
 
@@ -704,7 +704,7 @@ predicatesV9.equalTo("NAME", "lisi")
 
 endWrap(): RdbPredicatesV9
 
-Adds a right parenthesis to the **RdbPredicatesV9**.
+Adds a right parenthesis to the predicate object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -712,7 +712,7 @@ Adds a right parenthesis to the **RdbPredicatesV9**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** with a right parenthesis.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object with a right parenthesis.|
 
 **Example**
 
@@ -730,7 +730,7 @@ predicatesV9.equalTo("NAME", "lisi")
 
 or(): RdbPredicatesV9
 
-Adds the OR condition to the **RdbPredicatesV9**.
+Adds the OR condition to the predicate object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -738,7 +738,7 @@ Adds the OR condition to the **RdbPredicatesV9**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** with the OR condition.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object with the OR condition.|
 
 **Example**
 
@@ -753,7 +753,7 @@ predicatesV9.equalTo("NAME", "Lisa")
 
 and(): RdbPredicatesV9
 
-Adds the AND condition to the **RdbPredicatesV9**.
+Adds the AND condition to the predicate object.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -761,7 +761,7 @@ Adds the AND condition to the **RdbPredicatesV9**.
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** with the AND condition.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object with the AND condition.|
 
 **Example**
 
@@ -776,7 +776,7 @@ predicatesV9.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match a string containing the specified value.
+Sets a predicate object to match a string containing the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -785,13 +785,13 @@ Sets an **RdbPredicatesV9** to match a string containing the specified value.
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | string | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -804,7 +804,7 @@ predicatesV9.contains("NAME", "os")
 
 beginsWith(field: string, value: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match a string that starts with the specified value.
+Sets a predicate object to match a string that starts with the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -813,13 +813,13 @@ Sets an **RdbPredicatesV9** to match a string that starts with the specified val
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | string | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -832,7 +832,7 @@ predicatesV9.beginsWith("NAME", "os")
 
 endsWith(field: string, value: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match a string that ends with the specified value.
+Sets a predicate object to match a string that ends with the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -841,13 +841,13 @@ Sets an **RdbPredicatesV9** to match a string that ends with the specified value
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | string | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -860,7 +860,7 @@ predicatesV9.endsWith("NAME", "se")
 
 isNull(field: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field whose value is null.
+Sets a predicate object to match the field whose value is null.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -874,7 +874,7 @@ Sets an **RdbPredicatesV9** to match the field whose value is null.
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -887,7 +887,7 @@ predicatesV9.isNull("NAME")
 
 isNotNull(field: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field whose value is not null.
+Sets a predicate object to match the field whose value is not null.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -901,7 +901,7 @@ Sets an **RdbPredicatesV9** to match the field whose value is not null.
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -914,7 +914,7 @@ predicatesV9.isNotNull("NAME")
 
 like(field: string, value: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match a string that is similar to the specified value.
+Sets a predicate object to match a string that is similar to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -923,13 +923,13 @@ Sets an **RdbPredicatesV9** to match a string that is similar to the specified v
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | string | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -942,7 +942,7 @@ predicatesV9.like("NAME", "%os%")
 
 glob(field: string, value: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the specified string.
+Sets a predicate object to match the specified string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -951,13 +951,13 @@ Sets an **RdbPredicatesV9** to match the specified string.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | field  | string | Yes  | Column name in the database table.                                          |
-| value  | string | Yes  | Value to match the **RdbPredicatesV9**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value  | string | Yes  | Value to match the predicate object.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -970,7 +970,7 @@ predicatesV9.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value within the specified range.
+Sets a predicate object to match the field with data type **ValueType** and value within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -979,14 +979,14 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicatesV9**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicatesV9**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the predicate object.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -999,7 +999,7 @@ predicatesV9.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value out of the specified range.
+Sets a predicate object to match the field with data type **ValueType** and value out of the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1008,14 +1008,14 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicatesV9**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicatesV9**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the predicate object.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1028,7 +1028,7 @@ predicatesV9.notBetween("AGE", 10, 50)
 
 greaterThan(field: string, value: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value greater than the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value greater than the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1037,13 +1037,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1056,7 +1056,7 @@ predicatesV9.greaterThan("AGE", 18)
 
 lessThan(field: string, value: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value less than the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value less than the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1065,13 +1065,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1084,7 +1084,7 @@ predicatesV9.lessThan("AGE", 20)
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value greater than or equal to the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value greater than or equal to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1093,13 +1093,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1112,7 +1112,7 @@ predicatesV9.greaterThanOrEqualTo("AGE", 18)
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and value less than or equal to the specified value.
+Sets a predicate object to match the field with data type **ValueType** and value less than or equal to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1121,13 +1121,13 @@ Sets an **RdbPredicatesV9** to match the field with data type **ValueType** and 
 | Name| Type                   | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | ---------------------- |
 | field  | string                  | Yes  | Column name in the database table.    |
-| value  | [ValueType](#valuetype) | Yes  | Value to match the **RdbPredicatesV9**.|
+| value  | [ValueType](#valuetype) | Yes  | Value to match the predicate object.|
 
 **Return value**
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1140,7 +1140,7 @@ predicatesV9.lessThanOrEqualTo("AGE", 20)
 
 orderByAsc(field: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the column with values sorted in ascending order.
+Sets a predicate object to match the column with values sorted in ascending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1154,7 +1154,7 @@ Sets an **RdbPredicatesV9** to match the column with values sorted in ascending 
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1167,7 +1167,7 @@ predicatesV9.orderByAsc("NAME")
 
 orderByDesc(field: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the column with values sorted in descending order.
+Sets a predicate object to match the column with values sorted in descending order.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1181,7 +1181,7 @@ Sets an **RdbPredicatesV9** to match the column with values sorted in descending
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1194,7 +1194,7 @@ predicatesV9.orderByDesc("AGE")
 
 distinct(): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to filter out duplicate records.
+Sets a predicate object to filter out duplicate records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1202,7 +1202,7 @@ Sets an **RdbPredicatesV9** to filter out duplicate records.
 
 | Type                                | Description                          |
 | ------------------------------------ | ------------------------------ |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object that can filter out duplicate records.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object that can filter out duplicate records.|
 
 **Example**
 
@@ -1215,7 +1215,7 @@ predicatesV9.equalTo("NAME", "Rose").distinct()
 
 limitAs(value: number): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to specify the maximum number of records.
+Sets a predicate object to specify the maximum number of records.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1229,7 +1229,7 @@ Sets an **RdbPredicatesV9** to specify the maximum number of records.
 
 | Type                                | Description                                |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object that specifies the maximum number of records.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object that specifies the maximum number of records.|
 
 **Example**
 
@@ -1242,7 +1242,7 @@ predicatesV9.equalTo("NAME", "Rose").limitAs(3)
 
 offsetAs(rowOffset: number): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to specify the start position of the returned result.
+Sets a predicate object to specify the start position of the returned result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1256,7 +1256,7 @@ Sets an **RdbPredicatesV9** to specify the start position of the returned result
 
 | Type                                | Description                                |
 | ------------------------------------ | ------------------------------------ |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object that specifies the start position of the returned result.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object that specifies the start position of the returned result.|
 
 **Example**
 
@@ -1269,7 +1269,7 @@ predicatesV9.equalTo("NAME", "Rose").offsetAs(3)
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to group rows that have the same value into summary rows.
+Sets a predicate object to group rows that have the same value into summary rows.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1283,7 +1283,7 @@ Sets an **RdbPredicatesV9** to group rows that have the same value into summary 
 
 | Type                                | Description                  |
 | ------------------------------------ | ---------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object that groups rows with the same value.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object that groups rows with the same value.|
 
 **Example**
 
@@ -1296,7 +1296,7 @@ predicatesV9.groupBy(["AGE", "NAME"])
 
 indexedBy(field: string): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to specify the index column.
+Sets a predicate object to specify the index column.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1311,7 +1311,7 @@ Sets an **RdbPredicatesV9** to specify the index column.
 
 | Type                                | Description                                 |
 | ------------------------------------ | ------------------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object that specifies the index column.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object that specifies the index column.|
 
 **Example**
 
@@ -1324,7 +1324,7 @@ predicatesV9.indexedBy("SALARY_INDEX")
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.
+Sets a predicate object to match the field with data type **Array&#60;ValueType&#62;** and value within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1339,7 +1339,7 @@ Sets an **RdbPredicatesV9** to match the field with data type **Array&#60;ValueT
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1352,7 +1352,7 @@ predicatesV9.in("AGE", [18, 20])
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicatesV9
 
-Sets an **RdbPredicatesV9** to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.
+Sets a predicate object to match the field with data type **Array&#60;ValueType&#62;** and value out of the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1367,7 +1367,7 @@ Sets an **RdbPredicatesV9** to match the field with data type **Array&#60;ValueT
 
 | Type                                | Description                      |
 | ------------------------------------ | -------------------------- |
-| [RdbPredicatesV9](#rdbpredicatesv99) | **RdbPredicatesV9** object created.|
+| [RdbPredicatesV9](#rdbpredicatesv99) | Predicate object created.|
 
 **Example**
 
@@ -1558,7 +1558,7 @@ promise.then((insertNum) => {
 
 update(values: ValuesBucket, predicates: RdbPredicatesV9, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data based on the specified **RdbPredicatesV9** object. This API uses an asynchronous callback to return the result.
+Updates data based on the specified predicate object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1567,7 +1567,7 @@ Updates data based on the specified **RdbPredicatesV9** object. This API uses an
 | Name    | Type                                | Mandatory| Description                                                        |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Update conditions specified by the **RdbPredicatesV9** object.                   |
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Update conditions specified by the predicate object.                   |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows updated.                  |
 
 **Example**
@@ -1594,7 +1594,7 @@ rdbStoreV9.update(valueBucket, predicatesV9, function (err, ret) {
 
 update(values: ValuesBucket, predicates: RdbPredicatesV9):Promise&lt;number&gt;
 
-Updates data based on the specified **RdbPredicatesV9** object. This API uses a promise to return the result.
+Updates data based on the specified predicate object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1603,7 +1603,7 @@ Updates data based on the specified **RdbPredicatesV9** object. This API uses a 
 | Name      | Type                                | Mandatory| Description                                                        |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | values       | [ValuesBucket](#valuesbucket)        | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicatesV9 | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Update conditions specified by the **RdbPredicatesV9** object.                   |
+| predicatesV9 | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Update conditions specified by the predicate object.                   |
 
 **Return value**
 
@@ -1718,7 +1718,7 @@ promise.then(async (ret) => {
 
 delete(predicates: RdbPredicatesV9, callback: AsyncCallback&lt;number&gt;):void
 
-Deletes data from the RDB store based on the specified **RdbPredicatesV9** object. This API uses an asynchronous callback to return the result.
+Deletes data from the RDB store based on the specified predicate object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1726,7 +1726,7 @@ Deletes data from the RDB store based on the specified **RdbPredicatesV9** objec
 
 | Name    | Type                                | Mandatory| Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Conditions specified by the **RdbPredicatesV9** object for deleting data.|
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Conditions specified by the predicate object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows deleted. |
 
 **Example**
@@ -1747,7 +1747,7 @@ rdbStoreV9.delete(predicatesV9, function (err, rows) {
 
 delete(predicates: RdbPredicatesV9):Promise&lt;number&gt;
 
-Deletes data from the RDB store based on the specified **RdbPredicatesV9** object. This API uses a promise to return the result.
+Deletes data from the RDB store based on the specified predicate object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1755,7 +1755,7 @@ Deletes data from the RDB store based on the specified **RdbPredicatesV9** objec
 
 | Name    | Type                                | Mandatory| Description                                     |
 | ---------- | ------------------------------------ | ---- | ----------------------------------------- |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Conditions specified by the **RdbPredicatesV9** object for deleting data.|
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Conditions specified by the predicate object for deleting data.|
 
 **Return value**
 
@@ -1858,9 +1858,9 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 
 | Name    | Type                                                        | Mandatory| Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99)                         | Yes  | Query conditions specified by the **RdbPredicatesV9** object.                  |
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99)                         | Yes  | Query conditions specified by the predicate object.                  |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -1889,14 +1889,14 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 | Name    | Type                                | Mandatory| Description                                            |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Query conditions specified by the **RdbPredicatesV9** object.       |
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Query conditions specified by the predicate object.       |
 | columns    | Array&lt;string&gt;                  | No  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
 **Return value**
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -1929,7 +1929,7 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -1969,7 +1969,7 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -2000,9 +2000,9 @@ Queries data from the RDB store of a remote device based on specified conditions
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | device     | string                                                       | Yes  | Network ID of the remote device.                                |
 | table      | string                                                       | Yes  | Name of the target table.                                           |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99)                         | Yes  | Query conditions specified by the **RdbPredicatesV9** object.                |
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99)                         | Yes  | Query conditions specified by the predicate object.                |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -2034,14 +2034,14 @@ Queries data from the RDB store of a remote device based on specified conditions
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | device     | string                               | Yes  | Network ID of the remote device.                     |
 | table      | string                               | Yes  | Name of the target table.                                |
-| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Query conditions specified by the **RdbPredicatesV9** object.     |
+| predicates | [RdbPredicatesV9](#rdbpredicatesv99) | Yes  | Query conditions specified by the predicate object.     |
 | columns    | Array&lt;string&gt;                  | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.|
 
 **Return value**
 
 | Type                                                        | Description                                              |
 | ------------------------------------------------------------ | -------------------------------------------------- |
-| Promise&lt;[ResultSetV9](js-apis-data-resultset.md#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| Promise&lt;[ResultSetV9](js-apis-data-resultset.md#resultset)&gt; | Promise used to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -2071,7 +2071,7 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | sql      | string                                                       | Yes  | SQL statement to run.                                      |
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | Yes  | Arguments in the SQL statement.                                        |
-| callback | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| callback | AsyncCallback&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
@@ -2105,7 +2105,7 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 
 | Type                                                   | Description                                              |
 | ------------------------------------------------------- | -------------------------------------------------- |
-| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSetV9** object will be returned.|
+| Promise&lt;[ResultSetV9](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a result set object will be returned.|
 
 **Example**
 
