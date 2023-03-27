@@ -20,6 +20,10 @@ dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
 
 Initiates a call. This API uses an asynchronous callback to return the result.
 
+>**NOTE**
+>
+>This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
+
 **Required Permissions**: ohos.permission.PLACE_CALL
 
 **System capability**: SystemCapability.Telephony.CallManager
@@ -45,6 +49,10 @@ call.dial("138xxxxxxxx", (err, data) => {
 dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
 
 Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
 
 **Required Permissions**: ohos.permission.PLACE_CALL
 
@@ -74,6 +82,10 @@ call.dial("138xxxxxxxx", {
 dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
 
 Initiates a call. You can set call options as needed. This API uses a promise to return the result.
+
+>**NOTE**
+>
+>This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
 
 **Required Permissions**: ohos.permission.PLACE_CALL
 
@@ -123,7 +135,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 | Name     | Type                        | Mandatory| Description                                   |
 | ----------- | ---------------------------- | ---- | --------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.                             |
+| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result. |
 
 **Error codes**
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
@@ -206,10 +218,10 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Parameters**
 
-| Name     |                 Type               | Mandatory|                Description                   |
-| ----------- | ----------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                              | Yes  | Phone number.                            |
-| options     | [DialCallOptions](#dialcalloptions9)| No  | Call option, which indicates whether the call is a voice call or video call.|
+| Name     |                 Type               | Mandatory| Description               |
+| ----------- | ----------------------------------- | ---- |-------------------|
+| phoneNumber | string                              | Yes  | Phone number.            |
+| options     | [DialCallOptions](#dialcalloptions9)| No  | Call options, which carry other configuration information of the call.|
 
 **Return value**
 
@@ -232,12 +244,22 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-try {
+let promise = call.dialCall("138xxxxxxxx", {
     call.dialCall('138xxxxxxxx');
+    accountId: 0,
+    videoState: 0,
+    dialScene: 0,
+    dialType: 0,
+});
+promise.then(data => {
+    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
     console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
 } catch (error) {
+}).catch(err => {
     console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+    console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
 }
+});
 ```
 
 
@@ -836,7 +858,7 @@ promise.then(data => {
 ```
 
 
-## call.answerCall<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
 answerCall\(callId: number, callback: AsyncCallback<void\>\): void
 
@@ -876,7 +898,7 @@ call.answerCall(1, (err, data) => {
 ```
 
 
-## call.answerCall<sup>7+</sup>
+## call.answerCall<sup>9+</sup>
 
 answerCall(callId?: number\): Promise<void\>
 
@@ -963,7 +985,7 @@ call.answerCall((err, data) => {
 ```
 
 
-## call.hangUpCall<sup>7+</sup>
+## call.hangUpCall<sup>9+</sup>
 
 hangUpCall\(callId: number, callback: AsyncCallback<void\>\): void
 
@@ -1003,7 +1025,7 @@ call.hangUpCall(1, (err, data) => {
 ```
 
 
-## call.hangUpCall<sup>7+</sup>
+## call.hangUpCall<sup>9+</sup>
 
 hangUpCall\(callId?: number\): Promise<void\>
 
@@ -1132,7 +1154,7 @@ call.rejectCall(1, (err, data) => {
 ```
 
 
-## call.rejectCall<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
 rejectCall\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
@@ -1176,7 +1198,7 @@ call.rejectCall(1, rejectMessageOptions, (err, data) => {
 ```
 
 
-## call.rejectCall<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
 rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
@@ -2332,7 +2354,7 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 | Name  | Type                                                   | Mandatory| Description                      |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
-| type     | string                                                  | Yes  | Call details change during a call.|
+| type     | string                                                  | Yes  | Call details change.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
@@ -2371,7 +2393,7 @@ Subscribes to **callEventChange** events. This API uses an asynchronous callback
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                           | Yes  | Call event change during a call.|
+| type     | string                                           | Yes  | Call event change.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
@@ -2410,7 +2432,7 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 | Name  | Type                                                  | Mandatory| Description                      |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                                 | Yes  | Cause of the call disconnection.|
+| type     | string                                                 | Yes  | Call disconnection cause.|
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
@@ -2488,7 +2510,7 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 | Name  | Type                                                    | Mandatory| Description                              |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                   | Yes  | IMS registration status changes.|
+| type     | string                                                   | Yes  | IMS registration status change.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result.                        |
 
 **Error codes**
@@ -2527,7 +2549,7 @@ Unsubscribes from **callEventChange** events. This API uses an asynchronous call
 
 | Name  | Type                                            | Mandatory| Description                              |
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
-| type     | string                                           | Yes  | Unsubscription from call event changes when a call ends.|
+| type     | string                                           | Yes  | Call event change.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result.                        |
 
 **Error codes**
@@ -2566,7 +2588,7 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 
 | Name  | Type                                                      | Mandatory| Description                |
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
-| type     | 'callDisconnectedCause'                                    | Yes  | Unsubscription from the call disconnection cause when a call ends.|
+| type     | 'callDisconnectedCause'                                    | Yes  | Call disconnection cause.|
 | callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | No  | Callback used to return the result.          |
 
 **Error codes**
@@ -2605,7 +2627,7 @@ Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callba
 
 | Name  | Type                                            | Mandatory| Description       |
 | -------- | ------------------------------------------------ | ---- | ----------- |
-| type     | 'mmiCodeResult'                                  | Yes  | MMI code result.|
+| type     | 'mmiCodeResult'                                  | Yes  | Defines the MMI code result.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | No  | Callback used to return the result. |
 
 **Error codes**
