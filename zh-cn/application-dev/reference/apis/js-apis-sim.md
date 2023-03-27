@@ -142,7 +142,6 @@ hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -183,7 +182,6 @@ hasOperatorPrivileges(slotId: number): Promise<boolean\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -468,7 +466,6 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -510,7 +507,6 @@ getSimState\(slotId: number\): Promise<SimState\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -591,7 +587,6 @@ getCardType\(slotId: number\): Promise<CardType\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -631,7 +626,6 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2859,7 +2853,6 @@ getSimGid1(slotId: number): Promise<string\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2903,7 +2896,6 @@ getIMSI(slotId: number, callback: AsyncCallback<string\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3595,7 +3587,6 @@ sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<voi
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3643,7 +3634,6 @@ sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3787,7 +3777,6 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3838,7 +3827,6 @@ getOpKey(slotId: number): Promise<string\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
