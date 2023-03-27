@@ -19,7 +19,7 @@
 
 ## 接口
 
-(src: PixelMap | ResourceStr | DrawableDescriptor)
+Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 通过图片数据源获取图片，用于后续渲染展示。
 
