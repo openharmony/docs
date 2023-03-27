@@ -31,7 +31,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
 | version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
@@ -92,7 +92,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name | Type                       | Mandatory| Description                                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | version | number                      | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
@@ -156,7 +156,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
@@ -214,7 +214,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
@@ -404,7 +404,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -433,7 +433,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -560,7 +560,7 @@ Sets an **RdbPredicates** to match a string containing the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**. |
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -588,7 +588,7 @@ Sets an **RdbPredicates** to match a string that starts with the specified value
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**. |
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -616,7 +616,7 @@ Sets an **RdbPredicates** to match a string that ends with the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**. |
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -697,7 +697,7 @@ Sets an **RdbPredicates** to match a string that is similar to the specified val
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**. |
+| value | string | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -725,7 +725,7 @@ Sets an **RdbPredicates** to match the specified string.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character. |
+| value | string | Yes| Value to match the **RdbPredicates**.<br><br>Wildcards are supported. * indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
 
 **Return value**
 
@@ -753,8 +753,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**. |
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**. |
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -782,8 +782,8 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**. |
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**. |
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **RdbPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -811,7 +811,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -839,7 +839,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -867,7 +867,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
@@ -895,7 +895,7 @@ Sets an **RdbPredicates** to match the field with data type **ValueType** and va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**. |
+| value | [ValueType](#valuetype) | Yes| Value to match the **RdbPredicates**.|
 
 **Return value**
 
