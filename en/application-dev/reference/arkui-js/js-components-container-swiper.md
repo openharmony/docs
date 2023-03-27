@@ -158,4 +158,6 @@ export default {
 }
 ```
 
-![4-0](figures/4-0.gif)
+![en-us_image_0000001167823326](figures/en-us_image_0000001167823326.gif)
+
+
