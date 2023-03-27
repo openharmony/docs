@@ -24,7 +24,7 @@
 | 接口名称                         | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
 | onUnhandledException(errMsg: string): void | 系统回调接口，应用注册后，当应用产生未捕获的异常时的回调。 |
-| onException?(errObject: Error): void | 系统回调接口，应用注册后，当应用底层需要通知上层js异常事件时的回调。 |
+| onException?(errObject: Error): void | 系统回调接口，应用注册后，当应用产生异常上报js层时的回调。 |
 
 
 ### 解除注册结果码
@@ -44,7 +44,7 @@ let registerId = -1;
 let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
-    }
+    },
     onException: function (errorObj) {
         console.log('onException, name: ', errorObj.name);
         console.log('onException, message: ', errorObj.message);

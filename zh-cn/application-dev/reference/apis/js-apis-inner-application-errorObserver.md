@@ -38,7 +38,7 @@ try {
 
 onException?(errObject: Error): void;
 
-当Native层发生异常事件并且需要通知js层时调用。
+将在应用运行异常时调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -46,7 +46,7 @@ onException?(errObject: Error): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| errObject | Error | 否 | 有关于异常事件名字、消息和错误堆栈信息的对象。 |
+| errObject | Error | 是 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
 
 **示例：**
 
@@ -56,7 +56,7 @@ import errorManager from '@ohos.app.ability.errorManager';
 let observer = {
   onUnhandledException(errorMsg) {
     console.error('onUnhandledException, errorMsg: ', errorMsg);
-  }
+  },
   onException(errorObj) {
     console.log('onException, name: ', errorObj.name);
     console.log('onException, message: ', errorObj.message);

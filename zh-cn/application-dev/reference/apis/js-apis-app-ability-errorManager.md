@@ -38,7 +38,7 @@ on(type: 'error', observer: ErrorObserver): number;
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
-    }
+    },
     onException(errorObj) {
         console.log('onException, name: ', errorObj.name);
         console.log('onException, message: ', errorObj.message);
