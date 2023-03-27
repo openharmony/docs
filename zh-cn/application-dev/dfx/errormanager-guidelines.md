@@ -45,10 +45,10 @@ let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
     }
-    onException: function (errObject) {
+    onException: function (errorObj) {
         console.log('onException, name: ', errorObj.name);
         console.log('onException, message: ', errorObj.message);
-        if (typeof(errorObject.stack) === 'string') {
+        if (typeof(errorObj.stack) === 'string') {
             console.log('onException, stack: ', errorObj.stack);
         }
     }
