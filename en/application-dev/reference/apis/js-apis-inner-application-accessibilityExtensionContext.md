@@ -1,6 +1,6 @@
 # AccessibilityExtensionContext (Accessibility Extension Context)
 
-The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **Accessibility Extension** abilities.
+The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **AccessibilityExtensionAbility**.
 
 You can use the APIs of this module to configure the concerned information, obtain root information, and inject gestures.
 
@@ -131,7 +131,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 let targetNames = ['com.ohos.xyz'];
 try {
     axContext.setTargetBundleName(targetNames, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to set target bundle names, because ${JSON.stringify(err)}');
             return;
         }
@@ -214,7 +214,7 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 let focusElement;
 try {
     axContext.getFocusElement((err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get focus element, because ${JSON.stringify(err)}');
             return;
         }
@@ -248,7 +248,7 @@ let focusElement;
 let isAccessibilityFocus = true;
 try {
     axContext.getFocusElement(isAccessibilityFocus, (err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get focus element, because ${JSON.stringify(err)}');
         return;
     }
@@ -331,7 +331,7 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 let rootElement;
 try {
     axContext.getWindowRootElement((err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
@@ -373,7 +373,7 @@ let rootElement;
 let windowId = 10;
 try {
     axContext.getWindowRootElement(windowId, (err, data) => {
-    if (err) {
+    if (err && err.code) {
         console.error('failed to get root element of the window, because ${JSON.stringify(err)}');
         return;
     }
@@ -457,7 +457,7 @@ For details about the error codes, see [Accessibility Error Codes](../errorcodes
 let windows;
 try {
     axContext.getWindows((err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
@@ -499,7 +499,7 @@ let windows;
 let displayId = 10;
 try {
     axContext.getWindows(displayId, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to get windows, because ${JSON.stringify(err)}');
             return;
         }
@@ -594,7 +594,7 @@ try {
         gesturePath.points.push(gesturePoint);
     }
     axContext.injectGesture(gesturePath, (err, data) => {
-        if (err) {
+        if (err && err.code) {
             console.error('failed to inject gesture, because ${JSON.stringify(err)}');
             return;
         }
@@ -818,7 +818,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name.    |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | parameters | object | No   | Parameter required for performing the target action.    |
 
 **Return value**
@@ -861,7 +861,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Attribute name.    |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -900,7 +900,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name.    |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
 | parameters | object | Yes   | Parameter required for performing the target action.    |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
