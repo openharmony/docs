@@ -222,3 +222,19 @@ export default class EntryAbility extends Ability {
 }
 ```
 
+#### 故障Ability启动时的重启恢复标记
+
+应用启动在拉起Ability时, 在onCreate生命周期调度中, 当传递参数want的parameters成员会有"ohos.aafwk.param.AbilityRecoveryRestart"标记的数据并且为值为true时, 那么该Ability在上次运行时发生过因为应用故障导致的退出.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        if (want.parameters["ohos.aafwk.param.AbilityRecoveryRestart"] != undefined &&
+            want.parameters["ohos.aafwk.param.AbilityRecoveryRestart"] == true) {
+            console.log("This ability need to recovery");
+        }
+    }
+}
+```
+
