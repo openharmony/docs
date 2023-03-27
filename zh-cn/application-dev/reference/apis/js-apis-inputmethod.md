@@ -256,9 +256,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -317,9 +317,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -391,25 +391,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -461,25 +445,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
