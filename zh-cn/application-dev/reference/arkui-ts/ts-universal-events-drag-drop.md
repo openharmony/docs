@@ -67,7 +67,7 @@ struct DragExample {
   @State bananaVisible: Visibility = Visibility.Visible
   private dragList: string[] = ['apple', 'orange', 'banana']
   @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
-  @State index: number = 0
+  @State idx: number = 0
 
   // 自定义拖拽过程中显示的内容
   @Builder pixelMapBuilder() {
@@ -104,7 +104,7 @@ struct DragExample {
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.eventType = 'Down'
-                this.index = index
+                this.idx = index
               }
               if (event.type === TouchType.Up) {
                 this.eventType = 'Up'
@@ -157,7 +157,7 @@ struct DragExample {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
         }
-        this.fruitVisible[this.index] = Visibility.None
+        this.fruitVisible[this.idx] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }
