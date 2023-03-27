@@ -332,7 +332,7 @@ httpRequest.destroy();
 
 ### request2<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<void\>): void
+request2(url: string, callback: AsyncCallback\<number\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -345,7 +345,7 @@ request2(url: string, callback: AsyncCallback\<void\>): void
 | 参数名   | 类型                                           | 必填 | 说明                                            |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
-| callback | AsyncCallback\<void\>                          | 是   | 回调函数。                                      |
+| callback | AsyncCallback\<[number](#responsecode)\>       | 是   | 回调函数。                                      |
 
 **错误码：**
 
@@ -366,9 +366,9 @@ request2(url: string, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err) => {
+httpRequest.request2("EXAMPLE_URL", (err, data) => {
     if (!err) {
-        console.info("request2 OK!");
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -377,7 +377,7 @@ httpRequest.request2("EXAMPLE_URL", (err) => {
 
 ### request2<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<void\>): void
+request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
@@ -391,7 +391,7 @@ request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<void
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
 | options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
-| callback | AsyncCallback\<void\>                          | 是   | 回调函数。                                      |
+| callback | AsyncCallback\<[number](#responsecode)\>       | 是   | 回调函数。                                      |
 
 **错误码：**
 
@@ -444,9 +444,9 @@ httpRequest.request2("EXAMPLE_URL",
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err) => {
+}, (err, data) => {
     if (!err) {
-        console.info("request2 OK!");
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -454,7 +454,7 @@ httpRequest.request2("EXAMPLE_URL",
 ```
 ### request2<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<void\>
+request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
@@ -473,7 +473,7 @@ request2(url: string, options? : HttpRequestOptions): Promise\<void\>
 
 | 类型                                   | 说明                              |
 | :------------------------------------- | :-------------------------------- |
-| Promise\<void\> | 以Promise形式返回发起请求的结果。 |
+| Promise\<[number](#responsecode)\> | 以Promise形式返回发起请求的结果。 |
 
 **错误码：**
 
@@ -526,8 +526,8 @@ let promise = httpRequest.request("EXAMPLE_URL", {
         'Content-Type': 'application/json'
     }
 });
-promise.then(() => {
-    console.info("request2 OK!");
+promise.then((data) => {
+    console.info("request2 OK!" + JSON.stringify(data));
 }).catch((err) => {
     console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
