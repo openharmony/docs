@@ -606,7 +606,7 @@ let opt = {
   scaleMode: 1
 };
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    let pasteData = pasteboard.createData(MIMETYPE_PIXELMAP, pixelMap);
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_PIXELMAP, pixelMap);
     let PixelMap = pasteData.getPrimaryPixelMap();
 });
 ```
