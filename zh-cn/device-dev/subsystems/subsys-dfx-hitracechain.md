@@ -137,7 +137,7 @@ HiTraceChain实现在C层，主要原理是在一次业务调用流程中，利�
 |  | int ToBytes(uint8_t* pIdArray, int len) | 功能：将HiTraceId对象转换为字节数组，便于缓存或者通信传递。<br/>输入参数：<br/>- pIdArray：字节数组指针，数组长度至少为HITRACE_ID_LEN。<br/>- len: 字节数组长度<br/>输出参数：<br/>- pIdArray：字节数组指针，对象有效时存储转换后的对象数据。<br/>返回值：0 转换失败； &amp;gt;0 有效对象转换数组长度。 |
 
 
-## 通信调用处理
+### 通信调用处理
 
 业务使用时跨设备/跨进程/跨线程的调用是通过通信机制实现的，HiTraceChain需要通信机制传递traceid。
 
