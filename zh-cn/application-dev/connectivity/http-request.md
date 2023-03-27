@@ -102,7 +102,7 @@ httpRequest.request(
 
 ```js
 // 引入包名
-import http from 'ohos.net.http'
+import http from '@ohos.net.http'
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
