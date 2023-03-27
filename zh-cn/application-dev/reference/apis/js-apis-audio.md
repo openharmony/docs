@@ -689,21 +689,19 @@ async function createTonePlayerBefore(){
 | forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
 | hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
 
-## VolumeEvent<sup>8+</sup>
+## VolumeEvent<sup>9+</sup>
 
 音量改变时，应用接收的事件。
-
-**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称       | 类型                                | 必填   | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
-| volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
-| networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                               |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。     |
+| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                        |
+| volumeGroupId | number                           | 是   | 音量组id。可用于getGroupManager入参。<br/>此接口为系统接口。  |
+| networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。                             |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -1974,12 +1972,12 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>(deprecated)</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
+> 从 API version 9 开始支持，建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
 
 监听系统音量变化事件。
 
