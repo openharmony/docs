@@ -8,7 +8,7 @@ The vibrator service is built on the native vibrator service, bolstered by the l
 
 The vibrator is a Misc device that consists of four modules: Vibrator API, Vibrator Framework, Vibrator Service, and HDF layer.
 
-  **Figure 1** Vibrator in Misc devices
+**Figure 1** Vibrator in Misc devices
 
 ![0752d302-aeb9-481a-bb8f-e5524eb61eeb](figures/0752d302-aeb9-481a-bb8f-e5524eb61eeb.png)
 

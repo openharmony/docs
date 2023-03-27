@@ -15,15 +15,19 @@ Location awareness helps determine where a mobile device locates. The location s
 These advanced location technologies make it possible to obtain the accurate location of the mobile device, regardless of whether it is indoors or outdoors.
 
 - **Coordinate**
+
   A coordinate describes a location on the earth using the longitude and latitude in reference to the World Geodetic Coordinate System 1984.
 
 - **GNSS positioning**
+
   GNSS positioning locates a mobile device by using the location algorithm offered by the device chip to compute the location information provided by the Global Navigation Satellite System, for example, GPS, GLONASS, BeiDou, and Galileo. Whichever positioning system will be used during the location process depends on a hardware capability of the device.
 
 - **Base station positioning**
+
   Base station positioning estimates the current location of a mobile device based on the location of the resident base station in reference to the neighboring base stations. This technology provides only a low accuracy and requires access to the cellular network.
 
 - **WLAN or Bluetooth positioning**
+  
   WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
 ### Working Principles
@@ -35,12 +39,6 @@ Location awareness is offered by the system as a basic service for applications.
 Your application can use the location function only after the user has granted the required permission and turned on the location function. If the location function is off, the system will not provide the location service for any application.
 
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
-
-### Samples
-
-The following sample is provided to help you better understand how to develop location services:
-
-- [`Location`: Location (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Location)
 
 
 ## Applying for Location Permissions
@@ -93,13 +91,13 @@ The following table lists the APIs used to obtain the device location informatio
 
 **Table 2** APIs for obtaining device location information
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void | Registers a listener for location changes with a location request initiated.| 
-| off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void | Unregisters the listener for location changes with the corresponding location request deleted.| 
-| getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void | Obtains the current location. This API uses an asynchronous callback to return the result. | 
-| getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt; | Obtains the current location. This API uses a promise to return the result. | 
-| getLastLocation(): Location | Obtains the last known device location.| 
+| on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void | Registers a listener for location changes with a location request initiated.|
+| off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void | Unregisters the listener for location changes with the corresponding location request deleted.|
+| getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void | Obtains the current location. This API uses an asynchronous callback to return the result. |
+| getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt; | Obtains the current location. This API uses a promise to return the result. |
+| getLastLocation(): Location | Obtains the last known device location.|
 
 ### How to Develop
 
@@ -131,30 +129,30 @@ The following table lists the APIs used to obtain the device location informatio
    Applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food. <br>By default, the system reports location results at a minimal interval of 1s. To adopt this use case, you must declare the **ohos.permission.LOCATION** permission and obtain users' authorization.
    
    - NO\_POWER<br>
-   Applicable when your application does not proactively start the location service for a higher battery efficiency. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location. <br>By default, the system reports location results at a minimal interval of 1s. To adopt this use case, you must declare the **ohos.permission.LOCATION** permission and obtain users' authorization.
+     Applicable when your application does not proactively start the location service for a higher battery efficiency. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location. <br>By default, the system reports location results at a minimal interval of 1s. To adopt this use case, you must declare the **ohos.permission.LOCATION** permission and obtain users' authorization.
+     
+     
+          ```ts
+              export enum LocationRequestScenario {
+                   UNSET = 0x300,
+                   NAVIGATION,
+                   TRAJECTORY_TRACKING,
+                   CAR_HAILING,
+                   DAILY_LIFE_SERVICE,
+                   NO_POWER,
+               }
+          ```
 
 
-   ```ts
-       export enum LocationRequestScenario {
-            UNSET = 0x300,
-            NAVIGATION,
-            TRAJECTORY_TRACKING,
-            CAR_HAILING,
-            DAILY_LIFE_SERVICE,
-            NO_POWER,
-        }
-   ```
-
-
-   Sample code for initializing **requestInfo** for navigation:
+Sample code for initializing **requestInfo** for navigation:
 
    ```ts
    let requestInfo = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
-   **Method 2:**
+**Method 2:**
 
-   If the predefined use cases do not meet your needs, you can also use the basic location priority policies provided by the system.
+If the predefined use cases do not meet your needs, you can also use the basic location priority policies provided by the system.
 
    **Location priority policies**
 
@@ -166,17 +164,17 @@ The following table lists the APIs used to obtain the device location informatio
 
    - LOW\_POWER<br>
       This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.
+      
+         ```ts
+             export enum LocationRequestPriority {
+                  UNSET = 0x200,
+                  ACCURACY,
+                  LOW_POWER,
+                  FIRST_FIX,
+              }
+         ```
 
-   ```ts
-       export enum LocationRequestPriority {
-            UNSET = 0x200,
-            ACCURACY,
-            LOW_POWER,
-            FIRST_FIX,
-        }
-   ```
-
-   Sample code for initializing **requestInfo** for the location accuracy priority policy:
+Sample code for initializing **requestInfo** for the location accuracy priority policy:
 
    ```ts
    let requestInfo = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
@@ -235,17 +233,18 @@ The following table lists the APIs used for mutual conversion between coordinate
 
 **Table 3** APIs for geocoding and reverse geocoding conversion
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| isGeocoderAvailable(): boolean; | Obtains the (reverse) geocoding service status.| 
-| getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void | Converts coordinates into geographic descriptions through reverse geocoding. This API uses an asynchronous callback to return the result. | 
-| getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. | 
-| getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void | Converts geographic descriptions into coordinates through geocoding. This API uses an asynchronous callback to return the result. | 
-| getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. | 
+| isGeocoderAvailable(): boolean; | Obtains the (reverse) geocoding service status.|
+| getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void | Converts coordinates into geographic descriptions through reverse geocoding. This API uses an asynchronous callback to return the result. |
+| getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. |
+| getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void | Converts geographic descriptions into coordinates through geocoding. This API uses an asynchronous callback to return the result. |
+| getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt; | Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. |
 
 ### How to Develop
 
 > **NOTE**
+>
 > The **GeoConvert** instance needs to access backend services to obtain information. Therefore, before performing the following steps, ensure that your device is connected to the network.
 
 1. Import the **geoLocationManager** module by which you can implement all APIs related to the geocoding and reverse geocoding conversion capabilities.
@@ -255,16 +254,17 @@ The following table lists the APIs used for mutual conversion between coordinate
    ```
 
 2. Check whether the **geoCoder** service is available.
-   - Call **isGeoServiceAvailable** to check whether the **geoCoder** service is available. If the service is available, go to step 3.
-     
-      ```ts
-      import geoLocationManager from '@ohos.geoLocationManager';
-      try {
-          let isAvailable = geoLocationManager.isGeocoderAvailable();
-      } catch (err) {
-          console.error("errCode:" + err.code + ",errMessage:" + err.message);
-      }
-      ```
+   
+   Call **isGeoServiceAvailable** to check whether the **geoCoder** service is available. If the service is available, go to step 3.
+   
+   ```ts
+   import geoLocationManager from '@ohos.geoLocationManager';
+   try {
+       let isAvailable = geoLocationManager.isGeocoderAvailable();
+   } catch (err) {
+       console.error("errCode:" + err.code + ",errMessage:" + err.message);
+   }
+   ```
 
 3. Obtain the geocoding conversion result.
    - Call **getAddressesFromLocation** to convert coordinates into geographical location information.
@@ -303,7 +303,7 @@ The following table lists the APIs used for mutual conversion between coordinate
       ```
 
       The application can access the **GeoAddress** list that matches the specified geographic descriptions for the corresponding coordinates. For details, see [Geolocation Manager](../reference/apis/js-apis-geoLocationManager.md).
-
+   
       To improve the accuracy of location results, you can set the longitude and latitude ranges in **GeoCodeRequest**.
 
 
@@ -323,10 +323,10 @@ The following table lists the APIs used for geofencing. For details, see [Geoloc
 
 **Table 4** Geofencing APIs
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void; | Registers a listener for status change events of the specified geofence.| 
-| off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void; | Unregisters the listener for status change events of the specified geofence.| 
+| on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void; | Registers a listener for status change events of the specified geofence.|
+| off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void; | Unregisters the listener for status change events of the specified geofence.|
 
 ### How to Develop
 
@@ -386,7 +386,7 @@ The following table lists the APIs used for geofencing. For details, see [Geoloc
 
 4. Call [getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to create a **WantAgent** object.
 
-After obtaining the **WantAgent** object, call the geofencing API to add a geofence.
+   After obtaining the **WantAgent** object, call the geofencing API to add a geofence.
 
    ```ts
    // Create a WantAgent object.

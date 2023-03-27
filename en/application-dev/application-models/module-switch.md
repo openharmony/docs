@@ -40,7 +40,7 @@ When switching an application from the FA model to the stage model, you must mig
 | -------- | -------- | -------- | -------- |
 | name | Key name that identifies a data item. The value is a string with a maximum of 255 bytes.| name | None.|
 | value | Value of the data item. The value is a string with a maximum of 255 bytes.| value | None.|
-| extra | Format of the current custom data. The value is the resource value of **extra**.| resource | The field name is changed. For details, see [Table 4](#table 4-metadata-examples).|
+| extra | Format of the current custom data. The value is the resource value of **extra**.| resource | The field name is changed. For details, see [Table 4](#table-4-metadata-examples).|
 
 **Table 4** metaData examples
 
