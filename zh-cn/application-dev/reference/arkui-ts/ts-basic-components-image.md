@@ -19,7 +19,7 @@
 
 ## 接口
 
-Image(src: string | PixelMap | Resource)
+(src: PixelMap | ResourceStr | DrawableDescriptor)
 
 通过图片数据源获取图片，用于后续渲染展示。
 
@@ -29,7 +29,7 @@ Image(src: string | PixelMap | Resource)
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。图片加载前需要申请[媒体库功能相关权限](../../file-management/medialibrary-overview.md#申请媒体库功能相关权限)<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型 |
+| src    | &nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|ResourceStr\|&nbsp;[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是   | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。图片加载前需要申请[媒体库功能相关权限](../../file-management/medialibrary-overview.md#申请媒体库功能相关权限)<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br/>\- 支持[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)对象<br/>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型 |
 
 ## 属性
 
