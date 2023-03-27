@@ -36,7 +36,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
 * **Programming language**: C/C++
 
-* **Operating system**: OpenHarmony
+* **Operating system**: OpenHarmony mini- and small-system
 
 * **Others**: The System Ability Manager \(Samgr\) has been started and is running properly.
 
@@ -314,9 +314,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-4.  Develop a sample application. For details, see the [keyword spotting demo](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai).
-
-    Directory: //applications/sample/camera/ai/asr/keyword\_spotting
+4.  Develop a sample application.
 
     Call the  **Create**  API.
 
