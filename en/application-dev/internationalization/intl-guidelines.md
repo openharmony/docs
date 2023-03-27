@@ -379,7 +379,7 @@ According to grammars in certain languages, the singular or plural form of a nou
 
 5. Access the attributes of the **RelativeTimeFormat** object.
 
-     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions9).
+     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8).
      
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
