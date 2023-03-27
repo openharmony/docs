@@ -414,8 +414,11 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-
 同步分布式数据库时连接到组网内指定的远程设备。
+
+> **说明：**
+>
+> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -434,8 +437,24 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices
@@ -2008,24 +2027,41 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据。使用callback异步回调。
 
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| device     | string                                                       | 是   | 指定的远程设备的networkId。                                 |
-| table      | string                                                       | 是   | 指定的目标表名。                                            |
-| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
-| columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
+| 参数名     | 类型                                         | 必填 | 说明                                                      |
+| ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
+| device     | string                                       | 是   | 指定的远程设备ID。                                        |
+| table      | string                                       | 是   | 指定的目标表名。                                          |
+| predicates | [RdbPredicates](#rdbpredicates)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
+| columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
       console.error(`Failed to remoteQuery, err: ${err}`);
@@ -2043,13 +2079,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
 
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| device     | string                               | 是   | 指定的远程设备的networkId。                      |
+| device     | string                               | 是   | 指定的远程设备ID。                   |
 | table      | string                               | 是   | 指定的目标表名。                                 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
 | columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
@@ -2063,6 +2103,19 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
 let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
@@ -2488,7 +2541,11 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2498,14 +2555,27 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| device   | string                      | 是   | 远程设备 。                                                  |
-| table    | string                      | 是   | 本地表名。                                                   |
+| device   | string                      | 是   | 远程设备ID 。                                                |
+| table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
 
 ```js
-store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.error(`ObtainDistributedTableName failed, err: ${err}`);
         return;
@@ -2518,7 +2588,11 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2526,10 +2600,10 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明       |
-| ------ | ------ | ---- | ---------- |
-| device | string | 是   | 远程设备。 |
-| table  | string | 是   | 本地表名。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| device | string | 是   | 远程设备ID。         |
+| table  | string | 是   | 远程设备的本地表名。 |
 
 **返回值**：
 
@@ -2540,7 +2614,20 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 **示例：**
 
 ```js
-let promise = store.obtainDistributedTableName("12345678abcde", "EMPLOYEE");
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
@@ -2569,8 +2656,24 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
     console.error(`Sync failed, err: ${err}`);
@@ -2609,8 +2712,24 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
 promise.then((result) =>{
   console.info(`Sync done.`);
