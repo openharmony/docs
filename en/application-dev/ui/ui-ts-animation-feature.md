@@ -132,7 +132,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
       .onAppear(() => {
    
         animateTo({
-         duration: 2000,
+         duration: 1000,
           curve: this.curve1, 
           delay: 100, 
           onFinish: () => {
@@ -199,7 +199,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
          .opacity(this.opacityValue)
          .onAppear(() => {
            animateTo({
-             duration: 2000,
+             duration: 1000,
              curve: this.curve1,
              delay: 100,
              onFinish: () => {
@@ -240,11 +240,11 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
 
 Implement the shared element transition between the food list page and the food details page. That is, after you click **FoodListItem** or **FoodGridItem**, the food thumbnail is zoomed in, and then you are redirected to the large image on the food details page.
 
-1. Set the **sharedTransition** method for the **<Image>** component of **FoodListItem** and **FoodGridItem**. The transition ID is **foodItem.id**, the duration of the transition animation is 1s, and the delay is 0.1s. The change curve is **Curves.cubicBezier(0.2, 0.2, 0.1, 1.0)**. You need to import the **Curves** module first.
+1. Set the **sharedTransition** method for the **\<Image>** component of **FoodListItem** and **FoodGridItem**. The transition ID is **foodItem.id**, the duration of the transition animation is 1s, and the delay is 0.1s. The change curve is **Curves.cubicBezier(0.2, 0.2, 0.1, 1.0)**. You need to import the **Curves** module first.
 
-   During the shared element transition, the attributes of the current element are carried. Therefore, create a **<Row>** component as the parent component of the **<Image>** component, and set the background color on the **<Row>** component.
+   During the shared element transition, the attributes of the current element are carried. Therefore, create a **\<Row>** component as the parent component of the **\<Image>** component, and set the background color on the **\<Row>** component.
 
-   Set **autoResize** to **false** for the **<Image>** component of **FoodListItem**. The **<Image>** component adjusts the size of the image source based on the final display area by default to optimize the image rendering performance. In the transition animation, the image will be reloaded during the zoom-in process. Therefore, to ensure the smoothness of the transition animation, set **autoResize** to **false**.
+   Set **autoResize** to **false** for the **\<Image>** component of **FoodListItem**. The **\<Image>** component adjusts the size of the image source based on the final display area by default to optimize the image rendering performance. In the transition animation, the image will be reloaded during the zoom-in process. Therefore, to ensure the smoothness of the transition animation, set **autoResize** to **false**.
 
    ```ts
    // FoodList.ets
@@ -316,7 +316,7 @@ Implement the shared element transition between the food list page and the food 
    
    ```
 
-2. Sets the **sharedTransition** method for the **<Image>** component of **FoodImageDisplay** on the **FoodDetail** page. The setting method is the same as that mentioned above.
+2. Sets the **sharedTransition** method for the **\<Image>** component of **FoodImageDisplay** on the **FoodDetail** page. The setting method is the same as that mentioned above.
 
    ```ts
    import Curves from '@ohos.curves'
