@@ -64,7 +64,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
 
 **Example**
 
@@ -111,7 +111,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
 
 **Example**
 
@@ -154,7 +154,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -206,7 +206,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -265,7 +265,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -317,7 +317,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
 | 12100002 | TokenId does not exist. |
 | 12100003 | Permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -375,7 +375,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -452,7 +452,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -504,7 +504,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID in list is all invalid, or the permissionName in list is all invalid. |
+| 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
 | 12100004 | The interface is not used together with "on". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -532,7 +532,9 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 Verifies whether a permission is granted to an application. This API uses a promise to return the result.
 
-> **NOTE**<br>You are advised to use [checkAccessToken](#checkaccesstoken9).
+> **NOTE**
+>
+> You are advised to use [checkAccessToken](#checkaccesstoken9).
 
 **System capability**: SystemCapability.Security.AccessToken
 
@@ -619,7 +621,7 @@ Requests permissions from the user in a dialog box.  This API uses a promise to 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | Context | Yes| Ability context of the application that requests the permissions. |
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -659,7 +661,9 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 Verifies whether a permission is granted to an application. This API uses a promise to return the result.
 
-> NOTE<br>This API is deprecated since API version 9. You are advised to use [checkAccessToken](#checkaccesstoken9).
+> **NOTE**
+>
+> This API is no longer maintained since API version 9. You are advised to use [checkAccessToken](#checkaccesstoken9).
 
 **System capability**: SystemCapability.Security.AccessToken
 
