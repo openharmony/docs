@@ -1971,7 +1971,7 @@ audioManager.isMicrophoneMute().then((value) => {
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 9 开始支持，建议使用AudioVolumeManager中的[on](#on9)替代。
+> 建议使用AudioVolumeManager中的[on](#on9)替代。
 
 监听系统音量变化事件。
 
