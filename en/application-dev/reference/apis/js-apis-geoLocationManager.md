@@ -280,7 +280,7 @@ Sets the priority of the location request.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequest scenario) is invalid.|
+| UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequestscenario) is invalid.|
 | NAVIGATION | 0x301 | Navigation.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
 | TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
 | CAR_HAILING | 0x303 | Ride hailing.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
