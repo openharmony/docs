@@ -1,7 +1,10 @@
 # progress
 
-
 进度条，用于显示内容加载或操作处理进度。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -78,3 +81,45 @@
 | border-radius | &lt;length&gt; | - | 否 | border-radius属性是设置元素的外边框圆角半径。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
+
+## 示例
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <progress type="horizontal" percent="{{horizontalVal}}" style="height: 10%;width: 40%;" onclick = "changeHorizontal"></progress>
+  <progress type="arc" class="min-progress" percent="{{arcVal}}" on:click="changeArc"></progress>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+.min-progress {
+  width: 300px;
+  height: 300px;
+}
+```
+
+```javascript
+// xxx.js
+export default {
+  data: {
+    arcVal: 0,
+    horizontalVal: 0
+  },
+  changeArc() {
+    this.arcVal+= 10;
+  },
+  changeHorizontal() {
+    this.horizontalVal+= 10;
+  }
+}
+```
+
+![progress](figures/progress.png)
