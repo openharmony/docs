@@ -1992,7 +1992,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **示例：**
 
@@ -2301,7 +2301,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **错误码：**
 
