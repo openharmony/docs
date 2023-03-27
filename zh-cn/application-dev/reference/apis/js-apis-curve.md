@@ -56,7 +56,7 @@ stepsCurve(count: number, end: boolean)：ICurve
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
-| count  | number  | 是   | 阶梯的数量，需要为正整数，取值范围为[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
+| count  | number  | 是   | 阶梯的数量，需要为正整数。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
 | end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 **返回值：**
@@ -86,10 +86,10 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number)：ICurve
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| x1     | number | 是   | 确定贝塞尔曲线第一点横坐标，取值范围[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
-| y1     | number | 是   | 确定贝塞尔曲线第一点纵坐标，取值范围(-∞, +∞)。               |
-| x2     | number | 是   | 确定贝塞尔曲线第二点横坐标。，取值范围[0, 1]。<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
-| y2     | number | 是   | 确定贝塞尔曲线第二点纵坐标，取值范围(-∞, +∞)。               |
+| x1     | number | 是   | 确定贝塞尔曲线第一点横坐标。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
+| y1     | number | 是   | 确定贝塞尔曲线第一点纵坐标。<br/>取值范围：(-∞, +∞)          |
+| x2     | number | 是   | 确定贝塞尔曲线第二点横坐标。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
+| y2     | number | 是   | 确定贝塞尔曲线第二点纵坐标。<br/>取值范围：(-∞, +∞)          |
 
 **返回值：**
 
@@ -118,10 +118,10 @@ springCurve(velocity: number, mass: number, stiffness: number, damping: number)�
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| velocity  | number | 是   | 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑的过渡到弹性动效，取值范围(-∞, +∞)。 |
-| mass      | number | 是   | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢，取值范围(0, +∞)。<br/>**说明：** <br/>设置的值小于0时，按1处理。 |
-| stiffness | number | 是   | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快，取值范围(0, +∞)。<br/>**说明：** <br/>设置的值小于0时，按1处理。。 |
-| damping   | number | 是   | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小，取值范围(0, +∞)。<br/>**说明：** <br/>设置的值小于0时，按1处理。。 |
+| velocity  | number | 是   | 初始速度。是由外部因素对弹性动效产生的影响参数，其目的是保证对象从之前的运动状态平滑的过渡到弹性动效。<br/>取值范围：(-∞, +∞) |
+| mass      | number | 是   | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。<br/>取值范围：(0, +∞)<br/>**说明：** <br/>设置的值小于0时，按1处理。 |
+| stiffness | number | 是   | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。<br/>取值范围：(0, +∞)<br/>**说明：** <br/>设置的值小于0时，按1处理。 |
+| damping   | number | 是   | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。<br/>取值范围：(0, +∞)<br/>**说明：** <br/>设置的值小于0时，按1处理。 |
 
 
 **返回值：**
@@ -151,16 +151,16 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 
 | 参数名       | 类型     | 必填   | 说明    |
 | --------- | ------ | ---- | ----- |
-| response  | number | 否    | 弹簧自然振动周期，决定弹簧复位的速度。<br>默认值：0.55，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0.55处理。 |
-| dampingFraction      | number | 否    | 阻尼系数。<br>0表示无阻尼，一直处于震荡状态；<br>大于0小于1的值为欠阻尼，运动过程中会超出目标值；<br>等于1为临界阻尼；<br>大于1为过阻尼，运动过程中逐渐趋于目标值。<br>默认值：0.825，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0.55处理。 |
-| overlapDuration | number | 否    | 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。<br/>默认值：0，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0处理。<br>弹性动画曲线为物理曲线，animation、animateTo中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的interpolate函数获得插值。 |
+| response  | number | 否    | 弹簧自然振动周期，决定弹簧复位的速度。<br>默认值：0.55<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.55处理。 |
+| dampingFraction      | number | 否    | 阻尼系数。<br>0表示无阻尼，一直处于震荡状态；<br>大于0小于1的值为欠阻尼，运动过程中会超出目标值；<br>等于1为临界阻尼；<br>大于1为过阻尼，运动过程中逐渐趋于目标值。<br>默认值：0.825<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.55处理。 |
+| overlapDuration | number | 否    | 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。<br/>默认值：0<br/>单位：秒<br/>取值范围：[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0处理。<br>弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的interpolate函数获得插值。 |
 
 
 **返回值：**
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，animation、animateTo中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
 
 **示例：**
 
@@ -185,15 +185,15 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 
 | 参数名       | 类型     | 必填   | 说明    |
 | --------- | ------ | ---- | ----- |
-| response  | number | 否    | 解释同springMotion中的response。<br/>默认值：0.15，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0.15处理。 |
-| dampingFraction      | number | 否    | 解释同springMotion中的dampingFraction。<br/>默认值：0.86，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0.86处理。 |
-| overlapDuration | number | 否    | 解释同springMotion中的overlapDuration。<br/>默认值：0.25，单位：秒；取值范围[0, +∞)。<br/>**说明：** <br/>设置小于0的值时，按默认值0.25处理。<br/>弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br/>animation、animateTo中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的interpolate函数获得插值。 |
+| response  | number | 否    | 解释同springMotion中的response。<br/>默认值：0.15<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.15处理。 |
+| dampingFraction      | number | 否    | 解释同springMotion中的dampingFraction。<br/>默认值：0.86<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.86处理。 |
+| overlapDuration | number | 否    | 解释同springMotion中的overlapDuration。<br/>默认值：0.25<br/>单位：秒<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按默认值0.25处理。<br/>弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线。如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br/>[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的interpolate函数获得插值。 |
 
 **返回值：**
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1.弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2.animation、animateTo中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1、弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2、[animation](../arkui-ts/ts-animatorproperty.md)、[animateTo](../arkui-ts/ts-explicit-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
 
 **示例：**
 
@@ -220,7 +220,7 @@ interpolate(fraction:&nbsp;number): number
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| fraction | number | 是   | &nbsp;当前的归一化时间参数，有效值范围0到1。<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
+| fraction | number | 是   | 当前的归一化时间参数。<br/>取值范围：[0,1]<br/>**说明：** <br/>设置的值小于0时，按0处理；设置的值大于1时，按1处理。 |
 
 **返回值：**
 
