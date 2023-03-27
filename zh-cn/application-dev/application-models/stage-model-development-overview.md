@@ -10,7 +10,7 @@
 
 - [UIAbility组件](uiability-overview.md)和[ExtensionAbility组件](extensionability-overview.md)
   
-  Stage模型提供UIAbility和ExtensionAbility两种类型的组件，这两种组件都有具体的类承载，支持面向对象的开发方式。他们是Ability抽象概念在Stage模型上的具体实现。他们是Ability管理服务调度的单元，其生命周期都是由Ability管理服务进行调度的。
+  Stage模型提供UIAbility和ExtensionAbility两种类型的组件，这两种组件都有具体的类承载，支持面向对象的开发方式。
   
   - UIAbility组件是一种包含UI界面的应用组件，主要用于和用户交互。例如，图库类应用可以在UIAbility组件中展示图片瀑布流，在用户选择某个图片后，在新的页面中展示图片的详细内容。同时用户可以通过返回键返回到瀑布流页面。UIAbility的生命周期只包含创建/销毁/前台/后台等状态，与显示相关的状态通过WindowStage的事件暴露给开发者。
   
