@@ -33,7 +33,7 @@ The APIs are used for troubleshooting and do not return any exception. Therefore
 
 Fault management is an important way for applications to deliver a better user experience. The application framework offers three methods for application fault management: fault listening, fault rectification, and fault query.
 
-- Fault listening refers to the process of registering [ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver) via [errorManager](../reference/apis/js-apis-application-errorManager.md), listening for fault occurrence, and notifying the fault listener.
+- Fault listening refers to the process of registering [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) via [errorManager](../reference/apis/js-apis-app-ability-errorManager.md), listening for fault occurrence, and notifying the fault listener.
 
 - Fault rectification refers to [appRecovery](../reference/apis/js-apis-app-ability-appRecovery.md) and restarts an application to restore its status previous to a fault.
 
@@ -42,8 +42,8 @@ Fault management is an important way for applications to deliver a better user e
 The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to [LastExitReason](../reference/apis/js-apis-application-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query the information about the last fault.
 ![Fault rectification process](./figures/fault_rectification.png)
 
-It is recommended that you call [errorManager](../reference/apis/js-apis-application-errorManager.md) to process the exception. After the processing is complete, you can call the status saving API and restart the application.
-If you do not register [ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
+It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to process the exception. After the processing is complete, you can call the status saving API and restart the application.
+If you do not register [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
 If you have enabled application recovery, the framework first checks whether a fault allows for ability status saving and whether you have configured ability status saving. If so, [onSaveState](../reference/apis/js-apis-application-ability.md#abilityonsavestate) of [Ability](../reference/apis/js-apis-application-ability.md#ability) is called back. Finally, the application is restarted.
 
 ### Scenarios Supported by Application Fault Management APIs
@@ -95,7 +95,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 #### Actively Saving Status and Restoring Data
 
-- Define and register the [ErrorObserver](../reference/apis/js-apis-application-errorManager.md#errorobserver) callback.
+- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback.
 
 ```ts
   var registerId = -1;
