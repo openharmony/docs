@@ -1055,7 +1055,7 @@
       - [@ohos.data.dataShareResultSet (数据共享结果集)](reference/apis/js-apis-data-DataShareResultSet.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis/js-apis-distributedKVStore.md)
-      - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
+      - [@ohos.data.preferences (用户首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
       - data/rdb
@@ -1294,7 +1294,7 @@
       - [数据共享错误码](reference/errorcodes/errorcode-datashare.md)
       - [分布式数据对象错误码](reference/errorcodes/errorcode-distributed-dataObject.md)
       - [分布式键值数据库错误码](reference/errorcodes/errorcode-distributedKVStore.md)
-      - [首选项错误码](reference/errorcodes/errorcode-preferences.md)
+      - [用户首选项错误码](reference/errorcodes/errorcode-preferences.md)
     - 文件管理
       - [文件管理子系统错误码](reference/errorcodes/errorcode-filemanagement.md)
     - 电话服务
