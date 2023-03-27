@@ -52,7 +52,6 @@ let callback = {
             console.log('onException, stack: ', errorObj.stack);
         }
     }
-
 }
 
 export default class EntryAbility extends UIAbility {
