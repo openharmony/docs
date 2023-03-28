@@ -18,17 +18,10 @@ HTTP数据请求功能主要由http模块提供。
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
-| request2()<sup>10+</sup>                  | 根据URL地址，发起HTTP网络请求并返回流式响应|
 | destroy()                                 | 中断请求任务。                      |
 | on(type: 'headersReceive')                | 订阅HTTP Response Header 事件。     |
 | off(type: 'headersReceive')               | 取消订阅HTTP Response Header 事件。 |
 | once\('headersReceive'\)<sup>8+</sup>     | 订阅HTTP Response Header 事件，但是只触发一次。|
-| on\('dataReceive'\)<sup>10+</sup>         | 订阅HTTP流式响应数据接收事件。      |
-| off\('dataReceive'\)<sup>10+</sup>        | 取消订阅HTTP流式响应数据接收事件。  |
-| on\('dataEnd'\)<sup>10+</sup>             | 订阅HTTP流式响应数据接收完毕事件。  |
-| off\('dataEnd'\)<sup>10+</sup>            | 取消订阅HTTP流式响应数据接收完毕事件。 |
-| on\('dataProgress'\)<sup>10+</sup>        | 订阅HTTP流式响应数据接收进度事件。  |
-| off\('dataProgress'\)<sup>10+</sup>       | 取消订阅HTTP流式响应数据接收进度事件。 |
 
 ## request接口开发步骤
 
@@ -70,7 +63,6 @@ httpRequest.request(
         connectTimeout: 60000, // 可选，默认为60000ms
         readTimeout: 60000, // 可选，默认为60000ms
         usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
-        usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
     }, (err, data) => {
         if (!err) {
             // data.result为HTTP响应内容，可根据业务需要进行解析
