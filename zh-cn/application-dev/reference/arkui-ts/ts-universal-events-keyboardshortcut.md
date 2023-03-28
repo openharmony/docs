@@ -19,11 +19,11 @@ keyboardShortcut(value: string | [FunctionKey](ts-universal-events-keyboardshort
 
 ## CtrlKey枚举说明
 
-| 名称  | 描述      |
-| ----- | --------- |
-| CTRL  | ctrl键。  |
-| SHIFT | shift键。 |
-| ALT   | alt键。   |
+| 名称  | 描述                |
+| ----- | ------------------- |
+| CTRL  | 表示键盘上Ctrl键。  |
+| SHIFT | 表示键盘上Shift键。 |
+| ALT   | 表示键盘上Alt键。   |
 
 ## FunctionKey枚举说明
 
