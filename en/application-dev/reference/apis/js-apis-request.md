@@ -16,26 +16,9 @@ import request from '@ohos.request';
 
 
 ## Constraints
-
-HTTPS is supported by default in the FA model. To support HTTP, add **network** to the **config.json** file and set the **cleartextTraffic** attribute to **true**.
-
-```js
-var config = {
-  "deviceConfig": {
-    "default": {
-      "network": {
-        "cleartextTraffic": true
-      }
-      //...
-    }
-  }
-}
-```
-
-The **cleartextTraffic** attribute is not involved during application development in the stage model.
-
 The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
+Only HTTP requests are supported. HTTPS requests are not supported.
 
 ## Constants
 
