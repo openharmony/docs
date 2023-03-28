@@ -294,8 +294,8 @@ let httpProxy = {
     port: 8080,
     exclusionList: exclusionArray
 }
-connection.setGlobalHttpProxy(httpProxy).then((error, data) => {
-   console.info(JSON.stringify(data));
+connection.setGlobalHttpProxy(httpProxy).then(() => {
+   console.info("success");
 }).catch(error=>{
    console.info(JSON.stringify(error));
 })
@@ -436,8 +436,8 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-   connection.setAppNet(netHandle).then((error, data) => {
-        console.log(JSON.stringify(data))
+   connection.setAppNet(netHandle).then(() => {
+        console.log("success")
    }).catch(error => {
         console.log(JSON.stringify(error))
    })
