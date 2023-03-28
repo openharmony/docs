@@ -25,7 +25,6 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | onStateChange                | (event: { isVisible: boolean }) =&gt; void        | No  | Callback for the popup status change event.<br/>**isVisible**: whether the popup is visible. |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)                      | No  | Offset of the popup arrow relative to the popup. <br>When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default. <br/>When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default. <br/>When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is **0**, the arrow always points to the bound component. |
 | showInSubWindow<sup>9+</sup> | boolean                                           | No  | Whether to show the popup in the subwindow. <br/>Default value: **false** |
-| mask<sup>10+</sup>           | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 
 ## CustomPopupOptions<sup>8+</sup>
 
@@ -39,7 +38,6 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | onStateChange            | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event.<br>**isVisible**: whether the popup is visible. |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)                 | No  | Offset of the popup arrow relative to the popup. <br/>When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default. <br/>When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default. <br/>When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is **0**, the arrow always points to the bound component. |
 | showInSubWindow<sup>9+</sup> | boolean                                      | No  | Whether to show the popup in the subwindow.<br/>Default value: **false** |
-| mask<sup>10+</sup> | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No| Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 
 
 ## Example
