@@ -488,8 +488,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 选择联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.READ_CONTACTS
-
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -516,8 +514,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 选择联系人，使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts
 
