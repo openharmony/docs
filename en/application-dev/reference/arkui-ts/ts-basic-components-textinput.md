@@ -34,14 +34,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | type                     | [InputType](#inputtype)     | Input box type.<br>Default value: **InputType.Normal**       |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | Placeholder text color.|
 | placeholderFont          | [Font](ts-types.md#font) | Placeholder text font.|
-| enterKeyType             | [EnterKeyType](#enterkeytype) | Type of the Enter key. Currently, only the default value is supported.<br>Default value: **EnterKeyType.Done**|
+| enterKeyType             | [EnterKeyType](#enterkeytype) | Type of the Enter key. Only the default value is supported.<br>Default value: **EnterKeyType.Done**|
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | Color of the caret in the text box.                              |
 | maxLength                | number                                   | Maximum number of characters in the text input.                           |
-| inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
+| inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.|
 | showPasswordIcon<sup>9+</sup> | boolean | Whether to display the show password icon at the end of the password text box.<br>Default value: **true**|
 | style<sup>9+</sup> | [TextInputStyle](#textinputstyle9) | Text input style.<br>Default value: **TextInputStyle.Default**|
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | Alignment mode of the text in the text box.<br>Default value: **TextAlign.Start** |
+| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.|
+| caretStyle<sup>10+</sup> | {<br>caretWidth: [Length](ts-types.md#length)<br>} | Caret style.                                       |
+| caretPosition<sup>10+</sup> | number | Caret position.|
+
+>  **NOTE**
+>
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 16 vp,<br> left: 8 vp<br> }
 
 ## EnterKeyType
 
@@ -103,7 +110,18 @@ Sets the position of the caret.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
+### setTextSelection<sup>10+</sup>
 
+setTextSelection(selectionStart: number, selectionStart: number): void
+
+Sets the text selection area, which will be highlighted.
+
+**Parameters**
+
+| Name        | Type| Mandatory| Description              |
+| -------------- | -------- | ---- | ---------------------- |
+| selectionStart | number   | Yes  | Start position of the text selection area. The start position of the text in the text box is 0.|
+| selectionEnd   | number   | Yes  | End position of the text selection area.|
 
 ## Example
 
