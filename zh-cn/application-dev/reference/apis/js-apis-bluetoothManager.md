@@ -2333,17 +2333,6 @@ isTetheringOn(): boolean
 | --------------------- | --------------------------------- |
 | boolean | 网络共享开启返回true，网络共享关闭返回false。 |
 
-**错误码**：
-
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------- |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
-|2900099 | Operation failed.                        |
-
 **示例：**
 
 ```js
@@ -3258,7 +3247,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden。                         |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -3327,7 +3316,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden。                         |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -3382,7 +3371,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden。                         |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -3444,7 +3433,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden。                         |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -3491,7 +3480,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden。                        |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -3545,7 +3534,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden。                        |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **示例：**
