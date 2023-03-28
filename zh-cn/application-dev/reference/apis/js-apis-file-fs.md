@@ -65,7 +65,7 @@ stat(file: string|number): Promise&lt;Stat&gt;
 **示例：**
 
   ```js
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test.txt";
   fs.stat(filePath).then((stat) => {
       console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err) => {
@@ -330,8 +330,8 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath).then(() => {
       console.info("copy file succeed");
   }).catch((err) => {
@@ -359,8 +359,8 @@ copyFile(src: string|number, dest: string|number, mode?: number, callback: Async
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
@@ -390,8 +390,8 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
   ```
 
@@ -419,7 +419,7 @@ mkdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
       console.info("mkdir succeed");
   }).catch((err) => {
@@ -446,7 +446,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -474,7 +474,7 @@ mkdirSync(path: string): void
 **示例：**
 
   ```js
-  let dirPath = path + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
 
@@ -600,7 +600,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf).then((readLen) => {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
   }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
@@ -635,7 +635,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
     }
   });
@@ -698,7 +698,7 @@ rmdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
       console.info("rmdir succeed");
   }).catch((err) => {
@@ -725,7 +725,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -753,7 +753,7 @@ rmdirSync(path: string): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
 
@@ -1235,7 +1235,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
       console.info("rename succeed");
   }).catch((err) => {
@@ -1263,7 +1263,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
@@ -1292,7 +1292,7 @@ renameSync(oldPath: string, newPath: string): void
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
   ```
 
@@ -1498,7 +1498,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
       console.info("symlink succeed");
   }).catch((err) => {
@@ -1526,7 +1526,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
@@ -1555,7 +1555,7 @@ symlinkSync(target: string, srcPath: string): void
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlinkSync(srcFile, dstFile);
   ```
 
@@ -1606,7 +1606,7 @@ listFile(path: string, options?: {
   };
   fs.listFile(pathDir, options).then((filenames) => {
     console.info("listFile succeed");
-    for (let i = 0; i < filenames.size; i++) {
+    for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err) => {
@@ -1657,7 +1657,7 @@ listFile(path: string, options?: {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
-      for (let i = 0; i < filenames.size; i++) {
+      for (let i = 0; i < filenames.length; i++) {
         console.info("filename: %s", filenames[i]);
       }
     }
@@ -1710,13 +1710,13 @@ listFileSync(path: string, options?: {
   };
   let filenames = fs.listFileSync(pathDir, options);
   console.info("listFile succeed");
-  for (let i = 0; i < filenames.size; i++) {
+  for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
   ```
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number): Promise<void>;
+moveFile(src: string, dest: string, mode?: number): Promise\<void>;
 
 移动文件，使用Promise异步回调。
 
@@ -1733,6 +1733,8 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
       console.info("move file succeed");
   }).catch((err) => {
@@ -1742,7 +1744,7 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
 
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void;
 
 移动文件，使用Callback异步回调。
 
@@ -1760,6 +1762,8 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
@@ -1788,6 +1792,8 @@ moveFile(src: string, dest: string, mode?: number): void;
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFileSync(srcPath, destPath, 0);
   console.info("move file succeed");
   ```
@@ -2578,7 +2584,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let buf = new ArrayBuffer(4096);
   ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("read data succeed");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
   }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2612,7 +2618,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
     }
   });
   ```
@@ -2660,7 +2666,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 
 ### lock
 
-lock(exclusive?: boolean): Promise<void>;
+lock(exclusive?: boolean): Promise\<void>;
 
 文件阻塞式施加共享锁或独占锁，使用Promise异步回调。
 
@@ -2691,7 +2697,7 @@ lock(exclusive?: boolean): Promise<void>;
 
 ### lock
 
-lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
+lock(exclusive?: boolean, callback: AsyncCallback\<void>): void;
 
 文件阻塞式施加共享锁或独占锁，使Callback异步回调。
 

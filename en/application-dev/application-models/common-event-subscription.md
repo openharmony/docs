@@ -1,9 +1,9 @@
-# Subscribing to Common Events
+# Subscribing to Common Events in Dynamic Mode
 
 
 ## When to Use
 
-You can create a subscriber object to subscribe to a common event so as to obtain the parameters passed in the event. Certain system common events [require specific permissions](../security/accesstoken-guidelines.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
+In dynamic subscription mode, an application subscribes to a common event when it is running. If the subscribed event is published during the running period, the subscriber application will receive the event, together with the parameters passed in the event. For example, if an application expects to be notified of low battery so that it can reduce power consumption accordingly when running, then the application can subscribe to the low-battery event. Upon receiving the event, the application can close some unnecessary tasks to reduce power consumption. Certain system common events [require specific permissions](../security/accesstoken-guidelines.md) to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEventManager.md#support).
 
 
 ## Available APIs

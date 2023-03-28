@@ -16,24 +16,24 @@ HiTraceChain can be used for the following purposes:
 
     **Figure  1**  Use cases of HiTraceChain
     
-    ![](figure/use-cases-of-hitrace.png "use-cases-of-hitrace")
+    ![](figures/use-cases-of-hitrace.png "use-cases-of-hitrace")
 
 
 ### Usage Example
 
 **Figure  2**  Service calling process \(inter-device and inter-process synchronous call\) 
 
-![](figure/service-calling-process-(inter-device-and-inter-process-synchronous-call).png "service-calling-process-(inter-device-and-inter-process-synchronous-call)")
+![](figures/service-calling-process-(inter-device-and-inter-process-synchronous-call).png "service-calling-process-(inter-device-and-inter-process-synchronous-call)")
 
 1. Display the call relationship in the service process, analyze key paths and function dependency, and determine the time consumption and call frequency at each call point to detect performance bottlenecks.
 
    **Figure  3**  Service calling process
 
-   ![](figure/service-calling-process.png "service-calling-process")
+   ![](figures/service-calling-process.png "service-calling-process")
 
    **Figure  4**  Time delay in the service calling process
 
-   ![](figure/time-delay-in-the-service-calling-process.png "time-delay-in-the-service-calling-process")
+   ![](figures/time-delay-in-the-service-calling-process.png "time-delay-in-the-service-calling-process")
 
 2.  Add  **traceid**  to logs and events automatically to facilitate comprehensive analysis and quick fault location.
 
@@ -444,7 +444,7 @@ Extended communication mechanisms can also follow this implementation.
 
 **Figure  5**  Call chain tracing in synchronous communication
 
-![](figure/call-chain-tracing-in-synchronous-communication.png "call-chain-tracing-in-synchronous-communication")
+![](figures/call-chain-tracing-in-synchronous-communication.png "call-chain-tracing-in-synchronous-communication")
 
 The process is as follows:
 

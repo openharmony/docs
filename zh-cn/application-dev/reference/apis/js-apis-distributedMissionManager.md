@@ -368,8 +368,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#continuecallback) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 执行结果回调函数。 |
 
 **错误码：**
@@ -426,8 +426,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#continuedeviceinfo) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#continuecallback) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 
 **返回值：**
 
@@ -514,30 +514,3 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 | 名称       | 类型   | 可读   | 可写   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | 是    | 是    | 表示设备ID。 |
-
-## ContinueDeviceInfo
-
-表示发起任务迁移时所需参数的枚举。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-| 名称       | 类型   | 可读   | 可写   | 说明      |
-| -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
-| dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |
-| missionId | number | 是    | 是    | 表示任务ID。 |
-| wantParam | {[key: string]: any} | 是    | 是    | 表示扩展参数。 |
-
-## ContinueCallback
-
-表示迁移完成后，返回迁移结果回调函数。
-
-**需要权限**：ohos.permission.MANAGE_MISSIONS
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-| 名称                    | 类型       | 可读   | 可写   | 说明                 |
-| --------------------- | -------- | ---- | ---- | ------------------ |
-| onContinueDone | function | 是    | 否    | 通知迁移完成，返回迁移结果。     |

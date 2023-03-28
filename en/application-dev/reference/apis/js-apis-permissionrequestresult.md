@@ -4,8 +4,8 @@ The **PermissionRequestResult** module defines the result of a permission reques
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the stage model.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be used only in the stage model.
 
 ## Attributes
 
@@ -14,7 +14,7 @@ The **PermissionRequestResult** module defines the result of a permission reques
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| No| Permissions requested.|
-| authResults | Array&lt;number&gt; | Yes| No|Result of the permission Request.<br>**-1**: The permission has been set and no dialog box will be displayed. Users can modify the permission in **Settings**.<br>**0**: No operation is required.<br>**1**: Dynamic user authorization is required via a dialog window .<br>**2**: The request is invalid. Possible causes are as follows:<br>- The permission is not declared in the configuration file.<br>- The permission name is invalid.<br>- Special conditions for applying for the permission do not satisfied. See [ohos.permission.LOCATION](../../security/permission-list.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/permission-list.md#ohospermissionapproximately_location).|
+| authResults | Array&lt;number&gt; | Yes| No| Result of the permission request.<br>- **-1**: The permission is not authorized and must be set in **Settings** without displaying a dialog box.<br>- **0**: The permission is authorized.<br>- **2**: The permission is not authorized due to an invalid request. The possible causes are as follows:<br>  - The permission is not declared in the configuration file.<br>  - The permission name is invalid.<br>  - Special conditions for applying for the permission are not satisfied. See [ohos.permission.LOCATION](../../security/permission-list.md#ohospermissionlocation) and [ohos.permission.APPROXIMATELY_LOCATION](../../security/permission-list.md#ohospermissionapproximately_location).|
 
 ## Usage
 

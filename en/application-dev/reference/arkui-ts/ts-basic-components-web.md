@@ -1,6 +1,6 @@
 # Web
 
-The **<Web\>** component can be used to display web pages.
+The **<Web\>** component can be used to display web pages. It can be used with the [@ohos.web.webview](../apis/js-apis-webview.md) module, which provides APIs for web control.
 
 > **NOTE**
 >
@@ -16,36 +16,24 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebController | WebviewController})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 > **NOTE**
 >
 > Transition animation is not supported.
-> Different **\<Web>** components on the same page must be bound to different **WebController**s.
+>
+> **\<Web>** components on a page must be bound to different **WebviewController**s.
 
 **Parameters**
 
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource.|
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) | Yes   | Controller.   |
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
   Example of loading online web pages:
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -65,27 +53,85 @@ Web(options: { src: ResourceStr, controller: WebController | WebviewController})
   Example of loading local web pages:
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
+        // Load a local resource file through $rawfile.
         Web({ src: $rawfile("index.html"), controller: this.controller })
       }
     }
   }
   ```
 
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // Load a local resource file through the resource protocol.
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
+      }
+    }
+  }
   ```
+
+  Example of loading local resource files in the sandbox:
+
+  1. Use[globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+     ```ts
+     // xxx.ets
+     import web_webview from '@ohos.web.webview'
+     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController()
+       build() {
+         Column() {
+           // Load the files in the sandbox.
+           Web({ src: url, controller: this.controller })
+         }
+       }
+     }
+     ```
+
+  2. Modify the **MainAbility.ts** file.
+  
+     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
+     ```ts
+     // xxx.ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import web_webview from '@ohos.web.webview';
+
+     export default class EntryAbility extends UIAbility {
+         onCreate(want, launchParam) {
+             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
+             globalThis.filesDir = this.context.filesDir
+             console.log("Sandbox path is " + globalThis.filesDir)
+         }
+     }
+     ```
+
+     ```html
+     <!-- index.html -->
+     <!DOCTYPE html>
+     <html>
+         <body>
+             <p>Hello World</p>
+         </body>
+     </html>
+     ```
 
 ## Attributes
 
@@ -107,10 +153,12 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -136,10 +184,12 @@ Sets whether to enable access to the file system in the application. This settin
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -164,10 +214,12 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 **Example**
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -180,7 +232,7 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController | WebviewController})
+    controller: WebviewController | WebController})
 
 Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated.
 
@@ -191,41 +243,10 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 | object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
 | name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
 | methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
-| controller | [WebController](#webcontroller) or [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | Controller.                     |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    testObj = {
-      test: (data1, data2, data3) => {
-        console.log("data1:" + data1)
-        console.log("data2:" + data2)
-        console.log("data3:" + data3)
-        return "AceString"
-      },
-      toString: () => {
-        console.log('toString' + "interface instead.")
-      }
-    }
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(true)
-          .javaScriptProxy({
-            object: this.testObj,
-            name: "objName",
-            methodList: ["test", "toString"],
-            controller: this.controller,
-        })
-      }
-    }
-  }
-  ```
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -276,10 +297,12 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -305,10 +328,12 @@ Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. B
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State mode: MixedMode = MixedMode.All
     build() {
       Column() {
@@ -335,10 +360,12 @@ Sets whether to enable access to online images through HTTP and HTTPS. By defaul
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -364,10 +391,12 @@ Sets whether to enable zoom gestures. By default, this feature is enabled.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -393,10 +422,12 @@ Sets whether to load web pages by using the overview mode. By default, this feat
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -422,10 +453,12 @@ Sets whether to enable database access. By default, this feature is disabled.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -451,10 +484,12 @@ Sets whether to enable geolocation access. By default, this feature is enabled.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -480,10 +515,12 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State access: boolean = true
     build() {
       Column() {
@@ -510,10 +547,12 @@ Sets whether to enable the multi-window permission.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -539,10 +578,12 @@ Sets whether to display the horizontal scrollbar, including the default system s
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -590,10 +631,12 @@ Sets whether to display the vertical scrollbar, including the default system scr
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -642,10 +685,12 @@ Sets the cache mode.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State mode: CacheMode = CacheMode.None
     build() {
       Column() {
@@ -672,10 +717,12 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State atio: number = 150
     build() {
       Column() {
@@ -702,10 +749,12 @@ Sets the scale factor of the entire page. The default value is 100%.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State percent: number = 100
     build() {
       Column() {
@@ -732,10 +781,12 @@ Sets the user agent.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
     build() {
       Column() {
@@ -1196,7 +1247,9 @@ This API opens a new window when [multiWindowAccess](#multiwindowaccess9) is ena
 
 The default value of **flag** is subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is not set, the default value of **flag** is **false**.
 
-To check the settings of **persist.web.allowWindowOpenMethod.enabled**, run the **hdc shell param get persist.web.allowWindowOpenMethod.enabled** command. If the attribute is set to 0 or does not exist,
+To check the settings of **persist.web.allowWindowOpenMethod.enabled**,
+
+run the **hdc shell param get persist.web.allowWindowOpenMethod.enabled** command. If the attribute is set to 0 or does not exist,
 you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 1** command to enable it.
 
 **Parameters**
@@ -1256,10 +1309,12 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1314,10 +1369,12 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1375,10 +1432,12 @@ Called when **confirm()** is invoked by the web page.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1435,10 +1494,12 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1495,10 +1556,12 @@ Called to notify the host application of a JavaScript console message.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1532,10 +1595,12 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1569,10 +1634,12 @@ Called when an error occurs during web page loading. For better results, simplif
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1613,10 +1680,12 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1664,10 +1733,12 @@ Called when the web page starts to be loaded. This API is called only for the ma
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1697,10 +1768,12 @@ Called when the web page loading is complete. This API takes effect only for the
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1729,10 +1802,12 @@ Called when the web page loading progress changes.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1761,10 +1836,12 @@ Called when the document title of the web page is changed.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1794,10 +1871,12 @@ Called when loading of the web page is complete. This API is used by an applicat
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1826,10 +1905,12 @@ Called when the rendering process exits abnormally.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1865,10 +1946,12 @@ Called to process an HTML form whose input type is **file**, in response to the 
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1914,10 +1997,12 @@ Called to notify the **\<Web>** component of the URL of the loaded resource file
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1947,10 +2032,12 @@ Called when the display ratio of this page changes.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -1985,10 +2072,12 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2024,10 +2113,12 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     responseweb: WebResourceResponse = new WebResourceResponse()
     heads:Header[] = new Array()
     @State webdata: string = "<!DOCTYPE html>\n" +
@@ -2095,7 +2186,7 @@ Called when an HTTP authentication request is received.
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     httpAuth: boolean = false
 
     build() {
@@ -2157,7 +2248,7 @@ Called when an SSL error occurs during resource loading.
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2207,12 +2298,12 @@ Called when an SSL client certificate request is received.
 
   **Example**
   ```ts
-  // xxx.ets
+  // xxx.ets API9
   import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2244,6 +2335,106 @@ Called when an SSL client certificate request is received.
   }
   ```
 
+  ```ts
+  // xxx.ets API10
+  import web_webview from '@ohos.web.webview'
+  import bundle from '@ohos.bundle'
+
+  let uri = "";
+
+  export default class CertManagerService {
+    private static sInstance: CertManagerService;
+    private authUri = "";
+
+    public static getInstance(): CertManagerService {
+      if (CertManagerService.sInstance == null) {
+        CertManagerService.sInstance = new CertManagerService();
+      }
+      return CertManagerService.sInstance;
+    }
+
+    async grantAppPm(callback) {
+      let message = '';
+      // Note: Replace com.example.myapplication with the actual application name.
+      let bundleInfo = await bundle.getBundleInfo("com.example.myapplication", bundle.BundleFlag.GET_BUNDLE_DEFAULT)
+      let clientAppUid = bundleInfo.uid
+      let appUid = clientAppUid.toString()
+
+      // Note: For globalThis.AbilityContext, add globalThis.AbilityContext = this.context to the onCreate function in the MainAbility.ts file.
+      await globalThis.AbilityContext.startAbilityForResult(
+        {
+          bundleName: "com.ohos.certmanager",
+          abilityName: "MainAbility",
+          uri: "requestAuthorize",
+          parameters: {
+            appUid: appUid, // UID of the requesting application.
+          }
+        })
+        .then((data) => {
+          if (!data.resultCode) {
+            this.authUri = data.want.parameters.authUri; // Value of authUri returned when authorization is successful.
+          }
+        })
+      message += "after grantAppPm authUri: " + this.authUri;
+      uri = this.authUri;
+      callback(message)
+    }
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    @State message: string ='Hello World' // message is used for debugging and observation.
+    certManager = CertManagerService.getInstance();
+
+    build() {
+      Row() {
+        Column() {
+          Row() {
+            // Step 1: Perform authorization to obtain the URI.
+            Button('GrantApp')
+              .onClick(() => {
+                this.certManager.grantAppPm((data) => {
+                  this.message = data;
+                });
+              })
+            // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
+            Button("ClientCertAuth")
+              .onClick(() => {
+                this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
+              })
+          }
+
+          Web({ src: 'https://www.example1.com', controller: this.controller })
+            .fileAccess(true)
+            .javaScriptAccess(true)
+            .domStorageAccess(true)
+            .onlineImageAccess(true)
+
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'ClientAuth',
+              message: 'Text',
+              confirm: {
+                value: 'Confirm',
+                action: () => {
+                  event.handler.confirm(uri);
+                }
+              },
+              cancel: () => {
+                event.handler.cancel();
+              }
+            })
+          })
+        }
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
 ### onPermissionRequest<sup>9+</sup>
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
@@ -2260,10 +2451,12 @@ Called when a permission request is received.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2316,10 +2509,12 @@ Shows a context menu after the user clicks the right mouse button or long presse
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2350,10 +2545,12 @@ Called when the scrollbar of the page scrolls.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2383,10 +2580,12 @@ Registers a callback for receiving a request to obtain the geolocation informati
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2427,10 +2626,12 @@ Called to notify the user that the request for obtaining the geolocation informa
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
@@ -2459,10 +2660,12 @@ Called when the component enters full screen mode.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     handler: FullScreenExitHandler = null
     build() {
       Column() {
@@ -2492,10 +2695,12 @@ Called when the component exits full screen mode.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     handler: FullScreenExitHandler = null
     build() {
       Column() {
@@ -2525,7 +2730,7 @@ Registers a callback for window creation.
 | isAlert       | boolean                                  | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.|
 | isUserTrigger | boolean                                  | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.  |
 | targetUrl     | string                                   | Target URL.                    |
-| handler       | [ControllerHandler](#controllerhandler9) | **WebController** instance for setting the new window. |
+| handler       | [ControllerHandler](#controllerhandler9) | **WebviewController** instance for setting the new window. |
 
 **Example**
 
@@ -2566,10 +2771,12 @@ Registers a callback for window closure.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
@@ -2599,10 +2806,12 @@ Called to notify the caller of the search result on the web page.
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController()
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
 
     build() {
       Column() {
@@ -2786,6 +2995,84 @@ Called when this web page receives a new favicon.
           console.log('onFaviconReceived:' + JSON.stringify(event))
           this.icon = event.favicon;
         })
+      }
+    }
+  }
+  ```
+
+### onAudioStateChanged<sup>10+</sup>
+
+onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+
+Registers a callback for audio playback status changes on the web page.
+
+**Parameters**
+
+| Name | Type                                      | Description                           |
+| ------- | ---------------------------------------------- | ----------------------------------- |
+| playing | boolean | Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State playing: boolean = false
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onAudioStateChanged(event => {
+            this.playing = event.playing
+            console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
+      }
+    }
+  }
+  ```
+
+### onLoadIntercept<sup>10+</sup>
+
+onLoadIntercept(callback: (event?: { request: WebResourceRequest }) => boolean)
+
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+
+**Parameters**
+
+| Name | Type                                    | Description     |
+| ------- | ---------------------------------------- | --------- |
+| request | [Webresourcerequest](#webresourcerequest) | Information about the URL request.|
+
+**Return value**
+
+| Type     | Description                      |
+| ------- | ------------------------ |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            console.log('url:' + event.request.getRequestUrl())
+            console.log('isMainFrame:' + event.request.isMainFrame())
+            console.log('isRedirect:' + event.request.isRedirect())
+            console.log('isRequestGesture:' + event.request.isRequestGesture())
+            return true
+          })
       }
     }
   }
@@ -3179,6 +3466,18 @@ Instructs the **\<Web>** component to select a file.
 
 Implements the **FileSelectorParam** object. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
+### getTitle<sup>9+</sup>
+
+getTitle(): string
+
+Obtains the title of this file selector.
+
+**Return value**
+
+| Type    | Description      |
+| ------ | -------- |
+| string | Title of the file selector.|
+
 ### getMode<sup>9+</sup>
 
 getMode(): FileSelectorMode
@@ -3288,6 +3587,20 @@ Uses the specified private key and client certificate chain.
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | Yes   | File that stores the private key, which is a directory including the file name. |
 | certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name.|
+
+### confirm<sup>10+</sup>
+
+confirm(authUri : string): void
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+Instructs the **\<Web>** component to use the specified credentials (obtained from the certificate management module).
+
+**Parameters**
+
+| Name  | Type | Mandatory | Description |
+| ------- | ------ | ----  | ------------- |
+| authUri | string | Yes   | Key value of the credentials. |
 
 ### cancel<sup>9+</sup>
 
@@ -3588,7 +3901,148 @@ Sets the geolocation permission status of a web page.
 | allow  | boolean | Yes   | -    | Geolocation permission status.                            |
 | retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](../apis/js-apis-webview.md#geolocationpermissions).|
 
-## WebController
+## MessageLevel
+
+| Name   | Description   |
+| ----- | :---- |
+| Debug | Debug level.|
+| Error | Error level.|
+| Info  | Information level.|
+| Log   | Log level.|
+| Warn  | Warning level. |
+
+## RenderExitReason
+
+Enumerates the reasons why the rendering process exits.
+
+| Name                        | Description               |
+| -------------------------- | ----------------- |
+| ProcessAbnormalTermination | The rendering process exits abnormally.        |
+| ProcessWasKilled           | The rendering process receives a SIGKILL message or is manually terminated.|
+| ProcessCrashed             | The rendering process crashes due to segmentation or other errors.   |
+| ProcessOom                 | The program memory is running low.          |
+| ProcessExitUnknown         | Other reason.            |
+
+## MixedMode
+
+| Name        | Description                                |
+| ---------- | ---------------------------------- |
+| All        | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| Compatible | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
+| None       | HTTP and HTTPS hybrid content cannot be loaded.              |
+
+## CacheMode
+| Name     | Description                                  |
+| ------- | ------------------------------------ |
+| Default | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
+| None    | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
+| Online  | The cache is not used to load the resources. All resources are obtained from the Internet.              |
+| Only    | The cache alone is used to load the resources.                       |
+
+## FileSelectorMode
+| Name                  | Description        |
+| -------------------- | ---------- |
+| FileOpenMode         | Open and upload a file. |
+| FileOpenMultipleMode | Open and upload multiple files. |
+| FileOpenFolderMode   | Open and upload a folder.|
+| FileSaveMode         | Save a file.   |
+
+ ## HitTestType
+
+| Name           | Description                      |
+| ------------- | ------------------------ |
+| EditText      | Editable area.                 |
+| Email         | Email address.                 |
+| HttpAnchor    | Hyperlink whose **src** is **http**.          |
+| HttpAnchorImg | Image with a hyperlink, where **src** is **http**.|
+| Img           | HTML::img tag.            |
+| Map           | Geographical address.                   |
+| Phone         | Phone number.                   |
+| Unknown       | Unknown content.                   |
+
+## SslError<sup>9+</sup>
+
+Enumerates the error codes returned by **onSslErrorEventReceive** API.
+
+| Name          | Description         |
+| ------------ | ----------- |
+| Invalid      | Minor error.      |
+| HostMismatch | The host name does not match.    |
+| DateInvalid  | The certificate has an invalid date.    |
+| Untrusted    | The certificate issuer is not trusted.|
+
+## ProtectedResourceType<sup>9+</sup>
+
+| Name       | Description           | Remarks                        |
+| --------- | ------------- | -------------------------- |
+| MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+
+## WebDarkMode<sup>9+</sup>
+| Name     | Description                                  |
+| ------- | ------------------------------------ |
+| Off     | The web dark mode is disabled.                    |
+| On      | The web dark mode is enabled.                    |
+| Auto    | The web dark mode setting follows the system settings.                |
+
+## DataResubmissionHandler<sup>9+</sup>
+
+Implements the **DataResubmissionHandler** object for resubmitting or canceling the web form data.
+
+### resend<sup>9+</sup>
+
+resend(): void
+
+Resends the web form data.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.resend();
+        })
+      }
+    }
+  }
+  ```
+
+###  cancel<sup>9+</sup>
+
+cancel(): void
+
+Cancels the resending of web form data.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+         .onDataResubmitted((event) => {
+          console.log('onDataResubmitted')
+          event.handler.cancel();
+        })
+      }
+    }
+  }
+  ```
+
+  ## WebController
 
 Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
@@ -3599,6 +4053,39 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 ```
 webController: WebController = new WebController()
 ```
+
+### getCookieManager<sup>9+</sup>
+
+getCookieManager(): WebCookie
+
+Obtains the cookie management object of the **\<Web>** component.
+
+**Return value**
+
+| Type       | Description                                      |
+| --------- | ---------------------------------------- |
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+
+    build() {
+      Column() {
+        Button('getCookieManager')
+          .onClick(() => {
+            let cookieManager = this.controller.getCookieManager()
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
 
 ### requestFocus<sup>(deprecated)</sup>
 
@@ -3867,39 +4354,6 @@ This API is deprecated since API version 9. You are advised to use [getHitTest<s
           .onClick(() => {
             let hitType = this.controller.getHitTest()
             console.log("hitType: " + hitType)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### getTitle<sup>9+</sup>
-getTitle(): string
-
-Obtains the title of the current web page.
-
-**Return value**
-
-| Type    | Description      |
-| ------ | -------- |
-| string | Title of the current web page.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('getTitle')
-          .onClick(() => {
-            let title = this.controller.getTitle()
-            console.log("title: " + title)
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4303,53 +4757,21 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
   }
   ```
 
-### getCookieManager<sup>9+</sup>
-
-getCookieManager(): WebCookie
-
-Obtains the cookie management object of the **\<Web>** component.
-
-**Return value**
-
-| Type       | Description                                      |
-| --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('getCookieManager')
-          .onClick(() => {
-            let cookieManager = this.controller.getCookieManager()
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## WebCookie
+## WebCookie<sup>(deprecated)</sup>
 
 Manages behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
 
-### setCookie<sup>9+</sup>
+### setCookie<sup>(deprecated)</sup>
 setCookie(url: string, value: string): boolean
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
+This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie) instead.
 
 **Parameters**
 
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set.|
+| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
 | value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**
@@ -4371,7 +4793,7 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("www.example.com", "a=b")
+            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
             console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4379,10 +4801,11 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
     }
   }
   ```
-### saveCookieSync<sup>9+</sup>
-saveCookieSync(): boolean
+### saveCookie<sup>(deprecated)</sup>
+saveCookie(): boolean
 
 Saves the cookies in the memory to the drive. This API returns the result synchronously.
+This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync) instead.
 
 **Return value**
 
@@ -4401,153 +4824,12 @@ Saves the cookies in the memory to the drive. This API returns the result synchr
 
     build() {
       Column() {
-        Button('saveCookieSync')
+        Button('saveCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookieSync()
+            let result = this.controller.getCookieManager().saveCookie()
             console.log("result: " + result)
           })
         Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-## MessageLevel
-
-| Name   | Description   |
-| ----- | :---- |
-| Debug | Debug level.|
-| Error | Error level.|
-| Info  | Information level.|
-| Log   | Log level.|
-| Warn  | Warning level. |
-
-## RenderExitReason
-
-Enumerates the reasons why the rendering process exits.
-
-| Name                        | Description               |
-| -------------------------- | ----------------- |
-| ProcessAbnormalTermination | The rendering process exits abnormally.        |
-| ProcessWasKilled           | The rendering process receives a SIGKILL message or is manually terminated.|
-| ProcessCrashed             | The rendering process crashes due to segmentation or other errors.   |
-| ProcessOom                 | The program memory is running low.          |
-| ProcessExitUnknown         | Other reason.            |
-
-## MixedMode
-
-| Name        | Description                                |
-| ---------- | ---------------------------------- |
-| All        | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
-| Compatible | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
-| None       | HTTP and HTTPS hybrid content cannot be loaded.              |
-
-## CacheMode
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Default | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
-| None    | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
-| Online  | The cache is not used to load the resources. All resources are obtained from the Internet.              |
-| Only    | The cache alone is used to load the resources.                       |
-
-## FileSelectorMode
-| Name                  | Description        |
-| -------------------- | ---------- |
-| FileOpenMode         | Open and upload a file. |
-| FileOpenMultipleMode | Open and upload multiple files. |
-| FileOpenFolderMode   | Open and upload a folder.|
-| FileSaveMode         | Save a file.   |
-
- ## HitTestType
-
-| Name           | Description                      |
-| ------------- | ------------------------ |
-| EditText      | Editable area.                 |
-| Email         | Email address.                 |
-| HttpAnchor    | Hyperlink whose **src** is **http**.          |
-| HttpAnchorImg | Image with a hyperlink, where **src** is **http**.|
-| Img           | HTML::img tag.            |
-| Map           | Geographical address.                   |
-| Phone         | Phone number.                   |
-| Unknown       | Unknown content.                   |
-
-## SslError<sup>9+</sup>
-
-Enumerates the error codes returned by **onSslErrorEventReceive** API.
-
-| Name          | Description         |
-| ------------ | ----------- |
-| Invalid      | Minor error.      |
-| HostMismatch | The host name does not match.    |
-| DateInvalid  | The certificate has an invalid date.    |
-| Untrusted    | The certificate issuer is not trusted.|
-
-## ProtectedResourceType<sup>9+</sup>
-
-| Name       | Description           | Remarks                        |
-| --------- | ------------- | -------------------------- |
-| MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
-
-## WebDarkMode<sup>9+</sup>
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Off     | The web dark mode is disabled.                    |
-| On      | The web dark mode is enabled.                    |
-| Auto    | The web dark mode setting follows the system settings.                |
-
-## DataResubmissionHandler<sup>9+</sup>
-
-Implements the **DataResubmissionHandler** object for resubmitting or canceling the web form data.
-
-### resend<sup>9+</sup>
-
-resend(): void
-
-Resends the web form data.
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
-      }
-    }
-  }
-  ```
-
-###  cancel<sup>9+</sup>
-
-cancel(): void
-
-Cancels the resending of web form data.
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.cancel();
-        })
       }
     }
   }

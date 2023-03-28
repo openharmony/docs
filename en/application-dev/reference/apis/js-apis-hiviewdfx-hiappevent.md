@@ -2,7 +2,8 @@
 
 The **hiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -119,12 +120,12 @@ Defines parameters for an **AppEventInfo** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name     | Type                   | Mandatory| Description      |
-| --------- | ----------------------- | ---- | ---------- |
-| domain    | string                  | Yes  | Event domain.|
-| name      | string                  | Yes  | Event name.|
-| eventType | [EventType](#eventtype) | Yes  | Event type.|
-| params    | object                  | Yes  | Event parameters.|
+| Name     | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| domain    | string                  | Yes  | Event domain. Event domain name, which is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
+| name      | string                  | Yes  | Event name. Event name, which is a string of up to 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).|
+| eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- The parameter name is a string of up to 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a lowercase letter and cannot end with an underscore (_).<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.configure
 
@@ -447,27 +448,27 @@ Enumerates event types.
 | BEHAVIOR  | 4    | Behavior event.|
 
 
-## Event
+## event
 
 Provides constants that define the names of all predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                     | Type  | Readable| Writable| Description                |
-| ------------------------- | ------ | ---- | ---- | -------------------- |
-| USER_LOGIN                | string | Yes  | No  | User login event.      |
-| USER_LOGOUT               | string | Yes  | No  | User logout event.      |
-| DISTRIBUTED_SERVICE_START | string | Yes  | No  | Distributed service startup event.|
+| Name                     | Type  | Description                |
+| ------------------------- | ------ | -------------------- |
+| USER_LOGIN                | string | User login event.      |
+| USER_LOGOUT               | string | User logout event.      |
+| DISTRIBUTED_SERVICE_START | string | Distributed service startup event.|
 
 
-## Param
+## param
 
 Provides constants that define the names of all predefined event parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                           | Type  | Readable| Writable| Description              |
-| ------------------------------- | ------ | ---- | ---- | ------------------ |
-| USER_ID                         | string | Yes  | No  | Custom user ID.    |
-| DISTRIBUTED_SERVICE_NAME        | string | Yes  | No  | Distributed service name.  |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Yes  | No  | Distributed service instance ID.|
+| Name                           | Type  | Description              |
+| ------------------------------- | ------ | ------------------ |
+| USER_ID                         | string | Custom user ID.    |
+| DISTRIBUTED_SERVICE_NAME        | string | Distributed service name.  |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Distributed service instance ID.|

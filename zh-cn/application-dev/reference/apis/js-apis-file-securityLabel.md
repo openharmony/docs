@@ -66,7 +66,8 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0").then(() => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0").then(() => {
       console.info("setSecurityLabel successfully");
   }).catch((err) => {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -92,7 +93,8 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0", (err) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0", (err) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -119,7 +121,8 @@ setSecurityLabelSync(path:string, type:DataLevel):void
 **示例：**
 
 ```js
-securityLabel.setSecurityLabelSync(path, "s0");
+let filePath = pathDir + '/test.txt';
+securityLabel.setSecurityLabelSync(filePath, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -145,7 +148,8 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path).then((type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath).then((type) => {
       console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err) => {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -170,7 +174,8 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  securityLabel.getSecurityLabel(path, (err, type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath, (err, type) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -201,6 +206,7 @@ getSecurityLabelSync(path:string):string
 **示例：**
 
 ```js
-let type = securityLabel.getSecurityLabelSync(path);
+let filePath = pathDir + '/test.txt';
+let type = securityLabel.getSecurityLabelSync(filePath);
 console.log("getSecurityLabel successfully, Label: " + type);
 ```

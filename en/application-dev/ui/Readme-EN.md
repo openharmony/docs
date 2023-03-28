@@ -1,7 +1,7 @@
 # UI Development
 
 - [ArkUI Overview](arkui-overview.md)
-- UI Development with ArkTS-based Declarative Development Paradigm
+- ArkTS-based Declarative Development Paradigm
     - [Overview](ui-ts-overview.md)
     - [Declarative UI Development Guidelines](ui-ts-developing-intro.md)
     - Declarative UI Development Examples
@@ -27,7 +27,7 @@
     - [Custom Component Lifecycle Callbacks](ui-ts-custom-component-lifecycle-callbacks.md)
     - [Web Component Development](ui-ts-components-web.md)
     - [Recommendations for Improving Performance](ui-ts-performance-improvement-recommendation.md)
-- UI Development with JavaScript-compatible Web-like Development Paradigm
+- JavaScript-compatible Web-like Development Paradigm
     - [Overview](ui-js-overview.md)
     - Framework Overview
         - [File Organization](js-framework-file.md)

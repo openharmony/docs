@@ -6,7 +6,7 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 该组件为卡片组件的使用方，对应提供方的使用参考文档[JS服务卡片UI组件](../js-service-widget-ui/Readme-CN.md)。
+> - 该组件为卡片组件的使用方，对应提供方的使用参考文档[JS服务卡片UI组件](../js-service-widget-ui/js-service-widget-file.md)。
 > 
 > - 该组件使用需要具有系统签名。
 
@@ -108,7 +108,7 @@ struct CardExample {
         .visibility(Visibility.Visible)
         .onAcquired((form)=>{
           console.log(`form info : ${JSON.stringify(form)}`);
-          this.fomId = form.id;
+          this.formId = form.id;
         })
         .onError((err)=>{
           console.log(`fail to add form, err: ${JSON.stringify(err)}`);

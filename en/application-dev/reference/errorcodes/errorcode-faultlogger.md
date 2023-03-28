@@ -4,11 +4,11 @@
 
 **Error Message**
 
-The service is not running or broken.
+The service is not started or is faulty.
 
 **Description**
 
-This error code is reported when the service is not started or is faulty.
+This error code is reported when the service is not started or an unknown error occurs.
 
 **Possible Causes**
 

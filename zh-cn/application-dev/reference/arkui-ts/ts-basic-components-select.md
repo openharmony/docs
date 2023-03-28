@@ -35,6 +35,15 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 | optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的背景色。                      |
 | optionFont              | [Font](ts-types.md#font)          | 设置下拉菜单项的文本样式。                    |
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的文本颜色。                    |
+| space<sup>10+</sup>         | [Length](ts-types.md#length)               | 设置下拉菜单项的文本与箭头之间的间距。                       |
+| arrowPosition<sup>10+</sup> | [ArrowPosition](#arrowposition10枚举说明)                  | 设置下拉菜单项的文本与箭头之间的对齐方式。                     |
+
+## ArrowPosition<sup>10+</sup>枚举说明
+
+| 名称                | 描述               |
+| ------------------- | ------------------ |
+| END<sup>10+</sup>   | 文字在前，箭头在后。 |
+| START<sup>10+</sup> | 箭头在前，文字在后。 |
 
 ## 事件
 
@@ -49,20 +58,28 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 @Entry
 @Component
 struct SelectExample {
+  @State text: string = "TTTTT"
+  @State index: number = 2
+  @State space: number = 8
+  @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
       Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
         { value: 'bbb', icon: "/common/public_icon.svg" },
         { value: 'ccc', icon: "/common/public_icon.svg" },
         { value: 'ddd', icon: "/common/public_icon.svg" }])
-        .selected(2)
-        .value('TTTTT')
+        .selected(this.index)
+        .value(this.text)
         .font({ size: 16, weight: 500 })
         .fontColor('#182431')
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
-        .onSelect((index: number) => {
+        .space(this.space)
+        .arrowPosition(this.arrowPosition)
+        .onSelect((index:number, text: string)=>{
           console.info('Select:' + index)
+          this.index = index;
+          this.text = text;
         })
     }.width('100%')
   }

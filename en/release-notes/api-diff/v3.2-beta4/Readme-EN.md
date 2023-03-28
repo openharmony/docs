@@ -9,7 +9,7 @@
    - [Power management subsystem](js-apidiff-battery.md)
    - [Bundle management framework](js-apidiff-bundle.md)
    - [Communication subsystem](js-apidiff-communication.md)
-   - [Utils subsystem](js-apidiff-compiler-and-runtime.md)
+   - [Compiler and runtime subsystem](js-apidiff-compiler-and-runtime.md)
    - [Customization subsystem](js-apidiff-customization.md)
    - [DFX subsystem](js-apidiff-dfx.md)
    - [Distributed data management subsystem](js-apidiff-distributed-data.md)

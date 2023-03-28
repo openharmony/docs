@@ -42,14 +42,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.log('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -75,14 +72,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -108,14 +102,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);

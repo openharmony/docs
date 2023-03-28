@@ -250,9 +250,9 @@ In the stage model, in the onWindowStageCreate lifecycle of an ability, you can 
 
 Use the API described in the table below to obtain the context associated with an ArkTS page.
 
-| API                                  | Description                          |
-| :------------------------------------ | :--------------------------- |
-| getContext(component: Object): Object | Obtains the **Context** object associated with a component on the page.|
+| API                               | Description                                                        |
+| :------------------------------------ | :----------------------------------------------------------- |
+| getContext(component: Object): Object | Obtains the **Context** object associated with a component on the page.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 

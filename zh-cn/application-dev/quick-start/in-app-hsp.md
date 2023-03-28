@@ -15,7 +15,7 @@ library
 │       │   └── index.ets
 │       ├── resources
 │       └── module.json5
-└── package.json
+└── oh-package.json5
 ```
 模块`module.json5`中的`"type"`标识模块类型，`HSP`的`"type"`是`"shared"`。
 ```json
@@ -24,7 +24,7 @@ library
 }
 ```
 
-`HSP`通过在入口文件中导出接口，对外提供能力。入口文件在模块`package.json`的`"main"`中配置。例如：
+`HSP`通过在入口文件中导出接口，对外提供能力。入口文件在模块`oh-package.json5`的`"main"`中配置。例如：
 ```json
 {
     "main": "./src/main/ets/index.ets"
@@ -103,14 +103,14 @@ export { nativeMulti } from './utils/nativeTest'
 ```
 
 ## 使用应用内HSP
-要使用`HSP`中的接口，首先需要在使用方的`package.json`中配置对它的依赖。如果应用内`HSP`和使用方在同一工程下，可以直接本地引用，例如：
+要使用`HSP`中的接口，首先需要在使用方的`oh-package.json5`中配置对它的依赖。如果应用内`HSP`和使用方在同一工程下，可以直接本地引用，例如：
 ```json
-// entry/src/main/module.json5
+// entry/oh-package.json5
 "dependencies": {
     "library": "file:../library"
 }
 ```
-然后就可以像使用`HAR`包一样调用`HSP`的对外接口了。
+然后就可以像使用`HAR`一样调用`HSP`的对外接口了。
 例如，上面的`library`已经导出了下面这些接口：
 ```ts
 // library/src/main/ets/index.ets

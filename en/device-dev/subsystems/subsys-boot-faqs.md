@@ -7,7 +7,7 @@
 During system startup, the error message "\[Init\] InitReadCfg, parse failed! please check file /etc/init.cfg format." is displayed, and the startup is interrupted, as shown in the following figure.
 
 **Figure  1**  Error information<a name="fig15217111545118"></a>  
-![](figure/error-information.png "error-information")
+![](figures/error-information.png "error-information")
 
 **Cause**
 

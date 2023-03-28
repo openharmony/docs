@@ -7,7 +7,7 @@ The following figure shows the context structure of the Startup subsystem.
 
   **Figure 1** Context structure of the Startup subsystem
 
-  ![context-structure-of-the-Startup-subsystem](figure/context-structure-of-the-Startup-subsystem.png)
+  ![context-structure-of-the-Startup-subsystem](figures/context-structure-of-the-Startup-subsystem.png)
 
 When the system is powered on, the kernel loads and starts services and applications as follows:
 
@@ -426,7 +426,7 @@ Currently, OpenHarmony supports booting from partitions A and B (active and stan
 
   1. Burn the original image, and view the device information of each partition.
 
-      ![Original partition](figure/ABStartup_1.png)
+      ![Original partition](figures/ABStartup_1.png)
 
       Use the original image to construct images of the partitions used for partition A/B booting, and test the partition A/B booting function.
       - Copy the **system** and **vendor** images, and add the suffix **\_b** to them.
@@ -441,16 +441,16 @@ Currently, OpenHarmony supports booting from partitions A and B (active and stan
 
       1. Run the **cat /proc/cmdline** command. If the command output contains **bootslot=2**, the system supports partition A/B booting.
 
-          ![cmdline](figure/ABStartup_2.png)
+          ![cmdline](figures/ABStartup_2.png)
       2. Run the **param get ohos.boot.bootslot** command. If the command output contains **2**, the **bootslot** information is successfully written to the **parameter.txt**.
 
       3. Run the **ls -l /dev/block/by-name** command. If the command output contains **system_b** and **vendor_b**, device nodes are successfully created in partition B.
 
-          ![Device information](figure/ABStartup_3.png)
+          ![Device information](figures/ABStartup_3.png)
 
       4. Run the **df -h** command to check the partitions mounted to the system.
 
-          ![Partition information](figure/ABStartup_4.png)
+          ![Partition information](figures/ABStartup_4.png)
 
           As shown in the figure, partition **mmcblk0p6** is mounted to the root file system (represented by a slash), and partition **mmcblk0p7** is mounted to **/vendor**. Based on the command output in step 3, **mmcblk0p6** is the **system** partition, and **mmcblk0p7** is the **vendor** partition. That is, the mounted partitions are the default partitions, that is, **system** and **vendor** partitions without suffixes. In other words, partition A is the default partition.
 
@@ -458,21 +458,21 @@ Currently, OpenHarmony supports booting from partitions A and B (active and stan
 
           1) Run the **partitionslot setactive 2** command to set the slot of the active partition to **2**, that is, the slot of partition B.
 
-          ![Partition slot configuration](figure/ABStartup_5.png)
+          ![Partition slot configuration](figures/ABStartup_5.png)
 
           2) Run the **partitionslot getslot** command to check the configured slot.
 
-          ![View Slot](figure/ABStartup_6.png)
+          ![View Slot](figures/ABStartup_6.png)
 
           If **current slot** is **2**, the slot of the active partition is successfully set to **2**.
 
           3) Upon restarting, run the **df -h** command to check the partitions mounted to the system.
           According to the command output, partition **mmcblk0p11** is mounted to the root file system, and partition **mmcblk0p12** is mounted to **/vendor**.
 
-          ![Mounting information](figure/ABStartup_7.png)
+          ![Mounting information](figures/ABStartup_7.png)
 
           4) Run the **ls -l /dev/block/by-name** command again.
 
-          ![New device information](figure/ABStartup_8.png)
+          ![New device information](figures/ABStartup_8.png)
 
           **mmcblk0p11** corresponds to **system_b**, and **mmcblk0p12** corresponds to **vendor_b**. That is, the system is successfully booted from partition B.

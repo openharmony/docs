@@ -16,7 +16,7 @@ import fs from '@ohos.file.fs';
 
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the file or directory in the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on files or folders, obtain the path of the file or directory in the application sandbox as follows:
 
 **Stage Model**
 
@@ -67,7 +67,7 @@ Obtains detailed file information. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test.txt";
   fs.stat(filePath).then((stat) => {
       console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err) => {
@@ -332,8 +332,8 @@ Copies a file. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath).then(() => {
       console.info("copy file succeed");
   }).catch((err) => {
@@ -361,8 +361,8 @@ Copies a file. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
@@ -392,8 +392,8 @@ Synchronously copies a file.
 **Example**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
   ```
 
@@ -421,7 +421,7 @@ Creates a directory. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
       console.info("Directory created");
   }).catch((err) => {
@@ -448,7 +448,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 **Example**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -476,7 +476,7 @@ Synchronously creates a directory.
 **Example**
 
   ```js
-  let dirPath = path + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
 
@@ -602,7 +602,7 @@ Reads data from a file. This API uses a promise to return the result.
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf).then((readLen) => {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
   }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
@@ -637,7 +637,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
     }
   });
@@ -700,7 +700,7 @@ Deletes a directory. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
       console.info("Directory deleted");
   }).catch((err) => {
@@ -727,7 +727,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 **Example**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -755,7 +755,7 @@ Synchronously deletes a directory.
 **Example**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
 
@@ -1216,7 +1216,7 @@ Obtains information about a symbolic link synchronously.
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file or directory. This API uses a promise to return the result.
+Renames a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1237,7 +1237,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
       console.info("File renamed");
   }).catch((err) => {
@@ -1249,7 +1249,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file or directory. This API uses an asynchronous callback to return the result.
+Renames a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1265,7 +1265,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
@@ -1279,7 +1279,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or directory synchronously.
+Renames a file or folder synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1294,7 +1294,7 @@ Renames a file or directory synchronously.
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
   ```
 
@@ -1500,7 +1500,7 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
       console.info("Symbolic link created");
   }).catch((err) => {
@@ -1528,7 +1528,7 @@ Creates a symbolic link based on a file path. This API uses an asynchronous call
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
@@ -1557,7 +1557,7 @@ Synchronously creates a symbolic link based on a file path.
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlinkSync(srcFile, dstFile);
   ```
 
@@ -1568,7 +1568,7 @@ listFile(path: string, options?: {
     filter?: Filter;
 }): Promise<string[]>;
 
-Lists all files in a directory. This API uses a promise to return the result.<br>This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+Lists all files in a folder. This API uses a promise to return the result.<br>This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1576,14 +1576,14 @@ Lists all files in a directory. This API uses a promise to return the result.<br
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
+  | path | string | Yes   | Path of the folder in the application sandbox.|
   | options | Object | No   | File filtering options.|
 
 **options parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1608,7 +1608,7 @@ Lists all files in a directory. This API uses a promise to return the result.<br
   };
   fs.listFile(pathDir, options).then((filenames) => {
     console.info("listFile succeed");
-    for (let i = 0; i < filenames.size; i++) {
+    for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err) => {
@@ -1623,13 +1623,13 @@ listFile(path: string, options?: {
     filter?: Filter;
 }, callback: AsyncCallback<string[]>): void;
 
-Lists all files in a directory. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+Lists all files in a folder. This API uses an asynchronous callback to return the result.<br>This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
+  | path | string | Yes   | Path of the folder in the application sandbox.|
   | options | Object | No   | File filtering options.|
   | callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback invoked to return the file names listed.             |
 
@@ -1637,7 +1637,7 @@ Lists all files in a directory. This API uses an asynchronous callback to return
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1659,7 +1659,7 @@ Lists all files in a directory. This API uses an asynchronous callback to return
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
-      for (let i = 0; i < filenames.size; i++) {
+      for (let i = 0; i < filenames.length; i++) {
         console.info("filename: %s", filenames[i]);
       }
     }
@@ -1674,20 +1674,20 @@ listFileSync(path: string, options?: {
     filter?: Filter;
 }): string[];
 
-Lists all files in a directory synchronously. This API supports recursive listing of all files (including files in subdirectories) and file filtering.
+Lists all files in a folder synchronously. This API supports recursive listing of all files (including files in subfolders) and file filtering.
 
 **Parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
+  | path | string | Yes   | Path of the folder in the application sandbox.|
   | options | Object | No   | File filtering options.|
 
 **options parameters**
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subdirectories recursively. The default value is **false**.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.|
   | listNum | number | No   | Number of file names to list. The default value **0** means to list all files.|
   | filter | [Filter](#filter) | No   | File filtering options. Currently, only the match by file name extension, fuzzy search by file name, and filter by file size or latest modification time are supported.|
 
@@ -1712,13 +1712,13 @@ Lists all files in a directory synchronously. This API supports recursive listin
   };
   let filenames = fs.listFileSync(pathDir, options);
   console.info("listFile succeed");
-  for (let i = 0; i < filenames.size; i++) {
+  for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
   ```
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number): Promise<void>;
+moveFile(src: string, dest: string, mode?: number): Promise\<void>;
 
 Moves a file. This API uses a promise to return the result.
 
@@ -1735,6 +1735,8 @@ Moves a file. This API uses a promise to return the result.
 **Example**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
       console.info("move file succeed");
   }).catch((err) => {
@@ -1744,7 +1746,7 @@ Moves a file. This API uses a promise to return the result.
 
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void;
 
 Moves a file. This API uses an asynchronous callback to return the result.
 
@@ -1762,6 +1764,8 @@ Moves a file. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
@@ -1790,6 +1794,8 @@ Moves a file synchronously.
 **Example**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFileSync(srcPath, destPath, 0);
   console.info("move file succeed");
   ```
@@ -2064,6 +2070,78 @@ Synchronously opens a stream based on the file descriptor.
   let ss = fs.fdopenStreamSync(file.fd, "r+");
   fs.closeSync(file);
   ```
+
+## fs.createWatcher<sup>10+</sup>
+
+createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
+
+Creates a **Watcher** object to observe file or directory changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name | Type    | Mandatory  | Description                                      |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | path   | string | Yes   | Path of the file or directory to observe in the application sandbox.                            |
+  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (&#124;).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: Metadata is changed.<br>- **0x8: IN_CLOSE_WRITE**: The file opened for writing is closed.<br>- **0x10: IN_CLOSE_NOWRITE**: The file or directory not opened for writing is closed.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted form the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+  | listener   | WatchEventListener | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
+
+**Return value**
+
+  | Type               | Description       |
+  | ------------------ | --------- |
+  | [Watcher](#watcher10) | **Watcher** object created.|
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+    if (watchEvent.event == 0x2) {
+      console.info(watchEvent.fileName + 'was modified');
+    } else if (watchEvent.event == 0x10) {
+      console.info(watchEvent.fileName + 'was closed');
+    }
+  });
+  watcher.start();
+  fs.writeSync(file.fd, 'test');
+  fs.closeSync(file);
+  watcher.stop();
+  ```
+
+## WatchEventListener<sup>10+</sup>
+
+(event: WatchEvent): void
+
+Called when an observed event occurs.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name | Type    | Mandatory  | Description                                      |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | event   | WatchEvent | Yes   | Event for the callback to invoke.                            |
+ 
+## WatchEvent<sup>10+</sup>
+
+Defines the event to observe.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name  | Type  | Readable  | Writable  | Description     |
+| ---- | ------ | ---- | ---- | ------- |
+| fileName | string | Yes   | No   | Name of the file for which the event occurs.|
+| event | number | Yes   | No   | Events to observe. For details, see **events** in [createWatcher](#fscreatewatcher10).|
+| cookie | number | Yes   | No   | Cookie bound with the event. Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
 
 ## Stat
 
@@ -2508,7 +2586,7 @@ Reads data from the stream. This API uses a promise to return the result.
   let buf = new ArrayBuffer(4096);
   ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("Read data successfully");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
   }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2542,7 +2620,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
     }
   });
   ```
@@ -2560,7 +2638,7 @@ Synchronously reads data from the stream.
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br> |
+| options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br> |
 
 **Return value**
 
@@ -2590,7 +2668,7 @@ Represents a **File** object opened by **open()**.
 
 ### lock
 
-lock(exclusive?: boolean): Promise<void>;
+lock(exclusive?: boolean): Promise\<void>;
 
 Applies an exclusive lock or a shared lock on this file in blocking mode. This API uses a promise to return the result.
 
@@ -2621,7 +2699,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 ### lock
 
-lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
+lock(exclusive?: boolean, callback: AsyncCallback\<void>): void;
 
 Applies an exclusive lock or a shared lock on this file in blocking mode. This API uses a promise to return the result.
 
@@ -2684,6 +2762,48 @@ Unlocks this file synchronously.
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  ```
+
+## Watcher<sup>10+</sup>
+
+Provides APIs for observing the changes of files or folders. Before using the APIs of **Watcher** , call **createWatcher()** to create a **Watcher** object.
+
+### start<sup>10+</sup>
+
+start(): void
+
+Starts listening.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
+  ```
+
+### stop<sup>10+</sup>
+
+stop(): void
+
+Stops listening.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Example**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
   ```
 
 ## OpenMode

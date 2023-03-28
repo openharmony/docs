@@ -290,7 +290,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
   | -------- | -------- | -------- | -------- |
   | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
   | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md))&gt; | Yes| Callback used to return the mission information obtained.|
+  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt; | Yes| Callback used to return the mission information obtained.|
 
 **Example**
 

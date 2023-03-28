@@ -50,9 +50,35 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的属性值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距，或者边距比较小时，tip会被截断。 |
 | trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。 |
+| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。 |
+| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。 |
+| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。 |
+| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 |
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | 设置滑块形状参数。 |
+| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 |
 
+## SliderBlockStyle<sup>10+</sup>对象说明
+
+Slider组件滑块形状参数。
+
+| 名称  | 类型                                                         | 必填 | 说明                                                         |
+| ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type  | [SliderBlockType](#sliderblocktype10)                        | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
+| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                              |
+
+## SliderBlockType<sup>10+</sup>枚举说明
+
+Slier组件滑块形状枚举。
+
+| 名称    | 描述                   |
+| ------- | ---------------------- |
+| DEFAULT | 使用默认滑块（圆形）。   |
+| IMAGE   | 使用图片资源作为滑块。   |
+| SHAPE   | 使用自定义形状作为滑块。 |
 
 ## 事件
 
@@ -60,7 +86,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：拖动状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖到或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变换时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
 
 ## SliderChangeMode枚举说明
 
@@ -68,9 +94,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
-| Begin | 0 | 开始拖动滑块。 |
+| Begin | 0 | 手势/鼠标接触或者按下滑块。 |
 | Moving | 1 | 正在拖动滑块过程中。 |
-| End | 2 | 结束拖动滑块。 |
+| End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
 

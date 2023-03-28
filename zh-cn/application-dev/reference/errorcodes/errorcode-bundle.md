@@ -1,4 +1,8 @@
-#  包管理子系统通用错误码
+# 包管理子系统通用错误码
+
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
 
 ## 17700001 指定的bundleName不存在
 
@@ -210,6 +214,20 @@ Failed to install the HAP since the version of the HAP to install is too early.
 **处理步骤**<br/>
 确认新安装的应用版本号是否不低于已安装的同应用版本号。
 
+## 17700018 安装失败，依赖的模块不存在
+
+**错误信息**<br/>
+Failed to install because the dependent module does not exist.
+
+**错误描述**<br/>
+安装hap或者hsp时，依赖的模块不存在。
+
+**可能原因**<br/>
+依赖的模块没有安装。
+
+**处理步骤**<br/>
+先安装依赖的模块。
+
 ## 17700020 预置应用无法卸载
 
 **错误信息**<br/>
@@ -393,5 +411,107 @@ Failed to install the HAP because the overlay check of the HAP is failed.
 2. 检查目标应用是否为预置应用。
 3. 检查目标应用是否不为overlay特征的应用
 4. 检查目标module是否不为overlay特征的module。
+
+## 17700032 指定的应用不包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle does not contain any overlay module.
+
+**错误描述**<br/>
+查询指定应用中overlay特征module的overlayModuleInfo时, 指定的应用不包含overlay特征module。
+
+**可能原因**<br/>
+指定的应用不包含overlay特征module。
+
+**处理步骤**<br/>
+检查指定的应用是否不包含overlay特征module。
+
+## 17700033 指定的module不是overlay特征的module
+
+**错误信息**<br/>
+The specified module is not an overlay module.
+
+**错误描述**<br/>
+查询指定的overlay特征module的overlayModuleInfo时, 指定的module不是overlay特征module。
+
+**可能原因**<br/>
+指定的module不是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否不为overlay特征的module。
+
+## 17700034 指定的module是overlay特征的module
+
+**错误信息**<br/>
+The specified module is an overlay module.
+
+**错误描述**<br/>
+查询指定的目标module所关联的overlayModuleInfo时, 指定的module是overlay特征module。
+
+**可能原因**<br/>
+指定的module是overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的module是否为overlay特征的module。
+
+## 17700035 指定的应用只包含overlay特征的module
+
+**错误信息**<br/>
+The specified bundle is an overlay bundle.
+
+**错误描述**<br/>
+查询指定应用的目标module所关联的overlayModuleInfo时, 指定的应用只包含overlay特征的module。
+
+**可能原因**<br/>
+指定的应用只包含overlay特征的module。
+
+**处理步骤**<br/>
+检查指定的应用是否只包含overlay特征的module。
+
+## 17700036 共享库缺少AllowAppShareLibrary特权导致安装失败
+
+**错误信息**<br/>
+Failed to install because without allow app shared bundle permission.
+
+**错误描述**<br/>
+共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。
+
+**可能原因**<br/>
+发布共享库前，未申请配置AllowAppShareLibrary特权。
+
+**处理步骤**<br/>
+为共享库申请配置AllowAppShareLibrary特权，重新签名并发布。
+
+## 17700037 被卸载的shared library版本被其他应用依赖
+
+**错误信息**<br/>
+The version of shared bundle is dependent on other applications.
+
+**错误描述**<br/>
+当卸载shared library某一版本时，指定的shared library的版本被其他应用依赖，卸载失败。
+
+**可能原因**<br/>
+1. 当前卸载的版本是shared library的最高版本，且该shared library被其他应用依赖。
+2. 当前卸载时未指定shared library的版本，会卸载shared library的所有版本，该shared library被其他应用依赖。
+
+**处理步骤**<br/>
+1. 检查被卸载的shared library是否被其他应用依赖。
+2. 检查被卸载的版本是否为shared library的最高版本。
+
+## 17700038 被卸载的shared library不存在
+
+**错误信息**<br/>
+The specified shared bundle does not exist.
+
+**错误描述**<br/>
+当卸载shared library时，卸载的shared library不存在。
+
+**可能原因**<br/>
+1. 当前指定卸载的版本不存在与被卸载的shared library中。
+2. 当前指定卸载的shared library不存在与设备中。
+
+**处理步骤**<br/>
+1. 检查被卸载的shared library是否存在于当前设备中。
+2. 检查被卸载的版本是否存在于被卸载的shared library中。
 
 <!--no_check-->

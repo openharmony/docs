@@ -199,7 +199,7 @@ Defines the application response information.
 
 ## ScreenOnVisible<sup>(deprecated)</sup>
 
-screenOnVisible(options?: ScreenOnVisibleOptions)
+screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
 
 Defines whether to keep the application visible when the screen is woken up.
 

@@ -362,7 +362,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **示例：**
@@ -573,7 +573,7 @@ router.getParams();
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。<br/>**说明：**不使用路由跳转模式时，按标准模式跳转。 |
+| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。<br/>**说明：** 不使用路由跳转模式时，按标准模式跳转。 |
 | Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
 
 ## 完整示例
@@ -597,7 +597,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams()[data1]);
+    console.info('showData1:' + router.getParams()['data1']);
   }
 }
 ```

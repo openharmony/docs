@@ -1,9 +1,10 @@
-# Utils Subsystem Changelog
+# Common Library Subsystem Changelog
 
-Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(MR) has the following API changes in the URL module of the utils subsystem.
+Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(MR) has the following API changes in the URL module of the common library subsystem.
 
 ## cl.commonlibrary.1 URLParams Class Changes
-The constructor function of the **URLParams** class in the URL module of the utils subsystem is changed.
+
+The constructor function of the **URLParams** class in the URL module of the common library subsystem is changed.
 
 Specifically, **constructor(init?: string[][] | Record<string, string> | string | URLSearchParams)** is changed to **constructor(init?: string[][] | Record<string, string> | string | URLParams)**, and the parameter type is changed from **URLSearchParams** to **URLParams**.
 
@@ -38,7 +39,8 @@ try {
 }
 ```
 ## cl.commonlibrary.2 URL Attribute Changes of URLParams Class APIs
-The URL attributes of the URL module in the utils subsystem are changed.
+
+The URL attributes of the URL module in the common library subsystem are changed.
 
 Specifically, the **searchParams: URLSearchParams** attribute is deprecated, and the **params: URLParams** attribute is added.
 

@@ -124,7 +124,7 @@ export default {
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | metered | boolean | 否 |是否按照流量计费。 |
 | type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |

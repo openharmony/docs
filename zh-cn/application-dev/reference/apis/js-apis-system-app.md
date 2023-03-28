@@ -199,7 +199,7 @@ export default {
 
 ## ScreenOnVisible<sup>(deprecated)</sup>
 
-screenOnVisible(options?: ScreenOnVisibleOptions)
+screenOnVisible(options?: ScreenOnVisibleOptions):&nbsp;void
 
 定义屏幕唤醒时是否保持应用可见。
 

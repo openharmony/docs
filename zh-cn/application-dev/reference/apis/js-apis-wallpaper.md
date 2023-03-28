@@ -14,7 +14,7 @@
 import wallpaper from '@ohos.wallpaper';
 ```
 
-## WallpaperType
+## WallpaperType<sup>7+</sup>
 
 定义壁纸的枚举类型。
 
@@ -26,9 +26,13 @@ import wallpaper from '@ohos.wallpaper';
 | WALLPAPER_LOCKSCREEN | 1 |锁屏壁纸标识。 |
 
 
-## RgbaColor
+## RgbaColor<sup>(deprecated)</sup>
 
 定义壁纸颜色信息结构。
+
+> **说明：**
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -47,6 +51,8 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 获取指定类型壁纸的主要颜色信息。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -71,37 +77,6 @@ try {
 }
 ```
 
-## wallpaper.getIdSync<sup>9+</sup>
-
-getIdSync(wallpaperType: WallpaperType): number
-
-获取指定类型壁纸的ID。
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 返回壁纸的ID。如果配置了这种壁纸类型的壁纸就返回一个大于等于0的数，否则返回-1。取值范围是-1到（2^31-1）。 |
-
-**示例**：
-
-```js
-try {
-    let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-    console.log(`success to getIdSync: ${JSON.stringify(id)}`);
-} catch (error) {
-    console.error(`failed to getIdSync because: ${JSON.stringify(error)}`);
-}
-```
-
 ## wallpaper.getMinHeightSync<sup>9+</sup>
 
 getMinHeightSync(): number
@@ -109,6 +84,8 @@ getMinHeightSync(): number
 获取壁纸的最小高度值。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -130,6 +107,8 @@ getMinWidthSync(): number
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
+**系统接口**：此接口为系统接口。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -142,46 +121,6 @@ getMinWidthSync(): number
 let minWidth = wallpaper.getMinWidthSync();
 ```
 
-## wallpaper.isChangeAllowed<sup>9+</sup>
-
-isChangeAllowed(): boolean
-
-是否允许应用改变当前用户的壁纸。
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回是否允许应用改变当前用户的壁纸。如果允许返回true，否则返回false。 |
-
-**示例：**
-
-```js
-let isChangeAllowed = wallpaper.isChangeAllowed();
-```
-
-## wallpaper.isUserChangeAllowed<sup>9+</sup>
-
-isUserChangeAllowed(): boolean
-
-是否允许用户设置壁纸。
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 返回是否允许用户设置壁纸。如果允许返回true，否则返回false。 |
-
-**示例：**
-
-```js
-let isUserChangeAllowed = wallpaper.isUserChangeAllowed();
-```
-
 ## wallpaper.restore<sup>9+</sup>
 
 restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
@@ -191,6 +130,8 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 **需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -220,6 +161,8 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 **需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -252,6 +195,8 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 **需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -306,6 +251,8 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
+**系统接口**：此接口为系统接口。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -348,39 +295,6 @@ imageSource.createPixelMap(opts).then((pixelMap) => {
 }).catch((error) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
 });
-```
-
-## wallpaper.getFileSync<sup>9+</sup>
-
-getFileSync(wallpaperType: WallpaperType): number;
-
-获取指定类型的壁纸文件。
-
-**需要权限**：ohos.permission.GET_WALLPAPER
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
-
-**示例：**
-
-```js
-try {
-    let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-    console.log(`success to getFileSync: ${JSON.stringify(file)}`);
-} catch (error) {
-    console.error(`failed to getFileSync because: ${JSON.stringify(error)}`);
-}
 ```
 
 ## wallpaper.getImage<sup>9+</sup>
@@ -449,11 +363,15 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
 });
 ```
 
-## wallpaper.on('colorChange')<sup>9+</sup>
+## wallpaper.on('colorChange')<sup>(deprecated)</sup>
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
 订阅壁纸颜色变化结果上报事件。
+
+> **说明：**
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -477,11 +395,15 @@ try {
 }
 ```
 
-## wallpaper.off('colorChange')<sup>9+</sup>
+## wallpaper.off('colorChange')<sup>(deprecated)</sup>
 
 off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
 取消订阅壁纸颜色变化结果上报事件。
+
+> **说明：**
+> 
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -527,7 +449,7 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -558,7 +480,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -592,7 +514,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -623,7 +545,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -657,7 +579,7 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -687,7 +609,7 @@ getMinHeight(): Promise&lt;number&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -715,7 +637,7 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -745,7 +667,7 @@ getMinWidth(): Promise&lt;number&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -773,7 +695,7 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -803,7 +725,7 @@ isChangePermitted(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -831,7 +753,7 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -861,7 +783,7 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -889,7 +811,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -922,7 +844,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -958,7 +880,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -1015,7 +937,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 > **说明：**
 > 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -1074,7 +996,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 > **说明：**
 > 
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
+> 从 API version 8开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1107,7 +1029,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
+> 从 API version 8开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1143,7 +1065,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1178,7 +1100,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
+> 从 API version 7开始支持，从API version 9开始废弃。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 

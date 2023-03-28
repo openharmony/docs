@@ -1,4 +1,4 @@
-# @ohos.usbManager (USB Management)
+# @ohos.usbManager (USB Manager)
 
 The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
@@ -30,7 +30,7 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 ```js
 let devicesList = usb.getDevices();
-console.log(`devicesList = ${JSON.stringify(devicesList)}`);
+console.log(`devicesList = ${devicesList}`);
 // devicesList is a list of USB devices.
 // A simple example of devicesList is provided as follows:
 [
@@ -119,13 +119,12 @@ For details about the error codes, see [USB Error Codes](../errorcodes/errorcode
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
 usb.requestRight(device.name);
 let devicepipe = usb.connectDevice(device);
-console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
+console.log(`devicepipe = ${devicepipe}`);
 ```
 
 ## usb.hasRight
@@ -155,7 +154,7 @@ Checks whether the user, for example, the application or system, has the device 
 ```js
 let devicesName="1-1";
 let bool = usb.hasRight(devicesName);
-console.log(bool);
+console.log(`${bool}`);
 ```
 
 ## usb.requestRight
@@ -183,7 +182,7 @@ Requests the temporary permission for the application to access a USB device. Th
 ```js
 let devicesName="1-1";
 usb.requestRight(devicesName).then((ret) => {
-  console.log(`requestRight = ${JSON.stringify(ret)}`);
+  console.log(`requestRight = ${ret}`);
 });
 ```
 
@@ -211,7 +210,7 @@ Removes the permission for the application to access a USB device.
 
 ```js
 let devicesName="1-1";
-if (usb.removeRight(devicesName) {
+if usb.removeRight(devicesName) {
   console.log(`Succeed in removing right`);
 }
 ```
@@ -246,7 +245,7 @@ Adds the permission for the application to access a USB device.
 ```js
 let devicesName = "1-1";
 let bundleName = "com.example.hello";
-if (usb.addRight(bundleName, devicesName) {
+if usb.addRight(bundleName, devicesName) {
   console.log(`Succeed in adding right`);
 }
 ```
@@ -455,8 +454,9 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
- console.log(`controlTransfer = ${JSON.stringify(ret)}`);
+let param = new usb.USBControlParams();
+usb.controlTransfer(devicepipe, param).then((ret) => {
+ console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -492,7 +492,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
+ console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -579,7 +579,7 @@ Converts the USB function list in the numeric mask format to a string in Device 
 **Example**
 
 ```js
-let funcs = ACM | ECM;
+let funcs = usb.ACM | usb.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -608,7 +608,7 @@ Sets the current USB function list in Device mode.
 **Example**
 
 ```js
-let funcs = HDC;
+let funcs = usb.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch(err => {
@@ -716,7 +716,7 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 ```js
 let portId = 1;
-usb.usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
 }).catch(err => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);

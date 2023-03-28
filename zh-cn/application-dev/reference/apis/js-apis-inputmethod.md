@@ -256,9 +256,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -317,9 +317,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -391,25 +391,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -461,25 +445,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
@@ -884,7 +852,7 @@ inputMethodController.off('selectByRange');
 
 ### on('selectByMovement')<sup>10+</sup>
 
-on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
 
@@ -1235,8 +1203,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
-
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1274,8 +1240,6 @@ try {
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

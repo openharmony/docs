@@ -58,7 +58,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // Carry out normal service processing.
@@ -110,7 +110,7 @@ Starts an ability. This API uses a promise to return the result.
       })
       .catch((error) => {
         // Process service logic errors.
-        console.log('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // Process input parameter errors.

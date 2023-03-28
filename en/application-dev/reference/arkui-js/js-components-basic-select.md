@@ -1,11 +1,10 @@
 # select
 
-The **<select\>** component provides a drop-down list that allows users to select among multiple options.
-
 >  **NOTE**
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
+The **<select\>** component provides a drop-down list that allows users to select among multiple options.
 
 ## Child Components
 

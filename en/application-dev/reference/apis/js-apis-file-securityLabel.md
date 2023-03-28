@@ -5,7 +5,7 @@ The **securityLabel** module provides APIs for managing data security levels of 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
@@ -45,7 +45,7 @@ For details about how to obtain the FA model context, see [Context](js-apis-inne
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
+setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
 Sets a security label for a file in asynchronous mode. This API uses a promise to return the result.
 
@@ -56,7 +56,7 @@ Sets a security label for a file in asynchronous mode. This API uses a promise t
 | Name   | Type      | Mandatory| Description                                        |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | Yes  | Path of the target file.                                    |
-| type      | dataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Return value**
 
@@ -67,7 +67,8 @@ Sets a security label for a file in asynchronous mode. This API uses a promise t
 **Example**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0").then(() => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0").then(() => {
       console.info("setSecurityLabel successfully");
   }).catch((err) => {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -76,7 +77,7 @@ Sets a security label for a file in asynchronous mode. This API uses a promise t
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt;):void
+setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
 Sets a security label for a file in asynchronous mode. This API uses an asynchronous callback to return the result.
 
@@ -87,13 +88,14 @@ Sets a security label for a file in asynchronous mode. This API uses an asynchro
 | Name   | Type                     | Mandatory| Description                                        |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | Yes  | Path of the target file.                                    |
-| type      | dataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | DataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                  |
 
 **Example**
 
   ```js
-  securityLabel.setSecurityLabel(path, "s0", (err) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.setSecurityLabel(filePath, "s0", (err) => {
     if (err) {
       console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -104,7 +106,7 @@ Sets a security label for a file in asynchronous mode. This API uses an asynchro
 
 ## securityLabel.setSecurityLabelSync
 
-setSecurityLabelSync(path:string, type:dataLevel):void
+setSecurityLabelSync(path:string, type:DataLevel):void
 
 Sets a security label for a file in synchronous mode.
 
@@ -115,12 +117,13 @@ Sets a security label for a file in synchronous mode.
 | Name   | Type  | Mandatory| Description                                        |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | Yes  | Path of the target file.                                    |
-| type      | dataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Example**
 
 ```js
-securityLabel.setSecurityLabelSync(path, "s0");
+let filePath = pathDir + '/test.txt';
+securityLabel.setSecurityLabelSync(filePath, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -146,7 +149,8 @@ Obtains the security label of a file in asynchronous mode. This API uses a promi
 **Example**
 
   ```js
-  securityLabel.getSecurityLabel(path).then((type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath).then((type) => {
       console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err) => {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
@@ -171,7 +175,8 @@ Obtains the security label of a file in asynchronous mode. This API uses a callb
 **Example**
 
   ```js
-  securityLabel.getSecurityLabel(path, (err, type) => {
+  let filePath = pathDir + '/test.txt';
+  securityLabel.getSecurityLabel(filePath, (err, type) => {
     if (err) {
       console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -202,6 +207,7 @@ Obtains the security label of a file in synchronous mode.
 **Example**
 
 ```js
-let type = securityLabel.getSecurityLabelSync(path);
+let filePath = pathDir + '/test.txt';
+let type = securityLabel.getSecurityLabelSync(filePath);
 console.log("getSecurityLabel successfully, Label: " + type);
 ```

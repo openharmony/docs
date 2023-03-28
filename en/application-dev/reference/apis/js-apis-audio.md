@@ -23,9 +23,9 @@ import audio from '@ohos.multimedia.audio';
 
 | Name                                   | Type     | Readable | Writable| Description              |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
-| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Volume      |
-| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
+| DEFAULT_VOLUME_GROUP_ID<sup>9+</sup>    | number    | Yes  | No  | Default volume group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Volume      |
+| DEFAULT_INTERRUPT_GROUP_ID<sup>9+</sup> | number    | Yes  | No  | Default audio interruption group ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Interrupt      |
 
 **Example**
 
@@ -1763,7 +1763,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.          |
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.|
 
@@ -1795,7 +1795,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.|
 | active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.    |
 
 **Return value**
@@ -1829,7 +1829,7 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 
 | Name    | Type                                 | Mandatory| Description                    |
 | ---------- | ------------------------------------- | ---- | ------------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.      |
 | callback   | AsyncCallback&lt;boolean&gt;          | Yes  | Callback used to return the active state of the device.|
 
 **Example**
@@ -1860,7 +1860,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
-| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type. |
+| deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | Yes  | Active audio device type.|
 
 **Return value**
 
@@ -3956,6 +3956,7 @@ Describes the audio renderer change event.
 **Example**
 
 ```js
+
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
@@ -4240,7 +4241,6 @@ audioRenderer.getStreamInfo().then((streamInfo) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4263,7 +4263,6 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 audioRenderer.getAudioStreamId((err, streamid) => {
   console.info(`Renderer GetStreamId: ${streamid}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4288,7 +4287,6 @@ audioRenderer.getAudioStreamId().then((streamid) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -4315,7 +4313,6 @@ audioRenderer.start((err) => {
     console.info('Renderer start success.');
   }
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -4340,7 +4337,6 @@ audioRenderer.start().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### pause<sup>8+</sup>
@@ -4367,7 +4363,6 @@ audioRenderer.pause((err) => {
     console.info('Renderer paused.');
   }
 });
-
 ```
 
 ### pause<sup>8+</sup>
@@ -4392,7 +4387,6 @@ audioRenderer.pause().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### drain<sup>8+</sup>
@@ -4419,7 +4413,6 @@ audioRenderer.drain((err) => {
     console.info('Renderer drained.');
   }
 });
-
 ```
 
 ### drain<sup>8+</sup>
@@ -4444,7 +4437,6 @@ audioRenderer.drain().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -4471,7 +4463,6 @@ audioRenderer.stop((err) => {
     console.info('Renderer stopped.');
   }
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -4496,7 +4487,6 @@ audioRenderer.stop().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -4523,7 +4513,6 @@ audioRenderer.release((err) => {
     console.info('Renderer released.');
   }
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -4548,7 +4537,6 @@ audioRenderer.release().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### write<sup>8+</sup>
@@ -4586,15 +4574,15 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     let writeSize = await new Promise((resolve,reject)=>{
-      this.audioRenderer.write(buf,(err,writeSize)=>{
+      audioRenderer.write(buf,(err,writeSize)=>{
         if(err){
           reject(err)
         }else{
@@ -4603,7 +4591,6 @@ for (let i = 0;i < len; i++) {
       })
     })	  
 }
-
 
 ```
 
@@ -4641,20 +4628,19 @@ let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % this.bufferSize == 0 ? Math.floor(stat.size / this.bufferSize) : Math.floor(stat.size / this.bufferSize + 1);
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
-      offset: i * this.bufferSize,
-      length: this.bufferSize
+      offset: i * bufferSize,
+      length: bufferSize
     }
     let readsize = await fs.read(file.fd, buf, options)
     try{
-       let writeSize = await this.audioRenderer.write(buf);
+       let writeSize = await audioRenderer.write(buf);
     } catch(err) {
        console.error(`audioRenderer.write err: ${err}`);
     }   
 }
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4677,7 +4663,6 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioRenderer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4702,7 +4687,6 @@ audioRenderer.getAudioTime().then((timestamp) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4727,7 +4711,6 @@ let bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
     console.error('getBufferSize error');
   }
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4754,7 +4737,6 @@ audioRenderer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4782,7 +4764,6 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) =>
     console.info('Callback invoked to indicate a successful render rate setting.');
   }
 });
-
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4813,7 +4794,6 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4836,7 +4816,6 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 audioRenderer.getRenderRate((err, renderrate) => {
   console.info(`getRenderRate: ${renderrate}`);
 });
-
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4861,9 +4840,7 @@ audioRenderer.getRenderRate().then((renderRate) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
-
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
@@ -4893,9 +4870,7 @@ audioRenderer.setInterruptMode(mode).then(data=>{
 }).catch((err) => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
-
 ```
-
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
@@ -4921,7 +4896,6 @@ audioRenderer.setInterruptMode(mode, (err, data)=>{
   }
   console.info('setInterruptMode Success!');
 });
-
 ```
 
 ### setVolume<sup>9+</sup>
@@ -4952,9 +4926,7 @@ audioRenderer.setVolume(0.5).then(data=>{
 }).catch((err) => {
   console.error(`setVolume Fail: ${err}`);
 });
-
 ```
-
 ### setVolume<sup>9+</sup>
 
 setVolume(volume: number, callback: AsyncCallback\<void>): void
@@ -4979,7 +4951,6 @@ audioRenderer.setVolume(0.5, (err, data)=>{
   }
   console.info('setVolume Success!');
 });
-
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -5005,7 +4976,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error |
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -5059,7 +5030,6 @@ async function onAudioInterrupt(){
    }
   });
 }
-
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -5086,7 +5056,6 @@ audioRenderer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 
@@ -5108,7 +5077,6 @@ Unsubscribes from mark reached events.
 
 ```js
 audioRenderer.off('markReach');
-
 ```
 
 ### on('periodReach') <sup>8+</sup>
@@ -5135,7 +5103,6 @@ audioRenderer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('periodReach') <sup>8+</sup>
@@ -5156,10 +5123,9 @@ Unsubscribes from period reached events.
 
 ```js
 audioRenderer.off('periodReach')
-
 ```
 
-### on('stateChange')<sup>8+</sup>
+### on('stateChange') <sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -5185,7 +5151,6 @@ audioRenderer.on('stateChange', (state) => {
     console.info('audio renderer state is: STATE_RUNNING');
   }
 });
-
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -5204,7 +5169,6 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 ```js
 let state = audioCapturer.state;
-
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -5233,7 +5197,6 @@ audioCapturer.getCapturerInfo((err, capturerInfo) => {
     console.info(`Capturer flags: ${capturerInfo.capturerFlags}`);
   }
 });
-
 ```
 
 
@@ -5266,7 +5229,6 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -5297,7 +5259,6 @@ audioCapturer.getStreamInfo((err, streamInfo) => {
     console.info(`Capturer encoding type: ${streamInfo.encodingType}`);
   }
 });
-
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -5326,7 +5287,6 @@ audioCapturer.getStreamInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -5349,7 +5309,6 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses an async
 audioCapturer.getAudioStreamId((err, streamid) => {
   console.info(`audioCapturer GetStreamId: ${streamid}`);
 });
-
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -5374,7 +5333,6 @@ audioCapturer.getAudioStreamId().then((streamid) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
-
 ```
 
 ### start<sup>8+</sup>
@@ -5401,7 +5359,6 @@ audioCapturer.start((err) => {
     console.info('Capturer start success.');
   }
 });
-
 ```
 
 
@@ -5433,7 +5390,6 @@ audioCapturer.start().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
-
 ```
 
 ### stop<sup>8+</sup>
@@ -5460,7 +5416,6 @@ audioCapturer.stop((err) => {
     console.info('Capturer stopped.');
   }
 });
-
 ```
 
 
@@ -5490,7 +5445,6 @@ audioCapturer.stop().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
-
 ```
 
 ### release<sup>8+</sup>
@@ -5517,7 +5471,6 @@ audioCapturer.release((err) => {
     console.info('capturer released.');
   }
 });
-
 ```
 
 
@@ -5547,7 +5500,6 @@ audioCapturer.release().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
-
 ```
 
 ### read<sup>8+</sup>
@@ -5581,7 +5533,6 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     console.info('Success in reading the buffer data');
   }
 });
-
 ```
 
 ### read<sup>8+</sup>
@@ -5621,7 +5572,6 @@ audioCapturer.read(bufferSize, true).then((buffer) => {
 }).catch((err) => {
   console.info(`ERROR : ${err}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5644,7 +5594,6 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioCapturer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
-
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5669,7 +5618,6 @@ audioCapturer.getAudioTime().then((audioTime) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5699,7 +5647,6 @@ audioCapturer.getBufferSize((err, bufferSize) => {
     });
   }
 });
-
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5726,7 +5673,6 @@ audioCapturer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
-
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -5753,7 +5699,6 @@ audioCapturer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('markReach')<sup>8+</sup>
@@ -5774,7 +5719,6 @@ Unsubscribes from mark reached events.
 
 ```js
 audioCapturer.off('markReach');
-
 ```
 
 ### on('periodReach')<sup>8+</sup>
@@ -5801,7 +5745,6 @@ audioCapturer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
-
 ```
 
 ### off('periodReach')<sup>8+</sup>
@@ -5822,10 +5765,9 @@ Unsubscribes from period reached events.
 
 ```js
 audioCapturer.off('periodReach')
-
 ```
 
-### on('stateChange')<sup>8+</sup>
+### on('stateChange') <sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -5851,7 +5793,6 @@ audioCapturer.on('stateChange', (state) => {
     console.info('audio capturer state is: STATE_RUNNING');
   }
 });
-
 ```
 
 ## ToneType<sup>9+</sup>
@@ -5926,7 +5867,6 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
     console.info('callback call load success');
   }
 });
-
 ```
 
 ### load<sup>9+</sup>
@@ -5959,7 +5899,6 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
 }).catch(() => {
   console.error('promise call load fail');
 });
-
 ```
 
 ### start<sup>9+</sup>
@@ -5989,7 +5928,6 @@ tonePlayer.start((err) => {
     console.info('callback call start success');
   }
 });
-
 ```
 
 ### start<sup>9+</sup>
@@ -6016,7 +5954,6 @@ tonePlayer.start().then(() => {
 }).catch(() => {
   console.error('promise call start fail');
 });
-
 ```
 
 ### stop<sup>9+</sup>
@@ -6046,7 +5983,6 @@ tonePlayer.stop((err) => {
     console.error('callback call stop success ');
   }
 });
-
 ```
 
 ### stop<sup>9+</sup>
@@ -6073,7 +6009,6 @@ tonePlayer.stop().then(() => {
 }).catch(() => {
   console.error('promise call stop fail');
 });
-
 ```
 
 ### release<sup>9+</sup>
@@ -6103,7 +6038,6 @@ tonePlayer.release((err) => {
     console.info('callback call release success ');
   }
 });
-
 ```
 
 ### release<sup>9+</sup>
@@ -6130,7 +6064,6 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
-
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>

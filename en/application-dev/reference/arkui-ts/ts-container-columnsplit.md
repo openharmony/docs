@@ -26,9 +26,9 @@ ColumnSplit()
 
 >  **NOTE**
 >
->  Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can be dragged to a position that just fully holds a component.
+> Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can be dragged to a position that just fully holds a component.
 >
->  Dragging is not supported in the Previewer. Check the drag effect on a real device.
+> Dragging is not supported in the Previewer. Check the drag effect on a real device.
 
 ## Example
 
@@ -47,6 +47,7 @@ struct ColumnSplitExample {
         Text('4').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
         Text('5').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
       }
+      .borderWidth(1)
       .resizeable(true) // The divider can be dragged.
       .width('90%').height('60%')
     }.width('100%')
@@ -54,4 +55,4 @@ struct ColumnSplitExample {
 }
 ```
 
-![en-us_image_0000001212378422](figures/en-us_image_0000001212378422.gif)
+![en-us_image_0000001219982708](figures/en-us_image_0000001219982708.gif)

@@ -10,7 +10,7 @@ The **radio** module provides basic network search management functions. You can
 ## Modules to Import
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -45,7 +45,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -127,7 +127,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 **Example**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -394,7 +394,6 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -427,7 +426,6 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -2464,7 +2462,7 @@ Defines the signal strength.
 | --------------- | --------------------------- | ---- | ------------------ |
 | signalType      | [NetworkType](#networktype) | Yes  | Signal strength type.|
 | signalLevel     | number                      | Yes  | Signal strength level.|
-| dBm<sup>9+</sup>| number                      | Yes  | Network signal strength.    |
+| dBm<sup>9+</sup>| number                      | Yes  | Signal strength, in dBm.    |
 
 ## NetworkType
 

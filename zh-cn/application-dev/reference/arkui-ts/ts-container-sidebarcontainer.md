@@ -41,6 +41,7 @@ SideBarContainer( type?: SideBarContainerType )
 | maxSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true |
 | sideBarPosition<sup>9+</sup> | SideBarPosition | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
+| divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10对象说明) \| null | 设置分割线的样式。<br/>- 默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。 |
 
 ## ButtonStyle对象说明
 
@@ -58,6 +59,15 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Start | 侧边栏位于容器左侧。 |
 | End | 侧边栏位于容器右侧。 |
+
+## DividerStyle<sup>10+</sup>对象说明
+
+| 名称        | 参数类型      | 必填 | 描述                                     |
+| ----------- | ------------- | ---- | ---------------------------------------- |
+| strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1，单位vp     |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线的颜色。<br/>默认值：#000000，3%   |
+| startMargin | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏顶端的距离。<br/>默认值：0 |
+| endMargin   | [Length](ts-types.md#length)        | 否   | 分割线与侧边栏底端的距离。<br/>默认值：0 |
 
 ## 事件
 

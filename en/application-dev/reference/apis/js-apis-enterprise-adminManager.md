@@ -953,5 +953,7 @@ Enumerates the system management events that can be subscribed to.
 
 | Name                       | Value | Description          |
 | -------------------------- | ---- | ------------- |
-| MANAGED_EVENT_BUNDLE_ADDED | 0    | Application installation event.|
-| MANAGED_EVENT_BUNDLE_REMOVED | 1  | Application uninstallation event.|
+| MANAGED_EVENT_BUNDLE_ADDED | 0    | Bundle added.|
+| MANAGED_EVENT_BUNDLE_REMOVED | 1  | Bundle removed.|
+| MANAGED_EVENT_APP_START | 2    | Application started.|
+| MANAGED_EVENT_APP_STOP | 3  | Application stopped.|

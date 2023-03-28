@@ -2,7 +2,10 @@
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
+> - This API is deprecated since API version 9 and will be retained until API version 13.
+> - Certain functionalities are changed as system APIs and can be used only by system applications. To use these functionalities, call [@ohos.filemanagement.userFileManager](js-apis-userFileManager.md).
+> - The functionalities for selecting and storing media assets are still open to common applications. To use these functionalities, call [@ohos.file.picker](js-apis-file-picker.md).
 
 ## Modules to Import
 ```js
@@ -131,17 +134,12 @@ async function example() {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // Call getNextObject to obtain the next file until the last one.
             for (let i = 1; i < count; i++) {
-                fetchFileResult.getNextObject((error, fileAsset) => {
-                    if (fileAsset == undefined) {
-                        console.error('get next object failed with error: ' + error);
-                        return;
-                    }
-                    console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-                })
+                let fileAsset = await fetchFileResult.getNextObject();
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
             }
+            // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
+            fetchFileResult.close();
         });
-        // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
-        fetchFileResult.close();
     });
 }
 ```
@@ -199,18 +197,15 @@ async function example() {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // Call getNextObject to obtain the next file until the last one.
             for (let i = 1; i < count; i++) {
-                fetchFileResult.getNextObject().then((fileAsset) => {
-                    console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-                }).catch((error) => {
-                    console.error('get next object failed with error: ' + error);
-                })
+                let fileAsset = await fetchFileResult.getNextObject();
+                console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
             }
+            // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
+            fetchFileResult.close();
         }).catch((error) => {
             // Calling getFirstObject fails.
             console.error('get first object failed with error: ' + error);
         });
-        // Release the FetchFileResult instance and invalidate it. Other APIs can no longer be called.
-        fetchFileResult.close();
     }).catch((error) => {
         // Calling getFileAssets fails.
         console.error('get file assets failed with error: ' + error);
@@ -500,7 +495,7 @@ async function example() {
 
 ### getAlbums<sup>7+</sup>
 
-getAlbums(options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;>): void
+getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&gt;&gt;): void
 
 Obtains the albums. This API uses an asynchronous callback to return the result.
 
@@ -535,7 +530,7 @@ async function example() {
 
 ### getAlbums<sup>7+</sup>
 
-getAlbums(options: MediaFetchOptions): Promise<Array&lt;Album&gt;>
+getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 Obtains the albums. This API uses a promise to return the result.
 
@@ -615,7 +610,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 media.release()
 ```
 
-### storeMediaAsset<sup>(deprecated)</sup>
+### storeMediaAsset
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
@@ -623,7 +618,7 @@ Stores a media asset. This API uses an asynchronous callback to return the URI t
 
 > **NOTE**
 >
-> This API is deprecated since API version 9.
+> This API is supported since API version 6 and can be used only by the FA model.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -653,7 +648,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (error, value) => {
 ```
 
 
-### storeMediaAsset<sup>(deprecated)</sup>
+### storeMediaAsset
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
@@ -661,7 +656,7 @@ Stores a media asset. This API uses a promise to return the URI that stores the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 9.
+> This API is supported since API version 6 and can be used only by the FA model.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -694,15 +689,15 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
 Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
 > **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
+> This API is supported since API version 6 and can be used only by the FA model.
+> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -738,15 +733,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Starts image preview. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses an asynchronous callback to return the execution result.
 
 > **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
+> This API is supported since API version 6 and can be used only by the FA model.
+> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -780,15 +775,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 ```
 
 
-### startImagePreview<sup>(deprecated)</sup>
+### startImagePreview
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
 Starts image preview, with the first image to preview specified. This API can be used to preview local images whose URIs start with **datashare://** or online images whose URIs start with **https://**. It uses a promise to return the execution result.
 
 > **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
+> This API is supported since API version 6 and can be used only by the FA model.
+> You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -827,15 +822,15 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
 ```
 
 
-### startMediaSelect<sup>(deprecated)</sup>
+### startMediaSelect
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Starts media selection. This API uses an asynchronous callback to return the list of URIs that store the selected media assets.
 
 > **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, visit [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
+> This API is supported since API version 6 and can be used only by the FA model.
+> You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, visit [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -843,7 +838,7 @@ Starts media selection. This API uses an asynchronous callback to return the lis
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | Yes   | Media selection option.                             |
+| option   | [MediaSelectOption](#mediaselectoption)  | Yes   | Media selection option.                             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the list of URIs (starting with **datashare://**) that store the selected media assets.|
 
 **Example**
@@ -864,15 +859,15 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (error, value) => {
 ```
 
 
-### startMediaSelect<sup>(deprecated)</sup>
+### startMediaSelect
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 Starts media selection. This API uses a promise to return the list of URIs that store the selected media assets.
 
 > **NOTE**
->
-> This API is deprecated since API version 9. You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, visit [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
+> This API is supported since API version 6 and can be used only by the FA model.
+> You are advised to use the system app Gallery instead. Gallery is a built-in visual resource access application that provides features such as image and video management and browsing. For details about how to use Gallery, visit [OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos).
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -880,7 +875,7 @@ Starts media selection. This API uses a promise to return the list of URIs that 
 
 | Name   | Type                                     | Mandatory  | Description     |
 | ------ | --------------------------------------- | ---- | ------- |
-| option | [MediaSelectOption](#mediaselectoptiondeprecated) | Yes   | Media selection option.|
+| option | [MediaSelectOption](#mediaselectoption) | Yes   | Media selection option.|
 
 **Return value**
 
@@ -1041,7 +1036,6 @@ async function example() {
 Provides APIs for encapsulating file asset attributes.
 
 > **NOTE**
-> 
 > 1. The system attempts to parse the file content if the file is an audio or video file. The actual field values will be restored from the passed values during scanning on some devices.
 > 2. Some devices may not support the modification of **orientation**. You are advised to use [ModifyImageProperty](js-apis-image.md#modifyimageproperty9) of the **image** module.
 
@@ -1923,9 +1917,9 @@ async function example() {
         if(i == fetchCount - 1) {
             var result = fetchFileResult.isAfterLast();
             console.info('mediaLibrary fileAsset isAfterLast result: ' + result);
+            fetchFileResult.close();
         }
     }
-    fetchFileResult.close();
 }
 ```
 
@@ -1985,8 +1979,8 @@ async function example() {
             return;
         }
         console.info('getFirstObject successfully, displayName : ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2018,10 +2012,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getFirstObject().then((fileAsset) => {
         console.info('getFirstObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getFirstObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2055,16 +2049,16 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (! fetchFileResult.isAfterLast) {
+    if (!fileAsset.isAfterLast) {
         fetchFileResult.getNextObject((error, fileAsset) => {
             if (error) {
                 console.error('fetchFileResult getNextObject failed with error: ' + error);
                 return;
             }
             console.log('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+            fetchFileResult.close();
         })
     }
-    fetchFileResult.close();
 }
 
 ```
@@ -2099,14 +2093,14 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (! fetchFileResult.isAfterLast) {
+    if (!fileAsset.isAfterLast) {
         fetchFileResult.getNextObject().then((fileAsset) => {
             console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
+            fetchFileResult.close();
         }).catch((error) => {
             console.error('fetchFileResult getNextObject failed with error: ' + error);
         })
     }
-    fetchFileResult.close();
 }
 ```
 
@@ -2142,8 +2136,8 @@ async function example() {
             return;
         }
         console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2175,10 +2169,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getLastObject().then((fileAsset) => {
         console.info('getLastObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getLastObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2215,8 +2209,8 @@ async function example() {
             return;
         }
         console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2254,10 +2248,10 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(0).then((fileAsset) => {
         console.info('getPositionObject successfully, displayName: ' + fileAsset.displayName);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getPositionObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2294,9 +2288,9 @@ async function example() {
         }
         for (let i = 0; i < fetchFileResult.getCount(); i++) {
             console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
-        } 
+        }
+        fetchFileResult.close();
     })
-    fetchFileResult.close();
 }
 ```
 
@@ -2330,10 +2324,10 @@ async function example() {
         for (let i = 0; i < fetchFileResult.getCount(); i++) {
             console.info('getAllObject fileAssetList ' + i + ' displayName: ' + fileAssetList[i].displayName);
         } 
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('getAllObject failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2465,10 +2459,10 @@ async function example() {
             console.error('album getFileAssets failed with error: ' + error);
             return;
         }
-        let count = fetchFileResult.getcount();
+        let count = fetchFileResult.getCount();
         console.info('album getFileAssets successfully, count: ' + count);
+        fetchFileResult.close();
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2502,7 +2496,7 @@ async function example() {
         selections: '',
         selectionArgs: [],
     };
-        let fileNoArgsfetchOp = {
+    let fileNoArgsfetchOp = {
         selections: '',
         selectionArgs: [],
     };
@@ -2510,13 +2504,13 @@ async function example() {
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
-    album.getFileAssets(fileNoArgsfetchOp).then((albumFetchFileResult) => {
-        let count = fetchFileResult.getcount();
+    album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
+        let count = fetchFileResult.getCount();
         console.info('album getFileAssets successfully, count: ' + count);
+        fetchFileResult.close();
     }).catch((error) => {
         console.error('album getFileAssets failed with error: ' + error);
     });
-    fetchFileResult.close();
 }
 ```
 
@@ -2555,7 +2549,6 @@ Enumerates media types.
 Enumerates key file information.
 
 > **NOTE**
->
 > The **bucket_id** field may change after file rename or movement. Therefore, you must obtain the field again before using it.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
@@ -2641,13 +2634,9 @@ Describes the image size.
 | width  | number | Yes   | Yes   | Image width, in pixels.|
 | height | number | Yes   | Yes   | Image height, in pixels.|
 
-## MediaAssetOption<sup>(deprecated)</sup>
+## MediaAssetOption
 
 Implements the media asset option.
-
-> **NOTE**
->
-> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2658,17 +2647,13 @@ Implements the media asset option.
 | mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
 | relativePath | string | Yes  | Yes  | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
 
-## MediaSelectOption<sup>(deprecated)</sup>
+## MediaSelectOption
 
 Describes media selection option.
-
-> **NOTE**
->
-> This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|
-| count | number | Yes   | Yes | Number of media assets selected. The value starts from 1, which indicates that one media asset can be selected.           |
+| count | number | Yes   | Yes | Maximum number of media assets that can be selected. The value starts from 1, which indicates that one media asset can be selected.           |

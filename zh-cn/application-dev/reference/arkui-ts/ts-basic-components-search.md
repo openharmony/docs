@@ -12,14 +12,14 @@
 
 ## 接口
 
-Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
+Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; controller?: SearchController })
 
 **参数:**
 
 | 参数名      | 参数类型         | 必填 | 参数描述                                                     |
 | ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | 否   | 设置当前显示的搜索文本内容。                                                 |
-| placeholder | string           | 否   | 设置无输入时的提示文本。                                         |
+| value       | string           | 否   | 设置当前显示的搜索文本内容。                                 |
+| placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string           | 否   | 设置搜索图标路径，默认使用系统搜索图标，图标支持的图源格式: svg、jpg和png。 |
 | controller  | SearchController | 否   | 设置Search组件控制器。                                                     |
 
@@ -29,12 +29,46 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 | 名称                    | 参数类型                                         | 描述                                           |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton            | string                                           | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。         |
+| searchButton<sup>10+</sup> | value: string,<br />option?: [SearchButtonOption](#searchbuttonoption10对象说明)              | 搜索框末尾搜索按钮文本内容，默认无搜索按钮。               |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | 设置placeholder文本颜色。                           |
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式。                           |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式。                               |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。<br/>默认值：TextAlign.Start    |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。                             |
+| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
+| cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。                                       |
+| fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。                                    |
+| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。                                               |
+
+## IconOptions<sup>10+</sup>对象说明
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述    |
+| ------ | ------------------------------------------ | ---- | ----------- |
+| size   | [Length](ts-types.md#length)               | 否   | 图标尺寸。    |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
+| src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
+
+## CaretStyle<sup>10+</sup>对象说明
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述 |
+| ------ | ------------------------------------------ | ---- | -------- |
+| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
+
+## SearchButtonOption<sup>10+</sup>对象说明
+
+| 参数名    | 参数类型                                   | 必填 | 参数描述         |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小。 |
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
+
+## CancelButtonStyle<sup>10+</sup>枚举说明
+
+| 名称                    | 描述             |
+| ----------------------- | ---------------- |
+| CONSTANT<sup>10+</sup>  | 清除按钮常显样式。 |
+| INVISIBLE<sup>10+</sup> | 清除按钮常隐样式。 |
+| INPUT<sup>10+</sup>     | 清除按钮输入样式。 |
 
 ## 事件
 

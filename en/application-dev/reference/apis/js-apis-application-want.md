@@ -25,9 +25,8 @@ import Want from '@ohos.application.Want';
 | type         | string               | No  | MIME type, that is, the type of the file to open, for example, **'text/xml'** and **'image/*'**. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.  |
 | flags        | number               | No  | How the **Want** object will be handled. By default, numbers are passed in. For details, see [flags](js-apis-ability-wantConstant.md#wantConstant.Flags).|
 | action      | string               | No  | Action to take, such as viewing and sharing application details. In implicit **Want**, you can define this attribute and use it together with **uri** or **parameters** to specify the operation to be performed on the data. For details, see [action](js-apis-app-ability-wantConstant.md#wantConstant.Action). For details about the definition and matching rules of implicit Want, see [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md).                          |
-| parameters   | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.                              |
+| parameters   | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [bundleInfo](js-apis-bundle-BundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.                                      |
 | entities    | Array\<string>       | No  | Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types. For details, see [entity](js-apis-app-ability-wantConstant.md#wantConstant.Entity).                                   |
-| moduleName<sup>9+</sup> | string | No   | Module to which the ability belongs.|
 
 **Example**
 
@@ -42,7 +41,7 @@ import Want from '@ohos.application.Want';
     };
     this.context.startAbility(want, (error) => {
         // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-        console.log('error.code = ${error.code}');
+        console.error('error.code = ${error.code}');
     });
   ```
 
@@ -114,7 +113,7 @@ import Want from '@ohos.application.Want';
             try {
                 fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
             } catch(e) {
-                console.log('openSync fail: ${JSON.stringify(e)}');
+                console.error('openSync fail: ${JSON.stringify(e)}');
             }
             let want = {
                 'deviceId': '', // An empty deviceId indicates the local device.
@@ -127,7 +126,7 @@ import Want from '@ohos.application.Want';
             };
             this.context.startAbility(want, (error) => {
                 // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-                console.log('error.code = ${error.code}');
+                console.error('error.code = ${error.code}');
             });
         ```
 

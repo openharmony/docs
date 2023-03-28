@@ -42,6 +42,8 @@ ForEach(
 )
 ```
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名        | 参数类型                              | 必填 | 参数描述                                                     |
@@ -254,7 +256,7 @@ struct MyComponent {
           this.data.pushData('/path/image' + this.data.totalCount() + '.png')
         })
       }, item => item)
-    }
+    }.height('100%').width('100%')
   }
 }
 ```

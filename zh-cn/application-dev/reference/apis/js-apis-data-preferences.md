@@ -1,6 +1,6 @@
-# @ohos.data.preferences (首选项)
+# @ohos.data.preferences (用户首选项)
 
-首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
+用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
@@ -181,7 +181,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -258,7 +258,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -792,7 +792,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前Preferences实例的数据异步存储到首选项持久化文件中，使用callback异步回调。
+将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -823,7 +823,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-将当前Preferences实例的数据异步存储到首选项持久化文件中，使用Promise异步回调。
+将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 

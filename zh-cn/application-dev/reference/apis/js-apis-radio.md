@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -32,6 +32,8 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -45,7 +47,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -74,6 +76,8 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -115,6 +119,8 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -127,7 +133,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 **示例：**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -151,6 +157,8 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -195,6 +203,8 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -233,6 +243,8 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -274,6 +286,8 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -311,6 +325,8 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -352,6 +368,8 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -389,12 +407,13 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -422,12 +441,13 @@ getPrimarySlotId\(\): Promise\<number\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -458,6 +478,8 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | 是   | 回调函数，返回[SignalInformation](#signalinformation)对象的数组。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -498,6 +520,8 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | 以Promise形式返回网络信号强度[SignalInformation](#signalinformation)对象的数组。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -646,6 +670,8 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -682,6 +708,8 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -726,6 +754,8 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -764,6 +794,8 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，返回运营商名称，例如：中国移动。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -805,6 +837,8 @@ getOperatorName\(slotId: number\): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -831,7 +865,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置主卡所在卡槽的索引号。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -845,6 +879,8 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -860,8 +896,8 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.setPrimarySlotId(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setPrimarySlotId(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -872,7 +908,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 设置主卡所在卡槽的索引号。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -892,6 +928,8 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -907,9 +945,9 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 ```js
 let slotId = 0;
 let promise = radio.setPrimarySlotId(slotId);
-promise.then(data => {
-    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setPrimarySlotId success.`);
+}).catch((err) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -920,7 +958,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -933,6 +971,8 @@ getIMEI(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -958,7 +998,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -972,6 +1012,8 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -998,7 +1040,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的IMEI。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1017,6 +1059,8 @@ getIMEI(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1045,7 +1089,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1058,6 +1102,8 @@ getMEID(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1083,7 +1129,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1097,6 +1143,8 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1123,7 +1171,7 @@ getMEID(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的MEID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1142,6 +1190,8 @@ getMEID(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的MEID。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1170,7 +1220,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1183,6 +1233,8 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1208,7 +1260,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1222,6 +1274,8 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1248,7 +1302,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1267,6 +1321,8 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 | Promise\<string\> | 以Promise形式返回设备的指定卡槽的唯一设备ID。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1295,7 +1351,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1309,6 +1365,8 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1321,8 +1379,8 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-radio.sendUpdateCellLocationRequest((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1332,7 +1390,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 发送更新小区位置请求。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1347,6 +1405,8 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1360,8 +1420,8 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 ```js
 let slotId = 0;
-radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1371,7 +1431,7 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 发送更新小区位置请求。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1391,6 +1451,8 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1404,10 +1466,9 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.sendUpdateCellLocationRequest(slotId);
-promise.then(data => {
-    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.sendUpdateCellLocationRequest(slotId).then(() => {
+    console.log(`sendUpdateCellLocationRequest success.`);
+}).catch((err) => {
     console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1418,7 +1479,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1431,6 +1492,8 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1456,7 +1519,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 获取小区信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1470,6 +1533,8 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1496,7 +1561,7 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 获取小区信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1515,6 +1580,8 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1543,7 +1610,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 设置网络选择模式。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1557,6 +1624,8 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1582,8 +1651,8 @@ let networkSelectionModeOptions={
     networkInformation: networkInformation,
     resumeSelection: true
 }
-radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1593,7 +1662,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 设置网络选择模式。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1612,6 +1681,8 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1638,9 +1709,9 @@ let networkSelectionModeOptions={
     resumeSelection: true
 }
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
-promise.then(data => {
-    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setNetworkSelectionMode success.`);
+}).catch((err) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1651,7 +1722,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 
 获取网络搜索信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1665,6 +1736,8 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1689,7 +1762,7 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 获取网络搜索信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1708,6 +1781,8 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -1735,7 +1810,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1746,6 +1821,8 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1770,7 +1847,7 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 获取Nr选项模式 。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1782,6 +1859,8 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1807,7 +1886,7 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 获取Nr选项模式 。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1824,6 +1903,8 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 | Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1851,7 +1932,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1865,6 +1946,8 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1877,8 +1960,8 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-radio.turnOnRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1889,7 +1972,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 打开Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1904,6 +1987,8 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1917,8 +2002,8 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.turnOnRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1929,7 +2014,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 打开Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1949,6 +2034,8 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1962,10 +2049,9 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.turnOnRadio(slotId);
-promise.then(data => {
-    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOnRadio(slotId).then(() => {
+    console.log(`turnOnRadio success.`);
+}).catch((err) => {
     console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1976,7 +2062,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1990,6 +2076,8 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2002,8 +2090,8 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-radio.turnOffRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2014,7 +2102,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 关闭Radio。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2029,6 +2117,8 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2042,8 +2132,8 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 ```js
 let slotId = 0;
-radio.turnOffRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2054,7 +2144,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 关闭Radio。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2074,6 +2164,8 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2087,10 +2179,9 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 ```js
 let slotId = 0;
-let promise = radio.turnOffRadio(slotId);
-promise.then(data => {
-    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOffRadio(slotId).then(() => {
+    console.log(`turnOffRadio success.`);
+}).catch((err) => {
     console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2101,7 +2192,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 设置首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2117,6 +2208,8 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2129,8 +2222,9 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 **示例：**
 
 ```js
-radio.setPreferredNetwork(0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2140,7 +2234,7 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 设置首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -2161,7 +2255,9 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 **错误码：**
 
-| 错误码ID |                  错误信息                    |
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
@@ -2173,10 +2269,10 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 **示例：**
 
 ```js
-let promise = radio.setPreferredNetwork(0, 1);
-promise.then(data => {
-    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM).then(() => {
+    console.log(`setPreferredNetwork success.`);
+}).catch((err) => {
     console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2187,7 +2283,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 获取首选网络。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2201,6 +2297,8 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2225,7 +2323,7 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 获取首选网络。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2244,6 +2342,8 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 | Promise\<void\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2271,7 +2371,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 
 获取特定IMS服务类型的IMS注册状态信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2286,6 +2386,8 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2310,7 +2412,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
 获取特定IMS服务类型的IMS注册状态信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2330,6 +2432,8 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2357,7 +2461,7 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 
 订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2373,6 +2477,8 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2397,7 +2503,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 取消订阅imsRegStateChange事件，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -2413,6 +2519,8 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -2435,7 +2543,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 无线接入技术。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                      | 值   | 说明                                                         |
 | ------------------------- | ---- | ------------------------------------------------------------ |
@@ -2458,7 +2566,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络信号强度信息对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |      名称       |           类型              | 必填 |      说明          |
 | --------------- | --------------------------- | ---- | ------------------ |
@@ -2470,7 +2578,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                                                         |
 | -------------------- | ---- | ------------------------------------------------------------ |
@@ -2486,7 +2594,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |       名称           |                 类型                | 必填 |                          说明                                |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2505,7 +2613,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 网络注册状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
@@ -2519,7 +2627,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 非独立组网状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                       | 值   | 说明                                                       |
 | -------------------------- | ---- | ---------------------------------------------------------- |
@@ -2535,7 +2643,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 选网模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                        | 值   | 说明           |
 | --------------------------- | ---- | -------------- |
@@ -2547,9 +2655,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 首选网络模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                                                      | 值   | 说明                                          |
 | --------------------------------------------------------- | ---- | --------------------------------------------- |
@@ -2592,9 +2700,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              |                  类型                   | 必填 |                           说明                               |
 | ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2608,9 +2716,9 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 CDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
@@ -2624,9 +2732,9 @@ CDMA小区信息。
 
 GSM小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
@@ -2641,9 +2749,9 @@ GSM小区信息。
 
 LTE小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称          | 类型    | 必填 | 说明                    |
 | ------------- | ------- | ---- | ----------------------- |
@@ -2660,9 +2768,9 @@ LTE小区信息。
 
 NR小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称    | 类型   | 必填 | 说明             |
 | ------- | ------ | ---- | ---------------- |
@@ -2677,9 +2785,9 @@ NR小区信息。
 
 TD-SCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2694,9 +2802,9 @@ TD-SCDMA小区信息。
 
 WCDMA小区信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称   | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
@@ -2711,9 +2819,9 @@ WCDMA小区信息。
 
 NR的选择模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                 | 值   | 说明                               |
 | -------------------- | ---- | ---------------------------------- |
@@ -2726,9 +2834,9 @@ NR的选择模式。
 
 网络搜索结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                   | 类型                                              | 必填 | 说明           |
 | ---------------------- | ------------------------------------------------- | ---- | -------------- |
@@ -2739,9 +2847,9 @@ NR的选择模式。
 
 网络信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            |                         类型                        | 必填 | 说明           |
 | --------------- | --------------------------------------------------- | ---- | -------------- |
@@ -2754,9 +2862,9 @@ NR的选择模式。
 
 网络信息状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称              | 值   | 说明             |
 | ----------------- | ---- | ---------------- |
@@ -2769,9 +2877,9 @@ NR的选择模式。
 
 网络选择模式选项。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称               |                    类型                       | 必填 |                 说明                   |
 | ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
@@ -2784,9 +2892,9 @@ NR的选择模式。
 
 IMS注册状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称             | 值   | 说明     |
 | ---------------- | ---- | -------- |
@@ -2797,9 +2905,9 @@ IMS注册状态。
 
 IMS注册技术。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                    | 值   | 说明            |
 | ----------------------- | ---- | --------------- |
@@ -2812,9 +2920,9 @@ IMS注册技术。
 
 IMS注册信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称        | 类型                         | 必填 | 说明          |
 | ----------- | ---------------------------- | ---- | ------------- |
@@ -2825,9 +2933,9 @@ IMS注册信息。
 
 IMS服务类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |

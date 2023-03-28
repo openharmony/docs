@@ -42,6 +42,8 @@ ForEach(
 )
 ```
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name       | Type                             | Mandatory| Description                                                    |

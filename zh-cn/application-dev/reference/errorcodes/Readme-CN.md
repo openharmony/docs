@@ -27,7 +27,7 @@
 - 资源管理
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)
-- 资源调度
+- 后台任务
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
@@ -43,7 +43,7 @@
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
-  - [首选项错误码](errorcode-preferences.md)
+  - [用户首选项错误码](errorcode-preferences.md)
 - 文件管理
   - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 电话服务
