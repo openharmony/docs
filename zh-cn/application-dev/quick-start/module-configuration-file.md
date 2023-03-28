@@ -777,9 +777,11 @@ preloads标签示例：
 
 **表14** **dependencies标签说明**
 
-| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-| -------- | -------- | -------- | -------- |
-| moduleName | 标识当前模块依赖的共享库模块名 | 字符串 | 不可缺省。 |
+| 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
+| ----------- | ------------------------------ | -------- | ---------- |
+| bundleName  | 标识当前模块依赖的共享包包名。  | 字符串   | 可缺省。 |
+| moduleName  | 标识当前模块依赖的共享包模块名。| 字符串   | 不可缺省。 |
+| versionCode | 标识当前共享包的版本号。       | 数值     | 可缺省。 |
 
 dependencies标签示例：
 
@@ -788,7 +790,9 @@ dependencies标签示例：
   "module": {
     "dependencies": [
       {
-        "moduleName": "library"
+        "bundleName":"com.share.library",
+        "moduleName": "library",
+        "versionCode": 10001
       }
     ]
   }

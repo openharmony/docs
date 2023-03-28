@@ -32,7 +32,16 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 | 名称    | 参数类型        | 描述            |
 | ------| -------------- | -------- |
 | lunar | boolean  | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
+| textStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置选中项的文本颜色、字号、字体粗细。 |
 
+## PickerTextStyle<sup>10+</sup>类型说明
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述                                     |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本颜色。                                   |
+| font   | [Font](ts-types.md#font)                   | 否   | 文本样式，picker只支持字号、字体粗细的设置。 |
 
 ## 事件
 
