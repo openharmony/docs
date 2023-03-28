@@ -31,7 +31,7 @@ class MainAbility extends Ability {
 }
  ```
 
- For details about how to obtain the stage model context, see [AbilityContext](js-apis-ability-context.md#abilitycontext).
+For details about how to obtain the stage model context, see [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
 
 FA Model
 
