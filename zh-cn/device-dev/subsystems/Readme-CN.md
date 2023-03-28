@@ -100,7 +100,6 @@
         - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)
         - [HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)
         - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)
-    - [HiDumper开发指导](subsys-dfx-hidumper.md)
     - [HiChecker开发指导](subsys-dfx-hichecker.md)
     - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
     - [Hiview开发指导](subsys-dfx-hiview.md)
@@ -108,3 +107,4 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
+    - [HiDumper使用指导](subsys-dfx-hidumper.md)
