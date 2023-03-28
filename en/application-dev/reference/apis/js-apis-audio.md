@@ -349,10 +349,7 @@ Enumerates the audio stream types.
 | VOICE_CALL<sup>8+</sup>      | 0      | Audio stream for voice calls.|
 | RINGTONE                     | 2      | Audio stream for ringtones.    |
 | MEDIA                        | 3      | Audio stream for media purpose.    |
-| ALARM<sup>10+</sup>          | 4      | Audio stream for alarming.    |
-| ACCESSIBILITY<sup>10+</sup>  | 5      | Audio stream for accessibility.  |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | Audio stream for voice assistant.|
-| ULTRASONIC<sup>10+</sup>     | 10     | Audio stream for ultrasonic.<br>This is a system API.|
 | ALL<sup>9+</sup>             | 100    | All public audio streams.<br>This is a system API.|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -534,7 +531,7 @@ Enumerates the audio content types.
 | CONTENT_TYPE_MOVIE                 | 3      | Movie.    |
 | CONTENT_TYPE_SONIFICATION          | 4      | Notification tone.  |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | Ringtone.    |
-| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | Ultrasonic.<br>This is a system API.|
+
 ## StreamUsage
 
 Enumerates the audio stream usage.
@@ -547,10 +544,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
 | STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.|
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Used for alarming.    |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | Used for accessibility.  |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | System tone (such as screen lock or keypad tone).<br>This is a system API.|
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -4591,7 +4585,6 @@ for (let i = 0;i < len; i++) {
       })
     })	  
 }
-
 ```
 
 ### write<sup>8+</sup>
