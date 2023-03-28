@@ -8,14 +8,14 @@
 
 ## 接口
 
-**方法：** keyboardShortcut(value: string | FunctionKey, keys: Array<CtrlKey>)
+keyboardShortcut(value: string | [FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey), keys: Array<[CtrlKey](ts-universal-events-keyboardshortcut.md#CtrlKey)>)
 
 **参数：**
 
-| 参数名 | 参数类型              | 必填 | 参数描述                                                     |
-| ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| value  | string \| FunctionKey | 是   | 热键的单个字符（可以通过键盘输入的字符）或FunctionKey。<br/>默认值：无 |
-| keys   | Array<CtrlKey>        | 是   | 热键组合。<br/>默认值：无                                    |
+| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | string \| [FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey) | 是   | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey)。<br/>默认值：无 |
+| keys   | Array<[CtrlKey](ts-universal-events-keyboardshortcut.md#CtrlKey)> | 是   | 热键组合。<br/>默认值：无                                    |
 
 ## CtrlKey枚举说明
 
@@ -27,53 +27,53 @@
 
 ## FunctionKey枚举说明
 
-| 名称 | 描述    |
-| ---- | ------- |
-| ESC  | ESC键。 |
-| F1   | F1键。  |
-| F2   | F2键。  |
-| F3   | F3键。  |
-| F4   | F4键。  |
-| F5   | F5键。  |
-| F6   | F6键。  |
-| F7   | F7键。  |
-| F8   | F8键。  |
-| F9   | F9键。  |
-| F10  | F10键。 |
-| F11  | F11键。 |
-| F12  | F12键。 |
+| 名称 | 描述                  |
+| ---- | --------------------- |
+| ESC  | 表示键盘上ESC功能键。 |
+| F1   | 表示键盘上F1功能键。  |
+| F2   | 表示键盘上F2功能键。  |
+| F3   | 表示键盘上F3功能键。  |
+| F4   | 表示键盘上F4功能键。  |
+| F5   | 表示键盘上F5功能键。  |
+| F6   | 表示键盘上F6功能键。  |
+| F7   | 表示键盘上F7功能键。  |
+| F8   | 表示键盘上F8功能键。  |
+| F9   | 表示键盘上F9功能键。  |
+| F10  | 表示键盘上F10功能键。 |
+| F11  | 表示键盘上F11功能键。 |
+| F12  | 表示键盘上F12功能键。 |
 
-## 场景说明
+## 快捷键使用注意事项
 
-| 场景                                                         | 处理                                                         | 例子                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 所有支持onClick事件的组件                                    | 支持自定义组合键                                             | 无                                                           |
-| 自定义组合键要求                                             | 控制键Ctrl，Shift，Alt及它们的组合加上其它可输入字符按键     | Button('button1').keyboardShortcut('a',[CtrlKey.ctrl])       |
-| 多个不同组件设置相同组合键                                   | 只响应结点树上的第一个组件、其它组件不响应快捷键。           | Button('button1').keyboardShortcut('a',[CtrlKey.ctrl])<br />Button('button2').keyboardShortcut('a',[CtrlKey.ctrl]) |
-| 无论组件是否获得焦点                                         | 只要窗口获焦快捷键就会响应                                   | 无                                                           |
-| 绑定单个快捷键时候，通过keyboardShortcut接口value值或者是keys值或两者都是空的情况下。<br />绑定多个快捷键的时候无法取消快捷键。 | 取消快捷键的设置                                             | Button('button1').keyboardShortcut('',[CtrlKey.ctrl])<br />Button('button2').keyboardShortcut('a',[l])<br />Button('button3').keyboardShortcut('',[]) |
-| 独立pipeline子窗口、主窗口共存的情况下                       | 获焦的窗口响应快捷键                                         | 无                                                           |
-| keyboardShortcut接口中的keys命令中ctrl、shift、alt           | 不区分左右键都响应                                           | Button('button1').keyboardShortcut('a',[CtrlKey.ctrl, CtrlKey.alt]) |
-| keyboardShortcut接口中的value单个字符                        | 不区分大小写都响应                                           | Button('button1').keyboardShortcut('a',[CtrlKey.ctrl])<br />Button('button2').keyboardShortcut('A',[CtrlKey.ctrl]) |
-| 快捷键的响应                                                 | 所有快捷键down的状态下响应、且连续响应                       | 无                                                           |
-| 隐藏组件<br />                                               | 响应快捷键                                                   | 无                                                           |
-| disable状态组件                                              | 不响应快捷键                                                 | 无                                                           |
-| 这几种情况不绑定组合键, 先前绑定的组合键仍然有效             | 组件的组合键(包括系统预定义快捷键)相同时;<br />接口参数value有多个字符时;<br />接口参数keys有重复的控制键时; | Button('button1').keyboardShortcut('c',[CtrlKey.ctrl])<br />Button('button2').keyboardShortcut('ab',[CtrlKey.ctrl])<br />Button('button3').keyboardShortcut('ab',[CtrlKey.ctrl,CtrlKey.ctrl]) |
+| 场景                                                         | 快捷键处理逻辑                                           | 例子                                                         |
+| ------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
+| 所有支持onClick事件的组件                                    | 支持自定义组合键                                         | 无                                                           |
+| 自定义组合键要求                                             | 控制键Ctrl，Shift，Alt及它们的组合加上其它可输入字符按键 | Button('button1').keyboardShortcut('a',[CtrlKey.CTRL])       |
+| 多个不同组件设置相同组合键                                   | 只响应结点树上的第一个组件、其它组件不响应快捷键。       | Button('button1').keyboardShortcut('a',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('a',[CtrlKey.CTRL]) |
+| 无论组件是否获得焦点                                         | 只要窗口获焦快捷键就会响应                               | 无                                                           |
+| 绑定单个快捷键时候，通过keyboardShortcut接口value值或者是keys值或两者都是空的情况下。<br />绑定多个快捷键的时候无法取消快捷键。 | 取消快捷键的设置                                         | Button('button1').keyboardShortcut('',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('a',[l])<br />Button('button3').keyboardShortcut('',[]) |
+| 独立pipeline子窗口、主窗口共存的情况下                       | 获焦的窗口响应快捷键                                     | 无                                                           |
+| keyboardShortcut接口中的keys命令中ctrl、shift、alt           | 不区分左右键都响应                                       | Button('button1').keyboardShortcut('a',[CtrlKey.CTRL, CtrlKey.ALT]) |
+| keyboardShortcut接口中的value单个字符                        | 不区分大小写都响应                                       | Button('button1').keyboardShortcut('a',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('A',[CtrlKey.CTRL]) |
+| 快捷键的响应                                                 | 所有快捷键down的状态下响应、且连续响应                   | 无                                                           |
+| 隐藏组件<br />                                               | 响应快捷键                                               | 无                                                           |
+| disable状态组件                                              | 不响应快捷键                                             | 无                                                           |
+| 1.组件的组合键(包括系统预定义快捷键)相同时;<br />2.接口参数value有多个字符时;<br />3.接口参数keys有重复的控制键时; | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效         | Button('button1').keyboardShortcut('c',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[CtrlKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[CtrlKey.CTRL,CtrlKey.CTRL]) |
 
 ## 系统已有组合键
 
-| 快捷键           | 组件                       |
-| ---------------- | -------------------------- |
-| ctrl + C         | Image、TextInput、TextArea |
-| ctrl + A         | TextInput、TextArea        |
-| ctrl + V         | TextInput、TextArea        |
-| ctrl + X         | TextInput、TextArea        |
-| shift + 方向键   | TextInput、TextArea        |
-| ctrl + shift + Z | TextInput、TextArea        |
-| ctrl + Z         | TextInput、TextArea        |
-| ctrl + Y         | TextInput、TextArea        |
-| 方向键、回车键   | TextInput、TextArea        |
-| TAB键            | TextInput、TextArea        |
+| 快捷键         | 组件                                                         |
+| -------------- | ------------------------------------------------------------ |
+| Ctrl + C       | [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ A        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ V        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ X        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Shift + 方向键 | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Shift+ Z | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Z        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Y        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| 方向键、回车键 | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| TAB键          | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 
 ## 示例
 
@@ -113,6 +113,3 @@ struct Index {
   }
 }
 ```
-
-
-
