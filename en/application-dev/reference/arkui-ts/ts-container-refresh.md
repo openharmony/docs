@@ -19,7 +19,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number | string , friction?: n
 | Name| Value Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | refreshing | boolean | Yes| Whether the current component is being refreshed.<br>This parameter supports [$$](../../quick-start/arkts-restrictions-and-extensions.md#two-way-binding-of-variables) for two-way binding of variables.|
-| offset | string \| number | No| Distance to the top of the parent component from the **<Refresh\>** component that comes to rest after a successful pull-down gesture.<br>Default value: **16**, in vp|
+| offset | string \| number | No| Distance from the pull-down starting point to the top of the component.<br>Default value: **16**, in vp<br>**NOTE**<br>The value cannot be a percentage or a negative number.|
 | friction | number \| string | No| Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100.<br>Default value: **62**<br>- **0** indicates that the **\<Refresh>** component is not sensitive to the pull-down gesture.<br>- **100** indicates that the **\<Refresh>** component is highly sensitive to the pull-down gesture.<br>- A larger value indicates a more sensitive response of the **\<Refresh>** component to the pull-down gesture.|
 
 
@@ -32,7 +32,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number | string , friction?: n
 | onStateChange(callback: (state: [RefreshStatus](#refreshstatus)) => void)| Triggered when the refresh status changes.<br>- **state**: refresh status.|
 | onRefreshing(callback: () => void)| Triggered when the component enters the refresh state.|
 
-## RefreshStatus enums
+## RefreshStatus
 
 | Name| Description|
 | -------- | -------- |
