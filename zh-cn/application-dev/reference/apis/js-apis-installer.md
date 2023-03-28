@@ -118,7 +118,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install because without allow app shared bundle permission. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 
 **示例：**
 
@@ -176,6 +177,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
 **示例：**
 
