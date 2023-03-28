@@ -190,7 +190,7 @@ TLS Socket connection process on the client:
    let tlsTwoWay = socket.constructTLSSocketInstance();
 
    // Subscribe to TLS Socket connection events.
-   tcp.on('message', value => {
+   tlsTwoWay.on('message', value => {
        console.log("on message")
        let buffer = value.message
        let dataView = new DataView(buffer)
@@ -200,10 +200,10 @@ TLS Socket connection process on the client:
        }
        console.log("on connect received:" + str)
    });
-   tcp.on('connect', () => {
+   tlsTwoWay.on('connect', () => {
        console.log("on connect")
    });
-   tcp.on('close', () => {
+   tlsTwoWay.on('close', () => {
        console.log("on close")
    });
 
@@ -246,23 +246,23 @@ TLS Socket connection process on the client:
        console.log(data);
    });
 
-   // Enable the TLS Socket connection to be automatically closed after use. Then, disable listening for TLS Socket connection events.
-   tls.close((err) => {
+   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+   tlsTwoWay.close((err) => {
        if (err) {
            console.log("close callback error = " + err);
        } else {
            console.log("close success");
        }
-       tls.off('message');
-       tls.off('connect');
-       tls.off('close');
+       tlsTwoWay.off('message');
+       tlsTwoWay.off('connect');
+       tlsTwoWay.off('close');
    });
 
    // Create a TLS Socket connection (for one-way authentication).
    let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
    // Subscribe to TLS Socket connection events.
-   tcp.on('message', value => {
+   tlsTwoWay.on('message', value => {
        console.log("on message")
        let buffer = value.message
        let dataView = new DataView(buffer)
@@ -272,10 +272,10 @@ TLS Socket connection process on the client:
        }
        console.log("on connect received:" + str)
    });
-   tcp.on('connect', () => {
+   tlsTwoWay.on('connect', () => {
        console.log("on connect")
    });
-   tcp.on('close', () => {
+   tlsTwoWay.on('close', () => {
        console.log("on close")
    });
 
@@ -307,16 +307,16 @@ TLS Socket connection process on the client:
        console.log(data);
    });
 
-   // Enable the TLS Socket connection to be automatically closed after use. Then, disable listening for TLS Socket connection events.
-   tls.close((err) => {
+   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+   tlsTwoWay.close((err) => {
        if (err) {
            console.log("close callback error = " + err);
        } else {
            console.log("close success");
        }
-       tls.off('message');
-       tls.off('connect');
-       tls.off('close');
+       tlsTwoWay.off('message');
+       tlsTwoWay.off('connect');
+       tlsTwoWay.off('close');
    });
 ```
 

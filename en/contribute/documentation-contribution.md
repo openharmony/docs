@@ -26,15 +26,15 @@ Your feedback matters. Submit issues and leave as detailed information as possib
 1.  On the Gitee page, click the **Issues** tab. On the displayed page, click **New issue**. Then enter the issue title and issue details.
 2.  Click **New** to submit the issue. The Docs team will confirm the issue.
 
->![](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
->**How can I provide a high-quality issue?**  
->
->-   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.
->-   Explain the impact of this issue on users.
->-   Limit the scope of the given issue to a specific task. If multiple fields are involved, break the issue down into smaller ones. For example, "Documents need to be optimized" is a broad issue, whereas "XX development guide lacks introduction to step XXX" is specific and operable.
->-   Search the list of existing issues to see if any related or similar issues have been submitted.
->-   If an issue is associated with another issue or a pull request (PR), you can use its full URL or the combination of the number sign (#) and PR number to reference it.
+> **How can I provide a high-quality issue?**  
+> 
+> -   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.
+> -   Explain the impact of this issue on users.
+> -   Limit the scope of the given issue to a specific task. If multiple fields are involved, break the issue down into smaller ones. For example, "Documents need to be optimized" is a broad issue, whereas "XX development guide lacks introduction to step XXX" is specific and operable.
+> -   Search the list of existing issues to see if any related or similar issues have been submitted.
+> -   If an issue is associated with another issue or a pull request (PR), you can use its full URL or the combination of the number sign (#) and PR number to reference it.
 
 ### Editing Existing Documents
 

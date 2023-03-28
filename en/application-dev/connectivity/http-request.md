@@ -18,17 +18,10 @@ The following table provides only a simple description of the related APIs. For 
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
-| request2()<sup>10+</sup>                  | Initiates an HTTP network request based on the URL and returns a streaming response.|
 | destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
 | off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
 | once\('headersReceive'\)<sup>8+</sup>     | Registers a one-time observer for HTTP Response Header events.|
-| on\('dataReceive'\)<sup>10+</sup>         | Registers an observer for events indicating receiving of HTTP streaming responses.     |
-| off\('dataReceive'\)<sup>10+</sup>        | Unregisters the observer for events indicating receiving of HTTP streaming responses. |
-| on\('dataEnd'\)<sup>10+</sup>             | Registers an observer for events indicating completion of receiving HTTP streaming responses. |
-| off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses.|
-| on\('dataProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
-| off\('dataProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
 
 ## How to Develop
 
@@ -70,7 +63,6 @@ httpRequest.request(
         connectTimeout: 60000 // Optional. The default value is 60000, in ms.
         readTimeout: 60000, // Optional. The default value is 60000, in ms.
         usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
     }, (err, data) => {
         if (!err) {
             // data.result carries the HTTP response. Parse the response based on service requirements.
