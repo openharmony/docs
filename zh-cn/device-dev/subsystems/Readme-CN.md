@@ -108,3 +108,10 @@
 - 电源管理
     - 显示管理
         - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)
+    - 电池管理
+        - [电量与LED灯颜色的定制开发指导](subsys-power-level-LED-color.md)
+        - [电池温度保护定制开发指导](subsys-power-temperature-protection.md)
+        - [电量等级定制开发指导](subsys-power-battery-level-customization.md)
+        - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
+        - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
+        - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
