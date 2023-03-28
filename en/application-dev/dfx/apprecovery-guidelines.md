@@ -40,13 +40,9 @@ Fault management is an important way for applications to deliver a better user e
 - Fault query indicates that [faultLogger](../reference/apis/js-apis-faultLogger.md) obtains the fault information using its query API.
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query the information about the last fault.
-
 ![Fault rectification process](./figures/fault_rectification.png)
-
 It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to process the exception. After the processing is complete, you can call the status saving API and restart the application.
-
 If you do not register [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
-
 If you have enabled application recovery, the framework first checks whether a fault allows for ability status saving and whether you have configured ability status saving. If so, [onSaveState](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](../reference/apis/js-apis-app-ability-uiAbility.md) is called back. Finally, the application is restarted.
 
 ### Scenarios Supported by Application Fault Management APIs
@@ -153,7 +149,7 @@ onCreate(want, launchParam) {
 }
 ```
 
-- Unregister **ErrorObserver callback**.
+- Unregister the **ErrorObserver** callback.
 
 ```ts
 onWindowStageDestroy() {
@@ -170,7 +166,7 @@ onWindowStageDestroy() {
 
 #### Passively Saving Status and Restoring Data
 
-This is triggered by the recovery framework. You do not need to register **ErrorObserver callback**. You only need to implement **onSaveState** of the ability for status saving and **onCreate** of the ability for data restoration.
+This is triggered by the recovery framework. You do not need to register an **ErrorObserver** callback. You only need to implement **onSaveState** of the ability for status saving and **onCreate** of the ability for data restoration.
 
 ```ts
 export default class MainAbility extends Ability {
