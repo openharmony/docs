@@ -48,3 +48,5 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 |moduleName | string         | 是   | 否   | 依赖共享库的模块名称。       |
+|bundleName | string         | 是   | 否   | 依赖共享库的包名。         |
+|versionCode| number         | 是   | 否   | 依赖共享库的版本号。       |
