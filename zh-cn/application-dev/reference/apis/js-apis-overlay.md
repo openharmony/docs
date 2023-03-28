@@ -601,7 +601,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
+| moduleName | string | 是    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
 | callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | 是    | 回调函数，当获取指定应用中指定module关联的所有OverlayModuleInfo信息成功时，err返回undefined。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
