@@ -32,11 +32,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | toolBar        | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar.<br>**items**: items on the toolbar.    |
 | hideToolBar    | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
 | hideTitleBar   | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton | boolean                                  | Whether to hide the Back key.<br>Default value: **false**<br>**true**: Hide the Back key.<br>**false**: Display the Back key.|
+| hideBackButton | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.|The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | Width of the navigation bar.<br>Default value: **200vp**|
 | navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition)             | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**|
 | mode<sup>9+</sup> | [NavigationMode](#navigationmode)                       | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**|
-| backButtonIcon<sup>9+</sup> | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource)   | Back icon on the navigation bar.|
+| backButtonIcon<sup>9+</sup> | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource)   | Back button icon on the navigation bar. The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | hideNavBar<sup>9+</sup> | boolean                         | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
 
 
@@ -91,7 +91,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ---- | ---------------------------------------- |
 | Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.|
 | Split | The navigation bar and content area are displayed in different columns.|
-| Auto | When the window width is greater than or equal to 520 vp, Split mode is used. Otherwise, Stack mode is used.|
+| Auto | When the window width is greater than or equal to 520 vp, Split mode is used. Otherwise, the Stack mode is used.|
 
 ## TitleHeight
 
@@ -103,7 +103,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 >  **NOTE**
 >
->  The scrollable component can only be **\<List>**.
+>  Among the scrollable components, only **\<List>** is supported.
 
 
 ## Events
