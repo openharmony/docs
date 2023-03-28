@@ -60,8 +60,8 @@ Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/writing-instructions
 
 Use relative paths to reference pictures in the document.
 
->![](public_sys-resources/icon-caution.gif) **CAUTION:** 
->Use the original pictures to avoid intellectual property infringement risks.
+> **CAUTION** 
+> Use the original pictures to avoid intellectual property infringement risks.
 
 -   Pictures are clear and complete. For example, a flowchart has a start and an end.
 -   The graphics has clear logic and are provided with text descriptions. Do not separate the graphics from the text.
@@ -69,9 +69,9 @@ Use relative paths to reference pictures in the document.
 -   The text on pictures should be Chinese in Chinese documents and English in English documents.
 -   It is recommended that pictures be named based on the content. Using only a number is difficult for picture inheritance.
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
->Reference:
->!\[\]\(./pic/pic-standard.png\)
+> **NOTE** 
+> Reference:
+> !\[\]\(./pic/pic-standard.png\)
 
 If a self-made picture is used, refer to the following figure to configure the color. The format can be  **png**,  **jpg**,  **gif**, and so on.
 

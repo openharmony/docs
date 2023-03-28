@@ -133,11 +133,12 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 **Parameters**
 
 | Name     | Type                        | Mandatory| Description                                   |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| ----------- | ---------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result. |
+| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -152,8 +153,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.dialCall("138xxxxxxxx", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.dialCall("138xxxxxxxx", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -173,12 +174,13 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 **Parameters**
 
 | Name     |                    Type            | Mandatory| Description                                |
-| ----------- | ----------------------------------- | ---- | ------------------------------------ |
+| ----------- | ----------------------------------- | ---- | ----------------------------------- |
 | phoneNumber | string                              | Yes  | Phone number.                          |
 | options     | [DialCallOptions](#dialcalloptions9)| Yes  | Call options, which carry other configuration information of the call.   |
-| callback    | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                          |
+| callback    | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -198,8 +200,8 @@ call.dialCall("138xxxxxxxx", {
     videoState: 0,
     dialScene: 0,
     dialType: 0,
-}, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+}, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -218,18 +220,19 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 
 **Parameters**
 
-| Name     |                 Type               | Mandatory| Description               |
-| ----------- | ----------------------------------- | ---- |-------------------|
-| phoneNumber | string                              | Yes  | Phone number.            |
+| Name     |                 Type               | Mandatory|                Description                   |
+| ----------- | ----------------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                              | Yes  | Phone number.                            |
 | options     | [DialCallOptions](#dialcalloptions9)| No  | Call options, which carry other configuration information of the call.|
 
 **Return value**
 
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt;    | Promise used to return the result.                            |
+| Type                  | Description                         |
+| ---------------------- | ---------------------------- |
+| Promise&lt;void&gt;    | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -245,20 +248,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = call.dialCall("138xxxxxxxx", {
-    call.dialCall('138xxxxxxxx');
     accountId: 0,
     videoState: 0,
     dialScene: 0,
     dialType: 0,
 });
-promise.then(data => {
-    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
-    console.log(`dialCall success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-}).catch(err => {
-    console.log(`dialCall fail, promise: err->${JSON.stringify(error)}`);
+promise.then(() => {
+    console.log(`dialCall success.`);
+}).catch((err) => {
     console.error(`dialCall fail, promise: err->${JSON.stringify(err)}`);
-}
 });
 ```
 
@@ -279,6 +277,7 @@ Launches the call screen and displays the dialed number. This API uses an asynch
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -319,6 +318,7 @@ Launches the call screen and displays the dialed number. This API uses a promise
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -472,6 +472,7 @@ Checks whether the called number is an emergency number. This API uses an asynch
 | callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -508,6 +509,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 | callback    | AsyncCallback&lt;boolean&gt;                       | Yes  | Callback used to return the result. - **true**: The called number is an emergency number.<br>- **false**: The called number is not an emergency number.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -549,6 +551,7 @@ Checks whether the called number is an emergency number based on the phone numbe
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -588,6 +591,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -625,6 +629,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | callback    | AsyncCallback&lt;string&gt;                  | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -670,6 +675,7 @@ A formatted phone number is a standard numeric string, for example, 555 0100.
 | Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -712,6 +718,7 @@ The phone number must match the specified country code. For example, for a China
 | callback    | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -757,6 +764,7 @@ All country codes are supported.
 | Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -797,10 +805,12 @@ Mutes the ringtone while it is playing. It does not work if the ringtone has bee
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -810,8 +820,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.muteRinger((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.muteRinger((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -835,13 +845,12 @@ Mutes the ringtone while it is playing. It does not work if the ringtone has bee
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -849,10 +858,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.muteRinger();
-promise.then(data => {
-    console.log(`muteRinger success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.muteRinger().then(() => {
+    console.log(`muteRinger success.`);
+}).catch((err) => {
     console.error(`muteRinger fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -878,6 +886,7 @@ Answers a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -892,8 +901,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.answerCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.answerCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -923,6 +932,7 @@ Answers a call. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -937,10 +947,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.answerCall(1);
-promise.then(data => {
-    console.log(`answerCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.answerCall(1).then(() => {
+    console.log(`answerCall success.`);
+}).catch((err) => {
     console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -965,6 +974,7 @@ Answers a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -979,8 +989,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.answerCall((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.answerCall((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1005,6 +1015,7 @@ Ends a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1019,8 +1030,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.hangUpCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.hangUpCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1050,6 +1061,7 @@ Ends a call. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1064,10 +1076,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.hangUpCall(1);
-promise.then(data => {
-    console.log(`hangUpCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.hangUpCall(1).then(() => {
+    console.log(`hangUpCall success.`);
+}).catch((err) => {
     console.error(`hangUpCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1092,6 +1103,7 @@ Ends a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1107,13 +1119,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.hangUpCall((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.hangUpCall((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## call.rejectCall<sup>7+</sup>
+## call.rejectCall<sup>9+</sup>
 
 rejectCall(callId: number, callback: AsyncCallback\<void>): void
 
@@ -1133,6 +1145,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1148,8 +1161,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.rejectCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.rejectCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1175,6 +1188,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1192,8 +1206,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-call.rejectCall(1, rejectMessageOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.rejectCall(1, rejectMessageOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1224,6 +1238,7 @@ Rejects a call. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1241,11 +1256,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-let promise = call.rejectCall(1, rejectMessageOptions);
-promise.then(data => {
-    console.log(`rejectCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
+call.reject(1, rejectMessageOptions).then(() => {
+    console.log(`reject success.`);
+}).catch((err) => {
+    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1269,6 +1283,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1283,8 +1298,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.rejectCall((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.rejectCall((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1309,6 +1324,7 @@ Rejects a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt;                      | Yes  | Callback used to return the result.    |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1326,8 +1342,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-call.rejectCall(rejectMessageOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.rejectCall(rejectMessageOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1352,6 +1368,7 @@ Holds a call based on the specified call ID. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1366,8 +1383,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.holdCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.holdCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1397,6 +1414,7 @@ Holds a call based on the specified call ID. This API uses a promise to return t
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1411,10 +1429,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.holdCall(1);
-promise.then(data => {
-    console.log(`holdCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.holdCall(1).then(() => {
+    console.log(`holdCall success.`);
+}).catch((err) => {
     console.error(`holdCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1439,6 +1456,7 @@ Unholds a call based on the specified call ID. This API uses an asynchronous cal
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1453,8 +1471,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.unHoldCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.unHoldCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1484,6 +1502,7 @@ Unholds a call based on the specified call ID. This API uses a promise to return
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1498,10 +1517,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.unHoldCall(1);
-promise.then(data => {
-    console.log(`unHoldCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.unHoldCall(1).then(() => {
+    console.log(`unHoldCall success.`);
+}).catch((err) => {
     console.error(`unHoldCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1526,6 +1544,7 @@ Switches a call. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1540,8 +1559,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.switchCall(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.switchCall(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1571,6 +1590,7 @@ Switches a call. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID| Error Message                                    |
@@ -1585,10 +1605,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.switchCall(1);
-promise.then(data => {
-    console.log(`switchCall success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.switchCall(1).then(() => {
+    console.log(`switchCall success.`);
+}).catch((err) => {
     console.error(`switchCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1611,6 +1630,7 @@ Combines two calls into a conference call. This API uses an asynchronous callbac
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1624,8 +1644,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.combineConference(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.combineConference(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1653,6 +1673,7 @@ Combines two calls into a conference call. This API uses a promise to return the
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1666,10 +1687,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.combineConference(1);
-promise.then(data => {
-    console.log(`combineConference success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.combineConference(1).then(() => {
+    console.log(`combineConference success.`);
+}).catch((err) => {
     console.error(`combineConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1692,6 +1712,7 @@ Obtains the main call ID. This API uses an asynchronous callback to return the r
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1735,6 +1756,7 @@ Obtains the main call ID. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1774,6 +1796,7 @@ Obtains the list of subcall IDs. This API uses an asynchronous callback to retur
 | callback | AsyncCallback<Array<string\>\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1816,6 +1839,7 @@ Obtains the list of subcall IDs. This API uses a promise to return the result.
 | Promise&lt;Array<string\>&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1855,6 +1879,7 @@ Obtains the list of call IDs in a conference. This API uses an asynchronous call
 | callback | AsyncCallback&lt;Array<string\>&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1897,6 +1922,7 @@ Obtains the list of call IDs in a conference. This API uses a promise to return 
 | Promise&lt;Array<string\>&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1938,6 +1964,7 @@ Obtains the call waiting status. This API uses an asynchronous callback to retur
 | callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br> <br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1983,6 +2010,7 @@ Obtains the call waiting status. This API uses a promise to return the result.
 | Promise&lt;[CallWaitingStatus](#callwaitingstatus7)&gt; | Promise used to return the result.<br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2026,6 +2054,7 @@ Sets the call waiting switch. This API uses an asynchronous callback to return t
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2040,8 +2069,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.setCallWaiting(0, true, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setCallWaiting(0, true, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2072,6 +2101,7 @@ Sets the call waiting switch. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2086,10 +2116,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.setCallWaiting(0, true);
-promise.then(data => {
-    console.log(`setCallWaiting success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.setCallWaiting(0, true).then(() => {
+    console.log(`setCallWaiting success.`);
+}).catch((err) => {
     console.error(`setCallWaiting fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2113,6 +2142,7 @@ Enables DTMF. This API uses an asynchronous callback to return the result.
 | callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2126,8 +2156,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.startDTMF(1, "0", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.startDTMF(1, "0", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2156,6 +2186,7 @@ Enables DTMF. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2169,10 +2200,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.startDTMF(1, "0");
-promise.then(data => {
-    console.log(`startDTMF success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.startDTMF(1, "0").then(() => {
+    console.log(`startDTMF success.`);
+}).catch((err) => {
     console.error(`startDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2195,6 +2225,7 @@ Stops DTMF. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2208,8 +2239,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.stopDTMF(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.stopDTMF(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2237,6 +2268,7 @@ Stops DTMF. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2250,10 +2282,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.stopDTMF(1);
-promise.then(data => {
-    console.log(`stopDTMF success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.stopDTMF(1).then(() => {
+    console.log(`stopDTMF success.`);
+}).catch((err) => {
     console.error(`stopDTMF fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2277,6 +2308,7 @@ Checks whether a call is an emergency call. This API uses an asynchronous callba
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2316,6 +2348,7 @@ Checks whether a call is an emergency call. This API uses a promise to return th
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2354,10 +2387,11 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 | Name  | Type                                                   | Mandatory| Description                      |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
-| type     | string                                                  | Yes  | Call details change.|
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | Yes  | Callback used to return the result.                |
+| type     | string                                                  | Yes  | Call event change. This field has a fixed value of **callDetailsChange**.|
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | Yes | Callback used to return the result.                |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2393,10 +2427,11 @@ Subscribes to **callEventChange** events. This API uses an asynchronous callback
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                           | Yes  | Call event change.|
+| type     | string                                           | Yes  | Call event change. This field has a fixed value of **callEventChange**.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2432,10 +2467,11 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 | Name  | Type                                                  | Mandatory| Description                      |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                                 | Yes  | Call disconnection cause.|
+| type     | string                                                 | Yes  | Call disconnection cause. This field has a fixed value of **callDisconnectedCause**.|
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2471,10 +2507,11 @@ Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback t
 
 | Name  | Type                                        | Mandatory| Description                 |
 | -------- | -------------------------------------------- | ---- | --------------------- |
-| type     | string                                       | Yes  | Man-machine interface (MMI) code result.|
+| type     | string                                       | Yes  | MMI code result. This field has a fixed value of **mmiCodeResult**.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | Yes  | Callback used to return the result.           |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2510,10 +2547,11 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 | Name  | Type                                                    | Mandatory| Description                              |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                   | Yes  | IMS registration status change.|
+| type     | string                                                   | Yes  | Call details change. This field has a fixed value of **callDetailsChange**.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result.                        |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2549,10 +2587,11 @@ Unsubscribes from **callEventChange** events. This API uses an asynchronous call
 
 | Name  | Type                                            | Mandatory| Description                              |
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
-| type     | string                                           | Yes  | Call event change.|
+| type     | string                                           | Yes  | Call event change. This field has a fixed value of **callEventChange**.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result.                        |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2587,11 +2626,12 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 **Parameters**
 
 | Name  | Type                                                      | Mandatory| Description                |
-| -------- | ---------------------------------------------------------- | ---- | -------------------- |
-| type     | 'callDisconnectedCause'                                    | Yes  | Call disconnection cause.|
-| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails9)> | No  | Callback used to return the result.          |
+| -------- | ---------------------------------------------------------- | ---- | ------------------- |
+| type     | string                                                     | Yes  | Call disconnection cause. This field has a fixed value of **callDisconnectedCause**.|
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | No  | Callback used to return the result.          |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2625,12 +2665,13 @@ Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory| Description       |
+| Name  | Type                                             | Mandatory| Description       |
 | -------- | ------------------------------------------------ | ---- | ----------- |
-| type     | 'mmiCodeResult'                                  | Yes  | Defines the MMI code result.|
-| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | No  | Callback used to return the result. |
+| type     | string                                           | Yes  | MMI code result. This field has a fixed value of **mmiCodeResult**.|
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | No  | Callback used to return the result. |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2667,6 +2708,7 @@ Checks whether a new call is allowed. This API uses an asynchronous callback to 
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2703,6 +2745,7 @@ Checks whether a new call is allowed. This API uses a promise to return the resu
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2742,6 +2785,7 @@ Separates calls from a conference call. This API uses an asynchronous callback t
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2755,8 +2799,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.separateConference(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.separateConference(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2784,6 +2828,7 @@ Separates calls from a conference call. This API uses a promise to return the re
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2797,10 +2842,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.separateConference(1);
-promise.then(data => {
-    console.log(`separateConference success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.separateConference(1).then(() => {
+    console.log(`separateConference success.`);
+}).catch((err) => {
     console.error(`separateConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2826,6 +2870,7 @@ Obtains the call restriction status. This API uses an asynchronous callback to r
 | callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | Yes  | Callback used to return the result.                |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2872,6 +2917,7 @@ Obtains the call restriction status. This API uses a promise to return the resul
 | Promise&lt;[RestrictionStatus](#restrictionstatus8)&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2915,6 +2961,7 @@ Sets the call restriction status. This API uses an asynchronous callback to retu
 | callback | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2934,8 +2981,8 @@ let callRestrictionInfo={
     password: "123456",
     mode: 1
 }
-call.setCallRestriction(0, callRestrictionInfo, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setCallRestriction(0, callRestrictionInfo, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2966,6 +3013,7 @@ Sets the call restriction status. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2985,10 +3033,9 @@ let callRestrictionInfo={
     password: "123456",
     mode: 1
 }
-let promise = call.setCallRestriction(0, callRestrictionInfo);
-promise.then(data => {
-    console.log(`setCallRestriction success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.setCallRestriction(0, callRestrictionInfo).then(() => {
+    console.log(`setCallRestriction success.`);
+}).catch((err) => {
     console.error(`setCallRestriction fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3014,6 +3061,7 @@ Obtains call transfer information. This API uses an asynchronous callback to ret
 | callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | Yes  | Callback used to return the result.            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3060,6 +3108,7 @@ Obtains call transfer information. This API uses a promise to return the result.
 | Promise&lt;[CallTransferResult](#calltransferresult8)&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3103,6 +3152,7 @@ Sets call transfer information. This API uses an asynchronous callback to return
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3122,8 +3172,8 @@ let callTransferInfo={
     type: 1,
     settingType: 1
 }
-call.setCallTransfer(0, callTransferInfo, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setCallTransfer(0, callTransferInfo, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3154,6 +3204,7 @@ Sets call transfer information. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3173,10 +3224,9 @@ let callTransferInfo={
     type: 1,
     settingType: 1
 }
-let promise = call.setCallTransfer(0, callTransferInfo);
-promise.then(data => {
-    console.log(`setCallTransfer success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.setCallTransfer(0, callTransferInfo).then(() => {
+    console.log(`setCallTransfer success.`);
+}).catch((err) => {
     console.error(`setCallTransfer fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3200,6 +3250,7 @@ Checks whether the ringtone is playing. This API uses an asynchronous callback t
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3239,6 +3290,7 @@ Checks whether the ringtone is playing. This API uses a promise to return the re
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3278,6 +3330,7 @@ Sets call muting. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3291,8 +3344,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.setMuted((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setMuted((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3314,6 +3367,7 @@ Sets call muting. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3327,10 +3381,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.setMuted();
-promise.then(data => {
-    console.log(`setMuted success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.setMuted().then(() => {
+    console.log(`setMuted success.`);
+}).catch((err) => {
     console.error(`setMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3352,6 +3405,7 @@ Cancels call muting. This API uses an asynchronous callback to return the result
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3365,8 +3419,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.cancelMuted((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.cancelMuted((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3388,6 +3442,7 @@ Cancels call muting. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3401,10 +3456,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.cancelMuted();
-promise.then(data => {
-    console.log(`cancelMuted success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.cancelMuted().then(() => {
+    console.log(`cancelMuted success.`);
+}).catch((err) => {
     console.error(`cancelMuted fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3427,6 +3481,7 @@ Sets the audio device for a call. This API uses an asynchronous callback to retu
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3440,8 +3495,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.setAudioDevice(1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setAudioDevice(1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3465,6 +3520,7 @@ Sets the audio device for a call based on the specified options. This API uses a
 | callback | AsyncCallback&lt;void&gt;                  | Yes  | Callback used to return the result.    |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3481,8 +3537,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.setAudioDevice(1, audioDeviceOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3511,6 +3567,7 @@ Sets the audio device for a call based on the specified options. This API uses a
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3527,10 +3584,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-let promise = call.setAudioDevice(1, audioDeviceOptions);
-promise.then(data => {
-    console.log(`setAudioDevice success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.setAudioDevice(1, audioDeviceOptions).then(() => {
+    console.log(`setAudioDevice success.`);
+}).catch((err) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3554,6 +3610,7 @@ Joins a conference call. This API uses an asynchronous callback to return the re
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3570,8 +3627,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
-call.joinConference(1, callNumberList, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.joinConference(1, callNumberList, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3599,6 +3656,7 @@ Joins a conference call. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3615,10 +3673,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
 ];
-let promise = call.joinConference(1, callNumberList);
-promise.then(data => {
-    console.log(`joinConference success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.joinConference(1, callNumberList).then(() => {
+    console.log(`joinConference success.`);
+}).catch((err) => {
     console.error(`joinConference fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3642,6 +3699,7 @@ Updates the IMS call mode. This API uses an asynchronous callback to return the 
 | callback | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.    |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3655,8 +3713,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.updateImsCallMode(1, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.updateImsCallMode(1, 1, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3684,6 +3742,7 @@ Updates the IMS call mode. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3697,10 +3756,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.updateImsCallMode(1, 1);
-promise.then(data => {
-    console.log(`updateImsCallMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.updateImsCallMode(1, 1).then(() => {
+    console.log(`updateImsCallMode success.`);
+}).catch((err) => {
     console.error(`updateImsCallMode fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3725,6 +3783,7 @@ Enables the IMS switch. This API uses an asynchronous callback to return the res
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3739,8 +3798,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.enableImsSwitch(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.enableImsSwitch(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3769,6 +3828,7 @@ Enables the IMS switch. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3783,10 +3843,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.enableImsSwitch(0);
-promise.then(data => {
-    console.log(`enableImsSwitch success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.enableImsSwitch(0).then(() => {
+    console.log(`enableImsSwitch success.`);
+}).catch((err) => {
     console.error(`enableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3811,6 +3870,7 @@ Disables the IMS switch. This API uses an asynchronous callback to return the re
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -3825,8 +3885,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-call.disableImsSwitch(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.disableImsSwitch(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3844,20 +3904,21 @@ Disables the IMS switch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
+| Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
 
 **Return value**
 
-| Type               | Description                       |
+| Type               | Description                        |
 | ------------------- | --------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result. |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
-| ID|                  Error Message                   |
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
@@ -3869,10 +3930,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = call.disableImsSwitch(0);
-promise.then(data => {
-    console.log(`disableImsSwitch success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+call.disableImsSwitch(0).then(() => {
+    console.log(`disableImsSwitch success.`);
+}).catch((err) => {
     console.error(`disableImsSwitch fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3895,6 +3955,7 @@ Checks whether the IMS switch is enabled. This API uses an asynchronous callback
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3936,6 +3997,7 @@ Checks whether the IMS switch is enabled. This API uses a promise to return the 
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |

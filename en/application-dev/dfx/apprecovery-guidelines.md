@@ -1,4 +1,4 @@
-# Development of Application Recovery
+# Application Recovery Development
 
 ## When to Use
 
@@ -15,11 +15,11 @@ The application recovery APIs are provided by the **appRecovery** module, which 
 
 ### Available APIs
 
-| API                                                    | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void; | Enables the application recovery function.                               |
-| saveAppState(): boolean;                                     | Saves the ability status of an application.                           |
-| restartApp(): void;                                          | Restarts the current process. If there is saved ability status, it will be passed to the **want** parameter's **wantParam** attribute of the **onCreate** lifecycle callback of the ability.|
+| API                                                      | Description                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
+| enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void; | Enables the application recovery function.|
+| saveAppState(): boolean; | Saves the ability status of an application. |
+| restartApp(): void; | Restarts the current process. If there is saved ability status, it will be passed to the **want** parameter's **wantParam** attribute of the **onCreate** lifecycle callback of the ability.|
 
 The APIs are used for troubleshooting and do not return any exception. Therefore, you need to be familiar with when they are used.
 
@@ -40,21 +40,24 @@ Fault management is an important way for applications to deliver a better user e
 - Fault query indicates that [faultLogger](../reference/apis/js-apis-faultLogger.md) obtains the fault information using its query API.
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query the information about the last fault.
+
 ![Fault rectification process](./figures/fault_rectification.png)
 
 It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to process the exception. After the processing is complete, you can call the status saving API and restart the application.
+
 If you do not register [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
+
 If you have enabled application recovery, the framework first checks whether a fault allows for ability status saving and whether you have configured ability status saving. If so, [onSaveState](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of [Ability](../reference/apis/js-apis-app-ability-uiAbility.md) is called back. Finally, the application is restarted.
 
 ### Scenarios Supported by Application Fault Management APIs
 
 Common fault types include JavaScript application crash, application freezing, and C++ application crash. Generally, an application is closed when a crash occurs. Application freezing occurs when the application does not respond. The fault type can be ignored for the upper layer of an application. The recovery framework implements fault management in different scenarios based on the fault type.
 
-| Fault                                                    | Fault Listening| Status Saving| Automatic Restart| Log Query|
-| ------------------------------------------------------------ | -------- | -------- | -------- | -------- |
-| [JS_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Supported    | Supported    | Supported    | Supported    |
-| [APP_FREEZE](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported  | Not supported  | Supported    | Supported    |
-| [CPP_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported  | Not supported  | Not supported  | Supported    |
+| Fault  | Fault Listening | Status Saving| Automatic Restart| Log Query|
+| ----------|--------- |--------- |--------- |--------- |
+| [JS_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
+| [APP_FREEZE](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported|Not supported|Supported|Supported|
+| [CPP_CRASH](../reference/apis/js-apis-faultLogger.md#faulttype) | Not supported|Not supported|Not supported|Supported|
 
 **Status Saving** in the table header means status saving when a fault occurs. To protect user data as much as possible in the application freezing fault, you can adopt either the periodic or automatic way, and the latter will save user data when an ability is switched to the background.
 
@@ -95,7 +98,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 #### Actively Saving Status and Restoring Data
 
-- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback.
+- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback. 
 
 ```ts
   var registerId = -1;
@@ -108,7 +111,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
   }
 
   onWindowStageCreate(windowStage) {
-      // Main window is created. Set a main page for this ability.
+      // Main window is created, set main page for this ability
       console.log("[Demo] MainAbility onWindowStageCreate")
 
       globalThis.registerObserver = (() => {
@@ -125,7 +128,7 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 
 ```ts
   onSaveState(state, wantParams) {
-      // Save application data.
+      // Ability has called to save app data
       console.log("[Demo] MainAbility onSaveState")
       wantParams["myData"] = "my1234567";
       return AbilityConstant.onSaveResult.ALL_AGREE;
@@ -150,11 +153,11 @@ onCreate(want, launchParam) {
 }
 ```
 
-- Deregister **ErrorObserver callback**.
+- Unregister **ErrorObserver callback**.
 
 ```ts
 onWindowStageDestroy() {
-    // Main window is destroyed to release UI resources.
+    // Main window is destroyed, release UI related resources
     console.log("[Demo] MainAbility onWindowStageDestroy")
 
     globalThis.unRegisterObserver = (() => {
@@ -184,7 +187,7 @@ export default class MainAbility extends Ability {
     }
 
     onSaveState(state, wantParams) {
-        // Save application data.
+        // Ability has called to save app data
         console.log("[Demo] MainAbility onSaveState")
         wantParams["myData"] = "my1234567";
         return AbilityConstant.onSaveResult.ALL_AGREE;

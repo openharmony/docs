@@ -88,7 +88,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback<void>)
+## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
 off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
@@ -202,7 +202,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback<void>)
+## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
 off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
@@ -327,7 +327,7 @@ applicationContext.getRunningProcessInformation((err, data) => {
 
 ## ApplicationContext.killProcessesBySelf<sup>9+</sup>
 
-killProcessesBySelf(): Promise<void>;
+killProcessesBySelf(): Promise\<void>;
 
 Kills all the processes where the application is located. This API uses a promise to return the result.
 
@@ -352,7 +352,7 @@ applicationContext.killProcessesBySelf().then((data) => {
 
 ## ApplicationContext.killProcessesBySelf<sup>9+</sup>
 
-killProcessesBySelf(callback: AsyncCallback<void>);
+killProcessesBySelf(callback: AsyncCallback\<void>);
 
 Kills all the processes where the application is located. This API uses an asynchronous callback to return the result.
 
