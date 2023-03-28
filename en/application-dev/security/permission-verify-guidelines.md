@@ -6,7 +6,7 @@ To protect sensitive data and eliminate security threads on core abilities, you 
 
 ## Available APIs
 
-The table below lists only the API used in this guide. For more information, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
+The table below lists only the API used in this guide. For more information, see [Application Access Control](../reference/apis/js-apis-abilityAccessCtrl.md).
 
 | API                                                      | Description                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
