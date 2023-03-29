@@ -40,7 +40,7 @@
 
 - [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsShopping)
 
-- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Stack)
+- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Stack)
 
 - [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAdaptivePortalList)
 
