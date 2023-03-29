@@ -5,6 +5,7 @@ System capability (SysCap) refers to a relatively independent feature in the ope
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs provided by this module are system APIs.
 
 
