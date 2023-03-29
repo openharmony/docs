@@ -34,20 +34,20 @@
 
 兼容JS的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/AtomicLayout)
+- [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/AtomicLayout)
 
-- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/JsFA)
+- [`JsFA`：FA示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsFA)
 
-- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/JsShopping)
+- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsShopping)
 
-- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Stack)
+- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Stack)
 
-- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/JsAdaptivePortalList)
+- [`JsAdaptivePortalList`：多设备自适应的效率型首页（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAdaptivePortalList)
 
-- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/JsAdaptivePortalPage)
+- [`JsAdaptivePortalPage`：多设备自适应的FA页面（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAdaptivePortalPage)
 
-- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/JsGallery)
+- [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsGallery)
 
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/UI/Badge)
+- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Badge)
 
 - [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)

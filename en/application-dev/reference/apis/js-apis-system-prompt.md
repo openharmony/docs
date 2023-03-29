@@ -75,7 +75,7 @@ export default {
          },            
        ],            
        success: function(data) {                
-         console.log('dialog success callback£¬click button : ' + data.index);            
+         console.log('dialog success callbackï¼Œclick button : ' + data.index);            
        },            
        cancel: function() {                
          console.log('dialog cancel callback');            

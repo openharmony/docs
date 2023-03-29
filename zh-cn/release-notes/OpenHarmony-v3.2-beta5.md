@@ -174,10 +174,10 @@ Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
-| ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
-| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
-| 元能力 | [无障碍扩展服务](https://gitee.com/openharmony/applications_app_samples/commits/monthly_20221018/ability/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTs |
+| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
+| ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
+| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
+| 元能力 | [无障碍扩展服务](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTs |
 
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。

@@ -76,4 +76,4 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/ServiceExtAbility)
+- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/ServiceExtAbility)

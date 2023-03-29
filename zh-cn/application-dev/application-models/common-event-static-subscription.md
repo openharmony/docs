@@ -101,7 +101,4 @@
         "xxx"
     }
     ```
-## 相关示例
-
-针对StaticSubscriberExtensionAbility开发，可参考如下实例：[StaticSubscriber：静态订阅（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StaticSubscriber)
 

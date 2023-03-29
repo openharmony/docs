@@ -283,8 +283,8 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   ```
 
 
-## 相关示例
+## 相关实例
 
-针对ServiceExtensionAbility开发，有以下相关示例可供参考：
+针对ServiceExtensionAbility开发，有以下相关实例可供参考：
 
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/monthly_20221018/ability/ServiceExtAbility)
+- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/ServiceExtAbility)
