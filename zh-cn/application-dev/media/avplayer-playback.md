@@ -482,9 +482,3 @@ export class AVPlayerDemo {
   }
 }
 ```
-
-## 相关示例
-
-针对AVPlayer播放器开发，有以下相关示例可供参考：
-
-待补充
