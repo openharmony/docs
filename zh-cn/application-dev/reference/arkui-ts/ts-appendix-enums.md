@@ -259,7 +259,7 @@
 | Start    | 元素在Flex容器中，交叉轴方向首部对齐。                       |
 | Center   | 元素在Flex容器中，交叉轴方向居中对齐。                       |
 | End      | 元素在Flex容器中，交叉轴方向底部对齐。                       |
-| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充，在未设置尺寸时，拉伸到容器尺寸。 |
+| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
 | Baseline | 元素在Flex容器中，交叉轴方向文本基线对齐。                   |
 
 ## FlexDirection
