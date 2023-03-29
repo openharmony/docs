@@ -293,7 +293,7 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 
 rebootDevice(reason: string): void
 
-> **说明：**<br>从API version 9开始不再维护，建议使用[power.reboot](#powerreboot9)替代。
+> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用[power.reboot](#powerreboot9)替代，替代接口能力仅对系统应用开放。
 
 重启设备。
 

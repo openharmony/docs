@@ -14,110 +14,6 @@
 import call from '@ohos.telephony.call';
 ```
 
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
-
-拨打电话。使用callback异步回调。
-
->**说明：** 
->
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
-
-**需要权限**：ohos.permission.PLACE_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名      | 类型                         | 必填 | 说明                                    |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | 是   | 电话号码。                              |
-| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
-
-**示例：**
-
-```js
-call.dial("138xxxxxxxx", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
-
-拨打电话，可设置通话参数。使用callback异步回调。
-
->**说明：** 
->
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
-
-**需要权限**：ohos.permission.PLACE_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名      | 类型                         | 必填 | 说明                                    |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | 是   | 电话号码。                              |
-| options     | [DialOptions](#dialoptions)  | 是   | 通话参数，选择为语音通话还是视频通话。  |
-| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
-
-**示例：**
-
-```js
-call.dial("138xxxxxxxx", {
-    extras: false
-}, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
-
-拨打电话，可设置通话参数。使用Promise异步回调。
-
->**说明：** 
->
->从API version 6 开始支持，从API version 9 开始废弃，建议使用[dialCall](#calldialcall9)替代。
-
-**需要权限**：ohos.permission.PLACE_CALL
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名      | 类型                        | 必填 | 说明                                   |
-| ----------- | --------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                      | 是   | 电话号码。                             |
-| options     | [DialOptions](#dialoptions) | 否   | 通话参数，选择为语音通话还是视频通话。 |
-
-**返回值：**
-
-| 类型                   | 说明                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | 以Promise形式返回拨打电话的结果，返回true为成功，false为失败。 |
-
-**示例：**
-
-```js
-let promise = call.dial("138xxxxxxxx", {
-    extras: false
-});
-promise.then(data => {
-    console.log(`dial success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-
 ## call.dialCall<sup>9+</sup>
 
 dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
@@ -157,7 +53,6 @@ call.dialCall("138xxxxxxxx", (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
-
 
 ## call.dialCall<sup>9+</sup>
 
@@ -204,7 +99,6 @@ call.dialCall("138xxxxxxxx", {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
-
 
 ## call.dialCall<sup>9+</sup>
 
@@ -260,6 +154,108 @@ promise.then(() => {
 });
 ```
 
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
+
+拨打电话。使用callback异步回调。
+
+>**说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                    |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                              |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
+
+**示例：**
+
+```js
+call.dial("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
+
+拨打电话，可设置通话参数。使用callback异步回调。
+
+>**说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                                    |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | 是   | 电话号码。                              |
+| options     | [DialOptions](#dialoptions)  | 是   | 通话参数，选择为语音通话还是视频通话。  |
+| callback    | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true为成功，false为失败。 |
+
+**示例：**
+
+```js
+call.dial("138xxxxxxxx", {
+    extras: false
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
+
+拨打电话，可设置通话参数。使用Promise异步回调。
+
+>**说明：**
+>
+> 从API version 6 开始支持，从API version 9 开始废弃。请使用[dialCall](#calldialcall9)替代，替代接口能力仅对系统应用开放。
+
+**需要权限**：ohos.permission.PLACE_CALL
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名      | 类型                        | 必填 | 说明                                   |
+| ----------- | --------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                      | 是   | 电话号码。                             |
+| options     | [DialOptions](#dialoptions) | 否   | 通话参数，选择为语音通话还是视频通话。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | 以Promise形式返回拨打电话的结果，返回true为成功，false为失败。 |
+
+**示例：**
+
+```js
+let promise = call.dial("138xxxxxxxx", {
+    extras: false
+});
+promise.then(data => {
+    console.log(`dial success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.makeCall<sup>7+</sup>
 
