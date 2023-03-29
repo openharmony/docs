@@ -2674,4 +2674,4 @@ TLS通信的协议版本。
 
 | 类型                                                                   | 说明                   |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | 存储证书的数据和编码格式 |
+|[cert.EncodingBlob](js-apis-cert.md#datablob) | 存储证书的数据和编码格式 |
