@@ -221,20 +221,3 @@ export default class EntryAbility extends Ability {
     }
 }
 ```
-
-#### 故障Ability的重启恢复标记
-
-发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_BACK_TO_OTHER_MISSION_STACK](../reference/apis/js-apis-app-ability-wantConstant.md#wantConstant.Params)标记数据，并且值为true。
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        if (want.parameters[ABILITY_BACK_TO_OTHER_MISSION_STACK] != undefined &&
-            want.parameters[ABILITY_BACK_TO_OTHER_MISSION_STACK] == true) {
-            console.log("This ability need to recovery");
-        }
-    }
-}
-```
-
