@@ -47,7 +47,7 @@ Line(value?: {width?: string | number, height?: string | number})
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
 | strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
+| strokeWidth | Length | 1 | 否 | 设置线条宽度。 <br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
 ## 示例
