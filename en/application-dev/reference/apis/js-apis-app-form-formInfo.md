@@ -47,7 +47,7 @@ Enumerates the widget types.
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
 | JS      | 1    | JS widget.  |
-| eTS     | 2    | eTS widget.|
+| eTS     | 2    | ArkTS widget.|
 
 ## ColorMode
 
