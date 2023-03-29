@@ -63,7 +63,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
    });
 
    // Call startSharing to start network sharing of the specified type.
-   sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 ```
@@ -88,7 +88,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
    });
 
    // Call stopSharing to stop network sharing of the specified type.
-   sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 ```
@@ -107,7 +107,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
    import sharing from '@ohos.net.sharing'
 
    // Call startSharing to start network sharing of the specified type.
-   sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 
@@ -118,7 +118,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
    });
 
    // Call stopSharing to stop network sharing of the specified type and clear the data volume of network sharing.
-   sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
        console.log(JSON.stringify(error));
    });
 
