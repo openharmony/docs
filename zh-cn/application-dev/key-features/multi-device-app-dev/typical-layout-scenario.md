@@ -371,6 +371,7 @@ struct SideBarSample {
 
   @Builder itemBuilder(index: number) {
     Text(images[index].label)
+      .width('100%')
       .fontSize(24)
       .fontWeight(FontWeight.Bold)
       .borderRadius(5)
