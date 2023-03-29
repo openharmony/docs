@@ -23,7 +23,7 @@
 | 参数名         | 参数类型       | 必填        | 参数描述                              |
 | ----------- | ---------- | ------| --------------------------------- |
 | type        | ButtonType | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
-| stateEffect | boolean    | 否    |  按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true |
+| stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
 
 **方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
@@ -35,11 +35,12 @@
 
 | 参数名     | 参数类型                                | 必填   | 参数描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。       |
+| label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
 | options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见方法1参数说明。 |
 
-
 ## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称          | 参数类型           | 描述                                |
 | ----------- | ----------- | --------------------------------- |
@@ -74,7 +75,9 @@
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#TextHeightAdaptivePolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
 | font                 | [Font](ts-types.md#Font)                                     | 否   | 设置Label文本字体样式。                                      |
+## 事件
 
+支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
 ```ts

@@ -17,8 +17,9 @@
 
 ImageAnimator()
 
-
 ## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 参数名称     | 参数类型                  |参数描述                   |
 | ---------- | ----------------------- |-------- |
@@ -42,8 +43,9 @@ ImageAnimator()
 | left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0    |
 | duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0               |
 
-
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |

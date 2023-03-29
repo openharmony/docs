@@ -35,6 +35,8 @@ TextPicker(options?: {range: string[]|Resource|TextPickerRangeContent[], selecte
 
 ## 属性
 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | defaultPickerItemHeight | number \| string | 设置Picker各选择项的高度。 |
