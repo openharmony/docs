@@ -53,7 +53,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Scroller
 
-Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. Currently, this controller can be bound to the **\<List>**, **\<Scroll>** and **\<ScrollBar>** components. One controller can control only one container component.
+Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **\<List>**, **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<WaterFlow>**.
 
 
 ### Objects to Import
@@ -74,8 +74,8 @@ Scrolls to the specified position.
 
 | Name   | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | Length                                                       | Yes  | Horizontal scrolling offset.                                              |
-| yOffset   | Length                                                       | Yes  | Vertical scrolling offset.                                              |
+| xOffset   | number | string                                              | Yes  | Horizontal scrolling offset.                                              |
+| yOffset   | number | string                                              | Yes  | Vertical scrolling offset.                                              |
 | animation | {<br>duration: number,<br>curve: [Curve](ts-appendix-enums.md#curve)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
 
 
@@ -84,7 +84,7 @@ Scrolls to the specified position.
 scrollEdge(value: Edge): void
 
 
-Scrolls to the edge of the container.
+Scrolls to the edge of the container, regardless of the scroll axis direction. **Edge.Top** and **Edge.Start** produce the same effect, and **Edge.Bottom** and **Edge.End** produce the same effect.
 
 **Parameters**
 
@@ -104,7 +104,7 @@ Scrolls to the next or previous page.
 | Name      | Type   | Mandatory  | Description                          |
 | --------- | ------- | ---- | ------------------------------ |
 | next      | boolean | Yes   | Whether to turn to the next page. The value **true** means to scroll to the next page, and **false** means to scroll to the previous page.|
-| direction<sup>(deprecated) </sup> | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br> This API is deprecated since API version 9.               |
+| direction<sup>(deprecated)</sup> | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br> This API is deprecated since API version 9.               |
 
 
 ### currentOffset
@@ -150,7 +150,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  Only the **\<Scroll>** component is supported.
+>  Only the **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<List>** components are supported.
 
 **Parameters**
 
