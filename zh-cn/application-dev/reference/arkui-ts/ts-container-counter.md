@@ -18,6 +18,10 @@ Counter()
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+## 属性
+
+支持[通用属性](ts-universal-attributes-size.md)。
+
 
 ## 事件
 

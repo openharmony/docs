@@ -11,6 +11,10 @@
 
 支持单个子组件。
 
+>  **说明：**
+>
+>  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](quick-start/arkts-rendering-control.md#数据懒加载)）。
+
 
 ## 接口
 
@@ -23,13 +27,15 @@ TabContent()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。 |
+| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
 
 >  **说明：**
-> - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
-> - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
-> - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
+>
+>  - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
+>  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
+>  - vertical属性为false值，交换上述2个限制。
+>  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
 ## SubTabBarStyle<sup>9+</sup>
 

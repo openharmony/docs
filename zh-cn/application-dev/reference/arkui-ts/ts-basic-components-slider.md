@@ -24,9 +24,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：0 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
-| max | number | 否 | 设置最大值。<br/>默认值：100 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max] |
-| style | SliderStyle | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
+| max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
+| style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。<br/>默认值：false |
 
@@ -39,9 +39,6 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
 
-
-## 属性
-
 支持除触摸热区以外的通用属性设置。
 
 | 名称 | 参数类型 | 描述 |
@@ -51,7 +48,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的属性值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距，或者边距比较小时，tip会被截断。 |
-| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 
 
 ## 事件

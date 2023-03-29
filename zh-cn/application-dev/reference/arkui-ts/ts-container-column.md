@@ -22,7 +22,7 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>从API version 9开始，space为负数时不生效。<br/>默认值：0 |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素垂直方向间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 ## 属性
 
