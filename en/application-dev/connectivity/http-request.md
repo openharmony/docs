@@ -81,8 +81,3 @@ httpRequest.request(
     }
 );
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop the HTTP data request feature:
-- [`HTTP`: Data Request (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [HTTP Communication (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)
