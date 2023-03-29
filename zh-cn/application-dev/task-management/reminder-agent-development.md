@@ -19,7 +19,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. [使能通知开关](../notification/notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
 
