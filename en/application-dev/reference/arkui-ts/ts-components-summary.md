@@ -293,7 +293,7 @@
     A component that is used to display widgets.
 - [Menu](ts-basic-components-menu.md)
 
-    A component that is used to present a vertical list of items to the user. Preferentially used on computers.
+    A component that is used to present a vertical list of items to the user. 
 - [MenuItem](ts-basic-components-menuitem.md)
 
     A component that is used to represent an item in a menu.
