@@ -20,7 +20,7 @@
 
    > **NOTE**
    >
-   > You can use the [low-code development](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652) mode apart from the traditional coding approach.
+   > You can use the low-code development mode apart from the traditional coding approach.
    >
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
    >
