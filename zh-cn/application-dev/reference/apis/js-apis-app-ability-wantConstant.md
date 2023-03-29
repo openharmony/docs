@@ -26,7 +26,6 @@ want的Params操作的常量。
 | ABILITY_RECOVERY_RESTART | ohos.aafwk.param.AbilityRecoveryRestart | 指示当前Ability是否发生了故障恢复重启。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 
 
-
 ## wantConstant.Flags
 
 Flags说明。用于表示处理Want的方式。
