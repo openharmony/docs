@@ -45,7 +45,7 @@ The following table provides only a brief description of related APIs. For detai
 
 The following example illustrates how to log and subscribe to button click events of users.
 
-1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to subscribe to button click events. The complete sample code is as follows: 
+1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to subscribe to button click events. The complete sample code is as follows: 
 
    ```js
    import hilog from '@ohos.hilog';
