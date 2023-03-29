@@ -7,13 +7,15 @@ The HUKS provides the capability of randomly generating keys for services. For a
 
 **<font size=5>How to Develop</font>**
 
-Use [huks.generateKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. You need to pass in the key alias in **keyAlias**, key attributes in **options**, and **callback** to return the result asynchronously. For details about the APIs, see [HUKS](../reference/apis/js-apis-huks.md).
+Use [huks.generateKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. You need to pass in the key alias in **keyAlias**, key property set in **options**, and **callback** to return the result asynchronously. For details about the APIs, see [HUKS](../reference/apis/js-apis-huks.md).
 
-Procedure:
+**Procedure**
 
 1. Determine the key alias.
-2. Initialize the key attributes.<br>Use [HuksParam](../reference/apis/js-apis-huks.md#huksparam) to encapsulate key attributes and use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions). The parameters [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose) are mandatory.
+2. Initialize the key property set.<br>Use [HuksParam](../reference/apis/js-apis-huks.md#huksparam) to encapsulate key properties and use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions). The parameters [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose) are mandatory.
 3. Pass in the key alias and key parameter set to generate a key.
+
+
 
 > **NOTE**
 >
@@ -28,7 +30,7 @@ Procedure:
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let keyAlias = 'dh_key';
 let properties = new Array();
@@ -103,11 +105,11 @@ Once a key is imported to the HUKS, its plaintext will not be exposed outside th
 ### Importing a Key in Plaintext
 
 
-Use [huks.importKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksimportkeyitem9) to import a key in plaintext. You need to pass in the key alias in **keyAlias**, key material and attributes in **options**, and **callback** to return the result asynchronously. For details about the APIs, see [HUKS](../reference/apis/js-apis-huks.md).
+Use [huks.importKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksimportkeyitem9) to import a key in plaintext. You need to pass in the key alias in **keyAlias**, key material and property set in **options**, and **callback** to return the result asynchronously. For details about the APIs, see [HUKS](../reference/apis/js-apis-huks.md).
 
 
 1. Determine the key alias.
-2. Encapsulate the key material and key attributes.<br>The key material must comply with [HUKS key material formats](./huks-appendix.md#key-material-formats). The **inData** value of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions) must be in the Uint8Array format. Encapsulate key attributes in [HuksParam](../reference/apis/js-apis-huks.md#huksparam), and use a **HuksParam** array to assign values to the **properties** field. The key attributes must contain [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose).
+2. Encapsulate the key material and key property set.<br>The key material must comply with [HUKS key material formats](./huks-appendix.md#key-material-formats). The **inData** value of [HuksOptions](../reference/apis/js-apis-huks.md#huksoptions) must be in the Uint8Array format. Encapsulate key properties in [HuksParam](../reference/apis/js-apis-huks.md#huksparam), and use a **HuksParam** array to assign values to the **properties** field. The key properties must contain [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose).
 3. Import the key.
 
 
@@ -131,7 +133,7 @@ let plainTextSize32 = new Uint8Array([
 let keyAlias = 'AES256Alias_sample';
 
 /*
- * Encapsulate the key attributes and key material.
+ * Encapsulate the key properties and key material.
  */ 
 let properties = new Array();
 properties[0] = {
@@ -223,7 +225,7 @@ You need to use the APIs for generating a key, exporting a public key, importing
 | -------------------------------------- | ----------------------------|
 |generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void| Generates a key.|
 |exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksReturnResult>) : void| Exports the public key of a key pair.|
-|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|Imports an wrapped key.|
+|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|Imports a wrapped key.|
 |deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|Deletes a key.|
 
 >**NOTE**<br>The public key plaintext material returned by **exportKeyItem()** is encapsulated in X.509 format, and the key material to be imported by **importWrappedKeyItem()** must be encapsulated in **Length<sub>Data</sub>-Data** format. Specifically, the application needs to request a Uint8Array and encapsulate the Uint8Array in the sequence listed in the following table.
@@ -286,9 +288,9 @@ let inputEccPair = new Uint8Array([
     ]);
 
 /*
- * Encapsulate the key attributes.
+ * Encapsulate the key properties.
  */
-// Attributes for the key used for secure import.
+// Property set for the key used for secure import.
 let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -315,7 +317,7 @@ let huksOptions = {
     inData: inputEccPair
 };
 
-// Attribute set of the AES256 key to be imported. 
+// Property set of the key to be imported: AES256
 let importProperties = new Array();
 importProperties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -595,7 +597,7 @@ Check whether the key exists. If yes, the key is imported successfully.
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let keyAlias = 'importAlias';
 let isKeyExist;
@@ -635,735 +637,323 @@ To ensure data confidentiality and integrity, you may need to encrypt or decrypt
 **General Development Process**
 
 The HUKS operates data based on key sessions. The general process is as follows:
-1. (Mandatory) Use [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session.<br>You need to pass in the key alias and key operation parameters to initialize a key session, and obtain a session handle. The key operation parameters must contain the parameters required by the cipher algorithm, including the cipher algorithm, key size, key purpose, working mode, padding mode, hash mode, IV, nonce, and AAD. If access control is set for the key, other parameters are required. For details, see [Key Access Control](#key-access-control).
-2. (Optional) Use [huks.updateSession()](../reference/apis/js-apis-huks.md#huksupdatesession9) to pass in data by segment.<br>Perform this step only if the data exceeds 100 KB or the cipher algorithm requires operations by data segment. Otherwise, skip this step.
-3. (Mandatory) Use [huks.finishSession()](../reference/apis/js-apis-huks.md#huksfinishsession9) to finalize the key session operation.<br>Pass in the last data segment and perform the key session operation. If an error occurs during the process or the data passed in is not required, use [huks.abortSession()](../reference/apis/js-apis-huks.md#huksabortsession9) to abort the session.
+1. (Mandatory) Use [huks.initSession()](../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session.<br>You need to pass in the key alias and key operation parameters to initialize a key session, and obtain the session handle. The key operation parameters must contain the parameters required by the cipher algorithm, including the cipher algorithm, key size, key purpose, working mode, padding mode, hash mode, IV, nonce, and AAD. If access control is set for the key, other parameters are required. For details, see [Key Access Control](#key-access-control). This step is mandatory.
+2. (Optional) Use [huks.updateSession()](../reference/apis/js-apis-huks.md#huksupdatesession9) to pass in data by segment. Perform this step only if the data exceeds 100 KB or the cryptographic algorithm requires operations by data segment. Otherwise, skip this step. This step is optional.
+3. (Mandatory) Use [huks.finishSession()](../reference/apis/js-apis-huks.md#huksfinishsession9) to finalize the key session operation.<br>Pass in the last data segment and perform the key session operation. If an error occurs during the process or the data passed in is not required, use [huks.abortSession()](../reference/apis/js-apis-huks.md#huksabortsession9) to abort the session. This step is mandatory.
 
 ### Encryption and Decryption
 ```ts
 /*
- * Encrypt and decrypt data using an SM4 128-bit key and return the result in a callback.
+ * The following uses an AES 128-bit key and callback-based APIs as an example.
  */
 import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
 
-/*
- * Determine the key alias and encapsulate the key attributes.
- */
-let srcKeyAlias = 'sm4_Key';
-let IV = '0000000000000000';
-let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
-let encryptUpdateResult = new Array();
+
+let aesKeyAlias = 'test_aesKeyAlias';
 let handle;
-let updateResult = new Array();
-let finishOutData;
-
-/* Configure the key generation parameter set and key encryption parameter set. */
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-}
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-let huksOptions = {
-    properties: properties,
-    inData: new Uint8Array(new Array())
-}
-
-let propertiesEncrypt = new Array();
-propertiesEncrypt[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-}
-propertiesEncrypt[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-}
-propertiesEncrypt[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-propertiesEncrypt[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-propertiesEncrypt[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-propertiesEncrypt[5] = {
-    tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV),
-}
-let encryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-
-/* Modify the key encryption parameter set to the decryption parameter set. */
-propertiesEncrypt.splice(1, 1, {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-});
-let decryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
+let plainText = '123456';
+let IV = '001122334455';
+let cipherData:Uint8Array;
+let plainData:Uint8Array;
 
 function StringToUint8Array(str) {
-    let arr = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
 }
 
 function Uint8ArrayToString(fileData) {
-    let dataString = '';
-    for (let i = 0; i < fileData.length; i++) {
-        dataString += String.fromCharCode(fileData[i]);
-    }
-    return dataString;
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
 }
 
-function generateKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.generateKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicGenKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback generateKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await generateKeyItem(keyAlias, huksOptions, throwObject)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function initSession(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksSessionHandle> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.initSession(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicInitFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doInit`);
-    let throwObject = {isThrow: false};
-    try {
-        await initSession(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            })
-            .catch((error) => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doInit failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doInit input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function updateSession(handle:number, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.updateSession(handle, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicUpdateFunc(handle:number, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doUpdate`);
-    let throwObject = {isThrow: false};
-    try {
-        await updateSession(handle, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doUpdate success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doUpdate failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function finishSession(handle:number, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.finishSession(handle, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicFinishFunc(handle:number, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doFinish`);
-    let throwObject = {isThrow: false};
-    try {
-        await finishSession(handle, huksOptions, throwObject)
-            .then ((data) => {
-                finishOutData = data.outData;
-                console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doFinish failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doFinish input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.deleteKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback deleteKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await deleteKeyItem(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: deletKeeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-async function testSm4Cipher() {
-    /* Generate a key. */
-    await publicGenKeyFunc(srcKeyAlias, huksOptions);
-
-    /* Encrypt the key. */
-    await publicInitFunc(srcKeyAlias, encryptOptions);
-
-    encryptOptions.inData = StringToUint8Array(cipherInData);
-    await publicUpdateFunc(handle, encryptOptions);
-    encryptUpdateResult = updateResult;
-
-    encryptOptions.inData = new Uint8Array(new Array());
-    await publicFinishFunc(handle, encryptOptions);
-    if (finishOutData === cipherInData) {
-        console.info('test finish encrypt err ');
-    } else {
-        console.info('test finish encrypt success');
-    }
-
-    /* Decrypt the key. */
-    await publicInitFunc(srcKeyAlias, decryptOptions);
-
-    decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-    await publicUpdateFunc(handle, decryptOptions);
-
-    decryptOptions.inData = new Uint8Array(new Array());
-    await publicFinishFunc(handle, decryptOptions);
-    if (finishOutData === cipherInData) {
-        console.info('test finish decrypt success ');
-    } else {
-        console.info('test finish decrypt err');
-    }
-
-    await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
-}
-```
-
-### Signing and Signature Verification
-```ts
-/*
- * Generate and verify a signature using an SM2 key and return the result in a callback. 
- */
-import huks from '@ohos.security.huks';
-
-/*
- * Determine the key alias and encapsulate the key attributes.
- */
-let generateKeyAlias = 'sm2_Key';
-let importKeyAlias = 'importKeyAlias';
-let signVerifyInData1 = 'signVerifyInDataForTestFirstText';
-let signVerifyInData2 = 'signVerifyInDataForTestSecondText';
-let signVerifyInData = [signVerifyInData1, signVerifyInData2];
-let handle;
-let exportKey;
-let finishOutData;
-
-/* Configure the parameter set used for generating the key. */
-let generateKeyProperties = new Array();
-generateKeyProperties[0] = {
+function GetAesGenerateProperties() {
+  var properties = new Array();
+  var index = 0;
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM2,
-}
-generateKeyProperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY,
-}
-generateKeyProperties[2] = {
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  };
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256,
-}
-generateKeyProperties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SM3,
-}
-let genrateKeyOptions = {
-    properties: generateKeyProperties,
-    inData: new Uint8Array(new Array())
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+           huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }
+  return properties;
 }
 
-/* Configure the parameter set used for signing. */
-let signProperties = new Array();
-signProperties[0] = {
+function GetAesEncryptProperties() {
+  var properties = new Array();
+  var index = 0;
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM2,
-}
-signProperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
-}
-signProperties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SM3,
-}
-signProperties[3] = {
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  };
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256,
-}
-let signOptions = {
-    properties: signProperties,
-    inData: new Uint8Array(new Array())
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }
+  return properties;
 }
 
-/* Configure the parameter set used for signature verification. */
-let verifyProperties = new Array();
-verifyProperties[0] = {
+function GetAesDecryptProperties() {
+  var properties = new Array();
+  var index = 0;
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM2,
-}
-verifyProperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-}
-verifyProperties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SM3,
-}
-verifyProperties[3] = {
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  };
+  properties[index++] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256,
-}
-let verifyOptions = {
-    properties: verifyProperties,
-    inData: new Uint8Array(new Array())
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
+  };
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC
+  }
+  properties[index++] = {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: StringToUint8Array(IV)
+  }
+  return properties;
 }
 
-function StringToUint8Array(str) {
-    let arr = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
+async function GenerateAesKey() {
+  var genProperties = GetAesGenerateProperties();
+  var options = {
+    properties: genProperties
+  }
+  await huks.generateKeyItem(aesKeyAlias, options).then((data) => {
+    promptAction.showToast({
+      message: "An AES key is generated.",
+      duration: 2500,
+    })
+  }).catch((err)=>{
+    promptAction.showToast({
+      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
+      duration: 6500,
+    })
+  })
+}
+
+async function EncryptData() {
+    var encryptProperties = GetAesEncryptProperties();
+    var options = {
+        properties:encryptProperties,
+        inData: StringToUint8Array(plainText)
     }
-    return new Uint8Array(arr);
+    await huks.initSession(aesKeyAlias, options).then((data) => {
+      handle = data.handle;
+    }).catch((err)=>{
+      promptAction.showToast({
+        message: "Failed to initialize the key operation. Error code: "+ err.code +" Error message: "+ err.message,
+        duration: 6500,
+      })
+    })
+    await huks.finishSession(handle, options).then((data) => {
+      promptAction.showToast({
+        message: "Data encrypted successfully. Ciphertext: " + Uint8ArrayToString(data.outData),
+        duration: 6500,
+      })
+      cipherData = data.outData
+    }).catch((err)=>{
+      promptAction.showToast({
+        message: "An exception is captured in the encryption process. Error code: " + err.code +" Error message: "+ err.message,
+        duration: 6500,
+      })
+    })
 }
 
-function generateKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.generateKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
+async function DecryptData() {
+   var decryptOptions = GetAesDecryptProperties()
+   var options = {
+     properties:decryptOptions,
+     inData: cipherData
+   }
+  await huks.initSession(aesKeyAlias, options).then((data) => {
+    handle = data.handle;
+  }).catch((err)=>{
+    promptAction.showToast({
+      message: "Failed to initialize the key operation. Error code: "+ err.code +" Error message: "+ err.message,
+      duration: 6500,
+    })
+  })
+  await huks.finishSession(handle, options).then((data) => {
+    promptAction.showToast({
+      message: "Data is decrypted. Plaintext: " + Uint8ArrayToString(data.outData),
+      duration: 6500,
+    })
+  }).catch((err)=>{
+    promptAction.showToast({
+      message: "An exception is captured in the decryption process. Error code: " + err.code +" Error message: "+ err.message,
+      duration: 6500,
+    })
+  })
+}
+
+async function DeleteKey() {
+  let emptyOptions = {
+    properties:[]
+  }
+    await huks.deleteKeyItem(aesKeyAlias, emptyOptions).then((data) => {
+      promptAction.showToast({
+        message: "Key is deleted.",
+        duration: 6500,
+      })
+    }).catch((err)=>{
+      promptAction.showToast({
+        message: "Failed to delete the key. Error code: "+ err.code +" Error message: "+ err.message,
+        duration: 6500,
+      })
+    })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello Huks'
+  controller: TextInputController = new TextInputController();
+  build() {
+    Column() {
+      Row() {
+        Text('Enter the content to be encrypted.').fontSize(20).margin({ left: 2, top: 10 })
+      }
+
+      Row() {
+        TextInput({placeholder: 'Encrypt 123456 by default', controller: this.controller })
+          .placeholderColor(Color.Grey)
+          .placeholderFont({ size: 14, weight: 400 })
+          .caretColor(Color.Blue)
+          .width(400)
+          .height(40)
+          .margin(20)
+          .fontSize(14)
+          .fontColor(Color.Black)
+          .type(InputType.Normal)
+          .onChange((value: string) => {
+            This.message +='Plaintext entered: ' + value + '\n'
+            plainText = value
+          })
+          .margin({ top: 10 })
+      }
+
+      Row() {
+        Text('Encryption or decryption result') .fontSize(20).margin({ left: 2, top: 10 })
+      }
+
+      Row() {
+        TextInput({placeholder: 'Encryption and decryption result', controller: this.controller })
+          .placeholderColor(Color.Grey)
+          .placeholderFont({ size: 14, weight: 400 })
+          .caretColor(Color.Blue)
+          .width(400)
+          .height(40)
+          .margin(20)
+          .fontSize(14)
+          .fontColor(Color.Black)
+          .type(InputType.Normal)
+          .onChange((value: string) => {
+            This.message +='Plaintext entered: ' + value + '\n'
+            plainText = value
+          })
+          .margin({ top: 10 })
+      }
+
+      Row() {
+        Button({ type: ButtonType.Normal, stateEffect: true }) {
+          Text('generateAesKey')
+            .fontColor(Color.White)
+            .fontSize(20)
         }
-    });
-}
+        .borderRadius(8)
+        .width('45%')
+        .height('5%')
+        .backgroundColor(0x317aff)
+        .onClick(() => {
+          GenerateAesKey()
+        })
+        .margin(10)
 
-async function publicGenKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback generateKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await generateKeyItem(keyAlias, huksOptions, throwObject)
-            .then((data) => {
-                console.info(`callback: generateKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function initSession(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksSessionHandle> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.initSession(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
+        Button({ type: ButtonType.Normal, stateEffect: true }) {
+          Text('deleteAesKey')
+            .fontColor(Color.White)
+            .fontSize(20)
         }
-    });
-}
+        .borderRadius(8)
+        .width('45%')
+        .height('5%')
+        .backgroundColor(0x317aff)
+        .onClick(() => {
+          DeleteKey()
+        })
+        .margin(10)
+      }
 
-async function publicInitFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doInit`);
-    let throwObject = {isThrow: false};
-    try {
-        await initSession(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doInit success, data = ${JSON.stringify(data)}`);
-                handle = data.handle;
-            })
-            .catch((error) => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doInit failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doInit input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function updateSession(handle:number, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.updateSession(handle, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
+      Row() {
+        Button({ type: ButtonType.Normal, stateEffect: true }) {
+          Text('EncryptData')
+            .fontColor(Color.White)
+            .fontSize(20)
         }
-    });
-}
+        .borderRadius(8)
+        .width('45%')
+        .height('5%')
+        .backgroundColor(0x317aff)
+        .onClick(() => {
+          EncryptData()
+        })
+        .margin(10)
 
-async function publicUpdateFunc(handle:number, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doUpdate`);
-    let throwObject = {isThrow: false};
-    try {
-        await updateSession(handle, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: doUpdate success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doUpdate failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function finishSession(handle:number, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.finishSession(handle, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
+        Button({ type: ButtonType.Normal, stateEffect: true }) {
+          Text('DecryptData')
+            .fontColor(Color.White)
+            .fontSize(20)
         }
-    });
-}
-
-async function publicFinishFunc(handle:number, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback doFinish`);
-    let throwObject = {isThrow: false};
-    try {
-        await finishSession(handle, huksOptions, throwObject)
-            .then ((data) => {
-                finishOutData = data.outData;
-                console.info(`callback: doFinish success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: doFinish failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: doFinish input arg invalid, code: ${error.code}, msg: ${error.message}`);
+        .borderRadius(8)
+        .width('45%')
+        .height('5%')
+        .backgroundColor(0x317aff)
+        .onClick(() => {
+          DecryptData()
+        })
+        .margin(10)
+      }
     }
-}
-
-function exportKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) : Promise<huks.HuksReturnResult> {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.exportKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicExportKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback export`);
-    let throwObject = {isThrow: false};
-    try {
-        await exportKeyItem(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
-                exportKey = data.outData;
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: exportKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: exportKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function importKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.importKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicImportKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter promise importKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await importKeyItem(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: importKeyItem success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: importKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: importKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject) {
-    return new Promise((resolve, reject) => {
-        try {
-            huks.deleteKeyItem(keyAlias, huksOptions, function (error, data) {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(data);
-                }
-            });
-        } catch (error) {
-            throwObject.isThrow = true;
-            throw(error);
-        }
-    });
-}
-
-async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
-    console.info(`enter callback deleteKeyItem`);
-    let throwObject = {isThrow: false};
-    try {
-        await deleteKeyItem(keyAlias, huksOptions, throwObject)
-            .then ((data) => {
-                console.info(`callback: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
-            })
-            .catch(error => {
-                if (throwObject.isThrow) {
-                    throw(error);
-                } else {
-                    console.error(`callback: deleteKeyItem failed, code: ${error.code}, msg: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error(`callback: deletKeeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
-    }
-}
-
-async function testSm2SignVerify() {
-    /* Generate a key. */
-    await publicGenKeyFunc(generateKeyAlias, genrateKeyOptions);
-
-    /* Generate a signature. */
-    let signHandle;
-    let signFinishOutData;
-    await publicInitFunc(generateKeyAlias, signOptions);
-
-    signHandle = handle;
-    for (var index = 0; index < signVerifyInData.length; index++) {
-        signOptions.inData = StringToUint8Array(signVerifyInData[index]);
-        await publicUpdateFunc(signHandle, signOptions);
-    }
-    signOptions.inData = new Uint8Array(new Array());
-    await publicFinishFunc(signHandle, signOptions);
-    signFinishOutData = finishOutData;
-
-    /* Export the key. */
-    await publicExportKeyFunc(generateKeyAlias, genrateKeyOptions);
-
-    /* Import the key. */
-    verifyOptions.inData = exportKey;
-    await publicImportKeyFunc(importKeyAlias, verifyOptions);
-
-    /* Verify the signature. */
-    let verifyHandle;
-    await publicInitFunc(importKeyAlias, verifyOptions);
-
-    verifyHandle = handle;
-    for (var index = 0; index < signVerifyInData.length; index++) {
-        verifyOptions.inData = StringToUint8Array(signVerifyInData[index]);
-        await publicUpdateFunc(verifyHandle, verifyOptions);
-    }
-    verifyOptions.inData = signFinishOutData;
-    await publicFinishFunc(verifyHandle, verifyOptions);
-
-    await publicDeleteKeyFunc(generateKeyAlias, genrateKeyOptions);
-    await publicDeleteKeyFunc(importKeyAlias, genrateKeyOptions);
+  }
 }
 ```
 
@@ -1375,7 +965,7 @@ async function testSm2SignVerify() {
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let srcKeyAliasFirst = "AgreeX25519KeyFirstAlias";
 let srcKeyAliasSecond = "AgreeX25519KeySecondAlias";
@@ -1734,12 +1324,12 @@ async function testAgree() {
 ### Key Derivation
 ```ts
 /*
- * The following uses the Promise() operation of an HKDF256 key as an example.
+ * The following uses an HKDF256 key and promise-based APIs as an example.
  */
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let srcKeyAlias = "hkdf_Key";
 let deriveHkdfInData = "deriveHkdfTestIndata";
@@ -2060,7 +1650,7 @@ The HUKS also restricts the key usage. For example, the AES keys can only be use
 
 When generating or importing a key, you can enable user identity authentication for the key use. You can specify a subset of credentials (lock screen password, fingerprint, and face) for user identity authentication. After a key is generated or imported, unauthorized key access can be prevented even if the application process is attacked. Key access control applies to security-sensitive scenarios, such as password-free login, password-free payment, and automatic password filling.
 
-In addition to user identity authentication, the HUKS provides the following modes ([HuksAuthAccessType](../reference/apis/js-apis-huks.md#huksauthaccesstype9)) for automatically invalidating a key:
+In addition to user identity authentication, the HUKS provides the following modes for automatically invalidating a key:
 - Invalidate the key when the screen lock password is cleared.<br>This mode takes effect only when a screen lock password has been set. If the screen lock password is cleared, the key becomes invalid permanently. The key will not be invalidated if the screen lock password is modified. This mode applies to user-related data protection and access based on screen lock passwords.
 - Invalidate the key when new biometric enrollments are added.<br>This mode takes effect only when at least one biometric feature (such as fingerprint) has been enrolled. The key becomes invalid permanently once a new biometric feature is enrolled. The key will not be invalidated if the biometric feature is deleted. This mode applies to scenarios, such as password-free login or payment.
 
@@ -2074,24 +1664,23 @@ If secondary user identity authentication is enabled for a key, initialize the k
 
 **Available APIs**
 
-When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../reference/apis/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../reference/apis/js-apis-huks.md#hukschallengetype9) in the key attributes are mandatory.
+When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../reference/apis/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../reference/apis/js-apis-huks.md#hukschallengetype9) in the key properties are mandatory.
 
 **Table 3** User authentication types
 
 | Name           | Value | Description                     |
 | ------------------------------- |---|------------------------ |
 | HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | Fingerprint authentication.<br/>Fingerprint authentication, facial authentication, and PIN authentication can be enabled at the same time. |
-| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication. <br/>Fingerprint authentication, facial authentication, and PIN authentication can be enabled at the same time. |
-| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication. <br/>Fingerprint authentication, facial authentication, and PIN authentication can be enabled at the same time. |
+| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication.<br/>Fingerprint authentication, facial authentication, and PIN authentication can be enabled at the same time.|
+| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication. <br/>Fingerprint authentication, facial authentication, and PIN authentication can be enabled at the same time.|
 
 **Table 4** Secure access types
 | Name                                   | Value  | Description            |
 | --------------------------------------- | ---- | ------------------------------------------------ |
 | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | Invalidate the key after the screen lock password is cleared.      |
-| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | Invalidate the key after a biometric enrollment is added. The user authentication types must include the biometric authentication. |
+| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | Invalidate the key after a biometric enrollment is added. The user authentication types must include the biometric authentication.|
 
 **Table 5** Challenge types
-
 | Name                           | Value  | Description                       |
 | ------------------------------- | ---- | ------------------------------ |
 | HUKS_CHALLENGE_TYPE_NORMAL | 0    | Normal challenge, which requires an independent user authentication for each use of the key.|
@@ -2103,13 +1692,15 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 > - The three challenge types are mutually exclusive.
 > - If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
 
-To use a key, initialize the key session and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.
+
+To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.
+        
 
 **Table 6** APIs for using a key
 
 | API                     | Description                |
 | -------------------------------------- | ----------------------------|
-|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| Initializes a key session and obtains the challenge. |
+|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| Initializes the key session and obtains the challenge.|
 |updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Operates data by segment and passes the authentication token.|
 |finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Finalizes the key session operation. |
 
@@ -2117,12 +1708,12 @@ To use a key, initialize the key session and determine whether a challenge is re
 
 **How to Develop**
 
-1. Generate a key and specify user authentication attributes.
+1. Generate a key and specify user authentication properties.
 ```ts
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let keyAlias = 'dh_key_fingerprint_access';
 let properties = new Array();
@@ -2218,7 +1809,7 @@ import huks from '@ohos.security.huks';
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let srcKeyAlias = 'sm4_key_fingerprint_access';
 let handle;
@@ -2341,7 +1932,7 @@ async function testInitAndAuthFinger() {
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let srcKeyAlias = 'sm4_key_fingerprint_access';
 let IV = '1234567890123456';
@@ -2487,7 +2078,7 @@ async function testSm4Cipher() {
 The HUKS provides attestation for the public keys of asymmetric key pairs. The HUKS can issue a certificate for the public key of an asymmetric key pair stored in the HUKS using the public key infrastructure (PKI) certificate chain technology. The certificate can prove the validity of the public key. The service can use the root CA certificate provided by the OpenHarmony to verify the key certificate issued by the HUKS level by level to ensure that the public key and private key in the certificate are from a trusted hardware device and stored in the HUKS.
 
 **How to Develop**
-1. Pass in the key alias and the attribute tag of the key to be attested.
+1. Pass in the key alias and the property tag of the key to be attested.
 2. Call a HUKS API to generate an X.509 certificate chain, which consists of the root CA certificate, device CA certificate, device certificate, and key certificate in sequence, for the application.
 3. Send the certificate chain to a trusted server. The server parses and verifies the validity of the certificate chain and whether a single certificate is revoked.
 
@@ -2508,7 +2099,7 @@ The HUKS provides attestation for the public keys of asymmetric key pairs. The H
 import huks from '@ohos.security.huks';
 
 /*
- * Determine the key alias and encapsulate the key attributes.
+ * Determine the key alias and encapsulate the key properties.
  */
 let keyAliasString = "key attest";
 let aliasString = keyAliasString;
