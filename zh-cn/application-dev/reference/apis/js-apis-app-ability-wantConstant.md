@@ -25,7 +25,6 @@ want的Params操作的常量。
 | DLP_PARAMS_INDEX        | ohos.dlp.params.index       | 指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 
 
-
 ## wantConstant.Flags
 
 Flags说明。用于表示处理Want的方式。
