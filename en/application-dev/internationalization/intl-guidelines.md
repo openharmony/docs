@@ -385,11 +385,3 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
-
--[`International`: Internationalization (ArkTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)

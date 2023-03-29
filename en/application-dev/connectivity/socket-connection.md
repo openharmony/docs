@@ -319,10 +319,3 @@ TLS Socket connection process on the client:
        tlsTwoWay.off('close');
    });
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop Socket connection features:
-- [`Socket`: Socket Connection (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket)
-- [UDP Socket (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/UdpDemoOH)
-- [TCP Socket (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/TcpSocketDemo)
