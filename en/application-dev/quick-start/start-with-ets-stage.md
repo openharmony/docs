@@ -34,7 +34,7 @@
 ![en-us_image_0000001364054489](figures/en-us_image_0000001364054489.png)
 
 - **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
-  - **src > main > ets**: a collection of eTS source code.
+  - **src > main > ets**: a collection of ArkTS source code.
   - **src > main > ets > entryability**: entry to your application/service.
   - **src > main > ets > pages**: pages included in your application/service.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
