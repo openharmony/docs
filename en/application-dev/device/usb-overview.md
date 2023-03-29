@@ -14,6 +14,7 @@ The USB subsystem consists of three parts: USB API, USB Service, and USB HAL. Th
 ![](figures/en-us_image_0000001237821727.png)
 
 -   USB API: provides USB APIs that implement various basic functions, for example, query of the USB device list, bulk data transfer, control transfer, and right management.
+
 -   USB Service: receives, parses, and distributes Hardware Abstraction Layer \(HAL\) data, manages and controls foreground and background policies, and manages devices.
 
 -   USB HAL: provides driver capability APIs that can be directly called in user mode.

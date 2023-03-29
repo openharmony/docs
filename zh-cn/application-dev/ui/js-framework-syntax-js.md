@@ -11,7 +11,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   使用import方法引入功能模块：
 
   ```js
-  import router from '@system.router';
+  import router from '@ohos.router';
   ```
 
 - 代码引用
@@ -248,7 +248,7 @@ export default {
 <element name='childComp' src='../child/child.hml'></element>
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="parentClicked">parent component click</text>
-  <text class="text-style" if="{{show}}">hello parent component!</text>
+  <text class="text-style" if="{{showValue}}">hello parent component!</text>
   <childComp id = "selfDefineChild"></childComp>
 </div>
 ```
@@ -257,11 +257,11 @@ export default {
 // parent.js
 export default {
   data: {
-    show: false,
+    showValue: false,
     text: 'I am parent component!',
   },
   parentClicked () {
-    this.show = !this.show;
+    this.showValue = !this.showValue;
     console.info('parent component get parent text');
     console.info(`${this.$parent().text}`);
     console.info("parent component get child function");

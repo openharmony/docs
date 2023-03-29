@@ -1,6 +1,6 @@
-# Radio
+# @ohos.telephony.radio (Network Search)
 
-The radio module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
+The **radio** module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
 
 >**NOTE**
 >
@@ -29,6 +29,18 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -62,6 +74,18 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | ------------------------------------------------------------ | ----------------------------------------------- |
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -91,6 +115,18 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | -------- | ---------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -104,7 +140,7 @@ radio.getNetworkState((err, data) =>{
 
 getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
-Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the network status. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -116,6 +152,18 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -131,7 +179,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
-Obtains the network status of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the network status. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -148,6 +196,18 @@ Obtains the network status of the SIM card in the specified slot. This API uses 
 | Type                                    | Description                       |
 | ---------------------------------------- | --------------------------- |
 | Promise\<[NetworkState](#networkstate)\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -176,6 +236,17 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -207,6 +278,17 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | -------------------------------------------------------- | ------------------------------- |
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -234,6 +316,17 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -265,6 +358,17 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -290,7 +394,17 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -315,6 +429,16 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -331,7 +455,7 @@ promise.then(data => {
 
 getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -341,6 +465,17 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -356,7 +491,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
-Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result. 
+Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -372,6 +507,17 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -384,12 +530,40 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>(deprecated)</sup>
 
-## radio.isNrSupported<sup>8+</sup>
+isNrSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9) instead.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
+
+## radio.isNrSupported<sup>(deprecated)</sup>
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
+Checks whether the current device supports 5G \(NR\).
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9-1) instead.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -414,6 +588,57 @@ console.log("Result: "+ result);
 ```
 
 
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNRSupported();
+console.log("Result: "+ result);
+```
+
+
+## radio.isNRSupported<sup>9+</sup>
+
+isNRSupported\(slotId: number\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let slotId = 0;
+let result = radio.isNRSupported(slotId);
+console.log("Result: "+ result);
+```
+
+
 ## radio.isRadioOn<sup>7+</sup>
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
@@ -429,6 +654,18 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 | Name  | Type                    | Mandatory| Description                                                   |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -455,6 +692,18 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -488,6 +737,18 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -515,6 +776,17 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is the carrier name, for example, China Mobile.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -546,6 +818,17 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used t return the result, which is the carrier name, for example, China Mobile.               |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -575,7 +858,20 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -611,6 +907,19 @@ Sets the ID of the slot in which the primary card is located. This API uses a pr
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -641,6 +950,18 @@ Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous c
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -654,7 +975,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -668,6 +989,18 @@ Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchr
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -683,7 +1016,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI(slotId?: number): Promise<string\>
 
-Obtains the IMEI of the SIM card in a card slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -702,6 +1035,18 @@ Obtains the IMEI of the SIM card in a card slot. This API uses a promise to retu
 | Type             | Description                                      |
 | ----------------- | ------------------------------------------ |
 | Promise\<string\> | Promise used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -733,6 +1078,18 @@ Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous c
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -746,7 +1103,7 @@ radio.getMEID((err, data) => {
 
 getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -760,6 +1117,18 @@ Obtains the MEID of the SIM card in the specified slot. This API uses an asynchr
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -775,7 +1144,7 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID(slotId?: number): Promise<string\>
 
-Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -794,6 +1163,18 @@ Obtains the MEID of the SIM card in the specified slot. This API uses a promise 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -825,6 +1206,18 @@ Obtains the unique device ID of the SIM card in a card slot. This API uses an as
 | -------- | ----------------------- | ---- | ---------- |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -838,7 +1231,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -852,6 +1245,18 @@ Obtains the unique device ID of the SIM card in the specified slot. This API use
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -867,7 +1272,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId(slotId?: number): Promise<string\>
 
-Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -886,6 +1291,18 @@ Obtains the unique device ID of the SIM card in the specified slot. This API use
 | Type             | Description                                         |
 | ----------------- | --------------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -907,6 +1324,8 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -914,6 +1333,18 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -931,6 +1362,8 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -939,6 +1372,18 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -953,9 +1398,11 @@ radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
 
 sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
-Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -970,6 +1417,18 @@ Sends a cell location update request for the SIM card in the specified slot.This
 | Type           | Description                   |
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -991,7 +1450,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1000,6 +1459,18 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 | Name  | Type                                                        | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1018,7 +1489,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1028,6 +1499,18 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1047,7 +1530,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1062,6 +1545,18 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | Type                                                   | Description                   |
 | ------------------------------------------------------- | ----------------------- |
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1093,6 +1588,18 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 | -------- | ----------------------------------------------------------- | ---- | ------------------ |
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | Yes  | Network selection mode.|
 | callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.        |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1138,6 +1645,18 @@ Sets the network selection mode. This API uses a promise to return the result.
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1165,7 +1684,7 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1178,7 +1697,19 @@ Obtains network search information for the SIM card in the specified slot. This 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.            |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1212,6 +1743,18 @@ Obtains network search information for the SIM card in the specified slot. This 
 | ------------------------------------------------------ | ----------------------- |
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1239,6 +1782,17 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 | -------- | ----------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1264,6 +1818,17 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | -------- | ----------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1297,6 +1862,17 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | ----------------------------------------- | ----------------------- |
 | Promise\<[NrOptionMode](#nroptionmode8)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1327,6 +1903,18 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1354,6 +1942,18 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1389,6 +1989,18 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1419,6 +2031,18 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1446,6 +2070,18 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1481,6 +2117,18 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1512,6 +2160,18 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
 | callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1546,6 +2206,18 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1571,10 +2243,22 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                  |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Name  |                              Type                              | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1608,6 +2292,18 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 | --------------- | ----------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1638,6 +2334,18 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | slotId   | number                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1672,6 +2380,18 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | ------------------------------------- | ----------------------- |
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1687,7 +2407,7 @@ promise.then(data => {
 
 on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
 
-Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1704,11 +2424,23 @@ Enables listening for **imsRegStateChange** events for the SIM card in the speci
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1716,7 +2448,7 @@ radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =>
 
 off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
 
-Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1733,17 +2465,29 @@ Disables listening for **imsRegStateChange** events for the SIM card in the spec
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
 ## RadioTechnology
 
-Enumerates radio access technologies.
+ Enumerates radio access technologies.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1770,11 +2514,11 @@ Defines the signal strength.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type                       | Description              |
-| ----------- | --------------------------- | ------------------ |
-| signalType  | [NetworkType](#networktype) | Signal strength type.|
-| signalLevel | number                      | Signal strength level.|
-
+|      Name      |           Type             | Mandatory|      Description         |
+| --------------- | --------------------------- | ---- | ------------------ |
+| signalType      | [NetworkType](#networktype) | Yes  | Signal strength type.|
+| signalLevel     | number                      | Yes  | Signal strength level.|
+| dBm<sup>9+</sup>| number                      | Yes  | Signal strength, in dBm.    |
 
 ## NetworkType
 
@@ -1798,17 +2542,17 @@ Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                 | Description                                                        |
-| ----------------- | --------------------- | ------------------------------------------------------------ |
-| longOperatorName  | string                | Long carrier name of the registered network.|
-| shortOperatorName | string                | Short carrier name of the registered network.|
-| plmnNumeric       | string                | PLMN code of the registered network.|
-| isRoaming         | boolean               | Whether the user is roaming.|
-| regState          | [RegState](#regstate) | Network registration status of the device.|
-| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) | RAT of the device.|
-| nsaState          | [NsaState](#nsastate) | NSA network registration status of the device.|
-| isCaActive        | boolean               | CA status.|
-| isEmergency       | boolean               | Whether only emergency calls are allowed.|
+|       Name          |                 Type               | Mandatory|                          Description                               |
+| -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| longOperatorName     | string                              |  Yes | Long carrier name of the registered network.                                    |
+| shortOperatorName    | string                              |  Yes | Short carrier name of the registered network.                                    |
+| plmnNumeric          | string                              |  Yes | PLMN code of the registered network.                                          |
+| isRoaming            | boolean                             |  Yes | Whether the user is roaming.                                          |
+| regState             | [RegState](#regstate)               |  Yes | Network registration status of the device.                                        |
+| cfgTech<sup>8+</sup> | [RadioTechnology](#radiotechnology) |  Yes | RAT of the device.                                        |
+| nsaState             | [NsaState](#nsastate)               |  Yes | NSA network registration status of the device.                                     |
+| isCaActive           | boolean                             |  Yes | CA status.                                                  |
+| isEmergency          | boolean                             |  Yes | Whether only emergency calls are allowed.                              |
 
 
 ## RegState
@@ -1819,10 +2563,10 @@ Defines the network status.
 
 | Name                         | Value  | Description                      |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | The device cannot use any service.    |
-| REG_STATE_IN_SERVICE          | 1    | The device can use services normally.     |
+| REG_STATE_NO_SERVICE          | 0    | The device cannot use any services, including data, SMS, and call services.    |
+| REG_STATE_IN_SERVICE          | 1    | The device can use services properly, including data, SMS, and call services.    |
 | REG_STATE_EMERGENCY_CALL_ONLY | 2    | The device can use only the emergency call service.|
-| REG_STATE_POWER_OFF           | 3    | The cellular radio service is disabled.        |
+| REG_STATE_POWER_OFF           | 3    | The device cannot communicate with the network because the cellular radio service is disabled or the modem is powered off.     |
 
 
 ## NsaState
@@ -1895,7 +2639,7 @@ Enumerates preferred network modes.
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | NR+LTE+TD-SCDMA+GSM network mode.             |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | NR+LTE+TD-SCDMA+WCDMA network mode.           |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
-| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.       |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
 | PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | Maximum value of the preferred network mode.                         |
 
 ## CellInformation<sup>8+</sup>
@@ -1906,13 +2650,13 @@ Defines the cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name             | Type                                                        | Description                                                        |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
-| isCamped          | boolean                                                      | Status of the cell.                                        |
-| timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
-| signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+| Name             |                  Type                  | Mandatory|                           Description                              |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)             |  Yes | Network type of the cell.                                    |
+| isCamped          | boolean                                 |  Yes | Cell status.                                        |
+| timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.                                |
+| signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1922,13 +2666,13 @@ Defines the CDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name     | Type  | Description        |
-| --------- | ------ | ------------ |
-| baseId    | number | Base station ID.    |
-| latitude  | number | Longitude.      |
-| longitude | number | Latitude.      |
-| nid       | number | Network ID.|
-| sid       | number | System ID.|
+| Name     | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| baseId    | number |  Yes | Base station ID.    |
+| latitude  | number |  Yes | Longitude.      |
+| longitude | number |  Yes | Latitude.      |
+| nid       | number |  Yes | Network ID.|
+| sid       | number |  Yes | System ID.|
 
 ## GsmCellInformation<sup>8+</sup>
 
@@ -1938,50 +2682,50 @@ Defines the GSM cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description                |
-| ------ | ------ | -------------------- |
-| lac    | number | Location area code.        |
-| cellId | number | Cell ID.            |
-| arfcn  | number | Absolute radio frequency channel number.|
-| bsic   | number | Base station ID.        |
-| mcc    | string | Mobile country code.        |
-| mnc    | string | Mobile network code.          |
+| Name  | Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| lac    | number |  Yes | Location area code.        |
+| cellId | number |  Yes | Cell ID.            |
+| arfcn  | number |  Yes | Absolute radio frequency channel number.|
+| bsic   | number |  Yes | Base station ID.        |
+| mcc    | string |  Yes | Mobile country code.        |
+| mnc    | string |  Yes | Mobile network code.          |
 
 ## LteCellInformation<sup>8+</sup>
 
-Defines the LTE cell information.
+LTE cell information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name         | Type   | Description                   |
-| ------------- | ------- | ----------------------- |
-| cgi           | number  | Cell global identification.         |
-| pci           | number  | Physical cell ID.         |
-| tac           | number  | Tracking area code.         |
-| earfcn        | number  | Absolute radio frequency channel number.   |
-| bandwidth     | number  | Bandwidth.                 |
-| mcc           | string  | Mobile country code.           |
-| mnc           | string  | Mobile network code.             |
-| isSupportEndc | boolean | Support New Radio_Dual Connectivity|
+| Name         | Type   | Mandatory| Description                   |
+| ------------- | ------- | ---- | ----------------------- |
+| cgi           | number  |  Yes | Cell global identification.         |
+| pci           | number  |  Yes | Physical cell ID.         |
+| tac           | number  |  Yes | Tracking area code.         |
+| earfcn        | number  |  Yes | Absolute radio frequency channel number.   |
+| bandwidth     | number  |  Yes | Bandwidth.                 |
+| mcc           | string  |  Yes | Mobile country code.           |
+| mnc           | string  |  Yes | Mobile network code.             |
+| isSupportEndc | boolean |  Yes | Support for New Radio_Dual Connectivity.|
 
 ## NrCellInformation<sup>8+</sup>
 
-Defines the NR cell information.
+Defines the 5G NR cell information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name   | Type  | Description            |
-| ------- | ------ | ---------------- |
-| nrArfcn | number | 5G frequency number.      |
-| pci     | number | Physical cell ID.  |
-| tac     | number | Tracking area code.  |
-| nci     | number | 5G network cell ID.|
-| mcc     | string | Mobile country code.    |
-| mnc     | string | Mobile network code.      |
+| Name   | Type  | Mandatory| Description            |
+| ------- | ------ | ---- | ---------------- |
+| nrArfcn | number |  Yes | 5G frequency number.      |
+| pci     | number |  Yes | Physical cell ID.  |
+| tac     | number |  Yes | Tracking area code.  |
+| nci     | number |  Yes | 5G network cell ID.|
+| mcc     | string |  Yes | Mobile country code.    |
+| mnc     | string |  Yes | Mobile network code.      |
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
@@ -1991,14 +2735,14 @@ Defines the TD-SCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| cpid   | number | Cell parameter ID.|
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| cpid   | number |  Yes | Cell parameter ID.|
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## WcdmaCellInformation<sup>8+</sup>
 
@@ -2008,14 +2752,14 @@ Defines the WCDMA cell information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name  | Type  | Description        |
-| ------ | ------ | ------------ |
-| lac    | number | Location area code.|
-| cellId | number | Cell ID.    |
-| psc    | number | Primary scrambling code.    |
-| uarfcn | number | Absolute radio frequency number.|
-| mcc    | string | Mobile country code.|
-| mnc    | string | Mobile network code.  |
+| Name  | Type  | Mandatory| Description        |
+| ------ | ------ | ---- | ------------ |
+| lac    | number |  Yes | Location area code.|
+| cellId | number |  Yes | Cell ID.    |
+| psc    | number |  Yes | Primary scrambling code.    |
+| uarfcn | number |  Yes | Absolute radio frequency number.|
+| mcc    | string |  Yes | Mobile country code.|
+| mnc    | string |  Yes | Mobile network code.  |
 
 ## NrOptionMode<sup>8+</sup>
 
@@ -2029,7 +2773,7 @@ Enumerates NR selection modes.
 | -------------------- | ---- | ---------------------------------- |
 | NR_OPTION_UNKNOWN    | 0    | Unknown NR selection mode.                |
 | NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
-| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G standalone networking.          |
+| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G non-standalone networking.          |
 | NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking.|
 
 ## NetworkSearchResult
@@ -2040,10 +2784,10 @@ Defines the network search result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name                  | Type                                             | Description          |
-| ---------------------- | ------------------------------------------------- | -------------- |
-| isNetworkSearchSuccess | boolean                                           | Successful network search.|
-| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Network search result.|
+| Name                  | Type                                             | Mandatory| Description          |
+| ---------------------- | ------------------------------------------------- | ---- | -------------- |
+| isNetworkSearchSuccess | boolean                                           |  Yes | Successful network search.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> |  Yes | Network search result.|
 
 ## NetworkInformation
 
@@ -2053,12 +2797,12 @@ Defines the network information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type                                     | Description          |
-| --------------- | ----------------------------------------- | -------------- |
-| operatorName    | string                                    | Carrier name.|
-| operatorNumeric | string                                    | Carrier number.  |
-| state           | [NetworkInformation](#networkinformationstate) | Network information status.|
-| radioTech       | string                                    | Radio technology.  |
+| Name           |                         Type                       | Mandatory| Description          |
+| --------------- | --------------------------------------------------- | ---- | -------------- |
+| operatorName    | string                                              |  Yes | Carrier name.|
+| operatorNumeric | string                                              |  Yes | Carrier number.  |
+| state           | [NetworkInformationState](#networkinformationstate) |  Yes | Network information status.|
+| radioTech       | string                                              |  Yes | Radio access technology.  |
 
 ## NetworkInformationState
 
@@ -2083,12 +2827,12 @@ Defines the network selection mode.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name              | Type                                         | Description                                  |
-| ------------------ | --------------------------------------------- | -------------------------------------- |
-| slotId             | number                                        | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
-| networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
-| resumeSelection    | boolean                                       | Whether to resume selection.                            |
+| Name              |                    Type                      | Mandatory|                 Description                  |
+| ------------------ | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId             | number                                        |  Yes | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) |  Yes | Network selection mode.                        |
+| networkInformation | [NetworkInformation](#networkinformation)     |  Yes | Network information.                            |
+| resumeSelection    | boolean                                       |  Yes | Whether to resume selection.                            |
 
 ## ImsRegState<sup>9+</sup>
 
@@ -2126,10 +2870,10 @@ Defines the IMS registration information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name       | Type                        | Description         |
-| ----------- | ---------------------------- | ------------- |
-| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
-| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+| Name       | Type                        | Mandatory| Description         |
+| ----------- | ---------------------------- | ---- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) |  Yes | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   |  Yes | IMS registration technology.|
 
 ## ImsServiceType<sup>9+</sup>
 

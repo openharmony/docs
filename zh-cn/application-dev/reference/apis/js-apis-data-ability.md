@@ -1,4 +1,4 @@
-# DataAbility 谓词
+# @ohos.data.dataAbility (DataAbility谓词)
 
 DataAbility 谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
 

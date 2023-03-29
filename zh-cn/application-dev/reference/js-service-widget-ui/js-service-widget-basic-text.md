@@ -25,7 +25,7 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | color | &lt;color&gt; | - | 否 | 设置文本的颜色。 |
-| font-size | &lt;length&gt; | 30px | 否 | 设置文本的尺寸。 |
+| font-size | &lt;length&gt; | 16px | 否 | 设置文本的尺寸。 |
 | letter-spacing | &lt;length&gt; | 0px | 否 | 设置文本的字符间距。 |
 | font-style | string | normal | 否 | 设置文本的字体样式，可选值为：<br/>-&nbsp;normal：标准的字体样式；<br/>-&nbsp;italic：斜体的字体样式。 |
 | font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，默认为400，取值越大，字体越粗。<br/>-&nbsp;number取值必须为100的整数倍。<br/>- string类型取值支持如下四个值：lighter、normal、bold、bolder。 |

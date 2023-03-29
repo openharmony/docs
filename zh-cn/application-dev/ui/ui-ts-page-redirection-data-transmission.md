@@ -61,7 +61,7 @@
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ url: 'pages/FoodDetail' })
+         router.pushUrl({ url: 'pages/FoodDetail' })
        })
      }
    }
@@ -138,7 +138,7 @@
    FoodGridItem调用的routerAPI同样有携带参数跳转的能力，使用方法和Navigator类似。
 
    ```ts
-   router.push({
+   router.pushUrl({
      url: 'pages/FoodDetail',
      params: { foodData: this.foodItem }
    })

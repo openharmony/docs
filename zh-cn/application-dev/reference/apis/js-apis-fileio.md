@@ -1,10 +1,10 @@
-# 文件管理
+# @ohos.fileio (文件管理)
 
 该模块提供文件存储管理能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> 本模块自API 9开始废弃，建议使用[@ohos.file.fs](js-apis-file-fs.md)替代。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ class MainAbility extends Ability {
 }
  ```
 
- Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+ Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
 
 **FA模型**
 
@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 
@@ -67,10 +67,10 @@ stat(path: string): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "test.txt";
-  fileio.stat(filePath).then(function(stat){
-      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
-  }).catch(function(err){
-      console.info("getFileInfo failed with error:"+ err);
+  fileio.stat(filePath).then(function (stat) {
+      console.info("getFileInfo succeed, the size of file is " + stat.size);
+  }).catch(function (err) {
+      console.info("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -152,10 +152,10 @@ opendir(path: string): Promise&lt;Dir&gt;
 
   ```js
   let dirPath = pathDir + "/testDir";
-  fileio.opendir(dirPath).then(function(dir){
-      console.info("opendir succeed:"+ JSON.stringify(dir));
-  }).catch(function(err){
-      console.info("opendir failed with error:"+ err);
+  fileio.opendir(dirPath).then(function (dir) {
+      console.info("opendir succeed");
+  }).catch(function (err) {
+      console.info("opendir failed with error:" + err);
   });
   ```
 
@@ -240,17 +240,17 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.access(filePath).then(function() {
+  fileio.access(filePath).then(function () {
       console.info("access succeed");
-  }).catch(function(err){
-      console.info("access failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("access failed with error:" + err);
   });
   ```
 
 
 ## fileio.access
 
-access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
+access(path: string, mode?: number, callback: AsyncCallback&lt;void&gt;): void
 
 检查当前进程是否可访问某文件，使用callback异步回调。
 
@@ -296,7 +296,7 @@ accessSync(path: string, mode?: number): void
   try {
       fileio.accessSync(filePath);
   } catch(err) {
-      console.info("accessSync failed with error:"+ err);
+      console.info("accessSync failed with error:" + err);
   }
   ```
 
@@ -326,10 +326,10 @@ close(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.close(fd).then(function(){
+  fileio.close(fd).then(function () {
       console.info("close file succeed");
-  }).catch(function(err){
-      console.info("close file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("close file failed with error:" + err);
   });
   ```
 
@@ -385,7 +385,7 @@ closeSync(fd: number): void
 
 ## fileio.copyFile
 
-copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt;void&gt;
+copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;void&gt;
 
 复制文件，使用Promise异步回调。
 
@@ -395,8 +395,8 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
@@ -410,17 +410,17 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
   ```js
   let srcPath = pathDir + "srcDir/test.txt";
   let dstPath = pathDir + "dstDir/test.txt";
-  fileio.copyFile(srcPath, dstPath).then(function(){
+  fileio.copyFile(srcPath, dstPath).then(function () {
       console.info("copyFile succeed");
-  }).catch(function(err){
-      console.info("copyFile failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("copyFile failed with error:" + err);
   });
   ```
 
 
 ## fileio.copyFile
 
-copyFile(src: string | number, dest: string | number, mode: number, callback: AsyncCallback&lt;void&gt;): void
+copyFile(src: string|number, dest: string|number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
 复制文件，使用callback异步回调。
 
@@ -430,8 +430,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest     | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest     | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
@@ -448,7 +448,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 ## fileio.copyFileSync
 
-copyFileSync(src: string | number, dest: string | number, mode?: number): void
+copyFileSync(src: string|number, dest: string|number, mode?: number): void
 
 以同步方法复制文件。
 
@@ -458,8 +458,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+  | dest | string\|number | 是    | 目标文件路径或目标文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **示例：**
@@ -496,10 +496,10 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath).then(function() {
+  fileio.mkdir(dirPath).then(function () {
       console.info("mkdir succeed");
-  }).catch(function (error){
-      console.info("mkdir failed with error:"+ error);
+  }).catch(function (error) {
+      console.info("mkdir failed with error:" + error);
   });
   ```
 
@@ -524,7 +524,7 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.mkdir(dirPath, function(err) {
+  fileio.mkdir(dirPath, function (err) {
     console.info("mkdir succeed");
   });
   ```
@@ -579,10 +579,10 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0o1, 0o0200).then(function(number){
+  fileio.open(filePath, 0o1, 0o0200).then(function (number) {
       console.info("open file succeed");
-  }).catch(function(err){
-      console.info("open file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("open file failed with error:" + err);
   });
   ```
 
@@ -602,13 +602,13 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 | path     | string                          | 是   | 待打开文件的应用沙箱路径。                                   |
 | flags    | number                          | 否   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path不指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
 | mode     | number                          | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-| callback | AsyncCallback&nbsp;&lt;void&gt; | 是   | 异步打开文件之后的回调。                                     |
+| callback | AsyncCallback&lt;number&gt; | 是   | 异步打开文件之后的回调。                                     |
 
 **示例：**
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.open(filePath, 0, function(err, fd) {
+  fileio.open(filePath, 0, function (err, fd) {
       // do something
   });
   ```
@@ -655,11 +655,7 @@ openSync(path: string, flags?: number, mode?: number): number
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): Promise&lt;ReadOut&gt;
+read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): Promise&lt;ReadOut&gt;
 
 从文件读取数据，使用Promise异步回调。
 
@@ -685,22 +681,18 @@ read(fd: number, buffer: ArrayBuffer, options?: {
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function(readOut){
+  fileio.read(fd, buf).then(function (readOut) {
       console.info("read file data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(err){
-      console.info("read file data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("read file data failed with error:" + err);
   });
   ```
 
 
 ## fileio.read
 
-read(fd: number, buffer: ArrayBuffer, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: number; position?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从文件读取数据，使用callback异步回调。
 
@@ -732,11 +724,7 @@ read(fd: number, buffer: ArrayBuffer, options: {
 
 ## fileio.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-}): number
+readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number
 
 以同步方法从文件读取数据。
 
@@ -790,10 +778,10 @@ rmdir(path: string): Promise&lt;void&gt;
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath).then(function() {
+  fileio.rmdir(dirPath).then(function () {
       console.info("rmdir succeed");
-  }).catch(function(err){
-      console.info("rmdir failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("rmdir failed with error:" + err);
   });
   ```
 
@@ -817,7 +805,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let dirPath = pathDir + '/testDir';
-  fileio.rmdir(dirPath, function(err){
+  fileio.rmdir(dirPath, function (err) {
       // do something
       console.info("rmdir succeed");
   });
@@ -870,10 +858,10 @@ unlink(path: string): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath).then(function(){
+  fileio.unlink(filePath).then(function () {
       console.info("remove file succeed");
-  }).catch(function(error){
-      console.info("remove file failed with error:"+ error);
+  }).catch(function (error) {
+      console.info("remove file failed with error:" + error);
   });
   ```
 
@@ -897,7 +885,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.unlink(filePath, function(err) {
+  fileio.unlink(filePath, function (err) {
       console.info("remove file succeed");
   });
   ```
@@ -927,12 +915,7 @@ unlinkSync(path: string): void
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步回调。
 
@@ -943,7 +926,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
@@ -957,22 +940,17 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
-  fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file succeed and size is:"+ number);
-  }).catch(function(err){
-      console.info("write data to file failed with error:"+ err);
+  fileio.write(fd, "hello, world").then(function (number) {
+       console.info("write data to file succeed and size is:" + number);
+  }).catch(function (err) {
+      console.info("write data to file failed with error:" + err);
   });
   ```
 
 
 ## fileio.write
 
-write(fd: number, buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -983,7 +961,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
@@ -994,7 +972,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
   let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
-         console.info("write data to file succeed and size is:"+ bytesWritten);
+         console.info("write data to file succeed and size is:" + bytesWritten);
       }
   });
   ```
@@ -1002,12 +980,7 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 
 ## fileio.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入文件。
 
@@ -1018,7 +991,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
@@ -1061,10 +1034,10 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256").then(function(str){
-      console.info("calculate file hash succeed:"+ str);
-  }).catch(function(err){
-      console.info("calculate file hash failed with error:"+ err);
+  fileio.hash(filePath, "sha256").then(function (str) {
+      console.info("calculate file hash succeed:" + str);
+  }).catch(function (err) {
+      console.info("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1089,9 +1062,9 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.hash(filePath, "sha256", function(err, hashStr) {
+  fileio.hash(filePath, "sha256", function (err, hashStr) {
       if (hashStr) {
-          console.info("calculate file hash succeed:"+ hashStr);
+          console.info("calculate file hash succeed:" + hashStr);
       }
   });
   ```
@@ -1122,10 +1095,10 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.chmod(filePath, 0o700).then(function() {
+  fileio.chmod(filePath, 0o700).then(function () {
       console.info("chmod succeed");
-  }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -1204,10 +1177,10 @@ fstat(fd: number): Promise&lt;Stat&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed:"+ JSON.stringify(stat));
-  }).catch(function(err){
-      console.info("fstat failed with error:"+ err);
+  fileio.fstat(fd).then(function (stat) {
+      console.info("fstat succeed, the size of file is " + stat.size);
+  }).catch(function (err) {
+      console.info("fstat failed with error:" + err);
   });
   ```
 
@@ -1293,17 +1266,17 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.ftruncate(fd, 5).then(function(err) {    
+  fileio.ftruncate(fd, 5).then(function (err) {    
       console.info("truncate file succeed");
-  }).catch(function(err){
-      console.info("truncate file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("truncate file failed with error:" + err);
   });
   ```
 
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number, callback: AsyncCallback&lt;void&gt;): void
+ftruncate(fd: number, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符截断文件，使用callback异步回调。
 
@@ -1323,7 +1296,7 @@ ftruncate(fd: number, len: number, callback: AsyncCallback&lt;void&gt;): void
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let len = 5;
-  fileio.ftruncate(fd, 5, function(err){
+  fileio.ftruncate(fd, 5, function (err) {
       // do something
   });
   ```
@@ -1380,17 +1353,17 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len).then(function(){
+  fileio.truncate(filePath, len).then(function () {
       console.info("truncate file succeed");
-  }).catch(function(err){
-      console.info("truncate file failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("truncate file failed with error:" + err);
   });
   ```
 
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number, callback: AsyncCallback&lt;void&gt;): void
+truncate(path: string, len?: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径截断文件，使用callback异步回调。
 
@@ -1409,7 +1382,7 @@ truncate(path: string, len: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(filePath, len, function(err){
+  fileio.truncate(filePath, len, function (err) {
       // do something
   });
   ```
@@ -1441,11 +1414,7 @@ truncateSync(path: string, len?: number): void
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): Promise&lt;string&gt;
+readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步回调。
 
@@ -1468,21 +1437,17 @@ readText(filePath: string, options?: {
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath).then(function(str) {
-      console.info("readText succeed:"+ str);
-  }).catch(function(err){
-      console.info("readText failed with error:"+ err);
+  fileio.readText(filePath).then(function (str) {
+      console.info("readText succeed:" + str);
+  }).catch(function (err) {
+      console.info("readText failed with error:" + err);
   });
   ```
 
 
 ## fileio.readText<sup>7+</sup>
 
-readText(filePath: string, options: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options: { position?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;string&gt;): void
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
@@ -1500,7 +1465,7 @@ readText(filePath: string, options: {
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function(err, str){
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function (err, str) {
       // do something
   });
   ```
@@ -1508,11 +1473,7 @@ readText(filePath: string, options: {
 
 ## fileio.readTextSync<sup>7+</sup>
 
-readTextSync(filePath: string, options?: {
-    position?: number;
-    length?: number;
-    encoding?: string;
-}): string
+readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
@@ -1563,10 +1524,10 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.lstat(filePath).then(function(stat){
-      console.info("get link status succeed:"+ JSON.stringify(stat));
-  }).catch(function(err){
-      console.info("get link status failed with error:"+ err);
+  fileio.lstat(filePath).then(function (stat) {
+      console.info("get link status succeed, the size of file is" + stat.size);
+  }).catch(function (err) {
+      console.info("get link status failed with error:" + err);
   });
   ```
 
@@ -1637,7 +1598,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 | 参数名  | 类型   | 必填 | 说明                         |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath | String | 是   | 目标文件的新应用沙箱路径。   |
+| newPath | string | 是   | 目标文件的新应用沙箱路径。   |
 
 **返回值：**
 
@@ -1650,10 +1611,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile).then(function() {
+  fileio.rename(srcFile, dstFile).then(function () {
       console.info("rename succeed");
-  }).catch(function(err){
-      console.info("rename failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("rename failed with error:" + err);
   });
   ```
 
@@ -1671,15 +1632,15 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 | 参数名   | 类型                      | 必填 | 说明                         |
 | -------- | ------------------------- | ---- | ---------------------------- |
 | oldPath  | string                    | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath  | String                    | 是   | 目标文件的新应用沙箱路径。   |
-| Callback | AsyncCallback&lt;void&gt; | 是   | 异步重命名文件之后的回调。   |
+| newPath  | string                    | 是   | 目标文件的新应用沙箱路径。   |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步重命名文件之后的回调。   |
 
 **示例：**
 
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/new.txt';
-  fileio.rename(srcFile, dstFile, function(err){
+  fileio.rename(srcFile, dstFile, function (err) {
   });
   ```
 
@@ -1697,7 +1658,7 @@ renameSync(oldPath: string, newPath: string): void
 | 参数名  | 类型   | 必填 | 说明                         |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | 是   | 目标文件的当前应用沙箱路径。 |
-| newPath | String | 是   | 目标文件的新应用沙箱路径。   |
+| newPath | string | 是   | 目标文件的新应用沙箱路径。   |
 
 **示例：**
 
@@ -1733,10 +1694,10 @@ fsync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd).then(function(){
+  fileio.fsync(fd).then(function () {
       console.info("sync data succeed");
-  }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1761,7 +1722,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fsync(fd, function(err){
+  fileio.fsync(fd, function (err) {
       // do something
   });
   ```
@@ -1815,10 +1776,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdatasync(fd).then(function(err) {
+  fileio.fdatasync(fd).then(function (err) {
       console.info("sync data succeed");
-  }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("sync data failed with error:" + err);
   });
   ```
 
@@ -1836,7 +1797,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                              | 必填   | 说明                |
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | 是    | 待同步文件的文件描述符。      |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
 
 **示例：**
 
@@ -1898,10 +1859,10 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   ```js
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + '/test';
-  fileio.symlink(srcFile, dstFile).then(function() {
+  fileio.symlink(srcFile, dstFile).then(function () {
       console.info("symlink succeed");
-  }).catch(function(err){
-      console.info("symlink failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("symlink failed with error:" + err);
   });
   ```
 
@@ -1984,10 +1945,10 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.chown(filePath, stat.uid, stat.gid).then(function(){
+  fileio.chown(filePath, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2014,7 +1975,7 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath)
-  fileio.chown(filePath, stat.uid, stat.gid, function (err){
+  fileio.chown(filePath, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2068,10 +2029,10 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  fileio.mkdtemp(pathDir + "/XXXXXX").then(function(pathDir){
-      console.info("mkdtemp succeed:"+ pathDir);
-  }).catch(function(err){
-      console.info("mkdtemp failed with error:"+ err);
+  fileio.mkdtemp(pathDir + "/XXXXXX").then(function (pathDir) {
+      console.info("mkdtemp succeed:" + pathDir);
+  }).catch(function (err) {
+      console.info("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2154,10 +2115,10 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let mode = 0o700;
-  fileio.fchmod(fd, mode).then(function() {
+  fileio.fchmod(fd, mode).then(function () {
       console.info("chmod succeed");
-  }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chmod failed with error:" + err);
   });
   ```
 
@@ -2176,7 +2137,7 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 待改变文件的文件描述符。                             |
   | mode     | number                          | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
 
 **示例：**
 
@@ -2240,10 +2201,10 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+").then(function(stream){
+  fileio.createStream(filePath, "r+").then(function (stream) {
       console.info("createStream succeed");
-  }).catch(function(err){
-      console.info("createStream failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("createStream failed with error:" + err);
   });
   ```
 
@@ -2268,7 +2229,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
   ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createStream(filePath, "r+", function(err, stream){
+  fileio.createStream(filePath, "r+", function (err, stream) {
       // do something
   });
   ```
@@ -2329,10 +2290,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
-  fileio.fdopenStream(fd, "r+").then(function(stream){
+  fileio.fdopenStream(fd, "r+").then(function (stream) {
       console.info("openStream succeed");
-  }).catch(function(err){
-      console.info("openStream failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("openStream failed with error:" + err);
   });
   ```
 
@@ -2351,7 +2312,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
   | mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
 
 **示例：**
 
@@ -2422,10 +2383,10 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid).then(function() {
+  fileio.fchown(fd, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2453,7 +2414,7 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
   let filePath = pathDir + "/test.txt";
   let fd = fileio.openSync(filePath);
   let stat = fileio.statSync(filePath);
-  fileio.fchown(fd, stat.uid, stat.gid, function (err){
+  fileio.fchown(fd, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2512,10 +2473,10 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid).then(function() {
+  fileio.lchown(filePath, stat.uid, stat.gid).then(function () {
       console.info("chown succeed");
-  }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("chown failed with error:" + err);
   });
   ```
 
@@ -2542,7 +2503,7 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
   ```js
   let filePath = pathDir + "/test.txt";
   let stat = fileio.statSync(filePath);
-  fileio.lchown(filePath, stat.uid, stat.gid, function (err){
+  fileio.lchown(filePath, stat.uid, stat.gid, function (err) {
       // do something
   });
   ```
@@ -2586,8 +2547,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
-| events   | Number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
-| callback | AsyncCallback&lt;number&nbsp;&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
+| events   | number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
 
 **返回值：**
 
@@ -2599,8 +2560,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
   ```js
   let filePath = pathDir +"/test.txt";
-  fileio.createWatcher(filePath, 1, function(number){
-     console.info("Monitoring times: "+number);
+  fileio.createWatcher(filePath, 1, function (number) {
+     console.info("Monitoring times: " +number);
   });
   
   ```
@@ -2612,11 +2573,11 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
-| 名称        | 参数类型       | 可读   | 可写   | 说明                |
+| 名称        | 类型       | 可读   | 可写   | 说明                |
 | --------- | ---------- | ---- | ---- | ----------------- |
 | bytesRead | number     | 是    | 是    | 实际读取长度。           |
 | offset    | number     | 是    | 是    | 读取数据相对于缓冲区首地址的偏移。 |
-| buffer    | ArrayBufer | 是    | 是    | 保存读取数据的缓冲区。       |
+| buffer    | ArrayBuffer | 是    | 是    | 保存读取数据的缓冲区。       |
 
 
 ## Stat
@@ -2627,11 +2588,11 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 ### 属性
 
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                       |
+| 名称     | 类型   | 可读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
 | dev    | number | 是    | 否    | 标识包含该文件的主设备号。                            |
 | ino    | number | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。                 |
-| mode   | number | 是    | 否    | 表示文件类型及权限，其首&nbsp;4&nbsp;位表示文件类型，后&nbsp;12&nbsp;位表示权限。各特征位的含义如下：<br/>-&nbsp;0o170000：可用于获取文件类型的掩码。<br/>-&nbsp;0o140000：文件是套接字。<br/>-&nbsp;0o120000：文件是符号链接。<br/>-&nbsp;0o100000：文件是一般文件。<br/>-&nbsp;0o060000：文件属于块设备。<br/>-&nbsp;0o040000：文件是目录。<br/>-&nbsp;0o020000：文件是字符设备。<br/>-&nbsp;0o010000：文件是具名管道，即FIFO。<br/>-&nbsp;0o0700：可用于获取用户权限的掩码。<br/>-&nbsp;0o0400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o0200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o0100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o0070：可用于获取用户组权限的掩码。<br/>-&nbsp;0o0040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o0020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o0010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o0007：可用于获取其他用户权限的掩码。<br/>-&nbsp;0o0004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o0002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o0001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。 |
+| mode   | number | 是    | 否    | 表示文件类型及权限，其首&nbsp;4&nbsp;位表示文件类型，后&nbsp;12&nbsp;位表示权限。各特征位的含义如下：<br/>-&nbsp;0o170000：可用于获取文件类型的掩码。<br/>-&nbsp;0o140000：文件是套接字。<br/>-&nbsp;0o120000：文件是符号链接。<br/>-&nbsp;0o100000：文件是一般文件。<br/>-&nbsp;0o060000：文件属于块设备。<br/>-&nbsp;0o040000：文件是目录。<br/>-&nbsp;0o020000：文件是字符设备。<br/>-&nbsp;0o010000：文件是命名管道，即FIFO。<br/>-&nbsp;0o0700：可用于获取用户权限的掩码。<br/>-&nbsp;0o0400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o0200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o0100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o0070：可用于获取用户组权限的掩码。<br/>-&nbsp;0o0040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o0020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o0010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o0007：可用于获取其他用户权限的掩码。<br/>-&nbsp;0o0004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o0002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o0001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。 |
 | nlink  | number | 是    | 否    | 文件的硬链接数。                                 |
 | uid    | number | 是    | 否    | 文件所有者的ID。                                |
 | gid    | number | 是    | 否    | 文件所有组的ID。                                |
@@ -2814,10 +2775,10 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let filePath = path + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function(number){
-      console.info("Monitoring times: "+number);
+  let watcher = fileio.createWatcher(filePath, 1, function (number) {
+      console.info("Monitoring times: " +number);
   });
-  watcher.stop().then(function(){
+  watcher.stop().then(function () {
        console.info("close watcher succeed");
   });
   ```
@@ -2841,10 +2802,10 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filePath = path +"/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, function(number){
-      console.info("Monitoring times: "+number);
+  let watcher = fileio.createWatcher(filePath, 1, function (number) {
+      console.info("Monitoring times: " +number);
   });
-  watcher.stop(function(){
+  watcher.stop(function () {
       console.info("close watcher succeed");
   })
   ```
@@ -2874,10 +2835,10 @@ close(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.close().then(function(){
+  ss.close().then(function () {
       console.info("close fileStream succeed");
-  }).catch(function(err){
-      console.info("close fileStream  failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -2943,10 +2904,10 @@ flush(): Promise&lt;void&gt;
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.flush().then(function (){
+  ss.flush().then(function () {
       console.info("flush succeed");
-  }).catch(function(err){
-      console.info("flush failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("flush failed with error:" + err);
   });
   ```
 
@@ -2995,12 +2956,7 @@ flushSync(): void
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): Promise&lt;number&gt;
+write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步回调。
 
@@ -3010,7 +2966,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
@@ -3024,22 +2980,17 @@ write(buffer: ArrayBuffer | string, options?: {
   ```js
   let filePath = pathDir + "/test.txt";
   let ss= fileio.createStreamSync(filePath, "r+");
-  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write succeed and size is:"+ number);
-  }).catch(function(err){
-      console.info("write failed with error:"+ err);
+  ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number) {
+      console.info("write succeed and size is:" + number);
+  }).catch(function (err) {
+      console.info("write failed with error:" + err);
   });
   ```
 
 
 ### write<sup>7+</sup>
 
-write(buffer: ArrayBuffer | string, options: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer|string, options: { offset?: number; length?: number; position?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
 
@@ -3049,7 +3000,7 @@ write(buffer: ArrayBuffer | string, options: {
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
@@ -3061,7 +3012,7 @@ write(buffer: ArrayBuffer | string, options: {
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // do something
-         console.info("write succeed and size is:"+ bytesWritten);
+         console.info("write succeed and size is:" + bytesWritten);
       }
   });
   ```
@@ -3069,12 +3020,7 @@ write(buffer: ArrayBuffer | string, options: {
 
 ### writeSync<sup>7+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?: {
-    offset?: number;
-    length?: number;
-    position?: number;
-    encoding?: string;
-}): number
+writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number
 
 以同步方法将数据写入流文件。
 
@@ -3084,7 +3030,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
@@ -3104,11 +3050,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): Promise&lt;ReadOut&gt;
+read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): Promise&lt;ReadOut&gt;
 
 从流文件读取数据，使用Promise异步回调。
 
@@ -3132,22 +3074,18 @@ read(buffer: ArrayBuffer, options?: {
   ```js
   let filePath = pathDir + "/test.txt";
   let ss = fileio.createStreamSync(filePath, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut){
+  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut) {
       console.info("read data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(err){
-      console.info("read data failed with error:"+ err);
+  }).catch(function (err) {
+      console.info("read data failed with error:" + err);
   });
   ```
 
 
 ### read<sup>7+</sup>
 
-read(buffer: ArrayBuffer, options: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
+read(buffer: ArrayBuffer, options: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;ReadOut&gt;): void
 
 从流文件读取数据，使用callback异步回调。
 
@@ -3177,11 +3115,7 @@ read(buffer: ArrayBuffer, options: {
 
 ### readSync<sup>7+</sup>
 
-readSync(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): number
+readSync(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }): number
 
 以同步方法从流文件读取数据。
 
@@ -3231,10 +3165,10 @@ read(): Promise&lt;Dirent&gt;
 **示例：**
 
   ```js
-  dir.read().then(function (dirent){
-      console.log("read succeed:"+JSON.stringify(dirent));
-  }).catch(function(err){
-      console.info("read failed with error:"+ err);
+  dir.read().then(function (dirent) {
+      console.log("read succeed, the name of dirent is " + dirent.name);
+  }).catch(function (err) {
+      console.info("read failed with error:" + err);
   });
   ```
 
@@ -3259,7 +3193,7 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
-          console.log("read succeed:"+JSON.stringify(dirent));
+          console.log("read succeed, the name of file is " + dirent.name);
       }
   });
   ```
@@ -3297,7 +3231,7 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  dir.close().then(function(err){
+  dir.close().then(function (err) {
       console.info("close dir successfully");
   });
   ```
@@ -3314,7 +3248,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  dir.close(function(err){
+  dir.close(function (err) {
       console.info("close dir successfully");
   });
   ```
@@ -3343,7 +3277,7 @@ closeSync(): void
 
 ### 属性
 
-| 名称   | 参数类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | name | string | 是    | 否    | 目录项的名称。 |
 
@@ -3500,20 +3434,3 @@ isSymbolicLink(): boolean
   let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
-
-## Filter<sup>9+</sup>
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.File.FileIO
-
-文件过滤器配置项。
-
-| 名称        | 参数类型       | 说明                |
-| ----------- | --------------- | ------------------ |
-| suffix | Array&lt;string&gt;     | 文件后缀名，各个关键词OR关系。           |
-| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。 |
-| mimeType    | Array&lt;string&gt; | mime类型匹配，各个关键词OR关系。       |
-| fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
-| lastModifiedAfter    | Date | 修改时间匹配，在指定时间点后的文件。       |
-| excludeMedia    | Boolean | 是否排除Media中已有的文件。       |

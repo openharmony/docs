@@ -1,4 +1,4 @@
-# 关系型数据库
+# @ohos.data.rdb (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
 
@@ -8,31 +8,33 @@
 - [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore](js-apis-data-relationalStore.md)。
+
 
 ## 导入模块
 
 ```js
 import data_rdb from '@ohos.data.rdb';
 ```
-
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
-| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
-| version | number | 是 | 数据库版本。 |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
+| 参数名   | 类型                                       | 必填 | 说明                                                         |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| context  | Context                                    | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-app-context.md)。 |
+| config   | [StoreConfig](#storeconfig)                | 是   | 与此RDB存储相关的数据库配置。                                |
+| version  | number                                     | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                     |
 
 **示例：**
 
@@ -41,7 +43,7 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db"}
@@ -58,9 +60,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -76,27 +79,28 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     console.log("Get RdbStore successfully.")
 })
 ```
+
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context | Context | 是 |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
-| config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
-| version | number | 是 | 数据库版本。 |
+| 参数名  | 类型                        | 必填 | 说明                                                         |
+| ------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                     | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-app-context.md)。 |
+| config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
+| version | number                      | 是   | 数据库版本。<br>目前暂不支持通过version自动识别数据库升级降级操作，只能由开发者自行维护。                                                 |
 
 **返回值**：
 
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | 指定Promise回调函数。返回一个RdbStore。 |
+| 类型                                 | 说明                            |
+| ------------------------------------ | ------------------------------- |
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise对象。返回RdbStore对象。 |
 
 **示例：**
 
@@ -105,7 +109,7 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db" }
@@ -121,9 +125,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -145,15 +150,15 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 删除数据库，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
-| name | string | 是 | 数据库名称。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-app-context.md)。 |
+| name     | string                    | 是   | 数据库名称。                                                 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
 **示例：**
 
@@ -162,7 +167,7 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // 获取context后调用deleteRdbStore
 data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
@@ -178,9 +183,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -202,20 +208,20 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
-| name | string | 是 | 数据库名称。 |
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-app-context.md)。 |
+| name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
 
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -224,11 +230,11 @@ FA模型示例：
 ```js
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // 获取context后调用deleteRdbStore
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
-promise.then(()=>{
+promise.then(() => {
     console.log("Delete RdbStore successfully.")
 }).catch((err) => {
     console.info("Delete RdbStore failed, err: " + err)
@@ -239,9 +245,10 @@ Stage模型示例：
 
 ```ts
 // 获取context
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -256,19 +263,73 @@ promise.then(()=>{
 })
 ```
 
+## ValueType
+
+用于表示允许的数据字段类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| number  | 表示值类型为数字。   |
+| string  | 表示值类型为字符。   |
+| boolean | 表示值类型为布尔值。 |
+
+
+## ValuesBucket
+
+用于存储键值对的类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 键类型 | 值类型                                                      |
+| ------ | ----------------------------------------------------------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
+
+## SyncMode<sup>8+</sup>
+
+指数据库同步模式。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| SYNC_MODE_PUSH | 0    | 表示数据从本地设备推送到远程设备。 |
+| SYNC_MODE_PULL | 1    | 表示数据从远程设备拉至本地设备。   |
+
+## SubscribeType<sup>8+</sup>
+
+描述订阅类型。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                  | 值   | 说明               |
+| --------------------- | ---- | ------------------ |
+| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
+
+## StoreConfig
+
+管理关系数据库配置。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 数据库文件名。 |
+
 ## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
-
 
 ### constructor
 
 constructor(name: string)
 
-
 构造函数。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -286,10 +347,13 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-
 同步分布式数据库时连接到组网内指定的远程设备。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+> **说明：**
+>
+> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -306,18 +370,33 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.inDevices(['12345678abcde'])
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices<sup>8+</sup>
 
 inAllDevices(): RdbPredicates
 
-
 同步分布式数据库时连接到组网内所有的远程设备。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -336,10 +415,9 @@ predicates.inAllDevices()
 
 equalTo(field: string, value: ValueType): RdbPredicates
 
-
 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -366,10 +444,9 @@ predicates.equalTo("NAME", "lisi")
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -396,10 +473,9 @@ predicates.notEqualTo("NAME", "lisi")
 
 beginWrap(): RdbPredicates
 
-
 向谓词添加左括号。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -425,7 +501,7 @@ endWrap(): RdbPredicates
 
 向谓词添加右括号。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -451,7 +527,7 @@ or(): RdbPredicates
 
 将或条件添加到谓词中。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -474,7 +550,7 @@ and(): RdbPredicates
 
 向谓词添加和条件。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -497,7 +573,7 @@ contains(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且value包含指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -525,7 +601,7 @@ beginsWith(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -553,7 +629,7 @@ endsWith(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -581,7 +657,7 @@ isNull(field: string): RdbPredicates
 
 配置谓词以匹配值为null的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -607,7 +683,7 @@ isNotNull(field: string): RdbPredicates
 
 配置谓词以匹配值不为null的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -634,7 +710,7 @@ like(field: string, value: string): RdbPredicates
 
 配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -662,7 +738,7 @@ glob(field: string, value: string): RdbPredicates
 
 配置RdbPredicates匹配数据字段为string的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -690,7 +766,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -719,7 +795,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
 配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -748,7 +824,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且值大于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -776,7 +852,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为valueType且value小于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -804,7 +880,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -832,7 +908,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
 配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -860,7 +936,7 @@ orderByAsc(field: string): RdbPredicates
 
 配置谓词以匹配其值按升序排序的列。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -887,7 +963,7 @@ orderByDesc(field: string): RdbPredicates
 
 配置谓词以匹配其值按降序排序的列。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -914,7 +990,7 @@ distinct(): RdbPredicates
 
 配置谓词以过滤重复记录并仅保留其中一个。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值**：
 
@@ -935,7 +1011,7 @@ limitAs(value: number): RdbPredicates
 
 设置最大数据记录数的谓词。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -962,7 +1038,7 @@ offsetAs(rowOffset: number): RdbPredicates
 
 配置RdbPredicates以指定返回结果的起始位置。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -989,7 +1065,7 @@ groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
 配置RdbPredicates按指定列分组查询结果。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1016,7 +1092,7 @@ indexedBy(field: string): RdbPredicates
 
 配置RdbPredicates以指定索引列。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1044,7 +1120,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1072,7 +1148,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
 将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1098,7 +1174,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql8)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
 ### insert
 
@@ -1106,7 +1182,7 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 
 向目标表中插入一行数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1140,7 +1216,7 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 向目标表中插入一行数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1153,7 +1229,7 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回行ID；否则返回-1。 |
+| Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
 **示例：**
 
@@ -1172,13 +1248,13 @@ promise.then((rowId) => {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
 向目标表中插入一组数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1210,7 +1286,7 @@ const valueBucket3 = {
     "CODES": new Uint8Array([11, 12, 13, 14, 15])
 }
 
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
         console.log("batchInsert is failed, status = " + status);
@@ -1220,13 +1296,13 @@ rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
 向目标表中插入一组数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1239,7 +1315,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+| Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
 
 **示例：**
 
@@ -1263,7 +1339,7 @@ const valueBucket3 = {
     "CODES": new Uint8Array([11, 12, 13, 14, 15])
 }
 
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
     console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
@@ -1278,7 +1354,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1299,12 +1375,12 @@ const valueBucket = {
 }
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, ret) {
+rdbStore.update(valueBucket, predicates, function (err, rows) {
     if (err) {
         console.info("Updated failed, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1314,7 +1390,7 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1341,91 +1417,8 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
-}).catch((err) => {
-    console.info("Updated failed, err: " + err)
-})
-```
-
-### update<sup>9+</sup>
-update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
-
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)| 是 |  DataSharePredicates的实例对象指定的更新条件。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
-    if (err) {
-        console.info("Updated failed, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + ret)
-})
-```
-
-### update<sup>9+</sup>
-
-update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
-
-根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的更新条件。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Updated failed, err: " + err)
 })
@@ -1437,7 +1430,7 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 根据RdbPredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1466,7 +1459,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 根据RdbPredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1478,7 +1471,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;number&gt; | 指定Promise回调函数。返回受影响的行数。 |
+| Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
 
 **示例：**
 
@@ -1493,83 +1486,13 @@ promise.then((rows) => {
 })
 ```
 
-### delete<sup>9+</sup>
-
-delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
-
-根据DataSharePredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是 |  DataSharePredicates的实例对象指定的删除条件。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
-    if (err) {
-        console.info("Delete failed, err: " + err)
-        return
-    }
-    console.log("Delete rows: " + rows)
-})
-```
-
-### delete<sup>9+</sup>
-
-delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
-
-根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的删除条件。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | 指定Promise回调函数。返回受影响的行数。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.delete("EMPLOYEE", predicates)
-promise.then((rows) => {
-    console.log("Delete rows: " + rows)
-}).catch((err) => {
-    console.info("Delete failed, err: " + err)
-})
-```
-
 ### query
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定条件查询数据库中的数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1600,7 +1523,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 根据指定条件查询数据库中的数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1613,7 +1536,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1629,158 +1552,13 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
   })
   ```
 
-### query<sup>9+</sup>
-
-query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
-
-根据指定条件查询数据库中的数据，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
-| columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-    if (err) {
-        console.info("Query failed, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-})
-```
-
-### query<sup>9+</sup>
-
-query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
-
-根据指定条件查询数据库中的数据，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
-| columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("Query failed, err: " + err)
-})
-```
-
-### remoteQuery<sup>9+</sup>
-
-remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
-
-根据指定条件查询远程设备数据库中的数据。使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 指定的远程设备的networkId。 |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
-| columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
-
-**示例：**
-
-```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
-    function(err, resultSet){
-    if (err) {
-        console.info("Failed to remoteQuery, err: " + err)
-        return
-    }
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
-})
-```
-
-### remoteQuery<sup>9+</sup>
-
-remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
-
-根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| device | string | 是 | 指定的远程设备的networkId。 |
-| table | string | 是 | 指定的目标表名。 |
-| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
-| columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-
-**返回值**：
-
-| 类型                                                         | 说明                                                     |
-| ------------------------------------------------------------ | -------------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
-
-**示例：**
-
-```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-promise.then((resultSet) => {
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("Failed to remoteQuery , err: " + err)
-})
-```
-
 ### querySql<sup>8+</sup>
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定SQL语句查询数据库中的数据，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1809,7 +1587,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1822,7 +1600,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1836,13 +1614,13 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1865,13 +1643,13 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1884,7 +1662,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1904,13 +1682,13 @@ beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     rdbStore.beginTransaction()
@@ -1931,13 +1709,13 @@ commit():void
 
 提交已执行的SQL语句。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     rdbStore.beginTransaction()
@@ -1958,13 +1736,13 @@ rollBack():void
 
 回滚已经执行的SQL语句。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     try {
@@ -1984,122 +1762,6 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 })
 ```
 
-### backup<sup>9+</sup>
-
-backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
-
-以指定名称备份数据库，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| destName | string | 是 | 指定数据库的备份文件名。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
-
-**示例：**
-
-```js
-rdbStore.backup("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Backup failed, err: ' + err)
-        return
-    }
-    console.info('Backup success.')
-})
-```
-
-### backup<sup>9+</sup>
-
-backup(destName:string): Promise&lt;void&gt;
-
-以指定名称备份数据库，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| destName | string | 是 | 指定数据库的备份文件名。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
-
-**示例：**
-
-```js
-let promiseBackup = rdbStore.backup("dbBackup.db")
-promiseBackup.then(()=>{
-    console.info('Backup success.')
-}).catch((err)=>{
-    console.info('Backup failed, err: ' + err)
-})
-```
-
-### restore<sup>9+</sup>
-
-restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
-
-从指定的数据库备份文件恢复数据库，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| srcName | string | 是 | 指定数据库的备份文件名。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
-
-**示例：**
-
-```js
-rdbStore.restore("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Restore failed, err: ' + err)
-        return
-    }
-    console.info('Restore success.')
-})
-```
-
-### restore<sup>9+</sup>
-
-restore(srcName:string): Promise&lt;void&gt;
-
-从指定的数据库备份文件恢复数据库，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| srcName | string | 是 | 指定数据库的备份文件名。 |
-
-**返回值**：
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
-
-**示例：**
-
-```js
-let promiseRestore = rdbStore.restore("dbBackup.db")
-promiseRestore.then(()=>{
-    console.info('Restore success.')
-}).catch((err)=>{
-    console.info('Restore failed, err: ' + err)
-})
-```
-
 ### setDistributedTables<sup>8+</sup>
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -2108,7 +1770,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -2137,7 +1799,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -2149,7 +1811,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 指定Promise回调函数。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -2166,24 +1828,42 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 远程设备 。|
-| table | string | 是 | 本地表名。 |
+| device | string | 是 | 远程设备ID 。 |
+| table | string | 是 | 远程设备的本地表名 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
 
 ```js
-rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+
+rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.info('ObtainDistributedTableName failed, err: ' + err)
         return
@@ -2196,29 +1876,46 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 远程设备。 |
-| table | string | 是 | 本地表名。 |
+| device | string | 是 | 远程设备ID。 |
+| table | string | 是 | 远程设备的本地表名。 |
 
 **返回值**：
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;string&gt; | 指定Promise回调函数。如果操作成功，返回远程设备的分布式表名。 |
+| Promise&lt;string&gt; | Promise对象。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
 
 ```js
-let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
     console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
 }).catch((err) => {
@@ -2234,7 +1931,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -2247,8 +1944,24 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('Sync failed, err: ' + err)
@@ -2269,7 +1982,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -2282,13 +1995,29 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | 指定Promise回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
 promise.then((result) =>{
     console.log('Sync done.')
@@ -2306,16 +2035,14 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetype8) | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetype8) | 是 | 订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
 
 **示例：**
@@ -2339,16 +2066,14 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 从数据库中删除指定类型的指定观察者, 使用callback异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
-| type | [SubscribeType](#subscribetype8)    | 是 | 指在{@code SubscribeType}中定义的订阅类型。 |
+| type | [SubscribeType](#subscribetype8)    | 是 | 订阅类型。 |
 | observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
 
 **示例：**
@@ -2365,60 +2090,3 @@ try {
     console.log('Unregister observer failed')
 }
 ```
-
-## StoreConfig
-
-管理关系数据库配置。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 数据库文件名。 |
-| encrypt<sup>9+</sup> | boolean | 否 | 指定数据库是否加密。<br>true:加密。<br>false:非加密。 |
-
-## ValueType
-
-用于表示允许的数据字段类型。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-| 类型 | 说明 |
-| -------- | -------- |
-| number | 表示值类型为数字。 |
-| string | 表示值类型为字符。 |
-| boolean | 表示值类型为布尔值。|
-
-
-## ValuesBucket
-
-用于存储键值对的类型。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-| 键类型 | 值类型 |
-| -------- | -------- |
-| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 
-
-## SyncMode<sup>8+</sup>
-
-指数据库同步模式。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-| 名称       | 默认值 | 说明 |
-| --------  | ----- |----- |
-| SYNC_MODE_PUSH | 0 | 表示数据从本地设备推送到远程设备。 |
-| SYNC_MODE_PULL | 1 | 表示数据从远程设备拉至本地设备。 |
-
-## SubscribeType<sup>8+</sup>
-
-描述订阅类型。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-| 名称      | 默认值 | 说明 |
-| -------- | ----- |---- |
-| SUBSCRIBE_TYPE_REMOTE | 0 | 订阅远程数据更改。 |

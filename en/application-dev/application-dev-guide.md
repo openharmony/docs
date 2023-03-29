@@ -18,27 +18,29 @@ To facilitate your application development, we provide development guidelines fo
 
 First thing first, familiarize yourself with the two cornerstone frameworks in OpenHarmony applications:
 
-- Application framework: [Ability Development](ability/fa-brief.md)
+- Application framework: [Application Models](application-models/application-model-composition.md)
 - UI framework: [UI Development](ui/arkui-overview.md)
 
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/notification-brief.md)
+- [Notification](notification/notification-overview.md)
 - [Window Manager](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [Media](media/audio-overview.md)
 - [Security](security/userauth-overview.md)
 - [Connectivity](connectivity/ipc-rpc-overview.md)
-- [Telephony](telephony/telephony-overview.md)
+- [Telephony Service](telephony/telephony-overview.md)
 - [Data Management](database/database-mdds-overview.md)
-- [Task Management](task-management/background-task-overview.md)
-- [Device](device/usb-overview.md)
+- [Background Task Management](task-management/background-task-overview.md)
+- [Device Management](device/usb-overview.md)
 - [Device Usage Statistics](device-usage-statistics/device-usage-statistics-overview.md)
-- [DFX](dfx/hiappevent-overview.md)
+- [DFX](dfx/hiappevent-guidelines.md)
 - [Internationalization](internationalization/international-overview.md)
+- [Application Test](application-test/arkxtest-guidelines.md)
 - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
+- [File Management](file-management/medialibrary-overview.md)
 
 ### Tools
 
@@ -47,7 +49,7 @@ DevEco Studio is a high-performance integrated development environment (IDE) rec
 
 ### Hands-On Tutorials
 
-To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
+To make you better understand how functions work together and jumpstart your application development projects, we provide stripped-down, real-world [samples](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README.md) and [codelabs](https://gitee.com/openharmony/codelabs).
 
 ### API References
 
@@ -59,7 +61,9 @@ They are organized as follows:
 
 - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 
-- [JS and TS APIs](reference/apis/js-apis-DataUriUtils.md)
+- [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md)
+
+- [JS and TS APIs](reference/apis/js-apis-ability-dataUriUtils.md)
 
 - Native APIs
   - [Standard Library](reference/native-lib/third_party_libc/musl.md)

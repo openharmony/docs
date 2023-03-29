@@ -16,19 +16,21 @@ Supported
 
 Row(value?:{space?:  number | string })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| space | string \| number | No| Space between two adjacent child components in the horizontal layout.<br>Default value: **0**, in vp |
+| space | string \| number | No| Horizontal spacing between two adjacent child components.<br>Since API version 9, this parameter does not take effect when it is set to a negative number.<br>Default value: **0**, in vp |
 
 
 ## Attributes
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **FlexAlign.Start** |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>FlexAlign.Start <br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
@@ -40,38 +42,41 @@ Row(value?:{space?:  number | string })
 struct RowExample {
   build() {
     Column({ space: 5 }) {
+      // Set the horizontal spacing between two adjacent child components to 5.
       Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Row({ space: 5 }) {
-          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-          Row().width('30%').height(50).backgroundColor(0x00FFFF)
-        }.width('90%').height(107).border({ width: 1 })
+      Row({ space: 5 }) {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').height(107).border({ width: 1 })
 
-        Text('alignItems(Top)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Row() {
-          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-          Row().width('30%').height(50).backgroundColor(0x00FFFF)
-        }.alignItems(VerticalAlign.Top).height('15%').border({ width: 1 })
+      // Set the alignment mode of the child components in the vertical direction.
+      Text('alignItems(Bottom)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').alignItems(VerticalAlign.Bottom).height('15%').border({ width: 1 })
 
-        Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Row() {
-          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-          Row().width('30%').height(50).backgroundColor(0x00FFFF)
-        }.alignItems(VerticalAlign.Center).height('15%').border({ width: 1 })
+      Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').alignItems(VerticalAlign.Center).height('15%').border({ width: 1 })
 
-        Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Row() {
-          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-          Row().width('30%').height(50).backgroundColor(0x00FFFF)
-        }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.End)
+      // Set the alignment mode of the child components in the horizontal direction.
+      Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.End)
 
-        Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Row() {
-          Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-          Row().width('30%').height(50).backgroundColor(0x00FFFF)
-        }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.Center)
+      Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').border({ width: 1 }).justifyContent(FlexAlign.Center)
     }.width('100%')
   }
 }
 ```
 
-![en_us_image_0000001174422908](figures/row.png)
+![row](figures/row.png)

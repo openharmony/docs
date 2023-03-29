@@ -55,7 +55,7 @@
 | -------- | -------- |
 | [VGUScalar](_display.md#vguscalar) | VGU标量 | 
 | [VGUPixelFormat](_display.md#vgupixelformat) | 像素格式。 | 
-| [VGUBlendType](_display.mdvgublendtype) | 混合操作类型。 | 
+| [VGUBlendType](_display.md#vgublendtype) | 混合操作类型。 | 
 
 
 ### 枚举

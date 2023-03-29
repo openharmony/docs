@@ -2,7 +2,7 @@
 
 > **说明**
 >
-> 本开发指导基于API version 9，OH SDK版本3.2.7.3，适用于JS语言开发
+> 本开发指导基于API version 9，OH SDK版本3.2.7以上，适用于JS语言开发
 
 ## 使用密钥对象生成与转换操作
 
@@ -13,7 +13,7 @@
 1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
 2. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
 3. 获取算法库密钥对象的二进制数据，用于存储或传输。
-> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[接口声明](../reference/apis/js-apis-cryptoFramework.md)。
+> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 
 **接口及参数说明**
@@ -100,21 +100,17 @@ function testGenerateAesKey() {
 
 示例3：根据指定的RSA非对称密钥二进制数据，生成KeyPair对象（场景2）
 
-1. 获取RSA二进制密钥数据封装成DataBlob对象，按keysize(32位的密钥位数) 、nsize(32位，值为keysize/8)、 esize(32位的大数e的实际长度，单位Byte)、dsize(32位，值位keysize/8)、nval(大数n的二进制数据)、eval(大数e的二进制数据)和dval(大数d的二进制数据)拼接形成。
-2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+1. 获取RSA公钥或私钥二进制数据，公钥需满足ASN.1语法、X.509规范、DER编码格式，私钥需满足ASN.1语法、PKCS#8规范、DER编码格式。
+2. 创建AsyKeyGenerator对象，调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
   let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
-  // 公钥二进制数据
-  let pkval = new Uint8Array([0,4,0,0,128,0,0,0,3,0,0,0,0,0,0,0,182,22,137,81,111,129,17,47,33,97,67,85,251,53,127,42,130,150,93,144,129,104,14,73,110,189,138,82,53,74,114,86,24,186,143,65,87,110,237,69,206,207,5,81,24,32,41,160,209,125,162,92,0,148,49,241,235,0,71,198,1,28,136,106,152,22,25,249,77,241,57,149,154,44,200,6,0,83,246,63,162,106,242,131,80,227,143,162,210,28,127,136,123,172,26,247,2,194,16,1,100,122,180,251,57,22,69,133,232,145,107,66,80,201,151,46,114,175,116,57,45,170,188,77,86,230,111,45,1,0,1]);
-  // 封装成DataBlob对象
+  let pkval = new Uint8Array([48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,141,0,48,129,137,2,129,129,0,174,203,113,83,113,3,143,213,194,79,91,9,51,142,87,45,97,65,136,24,166,35,5,179,42,47,212,79,111,74,134,120,73,67,21,19,235,80,46,152,209,133,232,87,192,140,18,206,27,106,106,169,106,46,135,111,118,32,129,27,89,255,183,116,247,38,12,7,238,77,151,167,6,102,153,126,66,28,253,253,216,64,20,138,117,72,15,216,178,37,208,179,63,204,39,94,244,170,48,190,21,11,73,169,156,104,193,3,17,100,28,60,50,92,235,218,57,73,119,19,101,164,192,161,197,106,105,73,2,3,1,0,1]);
   let pkBlob = {data : pkval};
-  // 调用密钥转换函数
-  let convertKeyPromise = rsaGenerator.convertKey(pkBlob, null);
-  convertKeyPromise.then( keyPair => {
+  rsaGenerator.convertKey(pkBlob, null, function(err, keyPair) {
     if (keyPair == null) {
       AlertDialog.show({message : "Convert keypair fail"});
     }
@@ -125,10 +121,7 @@ function convertAsyKey() {
 
 **说明**
 
-1. nsize和dsize为密钥位数/8，esize为具体的实际长度。
-2. 私钥材料需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为为0，缺省dval的数据。
-3. 公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
-4. keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式。
+ 当前convertKey操作，公钥只支持转换满足X.509规范的DER格式，私钥只支持PKCS#8规范的DER格式；
 
 示例4：根据指定的ECC非对称密钥二进制数据，生成KeyPair对象（场景2、3）
 
@@ -137,8 +130,8 @@ function convertAsyKey() {
 
 ```javascript
 function convertEccAsyKey() {
-    let pubKeyArray = new Uint8Array([4,196,55,233,100,227,224,38,38,5,128,81,53,112,129,7,59,189,116,105,182,87,190,85,31,248,172,116,213,7,206,85,190,65,169,193,138,173,232,187,74,54,78,251,29,131,192,223,251,227,170,138,80,7,98,193,216,168,235,114,255,188,70,134,104]);
-    let priKeyArray = new Uint8Array([255,70,89,220,189,19,41,157,175,173,83,60,74,216,195,96,24,181,231,23,112,247,150,126,15,155,24,79,33,97,31,225]);
+    let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+    let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
     let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
@@ -211,7 +204,7 @@ function testConvertAesKey() {
 
 **接口及参数说明**
 
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
+详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。<br/>由于密码算法的复杂性，在选取不同规格和参数时，开发差异较大，无法通过代码示例一一列举，请仔细阅读API参考资料中的相关接口，确保使用正确。
 
 以上场景设计的常用接口如下表所示：
 
@@ -255,8 +248,9 @@ function genGcmParamsSpec() {
 
   arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
   let dataTag = new Uint8Array(arr);
-  let tagBlob = {data : dataTag};
-  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algoName : "GcmParamsSpec"};
+  let tagBlob = {data : dataTag};  // GCM的authTag在加密时从doFinal结果中获取，在解密时填入init函数的params参数中
+  
+  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
   return gcmParamsSpec;
 }
 
@@ -269,14 +263,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -303,8 +297,8 @@ function testAesGcm() {
     }, 10)
   }).then(() => {
     // 生成对称密钥生成器
-    let symAlgoName = 'AES128';
-    let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+    let symAlgName = 'AES128';
+    let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
     if (symKeyGenerator == null) {
       console.error('createSymKeyGenerator failed');
       return;
@@ -316,9 +310,9 @@ function testAesGcm() {
     globalGcmParams = genGcmParamsSpec();
 
     // 生成加解密生成器
-    let cipherAlgoName = 'AES128|GCM|PKCS7';
+    let cipherAlgName = 'AES128|GCM|PKCS7';
     try {
-      globalCipher = cryptoFramework.createCipher(cipherAlgoName);
+      globalCipher = cryptoFramework.createCipher(cipherAlgName);
       console.info(`cipher algName: ${globalCipher.algName}`);
     } catch (error) {
       console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -344,7 +338,7 @@ function testAesGcm() {
       let promiseFinal = globalCipher.doFinal(null);    // doFinal
       return promiseFinal;
   }).then(authTag => {
-      // 获取加密后的认证信息
+      // GCM模式需要从doFinal的输出中取出加密后的认证信息并填入globalGcmParams，在解密时传入init()
       globalGcmParams.authTag = authTag;
       return;
   }).then(() => {
@@ -360,7 +354,7 @@ function testAesGcm() {
       let promiseFinal = globalCipher.doFinal(null);    // doFinal
       return promiseFinal;
   }).then(finalOutput => {
-      if (finalOutput == null) {
+      if (finalOutput == null) {  // 使用finalOutput.data前，先判断结果是否为null
           console.info('GCM finalOutput is null');
       }
   }).catch(error => {
@@ -388,14 +382,14 @@ function stringToUint8Array(str) {
   return new Uint8Array(arr);
 }
 
-// 字节流转成可理解的字符串
+// 字节流以16进制输出
 function uint8ArrayToShowStr(uint8Array) {
   return Array.prototype.map
     .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
     .join('');
 }
 
-// 字节流以16进制输出
+// 字节流转成可理解的字符串
 function uint8ArrayToString(array) {
   let arrayString = '';
   for (let i = 0; i < array.length; i++) {
@@ -416,8 +410,8 @@ function genKeyMaterialBlob() {
 // 3DES ECB模式示例，采用已有数据生成密钥（callback写法）
 function test3DesEcb() {
   // 生成对称密钥生成器
-  let symAlgoName = '3DES192';
-  let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgoName);
+  let symAlgName = '3DES192';
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
   if (symKeyGenerator == null) {
     console.error('createSymKeyGenerator failed');
     return;
@@ -425,9 +419,9 @@ function test3DesEcb() {
   console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
 
   // 生成加解密生成器
-  let cipherAlgoName = '3DES192|ECB|PKCS7';
+  let cipherAlgName = '3DES192|ECB|PKCS7';
   try {
-    globalCipher = cryptoFramework.createCipher(cipherAlgoName);
+    globalCipher = cryptoFramework.createCipher(cipherAlgName);
     console.info(`cipher algName: ${globalCipher.algName}`);
   } catch (error) {
     console.error(`createCipher failed, ${error.code}, ${error.message}`);
@@ -478,7 +472,7 @@ function test3DesEcb() {
                 console.info('decrypt plainText: ' + uint8ArrayToString(updateOutput.data));
                 // doFinal
                 globalCipher.doFinal(null, (error, finalOutput) => {
-                  if (finalOutput != null) {
+                  if (finalOutput != null) {  // 使用finalOutput.data前，先判断结果是否为null
                     console.info("decrypt plainText:" + uint8ArrayToString(finalOutput.data));
                   }
                 })
@@ -492,6 +486,147 @@ function test3DesEcb() {
     console.error(`convertKey failed, ${error.code}, ${error.message}`);
     return;
   }
+}
+```
+以AES GCM以promise方式，分段update()实现加解密为例：
+
+```javascript
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+var globalCipher;
+var globalGcmParams;
+var globalKey;
+var globalCipherText;
+var globalPlainText;
+
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0 , 0, 0]; // 12 bytes
+  let dataIv = new Uint8Array(arr);
+  let ivBlob = {data : dataIv};
+
+  arr = [0, 0, 0, 0 , 0, 0, 0, 0]; // 8 bytes
+  let dataAad = new Uint8Array(arr);
+  let aadBlob = {data : dataAad};
+
+  arr = [0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0]; // 16 bytes
+  let dataTag = new Uint8Array(arr);
+  let tagBlob = {data : dataTag};
+  let gcmParamsSpec = {iv : ivBlob, aad : aadBlob, authTag : tagBlob, algName : "GcmParamsSpec"};
+  return gcmParamsSpec;
+}
+
+// 字节流以16进制输出
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+// 字节流转成可理解的字符串
+function uint8ArrayToString(array) {
+  let arrayString = '';
+  for (let i = 0; i < array.length; i++) {
+    arrayString += String.fromCharCode(array[i]);
+  }
+  return arrayString;
+}
+
+// 算法库不限定update的次数和每次加解密的数据量，业务可根据自身内存情况对明文/密文进行多次分段。
+function testAesMultiUpdate() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('testAesMultiUpdate');
+    }, 10)
+  }).then(() => {
+    // 生成对称密钥生成器
+    let symAlgName = 'AES128';
+    let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
+    if (symKeyGenerator == null) {
+      console.error('createSymKeyGenerator failed');
+      return;
+    }
+    console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
+    // 通过密钥生成器随机生成128位长度的对称密钥
+    let promiseSymKey = symKeyGenerator.generateSymKey();
+    // 构造参数
+    globalGcmParams = genGcmParamsSpec();
+
+    // 生成加解密生成器
+    let cipherAlgName = 'AES128|GCM|PKCS7';
+    try {
+      globalCipher = cryptoFramework.createCipher(cipherAlgName);
+      console.info(`cipher algName: ${globalCipher.algName}`);
+    } catch (error) {
+      console.error(`createCipher failed, ${error.code}, ${error.message}`);
+      return;
+    }
+    return promiseSymKey;
+  }).then(key => {
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+    globalKey = key;
+    return key;
+  }).then(key => {
+    // 初始化加解密操作环境:开始加密
+    let mode = cryptoFramework.CryptoMode.ENCRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, key, globalGcmParams);    // init
+    return promiseInit;
+  }).then(async () => {
+    let plainText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";   // 假设明文总共43字节
+    let messageArr = [];
+    let updateLength = 20;  // 假设每20字节分段update一次
+    globalCipherText = [];
+    
+    for (let i = 0; i <= plainText.length; i++) {
+      if ((i % updateLength == 0 || i == plainText.length) && messageArr.length != 0) {
+        let message = new Uint8Array(messageArr);
+        let messageBlob = { data : message };
+        let updateOutput = await globalCipher.update(messageBlob);    // 分段update
+        // 把update的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式
+        // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）
+        globalCipherText = globalCipherText.concat(Array.from(updateOutput.data));
+        messageArr = [];
+      }
+      if (i < plainText.length) {
+        messageArr.push(plainText.charCodeAt(i));
+      }
+    }
+    return;
+  }).then(() => {
+    let promiseFinal = globalCipher.doFinal(null);    // doFinal
+    return promiseFinal;
+  }).then(authTag => {
+    // 获取加密后的认证信息
+    globalGcmParams.authTag = authTag;
+    return;
+  }).then(() => {
+    // 初始化加解密操作环境:开始解密
+    let mode = cryptoFramework.CryptoMode.DECRYPT_MODE;
+    let promiseInit = globalCipher.init(mode, globalKey, globalGcmParams);    // init
+    return promiseInit;
+  }).then(async () => {
+    let updateLength = 20;
+    let updateTimes = Math.ceil(globalCipherText.length / updateLength);  // 上取整
+    globalPlainText = "";
+    for (let i = 0; i < updateTimes; i++) {
+      let messageArr = globalCipherText.slice(i * updateLength, (i + 1) * updateLength);
+      let message = new Uint8Array(messageArr);
+      let messageBlob = { data : message };
+      let updateOutput = await globalCipher.update(messageBlob);    // 分段update
+      globalPlainText += uint8ArrayToString(updateOutput.data);     // 恢复出原始明文
+    }
+    return;
+  }).then(() => {
+    let promiseFinal = globalCipher.doFinal(null);      // doFinal
+    return promiseFinal;
+  }).then(finalOutput => {
+    if (finalOutput == null) {
+      console.info('GCM finalOutput is null');
+    }
+    console.info(`decrypt output: ${globalPlainText}`);
+  }).catch(error => {
+      console.error(`catch error, ${error.code}, ${error.message}`);
+  })
 }
 ```
 
@@ -543,7 +678,154 @@ function encryptMessageCallback() {
     })
   })
 }
+
+function decryptMessageProMise() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
+  let decoder = cryptoFramework.createCipher("RSA1024|PKCS1");
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  let keyPair;
+  let cipherDataBlob;
+  let input = { data : stringToUint8Array(plan) };
+  keyGenPromise.then(rsaKeyPair => {
+    keyPair = rsaKeyPair;
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
+  }).then(() => {
+    return cipher.doFinal(input);
+  }).then(dataBlob => {
+    console.info("EncryptOutPut is " + dataBlob.data);
+    AlertDialog.show({message : "output" + dataBlob.data});
+    cipherDataBlob = dataBlob;
+    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
+  }).then(() => {
+    return decoder.doFinal(cipherDataBlob);
+  }).then(decodeData => {
+    if (decodeData.data.toString() === input.data.toString()) {
+      AlertDialog.show({message : "decrypt success"});
+      return;
+    }
+    AlertDialog.show({message : "decrypt fail"});
+  });
+}
+
+function decryptMessageCallback() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
+  let decoder = cryptoFramework.createCipher("RSA1024|PKCS1");
+  let plainText = "this is cipher text";
+  let input = {data : stringToUint8Array(plainText) };
+  let cipherData;
+  let keyPair;
+  rsaGenerator.generateKeyPair(function (err, newKeyPair) {
+    keyPair = newKeyPair;
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null, function (err, data) {
+      cipher.doFinal(input, function (err, data) {
+        AlertDialog.show({ message : "EncryptOutPut is " + data.data} );
+        cipherData = data;
+        decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null, function (err, data) {
+          decoder.doFinal(cipherData, function (err, data) {
+            if (input.data.toString() === data.data.toString()) {
+              AlertDialog.show({ message : "decrype success"} );
+              return;
+            }
+            AlertDialog.show({ message : "decrype fail"} );
+          });
+        });
+      });
+    });
+  });
+}
 ```
+以RSA非对称加解密（多次调用doFinal实现分段）为例：
+```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+// 字节流转成可理解的字符串
+function uint8ArrayToString(array) {
+  let arrayString = '';
+  for (let i = 0; i < array.length; i++) {
+    arrayString += String.fromCharCode(array[i]);
+  }
+  return arrayString;
+}
+
+function encryptLongMessagePromise() {
+  let globalPlainText = "This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!";
+  let globalCipherOutput;
+  let globalDecodeOutput;
+  var globalKeyPair;
+  let plainTextSplitLen = 64; // RSA每次加解密允许的原文长度大小与密钥位数和填充模式等有关，详细规格内容见overview文档
+  let cipherTextSplitLen = 128; // RSA密钥每次加密生成的密文数据长度计算方式：密钥位数/8
+  let keyGenName = "RSA1024";
+  let cipherAlgName = "RSA1024|PKCS1";
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // 创建非对称密钥生成器对象
+  let cipher = cryptoFramework.createCipher(cipherAlgName); // 创建加密Cipher对象
+  let decoder = cryptoFramework.createCipher(cipherAlgName); // 创建解密Decoder对象
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("testRsaMultiDoFinal");
+    }, 10);
+  }).then(() => {
+    return asyKeyGenerator.generateKeyPair(); // 生成rsa密钥
+  }).then(keyPair => {
+    globalKeyPair = keyPair; // 保存到密钥对全局变量
+    return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, globalKeyPair.pubKey, null);
+  }).then(async () => {
+    globalCipherOutput = [];
+    // 将原文按64字符进行拆分，循环调用doFinal进行加密，使用1024bit密钥时，每次加密生成128B长度的密文
+    for (let i = 0; i < (globalPlainText.length / plainTextSplitLen); i++) {
+      let tempStr = globalPlainText.substr(i * plainTextSplitLen, plainTextSplitLen);
+      let tempBlob = { data : stringToUint8Array(tempStr) };
+      let tempCipherOutput = await cipher.doFinal(tempBlob);
+      globalCipherOutput = globalCipherOutput.concat(Array.from(tempCipherOutput.data));
+    }
+    console.info(`globalCipherOutput len is ${globalCipherOutput.length}, data is: ${globalCipherOutput.toString()}`);
+    return;
+  }).then(() =>{
+    return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, globalKeyPair.priKey, null);
+  }).then(async() => {
+    globalDecodeOutput = [];
+    // 将密文按128B进行拆分解密，得到原文后进行拼接
+    for (let i = 0; i < (globalCipherOutput.length / cipherTextSplitLen); i++) {
+      let tempBlobData = globalCipherOutput.slice(i * cipherTextSplitLen, (i + 1) * cipherTextSplitLen);
+      let message = new Uint8Array(tempBlobData);
+      let tempBlob = { data : message };
+      let tempDecodeOutput = await decoder.doFinal(tempBlob);
+      globalDecodeOutput += uint8ArrayToString(tempDecodeOutput.data);
+    }
+    if (globalDecodeOutput === globalPlainText) {
+      console.info(`encode and decode success`);
+    } else {
+      console.info(`encode and decode error`);
+    }
+    return;
+  }).catch(error => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+```
+
+**说明**
+
+1. 使用RSA加解密时，Cipher对象不可重复调用init方法初始化，在创建了一个加密Cipher对象后，如果要进行解密，则需要重新创建另一个Cipher对象执行解密操作。
+2. RSA加密有长度限制，允许加密明文的最大长度见[加解密算法库框架概述](cryptoFramework-overview.md)中的基本概念章节。
+3. RSA解密每次允许解密的密文长度为，RSA密钥的位数/8。
 
 ## 使用签名验签操作
 
@@ -555,7 +837,7 @@ function encryptMessageCallback() {
 
 **接口及参数说明**
 
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
+详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。<br/>由于密码算法的复杂性，在选取不同规格和参数时，开发差异较大，无法通过代码示例一一列举，请仔细阅读API参考资料中的相关接口，确保使用正确。
 
 |实例名|接口名|描述|
 |---|---|---|
@@ -564,15 +846,15 @@ function encryptMessageCallback() {
 |Sign|init(priKey : PriKey) : Promise\<void>|使用Promise方式设置密钥并初始化Sign对象|
 |Sign|update(data : DataBlob, callback : AsyncCallback\<void>) : void|使用callback方式添加签名数据|
 |Sign|update(data : DataBlob) : Promise\<void>|用Promise方式添加签名数据|
-|Sign|sign(data : DataBlob, callback : AsyncCallback<DataBlob>) : void|使用callback方式签名所有数据|
-|Sign|sign(data : DataBlob) : Promise<DataBlob>|使用Promise方式签名所有数据|
+|Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|使用callback方式签名所有数据|
+|Sign|sign(data : DataBlob) : Promise\<DataBlob>|使用Promise方式签名所有数据|
 |cryptoFramework|function createVerify(algName : string) : Verify|根据String设置的参数创建Verify对象|
 |Verify|init(priKey : PriKey, callback : AsyncCallback\<void>) : void|使用callback方式设置密钥并初始化Verify对象|
 |Verify|init(priKey : PriKey) : Promise\<void>|使用Promise方式设置密钥并初始化Verify对象|
 |Verify|update(data : DataBlob, callback : AsyncCallback\<void>) : void|使用callback方式添加验签数据|
 |Verify|update(data : DataBlob) : Promise\<void>|用Promise方式添加验签数据|
-|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback<boolean>) : void|使用callback方式验签所有数据|
-|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise<boolean>|使用Promise方式验签所有数据|
+|Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|使用callback方式验签所有数据|
+|Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|使用Promise方式验签所有数据|
 
 **开发步骤**
 
@@ -744,6 +1026,73 @@ function verifyMessageCallback() {
   })
 }
 ```
+以执行签名、验签操作时多次调用update实现分段为例：
+
+```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpArray = new Uint8Array(arr);
+  return tmpArray;
+}
+
+function signLongMessagePromise() {
+  let globalPlainText = "This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!" +
+  "This is a long plainTest! This is a long plainTest! This is a long plainTest! This is a long plainTest!";
+  let globalSignData;
+  let textSplitLen = 64; // 自定义的数据拆分长度
+  let keyGenName = "RSA1024";
+  let cipherAlgName = "RSA1024|PKCS1|SHA256";
+  let globalKeyPair;
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator(keyGenName); // 创建非对称密钥生成器对象
+  let signer = cryptoFramework.createSign(cipherAlgName); // 创建加密Cipher对象
+  let verifier = cryptoFramework.createVerify(cipherAlgName); // 创建解密Decoder对象
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("testRsaMultiUpdate");
+    }, 10);
+  }).then(() => {
+    return asyKeyGenerator.generateKeyPair(); // 生成rsa密钥
+  }).then(keyPair => {
+    globalKeyPair = keyPair; // 保存到密钥对全局变量
+    return signer.init(globalKeyPair.priKey);
+  }).then(async () => {
+    // 当原文过大时，可将原文按理想长度进行拆分，循环调用update添加原文
+    for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
+      let tempStr = globalPlainText.substr(i * textSplitLen, textSplitLen);
+      let tempBlob = { data : stringToUint8Array(tempStr) };
+      await signer.update(tempBlob);
+    }
+    return signer.sign(null);
+  }).then(data =>{
+    globalSignData = data.data;
+    console.info(`globalSignOutput len is ${globalSignData.length}, data is: ${globalSignData.toString()}`);
+    return verifier.init(globalKeyPair.pubKey);
+  }).then(async() => {
+    // 将密文按128B进行拆分解密，得到原文后进行拼接
+    for (let i = 0; i < (globalPlainText.length / textSplitLen); i++) {
+      let tempData = globalPlainText.slice(i * textSplitLen, (i + 1) * textSplitLen);
+      let tempBlob = { data : stringToUint8Array(tempData) };
+      await verifier.update(tempBlob);
+    }
+    return verifier.verify(null, { data : globalSignData});
+  }).then(res => {
+    console.info(`verify res is ${res}`);
+  }).catch(error => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+```
 
 ## 使用摘要操作
 
@@ -762,10 +1111,10 @@ function verifyMessageCallback() {
 | 实例名          | 接口名                                                       | 描述                                               |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
 | cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成摘要操作实例Md                   |
-| Md              | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受用户输入数据，通过Callback的方式，异步更新摘要 |
-| Md              | update(input : DataBlob) : Promise\<void\>;                  | 接受用户输入数据，通过Promise的方式，异步更新摘要  |
-| Md              | digest(callback : AsyncCallback\<DataBlob\>) : void;         | 通过Callback的方式，返回结果                       |
-| Md              | digest() : Promise\<DataBlob\>;                              | 通过Promise的方式，返回结果                        |
+| Md              | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | 接受用户输入数据，通过Callback的方式，异步更新摘要 |
+| Md              | update(input : DataBlob) : Promise\<void>;                  | 接受用户输入数据，通过Promise的方式，异步更新摘要  |
+| Md              | digest(callback : AsyncCallback\<DataBlob>) : void;         | 通过Callback的方式，返回结果                       |
+| Md              | digest() : Promise\<DataBlob>;                              | 通过Promise的方式，返回结果                        |
 | Md              | getMdLength() : number;                                      | 获取摘要的长度（由指定的摘要算法决定）             |
 | Md              | readonly algName : string;                                   | 获取当前设置的摘要算法名                           |
 
@@ -810,8 +1159,13 @@ function doMdByPromise(algName) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
   }
   console.error("[Promise]: Md algName is: " + md.algName);
+  // 初次update
   var promiseMdUpdate = md.update(GenDataBlob(12));
   promiseMdUpdate.then(() => {
+    // 可根据情况进行多次update
+    promiseMdUpdate = md.update(GenDataBlob(12));
+    return promiseMdUpdate;
+  }).then(mdOutput => {
     var PromiseMdDigest = md.digest();
     return PromiseMdDigest;
   }).then(mdOutput => {
@@ -832,19 +1186,83 @@ function doMdByCallback(algName) {
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
   }
   console.error("[Callback]: Md algName is: " + md.algName);
+  // 初次update
   md.update(GenDataBlob(12), (err,) => {
     if (err) {
       console.error("[Callback]: err: " + err.code);
     }
-    md.digest((err1, mdOutput) => {
+    // 可根据情况进行多次update
+    md.update(GenDataBlob(12), (err1,) => {
       if (err1) {
         console.error("[Callback]: err: " + err1.code);
-      } else {
-        console.error("[Callback]: MD result: " + mdOutput.data);
-        var mdLen = md.getMdLength();
-        console.error("[Callback]: MD len: " + mdLen);
       }
+      md.digest((err2, mdOutput) => {
+        if (err2) {
+          console.error("[Callback]: err: " + err2.code);
+        } else {
+          console.error("[Callback]: MD result: " + mdOutput.data);
+          var mdLen = md.getMdLength();
+          console.error("[Callback]: MD len: " + mdLen);
+        }
+      });
     });
+  });
+}
+```
+以MD更新时多次调用update实现分段为例：
+```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
+async function updateData(index, obj, data) {
+  console.error("update " + (index + 1) + " MB data...");
+  return obj.update(data);
+}
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function GenDataBlob(dataBlobLen) {
+  var dataBlob;
+  if (dataBlobLen == 12) {
+    dataBlob = {data: stringToUint8Array("my test data")};
+  } else {
+    console.error("GenDataBlob: dataBlobLen is invalid");
+    dataBlob = {data: stringToUint8Array("my test data")};
+  }
+  return dataBlob;
+}
+
+function LoopMdPromise(algName, loopSize) {
+  var md;
+  try {
+    md = cryptoFramework.createMd(algName);
+  } catch (error) {
+    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    return;
+  }
+  console.error("[Promise]: Md algName is: " + md.algName);
+  var promiseMdUpdate = md.update(GenDataBlob(12));
+  promiseMdUpdate.then(() => {
+    var PromiseMdDigest = md.digest();
+    return PromiseMdDigest;
+  }).then(async () => {
+    for (var i = 0; i < loopSize; i++) {
+      await updateData(i, md, GenDataBlob(12));
+    }
+    var PromiseMdDigest = md.digest();
+    return PromiseMdDigest;
+  }).then(mdOutput => {
+    console.error("[Promise]: MD result: " + mdOutput.data);
+    var mdLen = md.getMdLength();
+    console.error("[Promise]: MD len: " + mdLen);
+  }).catch(error => {
+    console.error("[Promise]: error: " + error.message);
   });
 }
 ```
@@ -923,13 +1341,13 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 
 | 实例名          | 接口名                                                       | 描述                                                |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| cryptoFramework | function createMd(algName : string) : Md;                    | 指定摘要算法，生成消息认证码实例Mac                 |
-| Mac             | init(key : SymKey, callback : AsyncCallback\<void\>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
-| Mac             | init(key : SymKey) : Promise\<void\>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
-| Mac             | update(input : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
-| Mac             | update(input : DataBlob) : Promise\<void\>;                  | 接受输入数据，通过Promise的方式，异步更新MAC        |
-| Mac             | doFinal(callback : AsyncCallback\<DataBlob\>) : void;        | 通过Callback的方式，返回MAC计算结果                 |
-| Mac             | doFinal() : Promise\<DataBlob\>;                             | 通过Promise的方式，返回MAC计算结果                  |
+| cryptoFramework | function createMac(algName : string) : Mac;                  | 指定摘要算法，生成消息认证码实例Mac                 |
+| Mac             | init(key : SymKey, callback : AsyncCallback\<void>) : void; | 接收输入对称密钥，通过Callback的方式，异步初始化MAC |
+| Mac             | init(key : SymKey) : Promise\<void>;                        | 接收输入对称密钥，通过Promise的方式，异步初始化MAC  |
+| Mac             | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | 接受输入数据，通过Callback的方式，异步更新MAC       |
+| Mac             | update(input : DataBlob) : Promise\<void>;                  | 接受输入数据，通过Promise的方式，异步更新MAC        |
+| Mac             | doFinal(callback : AsyncCallback\<DataBlob>) : void;        | 通过Callback的方式，返回MAC计算结果                 |
+| Mac             | doFinal() : Promise\<DataBlob>;                             | 通过Promise的方式，返回MAC计算结果                  |
 | Mac             | getMacLength() : number;                                     | 获取MAC的长度（由指定的摘要算法决定）               |
 | Mac             | readonly algName : string;                                   | 获取当前设置的摘要算法名                            |
 
@@ -966,7 +1384,6 @@ function GenDataBlob(dataBlobLen) {
   return dataBlob;
 }
 
-// process by promise
 function doHmacByPromise(algName) {
   var mac;
   try {
@@ -984,6 +1401,11 @@ function doHmacByPromise(algName) {
     var promiseMacInit = mac.init(symKey);
     return promiseMacInit;
   }).then(() => {
+    // 初次update
+    var promiseMacUpdate = mac.update(GenDataBlob(12));
+    return promiseMacUpdate;
+  }).then(() => {
+    // 可根据情况进行多次update
     var promiseMacUpdate = mac.update(GenDataBlob(12));
     return promiseMacUpdate;
   }).then(() => {
@@ -1019,25 +1441,95 @@ function doHmacByCallback(algName) {
       if (err1) {
         console.error("[Callback]: err: " + err1.code);
       }
+      // 初次update
       mac.update(GenDataBlob(12), (err2, ) => {
         if (err2) {
           console.error("[Callback]: err: " + err2.code);
         }
-        mac.doFinal((err3, macOutput) => {
+        // 可根据情况进行多次update
+        mac.update(GenDataBlob(12), (err3, ) => {
           if (err3) {
             console.error("[Callback]: err: " + err3.code);
-          } else {
-            console.error("[Callback]: HMAC result: " + macOutput.data);
-            var macLen = mac.getMacLength();
-            console.error("[Callback]: MAC len: " + macLen);
           }
+          mac.doFinal((err4, macOutput) => {
+            if (err4) {
+              console.error("[Callback]: err: " + err4.code);
+            } else {
+              console.error("[Callback]: HMAC result: " + macOutput.data);
+              var macLen = mac.getMacLength();
+              console.error("[Callback]: MAC len: " + macLen);
+            }
+          });
         });
       });
     });
   });
 }
 ```
+以HMAC更新MAC时多次调用update实现分段为例：
+```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
 
+async function updateData(index, obj, data) {
+  console.error("update " + (index + 1) + " MB data...");
+  return obj.update(data);
+}
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function GenDataBlob(dataBlobLen) {
+  var dataBlob;
+  if (dataBlobLen == 12) {
+    dataBlob = {data: stringToUint8Array("my test data")};
+  } else {
+    console.error("GenDataBlob: dataBlobLen is invalid");
+    dataBlob = {data: stringToUint8Array("my test data")};
+  }
+  return dataBlob;
+}
+
+function LoopHmacPromise(algName, loopSize) {
+  var mac;
+  try {
+    mac = cryptoFramework.createMac(algName);
+  } catch (error) {
+    console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    return;
+  }
+  console.error("[Promise]: Mac algName is: " + mac.algName);
+  var KeyBlob = {
+    data : stringToUint8Array("12345678abcdefgh")
+  }
+  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
+  promiseConvertKey.then(symKey => {
+    var promiseMacInit = mac.init(symKey);
+    return promiseMacInit;
+  }).then(async () => {
+    for (var i = 0; i < loopSize; i++) {
+      await updateData(i, mac, GenDataBlob(12));
+    }
+    var promiseMacUpdate = mac.update(GenDataBlob(12));
+    return promiseMacUpdate;
+  }).then(() => {
+    var PromiseMacDoFinal = mac.doFinal();
+    return PromiseMacDoFinal;
+  }).then(macOutput => {
+    console.error("[Promise]: HMAC result: " + macOutput.data);
+    var macLen = mac.getMacLength();
+    console.error("[Promise]: MAC len: " + macLen);
+  }).catch(error => {
+    console.error("[Promise]: error: " + error.message);
+  });
+}
+```
 
 
 ## 使用随机数操作
@@ -1056,10 +1548,9 @@ function doHmacByCallback(algName) {
 | 实例名          | 接口名                                                       | 描述                                           |
 | --------------- | ------------------------------------------------------------ | ---------------------------------------------- |
 | cryptoFramework | function createRandom() : Random;                            | 生成随机数Random实例                           |
-| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob\>) : void; | 接受输入长度，通过Callback，异步生成随机数     |
-| Random          | generateRandom(len : number) : Promise\<DataBlob\>;          | 接受输入长度，通过Promise，异步生成随机数      |
-| Random          | setSeed(seed : DataBlob, callback : AsyncCallback\<void\>) : void; | 接受输入Blob，通过Callback的方式，异步设置种子 |
-| Random          | setSeed(seed : DataBlob) : Promise\<void\>;                  | 接受输入Blob，通过Promise的方式，异步设置种子  |
+| Random          | generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void; | 接受输入长度，通过Callback，异步生成随机数   |
+| Random          | generateRandom(len : number) : Promise\<DataBlob>;          | 接受输入长度，通过Promise，异步生成随机数      |
+| Random          | setSeed(seed : DataBlob) : void;                            | 接受输入Blob，设置种子  |
 
 **开发步骤**
 
@@ -1081,10 +1572,11 @@ function doRandByPromise(len) {
   var promiseGenerateRand = rand.generateRandom(len);
   promiseGenerateRand.then(randData => {
     console.error("[Promise]: rand result: " + randData.data);
-    var promiseSetSeed = rand.setSeed(randData);
-    return promiseSetSeed;
-  }).then(() => {
-    console.error("[Promise]: setSeed success");
+      try {
+          rand.setSeed(randData);
+      } catch (error) {
+          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+      }
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
@@ -1103,508 +1595,12 @@ function doRandByCallback(len) {
       console.error("[Callback]: err: " + err.code);
     } else {
       console.error("[Callback]: generate random result: " + randData.data);
-      rand.setSeed(randData, (err1,) => {
-        if (err1) {
-          console.error("[Callback] err: " + err1.code);
-        } else {
-          console.error("[Callback]: setSeed success");
-        }
-      });
+      try {
+          rand.setSeed(randData);
+      } catch (error) {
+          console.log("setSeed failed, errCode: " + error.code + ", errMsg: " + error.message);
+      }
     }
   });
 }
 ```
-
-## 使用证书操作
-
-**场景说明**
-
-使用证书操作中，典型的场景有：
-
-1. 解析X509证书数据生成证书对象。
-2. 获取证书信息，比如：证书版本、证书序列号等。
-3. 获取证书对象的序列化数据。
-4. 获取证书公钥。
-5. 证书验签。
-6. 校验证书有效期。
-
-**接口及参数说明**
-
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
-
-以上场景涉及的常用接口如下表所示：
-
-| 实例名          | 接口名                                                       | 描述                                         |
-| --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| cryptoFramework | createX509Cert(inStream : EncodingBlob, callback : AsyncCallback<X509Cert>) : void | 使用callback方式解析X509证书数据生成证书对象 |
-| cryptoFramework | createX509Cert(inStream : EncodingBlob) : Promise<X509Cert>  | 使用promise方式解析X509证书数据生成证书对象  |
-| X509Cert        | verify(key : PubKey, callback : AsyncCallback<void>) : void  | 使用callback方式进行证书验签                 |
-| X509Cert        | verify(key : PubKey) : Promise<void>                         | 使用promise方式进行证书验签                  |
-| X509Cert        | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | 使用callback方式获取证书序列化数据           |
-| X509Cert        | getEncoded() : Promise<EncodingBlob>                         | 使用promise方式获取证书序列化数据            |
-| X509Cert        | getPublicKey(callback : AsyncCallback<PubKey>) : void        | 使用callback方式获取证书公钥                 |
-| X509Cert        | getPublicKey() : Promise<PubKey>                             | 使用Promise方式获取证书公钥                  |
-| X509Cert        | checkValidityWithDate(date: string, callback : AsyncCallback<void>) : void | 使用callback方式校验证书有效期               |
-| X509Cert        | checkValidityWithDate(date: string) : Promise<void>          | 使用Promise方式校验证书有效期                |
-| X509Cert        | getVersion() : number                                        | 获取证书版本                                 |
-| X509Cert        | getSerialNumber() : number                                   | 获取证书序列号                               |
-| X509Cert        | getIssuerName() : DataBlob                                   | 获取证书颁发者名称                           |
-| X509Cert        | getSubjectName() : DataBlob                                  | 获取证书主体名称                             |
-| X509Cert        | getNotBeforeTime() : string                                  | 获取证书有效期起始时间                       |
-| X509Cert        | getNotAfterTime() : string                                   | 获取证书有效期截至时间                       |
-| X509Cert        | getSignature() : DataBlob                                    | 获取证书签名                                 |
-| X509Cert        | getSignatureAlgName() : string                               | 获取证书签名算法名称                         |
-| X509Cert        | getSignatureAlgOid() : string                                | 获取证书签名算法OID                          |
-| X509Cert        | getSignatureAlgParams() : DataBlob                           | 获取证书签名算法参数                         |
-| X509Cert        | getKeyUsage() : DataBlob                                     | 获取证书秘钥用途                             |
-| X509Cert        | getExtKeyUsage() : DataArray                                 | 获取证书扩展秘钥用途                         |
-| X509Cert        | getBasicConstraints() : number                               | 获取证书基本约束                             |
-| X509Cert        | getSubjectAltNames() : DataArray                             | 获取证书主体可选名称                         |
-| X509Cert        | getIssuerAltNames() : DataArray                              | 获取证书颁发者可选名称                       |
-
-**开发步骤**
-
-示例：解析X509证书数据生成证书对象，并调用对象方法（包含场景1-6）
-
-```javascript
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-// 证书数据，此处仅示例，业务需根据场景自行设置
-let certData = "-----BEGIN CERTIFICATE-----\n"
-+ "IBzTCCAXCgAwIBAgIGAXKnMKNyMAwGCCqBHM9VAYN1BQAwSTELMAkGA1UEBhMC\n"
-+ "04xDjAMBgNVBAoTBUdNU1NMMRAwDgYDVQQLEwdQS0kvU00yMRgwFgYDVQQDEw9S\n"
-+ "290Q0EgZm9yIFRlc3QwIhgPMjAxNTEyMzExNjAwMDBaGA8yMDM1MTIzMDE2MDAw\n"
-+ "FowSTELMAkGA1UEBhMCQ04xDjAMBgNVBAoTBUdNU1NMMRAwDgYDVQQLEwdQS0kv\n"
-+ "00yMRgwFgYDVQQDEw9Sb290Q0EgZm9yIFRlc3QwWTATBgcqhkjOPQIBBggqgRzP\n"
-+ "QGCLQNCAATj+apYlL+ddWXZ7+mFZXZJGbcJFXUN+Fszz6humeyWZP4qEEr2N0+a\n"
-+ "dwo/21ft232yo0jPLzdscKB261zSQXSoz4wPDAZBgNVHQ4EEgQQnGnsD7oaOcWv\n"
-+ "CTrspwSBDAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIAxjAMBggqgRzP\n"
-+ "QGDdQUAA0kAMEYCIQCEnW5BlQh0vmsOLxSoXYc/7zs++wWyFc1tnBHENR4ElwIh\n"
-+ "I1Lwu6in1ruflZhzseWulXwcITf3bm/Y5X1g1XFWQUH\n"
-+ "-----END CERTIFICATE-----\n";
-
-// string转Uint8Array
-function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; i++) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
-}
-
-// 证书示例
-function certSample() {
-    let encodingBlob = {
-        // 将string类型证书数据转为Uint8Array
-        data: stringToUint8Array(certData),
-        // 证书格式：支持PEM和DER，此例中对应PEM
-        encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
-    };
-    
-    // 创建证书对象
-	cryptoFramework.createX509Cert(encodingBlob, function (err, x509Cert) {
-		if (err != null) {
-			// 创建证书对象失败
-			Console.log("createX509Cert failed, errCode: " + err.code + ", errMsg: " + err.message);
-			return;
-		}
-		// 创建证书对象成功
-		Console.log("createX509Cert success");
-
-		// 获取证书版本
-		let version = x509Cert.getVersion();
-        
-		// 获取证书对象的序列化数据
-		x509Cert.getEncoded(function (err, data) {
-			if (err != null) {
-				// 获取序列化数据失败
-				Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-				// 获取序列化数据成功
-				Console.log("getEncoded success");
-			}
-		});
-        
-		// 获取证书公钥对象
-		x509Cert.getPublicKey(function (err, pubKey) {
-			if (err != null) {
-				// 获取证书公钥失败
-				Console.log("getPublicKey failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-				// 获取证书公钥成功
-				Console.log("getPublicKey success");
-			}
-		});
-        
-        // 业务需通过上级证书对象或本证书对象(自签名)的getPublicKey接口获取公钥对象，此处省略
-        let pubKey = null;
-        
-        // 证书验签
-		x509Cert.verify(pubKey, function (err, data) {
-            if (err == null) {
-                // 验签成功
-                Console.log("verify success");
-            } else {
-                // 验签失败
-                Console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
-            }
-		});
-        
-        // 时间字符串
-        let date = "150527000001Z";
-        
-        // 校验证书有效期
-		x509Cert.checkValidityWithDate(date, function (err, data) {
-			if (err != null) {
-                // 证书有效期校验失败
-				Console.log("checkValidityWithDate failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-                // 证书有效期校验成功
-				Console.log("checkValidityWithDate success");
-			}
-		});
-	});
-}
-```
-
-## 使用证书吊销列表操作
-
-**场景说明**
-
-使用证书吊销列表操作中，典型的场景有：
-
-1. 解析X509证书吊销列表数据生成吊销列表对象。
-2. 获取证书吊销列表信息，比如：证书吊销列表版本、证书吊销列表类型等。
-3. 获取证书吊销列表对象的序列化数据。
-4. 检查证书是否被吊销。
-5. 证书吊销列表验签。
-6. 获取被吊销证书。
-
-**接口及参数说明**
-
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
-
-以上场景涉及的常用接口如下表所示：
-
-| 实例名          | 接口名                                                       | 描述                                                         |
-| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cryptoFramework | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback<X509Crl>) : void | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
-| cryptoFramework | createX509Crl(inStream : EncodingBlob) : Promise<X509Crl>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
-| X509Crl         | isRevoked(cert : X509Cert, callback : AsyncCallback<boolean>) : void | 使用callback方式检查证书是否被吊销                           |
-| X509Crl         | isRevoked(cert : X509Cert) : Promise<boolean>                | 使用promise方式检查证书是否被吊销                            |
-| X509Crl         | getType() : string                                           | 获取证书吊销列表类型                                         |
-| X509Crl         | getEncoded(callback : AsyncCallback<EncodingBlob>) : void    | 使用callback方式获取证书吊销列表序列化数据                   |
-| X509Crl         | getEncoded() : Promise<EncodingBlob>                         | 使用promise方式获取证书吊销列表序列化数据                    |
-| X509Crl         | verify(key : PubKey, callback : AsyncCallback<void>) : void  | 使用callback方式进行证书吊销列表验签                         |
-| X509Crl         | verify(key : PubKey) : Promise<void>                         | 使用Promise方式进行证书吊销列表验签                          |
-| X509Crl         | getVersion() : number                                        | 获取证书吊销列表版本                                         |
-| X509Crl         | getIssuerName() : DataBlob                                   | 获取证书吊销列表颁发者名称                                   |
-| X509Crl         | getLastUpdate() : string                                     | 获取证书吊销列表lastUpdate日期                               |
-| X509Crl         | getNextUpdate() : string                                     | 获取证书吊销列表nextUpdate日期                               |
-| X509Crl         | getRevokedCert(serialNumber : number, callback : AsyncCallback<X509CrlEntry>) : void | 使用callback方式通过序列号获取证书吊销列表中的被吊销证书     |
-| X509Crl         | getRevokedCert(serialNumber : number) : Promise<X509CrlEntry> | 使用Promise方式通过序列号获取证书吊销列表中的被吊销证书      |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert, callback : AsyncCallback<X509CrlEntry>) : void | 使用callback方式通过X509证书获取证书吊销列表中的被吊销证书   |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : Promise<X509CrlEntry> | 使用Promise方式通过X509证书获取证书吊销列表中的被吊销证书    |
-| X509Crl         | getRevokedCerts(callback : AsyncCallback<Array<X509CrlEntry>>) : void | 使用callback方式获取证书吊销列表的所有被吊销证书             |
-| X509Crl         | getRevokedCerts() : Promise<Array<X509CrlEntry>>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
-| X509Crl         | getTbsInfo(callback : AsyncCallback<DataBlob>) : void        | 使用callback方式获取证书吊销列表的tbsCertList                |
-| X509Crl         | getTbsInfo() : Promise<DataBlob>                             | 使用Promise方式获取证书吊销列表的tbsCertList                 |
-| X509Crl         | getSignature() : DataBlob                                    | 获取证书吊销列表的签名                                       |
-| X509Crl         | getSignatureAlgName() : string                               | 获取证书吊销列表的签名算法名称                               |
-| X509Crl         | getSignatureAlgOid() : string                                | 获取证书吊销列表的签名算法OID                                |
-| X509Crl         | getSignatureAlgParams() : DataBlob                           | 获取证书吊销列表的签名算法参数                               |
-
-**开发步骤**
-
-示例：解析X509证书吊销列表数据生成证书吊销列表对象，并调用对象方法（包含场景1-6）
-
-```javascript
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-// 证书吊销列表数据，此处仅示例，业务需根据场景自行设置
-let crlData = "-----BEGIN X509 CRL-----\n"
-+ "MIIBijB0AgEBMA0GCSqGSIb3DQEBCwUAMBMxETAPBgNVBAMMCHJvb3QtY2ExFw0y\n"
-+ "MDA2MTkxNjE1NDhaFw0yMDA3MTkxNjE1NDhaMBwwGgIJAMsozRATnap1Fw0yMDA2\n"
-+ "MTkxNjEyMDdaoA8wDTALBgNVHRQEBAICEAIwDQYJKoZIhvcNAQELBQADggEBACPs\n"
-+ "9gQB+djaXPHHRmAItebZpD3iJ/e36Dxr6aMVkn9FkI8OVpUI4RNcCrywyCZHQJte\n"
-+ "995bbPjP7f1sZstOTZS0fDPgJ5SPAxkKOQB+SQnBFrlZSsxoUNU60gRqd2imR0Rn\n"
-+ "1r09rP69F6E4yPc9biEld+llLGgoImP3zPOVDD6fbfcvVkjStY3bssVEQ/vjp4a3\n"
-+ "/I12U7ZnSe3jaKqaQBoVJppkTFOIOq7IOxf5/IkMPmvRHDeC2IzDMzcUxym0dkny\n"
-+ "EowHrjzo0bZVqpHMA2YgKZuwTpVLHk9GeBEK2hVkIoPVISkmiU4HFg0S6z68C5yd\n"
-+ "DrAA7hErVgXhtURLbAI=\n"
-+ "-----END X509 CRL-----\n";
-
-// string转Uint8Array
-function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; i++) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
-}
-
-// 证书吊销列表示例
-function crlSample() {
-    let encodingBlob = {
-        // 将string类型证书吊销列表数据转为Uint8Array
-        data: stringToUint8Array(crlData),
-        // 证书吊销列表格式：支持PEM和DER，此例中对应PEM
-        encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
-    };
-    
-    // 创建证书吊销列表对象
-	cryptoFramework.createX509Crl(encodingBlob, function (err, x509Crl) {
-		if (err != null) {
-			// 创建证书吊销列表对象失败
-			Console.log("createX509Crl failed, errCode: " + err.code + ", errMsg: " + err.message);
-			return;
-		}
-		// 创建证书吊销列表对象成功
-		Console.log("createX509Crl success");
-
-		// 获取证书吊销列表版本
-		let version = x509Crl.getVersion();
-        
-		// 获取证书吊销列表对象的序列化数据
-		x509Crl.getEncoded(function (err, data) {
-			if (err != null) {
-				// 获取序列化数据失败
-				Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-				// 获取序列化数据成功
-				Console.log("getEncoded success");
-			}
-		});
-        
-		// 业务需通过cryptoFramework的createX509Cert生成X509Cert证书对象，此处省略
-        let x509Cert = null;
-        
-        // 检查证书是否被吊销
-		x509Crl.isRevoked(x509Cert, function (err, isRevoked) {
-			if (err != null) {
-				// 检查证书是否被吊销失败
-				Console.log("isRevoked failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-				// 检查证书是否被吊销成功
-				Console.log("isRevoked success, isRevoked? " + isRevoked);
-			}
-		});
-        
-		// 业务需通过AsyKeyGenerator的generateKeyPair或convertKey接口获取PubKey对象，此处省略
-        let pubKey = null;
-        
-        // 证书吊销列表验签
-		x509Crl.verify(pubKey, function (err, data) {
-            if (err == null) {
-                // 验签成功
-                Console.log("verify success");
-            } else {
-                // 验签失败
-                Console.log("verify failed, errCode: " + err.code + ", errMsg: " + err.message);
-            }
-		});
-        
-        // 证书序列号，业务需自行设置
-        let serialNumber = 1000;
-        
-        // 获取被吊销证书对象
-		x509Crl.getRevokedCert(serialNumber, function (err, entry) {
-			if (err != null) {
-                // 获取被吊销证书对象失败
-				Console.log("getRevokedCert failed, errCode: " + err.code + ", errMsg: " + err.message);
-			} else {
-                // 获取被吊销证书对象成功
-				Console.log("getRevokedCert success");
-			}
-		});
-	});
-}
-```
-
-## 使用证书链校验器操作
-
-**场景说明**
-
-使用证书链校验器操作中，典型的场景有：
-
-1. 证书链校验。
-
-**接口及参数说明**
-
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
-
-以上场景涉及的常用接口如下表所示：
-
-| 实例名             | 接口名                                                       | 描述                             |
-| ------------------ | ------------------------------------------------------------ | -------------------------------- |
-| cryptoFramework    | createCertChainValidator(algorithm :string) : CertChainValidator | 使用指定算法生成证书链校验器对象 |
-| CertChainValidator | validate(certChain : CertChainData, callback : AsyncCallback<void>) : void | 使用callback方式校验证书链       |
-| CertChainValidator | validate(certChain : CertChainData) : Promise<void>          | 使用promise方式校验证书链        |
-| CertChainValidator | algorithm : string                                           | 证书链校验器算法名称             |
-
-**开发步骤**
-
-示例：创建证书链校验器对象，并对证书链数据进行校验（场景1）
-
-```javascript
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-// 一级证书数据，此处仅示例，业务需自行设置真实数据
-let caCertData = "-----BEGIN CERTIFICATE-----\n"
-+ "...\n"
-+ "...\n"
-+ "...\n"
-+ "-----END CERTIFICATE-----\n";
-
-// 二级证书数据，此处仅示例，业务需自行设置真实数据
-let secondCaCertData = "-----BEGIN CERTIFICATE-----\n"
-+ "...\n"
-+ "...\n"
-+ "...\n"
-+ "-----END CERTIFICATE-----\n";
-
-// string转Uint8Array
-function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; i++) {
-        arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
-}
-
-// 证书链校验器示例：此示例中以校验二级证书链为例，业务需根据场景自行修改
-function certChainValidatorSample() {
-    // 证书链校验器算法，当前仅支持PKIX
-    let algorithm = "PKIX";
-    
-    // 创建证书链校验器对象
-    let validator = cryptoFramework.createCertChainValidator(algorithm);
-    
-    // 一级证书数据
-    let uint8ArrayOfCaCertData = stringToUint8Array(caCertData);
-    
-    // 一级证书数据长度
-    let uint8ArrayOfCaCertDataLen = new Uint8Array(new Uint16Array([uint8ArrayOfCaCertData.byteLength]).buffer);
-    
-    // 二级证书数据
-    let uint8ArrayOf2ndCaCertData = stringToUint8Array(secondCaCertData);
-    
-    // 二级证书数据长度
-    let uint8ArrayOf2ndCaCertDataLen = new Uint8Array(new Uint16Array([uint8ArrayOf2ndCaCertData.byteLength]).buffer);
-    
-    // 证书链二进制数据：二级证书数据长度+二级证书数据+一级证书数据长度+一级证书数据（L-V格式）
-    let encodingData = new Uint8Array(uint8ArrayOf2ndCaCertDataLen.length + uint8ArrayOf2ndCaCertData.length +
-                                     uint8ArrayOfCaCertDataLen.length + uint8ArrayOfCaCertData.length);
-    for (var i = 0; i < uint8ArrayOf2ndCaCertDataLen.length; i++) {
-        encodingData[i] = uint8ArrayOf2ndCaCertDataLen[i];
-    }
-    for (var i = 0; i < uint8ArrayOf2ndCaCertData.length; i++) {
-        encodingData[uint8ArrayOf2ndCaCertDataLen.length + i] = uint8ArrayOf2ndCaCertData[i];
-    }
-    for (var i = 0; i < uint8ArrayOfCaCertDataLen.length; i++) {
-        encodingData[uint8ArrayOf2ndCaCertDataLen.length + uint8ArrayOf2ndCaCertData.length + i] = uint8ArrayOfCaCertDataLen[i];
-    }
-    for (var i = 0; i < uint8ArrayOfCaCertData.length; i++) {
-        encodingData[uint8ArrayOf2ndCaCertDataLen.length + uint8ArrayOf2ndCaCertData.length +
-                     uint8ArrayOfCaCertDataLen.length + i] = uint8ArrayOfCaCertData[i];
-    }
-    
-    let certChainData = {
-        // Uint8Array类型：L-V格式(证书数据长度-证书数据)
-        data: encodingData,
-        // 证书数量，此示例中为2
-        count: 2,
-        // 证书格式：支持PEM和DER，此例中对应PEM
-        encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
-    };
-    
-    // 校验证书链
-    validator.validate(certChainData, function (err, data) {
-        if (err != null) {
-            // 证书链校验失败
-            Console.log("validate failed, errCode: " + err.code + ", errMsg: " + err.message);
-        } else {
-            // 证书链校验成功
-            Console.log("validate success");
-        }
-	});
-}
-```
-
-## 使用被吊销证书操作
-
-**场景说明**
-
-使用被吊销证书操作中，典型的场景有：
-
-1. 获取被吊销证书对象。
-2. 获取被吊销证书信息，比如：序列号、证书颁发者、证书吊销日期。
-3. 获取被吊销证书对象的序列化数据。
-
-**接口及参数说明**
-
-详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
-
-以上场景涉及的常用接口如下表所示：
-
-| 实例名       | 接口名                                                      | 描述                                       |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------ |
-| X509CrlEntry | getEncoded(callback : AsyncCallback<EncodingBlob>) : void;  | 使用callback方式获取被吊销证书的序列化数据 |
-| X509CrlEntry | getEncoded() : Promise<EncodingBlob>;                       | 使用promise方式获取被吊销证书的序列化数据  |
-| X509CrlEntry | getSerialNumber() : number;                                 | 获取被吊销证书的序列号                     |
-| X509CrlEntry | getCertIssuer(callback : AsyncCallback<DataBlob>) : void;   | 使用callback方式获取被吊销证书颁发者       |
-| X509CrlEntry | getCertIssuer() : Promise<DataBlob>;                        | 使用promise方式获取被吊销证书颁发者        |
-| X509CrlEntry | getRevocationDate(callback : AsyncCallback<string>) : void; | 使用callback方式获取被吊销证书的吊销日期   |
-| X509CrlEntry | getRevocationDate() : Promise<string>;                      | 使用promise方式获取被吊销证书的吊销日期    |
-
-**开发步骤**
-
-示例：获取被吊销证书对象，并调用对象方法（包含场景1-3）
-
-```javascript
-import cryptoFramework from '@ohos.security.cryptoFramework';
-
-// 被吊销证书示例
-function crlEntrySample() {
-    // 业务需自行通过cryptoFramework的createX509Crl接口创建X509Crl对象，此处省略
-    let x509Crl = null;
-    
-    // 获取被吊销证书对象，业务需根据场景调用X509Crl的接口获取，此示例使用getRevokedCert获取
-    let serialNumber = 1000;
-    x509Crl.getRevokedCert(serialNumber, function (err, crlEntry) {
-        if (err != null) {
-            // 获取被吊销证书对象失败
-            Console.log("getRevokedCert failed, errCode: " + err.code + ", errMsg: " + err.message);
-            return;
-        }
-        // 获取被吊销证书对象成功
-        Console.log("getRevokedCert success");
-        
-        // 获取被吊销证书的序列号
-        let serialNumber = crlEntry.getSerialNumber();
-        
-        // 获取被吊销证书的吊销日期
-        crlEntry.getRevocationDate(function (err, date) {
-            if (err != null) {
-                // 获取吊销日期失败
-                Console.log("getRevocationDate failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // 获取吊销日期成功
-                Console.log("getRevocationDate success, date is: " + date);
-            }
-        });
-        
-        // 获取被吊销证书对象的序列化数据
-        crlEntry.getEncoded(function (err, data) {
-            if (err != null) {
-                // 获取序列化数据失败
-                Console.log("getEncoded failed, errCode: " + err.code + ", errMsg: " + err.message);
-            } else {
-                // 获取序列化数据成功
-                Console.log("getEncoded success");
-            }
-        });
-    });
-}
-```
-

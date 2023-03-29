@@ -1,0 +1,8 @@
+# window Switching
+
+
+| API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model|
+| -------- | -------- | -------- |
+| [create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void;](../reference/apis/js-apis-window.md#windowcreatedeprecated)<br>[create(id: string, type: WindowType): Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowcreatedeprecated-1) | \@ohos.window.d.ts | [createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void;](../reference/apis/js-apis-window.md#createsubwindow9)<br>[createSubWindow(name: string): Promise;](../reference/apis/js-apis-window.md#createsubwindow9-1)<br>An application developed on the FA model uses **window.create(id, WindowType.TYPE_APP)** to create a subwindow, whereas an application developed on the stage model uses **WindowStage.CreateSubWindow()** to create a subwindow.|
+| [getTopWindow(callback: AsyncCallback&lt;Window&gt;): void;](../reference/apis/js-apis-window.md#windowgettopwindowdeprecated)<br>[getTopWindow(): Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowgettopwindowdeprecated-1) | \@ohos.window.d.ts | [getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void;](../reference/apis/js-apis-window.md#windowgetlastwindow9)<br>[getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;;](../reference/apis/js-apis-window.md#windowgetlastwindow9-1) |
+

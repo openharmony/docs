@@ -6,21 +6,26 @@
   - [Glossary](../glossary.md) 
   - [Release Notes](../release-notes/Readme.md) 
 - Quick Start
-  - [Mini and Small Systems](quick-start/quickstart-ide-lite-overview.md)	
-  - [Standard System](quick-start/quickstart-ide-standard-overview.md)
+  - [Getting Started](quick-start/Readme-EN.md)
 - Compatibility and Security
   - [Privacy and Security](security/Readme-EN.md)
 - Porting
   - Porting Guide
       - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty-overview.md)
-      - [Mini System SoC Porting Guide](porting/porting-minichip.md)
+      - [Mini System SoC Porting Guide](porting/porting-minichip-overview.md)
       - [Small System SoC Porting Guide](porting/porting-smallchip-prepare-needs.md)
       - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)
   - Porting Cases
       - Mini System SoC Porting Cases
           - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md) 
           - [Combo Solution — ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)    
-
+          - [IoT Solution - Chipsea CST85 Chip Porting Case](porting/porting-cst85f01-combo-demo.md)    
+          - [Mini System STM32F407 SoC Porting Case](porting/porting-stm32f407-on-minisystem-eth.md)    
+          - [Combo Solution – W800 Chip Porting Case](porting/porting-w800-combo-demo.md)
+      - Small System SoC Porting Cases
+          - [Mini-System Devices – STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
+      - Standard System SoC Porting Cases
+          - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md) 
 - Subsystem Development
   - Kernel
     - [Kernel for the Mini System](kernel/kernel-mini-overview.md)
@@ -48,10 +53,8 @@
     - [Mini- and Small-System Devices](guide/device-wlan-led-control.md)	
     - [Standard-System Devices](guide/device-clock-guide.md)
 - Debugging
-  - [Test Case Development](subsystems/subsys-testguide-test.md)	
+  - [Test Case Development](device-test/Readme-EN.md)	
   - [R&D Tools](subsystems/subsys-toolchain-hdc-guide.md)
-- XTS Certification	
-  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)

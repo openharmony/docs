@@ -3,6 +3,7 @@
 将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。
 
 >  **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -45,6 +46,7 @@ struct ColumnSplitExample {
         Text('4').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
         Text('5').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
       }
+      .borderWidth(1)
       .resizeable(true) // 可拖动
       .width('90%').height('60%')
     }.width('100%')
@@ -52,4 +54,4 @@ struct ColumnSplitExample {
 }
 ```
 
-![zh-cn_image_0000001219982707](figures/zh-cn_image_0000001219982707.gif)
+![zh-cn_image_0000001219982708](figures/zh-cn_image_0000001219982708.gif)

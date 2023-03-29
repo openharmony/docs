@@ -28,6 +28,7 @@
 .content{
   width: 400px;
   height: 400px;
+  /* 不建议图片长宽比为1:1 */
   background-image: url('common/images/bg-tv.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
@@ -90,4 +91,4 @@
 
 针对background-position样式动画开发，有以下相关实例可供参考：
 
-- [`JsImage`：基本动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsImage)
+- [`JsImage`：基本动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsImage)

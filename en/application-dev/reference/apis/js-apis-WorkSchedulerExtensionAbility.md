@@ -1,4 +1,4 @@
-# Work Scheduler Callbacks
+# @ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)
 
 The **WorkSchedulerExtensionAbility** module provides callbacks for Work Scheduler tasks.
 
@@ -28,7 +28,7 @@ Triggered when the Work Scheduler task starts.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Target task. |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Target task.|
 
 **Example**
 
@@ -52,7 +52,7 @@ Triggered when the Work Scheduler task stops.
 
 | Name | Type                                      | Mandatory  | Description            |
 | ---- | ---------------------------------------- | ---- | -------------- |
-| work | [workScheduler.WorkInfo](js-apis-workScheduler.md#workinfo) | Yes   | Target task. |
+| work | [workScheduler.WorkInfo](js-apis-resourceschedule-workScheduler.md#workinfo) | Yes   | Target task.|
 
 
 **Example**

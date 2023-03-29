@@ -1,6 +1,6 @@
 # WebGL Overview
 
-Web Graphic Library (WebGL) is used for rendering interactive 2D and 3D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the **&lt;canvas&gt;** object of HTML5 without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment.
+Web Graphic Library (WebGL) is used for rendering interactive 2D and 3D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the **\<canvas>** object of HTML5 without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
 
 
 ## Basic Concepts
@@ -31,7 +31,7 @@ The WebGLProgram is a JavaScript object responsible for associating the shader w
 
 ## Working Principles
 
-  **Figure 1** WebGL working principles
+**Figure 1** WebGL working principles
 
 ![en-us_image_0000001238544451](figures/en-us_image_0000001238544451.png)
 
@@ -40,7 +40,7 @@ The WebGLProgram is a JavaScript object responsible for associating the shader w
 
 - Native APIs complete the interaction between JavaScript and C++ code.
 
-- JavaScript engine is a graphics framework that provides the **Surface** object for the WebGL module.
+- JavaScript engine is the graphics framework that provides the **Surface** object for the WebGL module.
 
 - The WebGL module exposes the GPU drawing APIs of OpenGL ES.
 

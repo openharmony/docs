@@ -11,36 +11,20 @@
 
 ## 接口
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
 
 
 **参数:**
 
 | 参数名                    | 参数类型                                     | 必填                  | 参数描述                   |
 | ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
-| builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是     | 自定义弹窗内容构造器。            |
+| builder                | [CustomDialog](../../quick-start/arkts-dynamic-ui-elememt-building.md#customdialog) | 是     | 自定义弹窗内容构造器。            |
 | cancel                 | ()&nbsp;=&gt;&nbsp;void                            | 否              | 点击遮障层退出时的回调。           |
 | autoCancel             | boolean                                            | 否              | 是否允许点击遮障层退出。<br>默认值：true           |
 | alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明)           | 否              | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default        |
-| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
-| customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false           |
-| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。              |
-
-## DialogAlignment枚举说明
-
-| 名称                     | 描述                                                   |
-| ------------------------ | ------------------------------------------------------ |
-| Top                      | 垂直顶部对齐。                                         |
-| Center                   | 垂直居中对齐。                                         |
-| Bottom                   | 垂直底部对齐。                                         |
-| Default                  | 默认对齐。<br/>**说明：**<br/>与枚举值Center效果相同。 |
-| TopStart<sup>8+</sup>    | 左上对齐。                                             |
-| TopEnd<sup>8+</sup>      | 右上对齐。                                             |
-| CenterStart<sup>8+</sup> | 左中对齐。                                             |
-| CenterEnd<sup>8+</sup>   | 右中对齐。                                             |
-| BottomStart<sup>8+</sup> | 左下对齐。                                             |
-| BottomEnd<sup>8+</sup>   | 右下对齐。                                             |
-
+| offset                 | [Offset](ts-types.md#offset) | 否    | 弹窗相对alignment所在位置的偏移量。 |
+| customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false，弹窗容器的宽度根据栅格系统自适应，不跟随子节点；高度自适应子节点，最大为窗口高度的90%；圆角为24vp。           |
+| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占[栅格宽度](../../ui/ui-ts-layout-grid-container-new.md)的个数。<br>默认值为4，异常值按默认值处理，最大栅格数为系统最大栅格数。 |
 
 ## CustomDialogController
 
@@ -49,6 +33,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 ```ts
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
+**说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
 ### open()
 open(): void
@@ -107,17 +92,33 @@ struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept, textValue: $textValue, inputValue: $inputValue }),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Default,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false
   })
+
+  aboutToDisappear() {
+    delete this.dialogController,
+    this.dialogController = undefined
+  }
 
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
+
   onAccept() {
     console.info('Callback when the second button is clicked')
   }
+
   existApp() {
     console.info('Click the callback in the blank area')
   }
@@ -126,7 +127,9 @@ struct CustomDialogUser {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
-          this.dialogController.open()
+          if (this.dialogController != undefined) {
+            this.dialogController.open()
+          }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }

@@ -4,21 +4,25 @@ You can apply background blur effects to a component.
 
 >  **NOTE**
 > 
->The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  The APIs provided by this module are system APIs.
 
 ## Attributes
 
 | Name                 | Type                    | Description                    |
 | -------------------- | ----------------------- | ------------------------ |
-| backgroundBlurStyle  | [BlurStyle](#blurstyle) | Style of the blur between the background and content for the current component. The input parameter indicates a blur material.|
+| backgroundBlurStyle  | [BlurStyle](#blurstyle) | Style of the blur between the background and content for the current component. The input parameter indicates a blur material.<br>This API is supported in ArkTS widgets.|
 
 ## BlurStyle
 
-| Name      | Description     |
-| ------- | ---------- |
-| Thin    | Thin material.    |
-| Regular | Regular material. |
-| Thick   | Thick material.      |
+This API is supported in ArkTS widgets.
+
+  | Name      | Description     |
+  | ------- | ---------- |
+  | Thin    | Thin material.    |
+  | Regular | Regular material. |
+  | Thick   | Thick material.      |
 
 ## Example
 

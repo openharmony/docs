@@ -11,8 +11,8 @@
 
 ```
 @font-face {   
-  font-family: HWfont; 
-  src: url('/common/HWfont.ttf'); 
+  font-family: font; 
+  src: url('/common/font.ttf'); 
 }
 ```
 
@@ -48,10 +48,10 @@
 ```css
 /*xxx.css*/
 @font-face {
-  font-family: HWfont;
-  src: url("/common/HWfont.ttf");
+  font-family: font;
+  src: url("/common/font.ttf");
 }
 .demo-text {
-  font-family: HWfont;
+  font-family: font;
 }
 ```

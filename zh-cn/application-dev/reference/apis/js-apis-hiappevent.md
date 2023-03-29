@@ -1,9 +1,9 @@
-# 应用打点
+# @ohos.hiAppEvent (应用打点)
 
 本模块提供了应用事件打点能力，包括对打点数据的落盘，以及对打点功能的管理配置。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块接口从API version 9开始废弃，建议使用新接口[@ohos.hiviewdfx.hiAppEvent](js-apis-hiviewdfx-hiappevent.md)替代。
+> - 本模块接口从API version 9开始废弃，建议使用新接口[`@ohos.hiviewdfx.hiAppEvent`](js-apis-hiviewdfx-hiappevent.md)替代。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -30,9 +30,10 @@ import hiAppEvent from '@ohos.hiAppEvent';
 事件参数为object类型，key为事件的参数名称，value为事件的参数值，其规格定义如下：
 
 - 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是0-9、a-z、下划线，只能以小写字母开头，不能以下划线结尾；
-- 参数值支持string、number、boolean、Array类型；
-- 参数值为string类型时，其长度需在8*1024个字符以内，超出会做截断处理；
-- 参数值为Array类型时，Array中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理；
+- 参数值支持string、number、boolean、数组类型；
+- 参数值为string类型时，其长度需在8*1024个字符以内，超出会做丢弃处理；
+- 参数值为number类型时，其取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；
+- 参数值为数组类型时，数组中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理；
 - 参数个数需在32以内，超出的参数会做丢弃处理。
 
 **事件回调**
@@ -58,7 +59,7 @@ write(eventName: string, eventType: EventType, keyValues: object, callback: Asyn
 | eventName | string                    | 是   | 事件名称。     |
 | eventType | [EventType](#eventtype)   | 是   | 事件类型。     |
 | keyValues | object                    | 是   | 事件参数。     |
-| callback  | AsyncCallback&lt;void&gt; | 否   | 事件回调函数。 |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 事件回调函数。 |
 
 **示例：**
 
@@ -151,7 +152,7 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 参数名     | 类型    | 必填 | 说明                                                         |
+| 名称       | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 应用打点功能开关。配置值为true表示关闭打点功能，false表示不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据本地存储文件所在目录的配额大小，默认限额为“10M”。所在目录大小超出限额后会对目录进行清理操作，会按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出限额时停止。 |
@@ -163,12 +164,12 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 默认值 | 说明           |
-| --------- | ------ | -------------- |
-| FAULT     | 1      | 故障类型事件。 |
-| STATISTIC | 2      | 统计类型事件。 |
-| SECURITY  | 3      | 安全类型事件。 |
-| BEHAVIOR  | 4      | 行为类型事件。 |
+| 名称      | 值   | 说明           |
+| --------- | ---- | -------------- |
+| FAULT     | 1    | 故障类型事件。 |
+| STATISTIC | 2    | 统计类型事件。 |
+| SECURITY  | 3    | 安全类型事件。 |
+| BEHAVIOR  | 4    | 行为类型事件。 |
 
 
 ## Event
@@ -177,11 +178,11 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 参数类型 | 可读 | 可写 | 说明                 |
-| ------------------------- | -------- | ---- | ---- | -------------------- |
-| USER_LOGIN                | string   | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string   | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string   | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 可读 | 可写 | 说明                 |
+| ------------------------- | ------ | ---- | ---- | -------------------- |
+| USER_LOGIN                | string | 是   | 否   | 用户登录事件。       |
+| USER_LOGOUT               | string | 是   | 否   | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 是   | 否   | 分布式服务启动事件。 |
 
 
 ## Param
@@ -190,8 +191,8 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 参数类型 | 可读 | 可写 | 说明               |
-| ------------------------------- | -------- | ---- | ---- | ------------------ |
-| USER_ID                         | string   | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string   | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string   | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 可读 | 可写 | 说明               |
+| ------------------------------- | ------ | ---- | ---- | ------------------ |
+| USER_ID                         | string | 是   | 否   | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 是   | 否   | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是   | 否   | 分布式服务实例ID。 |

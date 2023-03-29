@@ -8,7 +8,7 @@ For details about the JS API changes in OpenHarmony 3.1 Release over OpenHarmony
 - [Power management subsystem](js-apidiff-battery.md)
 - [Bundle management subsystem](js-apidiff-bundle.md)
 - [Communication subsystem](js-apidiff-communicate.md)
-- [Multi-language Runtime subsystem](js-apidiff-compiler-and-runtime.md)
+- [Compiler and runtime subsystem](js-apidiff-compiler-and-runtime.md)
 - [DFX subsystem](js-apidiff-dfx.md)
 - [Distributed data management subsystem](js-apidiff-distributed-data.md)
 - [Distributed hardware subsystem](js-apidiff-distributed-hardware.md)

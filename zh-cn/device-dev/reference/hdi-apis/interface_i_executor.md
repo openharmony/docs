@@ -34,6 +34,7 @@
 | [Delete](#delete)([in]&nbsp;unsigned&nbsp;long[]&nbsp;templateIdList) | 删除人脸特征模版。 | 
 | [Cancel](#cancel)([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId) | 取消操作请求。 | 
 | [SendCommand](#sendcommand)([in]&nbsp;int&nbsp;commandId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;IExecutorCallback&nbsp;callbackObj) | 发送人脸认证功能相关操作命令。 | 
+| [SetBufferProducer](#setbufferproducer) ([in]&nbsp;BufferProducerSequenceable&nbsp;bufferProducer) | 设置可用缓冲区生成器。 |
 
 
 ## **成员函数说明**
@@ -285,6 +286,29 @@ IExecutor::SendCommand ([in] int commandId, [in] unsigned char[] extraInfo, [in]
 | commandId | 操作命令ID。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
 | callbackObj | 回调对象[IExecutorCallback](interface_i_executor_callback.md)。 | 
+
+**返回：**
+
+0 表示操作成功。
+
+非0 表示操作失败。
+
+### SetBufferProducer()
+
+
+```
+IExecutor::SetBufferProducer ([in] BufferProducerSequenceable bufferProducer )
+```
+
+**描述：**
+
+设置可用缓冲区生成器。用于传递相机预览流，开始录入前设置为有效值，结束录入后设置为空指针。
+
+**参数：**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| bufferProducer | 可用缓冲区生成器。 |
 
 **返回：**
 

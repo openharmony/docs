@@ -1,5 +1,12 @@
 # Hi3516标准系统入门（命令行方式）
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
+> 从3.2版本起，标准系统不再针对Hi3516DV300进行适配验证，建议您使用RK3568进行标准系统的设备开发。
+>
+> 如您仍然需要使用Hi3516DV300进行标准系统相关开发操作，则可能会出现无法适配的现象，此时请联系芯片供应商获取相关适配指导，或自行完成适配。
+
+
 
 除小型系统外，Hi3516DV300开发板还支持标准系统。此章节简要介绍如何使用命令行在Hi3516DV300开发板上进行标准系统的开发。
 
@@ -169,9 +176,9 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
 ### 前提条件
 
-- 已正确[安装库和工具集](quickstart-pkg-install_package.md)。
+- 已正确[安装库和工具集](quickstart-pkg-install-package.md)。
 
-- 已正确[安装编译工具](quickstart-pkg-install_tool.md)。
+- 已正确[安装编译工具](quickstart-pkg-install-tool.md)。
 
 - “Hello World”程序已编写完成。
 

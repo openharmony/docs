@@ -1,18 +1,18 @@
 # PIN
 
-
 ## 概述
 
 ### 功能简介
-PIN即管脚控制器，用于统一管理各SoC厂商管脚资源，对外提供管脚复用功能。
+
+PIN即管脚控制器，用于统一管理各SoC的管脚资源，对外提供管脚复用功能。
 
 ### 基本概念
 
-PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚管理，对外提供管脚复用功能，配置PIN管脚的电气特性。
+PIN是一个软件层面的概念，目的是为了统一对各SoC的PIN管脚进行管理，对外提供管脚复用功能，配置PIN管脚的电气特性。
 
 - SoC（System on Chip）
 
-  系统级芯片，也有称作片上系统，通常是面向特定用途将微处理器、模拟IP核、数字IP核和存储器集成在单一芯片的标准产品。
+  系统级芯片，又称作片上系统，通常是面向特定用途将微处理器、模拟IP核、数字IP核和存储器集成在单一芯片的标准产品。
 
 - 管脚复用
 
@@ -20,30 +20,34 @@ PIN是一个软件层面的概念，目的是为了统一各SoC厂商PIN管脚�
 
 ### 运作机制
 
-在HDF框架中，PIN模块暂不支持用户态，所以不需要发布服务。接口适配模式采用无服务模式（如图1所示），用于不需要在用户态提供API的设备类型。对于没有用户态和内核区分的OS系统，其关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
+在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），若采用独立服务模式，则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。PIN模块接口适配模式采用统一服务模式（如图1所示）。
+
+在统一模式下，所有的控制器都被核心层统一管理，并由核心层统一发布一个服务供接口层，因此这种模式下驱动无需再为每个控制器发布服务。
 
 PIN模块各分层作用：
+
 - 接口层提供获取PIN管脚、设置PIN管脚推拉方式、获取PIN管脚推拉方式、设置PIN管脚推拉强度、获取PIN管脚推拉强度、设置PIN管脚功能、获取PIN管脚功能、释放PIN管脚的接口。
 - 核心层主要提供PIN管脚资源匹配，PIN管脚控制器的添加、移除以及管理的能力，通过钩子函数与适配层交互。
 - 适配层主要是将钩子函数的功能实例化，实现具体的功能。
 
-**图 1**  无服务模式结构图
+**图 1**  统一服务模式结构图
 
-![无服务模式结构图](figures/无服务模式结构图.png)
+![统一服务模式结构图](figures/统一服务模式结构图.png)
 
 ### 约束与限制
 
-PIN模块目前仅支持轻量和小型系统内核（LiteOS）。
+PIN模块目前只支持小型系统LiteOS-A内核。
 
 ## 开发指导
 
 ### 场景介绍
 
-PIN模块主要用于管脚资源管理。在各SoC厂商对接HDF框架时，需要来适配PIN驱动。
+PIN模块主要用于管脚资源管理。在各SoC对接HDF框架时，需要来适配PIN驱动。下文将介绍如何进行PIN驱动适配。
 
 ### 接口说明
 
-通过以下PinCntlrMethod中的函数调用PIN驱动对应的函数。
+为了保证上层在调用PIN接口时能够正确的操作PIN管脚，核心层在//drivers/hdf_core/framework/support/platform/include/pin/pin_core.h中定义了以下钩子函数，驱动适配者需要在适配层实现这些函数的具体功能，并与钩子函数挂接，从而完成适配层与核心层的交互。
+
 PinCntlrMethod定义：
 
 ```c
@@ -57,383 +61,410 @@ struct PinCntlrMethod {
 };
 ```
 
-**表 1**  PinCntlrMethod成员的回调函数功能说明
+**表 1**  PinCntlrMethod成员的钩子函数功能说明
 
 | 成员函数     | 入参                                        | 出参                                   | 返回值 | 功能 |
 | ------------ | ------------------------------------------- | ------ | ---- | ---- |
-| SetPinPull | cntlr：结构体指针，核心层Pin控制器<br>index：uint32_t变量，管脚索引号<br/>pullType：枚举常量，Pin管脚推拉方式 | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
-| GetPinPull | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | pullType：枚举常量指针，传出Pin管脚推拉方式 | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
-| SetPinStrength | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号<br/>strength：uint32_t变量，Pin推拉强度 | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
-| GetPinStrength | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | strength：uint32_t变量指针，传出Pin推拉强度 | HDF_STATUS相关状态 | PIN获取推拉强度 |
-| SetPinFunc | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号<br/>funcName：char指针常量，传入Pin管脚功能 | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
-| GetPinFunc | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | funcName：char双重指针常量，传出Pin管脚功能 | HDF_STATUS相关状态 | PIN获取管脚功能 |
+| SetPinPull | cntlr：结构体指针，核心层PIN控制器<br>index：uint32_t类型变量，管脚索引号<br/>pullType：枚举常量，PIN管脚推拉方式 | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
+| GetPinPull | cntlr：结构体指针，核心层PIN控制器<br/>index：uint32_t类型变量，管脚索引号 | pullType：枚举常量指针，传出获取的PIN管脚推拉方式 | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
+| SetPinStrength | cntlr：结构体指针，核心层PIN控制器<br/>index：uint32_t类型变量，管脚索引号<br/>strength：uint32_t变量，PIN推拉强度 | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
+| GetPinStrength | cntlr：结构体指针，核心层PIN控制器<br/>index：uint32_t类型变量，管脚索引号 | strength：uint32_t变量指针，传出获取的PIN推拉强度 | HDF_STATUS相关状态 | PIN获取推拉强度 |
+| SetPinFunc | cntlr：结构体指针，核心层PIN控制器<br/>index：uint32_t类型变量，管脚索引号<br/>funcName：char指针常量，传入PIN管脚功能 | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
+| GetPinFunc | cntlr：结构体指针，核心层PIN控制器<br/>index：uint32_t类型变量，管脚索引号 | funcName：char双重指针常量，传出获取的PIN管脚功能 | HDF_STATUS相关状态 | PIN获取管脚功能 |
 
 ### 开发步骤
 
-PIN模块适配包含以下四个步骤：
+PIN模块适配HDF框架包含以下四个步骤：
 
 - 实例化驱动入口。
 - 配置属性文件。
-- 实例化核心层接口函数。
+- 实例化PIN控制器对象。
 - 驱动调试。
 
-1. 实例化驱动入口：
+### 开发实例
 
-   - 实例化HdfDriverEntry结构体成员。
+下方将基于Hi3516DV300开发板以//device_soc_hisilicon/common/platform/pin/pin_hi35xx.c驱动为示例，展示需要驱动适配者提供哪些内容来完整实现设备功能。
 
-     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。
+1. 实例化驱动入口。
 
-   - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
+   驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
+   一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
-     一般在加载驱动时HDF会先调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
+   PIN驱动入口开发参考：
 
-        ```c
-        static struct HdfDriverEntry g_hi35xxPinDriverEntry = {
-            .moduleVersion = 1,
-            .Bind = Hi35xxPinBind,
-            .Init = Hi35xxPinInit,
-            .Release = Hi35xxPinRelease,
-            .moduleName = "hi35xx_pin_driver", // 【必要且与HCS文件中里面的moduleName匹配】
-        };
-        HDF_INIT(g_hi35xxPinDriverEntry);      // 调用HDF_INIT将驱动入口注册到HDF框架中
-        ```
+   ```c
+   static struct HdfDriverEntry g_hi35xxPinDriverEntry = {
+       .moduleVersion = 1,
+       .Bind = Hi35xxPinBind,
+       .Init = Hi35xxPinInit,
+       .Release = Hi35xxPinRelease,
+       .moduleName = "hi35xx_pin_driver",   // 【必要且与HCS文件中里面的moduleName匹配】
+   };
+   HDF_INIT(g_hi35xxPinDriverEntry);        // 调用HDF_INIT将驱动入口注册到HDF框架中
+   ```
 
-2. 配置属性文件：
+2. 配置属性文件。
 
-   - 在vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode描述。
+   完成驱动入口注册之后，需要在device_info.hcs文件中添加deviceNode信息，deviceNode信息与驱动入口注册相关。本例以两个PIN控制器为例，如有多个器件信息，则需要在device_info.hcs文件增加对应的deviceNode信息。器件属性值对于驱动适配者的驱动实现以及核心层PinCntlr相关成员的默认值或限制范围有密切关系，比如控制器号，控制器管脚数量、管脚等。需要在pin_config.hcs中配置器件属性。
 
-        ```c
-        root {
-            device_info { 
-                platform :: host {
-                    hostName = "platform_host";
-                    priority = 50;
-                    device_pin :: device {
-                        device0 :: deviceNode {   // 为每一个Pin控制器配置一个HDF设备节点，存在多个时须添加，否则不用。
-                            policy = 0;	          // 2：用户态可见；1：内核态可见；0：不需要发布服务。
-                            priority = 10;        // 驱动启动优先级
-                            permission = 0644;    // 驱动创建设备节点权限
-                            /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。 */
-                            moduleName = "hi35xx_pin_driver";
-                            /* 【必要】用于配置控制器私有数据，要与pin_config.hcs中对应控制器保持一致，具体的控制器信息在pin_config.hcs中。 */
-                            deviceMatchAttr = "hisilicon_hi35xx_pin_0";
-                        }
-                        device1 :: deviceNode {
-                            policy = 0;
-                            priority = 10;
-                            permission = 0644;
-                            moduleName = "hi35xx_pin_driver";
-                            deviceMatchAttr = "hisilicon_hi35xx_pin_1";
-                        }
-                        ......
-                    }
-                }
-            }
-        }
-        ```
-   - 添加pin_config.hcs器件属性文件。
+   - device_info.hcs 配置参考：
 
-     在device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs目录下配置器件属性，其中配置参数如下：
-        ```c
-        root {
-            platform {
-                pin_config_hi35xx {
-                    template pin_controller {    // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
-                        number = 0;              // 【必要】controller编号
-                        regStartBasePhy = 0;     // 【必要】寄存器物理基地址起始地址
-                        regSize = 0;             // 【必要】寄存器位宽
-                        pinCount = 0;            // 【必要】管脚数量
-                        match_attr = "";
-                        template pin_desc {
-                            pinName = "";        // 【必要】管脚名称
-                            init = 0;            // 【必要】寄存器默认值
-                            F0 = "";             // 【必要】功能0
-                            F1 = "";             // 功能1
-                            F2 = "";             // 功能2
-                            F3 = "";             // 功能3
-                            F4 = "";             // 功能4
-                            F5 = "";             // 功能5
-                        }
-                    }
-                    controller_0 :: pin_controller {
-                        number = 0;
-                        regStartBasePhy = 0x10FF0000;
-                        regSize = 0x48;
-                        pinCount = 18;
-                        match_attr = "hisilicon_hi35xx_pin_0";
-                        T1 :: pin_desc {
-                            pinName = "T1";
-                            init = 0x0600;
-                            F0 = "EMMC_CLK";
-                            F1 = "SFC_CLK";
-                            F2 = "SFC_BOOT_MODE";
-                        }
-                        ...... // 对应管脚控制器下的每个管脚，按实际添加。
-                    }
-                    ......// 每个管脚控制器对应一个controller节点，如存在多个Pin控制器，请依次添加对应的controller节点。
-                }
-            }
-        }
-        ```
+      在//vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode描述。
 
-3. 实例化PIN控制器对象：
+      ```c
+      root {
+          device_info {
+              platform :: host {
+                  hostName = "platform_host";
+                  priority = 50;
+                  device_pin :: device {
+                      device0 :: deviceNode {                              // 用于统一管理PIN并发布服务
+                          policy = 2;                                      // 2：用户态可见；1：内核态可见；0：不需要发布服务。
+                          priority = 8;                                    // 启动优先级
+                          permission = 0644;                               // 创建设备节点权限
+                          moduleName = "HDF_PLATFORM_PIN_MANAGER";
+                          serviceName = "HDF_PLATFORM_PIN_MANAGER";
+                      }
+                      device1 :: deviceNode {                              // 为每一个PIN控制器配置一个HDF设备节点，存在多个时必须添加，否则不用。
+                          policy = 0;
+                          priority = 10;                                   // 驱动启动优先级
+                          permission = 0644;                               // 驱动创建设备节点权限
+                          moduleName = "hi35xx_pin_driver";                // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+                          deviceMatchAttr = "hisilicon_hi35xx_pin_0";      // 【必要】用于配置控制器私有数据，要与pin_config.hcs中对应控制器保持一致，具体的控制器信息在pin_config.hcs中。
+                      }
+                      device2 :: deviceNode {
+                          policy = 0;
+                          priority = 10;
+                          permission = 0644;
+                          moduleName = "hi35xx_pin_driver";
+                          deviceMatchAttr = "hisilicon_hi35xx_pin_1";
+                      }
+                      ...
+                  }
+              }
+          }
+      }
+      ```
 
-   - 初始化PinCntlr成员。
+   -  pin_config.hcs配置参考：
 
-     在Hi35xxPinCntlrInit函数中对PinCntlr成员进行初始化操作。
+      在//device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs文件配置器件属性，其中配置参数如下：
 
-        ```c
-        struct Hi35xxPinDesc {
-            // 管脚名
-            const char *pinName;
-            // 初始化值
-            uint32_t init;
-            // 管脚索引
-            uint32_t index;
-            // 管脚推拉方式
-            int32_t pullType;
-            // 管脚推拉强度
-            int32_t strength;
-            // 管脚功能名字符串数组
-            const char *func[HI35XX_PIN_FUNC_MAX];
-        };
-        
-        struct Hi35xxPinCntlr {
-            // 管脚控制器
-            struct PinCntlr cntlr;
-            // 管脚描述结构体指针
-            struct Hi35xxPinDesc *desc;
-            // 寄存器映射地址
-            volatile unsigned char *regBase;
-            // 管脚控制器编号
-            uint16_t number;
-            // 寄存器物理基地址起始地址
-            uint32_t regStartBasePhy;
-            // 寄存器位宽
-            uint32_t regSize;
-            // 管脚数量
-            uint32_t pinCount;
-        };
-        
-        // PinCntlr是核心层控制器，其中的成员在Init函数中会被赋值。
-        struct PinCntlr {
-            struct IDeviceIoService service;
-            struct HdfDeviceObject *device;
-            struct PinCntlrMethod *method;
-            struct DListHead node;  // 链表节点
-            OsalSpinlock spin;      // 自旋锁
-            uint16_t number;        // 管脚控制器编号
-            uint16_t pinCount;      // 管脚数量
-            struct PinDesc *pins;
-            void *priv;             // 私有数据
-        };
-        
-        // PinCntlr管脚控制器初始化
-        static int32_t Hi35xxPinCntlrInit(struct HdfDeviceObject *device, struct Hi35xxPinCntlr *hi35xx)
-        {
-            struct DeviceResourceIface *drsOps = NULL;
-            int32_t ret;
-            // 从hcs文件读取管脚控制器相关属性
-            drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
-            if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetUint16 == NULL) {
-                HDF_LOGE("%s: invalid drs ops fail!", __func__);
-                return HDF_FAILURE;
-            }
-            ret = drsOps->GetUint16(device->property, "number", &hi35xx->number, 0);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read number failed", __func__);
-                return ret;
-            }
-            
-            ret = drsOps->GetUint32(device->property, "regStartBasePhy", &hi35xx->regStartBasePhy, 0);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read regStartBasePhy failed", __func__);
-                return ret;
-            }
-            ret = drsOps->GetUint32(device->property, "regSize", &hi35xx->regSize, 0);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read regSize failed", __func__);
-                return ret;
-            }
-            ret = drsOps->GetUint32(device->property, "pinCount", &hi35xx->pinCount, 0);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read pinCount failed", __func__);
-                return ret;
-            }
-            // 将读取的值赋值给管脚控制器的成员，完成管脚控制器初始化。
-            hi35xx->cntlr.pinCount = hi35xx->pinCount;
-            hi35xx->cntlr.number = hi35xx->number;
-            hi35xx->regBase = OsalIoRemap(hi35xx->regStartBasePhy, hi35xx->regSize);  // 管脚控制器映射
-            if (hi35xx->regBase == NULL) {
-                HDF_LOGE("%s: remap Pin base failed", __func__);
-                return HDF_ERR_IO;
-            }
-            hi35xx->desc = (struct Hi35xxPinDesc *)OsalMemCalloc(sizeof(struct Hi35xxPinDesc) * hi35xx->pinCount);
-            hi35xx->cntlr.pins = (struct PinDesc *)OsalMemCalloc(sizeof(struct PinDesc) * hi35xx->pinCount);
-            return HDF_SUCCESS;
-        }
-        ```
+      ```c
+      root {
+          platform {
+              pin_config_hi35xx {
+                  template pin_controller {                   // 【必要】配置模板配，如果下面节点使用时继承该模板，则节点中未声明的字段会使用该模板中的默认值。
+                      number = 0;                             // 【必要】PIN控制器号
+                      regStartBasePhy = 0;                    // 【必要】寄存器物理基地址起始地址
+                      regSize = 0;                            // 【必要】寄存器位宽
+                      pinCount = 0;                           // 【必要】管脚数量
+                      match_attr = "";
+                      template pin_desc {
+                          pinName = "";                       // 【必要】管脚名称
+                              init = 0;                       // 【必要】寄存器默认值
+                              F0 = "";                        // 【必要】功能0
+                              F1 = "";                        // 功能1
+                              F2 = "";                        // 功能2
+                              F3 = "";                        // 功能3
+                              F4 = "";                        // 功能4
+                              F5 = "";                        // 功能5
+                          }
+                  }
+                  controller_0 :: pin_controller {
+                      number = 0;
+                      regStartBasePhy = 0x10FF0000;
+                      regSize = 0x48;
+                      pinCount = 18;
+                      match_attr = "hisilicon_hi35xx_pin_0";
+                      T1 :: pin_desc {
+                          pinName = "T1";
+                          init = 0x0600;
+                          F0 = "EMMC_CLK";
+                          F1 = "SFC_CLK";
+                          F2 = "SFC_BOOT_MODE";
+                      }
+                      ...                                     // 对应管脚控制器下的每个管脚，按实际添加。
+                  }
+                  ...                                         // 每个管脚控制器对应一个控制器节点，如存在多个PIN控制器，请依次添加对应的控制器节点。
+              }
+          }
+      }
+      ```
 
-   - PinCntlr成员回调函数结构体PinCntlrMethod的实例化，其他成员在Init函数中初始化。
+      需要注意的是，新增pin_config.hcs配置文件后，必须在产品对应的hdf.hcs文件中将其包含如下语句所示，否则配置文件无法生效。
 
-        ```c
-        // PinCntlrMethod结构体成员都是回调函数，厂商需要根据表1完成相应的函数功能。
-        static struct PinCntlrMethod g_method = {
-            .SetPinPull = Hi35xxPinSetPull,              // 设置推拉方式
-            .GetPinPull = Hi35xxPinGetPull,              // 获取推拉方式
-            .SetPinStrength = Hi35xxPinSetStrength,      // 设置推拉强度
-            .GetPinStrength = Hi35xxPinGetStrength,      // 获取推拉强度
-            .SetPinFunc = Hi35xxPinSetFunc,              // 设置管脚功能
-            .GetPinFunc = Hi35xxPinGetFunc,              // 获取管脚功能
-        };
-        ```
+      ```c
+      #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs" // 配置文件相对路径
+      ```
 
-   - Init函数
+3. 实例化PIN控制器对象。
 
-        入参：
+   完成配置属性文件之后，下一步就是以核心层PinCntlr对象的初始化为核心，包括驱动适配者自定义结构体（传递参数和数据），实例化PinCntlr成员PinCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
 
-        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+   - 驱动适配者自定义结构体参考
 
-        返回值：
+      从驱动的角度看，自定义结构体是参数和数据的载体，而且pin_config.hcs文件中的数值会被HDF读入并通过DeviceResourceIface来初始化结构体成员，一些重要数值也会传递给核心层对象。
 
-        HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS定义）。
-   
-        | **状态(值)**           | **问题描述**   |
-        | ---------------------- | -------------- |
-        | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
-        | HDF_ERR_MALLOC_FAIL    | 内存分配失败   |
-        | HDF_ERR_INVALID_PARAM  | 参数非法       |
-        | HDF_ERR_IO             | I/O 错误       |
-        | HDF_SUCCESS            | 初始化成功     |
-        | HDF_FAILURE            | 初始化失败     |
-       
-        函数说明：
+      在Hi35xxPinCntlrInit函数中对PinCntlr成员进行初始化操作。
 
-        初始化自定义结构体对象和PinCntlr成员，并通过调用核心层PinCntlrAdd函数挂载Pin控制器。
-        
-        ```c
-        static int32_t Hi35xxPinReadFunc(struct Hi35xxPinDesc *desc, const struct DeviceResourceNode *node, struct DeviceResourceIface *drsOps)
-        {
-            int32_t ret;
-            uint32_t funcNum = 0;
-            // 从hcs中读取管脚控制器子节点管脚功能名
-            ret = drsOps->GetString(node, "F0", &desc->func[funcNum], "NULL");
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read F0 failed", __func__);
-                return ret;
-            }
+      ```c
+      // 驱动适配者自定义管脚描述结构体
+      struct Hi35xxPinDesc {
+          const char *pinName;                       // 管脚名
+          uint32_t init;                             // 初始化值
+          uint32_t index;                            // 管脚索引
+          int32_t pullType;                          // 管脚推拉方式
+          int32_t strength;                          // 管脚推拉强度
+          const char *func[HI35XX_PIN_FUNC_MAX];     // 管脚功能名字符串数组
+      };
 
-            funcNum++;
-            ret = drsOps->GetString(node, "F1", &desc->func[funcNum], "NULL");
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read F1 failed", __func__);
-                return ret;
-            }
+      // 驱动适配者自定义结构体
+      struct Hi35xxPinCntlr {
+          struct PinCntlr cntlr;                     // 是核心层控制对象，具体描述见下面
+          struct Hi35xxPinDesc *desc;                // 驱动适配者自定义管脚描述结构体指针
+          volatile unsigned char *regBase;           // 寄存器映射地址
+          uint16_t number;                           // 管脚控制器编号
+          uint32_t regStartBasePhy;                  // 寄存器物理基地址起始地址
+          uint32_t regSize;                          // 寄存器位宽
+          uint32_t pinCount;                         // 管脚数量
+      };
 
-            funcNum++;
-            ......
-            return HDF_SUCCESS;
-        }
+      // PinCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
+      struct PinCntlr {
+          struct IDeviceIoService service;           // 驱动服务
+          struct HdfDeviceObject *device;            // 驱动设备对象
+          struct PinCntlrMethod *method;             // 钩子函数
+          struct DListHead node;                     // 链表节点
+          OsalSpinlock spin;                         // 自旋锁
+          uint16_t number;                           // 管脚控制器编号
+          uint16_t pinCount;                         // 管脚数量
+          struct PinDesc *pins;                      // 管脚资源
+          void *priv;                                // 私有数据
+      };
 
-        static int32_t Hi35xxPinParsePinNode(const struct DeviceResourceNode *node, struct Hi35xxPinCntlr *hi35xx, int32_t index)
-        {
-            int32_t ret;
-            struct DeviceResourceIface *drsOps = NULL;
-            // 从hcs中读取管脚控制器子节点管脚相关属性
-            drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
-            if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetString == NULL) {
-                HDF_LOGE("%s: invalid drs ops fail!", __func__);
-                return HDF_FAILURE;
-            }
-            ret = drsOps->GetString(node, "pinName", &hi35xx->desc[index].pinName, "NULL");
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read pinName failed", __func__);
-                return ret;
-            }
-            ......
-            ret = Hi35xxPinReadFunc(&hi35xx->desc[index], node, drsOps);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s:Pin read Func failed", __func__);
-                return ret;
-            }
-            hi35xx->cntlr.pins[index].pinName = hi35xx->desc[index].pinName;
-            hi35xx->cntlr.pins[index].priv = (void *)node;
-            ......
-            return HDF_SUCCESS;
-        }
+      // PIN管脚控制器初始化
+      static int32_t Hi35xxPinCntlrInit(struct HdfDeviceObject *device, struct Hi35xxPinCntlr *hi35xx)
+      {
+          struct DeviceResourceIface *drsOps = NULL;
+          int32_t ret;
+          // 从hcs文件读取管脚控制器相关属性
+          drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
+          if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetUint16 == NULL) {
+              HDF_LOGE("%s: invalid drs ops fail!", __func__);
+              return HDF_FAILURE;
+          }
+          ret = drsOps->GetUint16(device->property, "number", &hi35xx->number, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read number failed", __func__);
+              return ret;
+          }
 
-        static int32_t Hi35xxPinInit(struct HdfDeviceObject *device)
-        {
-            ......
-            struct Hi35xxPinCntlr *hi35xx = NULL;
-            ......
-            ret = Hi35xxPinCntlrInit(device, hi35xx);    // 管脚控制器初始化
-            ......
-            DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) { // 遍历管脚控制器的每个子节点
-                ret = Hi35xxPinParsePinNode(childNode, hi35xx, index);      // 解析子节点
-                ......
-            }
+          if (hi35xx->number > HI35XX_PIN_MAX_NUMBER) {
+              HDF_LOGE("%s: invalid number:%u", __func__, hi35xx->number);
+              return HDF_ERR_INVALID_PARAM;
+          }
+          ret = drsOps->GetUint32(device->property, "regStartBasePhy", &hi35xx->regStartBasePhy, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read regStartBasePhy failed", __func__);
+              return ret;
+          }
+          ret = drsOps->GetUint32(device->property, "regSize", &hi35xx->regSize, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read regSize failed", __func__);
+              return ret;
+          }
+          ret = drsOps->GetUint32(device->property, "pinCount", &hi35xx->pinCount, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read pinCount failed", __func__);
+              return ret;
+          }
+          if (hi35xx->pinCount > PIN_MAX_CNT_PER_CNTLR) {
+              HDF_LOGE("%s: invalid number:%u", __func__, hi35xx->number);
+              return HDF_ERR_INVALID_PARAM;
+          }
+          // 将读取的值赋值给管脚控制器的成员，完成管脚控制器初始化。
+          hi35xx->cntlr.pinCount = hi35xx->pinCount;
+          hi35xx->cntlr.number = hi35xx->number;
+          hi35xx->regBase = OsalIoRemap(hi35xx->regStartBasePhy, hi35xx->regSize);  // 管脚控制器映射
+          if (hi35xx->regBase == NULL) {
+              HDF_LOGE("%s: remap Pin base failed", __func__);
+              return HDF_ERR_IO;
+          }
+          hi35xx->desc = (struct Hi35xxPinDesc *)OsalMemCalloc(sizeof(struct Hi35xxPinDesc) * hi35xx->pinCount);
+          if (hi35xx->desc == NULL) {
+              HDF_LOGE("%s: memcalloc hi35xx desc failed", __func__);
+              return HDF_ERR_MALLOC_FAIL;
+          }
+          hi35xx->cntlr.pins = (struct PinDesc *)OsalMemCalloc(sizeof(struct PinDesc) * hi35xx->pinCount);
+              if (hi35xx->desc == NULL) {
+              HDF_LOGE("%s: memcalloc hi35xx cntlr pins failed", __func__);
+              return HDF_ERR_MALLOC_FAIL;
+          }
+          return HDF_SUCCESS;
+      }
+      ```
 
-            hi35xx->cntlr.method = &g_method;    // 实例化method
-            ret = PinCntlrAdd(&hi35xx->cntlr);   // 挂载控制器
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: add Pin cntlr: failed", __func__);
-                ret = HDF_FAILURE;
-            }
-            return HDF_SUCCESS;
-        }
-        ```
+   - PinCntlr成员钩子函数结构体PinCntlrMethod的实例化，其他成员在Init函数中初始化。
 
-   - Release函数
+      ```c
+      static struct PinCntlrMethod g_method = {
+          .SetPinPull = Hi35xxPinSetPull,              // 设置推拉方式
+          .GetPinPull = Hi35xxPinGetPull,              // 获取推拉方式
+          .SetPinStrength = Hi35xxPinSetStrength,      // 设置推拉强度
+          .GetPinStrength = Hi35xxPinGetStrength,      // 获取推拉强度
+          .SetPinFunc = Hi35xxPinSetFunc,              // 设置管脚功能
+          .GetPinFunc = Hi35xxPinGetFunc,              // 获取管脚功能
+      };
+      ```
 
-        入参：
+   - Init函数开发参考
 
-        HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
-   
-        返回值：
-   
-        无。
-   
-        函数说明：
-   
-        释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给 Release 接口。当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
+      入参
 
-        ```c
-        static void Hi35xxPinRelease(struct HdfDeviceObject *device)
-        {
-            int32_t ret;
-            uint16_t number;
-            struct PinCntlr *cntlr = NULL;
-            struct Hi35xxPinCntlr *hi35xx = NULL;
-            struct DeviceResourceIface *drsOps = NULL;
-        
-            if (device == NULL || device->property == NULL) {
-                HDF_LOGE("%s: device or property is null", __func__);
-                return;
-            }
-            // 从hcs文件中读取管脚控制器编号
-            drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
-            if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetString == NULL) {   
-                HDF_LOGE("%s: invalid drs ops", __func__);
-                return;
-            }
-            ret = drsOps->GetUint16(device->property, "number", &number, 0);
-            if (ret != HDF_SUCCESS) {
-                HDF_LOGE("%s: read cntlr number failed", __func__);
-                return;
-            }
-         
-            cntlr = PinCntlrGetByNumber(number);   // 通过管脚控制器编号获取管脚控制器
-            PinCntlrRemove(cntlr);
-            hi35xx = (struct Hi35xxPinCntlr *)cntlr;
-            if (hi35xx != NULL) {
-                if (hi35xx->regBase != NULL) {
-                    OsalIoUnmap((void *)hi35xx->regBase);
-                }
-                OsalMemFree(hi35xx);
-            }
-        }
-        ```
-4. 驱动调试：
+      HdfDeviceObject：HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
+
+      返回值：
+
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
+
+      | **状态(值)**           | **问题描述**   |
+      | ---------------------- | -------------- |
+      | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
+      | HDF_ERR_MALLOC_FAIL    | 内存分配失败   |
+      | HDF_ERR_INVALID_PARAM  | 参数非法       |
+      | HDF_ERR_IO             | I/O 错误       |
+      | HDF_SUCCESS            | 初始化成功     |
+      | HDF_FAILURE            | 初始化失败     |
+
+      函数说明：
+
+      初始化自定义结构体对象和PinCntlr成员，并通过调用核心层PinCntlrAdd函数挂载PIN控制器。
+
+      ```c
+      static int32_t Hi35xxPinReadFunc(struct Hi35xxPinDesc *desc, const struct DeviceResourceNode *node, struct DeviceResourceIface *drsOps)
+      {
+          int32_t ret;
+          uint32_t funcNum = 0;
+          // 从hcs中读取管脚控制器子节点管脚功能名
+          ret = drsOps->GetString(node, "F0", &desc->func[funcNum], "NULL");
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read F0 failed", __func__);
+              return ret;
+          }
+
+          funcNum++;
+          ret = drsOps->GetString(node, "F1", &desc->func[funcNum], "NULL");
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read F1 failed", __func__);
+              return ret;
+          }
+
+          funcNum++;
+          ...
+          return HDF_SUCCESS;
+      }
+
+      static int32_t Hi35xxPinParsePinNode(const struct DeviceResourceNode *node, struct Hi35xxPinCntlr *hi35xx, int32_t index)
+      {
+          int32_t ret;
+          struct DeviceResourceIface *drsOps = NULL;
+          // 从hcs中读取管脚控制器子节点管脚相关属性
+          drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
+          if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetString == NULL) {
+              HDF_LOGE("%s: invalid drs ops fail!", __func__);
+              return HDF_FAILURE;
+          }
+          ret = drsOps->GetString(node, "pinName", &hi35xx->desc[index].pinName, "NULL");
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read pinName failed", __func__);
+              return ret;
+          }
+          ...
+          ret = Hi35xxPinReadFunc(&hi35xx->desc[index], node, drsOps);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s:Pin read Func failed", __func__);
+              return ret;
+          }
+          hi35xx->cntlr.pins[index].pinName = hi35xx->desc[index].pinName;
+          hi35xx->cntlr.pins[index].priv = (void *)node;
+          ...
+          return HDF_SUCCESS;
+      }
+
+      static int32_t Hi35xxPinInit(struct HdfDeviceObject *device)
+      {
+          ...
+          struct Hi35xxPinCntlr *hi35xx = NULL;
+          ...
+          ret = Hi35xxPinCntlrInit(device, hi35xx);                         // 管脚控制器初始化
+          ...
+          DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {   // 遍历管脚控制器的每个子节点
+              ret = Hi35xxPinParsePinNode(childNode, hi35xx, index);        // 解析子节点
+              ...
+          }
+
+          hi35xx->cntlr.method = &g_method;                                 // PinCntlrMethod实例化实例化对象的挂载
+          ret = PinCntlrAdd(&hi35xx->cntlr);                                // 添加控制器
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: add Pin cntlr: failed", __func__);
+              ret = HDF_FAILURE;
+          }
+          return HDF_SUCCESS;
+      }
+      ```
+
+   - Release函数开发参考
+
+      入参：
+
+      HdfDeviceObject：HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
+
+      返回值：
+
+      无。
+
+      函数说明：
+
+      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口。当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
+
+      ```c
+      static void Hi35xxPinRelease(struct HdfDeviceObject *device)
+      {
+          int32_t ret;
+          uint16_t number;
+          struct PinCntlr *cntlr = NULL;
+          struct Hi35xxPinCntlr *hi35xx = NULL;
+          struct DeviceResourceIface *drsOps = NULL;
+
+          if (device == NULL || device->property == NULL) {
+              HDF_LOGE("%s: device or property is null", __func__);
+              return;
+          }
+          // 从hcs文件中读取管脚控制器编号
+          drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
+          if (drsOps == NULL || drsOps->GetUint32 == NULL || drsOps->GetString == NULL) {   
+              HDF_LOGE("%s: invalid drs ops", __func__);
+              return;
+          }
+          ret = drsOps->GetUint16(device->property, "number", &number, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read cntlr number failed", __func__);
+              return;
+          }
+
+          cntlr = PinCntlrGetByNumber(number);            // 通过管脚控制器编号获取管脚控制器
+          PinCntlrRemove(cntlr);
+          hi35xx = (struct Hi35xxPinCntlr *)cntlr;
+          if (hi35xx != NULL) {
+              if (hi35xx->regBase != NULL) {
+                  OsalIoUnmap((void *)hi35xx->regBase);
+              }
+              OsalMemFree(hi35xx);
+          }
+      }
+      ```
+
+4. 驱动调试。
 
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。

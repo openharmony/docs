@@ -24,7 +24,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 ### 配置方式
 
-1. 在[HarmonyAppProvision文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-provision-structure.md)中添加字段”app-privilege-capabilities“，按需配置通用权限能力。
+1. 在[HarmonyAppProvision文件](../../application-dev/security/app-provision-structure.md)中添加字段”app-privilege-capabilities“，按需配置通用权限能力。
 2. 使用签名工具对HarmonyAppProvision文件重新签名，生成p7b文件
 3. 使用p7b文件签名hap
 

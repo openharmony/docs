@@ -1,8 +1,9 @@
-# 应用事件打点
+# @ohos.hiviewdfx.hiAppEvent (应用事件打点)
 
 本模块提供了应用事件打点能力，包括应用事件落盘、应用事件订阅、应用事件清理、打点功能配置等功能。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -29,7 +30,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -83,7 +84,7 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -119,12 +120,12 @@ hiAppEvent.write({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 参数类型                | 必填 | 说明       |
-| --------- | ----------------------- | ---- | ---------- |
-| domain    | string                  | 是   | 事件领域。 |
-| name      | string                  | 是   | 事件名称。 |
-| eventType | [EventType](#eventtype) | 是   | 事件类型。 |
-| params    | object                  | 是   | 事件参数。 |
+| 名称      | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
+| name      | string                  | 是   | 事件名称。事件名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过48个字符。 |
+| eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
+| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，只支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
 
 ## hiAppEvent.configure
 
@@ -142,7 +143,7 @@ configure(config: [ConfigOption](configoption)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -168,7 +169,7 @@ hiAppEvent.configure({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 参数名     | 类型    | 必填 | 说明                                                         |
+| 名称       | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
 | maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
@@ -195,7 +196,7 @@ addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpacka
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -272,7 +273,7 @@ removeWatcher(watcher: [Watcher](#watcher)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -299,7 +300,7 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称             | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称             | 类型                                                         | 必填 | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | 是   | 观察者名称，用于唯一标识观察者。                             |
 | triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数一同传入才会生效。           |
@@ -312,11 +313,11 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称    | 参数类型 | 必填 | 说明                                   |
-| ------- | -------- | ---- | -------------------------------------- |
-| row     | number   | 否   | 满足触发回调的事件总数量。             |
-| size    | number   | 否   | 满足触发回调的事件总大小，单位为byte。 |
-| timeOut | number   | 否   | 满足触发回调的超时时长，单位为30s。    |
+| 名称    | 类型   | 必填 | 说明                                   |
+| ------- | ------ | ---- | -------------------------------------- |
+| row     | number | 否   | 满足触发回调的事件总数量。             |
+| size    | number | 否   | 满足触发回调的事件总大小，单位为byte。 |
+| timeOut | number | 否   | 满足触发回调的超时时长，单位为30s。    |
 
 ## AppEventFilter
 
@@ -324,7 +325,7 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称       | 参数类型                  | 必填 | 说明                     |
+| 名称       | 类型                      | 必填 | 说明                     |
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | 是   | 需要订阅的事件领域。     |
 | eventTypes | [EventType](#eventtype)[] | 否   | 需要订阅的事件类型集合。 |
@@ -373,7 +374,7 @@ setSize(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
@@ -411,12 +412,12 @@ let eventPkg = holder.takeNext();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 参数类型 | 说明                           |
-| --------- | -------- | ------------------------------ |
-| packageId | number   | 事件包ID，从0开始自动递增。    |
-| row       | number   | 事件包的事件数量。             |
-| size      | number   | 事件包的事件大小，单位为byte。 |
-| data      | string[] | 事件包的事件信息。             |
+| 名称      | 类型     | 必填 | 说明                           |
+| --------- | -------- | ---- | ------------------------------ |
+| packageId | number   | 是   | 事件包ID，从0开始自动递增。    |
+| row       | number   | 是   | 事件包的事件数量。             |
+| size      | number   | 是   | 事件包的事件大小，单位为byte。 |
+| data      | string[] | 是   | 事件包的事件信息。             |
 
 ## hiAppEvent.clearData
 
@@ -439,35 +440,35 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 默认值 | 说明           |
-| --------- | ------ | -------------- |
-| FAULT     | 1      | 故障类型事件。 |
-| STATISTIC | 2      | 统计类型事件。 |
-| SECURITY  | 3      | 安全类型事件。 |
-| BEHAVIOR  | 4      | 行为类型事件。 |
+| 名称      | 值   | 说明           |
+| --------- | ---- | -------------- |
+| FAULT     | 1    | 故障类型事件。 |
+| STATISTIC | 2    | 统计类型事件。 |
+| SECURITY  | 3    | 安全类型事件。 |
+| BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## Event
+## event
 
 此接口提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 参数类型 | 可读 | 可写 | 说明                 |
-| ------------------------- | -------- | ---- | ---- | -------------------- |
-| USER_LOGIN                | string   | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string   | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string   | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 说明                 |
+| ------------------------- | ------ | -------------------- |
+| USER_LOGIN                | string | 用户登录事件。       |
+| USER_LOGOUT               | string | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
 
 
-## Param
+## param
 
 此接口提供了所有预定义参数的参数名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 参数类型 | 可读 | 可写 | 说明               |
-| ------------------------------- | -------- | ---- | ---- | ------------------ |
-| USER_ID                         | string   | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string   | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string   | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 说明               |
+| ------------------------------- | ------ | ------------------ |
+| USER_ID                         | string | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 分布式服务实例ID。 |

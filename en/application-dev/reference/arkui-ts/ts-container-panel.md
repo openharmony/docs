@@ -20,15 +20,15 @@ Panel(show: boolean)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| show | boolean | Yes| Whether the panel is shown or hidden.|
+| show | boolean | Yes| Whether the panel is shown.|
 
 
 ## Attributes
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| type | PanelType | Type of the panel.<br>Default value: **PanelType.Foldable**|
-| mode | PanelMode | Initial status of the panel.|
+| type | [PanelType](#paneltype)| Type of the panel.<br>Default value: **PanelType.Foldable**|
+| mode | [PanelMode](#panelmode) | Initial status of the panel.|
 | dragBar | boolean | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite.<br>Default value: **true**|
 | fullHeight | string \| number | Panel height in the **PanelMode.Full** mode.|
 | halfHeight | string \| number | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height.|
@@ -57,8 +57,8 @@ Panel(show: boolean)
 
 | Name| Description|
 | -------- | -------- |
-| onChange(event: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragBar** is **true**, the height of the panel is the **dragBar** height plus the height of the content area.|
-| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragBar** is **true**, the height of the panel is the **dragBar** height plus the height of the content area. For user experience purposes, the panel can be slid to only this height: **fullHeight** - 8 vp.|
+| onChange(event: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragBar** is **true**, the panel height is the sum of the drag bar height and content area height.|
+| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |Triggered when the height of the panel changes. The returned height value is the height of the content area, in px by default. When the value of **dragBar** is **true**, the panel height is the sum of the drag bar height and content area height. For user experience purposes, the panel can be slid to only this height: **fullHeight** - 8 vp.|
 
 ## Example
 
@@ -70,7 +70,7 @@ struct PanelExample {
   @State show: boolean = false
 
   build() {
-    Stack() {
+    Column() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
         .width('90%').height(50).borderRadius(10)
         .backgroundColor(0xFFFFFF).padding({ left: 20 })
@@ -85,7 +85,7 @@ struct PanelExample {
         }
       }
       .type(PanelType.Foldable).mode(PanelMode.Half)
-      .dragBar(true) // The dragbar is enabled by default.
+      .dragBar(true) // The drag bar is enabled by default.
       .halfHeight(500) // The panel height is half of the screen height by default.
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)

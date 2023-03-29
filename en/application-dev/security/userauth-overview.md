@@ -16,7 +16,7 @@ Facial recognition establishes a secure channel between a camera and a trusted e
 
 Facial characteristics are stored in the TEE, which uses strong cryptographic algorithms to encrypt and protect the integrity of facial characteristics. The collected and stored facial characteristics will not be transferred out of the TEE without user authorization. This ensures that system or third-party applications cannot obtain facial characteristics, or send or back them up to any external storage medium.
 
-## Limitations and Constraints
+## Constraints
 
 -   OpenHarmony only supports facial recognition and local authentication, and does not support an authentication UI.
 -   To use biometric recognition, a device must have a camera with a face image pixel greater than 100x100.

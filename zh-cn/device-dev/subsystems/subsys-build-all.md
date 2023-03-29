@@ -94,7 +94,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install_tool.md#安装hb)重新安装。
+  ![icon-note.gif](../public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install-tool.md#安装hb)重新安装。
 
 
 ## 配置规则
@@ -329,7 +329,7 @@ optional arguments:
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/Readme-CN.md)
+> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/quickstart-overview.md)
 > - OpenHarmony还为开发者提供了Docker编译环境，可以省略编译工具的安装，具体使用请参考[Docker编译指导。](../get-code/gettools-acquire.md)
 
 ### 新增并编译不同配置

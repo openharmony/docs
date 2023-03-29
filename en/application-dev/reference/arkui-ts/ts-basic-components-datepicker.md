@@ -7,8 +7,6 @@ The **\<DatePicker>** component allows users to select a date from the given ran
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-
-
 ## Child Components
 
 Not supported
@@ -32,14 +30,14 @@ Creates a date picker in the given date range.
 
 | Name   | Type       | Description           |
 | ------| -------------- | -------- |
-| lunar | boolean  | Whether to display the lunar calendar.<br>-&nbsp;**true**: Display the lunar calendar.<br>-&nbsp;**false**: Do not display the lunar calendar.<br>Default value: **false**|
+| lunar | boolean  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | Triggered when a date is selected.|
+| onChange(callback: (value: DatePickerResult) =&gt; void) | Triggered when a date is selected.|
 
 ## DatePickerResult
 
@@ -53,55 +51,35 @@ Creates a date picker in the given date range.
 ## Example
 
 
-### Date Picker Sample Code (With Lunar Calendar)
-
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct DatePickerExample01 {
+struct DatePickerExample {
+  @State isLunar: boolean = false
   private selectedDate: Date = new Date('2021-08-08')
 
   build() {
     Column() {
+      Button('Switch Calendar')
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isLunar = !this.isLunar
+        })
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
-        selected: this.selectedDate,
+        selected: this.selectedDate
       })
-      .lunar(true)
-      .onChange((date: DatePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
+        .lunar(this.isLunar)
+        .onChange((value: DatePickerResult) => {
+          this.selectedDate.setFullYear(value.year, value.month, value.day)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
+
     }.width('100%')
   }
 }
 ```
 
-
-### Date Picker Sample Code (No Lunar Calendar)
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct DatePickerExample02 {
-  private selectedDate: Date = new Date('2021-08-08')
-
-  build() {
-    Column() {
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate,
-      })
-      .lunar(false)
-      .onChange((date: DatePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
-    }.width('100%')
-  }
-}
-```
-
-![en-us_image_0000001251092975](figures/en-us_image_0000001251092975.png)
+![datePicker](figures/datePicker.gif)

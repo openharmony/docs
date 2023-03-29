@@ -1,6 +1,6 @@
 # OpenSL ES Audio Recording Development
 
-## When to Use
+## Introduction
 
 You can use OpenSL ES to develop the audio recording function in OpenHarmony. Currently, only some [OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) are implemented. If an API that has not been implemented is called, **SL_RESULT_FEATURE_UNSUPPORTED** will be returned.
 
@@ -53,10 +53,10 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
 
     // Configure the parameters based on the audio file format.
     SLDataFormat_PCM format_pcm = {
-        SL_DATAFORMAT_PCM,
-        OHOS::AudioStandard::AudioChannel::MONO,
-        OHOS::AudioStandard::AudioSamplingRate::SAMPLE_RATE_44100,
-        OHOS::AudioStandard::AudioSampleFormat::SAMPLE_S16LE,
+        SL_DATAFORMAT_PCM,           // Input audio format.
+        1,                           // Mono channel.
+        SL_SAMPLINGRATE_44_1,        // Sampling rate, 44100 Hz.
+        SL_PCMSAMPLEFORMAT_FIXED_16, // Audio sampling format, a signed 16-bit integer in little-endian format.
         0,
         0,
         0

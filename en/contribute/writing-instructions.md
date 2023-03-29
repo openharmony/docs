@@ -52,14 +52,16 @@ The following shows the structure of an  **operation document**  for porting.
 
 **Pictures**
 
-Pictures are stored in the  **pic-en**  folder in the directory where the document is stored. For example,
+Pictures are stored in the **images**  folder in the directory where the document is stored. For example,
 
-Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/write-standard.md**  are stored in the following directory:
+Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/writing-instructions.md**  are stored in the following directory:
 
-**OpenHarmony\_DOCUMENTS/docs/quick-start/pic**. Use relative paths to reference pictures in the document.
+**OpenHarmony\_DOCUMENTS/docs/quick-start/images**
 
->![](public_sys-resources/icon-caution.gif) **CAUTION:** 
->Use the original pictures to avoid intellectual property infringement risks.
+Use relative paths to reference pictures in the document.
+
+> **CAUTION** 
+> Use the original pictures to avoid intellectual property infringement risks.
 
 -   Pictures are clear and complete. For example, a flowchart has a start and an end.
 -   The graphics has clear logic and are provided with text descriptions. Do not separate the graphics from the text.
@@ -67,15 +69,15 @@ Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/write-standard.md** 
 -   The text on pictures should be Chinese in Chinese documents and English in English documents.
 -   It is recommended that pictures be named based on the content. Using only a number is difficult for picture inheritance.
 
->![](public_sys-resources/icon-note.gif) **NOTE:** 
->Reference:
->!\[\]\(./pic/pic-standard.png\)
+> **NOTE** 
+> Reference:
+> !\[\]\(./pic/pic-standard.png\)
 
 If a self-made picture is used, refer to the following figure to configure the color. The format can be  **png**,  **jpg**,  **gif**, and so on.
 
-**Figure  1**  Example
+**Figure  1**  Color example
 
-![](figures/example.png "example")
+![](figures/color.png "color example")
 
 For screenshots, see the requirements below. If you need to highlight key information in the figure, add a red box or text remarks.
 
@@ -88,9 +90,6 @@ Chinese font: MicrosoftYaHei
 English font: Arial
 
 Font size: 10 pt
-
-**Figure  2** 
-
 
 **Table**
 

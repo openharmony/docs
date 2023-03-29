@@ -1,4 +1,4 @@
-# 数据共享谓词
+# @ohos.data.dataSharePredicates (数据共享谓词)
 
 **谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))、删除数据([delete](js-apis-data-dataShare.md#delete))和查询数据([query](js-apis-data-dataShare.md#query))中。
 
@@ -35,7 +35,7 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | 是   | 数据库表中的列名。     |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -65,7 +65,7 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | 是   | 数据库表中的列名。     |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -439,8 +439,8 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 | 参数名 | 类型                                                | 必填 | 说明                     |
 | ------ | --------------------------------------------------- | ---- | ------------------------ |
 | field  | string                                              | 是   | 数据库表中的列名。       |
-| low    | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最小值。 |
-| high   | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最大值。 |
+| low    | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最小值。 |
+| high   | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值：**
 
@@ -470,8 +470,8 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 | 参数名 | 类型                                                | 必填 | 说明                     |
 | ------ | --------------------------------------------------- | ---- | ------------------------ |
 | field  | string                                              | 是   | 数据库表中的列名。       |
-| low    | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最小值。 |
-| high   | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最大值。 |
+| low    | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最小值。 |
+| high   | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值：**
 
@@ -501,7 +501,7 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 | 参数名  | 类型      | 必填 | 说明                   |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | 是   | 数据库表中的列名。     |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -531,7 +531,7 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
 | field  | string                                              | 是   | 数据库表中的列名。     |
-| value  | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -561,7 +561,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 | 参数名  | 类型      | 必填 | 说明                   |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | 是   | 数据库表中的列名。     |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -591,7 +591,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 | 参数名  | 类型      | 必填 | 说明                   |
 | ------- | --------- | ---- | ---------------------- |
 | field   | string    | 是   | 数据库表中的列名。     |
-| value | [ValueType](js-apis-data-ValuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
+| value | [ValueType](js-apis-data-valuesBucket.md#valuetype) | 是   | 指示要与谓词匹配的值。 |
 
 **返回值：**
 
@@ -790,7 +790,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 | 参数名  | 类型             | 必填 | 说明                                    |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | 是 | 数据库表中的列名。                      |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | 是   | 以ValueType型数组形式指定的要匹配的值。 |
+| value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | 是   | 以ValueType型数组形式指定的要匹配的值。 |
 
 **返回值：**
 
@@ -820,7 +820,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 | 参数名  | 类型             | 必填 | 说明                                    |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | 是   | 数据库表中的列名。                      |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | 是   | 以ValueType型数组形式指定的要匹配的值。 |
+| value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | 是   | 以ValueType型数组形式指定的要匹配的值。 |
 
 **返回值：**
 

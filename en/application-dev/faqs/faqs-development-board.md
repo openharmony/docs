@@ -1,6 +1,4 @@
-# Development Board
-
-
+# Development Board Usage
 
 ## How do I take screenshots on a development board?
 
@@ -29,8 +27,8 @@ Applicable to: DevEco Studio 3.0.0.991
 1. Create a profile in Previewer.
    
    ![en-us_image_0000001361254285](figures/en-us_image_0000001361254285.png)
-2. Set the profile parameters as follows:
 
+2. Set the profile parameters as follows:
    Device type : default
 
    Resolution: 720\*1280

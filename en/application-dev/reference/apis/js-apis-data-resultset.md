@@ -1,14 +1,20 @@
-# Result Set
+# resultSet
 
 A result set is a set of results returned after the relational database (RDB) query APIs are called. You can use the **resultset** APIs to obtain required data.
 
 > **NOTE**<br/>
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore#ResultSet](js-apis-data-relationalStore.md#resultset).
 
-## Usage
+## ResultSet
 
-You need to use [RdbStore.query()](js-apis-data-rdb.md#query) to obtain a **resultSet** object.
+Provides methods to access the result set, which is obtained by querying the RDB store.
+
+### Usage
+
+You need to obtain a **resultSet** object by using [RdbStore.query()](js-apis-data-rdb.md#query).
 
 ```js
 import dataRdb from '@ohos.data.rdb';
@@ -20,10 +26,6 @@ promise.then((resultSet) => {
     console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);
 });
 ```
-
-## ResultSet
-
-Provides methods to access the result set, which is obtained by querying the RDB store.
 
 ### Attributes
 
@@ -124,7 +126,7 @@ Moves the cursor to the row based on the specified offset.
   ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoto.then((resultSet) {
+  promisequerygoto.then((resultSet) => {
       resultSet.goTo(1);
       resultSet.close();
   }).catch((err) => {
@@ -157,7 +159,7 @@ Moves the cursor to the specified row in the result set.
   ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygotorow.then((resultSet) {
+  promisequerygotorow.then((resultSet) => {
       resultSet.goToRow(5);
       resultSet.close();
   }).catch((err) => {
@@ -168,7 +170,6 @@ Moves the cursor to the specified row in the result set.
 ### goToFirstRow
 
 goToFirstRow(): boolean
-
 
 Moves the cursor to the first row of the result set.
 
@@ -185,7 +186,7 @@ Moves the cursor to the first row of the result set.
   ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoFirst.then((resultSet) {
+  promisequerygoFirst.then((resultSet) => {
       resultSet.goToFirstRow();
       resultSet.close();
   }).catch((err) => {
@@ -212,7 +213,7 @@ Moves the cursor to the last row of the result set.
   ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoLast.then((resultSet) {
+  promisequerygoLast.then((resultSet) => {
       resultSet.goToLastRow();
       resultSet.close();
   }).catch((err) => {
@@ -239,7 +240,7 @@ Moves the cursor to the next row in the result set.
   ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoNext.then((resultSet) {
+  promisequerygoNext.then((resultSet) => {
       resultSet.goToNextRow();
       resultSet.close();
   }).catch((err) => {
@@ -266,7 +267,7 @@ Moves the cursor to the previous row in the result set.
   ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoPrev.then((resultSet) {
+  promisequerygoPrev.then((resultSet) => {
       resultSet.goToPreviousRow();
       resultSet.close();
   }).catch((err) => {
@@ -330,7 +331,7 @@ Obtains the value in the specified column in the current row as a string.
 
 getLong(columnIndex: number): number
 
-Obtains the value in the specified column in the current row as a Long.
+Obtains the value in the specified column in the current row as a long integer.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -342,9 +343,9 @@ Obtains the value in the specified column in the current row as a Long.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | number | Value in the specified column as a Long.|
+| Type| Description|
+| -------- | -------- |
+| number | Value in the specified column as a long integer.<br>The value range supported by this API is **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. If the value is out of this range, use [getDouble](#getdouble).|
 
 **Example**
 
@@ -417,9 +418,9 @@ Closes this result set.
   ```js
   let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE");
   let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promiseClose.then((resultSet) {
+  promiseClose.then((resultSet) => {
       resultSet.close();
   }).catch((err) => {
-      console.log('Failed to close resultset');
+      console.log('Failed to close the resultset');
   });
   ```

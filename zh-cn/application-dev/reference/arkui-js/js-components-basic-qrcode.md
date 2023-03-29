@@ -58,8 +58,6 @@
 <div class="container">
   <qrcode value="{{qr_value}}" type="{{qr_type}}"
   style="color: {{qr_col}};background-color: {{qr_bcol}};width: {{qr_size}};height: {{qr_size}};margin-bottom: 70px;"></qrcode>
-  <text class="txt">Value</text>
-  <input onChange="setValue">123</input>
   <text class="txt">Type</text>
   <switch showtext="true" checked="true" texton="rect" textoff="circle" onchange="settype"></switch>
   <text class="txt">Color</text>
@@ -96,7 +94,6 @@ select{
 /* index.js */
 export default {
   data: {
-    qr_value:'',
     qr_type: 'rect',
     qr_size: '300px',
     qr_col: '#87ceeb',
@@ -111,9 +108,6 @@ export default {
       this.qr_type = 'circle'
     }
   },
-  setvalue(e) {
-    this.qr_value = e.newValue
-  },
   setcol(e) {
     this.qr_col = e.newValue
   },
@@ -124,5 +118,4 @@ export default {
 ```
 
 ![zh-cn_image_0000001222948301](figures/zh-cn_image_0000001222948301.gif)
-
 

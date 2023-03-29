@@ -11,9 +11,11 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| stateStyles | StateStyles | 设置组件不同状态的样式。 |
+| stateStyles | StateStyles | 设置组件不同状态的样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## StateStyles接口说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |

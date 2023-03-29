@@ -1,4 +1,4 @@
-# 插值计算
+# @ohos.curves (插值计算)
 
 本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
 
@@ -58,7 +58,7 @@ stepsCurve(count: number, end: boolean)：ICurve
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 **返回值：**
 
@@ -140,6 +140,68 @@ Curves.springCurve(100, 1, 228, 30) // 创建一个弹簧插值曲线
 ```
 
 
+##  Curves.springMotion<sup>9+</sup>
+
+springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
+
+构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名       | 类型     | 必填   | 说明    |
+| --------- | ------ | ---- | ----- |
+| response  | number | 否    | 弹簧自然振动周期，决定弹簧复位的速度。单位：秒，默认值：0.55。 |
+| dampingFraction      | number | 否    | 阻尼系数。<br>0表示无阻尼，一直处于震荡状态；<br>大于0小于1的值为欠阻尼，运动过程中会超出目标值；<br>等于1为临界阻尼；<br>大于1为过阻尼，运动过程中逐渐趋于目标值。<br>默认值：0.825。 |
+| overlapDuration | number | 否    | 弹性动画衔接时长。发生动画继承时，如果前后两个弹性动画response不一致，response参数会在overlapDuration时间内平滑过渡。单位：秒，默认值：0。 |
+
+
+**返回值：**
+
+| 类型                           | 说明             |
+| ---------------------------------- | ---------------- |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，animation、animateTo中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+
+**示例：**
+
+```ts
+import Curves from '@ohos.curves'
+Curves.springMotion() // 创建一个默认弹性动画曲线
+Curves.springMotion(0.5) // 创建指定response、其余参数默认的弹性动画曲线
+Curves.springMotion(0.5, 0.6) // 创建指定response和dampingFraction、其余参数默认的弹性动画曲线
+Curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动画曲线
+```
+
+
+##  Curves.responsiveSpringMotion<sup>9+</sup>
+
+responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
+
+构造弹性跟手动画曲线对象，是[springMotion](#curvesspringmotion9)的一种特例，仅默认参数不同，可与springMotion混合使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名       | 类型     | 必填   | 说明    |
+| --------- | ------ | ---- | ----- |
+| response  | number | 否    | 解释同springMotion中的response。单位：秒，默认值：0.15。 |
+| dampingFraction      | number | 否    | 解释同springMotion中的dampingFraction。默认值：0.86。 |
+| overlapDuration | number | 否    | 解释同springMotion中的overlapDuration。单位：秒，默认值：0.25。 |
+
+**返回值：**
+
+| 类型                           | 说明             |
+| ---------------------------------- | ---------------- |
+|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1.弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2.animation、animateTo中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate)函数获得插值。 |
+
+**示例：**
+
+```ts
+import Curves from '@ohos.curves'
+Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
+```
+
+
 ## ICurve
 
 
@@ -147,8 +209,9 @@ Curves.springCurve(100, 1, 228, 30) // 创建一个弹簧插值曲线
 
 interpolate(fraction:&nbsp;number): number
 
-
 插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,7 +266,7 @@ steps(count: number, end: boolean): string
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ----| ------------------------------------------------------------ |
 | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
-| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
+| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false：在起点发生阶跃变化。 |
 
 
 ## Curves.cubicBezier<sup>(deprecated)</sup>
@@ -265,7 +328,7 @@ struct ImageComponent {
           this.widthSize = curve.interpolate(0.5) * this.widthSize;
           this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
-        .animation({duration: 2000 , curve: Curves.stepsCurve(9, true)})
+        .animation({ duration: 2000 , curve: Curves.stepsCurve(9, true) })
     }.width("100%").height("100%")
   }
 }

@@ -18,7 +18,9 @@ DevEco Device Tool支持Hi3861V100开发板的源码一键编译功能，提供�
 
 3. 安装Hi3861V100相关工具链，部分工具安装需要使用root权限，请在**TERMINAL**窗口输入用户密码进行安装。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   >
+   > - 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   > - 若出现安装apt组件失败，可参考[修改apt源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/faq-toolchain-install-0000001301623822)进行修改，完成后尝试重新安装。
 
    ![zh-cn_image_0000001280938208](figures/zh-cn_image_0000001280938208.png)
 
@@ -26,7 +28,7 @@ DevEco Device Tool支持Hi3861V100开发板的源码一键编译功能，提供�
 
    ![zh-cn_image_0000001281378224](figures/zh-cn_image_0000001281378224.png)
 
-4. 在**hi3861**配置页签中，设置源码的编译类型**build_type**，默认为"debug"类型，请根据需要进行修改。然后点击**Save**进行保存。
+4. 在**wifiiot_hispark_pegasus**配置页签中，设置源码的编译类型**build_type**，默认为"debug"类型，请根据需要进行修改。
 
    ![zh-cn_image_0000001333581089](figures/zh-cn_image_0000001333581089.png)
 

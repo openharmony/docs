@@ -65,7 +65,7 @@ Sets the path transformation matrix.
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -95,7 +95,7 @@ Moves the current point of the path back to the start point of the path, and dra
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -223,7 +223,7 @@ Draws a cubic bezier curve on the canvas.
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -264,7 +264,7 @@ Draws a quadratic curve on the canvas.
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -307,7 +307,7 @@ Draws an arc on the canvas.
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -348,7 +348,7 @@ Draws an arc based on the radius and points on the arc.
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 

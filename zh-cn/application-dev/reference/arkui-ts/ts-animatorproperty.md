@@ -1,6 +1,6 @@
 # 属性动画
 
-组件的某些通用属性变化时，可以通过属性动画实现渐变效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。
+组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。
 
 > **说明：**
 >
@@ -8,20 +8,19 @@
 
 animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
 
-为组件添加属性动画，实现组件属性状态变化时的过渡动画效果。
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
-
 | 名称         | 参数类型                                       | 必填    | 描述                                                         |
 | ---------- | ------------------------------------------| ---- | ------------------------------------------------------------ |
-| duration   | number                                    | 否    | 设置动画时长。单位为毫秒，默认动画时长为1000毫秒。<br/>默认值：1000 |
+| duration   | number                                    | 否    | 设置动画时长。单位为毫秒，默认动画时长为1000毫秒。<br/>默认值：1000<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。 |
 | tempo      | number                                    | 否    | 动画播放速度。数值越大，动画播放速度越快，数值越小，播放速度越慢<br/>值为0时，表示不存在动画。<br/>默认值：1 |
-| curve      | string&nbsp;\|&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;ICurve<sup>9+</sup> | 否   | 设置动画曲线。默认曲线为线性。<br/>默认值：Curve.Linear   |
+| curve      | string&nbsp;\|&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;ICurve<sup>9+</sup> | 否   | 设置动画曲线。默认曲线为线性。<br/>默认值：Curve.Linear<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | delay      | number                                    | 否    | 设置动画延迟执行的时长。单位为毫秒，默认不延时播放。<br/>默认值：0   |
 | iterations | number                                    | 否    | 设置播放次数。默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
-| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 否    | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal |
-| onFinish   | () => void                                | 否    | 状态回调，动画播放完成时触发。                        |
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 否    | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish   | () => void                                | 否    | 状态回调，动画播放完成时触发。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
@@ -31,34 +30,49 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 @Entry
 @Component
 struct AttrAnimationExample {
-  @State widthSize: number = 200;
-  @State heightSize: number = 100;
-  @State flag: boolean = true;
+  @State widthSize: number = 250
+  @State heightSize: number = 100
+  @State rotateAngle: number = 0
+  @State flag: boolean = true
 
   build() {
     Column() {
-      Button('click me')
-        .onClick((event: ClickEvent) => {
+      Button('change size')
+        .onClick(() => {
           if (this.flag) {
-            this.widthSize = 100
-            this.heightSize = 50
+            this.widthSize = 150
+            this.heightSize = 60
           } else {
-            this.widthSize = 200
+            this.widthSize = 250
             this.heightSize = 100
           }
           this.flag = !this.flag
         })
-        .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
+        .margin(30)
+        .width(this.widthSize)
+        .height(this.heightSize)
         .animation({
-          duration: 2000, // 动画时长
-          curve: Curve.EaseOut, // 动画曲线
-          delay: 500, // 动画延迟
-          iterations: 1, // 播放次数
-          playMode: PlayMode.Normal // 动画模式
-        }) // 对Button组件的宽高属性进行动画配置
-    }.width('100%').margin({ top: 5 })
+          duration: 2000,
+          curve: Curve.EaseOut,
+          iterations: 3,
+          playMode: PlayMode.Normal
+        })
+      Button('change rotate angle')
+        .onClick(() => {
+          this.rotateAngle = 90
+        })
+        .margin(50)
+        .rotate({ angle: this.rotateAngle })
+        .animation({
+          duration: 1200,
+          curve: Curve.Friction,
+          delay: 500,
+          iterations: -1, // 设置-1表示动画无限循环
+          playMode: PlayMode.Alternate
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
 
-![zh-cn_image_0000001174264358](figures/zh-cn_image_0000001174264358.gif)
+![animation](figures/animation.gif)

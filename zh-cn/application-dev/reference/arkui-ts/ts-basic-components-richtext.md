@@ -31,6 +31,10 @@ RichText(content:string)
 | onStart(callback: () => void)    | 加载网页时触发。   |
 | onComplete(callback: () => void) | 网页加载结束时触发。 |
 
+## 属性
+
+只支持[通用属性](ts-universal-attributes-size.md)中width，height，size，layoutWeight四个属性。由于padding，margin，constraintSize属性使用时与通用属性描述不符，暂不支持。
+
 ## 支持标签
 
 | 名称 | 描述 | 示例 |
@@ -38,13 +42,15 @@ RichText(content:string)
 | \<h1>--\<h6> | 被用来定义HTML，\<h1>定义重要等级最高的标题，\<h6>定义重要等级最低的标题。 | \<h1>这是一个标题\</h1>\<h2>这是h2标题\</h2> |
 | \<p>\</p> | 定义段落。 | \<p>这是一个段落\</p> |
 | \<br/> | 插入一个简单的换行符。 | \<p>这是一个段落\<br/>这是换行段落\</p> |
+| \<font/> | 规定文本的字体、字体尺寸、字体颜色。 | \<font size="3" face="arial" color="red">这是一段红色字体。\</font> |
 | \<hr/> | 定义HTML页面中的主题变化（比如话题的转移），并显示为一条水平线。 | \<p>这个一个段落\</p>\<hr/>\<p>这是一个段落\</p> |
+| \<image>\</image> | 用来定义图片。 | \<image src="file:///data/storage/el1/bundle/entry/resources/rawfile/icon.png">\</image> |
 | \<div>\</div> | 常用于组合块级元素，以便通过CSS来对这些元素进行格式化。 | \<div style='color:#0000FF'>\<h3>这是一个在div元素中的标题。\</h3>\</div> |
 | \<i>\</i> | 定义与文本中其余部分不同的部分，并把这部分文本呈现为斜体文本。 | \<i>这是一个斜体\</i> |
 | \<u>\</u> | 定义与常规文本风格不同的文本，像拼写错误的单词或者汉语中的专有名词，应尽量避免使用\<u>为文本加下划线，用户会把它混淆为一个超链接。 | \<p>\<u>这是带有下划线的段落\</u>\</p> |
 | \<style>\</style> | 定义HTML文档的样式信息。 | \<style>h1{color:red;}p{color:blue;}\</style> |
 | style | 属性规定元素的行内样式，写在标签内部，在使用的时候需用引号来进行区分，并以; 间隔样式，style='width: 500px;height: 500px;border: 1px soild;margin: 0 auto;'。 | \<h1 style='color:blue;text-align:center'>这是一个标题\</h1>\<p style='color:green'>这是一个段落。\</p> |
-| \<script>\</script> | 用于定义客户端文本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
+| \<script>\</script> | 用于定义客户端脚本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
 ## 示例
 
@@ -76,9 +82,36 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
+        .width(500)
+        .height(400)
+        .backgroundColor(0XBDDB69)
+      RichText('layoutWeight(1)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92D6CC)
+        .layoutWeight(1)
+      RichText('layoutWeight(2)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92C48D)
+        .layoutWeight(2)
     }
   }
 }
 ```
 
- ![richText](figures/richText.png) 
+ ![richText](figures/richText.png)
+
+## 使用场景说明
+
+RichText组件底层复用了Web组件来提供基础能力，包括但不限于HTML页面的解析、渲染等。但由于Web组件比较消耗资源，所以在一些重复使用RichText组件的场景下，比如在List下循环重复使用RichText时，会出现卡顿、滑动响应慢等现象。

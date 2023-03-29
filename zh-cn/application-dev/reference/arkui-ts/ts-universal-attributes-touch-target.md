@@ -11,12 +11,15 @@
 ## 属性
 
 
-| 名称             | 参数类型                                          | 描述                                      |
-| -------------- | --------------------------------------------- | ----------------------------------------- |
-| responseRegion | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>} |
+| 名称           | 参数类型                                                     | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| responseRegion | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## Rectangle对象说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称        | 类型                       | 必填   | 描述                             |
 | ------ | ----------------------------- | -----| -------------------------------- |
 | x      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的x轴坐标。<br/>默认值：0vp |
@@ -40,7 +43,7 @@
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = "";
+  @State text: string = ""
 
   build() {
     Column({ space: 20 }) {
@@ -49,7 +52,7 @@ struct TouchTargetExample {
       Button("button1")
         .responseRegion({ x: 0, y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button1 clicked';
+          this.text = 'button1 clicked'
         })
 
       // 热区宽度为按钮的一半，且右移一个按钮宽度，点击button2右侧左边，点击事件生效
@@ -57,14 +60,14 @@ struct TouchTargetExample {
       Button("button2")
         .responseRegion({ x: '100%', y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button2 clicked';
+          this.text = 'button2 clicked'
         })
       // 热区大小为整个按钮，且下移一个按钮高度，点击button3下方按钮大小区域，点击事件生效
       Text("{x:0,y:'100%',width:'100%',height:'100%'}")
       Button("button3")
         .responseRegion({ x: 0, y: '100%', width: '100%', height: '100%' })
         .onClick(() => {
-          this.text = 'button3 clicked';
+          this.text = 'button3 clicked'
         })
 
       Text(this.text).margin({ top: 50 })

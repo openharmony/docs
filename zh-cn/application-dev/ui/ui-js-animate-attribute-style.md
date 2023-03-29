@@ -26,8 +26,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
-.fade{
+.fade {
   width: 30%;
   height: 200px;
   left: 35%;
@@ -35,13 +37,13 @@
   position: absolute;
   animation: 2s change infinite friction;
 }
-.bigger{
+.bigger {
   width: 20%;
   height: 100px;
   background-color: blue;
   animation: 2s change1 infinite linear-out-slow-in;
 }
-text{
+text {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -61,7 +63,7 @@ text{
   }
 }
 /* 父组件大小变化 */
-@keyframes change1{
+@keyframes change1 {
   0% {
     width: 20%;
     height: 100px;
@@ -70,11 +72,11 @@ text{
     width: 80%;
     height: 200px;
   }
-}  
+}
 /* 子组件文字缩放 */
-@keyframes change2{
-  0%{
-   transform: scale(0);
+@keyframes change2 {
+  0% {
+    transform: scale(0);
   }
   100% {
     transform: scale(1.5);

@@ -97,7 +97,7 @@ It is considered good practice that you understand the following concepts before
         **Figure  1**  Sequence diagram for creating a camera<a name="fig9882125184416"></a>  
         
 
-        ![](figure/en-us_image_0000001054101094.png)
+        ![](figures/en-us_image_0000001054101094.png)
 
     1.  Taking a video/Previewing
 
@@ -106,7 +106,7 @@ It is considered good practice that you understand the following concepts before
         **Figure  2**  Sequence diagram for recording/previewing<a name="fig642695404512"></a>  
         
 
-        ![](figure/en-us_image_0000001054421113.png)
+        ![](figures/en-us_image_0000001054421113.png)
 
 
 

@@ -166,7 +166,7 @@ This development guide is applicable to standard-system devices \(reference memo
     ```
     #undef LOG_DOMAIN
     #undef LOG_TAG
-    #define LOG_DOMAIN 0  // Indicates the service domain. The value ranges from 0x0 to 0xFFFFF.
+    #define LOG_DOMAIN 0xD003200  // Indicates the service domain. The value ranges from 0xD000000 to 0xFFFFF.
     #define LOG_TAG "MY_TAG"
     ```
 
@@ -195,7 +195,7 @@ This development guide is applicable to standard-system devices \(reference memo
 
     ```
     class MyClass {
-    static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
+    static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
     ...
     }
     ```
@@ -204,7 +204,7 @@ This development guide is applicable to standard-system devices \(reference memo
 
     ```
     using namespace OHOS::HiviewDFX;
-    static constexpr HiLogLabel LABEL = {LOG_CORE, 0, "MY_TAG"}; 
+    static constexpr HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
     ```
 
     Print logs.

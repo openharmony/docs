@@ -189,8 +189,7 @@ This version has the following updates to OpenHarmony 3.1 Beta.
 
 For details, see the following:
 
-
-*[API Differences](api-change/v3.1-Release/readme.md)*
+*[API Differences](api-diff/v3.1-Release/Readme-EN.md)*
 
 
 ### Chip and Development Board Adaptation
@@ -215,7 +214,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI | [Drag](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)| This sample shows the drag operation function.| eTS |
 | ArkUI | [Animation](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)| This sample demonstrates the effect of the **AnimatorProperty** and **Explicit Animation**.| eTS |
 | Data management| [Querying the DDM Result Set](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery)| This sample shows how to create a query object to query data in a key-value (KV) store and obtain the result set in distributed data management (DDM).| eTS |
-| Data management| [eTS RDB](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)| This sample shows how to use a relational database (RDB) in eTS, including adding, deleting, modifying, and querying data.| eTS |
+| Data management| [eTS RDB](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb) | This sample shows how to use a relational database (RDB) in eTS, including adding, deleting, modifying, and querying data.| eTS |
 | Common event and notification| [Reminder Agent](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)| This sample shows how to use the reminder agent by simulating an alarm clock.| eTS |
 | Common event and notification| [Event notification](https://gitee.com/openharmony/app_samples/tree/master/Notification/Emitter)| This sample shows the in-process event notification. After a user selects an offering and submits an order, the selected offering is displayed in the order list.| eTS |
 | Connectivity| [RPC](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC)| This sample shows the data exchange between the frontend and backend of a device. After the offering and quantity are selected at the frontend, the backend calculates the result and displays it at the frontend.| eTS |
@@ -248,10 +247,10 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | Issue No.| Description|
 | -------- | -------- |
 | [I4MGJM](https://gitee.com/openharmony/drivers_peripheral/issues/I4MGJM) | [HDF/Camera] The case fails when the RK3568 board runs the camera HDI tests.|
-| [I4OECR](https://gitee.com/openharmony/ark_js_runtime/issues/I4OECR) | An Ark stack exception occurs during XTS running (low probability).|
+| I4OECR | An Ark stack exception occurs during XTS running (low probability).|
 | [I4OBTW](https://gitee.com/openharmony/ability_ability_runtime/issues/I4OBTW) | After all XTS cases are executed and the application is installed, aa start failures occur, affecting the pipeline stability test.|
-| [I4OLHF](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLHF?from=project-issue) | [ArkUI subsystem] The test process is abnormal due to the com.amsst.amsMissionSnapshotTest process.|
-| [I4OLUK](https://gitee.com/openharmony/ark_js_runtime/issues/I4OLUK) | [ArkUI subsystem] The process stack is abnormal due to the com.ohos.systemui process.|
+| I4OLHF | [ArkUI subsystem] The test process is abnormal due to the com.amsst.amsMissionSnapshotTest process.|
+| I4OLUK | [ArkUI subsystem] The process stack is abnormal due to the com.ohos.systemui process.|
 
 
 ## Known Issues

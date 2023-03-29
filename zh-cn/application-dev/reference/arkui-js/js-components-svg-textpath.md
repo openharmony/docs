@@ -97,9 +97,9 @@ textpath与tspan组合示例与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600" stroke="red" fill="none"></path>
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
     <text>
-      <textpath fill="#D2691E" path="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600"font-size="30px" stroke="black" stroke-width="1" >
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px" stroke="black" stroke-width="1" >
         This is TextPath.
         <tspan font-size="20px" fill="red">This is tspan onTextPath.</tspan>
         <tspan font-size="30px">Let's play.</tspan>
@@ -117,11 +117,11 @@ textpath与tspan组合示例与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <!--      数值百分比    -->
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">This is first tspan.</tspan>
         <tspan x="50%">This is second tspan.</tspan>
@@ -172,10 +172,10 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">
           tspan attribute x|rotate
@@ -209,11 +209,11 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan dx="20" fill="blue">
           tspan attribute fill|fill-opacity
@@ -247,11 +247,11 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
           This is TextPath.
           <tspan dx="20" fill="blue">
             tspan attribute stroke

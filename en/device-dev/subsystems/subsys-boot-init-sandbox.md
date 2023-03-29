@@ -24,6 +24,7 @@ The sandbox management module is available only for the standard system.
   | src-path | Source path of the directory or file to mount.|
   | sandbox-path | Target path in the sandbox.|
   | sandbox-flags | Mount flag. The default value is **bind rec**.|
+  | ignore | Whether to ignore a mounting failure. If the value is set to 1, the system ignores the mounting failure and proceeds with the subsequent step. |
   | target-name | Directory to link.|
   | link-name | Target link in the sandbox.|
 
@@ -44,13 +45,13 @@ Logical storage structure of the sandbox:
 bool InitSandboxWithName(const char *name); // Parsing to the JSON structure
 
 typedef struct {
-    mountlist_t *mounts;                    // Directory to mount
-    mountlist_t *fileMounts;                // File to mount
-    linklist_t *links;                      // Directory to link
-    char *rootPath;                         // Root path of the sandbox: /mnt/sandbox/system|vendor|xxx
-    char name[MAX_BUFFER_LEN];              // Sandbox name, for example, system sandbox or chipset sandbox
-    bool isCreated;                         // Sandbox creation flag
-    int ns;                                 // namespace
+    ListNode pathMountsHead;   // sandbox mount_path list head
+    ListNode fileMountsHead;   // sandbox mount_file list head
+    ListNode linksHead;        // sandbox symbolic link list head
+    char *rootPath;            // /mnt/sandbox/system|vendor|xxx
+    char name[MAX_BUFFER_LEN]; // name of sandbox. i.e system, chipset etc.
+    bool isCreated;            // sandbox already created or not
+    int ns;                    // namespace                                // namespace
 } sandbox_t;
 ```
 ### How to Develop
@@ -64,7 +65,7 @@ typedef struct {
 2.  Modify the JSON file configuration of the sandbox.
     - Go to the **/system/etc/sandbox/** directory, and run **cat system-sandbox.json** and **cat chipset-sandbox.json**. 
      If you are using a 64-bit system, run **cat system-sandbox64.json** and **cat chipset-sandbox64.json** instead.
-    - Modify the sandbox configuration files in the **base/startup/init_lite/interfaces/innerkits/sandbox** directory. After that, restart the system.
+    - Modify the sandbox configuration files in the **base/startup/init/interfaces/innerkits/sandbox** directory. After that, restart the system.
 
 ### Development Example
 Sandbox JSON File Configuration

@@ -1422,7 +1422,7 @@ APP_FEATURE_INIT(AppEntry);
 
 ### XTS用例
 
-`XTS`测试参考资料见[xts参考资料](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-xts-guide.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
+`XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
 
     {
       "subsystem": "xts",

@@ -12,9 +12,9 @@ mediaLibrary提供相册相关的接口，供开发者创建、删除相册，�
 
 获取相册中的图片、视频有两种方式：
 
-一是通过[MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1)指定相册以获取媒体资源，参考[获取指定相册的媒体资源](medialibrary-resource-guidelines#指定相册)；
+一是通过[MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1)指定相册以获取媒体资源，参考[获取指定相册的媒体资源](medialibrary-resource-guidelines.md#指定相册)；
 
-二是通过[Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3)使用相册Album实例获取媒体资源，参考[获取相册中的图片或视频](medialibrary-resource-guidelines#获取相册中的图片或视频)。
+二是通过[Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3)使用相册Album实例获取媒体资源，参考[获取相册中的图片或视频](medialibrary-resource-guidelines.md#获取相册中的图片或视频)。
 
 ## 创建相册
 
@@ -39,19 +39,19 @@ mediaLibrary提供相册相关的接口，供开发者创建、删除相册，�
 
 ```ts
 async function example() {
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const path = await media.getPublicDirectory(DIR_IMAGE)
-    //myAlbum为新建文件保存路径，也是新建相册的名称
-    media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
-        if (fileAsset != undefined) {
-        console.info('createAlbum successfully, message = ' + fileAsset);
-        } else {
-        console.info('createAlbum failed, message = ' + err);
-        }
-    });
+  let mediaType = mediaLibrary.MediaType.IMAGE;
+  let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  const path = await media.getPublicDirectory(DIR_IMAGE);
+  //myAlbum为新建文件保存路径，也是新建相册的名称
+  media.createAsset(mediaType, 'test.jpg', path + 'myAlbum/', (err, fileAsset) => {
+    if (fileAsset === undefined) {
+      console.error('createAlbum failed, message = ' + err);
+    } else {
+      console.info('createAlbum successfully, message = ' + JSON.stringify(fileAsset));
+    }
+  });
 }
 ```
 
@@ -75,20 +75,20 @@ async function example() {
 
 ```ts
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    let album = albumList[0];
-    album.albumName = 'newAlbum';
-    //回调返回空
-    album.commitModify().then(function() {
-        console.info("albumRename successfully");
-    }).catch(function(err){
-        console.info("albumRename failed with error:"+ err);
-    });
+  let AlbumNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  const context = getContext(this);
+  let media = mediaLibrary.getMediaLibrary(context);
+  let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  let album = albumList[0];
+  album.albumName = 'newAlbum';
+  //回调返回空
+  album.commitModify().then(() => {
+    console.info("albumRename successfully");
+  }).catch((err) => {
+    console.error("albumRename failed with error: " + err);
+  });
 }
 ```

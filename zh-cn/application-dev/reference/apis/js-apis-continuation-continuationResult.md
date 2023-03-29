@@ -5,11 +5,11 @@
 
 ## ContinuationResult
 
-表示流转管理入口返回的设备信息。
+ContinuationManager的[on](js-apis-continuation-continuationManager.md#continuationmanagerstartcontinuationdevicemanager9)接口返回此对象表示流转管理入口返回的设备信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.DistributedAbilityManager
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | string | 是 | 是 | 表示设备标识。|
 | type | string | 是 | 是 | 表示设备类型。 |

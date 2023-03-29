@@ -32,9 +32,9 @@ partinfo &lt;_dev_inodename_&gt;
 
 ## 输出说明
 
-**示例**:查看系统分区信息
+**示例** 查看系统分区信息
 
-  
+
 ```
 OHOS # partinfo /dev/mmcblk0p0
 part info :

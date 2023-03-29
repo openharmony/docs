@@ -1,6 +1,7 @@
 # slot插槽
 
 >  **说明：**
+>
 >  从API Version 7 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -19,7 +20,7 @@
 引用该自定义组件方式如下：
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style">父组件中定义的内容</text> 
@@ -44,7 +45,7 @@
 引用该自定义组件方式如下：
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style" slot="second">插入第二个插槽中</text> 
@@ -54,4 +55,5 @@
 ```
 
 >  **说明：**
+>
 >  name 和 slot 属性不支持绑定动态数据。

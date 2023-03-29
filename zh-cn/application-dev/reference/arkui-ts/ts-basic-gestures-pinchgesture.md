@@ -36,10 +36,10 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1;
-  @State pinchValue: number = 1;
-  @State pinchX: number = 0;
-  @State pinchY: number = 0;
+  @State scaleValue: number = 1
+  @State pinchValue: number = 1
+  @State pinchX: number = 0
+  @State pinchY: number = 0
 
   build() {
     Column() {
@@ -57,16 +57,16 @@ struct PinchGestureExample {
       .gesture(
       PinchGesture({ fingers: 3 })
         .onActionStart((event: GestureEvent) => {
-          console.info('Pinch start');
+          console.info('Pinch start')
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = this.pinchValue * event.scale;
-          this.pinchX = event.pinchCenterX;
-          this.pinchY = event.pinchCenterY;
+          this.scaleValue = this.pinchValue * event.scale
+          this.pinchX = event.pinchCenterX
+          this.pinchY = event.pinchCenterY
         })
         .onActionEnd(() => {
-          this.pinchValue = this.scaleValue;
-          console.info('Pinch end');
+          this.pinchValue = this.scaleValue
+          console.info('Pinch end')
         })
       )
     }.width('100%')

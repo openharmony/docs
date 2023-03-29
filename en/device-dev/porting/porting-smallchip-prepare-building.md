@@ -2,7 +2,7 @@
 
 ## Compilation Environment Setup
 
-Set up the basic environment by following instructions in [Setting Up the Hi3861 Development Board Environment](../quick-start/quickstart-lite-steps-hi3861-setting.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
+Set up the basic environment by following instructions in [Quick Start Overview](../quick-start/quickstart-overview.md). Both the user space and LiteOS Cortex-A kernel space are compiled using the LLVM compiler. If you choose to port the Linux kernel, run the following command to install the gcc-arm-linux-gnueabi cross compiler for compiling the Linux kernel-space image:
 
 
 ```

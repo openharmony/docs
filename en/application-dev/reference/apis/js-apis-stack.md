@@ -1,7 +1,6 @@
-# Linear Container Stack
+# @ohos.util.Stack (Linear Container Stack)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **Stack** is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
@@ -18,9 +17,6 @@ This topic uses the following to identify the use of generics:
 ```ts
 import Stack from '@ohos.util.Stack';  
 ```
-
-
-
 
 ## Stack
 
@@ -40,6 +36,14 @@ constructor()
 A constructor used to create a **Stack** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The Stack's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -68,6 +72,14 @@ Adds an element at the top of this container.
 | -------- | -------- |
 | T | Element added.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The push method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -75,7 +87,7 @@ let stack = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
-stack.push(b);
+let result2 = stack.push(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 ```
@@ -93,6 +105,14 @@ Removes the top element from this container.
 | Type| Description|
 | -------- | -------- |
 | T | Element removed.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The pop method cannot be bound. |
 
 **Example**
 
@@ -119,6 +139,14 @@ Obtains the top element of this container.
 | Type| Description|
 | -------- | -------- |
 | T | Element obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The peek method cannot be bound. |
 
 **Example**
 
@@ -151,6 +179,14 @@ Obtains the index of the first occurrence of the specified element in this conta
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The locate method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -164,7 +200,7 @@ let result = stack.locate(2);
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -175,7 +211,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -186,6 +222,14 @@ callbackfn
 | index | number | No| Position index of the element that is currently traversed.|
 | stack | Stack&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -195,7 +239,7 @@ stack.push(4);
 stack.push(5);
 stack.push(4);
 stack.forEach((value, index) => {
- console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -212,6 +256,14 @@ Checks whether this container is empty (contains no elements).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -237,6 +289,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **Example**
 ```ts

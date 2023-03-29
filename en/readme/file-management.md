@@ -35,11 +35,9 @@ Application file management
 
 [filemanagement_app_file_service](https://gitee.com/openharmony/filemanagement_app_file_service)
 
-File interfaces
+File interface
 
 [filemanagement_file_api](https://gitee.com/openharmony/filemanagement_file_api)
-
-[distributeddatamgr_file](https://gitee.com/openharmony/distributeddatamgr_file)
 
 Storage management
 

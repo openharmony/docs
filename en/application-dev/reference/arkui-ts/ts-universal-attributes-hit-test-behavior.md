@@ -1,8 +1,9 @@
 # Hit Test Control
 
-Hit test control allows you to configure hit testing for components. When processing a touch event, ArkUI performs hit testing on the touch points and component area before the touch event is triggered, in order to determine the component that needs to respond to the touch event, and then distributes the touch event based on the hit test result. The **hitTestBehavior** attribute sets the behavior during hit testing. The settings will affect the hit test result of the component and thereby the subsequent touch event distribution. For details, see **HitTestMode**.
+Hit test control allows you to configure hit testing for components. When processing a touch event, ArkUI performs hit testing on the touch points and component area before the touch event is triggered, in order to determine the component that needs to respond to the touch event, and then distributes the touch event based on the hit test result. The **hitTestBehavior** attribute sets how the component behaves during hit testing. The settings will affect the hit test result and thereby the subsequent touch event distribution. For details, see **[HitTestMode](#hittestmode)**.
 
 >  **NOTE**
+>
 >  - The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >  - When the touch areas of nodes, for example, two nodes, in the **\<Stack>** component overlap, hit testing is performed only on the node displayed at the top layer by default. To perform hit testing on the node at the lower layer, set **hitTestBehavior** to **HitTestMode.Transparent** for the upper-layer node.
 
@@ -11,7 +12,7 @@ Hit test control allows you to configure hit testing for components. When proces
 
 | Name              | Type    | Description                                 |
 | -------------------- | -------- | ---------------------------------------- |
-| hitTestBehavior      | HitTestMode  | How the component behaves during hit testing.<br>Default value: **HitTestMode.Default**|
+| hitTestBehavior      | [HitTestMode](#hittestmode) | How the component behaves during hit testing.<br>Default value: **HitTestMode.Default**|
 
 ## HitTestMode
 

@@ -13,7 +13,9 @@ This module provides the following functions:
 
 >**NOTE**<br/>
 >
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The APIs provided by this module are no longer maintained since API version 9. You are advised to use `@ohos.data.distributedKVStore`](js-apis-distributedKVStore.md).
+>
+>- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -39,56 +41,28 @@ Creates a **KVManager** instance to manage KV stores. This API uses an asynchron
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
 
 **Example**
-
-Stage model:
-```ts
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-            userInfo: {
-                userId: '0',
-                userType: distributedData.UserType.SAME_USER_ID
-            }
-        }
-        distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-            if (err) {
-                console.log("Failed to create KVManager: " + JSON.stringify(err));
-                return;
-            }
-            console.log("Created KVManager successfully");
-            kvManager = manager;
-        });
-    }
-}
-```
-
-FA model:
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+
 let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-    userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
+        }
     }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+        if (err) {
+            console.log("Failed to create KVManager: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("Created KVManager successfully");
+        kvManager = manager;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
 }
-distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-    if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-    }
-    console.log("Created KVManager successfully");
-    kvManager = manager;
-});
 ```
 
 ## distributedData.createKVManager
@@ -112,52 +86,28 @@ Creates a **KVManager** instance to manage KV stores. This API uses a promise to
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created.|
 
 **Example**
-
-Stage model:
-```ts
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-            userInfo: {
-                userId: '0',
-                userType: distributedData.UserType.SAME_USER_ID
-            }
-        }
-        distributedData.createKVManager(kvManagerConfig).then((manager) => {
-            console.log("Created KVManager successfully");
-            kvManager = manager;
-        }).catch((err) => {
-            console.log("Failed to create KVManager: " + JSON.stringify(err));
-        });
-    }
-}
-```
-
-FA model:
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+
 let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-    userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
+        }
     }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+        if (err) {
+            console.log("Failed to create KVManager: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("Created KVManager successfully");
+        kvManager = manager;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
 }
-distributedData.createKVManager(kvManagerConfig).then((manager) => {
-    console.log("Created KVManager successfully");
-    kvManager = manager;
-}).catch((err) => {
-    console.log("Failed to create KVManager: " + JSON.stringify(err));
-});
 ```
 
 ## KVManagerConfig
@@ -168,7 +118,6 @@ Provides configuration of the **KVManager** object, including the bundle name an
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| context<sup>9+<sup> | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | userInfo | [UserInfo](#userinfo) | Yes | User information.|
 | bundleName | string | Yes | Bundle name.|
 
@@ -179,9 +128,9 @@ Defines user information.
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 | Name| Type| Mandatory| Description|
-| ----- | ------ | ------ | ------ |
-| userId | string | Yes | User ID.|
-| userType | [UserType](#usertype) | Yes | User type.|
+| ----- | ------ |------ | ------ |
+| userId | string | No | User ID.|
+| userType | [UserType](#usertype) | No | User type.|
 
 
 ## UserType
@@ -213,7 +162,7 @@ Creates and obtains a KV store. This API uses an asynchronous callback to return
 | ----- | ------ | ------ | ------ |
 | storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options | [Options](#options) | Yes | Configuration of the KV store.|
-| callback | AsyncCallback&lt;T&gt; , &lt;T extends [KVStore](#kvstore)&gt;| Yes | Callback invoked to return the KV store created.|
+| callback | AsyncCallback&lt;T&gt; | Yes | Callback invoked to return the KV store created.|
 
 **Example**
 
@@ -500,7 +449,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the KV store IDs obtained. |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the KV store IDs obtained.|
 
 **Example**
 
@@ -560,7 +509,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to service status changes. This API returns the result synchronously.
+Subscribes to service status changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -591,7 +540,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from service status changes. This API returns the result synchronously.
+Unsubscribes from service status changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -624,8 +573,8 @@ try {
 Provides KV store configuration.
 
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
+| Name | Type| Mandatory  | Description                   |
+| -----  | ------  | ------  | -------------------|
 | createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
 | backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
@@ -642,8 +591,8 @@ Enumerates the KV store types.
 
 | Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | Device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
-| SINGLE_VERSION  | 1 | Single KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| DEVICE_COLLABORATION  | 0 | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| SINGLE_VERSION  | 1 | Single KV store.<br> The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
@@ -682,12 +631,12 @@ Defines the schema of a KV store. You can create a **Schema** object and place i
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name | Type| Description                   |
-| ---   | ----  | ----------------------- |
-| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | JSON root object.|
-| indexes<sup>8+</sup>  | Array\<string> | String array in JSON format. |
-| mode<sup>8+</sup>  | number | Schema mode. |
-| skip<sup>8+</sup>  | number |  Size of a skip of the schema. |
+| Name | Type| Readable| Writable| Description                   |
+| ---   | ----  | ----  | ----  | ----------------------- |
+| root<sup>8+</sup>  | [FieldNode](#fieldnode8) | Yes| Yes| JSON root object.|
+| indexes<sup>8+</sup>  | Array\<string> | Yes| Yes| String array in JSON format. |
+| mode<sup>8+</sup>  | number | Yes| Yes| Schema mode. |
+| skip<sup>8+</sup>  | number | Yes| Yes|  Size of a skip of the schema. |
 
 ### constructor<sup>8+</sup> 
 
@@ -703,11 +652,11 @@ Represents a **Schema** instance, which provides the methods for defining the va
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-| Name | Type| Description                   |
-| ---   | ----  | ----------------------- |
-| nullable<sup>8+</sup>  | boolean | Whether the database field can be null.  |
-| default<sup>8+</sup>  | string | Default value of a **FieldNode**.|
-| type<sup>8+</sup>  | number | Value of the data type corresponding to the specified node.|
+| Name | Type| Readable| Writable| Description                   |
+| ---   | ----  | ----  | ----  | ----------------------- |
+| nullable<sup>8+</sup>  | boolean | Yes| Yes| Whether the database field can be null.  |
+| default<sup>8+</sup>  | string | Yes| Yes| Default value of a **FieldNode**.|
+| type<sup>8+</sup>  | number | Yes| Yes| Value of the data type corresponding to the specified node.|
 
 ### constructor<sup>8+</sup>
 
@@ -1389,7 +1338,7 @@ Creates a **Query** object to match the specified field whose value is less than
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1424,7 +1373,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
@@ -1459,7 +1408,7 @@ Creates a **Query** object to match the specified field whose value is less than
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
 
@@ -2160,7 +2109,6 @@ try {
 }
 ```
 
-
 ### put
 
 put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
@@ -2282,317 +2230,20 @@ try {
 }
 ```
 
-### delete<sup>9+</sup>
-
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
-
-Deletes KV pairs that meet the specified conditions. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let predicates = new dataSharePredicates.DataSharePredicates();
-	kvStore.delete(predicates, function (err, data) {
-		if (err == undefined) {
-			console.log('delete success');
-		} else {
-			console.log('delete fail' + err);
-		}
-    });  
-} catch (e) {
-	console.log('An unexpected error occurred. Error:' + e);
-}
-```
-
-### delete<sup>9+</sup>
-
-delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
-
-Deletes KV pairs that meet the specified conditions. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
-
-
-**Return value**
-
-| Type   | Description      |
-| ------  | -------   |
-| Promise&lt;void&gt; |Promise that returns no value.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let predicates = new dataSharePredicates.DataSharePredicates();
-	let arr = ["name"];
-	predicates.inKeys(arr);
-	kvStore.put("name", "bob").then((data) => {
-		console.log('put success' + JSON.stringify(data));
-		kvStore.delete(predicates).then((data) => {
-			console.log('delete success');
-		}).catch((err) => {
-			console.log('delete fail' + JSON.stringify(err));
-		});
-	}) .catch((err) => {
-		console.log(' put fail' + err);
-	});
-}catch (e) {
-	console.log("An unexpected error occurred. Error:" + e);
-}
-
-```
-
-### backup<sup>9+</sup>
-
-backup(file:string, callback: AsyncCallback&lt;void&gt;):void
-
-Backs up an RDB store. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description                                                        |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | Yes  | Name of the RDB store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is the error object.|
-
-**Example**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.backup(file, (err, data) => {
-        if (err) {
-            console.info("backup err : " + err);
-        } else {
-            console.info("backup data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### backup<sup>9+</sup>
-
-backup(file:string): Promise&lt;void&gt;
-
-Backs up an RDB store. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description                                                        |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | Yes  | Name of the RDB store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.backup(file).then((data) => {
-        console.info("backup data : " + data);
-    }).catch((err) => {
-        console.info("backup err : " + err);
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### restore<sup>9+</sup>
-
-restore(file:string, callback: AsyncCallback&lt;void&gt;):void
-
-Restores an RDB store from a database file. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name  | Type                 | Mandatory| Description                                                        |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Example**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.restore(file, (err, data) => {
-        if (err) {
-            console.info("restore err : " + err);
-        } else {
-            console.info("restore data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### restore<sup>9+</sup>
-
-restore(file:string): Promise&lt;void&gt;
-
-Restores an RDB store from a database file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description                                                        |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.restore(file).then((data) => {
-        console.info("restore data : " + data);
-    }).catch((err) => {
-        console.info("restore err : " + err);
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### deleteBackup<sup>9+</sup>
-
-deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;):void
-
-Deletes a backup file. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name  | Type                                          | Mandatory| Description                                                        |
-| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the name of the backup file deleted and the operation result.                |
-
-**Example**
-
-```js
-let kvStore;
-let files = ["BK001", "BK002"];
-try {
-    kvStore.deleteBackup(files, (err, data) => {
-        if (err) {
-            console.info("deleteBackup err : " + err);
-        } else {
-            console.info("deleteBackup data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### deleteBackup<sup>9+</sup>
-
-deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt;&gt;
-
-Deletes a backup file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description                                                        |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| files  | Array&lt;string&gt;   | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-
-**Return value**
-
-| Type                                        | Description                                           |
-| -------------------------------------------- | ----------------------------------------------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the name of the backup file deleted and the operation result.|
-
-**Example**
-
-```js
-let kvStore;
-let files = ["BK001", "BK002"];
-try {
-    kvStore.deleteBackup(files).then((data) => {
-        console.info("deleteBackup data : " + data);
-    }).catch((err) => {
-        console.info("deleteBackup err : " + err);
-    })
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This API returns the result synchronously.
+Subscribes to data changes of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
+| Name  | Type                                                     | Mandatory| Description                                                |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
+| type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
 | listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return a data change event.|
 
 **Example**
@@ -2604,21 +2255,20 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 });
 ```
 
-
 ### on('syncComplete')
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events. This API returns the result synchronously.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback invoked to return a synchronization complete event.|
+| Name      | Type                                         | Mandatory| Description                                                  |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
 
 **Example**
 
@@ -2633,16 +2283,18 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data changes. This API returns the result synchronously.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| Name  | Type                                                     | Mandatory| Description                                                    |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
 | listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
+
+
 
 **Example**
 
@@ -2665,19 +2317,19 @@ class KvstoreModel {
 }
 ```
 
-### off('syncComplete')<sup>9+</sup>
+### off('syncComplete')<sup>8+</sup>
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization complete events. This API returns the result synchronously.
+Unsubscribes from synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.      |
+| Name      | Type                                         | Mandatory| Description                                                      |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
 
 **Example**
@@ -2701,7 +2353,6 @@ class KvstoreModel {
 }
 ```
 
-
 ### putBatch<sup>8+</sup>
 
 putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
@@ -2715,7 +2366,7 @@ Inserts KV pairs in batches to this KV store. This API uses an asynchronous call
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
-| callback |Asyncallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
+| callback |AsyncCallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
 
 **Example**
 
@@ -2801,94 +2452,6 @@ try {
 }catch(e) {
     console.log('PutBatch e ' + JSON.stringify(e));
 }
-```
-
-### putBatch<sup>9+</sup>
-
-putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-Writes data to this KV store. This API  uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes   |Data to write.  |
-| callback |Asyncallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
-
-**Example**
-
-```js
-let kvStore;
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4,5,6,7]);
-    let vb1 = {key : "name_1", value : 32}
-    let vb2 = {key : "name_2", value : arr};
-    let vb3 = {key : "name_3", value : "lisi"};
-
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr, async function (err,data) {
-                console.log('putBatch success');
-    }).catch((err) => {
-        console.log('putBatch fail ' + JSON.stringify(err));
-    });
-}catch(e) {
-    console.log('putBatch e ' + JSON.stringify(e));
-}
-```
-
-### putBatch<sup>9+</sup>
-
-putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
-
-Write data to this KV store. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| value  |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes   |Data to write.  |
-
-**Return value**
-
-| Type   | Description      |
-| ------  | -------   |
-| Promise&lt;void&gt; |Promise that returns no value.|
-
-**Example**
-
-```js
-let kvStore;
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4,5,6,7]);
-    let vb1 = {key : "name_1", value : 32}
-    let vb2 = {key : "name_2", value : arr};
-    let vb3 = {key : "name_3", value : "lisi"};
-
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr).then(async (err) => {
-        console.log('putBatch success');
-    }).catch((err) => {
-        console.log('putBatch fail ' + JSON.stringify(err));
-    });
-}catch(e) {
-    console.log('PutBatch e ' + JSON.stringify(e));
-}
-
 ```
 
 ### deleteBatch<sup>8+</sup>
@@ -3364,12 +2927,12 @@ Defines the content of data change notifications, including inserted data, updat
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Type  |Readable  |Writable  | Description                   |
-| ----- | -------   | -----| ------|------------------------ |
-| insertEntries | [Entry](#entry)[]   | Yes |  Yes|Data inserted.  |
-| updateEntries | [Entry](#entry)[]   | Yes |  Yes|Data updated.  |
-| deleteEntries | [Entry](#entry)[]   | Yes |  Yes|Data deleted.  |
-| deviceId | string   | Yes |  Yes|UUID of the device. |
+| Name | Type  |Mandatory  | Description                   |
+| ----- | -------   | ------|------------------------ |
+| insertEntries | [Entry](#entry)[]   | Yes|Data inserted.  |
+| updateEntries | [Entry](#entry)[]   | Yes|Data updated.  |
+| deleteEntries | [Entry](#entry)[]   | Yes|Data deleted.  |
+| deviceId | string   | Yes|UUID of the device. |
 
 ## Entry
 
@@ -3377,10 +2940,10 @@ Defines the KV pairs stored in the KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Type  |Readable  |Writable  | Description                   |
-| ----- | -------   | -----| ------|------------------------ |
-| key | string   | Yes |  Yes|Key of the KV pair stored in the KV store.  |
-| value | [Value](#value) | Yes |  Yes|Value of the KV pair stored in the KV store.  |
+| Name | Type  |Mandatory  | Description                   |
+| ----- | -------   | ------|------------------------ |
+| key | string   | Yes|Key of the KV pair stored in the KV store.  |
+| value | [Value](#value) | Yes|Value of the KV pair stored in the KV store.  |
 
 
 ## Value
@@ -3389,10 +2952,10 @@ Defines the **value** object in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Type  |Readable  |Writable  | Description                   |
-| ----- | -------   | -----| ------|------------------------ |
-| type | [ValueType](#value)   | Yes |  Yes|Type of the value.  |
-| value | Uint8Array \| string \| number \| boolean| Yes |  Yes|Value of the KV pair stored in the KV store.  |
+| Name | Type  |Mandatory  | Description                   |
+| ----- | -------   | ------|------------------------ |
+| type | [ValueType](#value)   | Yes|Type of the value.  |
+| value | Uint8Array \| string \| number \| boolean| Yes|Value of the KV pair stored in the KV store.  |
 
 ## ValueType
 
@@ -3430,7 +2993,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | Yes   |Callback invoked to return the value obtained. |
 
 **Example**
 
@@ -3924,85 +3487,6 @@ try {
 }
 ```
 
-### getResultSet<sup>9+</sup>
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
-
-Obtains a **KvStoreResultSet** object that matches the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| predicates  | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)    | Yes   |**DataSharePredicates** object to match. If this parameter is **null**, define the processing logic.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates, async function (err, result) {
-    console.log(' GetResultSet success');
-    resultSet = result;
-    kvStore.closeResultSet(resultSet, function (err, data) {
-        console.log(' closeResultSet success');
-        })
-    });
-}catch(e) {
-    console.log('An unexpected error occurred. Error:' + e);
-}
-```
-### getResultSet<sup>9+</sup>
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KvStoreResultSet&gt;
-
-Obtains a **KvStoreResultSet** object that matches the specified **DataSharePredicates** object. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| predicates  |[DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |**DataSharePredicates** object to match. If this parameter is **null**, define the processing logic.           |
-
-**Return value**
-
-| Type   | Description      |
-| ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise that returns no value.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let resultSet;
-    let predicates =  new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates) .then((result) => {
-        console.log(' GetResultSet success');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
-            console.log(' closeResultSet success');
-        })
-    });
-}catch(e) {
-	console.log('An unexpected error occurred. Error:' + e);
-}
-```
 ### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
@@ -4265,21 +3749,71 @@ try {
 }
 ```
 
+### sync
 
-### on('syncComplete')<sup>8+</sup>
 
-on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Subscribes to synchronization complete events. This API returns the result synchronously.
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return a synchronization complete event.   |
+| Name   | Type                 | Mandatory| Description                                          |
+| --------- | --------------------- | ---- | ---------------------------------------------- |
+| deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
+| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
+| delayMs   | number                | No  | Allowed synchronization delay time, in ms.    |
+
+**Example**
+
+```js
+let kvStore;
+kvStore.sync(['deviceIds'], distributedData.SyncMode.PULL_ONLY, 1000);
+```
+
+### on('dataChange')<sup>8+</sup>
+
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
+
+Subscribes to data changes of the specified type.
+
+**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
+| type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
+
+**Example**
+
+```js
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+```
+
+### on('syncComplete')<sup>8+</sup>
+
+on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+
+Subscribes to synchronization complete events.
+
+**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                  |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
 
 **Example**
 
@@ -4301,82 +3835,19 @@ try {
 }
 ```
 
-
-### off('syncComplete')<sup>8+</sup>
-
-off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
-
-Unsubscribes from synchronization complete events. This API returns the result synchronously.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
-
-**Example**
-
-```js
-let kvStore;
-class KvstoreModel {
-    call(data) {
-        console.log("syncComplete: " + data);
-    }
-    subscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.on('syncComplete', this.call);
-        }
-    }
-    unsubscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.off('syncComplete', this.call);
-        }
-    }
-}
-```
-
-### on('dataChange')<sup>9+</sup>
-
-on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
-
-Subscribes to data changes of the specified type. This API returns the result synchronously.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return a data change event.|
-
-**Example**
-
-```js
-let kvStore;
-kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-    console.log("dataChange callback call data: " + JSON.stringify(data));
-});
-
-```
-
-### off('dataChange')<sup>9+</sup>
+### off('dataChange')<sup>8+</sup>
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data changes. This API returns the result synchronously.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| Name  | Type                                                     | Mandatory| Description                                                    |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
 | listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
@@ -4399,71 +3870,40 @@ class KvstoreModel {
     }
 }
 ```
-### sync<sup>7+</sup>
 
+### off('syncComplete')<sup>8+</sup>
 
-sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
+off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+Unsubscribes from synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
-| mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
-| delayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
+| Name      | Type                                         | Mandatory| Description                                                      |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for a synchronization complete event.                |
 
 **Example**
 
 ```js
 let kvStore;
-kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
-```
-
-### sync<sup>9+</sup>
-sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
-
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
-| mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| query  |[Query](#query8)   | Yes  |**Query** object to match. |
-| delayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
-
-**Example**
-
-```js
-let kvStore;
-const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
-const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
-        console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
-        const devices = ['deviceList'];
-        const mode = distributedData.SyncMode.PULL_ONLY;
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, mode , 1000);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
@@ -5026,7 +4466,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -5066,7 +4506,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -5104,7 +4544,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -5161,7 +4601,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -5221,7 +4661,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -5278,7 +4718,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -5734,62 +5174,45 @@ try {
 }
 ```
 
-### sync<sup>9+</sup>
+### on('dataChange')<sup>8+</sup>
 
-sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+Subscribes to data changes of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | Yes   |IDs of the devices to be synchronized.|
-| query            |[Query](#query8)  | Yes   | **Query** object to match.|
-| delayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
+| Name  | Type                                                     | Mandatory| Description                                                |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
+| type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
 
 **Example**
 
 ```js
 let kvStore;
-const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
-const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
-        console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
-        const devices = ['deviceList'];
-        const mode = distributedData.SyncMode.PULL_ONLY;
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, 1000);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
-}
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
 ```
 
 ### on('syncComplete')<sup>8+</sup>
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events. This API returns the result synchronously.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback invoked to return a synchronization complete event. |
+| Name      | Type                                         | Mandatory| Description                                                  |
+| ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a synchronization complete event.            |
 
 **Example**
 
@@ -5811,82 +5234,19 @@ try {
 }
 ```
 
-
-### off('syncComplete')<sup>8+</sup>
-
-off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
-
-Unsubscribes from synchronization complete events. This API returns the result synchronously.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------   | ----  | ----------------------- |
-| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback for the synchronization complete event. |
-
-**Example**
-
-```js
-let kvStore;
-class KvstoreModel {
-    call(data) {
-        console.log("syncComplete: " + data);
-    }
-    subscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.on('syncComplete', this.call);
-        }
-    }
-    unsubscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.off('syncComplete', this.call);
-        }
-    }
-}
-```
-
-### on('dataChange')<sup>9+</sup>
-
-on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
-
-Subscribes to data changes of the specified type. This API returns the result synchronously.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return a data change event.|
-
-**Example**
-
-```js
-let kvStore;
-kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-    console.log("dataChange callback call data: " + JSON.stringify(data));
-});
-```
-
-
-### off('dataChange')<sup>9+</sup>
+### off('dataChange')<sup>8+</sup>
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data changes. This API returns the result synchronously.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
-| Name | Type| Mandatory | Description                   |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| Name  | Type                                                     | Mandatory| Description                                                    |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
+| event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
 | listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
@@ -5905,6 +5265,42 @@ class KvstoreModel {
     unsubscribeDataChange() {
         if (kvStore != null) {
             kvStore.off('dataChange', this.call);
+        }
+    }
+}
+```
+
+### off('syncComplete')<sup>8+</sup>
+
+off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+
+Unsubscribes from synchronization complete events.
+
+**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                      |
+| ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
+| event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for a synchronization complete event.                |
+
+**Example**
+
+```js
+let kvStore;
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
         }
     }
 }

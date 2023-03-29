@@ -1,4 +1,4 @@
-# Page Routing
+# @system.router (Page Routing)
 
 The **Router** module provides APIs to access pages through URIs.
 
@@ -43,8 +43,8 @@ export default {
         data1: 'message',
         data2: {
           data3: [123, 456, 789]
-	},
-      },
+        }
+      }
     });
   }
 }
@@ -67,7 +67,8 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The page routing stack supports a maximum of 32 pages.
 
 
@@ -94,8 +95,8 @@ export default {
     router.replace({
       uri: 'pages/detail/detail',
       params: {
-        data1: 'message',
-      },
+        data1: 'message'
+      }
     });
   }
 }
@@ -126,7 +127,7 @@ Returns to the previous page or a specified page.
 
 | Name    | Type                                     | Mandatory  | Description                     |
 | ------- | --------------------------------------- | ---- | ----------------------- |
-| options | [BackRouterOptions](#backrouteroptions) | Yes   | For details, see **BackRouterOptions**.|
+| options | [BackRouterOptions](#backrouteroptions) | No   | For details, see **BackRouterOptions**.|
 
 **Example**
 
@@ -135,7 +136,7 @@ Returns to the previous page or a specified page.
 export default {    
   indexPushPage() {        
     router.push({            
-      uri: 'pages/detail/detail',        
+      uri: 'pages/detail/detail'      
     });        
   }
 }
@@ -147,7 +148,7 @@ export default {
 export default {    
   detailPushPage() {        
     router.push({            
-      uri: 'pages/mall/mall',        
+      uri: 'pages/mall/mall'
     });    
   }
 }
@@ -183,10 +184,11 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
-## router.getParams
+## router.getParams<sup>7+</sup>
 
 getParams(): ParamsInterface
 
@@ -237,7 +239,7 @@ Obtains the number of pages in the current stack.
 ```js
 export default {     
   getLength() {        
-    var size = router.getLength();        
+    let size = router.getLength();        
     console.log('pages stack size = ' + size);    
   }
 }
@@ -262,7 +264,7 @@ Obtains state information about the current page.
 ```js
 export default {     
   getState() {        
-    var page = router.getState();
+    let page = router.getState();
     console.log('current index = ' + page.index);
     console.log('current name = ' + page.name);
     console.log('current path = ' + page.path);
@@ -296,7 +298,7 @@ export default {
       },            
       cancel: function() {                
         console.log('cancel');            
-      },        
+      }   
     });    
   }
 }
@@ -327,7 +329,7 @@ export default {
       },            
       cancel: function() {                
         console.log('cancel');            
-      },        
+      } 
     });    
   }
 }
@@ -339,10 +341,10 @@ Defines the page routing parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
-| Name    | Type  | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| uri    | string | Yes   | URI of the destination page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> -pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
-| params | Object | No   | Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
+| Name  | Type| Mandatory| Description                                                        |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| uri    | string   | Yes  | URI of the target page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> - pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
+| params | object   | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
 
 
 ## BackRouterOptions
@@ -351,10 +353,10 @@ Defines the parameters for routing back.
 
 **System capability**: The items in the table below require different system capabilities. For details, see the table.
 
-| Name    | Type  | Mandatory  | Description                                      |
-| ------ | ------ | ---- | ---------------------------------------- |
-| uri    | string | No   | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
-| params | Object | No   | Data that needs to be passed to the destination page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| Name  | Type| Mandatory| Description                                                        |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| uri    | string   | No  | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
+| params | object   | No  | Data that needs to be passed to the target page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## RouterState
 
@@ -379,11 +381,11 @@ Defines the **EnableAlertBeforeBackPage** parameters.
 | message  | string                   | Yes  | Content displayed in the confirm dialog box.                                  |
 | success  | (errMsg: string) => void | No  | Called when the **OK** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
 | cancel   | (errMsg: string) => void | No  | Called when the **Cancel** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
-| complete | () => void               | No  | Called when the API call is complete.                          |
+| complete | () => void               | No  | Called when the dialog box is closed.                          |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
-Define the **DisableAlertBeforeBackPage** parameters.
+Defines the **DisableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -391,10 +393,10 @@ Define the **DisableAlertBeforeBackPage** parameters.
 | -------- | ------------------------ | ---- | -------------------------------------------------- |
 | success  | (errMsg: string) => void | No  | Called when the dialog box is closed. **errMsg** indicates the returned information.|
 | cancel   | (errMsg: string) => void | No  | Called when the dialog box fails to be closed. **errMsg** indicates the returned information.|
-| complete | () => void               | No  | Called when the API call is complete.                          |
+| complete | () => void               | No  | Called when the dialog box is closed.                          |
 
 ## ParamsInterface
 
-| Name           | Type  | Description     |
-| ------------- | ------ | ------- |
-| [key: string] | Object | List of routing parameters.|
+| Name         | Type| Description          |
+| ------------- | -------- | -------------- |
+| [key: string] | object   | List of routing parameters.|

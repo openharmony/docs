@@ -1,7 +1,9 @@
-# WLAN
+# @ohos.wifiext
+
 This **wifiext** module provides WLAN extension interfaces for non-universal products.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 The APIs described in this document are used only for non-universal products, such as routers.
 
@@ -69,7 +71,7 @@ Enumerates the power models.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | SLEEPING | 0 | Sleeping|
 | GENERAL | 1 | General|
@@ -90,7 +92,7 @@ Obtains the supported power models. This API uses an asynchronous callback to re
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifiext.getPowerModel
@@ -141,7 +143,7 @@ setPowerModel(model: PowerModel) : boolean;
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | model | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Power model to set.|
+  | model | [PowerModel](#powermodel) | Yes| Power model to set.|
 
 **Return value**
 

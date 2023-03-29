@@ -90,7 +90,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 示例如下：
 
-该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。
 
 ```json
 {
@@ -152,13 +152,13 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 如[权限的工作流程](#权限的工作流程)所示，如果应用需要获取目标权限，那么需要先进行权限申请。
 
 - 权限申请
-开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#权限申请声明)。
+
+   开发者需要在配置文件中[声明目标权限](accesstoken-guidelines.md#配置文件权限声明)。
 
 - 权限授权
 
-如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
-<br/>
-如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
+   - 如果目标权限是system_grant类型，开发者在进行权限申请后，系统会在安装应用时自动为其进行权限预授予，开发者不需要做其他操作即可使用权限。
+   - 如果目标权限是user_grant类型，开发者在进行权限申请后，在运行时触发动态弹窗，请求用户授权，具体操作见[user_grant权限请求授权的步骤详解](#user_grant权限请求授权的步骤详解)。
 
 ### user_grant权限请求授权的步骤详解
 
@@ -175,7 +175,7 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 **注意事项：** 
 
 - 每次执行需要目标权限的操作时，应用都必须检查自己是否已经具有该权限。
-- 如需检查用户是否已向您的应用授予特定权限，可以使用[verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md)。
+- 如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回  [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md)或[PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md)。具体的示例代码可以查看[访问控制开发指导](accesstoken-guidelines.md)。
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 - 即使用户向应用授予过请求的权限，应用在调用受此权限管控的接口前，也应该先检查自己有无此权限，而不能把之前授予的状态持久化，因为用户在动态授予后还可以通过设置取消应用的权限。
 
@@ -218,4 +218,4 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
 }
 ```
 
-Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](app-provision-structure.md)。

@@ -44,11 +44,11 @@
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称           | 参数   | 描述                                       |
-| ------------ | ---- | ---------------------------------------- |
-| bounce(Rich) | -    | 当文本滚动到末尾时触发该事件。                          |
-| finish(Rich) | -    | 当完成滚动次数时触发该事件。需要在&nbsp;loop&nbsp;属性值大于&nbsp;0&nbsp;时触发。 |
-| start(Rich)  | -    | 当文本滚动开始时触发该事件。                           |
+| 名称     | 参数   | 描述                                       |
+| ------ | ---- | ---------------------------------------- |
+| bounce | -    | 当文本滚动到末尾时触发该事件。                          |
+| finish | -    | 当完成滚动次数时触发该事件。需要在&nbsp;loop&nbsp;属性值大于&nbsp;0&nbsp;时触发。 |
+| start  | -    | 当文本滚动开始时触发该事件。                           |
 
 ## 方法
 
@@ -64,74 +64,77 @@
 
 ```html
 <!-- xxx.hml -->
-<div class="container">
-  <marquee id="customMarquee" class="customMarquee" scrollamount="{{scrollAmount}}" loop="{{loop}}"direction="{{marqueeDir}}"
-    onbounce="onMarqueeBounce" onstart="onMarqueeStart" onfinish="onMarqueeFinish">{{marqueeCustomData}}</marquee>
-  <div class="content">
-    <button class="controlButton" onclick="onStartClick">Start</button>
-    <button class="controlButton" onclick="onStopClick">Stop</button>
+<div class="tutorial-page">
+  <div class="mymarquee">
+    <marquee  style="color: {{color1}}" loop="{{loopval}}" scrollamount="{{scroll}}" direction="{{isleft}}" class="marqueetext" 
+    id="testmarquee" onfinish="setfinish">
+      Life is a journey, not the destination.
+    </marquee>
+  </div>
+  <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
+    <button onclick="makestart"  value="start"></button>
+    <button onclick="makestop" value="stop"></button>
   </div>
 </div>
 ```
 
 ```css
 /* xxx.css */
-.container {
+.tutorial-page {
+  width: 750px;
+  height: 100%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  justify-content: center;
 }
-.customMarquee {
-  width: 100%;
+.marqueetext {
+  font-size: 37px;
+}
+.mymarquee {
+  margin-top: 20px;
+  width:100%;
+  height: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1px solid #dc0f27;
+  border-radius: 15px;
+  align-items: center;
+}
+button{
+  width: 200px;
   height: 80px;
-  padding: 10px;
-  margin: 20px;
-  border: 4px solid #ff8888;
-  border-radius: 20px;
-  font-size: 40px;
-  color: #ff8888;
-  font-weight: bolder;
-  font-family: serif;
-  background-color: #ffdddd;
-}
-.content {
-  flex-direction: row;
-}
-.controlButton {
-  flex-grow: 1;
-  background-color: #F2F2F2;
-  text-color: #0D81F2;
+  margin-top: 100px;
 }
 ```
 
 ```js
 // xxx.js
 export default {
-  data: {
-    scrollAmount: 30,
-    loop: 3,
-    marqueeDir: 'left',
-    marqueeCustomData: 'Custom marquee',
+  private: {
+    loopval: 1,
+    scroll: 8,
+    color1: 'red'
   },
-  onMarqueeBounce: function() {
-    console.log("onMarqueeBounce");
+  onInit(){
   },
-  onMarqueeStart: function() {
-    console.log("onMarqueeStart");
+  setfinish(e) {
+    this.loopval=  this.loopval + 1,
+    this.r = Math.floor(Math.random()*255),
+    this.g = Math.floor(Math.random()*255),
+    this.b = Math.floor(Math.random()*255),
+    this.color1 = 'rgba('+ this.r +','+ this.g +','+ this.b +',0.8)',
+    this.$element('testmarquee').start(),
+    this.loopval=  this.loopval - 1
   },
-  onMarqueeFinish: function() {
-    console.log("onMarqueeFinish");
+  makestart(e) {
+    this.$element('testmarquee').start()
   },
-  onStartClick (evt) {
-    this.$element('customMarquee').start();
-  },
-  onStopClick (evt) {
-    this.$element('customMarquee').stop();
+  makestop(e) {
+    this.$element('testmarquee').stop()
   }
 }
 ```
 
-![zh-cn_image_0000001127284934](figures/zh-cn_image_0000001127284934.gif)
+![zh-cn_image_0000001176075554](figures/zh-cn_image_0000001176075554.gif)
 
 

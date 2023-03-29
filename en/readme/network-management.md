@@ -36,6 +36,8 @@ foundation/communication/
 
 4. Call **conn.register()** to subscribe to network status changes of the specified network.
 
+5. When the network is available, the callback will be invoked to return the **netAvailable** event.
+
 6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
 
    ```
@@ -43,9 +45,9 @@ foundation/communication/
    import connection from '@ohos.net.connection'
    
    let netCap = {
-       // Set the network type to cellular network.
+       // Set the network type to CELLULAR.
        bearerTypes: [connection.NetBearType.BEARER_CELLULAR],
-       // Set the network capability to Internet.
+       // Set the network capability to INTERNET.
        networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET],
    };
    let netSpec = {
@@ -55,7 +57,7 @@ foundation/communication/
    let timeout = 10 * 1000;
    // Create a NetConnection object.
    let conn = connection.createNetConnection(netSpec, timeout);
-   // Subscribe to the netAvailable event. When the network is available, the callback will be invoked to report the event.
+   // Subscribe to the netAvailable event.
    conn.on('netAvailable', (data=> {
        console.log("net is available, netId is " + data.netId);
    }));
@@ -67,12 +69,12 @@ foundation/communication/
 
 ### Sharing a Network
 
-1. Import the network sharing namespace from **@ohos.net.sharing**.
+1. Import the **sharing** namespace from **@ohos.net.sharing**.
 2. Set the network sharing type.
 3. Start network sharing.
 4. Stop network sharing.
 ```
-// Import the network sharing namespace.
+// Import the connection namespace.
 import sharing from '@ohos.net.sharing';
 // Set the network sharing type.
 this.sharingType = 0;   // The value 0 indicates Wi-Fi, 1 indicates USB, and 2 indicates Bluetooth.
@@ -88,28 +90,30 @@ sharing.stopSharing(this.sharingType,(err)=>{
 
 ### Initiating a Network Request
 
-1. Import the HTTP namespace from **@ohos.net.http.d.ts**.
+1. Import the **http** namespace from **@ohos.net.http.d.ts**.
 2. Call **createHttp()** to create an **HttpRequest** object.
-3. Call **httpRequest.on()** to subscribe to an HTTP response header. This method returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
+3. Call **httpRequest.on()** to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
 4. Call **httpRequest.request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
 5. Parse the returned result based on service requirements.
-6. Call **httpRequest.destroy()** to release resources after the request is processed.
+6. Call **off()** to unsubscribe from HTTP response header events.
+7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
 ```
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
-// Each httpRequest corresponds to an HttpRequestTask object and cannot be reused.
+// Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
-// Subscribe to the HTTP response header, which is returned earlier than the response to httpRequest.
-httpRequest.on('headersReceive', (data) => {
-    console.info('header: ' + data.header);
+// This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
+// on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
+httpRequest.on('headersReceive', (header) => {
+    console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Set the URL for the httpRequest. You must specify the URL address, and set httpRequestOptions as required. You can specify the parameters for GET in extraData.
+    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
     "EXAMPLE_URL",
     {
-        method: 'POST', // Optional. The default value is GET.
+        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
         // You can add header fields based on service requirements.
         header: {
             'Content-Type': 'application/json'
@@ -118,21 +122,28 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
-        connectTimeout: 60000, // This parameter is optional. The default value is 60000, that is, 60s.
-        readTimeout: 60000, // This parameter is optional. The default value is 60000, that is, 60s.
-    },(err, data) => {
+        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+        usingCache: true, // Optional. The default value is true.
+        priority: 1, // Optional. The default value is 1.
+        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+        readTimeout: 60000, // Optional. The default value is 60000, in ms.
+        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    }, (err, data) => {
         if (!err) {
             // data.result carries the HTTP response. Parse the response based on service requirements.
-            console.info('Result:' + data.result);
-            console.info('code:' + data.responseCode);
+            console.info('Result:' + JSON.stringify(data.result));
+            console.info('code:' + JSON.stringify(data.responseCode));
             // data.header carries the HTTP response header. Parse the content based on service requirements.
-            console.info('header:' + data.header);
-            console.info('header:' + data.cookies);
+            console.info('header:' + JSON.stringify(data.header));
+            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
         } else {
-            console.info('error:' + err);
+            console.info('error:' + JSON.stringify(err));
+            // Unsubscribe from HTTP Response Header events.
+            httpRequest.off('headersReceive');
+            // Call the destroy() method to release resources after HttpRequest is complete.
+            httpRequest.destroy();
         }
-        // Call destroy() to release resources after HttpRequest is complete.
-        httpRequest.destroy();
     }
 );
 ```
@@ -141,8 +152,6 @@ httpRequest.request(
 
 **Network Management Subsystem**
 
-[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base)
-
-[communication_netmanager_ext](https://gitee.com/openharmony/communication_netmanager_ext)
-
-[communication_netstack](https://gitee.com/openharmony/communication_netstack)
+[communication_netmanager_base](https://gitee.com/openharmony/communication_netmanager_base/blob/master/README_zh.md)
+[communication_netmanager_ext](https://gitee.com/openharmony/communication_netmanager_ext/blob/master/README_zh.md)
+[communication_netstack](https://gitee.com/openharmony/communication_netstack/blob/master/README_zh.md)

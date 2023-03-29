@@ -8,7 +8,7 @@ The parameter management module, namely, sysparam, provides an easy-to-use key-v
 
 Figure 1 System parameter operation primitives
 
-![System parameter operation primitives](figure/system-parameter-operation-primitives.png)
+![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
 
 **Table 1** Description of system parameter operation primitives
 | Operation Primitive| Description|
@@ -96,7 +96,56 @@ Each subsystem defines the system parameters of its own modules, including the s
 
   **Figure 2** UGO rule structure
 
-  ![UGO rule](figure/dac-definition.png)
+  ![UGO rule](figures/dac-definition.png)
+
+- SELinux policy for system parameter configuration
+
+  - Add SELinux tags.
+
+    To add a SELinux tag to system parameters, you first need to define the tag in the **/base/security/selinux/sepolicy/base/public/parameter.te** file. For example:
+
+    ```java
+    type servicectrl_param, parameter_attr
+    ```
+
+    After the tag is defined, add the system parameter prefix associated with the tag to **/base/security/selinux/sepolicy/base/public/parameter_contexts**. The following uses the prefix **ohos.servicectrl** as an example:
+
+    ```java
+    ohos.servicectrl.           u:object_r:servicectrl_param:s0
+    ```
+
+  - Grant operation permissions. For example, to grant operation permissions such as map for the init process, add the following content to the **/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te** file:
+
+    ```java
+    allow servicectrl_param tmpfs:filesystem associate;
+    allow init servicectrl_param:file { map open read relabelto relabelfrom };
+    ```
+
+  - Set the write permission. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+
+    ```java
+    allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+    ```
+
+  - Set the read permission. If you want to grant the permission only for certain services, replace **xxx** with the services in the following code:
+
+    ```java
+    allow { xxx } servicectrl_param:file { map open read };
+    ```
+
+  - If you want to grant the permission for all services, use the following code:
+
+    ```java
+    allow { domain -limit_domain } servicectrl_param:file { map open read };
+    ```
+
+-  Suggestions
+
+   Keep only two system parameter tags for each subsystem:
+
+   - A private tag to control system parameter settings.
+
+   - A public tag to grant access from all services.
 
 -  Loading sequence
 
@@ -110,6 +159,22 @@ Each subsystem defines the system parameters of its own modules, including the s
     | Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
     | System parameters| /system/etc/param/*.para | Load the parameters defined by each subsystem. If a system parameter already exists, ignore it.|
     | Persistent parameters| /data/parameters/ | If persistent parameters exist, load them at last. Persistent parameters will overwrite the default system parameters that have been loaded.|
+
+
+#### System Parameter Tag File Size
+
+If one tag corresponds to more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The size value is **512** by default.
+
+Configuring rule:
+
+System parameter tag = Size
+
+Example:
+
+```java
+startup_init_param=40960
+```
+
 
 ### Constraints
 
@@ -182,16 +247,16 @@ You can set specific system parameters as needed to meet your service demand.
     ​    	On a standard system, use the <strong>ohos_prebuilt_para</strong> template to install the configuration file to the <strong>/etc/param/</strong> directory. The following is an example of the GN script:
 
     ```go
-    import("//base/startup/init_lite/services/etc/param/param_fixer.gni")
+    import("//base/startup/init/services/etc/param/param_fixer.gni")
 
     ohos_prebuilt_para("ohos.para") {
-        source = "//base/startup/init_lite/services/etc/ohos.para"
+        source = "//base/startup/init/services/etc/ohos.para"
         part_name = "init"
         module_install_dir = "etc/param"
     }
 
     ohos_prebuilt_para("ohos.para.dac") {
-        source = "//base/startup/init_lite/services/etc/ohos.para.dac"
+        source = "//base/startup/init/services/etc/ohos.para.dac"
         part_name = "init"
         module_install_dir = "etc/param"
     }
@@ -200,24 +265,24 @@ You can set specific system parameters as needed to meet your service demand.
     On a small system, run the <strong>copy</strong> command to copy the corresponding system parameter definition file to the <strong>system/etc/param</strong> directory.
     ```go
     copy("ohos.para") {
-      sources = [ "//base/startup/init_lite/services/etc/param/ohos.para" ]
+      sources = [ "//base/startup/init/services/etc/param/ohos.para" ]
       outputs = [ "$root_out_dir/system/etc/param/ohos.para" ]
     }
     copy("ohos.para.dac") {
-      sources = [ "//base/startup/init_lite/services/etc/param/ohos.para.dac" ]
+      sources = [ "//base/startup/init/services/etc/param/ohos.para.dac" ]
       outputs = [ "$root_out_dir/system/etc/param/ohos.para.dac" ]
     }
     ```
     On a mini system, convert all defined default system parameters into header files through **action** and compile them into the system.
     ```go
     action("lite_const_param_to") {
-      script = "//base/startup/init_lite/scripts/param_cfg_to_code.py"
+      script = "//base/startup/init/scripts/param_cfg_to_code.py"
       args = [
         "--source",
         rebase_path(
-            "//base/startup/init_lite/services/etc_lite/param/ohos_const/ohospara"),
+            "//base/startup/init/services/etc_lite/param/ohos_const/ohospara"),
         "--dest_dir",
-        rebase_path("$root_out_dir/gen/init_lite/"),
+        rebase_path("$root_out_dir/gen/init/"),
         "--priority",
         "0",
       ]

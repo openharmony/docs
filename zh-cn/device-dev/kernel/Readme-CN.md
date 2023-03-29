@@ -13,8 +13,9 @@
                 - [互斥锁](kernel-mini-basic-ipc-mutex.md)
                 - [消息队列](kernel-mini-basic-ipc-queue.md)
                 - [信号量](kernel-mini-basic-ipc-sem.md)
-            - [时间管理](kernel-basic-mini-time.md)
+            - [时间管理](kernel-mini-basic-time.md)
             - [软件定时器](kernel-mini-basic-soft.md)
+            - [双向链表](kernel-mini-basic-list.md)
         - 扩展组件
             - [C++支持](kernel-mini-extend-support.md)
             - [CPU占用率](kernel-mini-extend-cpup.md)
@@ -25,9 +26,9 @@
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
+            - [SHELL](kernel-mini-debug-shell.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
-            - [双向链表](kernel-mini-appx-data-list.md)
             - [标准库支持](kernel-mini-appx-lib.md)
     - 小型系统内核（LiteOS-A）
         - [小型系统内核概述](kernel-small-overview.md)
@@ -135,7 +136,7 @@
                 - [魔法键使用方法](kernel-small-debug-shell-magickey.md)
                 - [用户态异常信息说明](kernel-small-debug-shell-error.md)
             - [Trace调测](kernel-small-debug-trace.md)
-            - [Perf调测](kernel-mini-memory-perf.md)
+            - [Perf调测](kernel-small-debug-perf.md)
             - [LMS调测](kernel-small-memory-lms.md)
             - [进程调测](kernel-small-debug-process-cpu.md)
             - 内核态内存调测

@@ -4,6 +4,8 @@
 
 >  **说明：**
 >
+>  从API Version 9 开始，该组件不再维护，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)。
+>
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -22,8 +24,8 @@ GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?:
 | -------- | -------- | -------- | -------- |
 | columns | number&nbsp;\|&nbsp;'auto' | 否 | 设置当前布局总列数。<br/>默认值：'auto' |
 | sizeType | SizeType | 否 | 选用设备宽度类型。<br/>默认值：SizeType.Auto |
-| gutter | number&nbsp;\|&nbsp;string | 否 | 栅格布局列间距。 |
-| margin | number&nbsp;\|&nbsp;string | 否 | 栅格布局两侧间距。 |
+| gutter | number&nbsp;\|&nbsp;string | 否 | 栅格布局列间距，不支持百分比。 |
+| margin | number&nbsp;\|&nbsp;string | 否 | 栅格布局两侧间距，不支持百分比。 |
 
 ## SizeType枚举说明
 

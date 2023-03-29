@@ -4,11 +4,11 @@
 
 The Native Drawing module provides APIs for drawing 2D graphics and text. The following scenarios are common for drawing development:
 * Drawing 2D graphics
-* Drawing and painting text
+* Drawing text drawing
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
 | OH_Drawing_BitmapCreate (void) | Creates a bitmap object.|
 | OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap object and sets the pixel format for the bitmap.|
@@ -19,7 +19,7 @@ The Native Drawing module provides APIs for drawing 2D graphics and text. The fo
 | OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas *, const OH_Drawing_Path *) | Draws a path.|
 | OH_Drawing_PathCreate (void) | Creates a path object.|
 | OH_Drawing_PathMoveTo (OH_Drawing_Path *, float x, float y) | Sets the start point of a path.|
-| OH_Drawing_PathLineTo (OH_Drawing_Path *, float x, float y) | Draws a line segment from the last point of a path to the target point. |
+| OH_Drawing_PathLineTo (OH_Drawing_Path *, float x, float y) | Draws a line segment from the last point of a path to the target point.|
 | OH_Drawing_PathClose (OH_Drawing_Path *) | Closes a path. A line segment from the start point to the last point of the path is added.|
 | OH_Drawing_PenCreate (void) | Creates a pen object.|
 | OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen *, bool) | Checks whether anti-aliasing is enabled for a pen. If anti-aliasing is enabled, edges will be drawn with partial transparency.|
@@ -118,9 +118,9 @@ The following steps describe how to use the canvas and brush of the Native Drawi
     // Draw a pentagram on the canvas. The outline of the pentagram is drawn by the pen, and the color is filled in by the brush.
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
     // Destroy the created objects when they are no longer needed.
-    OH_Drawing_BrushDestory(cBrush);
-    OH_Drawing_PenDestory(cPen);
-    OH_Drawing_PathDestory(cPath);
+    OH_Drawing_BrushDestroy(cBrush);
+    OH_Drawing_PenDestroy(cPen);
+    OH_Drawing_PathDestroy(cPath);
     ```
 
 6. **Obtain pixel data.** Use `OH_Drawing_BitmapGetPixels` in `drawing_bitmap.h` to obtain the pixel address of the bitmap bound to the canvas. The memory to which the address points contains the pixel data of the drawing on the canvas.
@@ -133,12 +133,12 @@ The following steps describe how to use the canvas and brush of the Native Drawi
         LOGI("memcpy_s failed");
     }
     // Destroy the canvas object.
-    OH_Drawing_CanvasDestory(cCanvas);
+    OH_Drawing_CanvasDestroy(cCanvas);
     // Destroy the bitmap object.
-    OH_Drawing_BitmapDestory(cBitmap);
+    OH_Drawing_BitmapDestroy(cBitmap);
     ```
 
-## Development Procedure for Text Drawing and Display
+## Development Procedure for Text Drawing
 
 The following steps describe how to use the text drawing and display feature of the Native Drawing module.
 1. **Create a canvas and a bitmap.**
@@ -196,7 +196,8 @@ The following steps describe how to use the text drawing and display feature of 
     // Set the maximum width.
     double maxWidth = 800.0;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // Set the start position for text display.
+    // Set the start position for drawing the text on the canvas.
     double position[2] = {10.0, 15.0};
+    // Draw the text on the canvas.
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```

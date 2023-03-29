@@ -1,6 +1,7 @@
 # slider
 
 >  **说明：**
+>
 > 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 滑动条组件，用来快速调节设置值，如音量、亮度等。
@@ -50,7 +51,7 @@
 | 属性 | 类型 | 说明 |
 | -------- | -------- | -------- |
 | value<sup>5+</sup> | number | 当前slider的进度值。 |
-| mode<sup>5+</sup> | string | 当前change事件的类型，可选值为：<br/>-&nbsp;start：slider的值开始改变。<br/>-&nbsp;move：slider的值跟随手指拖动中。<br/>-&nbsp;end：slider的值结束改变。 |
+| mode<sup>5+</sup> | string | 当前change事件的类型，可选值为：<br/>-&nbsp;start：slider的值开始改变。<br/>-&nbsp;move：slider的值跟随手指拖动中。<br/>-&nbsp;end：slider的值结束改变。<br/>-&nbsp;click：slider的值在点击进度条后改变。 |
 
 
 ## 示例
@@ -58,50 +59,25 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <text>slider start value is {{startValue}}</text>
-  <text>slider current value is {{currentValue}}</text>
-  <text>slider end value is {{endValue}}</text>
-  <slider min="0" max="100" value="{{value}}" onchange="setvalue" ></slider>
+    <slider min="0" max="100" value="{{ value }}" mode="outset" showtips="true"></slider>
+    <slider class="" min="0" max="100" value="{{ value }}" step="20" mode="inset"  showtips="true"></slider>
+    <slider class="" min="0" max="100" value="{{ value }}" showsteps="true" step="20" mode="inset"  showtips="false"></slider>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+slider{
+    margin-top: 100px;
 }
 ```
 
-```js
-// xxx.js
-export default {
-  data: {
-    value: 0,
-    startValue: 0,
-    currentValue: 0,
-    endValue: 0,
-  },
-  setvalue(e) {
-    if (e.mode == "start") {
-      this.value = e.value;
-      this.startValue = e.value;
-    } else if (e.mode == "move") {
-      this.value = e.value;
-      this.currentValue = e.value;
-    } else if (e.mode == "end") {
-      this.value = e.value;
-      this.endValue = e.value;
-    } else if (e.mode == "click) {
-      this.value = e.value;
-      this.currentValue = e.value;
-    }
-  }
-}
-```
 
-![zh-cn_image_0000001173324709](figures/zh-cn_image_0000001173324709.png)
+![zh-cn_image_0000001173324709](figures/slider.png)
 
 

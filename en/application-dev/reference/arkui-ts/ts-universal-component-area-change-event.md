@@ -11,7 +11,7 @@ The area change event is triggered when the component's size, position, or any o
 
 | Name                                      | Bubbling Supported| Description                                    |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No   | Triggered when the component area changes. For details about the **Area** type, see [Area](ts-types.md#area8).|
+| onAreaChange(event: (oldValue: [Area](ts-types.md#area8), newValue: [Area](ts-types.md#area8)) =&gt; void) | No   | Triggered when the component area changes.|
 
 
 ## Example
@@ -22,7 +22,7 @@ The area change event is triggered when the component's size, position, or any o
 @Component
 struct AreaExample {
   @State value: string = 'Text'
-  @State size1: string = ''
+  @State sizeValue: string = ''
 
   build() {
     Column() {
@@ -33,13 +33,13 @@ struct AreaExample {
         })
         .onAreaChange((oldValue: Area, newValue: Area) => {
           console.info(`Ace: on area change, oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
-          this.size1 = JSON.stringify(newValue)
+          this.sizeValue = JSON.stringify(newValue)
         })
-      Text('new area is: \n' + this.size).margin({ right: 30, left: 30 })
+      Text('new area is: \n' + this.sizeValue).margin({ right: 30, left: 30 })
     }
     .width('100%').height('100%').margin({ top: 30 })
   }
 }
 ```
 
-![en-us_image_0000001257058403](figures/en-us_image_0000001257058403.gif)
+![en-us_image_0000001189634870](figures/en-us_image_0000001189634870.gif)

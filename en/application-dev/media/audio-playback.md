@@ -1,24 +1,34 @@
 # Audio Playback Development
 
-## When to Use
+## Introduction
 
-You can use audio playback APIs to convert audio data into audible analog signals, play the signals using output devices, and manage playback tasks.
+You can use audio playback APIs to convert audio data into audible analog signals and play the signals using output devices. You can also manage playback tasks. For example, you can control the playback and volume, obtain track information, and release resources.
 
-**Figure 1** Playback status
+## Working Principles
+
+The following figures show the audio playback state transition and the interaction with external modules for audio playback.
+
+**Figure 1** Audio playback state transition
 
 ![en-us_image_audio_state_machine](figures/en-us_image_audio_state_machine.png)
 
-**Note**: If the status is **Idle**, setting the **src** attribute does not change the status. In addition, after the **src** attribute is set successfully, you must call **reset()** before setting it to another value.
+**NOTE**: If the status is **Idle**, setting the **src** attribute does not change the status. In addition, after the **src** attribute is set successfully, you must call **reset()** before setting it to another value.
 
 
 
-**Figure 2** Layer 0 diagram of audio playback
+**Figure 2** Interaction with external modules for audio playback
 
 ![en-us_image_audio_player](figures/en-us_image_audio_player.png)
+
+**NOTE**: When a third-party application calls the JS interface provided by the JS interface layer to implement a feature, the framework layer invokes the audio component through the media service of the native framework and outputs the audio data decoded by the software to the audio HDI of the hardware interface layer to implement audio playback.
 
 ## How to Develop
 
 For details about the APIs, see [AudioPlayer in the Media API](../reference/apis/js-apis-media.md#audioplayer).
+
+> **NOTE**
+>
+> The method for obtaining the path in the FA model is different from that in the stage model. For details about how to obtain the path, see [Application Sandbox Path Guidelines](../reference/apis/js-apis-fileio.md#guidelines).
 
 ### Full-Process Scenario
 
@@ -28,7 +38,7 @@ For details about the **src** types supported by **AudioPlayer**, see the [src a
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 
 // Print the stream track information.
 function printfDescription(obj) {
@@ -99,16 +109,11 @@ async function audioPlayerDemo() {
     setCallBack(audioPlayer); // Set the event callbacks.
     // 2. Set the URI of the audio file.
     let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
-    await fileIO.open(path).then((fdNumber) => {
-        fdPath = fdPath + '' + fdNumber;
-        console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-        console.info('open fd failed err is' + err);
-    }).catch((err) => {
-        console.info('open fd failed err is' + err);
-    });
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
+    let path = pathDir  + '/01.mp3'
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
 }
 ```
@@ -117,7 +122,8 @@ async function audioPlayerDemo() {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
+
 export class AudioDemo {
   // Set the player callbacks.
   setCallBack(audioPlayer) {
@@ -139,16 +145,11 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer); // Set the event callbacks.
     let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
+    let path = pathDir  + '/01.mp3'
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
@@ -158,7 +159,8 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
+
 export class AudioDemo {
 // Set the player callbacks.
   private isNextMusic = false;
@@ -185,16 +187,11 @@ export class AudioDemo {
   async nextMusic(audioPlayer) {
     this.isNextMusic = true;
     let nextFdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
-    let nextpath = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/02.mp3';
-    await fileIO.open(nextpath).then((fdNumber) => {
-      nextFdPath = nextFdPath + '' + fdNumber;
-      console.info('open fd success fd is' + nextFdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\02.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
+    let nextpath = pathDir  + '/02.mp3'
+    let nextFile = await fs.open(nextpath);
+    nextFdPath = nextFdPath + '' + nextFile.fd;
     audioPlayer.src = nextFdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 
@@ -202,16 +199,11 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer);                     // Set the event callbacks.
     let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
+    let path = pathDir  + '/01.mp3'
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
@@ -221,7 +213,8 @@ export class AudioDemo {
 
 ```js
 import media from '@ohos.multimedia.media'
-import fileIO from '@ohos.fileio'
+import fs from '@ohos.file.fs'
+
 export class AudioDemo {
   // Set the player callbacks.
   setCallBack(audioPlayer) {
@@ -239,16 +232,11 @@ export class AudioDemo {
     let audioPlayer = media.createAudioPlayer(); // Create an AudioPlayer instance.
     this.setCallBack(audioPlayer); // Set the event callbacks.
     let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
-    await fileIO.open(path).then((fdNumber) => {
-      fdPath = fdPath + '' + fdNumber;
-      console.info('open fd success fd is' + fdPath);
-    }, (err) => {
-      console.info('open fd failed err is' + err);
-    }).catch((err) => {
-      console.info('open fd failed err is' + err);
-    });
+    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
+    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files" command.
+    let path = pathDir  + '/01.mp3'
+    let file = await fs.open(path);
+    fdPath = fdPath + '' + file.fd;
     audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }

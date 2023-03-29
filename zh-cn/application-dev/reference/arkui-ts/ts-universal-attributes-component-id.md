@@ -11,7 +11,7 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 | 名称   | 参数说明     | 描述                         |
 | -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：'' |
+| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 接口
@@ -22,6 +22,8 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 getInspectorByKey(id: string): string
 
 获取指定id的组件的所有属性，不包括子组件信息。
+
+此接口仅用于对应用的测试。
 
 **参数:**
 
@@ -37,21 +39,25 @@ getInspectorByKey(id: string): string
 
 ### getInspectorTree<sup>9+</sup>
 
-getInspectorTree(): string
+getInspectorTree(): Object
 
 获取组件树及组件属性。
+
+此接口仅用于对应用的测试。
 
 **返回值:**
 
 | 类型     | 描述                            |
 | ------ | --------------------------- |
-| string | 组件树及组件属性列表的JSON字符串。 |
+| Object | 组件树及组件属性列表的JSON对象。 |
 
 ### sendEventByKey<sup>9+</sup>
 
 sendEventByKey(id: string, action: number, params: string): boolean
 
 给指定id的组件发送事件。
+
+此接口仅用于对应用的测试。
 
 **参数:**
 
@@ -73,6 +79,8 @@ sendTouchEvent(event: TouchObject): boolean
 
 发送触摸事件。
 
+此接口仅用于对应用的测试。
+
 **参数:**
 
 | 参数      | 类型            | 必填  | 描述                                                         |
@@ -90,6 +98,8 @@ sendTouchEvent(event: TouchObject): boolean
 sendKeyEvent(event: KeyEvent): boolean
 
 发送按键事件。
+
+此接口仅用于对应用的测试。
 
 **参数:**
 
@@ -109,6 +119,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 发送鼠标事件。
 
+此接口仅用于对应用的测试。
+
 **参数：**
 
 | 参数     | 类型       | 必填       | 描述                                     |
@@ -126,19 +138,19 @@ sendMouseEvent(event: MouseEvent): boolean
 ```ts
 // xxx.ets
 class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left
+  static rect_top
+  static rect_right
+  static rect_bottom
+  static rect_value
 
   //获取组件所占矩形区域坐标
   static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let strJson = getInspectorByKey(key)
+    let obj = JSON.parse(strJson)
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
     this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
@@ -169,7 +181,7 @@ struct IdExample {
       }.margin({ top: 20 })
       .onClick(() => {
         console.info(getInspectorByKey("click"))
-        console.info(getInspectorTree())
+        console.info(JSON.stringify(getInspectorTree()))
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
           sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件
@@ -229,7 +241,11 @@ struct IdExample {
                 }
               }
             },
-            source: SourceType.Mouse
+            source: SourceType.Mouse,
+            pressure: 1,
+            tiltX: 1,
+            tiltY: 1,
+            sourceTool: SourceTool.Unknown
           }
           sendMouseEvent(mouseEvent) // 发送鼠标事件
         }, 2000)

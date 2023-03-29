@@ -1,29 +1,31 @@
 # 显式动画
 
-提供显示动画接口。
+提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。
 
 >  **说明：**
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+animateTo(value: AnimateParam, event: () => void): void
 
-| 接口名称                                                     | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| animateTo(value:&nbsp;[AnimateParam](#animateparam对象说明),&nbsp;event:&nbsp;()=&gt;&nbsp;void)&nbsp;:&nbsp;void | 提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。<br/>event指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+| 参数             | 类型        |       是否必填     |        描述        |
+| ---------------- | ------------ | -------------------- | -------------------- |
+| value | [AnimateParam](#animateparam对象说明) | 是 | 设置动画效果相关参数。 |
+| event | () => void | 是 | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 ## AnimateParam对象说明
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| duration | number | 动画持续时间，单位为毫秒。<br/>默认值：1000 |
+| duration | number | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>- 在ArkTS卡片上最大动画持续时间为1000毫秒，若超出则固定为1000毫秒。 |
 | tempo | number | 动画的播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0 |
-| curve | Curve&nbsp;\|&nbsp;Curves | 动画曲线。<br/>默认值：Curve.Linear |
+| curve | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve)&nbsp;\|&nbsp;string | 动画曲线。<br/>默认值：Curve.Linear<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | delay | number | 单位为ms(毫秒)，默认不延时播放。<br/>默认值：0 |
 | iterations | number | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
-| playMode | [PlayMode](ts-appendix-enums.md#playmode) | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal |
-| onFinish   | ()&nbsp;=&gt;&nbsp;void   | 动效播放完成回调。 |
-
+| playMode | [PlayMode](ts-appendix-enums.md#playmode) | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish   | ()&nbsp;=&gt;&nbsp;void   | 动效播放完成回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
@@ -33,53 +35,59 @@
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 200
+  @State widthSize: number = 250
   @State heightSize: number = 100
+  @State rotateAngle: number = 0
   private flag: boolean = true
 
   build() {
     Column() {
-      Button('click me')
+      Button('change size')
         .width(this.widthSize)
         .height(this.heightSize)
-        .backgroundColor(0x317aff)
-        .onClick((event: ClickEvent) => {
-          // 对Button组件的宽高属性进行动画配置
+        .margin(30)
+        .onClick(() => {
           if (this.flag) {
             animateTo({
-              duration: 1000, // 动画时长
-              tempo: 0.5, // 播放速率
-              curve: Curve.EaseInOut, // 动画曲线
-              delay: 200, // 动画延迟
-              iterations: 1, // 播放次数
-              playMode: PlayMode.Normal, // 动画模式
+              duration: 2000,
+              curve: Curve.EaseOut,
+              iterations: 3,
+              playMode: PlayMode.Normal,
               onFinish: () => {
                 console.info('play end')
               }
             }, () => {
-              this.widthSize = 100
-              this.heightSize = 50
+              this.widthSize = 150
+              this.heightSize = 60
             })
           } else {
-            animateTo({
-              duration: 200, // 动画时长
-              curve: Curve.Ease, // 动画曲线
-              delay: 200, // 动画延迟
-              iterations: 1, // 播放次数
-              playMode: PlayMode.Normal, // 动画模式
-              onFinish: () => {
-                console.info('play end')
-              }
-            }, () => {
-              this.widthSize = 200
+            animateTo({}, () => {
+              this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
+        })
+      Button('change rotate angle')
+        .margin(50)
+        .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
+        .onClick(() => {
+          animateTo({
+            duration: 1200,
+            curve: Curve.Friction,
+            delay: 500,
+            iterations: -1, // 设置-1表示动画无限循环
+            playMode: PlayMode.Alternate,
+            onFinish: () => {
+              console.info('play end')
+            }
+          }, () => {
+            this.rotateAngle = 90
+          })
         })
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001174104398](figures/zh-cn_image_0000001174104398.gif)
+![animation1](figures/animation1.gif)

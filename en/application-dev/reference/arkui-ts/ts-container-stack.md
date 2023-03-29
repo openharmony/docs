@@ -16,11 +16,13 @@ Supported
 
 Stack(value?: { alignContent?: Alignment })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | No| Alignment of child components in the container.<br>Default value: **Alignment.Center**|
+| Name      | Type                                   | Mandatory| Description                                                   |
+| ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | No  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
 
 
 ## Example
@@ -39,4 +41,4 @@ struct StackExample {
 }
 ```
 
-![en-us_image_0000001212378400](figures/en-us_image_0000001212378400.jpg)
+![en-us_image_0000001219982699](figures/en-us_image_0000001219982699.PNG)

@@ -1,6 +1,6 @@
 # ContinuationExtraParams
 
-The **ContinuationExtraParams** module provides the extra parameters required by the device selection module in the continuation management entry.
+The **ContinuationExtraParams** module provides the filter parameters required by the device selection module in the continuation management entry. These filter parameters can be used as an input parameter of [startContinuationDeviceManager](js-apis-continuation-continuationManager.md#continuationmanagerstartcontinuationdevicemanager9).
 
 > **NOTE**
 > 
@@ -15,7 +15,7 @@ Describes the extra parameters required by the device selection module in the co
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | deviceType | Array\<string> | Yes| Yes| Device type.|
-| targetBundle | string | Yes| Yes| Target bundle name.|
+| targetBundle | string | Yes| Yes| Name of the target bundle.|
 | description | string | Yes| Yes| Device filtering description.|
 | filter | any | Yes| Yes| Device filtering parameter.|
 | continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | Yes| Yes| Continuation mode.|

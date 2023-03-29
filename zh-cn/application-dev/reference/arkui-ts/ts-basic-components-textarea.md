@@ -36,7 +36,11 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本在输入框中的水平对齐式。<br/>默认值：TextAlign.Start |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置输入框光标颜色。                               |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br>设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。 |
+
+>  **说明：**
+>
+>  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 16 vp,<br>&nbsp;left: 8 vp<br> }
 
 
 ## 事件
@@ -85,22 +89,31 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word', controller: this.controller })
-        .placeholderFont({ size: 14, weight: 400 })
-        .width(400)
+      TextArea({
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.controller
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
         .margin(20)
-        .fontSize(14)
+        .fontSize(16)
+        .fontColor('#182431')
+        .backgroundColor('#FFFFFF')
         .onChange((value: string) => {
           this.text = value
         })
       Text(this.text)
       Button('Set caretPosition 1')
+        .backgroundColor('#007DFF')
         .margin(15)
         .onClick(() => {
           // 设置光标位置到第一个字符后
           this.controller.caretPosition(1)
         })
-    }.width('100%')
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
 ```
+
+![textArea](figures/textArea.gif)

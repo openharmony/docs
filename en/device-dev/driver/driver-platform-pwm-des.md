@@ -1,417 +1,409 @@
 # PWM
 
-
 ## Overview
 
-Pulse width modulation (PWM) is a technology that digitally encodes analog signal levels and converts them into pulses. It can be used for motor control and backlight brightness adjustment.
+### Function
 
-The PWM APIs provide a set of functions for operating a PWM device, including those for:
-- Opening or closing a PWM device handle
+Pulse width modulation (PWM) is a technology that digitally encodes analog signal levels and converts them into pulses.
 
+The PWM module provides a set of APIs for operating a PWM device, including:
+
+- Opening or closing a PWM device
 - Setting the PWM period, signal ON-state time, and polarity
-
-- Enabling and disabling a PWM device
-
+- Enabling or disabling a PWM device
 - Obtaining and setting PWM parameters
 
+### Basic Concepts
 
-### PwmConfig Structure
+A pulse (electrical pulse) is a burst of current or voltage, characterized by sudden change and discontinuity. There are many types of pulses. Common pulses include triangular, sharp, rectangular, square, trapezoidal, and zigzag pulses. Main pulse parameters include the repetition period **T** (**T** = 1/**F**, where **F** is the pulse repetition frequency), pulse amplitude **U**, rise time **ts** at the leading edge, fall time **t** at the trailing edge, and pulse width **tk**.
 
-  **Table 1** PwmConfig structure
+### Working Principles
 
-| Parameter| Description| 
-| -------- | -------- |
-| duty | Time that a signal is in the ON state, in ns.| 
-| period | Time for a signal to complete an on-and-off cycle, in ns.| 
-| number | Number of square waves to generate.<br>-&nbsp;Positive value: indicates the number of square waves to generate.<br>-&nbsp;**0**: indicates that square waves are generated continuously.| 
-| polarity | PWM signal polarity, which can be positive or reverse.| 
-| status | PWM device status, which can be enabled or disabled.| 
+In the Hardware Driver Foundation (HDF), the PWM uses the independent service mode (see Figure 1) for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device, which increases memory usage.
 
+In the independent service mode, the core layer does not publish a service for the upper layer. Therefore, a service must be published for each controller. To achieve this purpose:
 
-## Available APIs
+- You need to implement the **Bind()** function in **HdfDriverEntry** to bind services.
+- The **policy** field of **deviceNode** in the **device_info.hcs** file can be **1** or **2**, but not **0**.
 
-  **Table 2** PWM driver APIs
+The PWM module is divided into the following layers:
 
-| Category| Description| 
-| -------- | -------- |
-| Operating PWM handles| -&nbsp;**PwmOpen**: opens the device handle of a PWM device.<br>-&nbsp;**PwmClose**: closes the device handle of a PWM device.| 
-| Enabling or disabling PWM| -&nbsp;**PwmEnable**: enables a PWM device.<br>-&nbsp;**PwmDisable**: disables a PWM device.| 
-| Setting PWM| -&nbsp;**PwmSetPeriod**: sets the PWM period.<br>-&nbsp;**PwmSetDuty**: sets the signal ON-state time.<br>-&nbsp;**PwmSetPolarity**: sets the PWM signal polarity.| 
-| Setting or obtaining PWM configuration| -&nbsp;**PwmSetConfig**: sets PWM device parameters.<br>-&nbsp;**PwmGetConfig**: obtains PWM device parameters.| 
+- Interface layer: provides APIs for opening or closing a PWM device, setting the PWM period, signal ON-state time, PWM device polarity, or PWM device parameters, obtaining PWM device parameters, and enabling or disabling a PWM device
+- Core layer: provides the capabilities of adding or removing a PWM controller and managing PWM devices. The core layer interacts with the adaptation layer through hook functions.
+- Adaptation layer: instantiates the hook functions to implement specific features.
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
-> All APIs described in this document can be called only in the kernel space.
+**Figure 1** Independent service mode
 
+![image1](figures/independent-service-mode.png "PWM independent service mode")
 
 ## Usage Guidelines
 
+### When to Use
 
-### How to Use
+The PWM module is used for controlling vibrators and adjusting backlight brightness in smart devices.
 
-The figure below illustrates how to use the APIs.
+### Available APIs
 
-**Figure 1** Using the PWM driver APIs
+**Table 1** describes the **PwmConfig** structure, which defines the PWM device attributes. **Table 2** describes the APIs provided by the PWM module.
 
-![](figures/using-PWM-process.png)
+**Table 1** PwmConfig structure
 
+| Parameter| Description|
+| -------- | -------- |
+| duty | Time that a signal is in the ON state, in ns.|
+| period | Time for a signal to complete an on-and-off cycle, in ns.|
+| number | Number of square waves to generate.<br>- Positive value: indicates the number of square waves to generate.<br>- **0**: indicates that square waves are generated continuously.|
+| polarity | PWM signal polarity, which can be normal or reverted. <br>A signal with normal polarity starts high for the duration of the duty cycle and goes low for the remaining of the period. <br>A signal with inverted polarity starts low for the duration of the duty cycle and goes high for the remaining of the period.|
+| status | PWM device status, which can be enabled or disabled.|
 
-### Opening a PWM Device Handle
+**Table 2** PWM driver APIs
 
-Before performing operations on a PWM device, call **PwmOpen** to open the device handle.
+| API                                                      |                     |
+| ------------------------------------------------------------ | ------------------- |
+| DevHandle PwmOpen(uint32_t num)                             | Opens a PWM device.        |
+| void PwmClose(DevHandle handle)                             | Closes a PWM device.        |
+| int32_t PwmSetPeriod(DevHandle handle, uint32_t period)     | Sets the PWM period.    |
+| int32_t PwmSetDuty(DevHandle handle, uint32_t duty)         | Sets the signal ON-state time.|
+| int32_t PwmSetPolarity(DevHandle handle, uint8_t polarity)  | Sets the PWM signal polarity.    |
+| int32_t PwmEnable(DevHandle handle)                         | Enables a PWM device.        |
+| int32_t PwmDisable(DevHandle handle)                        | Disables a PWM device.        |
+| int32_t PwmSetConfig(DevHandle handle, struct PwmConfig *config) | Sets PWM device parameters.    |
+| int32_t PwmGetConfig(DevHandle handle, struct PwmConfig *config) | Obtains PWM device parameters.    |
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> All the PWM APIs described in this document can be used in kernel mode and user mode.
 
-```
+### How to Develop
+
+The following figure shows how to use PWM APIs.
+
+**Figure 2** Using PWM APIs
+
+![image2](figures/using-PWM-process.png)
+
+#### Opening a PWM Device
+
+Before performing operations on a PWM device, use **PwmOpen()** to obtain the device handle.
+
+```c
 DevHandle PwmOpen(uint32_t num);
 ```
 
-  **Table 3** Description of PwmOpen
+**Table 3** Description of PwmOpen
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | num        | PWM device number.            |
 | **Return Value** | **Description**         |
-| handle     | The operation is successful. The handle of the PWM device obtained is returned.|
-| NULL       | The operation failed.               |
+| handle     | The operation is successful. The PWM device handle is returned.|
+| NULL       | The operation fails.               |
 
-Example: Open the device handle of PWM device 0.
+Example: Open PWM device 0.
 
-
-```
-uint32_t num = 0;             /* PWM device number. */
+```c
+uint32_t num = 0;         // PWM device number.
 DevHandle handle = NULL;
 
-/* Obtain the PWM device handle. */
-handle = PwmOpen(num);
+handle = PwmOpen(num);    // Open PWM device 0 and obtain the device handle.
 if (handle  == NULL) {
-    /* Error handling. */
+    HDF_LOGE("PwmOpen: open pwm_%u failed.\n", num);
+    return;
 }
 ```
 
+#### Closing a PWM Device
 
-### Closing a PWM Device Handle
+Use **PwmClose()** to close a PWM device to release resources.
 
-Call **PwmClose()** to close a PWM device handle to release resources.
-
-
-```
-voidPwmClose(DevHandle handle);
+```c
+void PwmClose(DevHandle handle);
 ```
 
-  **Table 4** Description of PwmClose
+**Table 4** Description of PwmClose
 
 | **Parameter**| **Description**|
 | -------- | -------- |
-| handle   | PWM device handle to close. |
+| handle   | Handle of the PWM device to close. |
 
-
-```
-/* Close a PWM device handle. */
-PwmClose(handle);
+```c
+PwmClose(handle);    // Close the PWM device and destroy the PWM device handle.
 ```
 
+#### Enabling a PWM Device
 
-### Enabling a PWM Device
-
-Call **PwmEnable()** to enable a PWM device.
-
-
-```
+```c
 int32_t PwmEnable(DevHandle handle);
 ```
 
-  **Table 5** Description of PwmEnable
+**Table 5** Description of PwmEnable
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle     | PWM device handle.   |
-| **Return Value** | **Description** |
-| 0          | The operation is successful.      |
-| Negative number      | The operation failed.    |
+| **Return Value** | **Description**|
+| HDF_SUCCESS          | The operation is successful.      |
+| Negative number      | The operation fails.      |
 
-
-```
+```c
 int32_t ret;
 
-/* Enable a PWM device. */
-ret = PwmEnable(handle);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmEnable(handle);    // Enable the PWM device.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmEnable: enable pwm failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Disabling a PWM Device
 
-### Disabling a PWM Device
-
-Call **PwmDisable()** to disable a PWM device.
-
-
-```
+```c
 int32_t PwmDisable(DevHandle handle);
 ```
 
-  **Table 6** Description of PwmDisable
+**Table 6** Description of PwmDisable
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle     | PWM device handle.   |
-| **Return Value** | **Description** |
-| 0          | The operation is successful.      |
-| Negative number      | The operation failed.     |
+| **Return Value** | **Description**|
+| HDF_SUCCESS          | The operation is successful.      |
+| Negative number      | The operation fails.      |
 
-
-```
+```c
 int32_t ret;
 
-/* Disable a PWM device. */
-ret = PwmDisable(handle);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmDisable(handle);    // Disable the PWM device.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmDisable: disable pwm failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Setting the PWM Period
 
-### Setting the PWM Period
-
-Call **PwmSetPeriod()** to set the PWM period.
-
-
-```
+```c
 int32_t PwmSetPeriod(DevHandle handle, uint32_t period);
 ```
 
-  **Table 7** Description of PwmSetPeriod
+**Table 7** Description of PwmSetPeriod
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle     | PWM device handle.             |
 | period     | PWM period to set, in ns.|
-| **Return Value**| **Description**           |
-| 0          | The operation is successful.                |
+| **Return Value**| **Description**          |
+| HDF_SUCCESS          | The operation is successful.                |
 | Negative number      | The operation fails.                |
 
-
-```
+```c
 int32_t ret;
 
-/* Set the PWM period to 50000000 ns. */
-ret = PwmSetPeriod(handle, 50000000);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmSetPeriod(handle, 50000000);    // Set the PWM period to 50,000,000 ns.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmSetPeriod: pwm set period failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Setting the Signal ON-State Time
 
-### Setting the PWM Signal ON-State Time
-
-Call **PwmSetDuty()** to set the time that the PWM signal is in the ON state.
-
-
-```
+```c
 int32_t PwmSetDuty(DevHandle handle, uint32_t duty);
 ```
 
-  **Table 8** Description of PwmSetDuty
+**Table 8** Description of PwmSetDuty
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle     | PWM device handle.                 |
-| duty       | Time that the signal is in the ON state, in ns.|
-| **Return Value**| **Description**               |
-| 0          | The operation is successful.                    |
-| Negative number      | The operation failed.                  |
+| duty       | Time that a signal is in the ON state, in ns.|
+| **Return Value**| **Description**              |
+| HDF_SUCCESS          | The operation is successful.                    |
+| Negative number      | The operation fails.                    |
 
 
-```
+```c
 int32_t ret;
 
-/* Set the signal ON-state time to 25000000 ns. */
-ret = PwmSetDuty(handle, 25000000);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmSetDuty(handle, 25000000);    // Set the signal ON-state time to 25,000,000 ns.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmSetDuty: pwm set duty failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Setting the PWM Signal Polarity
 
-### Setting the PWM Signal Polarity
-
-Call **PwmSetPolarity()** to set the signal polarity for a PWM device.
-
-
-```
+```c
 int32_t PwmSetPolarity(DevHandle handle, uint8_t polarity);
 ```
 
-  **Table 9** Description of PwmSetPolarity
+**Table 9** Description of PwmSetPolarity
 
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle     | PWM device handle.        |
 | polarity   | Polarity to set, which can be **PWM\_NORMAL\_POLARITY** or **PWM\_INVERTED\_POLARITY**.|
-| **Return Value**| **Description**      |
-| 0          | The operation is successful.           |
-| Negative number      | The operation failed.          |
+| **Return Value**| **Description**     |
+| HDF_SUCCESS          | The operation is successful.           |
+| Negative number      | The operation fails.           |
 
 
-```
+```c
 int32_t ret;
 
-/* Set the PWM polarity to PWM_INVERTED_POLARITY. */
-ret = PwmSetPolarity(handle, PWM_INVERTED_POLARITY);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmSetPolarity(handle, PWM_INVERTED_POLARITY);    // Set the PWM signal polarity to inverted.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmSetPolarity: pwm set polarity failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Setting PWM Device Parameters
 
-### Setting PWM Device Parameters
-
-Call **PwmSetConfig()** to set PWM device parameters.
-
-
-```
+```c
 int32_t PwmSetConfig(DevHandle handle, struct PwmConfig *config);
 ```
 
-  **Table 10** Description of PwmSetConfig
+**Table 10** Description of PwmSetConfig
 
 | **Parameter**| **Description**|
 | -------- | -------- |
-| handle     | PWM device handle to close.   |
-| \*config   | Pointer to PWM parameters.      |
-| **Return Value**| **Description** |
-| 0          | The operation is successful.      |
-| Negative number      | The operation failed.    |
+| handle     | PWM device handle.   |
+| \*config   | Pointer to the PWM parameters to set.      |
+| **Return Value**| **Description**|
+| HDF_SUCCESS          | The operation is successful.      |
+| Negative number      | The operation fails.      |
 
-
-```
+```c
 int32_t ret;
 struct PwmConfig pcfg;
-pcfg.duty = 25000000;			/* Set the signal ON-state time to 25000000 ns. */                  
-pcfg.period = 50000000;			/* Set the PWM period to 50000000 ns. */
-pcfg.number = 0;			/* Generate square waves continuously. */
-pcfg.polarity = PWM_INVERTED_POLARITY;	/* Set the PWM polarity to PWM_INVERTED_POLARITY. */
-pcfg.status = PWM_ENABLE_STATUS;	/* Set the running status to Enabled. */
 
-/* Set PWM device parameters. */
-ret = PwmSetConfig(handle, &pcfg);
-if (ret != 0) {
-	/* Error handling. */
+The pcfg.duty = 25000000;               // Set the signal ON-state time to 25,000,000 ns.
+pcfg.period = 50000000;                 // Set the PWM period to 50,000,000 ns.
+pcfg.number = 0;                        // Generate square waves continuously.
+pcfg.polarity = PWM_INVERTED_POLARITY;  // Set the PWM signal polarity to inverted.
+pcfg.status = PWM_ENABLE_STATUS;        // Enable PWM.
+
+ret = PwmSetConfig(handle, &pcfg);      // Set PWM device parameters.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmSetConfig: pwm set config failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Obtaining PWM Device Parameters
 
-### Obtaining PWM Device Parameters
-
-Call **PwmGetConfig()** to obtain PWM device parameters.
-
-
-```
+```c
 int32_t PwmGetConfig(DevHandle handle, struct PwmConfig *config);
 ```
 
-  **Table 11** Description of PwmGetConfig
+**Table 11** Description of PwmGetConfig
 
 | **Parameter**| **Description**|
 | -------- | -------- |
-| handle     | PWM device handle to close.   |
-| \*config   | Pointer to PWM parameters.      |
-| **Return Value**| **Description** |
-| 0          | The operation is successful.      |
-| Negative number      | The operation failed.    |
+| handle     | PWM device handle.   |
+| \*config   | Pointer to the PWM parameters obtained.      |
+| **Return Value**| **Description**|
+| HDF_SUCCESS          | The operation is successful.      |
+| Negative number      | The operation fails.      |
 
-
-```
+```c
 int32_t ret;
 struct PwmConfig pcfg;
 
-/* Obtain PWM device parameters. */
-ret = PwmGetConfig(handle, &pcfg);
-if (ret != 0) {
-	/* Error handling. */
+ret = PwmGetConfig(handle, &pcfg);    // Obtain PWM device parameters.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("PwmGetConfig: pwm get config failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+## Example
 
-## Development Example
+The following uses the Hi3516D V300 development board as an example to describe how to use the PWM. The procedure is as follows: 
 
-The following example shows how to use the APIs to implement a PWM driver and manage the PWM device.
+1. Open a PWM device and obtain the PWM device handle.
+2. Set the PWM device period.
+3. Set the signal ON-state time for the PWM device.
+4. Set the signal polarity for the PWM device.
+5. Obtain the PWM device parameters.
+6. Enable the PWM device.
+7. Set the PWM device parameters.
+8. Disable the PWM device.
+9. Close the PWM device.
 
+```c
+#include "pwm_if.h"                                              // Header file of PWM standard APIs.
+#include "hdf_log.h"                                             // Header file of the HDF log APIs.
 
-```
-void PwmTestSample(void)
+static int32_t PwmTestSample(void)
 {
     int32_t ret;
     uint32_t num;
+    uint32_t period
     DevHandle handle = NULL;
 
     struct PwmConfig pcfg;
-    pcfg.duty = 20000000;			/* Set the signal ON-state time to 20000000 ns. */                  
-    pcfg.period = 40000000;			/* Set the PWM period to 40000000 ns. */
-    pcfg.number = 100;				/* Generate 100 square waves. */
-    pcfg.polarity = PWM_NORMAL_POLARITY;	/* Set the polarity to PWM_NORMAL_POLARITY. */
-    pcfg.status = PWM_ENABLE_STATUS;		/* Set the running status to Enabled. */
+    pcfg.duty = 20000000;                                        // Set the signal ON-state time to 20,000,000 ns.                 
+    pcfg.period = 40000000;                                      // Set the PWM period to 40,000,000 ns.
+    pcfg.number = 100;                                           // Generate 100 square waves continuously.
+    pcfg.polarity = PWM_NORMAL_POLARITY;                         // Set the PWM signal polarity to normal.
+    pcfg.status = PWM_ENABLE_STATUS;                             // Enable the PWM device.
 
-    /* Enter the PWM device number. */
-    num = 1; 
+    num = 1;                                                     // PWM device number.
 
-    /* Open the PWM device handle. */
-    handle = PwmOpen(num);
+    handle = PwmOpen(num);                                       // Open a PWM device.
     if (handle == NULL) {
-        HDF_LOGE("PwmOpen: failed!\n");
+        HDF_LOGE("PwmOpen: open pwm_%u failed!\n", num);
         return;
     }
 
-    /* Set the PWM period to 50000000 ns.*/
-    ret = PwmSetPeriod(handle, 50000000);
-    if (ret != 0) {
-        HDF_LOGE("PwmSetPeriod: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmSetPeriod(handle, 50000000);                        // Set the PWM period to 50,000,000 ns.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmSetPeriod: pwm set period failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Set the signal ON-state time to 25000000 ns. */
-    ret = PwmSetDuty(handle, 25000000);
-    if (ret != 0) {
-        HDF_LOGE("PwmSetDuty: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmSetDuty(handle, 25000000);                          // Set the signal ON-state time to 25,000,000 ns.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmSetDuty: pwm set duty failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Set the PWM polarity to PWM_INVERTED_POLARITY. */
-    ret = PwmSetPolarity(handle, PWM_INVERTED_POLARITY);
-    if (ret != 0) {
-        HDF_LOGE("PwmSetPolarity: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmSetPolarity(handle, PWM_INVERTED_POLARITY);         // Set the PWM signal polarity to inverted.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmSetPolarity: pwm set polarity failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Obtain PWM device parameters. */
-    ret = PwmGetConfig(handle, &pcfg);
-    if (ret != 0) {
-        HDF_LOGE("PwmGetConfig: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmGetConfig(handle, &pcfg);                           // Obtain PWM device parameters.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmGetConfig: get pwm config failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Enable the PWM device. */
-    ret = PwmEnable(handle);
-    if (ret != 0) {
-	    HDF_LOGE("PwmEnable: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmEnable(handle);                                     // Enable the PWM device.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmEnable: enable pwm failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Set PWM device parameters. */
-    ret = PwmSetConfig(handle, &pcfg);
-    if (ret != 0) {
-        HDF_LOGE("PwmSetConfig: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmSetConfig(handle, &pcfg);                           // Set PWM device parameters.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmSetConfig: set pwm config failed, ret %d\n", ret);
+        goto ERR;
     }
 
-    /* Disable the PWM device. */
-    ret = PwmDisable(handle);
-    if (ret != 0) {
-        HDF_LOGE("PwmDisable: failed, ret %d\n", ret);
-        goto _ERR;
+    ret = PwmDisable(handle);                                    // Disable the PWM device.
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("PwmDisable: disable pwm failed, ret %d\n", ret);
+        goto ERR;
     }
 
-_ERR:
-    /* Close the PWM device handle. */
-    PwmClose(handle); 
+ERR:
+    PwmClose(handle);                                            // Close the PWM device.
+    return ret;
 }
 ```

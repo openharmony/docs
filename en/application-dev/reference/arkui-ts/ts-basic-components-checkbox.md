@@ -14,6 +14,8 @@ Not supported
 
 Checkbox(options?: {name?: string,  group?: string })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name | Type| Mandatory | Description|
@@ -28,16 +30,16 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
-| select        | boolean | Whether the check box is selected.<br>Default value: **false**|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.|
+| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
 
-| Name     | Description|
-| ----------| -------- |
-|onChange(callback: (value: boolean) => void) | Triggered when the selection status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.|
+| Name                                        | Description                                                    |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes due to a manual operation.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
 

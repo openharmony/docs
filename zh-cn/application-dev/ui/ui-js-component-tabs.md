@@ -15,7 +15,7 @@ tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
             <text>item1</text>
             <text>item2</text>
         </tab-bar>
-        <tab-content>
+        <tab-content class="tabContent">
             <div class="text">
                 <text>content1</text>
             </div>
@@ -34,6 +34,10 @@ tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;
@@ -177,10 +181,10 @@ tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   tabChange(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "Tab index: " + e.index
     })
   }
@@ -267,7 +271,6 @@ background-color:#F1F3F5;
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data() {
     return {
@@ -315,4 +318,4 @@ export default {
 
 针对tabs开发，有以下相关实例可供参考：
 
-- [`Tabs`：页签容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Tabs)
+- [`Tabs`：页签容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Tabs)

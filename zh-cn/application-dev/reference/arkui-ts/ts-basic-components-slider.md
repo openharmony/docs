@@ -16,6 +16,8 @@
 
 Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -23,12 +25,14 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | value | number | 否 | 当前进度值。<br/>默认值：0 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max] |
 | style | SliderStyle | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。<br/>默认值：false |
 
 ## SliderStyle枚举说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -42,12 +46,12 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 |
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。 |
-| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false |
-| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false |
-| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。 |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的属性值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距，或者边距比较小时，tip会被截断。 |
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
@@ -56,15 +60,25 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 功能描述 |
 | -------- | -------- |
+<<<<<<< HEAD
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：拖动状态。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+=======
+<<<<<<< HEAD
 | onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：拖动状态。 |
+=======
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖到或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用Math.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变换时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
+>>>>>>> cb6303d41 (update list)
+>>>>>>> 322539738 (update list)
 
 ## SliderChangeMode枚举说明
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
-| Begin | 0 | 开始拖动滑块。 |
+| Begin | 0 | 手势/鼠标接触或者按下滑块。 |
 | Moving | 1 | 正在拖动滑块过程中。 |
-| End | 2 | 结束拖动滑块。 |
+| End | 2 | 手势/鼠标离开滑块。 |
 | Click    | 3    | 点击滑动条使滑块位置移动。 |
 
 
@@ -75,14 +89,14 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40;
-  @State inSetValueOne: number = 40;
-  @State outSetValueTwo: number = 40;
-  @State inSetValueTwo: number = 40;
-  @State vOutSetValueOne: number = 40;
-  @State vInSetValueOne: number = 40;
-  @State vOutSetValueTwo: number = 40;
-  @State vInSetValueTwo: number = 40;
+  @State outSetValueOne: number = 40
+  @State inSetValueOne: number = 40
+  @State outSetValueTwo: number = 40
+  @State inSetValueTwo: number = 40
+  @State vOutSetValueOne: number = 40
+  @State vInSetValueOne: number = 40
+  @State vOutSetValueTwo: number = 40
+  @State vInSetValueTwo: number = 40
 
   build() {
     Column({ space: 8 }) {
@@ -96,8 +110,8 @@ struct SliderExample {
         })
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueOne = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.outSetValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         // toFixed(0)将滑动条返回值处理为整数精度
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
@@ -111,8 +125,8 @@ struct SliderExample {
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueTwo = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.outSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -131,8 +145,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueOne = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.inSetValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
@@ -148,8 +162,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueTwo = value;
-            console.info('value:' + value + 'mode:' + mode.toString());
+            this.inSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
           })
         Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -169,8 +183,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueOne = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vOutSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
             Slider({
               value: this.vOutSetValueTwo,
@@ -183,8 +197,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueTwo = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vOutSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
           }
         }.width('50%').height(300)
@@ -200,8 +214,8 @@ struct SliderExample {
             })
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueOne = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vInSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
             Slider({
               value: this.vInSetValueTwo,
@@ -212,8 +226,8 @@ struct SliderExample {
             })
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueTwo = value;
-                console.info('value:' + value + 'mode:' + mode.toString());
+                this.vInSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
               })
           }
         }.width('50%').height(300)

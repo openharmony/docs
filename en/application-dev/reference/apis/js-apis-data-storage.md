@@ -1,14 +1,14 @@
-# Lightweight Storage
+# @ohos.data.storage (Lightweight Data Storage)
 
-Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
+The **DataStorage** module provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
 > **NOTE**
 >
 > -  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> -  The APIs of this module are no longer maintained since API version 9. You are advised to use [`@ohos.data.preferences`](js-apis-data-preferences.md).
-> 
+> -  The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.preferences](js-apis-data-preferences.md).
+>
 > -  The APIs of this module can be used only in the FA model.
 
 
@@ -22,10 +22,10 @@ import data_storage from '@ohos.data.storage';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name             | Type   | Readable | Writable | Description                                                 |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------- |
-| MAX_KEY_LENGTH   | string | Yes      | No       | Maximum length of a key. It must be less than 80 bytes.     |
-| MAX_VALUE_LENGTH | string | Yes      | No       | Maximum length of a value. It must be less than 8192 bytes. |
+| Name            | Type| Readable| Writable| Description                                 |
+| ---------------- | -------- | ---- | ---- | ------------------------------------- |
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
 ## data_storage.getStorageSync
@@ -53,8 +53,8 @@ Reads the specified file and loads its data to the **Storage** instance for data
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -79,15 +79,15 @@ Reads the specified file and loads its data to the **Storage** instance for data
 | Name  | Type                                    | Mandatory| Description                      |
 | -------- | ---------------------------------------- | ---- | -------------------------- |
 | path     | string                                   | Yes  | Path of the target file.|
-| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback used to return the execution result.                |
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes  | Callback invoked to return the result.                |
 
 **Example**
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -129,8 +129,8 @@ Reads the specified file and loads its data to the **Storage** instance for data
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -165,14 +165,14 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
 
     data_storage.deleteStorageSync(path + '/mystore');
-});  
+});
 ```
 
 ## data_storage.deleteStorage
@@ -195,8 +195,8 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -237,8 +237,8 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -271,14 +271,14 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromise====================>");
-    
+
     data_storage.removeStorageFromCacheSync(path + '/mystore');
-});  
+});
 ```
 
 
@@ -302,8 +302,8 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -344,8 +344,8 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var path;
-var context = featureAbility.getContext();
+let path;
+let context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
   console.info("======================>getFilesDirPromise====================>");
@@ -367,7 +367,7 @@ Provides APIs for obtaining and modifying storage data.
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -396,7 +396,7 @@ console.info("The value of startup is " + value);
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses an asynchronous callback to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -406,7 +406,7 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 | -------- | ------------------------------ | ---- | ----------------------------------------- |
 | key      | string                         | Yes  | Key of the data. It cannot be empty.          |
 | defValue | [ValueType](#valuetype)        | Yes  | Default value to be returned. It can be a number, string, or Boolean value.|
-| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback used to return the execution result.                               |
+| callback | AsyncCallback&lt;ValueType&gt; | Yes  | Callback invoked to return the result.                               |
 
 **Example**
 
@@ -425,7 +425,7 @@ storage.get('startup', 'default', function(err, value) {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to a key. If the value is null or not in the default value format, the default value is returned. This API uses a promise to return the result.
+Obtains the value corresponding to a key. If the value is null or not of the default value type, **defValue** is returned. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -581,7 +581,7 @@ Checks whether the storage object contains data with a given key. This API uses 
 | Name  | Type                        | Mandatory| Description                           |
 | -------- | ---------------------------- | ---- | ------------------------------- |
 | key      | string                       | Yes  | Key of the data. It cannot be empty.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the execution result.                     |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.                     |
 
 **Return value**
 
@@ -864,15 +864,15 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 
 **Parameters**
 
-| Name  | Type                                               | Description                                    |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                          |
+| Name  | Type                                               |  Mandatory| Description                                    |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback invoked to return the data change.                          |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.on('change', observer);
@@ -891,15 +891,15 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type                                               | Description                                    |
-| -------- | --------------------------------------------------- | ---------------------------------------- |
-| type     | string                                              | Event type. The value **change** indicates data change events.|
-| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.                |
+| Name  | Type                                               | Mandatory|  Description                                |
+| -------- | --------------------------------------------------- | ------ |---------------------------------------- |
+| type     | string                                              |Yes| Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Yes|Callback for the data change.                |
 
 **Example**
 
 ```js
-var observer = function (key) {
+let observer = function (key) {
     console.info("The key of " + key + " changed.");
 }
 storage.off('change', observer);

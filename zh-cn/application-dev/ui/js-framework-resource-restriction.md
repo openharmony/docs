@@ -45,10 +45,10 @@
 
 **res-defaults.json示例：**<br/>
 
-```
+```json
 {
-    strings: {        
-        hello: 'hello world'    
+    "strings": {        
+        "hello": "hello world"  
     }
 }
 ```
@@ -57,7 +57,7 @@
 
 resources/res-dark.json:
 
-```
+```json
 {
     "image": {
         "clockFace": "common/dark_face.png"
@@ -70,7 +70,7 @@ resources/res-dark.json:
 
 resources/res-defaults.json:
 
-```
+```json
 {
     "image": {
         "clockFace": "common/face.png"
@@ -81,7 +81,7 @@ resources/res-defaults.json:
 }
 ```
 
-```
+```html
 <!-- xxx.hml -->
 <div style="background-color: {{ $r('colors.background') }}">
     <image src="{{ $r('image.clockFace') }}"></image>

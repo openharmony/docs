@@ -37,7 +37,7 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![Phoenix-upload](figures/Phoenix-upload.png)
 
-5. 在“hi3516dv300”页签，设置烧录选项，包括upload_partitions、upload_port和upload_protocol。
+5. 在“hi3516dv300”页签，设置烧录选项，包括upload_partitions、upload_port和upload_protocol。配置完成后工程将自动保存。
    - upload_partitions：选择待烧录的文件，默认情况下会同时烧录fastboot、kernel、rootfs和userfs。DevEco Device Tool已预置默认的烧录文件信息，包括起始地址、分区大小、待烧录文件地址等，开发者可根据实际情况进行调整，点击每个待烧录文件后的![zh-cn_image_0000001275592884](figures/zh-cn_image_0000001275592884.png)按钮进行修改。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
       > 在设置烧录分区起始地址和分区长度时，应根据实际待烧录文件的大小进行设置，要求设置的烧录分区大小，要大于待烧录文件的大小；同时，各烧录文件的分区地址设置不能出现重叠。
@@ -49,9 +49,7 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
       ![3516-small-usb](figures/3516-small-usb.png)
 
-6. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
-
-7. 点击hi3516dv300下的**Upload**按钮。
+6. 点击hi3516dv300下的**Upload**按钮。
 
    ![zh-cn_image_0000001326234609](figures/zh-cn_image_0000001326234609.png)
 
@@ -59,7 +57,7 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001275835836](figures/zh-cn_image_0000001275835836.png)
 
-8. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
+7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
 
    ![zh-cn_image_0000001326412233](figures/zh-cn_image_0000001326412233.png)
 
@@ -67,4 +65,4 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001276317464](figures/zh-cn_image_0000001276317464.png)
 
-9. 烧录成功后，请根据运行章节进行操作，启动系统。
+8. 烧录成功后，请根据运行章节进行操作，启动系统。

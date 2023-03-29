@@ -15,6 +15,8 @@
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名   | 参数类型         | 必填 | 参数描述                            |
@@ -27,20 +29,20 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称     | 参数类型                                | 默认值  | 必填   | 参数描述                                     |
-| -------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
-| commands | string                              | ''   | 否  | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](../../ui/ts-pixel-units.md)。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 <br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
-| antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
+| 名称     | 类型                                | 默认值  | 描述                                     |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stroke | [ResourceColor](ts-types.md) | - |设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeWidth | Length | 1 | 设置线条宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 commands支持的绘制命令如下：
 
@@ -74,9 +76,8 @@ struct PathExample {
         .width('90%')
       // 绘制一条长900px，宽3vp的直线
       Path()
-        .width(300)
         .height(10)
-        .commands('M0 0 L900 0')
+        .commands('M0 0 L600 0')
         .stroke(Color.Black)
         .strokeWidth(3)
 
@@ -85,55 +86,43 @@ struct PathExample {
         .fontColor(0xCCCCCC)
         .width('90%')
       // 绘制直线图形
-      Row({ space: 20 }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
-          .width(100)
-          .height(100)
-          .commands('M150 0 L300 300 L0 300 Z')
+          .commands('M100 0 L200 240 L0 240 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 0 H300 V300 H0 Z')
+          .commands('M0 0 H200 V200 H0 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+          .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
-      }.width('100%')
+      }.width('95%')
 
       Text('Curve graphics').fontSize(11).fontColor(0xCCCCCC).width('90%')
       // 绘制弧线图形
-      Row({ space: 20 }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
-          .width(100)
-          .height(100)
-          .commands("M0 300 S150 0 300 300 Z")
+          .commands("M0 300 S100 0 240 300 Z")
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+          .commands('M0 150 C0 100 140 0 200 150 L100 300 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
-          .width(100)
-          .height(100)
-          .commands('M0 200 A30 20 20 0 0 250 200 Z')
+          .commands('M0 100 A30 20 20 0 0 200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
-      }
+      }.width('95%')
     }.width('100%')
     .margin({ top: 5 })
   }

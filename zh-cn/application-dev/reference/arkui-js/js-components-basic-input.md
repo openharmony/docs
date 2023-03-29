@@ -101,38 +101,40 @@
        headericon="/common/search.svg" placeholder="Please input text" onchange="change"
        onenterkeyclick="enterkeyClick">
      </input>
-     <input class="button" type="button" value="Submit" onclick="buttonClick"></input>
+     <input class="button" type="button" value="Submit" onclick="buttonClick" style="color: blue"></input>
    </div>
    ```
 
    ```css
    /* xxx.css */
    .content {
-     width: 60%;
+     width: 100%;
      flex-direction: column;
      align-items: center;
    }
    .input {
+     width: 60%;
      placeholder-color: gray;
    }
    .button {
+     width: 60%;
      background-color: gray;
      margin-top: 20px;
-   }
+    }
    ```
-
+   
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      change(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: "value: " + e.value,
          duration: 3000,
        });
      },
      enterkeyClick(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: "enterkey clicked",
          duration: 3000,
        });
@@ -142,8 +144,9 @@
          error: 'error text'
        });
      },
-   }
+    }
    ```
+
 
    ![zh-cn_image_0000001252835901](figures/zh-cn_image_0000001252835901.png)
 
@@ -189,10 +192,10 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      checkboxOnChange(e) {
-       prompt.showToast({
+       promptAction.showToast({
          message:'checked: ' + e.checked,
          duration: 3000,
        });
@@ -224,11 +227,11 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt'
+   import promptAction from '@ohos.promptAction'
    export default {
      onRadioChange(inputValue, e) {
        if (inputValue === e.value) {
-         prompt.showToast({
+         promptAction.showToast({
            message: 'The chosen radio is ' + e.value,
            duration: 3000,
          });

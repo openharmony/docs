@@ -7,6 +7,8 @@
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - 目前仅支持通过外接键盘的tab键、方向键触发。
+>
+>  - 存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦，不可获焦状态下，无法触发焦点事件，需要设置focusable属性为true才可触发。
 
 
 ## 事件
@@ -24,9 +26,9 @@
 @Entry
 @Component
 struct FocusEventExample {
-  @State oneButtonColor: string = '#FFC0CB';
-  @State twoButtonColor: string = '#87CEFA';
-  @State threeButtonColor: string = '#90EE90';
+  @State oneButtonColor: string = '#FFC0CB'
+  @State twoButtonColor: string = '#87CEFA'
+  @State threeButtonColor: string = '#90EE90'
 
   build() {
     Column({ space: 20 }) {
@@ -38,10 +40,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.oneButtonColor = '#FF0000';
+          this.oneButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.oneButtonColor = '#FFC0CB';
+          this.oneButtonColor = '#FFC0CB'
         })
       Button('Second Button')
         .backgroundColor(this.twoButtonColor)
@@ -50,10 +52,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.twoButtonColor = '#FF0000';
+          this.twoButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.twoButtonColor = '#87CEFA';
+          this.twoButtonColor = '#87CEFA'
         })
       Button('Third Button')
         .backgroundColor(this.threeButtonColor)
@@ -62,10 +64,10 @@ struct FocusEventExample {
         .fontColor(Color.Black)
         .focusable(true)
         .onFocus(() => {
-          this.threeButtonColor = '#FF0000';
+          this.threeButtonColor = '#FF0000'
         })
         .onBlur(() => {
-          this.threeButtonColor = '#90EE90';
+          this.threeButtonColor = '#90EE90'
         })
     }.width('100%').margin({ top: 20 })
   }

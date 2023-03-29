@@ -46,7 +46,7 @@
   | 名称 | 描述 | 
 | -------- | -------- |
 | [HdfLightId](#hdflightid)&nbsp;{&nbsp;HDF_LIGHT_ID_BATTERY&nbsp;=&nbsp;1,&nbsp;HDF_LIGHT_ID_NOTIFICATIONS&nbsp;=&nbsp;2,&nbsp;HDF_LIGHT_ID_ATTENTION&nbsp;=&nbsp;3,&nbsp;HDF_LIGHT_ID_BUTT&nbsp;=&nbsp;4&nbsp;} | 枚举灯类型。 | 
-| [HdfLightFlashMode](#hdflightflashmode)&nbsp;{&nbsp;HDF_LIGHT_FLASH_NONE&nbsp;=&nbsp;0,&nbsp;HDF_LIGHT_FLASH_TIMED&nbsp;=&nbsp;1,&nbsp;HDF_LIGHT_FLASH_GRADIENT&nbsp;=&nbsp;2,&nbsp;HDF_LIGHT_FLASH_BUTT&nbsp;=&nbsp;2&nbsp;} | 枚举灯的模式。 | 
+| [HdfLightFlashMode](#hdflightflashmode)&nbsp;{&nbsp;HDF_LIGHT_FLASH_NONE&nbsp;=&nbsp;0,&nbsp;HDF_LIGHT_FLASH_BLINK&nbsp;=&nbsp;1,&nbsp;HDF_LIGHT_FLASH_GRADIENT&nbsp;=&nbsp;2,&nbsp;HDF_LIGHT_FLASH_BUTT&nbsp;=&nbsp;3&nbsp;} | 枚举灯的模式。 | 
 
 
 ### 关键字
@@ -73,7 +73,7 @@ enum HdfLightFlashMode
   | 枚举值 | 描述 | 
 | -------- | -------- |
 | HDF_LIGHT_FLASH_NONE | 常亮模式。 | 
-| HDF_LIGHT_FLASH_TIMED | 闪烁模式。 | 
+| HDF_LIGHT_FLASH_BLINK | 闪烁模式。 | 
 | HDF_LIGHT_FLASH_GRADIENT | 渐变。 | 
 | HDF_LIGHT_FLASH_BUTT | 无效模式。 | 
 

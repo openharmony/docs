@@ -1,11 +1,13 @@
-# 非线性容器LightWeightMap  
+# @ohos.util.LightWeightMap (非线性容器LightWeightMap) 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
-LightWeightMap依据泛型定义，采用轻量级结构，集合中key值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的key值及value值。
+LightWeightMap依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
+
+集合中key值的查找依赖于hash算法，通过一个数组存储hash值，然后映射到其他数组中的key值及value值。
 
 LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集合，LightWeightMap占用内存更小。
 
@@ -21,15 +23,13 @@ LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集�
 import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
 
-
-
 ## LightWeightMap
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightMap的元素个数。 |
 
@@ -41,6 +41,15 @@ constructor()
 LightWeightMap的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The LightWeightMap's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -62,6 +71,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -90,6 +107,14 @@ hasAll(map: LightWeightMap<K, V>): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 包含所有元素返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
 
 **示例：**
 
@@ -123,14 +148,20 @@ hasKey(key: K): boolean;
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("squirrel");
 lightWeightMap.set("squirrel", 123);
-let result1 = lightWeightMap.hasKey("squirrel");
+let result = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -154,6 +185,14 @@ hasValue(value: V): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -171,6 +210,14 @@ increaseCapacityTo(minimumCapacity: number): void
 将当前LightWeightMap扩容至可以容纳指定数量元素。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **参数：**
 
@@ -206,6 +253,14 @@ get(key: K): V
 | -------- | -------- |
 | V | 返回key映射的value值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -220,7 +275,7 @@ let result = lightWeightMap.get("sparrow");
 
 getIndexOfKey(key: K): number
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找key元素第一次出现的下标值，如果没有找到该元素返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -234,7 +289,15 @@ getIndexOfKey(key: K): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回key元素第一次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
 
 **示例：**
 
@@ -250,7 +313,7 @@ let result = lightWeightMap.getIndexOfKey("sparrow");
 
 getIndexOfValue(value: V): number
 
-查找指定元素第一次出现的下标值，如果没有找到该元素返回-1。
+查找value元素第一次出现的下标值，如果没有找到该元素返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -264,7 +327,15 @@ getIndexOfValue(value: V): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回value元素第一次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
 
 **示例：**
 
@@ -296,6 +367,15 @@ getKeyAt(index: number): K
 | -------- | -------- |
 | K | 返回该下标对应的元素键值对中key值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **示例：**
 
 ```ts
@@ -320,6 +400,14 @@ setAll(map: LightWeightMap<K, V>): void
 | -------- | -------- | -------- | -------- |
 | map | LightWeightMap<K, V> | 是 | 被添加元素的lightWeightMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -327,7 +415,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-lightWeightMap.setAll(map);
+map.setAll(lightWeightMap); // 将lightWeightMap中所有的元素添加到map中
 ```
 
 
@@ -350,6 +438,14 @@ set(key: K, value: V): Object
 | 类型 | 说明 |
 | -------- | -------- |
 | Object | 返回添加数据后的lightWeightMap。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
 
 **示例：**
 
@@ -378,6 +474,14 @@ remove(key: K): V
 | 类型 | 说明 |
 | -------- | -------- |
 | V | 返回删除元素的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
 
 **示例：**
 
@@ -408,6 +512,14 @@ removeAt(index: number): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 成功删除元素返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
 
 **示例：**
 
@@ -440,6 +552,15 @@ setValueAt(index: number, newValue: V): boolean
 | -------- | -------- |
 | boolean | 成功替换指定位置数据返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **示例：**
 
 ```ts
@@ -470,6 +591,15 @@ getValueAt(index: number): V
 | -------- | -------- |
 | V | 返回指定下标对应键值对中的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **示例：**
 
 ```ts
@@ -487,6 +617,14 @@ clear(): void
 清除LightWeightMap中的所有元素,并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -511,6 +649,14 @@ keys(): IterableIterator&lt;K&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
 
 **示例：**
 
@@ -541,6 +687,14 @@ values(): IterableIterator&lt;V&gt;
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -552,13 +706,13 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
@@ -568,7 +722,7 @@ forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, th
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -578,6 +732,14 @@ callbackfn的参数说明：
 | key | K | 否 | 当前遍历到的元素键值对的键。 |
 | map | LightWeightMap<K, V> | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -585,7 +747,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sparrow", 123);
 lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -603,6 +765,14 @@ entries(): IterableIterator<[K, V]>
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
 
 **示例：**
 
@@ -633,14 +803,22 @@ toString(): String
   | -------- | -------- |
   | String | 返回一个字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The toString method cannot be bound. |
+
 **示例：**
 
-  ```ts
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("squirrel", 123);
-  lightWeightMap.set("sparrow", 356);
-  let iter = lightWeightMap.toString();
-  ```
+```ts
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.toString();
+```
 
 ### [Symbol.iterator]
 
@@ -655,6 +833,14 @@ toString(): String
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 

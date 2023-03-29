@@ -42,11 +42,12 @@ LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK：开关宏，默认关闭；若打开这�
 **示例代码**
 
 
+该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试.
 代码实现如下：
 
 
-  
-```
+
+```c
 #include <stdio.h>
 #include <string.h>
 #include "los_memory.h"
@@ -70,12 +71,12 @@ void MemIntegrityTest(void)
 编译运行输出log如下：
 
 
-  
+
 ```
 [ERR][OsMemMagicCheckPrint], 2028, memory check error!
 memory used but magic num wrong, magic num = 0x00000000   /* 提示信息，检测到哪个字段被破坏了，用例构造了将下个节点的头4个字节清零，即魔鬼数字字段 */
 
- broken node head: 0x20003af0  0x00000000  0x80000020, prev node head: 0x20002ad4  0xabcddcba  0x80000020   
+ broken node head: 0x20003af0  0x00000000  0x80000020, prev node head: 0x20002ad4  0xabcddcba  0x80000020
 /* 被破坏节点和其前节点关键字段信息，分别为其前节点地址、节点的魔鬼数字、节点的sizeAndFlag；可以看出被破坏节点的魔鬼数字字段被清零，符合用例场景 */
 
  broken node head LR info:  /* 节点的LR信息需要开启内存检测功能才有有效输出 */

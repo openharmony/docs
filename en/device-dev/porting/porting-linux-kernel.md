@@ -84,8 +84,8 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     # Configure the build environment, and use clang provided by the project to build the Raspberry Pi kernel source code.
     export PATH=$PROJ_ROOT/prebuilts/clang/ohos/linux-x86_64/llvm/bin:$PROJ_ROOT/prebuilts/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/:$PATH
     export MAKE_OPTIONS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- CC=clang HOSTCC=clang"
-   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
-   ```
+    export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
+    ```
 
 3.  Comment out the flags that cannot be recognized by **clang**.
 

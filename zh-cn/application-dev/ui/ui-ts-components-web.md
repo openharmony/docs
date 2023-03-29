@@ -8,10 +8,12 @@ Web是提供网页显示能力的组件，具体用法请参考 [Web API](../ref
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: WebController = new WebController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'https://www.example.com', controller: this.controller })
@@ -26,11 +28,13 @@ Web组件的使用需要添加丰富的页面样式和功能属性。设置heigh
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -54,13 +58,15 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
   fileAccess: boolean = true;
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -93,14 +99,17 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
   @State progress: number = 0;
   @State hideProgress: boolean = true;
+  @State webResult: string = ''
   fileAccess: boolean = true;
   // 定义Web组件的控制器controller
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Text('Hello world!')
@@ -124,8 +133,23 @@ struct WebComponent {
         })
         .onPageEnd(e => {
           // test()在index.html中定义
-          this.controller.runJavaScript({ script: 'test()' });
-          console.info('url: ', e.url);
+          try {
+            this.controller.runJavaScript(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  this.webResult = result
+                  console.info(`The test() return value is: ${result}`)
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
         })
       Text('End')
         .fontSize(20)
@@ -151,26 +175,70 @@ struct WebComponent {
 </script>
 </html>
 ```
+
+## 开启网页调试
+在PC上启用端口转发，以及设置Web组件属性webDebuggingAccess为true后，便可以在PC上调试通过USB连接的开发设备上的Web组件里的网页。
+
+设置步骤如下：
+
+1、首先设置Web组件属性webDebuggingAccess为true。
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(true) // true表示启用调试功能
+      }
+    }
+  }
+  ```
+
+2、PC上启用端口转发功能，添加TCP端口9222映射。
+  ```ts
+  hdc fport tcp:9222 tcp:9222
+  ```
+  添加是否成功可以通过如下命令来查看已存在的映射关系表。
+  ```ts
+  hdc fport ls
+  ```
+如上设置完成后，首先打开应用Web组件、访问要调试的网页，然后在PC上使用chrome浏览器访问：http://localhost:9222, 就可以在PC上调试开发设备刚才访问的网页。
+
 ## 场景示例
 
 该场景实现了Web组件中视频的动态播放。首先在HTML页面内嵌入视频资源，再使用Web组件的控制器调用onActive和onInactive方法激活和暂停页面渲染。点击onInactive按钮，Web页面停止渲染，视频暂停播放；点击onActive按钮，激活Web组件，视频继续播放。
 
   ```ts
   // xxx.ets
+import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct WebComponent {
-  controller: WebController = new WebController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
       Row() {
         Button('onActive').onClick(() => {
           console.info("Web Component onActive");
-          this.controller.onActive();
+          try {
+            this.controller.onActive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
         Button('onInactive').onClick(() => {
           console.info("Web Component onInactive");
-          this.controller.onInactive();
+          try {
+            this.controller.onInactive();
+          } catch (error) {
+            console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+          }
         })
       }
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -198,6 +266,8 @@ struct WebComponent {
 
 针对Web开发，有以下相关实例可供参考：
 
-- [`Web`：Web（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Web)
+- [`Web`：Web（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/Web)
 
-- [Web组件加载本地H5小程序（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)
+- [Web组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
+
+- [Web组件抽奖案例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

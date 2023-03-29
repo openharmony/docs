@@ -107,7 +107,7 @@
         - [AudioDeviceDescriptor](_audio_device_descriptor.md)
         - [AudioManager](_audio_manager.md)
         - [AudioMixExtInfo](_audio_mix_ext_info.md)
-        - [AudioMmapBufferDescripter](_audio_mmap_buffer_descripter.md)
+        - [AudioMmapBufferDescriptor](_audio_mmap_buffer_descriptor.md)
         - [AudioPort](_audio_port.md)
         - [AudioPortCap](audio_portcap.md)
         - [AudioPortCapability](_audio_port_capability.md)

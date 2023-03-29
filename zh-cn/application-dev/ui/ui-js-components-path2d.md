@@ -23,6 +23,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 canvas {
@@ -35,8 +36,6 @@ canvas {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-
 export default {
     onShow() {
         let ctx = this.$refs.canvas.getContext('2d', {
@@ -59,7 +58,7 @@ export default {
         path.closePath();
         // 门
         path.moveTo(250, 450);
-        path.rect(250, 450, 350, 600);
+        path.rect(250, 450, 100, 600);
         path.closePath();
         // 烟囱
         path.moveTo(365, 250);
@@ -105,6 +104,7 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 canvas {
@@ -137,8 +137,6 @@ text {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-
 export default {
     data: {
         ctx: null,

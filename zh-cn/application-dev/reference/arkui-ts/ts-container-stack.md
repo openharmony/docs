@@ -16,6 +16,8 @@
 
 Stack(value?: { alignContent?: Alignment })
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -39,4 +41,4 @@ struct StackExample {
 }
 ```
 
-![zh-cn_image_0000001219982699](figures/zh-cn_image_0000001219982699.jpg)
+![zh-cn_image_0000001219982699](figures/zh-cn_image_0000001219982699.PNG)

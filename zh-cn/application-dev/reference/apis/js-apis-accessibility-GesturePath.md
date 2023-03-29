@@ -1,17 +1,17 @@
-# 手势路径
+# @ohos.accessibility.GesturePath (手势路径)
 
 GesturePath表示手势路径信息。
 
 本模块用于创建辅助功能注入手势所需的手势路径信息。
 
->![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
->本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 ```
 
 ## GesturePath
@@ -22,7 +22,7 @@ import GesturePath from "@ohos.accessibility.GesturePath";
 
 ### 属性
 
-| 名称           | 参数类型                                     | 可读   | 可写   | 说明     |
+| 名称           | 类型                                     | 可读   | 可写   | 说明     |
 | ------------ | ---------------------------------------- | ---- | ---- | ------ |
 | points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | 是    | 是    | 手势触摸点。    |
 | durationTime | number                                   | 是    | 是    | 手势总耗时, 单位为毫秒。 |
@@ -37,13 +37,12 @@ constructor(durationTime: number);
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | durationTime | number | 是 | 手势总耗时,单位为毫秒。 |
 
 **示例：**
 
-```typescript
-let durationTime = 20;
-let gesturePath = new GesturePath(durationTime);
+```ts
+let gesturePath = new GesturePath.GesturePath(20);
 ```

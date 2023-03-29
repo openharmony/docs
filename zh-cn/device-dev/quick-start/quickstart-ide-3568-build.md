@@ -13,8 +13,11 @@ DevEco Device Tool支持Rockchip RK3568开发板的源码一键编译功能，�
    ![zh-cn_image_0000001327669509](figures/zh-cn_image_0000001327669509.png)
 
 2. 在**Tool Chain**页签中，DevEco Device Tool会自动检测依赖的编译工具链是否完备，如果提示部分工具缺失，可点击**Install**，自动安装所需工具链。
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   >
+   > - 如果出现安装pip组件失败，可参考[修改Python源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/ide-set-python-source-0000001227639986)进行修改，完成尝试重新安装。
+   > - 若出现安装apt组件失败，可参考[修改apt源的方法](https://device.harmonyos.com/cn/docs/documentation/guide/faq-toolchain-install-0000001301623822)进行修改，完成后尝试重新安装。
 
    ![zh-cn_image_0000001292531806](figures/zh-cn_image_0000001292531806.png)
 
@@ -26,7 +29,7 @@ DevEco Device Tool支持Rockchip RK3568开发板的源码一键编译功能，�
 
    ![zh-cn_image_0000001349388493](figures/zh-cn_image_0000001349388493.png)
 
-3. 在**hh_scdy200**配置页签中，设置源码的编译类型**build_type**，默认为"debug"类型，请根据需要进行修改。然后点击**Save**进行保存。
+3. 在**rk3568**配置页签中，设置源码的编译类型**build_type**，默认为"debug"类型，请根据需要进行修改。
 
    ![zh-cn_image_0000001276354454](figures/zh-cn_image_0000001276354454.png)
 

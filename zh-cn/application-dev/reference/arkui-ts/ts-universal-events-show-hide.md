@@ -9,43 +9,43 @@
 
 ## 事件
 
-| 名称                                             | 支持冒泡 | 功能描述                   |
-| ------------------------------------------------ | -------- | -------------------------- |
-| onAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void)    | 否       | 组件挂载显示时触发此回调。 |
-| onDisappear(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否       | 组件卸载消失时触发此回调。 |
+| 名称                                             | 支持冒泡 | 功能描述                                                     |
+| ------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void)    | 否       | 组件挂载显示时触发此回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onDisAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否       | 组件卸载消失时触发此回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
 
 ```ts
 // xxx.ets
-import prompt from '@ohos.prompt';
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct AppearExample {
-  @State isShow: boolean = true;
-  @State changeAppear: string = 'Hide Text';
-  private myText: string = 'Text for onAppear';
+  @State isShow: boolean = true
+  @State changeAppear: string = 'Hide Text'
+  private myText: string = 'Text for onAppear'
 
   build() {
     Column() {
       Button(this.changeAppear)
         .onClick(() => {
-          this.isShow = !this.isShow;
+          this.isShow = !this.isShow
         }).margin(15)
       if (this.isShow) {
         Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
-            this.changeAppear = 'Hide Text';
-            prompt.showToast({
+            this.changeAppear = 'Hide Text'
+            promptAction.showToast({
               message: 'The text is shown',
               duration: 2000
             })
           })
           .onDisAppear(() => {
-            this.changeAppear = 'Show Text';
-            prompt.showToast({
+            this.changeAppear = 'Show Text'
+            promptAction.showToast({
               message: 'The text is hidden',
               duration: 2000
             })

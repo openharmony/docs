@@ -1,8 +1,8 @@
-# SysCap列表
+# 系统能力SystemCapability列表
 
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性。
 
-开发者使用某个接口进行开发前，建议先阅读[SysCap使用指南](../quick-start/syscap.md)，了解Syscap的定义和使用指导。再结合下文中的表格判断具体能力集是否支持某个设备，提高开发效率。
+开发者使用某个接口进行开发前，建议先阅读[SysCap使用指南](syscap.md)，了解Syscap的定义和使用指导。再结合下文中的表格判断具体能力集是否支持某个设备，提高开发效率。
 
 ## SystemCapability.ArkUI.ArkUI.Full
 
@@ -172,14 +172,6 @@ WebGL2.0 标准api
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.Communication.NetManager.Extension
-
-网络管理扩展服务
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.Communication.NetStack
 
 基础网络协议栈能力
@@ -315,14 +307,6 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.MultimodalInput.Input.RemoteInputDevice
-
-分布式输入设备管理
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 输入事件监听者
@@ -342,14 +326,6 @@ GNSS硬件相关能力
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 输入事件模拟者
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
-
-## SystemCapability.MultimodalInput.Input.InputFilter
-
-输入事件过滤器
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -989,7 +965,7 @@ TS/JS语言基础库
 
 ## SystemCapability.Account.AppAccount
 
-应用账号
+应用帐号
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1347,7 +1323,7 @@ FA模型
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 否     | 否           | 否     |
 
-## SystemCapability.Applictaions.settings.Core
+## SystemCapability.Applications.settings.Core
 
 设置API
 
@@ -1394,3 +1370,300 @@ VAID管理服务
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
+## SystemCapability.Security.CertificateManager
+
+证书管理
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否    | 是   | 是   | 是     | 否         | 否     |
+
+## SystemCapability.Security.CryptoFramework
+
+加解密算法库框架-加解密基础能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.Core
+
+包管理核心业务，包含包信息查询、安装卸载的核心能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+包管理提供的免安装特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.Resource
+
+包管理提供的获取图标和label的特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.DefaultApp
+
+包管理提供的默认应用管理特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.Launcher
+
+包管理提供给Launcher的查询特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.SandboxApp
+
+包管理提供的沙箱应用的特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.QuickFix
+
+包管理提供的快速修复的特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.AppControl
+
+包管理提供的拦截特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Graphic.Graphic2D.ColorManager.Core
+
+富设备广色域管理
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 是     | 否           | 否     |
+
+## SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+能效资源申请接口
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Multimedia.Media.AVPlayer
+
+媒体音视频播放引擎能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Multimedia.Media.AVRecorder
+
+媒体音视频录制引擎能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Security.Cert
+
+加解密算法库框架-证书能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Security.DataLossPrevention
+
+数据防泄漏
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 否     | 否           | 否     |
+
+## SystemCapability.Communication.NFC.Tag
+
+NFC标签服务
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 否     | 否     | 否   | 否   | 否     | 否           | 否     |
+
+## SystemCapability.Communication.NFC.CardEmulation
+
+NFC卡模拟服务
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 否     | 否     | 否   | 否   | 否     | 否           | 否     |
+
+## SystemCapability.Multimedia.Image.ImageCreator
+
+图像创建能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Developtools.Syscap
+
+系统能力编解码
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 否     |
+
+## SystemCapability.Communication.NetManager.Ethernet
+
+以太网连接
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Communication.NetManager.NetSharing
+
+网络共享
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 是     | 否           | 否     |
+
+## SystemCapability.Communication.NetManager.MDNS
+
+mDNS服务
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Communication.NetManager.Vpn
+
+VPN
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 是     | 否           | 否     |
+
+## SystemCapability.XTS.DeviceAttest
+
+设备证明
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.XTS.DeviceAttestLite
+
+轻量设备证明
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 是     | 否     | 否   | 否   | 否     | 是           | 是     |
+
+## SystemCapability.FileManagement.UserFileManager.Core
+
+公共用户文件管理基础能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.FileManagement.UserFileManager.DistributedCore
+
+公共用户文件管理分布式能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.DistributedDataManager.UDMF.Core
+
+分布式数据管理--统一数据管理框架（UDMF)核心能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.BundleManager.BundleFramework.Overlay
+
+包管理overlay特性
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Cloud.Push
+
+推送管理服务
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 是           | 否     |
+
+## SystemCapability.Multimedia.SystemSound.Core
+
+系统声音管理，如铃声，通知，闹钟等
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Ability.AbilityRuntime.QuickFix
+
+快速修复
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.MultimodalInput.Input.Pointer
+
+Pointer输入增强能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Communication.SecureElement
+
+安全单元芯片访问能力
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 否      | 否     | 否     | 否   | 否   | 否     | 否           | 否     |
+
+## SystemCapability.Msdp.DeviceStatus.Stationarty
+
+设备状态感知
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.Base
+
+通用类型
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+

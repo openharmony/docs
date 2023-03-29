@@ -1,56 +1,40 @@
 # top
 
-## Command Function<a name="section20643141481314"></a>
+
+## Command Function
 
 This command is used to query process and thread information.
 
-## Syntax<a name="section1075441721316"></a>
 
-top \[_-a_\]
+## Syntax
 
-## Parameters<a name="section1472810220135"></a>
+top [_-a_]
 
-**Table  1**  Parameter description
 
-<a name="table966mcpsimp"></a>
-<table><thead align="left"><tr id="row973mcpsimp"><th class="cellrowborder" valign="top" width="19.801980198019802%" id="mcps1.2.5.1.1"><p id="p975mcpsimp"><a name="p975mcpsimp"></a><a name="p975mcpsimp"></a>Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="29.222922292229224%" id="mcps1.2.5.1.2"><p id="p977mcpsimp"><a name="p977mcpsimp"></a><a name="p977mcpsimp"></a>Description</p>
-</th>
-<th class="cellrowborder" valign="top" width="22.26222622262226%" id="mcps1.2.5.1.3"><p id="p979mcpsimp"><a name="p979mcpsimp"></a><a name="p979mcpsimp"></a>Default Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.712871287128717%" id="mcps1.2.5.1.4"><p id="p981mcpsimp"><a name="p981mcpsimp"></a><a name="p981mcpsimp"></a>Value Range</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1643213388538"><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="mcps1.2.5.1.1 "><p id="p11426113820531"><a name="p11426113820531"></a><a name="p11426113820531"></a>--help</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.222922292229224%" headers="mcps1.2.5.1.2 "><p id="p942673885313"><a name="p942673885313"></a><a name="p942673885313"></a>Displays the parameters supported by the <strong id="b2435956125215"><a name="b2435956125215"></a><a name="b2435956125215"></a>top</strong> command.</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.26222622262226%" headers="mcps1.2.5.1.3 "><p id="p9426538195319"><a name="p9426538195319"></a><a name="p9426538195319"></a>N/A</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.712871287128717%" headers="mcps1.2.5.1.4 ">&nbsp;&nbsp;</td>
-</tr>
-<tr id="row1943253865311"><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="mcps1.2.5.1.1 "><p id="p1542613812537"><a name="p1542613812537"></a><a name="p1542613812537"></a>-a</p>
-</td>
-<td class="cellrowborder" valign="top" width="29.222922292229224%" headers="mcps1.2.5.1.2 "><p id="p1842663895320"><a name="p1842663895320"></a><a name="p1842663895320"></a>Displays detailed information.</p>
-</td>
-<td class="cellrowborder" valign="top" width="22.26222622262226%" headers="mcps1.2.5.1.3 "><p id="p13426123815313"><a name="p13426123815313"></a><a name="p13426123815313"></a>N/A</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.712871287128717%" headers="mcps1.2.5.1.4 ">&nbsp;&nbsp;</td>
-</tr>
-</tbody>
-</table>
+## Parameters
 
-## Usage<a name="section186772414131"></a>
+**Table 1** Parameter description
 
-If no parameter is specified, this command displays process and thread information of some tasks by default.
+| Parameter  | Description                   |
+| ------ | --------------------------- |
+| --help | Displays the parameters supported by the **top** command.|
+| -a     | Displays detailed information.         |
 
-## Example<a name="section4764192791314"></a>
 
-Run  **top**.
+## Usage Guidelines
 
-## Output<a name="section5791253155517"></a>
+If no parameter is specified, partial task information is displayed by default.
+
+## Note
+
+Currently, the shell does not support this command. mksh supports it. To switch to mksh, run **cd bin** and **./mksh**.
+
+## Example
+
+Run **top**.
+
+
+## Output
 
 Command output
 
@@ -97,75 +81,19 @@ OHOS:/$ top
    64    2  0x3  -1      Pending    0x4000     0x244      0.0           0  USB_NGIAN_BULK_TasK
 ```
 
-**Table  2**  Output description
+**Table 2** Output description
 
-<a name="table1522165195511"></a>
-<table><thead align="left"><tr id="row1952285165514"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p25224518556"><a name="p25224518556"></a><a name="p25224518556"></a>Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p16522852554"><a name="p16522852554"></a><a name="p16522852554"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row207354303550"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p107238309551"><a name="p107238309551"></a><a name="p107238309551"></a>PID</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p372373015515"><a name="p372373015515"></a><a name="p372373015515"></a>Process ID</p>
-</td>
-</tr>
-<tr id="row1373513035514"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p972343012551"><a name="p972343012551"></a><a name="p972343012551"></a>PPID</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p19723153055519"><a name="p19723153055519"></a><a name="p19723153055519"></a>Parent process ID</p>
-</td>
-</tr>
-<tr id="row16735133035518"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p14723153065514"><a name="p14723153065514"></a><a name="p14723153065514"></a>PGID</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p117231630165519"><a name="p117231630165519"></a><a name="p117231630165519"></a>Process group ID</p>
-</td>
-</tr>
-<tr id="row157354306558"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p3723430195510"><a name="p3723430195510"></a><a name="p3723430195510"></a>UID</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1372373016559"><a name="p1372373016559"></a><a name="p1372373016559"></a>User ID</p>
-</td>
-</tr>
-<tr id="row573515301555"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1472318308552"><a name="p1472318308552"></a><a name="p1472318308552"></a>Status</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p57231430165518"><a name="p57231430165518"></a><a name="p57231430165518"></a>Current task status</p>
-</td>
-</tr>
-<tr id="row15735730135515"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p472363045510"><a name="p472363045510"></a><a name="p472363045510"></a>CPUUSE10s</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1172323019556"><a name="p1172323019556"></a><a name="p1172323019556"></a>CPU usage within last 10 seconds</p>
-</td>
-</tr>
-<tr id="row16735163025519"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p10723183035516"><a name="p10723183035516"></a><a name="p10723183035516"></a>PName</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1472310309557"><a name="p1472310309557"></a><a name="p1472310309557"></a>Process name</p>
-</td>
-</tr>
-<tr id="row973593017554"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p13724123075515"><a name="p13724123075515"></a><a name="p13724123075515"></a>TID</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p12724630135510"><a name="p12724630135510"></a><a name="p12724630135510"></a>Task ID</p>
-</td>
-</tr>
-<tr id="row157341730135512"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p87241930135520"><a name="p87241930135520"></a><a name="p87241930135520"></a>StackSize</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p8724930135519"><a name="p8724930135519"></a><a name="p8724930135519"></a>Size of the task stack</p>
-</td>
-</tr>
-<tr id="row187341330145517"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1172483055520"><a name="p1172483055520"></a><a name="p1172483055520"></a>WaterLine</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10724103013559"><a name="p10724103013559"></a><a name="p10724103013559"></a>Peak value of the stack used</p>
-</td>
-</tr>
-<tr id="row473473025513"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p87240306554"><a name="p87240306554"></a><a name="p87240306554"></a>MEMUSE</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p10724123005519"><a name="p10724123005519"></a><a name="p10724123005519"></a>Memory usage</p>
-</td>
-</tr>
-<tr id="row18734143035519"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7724163011559"><a name="p7724163011559"></a><a name="p7724163011559"></a>TaskName</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p872414301552"><a name="p872414301552"></a><a name="p872414301552"></a>Task name</p>
-</td>
-</tr>
-</tbody>
-</table>
-
+| Parameter     | Description             |
+| --------- | ----------------- |
+| PID       | Process ID.         |
+| PPID      | Parent process ID.       |
+| PGID      | Process group ID.       |
+| UID       | User ID.         |
+| Status    | Current task status. |
+| CPUUSE10s | CPU usage within last 10 seconds.|
+| PName     | Name of the process.         |
+| TID       | Task ID.         |
+| StackSize | Size of the task stack. |
+| WaterLine | Peak value of the stack used.   |
+| MEMUSE    | Memory usage.     |
+| TaskName  | Task name.         |

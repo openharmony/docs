@@ -49,36 +49,65 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <select @change="changeFruit">
-    <option value="bananaValue">
-      Banana
-    </option>
-    <option value="appleValue" selected="true">
-      Apple
-    </option>
-    <option value="pearValue">
-      Pear
-    </option>
-  </select>
+    <select @change="onChange">
+        <option for="{{ array }}" value="{{ $item.value }}">
+            {{ $item.name }}
+        </option>
+    </select>
 </div>
 ```
 
 ```css
 /* xxx.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 ```
 
 ```js
-// ×××.js
+// xxx.js
 export default {
-  changeFruit(e){
-    console.log("newValue:" + e.newValue)
-  }
+    data: {
+        array: [
+            {
+                "value": "下拉选项0", "name": "选项0"
+            },
+            {
+                "value": "下拉选项1", "name": "选项1"
+            },
+            {
+                "value": "下拉选项2", "name": "选项2"
+            },
+            {
+                "value": "下拉选项3", "name": "选项3"
+            },
+        ]
+    },
+    getData() {
+        let other = [
+            {
+                "value": "下拉选项a", "name": "选项a"
+            },
+            {
+                "value": "下拉选项b", "name": "选项b"
+            },
+            {
+                "value": "下拉选项c", "name": "选项c"
+            },
+            {
+                "value": "下拉选项d", "name": "选项d"
+            },
+        ]
+        return other
+    },
+    onChange() {
+        this.array = this.getData()
+    }
 }
 ```
 
-![zh-cn_image_0000001152588538](figures/zh-cn_image_0000001152588538.png)
+![zh-cn_image_0000001152588538](figures/zh-cn_image_0000001152588538.gif)

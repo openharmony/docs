@@ -1,8 +1,8 @@
-# 数据请求
+# @ohos.net.http (数据请求)
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
->**说明：** 
+>**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -16,6 +16,7 @@ import http from '@ohos.net.http';
 ## 完整示例
 
 ```js
+// 引入包名
 import http from '@ohos.net.http';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
@@ -38,18 +39,24 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
+        expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+        usingCache: true, // 可选，默认为true
+        priority: 1, // 可选，默认为1
         connectTimeout: 60000, // 可选，默认为60000ms
         readTimeout: 60000, // 可选，默认为60000ms
+        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     }, (err, data) => {
         if (!err) {
             // data.result为HTTP响应内容，可根据业务需要进行解析
-            console.info('Result:' + data.result);
-            console.info('code:' + data.responseCode);
+            console.info('Result:' + JSON.stringify(data.result));
+            console.info('code:' + JSON.stringify(data.responseCode));
             // data.header为HTTP响应头，可根据业务需要进行解析
             console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + data.cookies); // 8+
+            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
+            // 取消订阅HTTP响应头事件
+            httpRequest.off('headersReceive');
             // 当该请求使用完毕时，调用destroy方法主动销毁。
             httpRequest.destroy();
         }
@@ -59,7 +66,7 @@ httpRequest.request(
 
 ## http.createHttp
 
-createHttp\(\): HttpRequest
+createHttp(): HttpRequest
 
 创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。每一个HttpRequest对象对应一个HTTP请求。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。
 
@@ -78,16 +85,18 @@ import http from '@ohos.net.http';
 let httpRequest = http.createHttp();
 ```
 
-
 ## HttpRequest
 
-HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#httpcreatehttp)创建一个任务。
+HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp()](#httpcreatehttp)创建一个任务。
 
 ### request
 
-request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
+request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -99,6 +108,22 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 | -------- | ---------------------------------------------- | ---- | ----------------------- |
 | url      | string                                         | 是   | 发起网络请求的URL地址。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300007 | Couldn't connect to server.                           |
+| 2300028 | Timeout was reached.                                  |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
 
@@ -117,9 +142,12 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 
 ### request
 
-request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpResponse\>\):void
+request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -132,6 +160,46 @@ request\(url: string, options: HttpRequestOptions, callback: AsyncCallback<HttpR
 | url      | string                                         | 是   | 发起网络请求的URL地址。                         |
 | options  | HttpRequestOptions                             | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。                                      |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
+| 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
+| 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
 
@@ -158,12 +226,14 @@ httpRequest.request("EXAMPLE_URL",
 });
 ```
 
-
 ### request
 
-request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
+request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
+
+>**说明：**
+>此接口仅支持数据大小为5M以内的数据传输。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -174,7 +244,7 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | 参数名  | 类型               | 必填 | 说明                                            |
 | ------- | ------------------ | ---- | ----------------------------------------------- |
 | url     | string             | 是   | 发起网络请求的URL地址。                         |
-| options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
+| options | HttpRequestOptions | 否   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 
 **返回值：**
 
@@ -182,6 +252,45 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 | :------------------------------------- | :-------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
 
+**错误码：**
+
+| 错误码ID   | 错误信息                                                  |
+|---------|-------------------------------------------------------|
+| 401     | Parameter error.                                      |
+| 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
+| 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
+| 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
+| 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
+| 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
+| 2300999 | Unknown Other Error.                                  |
+
+>**错误码说明：**
+> 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html) 
 
 **示例：**
 
@@ -208,7 +317,7 @@ promise.then((data) => {
 
 ### destroy
 
-destroy\(\): void
+destroy(): void
 
 中断请求任务。
 
@@ -220,14 +329,16 @@ destroy\(\): void
 httpRequest.destroy();
 ```
 
-### on\('headerReceive'\)
+```
 
-on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
+### on('headerReceive')
+
+on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
->此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
+>**说明：**
+>此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -241,25 +352,20 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 **示例：**
 
 ```js
-httpRequest.on('headerReceive', (err, data) => {
-    if (!err) {
-        console.info('header: ' + JSON.stringify(data));
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+httpRequest.on('headerReceive', (data) => {
+    console.info('error:' + JSON.stringify(data));
 });
 ```
 
+### off('headerReceive')
 
-### off\('headerReceive'\)
-
-off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
+off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：**
 >
->1. 此接口已废弃，建议使用[off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8)替代。
+>1. 此接口已废弃，建议使用[off('headersReceive')<sup>8+</sup>](#offheadersreceive8)替代。
 >
 >2. 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -278,9 +384,9 @@ off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
 httpRequest.off('headerReceive');
 ```
 
-### on\('headersReceive'\)<sup>8+</sup>
+### on('headersReceive')<sup>8+</sup>
 
-on\(type: 'headersReceive', callback: Callback<Object\>\): void
+on(type: 'headersReceive', callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
@@ -301,14 +407,13 @@ httpRequest.on('headersReceive', (header) => {
 });
 ```
 
+### off('headersReceive')<sup>8+</sup>
 
-### off\('headersReceive'\)<sup>8+</sup>
-
-off\(type: 'headersReceive', callback?: Callback<Object\>\): void
+off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+>**说明：**
 >可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -326,9 +431,9 @@ off\(type: 'headersReceive', callback?: Callback<Object\>\): void
 httpRequest.off('headersReceive');
 ```
 
-### once\('headersReceive'\)<sup>8+</sup>
+### once('headersReceive')<sup>8+</sup>
 
-once\(type: 'headersReceive', callback: Callback<Object\>\): void
+once(type: 'headersReceive', callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，但是只触发一次。一旦触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
@@ -353,38 +458,42 @@ httpRequest.once('headersReceive', (header) => {
 
 发起请求可选参数的类型和取值范围。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名         | 类型                                          | 必填 | 说明                                                         |
+| 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
-| header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
-| readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
-| connectTimeout | number                                        | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型。如果设置了此参数，系统将优先返回指定的类型。 |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
+| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围\[1,1000]，默认是1。                           |
+| header                       | Object                          | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
+| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 
 ## RequestMethod
 
 HTTP 请求方法。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称    | 值      | 说明                |
 | :------ | ------- | :------------------ |
-| OPTIONS | OPTIONS | HTTP 请求 OPTIONS。 |
-| GET     | GET     | HTTP 请求 GET。     |
-| HEAD    | HEAD    | HTTP 请求 HEAD。    |
-| POST    | POST    | HTTP 请求 POST。    |
-| PUT     | PUT     | HTTP 请求 PUT。     |
-| DELETE  | DELETE  | HTTP 请求 DELETE。  |
-| TRACE   | TRACE   | HTTP 请求 TRACE。   |
-| CONNECT | CONNECT | HTTP 请求 CONNECT。 |
+| OPTIONS | "OPTIONS" | HTTP 请求 OPTIONS。 |
+| GET     | "GET"     | HTTP 请求 GET。     |
+| HEAD    | "HEAD"    | HTTP 请求 HEAD。    |
+| POST    | "POST"    | HTTP 请求 POST。    |
+| PUT     | "PUT"     | HTTP 请求 PUT。     |
+| DELETE  | "DELETE"  | HTTP 请求 DELETE。  |
+| TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
+| CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
 ## ResponseCode
 
 发起请求返回的响应码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称              | 值   | 说明                                                         |
 | ----------------- | ---- | ------------------------------------------------------------ |
@@ -428,23 +537,165 @@ HTTP 请求方法。
 
 request方法回调函数的返回值类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
-| 参数名               | 类型                                         | 必填 | 说明                                                         |
+| 名称               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
+| resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
-| cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
-## Response常用错误码
+## http.createHttpResponseCache<sup>9+</sup>
 
-| 错误码 | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| -1     | 参数错误。                                                   |
-| 3      | URL格式错误。                                                |
-| 4      | 构建时无法找到内置的请求功能、协议或选项。                   |
-| 5      | 无法解析代理。                                               |
-| 6      | 无法解析主机。                                               |
-| 7      | 无法连接代理或主机。                                         |
+createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
+创建一个默认的对象来存储HTTP访问请求的响应。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| cacheSize | number | 否 | 缓存大小最大为10\*1024\*1024（10MB），默认最大。 |
+
+**返回值：**
+
+| 类型        | 说明                                                         |
+| :---------- | :----------------------------------------------------------- |
+| [HttpResponseCache](#httpresponsecache9) | 返回一个存储HTTP访问请求响应的对象。 |
+
+**示例：**
+
+```js
+import http from '@ohos.net.http';
+let httpResponseCache = http.createHttpResponseCache();
+```
+
+## HttpResponseCache<sup>9+</sup>
+
+存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
+
+### flush<sup>9+</sup>
+
+flush(callback: AsyncCallback\<void\>): void
+
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数返回写入结果。 |
+
+**示例：**
+
+```js
+httpResponseCache.flush(err => {
+  if (err) {
+    console.info('flush fail');
+    return;
+  }
+  console.info('flush success');
+});
+```
+
+### flush<sup>9+</sup>
+
+flush(): Promise\<void\>
+
+将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void\> | 以Promise形式返回写入结果。 |
+
+**示例：**
+
+```js
+httpResponseCache.flush().then(() => {
+  console.info('flush success');
+}).catch(err => {
+  console.info('flush fail');
+});
+```
+
+### delete<sup>9+</sup>
+
+delete(callback: AsyncCallback\<void\>): void
+
+禁用缓存并删除其中的数据，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数返回删除结果。|
+
+**示例：**
+
+```js
+httpResponseCache.delete(err => {
+  if (err) {
+    console.info('delete fail');
+    return;
+  }
+  console.info('delete success');
+});
+```
+### delete<sup>9+</sup>
+
+delete(): Promise\<void\>
+
+禁用缓存并删除其中的数据，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void\> | 以Promise形式返回删除结果。 |
+
+**示例：**
+
+```js
+httpResponseCache.delete().then(() => {
+  console.info('delete success');
+}).catch(err => {
+  console.info('delete fail');
+});
+```
+
+## HttpDataType<sup>9+</sup>
+
+http的数据类型。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称 | 值 | 说明     |
+| ------------------  | -- | ----------- |
+| STRING              | 0 | 字符串类型。 |
+| OBJECT              | 1 | 对象类型。    |
+| ARRAY_BUFFER        | 2 | 二进制数组类型。|
+
+## HttpProtocol<sup>9+</sup>
+
+http协议版本。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称  | 说明     |
+| :-------- | :----------- |
+| HTTP1_1   |  协议http1.1  |
+| HTTP2     |  协议http2    |

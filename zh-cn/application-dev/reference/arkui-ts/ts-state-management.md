@@ -1,8 +1,10 @@
-# 状态管理
+# 应用级变量的状态管理
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态，其中Ability数据存储从API version9开始支持。
 
-> 说明：本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+> 本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## AppStorage
 
@@ -14,18 +16,18 @@ Link(propName: string): any
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | :--- | :--------------------- |
-| propName | string | 是   | 要双向绑定的属性名称。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要双向绑定的属性名称。 |
 
 **返回值：**
 
-| 类型  | 描述                                                         |
-| ----- | ------------------------------------------------------------ |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
 | @Link | 在具有给定键的数据，则返回到此属性的双向数据绑定，该双向绑定意味着变量或者组件对数据的更改将同步到AppStorage，通过AppStorage对数据的修改将同步到变量或者组件。 |
 
 ```ts
-let simple = AppStorage.Link('simpleProp');
+let simple = AppStorage.Link('simpleProp')
 ```
 
 ### SetAndLink
@@ -36,19 +38,19 @@ SetAndLink\<T>(propName: string, defaultValue: T): SubscribedAbstractProperty\<T
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述             |
-| ------------ | ------ | :--- | -------------------- |
-| propName     | string | 是   | 要进行创建的key值。  |
-| defaultValue | T      | 是   | 要进行设置的默认值。 |
+| 参数名          | 类型     | 必填   | 参数描述        |
+| ------------ | ------ | ---- | ----------- |
+| propName     | string | 是    | 要进行创建的key值。 |
+| defaultValue | T      | 是    | 要进行设置的默认值。  |
 
 **返回值：**
 
-| 类型  | 描述                                                         |
-| ----- | ------------------------------------------------------------ |
-| @Link | 与Link接口类似，如果当前的key保存于LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
+| @Link | 与Link接口类似，如果当前的key保存于AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
 
 ```ts
-let simple = AppStorage.SetAndLink('simpleProp',121);
+let simple = AppStorage.SetAndLink('simpleProp', 121)
 ```
 
 ### Prop
@@ -59,41 +61,41 @@ Prop(propName: string): any
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述            |
-| -------- | ------ | :--: | ------------------- |
-| propName | string |  是  | 要进行创建的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要进行创建的key值。 |
 
 **返回值：**
 
-| 类型  | 描述                                                         |
-| ----- | ------------------------------------------------------------ |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
 | @Prop | 如果存在具有给定键的属性，则返回此属性的单向数据绑定。该单向绑定意味着只能通过AppStorage将属性的更改同步到变量或者组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态属性，如果具有此键的属性不存在则返回undefined。 |
 
 ```ts
-let simple = AppStorage.Prop('simpleProp');
+let simple = AppStorage.Prop('simpleProp')
 ```
 
 ### SetAndProp
 
-SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>;
+SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>
 
 与Prop接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Prop返回。
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                    |
-| ------------ | ------ | :--: | --------------------------- |
-| propName     | string |  是  | 要保存的的键值对中的key值。 |
-| defaultValue | S      |  是  | 创建的默认值。              |
+| 参数名          | 类型     | 必填   | 参数描述            |
+| ------------ | ------ | ---- | --------------- |
+| propName     | string | 是    | 要保存的的键值对中的key值。 |
+| defaultValue | S      | 是    | 创建的默认值。         |
 
 **返回值：**
 
-| 类型  | 描述                                                         |
-| ----- | ------------------------------------------------------------ |
-| @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
+| @Prop | 如果当前的key保存与AppStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
 ```ts
-let simple = AppStorage.SetAndProp('simpleProp',121);
+let simple = AppStorage.SetAndProp('simpleProp', 121)
 ```
 
 ### Has
@@ -104,18 +106,18 @@ Has(propName: string): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述       |
-| -------- | ------ | :--- | -------------- |
-| propName | string | 是   | 属性的属性值。 |
+| 参数名      | 类型     | 必填   | 参数描述    |
+| -------- | ------ | ---- | ------- |
+| propName | string | 是    | 属性的属性值。 |
 
 **返回值：**
 
-| 类型    | 描述                       |
-| ------- | -------------------------- |
+| 类型      | 描述            |
+| ------- | ------------- |
 | boolean | 返回属性的属性值是否存在。 |
 
 ```ts
-let simple = AppStorage.Has('simpleProp');
+let simple = AppStorage.Has('simpleProp')
 ```
 
 ### Get
@@ -126,64 +128,64 @@ Get\<T>(propName: string): T | undefined
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述            |
-| -------- | ------ | ---- | ------------------- |
-| propName | string | 是   | 要获取对应的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要获取对应的key值。 |
 
 **返回值：**
 
-| 类型               | 描述                       |
-| ------------------ | -------------------------- |
-| boolean或undefined | 返回属性的属性值是否存在。 |
+| 类型                | 描述            |
+| ----------------- | ------------- |
+| T或undefined | 属性存在返回属性值，属性不存在返回undefined。 |
 
 ```ts
-let simple = AppStorage.Get('simpleProp');
+let simple = AppStorage.Get('simpleProp')
 ```
 
 ### Set
 
-Set<T>(propName: string, newValue: T): boolean
+Set\<T>(propName: string, newValue: T): boolean
 
 对已保存的key值，替换其value值。
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述          |
-| -------- | ------ | :--- | ----------------- |
-| propName | string | 是   | 要设置的key值。   |
-| newValue | T      | 是   | 要设置的value值。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要设置的key值。   |
+| newValue | T      | 是    | 要设置的value值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                  |
-| ------- | ----------------------------------------------------- |
+| 类型      | 描述                                  |
+| ------- | ----------------------------------- |
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
 ```ts
-let simple = AppStorage.Set('simpleProp');
+let simple = AppStorage.Set('simpleProp', 121)
 ```
 
 ### SetOrCreate
 
-SetOrCreate<T>(propName: string, newValue: T): void
+SetOrCreate\<T>(propName: string, newValue: T): void
 
 创建或更新setOrCreate内部的值。
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                  |
-| -------- | ------ | :--- | ------------------------- |
-| propName | string | 是   | 要更新或者创建的key值。   |
-| newValue | T      | 是   | 要更新或者创建的value值。 |
+| 参数名      | 类型     | 必填   | 参数描述            |
+| -------- | ------ | ---- | --------------- |
+| propName | string | 是    | 要更新或者创建的key值。   |
+| newValue | T      | 是    | 要更新或者创建的value值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
+| 类型      | 描述                                       |
+| ------- | ---------------------------------------- |
+| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在AppStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
 
 ```ts
-let simple = AppStorage.SetOrCreate('simpleProp',121);
+let simple = AppStorage.SetOrCreate('simpleProp', 121)
 ```
 
 ### Delete
@@ -194,18 +196,18 @@ Delete(propName: string): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述              |
-| -------- | ------ | :--- | --------------------- |
-| propName | string | 是   | 要删除的属性的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述         |
+| -------- | ------ | ---- | ------------ |
+| propName | string | 是    | 要删除的属性的key值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
+| 类型      | 描述                                       |
+| ------- | ---------------------------------------- |
 | boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
 
 ```ts
-let simple = AppStorage.Delete('simpleProp');
+let simple = AppStorage.Delete('simpleProp')
 ```
 
 ### keys
@@ -216,12 +218,12 @@ keys(): IterableIterator\<string>
 
 **返回值：**
 
-| 类型           | 描述                         |
-| -------------- | ---------------------------- |
+| 类型             | 描述             |
+| -------------- | -------------- |
 | array\<string> | 返回包含所有键的字符串数组。 |
 
 ```ts
-let simple = AppStorage.Keys();
+let simple = AppStorage.Keys()
 ```
 
 ### staticClear
@@ -230,14 +232,32 @@ staticClear(): boolean
 
 删除所有的属性。
 
+从API version 9开始废弃，推荐使用[Clear](#clear)。
+
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
+| 类型      | 描述                                |
+| ------- | --------------------------------- |
 | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
 
 ```ts
-let simple = AppStorage.staticClear();
+let simple = AppStorage.staticClear()
+```
+
+### Clear<sup>9+</sup>
+
+Clear(): boolean
+
+删除所有的属性。
+
+**返回值：**
+
+| 类型      | 描述                                |
+| ------- | --------------------------------- |
+| boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
+
+```typescript
+let simple = AppStorage.Clear()
 ```
 
 ### IsMutable
@@ -248,18 +268,18 @@ IsMutable(propName: string): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述              |
-| -------- | ------ | :--- | --------------------- |
-| propName | string | 是   | 要查询的属性的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述         |
+| -------- | ------ | :--- | ------------ |
+| propName | string | 是    | 要查询的属性的key值。 |
 
 **返回值：**
 
-| 类型    | 描述                                 |
-| ------- | ------------------------------------ |
+| 类型      | 描述                 |
+| ------- | ------------------ |
 | boolean | 返回此属性是否存在并且是否可以改变。 |
 
 ```ts
-let simple = AppStorage.IsMutable();
+let simple = AppStorage.IsMutable('simpleProp')
 ```
 
 ### Size
@@ -270,12 +290,12 @@ Size(): number
 
 **返回值：**
 
-| 类型   | 描述               |
-| ------ | ------------------ |
+| 类型     | 描述        |
+| ------ | --------- |
 | number | 返回键值对的数量。 |
 
 ```ts
-let simple = AppStorage.Size();
+let simple = AppStorage.Size()
 ```
 
 ## LocalStorage<sup>9+</sup>
@@ -288,12 +308,12 @@ constructor(initializingProperties?: Object)
 
 **参数：**
 
-| 参数名                 | 类型   | 必填 | 参数描述                                                     |
-| ---------------------- | ------ | ---- | ------------------------------------------------------------ |
-| initializingProperties | Object | 否   | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
+| 参数名                    | 类型     | 必填   | 参数描述                                     |
+| ---------------------- | ------ | ---- | ---------------------------------------- |
+| initializingProperties | Object | 否    | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
 
 ```ts
-this.storage = new LocalStorage();
+let storage = new LocalStorage()
 ```
 
 ### GetShared<sup>9+</sup>
@@ -306,12 +326,12 @@ static GetShared(): LocalStorage
 
 **返回值：**
 
-| 类型                          | 描述                   |
-| ----------------------------- | ---------------------- |
+| 类型                            | 描述                |
+| ----------------------------- | ----------------- |
 | [LocalStorage](#localstorage) | 返回LocalStorage对象。 |
 
 ```ts
-let storage = LocalStorage.GetShared();
+let storage = LocalStorage.GetShared()
 ```
 
 ### has<sup>9+</sup>
@@ -322,19 +342,19 @@ has(propName: string): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述       |
-| -------- | ------ | :--- | -------------- |
-| propName | string | 是   | 属性的属性值。 |
+| 参数名      | 类型     | 必填   | 参数描述    |
+| -------- | ------ | ---- | ------- |
+| propName | string | 是    | 属性的属性值。 |
 
 **返回值：**
 
-| 类型    | 描述                       |
-| ------- | -------------------------- |
+| 类型      | 描述            |
+| ------- | ------------- |
 | boolean | 返回属性的属性值是否存在。 |
 
 ```ts
-this.storage = new LocalStorage();
-this.storage.has("storageSimpleProp");
+let storage = new LocalStorage()
+storage.has('storageSimpleProp')
 ```
 
 ### get<sup>9+</sup>
@@ -345,19 +365,19 @@ get\<T>(propName: string): T
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述            |
-| -------- | ------ | :--- | ------------------- |
-| propName | string | 是   | 要获取对应的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要获取对应的key值。 |
 
 **返回值：**
 
-| 类型           | 描述                                                    |
-| -------------- | ------------------------------------------------------- |
+| 类型             | 描述                                       |
+| -------------- | ---------------------------------------- |
 | T \| undefined | 当keyvalue存在时，返回keyvalue值。不存在返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage();
-let simpleValue = this.storage.get("storageSimpleProp");
+let storage = new LocalStorage()
+let simpleValue = storage.get('storageSimpleProp')
 ```
 
 ### set<sup>9+</sup>
@@ -368,20 +388,20 @@ set\<T>(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述          |
-| -------- | ------ | :--- | ----------------- |
-| propName | string | 是   | 要设置的key值。   |
-| newValue | T      | 是   | 要设置的value值。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要设置的key值。   |
+| newValue | T      | 是    | 要设置的value值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                  |
-| ------- | ----------------------------------------------------- |
+| 类型      | 描述                                  |
+| ------- | ----------------------------------- |
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
 ```ts
-this.storage = new LocalStorage();
-this.storage.set("storageSimpleProp",121);
+let storage = new LocalStorage()
+storage.set('storageSimpleProp', 121)
 ```
 
 ### setOrCreate<sup>9+</sup>
@@ -392,20 +412,20 @@ setOrCreate\<T>(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                |
-| -------- | ------ | :--- | ----------------------- |
-| propName | string | 是   | 要更新或创建的key值。   |
-| newValue | T      | 是   | 要更新或创建的value值。 |
+| 参数名      | 类型     | 必填   | 参数描述           |
+| -------- | ------ | :--- | -------------- |
+| propName | string | 是    | 要更新或创建的key值。   |
+| newValue | T      | 是    | 要更新或创建的value值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
+| 类型      | 描述                                       |
+| ------- | ---------------------------------------- |
+| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型，不允许undefined 或 null 。 |
 
 ```ts
-this.storage = new LocalStorage();
-this.storage.setOrCreate("storageSimpleProp",121);
+let storage = new LocalStorage()
+storage.setOrCreate('storageSimpleProp', 121)
 ```
 
 ### link<sup>9+</sup>
@@ -416,19 +436,19 @@ link\<T>(propName: string): T
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述               |
-| -------- | ------ | :--- | ---------------------- |
-| propName | string | 是   | 要双向绑定的属性名称。 |
+| 参数名      | 类型     | 必填   | 参数描述        |
+| -------- | ------ | ---- | ----------- |
+| propName | string | 是    | 要双向绑定的属性名称。 |
 
 **返回值：**
 
-| 类型 | 描述                                                         |
-| ---- | ------------------------------------------------------------ |
+| 类型   | 描述                                       |
+| ---- | ---------------------------------------- |
 | T    | 如果存在具有给定键的属性，返回到此属性的双向绑定，该双向绑定意味着变量或者组件对数据的更改将同步到LocalStorage，然后通过LocalStorage实例同步到任何变量或组件。如果不存在给定键的属性，返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage();
-let localStorage = this.storage.link("storageSimpleProp");
+let storage = new LocalStorage()
+let localStorage = storage.link('storageSimpleProp')
 ```
 
 ### setAndLink<sup>9+</sup>
@@ -439,20 +459,20 @@ setAndLink\<T>(propName: string, defaultValue: T): T
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述             |
-| ------------ | ------ | :--- | -------------------- |
-| propName     | string | 是   | 要进行创建的key值。  |
-| defaultValue | T      | 是   | 要进行设置的默认值。 |
+| 参数名          | 类型     | 必填   | 参数描述        |
+| ------------ | ------ | ---- | ----------- |
+| propName     | string | 是    | 要进行创建的key值。 |
+| defaultValue | T      | 是    | 要进行设置的默认值。  |
 
 **返回值：**
 
-| 类型                                 | 描述                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
 | @Link | 与Link接口类似，如果当前的key保存于LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
 
 ```ts
-this.storage = new LocalStorage();
-let localStorage = this.storage.setAndLink("storageSimpleProp",121);
+let storage = new LocalStorage()
+let localStorage = storage.setAndLink('storageSimpleProp', 121)
 ```
 
 ### prop<sup>9+</sup>
@@ -463,19 +483,19 @@ prop\<T>(propName: string): T
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                |
-| -------- | ------ | :--- | ----------------------- |
-| propName | string | 是   | 要单向数据绑定的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述          |
+| -------- | ------ | ---- | ------------- |
+| propName | string | 是    | 要单向数据绑定的key值。 |
 
 **返回值：**
 
-| 类型                                 | 描述                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
 | @Prop | 如果存在具有给定键的属性，返回此属性的单向数据绑定。该单向绑定意味着只能通过LocalStorage将属性的更改同步到变量或组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态变量。如果此键的属性不存在则返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage();
-let localStorage = this.storage.prop("storageSimpleProp");
+let storage = new LocalStorage()
+let localStorage = storage.prop('storageSimpleProp')
 ```
 
 ### setAndProp<sup>9+</sup>
@@ -486,20 +506,20 @@ setAndProp\<T>(propName: string, defaultValue: T): T
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                  |
-| ------------ | ------ | :--- | ------------------------- |
-| propName     | string | 是   | 要保存的键值对中的key值。 |
-| defaultValue | T      | 是   | 创建的默认值。            |
+| 参数名          | 类型     | 必填   | 参数描述           |
+| ------------ | ------ | ---- | -------------- |
+| propName     | string | 是    | 要保存的键值对中的key值。 |
+| defaultValue | T      | 是    | 创建的默认值。        |
 
 **返回值：**
 
-| 类型                                 | 描述                                                         |
-| ------------------------------------ | ------------------------------------------------------------ |
+| 类型    | 描述                                       |
+| ----- | ---------------------------------------- |
 | @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
 ```ts
-this.storage = new LocalStorage();
-let localStorage = this.storage.setAndProp("storageSimpleProp",121);
+let storage = new LocalStorage()
+let localStorage = storage.setAndProp('storageSimpleProp', 121)
 ```
 
 ### delete<sup>9+</sup>
@@ -510,19 +530,19 @@ delete(propName: string): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述              |
-| -------- | ------ | :--- | --------------------- |
-| propName | string | 是   | 要删除的属性的key值。 |
+| 参数名      | 类型     | 必填   | 参数描述         |
+| -------- | ------ | :--- | ------------ |
+| propName | string | 是    | 要删除的属性的key值。 |
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
+| 类型      | 描述                                       |
+| ------- | ---------------------------------------- |
+| boolean | 删除key指定的键值对。存在且删除成功，返回true。不存在、删除失败或有状态变量依旧引用propName，返回false。 |
 
 ```ts
-this.storage = new LocalStorage();
-this.storage.delete("storageSimpleProp");
+let storage = new LocalStorage()
+storage.delete('storageSimpleProp')
 ```
 
 ### keys<sup>9+</sup>
@@ -533,13 +553,13 @@ keys(): IterableIterator\<string>
 
 **返回值：**
 
-| 类型           | 描述                         |
-| -------------- | ---------------------------- |
-| array\<string> | 返回包含所有键的字符串数组。 |
+| 类型             | 描述                  |
+| -------------- | ------------------- |
+| array\<string> | 返回包含所有键不可序列化的字符串数组。 |
 
 ```ts
-this.storage = new LocalStorage();
-let simple = this.storage.keys();
+let storage = new LocalStorage()
+let simple = storage.keys()
 ```
 
 ### size<sup>9+</sup>
@@ -550,13 +570,13 @@ size(): number
 
 **返回值：**
 
-| 类型   | 描述               |
-| ------ | ------------------ |
+| 类型     | 描述        |
+| ------ | --------- |
 | number | 返回键值对的数量。 |
 
 ```ts
-this.storage = new LocalStorage();
-let simple = this.storage.size();
+let storage = new LocalStorage()
+let simple = storage.size()
 ```
 
 ### Clear<sup>9+</sup>
@@ -567,16 +587,16 @@ clear(): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
+| 类型      | 描述                                |
+| ------- | --------------------------------- |
 | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
 
 ```ts
-this.storage = new LocalStorage();
-let simple = this.storage.clear();
+let storage = new LocalStorage()
+let simple = storage.clear()
 ```
 
-## persistentstorage
+## PersistentStorage
 
 ### constructor
 
@@ -586,30 +606,30 @@ constructor(appStorage: AppStorage, storage: Storage)
 
 **参数：**
 
-| 参数名     | 类型       | 必填 | 参数描述                         |
-| ---------- | ---------- | :--- | -------------------------------- |
-| appStorage | AppStorage | 是   | 保存所有属性及属性值的单例对象。 |
-| storage    | Storage    | 是   | Storage实例对象。                |
+| 参数名        | 类型         | 必填   | 参数描述             |
+| ---------- | ---------- | ---- | ---------------- |
+| appStorage | AppStorage | 是    | 保存所有属性及属性值的单例对象。 |
+| storage    | Storage    | 是    | Storage实例对象。     |
 
 ```ts
-this.persistentstorage = new PersistentStorage(AppStorage,Storage);
+let persistentstorage = new PersistentStorage(AppStorage,Storage)
 ```
 
 ### PersistProp
 
-PersistProp(key:string,defaultValue:T):void
+PersistProp(key:string,defaultValue:T): void
 
 关联命名的属性再AppStorage变为持久化数据。
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                |
-| ------------ | ------ | :--- | ----------------------- |
-| key          | string | 是   | 要关联的属性的key值。   |
-| defaultValue | T      | 是   | 要关联的属性的value值。 |
+| 参数名          | 类型     | 必填   | 参数描述           |
+| ------------ | ------ | ---- | -------------- |
+| key          | string | 是    | 要关联的属性的key值。   |
+| defaultValue | T      | 是    | 要关联的属性的value值。 |
 
 ```ts
-PersistentStorage.PersistProp("highScore", "0");
+PersistentStorage.PersistProp('highScore', '0')
 ```
 
 ### DeleteProp
@@ -620,44 +640,44 @@ DeleteProp(key: string): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 参数描述              |
-| ------ | ------ | :--- | --------------------- |
-| key    | string | 是   | 要取消的属性的key值。 |
+| 参数名  | 类型     | 必填   | 参数描述         |
+| ---- | ------ | ---- | ------------ |
+| key  | string | 是    | 要取消的属性的key值。 |
 
 ```ts
-PersistentStorage.DeleteProp("highScore");
+PersistentStorage.DeleteProp('highScore')
 ```
 
 ### PersistProps
 
-PersistProps(properties: {key: string, defaultValue: any}[]): void;
+PersistProps(properties: {key: string, defaultValue: any}[]): void
 
 关联多个命名的属性绑定。
 
 **参数：**
 
-| 参数名 | 类型                               | 必填 | 参数描述           |
-| ------ | ---------------------------------- | :--: | ------------------ |
-| key    | {key: string, defaultValue: any}[] |  是  | 要关联的属性数组。 |
+| 参数名  | 类型                                 | 必填   | 参数描述      |
+| ---- | ---------------------------------- | ---- | --------- |
+| key  | {key: string, defaultValue: any}[] | 是    | 要关联的属性数组。 |
 
 ```ts
-PersistentStorage.PersistProps([{"highScore", "0"},{"wightScore","1"}]);
+PersistentStorage.PersistProps([{key: 'highScore', defaultValue: '0'},{key: 'wightScore',defaultValue: '1'}])
 ```
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回所有持久化属性的标记。
 
 **返回值：**
 
-| 类型          | 描述                       |
-| ------------- | -------------------------- |
-| Array<string> | 返回所有持久化属性的标记。 |
+| 类型             | 描述            |
+| -------------- | ------------- |
+| Array\<string> | 返回所有持久化属性的标记。 |
 
 ```ts
-let simple = PersistentStorage.keys();
+let simple = PersistentStorage.Keys()
 ```
 
 > **说明：**
@@ -673,7 +693,7 @@ let simple = PersistentStorage.keys();
 创建一个environment对象。
 
 ```ts
-let simple = new Environment();
+let simple = new Environment()
 ```
 
 ### EnvProp
@@ -684,50 +704,61 @@ EnvProp\<S>(key: string, value: S): boolean
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 参数描述        | 参数描述          |
-| ------ | ------ | :--- | --------------- | ----------------- |
-| key    | string | 是   | 要关联的key值   | 要关联的key值。   |
-| value  | S      | 是   | 要关联的value值 | 要关联的value值。 |
+| 参数名   | 类型     | 必填   | 参数描述       | 参数描述                      |
+| ----- | ------ | ---- | ---------- | ------------------------- |
+| key   | string | 是    | 要关联的key值   | 要关联的key值，支持的范围详见内置环境变量说明。 |
+| value | S      | 是    | 要关联的value值 | 要关联的value值。               |
 
 **返回值：**
 
-| 类型    | 描述                               |
-| ------- | ---------------------------------- |
-| boolean | 返回该属性再AppStorage中是否存在。 |
+| 类型      | 描述                     |
+| ------- | ---------------------- |
+| boolean | 返回该属性在AppStorage中是否存在。 |
+
+**内置环境变量说明：**
+
+| key                  | 类型              | 说明                                       |
+| -------------------- | --------------- | ---------------------------------------- |
+| accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。                             |
+| colorMode            | ColorMode       | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。 |
+| fontScale            | number          | 字体大小比例。                                  |
+| fontWeightScale      | number          | 字重比例。                                    |
+| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。 |
+| languageCode         | string          | 当前系统语言，小写字母，例如zh。                        |
 
 ```ts
-Environment.EnvProp("accessibilityEnabled", "default");
+Environment.EnvProp('accessibilityEnabled', 'default')
 ```
 
 ### EnvProps
 
-EnvProps(props: {key: string;defaultValue: any}[]): void
+EnvProps(props: {key: string, defaultValue: any}[]): void
 
 关联此系统项数组到AppStorage中
 
 **参数：**
 
-| 参数名 | 类型                               | 必填 | 参数描述           | 参数描述           |
-| ------ | ---------------------------------- | :--- | ------------------ | ------------------ |
-| key    | {key: string, defaultValue: any}[] | 是   | 要关联的属性数组。 | 要关联的属性数组。 |
+| 参数名  | 类型                                 | 必填   | 参数描述      | 参数描述      |
+| ---- | ---------------------------------- | ---- | --------- | --------- |
+| key  | {key: string, defaultValue: any}[] | 是    | 要关联的属性数组。 | 要关联的属性数组。 |
 
 ```ts
-Environment.EnvProps([{"accessibilityEnabled", "default"},{"accessibilityUnEnabled","undefault"}]);
+Environment.EnvProps([{key: 'accessibilityEnabled', defaultValue: 'default'},{key: 'accessibilityUnEnabled', defaultValue: 'undefault'}])
 ```
 
 ### Keys
 
-Keys(): Array<string>
+Keys(): Array\<string>
 
 返回关联的系统项。
 
 **返回值：**
 
-| 类型          | 描述                   |
-| ------------- | ---------------------- |
-| Array<string> | 返回关联的系统项数组。 |
+| 类型             | 描述          |
+| -------------- | ----------- |
+| Array\<string> | 返回关联的系统项数组。 |
 
 ```ts
-let simple = Environment.keys();
+let simple = Environment.Keys()
 ```
 

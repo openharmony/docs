@@ -6,18 +6,18 @@
 设备类型分为default（默认设备）、tablet、tv、wearable等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
-   通过命令行查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
+   通过命令行查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统参数介绍](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
    
    ```shell
     # 方法一
-    hdc shell param get "const.build.characteristics"
+    hdc shell param get "const.product.devicetype"
     # 方法二
-    hdc shell cat /etc/param/ohos.para | grep const.build.characteristic
+    hdc shell cat /etc/param/ohos.para | grep const.product.devicetype
    ```
 
 2. 在应用开发过程中查询设备类型。
-   - 通过js接口查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
+   - 通过js接口查询指定系统参数（const.product.devicetype）进而确定设备类型，详见[系统属性](../../reference/apis/js-apis-system-parameter.md)。
      
       ```typescript
       import parameter from '@ohos.systemparameter'
@@ -29,7 +29,7 @@
       
         aboutToAppear() {
           try {
-            this.deviceType = parameter.getSync("const.build.characteristics")
+            this.deviceType = parameter.getSync("const.product.devicetype")
           } catch(e) {
             console.log("getSync unexpected error: " + e)
           }
@@ -71,7 +71,7 @@
 
 ## 如何在不同设备上为Ability配置不同的启动模式
 
-应用由一个或多个Ability组成，Ability支持单实例、多实例和指定实例3种[启动模式](../../ability/stage-ability.md#启动模式)，启动模式可以在[配置文件（module.json5）](../../quick-start/stage-structure.md)中通过launchType字段配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
+应用由一个或多个Ability组成，Ability支持单实例、多实例和指定实例3种[启动模式](../../application-models/uiability-launch-type.md)，启动模式可以在[配置文件（module.json5）](../../quick-start/module-configuration-file.md)中通过launchType字段配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
 
   | 启动模式 | 描述 | 说明 | 
   | -------- | -------- | -------- |
@@ -147,7 +147,7 @@ hdc shell reboot
 
 自适应布局可以保证窗口尺寸在一定范围内变化时，页面的显示是正常的。当窗口尺寸变化较大时，就需要额外借助响应式布局能力（如断点等）调整页面结构以保证显示正常。通常每个断点都需要开发者精心适配以获得最佳的显示效果，考虑到设计及开发成本等实际因素的限制，应用不可能适配从零到正无穷的所有窗口宽度。
 
-不同设备或不同设备状态，系统默认的自由窗口尺寸的调节范围可能不同。开发者可以在[应用配置文件](../../quick-start/stage-structure.md)中限制应用中各个Ability的自由窗口尺寸调节范围，配置文件中影响自由窗口尺寸调节范围的字段如下表所示。
+不同设备或不同设备状态，系统默认的自由窗口尺寸的调节范围可能不同。开发者可以在[应用配置文件](../../quick-start/module-configuration-file.md)中限制应用中各个Ability的自由窗口尺寸调节范围，配置文件中影响自由窗口尺寸调节范围的字段如下表所示。
 
 | 配置文件字段 | 数据类型 | 描述 | 
 | -------- | -------- | -------- |
@@ -179,3 +179,57 @@ hdc shell reboot
   }
 }
 ```
+
+## 如何获取组件的尺寸
+
+实际开发过程中，开发者可能有获取页面中某个组件或某块区域的尺寸的诉求，以便通过手动计算等进行更精确的布局计算及优化。
+
+开发者可以通过[组件区域变化事件](../../reference/arkui-ts/ts-universal-component-area-change-event.md)（即组件显示的尺寸、位置等发生变化时触发的事件）来获取指定组件的尺寸。
+
+如下所示，通过onAreaChange事件获取Row组件（页面中白色区域）的尺寸。
+
+![](figures/onAreaChange.gif)
+
+```
+@Entry
+@Component
+struct OnAreaChangeSample {
+  @State rate: number = 0.8
+  @State info: string = ''
+
+  // 底部滑块，可以通过拖拽滑块改变容器尺寸
+  @Builder slider() {
+    Slider({ value: this.rate * 100, min: 30, max: 80, style: SliderStyle.OutSet })
+      .blockColor(Color.White)
+      .width('60%')
+      .onChange((value: number) => {
+        this.rate = value / 100;
+      })
+      .position({ x: '20%', y: '80%' })
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Text(this.info).fontSize(20).lineHeight(22)
+        }
+        .borderRadius(12)
+        .padding(24)
+        .backgroundColor('#FFFFFF')
+        .width(this.rate * 100 + '%')
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          this.info = JSON.stringify(newValue)
+        })
+      }
+
+      this.slider()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+

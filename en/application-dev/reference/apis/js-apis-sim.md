@@ -1,4 +1,4 @@
-# SIM Management
+# @ohos.telephony.sim (SIM)
 
 The SIM management module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
 
@@ -121,7 +121,7 @@ promise.then(data => {
 
 hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-Checks whether the application (caller) has been granted the operator permission. This API uses an asynchronous callback to return the result. 
+Checks whether the application (caller) has been granted the operator permission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -131,6 +131,18 @@ Checks whether the application (caller) has been granted the operator permission
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -144,7 +156,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
-Checks whether the application (caller) has been granted the carrier permission. This API uses a promise to return the result. 
+Checks whether the application (caller) has been granted the operator permission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -159,6 +171,18 @@ Checks whether the application (caller) has been granted the carrier permission.
 | Type              | Description                                                       |
 | :----------------- | :---------------------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the application (caller) has been granted the carrier permission, and the value **false** indicates the opposite.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -184,7 +208,19 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. which is an ISO country code, for example, **CN** (China).|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -215,6 +251,18 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -231,7 +279,7 @@ promise.then(data => {
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the public land mobile network (PLMN) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the public land mobile network \(PLMN\) ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -241,6 +289,18 @@ Obtains the public land mobile network (PLMN) ID of the SIM card in the specifie
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -271,6 +331,18 @@ Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promi
 | ----------------- | ------------------------------------------------ |
 | Promise\<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -287,7 +359,7 @@ promise.then(data => {
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the service provider name (SPN) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+Obtains the service provider name (SPN) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -297,6 +369,18 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -311,7 +395,7 @@ sim.getSimSpn(0, (err, data) => {
 
 getSimSpn\(slotId: number\): Promise<string\>
 
-Obtains the SPN of the SIM card in the specified slot. This API uses a promise to return the result. 
+Obtains the SPN of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -326,6 +410,18 @@ Obtains the SPN of the SIM card in the specified slot. This API uses a promise t
 | Type             | Description                                     |
 | ----------------- | ----------------------------------------- |
 | Promise\<string\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -343,7 +439,7 @@ promise.then(data => {
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
-Obtains the status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the state of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -353,6 +449,18 @@ Obtains the status of the SIM card in the specified slot. This API uses an async
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[SimState](#simstate)\> | Yes  | Callback used to return the result. For details, see [SimState](#simstate). |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -367,7 +475,7 @@ sim.getSimState(0, (err, data) => {
 
 getSimState\(slotId: number\): Promise<SimState\>
 
-Obtains the status of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the state of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -382,6 +490,18 @@ Obtains the status of the SIM card in the specified slot. This API uses a promis
 | Type                            | Description                                      |
 | -------------------------------- | ------------------------------------------ |
 | Promise\<[SimState](#simstate)\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -408,6 +528,18 @@ Obtains the type of the SIM card in the specified slot. This API uses an asynchr
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -438,6 +570,18 @@ Obtains the type of the SIM card in the specified slot. This API uses a promise 
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<[CardType](#cardtype7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -464,6 +608,18 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 | -------- | --------------------------- | ---- | -------------------------------------- |
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -494,6 +650,18 @@ Checks whether the SIM card in the specified slot is installed. This API uses a 
 | --------------------- | ---------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -509,7 +677,7 @@ promise.then(data => {
 
 getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): void
 
-Obtains account information of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains SIM card account information. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -524,6 +692,20 @@ Obtains account information of the SIM card in the specified slot. This API uses
 | slotId   | number                                              | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -537,7 +719,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
-Obtains account information of the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains SIM card account information. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -556,6 +738,20 @@ Obtains account information of the SIM card in the specified slot. This API uses
 | Type                                        | Description                                      |
 | -------------------------------------------- | ------------------------------------------ |
 | Promise<[IccAccountInfo](#iccaccountinfo7)\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -586,6 +782,19 @@ Obtains the account information list of the active SIM card. This API uses an as
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -612,6 +821,19 @@ Obtains the account information list of the active SIM card. This API uses a pro
 | Type                                                | Description                                          |
 | ---------------------------------------------------- | ---------------------------------------------- |
 | Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -642,6 +864,20 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
 
 **Example**
 
@@ -676,6 +912,20 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **Example**
 
 ```js
@@ -687,9 +937,9 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
-setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
+setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
 Sets a display name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -707,16 +957,29 @@ Sets a display name for the SIM card in the specified slot. This API uses an asy
 | name     | string                    | Yes  | SIM card name.                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let name = 'China Mobile';
+let name = "ShowName";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string\): Promise\<void\>
 
@@ -741,10 +1004,23 @@ Sets a display name for the SIM card in the specified slot. This API uses a prom
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let name = 'China Mobile';
+let name = "ShowName";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
@@ -753,7 +1029,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
@@ -772,6 +1048,19 @@ Obtains the name of the SIM card in the specified slot. This API uses an asynchr
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -781,7 +1070,7 @@ sim.getShowName(0, (err, data) => {
 ```
 
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number): Promise<string\>
 
@@ -805,6 +1094,19 @@ Obtains the name of the SIM card in the specified slot. This API uses a promise 
 | --------------------- | -------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -816,9 +1118,9 @@ promise.then(data => {
 });
 ```
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
-setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
+setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
 Sets a display number for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -836,6 +1138,19 @@ Sets a display number for the SIM card in the specified slot. This API uses an a
 | number   | string                    | Yes  | SIM card number.                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -846,9 +1161,9 @@ sim.setShowNumber(0, number, (err, data) => {
 ```
 
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
-setShowNumber\(slotId: number,number: string\): Promise\<void\>
+setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 Sets a display number for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -871,6 +1186,19 @@ Sets a display number for the SIM card in the specified slot. This API uses a pr
 | -------------- | ------------------------------- |
 | Promise<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -883,9 +1211,9 @@ promise.then(data => {
 });
 ```
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
-getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
+getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the display number of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -902,6 +1230,19 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | slotId   | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -911,7 +1252,7 @@ sim.getShowNumber(0, (err, data) => {
 ```
 
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number): Promise<string\>
 
@@ -935,6 +1276,19 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | --------------------- | --------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -946,11 +1300,11 @@ promise.then(data => {
 });
 ```
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-Activates the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Activates a SIM card in a specified card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -965,6 +1319,19 @@ Activates the SIM card in the specified slot. This API uses an asynchronous call
 | slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -974,7 +1341,7 @@ sim.activateSim(0, (err, data) => {
 ```
 
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number): Promise\<void\>
 
@@ -998,6 +1365,19 @@ Activates the SIM card in the specified slot. This API uses a promise to return 
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1009,11 +1389,11 @@ promise.then(data => {
 });
 ```
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-Deactivates the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Disables the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1028,6 +1408,19 @@ Deactivates the SIM card in the specified slot. This API uses an asynchronous ca
 | slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1037,11 +1430,11 @@ sim.deactivateSim(0, (err, data) => {
 ```
 
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number): Promise\<void\>
 
-Deactivates the SIM card in the specified slot. This API uses a promise to return the result.
+Disables the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1060,6 +1453,19 @@ Deactivates the SIM card in the specified slot. This API uses a promise to retur
 | Type           | Description                           |
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1090,14 +1496,28 @@ Sets the lock status of the SIM card in the specified slot. This API uses an asy
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                                                  |
-| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
+| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- lockType: [LockType](#locktype8)<br>- password: string<br>- state: [LockState](#lockstate8) |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 sim.setLockState(0, lockInfo, (err, data) => {
@@ -1123,7 +1543,7 @@ Sets the lock status of the SIM card in the specified slot. This API uses a prom
 | Name | Type                  | Mandatory| Description                                                        |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
+| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>- lockType: [LockType](#locktype8)<br>- password: string<br>- state: [LockState](#lockstate8) |
 
 **Return value**
 
@@ -1131,12 +1551,26 @@ Sets the lock status of the SIM card in the specified slot. This API uses a prom
 | ---------------------------------------------------- | -------------------------------------------- |
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 let promise = sim.setLockState(0, lockInfo);
@@ -1155,6 +1589,8 @@ Obtains the lock status of the SIM card in the specified slot. This API uses an 
 
 **System API**: This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -1164,6 +1600,20 @@ Obtains the lock status of the SIM card in the specified slot. This API uses an 
 | slotId   | number                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
 | callback | AsyncCallback\<[LockState](#lockstate8)\> | Yes  | Callback used to return the result.                             |
 | options  | [LockType](#locktype8)                    | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN 2 lock|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -1182,6 +1632,8 @@ Obtains the lock status of the SIM card in the specified slot. This API uses a p
 
 **System API**: This is a system API.
 
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -1196,6 +1648,20 @@ Obtains the lock status of the SIM card in the specified slot. This API uses a p
 | Type                              | Description                                        |
 | ---------------------------------- | -------------------------------------------- |
 | Promise<[LockState](#lockstate8)\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -1228,6 +1694,20 @@ Changes the PIN of the SIM card in the specified slot. This API uses an asynchro
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                            |
 | newPin   | string                                                      | Yes  | New PIN.                              |
 | oldPin   | string                                                      | Yes  | Old PIN.                              |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -1264,6 +1744,20 @@ Changes the PIN of the SIM card in the specified slot. This API uses a promise t
 | ---------------------------------------------------- | --------------------------------------------- |
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1295,6 +1789,20 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses an asynchrono
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                            |
 | newPin2  | string                                                      | Yes  | New PIN.                              |
 | oldPin2  | string                                                      | Yes  | Old PIN.                              |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -1331,6 +1839,20 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 | ---------------------------------------------------- | --------------------------------------------- |
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1342,11 +1864,11 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-Unlocks PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Unlocks the PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1362,6 +1884,20 @@ Unlocks PIN of the SIM card in the specified slot. This API uses an asynchronous
 | pin      | string                                                       | Yes  | PIN of the SIM card.                           |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1372,9 +1908,9 @@ sim.unlockPin(0, pin, (err, data) => {
 ```
 
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
+unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 Unlocks the PIN of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1397,6 +1933,20 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses a promise t
 | ---------------------------------------------------- | -------------------------------------------------- |
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1409,9 +1959,9 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1430,6 +1980,20 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchro
 | puk      | string                                                       | Yes  | PUK of the SIM card.                   |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1441,9 +2005,9 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 ```
 
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
+unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
 Unlocks the PUK of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1467,6 +2031,20 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses a promise t
 | ---------------------------------------------------- | -------------------------------------------------- |
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1480,9 +2058,9 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks PIN 2 of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1500,6 +2078,20 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses an asynchrono
 | pin2     | string                                                       | Yes  | PIN 2 of the SIM card.                           |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1510,9 +2102,9 @@ sim.unlockPin2(0, pin2, (err, data) => {
 ```
 
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
+unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1535,11 +2127,25 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 | ----------------------------------------------------- | -------------------------------------------------- |
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let pin2='1234';
-let promise = sim.unlockPin2(0,pin2);
+let promise = sim.unlockPin2(0, pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1547,7 +2153,7 @@ promise.then(data => {
 });
 ```
 
-## sim.**unlockPuk**2<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
@@ -1568,6 +2174,20 @@ Unlocks PUK 2 of the SIM card in the specified slot. This API uses an asynchrono
 | puk2     | string                                                       | Yes  | PUK 2 of the SIM card.                   |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1579,7 +2199,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 ```
 
 
-## sim.**unlockPuk2**<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
@@ -1604,6 +2224,20 @@ Unlocks PUK 2 of the SIM card in the specified slot. This API uses a promise to 
 | Type                                                | Description                                              |
 | ---------------------------------------------------- | -------------------------------------------------- |
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -1642,7 +2276,7 @@ console.log("Result: "+ sim.getMaxSimCount())
 
 getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the IC card identity (ICCID) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the ICCID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1656,6 +2290,19 @@ Obtains the IC card identity (ICCID) of the SIM card in the specified slot. This
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1690,6 +2337,19 @@ Obtains the ICCID of the SIM card in the specified slot. This API uses a promise
 | ---------------- | ------------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1719,6 +2379,19 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1753,6 +2426,19 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 | ---------------- | ------------------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1782,6 +2468,19 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1816,6 +2515,19 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 | ---------------- | ------------------------------------------------ |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1826,6 +2538,7 @@ promise.then(data => {
     console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
 
 ## sim.setVoiceMailInfo<sup>8+</sup>
 
@@ -1848,10 +2561,24 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 | mailNumber | string               | Yes  | Voice mailbox number.                              |
 | callback   | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1883,6 +2610,20 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 | -------------- | ----------------------- |
 | Promise<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
@@ -1898,7 +2639,7 @@ promise.then(data => {
 
 getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the mobile subscriber ISDN number (MSISDN) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the MSISDN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1912,6 +2653,19 @@ Obtains the mobile subscriber ISDN number (MSISDN) of the SIM card in the specif
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -1946,6 +2700,19 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses a promis
 | ---------------- | -------------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -1975,6 +2742,19 @@ Obtains the group identifier level 1 (GID1) of the SIM card in the specified slo
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2009,6 +2789,19 @@ Obtains the GID1 of the SIM card in the specified slot. This API uses a promise 
 | ---------------- | ------------------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2038,6 +2831,19 @@ Obtains the international mobile subscriber identity (IMSI) of the SIM card in t
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2072,6 +2878,19 @@ Obtains the IMSI of the SIM card in the specified slot. This API uses a promise 
 | ---------------- | ------------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2101,6 +2920,19 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<Array<[OperatorConfig](#operatorconfig8)\>> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2135,6 +2967,19 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 | --------------------------------------------------- | ----------------------------- |
 | Promise<Array<[OperatorConfig](#operatorconfig8)\>> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2163,8 +3008,22 @@ Queries contact numbers of the SIM card in the specified slot. This API uses an 
 | Name  | Type                                                        | Mandatory| Description                                                      |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type     | [ContactType](#contacttype8)                                                  | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
-| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Yes  | Callback used to return the result.                                                |
+| type     | [ContactType](#contacttype8)                                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Yes  | Callback used to return the result.                                         |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -2192,13 +3051,27 @@ Queries contact numbers of the SIM card in the specified slot. This API uses a p
 | Name| Type       | Mandatory| Description                                                      |
 | ------ | ----------- | ---- | ---------------------------------------------------------- |
 | slotId | number      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type   | [ContactType](#contacttype8)  | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
+| type   | [ContactType](#contacttype8)  | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
 
 **Return value**
 
 | Type                                                        | Description                          |
 | ------------------------------------------------------------ | ------------------------------ |
-| Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> |  Promise used to return the result.|
+| Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -2232,13 +3105,26 @@ Adds contact numbers for the SIM card in the specified slot. This API uses an as
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
     pin2: "1234"
 };
 sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
@@ -2271,16 +3157,28 @@ Adds contact numbers for the SIM card in the specified slot. This API uses a pro
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise<void\> |  Promise used to return the result.|
+| Promise<void\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2307,9 +3205,23 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- 1 : GENERAL_CONTACT<br>- 2 : FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -2343,23 +3255,35 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- 1 : GENERAL_CONTACT<br>- 2 : FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise<void\> |  Promise used to return the result.|
+| Promise<void\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
-    number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2386,9 +3310,23 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **Example**
 
@@ -2422,7 +3360,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -2431,14 +3369,27 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 | -------------- | ----------------------------- |
 | Promise<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let diallingNumbersInof = {
     alphaTag: "alpha",
     number: "138xxxxxxxx",
-    recordNumber: 123,
-    pin2: "1234"
+    recordNumber: 123
 };
 let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
@@ -2466,7 +3417,20 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 | -------- | -------------------- | ---- | -------------------------------------- |
 | slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | cmd      | string               | Yes  | Envelope command.                                  |
-| callback | AsyncCallback<void\> | Yes  | Yes                                    |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                    |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2502,6 +3466,19 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 | -------------- | --------------------------- |
 | Promise<void\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -2530,8 +3507,21 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 | Name  | Type                | Mandatory| Description                                  |
 | -------- | -------------------- | ---- | -------------------------------------- |
 | slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| cmd      | string               | Yes  | Command                                  |
+| cmd      | string               | Yes  | Command.                                  |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2559,13 +3549,26 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| cmd    | string | Yes  | Command                                  |
+| cmd    | string | Yes  | Command.                                  |
 
 **Return value**
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
 | Promise<void\> | Promise used to return the result.|
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
@@ -2578,11 +3581,12 @@ promise.then(data => {
 });
 ```
 
+
 ## sim.unlockSimLock<sup>8+</sup>
 
 unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse\>): void
 
-Unlocks the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+Unlocks the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2598,12 +3602,26 @@ Unlocks the SIM card in the specified slot. This API uses an asynchronous callba
 | lockInfo | [PersoLockInfo](#persolockinfo8)                           | Yes  | Personalized lock information.                        |
 | callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                              |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 sim.unlockSimLock(0, persoLockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2615,7 +3633,7 @@ sim.unlockSimLock(0, persoLockInfo, (err, data) => {
 
 unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse\>
 
-Unlocks the SIM card in the specified slot. This API uses a promise to return the result. 
+Unlocks the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2636,12 +3654,26 @@ Unlocks the SIM card in the specified slot. This API uses a promise to return th
 | ---------------------------------------------------- | ------------------------- |
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
 **Example**
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {
@@ -2657,8 +3689,6 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the opkey of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -2666,14 +3696,35 @@ Obtains the opkey of the SIM card in the specified slot. This API uses an asynch
 | Name  | Type                  | Mandatory| Description                                  |
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-sim.getOpKey(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
+try {
+    sim.getOpKey(0, (err, data) => {
+    if (err) {
+      console.log("getOpKey failed, err: " + JSON.stringify(err));
+    } else {
+      console.log('getOpKey successfully, data: ' + JSON.stringify(data));
+    }
+  });
+} catch (err) {
+  console.log("getOpKey err: " + JSON.stringify(err));
+}
 ```
 
 
@@ -2682,8 +3733,6 @@ sim.getOpKey(0, (err, data) => {
 getOpKey(slotId: number): Promise<string\>
 
 Obtains the opkey of the SIM card in the specified slot. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2699,15 +3748,28 @@ Obtains the opkey of the SIM card in the specified slot. This API uses a promise
 | ---------------- | ----------------------------------------- |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let promise = sim.getOpKey(0);
-promise.then(data => {
+try {
+    let data = sim.getOpKey(0);
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
-});
+} catch (error) {
+    console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
+}
 ```
 
 ## sim.getOpName<sup>9+</sup>
@@ -2715,8 +3777,6 @@ promise.then(data => {
 getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the OpName of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2727,12 +3787,33 @@ Obtains the OpName of the SIM card in the specified slot. This API uses an async
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                              |
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-sim.getOpName(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
+try {
+    sim.getOpName(0, (err, data) => {
+    if (err) {
+      console.log("getOpName failed, err: " + JSON.stringify(err));
+    } else {
+      console.log('getOpName successfully, data: ' + JSON.stringify(data));
+    }
+  });
+} catch (err) {
+  console.log("getOpName err: " + JSON.stringify(err));
+}
 ```
 
 
@@ -2741,8 +3822,6 @@ sim.getOpName(0, (err, data) => {
 getOpName(slotId: number): Promise<string\>
 
 Obtains the OpName of the SIM card in the specified slot. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2758,15 +3837,28 @@ Obtains the OpName of the SIM card in the specified slot. This API uses a promis
 | ---------------- | ------------------------------------------ |
 | Promise<string\> | Promise used to return the result.|
 
+**Error codes**
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
-let promise = sim.getOpName(0);
-promise.then(data => {
+try {
+    let data = sim.getOpName(0);
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`getOpName failed, promise: err->${JSON.stringify(err)}`);
-});
+} catch (error) {
+    console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
+}
 ```
 
 ## SimState
@@ -2792,16 +3884,16 @@ Enumerates SIM card types.
 
 | Name| Value| Description|
 | ----- | ----- | ----- |
-|UNKNOWN_CARD | -1 | Unknown|
-|SINGLE_MODE_SIM_CARD | 10 | Single-card (SIM)|
-|SINGLE_MODE_USIM_CARD | 20 | Single-card (USIM)|
-|SINGLE_MODE_RUIM_CARD | 30 | Single-card (RUIM)|
-|DUAL_MODE_CG_CARD | 40 | Dual-card (CDMA+GSM)|
-|CT_NATIONAL_ROAMING_CARD | 41 | China Telecom internal roaming card|
-|CU_DUAL_MODE_CARD | 42 | China Unicom dual-mode card|
-|DUAL_MODE_TELECOM_LTE_CARD | 43 | China Telecom dual-mode LTE card|
-|DUAL_MODE_UG_CARD | 50 | Dual-mode card (UMTS+GSM)|
-|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | Single-card (ISIM)|
+|UNKNOWN_CARD | -1 | Unknown type.|
+|SINGLE_MODE_SIM_CARD | 10 | Single-card (SIM).|
+|SINGLE_MODE_USIM_CARD | 20 | Single-card (USIM).|
+|SINGLE_MODE_RUIM_CARD | 30 | Single-card (RUIM).|
+|DUAL_MODE_CG_CARD | 40 | Dual-card (CDMA+GSM).|
+|CT_NATIONAL_ROAMING_CARD | 41 | China Telecom internal roaming card.|
+|CU_DUAL_MODE_CARD | 42 | China Unicom dual-mode card.|
+|DUAL_MODE_TELECOM_LTE_CARD | 43 | China Telecom dual-mode LTE card.|
+|DUAL_MODE_UG_CARD | 50 | Dual-mode card (UMTS+GSM).|
+|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | Single-card (ISIM).|
 
 ## LockType<sup>8+</sup>
 
@@ -2852,30 +3944,30 @@ Enumerates personalized lock types.
 
 ## LockStatusResponse<sup>7+</sup>
 
-Defines the lock status response.
+Defines the personalized lock information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name           | Type  | Description              |
-| --------------- | ------ | ------------------ |
-| result          | number | Operation result.    |
-| remain?: number | number | Remaining attempts (can be null).|
+| Name           | Type  | Mandatory| Description                 |
+| --------------- | ------ | ---- | --------------------- |
+| result          | number |  Yes | Operation result.     |
+| remain?: number | number |  No | Remaining attempts (can be null).|
 
 ## LockInfo<sup>8+</sup>
 
-Defines the lock information.
+Defines the personalized lock information.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                    | Description  |
-| -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | Lock type.|
-| password | string                   | Password.  |
-| state    | [LockState](#lockstate8) | Lock state.|
+| Name    |           Type          | Mandatory|   Description  |
+| -------- | ------------------------ | ---- | -------- |
+| lockType | [LockType](#locktype8)   |  Yes | Lock type.|
+| password | string                   |  Yes | Password.  |
+| state    | [LockState](#lockstate8) |  Yes | Lock state.|
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2885,10 +3977,10 @@ Defines the personalized lock information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type                            | Description        |
-| -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | Personalized lock type.|
-| password | string                           | Password.        |
+| Name    |               Type              | Mandatory|      Description    |
+| -------- | -------------------------------- | ---- | ------------- |
+| lockType | [PersoLockType](#persolocktype8) |  Yes | Personalized lock type.|
+| password | string                           |  Yes | Password.       |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2898,15 +3990,15 @@ Defines the ICC account information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name      | Type   | Description            |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM card ID.         |
-| slotIndex  | number  | Card slot ID.          |
-| isEsim     | boolean | Whether the SIM card is an eSim card.|
-| isActive   | boolean | Whether the card is activated.    |
-| iccId      | string  | ICCID number.       |
-| showName   | string  | SIM card display name.   |
-| showNumber | string  | SIM card display number.   |
+| Name      | Type   | Mandatory| Description            |
+| ---------- | ------- | ---- | ---------------- |
+| simId      | number  |  Yes | SIM card ID.         |
+| slotIndex  | number  |  Yes | Card slot ID.          |
+| isEsim     | boolean |  Yes | Whether the SIM card is an eSim card.|
+| isActive   | boolean |  Yes | Whether the card is activated.    |
+| iccId      | string  |  Yes | ICCID number.       |
+| showName   | string  |  Yes | SIM card display name.   |
+| showNumber | string  |  Yes | SIM card display number.   |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2916,10 +4008,10 @@ Defines the carrier configuration.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| field | string | Field|
-| value | string | Value  |
+| Name | Type  | Mandatory| Description|
+| ----- | ------ | ---- | ---- |
+| field | string |  Yes | Field.|
+| value | string |  Yes | Value.  |
 
 ## DiallingNumbersInfo<sup>8+</sup>
 
@@ -2929,12 +4021,12 @@ Defines the contact number information.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name        | Type  | Description    |
-| ------------ | ------ | -------- |
-| alphaTag     | string | Alpha tag.    |
-| number       | string | Contact number.    |
-| recordNumber | number | Record number.|
-| pin2         | string | PIN 2.|
+| Name        | Type  | Mandatory|    Description   |
+| ------------ | ------ | ---- | ---------- |
+| alphaTag     | string |  Yes | Tag.    |
+| number       | string |  Yes | Call transfer number.    |
+| recordNumber | number |  Yes | Record number.|
+| pin2         | string |  Yes | PIN 2.|
 
 ## ContactType<sup>8+</sup>
 
@@ -2945,6 +4037,37 @@ Enumerates contact types.
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name           | Value  | Description      |
-| :-------------- | ---- | ---------- |
+| --------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | Common contact number.|
 | FIXED_DIALING   | 2    | Fixed dialing number.  |
+
+## OperatorConfigKey<sup>9+</sup>
+
+Enumerates carrier configuration keys.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+|                             Name                       |                             Value                        |         Description        |
+| ------------------------------------------------------- | ------------------------------------------------------ | -------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | "voice_mail_number_string"                             | Voice mailbox number.      |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | "ims_switch_on_by_default_bool"                        | Fixed dialing number.          |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | "hide_ims_switch_bool"                                 | Whether to hide the IMS switch.   |
+| KEY_VOLTE_SUPPORTED_BOOL                                | "volte_supported_bool"                                 | Whether to support VoLTE. |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | "nr_mode_supported_list_int_array"                     | List of supported NR modes.  |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | "volte_provisioning_supported_bool"                    | Whether to support VoLTE provisioning. |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | "ss_over_ut_supported_bool"                            | Whether SS over UT is supported.  |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | "ims_gba_required_bool"                                | Whether GBA is required for IMS.    |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | "ut_provisioning_supported_bool"                       | Whether to support UT provisioning.    |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | "ims_prefer_for_emergency_bool"                        | IMS preferences for emergency.     |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | "call_waiting_service_class_int"                       | Call waiting service.      |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | "call_transfer_visibility_bool"                        | Call transfer visibility.    |
+| KEY_IMS_CALL_DISCONNECT_REASON_INFO_MAPPING_STRING_ARRAY| "ims_call_disconnect_reason_info_mapping_string_array" | List of IMS call disconnection reasons.|
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | "force_volte_switch_on_bool"                           | Whether to forcibly turn on VoLTE.     |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | "enable_operator_name_cust_bool"                       | Whether to display the carrier name.|
+| KEY_OPERATOR_NAME_CUST_STRING                           | "operator_name_cust_string"                            | Carrier name.        |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | "spn_display_condition_cust_int"                       | SPN display rule.       |
+| KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN name          |
+| KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | PLMN information of the carrier.    |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | Emergency call list.      |

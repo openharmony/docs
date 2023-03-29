@@ -12,15 +12,16 @@ show(options?: TimePickerDialogOptions)
 
 定义时间滑动选择器弹窗并弹出。
 
-- TimePickerDialogOptions参数
+**TimePickerDialogOptions参数：**
 
-  | 参数名 | 参数类型 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- |
-  | selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
-  | useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
-  | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
-  | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
-  | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| selected | Date | 否 | 设置当前选中的时间。<br/>默认值：当前系统时间 |
+| useMilitaryTime | boolean | 否 | 展示时间是否为24小时制，默认为12小时制。<br/>默认值：false |
+| onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 点击弹窗中的“确定”按钮时触发该回调。 |
+| onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
+| onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)) => void | 否 | 滑动弹窗中的选择器使当前选中时间改变时触发该回调。 |
 
 ## 示例
 
@@ -41,13 +42,13 @@ struct TimePickerDialogExample {
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()");
+              console.info("TimePickerDialog:onCancel()")
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
             }
           })
         })
@@ -59,13 +60,13 @@ struct TimePickerDialogExample {
             useMilitaryTime: true,
             onAccept: (value: TimePickerResult) => {
               this.selectTime.setHours(value.hour, value.minute)
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()");
+              console.info("TimePickerDialog:onCancel()")
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
             }
           })
         })

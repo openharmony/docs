@@ -162,7 +162,7 @@ margin-top:30px;
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     direction: 'column',
@@ -179,12 +179,12 @@ export default {
     }
   },
   collapse(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Close ' + e.groupid
     })
   },
   expand(e) {
-    prompt.showToast({
+    promptAction.showToast({
     message: 'Open ' + e.groupid
     })
   }
@@ -314,4 +314,4 @@ export default {
 
 针对list开发，有以下相关实例可供参考：
 
-- [`JsList`：商品列表（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsList)
+- [`JsList`：商品列表（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsList)

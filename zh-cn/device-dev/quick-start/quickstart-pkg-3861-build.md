@@ -9,9 +9,9 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
 ## 前提条件
 
-- 已正确[安装库和工具集](quickstart-pkg-install_package.md)。
+- 已正确[安装库和工具集](quickstart-pkg-install-package.md)。
 
-- 已正确[安装编译工具](quickstart-pkg-install_tool.md)。
+- 已正确[安装编译工具](quickstart-pkg-install-tool.md)。
 
 - 已正确[安装Hi3861特有工具](quickstart-pkg-3861-tool.md)。
 

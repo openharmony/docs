@@ -584,7 +584,7 @@ fillRect(x: number, y: number, width:number, height: number): void
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
 ```
 
@@ -620,7 +620,7 @@ clearRect(x: number, y: number, width:number, height: number): void
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -983,7 +983,7 @@ createPattern(image: Image, repetition: string): Object
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 1000px; height: 1000px;"></canvas>
   </div>
   ```
 
@@ -997,7 +997,7 @@ createPattern(image: Image, repetition: string): Object
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, 20, 20);
+      ctx.fillRect(0, 0, 500, 500);
     }
   }
   ```
@@ -1573,7 +1573,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1581,11 +1581,11 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('drawImage');
+      var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
       img.src = 'common/image/test.jpg';
-      ctx.drawImage(img, 50, 80, 80, 80);
+      ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
   }
   ```
@@ -1681,9 +1681,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
       // Linear gradient: start(50,0) end(300,100)
       var gradient = ctx.createLinearGradient(50,0, 300,100);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);
@@ -1734,9 +1734,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
       // Radial gradient: inner circle(200,200,r:50) outer circle(200,200,r:200)
       var gradient = ctx.createRadialGradient(200,200,50, 200,200,200);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);

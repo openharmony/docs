@@ -1,4 +1,4 @@
-# 矩阵变换
+# @ohos.matrix4 (矩阵变换)
 
 本模块提供矩阵变换功能，可对图形进行平移、旋转和缩放等。
 
@@ -148,8 +148,8 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = Matrix4.identity().translate({x:100})
-  private matrix2 = this.matrix1.copy().scale({x:2})
+  private matrix1 = matrix4.identity().translate({ x: 100 })
+  private matrix2 = this.matrix1.copy().scale({ x: 2 })
 
   build() {
     Column() {
@@ -160,7 +160,7 @@ struct Test {
       Image($r("app.media.bg2"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
         .transform(this.matrix2)
     }
   }
@@ -202,8 +202,8 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:200}).copy()
-  private matrix2 = matrix4.identity().scale({x:2}).copy()
+  private matrix1 = matrix4.identity().translate({ x: 200 }).copy()
+  private matrix2 = matrix4.identity().scale({ x: 2 }).copy()
 
   build() {
     Column() {
@@ -211,13 +211,13 @@ struct Test {
       Image($r("app.media.icon"))
         .width("40%")
         .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
       // 先平移x轴200px，再缩放两倍x轴，得到矩阵变换后的效果图
       Image($r("app.media.icon"))
         .transform(this.matrix1.combine(this.matrix2))
         .width("40%")
       .height(100)
-        .margin({top:50})
+        .margin({ top: 50 })
     }
   }
 }
@@ -245,7 +245,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 ```ts
 import matrix4 from '@ohos.matrix4'
 // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-let matrix1 = matrix4.identity().scale({x:2})
+let matrix1 = matrix4.identity().scale({ x: 2 })
 let matrix2 = matrix1.invert()
 @Entry
 @Component
@@ -298,7 +298,7 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({x:100, y:200, z:30})
+  private matrix1 = matrix4.identity().translate({ x: 100, y: 200, z: 30 })
 
   build() {
     Column() {
@@ -346,7 +346,7 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+  private matrix1 = matrix4.identity().scale({ x:2, y:3, z:4, centerX:50, centerY:50 })
 
   build() {
     Column() { 
@@ -395,14 +395,14 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+  private matrix1 = matrix4.identity().rotate({ x: 1, y: 1, z: 2, angle: 30 })
 
   build() {
     Column() {
       Image($r("app.media.bg1")).transform(this.matrix1)
         .width("40%")
         .height(100)
-    }.width("100%").margin({top:50})
+    }.width("100%").margin({ top: 50 })
   }
 }
 ```
@@ -436,22 +436,35 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
-import prompt from '@system.prompt'
 
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().transformPoint([100, 10])
-  
+  private originPoint: [number, number] = [50, 50]
+  private matrix_1 = matrix4.identity().translate({ x: 150, y: -50 })
+  private transformPoint = this.matrix_1.transformPoint(this.originPoint)
+  private matrix_2 = matrix4.identity().translate({ x: this.transformPoint[0], y: this.transformPoint[1] })
+
   build() {
     Column() {
-     Button("get Point")
-      .onClick(() => {
-       prompt.showToast({message:JSON.stringify(this.matrix1),duration:2000})
-      }).backgroundColor(0x2788D9)
+      Text(`矩阵变换前的坐标：[${this.originPoint}]`)
+        .fontSize(16)
+      Image($r("app.media.image"))
+        .width('600px')
+        .height('300px')
+        .margin({ top: 50 })
+      Text(`矩阵变换后的坐标：[${this.transformPoint}]`)
+        .fontSize(16)
+        .margin({ top: 100 })
+      Image($r("app.media.image"))
+        .width('600px')
+        .height('300px')
+        .margin({ top: 50 })
+        .transform(this.matrix_2)
     }.width("100%").padding(50)
   }
 }
 ```
 
-![zh-cn_image_0000001219864133](figures/zh-cn_image_0000001219864133.gif)
+![zh-cn_image_0000001219864133](figures/zh-cn_image_0000001219864133.PNG)
+

@@ -1,7 +1,6 @@
-# Linear Container ArrayList
+# @ohos.util.ArrayList (Linear Container ArrayList)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **ArrayList** is a linear data structure that is implemented based on arrays. **ArrayList** can dynamically adjust the capacity based on project requirements. It increases the capacity by 50% each time.
@@ -40,6 +39,14 @@ A constructor used to create an **ArrayList** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The ArrayList's constructor cannot be directly invoked. |
+
 **Example**
 
 ```ts
@@ -67,17 +74,26 @@ Adds an element at the end of this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
-  ```ts
-  let arrayList = new ArrayList();
-  let result = arrayList.add("a");
-  let result1 = arrayList.add(1);
-  let b = [1, 2, 3];
-  let result2 = arrayList.add(b);
-  let c = {name: "Dylon", age: "13"};
-  let result3 = arrayList.add(false);
-  ```
+```ts
+let arrayList = new ArrayList();
+let result = arrayList.add("a");
+let result1 = arrayList.add(1);
+let b = [1, 2, 3];
+let result2 = arrayList.add(b);
+let c = {name: "Dylon", age: "13"};
+let result3 = arrayList.add(c);
+let result4 = arrayList.add(false);
+```
 
 ### insert
 
@@ -93,6 +109,15 @@ Inserts an element at the specified position in this container.
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
 | index | number | Yes| Index of the position where the element is to be inserted.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The value of index is out of range. |
 
 **Example**
 
@@ -123,6 +148,14 @@ Checks whether this container has the specified element.
 | -------- | -------- |
 | boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -151,6 +184,14 @@ Obtains the index of the first occurrence of the specified element in this conta
 | Type| Description|
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
 
 **Example**
 
@@ -186,6 +227,14 @@ Obtains the index of the last occurrence of the specified element in this contai
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** if the specified element is not found.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -220,6 +269,15 @@ Removes an element with the specified position from this container.
 | -------- | -------- |
 | T | Element removed.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **Example**
 
 ```ts
@@ -252,6 +310,14 @@ Removes the first occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -278,6 +344,15 @@ Removes from this container all of the elements within a range, including the el
 | fromIndex | number | Yes| Index of the start position.|
 | toIndex | number | Yes| Index of the end position.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeByRange method cannot be bound. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+
 **Example**
 
 ```ts
@@ -287,13 +362,11 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
-arrayList.removeByRange(4, 3);
-arrayList.removeByRange(2, 6);
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -304,7 +377,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -315,6 +388,14 @@ callbackfn
 | index | number | No| Position index of the element that is currently traversed.|
 | arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **replaceAllElements** method.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The replaceAllElements method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -323,17 +404,15 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.replaceAllElements((value: number, index: number)=> {
-  return value = 2 * value;
-});
-arrayList.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+arrayList.replaceAllElements((value) => {
+    // Add the user operation logic based on the actual scenario.
+    return value;
 });
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -344,7 +423,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked for the replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -355,6 +434,14 @@ callbackfn
 | index | number | No| Position index of the element that is currently traversed.|
 | arrlist | ArrayList&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -364,7 +451,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log(`value:${value}`, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -388,6 +475,14 @@ comparator
 | -------- | -------- | -------- | -------- |
 | firstValue | T | Yes| Previous element.|
 | secondValue | T | Yes| Next element.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The sort method cannot be bound. |
 
 **Example**
 
@@ -423,6 +518,15 @@ Obtains elements within a range in this container, including the element at the 
 | -------- | -------- |
 | ArrayList&lt;T&gt; | New **ArrayList** instance obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The subArrayList method cannot be bound. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+
 **Example**
 
 ```ts
@@ -443,6 +547,14 @@ clear(): void
 Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **Example**
 
@@ -470,6 +582,14 @@ Clones this container and returns a copy. The modification to the copy does not 
 | -------- | -------- |
 | ArrayList&lt;T&gt; | New **ArrayList** instance obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -494,6 +614,14 @@ Obtains the capacity of this container.
 | Type| Description|
 | -------- | -------- |
 | number | Capacity obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getCapacity method cannot be bound. |
 
 **Example**
 
@@ -520,6 +648,14 @@ Converts this container into an array.
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -544,6 +680,14 @@ Checks whether this container is empty (contains no element).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -570,6 +714,14 @@ Increases the capacity of this container.
 | -------- | -------- | -------- | -------- |
 | newCapacity | number | Yes| New capacity.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -589,6 +741,14 @@ trimToCurrentLength(): void
 Trims the capacity of this container to its current length.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The trimToCurrentLength method cannot be bound. |
 
 **Example**
 
@@ -615,6 +775,14 @@ Obtains an iterator, each item of which is a JavaScript object.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -626,14 +794,14 @@ arrayList.add(4);
 
 // Method 1:
 for (let item of arrayList) { 
-  console.log(`value:${item}`); 
+    console.log(`value:${item}`); 
 } 
 
 // Method 2:
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(`value:${temp}`);
-  temp = iter.next().value;
+    console.log(`value:${temp}`);
+    temp = iter.next().value;
 }
 ```

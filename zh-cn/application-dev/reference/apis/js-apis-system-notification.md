@@ -1,4 +1,4 @@
-# 通知消息
+# @system.notification (通知消息)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.notification`](js-apis-notification.md)。
@@ -17,22 +17,22 @@ import notification from '@system.notification';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称        | 可读 | 可写 | 类型                                           | 必填 | 描述                      |
-| ----------- | --- | ---- | ---------------------------------------------- | ---- | ------------------------- |
-| bundleName  | 是  | 是  | string                                          | 是   | 单击通知后要重定向到的应用程序的Bundle名。                  |
-| abilityName | 是  | 是  | string                                          | 是   | 单击通知后要重定向到的应用程序的Ability名称。 |
-| uri         | 是  | 是  | string                                          | 否   | 要重定向到的页面的uri。              |
+| 名称        | 类型                                           | 必填 | 说明                      |
+| ----------- | ---------------------------------------------- | ---- | ------------------------- |
+| bundleName  | string                                          | 是   | 单击通知后要重定向到的应用程序的Bundle名。                  |
+| abilityName  | string                                          | 是   | 单击通知后要重定向到的应用程序的Ability名称。 |
+| uri         | string                                          | 否   | 要重定向到的页面的uri。              |
 
 
 ## ShowNotificationOptions
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称          | 可读 | 可写 | 类型                                           | 必填 | 描述                        |
-| ------------- | --- | ---- | ---------------------------------------------- | ---- | ------------------------- |
-| contentTitle  | 是  | 是  | string                                          | 否   | 通知标题。                  |
-| contentText   | 是  | 是  | string                                          | 否   | 通知内容。                  |
-| clickAction   | 是  | 是  | ActionResult                                    | 否   | 通知被点击后触发的行为。     |
+| 名称          | 类型                                           | 必填 | 说明                        |
+| ------------- | ---------------------------------------------- | ---- | ------------------------- |
+| contentTitle  | string                                          | 否   | 通知标题。                  |
+| contentText   | string                                          | 否   | 通知内容。                  |
+| clickAction   | ActionResult                                    | 否   | 通知被点击后触发的行为。     |
 
 
 ## notification.show
@@ -59,9 +59,9 @@ export default {
             clickAction: {
                 bundleName: 'com.example.testapp',
                 abilityName: 'notificationDemo',
-                uri: '/path/to/notification',
-            },
+                uri: '/path/to/notification'
+            }
         });
-    },
+    }
 }
 ```

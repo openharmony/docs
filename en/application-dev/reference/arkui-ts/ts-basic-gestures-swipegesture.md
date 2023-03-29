@@ -16,7 +16,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10.<br>Default value: **1**|
-| direction | SwipeDirection | No| Swipe direction.<br>Default value: **SwipeDirection.All**|
+| direction | [swipeDirection](#swipedirection)| No| Swipe direction.<br>Default value: **SwipeDirection.All**|
 | speed | number | No| Minimum speed of the swipe gesture, in vp/s.<br>Default value: **100**|
 
 ## SwipeDirection
@@ -24,8 +24,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | Name| Description|
 | -------- | -------- |
 | All | All directions.|
-| Horizontal | Horizontal direction.|
-| Vertical | Vertical direction.|
+| Horizontal | Horizontal direction. The gesture event is triggered when the angle between the finger moving direction and the x-axis is less than 45 degrees.|
+| Vertical | Vertical direction. The gesture event is triggered when the angle between the finger moving direction and the y-axis is less than 45 degrees.|
 | None | Swiping disabled.|
 
 
@@ -33,9 +33,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a swipe gesture is recognized.|
+| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a swipe gesture is recognized.|
 
-![en-us_image_0000001231374661](figures/en-us_image_0000001231374661.png)
 ## Example
 
 ```ts
@@ -43,27 +42,31 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle : number = 0
-  @State speed : number = 1
+  @State rotateAngle: number = 0
+  @State speed: number = 1
 
   build() {
     Column() {
-      Text("SwipGesture speed : " + this.speed)
-      Text("SwipGesture angle : " + this.rotateAngle)
-    }
-    .position({x: 80, y: 200})
-    .border({width:2})
-    .width(260).height(260)
-    .rotate({x: 0, y: 0, z: 1, angle: this.rotateAngle})
-    .gesture(
-      SwipeGesture({fingers: 1, direction: SwipeDirection.Vertical})
+      Column() {
+        Text("SwipeGesture speed\n" + this.speed)
+        Text("SwipeGesture angle\n" + this.rotateAngle)
+      }
+      .border({ width: 3 })
+      .width(300)
+      .height(200)
+      .margin(100)
+      .rotate({ angle: this.rotateAngle })
+      // The gesture event is triggered by swiping vertically with one finger.
+      .gesture(
+      SwipeGesture({ direction: SwipeDirection.Vertical })
         .onAction((event: GestureEvent) => {
           this.speed = event.speed
           this.rotateAngle = event.angle
-      })
-    )
+        })
+      )
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001231374559](figures/en-us_image_0000001231374559.gif)
+ ![en-us_image_0000001231374559.png](figures/en-us_image_0000001231374559.png) 

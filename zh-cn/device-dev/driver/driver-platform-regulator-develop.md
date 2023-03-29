@@ -5,42 +5,41 @@
 
 ### 功能简介
 
-Regulator模块用于控制系统中某些设备的电压/电流供应。在嵌入式系统（尤其是手机）中，控制耗电量很重要，直接影响到电池的续航时间。所以，如果系统中某一个模块暂时不需要使用，就可以通过Regulator关闭其电源供应；或者降低提供给该模块的电压、电流大小。
+Regulator模块用于控制系统中各类设备的电压/电流供应。在嵌入式系统（尤其是手机）中，控制耗电量很重要，直接影响到电池的续航时间。所以，如果系统中某一个模块暂时不需要使用，就可以通过Regulator关闭其电源供应；或者降低提供给该模块的电压、电流大小。
 
 ### 运作机制
 
-在HDF框架中，Regulator模块接口适配模式采用统一服务模式，这需要一个设备服务来作为Regulator模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如Regulator可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
+在HDF框架中，Regulator模块接口适配模式采用统一服务模式（如图1），这需要一个设备服务来作为Regulator模块的管理器，统一处理外部访问，这会在配置文件中有所体现。统一服务模式适合于同类型设备对象较多的情况，如Regulator可能同时具备十几个控制器，采用独立服务模式需要配置更多的设备节点，且服务会占据内存资源。
 
 Regulator模块各分层的作用为：
-- 接口层提供打开设备，写入数据，关闭设备接口的能力。
-- 核心层主要提供绑定设备、初始化设备以及释放设备的能力。
-- 适配层实现其他具体的功能。
 
-![](../public_sys-resources/icon-note.gif) 说明：<br>核心层可以调用接口层的函数，也可以通过钩子函数调用适配层函数，从而使得适配层间接的可以调用接口层函数，但是不可逆转接口层调用适配层函数。
+- 接口层：提供打开设备，操作Regulator，关闭设备的能力。
+- 核心层：主要负责服务绑定、初始化以及释放管理器，并提供添加、删除以及获取Regulator设备的能力。
+- 适配层：由驱动适配者实现与硬件相关的具体功能，如设备的初始化等。
 
-**图 1** 统一服务模式结构图
+在统一模式下，所有的控制器都被核心层统一管理，并由核心层统一发布一个服务供接口层，因此这种模式下驱动无需再为每个控制器发布服务。
+
+**图 1** 统一服务模式结构图<a name="fig1"></a>  
 
 ![image1](figures/统一服务模式结构图.png)
 
-
-
 ### 约束与限制
 
-Regulator模块当前仅支持轻量和小型系统内核（LiteOS）。
+Regulator模块当前仅支持小型系统。
 
 ## 开发指导
 
 ### 场景介绍
 
-Regulator模块用于控制系统中某些设备的电压/电流供应。
+Regulator模块用于控制系统中某些设备的电压/电流供应。当驱动开发者需要将Regulator设备适配到OpenHarmony时，需要进行Regulator驱动适配，下文将介绍如何进行Regulator驱动适配。
 
 ### 接口说明
 
-通过以下RegulatorMethod中的函数调用Regulator驱动对应的函数。
+为了保证上层在调用Regulator接口时能够正确的操作硬件，核心层在//drivers/hdf_core/framework/support/platform/include/regulator/regulator_core.h中定义了以下钩子函数。驱动适配者需要在适配层实现这些函数的具体功能，并与这些钩子函数挂接，从而完成接口层与核心层的交互。
 
 RegulatorMethod定义：
 
-```
+```c
 struct RegulatorMethod {
     int32_t (*open)(struct RegulatorNode *node);
     int32_t (*close)(struct RegulatorNode *node);
@@ -56,8 +55,7 @@ struct RegulatorMethod {
 };
 ```
 
-**表 1**  RegulatorMethod 结构体成员的回调函数功能说明
-
+**表 1**  RegulatorMethod 结构体成员的钩子函数功能说明
 
 | 成员函数     | 入参                                                         | 返回值             | 功能             |
 | ------------ | ----------------------------------------------------------- | ----------------- | ---------------- |
@@ -87,23 +85,23 @@ Regulator模块适配包含以下四个步骤：
     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。 
 
     HDF框架会汇总所有加载的驱动的HdfDriverEntry对象入口，形成一个类似数组的段地址空间，方便上层调用。
-    
+
     一般在加载驱动时HDF会先调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
-    
-    ```
+
+    ```c
     struct HdfDriverEntry g_regulatorDriverEntry = {
         .moduleVersion = 1,
-        .moduleName = "virtual_regulator_driver",// 【必要且与HCS文件中里面的moduleName匹配】
+        .moduleName = "virtual_regulator_driver", // 【必要且与HCS文件中里面的moduleName匹配】
         .Init = VirtualRegulatorInit,
         .Release = VirtualRegulatorRelease,
     };
-    // 调用HDF_INIT将驱动入口注册到HDF框架中
+    /* 调用HDF_INIT将驱动入口注册到HDF框架中 */
     HDF_INIT(g_regulatorDriverEntry);
     ```
-    
+
 2. 配置属性文件：
 
-   - 在vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode描述。
+   以Hi3516DV300开发板为例，在//vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode描述。
 
      deviceNode信息与驱动入口注册相关，器件属性值与核心层RegulatorNode成员的默认值或限制范围有密切关系。
 
@@ -118,43 +116,43 @@ Regulator模块适配包含以下四个步骤：
      | serviceName     | 固定为HDF_PLATFORM_REGULATOR_MANAGER                         |
      | deviceMatchAttr | 没有使用，可忽略                                             |
 
-     从第二个节点开始配置具体Regulator控制器信息，此节点并不表示某一路Regulator控制器，而是代表一个资源性质设备，用于描述一类Regulator控制器的信息。本例只有一个Regulator设备，如有多个设备，则需要在device_info文件增加deviceNode信息，以及在regulator\_config文件中增加对应的器件属性。
+     从第二个节点开始配置具体Regulator控制器信息，此节点并不表示某一路Regulator控制器，而是代表一个资源性质设备，用于描述一类Regulator控制器的信息。本例只有一个Regulator设备，如有多个设备，则需要在device_info.hcs文件增加deviceNode信息，以及在regulator\_config文件中增加对应的器件属性。
 
     - device_info.hcs 配置参考
 
-       ```
+       ```c
        root {
-       device_info { 
-         platform :: host {
-           hostName = "platform_host";
-           priority = 50;
-           device_regulator :: device {
-               device0 :: deviceNode {	// 为每一个Regulator控制器配置一个HDF设备节点，存在多个时添加，否则不用。
-                   policy = 1;	        // 2：用户态可见；1：内核态可见；0：不需要发布服务。
-                   priority = 50;	// 驱动启动优先级
-                   permission = 0644;	// 驱动创建设备节点权限
-                   /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。 */
-                   moduleName = "HDF_PLATFORM_REGULATOR_MANAGER";		
-                   serviceName = "HDF_PLATFORM_REGULATOR_MANAGER";		//【必要且唯一】驱动对外发布服务的名称
-                   /* 【必要】用于配置控制器私有数据，要与regulator_config.hcs中对应控制器保持一致，具体的控制器信息在regulator_config.hcs中。 */
-                   deviceMatchAttr = "hdf_platform_regulator_manager";
-               }
-               device1 :: deviceNode {
-                   policy = 0;
-                   priority = 55;
-                   permission = 0644;
-                   moduleName = "linux_regulator_adapter";
-                   deviceMatchAttr = "linux_regulator_adapter";
+           device_info {
+               platform :: host {
+                   hostName = "platform_host";
+                   priority = 50;
+                   device_regulator :: device {
+                       device0 :: deviceNode {	// 为每一个Regulator控制器配置一个HDF设备节点，存在多个时添加，否则不用。
+                           policy = 1;	        // 2：用户态、内核态均可见；1：内核态可见；0：不需要发布服务。
+                           priority = 50;	    // 驱动启动优先级
+                           permission = 0644;	// 驱动创建设备节点权限
+                           /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。 */
+                           moduleName = "HDF_PLATFORM_REGULATOR_MANAGER";
+                           serviceName = "HDF_PLATFORM_REGULATOR_MANAGER";		// 【必要且唯一】驱动对外发布服务的名称
+                           /* 【必要】用于配置控制器私有数据，要与regulator_config.hcs中对应控制器保持一致，具体的控制器信息在regulator_config.hcs中。 */
+                           deviceMatchAttr = "hdf_platform_regulator_manager";
+                       }
+                       device1 :: deviceNode {
+                           policy = 0;
+                           priority = 55;
+                           permission = 0644;
+                           moduleName = "linux_regulator_adapter";
+                           deviceMatchAttr = "linux_regulator_adapter";
+                       }
+                   }
                }
            }
-         }
-       }
        }
        ```
 
     - regulator\_config.hcs配置参考
 
-      ```
+      ```c
       root {
           platform {
               regulator_config {
@@ -198,16 +196,24 @@ Regulator模块适配包含以下四个步骤：
       }
       ```
 
+      需要注意的是，新增regulator_config.hcs配置文件后，必须在hdf.hcs文件中将其包含，否则配置文件无法生效。
+
+      例如：本例中regulator_config.hcs所在路径为device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/regulator/regulator_config.hcs，则必须在产品对应的hdf.hcs中添加如下语句：
+
+      ```c
+      #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/regulator/regulator_config.hcs" // 配置文件相对路径
+      ```
+
 3.  实例化核心层接口函数：
     
-    - 完成驱动入口注册之后，下一步就是对核心层RegulatorNode对象的初始化，包括厂商自定义结构体（传递参数和数据），实例化RegulatorNode成员RegulatorMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
+    完成驱动入口注册之后，下一步就是对核心层RegulatorNode对象的初始化，包括驱动适配者自定义结构体（传递参数和数据），实例化RegulatorNode成员RegulatorMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
     
     - 自定义结构体参考。
 
         从驱动的角度看，RegulatorNode结构体是参数和数据的载体，HDF框架通过DeviceResourceIface将regulator\_config.hcs文件中的数值读入其中。
     
-        ```
-        // RegulatorNode是核心层控制器结构体，其中的成员在Init函数中会被赋值。
+        ```c
+        /* RegulatorNode是核心层控制器结构体，其中的成员在Init函数中会被赋值。 */
         struct RegulatorNode {
             struct RegulatorDesc regulatorInfo;
             struct DListHead node;
@@ -217,35 +223,33 @@ Regulator模块适配包含以下四个步骤：
         };
         
         struct RegulatorDesc {
-            const char *name;                           /* regulator名称 */
-            const char *parentName;                     /* regulator父节点名称 */
-            struct RegulatorConstraints constraints;    /* regulator约束信息 */
-            uint32_t minUv;                             /* 最小输出电压值 */
-            uint32_t maxUv;                             /* 最大输出电压值 */
-            uint32_t minUa;                             /* 最小输出电流值 */
-            uint32_t maxUa;                             /* 最大输出电流值 */
-            uint32_t status;                            /* regulator的状态，开或关。*/
+            const char *name;                           // regulator名称
+            const char *parentName;                     // regulator父节点名称
+            struct RegulatorConstraints constraints;    // regulator约束信息
+            uint32_t minUv;                             // 最小输出电压值
+            uint32_t maxUv;                             // 最大输出电压值
+            uint32_t minUa;                             // 最小输出电流值
+            uint32_t maxUa;                             // 最大输出电流值
+            uint32_t status;                            // regulator的状态，开或关。
             int useCount;
-            int consumerRegNums;                        /* regulator用户数量 */
-            RegulatorStatusChangecb cb;                 /* 当regulator状态改变时，可通过此变量通知。*/
+            int consumerRegNums;                        // regulator用户数量
+            RegulatorStatusChangecb cb;                 // 当regulator状态改变时，可通过此变量通知。
         };
         
         struct RegulatorConstraints {
-            uint8_t alwaysOn;     /* regulator是否常开 */
-            uint8_t mode;         /* 模式：电压或者电流 */
-            uint32_t minUv;       /* 最小可设置输出电压 */
-            uint32_t maxUv;       /* 最大可设置输出电压 */
-            uint32_t minUa;       /* 最小可设置输出电流 */
-            uint32_t maxUa;       /* 最大可设置输出电流 */
+            uint8_t alwaysOn;     // regulator是否常开
+            uint8_t mode;         // 模式：电压或者电流
+            uint32_t minUv;       // 最小可设置输出电压
+            uint32_t maxUv;       // 最大可设置输出电压
+            uint32_t minUa;       // 最小可设置输出电流
+            uint32_t maxUa;       // 最大可设置输出电流
         };
         ```
-    
-      
-    
+
     - 实例化RegulatorNode成员RegulatorMethod，其他成员在Init函数中初始化。
     
       ```c
-      // regulator_virtual.c中的示例：钩子函数的填充
+      /* regulator_virtual.c中的示例：钩子函数的填充 */
       static struct RegulatorMethod g_method = {
           .enable = VirtualRegulatorEnable,
           .disable = VirtualRegulatorDisable,
@@ -256,18 +260,16 @@ Regulator模块适配包含以下四个步骤：
           .getStatus = VirtualRegulatorGetStatus,
       };
       ```
-      
-    
-    
-    - Init函数参考
+
+    - Init函数开发参考
     
        入参：
     
-       HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
+       HdfDeviceObject是整个驱动对外提供的接口参数，具备HCS配置文件的信息。
         
        返回值：
         
-       HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS定义）。
+       HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/hdf\_core/framework/include/utils/hdf\_base.h中HDF\_STATUS定义）。
         
        **表 2**  HDF\_STATUS相关状态
     
@@ -283,44 +285,43 @@ Regulator模块适配包含以下四个步骤：
        函数说明：
     
        初始化自定义结构体和RegulatorNode成员，并通过调用核心层RegulatorNodeAdd函数挂载Regulator控制器。
-    
 
-       ```c
-       static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
-       {
-           int32_t ret;
-           const struct DeviceResourceNode *childNode = NULL;
-           ...
-           DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
-           ret = VirtualRegulatorParseAndInit(device, childNode);// 【必要】实现见下
-           ...
-           }
-           ...
-       }
-    
-       static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
-       {
-           int32_t ret;
-           struct RegulatorNode *regNode = NULL;
-           (void)device;
-    
-           regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode));//加载HCS文件
-           ...
-           ret = VirtualRegulatorReadHcs(regNode, node);                     // 读取HCS文件信息
-           ...
-           regNode->priv = (void *)node;                                     // 实例化节点
-           regNode->ops = &g_method;                                         // 实例化ops
-    
-           ret = RegulatorNodeAdd(regNode);                                  // 挂载节点
-           ...
-       }
-       ```
-    
-    -   Release 函数参考
+        ```c
+        static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
+        {
+            int32_t ret;
+            const struct DeviceResourceNode *childNode = NULL;
+            ...
+            DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
+            ret = VirtualRegulatorParseAndInit(device, childNode); // 【必要】实现见下
+            ...
+            }
+            ...
+        }
+        
+        static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
+        {
+            int32_t ret;
+            struct RegulatorNode *regNode = NULL;
+            (void)device;
+        
+            regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode)); //加载HCS文件
+            ...
+            ret = VirtualRegulatorReadHcs(regNode, node);                      // 读取HCS文件信息
+            ...
+            regNode->priv = (void *)node;                                      // 实例化节点
+            regNode->ops = &g_method;                                          // 实例化ops
+        
+            ret = RegulatorNodeAdd(regNode);                                   // 挂载节点
+            ...
+        }
+        ```
+
+    -   Release函数开发参考
         
          入参：
         
-         HdfDeviceObject是整个驱动对外暴露的接口参数，其包含了HCS配置文件中的相关配置信息。
+         HdfDeviceObject是整个驱动对外提供的接口参数，其包含了HCS配置文件中的相关配置信息。
         
          返回值：
         
@@ -334,12 +335,10 @@ Regulator模块适配包含以下四个步骤：
         static void VirtualRegulatorRelease(struct HdfDeviceObject *device)
         {
             ...
-            RegulatorNodeRemoveAll();// 【必要】调用核心层函数，释放RegulatorNode的设备和服务
+            RegulatorNodeRemoveAll(); // 【必要】调用核心层函数，释放RegulatorNode的设备和服务
         }
         ```
-    
+
 4. 驱动调试：
 
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的测试用例是否成功等。
-
-   

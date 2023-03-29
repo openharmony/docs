@@ -459,6 +459,8 @@ demo功能：
 
 创建一个线程并将父线程中的信息传递给子线程，在子线程中打印传递过来的信息和自身线程id值。
 
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数DemoForTest。
+
 
 ```
 #include <stdio.h>

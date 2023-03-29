@@ -13,7 +13,7 @@ The clock app displays the current time, as shown in the following figure.
 
 ## Preparations<a name="section6592121861218"></a>
 
-Download and install DevEco Studio. For details, see the [HUAWEI DevEco Studio User Guide](../../application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md). 
+Download and install DevEco Studio. For details, see the [DevEco Studio User Guide](../../application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md). 
 
 ## How to Develop<a name="section19901741111312"></a>
 
@@ -251,7 +251,7 @@ After finishing writing the app code, you need to sign and package the app befor
 
 ## Running on the Real Device<a name="section092721731511"></a>
 
-Before you install the app and run it on the development board, install the DevEco Device Tool by following operations provided in [HUAWEI DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905). Burn OpenHarmony into the development board and run it. For details about how to build, burn, and run an image, see [Standard System Overview](../quick-start/quickstart-standard-overview.md). After the image is running normally and the system is started properly, perform the following steps to install or uninstall the app:
+Before you install the app and run it on the development board, install the DevEco Device Tool by following operations provided in [DevEco Device Tool User Guide](https://device.harmonyos.com/en/docs/ide/user-guides/service_introduction-0000001050166905). Burn OpenHarmony into the development board and run it. For details about how to build, burn, and run an image, see [Getting Started with the Standard System with Hi3516 (IDE Mode)](../quick-start/quickstart-appendix-hi3516-ide.md). After the image is running normally and the system is started properly, perform the following steps to install or uninstall the app:
 
 1. Obtain the HDC client from the following path:
 

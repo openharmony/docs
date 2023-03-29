@@ -12,11 +12,11 @@ Application error management APIs are provided by the **errorManager** module. F
 
 | API                                                      | Description                                                |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| registerErrorObserver(observer: ErrorObserver): number       | Registers an observer for application errors. A callback will be invoked when an application error is detected. This API works in a synchronous manner. The return value is the SN of the registered observer.|
-| unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void\>): void | Unregisters an observer in callback mode. The number passed to this API is the SN of the registered observer. |
-| unregisterErrorObserver(observerId: number): Promise\<void\> | Unregisters an observer in promise mode. The number passed to this API is the SN of the registered observer. |
+| on(type: "error", observer: ErrorObserver): number       | Registers an observer for application errors. A callback will be invoked when an application error is detected. This API works in a synchronous manner. The return value is the SN of the registered observer.|
+| off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | Unregisters an observer in callback mode. The number passed to this API is the SN of the registered observer. |
+| off(type: "error", observerId: number): Promise\<void\> | Unregisters an observer in promise mode. The number passed to this API is the SN of the registered observer. |
 
-When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
+When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result codes-for-unregistering-an-observer).
 
 
 **Table 2** Description of the ErrorObserver API
@@ -36,55 +36,56 @@ When an asynchronous callback is used, the return value can be processed directl
 
 ## Development Example
 ```ts
-import Ability from '@ohos.application.Ability'
-import errorManager from '@ohos.application.errorManager'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import errorManager from '@ohos.app.ability.errorManager';
 
-var registerId = -1;
-var callback = {
+let registerId = -1;
+let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
     }
 }
-export default class MainAbility extends Ability {
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate")
+        registerId = errorManager.on("error", callback);
         globalThis.abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy")
+        errorManager.off("error", registerId, (result) => {
+            console.log("[Demo] result " + result.code + ";" + result.message)
+        });
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created for this ability.
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate")
 
-        globalThis.registerObserver = (() => {
-            registerId = errorManager.registerErrorObserver(callback);
-        })
-
-        globalThis.unRegisterObserver = (() => {
-            errorManager.unregisterErrorObserver(registerId, (result) => {
-                console.log("[Demo] result " + result.code + ";" + result.message)
-            });
-        })
-
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", (err, data) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+        });
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed to release UI resources.
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy")
     }
 
     onForeground() {
         // Ability is brought to the foreground.
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground")
     }
 
     onBackground() {
         // Ability is brought back to the background.
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground")
     }
 };
 ```

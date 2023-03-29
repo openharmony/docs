@@ -4,13 +4,11 @@ The **\<RowSplit>** lays out child components horizontally and inserts a vertica
 
 >  **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
 Supported
-
 
 ## APIs
 
@@ -21,11 +19,13 @@ RowSplit()
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**.|
+| resizeable | boolean | Whether the divider can be dragged.<br>Default value: **false** |
 
 >  **NOTE**
 >
 >  Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
+>
+>  Dragging is not supported in the Previewer. Check the drag effect on a real device.
 
 
 ## Example

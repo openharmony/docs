@@ -4,18 +4,16 @@
 
 ### 功能简介
 
-DAC（Digital to Analog Converter）是一种通过电流、电压或电荷的形式将数字信号转换为模拟信号的设备。
+DAC（Digital to Analog Converter）是一种通过电流、电压或电荷的形式将数字信号转换为模拟信号的设备，主要用于：
+
+- 作为过程控制计算机系统的输出通道，与执行器相连，实现对生产过程的自动控制。
+- 在利用反馈技术的模数转换器设计中，作为重要的功能模块呈现。
 
 DAC接口定义了完成DAC传输的通用方法集合，包括：
 - DAC设备管理：打开或关闭DAC设备。
 - DAC设置目标值：设置DAC设备需要将数字信号转成模拟信号的目标值。
 
 ### 基本概念
-
-DAC模块支持数模转换的开发，它主要用于：
-
-1. 作为过程控制计算机系统的输出通道，与执行器相连，实现对生产过程的自动控制。
-2. 在利用反馈技术的模数转换器设计中，作为重要的功能模块呈现。 
 
 - 分辨率
 
@@ -35,7 +33,7 @@ DAC模块支持数模转换的开发，它主要用于：
 
 ### 运作机制
 
-在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），如果采用独立服务模式，则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现）,实现便捷管理和节约资源的目的。DAC模块接口适配模式采用统一服务模式，如图1所示。 
+在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），如果采用独立服务模式，则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现）,实现便捷管理和节约资源的目的。DAC模块接口适配模式采用统一服务模式（如图1）。
 
 DAC模块各分层的作用为：接口层提供打开设备、写入数据和关闭设备的接口。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其它具体的功能。
 
@@ -47,7 +45,7 @@ DAC模块各分层的作用为：接口层提供打开设备、写入数据和�
 
 ### 约束与限制
 
-DAC模块当前仅支持轻量和小型系统内核（LiteOS）。
+DAC模块当前仅支持轻量和小型系统内核（LiteOS-A）。
 
 ## 使用指导
 
@@ -57,11 +55,11 @@ DAC模块的主要工作是以电流、电压或电荷的形式将数字信号�
 
 ### 接口说明
 
-DAC模块提供的主要接口如下所示，更多关于接口的介绍请参考对应的API接口文档。
+DAC模块提供的主要接口如下所示，具体API详见//drivers/hdf_core/framework/include/platform/dac_if.h。
 
 **表 1**  DAC驱动API接口功能介绍
 
-| 接口名                                                              | 描述          |
+| 接口名                                                             | 接口描述     |
 | ------------------------------------------------------------------ | ------------ |
 | DevHandle DacOpen(uint32_t number)                                 | 打开DAC设备。  |
 | void DacClose(DevHandle handle)                                    | 关闭DAC设备。  |
@@ -94,7 +92,7 @@ DevHandle DacOpen(uint32_t number);
 假设系统中存在2个DAC设备，编号从0到1，现在打开1号设备。
 
 ```c++
-DevHandle dacHandle = NULL;  /* DAC设备句柄 /
+DevHandle dacHandle = NULL; // DAC设备句柄
 
 /* 打开DAC设备 */
 dacHandle = DacOpen(1);
@@ -123,12 +121,12 @@ int32_t DacWrite(DevHandle handle, uint32_t channel, uint32_t val);
 
 ```c++
 /* 通过DAC_CHANNEL_NUM设备通道写入目标val值 */ 
-    ret = DacWrite(dacHandle, DAC_CHANNEL_NUM, val);
-    if (ret != HDF_SUCCESS) {
-        HDF_LOGE("%s: tp DAC write reg fail!:%d", __func__, ret);
-        DacClose(dacHandle);
-        return -1;
-    }
+ret = DacWrite(dacHandle, DAC_CHANNEL_NUM, val);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: tp DAC write reg fail!:%d", __func__, ret);
+    DacClose(dacHandle);
+    return -1;
+}
 ```
 
 #### 关闭DAC设备

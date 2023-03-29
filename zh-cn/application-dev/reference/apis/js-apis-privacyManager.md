@@ -1,4 +1,4 @@
-# 隐私管理
+# @ohos.privacyManager (隐私管理)
 
 本模块主要提供权限使用记录等隐私管理接口。
 
@@ -15,7 +15,7 @@ import privacyManager from '@ohos.privacyManager';
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number): Promise&lt;void&gt;
+addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number): Promise&lt;void&gt;
 
 受应用权限保护的应用在被其他服务、应用调用时，可以使用该接口增加一条权限使用记录。使用Promise异步回调。
 权限使用记录包括：调用方的应用身份标识、使用的应用权限名称，和其访问本应用成功、失败的次数。
@@ -29,7 +29,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。              |
-| permissionName | string | 是   | 应用权限名称。 |
+| permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
 
@@ -42,11 +42,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -67,7 +70,7 @@ try {
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number, callback: AsyncCallback&lt;void&gt;): void
+addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, callback: AsyncCallback&lt;void&gt;): void
 
 受应用权限保护的应用在被其他服务、应用调用时，可以使用该接口增加一条权限使用记录。使用callback异步回调。
 权限使用记录包括：调用方的应用身份标识、使用的应用权限名称，和其访问本应用成功、失败的次数。
@@ -81,7 +84,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。              |
-| permissionName | string | 是   | 应用权限名称。 |
+| permissionName | Permissions | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加使用记录成功时，err为undefine；否则为错误对象。 |
@@ -89,11 +92,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -114,9 +120,9 @@ try {
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
+getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
 
 获取历史权限使用记录。使用Promise异步回调。
 
@@ -139,11 +145,14 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -161,19 +170,19 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request).then((data) => {
-        console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+    privacyManager.getPermissionUsedRecord(request).then((data) => {
+        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
-        console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
+getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
 
 获取历史权限使用记录。使用callback异步回调。
 
@@ -191,11 +200,14 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -213,11 +225,11 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err, data) => {
         if (err) {
-            console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
-            console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
         }
     });
 } catch(err) {
@@ -227,7 +239,7 @@ try {
 
 ## privacyManager.startUsingPermission
 
-startUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
 应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。使用Promise异步回调。
 
@@ -240,7 +252,7 @@ startUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&g
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | string | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions | 是   | 需要使用的权限名。                     |
 
 **返回值：**
 
@@ -251,12 +263,15 @@ startUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&g
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -277,7 +292,7 @@ try {
 
 ## privacyManager.startUsingPermission
 
-startUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;void&gt;): void
+startUsingPermission(tokenID: number, permissionName: Permissions, callback: AsyncCallback&lt;void&gt;): void
 
 应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。使用callback异步回调。
 
@@ -290,18 +305,21 @@ startUsingPermission(tokenID: number, permissionName: string, callback: AsyncCal
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | string                | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions                | 是   | 需要使用的权限名。                     |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当开始使用权限成功时，err为undefine；否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -324,7 +342,7 @@ try {
 
 ## privacyManager.stopUsingPermission
 
-stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
 应用停止使用某项权限，与Start对应，由系统服务调用。使用Promise异步回调。
 
@@ -337,7 +355,7 @@ stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt
 | 参数名          | 类型   | 必填 | 说明                                  |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | string | 是   | 需要使用的权限名。                     |
+| permissionName | Permissions | 是   | 需要使用的权限名。                     |
 
 **返回值：**
 
@@ -348,12 +366,15 @@ stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -374,7 +395,7 @@ try {
 
 ## privacyManager.stopUsingPermission
 
-stopUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;void&gt;): void
+stopUsingPermission(tokenID: number, permissionName: Permissions, callback: AsyncCallback&lt;void&gt;): void
 
 应用停止使用某项权限，与Start对应，由系统服务调用。使用callback异步回调。
 
@@ -387,18 +408,21 @@ stopUsingPermission(tokenID: number, permissionName: string, callback: AsyncCall
 | 参数名          | 类型                  | 必填 | 说明                                  |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
-| permissionName | string                | 是   | 需要使用的权限名。                      |
+| permissionName | Permissions                | 是   | 需要使用的权限名。                      |
 | callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止使用权限成功时，err为undefine；否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
@@ -421,7 +445,7 @@ try {
 
 ## privacyManager.on
 
-on(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
+on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 订阅指定权限列表的权限使用状态变更事件。
 
@@ -434,26 +458,29 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback:
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
-| 12100005 | The number of listeners exceeds the limit. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100004 | The interface is called repeatedly with the same input. |
+| 12100005 | The registration time has exceeded the limitation. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<string> = [];
+let permissionList = [];
 try {
-    atManager.on('activeStateChange', permissionNameList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
     });
 } catch(err) {
@@ -463,7 +490,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 取消订阅指定权限列表的权限使用状态变更事件。
 
@@ -476,25 +503,28 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
 
 以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
+| 12100004 | The interface is not used together with "on"|
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<string> = [];
+let permissionList = [];
 try {
-    privacyManager.off('activeStateChange', permissionNameList);
+    privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
@@ -506,7 +536,7 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                    | 值 | 描述                   |
+| 名称                    | 值 | 说明                   |
 | ----------------------- | ------ | ---------------------- |
 | FLAG_PERMISSION_USAGE_SUMMARY             | 0    | 表示查询总览数据。 |
 | FLAG_PERMISSION_USAGE_DETAIL         | 1    | 表示查询详细数据。         |
@@ -523,7 +553,7 @@ try {
 | isRemote | boolean         | 否    | 默认值false。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 否    | 目标应用的包名。 |
-| permissionNames  | Array&lt;string&gt;         | 否    | 需要查询的权限集合。                                 |
+| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。                                 |
 | beginTime | number         | 否    | 查询的起始时间，单位：ms，默认值0，不设定起始时间。 |
 | endTime | number         | 否    | 查询的终止时间，单位：ms，默认值0，不设定终止时间。 |
 | flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 查询方式，默认值FLAG_PERMISSION_USAGE_SUMMARY。 |
@@ -562,7 +592,7 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | string         | 否    | 权限名。                                 |
+| permissionName  | Permissions         | 否    | 权限名。                                 |
 | accessCount | number         | 否    | 该权限访问总次数。 |
 | rejectCount | number         | 否    | 该权限拒绝总次数。 |
 | lastAccessTime | number         | 否    | 最后一次访问时间，单位：ms。 |
@@ -589,7 +619,7 @@ try {
 
 **系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                      | 默认值 | 描述              |
+| 名称                      | 值     | 说明              |
 | ------------------------- | ------ | ---------------- |
 | PERM_INACTIVE             | 0      | 表示未使用权限。   |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | 表示前台使用权限。 |
@@ -604,6 +634,6 @@ try {
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识    |
-| permissionName | string                 | 是   | 否   | 权限使用状态发生变化的权限名 |
+| permissionName | Permissions                 | 是   | 否   | 权限使用状态发生变化的权限名 |
 | deviceId       | string                 | 是   | 否   | 设备号                 |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型        |

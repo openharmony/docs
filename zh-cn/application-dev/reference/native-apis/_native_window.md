@@ -7,7 +7,7 @@
 \@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
 
 
-**自从：**
+**起始版本：**
 
 
 8
@@ -20,7 +20,7 @@
 
   | 文件名称 | 描述 | 
 | -------- | -------- |
-| [external_window.h](external__window_8h.md) | 定义获取和使用NativeWindow的相关函数 | 
+| [external_window.h](external__window_8h.md) | 定义获取和使用NativeWindow的相关函数<br>引用文件：<native_window/external_window.h> | 
 
 
 ### 结构体
@@ -184,7 +184,7 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 
 返回一个指针，指向NativeWindow的结构体实例
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -212,7 +212,7 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 返回一个指针，指向NativeWindowBuffer的结构体实例
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -236,7 +236,7 @@ void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow * window)
 | -------- | -------- |
 | window | 参数是一个NativeWindow的结构体实例的指针 | 
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -260,7 +260,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer * buffer)
 | -------- | -------- |
 | buffer | 参数是一个NativeWindowBuffer的结构体实例的指针 | 
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -288,7 +288,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer * 
 
 BufferHandle 返回一个指针，指向BufferHandle的结构体实例
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -316,7 +316,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void * obj)
 
 MagicId 返回值为魔鬼数字，每个NativeObject唯一
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -344,7 +344,7 @@ int32_t OH_NativeWindow_NativeObjectReference (void * obj)
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -372,7 +372,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void * obj)
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -401,7 +401,7 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow * window, OHNati
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -432,7 +432,7 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow * window, OHNati
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -462,7 +462,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow * window, int code
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -492,7 +492,7 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow * window, OHNa
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 8
 
@@ -523,7 +523,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow * window, uint32
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -555,7 +555,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow * window, uin
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -585,7 +585,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow * window, uin
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 9
 
@@ -614,6 +614,6 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow * window, co
 
 GSError 返回值为错误码
 
-**自从：**
+**起始版本：**
 
 9

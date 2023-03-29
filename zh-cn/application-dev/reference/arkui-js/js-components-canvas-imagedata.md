@@ -26,14 +26,14 @@ ImageData对象可以存储canvas渲染的像素数据。
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   onShow() {
     const el =this.$refs.canvas;
     const ctx = el.getContext('2d');
     ctx.fillRect(0,0,200,200)
     var imageData = ctx.createImageData(1,1)
-    prompt.showToast({
+    promptAction.showToast({
       message:imageData,
       duration:5000
     })

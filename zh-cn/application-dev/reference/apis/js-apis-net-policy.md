@@ -1,4 +1,4 @@
-# 网络策略管理
+# @ohos.net.policy (网络策略管理)
 
 网络策略管理通过对用户使用数据流量进行控制管理，采用防火墙技术实现网络策略的管理。
 
@@ -27,14 +27,24 @@ setBackgroundPolicy(isAllowed: boolean, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | isAllowed | boolean | 是   | 是否允许应用后台使用数据 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回设置后台网络策略的结果，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))), (err, data) => {
-    this.callBack(err, data);
-    console.log(JSON.stringify(err))
+policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))), (error, data) => {
+    this.callBack(error, data);
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 });
 ```
@@ -55,24 +65,34 @@ setBackgroundPolicy(isAllowed: boolean): Promise\<void>
 | -------- | --------------------------------------- | ---- | ---------- |
 | isAllowed | boolean | 是   | 是否允许应用后台使用数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **返回值：**
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果，失败返回错误码错误信息。 |
 
 **示例：**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 ```
 
-## policy.getBackgroundPolicy
+## policy.isBackgroundAllowed
 
-getBackgroundPolicy(callback: AsyncCallback\<boolean>): void;
+isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
 获取后台网络策略，使用callback方式作为异步方法。
 
@@ -84,21 +104,29 @@ getBackgroundPolicy(callback: AsyncCallback\<boolean>): void;
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表后台策略为允许。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表后台策略为允许。失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getBackgroundPolicy((err, data) => {
-    this.callBack(err, data);
-    console.log(JSON.stringify(err))
+policy.isBackgroundAllowed((error, data) => {
+    this.callBack(error, data);
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 });
 ```
 
-## policy.getBackgroundPolicy
+## policy.isBackgroundAllowed
 
-getBackgroundPolicy(): Promise\<boolean>;
+isBackgroundAllowed(): Promise\<boolean>;
 
 获取后台网络策略，使用Promise方式作为异步方法。
 
@@ -110,13 +138,21 @@ getBackgroundPolicy(): Promise\<boolean>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回设定结果。 |
+| Promise\<boolean> | 以Promise形式返回设定结果。 返回true代表后台策略为允许。失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getBackgroundPolicy().then((err, data) {
-    console.log(JSON.stringify(err))
+policy.isBackgroundAllowed().then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -124,7 +160,7 @@ policy.getBackgroundPolicy().then((err, data) {
 
 ## policy.setPolicyByUid
 
-setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>): void;
+setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>): void
 
 设置对应uid应用的访问计量网络的策略，使用callback方式作为异步方法。
 
@@ -138,7 +174,17 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是   | 应用的唯一标识符 |
 | policy | [NetUidPolicy](#netuidpolicy) | 是 | 应用对应的策略 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回设定结果。失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
@@ -146,8 +192,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 let param = {
     uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (err, data) => {
-    this.callBack(err, data);
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -155,7 +201,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
-设置对应uid应用的访问计量网络的策略，使用callback方式作为异步方法。
+设置对应uid应用的访问计量网络的策略，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -172,7 +218,17 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | 以Promise形式返回设定结果。 |
+| Promise\<void> | 以Promise形式返回设定结果。失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
@@ -180,8 +236,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 let param = {
     uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -189,7 +245,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 ## policy.getPolicyByUid
 
-getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void;
+getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 通过应用uid获取策略，使用callback方式作为异步方法。
 
@@ -202,13 +258,23 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void;
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是 | app唯一标识符 |
-| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy)> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy)> | 是   | 回调函数，成功返回获取策略结果，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam), (err, data) => {
-    this.callBack(err, data);
+policy.getPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -232,13 +298,23 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[NetUidPolicy](#netuidpolicy)> | 以Promise形式返回设定结果。 |
+| Promise\<[NetUidPolicy](#netuidpolicy)> | 以Promise形式返回获取策略结果。失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam)).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -246,7 +322,7 @@ policy.getPolicyByUid(Number.parseInt(this.firstParam)).then((err, data) {
 
 ## policy.getUidsByPolicy
 
-getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>): void;
+getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>): void
 
 通过策略获取设置这一策略的应用uid数组，使用callback方式作为异步方法。
 
@@ -259,13 +335,23 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | policy | [NetUidPolicy](#netuidpolicy) | 是 | 应用对应的计量网络下的策略 |
-| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，成功返回应用的uid数组，失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.currentNetUidPolicy), (err, data) => {
-    this.callBack(err, data);
+policy.getUidsByPolicy(Number.parseInt(this.currentNetUidPolicy), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -289,13 +375,23 @@ function getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<Array\<number>> | 以Promise形式返回设定结果。 |
+| Promise\<Array\<number>> | 以Promise形式返回应用的uid数组，失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
 
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -303,7 +399,7 @@ policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((err, data) {
 
 ## policy.getNetQuotaPolicies
 
-getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void;
+getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 获取计量网络策略，使用callback方式作为异步方法。
 
@@ -317,11 +413,19 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void;
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy)>> | 是   | 回调函数，返回获取结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
-policy.getNetQuotaPolicies((err, data) => {
-    this.callBack(err, data);
+policy.getNetQuotaPolicies((error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -341,11 +445,19 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<[NetQuotaPolicy](#netquotapolicy)>> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
-policy.getNetQuotaPolicies().then((err, data) {
-    console.log(JSON.stringify(err))
+policy.getNetQuotaPolicies().then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -353,7 +465,7 @@ policy.getNetQuotaPolicies().then((err, data) {
 
 ## policy.setNetQuotaPolicies
 
-setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallback\<void>): void;
+setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallback\<void>): void
 
 设置计量网络策略，使用callback方式作为异步方法。
 
@@ -368,6 +480,16 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 | quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy)> | 是 | 计量网络策略 |
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
@@ -375,8 +497,8 @@ let param = {netType:Number.parseInt(this.netType), iccid:this.iccid, ident:this
     limitBytes:Number.parseInt(this.limitBytes), lastWarningRemind:this.lastWarningRemind, lastLimitRemind:this.lastLimitRemind, metered:Boolean(Number.parseInt(this.metered)), limitAction:this.limitAction};
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList, (err, data) => {
-    this.callBack(err, data);
+policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -396,6 +518,16 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 | -------- | --------------------------------------- | ---- | ---------- |
 | quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy)> | 是 | 计量网络策略 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **返回值：**
 
 | 类型                              | 说明                                  |
@@ -409,15 +541,15 @@ let param = {netType:Number.parseInt(this.netType), iccid:this.iccid, ident:this
     limitBytes:Number.parseInt(this.limitBytes), lastWarningRemind:this.lastWarningRemind, lastLimitRemind:this.lastLimitRemind, metered:Boolean(Number.parseInt(this.metered)), limitAction:this.limitAction};
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 ```
 
 ## policy.restoreAllPolicies
 
-restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void;
+restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 重置对应sim卡id的蜂窝网络、后台网络策略、防火墙策略、应用对应的策略，使用callback方式作为异步方法。
 
@@ -432,12 +564,22 @@ restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void;
 | iccid | string | 是 | SIM卡ID|
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回重置结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam, (err, data) => {
-    this.callBack(err, data);
+policy.restoreAllPolicies(this.firstParam, (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -463,12 +605,22 @@ restoreAllPolicies(iccid: string): Promise\<void>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam).then((err, data){
-    console.log(JSON.stringify(err))
+policy.restoreAllPolicies(this.firstParam).then(function(error, data){
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -476,7 +628,7 @@ policy.restoreAllPolicies(this.firstParam).then((err, data){
 
 ## policy.isUidNetAllowed
 
-isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolean>): void;
+isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolean>): void
 
 获取对应uid能否访问计量或非计量网络，使用callback方式作为异步方法。
 
@@ -492,6 +644,16 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | isMetered | boolean | 是 | 是否为计量网络 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true表示这个uid可以访问对应的计量网络。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
@@ -499,8 +661,8 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 let param = {
     uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (err, data) => {
-    this.callBack(err, data);
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -527,6 +689,16 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
@@ -534,8 +706,8 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 let param = {
     uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -543,7 +715,7 @@ policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt
 
 ## policy.isUidNetAllowed
 
-isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): void;
+isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): void
 
 获取对应uid能否访问指定的iface的网络，使用callback方式作为异步方法。
 
@@ -559,6 +731,16 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 | iface | string | 是 | 网络对应的名称 |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true表示这个uid可以访问对应iface的网络。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
@@ -566,8 +748,8 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 let param = {
     uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam, (err, data) => {
-    this.callBack(err, data);
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam, (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -594,24 +776,34 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 let param = {
     uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
 ```
 
-## policy.setDeviceIdleAllowlist
+## policy.setDeviceIdleAllowList
 
-setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void;
+setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void
 
-设置指定uid能应用是否在休眠防火墙的白名单，使用callback方式作为异步方法。
+设置指定uid应用是否在休眠防火墙的白名单，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -625,22 +817,32 @@ setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\
 | isAllowed | boolean | 是 | 是否加入白名单 |
 | callback | callback: AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 let param = {
     uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (err, data) => {
-    this.callBack(err, data);
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
-## policy.setDeviceIdleAllowlist
+## policy.setDeviceIdleAllowList
 
 setDeviceIdleAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 
-设置指定uid能应用是否在休眠防火墙的白名单，使用Promise方式作为异步方法。
+设置指定uid应用是否在休眠防火墙的白名单，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
 
@@ -659,22 +861,32 @@ setDeviceIdleAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 let param = {
     uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
 ```
 
-## policy.getDeviceIdleAllowlist
+## policy.getDeviceIdleAllowList
 
-getDeviceIdleAllowList(callback: AsyncCallback\<Array\<number>>): void;
+getDeviceIdleAllowList(callback: AsyncCallback\<Array\<number>>): void
 
 获取休眠模式白名单所包含的uid数组，使用callback方式作为异步方法。
 
@@ -688,15 +900,23 @@ getDeviceIdleAllowList(callback: AsyncCallback\<Array\<number>>): void;
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，返回获取结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
-policy.getDeviceIdleAllowList((err, data) => {
-    this.callBack(err, data);
+policy.getDeviceIdleAllowList((error, data) => {
+    this.callBack(error, data);
 });
 ```
 
-## policy.getDeviceIdleAllowlist
+## policy.getDeviceIdleAllowList
 
 getDeviceIdleAllowList(): Promise\<Array\<number>>;
 
@@ -712,18 +932,26 @@ getDeviceIdleAllowList(): Promise\<Array\<number>>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<number>> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
-policy.getDeviceIdleAllowList().then((err, data) {
-    console.log(JSON.stringify(err))
+policy.getDeviceIdleAllowList().then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 ```
 
 ## policy.getBackgroundPolicyByUid
 
-getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPolicy>): void;
+getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPolicy>): void
 
 获取指定uid能否访问后台网络，使用callback方式作为异步方法。
 
@@ -738,12 +966,22 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 | uid | number | 是 | app唯一标识符 |
 | callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy)> | 是   | 回调函数，返回获取结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam), (err, data) => {
-    this.callBack(err, data);
+policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -769,19 +1007,29 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<[NetBackgroundPolicy](#netbackgroundpolicy)> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 ```
 
 ## policy.resetPolicies
 
-resetPolicies(iccid: string, callback: AsyncCallback\<void>): void;
+resetPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 重置对应sim卡id的蜂窝网络、后台网络策略、防火墙策略、应用对应的策略，使用callback方式作为异步方法。
 
@@ -796,12 +1044,22 @@ resetPolicies(iccid: string, callback: AsyncCallback\<void>): void;
 | iccid | string | 是 | SIM卡ID|
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回重置结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam, (err, data) => {
-    this.callBack(err, data);
+policy.resetPolicies(this.firstParam, (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -827,15 +1085,25 @@ resetPolicies(iccid: string): Promise\<void>;
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then((err, data) {
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
 
 })
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.resetPolicies(this.firstParam).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
@@ -843,7 +1111,7 @@ policy.resetPolicies(this.firstParam).then((err, data) {
 
 ## policy.updateRemindPolicy
 
-updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType, callback: AsyncCallback\<void>): void;
+updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType, callback: AsyncCallback\<void>): void
 
 更新提醒策略，使用callback方式作为异步方法。
 
@@ -860,14 +1128,24 @@ updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType, 
 | remindType | [RemindType](#remindtype) | 是 | 提醒类型 |
 | callback | AsyncCallback\<void> | 是   | 回调函数，返回更新结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 let param = {
     netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType), (err, data) => {
-    this.callBack(err, data);
+policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType), (error, data) => {
+    this.callBack(error, data);
 });
 ```
 
@@ -895,17 +1173,177 @@ updateRemindPolicy(netType: NetBearType, iccid: string, remindType: RemindType):
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | 以Promise形式返回设定结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
 **示例：**
 
 ```js
 let param = {
     netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then((err, data) {
-    console.log(JSON.stringify(err))
+policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then(function(error, data) {
+    console.log(JSON.stringify(error))
     console.log(JSON.stringify(data))
 })
 
+```
+
+## policy.setPowerSaveAllowList
+
+setPowerSaveAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<void>): void
+
+设置指定uid应用是否在省电防火墙的白名单，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| uid | number | 是 | app唯一标识符 |
+| isAllowed | boolean | 是 | 是否加入白名单 |
+| callback | callback: AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
+**示例：**
+
+```js
+let param = {
+    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+}
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
+    this.callBack(error, data);
+});
+```
+
+## policy.setPowerSaveAllowList
+
+setPowerSaveAllowList(uid: number, isAllowed: boolean): Promise\<void>;
+
+设置指定uid应用是否在省电防火墙的白名单，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| uid | number | 是 | app唯一标识符 |
+| isAllowed | boolean | 是 | 是否加入白名单 |
+
+**返回值：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<void> | 以Promise形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
+**示例：**
+
+```js
+let param = {
+    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+}
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+})
+
+```
+
+## policy.getPowerSaveAllowList
+
+getPowerSaveAllowList(callback: AsyncCallback\<Array\<number>>): void
+
+获取省电模式白名单所包含的uid数组，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，返回获取结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
+**示例：**
+
+```js
+policy.getPowerSaveAllowList((error, data) => {
+    this.callBack(error, data);
+});
+```
+
+## policy.getPowerSaveAllowList
+
+getPowerSaveAllowList(): Promise\<Array\<number>>;
+
+获取休眠模式白名单所包含的uid数组，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                              | 说明                                  |
+| --------------------------------- | ------------------------------------- |
+| Promise\<Array\<number>> | 以Promise形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.                  |
+
+**示例：**
+
+```js
+policy.getPowerSaveAllowList().then(function(error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+})
 ```
 
 ## policy.on
@@ -914,7 +1352,7 @@ policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number
 
 ### on('netUidPolicyChange')
 
-on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void;
+on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUidPolicy }>): void
 
 注册policy发生改变时的回调，使用callback方式作为异步方法。
 
@@ -927,7 +1365,7 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | netUidPolicyChange | 是 | policy发生改变的类型 |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy) }> | 是   | 回调函数。 |
+| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy) }> | 是   | 回调函数。注册policy发生改变时调用。 |
 
 **示例：**
 
@@ -939,7 +1377,7 @@ policy.on('netUidPolicyChange', (data) => {
 
 ### on('netUidRuleChange')
 
-on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void;
+on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule }>): void
 
 注册rule发生改变时的回调，使用callback方式作为异步方法。
 
@@ -952,7 +1390,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | netUidRuleChange | 是 | rule发生改变的类型 |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule) }> | 是   | 回调函数。 |
+| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule) }> | 是   | 回调函数。注册rule发生改变时的调用。 |
 
 **示例：**
 
@@ -964,7 +1402,7 @@ policy.on('netUidRuleChange', (data) => {
 
 ### on('netMeteredIfacesChange')
 
-on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void;
+on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 注册计量iface发生改变时的回调，使用callback方式作为异步方法。
 
@@ -977,7 +1415,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void;
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | netMeteredIfacesChange | 是 | 计量iface发生改变的类型 |
-| callback | Callback\<Array\<string>> | 是   | 回调函数。 |
+| callback | Callback\<Array\<string>> | 是   | 回调函数。注册计量iface发生改变时调用。 |
 
 **示例：**
 
@@ -989,7 +1427,7 @@ policy.on('netMeteredIfacesChange', (data) => {
 
 ### on('netQuotaPolicyChange')
 
-on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): void;
+on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): void
 
 注册计量网络策略发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1002,7 +1440,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | netQuotaPolicyChange | 是 | 计量网络策略发生改变的类型 |
-| callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy)>> | 是   | 回调函数。 |
+| callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **示例：**
 
@@ -1014,7 +1452,7 @@ policy.on('netQuotaPolicyChange', (data) => {
 
 ### on('netBackgroundPolicyChange')
 
-on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void;
+on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 注册后台网络策略发生改变时的回调，使用callback方式作为异步方法。
 
@@ -1027,7 +1465,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void;
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | netBackgroundPolicyChange | 是 | 后台网络策略发生改变的类型 |
-| callback | Callback\<boolean> | 是   | 回调函数。 |
+| callback | Callback\<boolean> | 是   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **示例：**
 
@@ -1041,7 +1479,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 后台网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
@@ -1054,13 +1492,13 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 计量网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
 | netType           | [NetBearType](js-apis-net-connection.md#netbeartype) | 网络类型。 |
-| iccid             | string                      | 计量蜂窝网络的SIM卡的标识值。以太网，wify网络不会用到 |
-| ident             | string                      | 计量蜂窝网络中配合iccid联合使用。以太网，wify网络单独使用。用于标记类型。 |
+| iccid             | string                      | 计量蜂窝网络的SIM卡的标识值。以太网，wifi网络不会用到 |
+| ident             | string                      | 计量蜂窝网络中配合iccid联合使用。以太网，wifi网络单独使用。用于标记类型。 |
 | periodDuration    | string                      | 计量开始时间。 |
 | warningBytes      | number                      | 发出警告的流量阈值。 |
 | limitBytes        | number                      | 流量设置的配额。 |
@@ -1073,7 +1511,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 限制动作。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |
@@ -1085,7 +1523,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 计量网络规则。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |
@@ -1100,7 +1538,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 提醒类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | - | ------- |
@@ -1111,7 +1549,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 应用对应的网络策略。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Core。
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 参数名                  | 值 | 说明   |
 | ---------------------- | ----- | ------------ |

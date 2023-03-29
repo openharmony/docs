@@ -1,4 +1,4 @@
-# Accessibility
+# @ohos.accessibility
 
 The **Accessibility** module implements the accessibility functions, including obtaining the accessibility application list, accessibility application enabled status, and captions configuration.
 
@@ -8,7 +8,7 @@ The **Accessibility** module implements the accessibility functions, including o
 
 ## Modules to Import
 
-```typescript
+```ts
 import accessibility from '@ohos.accessibility';
 ```
 
@@ -49,7 +49,7 @@ Provides information about an accessibility application.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| id | number | Yes| No| Ability ID.|
+| id | string | Yes| No| Ability ID.|
 | name | string | Yes| No| Ability name.|
 | bundleName | string | Yes| No| Bundle name.|
 | targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | Yes| No| Name of the target bundle.|
@@ -85,7 +85,7 @@ Describes the target action supported by an accessibility application.
 
 ## Capability
 
-Enumerates the capabilities of an auxiliary application.
+Enumerates the capabilities of an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -145,7 +145,7 @@ Describes the style of captions.
 
 ## CaptionsManager<sup>8+</sup>
 
-Implements configuration management for captions.
+Implements configuration management for captions. Before calling any API of **CaptionsManager**, you must use the [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) API to obtain a **CaptionsManager** instance.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -156,87 +156,113 @@ Implements configuration management for captions.
 | enabled | boolean | Yes| No| Whether to enable captions configuration.|
 | style | [CaptionsStyle](#captionsstyle8) | Yes| No| Style of captions.|
 
-In the following API examples, you must first use the [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) API to obtain a **captionsManager** instance, and then call the methods using the obtained instance.
-
 ### on('enableChange')
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
-Enables listening for the enabled status changes of captions configuration.
+Enables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for, which is set to **enableChange** in this API.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  captionsManager.on('enableChange',(data) => {
-      console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-  })
-  ```
+```ts
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.on('enableChange', (data) => {
+        console.info('subscribe caption manager enable state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(exception));
+}
+```
 
 ### on('styleChange')
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
-Enables listening for captions style changes.
+Enables listening for captions style changes. This API uses an asynchronous callback to return the result.
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for, which is set to **styleChange** in this API.|
-  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes| Callback invoked when the style of captions changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'styleChange'** in this API.|
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes| Callback invoked when the style of captions changes.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  captionsManager.on('styleChange',(data) => {
-      console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-  })
-  ```
-  
+```ts
+let captionStyle;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.on('styleChange', (data) => {
+        captionStyle = data;
+        console.info('subscribe caption manager style state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(exception));
+}
+```
+
 ### off('enableChange')
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
-Disables listening for the enabled status changes of captions configuration.
+Disables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for, which is set to **enableChange** in this API.|
-  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status of captions configuration changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status of captions configuration changes.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  captionsManager.off('enableChange')
-  ```
+```ts
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.off('enableChange', (data) => {
+        console.info('Unsubscribe caption manager enable state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to Unsubscribe caption manager enable state change, because ' + JSON.stringify(exception));
+}
+```
 
 ### off('styleChange')
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
-Disables listening for captions style changes.
+Disables listening for captions style changes. This API uses an asynchronous callback to return the result.
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for, which is set to **styleChange** in this API.|
-  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No| Callback invoked when the style of captions changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'styleChange'** in this API.|
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No| Callback invoked when the style of captions changes.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  captionsManager.off('styleChange')
-  ```
+```ts
+let captionStyle;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.off('styleChange', (data) => {
+        captionStyle = data;
+        console.info('Unsubscribe caption manager style state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to Unsubscribe caption manager style state change, because ' + JSON.stringify(exception));
+}
+```
 
 ## EventInfo
 
@@ -271,16 +297,20 @@ Implements a constructor.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | jsonObject | string | Yes| JSON string required for creating an object.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| jsonObject | string | Yes| JSON string required for creating an object.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  let eventInfo = new accessibility.EventInfo({"type":"click","bundleName":"com.example.MyApplication","triggerAction":"click"})
+  ```ts
+  let eventInfo = new accessibility.EventInfo({
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
+  });
   ```
 
 ## EventType
@@ -331,153 +361,319 @@ Enumerates window update types.
 | active | Window activity change.|
 | focus | Window focus change.|
 
-## accessibility.getAbilityLists
+## accessibility.getAbilityLists<sup>(deprecated)</sup>
 
 getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;
 
 Obtains the accessibility application list. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+> You are advised to use[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9).
+
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-  | stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
+| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.getAbilityLists("spoken", "enable")
-      .then((data) => {
-          console.info('success data:getAbilityList1 : ' + JSON.stringify(data));
-          for (let item of data) {
-              console.info(item.id);
-              console.info(item.name);
-              console.info(item.description);
-              console.info(item.abilityTypes);
-              console.info(item.eventTypes);
-              console.info(item.capabilities);
-              console.info(item.packageName);
-              console.info(item.filterBundleNames);
-              console.info(item.bundleName);
-          }
-      }).catch((error) => {
-          console.error('failed to  getAbilityList1 because ' + JSON.stringify(error));
-      })
-  ```
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let abilityList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAbilityLists(abilityType, abilityState).then((data) => {
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
 
-## accessibility.getAbilityLists
+## accessibility.getAbilityLists<sup>(deprecated)</sup>
 
 getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
 
 Obtains the accessibility application list. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+> You are advised to use [getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1).
+
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-  | stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
-  | callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
+| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+| callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.getAbilityLists("visual", "enable", (err, data) => {
-      if (err) {
-          console.error('failed to getAbilityList2 because ' + JSON.stringify(err));
-          return;
-      }
-      console.info('success data:getAbilityList2 : ' + JSON.stringify(data));
-      for (let item of data) {
-          console.info(item.id);
-          console.info(item.name);
-          console.info(item.description);
-          console.info(item.abilityTypes);
-          console.info(item.eventTypes);
-          console.info(item.capabilities);
-          console.info(item.packageName);
-          console.info(item.filterBundleNames);
-          console.info(item.bundleName);
-      }
-  })
-  ```
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let abilityList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAbilityLists(abilityType, abilityState, (err, data) => {
+        if (err) {
+            console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+            return;
+        }
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            abilityList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.getAccessibilityExtensionList<sup>9+</sup>
+
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState): Promise&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;
+
+Obtains the accessibility application list. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
+| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
+
+**Example**
+
+```ts
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
+try {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.getAccessibilityExtensionList<sup>9+</sup>
+
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState, callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
+
+Obtains the accessibility application list. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
+| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+| callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
+
+**Example**
+
+```ts
+let abilityType : accessibility.AbilityType = 'spoken';
+let abilityState : accessibility.AbilityState = 'enable';
+let extensionList: accessibility.AccessibilityAbilityInfo[] = [];
+try {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
+        if (err) {
+            console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+            return;
+        }
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
 
 ## accessibility.getCaptionsManager<sup>8+</sup>
 
 getCaptionsManager(): CaptionsManager
 
-Obtains the captions configuration.
+Obtains a **CaptionsManager** instance.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [CaptionsManager](#captionsmanager8) | Captions configuration.|
+| Type| Description|
+| -------- | -------- |
+| [CaptionsManager](#captionsmanager8) | Captions configuration.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  captionsManager = accessibility.getCaptionsManager()
-  ```
+```ts
+let captionsManager = accessibility.getCaptionsManager();
+```
 
-## accessibility.on('accessibilityStateChange' | 'touchGuideStateChange')
+## accessibility.on('accessibilityStateChange')
 
-on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
+on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for the enabled status changes of the accessibility application or touch guide mode.
-
- 
-
-- **Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for the enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for the enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
-  | callback | Callback\<boolean> | Yes| Callback invoked when the enabled status of captions configuration changes.|
-
-- **Example**
-
-  ```typescript
-  accessibility.on('accessibilityStateChange',(data) => { 
-      console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-  })
-  ```
-
-## accessibility.off('accessibilityStateChange' | 'touchGuideStateChange')
-
-off(type: 'accessibilityStateChange ' | 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
-
-Disables listening for the enabled status changes of the accessibility application or touch guide mode.
+Enables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
 
  
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type |  string | No| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for the enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for the enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
-  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status changes.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.off('accessibilityStateChange',(data) => {
-      console.info('success data:unSubscribeStateObserver : ' + JSON.stringify(data))
-  })
-  ```
+```ts
+try {
+    accessibility.on('accessibilityStateChange', (data) => {
+        console.info('subscribe accessibility state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.on('touchGuideStateChange')
+
+on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
+
+Enables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
+
+ 
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the result.|
+
+**Example**
+
+```ts
+try {
+    accessibility.on('touchGuideStateChange', (data) => {
+        console.info('subscribe touch guide state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.off('accessibilityStateChange')
+
+off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
+
+ 
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type |  string | No| Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+
+**Example**
+
+```ts
+try {
+    accessibility.off('accessibilityStateChange', (data) => {
+        console.info('Unsubscribe accessibility state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to Unsubscribe accessibility state change, because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.off('touchGuideStateChange')
+
+off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
+
+ 
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type |  string | No| Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+
+**Example**
+
+```ts
+try {
+    accessibility.off('touchGuideStateChange', (data) => {
+        console.info('Unsubscribe touch guide state change, result: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('failed to Unsubscribe touch guide state change, because ' + JSON.stringify(exception));
+}
+```
 
 ## accessibility.isOpenAccessibility
 
@@ -487,22 +683,21 @@ Checks whether accessibility is enabled. This API uses a promise to return the r
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.isOpenAccessibility()
-      .then((data) => {
-          console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
-      }).catch((error) => {
-          console.error('failed to  isOpenAccessibility because ' + JSON.stringify(error));
-      })
-  ```
+```ts
+accessibility.isOpenAccessibility().then((data) => {
+    console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
+}).catch((err) => {
+    console.error('failed to  isOpenAccessibility because ' + JSON.stringify(err));
+});
+```
 
 ## accessibility.isOpenAccessibility
 
@@ -512,23 +707,23 @@ Checks whether accessibility is enabled. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.isOpenAccessibility((err, data) => {
-      if (err) {
-          console.error('failed to isOpenAccessibility because ' + JSON.stringify(err));
-          return;
-      }
-      console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
-  })
-  ```
+```ts
+accessibility.isOpenAccessibility((err, data) => {
+    if (err) {
+        console.error('failed to isOpenAccessibility because ' + JSON.stringify(err));
+        return;
+    }
+    console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
+});
+```
 
 ## accessibility.isOpenTouchGuide
 
@@ -538,22 +733,21 @@ Checks whether touch guide mode is enabled. This API uses a promise to return th
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.isOpenTouchGuide()
-      .then((data) => {
-          console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
-      }).catch((error) => {
-          console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(error));
-      })
-  ```
+```ts
+accessibility.isOpenTouchGuide().then((data) => {
+    console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
+}).catch((err) => {
+    console.error('failed to  isOpenTouchGuide because ' + JSON.stringify(err));
+});
+```
 
 ## accessibility.isOpenTouchGuide
 
@@ -563,78 +757,172 @@ Checks whether touch guide mode is enabled. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.isOpenTouchGuide((err, data) => {
-      if (err) {
-          console.error('failed to isOpenTouchGuide because ' + JSON.stringify(err));
-          return;
-      }
-      console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
-  })
-  ```
+```ts
+accessibility.isOpenTouchGuide((err, data) => {
+    if (err) {
+        console.error('failed to isOpenTouchGuide because ' + JSON.stringify(err));
+        return;
+    }
+    console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
+});
+```
 
-## accessibility.sendEvent
+## accessibility.sendEvent<sup>(deprecated)</sup>
 
 sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 Sends an accessibility event. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+> You are advised to use **[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9)**.
+
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
 
-- **Return value**
+**Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result. Returns data if the accessibility event is sent successfully; returns an error otherwise.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.sendEvent(this.eventInfo)
-      .then((data) => {
-          console.info('success data:sendEvent : ' + JSON.stringify(data))
-      }).catch((error) => {
-          console.error('failed to  sendEvent because ' + JSON.stringify(error));
-      })
-  ```
+```ts
+let eventInfo = new accessibility.EventInfo({
+  'type':'click',
+  'bundleName':'com.example.MyApplication',
+  'triggerAction':'click'
+});
+accessibility.sendEvent(eventInfo).then(() => {
+    console.info('send event success');
+}).catch((err) => {
+    console.error('failed to sendEvent because ' + JSON.stringify(err));
+});
+```
 
-## accessibility.sendEvent
+## accessibility.sendEvent<sup>(deprecated)</sup>
 
 sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 Sends an accessibility event. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9.
+> You are advised to use **[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1)**.
+
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- **Parameters**
+**Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. Returns data if the accessibility event is sent successfully; returns an error otherwise.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, **error** that contains data is returned. |
 
-- **Example**
+**Example**
 
-  ```typescript
-  accessibility.sendEvent(this.eventInfo,(err, data) => {
-      if (err) {
-          console.error('failed to sendEvent because ' + JSON.stringify(err));
-          return;
-      }   
-      console.info('success data:sendEvent : ' + JSON.stringify(data))
-  })
-  ```
+```ts
+let eventInfo = new accessibility.EventInfo({
+  'type':'click',
+  'bundleName':'com.example.MyApplication',
+  'triggerAction':'click'
+});
+accessibility.sendEvent(eventInfo, (err, data) => {
+    if (err) {
+        console.error('failed to sendEvent because ' + JSON.stringify(err));
+        return;
+    }
+    console.info('sendEvent success');
+});
+```
+
+## accessibility.sendAccessibilityEvent<sup>9+</sup>
+
+sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
+
+Sends an accessibility event. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+let eventInfo = new accessibility.EventInfo({
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
+});
+try {
+    accessibility.sendAccessibilityEvent(eventInfo).then(() => {
+        console.info('send event success');
+    }).catch((err) => {
+        console.error('failed to send event because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to send event because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.sendAccessibilityEvent<sup>9+</sup>
+
+sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
+
+Sends an accessibility event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, **error** that contains data is returned. |
+
+**Example**
+
+```ts
+let eventInfo = new accessibility.EventInfo({
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
+});
+try {
+    accessibility.sendEvent(eventInfo, (err, data) => {
+        if (err) {
+            console.error('failed to send event because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('send event success');
+    });
+} catch (exception) {
+    console.error('failed to send event because ' + JSON.stringify(exception));
+}
+```

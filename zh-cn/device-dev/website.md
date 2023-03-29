@@ -4,7 +4,7 @@
   - [快速入门概述](quick-start/quickstart-overview.md)
   - 基于IDE开发
     - 搭建开发环境
-      - [搭建Windows环境](quick-start/quickstart-ide-env--win.md)
+      - [搭建Windows环境](quick-start/quickstart-ide-env-win.md)
       - [搭建Ubuntu环境](quick-start/quickstart-ide-env-ubuntu.md)
       - [配置远程访问环境](quick-start/quickstart-ide-env-remote.md)
     - [创建工程并获取源码](quick-start/quickstart-ide-import-project.md)
@@ -26,9 +26,9 @@
   - 基于命令行开发
     - 搭建开发环境
       - [准备开发环境](quick-start/quickstart-pkg-prepare.md)
-      - [安装库和工具集](quick-start/quickstart-pkg-install_package.md)
+      - [安装库和工具集](quick-start/quickstart-pkg-install-package.md)
       - [获取源码](quick-start/quickstart-pkg-sourcecode.md)
-      - [安装编译工具](quick-start/quickstart-pkg-install_tool.md)
+      - [安装编译工具](quick-start/quickstart-pkg-install-tool.md)
     - 轻量系统（基于Hi3861开发板）
       - [安装Hi3861开发板特有环境](quick-start/quickstart-pkg-3861-tool.md)
       - [编写“Hello World”程序](quick-start/quickstart-pkg-3861-helloworld.md)
@@ -60,8 +60,6 @@
     - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
   
   - [获取源码](get-code/sourcecode-acquire.md)
-    - [隐私保护](security/security-privacy-protection.md)
-    - [安全指南](security/security-guidelines-overall.md)
 - 隐私和安全
   - [隐私保护](security/security-privacy-protection.md)
   - [安全指南](security/security-guidelines-overall.md)
@@ -155,6 +153,7 @@
 - 子系统开发
 
   -  内核
+     - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核（LiteOS-M）
        - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
@@ -166,8 +165,9 @@
            - [互斥锁](kernel/kernel-mini-basic-ipc-mutex.md)
            - [消息队列](kernel/kernel-mini-basic-ipc-queue.md)
            - [信号量](kernel/kernel-mini-basic-ipc-sem.md)
-         - [时间管理](kernel/kernel-basic-mini-time.md)
+         - [时间管理](kernel/kernel-mini-basic-time.md)
          - [软件定时器](kernel/kernel-mini-basic-soft.md)
+         - [双向链表](kernel/kernel-mini-basic-list.md)
        - 扩展组件
          - [C++支持](kernel/kernel-mini-extend-support.md)
          - [CPU占用率](kernel/kernel-mini-extend-cpup.md)
@@ -178,9 +178,9 @@
          - [异常调测](kernel/kernel-mini-memory-exception.md)
          - [Trace调测](kernel/kernel-mini-memory-trace.md)
          - [LMS调测](kernel/kernel-mini-memory-lms.md)
+         - [SHELL](kernel/kernel-mini-debug-shell.md)
        - 附录
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
-         - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
      - 小型系统内核（LiteOS-A）
        - [小型系统内核概述](kernel/kernel-small-overview.md)
@@ -218,6 +218,7 @@
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
            - [适配新的文件系统](kernel/kernel-small-bundles-fs-new.md)
+           - [Plimitsfs文件系统](kernel/kernel-small-plimits.md)
        - 调测与工具
          - Shell
            - [Shell介绍](kernel/kernel-small-debug-shell-overview.md)
@@ -287,7 +288,7 @@
            - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
            - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
          - [Trace调测](kernel/kernel-small-debug-trace.md)
-         - [Perf调测](kernel/kernel-mini-memory-perf.md)
+         - [Perf调测](kernel/kernel-small-debug-perf.md)
          - [LMS调测](kernel/kernel-small-memory-lms.md)
          - [进程调测](kernel/kernel-small-debug-process-cpu.md)
          - 内核态内存调测
@@ -319,6 +320,7 @@
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
+       - [驱动加载](driver/driver-hdf-load.md)
        - [驱动服务管理](driver/driver-hdf-servicemanage.md)
        - [驱动消息机制管理](driver/driver-hdf-message-management.md)
        - [配置管理](driver/driver-hdf-manage.md)
@@ -379,18 +381,18 @@
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
      - 编译构建参考
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [产品配置规则](subsystems/subsys-build-product.md#产品配置规则)
-       - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
-       - [部件配置规则](subsystems/subsys-build-component.md#部件配置规则)
-       - [模块配置规则](subsystems/subsys-build-module.md#模块配置规则)
-       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md#芯片解决方案配置规则)
-       - [特性配置规则](subsystems/subsys-build-feature.md#特性配置规则)
-       - [系统能力配置规则](subsystems/subsys-build-syscap.md#如何按需配置部件的系统能力)
-       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md#关于deps、external_deps的使用)
-       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md#开源软件notice收集策略说明)
-       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md#加快本地编译的一些参数)
-       - [查看NinjaTrace](subsystems/subsys-build-reference.md#查看ninjatrace)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [产品配置规则](subsystems/subsys-build-product.md)
+       - [子系统配置规则](subsystems/subsys-build-subsystem.md)
+       - [部件配置规则](subsystems/subsys-build-component.md)
+       - [模块配置规则](subsystems/subsys-build-module.md)
+       - [芯片解决方案配置规则](subsystems/subsys-build-chip_solution.md)
+       - [特性配置规则](subsystems/subsys-build-feature.md)
+       - [系统能力配置规则](subsystems/subsys-build-syscap.md)
+       - [关于deps、external_deps的使用](subsystems/subsys-build-reference.md)
+       - [开源软件Notice收集策略说明](subsystems/subsys-build-reference.md)
+       - [加快本地编译的一些参数](subsystems/subsys-build-reference.md)
+       - [查看NinjaTrace](subsystems/subsys-build-reference.md)
        - [HAP编译构建指导](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [常见问题](subsystems/subsys-build-FAQ.md)
   -  [分布式远程启动](subsystems/subsys-remote-start.md)
@@ -426,10 +428,6 @@
      - [Sensor服务概述](subsystems/subsys-sensor-overview.md)
      - [Sensor服务使用指导](subsystems/subsys-sensor-guide.md)
      - [Sensor服务使用实例](subsystems/subsys-sensor-demo.md)
-  -  USB服务
-     - [USB服务概述](subsystems/subsys-usbservice-overview.md)
-     - [USB服务使用指导](subsystems/subsys-usbservice-guide.md)
-     - [USB服务使用实例](subsystems/subsys-usbservice-demo.md)
   -  用户程序框架
      - [概述](subsystems/subsys-application-framework-overview.md)
      - [搭建环境](subsystems/subsys-application-framework-envbuild.md)
@@ -466,8 +464,10 @@
      - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
      - [HiLog_Lite开发指导](subsystems/subsys-dfx-hilog-lite.md)
      - [HiTraceChain开发指导](subsystems/subsys-dfx-hitracechain.md)
+     - [HiTraceMeter开发指导](subsystems/subsys-dfx-hitracemeter.md)
      - [HiCollie开发指导](subsystems/subsys-dfx-hicollie.md)
      - HiSysEvent开发指导
+       - [HiSysEvent概述](subsystems/subsys-dfx-hisysevent-overview.md)
        - [HiSysEvent打点配置指导](subsystems/subsys-dfx-hisysevent-logging-config.md)
        - [HiSysEvent打点指导](subsystems/subsys-dfx-hisysevent-logging.md)
        - [HiSysEvent订阅指导](subsystems/subsys-dfx-hisysevent-listening.md)
@@ -516,13 +516,15 @@
 
 
 - 调测
-  - [测试用例开发](subsystems/subsys-testguide-test.md)
+  - [developer_test开发者自测试执行框架使用指导](device-test/developer_test.md)
+  - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
-- [XTS认证](subsystems/subsys-xts-guide.md)
+- [XTS认证](device-test/xts.md)
 - 工具
+  - [工具概述](get-code/gettools-overview.md)
   - [Docker编译环境](get-code/gettools-acquire.md)
   - [IDE集成开发环境](get-code/gettools-ide.md)
 - 示例教程
@@ -646,7 +648,7 @@
         - [AudioDeviceDescriptor](reference/hdi-apis/_audio_device_descriptor.md)
         - [AudioManager](reference/hdi-apis/_audio_manager.md)
         - [AudioMixExtInfo](reference/hdi-apis/_audio_mix_ext_info.md)
-        - [AudioMmapBufferDescripter](reference/hdi-apis/_audio_mmap_buffer_descripter.md)
+        - [AudioMmapBufferDescriptor](reference/hdi-apis/_audio_mmap_buffer_descriptor.md)
         - [AudioPort](reference/hdi-apis/_audio_port.md)
         - [AudioPortCap](reference/hdi-apis/audio_portcap.md)
         - [AudioPortCapability](reference/hdi-apis/_audio_port_capability.md)

@@ -6,7 +6,7 @@
 
 人脸识别功能是端侧设备不可或缺的一部分，为设备提供一种用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。它是基于人的脸部特征信息进行身份识别的一种生物特征识别技术，用摄像机或摄像头采集含有人脸的图像或视频流，并自动在图像中检测和跟踪人脸，进而对检测到的人脸进行脸部识别，通常也叫做人像识别、面部识别、人脸认证。人脸识别功能整体框架如图1。
 
-基于HDF（Hardware Driver Foundation）驱动框架开发的Face_auth驱动，能够屏蔽硬件器件差异，为上层用户认证框架和Face_auth服务提供稳定的人脸识别基础能力接口，包括人脸识别执行器列表查询、执行器信息查询、指定人脸模板ID查询模板信息、用户认证框架和执行器间的人脸模板信息对账、人脸的录入，删除，认证和识别等。
+基于HDF（Hardware Driver Foundation）驱动框架开发的Face_auth驱动，能够屏蔽硬件器件差异，为上层用户认证框架和Face_auth服务提供稳定的人脸识别基础能力接口，包括人脸识别执行器列表查询、执行器信息查询、指定人脸模板ID查询模板信息、用户认证框架和执行器间的人脸模板信息对账、人脸录入、删除、认证和识别等。
 
 **图1** 人脸识别功能整体框架
 
@@ -21,7 +21,7 @@
 
 - 执行器安全等级
 
-  执行器提供能力时运行环境所达到的安全级别。
+  执行器提供能力时所在运行环境达到的安全级别。
 
 - 执行器角色
 
@@ -51,6 +51,22 @@
 
   用户认证框架统一管理用户身份和凭据ID的映射关系，执行器对接到用户认证框架时，会读取用户身份认证框架内保存的该执行器的模板ID列表，执行器需要与自己维护的模板ID列表进行比对，并删除冗余信息。
 
+- HAPs
+
+  HAPs（OpenHarmony Ability Packages），广义上指可以安装在OpenHarmony上的应用包，本章节中仅代表Face_auth驱动的上层应用。
+
+- IDL接口
+
+  接口定义语言（Interface Definition Language）通过IDL编译器编译后，能够生成与编程语言相关的文件：客户端桩文件，服务器框架文件。本文主要是通过IDL接口生成的客户端和服务端来实现Face_auth服务和驱动的通信，详细使用方法可参考[IDL简介](https://gitee.com/openharmony/ability_idl_tool/blob/master/README.md)。
+
+- IPC通信
+
+  IPC（Inter Process Communication），进程间通信是指两个进程的数据之间产生交互，详细原理可参考[IPC通信简介](https://gitee.com/openharmony/communication_ipc/blob/master/README_zh.md)。
+
+- HDI
+
+  HDI（Hardware Device Interface），硬件设备接口，位于基础系统服务层和设备驱动层之间，是提供给硬件系统服务开发者使用的、统一的硬件设备功能抽象接口，其目的是为系统服务屏蔽底层硬件设备差异，具体可参考[HDI规范](../../design/hdi-design-specifications.md)。
+
 ### 运作机制
 
 Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务提供稳定的人脸识别基础能力，保证设备上人脸识别功能可以正常运行。
@@ -74,24 +90,28 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 ### 接口说明
 
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/face_auth/v1_0/）。
+
+在本文中，人脸凭据的录入、认证、识别和删除相关的HDI接口如表1所示，表2中的回调函数分别用于人脸执行器返回操作结果给框架和返回操作过程中的提示信息给上层应用。
+
 **表1** 接口功能介绍
 
-| 接口名                                                       | 功能介绍                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。                                             |
-| GetExecutorInfo(ExecutorInfo& info)                          | 获取执行器信息，包括执行器类型、执行器角色、认证类型、安全等级、执行器公钥等信息，用于向用户认证框架注册执行器。 |
-| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定人脸模板ID的模板信息。                               |
+| 接口名称       | 功能介绍         |
+| ----------------------------------- | ---------------------------------- |
+| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | 获取执行器列表。            |
+| GetExecutorInfo(ExecutorInfo& info)      | 获取执行器信息，包括执行器类型、执行器角色、认证类型、安全等级、执行器公钥等信息，用于向用户认证框架注册执行器。 |
+| GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | 获取指定人脸模板ID的模板信息。        |
 | OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | 执行器注册成功后，获取用户认证框架的公钥信息；获取用户认证框架的人脸模板列表用于对账。 |
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 录入人脸模板。                                               |
-| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | 认证人脸模板。                                               |
+| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 录入人脸模板。             |
+| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br/>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | 认证人脸模板。         |
 | Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 识别人脸模板。                                               |
-| Delete(const std::vector<uint64_t>& templateIdList)          | 删除人脸模板。                                               |
-| Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定录入、认证、识别操作。                 |
+| Delete(const std::vector<uint64_t>& templateIdList)          | 删除人脸模板。  |
+| Cancel(uint64_t scheduleId)                                  | 通过scheduleId取消指定录入、认证、识别操作。  |
 | SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br/>        const sptr<IExecutorCallback>& callbackObj) | 人脸认证服务向Face_auth驱动传递参数的通用接口。              |
 
 **表2** 回调函数介绍
 
-| 接口名                                                       | 功能介绍                 |
+| 接口名称                                                       | 功能介绍                 |
 | ------------------------------------------------------------ | ------------------------ |
 | IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。     |
 | IExecutorCallback::OnTip(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
@@ -102,15 +122,15 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 ```undefined
 // drivers/peripheral/face_auth
-├── BUILD.gn # 编译脚本
-├── bundle.json # 组件描述文件
-└── hdi_service # Face_auth驱动实现
-    ├── BUILD.gn # 编译脚本
-    ├── include # 头文件
-    └── src
-        ├── executor_impl.cpp # 认证、录入等功能接口实现
-        ├── face_auth_interface_driver.cpp # Face_auth驱动入口
-        └── face_auth_interface_service.cpp # 获取执行器列表接口实现
+├── BUILD.gn     # 编译脚本
+├── bundle.json  # 组件描述文件
+└── hdi_service  # Face_auth驱动实现
+    ├── BUILD.gn    # 编译脚本
+    ├── include     # 头文件
+    └── src         # 源文件
+        ├── executor_impl.cpp                # 认证、录入等功能接口实现
+        ├── face_auth_interface_driver.cpp   # Face_auth驱动入口
+        └── face_auth_interface_service.cpp  # 获取执行器列表接口实现
 ```
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
@@ -423,66 +443,59 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 驱动开发完成后，通过[用户认证API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，基于Hi3516DV300平台验证。认证和取消功能验证的JS测试代码如下：
 
-```js
-// API version 8
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-let auth = new userIAM_userAuth.UserAuth();
+    ```js
+    // API version 9
+    import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
-export default {
-    getVersion() {
-        console.info("start get version");
-        let version = this.auth.getVersion();
-        console.info("auth version = " + version);
-    },
+    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    let authType = userIAM_userAuth.UserAuthType.FACE;
+    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
 
-    startAuth() {
-        console.info("start auth");
-        this.auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-            onResult: (result, extraInfo) => {
-                try {
-                    console.info("auth onResult result = " + result);
-                    console.info("auth onResult extraInfo = " + JSON.stringify(extraInfo));
-                    if (result == userIAM_userAuth.ResultCode.SUCCESS) {
-                        // 此处添加认证成功逻辑
-                    }  else {
-                        // 此处添加认证失败逻辑
-                    }
-                } catch (e) {
-                    console.info("auth onResult error = " + e);
-                }
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                try {
-                    console.info("auth onAcquireInfo module = " + module);
-                    console.info("auth onAcquireInfo acquire = " + acquire);
-                    console.info("auth onAcquireInfo extraInfo = " + JSON.stringify(extraInfo));
-                } catch (e) {
-                    console.info("auth onAcquireInfo error = " + e);
-                }
-            }
-        });
-    },
-
-    cancelAuth() {
-        console.info("start cancel auth");
-        // contextId通过auth接口获取
-        let contextId = auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
-            onResult: (result, extraInfo) => {
-                console.info("auth onResult result = " + result);
-            },
-
-            onAcquireInfo: (module, acquire, extraInfo) => {
-                console.info("auth onAcquireInfo module = " + module);
-            }
-        });
-        let cancelCode = this.auth.cancel(contextId);
-        if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
-            console.info("cancel auth success");
-        } else {
-            console.error("cancel auth fail");
-        }
+    // 获取认证对象
+    let auth;
+    try {
+        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+        console.log("get auth instance success");
+    } catch (error) {
+        console.log("get auth instance failed" + error);
     }
-}
-```
 
+    // 订阅认证结果
+    try {
+        auth.on("result", {
+            callback: (result: userIAM_userAuth.AuthResultInfo) => {
+                console.log("authV9 result " + result.result);
+                console.log("authV9 token " + result.token);
+                console.log("authV9 remainAttempts " + result.remainAttempts);
+                console.log("authV9 lockoutDuration " + result.lockoutDuration);
+            }
+        });
+        console.log("subscribe authentication event success");
+    } catch (error) {
+        console.log("subscribe authentication event failed " + error);
+    }
+
+    // 开始认证
+    try {
+        auth.start();
+        console.info("authV9 start auth success");
+    } catch (error) {
+        console.info("authV9 start auth failed, error = " + error);
+    }
+
+    // 取消认证
+    try {
+        auth.cancel();
+        console.info("cancel auth success");
+    } catch (error) {
+        console.info("cancel auth failed, error = " + error);
+    }
+
+    // 取消订阅认证结果
+    try {
+        auth.off("result");
+        console.info("cancel subscribe authentication event success");
+    } catch (error) {
+        console.info("cancel subscribe authentication event failed, error = " + error);
+    }
+    ```

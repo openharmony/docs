@@ -50,7 +50,7 @@
 
 如此，既在各设备上体现了UX的一致性，也在各设备上体现了UX的差异性，从而既可以保障各设备上应用界面的体验，也可以最大程度复用界面代码。
 
-在本文[应用UX设计章节](ux-design.md)中，将详细介绍应用的UX设计规则。
+在本文[应用UX设计章节](design-principles.md)中，将详细介绍应用的UX设计规则。
 
 
 ## 工程管理及调试
@@ -78,20 +78,20 @@
 
 ## 页面开发
 
-天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
+天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
 
   观察天气主页在不同设备上的UX设计图，可以进行如下设计：
 - 将天气主页划分为9个基础区域，如：
   ![home_full](figures/home_full.png)
 
-- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)的形式分别实现这9个基础区域。
+- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../quick-start/arkts-basic-ui-description.md)的形式分别实现这9个基础区域。
     |  | 小设备 | 中设备 | 大设备 | 
   | -------- | -------- | -------- | -------- |
   | 主页 | ![Home_sm](figures/Home_sm.png) | ![Home_md_mark](figures/Home_md_mark.png) | ![Home_lg_mark](figures/Home_lg_mark.png) | 
 
 - 基础区域1-8之间的布局在不同设备上有较大差异，可以使用响应式布局中的[栅格布局](responsive-layout.md#栅格布局)能力实现组件间的布局效果。
 
-- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
+- 展开和隐藏侧边栏的功能可以通过[侧边栏组件](../../reference/arkui-ts/ts-container-sidebarcontainer.md)来实现。侧边栏是大设备上独有的，借助响应式布局中的[媒体查询](responsive-layout.md#媒体查询)能力，控制仅在大设备上展示侧边栏即可。
 
 
 ### 主页基础区域
@@ -271,3 +271,5 @@ struct Home {
 - 在使用特定系统能力前，通过canIUse接口判断系统能力是否存在，进而执行不同的逻辑。
 
 在本文的[功能开发的一多能力介绍](development-intro.md)章节中，将详细展开介绍。
+
+<!--no_check-->

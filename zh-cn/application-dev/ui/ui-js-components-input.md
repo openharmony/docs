@@ -145,16 +145,16 @@ text{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
@@ -200,14 +200,14 @@ export default {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt' 
+import promptAction from '@ohos.promptAction' 
  export default { 
    data:{ 
      value:'', 
    }, 
    change(e){ 
      this.value = e.value; 
-     prompt.showToast({ 
+     promptAction.showToast({ 
      message: "value: " + this.value, 
        duration: 3000, 
       }); 
@@ -222,7 +222,7 @@ import prompt from '@system.prompt'
           error:this.value + 'This field cannot be left empty.'       
         }); 
       }else{ 
-        prompt.showToast({ 
+        promptAction.showToast({ 
           message: "success " 
         }); 
       } 
@@ -302,14 +302,14 @@ label {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {    
   data: {    
   },    
   onInit() { 
   },   
   btnclick(e) {        
-    prompt.showToast({            
+    promptAction.showToast({            
       message:'Saved successfully!'        
     })    
   }

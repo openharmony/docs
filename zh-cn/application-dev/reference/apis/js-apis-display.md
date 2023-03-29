@@ -1,4 +1,5 @@
-# 屏幕属性
+# @ohos.display (屏幕属性)
+
 屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 
 > **说明：**
@@ -33,12 +34,12 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -46,7 +47,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 参数类型      | 可读 | 可写 | 说明               |
+| 名称   | 类型      | 可读 | 可写 | 说明               |
 | ------ | ------------- | ---- | ---- | ------------------ |
 | left   | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的左侧矩形区域。 |
 | top    | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的顶部矩形区域。 |
@@ -59,7 +60,7 @@ import display from '@ohos.display';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                        | 参数类型      | 可读 | 可写 | 说明               |
+| 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
@@ -84,16 +85,17 @@ getDefaultDisplaySync(): Display
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -116,7 +118,7 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -152,7 +154,7 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
@@ -195,7 +197,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 1400003 | This window manager service work abnormally. |
+| 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
@@ -203,24 +205,24 @@ hasPrivateWindow(displayId: number): boolean
 let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
+
+    let ret = undefined;
+    try {
+        ret = display.hasPrivateWindow(displayClass.id);
+    } catch (exception) {
+        console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+    }
+    if (ret == undefined) {
+        console.log("Failed to check has privateWindow or not.");
+    }
+    if (ret) {
+        console.log("There has privateWindow.");
+    } else if (!ret) {
+        console.log("There has no privateWindow.");
+    }
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-    return;
-};
-
-try {
-    let ret = display.hasPrivateWindow(displayClass.id);
-} catch (exception) {
-    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
-};
-if (ret == undefined) {
-  console.log("Failed to check has privateWindow or not.");
 }
-if (ret) {
-  console.log("There has privateWindow.");
-} else if (!ret) {
-  console.log("There has no privateWindow.");
-};
 ```
 
 ## display.on('add'|'remove'|'change')
@@ -235,7 +237,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
@@ -243,12 +245,12 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 ```js
 let callback = (data) => {
     console.info('Listening enabled. Data: ' + JSON.stringify(data));
-}
+};
 try {
     display.on("add", callback);
 } catch (exception) {
     console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -263,7 +265,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
@@ -273,7 +275,7 @@ try {
     display.off("remove");
 } catch (exception) {
     console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-};
+}
 ```
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
@@ -403,21 +405,23 @@ promise.then((data) => {
 
 下列API示例中都需先使用[getAllDisplays()](#displaygetalldisplays9)、[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)中的任一方法获取到Display实例，再通过此实例调用对应方法。
 
+### 属性
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | number | 是 | 否 | 显示设备的id号。|
 | name | string | 是 | 否 | 显示设备的名称。|
 | alive | boolean | 是 | 否 | 显示设备是否启用。|
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。|
 | refreshRate | number | 是 | 否 | 显示设备的刷新率。|
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。|
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。|
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，单位为DPI。|
-| densityPixels | number | 是 | 否 | 显示设备的屏幕密度，单位为像素。|
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。|
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
+| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
 
@@ -432,7 +436,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。返回描述不可用屏幕区域的CutoutInfo对象。。 |
 
 **错误码：**
 
@@ -440,24 +444,25 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
+
+    displayClass.getCutoutInfo((err, data) => {
+        if (err.code) {
+            console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-displayClass.getCutoutInfo((err, data) => {
-    if (err.code) {
-        console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-});
+}
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -470,7 +475,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象，返回描述不可用屏幕区域的CutoutInfo对象。 |
+| Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象。返回描述不可用屏幕区域的CutoutInfo对象。 |
 
 **错误码：**
 
@@ -478,19 +483,22 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 1400001 | This is invalid screen. |
+| 1400001 | Invalid display or screen. |
 
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
+
+    let promise = displayClass.getCutoutInfo();
+    promise.then((data) => {
+        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    });
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-};
-
-let promise = displayClass.getCutoutInfo();
-promise.then((data) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-});
+}
 ```

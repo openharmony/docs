@@ -28,9 +28,8 @@ Location awareness helps determine where a mobile device locates. The system ide
 
     WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
-**Figure 1** ** Location subsystem architecture**<a name="fig4460722185514"></a>  
+**Figure 1** Location subsystem architecture**<a name="fig4460722185514"></a>  
 
-![](figures/location_En-1.png)
 ![](figures/location_En-1.png)
 
 ## Directory Structure<a name="section161941989596"></a>
@@ -116,27 +115,7 @@ The following table describes APIs available for obtaining device location infor
 
    If your application needs to access the device location information when running on the background, it must be allowed to run on the background in the configuration file and also granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information even when your application moves to the background.
 
-   To allow your application to access device location information, you can declare the required permissions in the **config.json** file of your application. The sample code is as follows:
-
-     
-   ```
-   {
-       "module": {
-           "reqPermissions": [{
-               "name": "ohos.permission.LOCATION",
-               "reason": "$string:reason_description",
-               "usedScene": {
-                   "ability": ["com.myapplication.LocationAbility"],
-                   "when": "inuse"
-               }, {
-               ...
-               }
-           ]
-       }
-   }
-   ```
-
-   For details about the configuration fields, see [Application Package Structure Configuration File](../application-dev/quick-start/stage-structure.md).
+   You can declare the required permission in your application's configuration file. For details, see [Access Control (Permission) Development](../application-dev/security/accesstoken-guidelines.md).
 
 2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
      

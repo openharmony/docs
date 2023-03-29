@@ -37,3 +37,5 @@ OpenHarmony 3.2 Beta3版本相较于OpenHarmony 3.2 Beta2版本，电源服务�
 | system.brightness | GetBrightnessOptions     | fail?: (data: string, code: number) => void;                    | 废弃 |
 | system.brightness | GetBrightnessOptions     | success?: (data: BrightnessResponse) => void;                   | 废弃 |
 | system.brightness | BrightnessResponse       | value: number;                                                  | 废弃 |
+| ohos.batteryInfo | batteryInfo | ohos.batteryinfo -> ohos.batteryInfo | 模块名修改 |
+

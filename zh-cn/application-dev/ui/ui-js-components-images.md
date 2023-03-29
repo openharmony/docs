@@ -101,17 +101,17 @@ image{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   imageComplete(i,e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "image "+i+"'s width"+ e.width+"----image "+i+"'s height"+e.height,
       duration: 3000,
     })
   },
   imageError(i,e){
     setTimeout(()=>{
-      prompt.showToast({
+      promptAction.showToast({
         message: "Failed to load image "+i+".",
         duration: 3000,
       })
@@ -177,7 +177,7 @@ export default {
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     testuri: 'common/images/bg-tv.jpg',
@@ -185,7 +185,7 @@ export default {
     timer: null
   },
   changeopacity: function () {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Touch and hold the image.'
     })
     var opval = this.imageopacity * 20

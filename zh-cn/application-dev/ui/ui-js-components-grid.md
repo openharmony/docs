@@ -28,6 +28,7 @@
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -67,6 +68,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -75,7 +77,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     gutterWidth:'',
@@ -93,13 +95,13 @@ export default {
       this.columns= result;
     }) 
     setTimeout(()=>{              
-      prompt.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
+      promptAction.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
       this.gutterWidth+',getColumns:'+this.columns})
     })
   },
   getSizeType(){
       this.$element('mygrid').getSizeType((result)=>{
-      prompt.showToast({duration:2000,message:'get size type:'+result})
+      promptAction.showToast({duration:2000,message:'get size type:'+result})
     })
   },
 }
@@ -154,6 +156,7 @@ export default {
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -203,6 +206,7 @@ text{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;
@@ -213,7 +217,7 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     list:[
@@ -224,7 +228,7 @@ export default {
     fresh:false
   },
   refresh(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'refreshing'
     })
     var that = this;
@@ -232,7 +236,7 @@ export default {
     setTimeout(function () {
       that.fresh = false;
       that.list.unshift({src: 'common/images/4.png',id:'4'});
-      prompt.showToast({
+      promptAction.showToast({
         message: 'succeed'
       })
     }, 2000)
@@ -248,4 +252,4 @@ export default {
 
 针对Grid开发，有以下相关实例可供参考：
 
-- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsGrid)
+- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsGrid)

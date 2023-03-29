@@ -167,14 +167,12 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 ## 使用说明<a name="section741617511812"></a>
 
-OpenHarmony LiteOS-A内核支持[Hi3516DV300](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3516.md)单板。开发者可基于此单板开发运行自己的应用程序。
+OpenHarmony LiteOS-A内核支持[Hi3516DV300](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-appendix-hi3516.md)单板。开发者可基于此单板开发运行自己的应用程序。
 
 ### 准备<a name="section1579912573329"></a>
 
-开发者需要在Linux上搭建编译环境：
+开发者需要在Linux上[搭建编译环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-prepare.md)。
 
--   [编译环境准备](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md);
--   Hi3516DV300单板：参考[环境搭建](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-steps-hi3516-setting.md)。
 
 ### 获取源码<a name="section11443189655"></a>
 
@@ -184,7 +182,7 @@ OpenHarmony LiteOS-A内核支持[Hi3516DV300](https://gitee.com/openharmony/docs
 
 如果这是您的首次应用程序开发，可参考：
 
--   [helloworld for Hi3516DV300](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-steps-hi3516-running.md)。
+-   [helloworld for Hi3516DV300](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3516-running.md)。
 
 ## 相关仓<a name="section1371113476307"></a>
 

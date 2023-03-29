@@ -1,12 +1,18 @@
-# 结果集
+# resultSet (结果集)
 
 结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 从API Version 9开始，该接口不再维护，推荐使用新接口[@ohos.data.relationalStore#ResultSet](js-apis-data-relationalStore.md#resultset)。
 
-## 使用说明
+## ResultSet
+
+提供通过查询数据库生成的数据库结果集的访问方法。
+
+### 使用说明
 
 需要通过[RdbStore.query()](js-apis-data-rdb.md#query)获取resultSet对象。
 
@@ -21,15 +27,11 @@ promise.then((resultSet) => {
 });
 ```
 
-## ResultSet
-
-提供通过查询数据库生成的数据库结果集的访问方法。
-
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | columnNames | Array&lt;string&gt; | 是 | 获取结果集中所有列的名称。 |
 | columnCount | number | 是 | 获取结果集中的列数。 |
@@ -47,7 +49,7 @@ getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -77,7 +79,7 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -105,7 +107,7 @@ goTo(offset:number): boolean
 
 向前或向后转至结果集的指定行，相对于其当前位置偏移。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -124,7 +126,7 @@ goTo(offset:number): boolean
   ```js
   let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoto.then((resultSet) {
+  promisequerygoto.then((resultSet) => {
       resultSet.goTo(1);
       resultSet.close();
   }).catch((err) => {
@@ -138,7 +140,7 @@ goToRow(position: number): boolean
 
 转到结果集的指定行。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -157,7 +159,7 @@ goToRow(position: number): boolean
   ```js
   let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygotorow.then((resultSet) {
+  promisequerygotorow.then((resultSet) => {
       resultSet.goToRow(5);
       resultSet.close();
   }).catch((err) => {
@@ -169,10 +171,9 @@ goToRow(position: number): boolean
 
 goToFirstRow(): boolean
 
-
 转到结果集的第一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
 
@@ -185,7 +186,7 @@ goToFirstRow(): boolean
   ```js
   let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoFirst.then((resultSet) {
+  promisequerygoFirst.then((resultSet) => {
       resultSet.goToFirstRow();
       resultSet.close();
   }).catch((err) => {
@@ -199,7 +200,7 @@ goToLastRow(): boolean
 
 转到结果集的最后一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
 
@@ -212,7 +213,7 @@ goToLastRow(): boolean
   ```js
   let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoLast.then((resultSet) {
+  promisequerygoLast.then((resultSet) => {
       resultSet.goToLastRow();
       resultSet.close();
   }).catch((err) => {
@@ -226,7 +227,7 @@ goToNextRow(): boolean
 
 转到结果集的下一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
 
@@ -239,7 +240,7 @@ goToNextRow(): boolean
   ```js
   let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoNext.then((resultSet) {
+  promisequerygoNext.then((resultSet) => {
       resultSet.goToNextRow();
       resultSet.close();
   }).catch((err) => {
@@ -253,7 +254,7 @@ goToPreviousRow(): boolean
 
 转到结果集的上一行。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **返回值：**
 
@@ -266,7 +267,7 @@ goToPreviousRow(): boolean
   ```js
   let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE");
   let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promisequerygoPrev.then((resultSet) {
+  promisequerygoPrev.then((resultSet) => {
       resultSet.goToPreviousRow();
       resultSet.close();
   }).catch((err) => {
@@ -280,7 +281,7 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -306,7 +307,7 @@ getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -332,7 +333,7 @@ getLong(columnIndex: number): number
 
 以Long形式获取当前行中指定列的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -342,9 +343,9 @@ getLong(columnIndex: number): number
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 以Long形式返回指定列的值。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 以Long形式返回指定列的值。<br/>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议使用[getDouble](#getdouble)。 |
 
 **示例：**
 
@@ -358,7 +359,7 @@ getDouble(columnIndex: number): number
 
 以double形式获取当前行中指定列的值。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -384,7 +385,7 @@ isColumnNull(columnIndex: number): boolean
 
 检查当前行中指定列的值是否为null。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -410,14 +411,14 @@ close(): void
 
 关闭结果集。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **示例：**
 
   ```js
   let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE");
   let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-  promiseClose.then((resultSet) {
+  promiseClose.then((resultSet) => {
       resultSet.close();
   }).catch((err) => {
       console.log('resultset close failed');

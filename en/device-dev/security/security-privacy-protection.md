@@ -1,6 +1,6 @@
-# Privacy Protection<a name="EN-US_TOPIC_0000001083754024"></a>
+# Privacy Protection
 
-## Overview<a name="section13200134331414"></a>
+## Overview
 
 Personal data plays an increasingly important role in social economy and daily life along with the development of the Internet and informatization. Meanwhile, personal data leakage risks are increasing. As consumer product developers, you shall take more effective measures to protect users' personal data and improve their trust in your products. To protect consumers' privacy and improve their experience on privacy, you should set high-level privacy protection policies for your product.
 
@@ -49,7 +49,7 @@ Personal data plays an increasingly important role in social economy and daily l
     -   Users provide information proactively, such as scenarios where a user enters their identification number and bank card number to bind the bank card.
 
 
-## Data Classification<a name="section2371104991511"></a>
+## Data Classification
 
 Data is classified into five levels: very high, high, moderate, low, and public based on the data protection objectives and consequences \(the impact of legal risks caused by data leakage or damage on individuals, organizations, or the public\).
 
@@ -116,7 +116,7 @@ Data is classified into five levels: very high, high, moderate, low, and public 
 
 Note: For details about the definitions of privacy protection and data classification, see GDPR.
 
-## General Privacy Design Rules<a name="section10354102411162"></a>
+## General Privacy Design Rules
 
 To help you better complete privacy design for OpenHarmony products, we sort out general privacy design requirements.
 
@@ -133,29 +133,29 @@ When collecting personal data, clearly and explicitly notify users of the data t
 
     Guided by the preceding principles, we have designed some examples for your reference. The figures below are examples of a privacy notice and a privacy statement, respectively.
 
-    **Figure  1**  Examples of a privacy notice and a privacy statement<a name="fig1611815442274"></a>  
+    **Figure  1**  Examples of a privacy notice and a privacy statement  
     
 
-    ![](figure/privacy-notice.png)![](figure/privacy-statement.png)
+    ![](figures/privacy-notice.png)![](figures/privacy-statement.png)
 
 -   Personal data shall be collected for specified, explicit, and legitimate purposes and not further processed in a manner that is incompatible with those purposes. If the purposes are changed or a user withdraws their consent, you shall obtain user consent again before using the data. The figures below are examples of a privacy statement update and content withdrawal, respectively.
 
     **Figure  2**  Example dialog showing a privacy statement update<a name="fig3591610523"></a>  
     
 
-    ![](figure/privacy-statement-update.png)
+    ![](figures/privacy-statement-update.png)
 
     **Figure  3**  Example dialog showing consent withdrawal<a name="fig12802152515583"></a>  
     
 
-    ![](figure/consent-withdrawal-1.png)![](figure/consent-withdrawal-2.png)
+    ![](figures/consent-withdrawal-1.png)![](figures/consent-withdrawal-2.png)
 
 -   You shall provide an entry for users to view the privacy statement. For example, you can provide an entry on the  **About**  page of your application to view the privacy statement, as shown in the following figure.
 
     **Figure  4**  Example of About page providing an entry to the privacy statement<a name="fig11392538162011"></a>  
     
 
-   ![](figure/privacy-statement-entry.png)
+   ![](figures/privacy-statement-entry.png)
 
 
 **Minimization in Data Collection and Use**
@@ -179,7 +179,7 @@ You shall obtain consent from users and comply with applicable laws and regulati
     **Figure  5**  Example dialog for requesting a sensitive permission<a name="fig20776134521514"></a>  
     
 
-    ![](figure/sensitive-permission-request.png)
+    ![](figures/sensitive-permission-request.png)
 
 -   Users shall have the right to modify or withdraw the permissions granted to your product. When a user does not agree to a permission or data collection, the user shall be allowed to use the functions irrelevant to the permission or data collection. For example, the user can refuse to grant the camera permission to social or communication apps on Smart TVs, when using product functions irrelevant to the camera, such as voice calls.
 -   In scenarios where personal data is recorded, users shall be provided with the functions of adding, deleting, modifying, and viewing personal data.
@@ -190,9 +190,9 @@ You shall obtain consent from users and comply with applicable laws and regulati
 
 Data processing security shall be ensured in technical terms, which include encrypted data storage and secure data transfer. Security mechanisms or measures shall be enabled by default for a system.
 
--   A protection mechanism shall be available for personal data access, including identity authentication and access control. Identity authentication \(such as username and password\) allows only authenticated users to access data in multi-user scenarios. Access control \(for example,  [permission control](security-guidelines-overall.md#section852593153614)\) can be applied to restrict access to applications.
+-   A protection mechanism shall be available for personal data access, including identity authentication and access control. Identity authentication \(such as username and password\) allows only authenticated users to access data in multi-user scenarios. Access control \(for example, [permission control](../security/security-guidelines-overall.md)\) can be applied to restrict access to applications.
 -   Secure storage of personal data on distributed devices must meet Huawei Universal Keystore \(HUKS\) requirements, including secure storage of keys and data.
--   The transfer of personal data between distributed devices must meet the trust binding relationship between devices and security requirements of data transmission channels. For details, see  [Security Guidelines](security-guidelines-overall.md#section26153183616).
+-   The transfer of personal data between distributed devices must meet the trust binding relationship between devices and security requirements of data transmission channels. For details, see [Device Interconnection Security](../security/security-guidelines-overall.md#device-interconnection-security).
 -   Authentication data \(such as passwords and fingerprints\) shall be encrypted before being stored.
 
 **Localization**
@@ -203,7 +203,7 @@ User data shall be preferentially processed on the local device. Data that canno
 
 If your product is designed for minors or you can identify, based on the collected user age data, that the end user is a minor, you shall particularly analyze issues related to minors' personal data protection based on relevant national laws in the target market. Your product shall obtain explicit consent from the holders of parental responsibility over minors.
 
-## **Privacy Protection Requirements for Special Categories**<a name="section118861450201618"></a>
+## **Privacy Protection Requirements for Special Categories**
 
 In addition to these general privacy requirements, consumer hardware products have the following requirements for special categories. You shall comply with these requirements during product design.
 
