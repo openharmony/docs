@@ -224,3 +224,13 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder)。 |
 
+## PixelStretchEffectOptions<sup>10+</sup>
+
+像素扩展属性集合,用于描述像素扩展的信息。
+
+| 名称          | 类型     | 必填   | 说明         |
+| ----------- | ------ | ---- | ---------- |
+| left     | [Length](#length) | 否    | 组件图像左边沿扩展距离。 |
+| right    | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
+| top  | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
