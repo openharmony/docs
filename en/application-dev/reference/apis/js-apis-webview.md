@@ -1673,9 +1673,9 @@ var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
+            h5Port = event.ports[0]; // 1. Save the port number sent from the ArkTS side.
             h5Port.onmessage = function (event) {
-              // 2. Receive the message sent from the eTS side.
+              // 2. Receive the message sent from the ArkTS side.
               var msg = 'Got message from ets:';
               var result = event.data;
               if (typeof(result) == "string") {
@@ -1697,7 +1697,7 @@ window.addEventListener('message', function (event) {
     }
 })
 
-// 3. Use h5Port to send messages to the eTS side.
+// 3. Use h5Port to send messages to the ArkTS side.
 function PostMsgToEts(data) {
     if (h5Port) {
       h5Port.postMessage(data);
