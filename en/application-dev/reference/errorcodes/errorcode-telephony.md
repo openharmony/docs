@@ -165,7 +165,7 @@ This error code is reported if the UT is not connected.
 
 **Cause**
 
-The current carrier does not support sending of UT requests over a Wi-Fi network, but the mobile phone is connected to the Wi-Fi network.
+The current carrier does not support sending of UT requests over a Wi-Fi network, but the device is connected to the Wi-Fi network.
 
 **Solution**
 
