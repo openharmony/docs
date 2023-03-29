@@ -64,7 +64,7 @@ ws.connect(defaultIpAddress, (err, value) => {
 
 ## webSocket.createWebSocket
 
-createWebSocket\(\): WebSocket
+createWebSocket(): WebSocket
 
 Creates a WebSocket connection. You can use this API to create or close a WebSocket connection, send data over it, or enable or disable listening for the **open**, **close**, **message**, and **error** events.
 
@@ -89,7 +89,7 @@ Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call
 
 ### connect
 
-connect\(url: string, callback: AsyncCallback<boolean\>\): void
+connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 Initiates a WebSocket request to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
@@ -128,7 +128,7 @@ ws.connect(url, (err, value) => {
 
 ### connect
 
-connect\(url: string, options: WebSocketRequestOptions, callback: AsyncCallback<boolean\>\): void
+connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
 Initiates a WebSocket request carrying specified options to establish a WebSocket connection to a given URL. This API uses an asynchronous callback to return the result.
 
@@ -173,7 +173,7 @@ ws.connect(url, {
 
 ### connect
 
-connect\(url: string, options?: WebSocketRequestOptions\): Promise<boolean\>
+connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 Initiates a WebSocket request carrying specified options to establish a WebSocket connection to a given URL. This API uses a promise to return the result.
 
@@ -217,7 +217,7 @@ promise.then((value) => {
 
 ### send
 
-send\(data: string | ArrayBuffer, callback: AsyncCallback<boolean\>\): void
+send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 Sends data through a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -229,7 +229,7 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 
 | Name  | Type                    | Mandatory| Description        |
 | -------- | ------------------------ | ---- | ------------ |
-| data     | string \| ArrayBuffer <sup>8+</sup> | Yes  | Data to send.|
+| data     | string \| ArrayBuffer | Yes  | Data to send.<br>Only the string type is supported for API version 6 or earlier. Both the string and ArrayBuffer types are supported for API version 8 or later.|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -258,7 +258,7 @@ ws.connect(url, (err, value) => {
 
 ### send
 
-send\(data: string | ArrayBuffer\): Promise<boolean\>
+send(data: string | ArrayBuffer): Promise\<boolean\>
 
 Sends data through a WebSocket connection. This API uses a promise to return the result.
 
@@ -270,7 +270,7 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
-| data     | string \| ArrayBuffer <sup>8+</sup> | Yes  | Data to send.|
+| data     | string \| ArrayBuffer | Yes  | Data to send.<br>Only the string type is supported for API version 6 or earlier. Both the string and ArrayBuffer types are supported for API version 8 or later.|
 
 **Return value**
 
@@ -303,7 +303,7 @@ ws.connect(url, (err, value) => {
 
 ### close
 
-close\(callback: AsyncCallback<boolean\>\): void
+close(callback: AsyncCallback\<boolean\>): void
 
 Closes a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -341,7 +341,7 @@ ws.close((err, value) => {
 
 ### close
 
-close\(options: WebSocketCloseOptions, callback: AsyncCallback<boolean\>\): void
+close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses an asynchronous callback to return the result.
 
@@ -383,7 +383,7 @@ ws.close({
 
 ### close
 
-close\(options?: WebSocketCloseOptions\): Promise<boolean\>
+close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses a promise to return the result.
 
@@ -427,9 +427,9 @@ promise.then((value) => {
 ```
 
 
-### on\('open'\)
+### on('open')
 
-on\(type: 'open', callback: AsyncCallback<Object\>\): void
+on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 Enables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -453,9 +453,9 @@ ws.on('open', (err, value) => {
 ```
 
 
-### off\('open'\)
+### off('open')
 
-off\(type: 'open', callback?: AsyncCallback<Object\>\): void
+off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 Disables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -484,14 +484,14 @@ ws.off('open', callback1);
 ```
 
 
-### on\('message'\)
+### on('message')
 
-on\(type: 'message', callback: AsyncCallback<string | ArrayBuffer\>\): void
+on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
 >**NOTE**
->The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
+>The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -512,14 +512,14 @@ ws.on('message', (err, value) => {
 ```
 
 
-### off\('message'\)
+### off('message')
 
-off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
+off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
 
 >**NOTE**
->The data in **AsyncCallback** can be in the format of string\(API 6\) or ArrayBuffer\(API 8\).
+>The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 >You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
@@ -539,9 +539,9 @@ ws.off('message');
 ```
 
 
-### on\('close'\)
+### on('close')
 
-on\(type: 'close', callback: AsyncCallback<\{ code: number, reason: string \}\>\): void
+on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
 
 Enables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -552,7 +552,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback<{ code: number, reason: string }> | Yes  | Callback used to return the result.                    |
+| callback | AsyncCallback\<{ code: number, reason: string }\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -564,9 +564,9 @@ ws.on('close', (err, value) => {
 ```
 
 
-### off\('close'\)
+### off('close')
 
-off\(type: 'close', callback?: AsyncCallback<\{ code: number, reason: string \}\>\): void
+off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>): void
 
 Disables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -580,7 +580,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback<{ code: number, reason: string }> | No  | Callback used to return the result.                    |
+| callback | AsyncCallback\<{ code: number, reason: string }\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -590,9 +590,9 @@ ws.off('close');
 ```
 
 
-### on\('error'\)
+### on('error')
 
-on\(type: 'error', callback: ErrorCallback\): void
+on(type: 'error', callback: ErrorCallback): void
 
 Enables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -615,9 +615,9 @@ ws.on('error', (err) => {
 ```
 
 
-### off\('error'\)
+### off('error')
 
-off\(type: 'error', callback?: ErrorCallback\): void
+off(type: 'error', callback?: ErrorCallback): void
 
 Disables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 

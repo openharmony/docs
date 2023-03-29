@@ -1,6 +1,6 @@
 # @ohos.net.http (Data Request)
 
-The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+This module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
 >**NOTE**
 >
@@ -13,10 +13,10 @@ The **http** module provides the HTTP data request capability. An application ca
 import http from '@ohos.net.http';
 ```
 
-## Examples
+## Example
 
 ```js
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -27,7 +27,7 @@ httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+    // Customize EXAMPLE_URL on your own. It is up to you whether to add parameters to the URL.
     "EXAMPLE_URL",
     {
         method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
@@ -112,7 +112,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -164,7 +164,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -231,7 +231,7 @@ httpRequest.request("EXAMPLE_URL",
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
-Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
+Initiates an HTTP request to a given URL. This API uses a promise to return the result. 
 
 >**NOTE**
 >This API supports only transfer of data not greater than 5 MB.
@@ -255,7 +255,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -349,7 +349,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -395,7 +395,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -477,7 +477,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -513,7 +513,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 >**NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
-> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see:
+> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
 
@@ -839,7 +839,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | "OK." The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |
@@ -1007,7 +1007,7 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void\> |  Promise used to return the result.|
 
 **Example**
 

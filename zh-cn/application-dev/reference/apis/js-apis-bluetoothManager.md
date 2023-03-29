@@ -151,7 +151,7 @@ try {
 
 getBtConnectionState(): ProfileConnectionState
 
-获取蓝牙设备的Profile连接状态。
+获取蓝牙本端的Profile连接状态，例如：任意一个支持的Profile连接状态为已连接，则此接口返回状态为已连接。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -263,7 +263,7 @@ try {
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 
-获取profile的连接状态。
+依据ProfileId获取指定profile的连接状态。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 

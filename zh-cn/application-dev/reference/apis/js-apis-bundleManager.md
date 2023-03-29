@@ -1109,7 +1109,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified extensionAbility is not found.    |
+| 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |

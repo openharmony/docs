@@ -228,7 +228,7 @@
   - [@ohos.data.dataShareResultSet (数据共享结果集)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
-  - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
+  - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
@@ -236,6 +236,7 @@
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fileUri (文件URI)](js-apis-file-fileUri.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
@@ -244,6 +245,7 @@
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
+  - [@ohos.fileShare (文件分享)](js-apis-fileShare.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)

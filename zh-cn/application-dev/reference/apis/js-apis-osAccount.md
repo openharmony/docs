@@ -326,9 +326,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId or constraint.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint.    |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -376,9 +376,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId or constraint.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint.    |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -487,7 +487,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -527,9 +527,9 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -575,9 +575,9 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -720,7 +720,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -774,7 +774,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -987,7 +987,7 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1024,7 +1024,7 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1060,8 +1060,8 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid.    |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid.    |
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
@@ -1104,8 +1104,8 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
@@ -1144,8 +1144,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainInfo. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
 
 **示例：**
 
@@ -1191,8 +1191,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainInfo. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
 
 **示例：**
 
@@ -1470,7 +1470,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1507,7 +1507,7 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1858,7 +1858,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
 **示例：** 查询ID为100的系统帐号信息
@@ -2229,9 +2229,9 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid serialNumber. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2272,9 +2272,9 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid serialNumber. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2311,9 +2311,9 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2354,9 +2354,9 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2400,7 +2400,6 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300011 | Callback has been registered. |
 
 **示例：**
 
@@ -2442,7 +2441,6 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300012 | Callback has not been registered. |
 
 **示例：**
 
@@ -2479,8 +2477,8 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **示例：**
 
@@ -2522,8 +2520,8 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **示例：**
 
@@ -2640,9 +2638,9 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid name or constraint. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -2687,9 +2685,9 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid name or constraint. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -4113,9 +4111,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **示例：**
   ```js
@@ -4172,9 +4170,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **示例：**
   ```js
@@ -4282,7 +4280,7 @@ registerInputer(inputer: IInputer): void;
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid inputer. |
+| 12300002 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **示例：**
@@ -4347,7 +4345,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid authType or inputer. |
+| 12300002 | Invalid authType or inputer. |
 | 12300103 | The credential inputer has been registered. |
 | 12300106 | Unsupported authType. |
 
@@ -4716,7 +4714,7 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300201 | the domain plugin has been registered. |
+| 12300201 | The domain plugin has been registered. |
 
 **示例：**
   ```js
@@ -4783,17 +4781,17 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo or credential. |
-| 12300003 | domain account does not exist. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo or credential. |
+| 12300003 | Domain account does not exist. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **示例：**
   ```js
@@ -4836,16 +4834,16 @@ authWithPopup(callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300003 | no domain account is bound. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **示例：**
   ```js
@@ -4884,17 +4882,17 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId. |
-| 12300003 | no domain account is bound. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **示例：**
   ```js
@@ -4933,9 +4931,9 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo. |
-| 12300013 | network exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
 
 **示例：**
   ```js
@@ -4984,9 +4982,9 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo. |
-| 12300013 | network exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
 
 **示例：**
   ```js
@@ -5389,7 +5387,6 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -5429,7 +5426,6 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -5474,7 +5470,6 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -5512,6 +5507,12 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
 | authSubType | [AuthSubType](#authsubtype8)             | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 12300002 | Invalid pinSubType. |
 
 **示例：**
   ```js
@@ -5975,7 +5976,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口。 |
 
 ## 系统帐号约束列表
 

@@ -10,7 +10,7 @@ The **observer** module provides event subscription management functions. You ca
 ## Modules to Import
 
 ```
-import observer from '@ohos.telephony.observer'
+import observer from '@ohos.telephony.observer';
 ```
 
 ## observer.on('networkStateChange')
@@ -31,7 +31,6 @@ Registers an observer for network status change events. This API uses an asynchr
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | Yes  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -45,7 +44,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('networkStateChange', data =>{ 
+observer.on('networkStateChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -70,7 +69,6 @@ Registers an observer for network status change events of the SIM card in the sp
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | Yes  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -84,7 +82,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('networkStateChange', {slotId: 0}, data =>{ 
+observer.on('networkStateChange', {slotId: 0}, data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -145,7 +143,6 @@ Registers an observer for signal status change events. This API uses an asynchro
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -159,7 +156,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('signalInfoChange', data =>{ 
+observer.on('signalInfoChange', data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -182,7 +179,6 @@ Registers an observer for signal status change events of the SIM card in the spe
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -196,7 +192,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('signalInfoChange', {slotId: 0}, data =>{ 
+observer.on('signalInfoChange', {slotId: 0}, data => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
 });
 ```
@@ -222,7 +218,6 @@ Unregisters the observer for signal status change events. This API uses an async
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | No  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -244,6 +239,125 @@ observer.off('signalInfoChange', callback);
 observer.off('signalInfoChange');
 ```
 
+## observer.on('cellInfoChange')<sup>8+</sup>
+
+on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
+
+Registers an observer for cell information change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
+| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                                  |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+observer.on('cellInfoChange', data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+});
+```
+
+
+## observer.on('cellInfoChange')<sup>8+</sup>
+
+on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<CellInformation\>\): void;
+
+Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+**Parameters**
+
+| Name| Type                                              | Mandatory| Description                                                        |
+| ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
+| type     | string                                           | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                                  |
+| slotId | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                             |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+observer.on('cellInfoChange', {slotId: 0}, data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+});
+```
+
+
+## observer.off('cellInfoChange')<sup>8+</sup>
+
+off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
+
+Unregisters the observer for cell information change events. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>
+>You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                           |
+| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | No  | Callback used to return the result.|
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let callback = data => {
+    console.log("on cellInfoChange, data:" + JSON.stringify(data));
+}
+observer.on('cellInfoChange', callback);
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
+observer.off('cellInfoChange', callback);
+observer.off('cellInfoChange');
+```
 
 ## observer.on('callStateChange')
 
@@ -261,7 +375,6 @@ Registers an observer for call status change events. This API uses an asynchrono
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -274,7 +387,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('callStateChange', value =>{ 
+observer.on('callStateChange', value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -297,7 +410,6 @@ Registers an observer for call status change events. This API uses an asynchrono
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -310,7 +422,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('callStateChange', {slotId: 0}, value =>{ 
+observer.on('callStateChange', {slotId: 0}, value => {
     console.log("on callStateChange, state:" + value.state + ", number:" + value.number);
 });
 ```
@@ -336,7 +448,6 @@ Unregisters the observer for call status change events. This API uses an asynchr
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | No  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -375,7 +486,6 @@ Registers an observer for connection status change events of the cellular data l
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -388,7 +498,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('cellularDataConnectionStateChange', value =>{
+observer.on('cellularDataConnectionStateChange', value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -411,7 +521,6 @@ Registers an observer for connection status change events of the cellular data l
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -424,7 +533,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
+observer.on('cellularDataConnectionStateChange', {slotId: 0}, value => {
     console.log("on cellularDataConnectionStateChange, state:" + value.state + ", network:" + value.network);
 });
 ```
@@ -450,7 +559,6 @@ Unregisters the observer for connection status change events of the cellular dat
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -489,7 +597,6 @@ Registers an observer for the uplink and downlink data flow status change events
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | Yes  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -502,7 +609,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('cellularDataFlowChange', data =>{
+observer.on('cellularDataFlowChange', data => {
     console.log("on networkStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -525,7 +632,6 @@ Registers an observer for the uplink and downlink data flow status change events
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | Yes  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -538,7 +644,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('cellularDataFlowChange', {slotId: 0}, data =>{
+observer.on('cellularDataFlowChange', {slotId: 0}, data => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
 });
 ```
@@ -564,7 +670,6 @@ Unregisters the observer for the uplink and downlink data flow status change eve
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | No  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -603,7 +708,6 @@ Registers an observer for SIM card status change events. This API uses an asynch
 | callback | Callback\<[SimStateData](#simstatedata7)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -616,7 +720,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('simStateChange', data =>{
+observer.on('simStateChange', data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -639,7 +743,6 @@ Registers an observer for status change events of the SIM card in the specified 
 | callback | Callback\<[SimStateData](#simstatedata7)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -652,7 +755,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-observer.on('simStateChange', {slotId: 0}, data =>{
+observer.on('simStateChange', {slotId: 0}, data => {
     console.log("on simStateChange, data:" + JSON.stringify(data));
 });
 ```
@@ -678,7 +781,6 @@ Unregisters the observer for SIM card status change events. This API uses an asy
 | callback | Callback\<[SimStateData](#simstatedata7)\> | No  | Callback used to return the result.|
 
 **Error codes**
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -732,6 +834,6 @@ Enumerates SIM card types and states.
 
 |     Name           |                 Type               | Mandatory| Description                                                     |
 | ------------------- | ----------------------------------- | ---- | --------------------------------------------------------  |
-| type                | [CardType](js-apis-sim.md#cardtype) | Yes  | SIM card type. For details, see [CardType](js-apis-sim.md#cardtype).|
-| state               | [SimState](js-apis-sim.md#simstate) | Yes  | SIM card status. For details, see [SimState](js-apis-sim.md#simstate).|
+| type                | [CardType](js-apis-sim.md#cardtype7) | Yes  | SIM card type.|
+| state               | [SimState](js-apis-sim.md#simstate) | Yes  | SIM card state.|
 | reason<sup>8+</sup> | [LockReason](#lockreason8)          | Yes  | SIM card lock type.                                            |

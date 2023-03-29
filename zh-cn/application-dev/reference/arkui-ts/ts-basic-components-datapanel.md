@@ -28,15 +28,6 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype枚举说明) | 否 | 数据面板的类型（不支持动态修改）。<br/>默认值：DataPanelType.Circle |
 
-## 属性
-
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
-
-| 名称        | 类型    | 描述                                         |
-| ----------- | ------- | -------------------------------------------- |
-| closeEffect | boolean | 关闭数据占比图表旋转动效。<br/>默认值：false |
-
-
 
 ## DataPanelType枚举说明
 
@@ -46,6 +37,50 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | -------| ------------ |
 | Line   | 线型数据面板。 |
 | Circle | 环形数据面板。 |
+
+
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效。<br/>默认值：false。|
+| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 是 | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
+| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。|
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。 |
+| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10) | 是 | 投影样式，不设置为不开启投影。|
+
+
+## DataPanelShadowOption<sup>10+</sup>
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 <br/>默认值：5vp。 |
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors值相同。 |
+| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5vp。 |
+| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5vp。 |
+
+## LinearGradient<sup>10+</sup>
+
+线性渐变颜色描述。
+
+LinearGradient(colorStops: ColorStop[])
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| colorStops | [ColorStop](#colorstop10)[] | 是 | 存储渐变颜色和渐变点。|
+
+
+## ColorStop<sup>10+</sup>
+
+颜色断点类型，用于描述渐进色颜色断点。
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
+| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值）。|
+
 
 
 ## 示例

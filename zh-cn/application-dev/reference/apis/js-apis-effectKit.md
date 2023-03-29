@@ -180,6 +180,93 @@ console.log('get main color =' + color);
 ```
 ![zh-ch_image_Main_Color.png](figures/zh-ch_image_Main_Color.png)
 
+### getLargestProportionColor<sup>10+</sup>
+
+getLargestProportionColor(): Color
+
+读取图像占比最多的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Color实例，即图像占比最多的颜色值，失败时返回null。 |
+
+**示例：**
+
+```js
+let color = colorPicker.getLargestProportionColor();
+console.log('get largest proportion color =' + color);
+```
+![zh-ch_image_Largest_Proportion_Color.png](figures/zh-ch_image_Largest_Proportion_Color.png)
+
+### getHighestSaturationColor<sup>10+</sup>
+
+getHighestSaturationColor(): Color
+
+读取图像饱和度最高的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Color实例，即图像饱和度最高的颜色值，失败时返回null。 |
+
+**示例：**
+
+```js
+let color = colorPicker.getHighestSaturationColor();
+console.log('get highest saturation color =' + color);
+```
+![zh-ch_image_Highest_Saturation_Color.png](figures/zh-ch_image_Highest_Saturation_Color.png)
+
+### getAverageColor<sup>10+</sup>
+
+getAverageColor(): Color
+
+读取图像平均的颜色值，结果写入[Color](#color)里，使用同步方式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Color实例，即图像平均的颜色值，失败时返回null。 |
+
+**示例：**
+
+```js
+let color = colorPicker.getAverageColor();
+console.log('get average color =' + color);
+```
+![zh-ch_image_Average_Color.png](figures/zh-ch_image_Average_Color.png)
+
+### isBlackOrWhiteOrGrayColor<sup>10+</sup>
+
+isBlackOrWhiteOrGrayColor(color: number): boolean
+
+判断图像是否为黑白灰颜色，返回true或false。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| :------------- | :---------------------------------------------- |
+| boolean              | 如果此图像为黑白灰颜色，则返回true；否则返回false。 |
+
+**示例：**
+
+```js
+let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
+console.log('is black or white or gray color[bool](white) =' + bJudge);
+```
+
 ## Filter
 
 图像效果类，用于将指定的效果添加到输入图像中。在调用Filter的方法前，需要先通过[createEffect](#effectkitcreateeffect)创建一个Filter实例。

@@ -16,9 +16,9 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力：** SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 类型 | 可读 | 可写 | 说明                      |
-| --------- | -------- | ---- | ---- | ------------------------- |
-| context | [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md) | 是 | 否 | 表示辅助扩展能力上下文。 |
+| 名称      | 类型                                       | 可读   | 可写   | 说明           |
+| ------- | ---------------------------------------- | ---- | ---- | ------------ |
+| context | [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md) | 是    | 否    | 表示辅助扩展能力上下文。 |
 
 ## AccessibilityEvent
 
@@ -28,11 +28,11 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ### 属性
 
-| 名称        | 类型                                     | 可读   | 可写   | 说明         |
-| --------- | ---------------------------------------- | ---- | ---- | ---------- |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是    | 否    | 具体事件类型。    |
-| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)                     | 是    | 否    | 发生事件的目标组件。 |
-| timeStamp | number                                   | 是    | 否    | 事件时间戳。     |
+| 名称      | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType)\| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 是   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型，当前版本暂不支持。 |
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 是   | 否   | 发生事件的目标组件。                                         |
+| timeStamp | number                                                       | 是   | 否   | 事件时间戳。                                                 |
 
 ## GestureType
 
@@ -40,8 +40,8 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 描述           |
-| ------------- | ------------ |
+| 名称            | 描述                  |
+| ------------- | ------------------- |
 | left          | 类型为字符串，表示向左的手势。     |
 | leftThenRight | 类型为字符串，表示先向左再向右的手势。 |
 | leftThenUp    | 类型为字符串，表示先向左再向上的手势。 |
@@ -61,12 +61,12 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 ## PageUpdateType
 
-页面刷新类型。
+页面刷新类型；当前版本暂不支持。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                | 描述        |
-| ----------------- | --------- |
+| 名称                | 描述               |
+| ----------------- | ---------------- |
 | pageContentUpdate | 类型为字符串，表示页面内容刷新。 |
 | pageStateUpdate   | 类型为字符串，表示页面状态刷新。 |
 
@@ -76,8 +76,8 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称         | 描述           |
-| ---------- | ------------ |
+| 名称         | 描述                  |
+| ---------- | ------------------- |
 | touchBegin | 类型为字符串，表示触摸浏览时开始触摸。 |
 | touchEnd   | 类型为字符串，表示触摸浏览时结束触摸。 |
 
@@ -127,7 +127,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填   | 说明              |
+| 参数名   | 类型                                       | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
 | event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
 
@@ -154,7 +154,7 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 
 **参数：**
 
-| 参数名      | 类型                                     | 必填   | 说明                      |
+| 参数名      | 类型                                       | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
 | keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
