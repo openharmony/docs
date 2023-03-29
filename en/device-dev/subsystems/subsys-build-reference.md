@@ -55,8 +55,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                    # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
-    part_name = "part2"  # (Mandatory) Name of the component to which the module belongs.
+    ]                      # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
+    part_name = "part2"    # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -71,14 +71,14 @@ Sanitizer configuration example:
 ``` shell
   ohos_shared_library("example") {
     sanitize = {
-      cfi = true                             # Enable the CFI check.
-      cfi_cross_dso = true                   # Enable the cross-DSO CFI check.
-      integer_overflow = true                # Enable the integer overflow check.
-      boundary_sanitize = true               # Enable the bounds check.
-      ubsan = true                           # Enable some UBSAN options.
-      all_ubsan = true                       # Enable all UBSAN options.
-      debug = true                           # Enable the debug mode, which is disabled by default.
-      blocklist = "./blocklist.txt"          # Path of the blocklist.
+      cfi = true                            # Enable the CFI check.
+      cfi_cross_dso = true                  # Enable the cross-DSO CFI check.
+      integer_overflow = true               # Enable the integer overflow check.
+      boundary_sanitize = true              # Enable the bounds check.
+      ubsan = true                          # Enable some UBSAN options.
+      all_ubsan = true                      # Enable all UBSAN options.
+      debug = true                          # Enable the debug mode, which is disabled by default.
+      blocklist = "./blocklist.txt"         # Path of the blocklist.
     }
     ...
   }
@@ -198,3 +198,69 @@ You can graphically display the build time as follows:
   1. Click **Success** under **Static Check**.
 
   2. Click **Output** in the **Output** column. The **build.trace.html** file is displayed in the **build_trace** column on the left. Click the file to open it.
+
+## Customizing the chip_prod Image
+
+### When to Use
+
+The different capabilities for the products in the same chip solution are placed in the **chip_prod** partition. You need to generate the **chip_prod.img** specific to the product.
+
+### Procedure
+1. Configure the **config.json** file.
+   
+   In the **config.json** file, add **chipprod_config_path**, which specifies the path of the product definition file.
+   The file is named **chip_product_list.gni**, and in the **chip_product_list = ["productA", "productB", ...]** format.
+   
+   Example:
+   
+   To customize **chip_prod.img** for **MyProduct**, modify the **//vendor/Product vendor/MyProduct/config.json** as follows:
+   
+   ```shell
+	{
+        "product_name": "MyProduct",                                 # Product name.
+        "version": "3.0",                                            # config.json version, which is 3.0.
+        "chipprod_config_path": "",                                  # (Optional) Path of the chipprod configuration file.
+   "subsystems": [
+          {
+            "subsystem": "arkui",                                    # Subsystem of the product. 
+            "components": [
+              {
+                  "component": "ace_engine",
+                  "features":[ "ace_engine_feature_enable_web = true",
+                    "ace_engine_feature_enable_accessibility = true" ] }   
+            ]
+          },
+          {
+           ...
+          }
+         ...
+      More subsystems and components.
+        }
+   }
+   ```
+   
+2. Configure the module.
+
+   If the configuration file has different product configurations, for example, to generate **chip_prod.img** for product A, you need to configure **install_images** and **module_install_dir** for module compilation.
+
+   The following uses **ohos_prebuilt_executable** as an example:
+
+   ```shell
+   ohos_prebuilt_executable("moduleXXX"){
+   install_images = [ "chip_prod" ]
+   module_install_dir = "productA/etc/***"     # The path must start with productA.
+   }
+   ```
+
+3. Run the build command.
+```shell
+./build.sh --product-name {product_name} --build-target chip_prod_image
+```
+
+4. Generate the images.
+   If products A and B are defined (**chip_product_list = ["productA", "productB"]**) and a module is installed in the products, the following images are generated:
+   
+   ```
+   images/productA/chip_prod.img
+   images/productB/chip_prod.img
+   ```
