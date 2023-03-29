@@ -471,7 +471,7 @@ The specified bundle is an overlay bundle.
 ## 17700036 共享库缺少AllowAppShareLibrary特权导致安装失败
 
 **错误信息**<br/>
-Failed to install because without allow app shared bundle permission.
+Failed to install the HSP because lacks appropriate permissions.
 
 **错误描述**<br/>
 共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。
@@ -513,5 +513,35 @@ The specified shared bundle does not exist.
 **处理步骤**<br/>
 1. 检查被卸载的shared library是否存在于当前设备中。
 2. 检查被卸载的版本是否存在于被卸载的shared library中。
+
+## 17700039 不允许安装应用间共享库
+**错误信息**<br/>
+Failed to install because disallow install a shared bundle by hapFilePaths.
+
+**错误描述**<br/>
+安装应用时，传入的安装包为应用间共享库类型。
+
+**可能原因**<br/>
+1. 通过bm工具安装应用时，-p参数传入了应用间共享库的安装包路径。
+2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
+
+**处理步骤**<br/>
+1. 通过-s参数指定应用间共享库的安装包路径。
+2. 通过installParam参数的sharedBundleDirPaths字段指定应用间共享库的安装包路径。
+
+## 17700040 不允许卸载应用间共享库
+**错误信息**<br/>
+The specified bundle is a shared bundle which cannot be uninstalled.
+
+**错误描述**<br/>
+卸载应用时，传入的是应用间共享库的包名。
+
+**可能原因**<br/>
+1. 通过bm工具卸载应用时，-n参数传入了应用间共享库的包名。
+2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
+
+**处理步骤**<br/>
+1. 通过-s参数指定卸载的应用为共享库应用。
+2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
 <!--no_check-->
