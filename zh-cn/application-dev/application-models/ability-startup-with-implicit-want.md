@@ -27,8 +27,7 @@
                 "host": "www.test.com",
                 "port": "8080",
                 // prefix matching
-                "pathStartWith": "query",
-                "type": "text/*"
+                "pathStartWith": "query"
               },
               {
                 "scheme": "http",
@@ -57,8 +56,7 @@ function implicitStartAbility() {
     "action": "ohos.want.action.viewData",
     // entities can be omitted.
     "entities": ["entity.system.browsable"],
-    "uri": "https://www.test.com:8080/query/student",
-    "type": "text/plain"
+    "uri": "https://www.test.com:8080/query/student"
   }
   context.startAbility(wantInfo).then(() => {
     // ...
