@@ -16,7 +16,7 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 - [如何处理一个无障碍事件](#如何处理一个无障碍事件)
 - [如何声明无障碍扩展服务具备的能力](#如何声明无障碍扩展服务具备的能力)
 - [如何开启自定义的无障碍扩展服务](#如何开启自定义的无障碍扩展服务)
-- [相关示例](#相关示例)
+- [相关实例](#相关实例)
 
 ## 如何创建一个无障碍扩展服务
  
@@ -118,9 +118,9 @@ onAccessibilityEvent(accessibilityEvent) {
 
 若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
 
-## 相关示例
+## 相关实例
 
-针对AccessibilityExtensionAbility开发，有以下相关示例可供参考：
+针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
-[AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/AccessibilityExtAbility)
+- [AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/AccessibilityExtAbility)
 
