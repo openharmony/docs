@@ -29,6 +29,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 ## DataBlob
 
 Defines a binary data array.
+
  **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name| Type      | Readable| Writable| Description  |
@@ -60,7 +61,7 @@ Creates a **Mac** instance for message authentication code (MAC) operations.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **Example**
 
@@ -100,14 +101,14 @@ Initializes the MAC computation using a symmetric key. This API uses an asynchro
 
 | Name  | Type                | Mandatory| Description        |
 | -------- | -------------------- | ---- | ------------ |
-| key      | SymKey               | Yes  | Shared symmetric key.|
+| key      | [SymKey](#symkey)    | Yes  | Shared symmetric key.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.    |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -146,7 +147,7 @@ Initializes the MAC computation using a symmetric key. This API uses a promise t
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
-| key    | SymKey | Yes  | Shared symmetric key.|
+| key    | [SymKey](#symkey) | Yes  | Shared symmetric key.|
 
 **Return value**
 
@@ -158,7 +159,7 @@ Initializes the MAC computation using a symmetric key. This API uses a promise t
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -197,14 +198,14 @@ Updates the MAC computation data. This API uses an asynchronous callback to retu
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -249,7 +250,7 @@ Updates the MAC computation data. This API uses a promise to return the result.
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| input  | DataBlob | Yes  | Data to pass in.|
+| input  | [DataBlob](#datablob) | Yes  | Data to pass in.|
 
 **Return value**
 
@@ -261,7 +262,7 @@ Updates the MAC computation data. This API uses a promise to return the result.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -304,14 +305,14 @@ Finalizes the MAC computation. This API uses an asynchronous callback to return 
 
 | Name  | Type                    | Mandatory| Description    |
 | -------- | ------------------------ | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -363,14 +364,14 @@ Finalizes the MAC computation. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -423,7 +424,7 @@ Obtains the MAC length, in bytes.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -484,7 +485,7 @@ Creates an **Md** instance for message digest operations.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 17620001 | memory error       |
+| 17620001 | memory error.       |
 
 **Example**
 
@@ -524,14 +525,14 @@ Updates the message digest data. This API uses an asynchronous callback to retur
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| input    | DataBlob             | Yes  | Data to pass in.|
+| input    | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -576,7 +577,7 @@ Updates the message digest data. This API uses a promise to return the result.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -616,8 +617,8 @@ Generates a message digest. This API uses an asynchronous callback to return the
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -659,14 +660,14 @@ Generates a message digest. This API uses a promise to return the result.
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -711,7 +712,7 @@ Obtains the message digest length, in bytes.
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17630001 | crypto operation error |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -758,7 +759,7 @@ Creates a **Random** instance for generating random numbers and setting seeds.
 
 | ID| Error Message    |
 | -------- | ------------ |
-| 17620001 | memory error |
+| 17620001 | memory error. |
 
 **Example**
 
@@ -789,14 +790,14 @@ Generates a random number of the given length. This API uses an asynchronous cal
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- | -------------------- |
 | len      | number                   | Yes  | Length of the random number to generate.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.            |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the result.            |
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -836,14 +837,14 @@ Generates a random number of the given length. This API uses a promise to return
 
 | Type              | Description       |
 | ------------------ | ----------- |
-| Promise\<DataBlob> | Promise used to return the result.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the result.|
 
 **Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
-| 17620001 | memory error           |
-| 17630001 | crypto operation error |
+| 17620001 | memory error.           |
+| 17630001 | crypto operation error. |
 
 **Example**
 
@@ -881,7 +882,7 @@ Sets a seed. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message          |
 | -------- | ----------------- |
-| 17620001 | memory error      |
+| 17620001 | memory error.      |
 
 **Example**
 
@@ -1176,7 +1177,7 @@ Creates a **symKeyGenerator** instance based on the specified algorithm. <br>For
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String for Generating a Key" in [Key Generation Specifications] (../../security/cryptoFramework-overview.md#key-generation-specifications).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).|
 
 **Return value**
 
@@ -1388,7 +1389,7 @@ Creates an **AsyKeyGenerator** instance based on the specified algorithm.
 
 | Type           | Description                        |
 | --------------- | ---------------------------- |
-| asyKeyGenerator | **AsyKeyGenerator** instance created.|
+| [AsyKeyGenerator](#asykeygenerator) | **AsyKeyGenerator** instance created.|
 
 **Example**
 
@@ -1422,7 +1423,13 @@ Generates a key pair randomly. This API uses an asynchronous callback to return 
 
 | Name    | Type                   | Mandatory| Description                          |
 | -------- | ----------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<KeyPair> | Yes  | Callback invoked to return the key pair obtained.|
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1452,7 +1459,13 @@ Generates a key pair randomly. This API uses a promise to return the result.
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1480,9 +1493,15 @@ Converts data into an asymmetric key. This API uses an asynchronous callback to 
 
 | Name    | Type      | Mandatory| Description                          |
 | -------- | ----------- | ---- | ------------------------------ |
-| pubKey   | DataBlob    | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.       |
-| priKey   | DataBlob    | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**.       |
-| callback | AsyncCallback\<KeyPair> | Yes  | Callback invoked to return the key pair obtained.|
+| pubKey   | [DataBlob](#datablob)     | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**.       |
+| priKey   | [DataBlob](#datablob)     | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**.       |
+| callback | AsyncCallback\<[KeyPair](#keypair)> | Yes  | Callback invoked to return the key pair obtained.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1519,7 +1538,13 @@ Converts data into an asymmetric key. This API uses a promise to return the resu
 
 | Type             | Description                             |
 | ----------------- | --------------------------------- |
-| Promise\<KeyPair> | Promise used to return the key pair generated.|
+| Promise\<[KeyPair](#keypair)> | Promise used to return the key pair generated.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
 
 **Example**
 
@@ -1555,7 +1580,7 @@ Creates a [Cipher](#cipher) instance based on the specified algorithm. <br>For d
 
 | Name        | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details about, see **Algorithm String** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications). |
+| transformation | string | Yes  | Combination of the algorithm name (including the key length), encryption mode, and padding algorithm of the **Cipher** instance to create.<br>For details, see **String Parameter** in [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).|
 
 > **NOTE**
 > 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed. <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
@@ -1604,7 +1629,7 @@ A complete symmetric encryption/decryption process is slightly different from th
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void
 
-Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. **init()**This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses an asynchronous callback to return the result. <br>This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1646,7 +1671,7 @@ cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
 
 init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
-Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. <br>**init()**This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+Initializes a [cipher](#cipher) instance. This API uses a promise to return the result. <br>This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1767,7 +1792,7 @@ Updates the data to encrypt or decrypt by segment. This API uses a promise to re
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to returns the **DataBlob** (containing the encrypted or decrypted data).|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data).|
 
 **Error codes**
 
@@ -1863,7 +1888,7 @@ doFinal(data : DataBlob) : Promise\<DataBlob>
 
  (1) Encrypts or decrypts the remaining data (generated by the block ciper mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**. <br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. **authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
@@ -2004,9 +2029,13 @@ let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Sign
 
 Provides APIs for signing. Before using any API of the **Sign** class, you must create a **Sign** instance by using **createSign()**. The **Sign** class does not support repeated initialization. When a new key is used for signing, you must create a new **Sign** object and call **init()** for initialization.
+
 The signing mode is determined in **createSign()**, and the key is set by **init()**.
+
 If the data to be signed is short, you can call **sign()** to pass in the data for signing after **init()**.
+
 If the data to be signed is long, you can use **update()** to pass in the data by segment, and then use **sign()** to sign the entire data.
+
 If **update()** is used to pass in data by segment, **data** of **sign()** can be **null**.
 
 ### Attributes
@@ -2029,8 +2058,16 @@ Initializes a **Sign** instance using a private key. This API uses an asynchrono
 
 | Name  | Type                | Mandatory| Description            |
 | -------- | -------------------- | ---- | ---------------- |
-| priKey   | PriKey                  | Yes  | Private key used for the initialization.|
+| priKey   | [PriKey](#prikey)    | Yes  | Private key used for the initialization.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.      |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2044,13 +2081,21 @@ Initializes a **Sign** instance using a private key. This API uses a promise to 
 
 | Name| Type| Mandatory| Description            |
 | ------ | ---- | ---- | ---------------- |
-| priKey | PriKey  | Yes  | Private key used for the initialization.|
+| priKey | [PriKey](#prikey)  | Yes  | Private key used for the initialization.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2064,8 +2109,16 @@ Updates the data to be signed. This API uses an asynchronous callback to return 
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2079,13 +2132,21 @@ Updates the data to be signed. This API uses a promise to return the result.
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2099,8 +2160,16 @@ Signs the data. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the result.  |
+| data     | [DataBlob](#datablob)              | Yes  | Data to pass in.|
+| callback | AsyncCallback\<[DataBlob](#datablob) > | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### sign
 
@@ -2114,13 +2183,21 @@ Signs the data. This API uses a promise to return the result.
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 
@@ -2138,7 +2215,7 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
+let plan1 = "This is Sign test plan1"; // First segment of the data.
 let plan2 = "This is Sign test plan2"; // The second segment of the data.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
@@ -2177,8 +2254,8 @@ function stringToUint8Array(str) {
 
 let globalKeyPair;
 let SignMessageBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
+let plan1 = "This is Sign test plan1"; // First segment of the data.
+let plan2 = "This is Sign test plan2"; // Second segment of fata.
 let input1 = { data : stringToUint8Array(plan1) };
 let input2 = { data : stringToUint8Array(plan2) };
 
@@ -2235,10 +2312,15 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 ## Verify
 
 Provides APIs for signature verification. Before using any API of the **Verify** class, you must create a **Verify** instance by using **createVerify()**.
+
 The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** object and call **init()** for initialization.
+
 The signature verification mode is determined in **createVerify()**, and key is set by **init()**.
-If the data to be verified is short, you can call **verify()** to pass in the signature data and original data after **init()**.
-If the data to be verified is long, you can use **update()** to pass in the data by segment, and then use **verify()** to verify the entire data.
+
+If the signature data to be verified is short, you can call **verify()** to pass in the signature data and original data after **init()**.
+
+If the signature data to be verified is long, you can use **update()** to pass in the data by segment, and then use **verify()** to verify the entire data.
+
 If **update()** is used to pass in data by segment, **data** of **verify()** can be **null**.
 
 ### Attributes
@@ -2263,8 +2345,16 @@ Initializes the **Verify** instance using a public key. This API uses an asynchr
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| pubKey   | PubKey                  | Yes  | Public key used for the initialization.|
+| pubKey   | [PubKey](#pubkey)    | Yes  | Public key used for the initialization.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.                    |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### init
 
@@ -2278,13 +2368,21 @@ Initializes the **Verify** instance using a public key. This API uses a promise 
 
 | Name| Type| Mandatory| Description                        |
 | ------ | ---- | ---- | ---------------------------- |
-| pubKey | PubKey  | Yes  | Public key used for the initialization.|
+| pubKey | [PubKey](#pubkey)  | Yes  | Public key used for the initialization.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2298,8 +2396,16 @@ Updates the data for signature verification. This API uses an asynchronous callb
 
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| data     | DataBlob             | Yes  | Data to pass in.|
+| data     | [DataBlob](#datablob)| Yes  | Data to pass in.|
 | callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### update
 
@@ -2313,13 +2419,21 @@ Updates the data for signature verification. This API uses a promise to return t
 
 | Name| Type    | Mandatory| Description      |
 | ------ | -------- | ---- | ---------- |
-| data   | DataBlob | Yes  | Data to pass in.|
+| data   | [DataBlob](#datablob)  | Yes  | Data to pass in.|
 
 **Return value**
 
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2333,9 +2447,17 @@ Verifies the signature. This API uses an asynchronous callback to return the res
 
 | Name       | Type                | Mandatory| Description      |
 | ------------- | -------------------- | ---- | ---------- |
-| data          | DataBlob             | Yes  | Data to pass in.|
-| signatureData | DataBlob             | Yes  | Signature data.  |
+| data          | [DataBlob](#datablob)              | Yes  | Data to pass in.|
+| signatureData | [DataBlob](#datablob)              | Yes  | Signature data.  |
 | callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result.  |
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### verify
 
@@ -2349,14 +2471,22 @@ Verifies the signature. This API uses a promise to return the result.
 
 | Name       | Type    | Mandatory| Description      |
 | ------------- | -------- | ---- | ---------- |
-| data          | DataBlob | Yes  | Data to pass in.|
-| signatureData | DataBlob | Yes  | Signature data.  |
+| data          | [DataBlob](#datablob)  | Yes  | Data to pass in.|
+| signatureData | [DataBlob](#datablob)  | Yes  | Signature data.  |
 
 **Return value**
 
 | Type             | Description                        |
 | ----------------- | ---------------------------- |
 | Promise\<boolean> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 
@@ -2450,9 +2580,17 @@ Generates a shared secret. This API uses an asynchronous callback to return the 
 
 | Name  | Type                    | Mandatory| Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| priKey   | PriKey                   | Yes  | Private key used for key agreement.|
-| pubKey   | PubKey                   | Yes  | Public key used for key agreement.|
-| callback | AsyncCallback\<DataBlob> | Yes  | Callback invoked to return the shared secret.|
+| priKey   | [PriKey](#prikey)        | Yes  | Private key used for key agreement.|
+| pubKey   | [PubKey](#pubkey)        | Yes  | Public key used for key agreement.|
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return the shared secret.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 ### generateSecret
 
@@ -2466,14 +2604,22 @@ Generates a shared secret. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| priKey | PriKey | Yes  | Private key used for key agreement.|
-| pubKey | PubKey | Yes  | Public key used for key agreement.|
+| priKey | [PriKey](#prikey) | Yes  | Private key used for key agreement.|
+| pubKey | [PubKey](#pubkey) | Yes  | Public key used for key agreement.|
 
 **Return value**
 
 | Type              | Description    |
 | ------------------ | -------- |
-| Promise\<DataBlob> | Promise used to return the shared secret.|
+| Promise\<[DataBlob](#datablob)> | Promise used to return the shared secret.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
 
 **Callback example**:
 

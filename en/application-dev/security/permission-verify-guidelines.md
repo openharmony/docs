@@ -2,7 +2,7 @@
 
 ## When to Use
 
-To protect sensitive data and eliminate security threads on core abilities, you can use the permissions in the [Application Permission List](permission-list.md) to protect the related API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission.
+To protect sensitive data and eliminate security threats on core abilities, you can use the permissions in the [Application Permission List](permission-list.md) to protect the related API from unauthorized calling. Each time before the API is called, a permission verification is performed to check whether the caller has the required permission.
 
 ## Available APIs
 
