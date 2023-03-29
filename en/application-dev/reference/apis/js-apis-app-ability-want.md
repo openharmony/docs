@@ -27,7 +27,7 @@ import Want from '@ohos.app.ability.Want';
 | action | string               | No  | Action to take, such as viewing and sharing application details. In implicit Want, you can define this field and use it together with **uri** or **parameters** to specify the operation to be performed on the data.               |
 | parameters   | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: whether to enable the new control rule.<br/>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br/>- **ohos.dlp.params.sandbox**: available only for DLP files. |
 | entities | Array\<string> | No| Additional category information (such as browser and video player) of the ability. It is a supplement to the **action** field for implicit Want. and is used to filter ability types.|
-| moduleName | string | ∑Ò    | Module to which the ability belongs. |
+| moduleName | string | Âê¶    | Module to which the ability belongs. |
 
 **Example**
 
