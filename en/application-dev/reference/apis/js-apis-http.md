@@ -1,6 +1,6 @@
 # @ohos.net.http (Data Request)
 
-This module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+The **http** module provides the HTTP data request capability. An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
 >**NOTE**
 >
@@ -13,7 +13,7 @@ This module provides the HTTP data request capability. An application can initia
 import http from '@ohos.net.http';
 ```
 
-## Example
+## Examples
 
 ```js
 // Import the http namespace.
@@ -27,7 +27,7 @@ httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL on your own. It is up to you whether to add parameters to the URL.
+    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
     "EXAMPLE_URL",
     {
         method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
@@ -69,7 +69,7 @@ httpRequest.request(
 
 createHttp(): HttpRequest
 
-Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An **HttpRequest** object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -231,7 +231,7 @@ httpRequest.request("EXAMPLE_URL",
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
-Initiates an HTTP request to a given URL. This API uses a promise to return the result. 
+Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
 >**NOTE**
 >This API supports only transfer of data not greater than 5 MB.
@@ -332,7 +332,7 @@ httpRequest.destroy();
 
 ### request2<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback\<void\>): void
+request2(url: string, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -345,7 +345,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | Name  | Type                                          | Mandatory| Description                                           |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
-| callback | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                                     |
+| callback | AsyncCallback\<[number](#responsecode)\>       | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -366,9 +366,9 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err) => {
+httpRequest.request2("EXAMPLE_URL", (err, data) => {
     if (!err) {
-        console.info("request2 OK!");
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -377,7 +377,7 @@ httpRequest.request2("EXAMPLE_URL", (err) => {
 
 ### request2<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<void\>): void
+request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -391,7 +391,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
 | options  | HttpRequestOptions                             | Yes  | Request options. For details, see [HttpRequestOptions](#httprequestoptions).|
-| callback | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                                     |
+| callback | AsyncCallback\<[number](#responsecode)\>       | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -444,9 +444,9 @@ httpRequest.request2("EXAMPLE_URL",
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err) => {
+}, (err, data) => {
     if (!err) {
-        console.info("request2 OK!");
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -454,7 +454,7 @@ httpRequest.request2("EXAMPLE_URL",
 ```
 ### request2<sup>10+</sup>
 
-request2(url: string, options? : HttpRequestOptions): Promise\<void\>
+request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result, which is a streaming response.
 
@@ -473,7 +473,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 | Type                                  | Description                             |
 | :------------------------------------- | :-------------------------------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<[number](#responsecode)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -526,8 +526,8 @@ let promise = httpRequest.request("EXAMPLE_URL", {
         'Content-Type': 'application/json'
     }
 });
-promise.then(() => {
-    console.info("request2 OK!");
+promise.then((data) => {
+    console.info("request2 OK!" + JSON.stringify(data));
 }).catch((err) => {
     console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
@@ -1007,7 +1007,7 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void\> |  Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
