@@ -27,13 +27,13 @@ Navigation()
 | subTitle<sup>deprecated</sup>       | string                                   | 页面副标题。从API Version 9开始废弃，建议使用title代替。                                   |
 | menus          | Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面右上角菜单。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt;&nbsp;写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。      |
 | titleMode      | [NavigationTitleMode](#navigationtitlemode枚举说明)                      | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
-| toolBar        | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
+| toolBar        | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。不设置时不显示工具栏。<br/>items:&nbsp;工具栏所有项。<br/>**说明：** <br/>items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。 |
 | hideToolBar    | boolean                                  | 隐藏工具栏。<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar   | boolean                                  | 隐藏标题栏。<br/>默认值：false<br/>true:&nbsp;隐藏标题栏。<br/>false:&nbsp;显示标题栏。 |
-| hideBackButton | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。|
-| navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | 导航栏宽度。<br/>默认值：200vp |
-| navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition枚举说明)             | 导航栏位置。<br/>默认值：NavBarPosition.Start |
-| mode<sup>9+</sup> | [NavigationMode](#navigationmode枚举说明)                       | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto |
+| hideBackButton | boolean                                  | 隐藏返回键。<br/>默认值：false<br/>true:&nbsp;隐藏返回键。<br/>false:&nbsp;显示返回键。 <br>不支持隐藏NavDestination组件标题栏中的返回图标。<br/>**说明：** <br/>返回键键仅针对titleMode为NavigationTitleMode.Mini时才生效。 |
+| navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | 导航栏宽度。<br/>默认值：200<br/>单位：vp<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
+| navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition枚举说明)             | 导航栏位置。<br/>默认值：NavBarPosition.Start<br/>**说明：** <br/>仅在Navigation组件分栏时生效。 |
+| mode<sup>9+</sup> | [NavigationMode](#navigationmode枚举说明)                       | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。 |
 | backButtonIcon<sup>9+</sup> | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)   | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。|
 | hideNavBar<sup>9+</sup> | boolean                         | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
 

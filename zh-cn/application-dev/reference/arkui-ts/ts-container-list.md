@@ -22,7 +22,7 @@
 >
 > ForEach/LazyForEach语句中，会计算展开所有子节点索引值。
 >
-> if/else/ForEach/LazyForEach发生变化以后，会更新子节点索引值。
+> [if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](../../quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](../../quick-start/arkts-rendering-control.md#数据懒加载)发生变化以后，会更新子节点索引值。
 >
 > ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
 >
