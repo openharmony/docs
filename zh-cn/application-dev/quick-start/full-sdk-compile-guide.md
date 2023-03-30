@@ -26,5 +26,5 @@
 
 ## 替换SDK
 
-full-SDK编译完成后需要在DevEcoStudio替换使用，具体请参考[full-SDK替换指南](../../application-dev/quick-start/full-sdk-switch-guide.md)。
+full-SDK编译完成后需要在DevEcoStudio替换使用，具体请参考[full-SDK替换指南](full-sdk-switch-guide.md)。
 
