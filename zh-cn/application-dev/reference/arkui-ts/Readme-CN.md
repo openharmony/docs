@@ -42,6 +42,9 @@
     - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
+    - [图像球面效果设置](ts-universal-attributes-sphericalEffect.md)
+    - [图像渐亮效果设置](ts-universal-attributes-lightUpEffect.md)
+    - [图像像素扩展效果设置](ts-universal-attributes-pixelStretchEffect.md)
   - [文本通用属性](ts-universal-attributes-text-style.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
