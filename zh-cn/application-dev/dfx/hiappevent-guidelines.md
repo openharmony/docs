@@ -45,7 +45,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 以实现对用户点击按钮行为的事件打点及订阅为例，说明开发步骤。
 
-1. 新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ts” 文件，在onCreate函数中添加对用户点击按钮事件的订阅，完整示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ts” 文件，在onCreate函数中添加对用户点击按钮事件的订阅，完整示例代码如下：
 
    ```js
    import hilog from '@ohos.hilog';

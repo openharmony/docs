@@ -17,6 +17,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包�
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context;
+  let commRemote; // 断开连接时需要释放
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
@@ -55,6 +56,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -126,6 +128,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -195,6 +198,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -271,6 +275,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -346,6 +351,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -430,6 +436,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -1093,7 +1100,10 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
     abilityName: 'MyAbility'
   };
   let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------'); 
+    },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.error('----------- onFailed -----------') }
   };
@@ -1154,7 +1164,10 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
   };
   let accountId = 100;
   let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------'); },
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------');
+    },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
     onFailed(code) { console.log('----------- onFailed -----------'); }
   };
@@ -1172,7 +1185,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-将一个Ability与绑定的服务类型的Ability解绑。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1204,6 +1217,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
+      commRemote = null;
       if (error.code) {
         // 处理业务逻辑错误
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
@@ -1213,6 +1227,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
       console.log('disconnectServiceExtensionAbility succeed');
     });
   } catch (paramError) {
+    commRemote = null;
     // 处理入参错误异常
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
@@ -1222,7 +1237,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
-将一个Ability与绑定的服务类型的Ability解绑。通过Promise返回结果。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1260,14 +1275,17 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
   try {
     this.context.disconnectServiceExtensionAbility(connection)
       .then((data) => {
+        commRemote = null;
         // 执行正常业务
         console.log('disconnectServiceExtensionAbility succeed');
       })
       .catch((error) => {
+        commRemote = null;
         // 处理业务逻辑错误
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
+    commRemote = null;
     // 处理入参错误异常
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
@@ -1312,6 +1330,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
 | 16000008 | Crowdtest App Expiration. |
 | 16000009 | Can not start ability in wukong mode. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal Error. |
 
 **示例：**

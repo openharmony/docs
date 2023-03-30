@@ -39,21 +39,10 @@
         - [音视频录制开发指导](subsys-multimedia-video-record-guide.md)
 - [公共基础库开发指导](subsys-utils-guide.md)
 - [AI框架开发指导](subsys-ai-aiframework-devguide.md)
-- 数据管理
-    - 关系型数据库
-      - [关系型数据库概述](subsys-data-relational-database-overview.md)
-      - [关系型数据库开发指导](subsys-data-relational-database-guide.md)
-    - 轻量级数据存储
-      - [轻量级数据存储概述](subsys-data-storage-overview.md)
-      - [轻量级数据存储开发指导](subsys-data-storage-guide.md)
 - Sensor服务
     - [Sensor服务概述](subsys-sensor-overview.md)
     - [Sensor服务使用指导](subsys-sensor-guide.md)
     - [Sensor服务使用实例](subsys-sensor-demo.md)
-- USB服务
-    - [USB服务概述](subsys-usbservice-overview.md)
-    - [USB服务使用指导](subsys-usbservice-guide.md)
-    - [USB服务使用实例](subsys-usbservice-demo.md)
 - 用户程序框架
     - [概述](subsys-application-framework-overview.md)
     - [搭建环境](subsys-application-framework-envbuild.md)
@@ -101,7 +90,6 @@
         - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)
         - [HiSysEvent查询指导](subsys-dfx-hisysevent-query.md)
         - [HiSysEvent工具使用指导](subsys-dfx-hisysevent-tool.md)
-    - [HiDumper开发指导](subsys-dfx-hidumper.md)
     - [HiChecker开发指导](subsys-dfx-hichecker.md)
     - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
     - [Hiview开发指导](subsys-dfx-hiview.md)
@@ -109,6 +97,7 @@
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
+    - [HiDumper使用指导](subsys-dfx-hidumper.md)
 - 电源管理
     - 显示管理
         - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)

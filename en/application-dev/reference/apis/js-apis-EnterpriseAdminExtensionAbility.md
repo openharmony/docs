@@ -105,3 +105,55 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
   }
 };
 ```
+
+## EnterpriseAdminExtensionAbility.onAppStart<sup>10+</sup>
+
+onAppStart(bundleName: string): void
+
+Called when an application is started.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Parameter  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Bundle name of the application started.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAppStart(bundleName: string) {
+    console.log("started bundle name: " + bundleName);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onAppStop<sup>10+</sup>
+
+onAppStop(bundleName: string): void
+
+Called when an application is stopped.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Parameter  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | Yes   | Bundle name of the application stopped.|
+
+**Example**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onAppStop(bundleName: string) {
+    console.log("stopped bundle name: " + bundleName);
+  }
+};
+```

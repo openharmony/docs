@@ -60,10 +60,13 @@
 - 值： usual.event.THERMAL_LEVEL_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_USER_PRESENT
+## COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 （预留事件，暂未支持）用户解锁设备的公共事件的动作。
 - 值： usual.event.USER_PRESENT
 - 订阅者所需权限： 无
+> 说明：
+>
+> 从API Version 10 开始废弃。
 
 ## COMMON_EVENT_TIME_TICK
 表示系统时间更改的公共事件的动作。
@@ -888,4 +891,17 @@ Wi-Fi P2P群组信息已更改。
 ## COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>
 提示设备modem上下电状态变化。
 - 值：usual.event.RADIO_STATE_CHANGE
+
+## COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>
+
+表示屏幕锁定的公共事件。
+
+- 值： usual.event.SCREEN_LOCKED
+- 订阅者所需权限： 无
+
+## COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>
+
+表示屏幕解锁的公共事件。
+
+- 值：usual.event.SCREEN_UNLOCKED
 - 订阅者所需权限：无

@@ -118,9 +118,9 @@ requestFullscreen(value: boolean)
 
 **参数：**
 
-| 参数名   | 参数类型    | 必填   | 参数描述                  |
-| ----- | ------- | ---- | --------------------- |
-| value | boolean | 是    | 是否全屏播放。<br/>默认值：false |
+| 参数名 | 参数类型 | 必填 | 参数描述                                           |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。<br/>默认值：false |
 
 ### exitFullscreen
 
@@ -173,7 +173,7 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(800).height(600)
+      }).width('100%').height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -186,7 +186,7 @@ struct VideoCreateComponent {
           console.info('onFinish')
         })
         .onError(() => {
-          console.info('onFinish')
+          console.info('onError')
         })
         .onPrepared((e) => {
           console.info('onPrepared is ' + e.duration)

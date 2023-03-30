@@ -118,7 +118,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install because without allow app shared bundle permission. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 
 **示例：**
 
@@ -176,6 +177,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
 **示例：**
 
@@ -281,7 +283,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>;
 
 | 类型          | 说明                                   |
 | ------------- | -------------------------------------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -397,11 +399,11 @@ try {
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
-| installFlag                    | number                         | 是                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
-| isKeepData                     | boolean                        | 是                       | 卸载时是否保留数据目录。 |
-| hashParams        | Array<[HashParam](#hashparam)> | 是 | 哈希值参数。         |
-| crowdtestDeadline| number                         | 是                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
+| userId                         | number                         | 否                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
+| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
+| isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
+| hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
+| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
 | sharedBundleDirPaths | Array\<String> | 否 |共享包文件所在路径。 |
 
 ## UninstallParam<sup>10+</sup>
@@ -415,4 +417,4 @@ try {
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 共享包包名。                                                 |
-| versionCode | number | 否   | 指示共享包的版本号。如果不填写versionCode，则卸载所有同版本共享包。 |
+| versionCode | number | 否   | 指示共享包的版本号。如果不填写versionCode，则卸载该包名的所有共享包。 |

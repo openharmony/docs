@@ -109,3 +109,6 @@
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
+- Power Management
+    - Display Management
+        - [System Brightness Customization](subsys-power-brightness-customization.md)

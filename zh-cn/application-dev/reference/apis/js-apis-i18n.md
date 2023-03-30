@@ -2112,6 +2112,75 @@ static getDateOrder(locale: string): string
   ```
 
 
+## Normalizer<sup>10+</sup>
+
+### getInstance<sup>10+</sup>
+
+static getInstance(mode: NormalizerMode): Normalizer
+
+获取文本正则化对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| mode | [NormalizerMode](#normalizermode10) | 是    | 文本正则化范式。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| [Normalizer](#normalizer10) | 返回指定范式的文本正则化对象。 |
+
+**示例：**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  ```
+
+
+### normalize<sup>10+</sup>
+
+normalize(text: string): string
+
+对字符串进行正则化。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| text | string | 是    | 待正则化的字符串。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 正则化后的字符串。 |
+
+**示例：**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  ```
+
+
+## NormalizerMode<sup>10+</sup>
+
+表示文本正则化范式的枚举。
+
+**系统能力：** ：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NFC | 1 | NFC范式。 |
+| NFD | 2 | NFD范式。 |
+| NFKC | 3 | NFKC范式。 |
+| NFKD | 4 | NFKD范式。 |
+
+
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string

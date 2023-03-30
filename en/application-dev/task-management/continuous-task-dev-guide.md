@@ -210,7 +210,7 @@ For details about the stage model, see [Stage Model Development Overview](../app
        }
    }
    
-   class MySequenceable {
+   class MyParcelable {
        num: number = 0;
        str: String = "";
    
@@ -219,23 +219,23 @@ For details about the stage model, see [Stage Model Development Overview](../app
            this.str = string;
        }
    
-       marshalling(messageParcel) {
-           messageParcel.writeInt(this.num);
-           messageParcel.writeString(this.str);
+       marshalling(messageSequence) {
+           messageSequence.writeInt(this.num);
+           messageSequence.writeString(this.str);
            return true;
        }
    
-       unmarshalling(messageParcel) {
-           this.num = messageParcel.readInt();
-           this.str = messageParcel.readString();
+       unmarshalling(messageSequence) {
+           this.num = messageSequence.readInt();
+           this.str = messageSequence.readString();
            return true;
        }
    }
    
    function sendMsgCallback(data) {
        console.info('BgTaskAbility funcCallBack is called ' + data)
-       let receivedData = new MySequenceable(0, "")
-       data.readSequenceable(receivedData)
+       let receivedData = new MyParcelable(0, "")
+       data.readParcelable(receivedData)
        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
        // You can execute different methods based on the str value in the sequenceable data sent by the caller.
        if (receivedData.str === 'start_bgtask') {
@@ -243,7 +243,7 @@ For details about the stage model, see [Stage Model Development Overview](../app
        } else if (receivedData.str === 'stop_bgtask') {
            stopContinuousTask();
        }
-       return new MySequenceable(10, "Callee test");
+       return new MyParcelable(10, "Callee test");
    }
    
    export default class BgTaskAbility extends UIAbility {

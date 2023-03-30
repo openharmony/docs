@@ -1,10 +1,10 @@
 # Animation Styles
 
-Components support dynamic rotation, translation, and scaling effects. These effects can be set in the **style** attribute or CSS files.
-
 > **NOTE**
 >
 > The initial APIs of this component  are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+Components support dynamic rotation, translation, and scaling effects. These effects can be set in the **style** attribute or CSS files.
 
 | Name                      | Type                                                         | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

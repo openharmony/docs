@@ -12,10 +12,10 @@ You can also use [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-i
 
 This document describes the following operations:
 
-- [Setting a Mission Snapshot Icon (System Applications Only)](#setting-a-mission-snapshot-icon-system-applications-only)
+- [Setting a Mission Snapshot Icon (for System Applications Only)](#setting-a-mission-snapshot-icon-for-system-applications-only)
 - [Setting a Mission Snapshot Name](#setting-a-mission-snapshot-name)
 
-## Setting a Mission Snapshot Icon (System Applications Only)
+## Setting a Mission Snapshot Icon (for System Applications Only)
 
 Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. The icon is an object of the [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) type. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 ```ts

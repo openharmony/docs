@@ -57,7 +57,7 @@ The Compilation and Build subsystem implements compilation and packaging through
 
 **Figure 1** Relationships between product, subsystem, component, and module
 
-![](figure/product_subsystem_component_module_relationships.png)
+![](figures/product_subsystem_component_module_relationships.png)
 
 The relationships between the product, subsystem, component, and module are as follows:
 
@@ -73,7 +73,7 @@ A product, component, and module can be built, but a subsystem cannot. The figur
 
 **Figure 2** Build process
 
-![Build process](figure/build_process.png)
+![Build process](figures/build_process.png)
 
 1. Run **hb set** to set the product to build.
 
@@ -143,28 +143,28 @@ To ensure that chipset and product solutions are decoupled from OpenHarmony, you
 
 ```shell
 
-/build                            # Directory for build
+/build                          # Directory for build
 
 ├── __pycache__                   
-├── build_scripts/                # Python scripts for build
+├── build_scripts/              # Python scripts for build
 ├── common/                       
-├── config/                       # Build-related configuration
+├── config/                     # Build-related configuration
 ├── core
-│   └── gn/                       # BUILD.gn configuration
+│   └── gn/                     # BUILD.gn configuration
     └── build_scripts/            
 ├── docs                          
 gn_helpers.py*                    
-lite/                             # hb and preloader entry                     
+lite/                           # hb and preloader entry                     
 misc/
-├── ohos                          # Configuration of OpenHarmony build and packaging
-│   ├── kits                      # Kits build and packaging templates and processing
-│   ├── ndk                       # NDK templates and processing
-│   ├── notice                    # Notice templates and processing
-│   ├── packages                  # Distribution packaging templates and processing
-│   ├── sa_profile                # SA profiles and processing
-│   ├── sdk                       # SDK templates and processing, which contains the module configuration in the SDK
-│   └── testfwk                   # Testing-related processing
-├── ohos.gni*                     # Common .gni files (facilitating one-time import of each module)
+├── ohos                        # Configuration of OpenHarmony build and packaging
+│   ├── kits                    # Kits build and packaging templates and processing
+│   ├── ndk                     # NDK templates and processing
+│   ├── notice                  # Notice templates and processing
+│   ├── packages                # Distribution packaging templates and processing
+│   ├── sa_profile              # SA profiles and processing
+│   ├── sdk                     # SDK templates and processing, which contains the module configuration in the SDK
+│   └── testfwk                 # Testing-related processing
+├── ohos.gni*                   # Common .gni files (facilitating one-time import of each module)
 ├── ohos_system.prop              
 ├── ohos_var.gni*                 
 ├── prebuilts_download.sh*        
@@ -172,10 +172,10 @@ misc/
 ├── scripts/                      
 ├── subsystem_config.json         
 ├── subsystem_config_example.json 
-├── templates/                    # C/C++ build templates
+├── templates/                     # C/C++ build templates
 ├── test.gni*                     
-├── toolchain                     # Build toolchain configuration
-├── tools                         # Common tools
+├── toolchain                      # Build toolchain configuration
+├── tools                          # Common tools
 ├── version.gni                   
 ├── zip.py*                       
 
@@ -222,25 +222,25 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 - The **./build.sh** command supports the following options:
 
   ```shell
-  -h, --help                                         # Display help information and exit.
-  --source-root-dir=SOURCE_ROOT_DIR                  # Specify the path.
-  --product-name=PRODUCT_NAME                        # Specify the product name.
-  --device-name=DEVICE_NAME                          # Specify the device name.
-  --target-cpu=TARGET_CPU                            # Specify the CPU.
-  --target-os=TARGET_OS                              # Specify the operating system.
-  -T BUILD_TARGET, --build-target=BUILD_TARGET       # Specify one or more targets to build.
-  --gn-args=GN_ARGS                                  # Specify GN parameters.
-  --ninja-args=NINJA_ARGS                            # Specify Ninja parameters.
-  -v, --verbose                                      # Display all commands used.
-  --keep-ninja-going                                 # Keep Ninja going until 1,000,000 jobs fail.
+  -h, --help                                        # Display help information and exit.
+  --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
+  --product-name=PRODUCT_NAME                       # Specify the product name.
+  --device-name=DEVICE_NAME                         # Specify the device name.
+  --target-cpu=TARGET_CPU                           # Specify the CPU.
+  --target-os=TARGET_OS                             # Specify the operating system.
+  -T BUILD_TARGET, --build-target=BUILD_TARGET      # Specify one or more targets to build.
+  --gn-args=GN_ARGS                                 # Specify GN parameters.
+  --ninja-args=NINJA_ARGS                           # Specify Ninja parameters.
+  -v, --verbose                                     # Display all commands used.
+  --keep-ninja-going                                # Keep Ninja going until 1,000,000 jobs fail.
   --jobs=JOBS
   --export-para=EXPORT_PARA
-  --build-only-gn                                    # Perform GN parsing and do not run Ninja.
-  --ccache                                           # (Optional) Use ccache for build. You need to install ccache locally.
-  --fast-rebuild                                     # Specify whether to allow fast rebuild. The default value is False.
-  --log-level=LOG_LEVEL                              # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
-  --device-type=DEVICE_TYPE                          # Specify the device type. The default value is default.
-  --build-variant=BUILD_VARIANT                      # Specify the device operation mode. The default value is user.
+  --build-only-gn                                   # Perform GN parsing and do not run Ninja.
+  --ccache                                          # (Optional) Use ccache for build. You need to install ccache locally.
+  --fast-rebuild                                    # Specify whether to allow fast rebuild. The default value is False.
+  --log-level=LOG_LEVEL                             # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
+  --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
+  --build-variant=BUILD_VARIANT                     #Specify the device operation mode. The default value is user.
   ```
 
 2. Using the hb tool
@@ -381,4 +381,4 @@ You can add and build a product, component, chipset solution, and module. For de
 - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
 - [Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
 - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)
-
+- [Customizing the chip_prod Image](subsys-build-reference.md#customizing-the-chip_prod-image)

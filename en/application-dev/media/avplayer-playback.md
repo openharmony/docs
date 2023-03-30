@@ -292,13 +292,13 @@ export class AVPlayerDemo {
   async avPlayerDemo() {
     // Create an AVPlayer instance.
     this.avPlayer = await media.createAVPlayer()
-    let fdPath = 'fd://'
-    let pathDir = "/data/storage/el2/base/haps/entry/files" // The path used here is an example. Obtain the path based on project requirements.
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el2/100/base/ohos.acts.multimedia.media.avplayer/haps/entry/files" command.
-    let path = pathDir  + '/H264_AAC.mp4'
-    let file = await fs.open(path)
-    fdPath = fdPath + '' + file.fd
-    this.avPlayer.url = fdPath
+    let fileDescriptor = undefined
+    // Use getRawFileDescriptor of the resource management module to obtain the media assets in the application, and use the fdSrc attribute of the AVPlayer to initialize the media assets.
+    // For details on the fd/offset/length parameter, see the Media API. The globalThis.abilityContext parameter is a system environment variable and is saved as a global variable on the main page during the system boost.
+    await globalThis.abilityContext.resourceManager.getRawFileDescriptor('H264_AAC.mp4').then((value) => {
+        fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length}
+    })
+    this.avPlayer.fdSrc = fileDescriptor
   }
 }
 ```

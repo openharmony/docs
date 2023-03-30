@@ -53,10 +53,10 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
 
     // Configure the parameters based on the audio file format.
     SLDataFormat_PCM format_pcm = {
-        SL_DATAFORMAT_PCM,
-        OHOS::AudioStandard::AudioChannel::MONO,
-        OHOS::AudioStandard::AudioSamplingRate::SAMPLE_RATE_44100,
-        OHOS::AudioStandard::AudioSampleFormat::SAMPLE_S16LE,
+        SL_DATAFORMAT_PCM,           // Input audio format.
+        1,                           // Mono channel.
+        SL_SAMPLINGRATE_44_1,        // Sampling rate, 44100 Hz.
+        SL_PCMSAMPLEFORMAT_FIXED_16, // Audio sampling format, a signed 16-bit integer in little-endian format.
         0,
         0,
         0

@@ -22,7 +22,7 @@ When obtaining a **Preferences** instance, the application can read data from or
 **Figure 1** How lightweight data store works<a name="fig1657785713509"></a>
 
 
-![](figure/en-us_image_0000001192123772.png)
+![](figures/en-us_image_0000001192123772.png)
 
 ## Constraints
 

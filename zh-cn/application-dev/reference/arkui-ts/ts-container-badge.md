@@ -57,12 +57,15 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称       | 类型                                       | 必填 | 默认值      | 描述                                        |
-| ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
-| color      | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 文本颜色。                                  |
-| fontSize   | number&nbsp;\|&nbsp;string                 | 否   | 10          | 文本大小，单位vp。                          |
-| badgeSize  | number&nbsp;\|&nbsp;string                 | 否   | 16          | Badge的大小，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.Red   | Badge的颜色。                               |
+| 名称                      | 类型                                                         | 必填 | 默认值            | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ | ---- | ----------------- | ------------------------------------------------------------ |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.White       | 文本颜色。                                                   |
+| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 10                | 文本大小，单位vp。                                           |
+| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | 16                | Badge的大小，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.Red         | Badge的颜色。                                                |
+| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | FontWeight.Normal | 设置文本的字体粗细。                                         |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.Red         | 底板描边颜色。                                               |
+| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 1.0vp             | 底板描边粗细。                                               |
 
 ## 示例
 

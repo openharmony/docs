@@ -683,15 +683,15 @@ The packing tool is generally integrated into the development tool or IDE, and y
 -   Example HAP File Structure
     -   Development view
 
-        ![](figure/en-us_image_0000001062942690.png)
+        ![](figures/en-us_image_0000001062942690.png)
 
     -   Compilation view
 
-        ![](figure/en-us_image_0000001062334618.png)
+        ![](figures/en-us_image_0000001062334618.png)
 
     -   Run the following commands to pack a HAP file using the packing tool.
 
-        ![](figure/en-us_image_0000001062476933.png)
+        ![](figures/en-us_image_0000001062476933.png)
 
         ```
         $ java -jar hmos_app_packing_tool.jar --mode hap --json-path ./config.json --assets-path ./assets/ --ability-so-path ./libentry.so --index-path ./resources.index --out-path out/entry.hap --force true

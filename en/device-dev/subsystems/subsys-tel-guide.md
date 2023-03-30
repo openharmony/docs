@@ -379,7 +379,7 @@ The following table describes the API for reporting modem events.
    **Figure  1** Time sequence of API calling for an outgoing call<a name="fig494mcpsimp"></a>  
    
 
-    ![](figure/en-us_image_0000001171507146.png)
+    ![](figures/en-us_image_0000001171507146.png)
 
    When an application initiates an outgoing call, RIL Adapter receives a call request, and the **hril** layer invokes the **ReqDial\(\)** function. In **ReqDial\(\)**, the data passed by the Telephony Service is encapsulated as an AT command and sent to the modem. After executing the dial command, the modem reports the execution result to RIL Adapter through **OnCallReport\(\)**.
 
@@ -458,7 +458,7 @@ The following table describes the API for reporting modem events.
    **Figure  2** Time sequence of API calling for an incoming call<a name="fig556mcpsimp"></a>  
    
 
-    ![](figure/en-us_image_0000001214727595.png)
+    ![](figures/en-us_image_0000001214727595.png)
 
    The **g\_reader** thread cyclically reads the messages reported by the modem. When the modem receives an incoming call event, it actively reports the information about the incoming call.
 

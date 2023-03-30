@@ -46,6 +46,8 @@ battery.getStatus({
 
 Object that contains the API calling result.
 
+**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
@@ -56,7 +58,9 @@ Object that contains the API calling result.
 
 Defines a response that returns the charging status and remaining power of the device.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| charging | boolean | Whether the battery is being charged.|
-| level | number | Current battery level, which ranges from **0.00** to **1.00**.|
+**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| charging | boolean | Yes| No| Whether the battery is being charged.|
+| level | number | Yes| No| Current battery level, which ranges from **0.00** to **1.00**.|

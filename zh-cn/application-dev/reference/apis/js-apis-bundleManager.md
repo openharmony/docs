@@ -186,6 +186,39 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
 | LOCKED                             |12|表示锁定模式。|
 
+### CompatiblePolicy
+
+标识共享库的版本兼容类型。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称                   | 值   | 说明                             |
+| ---------------------- | ---- | -------------------------------- |
+| BACKWARD_COMPATIBILITY | 1    | 该字段表明共享库是向后兼容类型。 |
+
+### ModuleType
+
+标识模块类型。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| ENTRY   | 1    | 应用的主模块。   |
+| FEATURE | 2    | 应用的动态特性模块。 |
+| SHARED  | 3    | 应用的动态共享库模块。  |
+
+### BundleType
+
+标识应用的类型。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+
+| 名称           | 值   | 说明            |
+| -------------- | ---- | --------------- |
+| APP            | 0    | 该Bundle是普通应用程序。    |
+| ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
+
 ## 接口
 
 ### bundleManager.getBundleInfoForSelf
@@ -501,7 +534,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 | 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
-**示例：** 
+**示例：**
 
 ```ts
 import bundleManager from '@ohos.bundle.bundleManager';
@@ -1076,7 +1109,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified extensionAbility is not found.    |
+| 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
@@ -2879,7 +2912,7 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string                                                       | 是   | 表示应用程序的bundleName。                                   |
 | moduleName | string                                                       | 是   | 表示被查询的module的name。                                   |
-| callback   | AsyncCallback\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)> | 是   | 回调函数，当获取成功时，err为null，data为获取的指定共享包信息。 |
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | 是   | 回调函数，当获取成功时，err为null，data为获取的指定共享包信息。 |
 
 **错误码：**
 
@@ -2934,7 +2967,7 @@ function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<A
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)> | Promise对象，返回指定的共享包信息。 |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Promise对象，返回指定的共享包信息。 |
 
 **错误码：**
 
@@ -3036,46 +3069,3 @@ try {
 }
 ```
 
-## CompatiblePolicy
-
-标识共享库的版本兼容类型。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
-
-| 名称                   | 值   | 说明                             |
-| ---------------------- | ---- | -------------------------------- |
-| BACKWARD_COMPATIBILITY | 1    | 该字段表明共享库是向后兼容类型。 |
-
-## ModuleType
-
-标识模块类型。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
-
-| 名称    | 值   | 说明                 |
-| ------- | ---- | -------------------- |
-| ENTRY   | 1    | 应用的主模块。   |
-| FEATURE | 2    | 应用的动态特性模块。 |
-| SHARED  | 3    | 应用的动态共享库模块。  |
-
-## BundleType
-
-标识应用的类型。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
-
-| 名称           | 值   | 说明            |
-| -------------- | ---- | --------------- |
-| APP            | 0    | 该Bundle是普通应用程序。    |
-| ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
-
-## AtomicServiceModuleType
-
-标识在元服务分包时的分包类型。
-
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
-
-| 名称   | 值   | 说明                        |
-| ------ | ---- | --------------------------- |
-| NORMAL | 0    | 元服务中的页面包。     |
-| MAIN   | 1    | 元服务中的落地页包. |

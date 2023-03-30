@@ -4,7 +4,7 @@ The **appRecovery** module provides APIs for recovering faulty applications.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. In the current version, only applications with a single ability in a single process can be recovered.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. In API version 9, only applications with a single ability in a process can be recovered. In API version 10, applications with multiple abilities in a process can be recovered.
 
 ## Modules to Import
 ```ts
@@ -51,7 +51,7 @@ Enumerates the application state saving modes. This enum is used as an input par
 
 enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
-Enables application recovery.
+Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -63,8 +63,8 @@ Enables application recovery.
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | No| Scenario for saving the application state. By default, the state is saved when a fault occurs.|
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | No| Application state saving mode. By default, the application state is written to the local file cache.|
 
-**Example**
-    
+**Example**    
+
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -84,13 +84,22 @@ export default class MyAbilityStage extends AbilityStage {
 
 restartApp(): void;
 
-Restarts the application. This API can be used together with APIs of [errorManager](js-apis-app-ability-errorManager.md).
+Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **OnCreate** lifecycle callback of the ability.
+
+In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant) is started. If no ability is specified, the following rules are used:
+
+- If the ability of the current application running in the foreground supports recovery, that ability is started.
+
+- If multiple abilities that support recovery is running in the foreground, only the last ability is started.
+
+- If no ability is running in the foreground, none of them is started.
+
+This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Example**    
 
-**Example**
-    
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
@@ -113,7 +122,7 @@ try {
 
 saveAppState(): boolean;
 
-Saves the application state. This API can be used together with APIs of [errorManager](js-apis-app-ability-errorManager.md).
+Saves the application state. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -123,8 +132,8 @@ Saves the application state. This API can be used together with APIs of [errorMa
 | -------- | -------- |
 | boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
 
-**Example**
-    
+**Example**    
+
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
@@ -141,4 +150,54 @@ try {
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');
 }
+```
+
+## appRecovery.saveAppState<sup>10+</sup>
+
+saveAppState(context?: UIAbilityContext): boolean;
+
+Saves the ability state, which will be used for recovery. This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
+
+**Example**
+
+```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
+onBackground() {
+    hilog.info(0x0000, '[demo]', '%{public}s', 'EntryAbility onBackground');
+    appRecovery.saveAppState(this.context)
+}
+```
+
+## appRecovery.setRestartWant<sup>10+</sup>
+
+setRestartWant(want: Want): void;
+
+Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Example**
+
+```ts
+import appRecovery from '@ohos.app.ability.appRecovery';
+Button ("Start to Recover Ability")
+    .fontSize(40)
+    .fontWeight(FontWeight.Bold)
+    .onClick(()=> {
+        // set restart want
+        let want = {
+            bundleName: "ohos.samples.recovery",
+            abilityName: "RecoveryAbility"
+        };
+
+        appRecovery.setRestartWant(want);
+    })
 ```

@@ -127,7 +127,7 @@ Obtains the scan result. This API uses a promise to return the result.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the hotspots detected.|
 
 **Error codes**
 
@@ -409,6 +409,8 @@ Represents EAP configuration information.
 | caCertAliases | string | Yes| No| CA certificate alias.|
 | caPath | string | Yes| No| CA certificate path.|
 | clientCertAliases | string | Yes| No| Client certificate alias.|
+| certEntry | Uint8Array | Yes| Yes| CA certificate content.|
+| certPassword | string | Yes| Yes| CA certificate password.|
 | altSubjectMatch | string | Yes| No| A string to match the alternate subject.|
 | domainSuffixMatch | string | Yes| No| A string to match the domain suffix.|
 | realm | string | Yes| No| Realm for the passpoint credential.|

@@ -1,6 +1,6 @@
 # @ohos.file.volumeManager (卷管理)
 
-该模块提供卷、磁盘查询和管理的相关功能：包括查询卷信息，对卷的挂载卸载、对磁盘分区以及卷的格式化等功能。
+该模块提供卷设备、磁盘设备查询和管理的相关功能：包括查询卷设备信息，对卷设备的挂载卸载、对磁盘设备分区以及卷设备的格式化等功能。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import volumemanager from "@ohos.file.volumeManager";
 
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
-异步获取当前所有可获得的卷信息，以promise方式返回。
+异步获取当前外置存储中所有卷设备信息，以promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -28,13 +28,15 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷信息 |
+  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷设备信息 |
 
 **示例：**
 
   ```js
   volumemanager.getAllVolumes().then(function(volumes){
       // do something
+  }).catch(function(error){
+    console.info("getAllVolumes failed");
   });
   ```
 
@@ -42,7 +44,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
-异步获取当前所有可获得的卷信息，以callback方式返回。
+异步获取当前外置存储中所有卷设备信息，以callback方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -52,7 +54,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   | 参数名   | 类型                                              | 必填 | 说明                                 |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷设备信息之后的回调 |
 
 **示例：**
 
@@ -68,7 +70,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 mount(volumeId: string): Promise&lt;void&gt;
 
-异步挂载指定卷，以promise方式返回。
+异步挂载指定卷设备，以promise方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -78,20 +80,22 @@ mount(volumeId: string): Promise&lt;void&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷id |
+  | volumeId | string | 是   | 卷设备id |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 挂载指定卷 |
+  | Promise&lt;void&gt; | 挂载指定卷设备 |
 
 **示例：**
 
   ```js
   let volumeId = "";
-  volumemanager.mount(volumeId).then(function(flag){
+  volumemanager.mount(volumeId).then(function(){
       // do something
+  }).catch(function(error){
+    console.info("mount failed");
   });
   ```
 
@@ -99,7 +103,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 
 mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
-异步获取指定卷的可用空间大小，以callback方式返回。
+异步挂载指定卷设备，以callback方式返回。当前仅支持fat、exfat以及ntfs三中文件系统的卷设备挂载。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -109,14 +113,14 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | 是   | 卷id                 |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷之后的回调 |
+  | volumeId | string                                | 是   | 卷设备id                 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷设备之后的回调 |
 
 **示例：**
 
   ```js
   let volumeId = "";
-  volumemanager.mount(volumeId, function(error, flag){
+  volumemanager.mount(volumeId, function(error){
       // do something
   });
   ```
@@ -125,7 +129,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
 unmount(volumeId: string): Promise&lt;void&gt;
 
-异步卸载指定卷，以promise方式返回。
+异步卸载指定卷设备，以promise方式返回。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -135,20 +139,22 @@ unmount(volumeId: string): Promise&lt;void&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷id |
+  | volumeId | string | 是   | 卷设备id |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 卸载指定卷 |
+  | Promise&lt;void&gt; | 卸载指定卷设备 |
 
 **示例：**
 
   ```js
   let volumeId = "";
-  volumemanager.unmount(volumeId).then(function(flag){
+  volumemanager.unmount(volumeId).then(function(){
       // do something
+  }).catch(function(error){
+    console.info("mount failed");
   });
   ```
 
@@ -156,7 +162,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
 
 unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步卸载指定卷，以callback方式返回。
+异步卸载指定卷设备，以callback方式返回。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -166,14 +172,14 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | 是   | 卷id                 |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷之后的回调 |
+  | volumeId | string                                | 是   | 卷设备id                 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷设备之后的回调 |
 
 **示例：**
 
   ```js
   let volumeId = "";
-  volumemanager.unmount(volumeId, function(error, flag){
+  volumemanager.unmount(volumeId, function(error){
       // do something
   });
   ```
@@ -182,7 +188,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
 getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
-异步通过uuid获得卷信息，以promise方式返回。
+异步通过卷设备uuid获得指定卷设备信息，以promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -192,13 +198,13 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | uuid | string | 是   | 卷uuid |
+  | uuid | string | 是   | 卷设备uuid |
 
 **返回值：**
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷信息 |
+  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
 
 **示例：**
 
@@ -215,7 +221,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
 getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
-异步通过uuid获得卷信息，以callback方式返回。
+异步通过卷设备uuid获得指定卷设备信息，以callback方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -225,8 +231,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | uuid | string                                                 | 是   | 卷uuid                 |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
+  | uuid | string                                                 | 是   | 卷设备uuid                 |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷设备信息之后的回调 |
 
 **示例：**
 
@@ -241,7 +247,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
-异步通过卷id获得卷信息，以promise方式返回。
+异步通过卷设备id获得指定卷设备信息，以promise方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -251,13 +257,13 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 参数名    | 类型    | 必填  | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷id |
+  | volumeId | string | 是   | 卷设备id |
 
 **返回值：**
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷信息 |
+  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷设备信息 |
 
 **示例：**
 
@@ -274,7 +280,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
 getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
-异步通过卷id获得卷信息，以callback方式返回。
+异步通过指定卷设备id获得卷设备信息，以callback方式返回。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -284,8 +290,8 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | 是   | 卷id                |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷信息之后的回调  |
+  | volumeId | string                    | 是   | 卷设备id                |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷设备信息之后的回调  |
 
 **示例：**
 
@@ -300,7 +306,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
-异步通过uuid设置卷描述，以promise方式返回。
+异步修改指定卷设备描述，以promise方式返回。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -310,14 +316,14 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
   | 参数名     | 类型   | 必填 | 说明 |
   | --------- | ------ | ---- | ---- |
-  | uuid      | string | 是   | 卷uuid |
-  | description | string | 是   | 卷描述 |
+  | uuid      | string | 是   | 卷设备uuid |
+  | description | string | 是   | 卷设备描述 |
 
 **返回值：**
 
   | 类型                    | 说明                       |
   | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | 设置卷信息                  |
+  | Promise&lt;void&gt; | 设置卷设备信息                  |
 
 **示例：**
 
@@ -335,7 +341,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
 setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步通过uuid设置卷描述，以callback方式返回。
+异步修改指定卷设备描述，以callback方式返回。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -345,8 +351,8 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 
   | 参数名      | 类型                                     | 必填 | 说明              |
   | ---------- | --------------------------------------- | ---- | ---------------- |
-  | uuid       | string                                  | 是   | 卷uuid            |
-  | description | string                                 | 是   | 卷描述            |
+  | uuid       | string                                  | 是   | 卷设备uuid            |
+  | description | string                                 | 是   | 卷设备描述            |
   | callback   | AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
 
 **示例：**
@@ -354,7 +360,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   ```js
   let uuid = "";
   let description = "";
-  volumemanager.setVolumeDescription(uuid, description, (error, bool) => {
+  volumemanager.setVolumeDescription(uuid, description, (error) => {
       // do something    
   });
   ```
@@ -363,7 +369,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 
 format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
-异步对指定卷进行格式化，以promise方式返回。
+异步对指定卷设备进行格式化，以promise方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -373,14 +379,14 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | volumeId    | string | 是   | 卷id |
-  | fsType    | string | 是   | 文件系统类型 |
+  | volumeId    | string | 是   | 卷设备id |
+  | fsType    | string | 是   | 文件系统类型（vfat或者exfat） |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 对指定卷进行格式化 |
+  | Promise&lt;void&gt; | 对指定卷设备进行格式化 |
 
 **示例：**
 
@@ -398,7 +404,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
 format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步对指定卷进行格式化，以callback方式返回。
+异步对指定卷设备进行格式化，以callback方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -408,16 +414,16 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | 是   | 卷id                |
-  | fsType    | string | 是   | 文件系统类型 |
-  | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
+  | volumeId | string                    | 是   | 卷设备id                |
+  | fsType    | string | 是   | 文件系统类型(vfat或者exfat) |
+  | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷设备格式化后的回调  |
 
 **示例：**
 
   ```js
   let volumeId = "";
   let fsType = "";
-  volumemanager.format(volumeId, fsType, (error, bool) => {
+  volumemanager.format(volumeId, fsType, (error) => {
       // do something    
   });
   ```
@@ -426,7 +432,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 
 partition(diskId: string, type: number): Promise&lt;void&gt;
 
-异步对磁盘进行分区，以promise方式返回。
+异步对磁盘设备进行分区，以promise方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -436,7 +442,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | diskId    | string | 是   | 卷所属的磁盘id |
+  | diskId    | string | 是   | 卷设备所属的磁盘设备id |
   | type      | number | 是   | 分区类型    |
 
 **返回值：**
@@ -461,7 +467,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 
 partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): void
 
-异步对磁盘进行分区，以callback方式返回。
+异步对磁盘进行分区，以callback方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -471,16 +477,16 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
   | 参数名      | 类型                                   | 必填 | 说明              |
   | -------- | --------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                  | 是   | 卷所属的磁盘id      |
+  | diskId   | string                                  | 是   | 卷设备所属的磁盘id      |
   | type     | number                                  | 是   | 分区类型           |
-  | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
+  | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘设备进行分区      |
 
 **示例：**
 
   ```js
   let diskId = "";
   let type = 0;
-  volumemanager.partition(diskId, type, (error, bool) => {
+  volumemanager.partition(diskId, type, (error) => {
       // do something    
   });
   ```
@@ -493,10 +499,10 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
 | 名称         | 类型    | 可读   | 可写   | 说明                 |
 | ----------- | ------- | ------- | ----- | -------------------- |
-| id          | string  | 是 | 否 | 卷id                 |
-| uuid        | string  | 是 | 否 | 卷uuid               |
-| diskId      | string  | 是 | 否 | 卷所属的磁盘id        |
-| description | string  | 是 | 否 | 卷相关描述           |
-| removable   | boolean | 是 | 否 | 是否为可移动存储设备 |
-| state       | number  | 是 | 否 | 当前卷状态           |
-| path        | string  | 是 | 否 | 卷的挂载地址         |
+| id          | string  | 是 | 否 | 卷设备ID的格式为vol-{主设备号}-{次设备号}，主设备号用来区分不同种类的设备，次设备号用来区分同一类型的多个设备，卷设备ID会随着插卡顺序不同而变化。                 |
+| uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid               |
+| diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID好格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
+| description | string  | 是 | 否 | 卷设备描述、           |
+| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备、 |
+| state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
+| path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/external/{uuid}         |

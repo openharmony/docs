@@ -394,7 +394,6 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -427,7 +426,6 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**

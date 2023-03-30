@@ -29,7 +29,7 @@ USB devices are classified into two types: USB host and USB device. On OpenHarmo
 The USB subsystem logically consists of three parts: USB API, USB Service, and USB HAL. The following figure shows how the USB service is implemented.
 
   **Figure 1** USB service architecture
-  ![USB service architecture](figure/en-us_image_0000001267088285.png)
+  ![USB service architecture](figures/en-us_image_0000001267088285.png)
 
 - USB API: provides USB APIs that implement various basic functions, for example, query of the USB device list, bulk data transfer, control transfer, and right management.
 

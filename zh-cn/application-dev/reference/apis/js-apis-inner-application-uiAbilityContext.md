@@ -54,6 +54,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -117,6 +118,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -189,6 +191,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -257,6 +260,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -324,6 +328,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -401,6 +406,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -471,6 +477,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -542,6 +549,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -621,6 +629,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1349,6 +1358,7 @@ let want = {
 };
 let options = {
   onConnect(elementName, remote) {
+    commRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1415,6 +1425,7 @@ let want = {
 let accountId = 100;
 let options = {
   onConnect(elementName, remote) {
+    commRemote = remote;
     console.info('onConnect...')
   },
   onDisconnect(elementName) {
@@ -1438,7 +1449,7 @@ try {
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
-断开与ServiceExtensionAbility的连接（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1471,6 +1482,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1480,6 +1492,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
+  commRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1489,7 +1502,7 @@ try {
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-断开与ServiceExtensionAbility的连接（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1517,6 +1530,7 @@ let connection = 1;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
     if (err.code) {
       // 处理业务逻辑错误
       console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -1526,6 +1540,7 @@ try {
     console.info('disconnectServiceExtensionAbility succeed');
   });
 } catch (err) {
+  commRemote = null;
   // 处理入参错误异常
   console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1569,6 +1584,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1675,6 +1691,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1746,6 +1763,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1819,6 +1837,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |

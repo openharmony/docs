@@ -1,10 +1,10 @@
-# @ohos.file.picker (Picker)
+# @ohos.file.picker (File Picker)
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Picker** encapsulates system applications, such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker**, and provides capabilities of selecting and saving images, videos, documents, and audio clips. The application can select the picker as required.
+The File Picker encapsulates system applications, such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker**, and provides capabilities of selecting and saving photos, documents, and audio clips. The application can select the picker as required.
 
 ## Modules to Import
 ```js
@@ -378,7 +378,7 @@ Saves one or more documents in a **documentPicker** page. This API uses a promis
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| Promise&lt;Array&lt;string&gt;&gt;  | Promise used to return the URIs of the documents saved.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the documents saved.|
 
 **Example**
 

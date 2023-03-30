@@ -231,3 +231,27 @@ struct Child {
   }
 }
 ```
+
+## 自定义组件名，类名，函数名和系统组件名相同约束。
+
+自定义组件名，类名，函数名不能和系统组件名相同。
+
+示例：
+
+```
+// Rect.ets
+export class Rect {
+  constructor(){}
+}
+// Index.ets
+// ERROR: The module name 'Rect' can not be the same as the inner component name.
+import { Rect } from './Rect';
+@Entry
+@Component
+struct Index {
+  build() {
+    
+  }
+}
+```
+

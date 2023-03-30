@@ -28,7 +28,6 @@
     - [图形变换](ts-universal-attributes-transformation.md)
     - [图像效果](ts-universal-attributes-image-effect.md)
     - [形状裁剪](ts-universal-attributes-sharp-clipping.md)
-    - [文本样式设置](ts-universal-attributes-text-style.md)
     - [栅格设置](ts-universal-attributes-grid.md)
     - [颜色渐变](ts-universal-attributes-gradient-color.md)
     - [Popup控制](ts-universal-attributes-popup.md)
@@ -43,6 +42,7 @@
     - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
     - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - [前景色设置](ts-universal-attributes-foreground-color.md)
+  - [文本通用属性](ts-universal-attributes-text-style.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -54,6 +54,7 @@
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [组合手势](ts-combined-gestures.md)
 - 基础组件
+  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [Checkbox](ts-basic-components-checkbox.md)
@@ -100,7 +101,6 @@
   - [XComponent](ts-basic-components-xcomponent.md)
 - 容器组件
   - [AbilityComponent](ts-container-ability-component.md)
-  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)

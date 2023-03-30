@@ -399,44 +399,6 @@ try {
 }
 ```
 
-## userIAM_userAuth.getVersion<sup>9+</sup>
-
-getVersion(): number
-
-获取认证器的版本信息。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-**返回值：**
-
-| 类型   | 说明                   |
-| ------ | ---------------------- |
-| number | 认证器版本信息。 |
-
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ------- |
-| 201 | Permission verification failed. |
-| 12500002 | General operation error. |
-
-**示例：**
-
-```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-try {
-    let version = userIAM_userAuth.getVersion();
-    console.info("auth version = " + version);
-} catch (error) {
-    console.info("get version failed, error = " + error);
-}
-```
-
 ## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
@@ -535,7 +497,7 @@ getVersion() : number
 获取认证器的版本信息。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getVersion](#useriam_userauthgetversion9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
