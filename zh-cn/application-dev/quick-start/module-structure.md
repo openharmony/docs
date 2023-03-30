@@ -190,14 +190,15 @@ metadata对象示例：
 
 ## abilities对象的内部结构
 
-**OpenHarmony中不允许应用隐藏启动图标**
+**OpenHarmony中不允许应用隐藏入口图标**
 
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
-用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
-如果应用想要隐藏启动图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
+用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面（图1）中。<br>
+如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
+**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
 
-**启动图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
+**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
 ```
 {
   "module":{
@@ -220,34 +221,36 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 }
 ```
 
-**启动图标的查询**
-* HAP中包含Page类型的Ability
-  * 配置文件（config.json）中abilities配置中设置了启动图标
+**入口图标及入口标签的显示规则**
+* HAP中包含Page类型的PageAbility
+  * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权
-      * 返回的桌面图标为该Ability配置的图标
-      * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
-      * 返回的组件名为该Ability的组件名
-      * 用户点击该桌面图标，页面跳转到该Ability首页
+      * 显示桌面图标为该PageAbility配置的图标
+      * 显示桌面Label为该PageAbility配置的Label（如果没有配置Label，返回包名）
+      * 显示组件名为该PageAbility的组件名
+      * 用户点击该桌面图标，页面跳转到该PageAbility首页
     * 该应用具有隐藏图标的特权
       * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（config.json）中abilities配置中未设置启动图标
+  * 配置文件（config.json）中abilities配置中未设置入口图标
     * 该应用没有隐藏图标的特权
-      * 返回的桌面图标为系统默认图标
-      * 返回的桌面Label为该应用的包名
-      * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面
+      * 显示桌面图标为系统默认图标
+      * 显示桌面Label为该应用的包名
+      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
     * 该应用具有隐藏图标的特权
       * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含Page类型的Ability
+* HAP中不包含Page类型的PageAbility
   * 该应用没有隐藏图标的特权
-    * 返回的桌面图标为系统默认图标
-    * 返回的桌面Label为该应用的包名
-    * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面
+    * 显示桌面图标为系统默认图标
+    * 显示桌面Label为该应用的包名
+    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
   * 该应用具有隐藏图标的特权
     * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
 
-注：应用详情页面中显示的图标与label,可能与桌面上显示的不同。如果非Page类型的ability配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+注：应用详情页面（图1）中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+
+图1
+
+![应用的详情页例图](figures/application_details.jpg)
 
 
 **表8** **abilities对象的内部结构说明**
@@ -410,39 +413,6 @@ skills示例：
   }
 ]
 ```
-
-**增强隐式查询功能**
-
-支持Uri级别的前缀匹配。
-当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
-
-  *  查询功能增强涉及以下接口<br>
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
-  *  配置要求<br>
-    abilities  -> skills -> uris对象 <br>
-    配置1： 只配置 scheme = 'http' <br>
-    配置2： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) <br>
-    配置3： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) + ( port = '8080' )
-  *  前缀匹配<br>
-    [want](../application-models/want-overview.md)下uri，调用queryAbilityInfo查询接口<br>
-    1. uri = 'https://' 无匹配<br>
-    2. uri = 'http://' 可以匹配 配置1<br>
-    3. uri = 'https://www.example.com' 无匹配<br>
-    4. uri = 'https://www.exa.com' 无匹配<br>
-    5. uri = 'http://www.exa.com' 可以匹配 配置1<br>
-    6. uri = 'http://www.example.com' 可以匹配 配置1 配置2<br>
-    7. uri = 'https://www.example.com:8080' 无匹配<br>
-    8. uri = 'http://www.exampleaa.com:8080' 可以匹配 配置1<br>
-    9. uri = 'http://www.example.com:9180' 可以匹配 配置1 配置2<br>
-    10. uri = 'http://www.example.com:8080' 可以匹配 配置1 配置2 配置3<br>
-    11. uri = 'https://www.example.com:9180/query/student/name' 无匹配<br>
-    12. uri = 'http://www.exampleap.com:8080/query/student/name' 可以匹配 配置1<br>
-    13. uri = 'http://www.example.com:9180/query/student/name' 可以匹配 配置1 配置2<br>
-    14. uri = 'http://www.example.com:8080/query/student/name' 可以匹配 配置1 配置2 配置3<br>
-
 
 
 ## reqPermissions权限申请
