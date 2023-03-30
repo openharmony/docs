@@ -207,7 +207,7 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 应用可以通过`this.context`获取Ability实例的上下文，进而使用AbilityContext中的StartAbility相关接口启动Ability。启动Ability可指定Want、StartOptions、accountId，通过callback形式或promise形式实现。具体示例代码如下：
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": "",
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -224,7 +224,7 @@ context.startAbility(want).then(() => {
 跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -239,9 +239,9 @@ context.startAbility(want).then(() => {
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+    if (typeof dmClass === 'object' && dmClass !== null) {
+        let list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
             console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
         }
