@@ -31,7 +31,7 @@ measureText(options: MeasureOptions): double
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| double        | 文本宽度。<br/>**说明:** 单位px。 |
+| number        | 文本宽度。<br/>**说明:** 单位px。 |
 
 
 **示例：**
