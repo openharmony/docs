@@ -268,7 +268,7 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -392,6 +392,7 @@
 
 - APIs No Longer Maintained
   - [@ohos.backgroundTaskManager (Background Task Management)](js-apis-backgroundTaskManager.md)
+  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
   - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (Device Usage Statistics)](js-apis-deviceUsageStatistics.md)
