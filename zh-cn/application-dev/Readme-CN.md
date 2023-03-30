@@ -17,7 +17,7 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-        - [HAR包结构](quick-start/har-structure.md)
+        - [HAR包结构](quick-start/(har-package.md)
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
