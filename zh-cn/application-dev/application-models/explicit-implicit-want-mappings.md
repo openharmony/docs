@@ -128,9 +128,9 @@
 
 - 如果s_uri的host为空，当w_uri和s_uri的scheme相同时匹配成功，否则匹配失败；
 
-- 如果s_uri的port为空，当w_uri和s_uri中的scheme和host的相同时匹配成功，否则匹配失败；
+- 如果s_uri的port为空，当w_uri和s_uri中的scheme和host相同时匹配成功，否则匹配失败；
 
-- 如果s_uri的path、pathStartWith和pathRegex都为空，当w_uri和s_uri中的scheme，host和port的相同时匹配成功，否则匹配失败；
+- 如果s_uri的path、pathStartWith和pathRegex都为空，当w_uri和s_uri中的scheme，host和port相同时匹配成功，否则匹配失败；
 
 - 如果s_uri的path不为空，当w_uri和s_uri**全路径表达式**相同时匹配成功，否则继续进行pathStartWith的匹配；
 
