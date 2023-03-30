@@ -6,25 +6,24 @@ OpenSLES（Open Sound Library for Embedded System）即嵌入式音频加速标�
 
 ## 支持的API
 
-|对象                |对外接口               |接口调用详情              |是否支持   |说明                  |
-| ------------------ | -------------------- | --------------------| -------  | -------------------- |
-|SLEngineItf         |CreateAudioPlayer     |CreateAudioPlayer( SLEngineItf self, SLObjectItf *pPlayer, SLDataSource *pAudioSrc, SLDataSink *pAudioSnk, SLuint32 numInterfaces,
-    const SLInterfaceID *pInterfaceIds, const SLboolean *pInterfaceRequired)                   |是        |创建音频播放机。        |
-|SLEngineItf         |CreateAudioRecorder   |是                   |是        |创建音频录制器。        |
-|SLEngineItf         |CreateAudioOutputMix  |是                   |是        |创建混音器。            |
-|SLObjectItf         |Realize               |是                   |是        |创建音频播放机。        |
-|SLObjectItf         |getState              |是                   |是        |获取状态。             |
-|SLObjectItf         |getInterface          |是                   |是        |获取接口。             |
-|SLObjectItf         |Destroy               |是                   |是        |销毁对象。             |
-|SLOHBufferQueueItf  |Enqueue               |是                   |是        |将buffer加入实际队列中。|
-|SLOHBufferQueueItf  |clear                 |是                   |是        |释放buffer队列         |
-|SLOHBufferQueueItf  |getState              |是                   |是        |获取BufferQueue状态。  |
-|SLOHBufferQueueItf  |getBuffer             |是                   |是        |获取buffer。           |
-|SLOHBufferQueueItf  |RegisterCallback      |是                   |是        |注册回调函数。          |
-|SLPlayItf           |SetPlayState          |是                   |是        |设置播放状态。          |
-|SLPlayItf           |GetPlayState          |是                   |是        |获取播放状态。          |
-|SLRecordItf         |SetRecordState        |是                   |是        |设置录制状态。          |
-|SLRecordItf         |GetRecordState        |是                   |是        |获取录制状态。          |
-|SLVolumeItf         |SetVolumeLevel        |是                   |是        |设置音量。              |
-|SLVolumeItf         |GetVolumeLevel        |是                   |是        |获取音量。              |
-|SLVolumeItf         |GetMaxVolumeLevel     |是                   |是        |获取最大音量。          |
+|对象                |对外接口               |接口调用详情                                                                           |是否支持   |说明                  |
+| ------------------ | -------------------- | -------------------------------------------------------------------------------------|----------| -------------------- |
+|SLEngineItf         |CreateAudioPlayer     |CreateAudioPlayer(SLEngineItf self, SLObjectItf *pPlayer, SLDataSource *pAudioSrc, SLDataSink *pAudioSnk, SLuint32 numInterfaces,const SLInterfaceID *pInterfaceIds, const SLboolean *pInterfaceRequired) |是        |创建音频播放机。        |
+|SLEngineItf         |CreateAudioRecorder   |reateAudioRecorder(SLEngineItf self, SLObjectItf *pRecorder, SLDataSource *pAudioSrc, SLDataSink *pAudioSnk, SLuint32 numInterfaces,const SLInterfaceID *pInterfaceIds, const SLboolean *pInterfaceRequired)|是        |创建音频录制器。        |
+|SLEngineItf         |CreateAudioOutputMix  |CreateOutputMix(SLEngineItf self, SLObjectItf *pMix, SLuint32 numInterfaces, const SLInterfaceID *pInterfaceIds,const SLboolean *pInterfaceRequired)|是        |创建混音器。            |
+|SLObjectItf         |Realize               |Realize(SLObjectItf self, SLboolean async)                                            |是        |创建音频播放机。        |
+|SLObjectItf         |getState              |GetState(SLObjectItf self, SLuint32 *state)                                           |是        |获取状态。             |
+|SLObjectItf         |getInterface          |GetInterface(SLObjectItf self, const SLInterfaceID iid, void *interface)              |是        |获取接口。             |
+|SLObjectItf         |Destroy               |Destroy(SLObjectItf self)                                                             |是        |销毁对象。             |
+|SLOHBufferQueueItf  |Enqueue               |Enqueue(SLOHBufferQueueItf self, const void *buffer, SLuint32 size)                   |是        |将buffer加入实际队列中。|
+|SLOHBufferQueueItf  |clear                 |Clear(SLOHBufferQueueItf self)                                                        |是        |释放buffer队列         |
+|SLOHBufferQueueItf  |getState              |GetState(SLOHBufferQueueItf self, SLOHBufferQueueState *state)                        |是        |获取BufferQueue状态。  |
+|SLOHBufferQueueItf  |getBuffer             |GetBuffer(SLOHBufferQueueItf self, SLuint8 **buffer, SLuint32 *size)                  |是        |获取buffer。           |
+|SLOHBufferQueueItf  |RegisterCallback      |RegisterCallback(SLOHBufferQueueItf self, SlOHBufferQueueCallback callback, void *pContext) |是  |注册回调函数。          |
+|SLPlayItf           |SetPlayState          |SetPlayState(SLPlayItf self, SLuint32 state)                                          |是        |设置播放状态。          |
+|SLPlayItf           |GetPlayState          |GetPlayState(SLPlayItf self, SLuint32 *state)                                         |是        |获取播放状态。          |
+|SLRecordItf         |SetRecordState        |SetRecordState(SLRecordItf self, SLuint32 state)                                      |是        |设置录制状态。          |
+|SLRecordItf         |GetRecordState        |GetRecordState(SLRecordItf self, SLuint32 *pState                                     |是        |获取录制状态。          |
+|SLVolumeItf         |SetVolumeLevel        |SetVolumeLevel(SLVolumeItf self, SLmillibel *level)                                   |是        |设置音量。              |
+|SLVolumeItf         |GetVolumeLevel        |GetVolumeLevel(SLVolumeItf self, SLmillibel level)                                    |是        |获取音量。              |
+|SLVolumeItf         |GetMaxVolumeLevel     |GetMaxVolumeLevel(SLVolumeItf self, SLmillibel *maxLevel)                             |是        |获取最大音量。          |
