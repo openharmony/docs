@@ -1628,6 +1628,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+允许系统应用获取端云同步管理能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+允许应用使用端云同步能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
