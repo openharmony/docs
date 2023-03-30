@@ -58,7 +58,7 @@ AbilityDelegatorArgs是测试框架提供的测试参数类。开发者可以使
 
 ## AbilityMonitor介绍
 
-AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-application-abilityMonitor.md)。
+AbilityMonitor是测试框架提供用来绑定并监听Ability类。开发者可以使用AbilityMonitor绑定Ability，并将AbilityMonitor添加到监听列表。绑定后Ability的创建、生命周期变化等会触发AbilityMonitor内相关回调函数，开发者可以在对应回调函数内进行测试验证。具体详细内容请参考AbilityMonitor API接口说明[AbilityMonitor](../reference/apis/js-apis-inner-application-abilityMonitor.md)。
 
 **示例**
 
