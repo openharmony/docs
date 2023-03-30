@@ -2137,10 +2137,10 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sql      | string                                                       | 是   | 指定要执行的SQL语句。                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | 是   | SQL语句中参数的值。                                         |
+| 参数名   | 类型                                         | 必填 | 说明                                                      |
+| -------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
+| sql      | string                                       | 是   | 指定要执行的SQL语句。                                     |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。    |
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
@@ -2166,10 +2166,10 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                 |
+| -------- | ------------------------------------ | ---- | ---------------------------------------------------- |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -2180,7 +2180,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **示例：**
 
 ```js
-let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo']);
+let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2199,22 +2199,22 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                   |
-| -------- | ------------------------------------ | ---- | ---------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。  |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。    |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。 |
+| 参数名   | 类型                                 | 必填 | 说明                                                   |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                  |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。 |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。                                 |
 
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-store.executeSql(SQL_CREATE_TABLE, null, function(err) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
     console.error(`ExecuteSql failed, err: ${err}`);
     return;
   }
-  console.info(`Create table done.`);
+  console.info(`Delete table done.`);
 })
 ```
 
@@ -2228,10 +2228,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                 |
+| -------- | ------------------------------------ | ---- | ---------------------------------------------------- |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -2242,10 +2242,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = store.executeSql(SQL_CREATE_TABLE);
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Create table done.`);
+    console.info(`Delete table done.`);
 }).catch((err) => {
     console.error(`ExecuteSql failed, err: ${err}`);
 })
