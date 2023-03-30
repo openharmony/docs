@@ -411,40 +411,6 @@ skills示例：
 ]
 ```
 
-**增强隐式查询功能**
-
-支持Uri级别的前缀匹配。
-当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
-
-  *  查询功能增强涉及以下接口<br>
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
-  *  配置要求<br>
-    abilities  -> skills -> uris对象 <br>
-    配置1： 只配置 scheme = 'http' <br>
-    配置2： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) <br>
-    配置3： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) + ( port = '8080' )
-  *  前缀匹配<br>
-    [want](../application-models/want-overview.md)下uri，调用queryAbilityInfo查询接口<br>
-    1. uri = 'https://' 无匹配<br>
-    2. uri = 'http://' 可以匹配 配置1<br>
-    3. uri = 'https://www.example.com' 无匹配<br>
-    4. uri = 'https://www.exa.com' 无匹配<br>
-    5. uri = 'http://www.exa.com' 可以匹配 配置1<br>
-    6. uri = 'http://www.example.com' 可以匹配 配置1 配置2<br>
-    7. uri = 'https://www.example.com:8080' 无匹配<br>
-    8. uri = 'http://www.exampleaa.com:8080' 可以匹配 配置1<br>
-    9. uri = 'http://www.example.com:9180' 可以匹配 配置1 配置2<br>
-    10. uri = 'http://www.example.com:8080' 可以匹配 配置1 配置2 配置3<br>
-    11. uri = 'https://www.example.com:9180/query/student/name' 无匹配<br>
-    12. uri = 'http://www.exampleap.com:8080/query/student/name' 可以匹配 配置1<br>
-    13. uri = 'http://www.example.com:9180/query/student/name' 可以匹配 配置1 配置2<br>
-    14. uri = 'http://www.example.com:8080/query/student/name' 可以匹配 配置1 配置2 配置3<br>
-
-
-
 ## reqPermissions权限申请
 
 **表12** **reqPermissions权限申请字段说明**
