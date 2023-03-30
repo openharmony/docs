@@ -228,10 +228,11 @@ export default class EntryAbility extends Ability {
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import wantConstant from '@ohos.app.ability.wantConstant';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        if (want.parameters[ABILITY_RECOVERY_RESTART] != undefined &&
-            want.parameters[ABILITY_RECOVERY_RESTART] == true) {
+        if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
+            want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
             console.log("This ability need to recovery");
         }
     }
