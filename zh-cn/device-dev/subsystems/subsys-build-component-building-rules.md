@@ -105,7 +105,7 @@ bundle.json是定义部件的描述文件，包含了部件的根目录、名称
 
 | 字段 | 类型 | 看护手段 |
 |---|---|---|
-|name|string。部件的HPM（鸿蒙包管理器）包名称，必填。命名规则：@{organization}/{component_name}。"component_name"为部件的名称，须满足规则1.1。|静态检查|
+|name|string。部件的HPM（OpenHarmony包管理器）包名称，必填。命名规则：@{organization}/{component_name}。"component_name"为部件的名称，须满足规则1.1。|静态检查|
 |version|string。部件版本号，必填，命名和升级跟随OpenHarmony版本号。|静态检查|
 |destPath|string。部件源码的根目录，必填。部件的根目录须独立唯一，不允许存在多个根目录。|静态检查|
 |component:name|string。部件名，必填。须满足规则1.1。|静态检查|
