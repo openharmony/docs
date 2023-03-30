@@ -1,4 +1,4 @@
-# Socket Connection
+# # @ohos.net.socket (Socket Connection) 
 
 The **socket** module implements data transfer over TCPSocket, UDPSocket, WebSocket, and TLSSocket connections.
 
@@ -364,7 +364,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the UDPSocket connection. This API uses an asynchronous callback to return the result.
+Sets other attributes of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >This API can be called only after **bind** is successfully called.
@@ -418,7 +418,7 @@ udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
-Sets other properties of the UDPSocket connection. This API uses a promise to return the result.
+Sets other attributes of the UDPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
 >This API can be called only after **bind** is successfully called.
@@ -522,7 +522,7 @@ let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 udp.on('message', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('message', callback);
 udp.off('message');
 ```
@@ -582,14 +582,14 @@ let callback1 = () =>{
 	console.log("on listening, success");
 }
 udp.on('listening', callback1);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('listening', callback1);
 udp.off('listening');
 let callback2 = () =>{
 	console.log("on close, success");
 }
 udp.on('close', callback2);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('close', callback2);
 udp.off('close');
 ```
@@ -646,7 +646,7 @@ let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('error', callback);
 udp.off('error');
 ```
@@ -1426,7 +1426,7 @@ let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 tcp.on('message', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('message', callback);
 tcp.off('message');
 ```
@@ -1486,14 +1486,14 @@ let callback1 = () =>{
 	console.log("on connect success");
 }
 tcp.on('connect', callback1);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('connect', callback1);
 tcp.off('connect');
 let callback2 = () =>{
 	console.log("on close success");
 }
 tcp.on('close', callback2);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('close', callback2);
 tcp.off('close');
 ```
@@ -1550,7 +1550,7 @@ let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('error', callback);
 tcp.off('error');
 ```
@@ -2674,4 +2674,4 @@ Defines the certificate raw data.
 
 | Type                                                                  | Description                  |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | Data and encoding format of the certificate.|
+|[cert.EncodingBlob](js-apis-cert.md#datablob) | Data and encoding format of the certificate.|

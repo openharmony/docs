@@ -100,6 +100,8 @@ Sets the default slot of the SIM card used for mobile data. This API uses an asy
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -114,8 +116,8 @@ Sets the default slot of the SIM card used for mobile data. This API uses an asy
 **Example**
 
 ```js
-data.setDefaultCellularDataSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.setDefaultCellularDataSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
 
@@ -145,6 +147,8 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -160,8 +164,8 @@ Sets the default slot of the SIM card used for mobile data. This API uses a prom
 
 ```js
 let promise = data.setDefaultCellularDataSlotId(0);
-promise.then((data) => {
-    console.log(`setDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`setDefaultCellularDataSlotId success.`);
 }).catch((err) => {
     console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -279,6 +283,8 @@ Checks whether the cellular data service is enabled. This API uses an asynchrono
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -313,6 +319,8 @@ Checks whether the cellular data service is enabled. This API uses a promise to 
 | Promise\<boolean\> | Promise used to return the result.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -352,6 +360,8 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -394,6 +404,8 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -434,6 +446,8 @@ Enables the cellular data service. This API uses an asynchronous callback to ret
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -446,8 +460,8 @@ Enables the cellular data service. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-data.enableCellularData((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.enableCellularData((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -471,6 +485,8 @@ Enables the cellular data service. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -484,8 +500,8 @@ Enables the cellular data service. This API uses a promise to return the result.
 
 ```js
 let promise = data.enableCellularData();
-promise.then((data) => {
-    console.log(`enableCellularData success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`enableCellularData success.`);
 }).catch((err) => {
     console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -511,6 +527,8 @@ Disables the cellular data service. This API uses an asynchronous callback to re
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -523,8 +541,8 @@ Disables the cellular data service. This API uses an asynchronous callback to re
 **Example**
 
 ```js
-data.disableCellularData((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.disableCellularData((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -548,6 +566,8 @@ Disables the cellular data service. This API uses a promise to return the result
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -561,8 +581,8 @@ Disables the cellular data service. This API uses a promise to return the result
 
 ```js
 let promise = data.disableCellularData();
-promise.then((data) => {
-    console.log(`disableCellularData success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`disableCellularData success.`);
 }).catch((err) => {
     console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -589,6 +609,8 @@ Enables the cellular data roaming service. This API uses an asynchronous callbac
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -601,8 +623,8 @@ Enables the cellular data roaming service. This API uses an asynchronous callbac
 **Example**
 
 ```js
-data.enableCellularDataRoaming(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.enableCellularDataRoaming(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -632,6 +654,8 @@ Enables the cellular data roaming service. This API uses a promise to return the
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -645,8 +669,8 @@ Enables the cellular data roaming service. This API uses a promise to return the
 
 ```js
 let promise = data.enableCellularDataRoaming(0);
-promise.then((data) => {
-    console.log(`enableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`enableCellularDataRoaming success.`);
 }).catch((err) => {
     console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -673,6 +697,8 @@ Disables the cellular data roaming service. This API uses an asynchronous callba
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -685,8 +711,8 @@ Disables the cellular data roaming service. This API uses an asynchronous callba
 **Example**
 
 ```js
-data.disableCellularDataRoaming(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.disableCellularDataRoaming(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -716,6 +742,8 @@ Disables the cellular data roaming service. This API uses a promise to return th
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -729,8 +757,8 @@ Disables the cellular data roaming service. This API uses a promise to return th
 
 ```js
 let promise = data.disableCellularDataRoaming(0);
-promise.then((data) => {
-    console.log(`disableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`disableCellularDataRoaming success.`);
 }).catch((err) => {
     console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });

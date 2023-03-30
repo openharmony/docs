@@ -32,6 +32,8 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -75,6 +77,8 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -115,6 +119,8 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -151,6 +157,8 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -195,6 +203,8 @@ Obtains the network status. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -233,6 +243,8 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -274,6 +286,8 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -311,6 +325,8 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -352,6 +368,8 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -389,6 +407,8 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 8300001  | Invalid parameter value.                     |
@@ -420,6 +440,8 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | Promise\<number\> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -456,6 +478,8 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -496,6 +520,8 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -644,6 +670,8 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -680,6 +708,8 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -724,6 +754,8 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -762,6 +794,8 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is the carrier name, for example, China Mobile.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -802,6 +836,8 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | Promise\<string\> | Promise used t return the result, which is the carrier name, for example, China Mobile.               |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -844,6 +880,8 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -858,8 +896,8 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 
 ```js
 let slotId = 0;
-radio.setPrimarySlotId(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setPrimarySlotId(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -890,6 +928,8 @@ Sets the ID of the slot in which the primary card is located. This API uses a pr
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -905,9 +945,9 @@ Sets the ID of the slot in which the primary card is located. This API uses a pr
 ```js
 let slotId = 0;
 let promise = radio.setPrimarySlotId(slotId);
-promise.then(data => {
-    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setPrimarySlotId success.`);
+}).catch((err) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -931,6 +971,8 @@ Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous c
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -970,6 +1012,8 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses an as
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1016,6 +1060,8 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses a pro
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1057,6 +1103,8 @@ Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1095,6 +1143,8 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses an as
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1141,6 +1191,8 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses a pro
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1182,6 +1234,8 @@ Obtains the unique device ID of the SIM card in a card slot. This API uses an as
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1220,6 +1274,8 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1266,6 +1322,8 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1307,6 +1365,8 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1319,8 +1379,8 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 **Example**
 
 ```js
-radio.sendUpdateCellLocationRequest((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1345,6 +1405,8 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1358,8 +1420,8 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 ```js
 let slotId = 0;
-radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1389,6 +1451,8 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1402,10 +1466,9 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 ```js
 let slotId = 0;
-let promise = radio.sendUpdateCellLocationRequest(slotId);
-promise.then(data => {
-    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.sendUpdateCellLocationRequest(slotId).then(() => {
+    console.log(`sendUpdateCellLocationRequest success.`);
+}).catch((err) => {
     console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1429,6 +1492,8 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1468,6 +1533,8 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1514,6 +1581,8 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1556,6 +1625,8 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1580,8 +1651,8 @@ let networkSelectionModeOptions={
     networkInformation: networkInformation,
     resumeSelection: true
 }
-radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1611,6 +1682,8 @@ Sets the network selection mode. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1636,9 +1709,9 @@ let networkSelectionModeOptions={
     resumeSelection: true
 }
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
-promise.then(data => {
-    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setNetworkSelectionMode success.`);
+}).catch((err) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1663,6 +1736,8 @@ Obtains network search information for the SIM card in the specified slot. This 
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1707,6 +1782,8 @@ Obtains network search information for the SIM card in the specified slot. This 
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1745,6 +1822,8 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -1780,6 +1859,8 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1823,6 +1904,8 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -1863,6 +1946,8 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1875,8 +1960,8 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 **Example**
 
 ```js
-radio.turnOnRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1902,6 +1987,8 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1915,8 +2002,8 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 ```js
 let slotId = 0;
-radio.turnOnRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1947,6 +2034,8 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1960,10 +2049,9 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 ```js
 let slotId = 0;
-let promise = radio.turnOnRadio(slotId);
-promise.then(data => {
-    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOnRadio(slotId).then(() => {
+    console.log(`turnOnRadio success.`);
+}).catch((err) => {
     console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1988,6 +2076,8 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2000,8 +2090,8 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 **Example**
 
 ```js
-radio.turnOffRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2027,6 +2117,8 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2040,8 +2132,8 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 ```js
 let slotId = 0;
-radio.turnOffRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2072,6 +2164,8 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2085,10 +2179,9 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 ```js
 let slotId = 0;
-let promise = radio.turnOffRadio(slotId);
-promise.then(data => {
-    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOffRadio(slotId).then(() => {
+    console.log(`turnOffRadio success.`);
+}).catch((err) => {
     console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2115,6 +2208,8 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2127,8 +2222,9 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 **Example**
 
 ```js
-radio.setPreferredNetwork(0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2159,7 +2255,9 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
-| ID|                  Error Message                   |
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
@@ -2171,10 +2269,10 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 **Example**
 
 ```js
-let promise = radio.setPreferredNetwork(0, 1);
-promise.then(data => {
-    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM).then(() => {
+    console.log(`setPreferredNetwork success.`);
+}).catch((err) => {
     console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2199,6 +2297,8 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2243,6 +2343,8 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2284,6 +2386,8 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2329,6 +2433,8 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2372,6 +2478,8 @@ Enables listening for **imsRegStateChange** events. This API uses an asynchronou
 
 **Error codes**
 
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2411,6 +2519,8 @@ Disables listening for **imsRegStateChange** events. This API uses an asynchrono
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
