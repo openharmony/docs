@@ -124,7 +124,7 @@ The **ResourceColor** type is used to describe the color types of resources.
 | Type                                     | Description                                            |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | Color enums.                                      |
-| number                                   | Color in hexadecimal notation.                                     |
+| number                                   | Color in hexadecimal notation. RGB is supported.                                     |
 | string                                   | Color in RGB or RGBA notation.                             |
 | [Resource](#resource)                    | Color referenced from system or application resources.|
 
@@ -217,3 +217,4 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
+
