@@ -25,12 +25,14 @@ Registers an observer for network status change events. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                                        |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Network status change event.                                            |
+| Name  | Type                                                     | Mandatory| Description                                                             |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
+| type     | string                                                    | Yes  | Network status change event. This field has a fixed value of **networkStateChange**.                |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | Yes  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -62,13 +64,15 @@ Registers an observer for network status change events of the SIM card in the sp
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| type     | string                                    | Yes  | Network status change event.                 |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+|  Name |                              Type                        | Mandatory|                            Description                                  |
+| -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
+| type     | string                                                    | Yes  | Network status change event. This field has a fixed value of **networkStateChange**.                |
+| slotId   | number                                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                            |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | Yes  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -104,7 +108,7 @@ Unregisters the observer for network status change events. This API uses an asyn
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Network status change event.                                            |
+| type     | string                                                    | Yes  | Network status change event. This field has a fixed value of **networkStateChange**.                |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | No  | Callback used to return the result. For details, see [NetworkState](js-apis-radio.md#networkstate).|
 
 | ID|                  Error Message                   |
@@ -138,11 +142,13 @@ Registers an observer for signal status change events. This API uses an asynchro
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Signal information change event.                                            |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -172,13 +178,15 @@ Registers an observer for signal status change events of the SIM card in the spe
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| type     | string                                    | Yes  | Signal information change event.               |
-| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | Yes  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -214,10 +222,12 @@ Unregisters the observer for signal status change events. This API uses an async
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Signal information change event.                                            |
+| type     | string                                                       | Yes  | Signal status change event. This field has a fixed value of **signalInfoChange**.             |
 | callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | No  | Callback used to return the result. For details, see [SignalInformation](js-apis-radio.md#signalinformation).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -255,7 +265,7 @@ Registers an observer for cell information change events. This API uses an async
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
-| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.                                                  |
+| type     | string                                                    | Yes  | Cell information change event. This field has a fixed value of **cellInfoChange**.             |
 | callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -370,11 +380,13 @@ Registers an observer for call status change events. This API uses an asynchrono
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Call status change event.                                            |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -404,12 +416,14 @@ Registers an observer for call status change events. This API uses an asynchrono
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Call status change event.                                            |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | Yes  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -443,11 +457,13 @@ Unregisters the observer for call status change events. This API uses an asynchr
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Call status change event.                                            |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | Call status change event. This field has a fixed value of **callStateChange**.              |
 | callback | Callback\<{ state: [CallState](js-apis-call.md#callstate), number: string }\> | No  | Callback function. For details, see [CallState](js-apis-call.md#callstate) in call.<br>**number**: phone number.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -482,10 +498,12 @@ Registers an observer for connection status change events of the cellular data l
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -516,11 +534,13 @@ Registers an observer for connection status change events of the cellular data l
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -555,10 +575,12 @@ Unregisters the observer for connection status change events of the cellular dat
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Cellular data connection status event. This field has a fixed value of **cellularDataConnectionStateChange**.|
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -593,10 +615,12 @@ Registers an observer for the uplink and downlink data flow status change events
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Uplink and downlink data flow status change event of the cellular data service.                      |
+| type     | string                                                       | Yes | Cellular data flow change event. This field has a fixed value of **cellularDataFlowChange**.        |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | Yes  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -627,11 +651,13 @@ Registers an observer for the uplink and downlink data flow status change events
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Uplink and downlink data flow status change event of the cellular data service.                          |
-| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
+| type     | string                                                       | Yes  | Cellular data flow change event. This field has a fixed value of **cellularDataFlowChange**.        |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                                            |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | Yes  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -664,12 +690,14 @@ Unregisters the observer for the uplink and downlink data flow status change eve
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Uplink and downlink data flow status change event of the cellular data service.                          |
+| Name  | Type                                                               | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                             | Yes  | Cellular data flow change event. This field has a fixed value of **cellularDataFlowChange**.  |
 | callback | Callback\<[DataFlowType](js-apis-telephony-data.md#dataflowtype)\> | No  | Callback used to return the result. For details, see [DataFlowType](js-apis-telephony-data.md#dataflowtype).|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -703,11 +731,13 @@ Registers an observer for SIM card status change events. This API uses an asynch
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | SIM card status change event.                                    |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | string                                                       | Yes  | SIM status change event. This field has a fixed value of **simStateChange**.                |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -738,11 +768,13 @@ Registers an observer for status change events of the SIM card in the specified 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | SIM card status change event.                                    |
+| type     | string                                                       | Yes  | SIM status change event. This field has a fixed value of **simStateChange**.                |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -777,10 +809,12 @@ Unregisters the observer for SIM card status change events. This API uses an asy
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | SIM card status change event.                                            |
+| type     | string                                                       | Yes  | SIM status change event. This field has a fixed value of **simStateChange**.                |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | No  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |

@@ -294,8 +294,8 @@ let httpProxy = {
     port: 8080,
     exclusionList: exclusionArray
 }
-connection.setGlobalHttpProxy(httpProxy).then((error, data) => {
-   console.info(JSON.stringify(data));
+connection.setGlobalHttpProxy(httpProxy).then(() => {
+   console.info("success");
 }).catch(error=>{
    console.info(JSON.stringify(error));
 })
@@ -436,8 +436,8 @@ Binds an application to the specified network, so that the application can acces
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-   connection.setAppNet(netHandle).then((error, data) => {
-        console.log(JSON.stringify(data))
+   connection.setAppNet(netHandle).then(() => {
+        console.log("success")
    }).catch(error => {
         console.log(JSON.stringify(error))
    })
@@ -1097,7 +1097,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 Resolves the host name by using the default network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1134,7 +1134,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 Resolves the host name by using the default network to obtain all IP addresses. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1639,7 +1639,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1678,7 +1678,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1721,7 +1721,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 Resolves the host name by using the corresponding network to obtain the first IP address. This API uses an asynchronous callback to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1760,7 +1760,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 Resolves the host name by using the corresponding network to obtain the first IP address. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

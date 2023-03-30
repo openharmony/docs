@@ -14,110 +14,6 @@ To subscribe to the call status, use [`observer.on('callStateChange')`](js-apis-
 import call from '@ohos.telephony.call';
 ```
 
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
-
-Initiates a call. This API uses an asynchronous callback to return the result.
-
->**NOTE**
->
->This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
-
-**Required Permissions**: ohos.permission.PLACE_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name     | Type                        | Mandatory| Description                                   |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
-
-**Example**
-
-```js
-call.dial("138xxxxxxxx", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
-
-Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
-
->**NOTE**
->
->This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
-
-**Required Permissions**: ohos.permission.PLACE_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name     | Type                        | Mandatory| Description                                   |
-| ----------- | ---------------------------- | ---- | --------------------------------------- |
-| phoneNumber | string                       | Yes  | Phone number.                             |
-| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
-| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
-
-**Example**
-
-```js
-call.dial("138xxxxxxxx", {
-    extras: false
-}, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
-});
-```
-
-
-## call.dial<sup>(deprecated)</sup>
-
-dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
-
-Initiates a call. You can set call options as needed. This API uses a promise to return the result.
-
->**NOTE**
->
->This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9).
-
-**Required Permissions**: ohos.permission.PLACE_CALL
-
-**System capability**: SystemCapability.Telephony.CallManager
-
-**Parameters**
-
-| Name     | Type                       | Mandatory| Description                                  |
-| ----------- | --------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                      | Yes  | Phone number.                            |
-| options     | [DialOptions](#dialoptions) | No  | Call option, which indicates whether the call is a voice call or video call.|
-
-**Return value**
-
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
-
-**Example**
-
-```js
-let promise = call.dial("138xxxxxxxx", {
-    extras: false
-});
-promise.then(data => {
-    console.log(`dial success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-
 ## call.dialCall<sup>9+</sup>
 
 dialCall\(phoneNumber: string, callback: AsyncCallback<void\>\): void
@@ -260,6 +156,107 @@ promise.then(() => {
 });
 ```
 
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, callback: AsyncCallback<boolean\>\): void
+
+Initiates a call. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9). The substitute API is available only for system applications.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+
+**Example**
+
+```js
+call.dial("138xxxxxxxx", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback<boolean\>\): void
+
+Initiates a call. You can set call options as needed. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9). The substitute API is available only for system applications.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                   |
+| ----------- | ---------------------------- | ---- | --------------------------------------- |
+| phoneNumber | string                       | Yes  | Phone number.                             |
+| options     | [DialOptions](#dialoptions)  | Yes  | Call option, which indicates whether the call is a voice call or video call. |
+| callback    | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.<br>- **true**: success<br>- **false**: failure|
+
+**Example**
+
+```js
+call.dial("138xxxxxxxx", {
+    extras: false
+}, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## call.dial<sup>(deprecated)</sup>
+
+dial\(phoneNumber: string, options?: DialOptions\): Promise<boolean\>
+
+Initiates a call. You can set call options as needed. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [dialCall](#calldialcall9). The substitute API is available only for system applications.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                       | Mandatory| Description                                  |
+| ----------- | --------------------------- | ---- | -------------------------------------- |
+| phoneNumber | string                      | Yes  | Phone number.                            |
+| options     | [DialOptions](#dialoptions) | No  | Call option, which indicates whether the call is a voice call or video call.|
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>- **true**: success<br>- **false**: failure|
+
+**Example**
+
+```js
+let promise = call.dial("138xxxxxxxx", {
+    extras: false
+});
+promise.then(data => {
+    console.log(`dial success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`dial fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.makeCall<sup>7+</sup>
 
@@ -2387,7 +2384,7 @@ Subscribes to **callDetailsChange** events. This API uses an asynchronous callba
 
 | Name  | Type                                                   | Mandatory| Description                      |
 | -------- | ------------------------------------------------------- | ---- | -------------------------- |
-| type     | string                                                  | Yes  | Event type. This field has a fixed value of **callDetailsChange**.|
+| type     | string                                                  | Yes  | Call event change. This field has a fixed value of **callDetailsChange**.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | Yes | Callback used to return the result.                |
 
 **Error codes**
@@ -2427,7 +2424,7 @@ Subscribes to **callEventChange** events. This API uses an asynchronous callback
 
 | Name  | Type                                            | Mandatory| Description                      |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                           | Yes  | This interface is used to monitor the change of call events during a call. The parameter has a fixed value of callEventChange.|
+| type     | string                                           | Yes  | Call event change. This field has a fixed value of **callEventChange**.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
@@ -2467,7 +2464,7 @@ Subscribes to **callDisconnectedCause** events. This API uses an asynchronous ca
 
 | Name  | Type                                                  | Mandatory| Description                      |
 | -------- | ------------------------------------------------------ | ---- | -------------------------- |
-| type     | string                                                 | Yes  | Event type. The field has a fixed value of **callDisconnectedCause**.|
+| type     | string                                                 | Yes  | Call disconnection cause. This field has a fixed value of **callDisconnectedCause**.|
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)> | Yes  | Callback used to return the result.                |
 
 **Error codes**
@@ -2507,7 +2504,7 @@ Subscribes to **mmiCodeResult** events. This API uses an asynchronous callback t
 
 | Name  | Type                                        | Mandatory| Description                 |
 | -------- | -------------------------------------------- | ---- | --------------------- |
-| type     | string                                       | Yes  | Event type. The field has a fixed value of **mmiCodeResult**.|
+| type     | string                                       | Yes  | MMI code result. This field has a fixed value of **mmiCodeResult**.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)> | Yes  | Callback used to return the result.           |
 
 **Error codes**
@@ -2547,7 +2544,7 @@ Unsubscribes from **callDetailsChange** events. This API uses an asynchronous ca
 
 | Name  | Type                                                    | Mandatory| Description                              |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                   | Yes  | Event type. The field has a fixed value of **callDetailsChange**.|
+| type     | string                                                   | Yes  | Call details change. This field has a fixed value of **callDetailsChange**.|
 | callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | No  | Callback used to return the result.                        |
 
 **Error codes**
@@ -2587,7 +2584,7 @@ Unsubscribes from **callEventChange** events. This API uses an asynchronous call
 
 | Name  | Type                                            | Mandatory| Description                              |
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
-| type     | string                                           | Yes  | Event type. The field has a fixed value of **callEventChange**.|
+| type     | string                                           | Yes  | Call event change. This field has a fixed value of **callEventChange**.|
 | callback | Callback<[CallEventOptions](#calleventoptions8)> | No  | Callback used to return the result.                        |
 
 **Error codes**
@@ -2627,7 +2624,7 @@ Unsubscribes from **callDisconnectedCause** events. This API uses an asynchronou
 
 | Name  | Type                                                      | Mandatory| Description                |
 | -------- | ---------------------------------------------------------- | ---- | ------------------- |
-| type     | string                                                     | Yes  | Event type. The field has a fixed value of **callDisconnectedCause**.|
+| type     | string                                                     | Yes  | Call disconnection cause. This field has a fixed value of **callDisconnectedCause**.|
 | callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | No  | Callback used to return the result.          |
 
 **Error codes**
@@ -2667,7 +2664,7 @@ Unsubscribes from **mmiCodeResult** events. This API uses an asynchronous callba
 
 | Name  | Type                                             | Mandatory| Description       |
 | -------- | ------------------------------------------------ | ---- | ----------- |
-| type     | string                                           | Yes  | Event type. The field has a fixed value of **mmiCodeResult**.|
+| type     | string                                           | Yes  | MMI code result. This field has a fixed value of **mmiCodeResult**.|
 | callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | No  | Callback used to return the result. |
 
 **Error codes**
