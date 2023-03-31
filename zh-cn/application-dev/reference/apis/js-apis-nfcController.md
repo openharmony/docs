@@ -64,7 +64,7 @@ openNfc(): boolean
 
 ## controller.enableNfc<sup>9+</sup>
 
-enableNfc(): boolean
+enableNfc(): void
 
 打开NFC开关。
 
@@ -101,7 +101,7 @@ closeNfc(): boolean
 
 ## controller.disableNfc<sup>9+</sup>
 
-disableNfc(): boolean
+disableNfc(): void
 
 关闭NFC开关。
 
