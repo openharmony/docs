@@ -652,6 +652,98 @@ try {
 ```
 
 
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+
+setDevicePinCode(device: string, code: string, callback: AsyncCallback&lt;void&gt;): void
+
+当蓝牙配对类型[PinType](#pintype10)为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| device | string  | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| code   | string  | 是    | 用户输入的PIN码。        |
+| callback   | AsyncCallback&lt;void&gt;  | 是    | 回调函数，当设置PinCode成功，err为undefined，否则为错误对象。        |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+//callback
+try {
+    bluetoothManager.setDevicePinCode('11:22:33:44:55:66', '12345', (err, data) => {
+        console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+
+setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
+
+当蓝牙配对类型[PinType](#pintype10)为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| device | string  | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| code   | string  | 是    | 用户输入的PIN码。        |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+//promise
+try {
+    bluetoothManager.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
+        console.info('setDevicePinCode');
+    }, error => {
+        console.info('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## bluetoothManager.on('bluetoothDeviceFind')
 
 on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -4005,12 +4097,13 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称                  | 类型                                     | 可读   | 可写   | 说明                                       |
+| 名称                  | 类型                                     | 可读   | 可写   | 说明                                 |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid         | string                                   | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string                                   | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
-| characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                               |
-| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                              |
+| characteristicValue | ArrayBuffer                              | 是    | 是    | 特征对应的二进制值。                      |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 是    | 是    | 特定特征的描述符列表。                |
+| properties<sup>10+</sup>  | [GattProperties](#gattproperties10) |   是   | 是     | 特定特征的属性描述。     |
 
 
 ## BLEDescriptor
@@ -4218,6 +4311,7 @@ try {
 | deviceId | string      | 是    | 否    | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
 | data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
+| deviceName<sup>10+</sup>  | string | 是    | 否    | 表示扫描到的设备名称。                    |
 
 
 ## BluetoothState
@@ -4297,6 +4391,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。   |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4323,6 +4418,21 @@ try {
 | state    | [ProfileConnectionState](#profileconnectionstate) | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
+## GattProperties<sup>10+</sup><a name="GattProperties"></a>
+
+描述gatt characteristic的属性。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 只读   | 必填   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| write<sup>10+</sup>    | boolean | 是   | 是    | 表示该特征支持写操作，需要对端设备的回复。 |
+| writeNoResponse<sup>10+</sup> | boolean | 是    | 是    | 表示该特征支持写操作，无需对端设备回复。 |
+| read<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征支持读操作。 |
+| notify<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备。 |
+| indicate<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+
+
 ## DeviceClass<a name="DeviceClass"></a>
 
 描述蓝牙设备的类别。
@@ -4334,7 +4444,6 @@ try {
 | majorClass      | [MajorClass](#majorclass)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
 | majorMinorClass | [MajorMinorClass](#majorminorclass) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
-
 
 
 ## MajorClass<a name="MajorClass"></a>
@@ -4478,3 +4587,21 @@ try {
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
 | PROFILE_HID_HOST | 6 | 表示HID profile。  |
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
+
+
+## PinType<sup>10+</sup><a name="PinType"></a>
+
+枚举，蓝牙配对类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。 |
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。  |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。  |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。  |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。  |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。  |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。  |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。  |
