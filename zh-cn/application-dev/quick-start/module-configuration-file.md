@@ -402,9 +402,9 @@ skills示例：
 
   *  查询功能增强涉及以下接口<br>
     [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
+    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void;<br>
+    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void;<br>
+    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise\<Array\<AbilityInfo>>;
   *  配置要求<br>
     abilities  -> skills -> uris对象 <br>
     配置1： 只配置 scheme = 'http' <br>

@@ -247,7 +247,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
   * 该应用具有隐藏图标的特权
     * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
 
-注：应用详情页面中显示的图标与label,可能与桌面上显示的不同。如果非Page类型的ability配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+注：应用详情页面中显示的图标与label,可能与桌面上显示的不同。如果非Page类型的ability配置了入口图标和label，那么详情页中显示的即为配置的。
 
 
 **表8** **abilities对象的内部结构说明**
@@ -418,9 +418,9 @@ skills示例：
 
   *  查询功能增强涉及以下接口<br>
     [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
+    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void;<br>
+    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void;<br>
+    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise\<Array\<AbilityInfo>>;
   *  配置要求<br>
     abilities  -> skills -> uris对象 <br>
     配置1： 只配置 scheme = 'http' <br>

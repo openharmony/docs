@@ -148,7 +148,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 ## ServiceExtensionAbility.onDisconnect
 
-onDisconnect(want: Want): void | Promise<void>;
+onDisconnect(want: Want): void | Promise\<void>;
 
 Extension的生命周期回调，客户端执行断开连接服务时回调。
 

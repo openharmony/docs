@@ -88,7 +88,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback<void>)
+## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
 off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
@@ -206,7 +206,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback<void>)
+## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
 off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
