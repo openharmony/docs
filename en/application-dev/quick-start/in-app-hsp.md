@@ -15,7 +15,7 @@ library
 │       │   └── index.ets
 │       ├── resources
 │       └── module.json5
-└── package.json
+└── oh-package.json5
 ```
 In the **module.json5** file, set **type** to **shared** for the HSP.
 ```json
@@ -24,7 +24,7 @@ In the **module.json5** file, set **type** to **shared** for the HSP.
 }
 ```
 
-The HSP provides capabilities for external systems by exporting APIs in the entry file. Specify the entry file in **main** in the **package.json** file. For example:
+The HSP provides capabilities for external systems by exporting APIs in the entry file. Specify the entry file in **main** in the **oh-package.json5** file. For example:
 ```json
 {
     "main": "./src/main/ets/index.ets"
@@ -103,9 +103,9 @@ export { nativeMulti } from './utils/nativeTest'
 ```
 
 ## Using the In-Application HSP
-To use APIs in the HSP, first configure the dependency on the HSP in the **package.json** file of the module that needs to call the APIs (called the invoking module). If the HSP and the invoking module are in the same project, the APIs can be referenced locally. The sample code is as follows:
+To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). If the HSP and the invoking module are in the same project, the APIs can be referenced locally. The sample code is as follows:
 ```json
-// entry/src/main/module.json5
+// entry/oh-package.json5
 "dependencies": {
     "library": "file:../library"
 }
