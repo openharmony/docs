@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](../../quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](../../quick-start/arkts-rendering-control.md#数据懒加载)）。
+>  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](quick-start/arkts-rendering-control.md#数据懒加载)）。
 >  - 子组件个数：必须且仅包含2个子组件。
 >  - 子组件个数异常时：3个或以上子组件，显示第一个和第二个。1个子组件，显示侧边栏，内容区为空白。
 
