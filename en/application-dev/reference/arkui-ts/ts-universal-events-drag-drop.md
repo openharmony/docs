@@ -10,7 +10,7 @@ A drag event is triggered when a component is dragged.
 
 | Name                                                        | Bubbling Supported| Description                                                    |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 150 ms long press. If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence.|
+| onDragStart(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt;  [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)) | No      | Triggered when the component bound to the event is dragged for the first time.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>Return value: object being dragged, which is used for prompts displayed when the object is dragged.<br>A drag event can be triggered by a 150 ms long press. If the duration of a long-press gesture is set to less than or equal to 150 ms, the callback for the long-press gesture takes precedence. Otherwise, the callback for the drag event takes precedence. |
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
@@ -67,7 +67,7 @@ struct DragExample {
   @State bananaVisible: Visibility = Visibility.Visible
   private dragList: string[] = ['apple', 'orange', 'banana']
   @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
-  @State index: number = 0
+  @State idx: number = 0
 
   // Customize the content displayed during dragging.
   @Builder pixelMapBuilder() {
@@ -104,7 +104,7 @@ struct DragExample {
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.eventType = 'Down'
-                this.index = index
+                this.idx = index
               }
               if (event.type === TouchType.Up) {
                 this.eventType = 'Up'
@@ -157,7 +157,7 @@ struct DragExample {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
         }
-        this.fruitVisible[this.index] = Visibility.None
+        this.fruitVisible[this.idx] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }
