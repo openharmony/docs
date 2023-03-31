@@ -1,8 +1,8 @@
-# Open-SLES
+# Native api中支持的OpenSL ES接口列表
 
 ## 简介
 
-OpenSLES（Open Sound Library for Embedded System）即嵌入式音频加速标准。为开发者提供了标准化、高性能以及低响应时间的音频功能开发的对象和接口。相对于开源免费的OpenSLES，OpenHarmony基于OpenSLES1.0.1 API规范实现了部分Native API，相关接口开放情况介绍如下：
+OpenSL ES（Open Sound Library for Embedded System）即嵌入式音频加速标准。为开发者提供了标准化、高性能以及低响应时间的音频功能开发的对象和接口。相对于开源免费的OpenSL ES，OpenHarmony基于[OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API规范实现了部分Native API，相关接口开放情况介绍如下：
 
 ## 支持的API
 
@@ -23,7 +23,7 @@ OpenSLES（Open Sound Library for Embedded System）即嵌入式音频加速标�
 |SLPlayItf           |SetPlayState          |SetPlayState(SLPlayItf self, SLuint32 state)                                          |是        |设置播放状态。          |
 |SLPlayItf           |GetPlayState          |GetPlayState(SLPlayItf self, SLuint32 *state)                                         |是        |获取播放状态。          |
 |SLRecordItf         |SetRecordState        |SetRecordState(SLRecordItf self, SLuint32 state)                                      |是        |设置录制状态。          |
-|SLRecordItf         |GetRecordState        |GetRecordState(SLRecordItf self, SLuint32 *pState                                     |是        |获取录制状态。          |
+|SLRecordItf         |GetRecordState        |GetRecordState(SLRecordItf self, SLuint32 *pState)                                    |是        |获取录制状态。          |
 |SLVolumeItf         |SetVolumeLevel        |SetVolumeLevel(SLVolumeItf self, SLmillibel *level)                                   |是        |设置音量。              |
 |SLVolumeItf         |GetVolumeLevel        |GetVolumeLevel(SLVolumeItf self, SLmillibel level)                                    |是        |获取音量。              |
 |SLVolumeItf         |GetMaxVolumeLevel     |GetMaxVolumeLevel(SLVolumeItf self, SLmillibel *maxLevel)                             |是        |获取最大音量。          |
