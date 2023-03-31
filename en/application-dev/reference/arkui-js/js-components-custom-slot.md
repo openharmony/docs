@@ -31,7 +31,7 @@ The following references the custom component:
 
 ## Named Slot
 
-When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the **<name>** attribute.
+When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the **\<name>** attribute.
 
 ```html
 <!-- comp.hml -->
