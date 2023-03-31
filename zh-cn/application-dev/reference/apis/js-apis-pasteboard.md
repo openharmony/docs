@@ -277,11 +277,11 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 | 名称      | 参数类型              | 可读 | 可写 | 说明                                                         |
 | --------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| additions | {[key:string]:object} | 是   | 是   | 设置的其他附加属性数据。                                     |
+| additions | {[key:string]:object} | 是   | 是   | 设置的其他附加属性数据, 暂不支持。                            |
 | mimeTypes | Array&lt;string&gt;   | 是   | 否   | 剪贴板内容条目的数据类型，非重复的类型列表。                 |
-| tag       | string                | 是   | 是   | 用户自定义标签。                                             |
+| tag       | string                | 是   | 是   | 用户自定义标签, 暂不支持。                                   |
 | timestamp | number                | 是   | 否   | 剪贴板数据的写入时间戳（单位：ms）。                         |
-| localOnly | boolean               | 是   | 是   | 配置剪贴板内容是否为“仅在本地”。默认值为true。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
+| localOnly | boolean               | 是   | 是   | 配置剪贴板内容是否为“仅在本地”, 默认值为true。暂不支持<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
