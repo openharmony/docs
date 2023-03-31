@@ -24,6 +24,8 @@
 >  if/else/ForEach/LazyForEach发生变化以后，会更新子节点索引值。
 >
 >  Grid子组件的visibility属性设置为Hidden或None时依然会计算索引值。
+>
+>  Grid子组件的visibility属性设置为None时不显示，但依然会占用子组件对应的网格。
 
 
 ## 接口
