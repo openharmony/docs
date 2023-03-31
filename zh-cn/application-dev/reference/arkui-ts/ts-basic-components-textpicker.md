@@ -22,7 +22,7 @@ TextPicker(options?: {range: string[]|Resource, selected?: number, value?: strin
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。 |
+| range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是 | 选择器的数据选择列表。不可设置为空数组，若由正常值动态变化为空数组，则保持当前正常值显示。 |
 | selected | number | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 |
 | value | string | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值 |
 
