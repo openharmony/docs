@@ -39,7 +39,7 @@ AbilityStage功能如下（AbilityStage类，拥有context属性，具体的API�
 |onAcceptWant(want: Want): string|启动指定Ability时被调用。|
 |onConfigurationUpdated(config: Configuration): void|全局配置发生变更时被调用。|
 
-Ability功能如下（Ability类，具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md)）：
+Ability功能如下（Ability类，具体的API详见[接口文档](../reference/apis/js-apis-app-ability-uiAbility.md)）：
 
 **表2** Ability API接口功能介绍
 
@@ -190,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## 启动Ability
 ### 接口说明
-Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，启动Ability等方法。具体的API详见[接口文档](../reference/apis/js-apis-ability-context.md)。
+Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，启动Ability等方法。具体的API详见[接口文档](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。
 
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|
@@ -207,7 +207,7 @@ Ability类拥有context属性，context属性为AbilityContext类，AbilityConte
 应用可以通过`this.context`获取Ability实例的上下文，进而使用AbilityContext中的StartAbility相关接口启动Ability。启动Ability可指定Want、StartOptions、accountId，通过callback形式或promise形式实现。具体示例代码如下：
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": "",
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -224,7 +224,7 @@ context.startAbility(want).then(() => {
 跨设备场景下，需指定对端设备deviceId，具体示例代码如下：
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -239,9 +239,9 @@ context.startAbility(want).then(() => {
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+    if (typeof dmClass === 'object' && dmClass !== null) {
+        let list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
             console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
         }
