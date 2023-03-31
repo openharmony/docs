@@ -84,7 +84,7 @@ HUKS Core作为向应用提供密钥库能力的基础，包括密钥管理及�
 | [HuksHdiGetKeyProperties()](#hukshdigetkeyproperties)        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
 | [HuksHdiAttestKey()](#hukshdiattestkey)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
 | [HuksHdiExportChipsetPlatformPublicKey()](#hukshdiexportchipsetplatformpublickey)        | 导出芯片平台级密钥对的公钥。     | 出参为ECC P256的x y轴值裸数据，各32字节                      | 无 |
-| [HuksHdiUpgradeKey()](#huksHdiUpgradeKey)        | 升级密钥文件。     | 无                      | 无 |
+| [HuksHdiUpgradeKey()](#hukshdiupgradekey)        | 升级密钥文件。     | 无                      | 无 |
 
 - - -
 
