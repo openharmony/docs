@@ -2059,9 +2059,9 @@ getStringSync(resId: number): string
 
 ### getStringSync<sup>10+</sup>
 
-getStringSync(resId: number, ...args): string
+getStringSync(resId: number, ...args: Array<string | number>): string
 
-用户获取指定资源ID对应的字符串，根据args参数判断是否进行格式化，使用同步方式返回相应字符串。
+用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2070,14 +2070,13 @@ getStringSync(resId: number, ...args): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值 |
-| args | ... | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
-|前提| 类型     | 说明          |
-|----| ------ | ---------------------------- |
-|args不传参| string | 资源ID值对应的字符串|
-|args传参| string | 资源ID值对应的格式化字符串|
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源ID值对应的格式化字符串|
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2092,12 +2091,6 @@ getStringSync(resId: number, ...args): string
 
 **示例：** 
   ```ts
-  try {
-    this.context.resourceManager.getStringSync($r('app.string.test').id);
-  } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
-  }
-
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
@@ -2151,9 +2144,9 @@ getStringSync(resource: Resource): string
 
 ### getStringSync<sup>10+</sup>
 
-getStringSync(resource: Resource, ...args): string
+getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-用户获取指定resource对象对应的字符串，根据args参数判断是否进行格式化，使用同步方式返回相应字符串。
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2162,14 +2155,13 @@ getStringSync(resource: Resource, ...args): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
-| args | ... | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
-|前提| 类型     | 说明          |
-|----| ------ | ---------------------------- |
-|args不传参| string | resource对象对应的字符串|
-|args传参| string | resource对象对应的格式化字符串|
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | resource对象对应的格式化字符串|
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2189,12 +2181,6 @@ getStringSync(resource: Resource, ...args): string
       moduleName: "entry",
       id: $r('app.string.test').id
   };
-  try {
-    this.context.resourceManager.getStringSync(resource);
-  } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
-  }
-
   try {
     this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
   } catch (error) {
@@ -2243,9 +2229,9 @@ getStringByNameSync(resName: string): string
 
 ### getStringByNameSync<sup>10+</sup>
 
-getStringByNameSync(resName: string, ...args): string
+getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
-用户获取指定资源名称对应的字符串，根据args参数判断是否进行格式化，使用同步方式返回相应字符串。
+用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2254,14 +2240,13 @@ getStringByNameSync(resName: string, ...args): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
-| args | ... | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
-|前提| 类型     | 说明          |
-|----| ------ | ---------------------------- |
-|args不传参| string | 资源名称对应的字符串|
-|args传参| string | 资源名称对应的格式化字符串|
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源名称对应的格式化字符串|
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2277,15 +2262,9 @@ getStringByNameSync(resName: string, ...args): string
 **示例：** 
   ```ts
   try {
-    this.context.resourceManager.getStringByNameSync("test");
-  } catch (error) {
-    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
-  }
-
-  try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
   } catch (error) {
-    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
  ```
 
