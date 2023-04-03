@@ -8,7 +8,7 @@
 
 ## 简介<a name="section11660541593"></a>
 
-方舟编译器\(ArkCompiler\)是为支持多种编程语言、多种芯片平台的联合编译、运行而设计的统一编译运行时平台。它支持包括动态类型和静态类型语言在内的多种编程语言，如JS、TS、ArkTS；它是支撑鸿蒙系统成为打通手机、PC、平板、电视、车机和智能穿戴等多种设备的操作系统的编译运行时底座。
+方舟编译器\(ArkCompiler\)是为支持多种编程语言、多种芯片平台的联合编译、运行而设计的统一编译运行时平台。它支持包括动态类型和静态类型语言在内的多种编程语言，如JS、TS、ArkTS；它是支撑OpenHarmony系统成为打通手机、PC、平板、电视、车机和智能穿戴等多种设备的操作系统的编译运行时底座。
 
 ArkCompiler主要分成两个部分：编译工具链与运行时.
 
@@ -57,7 +57,7 @@ ArkCompiler运行时直接运行字节码文件，实现对应语言规范的语
 
 - 原生支持TypeScript：
   ECMAScript规范没有提供并发语义表述；业界引擎，如浏览器或者Node.js，通常会提供基于Actor并发模型的Worker API来支持多线程开发。Actor模型下执行体之间不共享任何数据对象，通过消息机制进行通信。因此Web引擎或者Node.js引擎的Worker都有启动速度慢、内存占用高这些缺陷。  针对这些缺陷，ArkCompiler的运行时已经实现了Actor实例中的不可变或者不易变的对象（方法和字节码）的共享，较大程度地优化了Actor的启动性能和启动内存。
-  方舟编译运行时不只提供了业界通用的Worker API，还提供了TaskPool作为并发API的增强。TaskPool是一个支持优先级调度、工作线程自动扩缩容的任务池功能库。开发者无需关心并发实例的生命周期，也无需关心任务负载变化时需要创建或者销毁并发实例，极大地简化了高性能多线程鸿蒙应用的开发。
+  方舟编译运行时不只提供了业界通用的Worker API，还提供了TaskPool作为并发API的增强。TaskPool是一个支持优先级调度、工作线程自动扩缩容的任务池功能库。开发者无需关心并发实例的生命周期，也无需关心任务负载变化时需要创建或者销毁并发实例，极大地简化了高性能多线程OpenHarmony应用的开发。
 
 
 - 安全
@@ -75,7 +75,7 @@ ArkCompiler运行时直接运行字节码文件，实现对应语言规范的语
 
 ## 使用指南<a name="section18393638195820"></a>
 
-[方舟运行时使用指南](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/ARK-Runtime-Usage-Guide-zh.md)
+[方舟运行时使用指南](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/README_zh.md)
 
 ## 相关仓<a name="section1371113476307"></a>
 
