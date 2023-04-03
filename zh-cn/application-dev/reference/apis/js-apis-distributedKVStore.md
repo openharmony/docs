@@ -2112,6 +2112,11 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 | ------------ | ---------------------------------------- |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
 | 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
@@ -2160,9 +2165,14 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2202,9 +2212,14 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2270,9 +2285,14 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2331,9 +2351,14 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2389,9 +2414,14 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2438,9 +2468,14 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-|  14800047    | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2494,9 +2529,14 @@ delete(key: string): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2543,9 +2583,14 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-|  14800047    | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2594,9 +2639,14 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2644,9 +2694,14 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2713,9 +2768,14 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -4048,8 +4108,13 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -4117,8 +4182,13 @@ startTransaction(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                             |
 | ------------ | ---------------------------------------- |
-| 14800047     | WAL file size exceeds the default limit. |
 | 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 14800047     | WAL file size exceeds the default limit. |
 
 **示例：**
 
