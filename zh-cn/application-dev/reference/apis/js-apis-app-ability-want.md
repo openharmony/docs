@@ -130,11 +130,11 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 文件描述符（FD）
         ```ts
-        import fileio from '@ohos.fileio';
+        import fs from '@ohos.file.fs';
         
         let fd;
         try {
-            fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
+            fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
         } catch(e) {
             console.error('openSync fail: ${JSON.stringify(e)}');
         }
