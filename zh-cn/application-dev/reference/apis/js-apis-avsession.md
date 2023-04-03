@@ -348,8 +348,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
@@ -400,8 +401,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
