@@ -22,7 +22,7 @@
 
 涉及音频录制时，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)。
 
-涉及相机视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+涉及相机视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](../reference/apis/js-apis-camera.md)。
 
 ## 开发指导
 

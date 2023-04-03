@@ -188,7 +188,7 @@ export default class MainAbility extends Ability {
 ```
 ## 启动Ability
 ### 接口说明
-Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，启动Ability等方法。具体的API详见[接口文档](../reference/apis/js-apis-ability-context.md)。
+Ability类拥有context属性，context属性为AbilityContext类，AbilityContext类拥有abilityInfo、currentHapModuleInfo等属性，启动Ability等方法。具体的API详见[接口文档](../reference/apis/js-apis-inner-application-applicationContext.md)。
 
 **表3** AbilityContext API接口功能介绍
 |接口名|描述|

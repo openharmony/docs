@@ -76,22 +76,22 @@ FA模型中，可以通过featureAbility的getContext接口获取应用上下文
 通过getContext获取应用上下文并获取分布式目录的示例如下：
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import fileIo from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility';
+import fs from '@ohos.file.fs';
 
 (async () => {
-  let dir: string
+  let dir: string;
   try {
-    console.info('Begin to getOrCreateDistributedDir')
-    dir = await featureAbility.getContext().getOrCreateDistributedDir()
+    console.info('Begin to getOrCreateDistributedDir');
+    dir = await featureAbility.getContext().getOrCreateDistributedDir();
     console.info('distribute dir is ' + dir)
   } catch (error) {
-    console.error('getOrCreateDistributedDir failed with ' + error)
+    console.error('getOrCreateDistributedDir failed with ' + error);
   }
 
   let fd: number;
   let path = dir + "/a.txt";
-  fd = fileIo.openSync(path, 0o2 | 0o100, 0o666);
-  fileIo.close(fd);
+  fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
+  fs.close(fd);
 })()
 ```

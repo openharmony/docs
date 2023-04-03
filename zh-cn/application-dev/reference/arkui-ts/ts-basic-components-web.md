@@ -3063,6 +3063,18 @@ isRequestGesture(): boolean
 | ------- | -------------------- |
 | boolean | 返回资源请求是否与手势（如点击）相关联。 |
 
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+获取请求方法。
+
+**返回值：**
+
+| 类型      | 说明                   |
+| ------- | -------------------- |
+| string | 返回请求方法。 |
+
 ## Header
 
 Web组件返回的请求/响应头对象。
