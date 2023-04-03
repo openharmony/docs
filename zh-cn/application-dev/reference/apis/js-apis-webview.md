@@ -103,7 +103,7 @@ struct WebComponent {
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)
+发送消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -155,7 +155,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
+注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -226,7 +226,7 @@ struct WebComponent {
 
 postMessageEventExt(message: WebMessageExt): void
 
-发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -257,7 +257,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | :------------------- |
-| result | [WebMessageExt](#webmessageext) | 是   | 接收到的消息。 |
+| result | [WebMessageExt](#webmessageext10) | 是   | 接收到的消息。 |
 
 **错误码：**
 
@@ -273,6 +273,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 // xxx.ets
 import web_webview from '@ohos.web.webview'
 
+// 应用与网页互发消息的示例：使用"init_web_messageport"的通道，通过端口0在应用侧接受网页发送的消息，通过端口1在网页侧接受应用发送的消息。
 @Entry
 @Component
 struct WebComponent {
@@ -288,7 +289,7 @@ struct WebComponent {
       Text(this.msg2).fontSize(16)
       Button('SendToH5')
         .onClick(() => {
-          // use the native port to send message to html5
+          // 使用本侧端口发送消息给HTML5
           try {
               console.log("In eTS side send true start");
               if (this.nativePort) {
@@ -304,13 +305,13 @@ struct WebComponent {
       Web({ src: $rawfile('index.html'), controller: this.controller })
       .onPageEnd((e)=>{
         console.log("In eTS side message onPageEnd init mesaage channel");
-        // 1. create web message ports
+        // 1. 创建消息端口
         this.ports = this.controller.createWebMessagePorts(true);
-        // 2. send the other one to h5
-        this.controller.postMessage("__init_channel_2__", [this.ports[1]], "*");
-        // 3. keep one for ourself
+        // 2. 发送端口1到HTML5
+        this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
+        // 3. 保存端口0到本地
         this.nativePort = this.ports[0];
-        // 4. set on message function
+        // 4. 设置回调函数
         this.nativePort.onMessageEventExt((result) => {
             console.log("In eTS side got message");
             try {
@@ -350,7 +351,6 @@ struct WebComponent {
                     default: {
                         this.msg1 = "default break, type:" + type;
                         break;
-                        break;
                     }
                 }
             }
@@ -362,8 +362,10 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+```html
+<!--index.html-->
 <!DOCTYPE html>
 <html lang="en-gb">
 <head>
@@ -380,11 +382,13 @@ struct WebComponent {
 </body>
 <script src="index.js"></script>
 </html>
+```
 
+```js
 //index.js
 var h5Port;
 window.addEventListener('message', function(event) {
-    if (event.data == '__init_channel_2__') {
+    if (event.data == 'init_web_messageport') {
         if(event.ports[0] != null) {
             h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
             h5Port.onmessage = function(event) {
@@ -2026,7 +2030,7 @@ struct WebComponent {
 
 createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5639,7 +5643,7 @@ getType(): JsMessageType
 
 getString(): string
 
-获取数据对象的字符串类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)
+获取数据对象的字符串类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5662,7 +5666,7 @@ getString(): string
 
 getNumber(): number
 
-获取数据对象的数值类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)
+获取数据对象的数值类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5684,7 +5688,7 @@ getNumber(): number
 
 getBoolean(): boolean
 
-获取数据对象的布尔类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)
+获取数据对象的布尔类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5707,7 +5711,7 @@ getBoolean(): boolean
 
 getArrayBuffer(): ArrayBuffer
 
-获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)
+获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -5728,7 +5732,7 @@ getArrayBuffer(): ArrayBuffer
 
 getArray(): Array\<string | number | boolean\>
 
-获取数据对象的数组类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)
+获取数据对象的数组类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5770,7 +5774,7 @@ getType(): WebMessageType
 
 getString(): string
 
-获取数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5793,7 +5797,7 @@ getString(): string
 
 getNumber(): number
 
-获取数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5816,7 +5820,7 @@ getNumber(): number
 
 getBoolean(): boolean
 
-获取数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5839,7 +5843,7 @@ getBoolean(): boolean
 
 getArrayBuffer(): ArrayBuffer
 
-获取数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -5860,7 +5864,7 @@ getArrayBuffer(): ArrayBuffer
 
 getArray(): Array\<string | number | boolean\>
 
-获取数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5882,7 +5886,7 @@ getArray(): Array\<string | number | boolean\>
 
 getError(): Error
 
-获取数据对象的错误类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+获取数据对象的错误类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5925,7 +5929,7 @@ setType(type: WebMessageType): void
 
 setString(message: string): void
 
-设置数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5945,7 +5949,7 @@ setString(message: string): void
 
 setNumber(message: number): void
 
-设置数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5965,7 +5969,7 @@ setNumber(message: number): void
 
 setBoolean(message: boolean): void
 
-设置数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5985,7 +5989,7 @@ setBoolean(message: boolean): void
 
 setArrayBuffer(message: ArrayBuffer): void
 
-设置数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6005,7 +6009,7 @@ setArrayBuffer(message: ArrayBuffer): void
 
 setArray(message: Array\<string | number | boolean\>): void
 
-设置数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6025,7 +6029,7 @@ setArray(message: Array\<string | number | boolean\>): void
 
 setError(message: Error): void
 
-设置数据对象的错误对象类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)
+设置数据对象的错误对象类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
