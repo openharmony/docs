@@ -158,6 +158,12 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| 否 | UIAbility上下文环境。 |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -181,6 +187,12 @@ setRestartWant(want: Want): void;
 设置下次恢复主动拉起场景下的Ability。该Ability必须为当前包下的UIAbility。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)| 是 | 通过设置Want中"bundleName"和"abilityName"字段来指定恢复重启的Ability。 |
 
 **示例：**
 
