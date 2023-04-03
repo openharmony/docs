@@ -16,6 +16,7 @@ HiTraceChain can be used for the following purposes:
 - Works with the IDE to debug the detailed service process and time consumption distribution for system optimization.
 
     **Figure 1** Use cases of HiTraceChain
+
     ![](figures/use-cases-of-hitrace.png "use-cases-of-hitrace")
 
 
@@ -28,10 +29,12 @@ HiTraceChain can be used for the following purposes:
 1. Display the call relationship in the service process, analyze key paths and function dependency, and determine the time consumption and call frequency at each call point to detect performance bottlenecks.
 
      **Figure 3** Service calling process
+
      ![](figures/service-calling-process.png "service-calling-process")
 
 
      **Figure 4** Time delay in the service calling process
+
      ![](figures/time-delay-in-the-service-calling-process.png "time-delay-in-the-service-calling-process")
 
 2. Add **traceid** to logs and events automatically to facilitate comprehensive analysis and quick fault location.
@@ -146,7 +149,9 @@ Some built-in communication mechanisms (such as ZIDL) of OpenHarmony already sup
 The following figure shows the process of transferring **traceid** in synchronous call. The process of transferring **traceid** in asynchronous call is similar.
 
   Extended communication mechanisms can also follow this implementation.
+
   **Figure 5** Call chain trace in synchronous communication
+
   ![](figures/call-chain-trace-in-synchronous-communication.png "call-chain-trace-in-synchronous-communication")
 
 The process is as follows:
