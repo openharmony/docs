@@ -462,7 +462,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 获取指定本地设备信息。使用callback异步回调。
 
@@ -500,7 +500,7 @@ getDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(): Promise&lt;DeviceInfo&gt;
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 获取指定设备信息。使用Promise异步回调。
 
