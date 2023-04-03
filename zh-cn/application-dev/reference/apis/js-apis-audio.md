@@ -74,7 +74,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -129,7 +129,7 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import audio from '@ohos.multimedia.audio';
 
 let audioStreamInfo = {
@@ -348,7 +348,10 @@ async function createTonePlayerBefore(){
 | VOICE_CALL<sup>8+</sup>      | 0      | 语音电话。 |
 | RINGTONE                     | 2      | 铃声。     |
 | MEDIA                        | 3      | 媒体。     |
+| ALARM<sup>10+</sup>          | 4      | 闹钟。     |
+| ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -456,7 +459,7 @@ async function createTonePlayerBefore(){
 | SAMPLE_FORMAT_S16LE                | 1      | 带符号的16位整数，小尾数。 |
 | SAMPLE_FORMAT_S24LE                | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 | SAMPLE_FORMAT_S32LE                | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
-| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位浮点数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 
 ## AudioErrors<sup>9+</sup>
 
@@ -528,9 +531,9 @@ async function createTonePlayerBefore(){
 | CONTENT_TYPE_SPEECH                | 1      | 语音。     |
 | CONTENT_TYPE_MUSIC                 | 2      | 音乐。     |
 | CONTENT_TYPE_MOVIE                 | 3      | 电影。     |
-| CONTENT_TYPE_SONIFICATION          | 4      | 加密类型。 |
+| CONTENT_TYPE_SONIFICATION          | 4      | 通知音。   |
 | CONTENT_TYPE_RINGTONE<sup>8+</sup> | 5      | 铃声。     |
-
+| CONTENT_TYPE_ULTRASONIC<sup>10+</sup>| 9      | 超声波。<br/>此接口为系统接口。|
 ## StreamUsage
 
 枚举，音频流使用类型。
@@ -541,9 +544,12 @@ async function createTonePlayerBefore(){
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                        | 1      | 音频。     |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 | 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | 无障碍。   |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -683,21 +689,19 @@ async function createTonePlayerBefore(){
 | forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
 | hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
 
-## VolumeEvent<sup>8+</sup>
+## VolumeEvent<sup>9+</sup>
 
 音量改变时，应用接收的事件。
-
-**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称       | 类型                                | 必填   | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
-| volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
-| networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                               |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。     |
+| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                        |
+| volumeGroupId | number                           | 是   | 音量组id。可用于getGroupManager入参。<br/>此接口为系统接口。  |
+| networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。                             |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -1104,7 +1108,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 设置指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1139,7 +1143,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 设置指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1358,7 +1362,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 设置指定音量流静音，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1389,7 +1393,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 设置指定音量流静音，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1544,7 +1548,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 设置铃声模式，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1578,7 +1582,8 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 设置铃声模式，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
+
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1968,12 +1973,12 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>(deprecated)</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on](#on9)替代。
+> 建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
 
 监听系统音量变化事件。
 
@@ -1988,7 +1993,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **示例：**
 
@@ -2035,7 +2040,7 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 设备更改。音频设备连接状态变化。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on](#on9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on('deviceChange')](#ondevicechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2064,7 +2069,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 取消订阅音频设备连接变化事件。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off](#off9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off('deviceChange')](#offdevicechange9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2297,7 +2302,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **错误码：**
 
@@ -2320,10 +2325,6 @@ audioVolumeManager.on('volumeChange', (volumeEvent) => {
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
-
-**系统接口：** 该接口为系统接口
-
-**系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 ### setVolume<sup>9+</sup>
 
@@ -3428,7 +3429,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
 });
 ```
 
-### on<sup>9+</sup>
+### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
@@ -3463,7 +3464,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 });
 ```
 
-### off<sup>9+</sup>
+### off('deviceChange')<sup>9+</sup>
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
@@ -3897,6 +3898,125 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+根据音频信息，返回优先级最高的输出设备，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。             |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | 是   | 回调，返回优先级最高的输出设备信息。 |
+
+**示例：**
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+    if (err) {
+      console.error(`Result ERROR: ${JSON.stringify(err)}`);
+    } else {
+      console.info('device descriptor: ' + JSON.stringify(desc));
+    }
+  });
+}
+```
+
+### getPreferOutputDeviceForRendererInfo<sup>9+</sup>
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | 是   | 表示渲染器信息。            |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输出设备信息。 |
+
+**示例：**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+    console.info('device descriptor: ' + JSON.stringify(desc));
+  }).catch((err) => {
+    console.error(`Result ERROR: ${JSON.stringify(err)}`);
+  })
+}
+```
+
+### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+订阅最高优先级输出设备变化事件，使用callback获取最高优先级输出设备。
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
+
+**示例：**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 };
+
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+  console.info('device descriptor: ' + JSON.stringify(desc));
+});
+```
+
+### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+取消订阅最高优先级输出音频设备变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
+
+**示例：**
+
+```js
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
+  console.info('Should be no callback.');
+});
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 数组类型，AudioRenderChangeInfo数组，只读。
@@ -3915,6 +4035,7 @@ async function selectOutputDeviceByFilter(){
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
 | rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
 
 **示例：**
 
@@ -3973,6 +4094,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
 
 **示例：**
 
@@ -4024,7 +4146,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
 | deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
 | deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
-| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id。  |
+| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  |
 | name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。 |
 | address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。 |
 | sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
@@ -4066,7 +4188,7 @@ promise.then(function (value) {
 
 | 名称          | 类型                                     | 必填 | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 | rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
@@ -4534,16 +4656,27 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf, (err, writtenbytes) => {
-  if (writtenbytes < 0) {
-    console.error('write failed.');
-  } else {
-    console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-});
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * bufferSize,
+      length: bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    let writeSize = await new Promise((resolve,reject)=>{
+      audioRenderer.write(buf,(err,writeSize)=>{
+        if(err){
+          reject(err)
+        }else{
+          resolve(writeSize)
+        }
+      })
+    })	  
+}
+
 ```
 
 ### write<sup>8+</sup>
@@ -4577,18 +4710,22 @@ async function getCacheDir(){
   path = await context.getCacheDir();
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let ss = fileio.createStreamSync(filePath, 'r');
+let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let stat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
-audioRenderer.write(buf).then((writtenbytes) => {
-  if (writtenbytes < 0) {
-      console.error('write failed.');
-  } else {
-      console.info(`Actual written bytes: ${writtenbytes}`);
-  }
-}).catch((err) => {
-    console.error(`ERROR: ${err}`);
-});
+let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+for (let i = 0;i < len; i++) {
+    let options = {
+      offset: i * bufferSize,
+      length: bufferSize
+    }
+    let readsize = await fs.read(file.fd, buf, options)
+    try{
+       let writeSize = await audioRenderer.write(buf);
+    } catch(err) {
+       console.error(`audioRenderer.write err: ${err}`);
+    }   
+}
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5407,7 +5544,7 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                |
 | :------- | :------------------- | :--- | :---------------------------------- |
-| callback | AsyncCallback<void\> | 是   | Callback used to return the result. |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
 
 **示例：**
 

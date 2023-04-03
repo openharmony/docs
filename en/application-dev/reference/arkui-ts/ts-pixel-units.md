@@ -8,21 +8,21 @@ The framework provides four pixel units, with vp as the reference data unit.
 | px   | Physical pixel unit of the screen.                               |
 | vp   | Pixel unit specific to the screen density. Pixels in this unit are converted into physical pixels of the screen based on the screen pixel density. This unit is used for values whose unit is not specified.|
 | fp   | Font pixel, which is similar to vp and varies according to the system font size.         |
-| lpx  | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**. For example, if **designWidth** is set to **720** (default value), then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels.|
+| lpx  | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by **designWidth**). For example, if **designWidth** is set to **720** (default value), then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels.|
 
 
 ## Pixel Unit Conversion
 
 Conversion between px and other pixel units is supported.
 
-| API                                      | Description                    |
-| ---------------------------------------- | ---------------------- |
-| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px. |
-| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp. |
-| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px. |
-| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp. |
-| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.|
-| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.|
+| API                                               | Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------ |
+| vp2px(value : number) : number  | Converts a value in units of vp to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| px2vp(value : number) : number  | Converts a value in units of px to a value in units of vp.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| fp2px(value : number) : number  | Converts a value in units of fp to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| px2fp(value : number) : number  | Converts a value in units of px to a value in units of fp.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example

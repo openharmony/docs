@@ -8,7 +8,7 @@ The **LauncherAbilityInfo** module provides information about the launcher abili
 
 ## LauncherAbilityInfo<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) instead.
+> This API is deprecated since API version 9. You are advised to use [bundleManager-LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -18,7 +18,7 @@ The **LauncherAbilityInfo** module provides information about the launcher abili
 | --------------- | ---------------------------------------------------- | ---- | ---- | -------------------------------------- |
 | applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | Yes  | No  | Application information of the launcher ability.|
 | elementName     | [ElementName](js-apis-bundle-ElementName.md)         | Yes  | No  | Element name of the launcher ability.   |
-| labelId         | number                                               | Yes  | No  | Label ID of the launcher ability.            |
-| iconId          | number                                               | Yes  | No  | Icon ID of the launcher ability.            |
-| userId          | number                                               | Yes  | No  | User ID of the launcher ability.            |
+| labelId         | number                                               | Yes  | No  | ID of the launcher ability label.            |
+| iconId          | number                                               | Yes  | No  | ID of the launcher ability icon.            |
+| userId          | number                                               | Yes  | No  | ID of the launcher ability user.            |
 | installTime     | number                                               | Yes  | No  | Time when the launcher ability is installed.          |

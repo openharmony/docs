@@ -1,8 +1,8 @@
-# RunningLock
+# @ohos.runningLock (Runninglock)
 
-The RunningLock module provides APIs for creating, querying, holding, and releasing running locks.
+The **runningLock** module provides APIs for creating, querying, holding, and releasing running locks.
 
-> **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -135,6 +135,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
 
 isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boolean&gt;): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9) instead.
 
 Checks whether a specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
@@ -164,6 +165,7 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (
 
 isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9) instead.
 
 Checks whether a specified type of **RunningLock** is supported. This API uses a promise to return the result.
@@ -198,6 +200,7 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
 
 createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLock&gt;): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9) instead.
 
 Creates a **RunningLock** object.
@@ -230,6 +233,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9) instead.
 
 Creates a **RunningLock** object.
@@ -389,6 +393,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
 
 lock(timeout: number): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [RunningLock.hold](#hold9) instead.
 
 Locks and holds a **RunningLock** object.
@@ -420,6 +425,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 unlock(): void
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [RunningLock.unhold](#unhold9) instead.
 
 Releases a **RunningLock** object.
@@ -445,6 +451,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 isUsed(): boolean
 
+> NOTE<br>
 > This API is deprecated since API version 9. You are advised to use [RunningLock.isHolding](#isholding9) instead.
 
 Checks the hold status of the **Runninglock** object.
@@ -475,7 +482,7 @@ Enumerates the types of **RunningLock** objects.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-| Name                    | Value  | Description                                  |
-| ------------------------ | ---- | -------------------------------------- |
-| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.                    |
-| PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
+| Name                             | Value  | Description                                                        |
+| --------------------------------- | ---- | ------------------------------------------------------------ |
+| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br>This parameter is supported since API version 7 and deprecated since API version 10.|
+| PROXIMITY_SCREEN_CONTROL          | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.                      |

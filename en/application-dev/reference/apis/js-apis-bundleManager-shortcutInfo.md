@@ -17,7 +17,7 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 | Name                     | Type  | Readable| Writable| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | Yes  | No  | Target bundle name of the shortcut.|
-| targetModule              | string | Yes  | No  | Target module name of the shortcut.  |
+| targetModule              | string | Yes  | No  | Target module name of the shortcut. |
 | targetAbility             | string | Yes  | No  | Target ability name of the shortcut.|
 
 ## ShortcutInfo
@@ -28,14 +28,14 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 
 | Name                   | Type                                      | Readable| Writable| Description                        |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
-| id                      | string                                     | Yes  | No  | ID of the application to which the shortcut belongs.    |
-| bundleName              | string                                     | Yes  | No  | Name of the bundle that contains the shortcut.        |
-| moduleName | string                                     | Yes  | No  | Module name of the shortcut.            |
-| hostAbility             | string                                     | Yes  | No  | Local ability name of the shortcut.   |
-| icon                    | string                                     | Yes  | No  | Icon of the shortcut.              |
-| iconId     | number                                     | Yes  | No  | Icon ID of the shortcut.            |
-| label                   | string                                     | Yes  | No  | Label of the shortcut.              |
-| labelId    | number                                     | Yes  | No  | Label ID of the shortcut.            |
-| wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.        |
+| id                      | string                                     | Yes  | No  | ID of the application to which the shortcut belongs. |
+| bundleName              | string                                     | Yes  | No  | Name of the bundle that contains the shortcut.|
+| moduleName | string                                     | Yes  | No  | Module name of the shortcut.           |
+| hostAbility             | string                                     | Yes  | No  | Local ability name of the shortcut.  |
+| icon                    | string                                     | Yes  | No  | Icon of the shortcut.            |
+| iconId     | number                                     | Yes  | No  | ID of the shortcut icon.          |
+| label                   | string                                     | Yes  | No  | Label of the shortcut.             |
+| labelId    | number                                     | Yes  | No  | ID of the shortcut label.          |
+| wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.       |
 
-<!--no_check-->
+

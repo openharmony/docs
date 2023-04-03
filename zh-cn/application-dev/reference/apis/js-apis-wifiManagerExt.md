@@ -12,9 +12,9 @@
 import wifiManagerExt from '@ohos.wifiManagerExt';
 ```
 
-## wifiext.enableHotspot
+## wifiext.enableHotspot<sup>9+</sup>
 
-enableHotspot(): boolean;
+enableHotspot(): void;
 
 使能WLAN热点。
 
@@ -22,16 +22,17 @@ enableHotspot(): boolean;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
+| 2701000  | Operation failed.|
 
+## wifiext.disableHotspot<sup>9+</sup>
 
-## wifiext.disableHotspot
-
-disableHotspot(): boolean;
+disableHotspot(): void;
 
 去使能WLAN热点。
 
@@ -39,16 +40,17 @@ disableHotspot(): boolean;
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
+| 2701000  | Operation failed.|
 
+## wifiext.getSupportedPowerMode<sup>9+</sup>
 
-## wifiext.getSupportedPowerModel
-
-getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
+getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 获取支持的功率模式，使用Promise异步回调。
 
@@ -60,10 +62,17 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise对象。表示功率模式。 |
 
+**错误码：**
 
-## PowerModel
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
+
+## PowerMode
 
 表示功率模式的枚举。
 
@@ -76,9 +85,9 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 | THROUGH_WALL | 2 | 穿墙模式。 |
 
 
-## wifiext.getSupportedPowerModel
+## wifiext.getSupportedPowerMode<sup>9+</sup>
 
-getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): void
+getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): void
 
 获取支持的功率模式，使用callback异步回调。
 
@@ -90,12 +99,19 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
 
-## wifiext.getPowerModel
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-getPowerModel(): Promise&lt;PowerModel&gt;
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
+
+## wifiext.getPowerMode<sup>9+</sup>
+
+getPowerMode(): Promise&lt;PowerMode&gt;
 
 获取功率模式，使用Promise异步回调。
 
@@ -107,12 +123,19 @@ getPowerModel(): Promise&lt;PowerModel&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[PowerModel](#powermodel)&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;[PowerMode](#powermode)&gt; | Promise对象。表示功率模式。 |
 
+**错误码：**
 
-## wifiext.getPowerModel
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
+
+## wifiext.getPowerMode<sup>9+</sup>
+
+getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 获取功率模式，使用callback异步回调。
 
@@ -124,12 +147,19 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
 
+**错误码：**
 
-## wifiext.setPowerModel
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-setPowerModel(model: PowerModel) : boolean;
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2701000  | Operation failed.|
+
+## wifiext.setPowerMode<sup>9+</sup>
+
+setPowerMode(model: PowerMode) : boolean;
 
  设置功率模式。
 
@@ -141,10 +171,12 @@ setPowerModel(model: PowerModel) : boolean;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | model | [PowerModel](#powermodel) | 是 | 功率模式。 |
+  | model | [PowerMode](#powermode) | 是 | 功率模式。 |
 
-**返回值：**
+**错误码：**
 
-  | **类型** | **说明** |
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
   | -------- | -------- |
-  | boolean | 操作结果， true: 成功， false: 失败。 |
+| 2701000  | Operation failed.|

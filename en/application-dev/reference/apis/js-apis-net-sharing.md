@@ -1,6 +1,6 @@
-# Network Sharing Management
+# # @ohos.net.sharing (Network Sharing)
 
-The Network Sharing Management module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
+The **sharing** module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
 > **NOTE**
 >
@@ -18,15 +18,26 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 Checks whether network sharing is supported. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** means that network sharing is supported, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.           |
 
 **Example**
 
@@ -43,15 +54,26 @@ isSharingSupported(): Promise\<boolean>
 
 Checks whether network sharing is supported. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** means that network sharing is supported, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.           |
 
 **Example**
 
@@ -69,15 +91,25 @@ isSharing(callback: AsyncCallback\<boolean>): void
 
 Checks whether network sharing is in progress. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** means that network sharing is in progress, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -94,15 +126,25 @@ isSharing(): Promise\<boolean>
 
 Checks whether network sharing is in progress. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** means that network sharing is in progress, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -120,9 +162,11 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 Starts network sharing of a specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -131,11 +175,27 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 | type | [SharingIfaceType](#sharingifacetype) | Yes  | Sharing type. The value **0** means Wi-Fi hotspot sharing, **1** means USB sharing, and **2** means Bluetooth sharing.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.           |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202009 | Network share enable forwarding error.       |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **Example**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.startSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+let SHARING_WIFI=0;
+sharing.startSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
 ```
@@ -146,9 +206,11 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 Starts network sharing of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -162,11 +224,27 @@ Starts network sharing of a specified type. This API uses a promise to return th
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202004 | Try to share an unavailable iface.           |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202009 | Network share enable forwarding error.       |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **Example**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.startSharing(SharingIfaceType.SHARING_WIFI).then(() => {
+let SHARING_WIFI=0;
+sharing.startSharing(SHARING_WIFI).then(() => {
     console.log("start wifi sharing successful");
 }).catch(error => {
     console.log("start wifi sharing failed");
@@ -179,9 +257,11 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 Stops network sharing of a specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -190,11 +270,25 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 | type | [SharingIfaceType](#sharingifacetype) | Yes  | Sharing type. The value **0** means Wi-Fi hotspot sharing, **1** means USB sharing, and **2** means Bluetooth sharing.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **Example**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.stopSharing(SharingIfaceType.SHARING_WIFI, (error) => {
+let SHARING_WIFI=0;
+sharing.stopSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
 ```
@@ -205,9 +299,11 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 Stops network sharing of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -221,11 +317,25 @@ Stops network sharing of a specified type. This API uses a promise to return the
 | --------------------------------- | ------------------------------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+| 2202005 | WiFi sharing failed.                         |
+| 2202006 | Bluetooth sharing failed.                    |
+| 2202011 | Cannot get network sharing configuration.           |
+
 **Example**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.stopSharing(SharingIfaceType.SHARING_WIFI).then(() => {
+let SHARING_WIFI=0;
+sharing.stopSharing(SHARING_WIFI).then(() => {
     console.log("stop wifi sharing successful");
 }).catch(error => {
     console.log("stop wifi sharing failed");
@@ -238,15 +348,25 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic received via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -263,15 +383,25 @@ getStatsRxBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic received via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | Promise used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -289,15 +419,25 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic sent via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -314,15 +454,25 @@ getStatsTxBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic sent via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | Promise used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -340,15 +490,25 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
 Obtains the volume of mobile data traffic sent and received via network sharing. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -365,15 +525,25 @@ getStatsTotalBytes(): Promise\<number>
 
 Obtains the volume of mobile data traffic sent and received via network sharing. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Return value**
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
 | Promise\<number> | Promise used to return the data volume, in KB.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
@@ -391,22 +561,35 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 Obtains the names of NICs in the specified network sharing state. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
+| state    | [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
 | callback | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array of NIC names.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Example**
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceState.SHARING_NIC_CAN_SERVER, (error, data) => {
+let SHARING_BLUETOOTH=2;
+sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -418,15 +601,17 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 Obtains the names of NICs in the specified network sharing state. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| state | state: [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
+| state    | [SharingIfaceState](#sharingifacestate) | Yes  | Network sharing state.|
 
 **Return value**
 
@@ -434,11 +619,22 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<string>> | Promise used to return an array of NIC names.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **Example**
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceState.SHARING_NIC_CAN_SERVER).then(data => {
+let SHARING_BLUETOOTH=2;
+sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -451,9 +647,11 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -462,11 +660,22 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 | type | [SharingIfaceType](#sharingifacetype) | Yes  | Sharing type. The value **0** means Wi-Fi hotspot sharing, **1** means USB sharing, and **2** means Bluetooth sharing.|
 | callback | AsyncCallback\<[SharingIfaceState](#sharingifacestate)> | Yes  | Callback used to return the network sharing state.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
+import SharingIfaceType from '@ohos.net.sharing'
+let SHARING_WIFI=0;
+sharing.getSharingState(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -478,15 +687,27 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 Obtains the network sharing state of the specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type | [SharingIfaceType](#sharingifacetype) | Yes  | Sharing type. The value **0** means Wi-Fi hotspot sharing, **1** means USB sharing, and **2** means Bluetooth sharing.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
 
 **Return value**
 
@@ -498,7 +719,8 @@ Obtains the network sharing state of the specified type. This API uses a promise
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharingIfaces(SharingIfaceType.SHARING_WIFI).then(data => {
+let SHARING_WIFI=0;
+sharing.getSharingState(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
@@ -511,9 +733,11 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -522,11 +746,22 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 | type | [SharingIfaceType](#sharingifacetype) | Yes  | Sharing type. The value **0** means Wi-Fi hotspot sharing, **1** means USB sharing, and **2** means Bluetooth sharing.|
 | callback | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array of regular expressions.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing'
-sharing.getSharingState(SharingIfaceType.SHARING_WIFI, (error, data) => {
+import SharingIfaceType from '@ohos.net.sharing'
+let SHARING_WIFI=0;
+sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
 });
@@ -538,9 +773,11 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 Obtains regular expressions of NICs of a specified type. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -554,78 +791,107 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 | --------------------------------- | ------------------------------------- |
 | Promise\<Array\<string>> | Promise used to return an array of regular expressions.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+| 2200001 | Invalid parameter value.                     |
+| 2200002 | Operation failed. Cannot connect to service. |
+| 2200003 | System internal error.                       |
+
 **Example**
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-sharing.getSharableRegexes(SharingIfaceType.SHARING_WIFI).then(data => {
+let SHARING_WIFI=0;
+sharing.getSharableRegexes(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
     console.log(JSON.stringify(error));
 });
 ```
 
-## on('sharingStateChange')
+## sharing.on('sharingStateChange')
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 Subscribes to network sharing state changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type | string | Yes  | Event name.|
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the network sharing state.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback invoked when the network sharing state changes.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
 ```js
-sharing.on('sharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+   sharing.on('sharingStateChange', (data) => {
+    console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
-## off('sharingStateChange')
+## sharing.off('sharingStateChange')
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 Unsubscribes from network sharing state changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type | string | Yes  | Event name.|
-| callback | AsyncCallback\<boolean> | No  | Callback used for unsubscription.|
+| callback | AsyncCallback\<boolean> | No  | Callback invoked when the network sharing state changes.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
 ```js
-sharing.off('sharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('sharingStateChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
 
-## on('interfaceSharingStateChange')
+## sharing.on('interfaceSharingStateChange')
 
 on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 Subscribes to network sharing state changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -634,50 +900,66 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 | type | string | Yes  | Event name.|
 | callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | Yes  | Callback invoked when the network sharing state of the specified NIC changes.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **Example**
 
 ```js
-sharing.on('interfaceSharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+ sharing.on('interfaceSharingStateChange', (data) => {
+    console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
-## off('interfaceSharingStateChange')
+## sharing.off('interfaceSharingStateChange')
 
 off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 Unsubscribes from network sharing status changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| type | string | No  | Event name.|
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | No  | Callback used for unsubscription.|
+| type | string | Yes  | Event name.|
+| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | No  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
 ```js
-sharing.off('interfaceSharingStateChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('interfaceSharingStateChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
 
-## on('sharingUpstreamChange')
+## sharing.on('sharingUpstreamChange')
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 Subscribes to upstream network changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
@@ -686,37 +968,51 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 | type | string | Yes  | Event name.|
 | callback | AsyncCallback\<NetHandle> | Yes  | Callback invoked when the upstream network changes.|
 
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
+
 **Example**
 
 ```js
-sharing.on('sharingUpstreamChange', (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  sharing.on('sharingUpstreamChange', (data) => {
+    console.log('on sharingUpstreamChange: ' + JSON.stringify(data));
 });
 ```
 
-## off('sharingUpstreamChange')
+## sharing.off('sharingUpstreamChange')
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 Unsubscribes from upstream network changes. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type | string | Yes  | Event name.|
-| callback | AsyncCallback\<NetHandle> | No  | Callback used for unsubscription.|
+| callback | AsyncCallback\<NetHandle> | No  | Callback used for unsubscription from upstream network changes.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
 ```js
-sharing.off('sharingUpstreamChange', (error, data) => {
-    console.log(JSON.stringify(error));
+sharing.off('sharingUpstreamChange', (data) => {
     console.log(JSON.stringify(data));
 });
 ```
@@ -725,7 +1021,9 @@ sharing.off('sharingUpstreamChange', (error, data) => {
 
 Enumerates the network sharing states of an NIC.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |
@@ -737,7 +1035,9 @@ Enumerates the network sharing states of an NIC.
 
 Enumerates the network sharing types of an NIC.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.NetSharing
 
 | Name                 | Value  | Description                  |
 | ------------------------ | ---- | ---------------------- |

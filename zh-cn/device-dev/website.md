@@ -290,7 +290,7 @@
            - [魔法键使用方法](kernel/kernel-small-debug-shell-magickey.md)
            - [用户态异常信息说明](kernel/kernel-small-debug-shell-error.md)
          - [Trace调测](kernel/kernel-small-debug-trace.md)
-         - [Perf调测](kernel/kernel-mini-memory-perf.md)
+         - [Perf调测](kernel/kernel-small-debug-perf.md)
          - [LMS调测](kernel/kernel-small-memory-lms.md)
          - [进程调测](kernel/kernel-small-debug-process-cpu.md)
          - 内核态内存调测
@@ -416,26 +416,14 @@
        - [音视频开发概述](subsystems/subsys-multimedia-video-overview.md)
        - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
        - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
-  -  公共基础
-     - [公共基础库概述](subsystems/subsys-utils-overview.md)
-     - [公共基础库开发指导](subsystems/subsys-utils-guide.md)
-     - [公共基础库常见问题](subsystems/subsys-utils-faqs.md)
-  -  [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
-  -  数据管理
-     - 关系型数据库
-       - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
-       - [关系型数据库开发指导](subsystems/subsys-data-relational-database-guide.md)
-     - 轻量级数据存储
-       - [轻量级数据存储概述](subsystems/subsys-data-storage-overview.md)
-       - [轻量级数据存储开发指导](subsystems/subsys-data-storage-guide.md)
+  -  [公共基础库开发指导](subsystems/subsys-utils-guide.md)
+  -  AI服务
+     - [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
+     - [NNRt开发指导](subsystems/subsys-ai-nnrt-guide.md)
   -  Sensor服务
      - [Sensor服务概述](subsystems/subsys-sensor-overview.md)
      - [Sensor服务使用指导](subsystems/subsys-sensor-guide.md)
      - [Sensor服务使用实例](subsystems/subsys-sensor-demo.md)
-  -  USB服务
-     - [USB服务概述](subsystems/subsys-usbservice-overview.md)
-     - [USB服务使用指导](subsystems/subsys-usbservice-guide.md)
-     - [USB服务使用实例](subsystems/subsys-usbservice-demo.md)
   -  用户程序框架
      - [概述](subsystems/subsys-application-framework-overview.md)
      - [搭建环境](subsystems/subsys-application-framework-envbuild.md)
@@ -530,7 +518,7 @@
   - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc\_std 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hdc 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具

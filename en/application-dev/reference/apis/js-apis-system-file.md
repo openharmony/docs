@@ -1,4 +1,4 @@
-# File Storage
+# @system.file (File Storage)
 
 > **NOTE**<br>
 > - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.fileio`](js-apis-fileio.md).

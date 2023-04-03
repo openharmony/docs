@@ -28,6 +28,19 @@ import display from '@ohos.display';
 | STATE_VR | 5 | 表示显示设备为VR模式。|
 | STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
 
+## Orientation<sup>10+</sup>
+
+显示设备当前显示的方向枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| PORTRAIT | 0 | 表示设备当前以竖屏方式显示。|
+| LANDSCAPE | 1 | 表示设备当前以横屏方式显示。 |
+| PORTRAIT_INVERTED | 2 | 表示设备当前以反向竖屏方式显示。|
+| LANDSCAPE_INVERTED | 3 | 表示设备当前以反向横屏方式显示。|
+
 ## Rect<sup>9+</sup>
 
 矩形区域。
@@ -278,6 +291,63 @@ try {
 }
 ```
 
+## display.on('privateModeChange')<sup>10+</sup>
+
+on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
+
+开启屏幕隐私模式变化的监听。当屏幕前台有隐私窗口，则屏幕处于隐私模式，屏幕中的隐私窗口内容无法被截屏或录屏。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私窗口模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
+
+**示例：**
+
+```js
+let callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+    display.on("privateModeChange", callback);
+} catch (exception) {
+    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('privateModeChange')<sup>10+</sup>
+
+off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭屏幕隐私模式变化的监听。当屏幕前台有隐私窗口，则屏幕处于隐私模式，屏幕中的隐私窗口内容无法被截屏或录屏。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
+
+**示例：**
+
+```js
+try {
+    display.off("privateModeChange");
+} catch (exception) {
+    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
@@ -405,6 +475,8 @@ promise.then((data) => {
 
 下列API示例中都需先使用[getAllDisplays()](#displaygetalldisplays9)、[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)中的任一方法获取到Display实例，再通过此实例调用对应方法。
 
+### 属性
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -418,6 +490,7 @@ promise.then((data) => {
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
 | height | number | 是 | 否 | 显示设备的高度，单位为像素。|
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。 |
 | densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |

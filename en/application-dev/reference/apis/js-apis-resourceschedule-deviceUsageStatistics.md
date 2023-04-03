@@ -35,7 +35,11 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the application specified by **bundleName** is in the idle state. This API uses an asynchronous callback to return the result. A third-party application can only check the idle status of itself.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -50,11 +54,11 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.    |
 
 **Example**
   ```js
@@ -77,7 +81,11 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 Checks whether the application specified by **bundleName** is in the idle state. This API uses a promise to return the result. A third-party application can only check the idle status of itself.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -97,11 +105,11 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                    |
 | ---------- | ----------------------------     |
-| 10000001   | Memory operation failed.         | 
-| 10000002   | Parcel operation failed.         | 
-| 10000003   | System service operation failed. | 
-| 10000004   | IPC Communication failed.        | 
-| 10000006   | Get application info failed.     |
+| 10000001   | Memory operation failed.         |
+| 10000002   | Parcel operation failed.         |
+| 10000003   | System service operation failed. |
+| 10000004   | IPC failed.        |
+| 10000006   | Failed to get the application information.     |
 
 **Example**
 
@@ -125,6 +133,8 @@ Queries the group of this application. This API uses a promise to return the res
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type             | Description                         |
@@ -137,13 +147,13 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -167,6 +177,8 @@ Queries the group of this application. This API uses an asynchronous callback to
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name     | Type                   | Mandatory  | Description                        |
@@ -178,14 +190,14 @@ Queries the group of this application. This API uses an asynchronous callback to
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -219,8 +231,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -228,13 +240,13 @@ Queries the application usage duration statistics based on the specified start t
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -274,8 +286,8 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -288,13 +300,13 @@ Queries the application usage duration statistics based on the specified start t
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -333,8 +345,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | byInterval | [IntervalType](#intervaltype)            | Yes   | Type of information to be queried.                                   |
-| begin      | number                                   | Yes   | Start time.                                   |
-| end        | number                                   | Yes   | End time.                                   |
+| begin      | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end        | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
@@ -342,13 +354,13 @@ Queries the application usage duration statistics in the specified time frame at
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -387,8 +399,8 @@ Queries the application usage duration statistics in the specified time frame at
 | Name       | Type                           | Mandatory  | Description   |
 | ---------- | ----------------------------- | ---- | ----- |
 | byInterval | [IntervalType](#intervaltype) | Yes   | Type of information to be queried.|
-| begin      | number                        | Yes   | Start time.|
-| end        | number                        | Yes   | End time.|
+| begin      | number                        | Yes   | Start time, in milliseconds.|
+| end        | number                        | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -401,13 +413,13 @@ Queries the application usage duration statistics in the specified time frame at
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -443,8 +455,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -453,12 +465,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -496,8 +508,8 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -511,12 +523,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -544,12 +556,14 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                  |
-| end      | number                                   | Yes   | End time.                                  |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
+| end      | number                                   | Yes   | End time, in milliseconds.                                  |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Error codes**
@@ -557,13 +571,13 @@ Queries events of this application based on the specified start time and end tim
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -593,12 +607,14 @@ Queries events of this application based on the specified start time and end tim
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -611,13 +627,13 @@ Queries events of this application based on the specified start time and end tim
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.      |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -660,13 +676,13 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -710,13 +726,13 @@ Queries FA usage records. This API uses an asynchronous callback to return a max
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                      |
-| ---------- | ----------------------------       | 
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -768,12 +784,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -818,12 +834,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          |  
-| 10000006   | Get application info failed.       |
-| 10000007   | Get system or actual time failed.  |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
 
 **Example**
 
@@ -875,13 +891,13 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -924,13 +940,13 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                      |
 | ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           | 
-| 10000002   | Parcel operation failed.           | 
-| 10000003   | System service operation failed.   | 
-| 10000004   | IPC Communication failed.          | 
-| 10000005   | Application is not installed.      | 
-| 10000006   | Get application info failed.       |
-| 10100002   | Get Application group info failed. |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
 
 **Example**
 
@@ -974,12 +990,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **Return value**
 
@@ -1029,13 +1045,13 @@ Sets a group for the application specified by **bundleName**. This API uses an a
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10100001   | Application group operation repeated. |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1080,11 +1096,11 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Return value**
 
@@ -1139,16 +1155,17 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 
 **Example**
 
 ```javascript
+    // @ts-nocheck
     let onBundleGroupChanged = (err, res) =>{
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack result appOldGroup is : ' + res.appOldGroup);
@@ -1193,12 +1210,12 @@ Deregisters the callback for application group changes. This API uses a promise 
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1237,12 +1254,12 @@ Deregisters the callback for application group changes. This API uses an asynchr
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10100001   | Application group operation repeated. |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10100001   | Repeated operation on the application group. |
 
 **Example**
 
@@ -1276,8 +1293,8 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1290,13 +1307,13 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1329,8 +1346,8 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1339,12 +1356,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.           |
-| 10000007   | Get system or actual time failed.     |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.           |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1379,8 +1396,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time.|
-| end   | number | Yes   | End time.|
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
@@ -1394,12 +1411,12 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](../er
 
 | ID       | Error Message                         |
 | ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1432,8 +1449,8 @@ Queries the number of notifications from all applications based on the specified
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | Yes   | Start time.                                   |
-| end      | number                                   | Yes   | End time.                                   |
+| begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
+| end      | number                                   | Yes   | End time, in milliseconds.                                   |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -1441,13 +1458,13 @@ Queries the number of notifications from all applications based on the specified
 For details about the error codes, see [DeviceUsageStatistics Error Codes](../errorcodes/errorcode-DeviceUsageStatistics.md).
 
 | ID       | Error Message                         |
-| ---------- | ----------------------------          | 
-| 10000001   | Memory operation failed.              | 
-| 10000002   | Parcel operation failed.              | 
-| 10000003   | System service operation failed.      | 
-| 10000004   | IPC Communication failed.             | 
-| 10000006   | Get application info failed.          |
-| 10000007   | Get system or actual time failed.     |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
 
 **Example**
 
@@ -1476,7 +1493,7 @@ Provides the information about the FA usage.
 | Name                 | Type                                      | Mandatory  | Description                           |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | No   | ID of the device to which the FA belongs.                |
-| bundleName           | string                                   | Yes   | Name of the application bundle to which the FA belongs.                    |
+| bundleName           | string                                   | Yes   | Name of the bundle to which the FA belongs.            |
 | moduleName           | string                                   | Yes   | Name of the module to which the FA belongs.                 |
 | abilityName          | string                                   | No   | **MainAbility** name of the FA.             |
 | appLabelId           | number                                   | No   | Application label ID of the FA.                |
@@ -1548,6 +1565,8 @@ Provides the usage duration information of an application.
 Provides information about an application event.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**System API**: This is a system API.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |

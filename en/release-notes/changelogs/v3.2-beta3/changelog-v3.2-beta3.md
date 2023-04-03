@@ -49,14 +49,14 @@ For a specific application, the general application privileges remain unchanged 
 | AllowAppDesktopIconHide | Allows the application icon to be hidden from the home screen.|
 | AllowAbilityPriorityQueried | Allows an ability to configure and query the priority.    |
 | AllowAbilityExcludeFromMissions | Allows an ability to be hidden in the mission stack.|
-| AllowAppUsePrivilegeExtension | Allows the application to use Service Extension and Data Extension abilities.|
+| AllowAppUsePrivilegeExtension | Allows the application to use ServiceExtensionAbilities and DataExtensionAbilities.|
 | AllowFormVisibleNotify | Allows a widget to be visible on the home screen.|
 
 In earlier versions, these privileges are configured in the **config.json** or **module.json** file and distinguished based on the application type (preset or system application). From this version, the privileges are configured based on the signing certificate and preset trustlist.
 
 **Change Impacts**
 
-JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details about how to apply for and configure the privileges, see [Application Privilege Configuration](../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details about how to apply for and configure the privileges, see [Application Privilege Configuration](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 **Key API/Component Changes**
 
@@ -64,7 +64,7 @@ N/A
 
 **Adaptation Guide**
 
-See [Application Privilege Configuration](../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+See [Application Privilege Configuration](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 ```json
 {
@@ -95,7 +95,7 @@ In earlier versions, these privileges are configured in the **config.json** or *
 
 **Change Impacts**
 
-JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details, see [Configuration Mode](../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
+JS and native APIs are not involved. If your application needs to use any of these privileges, apply for it. For details, see [Configuration Mode](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-1).
 
 **Key API/Component Changes**
 
@@ -103,7 +103,7 @@ N/A
 
 **Adaptation Guide**
 
-See [Configuration Mode](../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-mode).
+See [Configuration Mode](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-1).
 
 ```json
 {
@@ -231,4 +231,28 @@ If the verification rules are not met, an error is reported during compilation.
 
 N/A
 
-<!--no_check-->
+## Power Management Subsystem
+
+### File Name Changed
+
+The name of the API declaration file is changed from **@ohos.batteryinfo.d.ts** to **@ohos.batteryInfo.d.ts**.
+
+**Change Impacts**
+
+When you reference the statement in a JS or TS file, use **import batteryInfo from '@ohos.batteryInfo';** instead of **import batteryInfo from '@ohos.batteryinfo'**.
+
+**Key API/Component Changes**
+
+N/A
+
+### File Name Changed
+
+The name of the API declaration file is changed from **@ohos.runninglock.d.ts** to **@ohos.runningLock.d.ts**.
+
+**Change Impacts**
+
+When you reference the statement in a JS or TS file, use **import runningLock from '@ohos.runningLock';** instead of **import runningLock from '@ohos.runninglock';**.
+
+**Key API/Component Changes**
+
+N/A

@@ -64,7 +64,6 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.createAccount("WangWu", (err) => { 
         console.log("createAccount err: " + JSON.stringify(err));
@@ -102,7 +101,6 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     customData: {
       "age": "10"
@@ -150,12 +148,10 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
 | 12300007 | The number of accounts reaches the upper limit. |
-| 12400003 | The number of custom data reaches the upper limit. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     customData: {
       "age": "10"
@@ -201,21 +197,25 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {  
     appAccountManager.createAccountImplicitly("com.example.accountjsdemo", {
       onResult: onResultCallback,
@@ -239,7 +239,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 | 参数名      | 类型                    | 必填   | 说明                      |
 | -------- | --------------------- | ---- | ----------------------- |
 | owner    | string                | 是    | 应用帐号所有者的包名。          |
-| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建账号的选项。          |
+| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建帐号的选项。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。         |
 
 **错误码：**
@@ -247,7 +247,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or options. |
+| 12300002 | Invalid owner or options. |
 | 12300007 | The number of accounts reaches the upper limit. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -256,21 +256,25 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
     console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     authType: "getSocialData",
     requiredLabels: [ "student" ]
@@ -311,7 +315,6 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.removeAccount("ZhaoLiu", (err) => {
       if (err) {
@@ -356,7 +359,6 @@ removeAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.removeAccount("Lisi").then(() => {
       console.log("removeAccount successfully");
@@ -397,7 +399,6 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true, (err) => {
       if (err) {
@@ -445,7 +446,6 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true).then(() => {
       console.log("setAppAccess successfully");
@@ -480,12 +480,10 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo", (err, isAccessible) => {
       if (err) {
@@ -527,12 +525,10 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo").then((isAccessible) => {
       console.log("checkAppAccess successfully, isAccessible: " + isAccessible);
@@ -573,7 +569,6 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager.setDataSyncEnabled("ZhangSan", true, (err) => { 
           console.log("setDataSyncEnabled err: " + JSON.stringify(err));
@@ -617,7 +612,6 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager .setDataSyncEnabled("ZhangSan", true).then(() => { 
           console.log('setDataSyncEnabled Success');
@@ -657,7 +651,6 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkDataSyncEnabled("ZhangSan", (err, isEnabled) => {
       if (err) {
@@ -704,7 +697,6 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkDataSyncEnabled("ZhangSan").then((isEnabled) => {
         console.log("checkDataSyncEnabled successfully, isEnabled: " + isEnabled);
@@ -744,7 +736,6 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx", (err) => {
       if (err) {
@@ -791,7 +782,6 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx").then(() => {
       console.log("setCredential successfully");
@@ -831,7 +821,6 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager.getCredential("ZhangSan", "PIN_SIX", (err, result) => { 
         if (err) {
@@ -878,7 +867,6 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getCredential("ZhangSan", "PIN_SIX").then((credential) => {
         console.log("getCredential successfully, credential: " + credential);
@@ -912,14 +900,13 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setCustomData("ZhangSan", "age", "12", (err) => {
       if (err) {
@@ -960,14 +947,13 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setCustomData("ZhangSan", "age", "12").then(() => {
       console.log("setCustomData successfully");
@@ -1007,7 +993,6 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getCustomData("ZhangSan", "age", (err, data) => {
       if (err) {
@@ -1054,7 +1039,6 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getCustomData("ZhangSan", "age").then((data) => {
       console.log("getCustomData successfully, data: " + data);
@@ -1099,7 +1083,6 @@ getCustomDataSync(name: string, key: string): string;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       let value = appAccountManager.getCustomDataSync("ZhangSan", "age");
       console.info("getCustomDataSync successfully, vaue:" + value);
@@ -1113,8 +1096,6 @@ getCustomDataSync(name: string, key: string): string;
 getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 获取所有可访问的应用帐号信息。使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1133,7 +1114,6 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAllAccounts((err, data) => {
       if (err) {
@@ -1153,8 +1133,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 获取所有可访问的应用帐号信息。使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
-
 **系统能力：** SystemCapability.Account.AppAccount
 
 **返回值：**
@@ -1172,7 +1150,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAllAccounts().then((data) => {
       console.debug("getAllAccounts successfully");
@@ -1189,8 +1166,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用callback异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1212,7 +1187,6 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAccountsByOwner("com.example.accountjsdemo2", (err, data) => {
       if (err) {
@@ -1231,8 +1205,6 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 根据应用帐号所有者获取调用方可访问的应用帐号列表。使用Promise异步回调。
-
-**需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1259,7 +1231,6 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAccountsByOwner("com.example.accountjsdemo2").then((data) => {
       console.debug("getAccountsByOwner successfully, data:" + JSON.stringify(data));
@@ -1293,13 +1264,11 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 | ------- | ------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12300011 | Callback has been registered. |
 | 12400001 | Application not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.log("receive change data:" + JSON.stringify(data));
   }
@@ -1312,7 +1281,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 ### off('accountChange')<sup>9+</sup>
 
-off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -1323,7 +1292,7 @@ off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **错误码：**
 
@@ -1331,13 +1300,11 @@ off(type: 'accountChange', callback?: Callback<Array\<AppAccountInfo>>): void
 | ------- | -------|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
-| 12300012 | Callback has not been registered. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  function changeOnCallback(data){
+  function changeOnCallback(data) {
   	console.log("receive change data:" + JSON.stringify(data));
   }
   try{
@@ -1375,7 +1342,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -1384,7 +1351,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1392,13 +1359,19 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", {
         onResult: onResultCallback,
@@ -1432,8 +1405,8 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
-| 12300003 | Account not exist. |
+| 12300002 | Invalid name, owner, authType or options. |
+| 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
 | 12300114 | Authenticator service exception. |
@@ -1441,7 +1414,7 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, authResult) {
     console.log("resultCode: "  + code);
@@ -1449,16 +1422,22 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err) => {
-        console.log("startAbility err: " + JSON.stringify(err));
-    });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
   let options = {
     "password": "xxxx",
   };
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", options, {
         onResult: onResultCallback,
@@ -1498,7 +1477,6 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, token) => {
       if (err) {
@@ -1539,14 +1517,13 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((token) => {
       console.log("getAuthToken successfully, token: " + token);
@@ -1580,14 +1557,13 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
       if (err) {
@@ -1628,14 +1604,13 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
         console.log("setAuthToken successfully");
@@ -1670,14 +1645,13 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
         if (err) {
@@ -1719,14 +1693,13 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
       console.log("deleteAuthToken successfully");
@@ -1761,7 +1734,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1770,7 +1743,6 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
         if (err) {
@@ -1812,7 +1784,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1821,7 +1793,6 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
       console.log("setAuthTokenVisibility successfully");
@@ -1855,15 +1826,13 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, isVisible) => {
       if (err) {
@@ -1904,15 +1873,13 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((isVisible) => {
       console.log("checkAuthTokenVisibility successfully, isVisible: " + isVisible);
@@ -1951,7 +1918,6 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 **示例：** 
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo", (err, tokenArr) => {
       if (err) {
@@ -1997,7 +1963,6 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo").then((tokenArr) => {
         console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
@@ -2037,7 +2002,6 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData", (err, authList) => {
       if (err) {
@@ -2084,7 +2048,6 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData").then((authList) => {
         console.log("getAuthList successfully, authList: " + authList);
@@ -2123,7 +2086,6 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
-  let appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
     var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
     try {
@@ -2183,7 +2145,6 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
@@ -2236,7 +2197,6 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo", (err, info) => {
       if (err) {
@@ -2281,7 +2241,6 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo").then((info) => { 
         console.log("queryAuthenticatorInfo successfully, info: " + JSON.stringify(info));
@@ -2315,7 +2274,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2324,7 +2283,6 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let labels = ["student"];
   try {
     appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels, (err, hasAllLabels) => {
@@ -2366,7 +2324,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2375,7 +2333,6 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let labels = ["student"];
   try {
     appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels).then((hasAllLabels) => {
@@ -2416,7 +2373,6 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.deleteCredential("zhangsan", "PIN_SIX", (err) => {
       if (err) {
@@ -2463,7 +2419,6 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.deleteCredential("zhangsan", "PIN_SIX").then(() => {
       console.log("deleteCredential successfully");
@@ -2502,7 +2457,6 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     allowedOwners: [ "com.example.accountjsdemo" ],
     requiredLabels: [ "student" ]
@@ -2552,7 +2506,6 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     allowedOwners: ["com.example.accountjsdemo"]
   };
@@ -2597,7 +2550,6 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
       appAccountManager.verifyCredential("zhangsan", "com.example.accountjsdemo", {
           onResult: (resultCode, result) => {
@@ -2635,7 +2587,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or options. |
+| 12300002 | Invalid name, owner or options. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2644,7 +2596,6 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     credentialType: "pin",
     credential: "123456"
@@ -2692,7 +2643,6 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   try {
     appAccountManager.setAuthenticatorProperties("com.example.accountjsdemo", {
       onResult: (resultCode, result) => {
@@ -2737,7 +2687,6 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   let options = {
     properties: {"prop1": "value1"}
   };
@@ -2780,7 +2729,6 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("WangWu", (err) => { 
       console.log("addAccount err: " + JSON.stringify(err));
   });
@@ -2802,13 +2750,12 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
 | name      | string                    | 是    | 应用帐号的名称。                              |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101", (err) => { 
     console.log("addAccount err: " + JSON.stringify(err));
   });
@@ -2830,7 +2777,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                            |
-| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 
 **返回值：**
 
@@ -2841,7 +2788,6 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccount("LiSi", "token101").then(()=> { 
     console.log('addAccount Success');
   }).catch((err) => {
@@ -2873,7 +2819,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+
 
   function onResultCallback(code, result) {
     console.log("resultCode: "  + code);
@@ -2881,13 +2827,19 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
   }
 
   function onRequestRedirectedCallback(request) {
-    let abilityStartSetting = {want: request};
-    featureAbility.startAbility(abilityStartSetting, (err)=>{
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
       console.log("startAbility err: " + JSON.stringify(err));
-    });
+    })
   }
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.addAccountImplicitly("com.example.accountjsdemo", "getSocialData", {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
@@ -2916,7 +2868,6 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu", (err) => { 
       console.log("deleteAccount err: " + JSON.stringify(err));
    });
@@ -2949,7 +2900,6 @@ deleteAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteAccount("ZhaoLiu").then(() => { 
         console.log('deleteAccount Success');
    }).catch((err) => {
@@ -2979,7 +2929,6 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
       console.log("disableAppAccess err: " + JSON.stringify(err));
   });
@@ -3013,7 +2962,6 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err) => {
@@ -3044,7 +2992,6 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
       console.log("enableAppAccess: " + JSON.stringify(err));
    });
@@ -3078,7 +3025,6 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
@@ -3110,7 +3056,6 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan", (err, result) => { 
       console.log("checkAppAccountSyncEnable err: " + JSON.stringify(err));
       console.log('checkAppAccountSyncEnable result: ' + result);
@@ -3146,7 +3091,6 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkAppAccountSyncEnable("ZhangSan").then((data) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err) => {
@@ -3178,7 +3122,6 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001", (err) => { 
       console.log("setAccountCredential err: " + JSON.stringify(err));
   });
@@ -3213,7 +3156,6 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001").then(() => { 
       console.log('setAccountCredential Success');
   }).catch((err) => {
@@ -3239,13 +3181,12 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 | 参数名       | 类型                        | 必填   | 说明              |
 | --------- | ------------------------- | ---- | --------------- |
 | name      | string                    | 是    | 应用帐号的名称。         |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。       |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。       |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002", (err) => { 
       console.log("setAccountExtraInfo err: " + JSON.stringify(err));
   });
@@ -3269,7 +3210,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明        |
 | --------- | ------ | ---- | --------- |
 | name      | string | 是    | 应用帐号的名称。   |
-| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用账号密码、token等）。 |
+| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
 
 **返回值：**
 
@@ -3280,7 +3221,6 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002").then(() => { 
       console.log('setAccountExtraInfo Success');
   }).catch((err) => {
@@ -3313,7 +3253,6 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAppAccountSyncEnable("ZhangSan", true, (err) => { 
       console.log("setAppAccountSyncEnable err: " + JSON.stringify(err));
   });
@@ -3349,7 +3288,6 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager .setAppAccountSyncEnable("ZhangSan", true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err) => {
@@ -3382,7 +3320,6 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
       console.log("setAssociatedData err: " + JSON.stringify(err));
   });
@@ -3418,7 +3355,6 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setAssociatedData("ZhangSan", "k001", "v001").then(() => { 
       console.log('setAssociatedData Success');
   }).catch((err) => {
@@ -3449,7 +3385,6 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts((err, data)=>{
   	console.debug("getAllAccessibleAccounts err:" + JSON.stringify(err));
   	console.debug("getAllAccessibleAccounts data:" + JSON.stringify(data));
@@ -3479,7 +3414,6 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllAccessibleAccounts().then((data) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err) => {
@@ -3511,7 +3445,6 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
   	console.debug("getAllAccounts err:" + JSON.stringify(err));
@@ -3548,7 +3481,6 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle).then((data) => { 
        console.log('getAllAccounts: ' + data);
@@ -3580,7 +3512,6 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001", (err, result) => { 
       console.log("getAccountCredential err: " + JSON.stringify(err));
       console.log('getAccountCredential result: ' + result);
@@ -3615,7 +3546,6 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountCredential("ZhangSan", "credentialType001").then((data) => { 
       console.log('getAccountCredential, result: ' + data);
   }).catch((err) => {
@@ -3645,7 +3575,6 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan", (err, result) => { 
       console.log("getAccountExtraInfo err: " + JSON.stringify(err));
       console.log('getAccountExtraInfo result: ' + result);
@@ -3679,7 +3608,6 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAccountExtraInfo("ZhangSan").then((data) => { 
       console.log('getAccountExtraInfo, result: ' + data);
   }).catch((err) => {
@@ -3710,7 +3638,6 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001", (err, result) => { 
       console.log("getAssociatedData err: " + JSON.stringify(err));
       console.log('getAssociatedData result: ' + result);
@@ -3745,7 +3672,6 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAssociatedData("ZhangSan", "k001").then((data) => { 
        console.log('getAssociatedData: ' + data);
   }).catch((err) => {
@@ -3776,7 +3702,6 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   }
@@ -3790,7 +3715,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 ### off('change')<sup>(deprecated)</sup>
 
-off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
+off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 取消订阅帐号信息变更事件。
 
@@ -3805,12 +3730,11 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   	appAccountManager.off('change', function(){
@@ -3850,21 +3774,25 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
   function onResultCallback(code, result) {
       console.log("resultCode: "  + code);
       console.log("result: "  + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
-      let abilityStartSetting = {want: request};
-      featureAbility.startAbility(abilityStartSetting, (err)=>{
-          console.log("startAbility err: " + JSON.stringify(err));
-      });
+    let wantInfo = {
+      deviceId: '',
+      bundleName: 'com.example.accountjsdemo',
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.default'],
+    }
+    this.context.startAbility(wantInfo).then(() => {
+      console.log("startAbility successfully");
+    }).catch((err) => {
+      console.log("startAbility err: " + JSON.stringify(err));
+    })
   }
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.authenticate("LiSi", "com.example.accountjsdemo", "getSocialData", {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
@@ -3895,7 +3823,6 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
        console.log('getOAuthToken token: ' + data);
@@ -3931,7 +3858,6 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err) => {
@@ -3963,7 +3889,6 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
@@ -3998,7 +3923,6 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err) => {
@@ -4031,7 +3955,6 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
@@ -4067,7 +3990,6 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err) => {
@@ -4100,7 +4022,6 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
@@ -4136,7 +4057,6 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err) => {
@@ -4168,7 +4088,6 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
@@ -4204,7 +4123,6 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err) => {
@@ -4235,7 +4153,6 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 **示例：** 
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo", (err, data) => {
       console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
@@ -4270,7 +4187,6 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo").then((data) => {
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -4301,7 +4217,6 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData", (err, data) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
     console.log('getOAuthList data: ' + JSON.stringify(data));
@@ -4336,7 +4251,6 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -4367,7 +4281,6 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
-  let appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant((err, want) => {
     var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
     appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
@@ -4413,7 +4326,6 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
   ```js
   import featureAbility from '@ohos.ability.featureAbility';
 
-  let appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
@@ -4452,7 +4364,6 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo", (err, data) => {
       console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
@@ -4486,7 +4397,6 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```js
-  let appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo").then((data) => { 
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -4558,7 +4468,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 ## CreateAccountOptions<sup>9+</sup>
 
-表示创建账号的选项。
+表示创建帐号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4568,7 +4478,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
-表示隐式创建账号的选项。
+表示隐式创建帐号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4639,9 +4549,12 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | 表示键名，必需的标签。    |
 | KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | 表示键名，布尔返回值。    |
 
-## ResultCode<sup>8+</sup>
+## ResultCode<sup>(deprecated)</sup>
 
 表示返回码的枚举。
+
+> **说明：**<br/>
+> 从API version 8开始支持，从API version 9开始废弃。相关信息建议查看[错误码文档](../errorcodes/errorcode-account.md)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4878,10 +4791,10 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建账号的选项。      |
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建帐号的选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，用于返回创建结果。 |
 
-### addAccountImplicitly<sup>deprecated</sup>
+### addAccountImplicitly<sup>(deprecated)</sup>
 
 addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
@@ -4920,7 +4833,7 @@ auth(name: string, authType: string, options: {[key:string]: Object}, callback: 
 | options          | {[key: string]: Object}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
-### authenticate<sup>deprecated</sup>
+### authenticate<sup>(deprecated)</sup>
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
@@ -4989,9 +4902,9 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
-### isAccountRemovable<sup>9+</sup>
+### checkAccountRemovable<sup>9+</sup>
 
-isAccountRemovable(name: string, callback: AuthCallback): void;
+checkAccountRemovable(name: string, callback: AuthCallback): void;
 
 判断帐号是否可以删除，并使用callback异步回调返回结果。
 
@@ -5049,7 +4962,7 @@ getRemoteObject(): rpc.RemoteObject;
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
   
-    isAccountRemovable(name, callback) {
+    checkAccountRemovable(name, callback) {
       var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }

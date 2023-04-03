@@ -1,6 +1,6 @@
-# @ohos.data.preferences (首选项)
+# @ohos.data.preferences (用户首选项)
 
-首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
+用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
@@ -22,8 +22,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制，需小于80个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制，需小于8192个字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为80个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
 
 
 ## data_preferences.getPreferences
@@ -38,7 +38,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 | 参数名   | 类型                                             | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。                                                 |
+| context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                                 |
 | name     | string                                           | 是   | Preferences实例的名称。                                      |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误码。 |
 
@@ -58,6 +58,7 @@ try {
 	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
 	    }
+	    preferences = val;
 	    console.info("Succeeded in getting preferences.");
 	})
 } catch (err) {
@@ -68,26 +69,25 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let preferences = null;
-try {
-    data_preferences.getPreferences(context, 'mystore', function (err, val) {
-	    if (err) {
-	        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-	        return;
-	    }
-	    console.info("Succeeded in getting preferences.");
-	})
-} catch (err) {
-	console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                preferences = val;
+                console.info("Succeeded in getting preferences.");
+            })
+        } catch (err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -103,7 +103,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。            |
+| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -128,36 +128,34 @@ try {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err) => {
-        console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+    console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 }
 ```
 
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let preferences = null;
-try {
-    let promise = data_preferences.getPreferences(context, 'mystore');
-    promise.then((object) => {
-        preferences = object;
-        console.info("Succeeded in getting preferences.");
-    }).catch((err) => {
-        console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.log("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((object) => {
+                preferences = object;
+                console.info("Succeeded in getting preferences.");
+            }).catch((err) => {
+                console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -177,13 +175,13 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。                                         |
+| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -214,25 +212,22 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-try {
-    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
-        if (err) {
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.deletePreferences(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in deleting preferences." );
+            })
+        } catch (err) {
             console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Succeeded in deleting preferences." );
-    })
-} catch (err) {
-    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 ```
 
@@ -252,7 +247,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。            |
+| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -263,7 +258,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[首选项错误码](../errorcodes/errorcode-preferences.md)。
+以下错误码的详细介绍请参见[用户首选项错误码](../errorcodes/errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------|
@@ -293,24 +288,21 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-try{
-    let promise = data_preferences.deletePreferences(context, 'mystore');
-    promise.then(() => {
-        console.info("Succeeded in deleting preferences.");
-    }).catch((err) => {
-        console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try{
+            let promise = data_preferences.deletePreferences(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Succeeded in deleting preferences.");
+            }).catch((err) => {
+                console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -328,7 +320,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。                                         |
+| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
 
@@ -357,25 +349,22 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
-        if (err) {
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err, val) {
+                if (err) {
+                    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                    return;
+                }
+                console.info("Succeeded in removing preferences.");
+            })
+        } catch (err) {
             console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-            return;
         }
-        console.info("Succeeded in removing preferences.");
-    })
-} catch (err) {
-    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+    }
 }
 
 ```
@@ -394,7 +383,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。            |
+| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -427,24 +416,21 @@ try {
 Stage模型示例：
 
 ```ts
-// 获取context
-import Ability from '@ohos.application.Ability';
-let context = null;
-class MainAbility extends Ability{
-    onWindowStageCreate(windowStage){
-        context = this.context;
-    }
-}
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
-	promise.then(() => {
-    	console.info("Succeeded in removing preferences.");
-    }).catch((err) => {
-        console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-    })
-} catch(err) {
-    console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        try {
+            let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
+            promise.then(() => {
+                console.info("Succeeded in removing preferences.");
+            }).catch((err) => {
+                console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+            })
+        } catch(err) {
+            console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+        }
+    }
 }
 ```
 
@@ -459,7 +445,7 @@ try {
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据，使用callback异步回调。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -492,12 +478,12 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-获取键对应的值，如果值为null或者非默认值类型，返回默认数据，使用Promise异步回调。
+获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
  **参数：**
- 
+
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
@@ -794,10 +780,10 @@ try {
 	promise.then(() => {
         console.info("Succeeded in deleting the key 'startup'.");
     }).catch((err) => {
-        console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+        console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
     })
 } catch(err) {
-    console.log("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
+    console.info("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 }
 ```
 
@@ -806,7 +792,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前Preferences实例的数据异步存储到首选项持久化文件中，使用callback异步回调。
+将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -837,7 +823,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-将当前Preferences实例的数据异步存储到首选项持久化文件中，使用Promise异步回调。
+将当前Preferences实例的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 

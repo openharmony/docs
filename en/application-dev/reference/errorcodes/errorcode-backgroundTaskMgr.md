@@ -71,7 +71,6 @@ Continuous task verification failed.
 2. The application repeatedly cancels a continuous task.
 3. The value of **bgMode** is invalid because no continuous task type is configured for **backgroundModes** in the application's configuration file.
 4. A non-PC device requests the continuous task **KEEPING_TASK**, which is available only for PCs.
-5. A third-party application requests the continuous task **WIFI_INTERACTION** or **VOIP**, which is available only for system applications.
 
 **Solution**
 

@@ -3,7 +3,7 @@
 
 module对象包含HAP的配置信息。
 
-###   **表1** **module对象内部结构说明**
+ **表1** **module对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -30,7 +30,7 @@ module示例：
 ```json
 {
   "module": {
-    "mainAbility": ".MainAbility",
+    "mainAbility": ".EntryAbility",
     "deviceType": [
       "default",
       "tablet"
@@ -49,8 +49,8 @@ module示例：
         ],
         "orientation": "unspecified",
         "visible": true,
-        "srcPath": "MainAbility",
-        "name": ".MainAbility",
+        "srcPath": "EntryAbility",
+        "name": ".EntryAbility",
         "srcLanguage": "ets",
         "icon": "$media:icon",
         "description": "$string:MainAbility_desc",
@@ -78,7 +78,7 @@ module示例：
         "pages": [
           "pages/Index"
         ],
-        "name": ".MainAbility",
+        "name": ".EntryAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false
@@ -89,7 +89,9 @@ module示例：
 }
 ```
 
-####   **表2** **distro对象内部结构说明**
+## distro对象内部结构
+
+**表2** **distro对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -110,7 +112,9 @@ distro示例：
 }
 ```
 
-####   **表3** **metadata对象内部结构说明**
+## metadata对象内部结构
+
+**表3** **metadata对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -118,7 +122,9 @@ distro示例：
 | results | 标识Ability返回值的元信息。每个返回值的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配。 | 对象数组 | 可缺省，缺省值为空。 |
 
-####   **表4** **parameters对象内部结构说明**
+## parameters对象内部结构
+
+**表4** **parameters对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -126,7 +132,9 @@ distro示例：
 | name | 标识调用参数的名称。该标签最大长度为255个字节。 | 字符串 | 不可缺省。 |
 | type | 标识调用参数的类型，如Integer。 | 字符串 | 不可缺省。 |
 
-####   **表5** **results对象内部结构说明**
+## results对象内部结构
+
+**表5** **results对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -134,7 +142,9 @@ distro示例：
 | name | 标识返回值的名字。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省 |
 
-####   **表6** **customizeData对象的内部结构说明**
+## customizeData对象的内部结构
+
+**表6** **customizeData对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -166,7 +176,9 @@ metadata对象示例：
 }
 ```
 
-####   **表7** **deviceType标签配置说明**
+## deviceType标签
+
+**表7** **deviceType标签配置说明**
 
 | 设备类型 | 枚举值 | 说明 |
 | -------- | -------- | -------- |
@@ -176,12 +188,74 @@ metadata对象示例：
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的OpenHarmony设备。 |
 
-####   **表8** **abilities对象的内部结构说明**
+## abilities对象的内部结构
+
+**OpenHarmony中不允许应用隐藏启动图标**
+
+OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
+用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
+如果应用想要隐藏启动图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+
+
+**启动图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["ohos.want.action.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    }],
+
+    ...
+
+  }
+}
+```
+
+**启动图标的查询**
+* HAP中包含Page类型的Ability
+  * 配置文件（config.json）中abilities配置中设置了启动图标
+    * 该应用没有隐藏图标的特权
+      * 返回的桌面图标为该Ability配置的图标
+      * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
+      * 返回的组件名为该Ability的组件名
+      * 用户点击该桌面图标，页面跳转到该Ability首页
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
+  * 配置文件（config.json）中abilities配置中未设置启动图标
+    * 该应用没有隐藏图标的特权
+      * 返回的桌面图标为系统默认图标
+      * 返回的桌面Label为该应用的包名
+      * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
+      * 用户点击该桌面图标，页面跳转到该应用的详情页面
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
+* HAP中不包含Page类型的Ability
+  * 该应用没有隐藏图标的特权
+    * 返回的桌面图标为系统默认图标
+    * 返回的桌面Label为该应用的包名
+    * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
+    * 用户点击该桌面图标，页面跳转到该应用的详情页面
+  * 该应用具有隐藏图标的特权
+    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
+
+注：应用详情页面中显示的图标与label,可能与桌面上显示的不同。如果非Page类型的ability配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+
+
+**表8** **abilities对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | process | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。该标签最大字节数为31个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.MainAbility"；也可采用"."开头的类名方式表示，如".MainAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"MainAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
+| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
@@ -210,7 +284,9 @@ metadata对象示例：
 | startWindowBackground | 标识该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$color:red。 | 字符串 | 可缺省，缺省值为空。 |
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
 
-####   **表9** **uriPermission对象的内部结构说明**
+## uriPermission对象的内部结构
+
+**表9** **uriPermission对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -223,7 +299,7 @@ abilities示例：
 ```json
 "abilities": [
   {
-    "name": ".MainAbility",
+    "name": ".EntryAbility",
     "description": "test main ability",
     // $media:ic_launcher 为媒体类资源
     "icon": "$media:ic_launcher",
@@ -286,8 +362,9 @@ abilities示例：
   }
 ]
 ```
+## skills对象的内部结构
 
-####   **表10** **skills对象的内部结构说明**
+**表10** **skills对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -295,7 +372,9 @@ abilities示例：
 | entities | 标识能够接收的want的Ability的类别（如视频、桌面应用等），可以包含一个或多个entity。 | 字符串数组 | 可缺省，缺省值为空。 |
 | uris | 该标签标识向want过滤器添加数据规范集合。该规范可以是只有数据类型（mimeType属性），可以是只有URI，也可以是既有数据类型又有URI。<br/>URI由其各个部分的单独属性指定：&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;[&lt;path&gt;\|&lt;pathStartWith&gt;\|&lt;pathRegex&gt;]。该标签可缺省，缺省值为空。<br/>其中，scheme字段配置为uri时必配；当只设置数据类型（mimeType）时，则scheme字段为非必配项。 | 对象数组 | 可缺省，缺省值为空。 |
 
-####   **表11** **uris对象的内部结构说明**
+## uris对象的内部结构
+
+**表11** **uris对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -332,7 +411,43 @@ skills示例：
 ]
 ```
 
-####   **表12** **reqPermissions权限申请字段说明**
+**增强隐式查询功能**
+
+支持Uri级别的前缀匹配。
+当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
+
+  *  查询功能增强涉及以下接口<br>
+    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
+    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
+    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
+    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
+  *  配置要求<br>
+    abilities  -> skills -> uris对象 <br>
+    配置1： 只配置 scheme = 'http' <br>
+    配置2： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) <br>
+    配置3： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) + ( port = '8080' )
+  *  前缀匹配<br>
+    [want](../application-models/want-overview.md)下uri，调用queryAbilityInfo查询接口<br>
+    1. uri = 'https://' 无匹配<br>
+    2. uri = 'http://' 可以匹配 配置1<br>
+    3. uri = 'https://www.example.com' 无匹配<br>
+    4. uri = 'https://www.exa.com' 无匹配<br>
+    5. uri = 'http://www.exa.com' 可以匹配 配置1<br>
+    6. uri = 'http://www.example.com' 可以匹配 配置1 配置2<br>
+    7. uri = 'https://www.example.com:8080' 无匹配<br>
+    8. uri = 'http://www.exampleaa.com:8080' 可以匹配 配置1<br>
+    9. uri = 'http://www.example.com:9180' 可以匹配 配置1 配置2<br>
+    10. uri = 'http://www.example.com:8080' 可以匹配 配置1 配置2 配置3<br>
+    11. uri = 'https://www.example.com:9180/query/student/name' 无匹配<br>
+    12. uri = 'http://www.exampleap.com:8080/query/student/name' 可以匹配 配置1<br>
+    13. uri = 'http://www.example.com:9180/query/student/name' 可以匹配 配置1 配置2<br>
+    14. uri = 'http://www.example.com:8080/query/student/name' 可以匹配 配置1 配置2 配置3<br>
+
+
+
+## reqPermissions权限申请
+
+**表12** **reqPermissions权限申请字段说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -340,14 +455,18 @@ skills示例：
 | reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空 |
 | usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse" |
 
-####   **表13** **usedScene对象内部结构说明**
+## usedScene对象内部结构
+
+**表13** **usedScene对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | ability | 标识哪些Ability需要此权限，里面配置Ability的名称。 | 字符串数组 | 可以缺省，缺省表示所有Ability都需要此权限。 |
 | when | 标识此权限的使用时间：<br/>inuse:&nbsp;使用时需要此权限。<br/>always:&nbsp;所有时间都需要此权限。 | 枚举值 | 可缺省，缺省值为空。 |
 
-####   **表14** **js对象的内部结构说明**
+## js对象的内部结构
+
+**表14** **js对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -357,14 +476,18 @@ skills示例：
 | type | 标识JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为"normal"。 |
 |mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
 
-####   **表15** **window对象的内部结构说明**
+## window对象的内部结构
+
+**表15** **window对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
 | autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
 
-####   **表16** **mode对象的内部结构说明**
+## mode对象的内部结构
+
+**表16** **mode对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -391,7 +514,9 @@ js示例：
 ]
 ```
 
-####   **表17** **shortcuts对象的内部结构说明**
+## shortcuts对象的内部结构
+
+**表17** **shortcuts对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -400,7 +525,9 @@ js示例：
 | icon | 标识快捷方式的图标信息。取值为表示icon的资源索引。 | 字符串 | 可缺省，缺省为空。 |
 | intents | 标识快捷方式内定义的目标intent信息集合，每个intent可配置两个子标签，targetClass,&nbsp;targetBundle。 | 对象数组 | 可缺省，缺省为空。 |
 
-####   **表18** **intents对象的内部结构说明**
+## intents对象的内部结构
+
+**表18** **intents对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -419,14 +546,16 @@ shortcuts示例：
     "intents": [
       {
         "targetBundle": "com.example.world.test",
-        "targetClass": "com.example.world.test.entry.MainAbility"
+        "targetClass": "com.example.world.test.entry.EntryAbility"
       }
     ]
   }
 ]
 ```
 
-####   **表19** **forms对象的内部结构说明**
+## forms对象的内部结构
+
+**表19** **forms对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -445,7 +574,9 @@ shortcuts示例：
 | metaData | 标识卡片的自定义信息，包含customizeData数组标签。 | 对象 | 可缺省，缺省值为空。 |
 | customizeData | 标识自定义的卡片信息。 | 对象数组 | 可缺省，缺省值为空。 |
 
-####   **表20** **customizeData对象内部结构说明**
+## customizeData对象内部结构
+
+**表20** **customizeData对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -494,7 +625,7 @@ forms示例：
     "portraitLayouts": [
       "$layout:ability_form"
     ],
-    "formConfigAbility": "ability://com.example.myapplication.fa/.MainAbility",
+    "formConfigAbility": "ability://com.example.myapplication.fa/.EntryAbility",
     "metaData": {
       "customizeData": [
         {
@@ -507,7 +638,9 @@ forms示例：
 ]
 ```
 
-####   **表21** **distroFilter对象的内部结构说明**
+## distroFilter对象的内部结构
+
+**表21** **distroFilter对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -517,35 +650,45 @@ forms示例：
 |screenDensity | 标识屏幕的像素密度（dpi：Dots&nbsp;Per&nbsp;Inch）。 | 对象数组 | 可缺省，缺省值为空。 |
 | countryCode | 标识分发应用时的国家码。具体值参考ISO-3166-1的标准，支持多个国家和地区的枚举定义。 | 对象数组 | 可缺省，缺省值为空。 |
 
-####   **表22** **apiVersion对象的内部结构说明**
+## apiVersion对象的内部结构
+
+**表22** **apiVersion对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 不可缺省。 |
 | value | 支持的取值为API&nbsp;Version存在的整数值，例如4、5、6。场景示例：某应用，针对相同设备型号，同时在网的为使用API&nbsp;5和API&nbsp;6开发的两个软件版本，则允许上架2个entry类型的安装包，分别支持到对应设备侧软件版本的分发。 | 数组 | 不可缺省。 |
 
-####   **表23** **screenShape对象的内部结构说明**
+## screenShape对象的内部结构
+
+**表23** **screenShape对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 不可缺省。 |
 | value | 支持的取值为API&nbsp;Version存在的整数值，例如4、5、6。场景示例：某应用，针对相同设备型号，同时在网的为使用API&nbsp;5和API&nbsp;6开发的两个软件版本，则允许上架2个entry类型的安装包，分别支持到对应设备侧软件版本的分发。 | 数组 | 不可缺省。 |
 
-####   **表24** **screenWindow对象的内部结构说明**
+## screenWindow对象的内部结构
+
+**表24** **screenWindow对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 不可缺省。 |
 | value | 支持的取值为API&nbsp;Version存在的整数值，例如4、5、6。场景示例：某应用，针对相同设备型号，同时在网的为使用API&nbsp;5和API&nbsp;6开发的两个软件版本，则允许上架2个entry类型的安装包，分别支持到对应设备侧软件版本的分发。 | 数组 | 不可缺省。 |
 
-####   **表25** **screenDensity对象的内部结构说明**
+## screenDensity对象的内部结构
+
+**表25** **screenDensity对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 不可缺省。 |
 | value | 取值范围如下：<br/>sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为（0,120]的设备。<br/>mdpi：表示中规模的屏幕密度(Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch)，适用于dpi取值为（120,160]的设备。<br/>ldpi：表示大规模的屏幕密度(Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch)，适用于dpi取值为（160,240]的设备。<br/>xldpi：表示特大规模的屏幕密度(Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch)，适用于dpi取值为（240,320]的设备。<br/>xxldpi：表示超大规模的屏幕密度(Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch)，适用于dpi取值为（320,480]的设备。<br/>xxxldpi：表示超特大规模的屏幕密度(Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch)，适用于dpi取值为（480,640]的设备。 | 数组 | 不可缺省。 |
 
-####   **表26** **countryCode对象的内部结构说明**
+## countryCode对象的内部结构
+
+**表26** **countryCode对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -580,7 +723,9 @@ distroFilter示例：
 }
 ```
 
-####   **表27** **commonEvents对象的内部结构说明**
+## commonEvents对象的内部结构
+
+**表27** **commonEvents对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -596,7 +741,7 @@ commonEvents示例：
 ```json
 "commonEvents": [
   {
-    "name": ".MainAbility",
+    "name": ".EntryAbility",
     "permission": "ohos.permission.GET_BUNDLE_INFO",
     "data": [
       "com.example.demo",
@@ -610,7 +755,9 @@ commonEvents示例：
 ]
 ```
 
-####   **表28** **testRunner对象的内部结构说明**
+## testRunner对象的内部结构
+
+**表28** **testRunner对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -627,7 +774,8 @@ commonEvents示例：
 
 definePermission仅支持系统应用配置，三方应用配置不生效。
 
-####   **表29** **definePermissions对象内部结构说明**
+## definePermissions对象内部结构
+**表29** **definePermissions对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |

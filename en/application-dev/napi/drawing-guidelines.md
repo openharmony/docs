@@ -118,9 +118,9 @@ The following steps describe how to use the canvas and brush of the Native Drawi
     // Draw a pentagram on the canvas. The outline of the pentagram is drawn by the pen, and the color is filled in by the brush.
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
     // Destroy the created objects when they are no longer needed.
-    OH_Drawing_BrushDestory(cBrush);
-    OH_Drawing_PenDestory(cPen);
-    OH_Drawing_PathDestory(cPath);
+    OH_Drawing_BrushDestroy(cBrush);
+    OH_Drawing_PenDestroy(cPen);
+    OH_Drawing_PathDestroy(cPath);
     ```
 
 6. **Obtain pixel data.** Use `OH_Drawing_BitmapGetPixels` in `drawing_bitmap.h` to obtain the pixel address of the bitmap bound to the canvas. The memory to which the address points contains the pixel data of the drawing on the canvas.
@@ -133,9 +133,9 @@ The following steps describe how to use the canvas and brush of the Native Drawi
         LOGI("memcpy_s failed");
     }
     // Destroy the canvas object.
-    OH_Drawing_CanvasDestory(cCanvas);
+    OH_Drawing_CanvasDestroy(cCanvas);
     // Destroy the bitmap object.
-    OH_Drawing_BitmapDestory(cBitmap);
+    OH_Drawing_BitmapDestroy(cBitmap);
     ```
 
 ## Development Procedure for Text Drawing

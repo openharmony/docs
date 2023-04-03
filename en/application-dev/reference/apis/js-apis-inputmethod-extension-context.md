@@ -1,4 +1,4 @@
-# InputMethodExtensionContext
+# @ohos.InputMethodExtensionContext (InputMethodExtensionContext)
 
 The **InputMethodExtensionContext** module, inherited from **ExtensionContext**, provides context for **InputMethodExtension** abilities.
 
@@ -11,7 +11,7 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 ## Modules to Import
 
 ```
-import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
+import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 ```
 
 ## Usage
@@ -19,8 +19,8 @@ import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
 Before using the **InputMethodExtensionContext** module, you must define a child class that inherits from **InputMethodExtensionAbility**.
 
 ```js
-import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
-class MainAbility extends InputMethodExtensionAbility {
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+class EntryAbility extends InputMethodExtensionAbility {
     onCreate() {
         let context = this.context;
     }
@@ -51,7 +51,7 @@ this.context.destroy((err) => {
 
 ## InputMethodExtensionContext.destroy
 
-destroy(): Promise<void&gt;
+destroy(): Promise\<void>;
 
 Terminates this ability. This API uses a promise to return the result.
 
@@ -61,14 +61,14 @@ Terminates this ability. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise<void&gt; | Promise that returns no value.|
+| Promise\<void>; | Promise that returns no value.|
 
 **Example**
 
 ```js
-this.context.destroy().then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.destroy().then(() => {
+    console.log('Succeeded in destroying context.');
 }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+    console.log('Failed to destroy context: ' + JSON.stringify(error));
 });
 ```

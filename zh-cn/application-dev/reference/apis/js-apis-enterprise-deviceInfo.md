@@ -45,7 +45,7 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
     if (error != null) {
@@ -94,7 +94,7 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
     console.log(result);
@@ -136,7 +136,7 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
     if (error != null) {
@@ -185,7 +185,7 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
     console.log(result);
@@ -227,7 +227,7 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp, (error, result) => {
     if (error != null) {
@@ -276,7 +276,7 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp).then((result) => {
     console.log(result);

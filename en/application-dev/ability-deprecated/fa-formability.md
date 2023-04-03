@@ -63,9 +63,9 @@ To create an FA widget, you need to implement lifecycle callbacks using the **Li
 1. Import the required modules.
 
    ```javascript
-   import formBindingData from '@ohos.application.formBindingData'
-   import formInfo from '@ohos.application.formInfo'
-   import formProvider from '@ohos.application.formProvider'
+   import formBindingData from '@ohos.app.form.formBindingData';
+   import formInfo from '@ohos.app.form.formInfo';
+   import formProvider from '@ohos.app.form.formProvider';
    ```
    
 2. Implement lifecycle callbacks for the widget.
@@ -158,7 +158,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
   | defaultDimension    | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String    | No                      |
   | updateEnabled       | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
   | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String    | Yes (initial value: **0:0**) |
-  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number      | Yes (initial value: **0**)   |
+  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number      | Yes (initial value: **0**)   |
   | formConfigAbility   | Link to a specific page of the application. The value is a URI.                       | String    | Yes (initial value: left empty)    |
   | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                        | String    | Yes (initial value: left empty)    |
   | jsComponentName     | Component name of the widget. The value is a string with a maximum of 127 bytes.        | String    | No                      |
@@ -206,7 +206,7 @@ A widget provider is usually started when it is needed to provide information ab
            let formId = want.parameters["ohos.extra.param.key.form_identity"];
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-           // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
+           // Persistently store widget data for subsequent use, such as widget instance retrieval or update.
            // The storeFormInfo API is not implemented here.
            storeFormInfo(formId, formName, tempFlag, want);
 
@@ -231,9 +231,9 @@ You should override **onDestroy** to implement widget data deletion.
        }
 ```
 
-For details about how to implement persistence data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
 
-The **Want** passed by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
+The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
 - Normal widget: a widget persistently used by the widget host
 
@@ -254,14 +254,14 @@ onUpdate(formId) {
         "detail": "detailOnUpdate"
     };
     let formData = formBindingData.createFormBindingData(obj);
-    // Call the updateForm method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+    // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
     formProvider.updateForm(formId, formData).catch((error) => {
         console.log('FormAbility updateForm, error:' + JSON.stringify(error));
     });
 }
 ```
 
-### Developing Widget UI Pages
+### Developing the Widget UI Page
 
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
@@ -335,7 +335,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "com.example.entry.MainAbility",
+         "abilityName": "com.example.entry.EntryAbility",
          "params": {
            "message": "add detail"
          }
@@ -353,12 +353,12 @@ Now you've got a widget shown below.
 You can set router and message events for components on a widget. The router event applies to ability redirection, and the message event applies to custom click events. The key steps are as follows:
 
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
-2. For the router event, set the following attributes:
-   - **action**: **router**, which indicates a router event.
-   - **abilityName**: target ability name, for example, **com.example.entry.MainAbility**, which is the default main ability name in DevEco Studio for the FA model.
-   - **params**: custom parameters of the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the main ability in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
-3. For the message event, set the following attributes:
-   - **action**: **message**, which indicates a message event.
+2. Set the router event.
+   - **action**: **"router"**, which indicates a router event.
+   - **abilityName**: target ability name, for example, **com.example.entry.EntryAbility**, which is the default UIAbility name in DevEco Studio for the FA model.
+   - **params**: custom parameters of the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the EntryAbility in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
+3. Set the message event.
+   - **action**: **"message"**, which indicates a message event.
    - **params**: custom parameters of the message event. Set them as required. The value can be obtained from **message** in the widget lifecycle function **onEvent**.
 
 The code snippet is as follows:
@@ -388,7 +388,7 @@ The code snippet is as follows:
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "com.example.entry.MainAbility",
+         "abilityName": "com.example.entry.EntryAbility",
          "params": {
            "message": "add detail"
          }

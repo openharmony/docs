@@ -4,7 +4,7 @@
 
 **full-SDK**是提供给OEM厂商开发应用的工具包，不能随DevEco Studio下载，包含了系统应用所需要的高权限API
 
-三方开发者通过DevEco Studio自动下载的**API8版本**SDK均为**public版本**。public-SDK**不支持**开发者使用**所有的系统API**，包括animator组件、xcomponent组件、@ohos.application.abilityManager.d.ts、@ohos.application.formInfo.d.ts、@ohos.bluetooth.d.ts等，如工程必须依赖于系统API，请按照以下步骤替换**full-SDK**。
+三方开发者通过DevEco Studio自动下载的**API8版本**SDK均为**public版本**。public-SDK**不支持**开发者使用**所有的系统API**，包括animator组件、xcomponent组件、@ohos.app.ability.abilityManager.d.ts、@ohos.app.form.formInfo.d.ts、@ohos.bluetooth.d.ts等，如工程必须依赖于系统API，请按照以下步骤替换**full-SDK**。
 
 > **说明**：本文中的截图仅为参考，具体的显示界面请以实际使用的DevEco Studio和SDK的版本为准。
 
@@ -32,7 +32,7 @@ full-SDK需要手动下载。请参考[版本说明书](../../release-notes/Open
 
    ![image-20220613220702504](figures/zh-cn_image_0000001655129232.png)
 
-   b.检查api中是否包含系统API（@ohos.application.abilityManager.d.ts、@ohos.application.formInfo.d.ts、@ohos.bluetooth.d.ts等）
+   b.检查api中是否包含系统API（@ohos.app.ability.abilityManager.d.ts、@ohos.app.form.formInfo.d.ts、@ohos.bluetooth.d.ts等）
 
    注：系统api判定标准以发布api指导文档为主。
 

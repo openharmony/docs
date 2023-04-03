@@ -9,7 +9,7 @@ You only need to perform operations in [Resource Files](#resource-files) and [Re
 
 ## Resource Files
 
-Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions. Place the resource file of each locale in the i18n directory described in [File Organization](../ui/js-framework-file.md). 
+Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions. Place the resource file of each locale in the i18n directory described in [File Organization](js-framework-file.md). 
 
 Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong(China) in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
 
@@ -191,4 +191,4 @@ Table 3 $t function parameters
 
 ## Language Acquisition
 
-For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-configuration.md).
+For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-application-configuration.md).

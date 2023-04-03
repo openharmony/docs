@@ -1,9 +1,9 @@
 # ProcessRunningInfo
 
-The **ProcessRunningInfo** module provides process running information.
+The **ProcessRunningInfo** module defines the running information of a process.
 
 > **NOTE**
-> - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessRunningInformation<sup>9+</sup>](js-apis-inner-application-processRunningInformation.md) instead.
+> - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md) instead.
 > - The initial APIs of this module are supported since API version 8.
 
 ## Attributes
@@ -19,14 +19,15 @@ The **ProcessRunningInfo** module provides process running information.
 
 ## Usage
 
-The process running information is obtained through [getProcessRunningInfos](js-apis-application-appManager.md##appManager.getProcessRunningInfos<sup>(deprecated)</sup>).
+The process running information is obtained by using [getProcessRunningInfos](js-apis-application-appManager.md#appmanagergetprocessrunninginfosdeprecated) in **appManager**.
 
 **Example**
 ```ts
-import appManager from '@ohos.application.appManager';
-app.getProcessRunningInfos().then((data) => {
-    console.log('success:' + JSON.stringify(data));
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getProcessRunningInfos().then((data) => {
+    console.log('success: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+    console.error('failed: ${JSON.stringify(error)}');
 });
 ```

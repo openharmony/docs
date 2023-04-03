@@ -1,11 +1,12 @@
-# Buffer
+# @ohos.buffer (Buffer)
+
+A **Buffer** object represents a byte sequence of a fixed length. It is used to store binary data.
+
+You can use the APIs provided by the Buffer module to process images and a large amount of binary data, and receive or upload files.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-A **Buffer** object represents a fixed-length sequence of bytes. It is used to store binary data.
-
-You can use the APIs provided by the **Buffer** module to process images and a large amount of binary data, and receive or upload files.
 
 ## Modules to Import
 
@@ -21,55 +22,23 @@ Enumerates the supported encoding formats of strings.
 
 | Encoding Format   | Description                |
 | ------- | -------------------- |
-| ascii  | ASCII format.  |
-| utf8  | UTF-8  |
-| utf-8 | UTF-8 format.|
-| utf16le | UTF-16LE format.|
-| ucs2 | UTF-16LE format.|
-| ucs-2 | UTF-16LE format.|
-| base64 | Base64 format.|
-| base64url | Base64 format.|
-| latin1 | ASCII format.|
-| binary | Binary format.|
-| hex | Hexadecimal format.|
+| 'ascii' | ASCII format, which is case insensitive.|
+| 'utf8' | UTF-8 format, which is case insensitive.|
+| 'utf-8' | UTF-8 format, which is case insensitive.|
+| 'utf16le' | UTF-16 little-endian format, which is case insensitive.|
+| 'ucs2' | UTF-16 little-endian format, which is case insensitive.|
+| 'ucs-2' | UTF-16 little-endian format, which is case insensitive.|
+| 'base64' | Base64 format, which is case insensitive.|
+| 'base64url' | Base64 format, which is case insensitive.|
+| 'latin1' | ASCII format, which is case insensitive.|
+| 'binary' | Binary format, which is case insensitive.|
+| 'hex' | Hexadecimal format, which is case insensitive.|
 
-## Buffer
-
-### Attributes
-
-**System capability**: SystemCapability.Utils.Lang
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Length of the buffer, in bytes.|
-| buffer | ArrayBuffer | Yes| No| **ArrayBuffer** object.|
-| byteOffset | number | Yes| No| Offset of the buffer in the memory pool.|
-
-**Error codes**
-
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
-
-**Example**
-
-```ts
-import buffer from '@ohos.buffer';
-
-let buf = buffer.from("1236");
-console.log(JSON.stringify(buf.length));
-let arrayBuffer = buf.buffer;
-console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
-console.log(JSON.stringify(buf.byteOffset));
-```
-
-### alloc
+## buffer.alloc
 
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
 
-Allocates and initializes a **Buffer** instance of the specified size.
+Creates and initializes a **Buffer** instance of the specified length.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -77,8 +46,8 @@ Allocates and initializes a **Buffer** instance of the specified size.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes| Size of the **Buffer** instance to allocate, in bytes.|
-| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Pre-filled value. The default value is **0**.|
+| size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
+| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Value to be filled in the buffer. The default value is **0**.|
 | encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **utf-8**.|
 
 **Return value**
@@ -97,12 +66,12 @@ let buf2 = buffer.alloc(5, 'a');
 let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
 ```
 
-### allocUninitializedFromPool
+## buffer.allocUninitializedFromPool
 
 allocUninitializedFromPool(size: number): Buffer
 
-Allocates a **Buffer** instance of the specified size from the buffer pool, without initializing it.
-To initialize the **Buffer** instance, call **fill()**.
+Creates a **Buffer** instance of the specified size from the buffer pool, without initializing it.
+You need to use [fill()](#fill) to initialize the **Buffer** instance created.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -110,7 +79,7 @@ To initialize the **Buffer** instance, call **fill()**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes| Size of the **Buffer** instance to allocate, in bytes.|
+| size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
 
 **Return value**
 
@@ -127,11 +96,12 @@ let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
 ```
 
-### allocUninitialized
+## buffer.allocUninitialized
 
 allocUninitialized(size: number): Buffer
 
-Allocates a **Buffer** instance of the specified size, without initializing it. This API does not allocate memory from the buffer pool.
+Creates a **Buffer** instance of the specified size, without initializing it. This API does not allocate memory from the buffer pool.
+You need to use [fill()](#fill) to initialize the **Buffer** instance created.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -139,7 +109,7 @@ Allocates a **Buffer** instance of the specified size, without initializing it. 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes|Size of the **Buffer** instance to allocate, in bytes.|
+| size | number | Yes|Size of the **Buffer** instance to create, in bytes.|
 
 **Return value**
 
@@ -156,7 +126,7 @@ let buf = buffer.allocUninitialized(10);
 buf.fill(0);
 ```
 
-### byteLength
+## buffer.byteLength
 
 byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
@@ -169,7 +139,7 @@ Obtains the number of bytes of a string based on the encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
 
 **Return value**
 
@@ -187,7 +157,7 @@ console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')
 // Print: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
-### compare
+## buffer.compare
 
 compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
@@ -221,11 +191,11 @@ let res = buf1.compare(buf2);
 console.log(Number(res).toString()); // Print 1.
 ```
 
-### concat
+## buffer.concat
 
 concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
-Concatenates an array of **Buffer** instances into a new instance of the specified length.
+Concatenates an array of **Buffer** instances of the specified length into a new instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -234,7 +204,7 @@ Concatenates an array of **Buffer** instances into a new instance of the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | Yes| Array of instances to concatenate.|
-| totalLength | number | No| Total length of the new **Buffer** instance, in bytes.|
+| totalLength | number | No| Total length of bytes to be copied.|
 
 **Return value**
 
@@ -244,7 +214,7 @@ Concatenates an array of **Buffer** instances into a new instance of the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -261,7 +231,7 @@ let buf = buffer.concat([buf1, buf2]);
 console.log(buf.toString('hex')); // 3132333461626364
 ```
 
-### from
+## buffer.from
 
 from(array: number[]): Buffer;
 
@@ -290,11 +260,11 @@ let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
 console.log(buf.toString('hex')); // 627566666572
 ```
 
-### from
+## buffer.from
 
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): Buffer
 
-Creates a **Buffer** instance that shares memory with the specified array of **Buffer** instances.
+Creates a **Buffer** instance of the specified length that shares memory with **arrayBuffer**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -314,7 +284,7 @@ Creates a **Buffer** instance that shares memory with the specified array of **B
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -329,7 +299,7 @@ let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
 ```
 
-### from
+## buffer.from
 
 from(buffer: Buffer | Uint8Array): Buffer
 
@@ -341,7 +311,7 @@ Creates a **Buffer** instance with the copy of another instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to copy. |
+| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to copy.|
 
 **Return value**
 
@@ -358,7 +328,7 @@ let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
 ```
 
-### from
+## buffer.from
 
 from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
@@ -385,10 +355,10 @@ Creates a **Buffer** instance based on the specified object.
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = buffer.from(new String('this is a test'));
+let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 ```
 
-### from
+## buffer.from
 
 from(string: String, encoding?: BufferEncoding): Buffer
 
@@ -418,11 +388,11 @@ let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
 
 console.log (buf1.toString()); // Print: this is a test
-console.log(buf2.toString());
+console.log (buf2.toString()); // print: this is a test
 ```
 
 
-### isBuffer
+## buffer.isBuffer
 
 isBuffer(obj: Object): boolean
 
@@ -454,7 +424,7 @@ buffer.isBuffer([]); // false
 buffer.isBuffer(new Uint8Array(1024)); // false
 ```
 
-### isEncoding
+## buffer.isEncoding
 
 isEncoding(encoding: string): boolean
 
@@ -485,6 +455,70 @@ console.log(buffer.isEncoding('utf/8').toString());	// Print: false
 console.log(buffer.isEncoding('').toString());	// Print: false
 ```
 
+## buffer.transcode
+
+transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
+
+Transcodes the given **Buffer** or **Uint8Array** object from one encoding format to another.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to encode.|
+| fromEnc | string | Yes| Current encoding format.|
+| toEnc | string | Yes| Target encoding format.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Buffer | New **Buffer** instance in the target encoding format.|
+
+**Example**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.alloc(50);
+let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
+console.log(newBuf.toString('ascii'));
+```
+
+## Buffer
+
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | Yes| No| Length of the **Buffer** instance, in bytes.|
+| buffer | ArrayBuffer | Yes| No| **ArrayBuffer** object.|
+| byteOffset | number | Yes| No| Offset of the **Buffer** instance in the memory pool.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+
+**Example**
+
+```ts
+import buffer from '@ohos.buffer';
+
+let buf = buffer.from("1236");
+console.log(JSON.stringify(buf.length));
+let arrayBuffer = buf.buffer;
+console.log(JSON.stringify(new Uint8Array(arrayBuffer)));
+console.log(JSON.stringify(buf.byteOffset));
+```
+
 ### compare
 
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
@@ -507,7 +541,15 @@ Compares this **Buffer** instance with another instance.
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the two **Buffer** instances are the same.<br>Returns **1** if this instance comes after the target instance when sorted.<br>Returns **-1** if this instance comes before the target instance when sorted. |
+| number | Returns **0** if the two **Buffer** instances are the same.<br>Returns **1** if this instance comes after the target instance when sorted. <br>Returns **-1** if this instance comes before the target instance when sorted.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200001 | The value of "[targetStart/targetEnd/sourceStart/sourceEnd]" is out of range. |
 
 **Example**
 
@@ -547,7 +589,7 @@ Copies data at the specified position in this **Buffer** instance to the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -577,6 +619,13 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 Creates and returns an iterator that contains key-value pairs of this **Buffer** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number |  Key of the iterator.|
+| number |  Value of the iterator.|
 
 **Example**
 
@@ -647,7 +696,7 @@ Fills this **Buffer** instance at the specified position. By default, data is fi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -739,7 +788,7 @@ Creates and returns an iterator that contains the keys of this **Buffer** instan
 
 | Type| Description|
 | -------- | -------- |
-|  IterableIterator&lt;number&gt; | Iterator.|
+|  IterableIterator&lt;number&gt; | Iterator created.|
 
 **Example**
 
@@ -789,7 +838,7 @@ console.log(buf.lastIndexOf('buffer').toString());	// Print: 17
 
 readBigInt64BE(offset?: number): bigint
 
-Reads a signed, big-endian 64-bit Big integer from this **Buffer** instance at the specified offset.
+Reads a signed, big-endian 64-bit integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -807,7 +856,7 @@ Reads a signed, big-endian 64-bit Big integer from this **Buffer** instance at t
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -848,7 +897,7 @@ Reads a signed, little-endian 64-bit Big integer from this **Buffer** instance a
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -889,7 +938,7 @@ Reads an unsigned, big-endian 64-bit Big integer from this **Buffer** instance a
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -930,7 +979,7 @@ Reads an unsigned, little-endian 64-bit Big integer from this **Buffer** instanc
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -971,7 +1020,7 @@ Reads a big-endian double-precision floating-point number from this **Buffer** i
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1011,7 +1060,7 @@ Reads a little-endian double-precision floating-point number from this **Buffer*
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1051,7 +1100,7 @@ Reads a big-endian single-precision floating-point number from this **Buffer** i
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1091,7 +1140,7 @@ Reads a little-endian single-precision floating-point number from this **Buffer*
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1131,7 +1180,7 @@ Reads a signed 8-bit integer from this **Buffer** instance at the specified offs
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1172,7 +1221,7 @@ Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the s
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1212,7 +1261,7 @@ Reads a signed, little-endian 16-bit integer from this **Buffer** instance at th
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1252,7 +1301,7 @@ Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the s
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1292,7 +1341,7 @@ Reads a signed, little-endian 32-bit integer from this **Buffer** instance at th
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1334,7 +1383,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1378,7 +1427,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1419,7 +1468,7 @@ Reads an unsigned 8-bit integer from this **Buffer** instance at the specified o
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1461,7 +1510,7 @@ Reads an unsigned, big-endian 16-bit integer from this **Buffer** instance at th
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1503,7 +1552,7 @@ Reads an unsigned, little-endian 16-bit integer from this **Buffer** instance at
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1545,7 +1594,7 @@ Reads an unsigned, big-endian 32-bit integer from this **Buffer** instance at th
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1586,7 +1635,7 @@ Reads an unsigned, little-endian 32-bit integer from this **Buffer** instance at
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1628,7 +1677,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1670,7 +1719,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1741,7 +1790,7 @@ Interprets this **Buffer** instance as an array of unsigned 16-bit integers and 
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1776,7 +1825,7 @@ Interprets this **Buffer** instance as an array of unsigned 32-bit integers and 
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1811,7 +1860,7 @@ Interprets this **Buffer** instance as an array of unsigned 64-bit integers and 
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1901,7 +1950,7 @@ Creates and returns an iterator that contains the values of this **Buffer** inst
 
 | Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;number&gt; | Iterator created.|
+| IterableIterator&lt;number&gt; | Iterator.|
 
 **Example**
 
@@ -1940,7 +1989,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -1984,7 +2033,7 @@ Writes a signed, big-endian 64-bit Big integer to this **Buffer** instance at th
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2023,7 +2072,7 @@ Writes a signed, little-endian 64-bit Big integer to this **Buffer** instance at
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2062,7 +2111,7 @@ Writes an unsigned, big-endian 64-bit Big integer to this **Buffer** instance at
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2101,7 +2150,7 @@ Writes an unsigned, little-endian 64-bit Big integer to this **Buffer** instance
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2140,7 +2189,7 @@ Writes a big-endian double-precision floating-point number to this **Buffer** in
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2179,7 +2228,7 @@ Writes a little-endian double-precision floating-point number to this **Buffer**
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2218,7 +2267,7 @@ Writes a big-endian single-precision floating-point number to this **Buffer** in
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2258,7 +2307,7 @@ Writes a little-endian single-precision floating-point number to this **Buffer**
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2297,7 +2346,7 @@ Writes a signed 8-bit integer to this **Buffer** instance at the specified offse
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2338,7 +2387,7 @@ Writes a signed, big-endian 16-bit integer to this **Buffer** instance at the sp
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2378,7 +2427,7 @@ Writes a signed, little-endian 16-bit integer to this **Buffer** instance at the
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2417,7 +2466,7 @@ Writes a signed, big-endian 32-bit integer to this **Buffer** instance at the sp
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2457,7 +2506,7 @@ Writes a signed, little-endian 32-bit integer to this **Buffer** instance at the
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2497,7 +2546,7 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2538,7 +2587,7 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2577,7 +2626,7 @@ Writes an unsigned 8-bit integer to this **Buffer** instance at the specified of
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2619,7 +2668,7 @@ Writes an unsigned, big-endian 16-bit integer to this **Buffer** instance at the
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2659,7 +2708,7 @@ Writes an unsigned, little-endian 16-bit integer to this **Buffer** instance at 
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2699,7 +2748,7 @@ Writes an unsigned, big-endian 32-bit integer to this **Buffer** instance at the
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2738,7 +2787,7 @@ Writes an unsigned, little-endian 32-bit integer to this **Buffer** instance at 
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2778,7 +2827,7 @@ Writes an unsigned big-endian value of the specified length to this **Buffer** i
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2818,7 +2867,7 @@ Writes an unsigned little-endian value of the specified length to this **Buffer*
 
 **Error codes**
 
-For details about the error codes, see [Buffer Error Codes](../errorcodes/errorcode-buffer.md).
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -2831,38 +2880,6 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
 buf.writeUIntLE(0x1234567890ab, 0, 6);
-```
-
-### transcode
-
-transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
-
-Transcodes the given **Buffer** or **Uint8Array** instance from one encoding format to another.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to transcode. |
-| fromEnc | string | Yes| Current encoding format.|
-| toEnc | string | Yes| Target encoding format.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Buffer | New **Buffer** instance in the target encoding format.|
-
-**Example**
-
-```ts
-import buffer from '@ohos.buffer';
-
-let buf = buffer.alloc(50);
-let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
-console.log(newBuf.toString('ascii'));
 ```
 
 ## Blob
@@ -2941,7 +2958,7 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Blob | **Blob** instance created. |
+| Blob | New **Blob** instance created.|
 
 **Example**
 ```ts
@@ -2954,7 +2971,7 @@ let blob3 = blob.slice(0, 2, "MIME");
 
 text(): Promise&lt;string&gt;
 
-Returns text in UTF-8 format.
+Returns text in UTF-8 format. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 

@@ -31,9 +31,11 @@ libdl：dlopen等动态链接器接口。
 
 C标准函数库是在C语言程序设计中，所有符合标准的头文件的集合，以及常用的函数库实现程序（如I/O输入输出和字符串控制）。
 
-**<font size=5>musl</font>**
+**musl**
 
 [native api中没有导出的符号列表](musl-peculiar-symbol.md)
+
+[native api由于权限管控可能调用失败的符号列表](musl-permission-control-symbol.md)
 
 ## 标准C++库
 
@@ -50,6 +52,10 @@ C++11、C++14标准已完全支持，C++17和C++20标准正在完善。
 ## OpenSL ES
 
 [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/)是一个嵌入式跨平台的音频处理库。
+
+**支持的能力**
+
+[Native api中支持的OpenSL ES接口列表](../third_party_opensles/opensles.md)
 
 ## zlib
 
@@ -74,3 +80,5 @@ OpenGL ES 3.0
 **标准库中导出的符号列表**
 
 [native api中导出的OpenGL ES 3.0符号列表](../third_party_opengl/openglesv3-symbol.md)
+
+<!--no_check-->

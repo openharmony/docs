@@ -1,4 +1,4 @@
-# continuationManager
+# @ohos.continuation.continuationManager (continuationManager)
 
 The **continuationManager** module provides the continuation management entry. You can use the APIs of this module to connect to and cancel the continuation management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
 

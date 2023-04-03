@@ -1,4 +1,4 @@
-# @ohos.bundle.launcherBundleManager
+# @ohos.bundle.launcherBundleManager (launcherBundleManager)
 
 The **bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the launcher ability information and shortcut information.
 

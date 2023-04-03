@@ -1,4 +1,6 @@
-# Socket Connection
+# # @ohos.net.socket (Socket Connection) 
+
+The **socket** module implements data transfer over TCPSocket, UDPSocket, WebSocket, and TLSSocket connections.
 
 > **NOTE**
 >
@@ -12,7 +14,7 @@ import socket from '@ohos.net.socket';
 
 ## socket.constructUDPSocketInstance
 
-constructUDPSocketInstance\(\): UDPSocket
+constructUDPSocketInstance(): UDPSocket
 
 Creates a **UDPSocket** object.
 
@@ -38,7 +40,7 @@ Defines a **UDPSocket** connection. Before invoking UDPSocket APIs, you need to 
 
 ### bind
 
-bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
 
@@ -52,6 +54,13 @@ Binds the IP address and port number. The port number can be specified or random
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [NetAddress](#netaddress) | Yes  | Destination address. For details, see [NetAddress](#netaddress).|
 | callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result.                                            |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -69,7 +78,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 ### bind
 
-bind\(address: NetAddress\): Promise<void\>
+bind(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
 
@@ -83,6 +92,12 @@ Binds the IP address and port number. The port number can be specified or random
 | ------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address | [NetAddress](#netaddress) | Yes  | Destination address. For details, see [NetAddress](#netaddress).|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Return value**
 
@@ -105,7 +120,7 @@ promise .then(() => {
 
 ### send
 
-send\(options: UDPSendOptions, callback: AsyncCallback<void\>\): void
+send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -121,6 +136,13 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDPSocket connection. For details, see [UDPSendOptions](#udpsendoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -145,7 +167,7 @@ udp.send({
 
 ### send
 
-send\(options: UDPSendOptions\): Promise<void\>
+send(options: UDPSendOptions): Promise\<void\>
 
 Sends data over a UDPSocket connection. This API uses a promise to return the result.
 
@@ -160,6 +182,13 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 | Name | Type                                    | Mandatory| Description                                                        |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [UDPSendOptions](#udpsendoptions) | Yes  | Parameters for sending data over the UDPSocket connection. For details, see [UDPSendOptions](#udpsendoptions).|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Return value**
 
@@ -189,7 +218,7 @@ promise.then(() => {
 
 ### close
 
-close\(callback: AsyncCallback<void\>\): void
+close(callback: AsyncCallback\<void\>): void
 
 Closes a UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -219,7 +248,7 @@ udp.close(err => {
 
 ### close
 
-close\(\): Promise<void\>
+close(): Promise\<void\>
 
 Closes a UDPSocket connection. This API uses a promise to return the result.
 
@@ -248,12 +277,12 @@ promise.then(() => {
 
 ### getState
 
-getState\(callback: AsyncCallback<SocketStateBase\>\): void
+getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) is successfully called.
+>This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -264,6 +293,12 @@ Obtains the status of the UDPSocket connection. This API uses an asynchronous ca
 | Name  | Type                                                  | Mandatory| Description      |
 | -------- | ------------------------------------------------------ | ---- | ---------- |
 | callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -288,12 +323,12 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 ### getState
 
-getState\(\): Promise<SocketStateBase\>
+getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the UDPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) is successfully called.
+>This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -303,7 +338,7 @@ Obtains the status of the UDPSocket connection. This API uses a promise to retur
 
 | Type                                            | Description                                      |
 | :----------------------------------------------- | :----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
+| Promise\<[SocketStateBase](#socketstatebase)\> | Promise used to return the result.|
 
 **Example**
 
@@ -327,12 +362,12 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 ### setExtraOptions
 
-setExtraOptions\(options: UDPExtraOptions, callback: AsyncCallback<void\>\): void
+setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
-Sets other properties of the UDPSocket connection. This API uses an asynchronous callback to return the result.
+Sets other attributes of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) is successfully called.
+>This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -345,6 +380,12 @@ Sets other properties of the UDPSocket connection. This API uses an asynchronous
 | options  | [UDPExtraOptions](#udpextraoptions) | Yes  | Other properties of the UDPSocket connection. For details, see [UDPExtraOptions](#udpextraoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -375,12 +416,12 @@ udp.bind({address:'192.168.xx.xxx', port:xxxx, family:1}, err=> {
 
 ### setExtraOptions
 
-setExtraOptions\(options: UDPExtraOptions\): Promise<void\>
+setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
-Sets other properties of the UDPSocket connection. This API uses a promise to return the result.
+Sets other attributes of the UDPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) is successfully called.
+>This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -397,6 +438,13 @@ Sets other properties of the UDPSocket connection. This API uses a promise to re
 | Type           | Description                                                |
 | :-------------- | :--------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -423,9 +471,9 @@ promise.then(() => {
 ```
 
 
-### on\('message'\)
+### on('message')
 
-on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: SocketRemoteInfo\}\>\): void
+on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Enables listening for message receiving events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -436,7 +484,7 @@ Enables listening for message receiving events of the UDPSocket connection. This
 | Name  | Type                                                        | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Type of the event to subscribe to.<br /> **message**: message receiving event|
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | Yes  | Callback used to return the result.                               |
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -448,9 +496,9 @@ udp.on('message', value => {
 ```
 
 
-### off\('message'\)
+### off('message')
 
-off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: SocketRemoteInfo\}\>\): void
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Disables listening for message receiving events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -474,15 +522,15 @@ let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 udp.on('message', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('message', callback);
 udp.off('message');
 ```
 
 
-### on\('listening' | 'close'\)
+### on('listening' | 'close')
 
-on\(type: 'listening' | 'close', callback: Callback<void\>\): void
+on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
 Enables listening for data packet message events or close events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -508,9 +556,9 @@ udp.on('close', () => {
 ```
 
 
-### off\('listening' | 'close'\)
+### off('listening' | 'close')
 
-off\(type: 'listening' | 'close', callback?: Callback<void\>\): void
+off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Disables listening for data packet message events or close events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -534,22 +582,22 @@ let callback1 = () =>{
 	console.log("on listening, success");
 }
 udp.on('listening', callback1);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('listening', callback1);
 udp.off('listening');
 let callback2 = () =>{
 	console.log("on close, success");
 }
 udp.on('close', callback2);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('close', callback2);
 udp.off('close');
 ```
 
 
-### on\('error'\)
+### on('error')
 
-on\(type: 'error', callback: ErrorCallback\): void
+on(type: 'error', callback: ErrorCallback): void
 
 Enables listening for error events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -562,7 +610,6 @@ Enables listening for error events of the UDPSocket connection. This API uses an
 | type     | string        | Yes  | Type of the event to subscribe to.<br /> **error**: error event|
 | callback | ErrorCallback | Yes  | Callback used to return the result.                          |
 
-
 **Example**
 
 ```js
@@ -573,9 +620,9 @@ udp.on('error', err => {
 ```
 
 
-### off\('error'\)
+### off('error')
 
-off\(type: 'error', callback?: ErrorCallback\): void
+off(type: 'error', callback?: ErrorCallback): void
 
 Disables listening for error events of the UDPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -599,7 +646,7 @@ let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 udp.off('error', callback);
 udp.off('error');
 ```
@@ -667,9 +714,15 @@ Defines information about the socket connection.
 | port    | number | Yes  | Port number. The value ranges from **0** to **65535**.                                       |
 | size    | number | Yes  | Length of the server response message, in bytes.                                  |
 
+## Description of UDP Error Codes
+
+The UDP error code mapping is in the format of 2301000 + Linux kernel error code.
+
+For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
+
 ## socket.constructTCPSocketInstance
 
-constructTCPSocketInstance\(\): TCPSocket
+constructTCPSocketInstance(): TCPSocket
 
 Creates a **TCPSocket** object.
 
@@ -694,7 +747,7 @@ Defines a TCPSocket connection. Before invoking TCPSocket APIs, you need to call
 
 ### bind
 
-bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses an asynchronous callback to return the result.
 
@@ -709,6 +762,12 @@ Binds the IP address and port number. The port number can be specified or random
 | address  | [NetAddress](#netaddress) | Yes  | Destination address. For details, see [NetAddress](#netaddress).|
 | callback | AsyncCallback\<void\>              | Yes  | Callback used to return the result.                                            |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -726,7 +785,7 @@ tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 ### bind
 
-bind\(address: NetAddress\): Promise<void\>
+bind(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. The port number can be specified or randomly allocated by the system. This API uses a promise to return the result.
 
@@ -746,6 +805,13 @@ Binds the IP address and port number. The port number can be specified or random
 | :-------------- | :------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **Example**
 
 ```js
@@ -761,9 +827,12 @@ promise.then(() => {
 
 ### connect
 
-connect\(options: TCPConnectOptions, callback: AsyncCallback<void\>\): void
+connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 Sets up a connection to the specified IP address and port number. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>This API can be called only after **bind** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -775,6 +844,13 @@ Sets up a connection to the specified IP address and port number. This API uses 
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPConnectOptions](#tcpconnectoptions) | Yes  | TCPSocket connection parameters. For details, see [TCPConnectOptions](#tcpconnectoptions).|
 | callback | AsyncCallback\<void\>                    | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -792,7 +868,7 @@ tcp.connect({ address: {address: '192.168.xx.xxx', port: xxxx, family: 1} , time
 
 ### connect
 
-connect\(options: TCPConnectOptions\): Promise<void\>
+connect(options: TCPConnectOptions): Promise\<void\>
 
 Sets up a connection to the specified IP address and port number. This API uses a promise to return the result.
 
@@ -812,6 +888,13 @@ Sets up a connection to the specified IP address and port number. This API uses 
 | :-------------- | :--------------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
 **Example**
 
 ```js
@@ -827,12 +910,12 @@ promise.then(() => {
 
 ### send
 
-send\(options: TCPSendOptions, callback: AsyncCallback<void\>\): void
+send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data over a TCPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [connect](#connect) is successfully called.
+>This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -844,6 +927,13 @@ Sends data over a TCPSocket connection. This API uses an asynchronous callback t
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPSendOptions](#tcpsendoptions) | Yes  | Parameters for sending data over the TCPSocket connection. For details, see [TCPSendOptions](#tcpsendoptions).|
 | callback | AsyncCallback\<void\>                   | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -869,12 +959,12 @@ promise.then(() => {
 
 ### send
 
-send\(options: TCPSendOptions\): Promise<void\>
+send(options: TCPSendOptions): Promise\<void\>
 
 Sends data over a TCPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [connect](#connect) is successfully called.
+>This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -891,6 +981,13 @@ Sends data over a TCPSocket connection. This API uses a promise to return the re
 | Type           | Description                                              |
 | :-------------- | :------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -915,7 +1012,7 @@ promise1.then(() => {
 
 ### close
 
-close\(callback: AsyncCallback<void\>\): void
+close(callback: AsyncCallback\<void\>): void
 
 Closes a TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -929,6 +1026,11 @@ Closes a TCPSocket connection. This API uses an asynchronous callback to return 
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -946,7 +1048,7 @@ tcp.close(err => {
 
 ### close
 
-close\(\): Promise<void\>
+close(): Promise\<void\>
 
 Closes a TCPSocket connection. This API uses a promise to return the result.
 
@@ -959,6 +1061,12 @@ Closes a TCPSocket connection. This API uses a promise to return the result.
 | Type           | Description                                      |
 | :-------------- | :----------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -975,12 +1083,12 @@ promise.then(() => {
 
 ### getRemoteAddress
 
-getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a socket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [connect](#connect) is successfully called.
+>This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -991,6 +1099,12 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 | Name  | Type                                             | Mandatory| Description      |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | callback | AsyncCallback<[NetAddress](#netaddress)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1014,12 +1128,12 @@ promise.then(() => {
 
 ### getRemoteAddress
 
-getRemoteAddress\(\): Promise<NetAddress\>
+getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a socket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [connect](#connect) is successfully called.
+>This API can be called only after **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1030,6 +1144,12 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 | Type                                       | Description                                       |
 | :------------------------------------------ | :------------------------------------------ |
 | Promise<[NetAddress](#netaddress)> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1052,12 +1172,12 @@ promise1.then(() => {
 
 ### getState
 
-getState\(callback: AsyncCallback<SocketStateBase\>\): void
+getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) or [connect](#connect) is successfully called.
+>This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1069,6 +1189,11 @@ Obtains the status of the TCPSocket connection. This API uses an asynchronous ca
 | -------- | ------------------------------------------------------ | ---- | ---------- |
 | callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1092,12 +1217,12 @@ promise.then(() => {
 
 ### getState
 
-getState\(\): Promise<SocketStateBase\>
+getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TCPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) or [connect](#connect) is successfully called.
+>This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1109,6 +1234,11 @@ Obtains the status of the TCPSocket connection. This API uses a promise to retur
 | :----------------------------------------------- | :----------------------------------------- |
 | Promise<[SocketStateBase](#socketstatebase)> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1131,12 +1261,12 @@ promise.then(() => {
 
 ### setExtraOptions
 
-setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): void
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) or [connect](#connect) is successfully called.
+>This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1148,6 +1278,13 @@ Sets other properties of the TCPSocket connection. This API uses an asynchronous
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TCPExtraOptions](#tcpextraoptions) | Yes  | Other properties of the TCPSocket connection. For details, see [TCPExtraOptions](#tcpextraoptions).|
 | callback | AsyncCallback\<void\>                     | Yes  | Callback used to return the result.                                                  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1180,12 +1317,12 @@ promise.then(() => {
 
 ### setExtraOptions
 
-setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCPSocket connection. This API uses a promise to return the result.
 
 >**NOTE**
->This API can be called only after [bind](#bind) or [connect](#connect) is successfully called.
+>This API can be called only after **bind** or **connect** is successfully called.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1203,6 +1340,12 @@ Sets other properties of the TCPSocket connection. This API uses a promise to re
 | :-------------- | :--------------------------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -1232,9 +1375,9 @@ promise.then(() => {
 ```
 
 
-### on\('message'\)
+### on('message')
 
-on\(type: 'message', callback: Callback<\{message: ArrayBuffer, remoteInfo: SocketRemoteInfo\}\>\): void
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Enables listening for message receiving events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1257,9 +1400,9 @@ tcp.on('message', value => {
 ```
 
 
-### off\('message'\)
+### off('message')
 
-off\(type: 'message', callback?: Callback<\{message: ArrayBuffer, remoteInfo: SocketRemoteInfo\}\>\): void
+off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
 Disables listening for message receiving events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1283,15 +1426,15 @@ let callback = value =>{
 	console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 tcp.on('message', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('message', callback);
 tcp.off('message');
 ```
 
 
-### on\('connect' | 'close'\)
+### on('connect' | 'close')
 
-on\(type: 'connect' | 'close', callback: Callback<void\>\): void
+on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 Enables listening for connection or close events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1303,7 +1446,6 @@ Enables listening for connection or close events of the TCPSocket connection. Th
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Type of the event to subscribe to.<br /><br>- **connect**: connection event<br>- **close**: close event|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                  |
-
 
 **Example**
 
@@ -1318,9 +1460,9 @@ tcp.on('close', data => {
 ```
 
 
-### off\('connect' | 'close'\)
+### off('connect' | 'close')
 
-off\(type: 'connect' | 'close', callback?: Callback<void\>\): void
+off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Disables listening for connection or close events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1344,22 +1486,22 @@ let callback1 = () =>{
 	console.log("on connect success");
 }
 tcp.on('connect', callback1);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('connect', callback1);
 tcp.off('connect');
 let callback2 = () =>{
 	console.log("on close success");
 }
 tcp.on('close', callback2);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('close', callback2);
 tcp.off('close');
 ```
 
 
-### on\('error'\)
+### on('error')
 
-on\(type: 'error', callback: ErrorCallback\): void
+on(type: 'error', callback: ErrorCallback): void
 
 Enables listening for error events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1382,9 +1524,9 @@ tcp.on('error', err => {
 ```
 
 
-### off\('error'\)
+### off('error')
 
-off\(type: 'error', callback?: ErrorCallback\): void
+off(type: 'error', callback?: ErrorCallback): void
 
 Disables listening for error events of the TCPSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1408,7 +1550,7 @@ let callback = err =>{
 	console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
-// You can pass the **callback** of the **on** method to cancel listening for a certain type of callback. If you do not pass the **callback**, you will cancel listening for all callbacks.
+// You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
 tcp.off('error', callback);
 tcp.off('error');
 ```
@@ -1451,7 +1593,13 @@ Defines other properties of the TCPSocket connection.
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes.                              |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
-| socketTimeout     | number  | No  | Timeout duration of the TCPSocket connection, in ms.                            |
+| socketTimeout     | number  | No  | Timeout duration of the UDPSocket connection, in ms.                            |
+
+## Description of TCP Error Codes
+
+The TCP error code mapping is in the format of 2301000 + Linux kernel error code.
+
+For details about error codes, see [Socket Error Codes](../errorcodes/errorcode-net-socket.md).
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
@@ -1479,7 +1627,7 @@ Defines a TLSSocket connection. Before invoking TLSSocket APIs, you need to call
 
 ### bind<sup>9+</sup>
 
-bind\(address: NetAddress, callback: AsyncCallback<void\>\): void
+bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. This API uses an asynchronous callback to return the result.
 
@@ -1517,7 +1665,7 @@ tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 
 ### bind<sup>9+</sup>
 
-bind\(address: NetAddress\): Promise<void\>
+bind(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. This API uses a promise to return the result.
 
@@ -1559,7 +1707,7 @@ promise.then(() => {
 
 ### getState<sup>9+</sup>
 
-getState\(callback: AsyncCallback<SocketStateBase\>\): void
+getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 Obtains the status of the TLSSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1599,7 +1747,7 @@ tls.getState((err, data) => {
 
 ### getState<sup>9+</sup>
 
-getState\(\): Promise<SocketStateBase\>
+getState(): Promise\<SocketStateBase\>
 
 Obtains the status of the TLSSocket connection. This API uses a promise to return the result.
 
@@ -1638,7 +1786,7 @@ promise.then(() => {
 
 ### setExtraOptions<sup>9+</sup>
 
-setExtraOptions\(options: TCPExtraOptions, callback: AsyncCallback<void\>\): void
+setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1690,7 +1838,7 @@ tls.setExtraOptions({
 
 ### setExtraOptions<sup>9+</sup>
 
-setExtraOptions\(options: TCPExtraOptions\): Promise<void\>
+setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 Sets other properties of the TCPSocket connection after successful binding of the local IP address and port number of the TLSSocket connection. This API uses a promise to return the result.
 
@@ -1745,7 +1893,7 @@ promise.then(() => {
 
 ### connect<sup>9+</sup>
 
-connect(options: TLSConnectOptions, callback: AsyncCallback\<void>): void
+connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 Sets up a TLSSocket connection, and creates and initializes a TLS session after successful binding of the local IP address and port number of the TLSSocket connection. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. This API uses an asynchronous callback to return the result.
 
@@ -1766,7 +1914,6 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303113 | System permission denied.                    |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
@@ -1783,7 +1930,7 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1794,14 +1941,14 @@ let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "192.168.xx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -1809,12 +1956,12 @@ let options = {
   },
 };
 tlsTwoWay.connect(options, (err, data) => {
-  console.error(err);
-  console.log(data);
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1824,7 +1971,7 @@ tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
 let oneWayOptions = {
   address: {
     address: "192.168.xxx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
@@ -1833,14 +1980,14 @@ let oneWayOptions = {
   },
 };
 tlsOneWay.connect(oneWayOptions, (err, data) => {
-  console.error(err);
-  console.log(data);
+  console.error("connect callback error"+err);
+  console.log(JSON.stringify(data));
 });
 ```
 
 ### connect<sup>9+</sup>
 
-connect(options: TLSConnectOptions): Promise\<void>
+connect(options: TLSConnectOptions): Promise\<void\>
 
 Sets up a TLSSocket connection, and creates and initializes a TLS session after successful binding of the local IP address and port number of the TLSSocket connection. During this process, a TLS/SSL handshake is performed between the application and the server to implement data transmission. Both two-way and one-way authentication modes are supported. This API uses a promise to return the result.
 
@@ -1856,7 +2003,7 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 
 | Type                                       | Description                         |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void>                              | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
+| Promise\<void\>                              | Promise used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -1866,7 +2013,6 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable try again.  |
-| 2303113 | System permission denied.                    |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Protocol wrong type for socket.              |
 | 2303198 | Address already in use.                      |
@@ -1883,7 +2029,7 @@ Sets up a TLSSocket connection, and creates and initializes a TLS session after 
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1894,14 +2040,14 @@ let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "xxxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
     key: "xxxx",
     cert: "xxxx",
     ca: ["xxxx"],
-    passwd: "xxxx",
+    password: "xxxx",
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
@@ -1909,13 +2055,13 @@ let options = {
   },
 };
 tlsTwoWay.connect(options).then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1925,7 +2071,7 @@ tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
 let oneWayOptions = {
   address: {
     address: "192.168.xxx.xxx",
-    port: xxxx,
+    port: 8080,
     family: 1,
   },
   secureOptions: {
@@ -1934,7 +2080,7 @@ let oneWayOptions = {
   },
 };
 tlsOneWay.connect(oneWayOptions).then(data => {
-  console.log(data);
+  console.log(JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
@@ -1942,7 +2088,7 @@ tlsOneWay.connect(oneWayOptions).then(data => {
 
 ### getRemoteAddress<sup>9+</sup>
 
-getRemoteAddress\(callback: AsyncCallback<NetAddress\>\): void
+getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 Obtains the remote address of a TLSSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -1952,7 +2098,7 @@ Obtains the remote address of a TLSSocket connection. This API uses an asynchron
 
 | Name  | Type                                             | Mandatory| Description      |
 | -------- | ------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetAddress](#netaddress)> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | Yes  | Callback used to return the result. If the operation is successful, the remote address is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -1975,7 +2121,7 @@ tls.getRemoteAddress((err, data) => {
 
 ### getRemoteAddress<sup>9+</sup>
 
-getRemoteAddress\(\): Promise\<NetAddress>
+getRemoteAddress(): Promise\<NetAddress\>
 
 Obtains the remote address of a TLSSocket connection. This API uses a promise to return the result.
 
@@ -2007,7 +2153,7 @@ promise.then(() => {
 
 ### getCertificate<sup>9+</sup>
 
-getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)>): void
+getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
 Obtains the local digital certificate after a TLSSocket connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
 
@@ -2017,7 +2163,7 @@ Obtains the local digital certificate after a TLSSocket connection is establishe
 
 | Name  | Type                                  | Mandatory| Description|
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)>    | Yes  | Callback used to return the result. If the operation is successful, the local certificate is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>    | Yes  | Callback used to return the result. If the operation is successful, the local certificate is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2041,7 +2187,7 @@ tls.getCertificate((err, data) => {
 
 ### getCertificate<sup>9+</sup>
 
-getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
+getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 Obtains the local digital certificate after a TLSSocket connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
 
@@ -2051,7 +2197,7 @@ Obtains the local digital certificate after a TLSSocket connection is establishe
 
 | Type           | Description                 |
 | -------------- | -------------------- |
-| Promise\<[X509CertRawData](#x509certrawdata9)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2073,7 +2219,7 @@ tls.getCertificate().then(data => {
 
 ### getRemoteCertificate<sup>9+</sup>
 
-getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)>): void
+getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>): void
 
 Obtains the digital certificate of the server after a TLSSocket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -2083,7 +2229,7 @@ Obtains the digital certificate of the server after a TLSSocket connection is es
 
 | Name   | Type                                   | Mandatory | Description          |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)>  | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>  | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2106,7 +2252,7 @@ tls.getRemoteCertificate((err, data) => {
 
 ### getRemoteCertificate<sup>9+</sup>
 
-getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)>
+getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 Obtains the digital certificate of the server after a TLSSocket connection is established. This API uses a promise to return the result.
 
@@ -2116,7 +2262,7 @@ Obtains the digital certificate of the server after a TLSSocket connection is es
 
 | Type           | Description                 |
 | -------------- | -------------------- |
-| Promise\<[X509CertRawData](#x509certrawdata9)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[X509CertRawData](#x509certrawdata9)\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2137,7 +2283,7 @@ tls.getRemoteCertificate().then(data => {
 
 ### getProtocol<sup>9+</sup>
 
-getProtocol(callback: AsyncCallback\<string>): void
+getProtocol(callback: AsyncCallback\<string\>): void
 
 Obtains the communication protocol version after a TLSSocket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -2147,7 +2293,7 @@ Obtains the communication protocol version after a TLSSocket connection is estab
 
 | Name  | Type                                      | Mandatory| Description          |
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<string>                  | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<string\>                  | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2171,7 +2317,7 @@ tls.getProtocol((err, data) => {
 
 ### getProtocol<sup>9+</sup>
 
-getProtocol():Promise\<string>
+getProtocol():Promise\<string\>
 
 Obtains the communication protocol version after a TLSSocket connection is established. This API uses a promise to return the result.
 
@@ -2181,7 +2327,7 @@ Obtains the communication protocol version after a TLSSocket connection is estab
 
 | Type           | Description                 |
 | -------------- | -------------------- |
-| Promise\<string> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<string\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2203,7 +2349,7 @@ tls.getProtocol().then(data => {
 
 ### getCipherSuite<sup>9+</sup>
 
-getCipherSuite(callback: AsyncCallback\<Array\<string>>): void
+getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains the cipher suite negotiated by both communication parties after a TLSSocket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -2213,7 +2359,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLSSoc
 
 | Name  | Type                                    | Mandatory| Description|
 | -------- | ----------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<Array\<string>>          | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<Array\<string\>\>          | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2238,7 +2384,7 @@ tls.getCipherSuite((err, data) => {
 
 ### getCipherSuite<sup>9+</sup>
 
-getCipherSuite(): Promise\<Array\<string>>
+getCipherSuite(): Promise\<Array\<string\>\>
 
 Obtains the cipher suite negotiated by both communication parties after a TLSSocket connection is established. This API uses a promise to return the result.
 
@@ -2248,7 +2394,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLSSoc
 
 | Type                   | Description                 |
 | ---------------------- | --------------------- |
-| Promise\<Array\<string>> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<Array\<string\>\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2263,7 +2409,7 @@ Obtains the cipher suite negotiated by both communication parties after a TLSSoc
 
 ```js
 tls.getCipherSuite().then(data => {
-  console.log(data);
+  console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch(err => {
   console.error(err);
 });
@@ -2271,7 +2417,7 @@ tls.getCipherSuite().then(data => {
 
 ### getSignatureAlgorithms<sup>9+</sup>
 
-getSignatureAlgorithms(callback: AsyncCallback\<Array\<string>>): void
+getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains the signing algorithm negotiated by both communication parties after a TLSSocket connection is established. This API is applicable to two-way authentication. It uses an asynchronous callback to return the result.
 
@@ -2281,7 +2427,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 | Name  | Type                                  | Mandatory| Description           |
 | -------- | -------------------------------------| ---- | ---------------|
-| callback | AsyncCallback\<Array\<string>>         | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<Array\<string\>\>         | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -2304,7 +2450,7 @@ tls.getSignatureAlgorithms((err, data) => {
 
 ### getSignatureAlgorithms<sup>9+</sup>
 
-getSignatureAlgorithms(): Promise\<Array\<string>>
+getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
 Obtains the signing algorithm negotiated by both communication parties after a TLSSocket connection is established. This API is applicable to two-way authentication. It uses a promise to return the result.
 
@@ -2314,7 +2460,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 | Type                   | Description                 |
 | ---------------------- | -------------------- |
-| Promise\<Array\<string>> | Promise used to return the result.|
+| Promise\<Array\<string\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -2327,7 +2473,7 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 
 ```js
 tls.getSignatureAlgorithms().then(data => {
-  console.log(data);
+  console.log("getSignatureAlgorithms success" + data);
 }).catch(err => {
   console.error(err);
 });
@@ -2335,7 +2481,7 @@ tls.getSignatureAlgorithms().then(data => {
 
 ### send<sup>9+</sup>
 
-send(data: string, callback: AsyncCallback\<void>): void
+send(data: string, callback: AsyncCallback\<void\>): void
 
 Sends a message to the server after a TLSSocket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -2346,7 +2492,7 @@ Sends a message to the server after a TLSSocket connection is established. This 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
 |   data   | string                       | Yes  | Data content of the message to send.  |
-| callback | AsyncCallback\<void>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2373,7 +2519,7 @@ tls.send("xxxx", (err) => {
 
 ### send<sup>9+</sup>
 
-send(data: string): Promise\<void>
+send(data: string): Promise\<void\>
 
 Sends a message to the server after a TLSSocket connection is established. This API uses a promise to return the result.
 
@@ -2400,7 +2546,7 @@ Sends a message to the server after a TLSSocket connection is established. This 
 
 | Type          | Description                 |
 | -------------- | -------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
@@ -2414,7 +2560,7 @@ tls.send("xxxx").then(() =>{
 
 ### close<sup>9+</sup>
 
-close(callback: AsyncCallback\<void>): void
+close(callback: AsyncCallback\<void\>): void
 
 Closes a TLSSocket connection. This API uses an asynchronous callback to return the result.
 
@@ -2424,7 +2570,7 @@ Closes a TLSSocket connection. This API uses an asynchronous callback to return 
 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
-| callback | AsyncCallback\<void>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2449,7 +2595,7 @@ tls.close((err) => {
 
 ### close<sup>9+</sup>
 
-close(): Promise\<void>
+close(): Promise\<void\>
 
 Closes a TLSSocket connection. This API uses a promise to return the result.
 
@@ -2459,7 +2605,7 @@ Closes a TLSSocket connection. This API uses a promise to return the result.
 
 | Type          | Description                 |
 | -------------- | -------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -2490,7 +2636,7 @@ Defines TLS connection options.
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
-| ALPNProtocols  | Array\<string>                         | No| Application Layer Protocol Negotiation (ALPN) protocols.     |
+| ALPNProtocols  | Array\<string\>                         | No| Application Layer Protocol Negotiation (ALPN) protocols.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -2500,11 +2646,11 @@ Defines TLS security options. The CA certificate is mandatory, and other paramet
 
 | Name                | Type                                                   | Mandatory| Description                               |
 | --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
-| ca                    | string \| Array\<string>                               | Yes| CA certificate of the server, which is used to authenticate the digital certificate of the server.|
+| ca                    | string \| Array\<string\>                               | Yes| CA certificate of the server, which is used to authenticate the digital certificate of the server.|
 | cert                  | string                                                  | No| Digital certificate of the local client.                |
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
-| passwd                | string                                                  | No| Password for reading the private key.                     |
-| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)> | No| TLS protocol version.                 |
+| password                | string                                                  | No| Password for reading the private key.                     |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | No| TLS protocol version.                 |
 | useRemoteCipherPrefer | boolean                                                 | No| Whether to use the remote cipher suite preferentially.         |
 | signatureAlgorithms   | string                                                 | No| Signing algorithm used during communication.              |
 | cipherSuite           | string                                                 | No| Cipher suite used during communication.              |
@@ -2528,4 +2674,4 @@ Defines the certificate raw data.
 
 | Type                                                                  | Description                  |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | Data and encoding format of the certificate.|
+|[cert.EncodingBlob](js-apis-cert.md#datablob) | Data and encoding format of the certificate.|

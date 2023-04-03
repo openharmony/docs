@@ -26,9 +26,11 @@ onCreate(): void
 **示例：**
     
 ```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onCreate() {
-        console.log("MyAbilityStage.onCreate is called");
+        console.log('MyAbilityStage.onCreate is called');
     }
 }
 ```
@@ -57,10 +59,12 @@ onAcceptWant(want: Want): string;
 **示例：**
     
 ```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onAcceptWant(want) {
-        console.log("MyAbilityStage.onAcceptWant called");
-        return "com.example.test";
+        console.log('MyAbilityStage.onAcceptWant called');
+        return 'com.example.test';
     }
 }
 ```
@@ -83,9 +87,11 @@ onConfigurationUpdate(newConfig: Configuration): void;
 **示例：**
     
 ```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onConfigurationUpdate(config) {
-        console.log('onConfigurationUpdate, language:' + config.language);
+        console.log('onConfigurationUpdate, language: ${config.language}');
     }
 }
 ```
@@ -107,9 +113,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 **示例：**
     
 ```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
 class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level) {
-        console.log('onMemoryLevel, level:' + JSON.stringify(level));
+        console.log('onMemoryLevel, level: ${JSON.stringify(level)}');
     } 
 }
 ```

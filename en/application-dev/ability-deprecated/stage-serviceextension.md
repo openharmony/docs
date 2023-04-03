@@ -42,9 +42,9 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
 2. Customize a class that inherits from `ServiceExtensionAbility` in the .ts file in the directory where the Service Extension ability is defined (`entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts` by default) and override the lifecycle callbacks of the base class. The code sample is as follows:
 
     ```js
-    import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
-    import rpc from '@ohos.rpc'
-
+    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+    import rpc from '@ohos.rpc';
+    
     class StubTest extends rpc.RemoteObject {
         constructor(des) {
             super(des);
@@ -52,7 +52,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
         onRemoteRequest(code, data, reply, option) {
         }
     }
-
+    
     class ServiceExtAbility extends ServiceExtensionAbility {
         onCreate(want) {
             console.log('onCreate, want:' + want.abilityName);

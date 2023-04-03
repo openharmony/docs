@@ -41,24 +41,28 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
         {
-            action: "",
-            entities: [""],
-            type: "",
+            action: '',
+            entities: [''],
+            type: '',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     },
-    (err, data) => {
-        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -94,24 +98,24 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     }
 ).then((data) => {
-    console.info("startAbility data: " + JSON.stringify(data));
+    console.info('startAbility data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -145,8 +149,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 ```
 
@@ -154,7 +158,10 @@ var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（callback形式）。
+启动一个Ability。Ability被启动后，有如下情况(callback形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -174,24 +181,28 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri:""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:''
         },
     },
-    (err, data) => {
-        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -200,7 +211,10 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-启动一个Ability。Ability被启动后，正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用者。异常情况下比如杀死Ability会返回异常信息给调用者（Promise形式）。
+启动一个Ability。Ability被启动后，有如下情况(Promise形式):
+ - 正常情况下可通过调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止并且返回结果给调用方。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#featureabilityterminateselfwithresult7)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -225,35 +239,35 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters:
             {
                 mykey0: 1111,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'xxxxxxxxxxxxxxxxxxxxxx',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
+                mykey6: ['aaaaaa', 'bbbbb', 'ccccccccccc'],
                 mykey7: true,
             },
         },
     },
 ).then((data) => {
-    console.info("startAbilityForResult data: " + JSON.stringify(data));
+    console.info('startAbilityForResult data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -276,35 +290,35 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     },
-    (err) => {
-        console.info("err: " + JSON.stringify(err))
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 );
 ```
@@ -333,35 +347,35 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* FA模型中abilityName由package + Ability name组成 */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     }
 ).then((data) => {
-    console.info("==========================>terminateSelfWithResult=======================>");
+    console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
 
@@ -383,8 +397,12 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus((err, data) => {
-    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+featureAbility.hasWindowFocus((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -407,7 +425,7 @@ hasWindowFocus(): Promise\<boolean>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("hasWindowFocus data: " + JSON.stringify(data));
+    console.info('hasWindowFocus data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -429,8 +447,12 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant((err, data) => {
-    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+featureAbility.getWant((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWant fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWant success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -453,7 +475,7 @@ getWant(): Promise\<Want>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info("getWant data: " + JSON.stringify(data));
+    console.info('getWant data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -475,9 +497,13 @@ getContext(): Context
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var context = featureAbility.getContext()
-context.getBundleName((err, data) => {
-    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+let context = featureAbility.getContext();
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -500,8 +526,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err) => {
-        console.info("err: " + JSON.stringify(err))
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 )
 ```
@@ -525,7 +551,7 @@ terminateSelf(): Promise\<void>
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelf=======================>");
+    console.info('==========================>terminateSelf=======================>');
 });
 ```
 
@@ -554,7 +580,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 连接的ServiceAbility的ID。 |
+| number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
 
 **示例：**
 
@@ -562,19 +588,19 @@ connectAbility(request: Want, options:ConnectOptions): number
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        deviceId: "",
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        deviceId: '',
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -605,18 +631,18 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -624,11 +650,14 @@ var connectId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connectId,
-    (error) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
-    },
-);
+
+featureAbility.disconnectAbility(connectId, (error) => {
+    if (error && error.code !== 0) {
+        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('disconnectAbility success， connectId: ${connectId}');
+    }
+});
 ```
 
 ## featureAbility.disconnectAbility<sup>7+</sup>
@@ -657,18 +686,18 @@ disconnectAbility(connection: number): Promise\<void>
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -678,9 +707,9 @@ var connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data : '  + data);
+    console.log('data: ${data)}';
 }).catch((error)=>{
-    console.log('featureAbilityTest result errCode : ' + error.code);
+    console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
 
@@ -702,8 +731,12 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```ts
-featureAbility.getWindow((err, data) => {
-    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+featureAbility.getWindow((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWindow success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -725,7 +758,7 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 featureAbility.getWindow().then((data) => {
-    console.info("getWindow data: " + typeof(data));
+    console.info('getWindow data: ${typeof(data)}');
 });
 ```
 
@@ -745,8 +778,8 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | 未定义。 |
 | WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | 全屏。    |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 分屏主屏。 |
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 分屏次屏。 |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | 屏幕如果是水平方向表示左分屏，屏幕如果是竖直方向表示上分屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | 屏幕如果是水平方向表示右分屏，屏幕如果是竖直方向表示下分屏。 |
 | WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | 悬浮窗。 |
 
 
@@ -766,9 +799,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | 名称                           | 值              | 说明                                       |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | 窗口显示大小属性的参数名。 |
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | 窗口显示模式属性的参数名。|
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | 窗口显示设备ID属性的参数名。 |
+| BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
+| WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
+| DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
 
 ## ErrorCode
 
@@ -818,7 +851,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](#featureabilitystartability)方法的参数对象[parameter](js-apis-inner-ability-startAbilityParameter.md)下的[Want](js-apis-application-want.md)设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
 

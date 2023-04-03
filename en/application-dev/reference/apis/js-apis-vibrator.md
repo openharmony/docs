@@ -1,4 +1,4 @@
-# Vibrator
+# @ohos.vibrator (Vibrator)
 
 The **vibrator** module provides APIs for starting or stopping vibration.
 
@@ -42,6 +42,7 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 **Example**
 
 ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -95,6 +96,7 @@ For details about the error codes, see [Vibrator Error Codes](../errorcodes/erro
 **Example**
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     vibrator.startVibration({
         type: 'time',
@@ -132,6 +134,7 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 **Example**
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // Start vibration at a fixed duration.
     vibrator.startVibration({
@@ -190,6 +193,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 **Example**
 
   ```js
+import vibrator from '@ohos.vibrator';
 try {
     // Start vibration at a fixed duration.
     vibrator.startVibration({
@@ -216,6 +220,213 @@ try {
     });
 } catch (err) {
     console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>10+</sup>
+
+stopVibration(callback: AsyncCallback&lt;void&gt;): void
+
+Stops vibration in all modes. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Example**
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // Start vibration at a fixed duration.
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate a successful vibration.');
+    });
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+
+try {
+    // Stop vibration in all modes.
+    vibrator.stopVibration(function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
+    })
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+  ```
+
+## vibrator.stopVibration<sup>10+</sup>
+
+stopVibration(): Promise&lt;void&gt;
+
+Stops vibration in all modes. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // Start vibration at a fixed duration.
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }).then(() => {
+        console.log('Promise returned to indicate a successful vibration');
+    }, (error) => {
+        console.error('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (error) {
+    console.error('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+
+try {
+    // Stop vibration in all modes.
+    vibrator.stopVibration().then(() => {
+        console.log('Promise returned to indicate a successful vibration.');
+    }, (error) => {
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    });
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+  ```
+
+## vibrator.isSupportEffect<sup>10+</sup>
+
+isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether the passed effect ID is supported. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type                        | Mandatory| Description                                                  |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------ |
+| effectId | string                       | Yes  | Vibration effect ID.                                            |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+
+**Example**
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // Check whether 'haptic.clock.timer' is supported.
+    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+        if (err) {
+            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+            return;
+        }
+        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+        if (state) {
+            try {
+                vibrator.startVibration({ // To use startVibration, you must configure the ohos.permission.VIBRATE permission.
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
+                }, {
+                    usage: 'unknown'
+                }, (error) => {
+                    if(error) {
+                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
+                    } else {
+                        console.log('haptic.clock.timer vibrator success');
+                    }
+                });
+            } catch (error) {
+                console.error('Exception in, error:' + JSON.stringify(error));
+            }
+        }
+    })
+} catch (error) {
+    console.error('Exception in, error:' + JSON.stringify(error));
+}
+  ```
+
+## vibrator.isSupportEffect<sup>10+</sup>
+
+isSupportEffect(effectId: string): Promise&lt;boolean&gt;
+
+Checks whether the passed effect ID is supported. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description        |
+| -------- | ------ | ---- | ------------ |
+| effectId | string | Yes  | Vibration effect ID.|
+
+**Return value**
+
+| Type                  | Description                                                     |
+| ---------------------- | --------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+
+**Example**
+
+  ```js
+import vibrator from '@ohos.vibrator';
+try {
+    // Check whether 'haptic.clock.timer' is supported.
+    vibrator.isSupportEffect('haptic.clock.timer').then((state) => {
+        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+        if (state) {
+            try {
+                vibrator.startVibration({
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
+                }, {
+                    usage: 'unknown'
+                }).then(()=>{
+                    console.log('Promise returned to indicate a successful vibration');
+                }).catch((error)=>{
+                    console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
+                });
+            } catch (error) {
+                console.error('exception in, error:' + JSON.stringify(error));
+            }
+        }
+    }, (error) => {
+        console.error('isSupportEffect failed, error:' + JSON.stringify(error));
+    })
+} catch (error) {
+    console.error('Exception in, error:' + JSON.stringify(error));
 }
   ```
 

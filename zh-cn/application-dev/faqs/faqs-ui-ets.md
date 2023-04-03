@@ -23,7 +23,7 @@
 可以使用Stack堆叠容器，设置子组件在容器内的最底部。
 
   示例：
-  
+
 ```
 build() {
   Stack({alignContent : Alignment.Bottom}) {
@@ -59,7 +59,7 @@ build() {
 
 示例：
 
-  
+
 ```
 // 弹窗组件
 @CustomDialog
@@ -144,7 +144,7 @@ GridContainer内子组件默认水平左对齐，居中显示可以参考以下�
 内部嵌套布局组件Row，设置Row属性justifyContent(FlexAlign.Center)，内部嵌套子组件可保持居中显示，参考[栅格布局](../reference/arkui-ts/ts-container-gridcontainer.md)文档。
 
   示例：
-  
+
 ```
 GridContainer({ sizeType: SizeType.SM, columns: 12 }) {
   Row() {
@@ -164,10 +164,10 @@ GridContainer({ sizeType: SizeType.SM, columns: 12 }) {
 在加载窗口内容之前，采用systemAvoidAreaChange事件监听。
 
   示例：
-  
-```
-// MainAbility.ts
-import window from '@ohos.window';
+
+```ts
+import Window from '@ohos.window';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 /**
  * 设置沉浸式窗口，并获取状态栏和导航栏高度
@@ -187,7 +187,7 @@ async function enterImmersion(mainWindow: window.Window) {
     statusBarContentColor: "#FF0000"
   })
 }
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   // do something
   async onWindowStageCreate(windowStage: window.WindowStage) {
     let mainWindow = await windowStage.getMainWindow()
@@ -212,8 +212,8 @@ gesture的属性distance默认值是5，把gesture的属性distance设成1就可
 
 示例：
 
-  
-```
+
+```ts
 Column() {
   Text(this.value)
     .backgroundColor(Color.Green).margin(30).fontSize(20)
@@ -234,8 +234,8 @@ List组件绑定Scoller控制器，通过currentOffset方式获取当前的滚�
 
 示例：
 
-  
-```
+
+```ts
 Column() {
   List({ space: 20, initialIndex: 0,scroller: this.scroller}) {
     ForEach(this.arr, (item) => {
@@ -258,8 +258,8 @@ Column() {
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
-  
-```
+
+```ts
 // 3.1.5.5版本之前，取值方式为：router.getParams().key 
 private value: string = router.getParams().value;  
 // 从3.1.6.5版本起，取值方式为：router.getParams()['key'] 
@@ -296,8 +296,8 @@ lpx相当于百分比视图，按比例扩大或者缩小。
 
 颜色可以使用两种格式，例如 0x7F000000 或者 '\#7F000000' ，其中前两位是透明度，后六位是RGB。
 
-  
-```
+
+```ts
 fontColor(0x7F000000)
 fontColor( '#7F000000' )
 ```
@@ -400,7 +400,7 @@ input 组件的 type 设置为 date，只是会有相关格式提示，本质上
 
 示例：
 
-  
+
 ```
 @Component
 struct FoodImageDisplay {
@@ -504,7 +504,7 @@ Scroll支持单个子组件，子组件高度应由内容高度决定，当内�
 
 可以参考如下实现：
 
-  
+
 ```
 struct Index {
 @State text: string = 'Hello World'
@@ -565,7 +565,7 @@ id添加为唯一值，成为关键字。
 
 代码示例
 
-  
+
 ```
 beautySub(str,len) {
 	var reg = /[\u4e00-\u9fa5]/g;
@@ -627,7 +627,7 @@ RichText底层是web，可以参考html的语法，在div上加上的overflow：
 
 示例：
 
-  
+
 ```
 AppStorage.Link('varA')
 PersistentStorage.PersistProp("varA", "111");

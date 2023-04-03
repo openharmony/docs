@@ -185,7 +185,9 @@ node        size   LR[0]      LR[1]       LR[2]
 
 本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数MemLeakTest。
 
-qemu中进行验证时，由于代码段位置特殊需调整ld文件_stext位置到text段的起始位置
+qemu平台运行时需确保target_config.h 中对应的LOSCFG_MEM_FREE_BY_TASKID为0。
+
+由于打开内存检测后，部分平台有其他任务运行，会频繁调用内存相关打印如：psp, start = xxxxx, end = xxxxxxx，请忽略打印或删除OsStackAddrGet函数中调用的打印即可。
 
 
 ```
@@ -311,6 +313,10 @@ LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK：开关宏，默认关闭；若打开这�
 
 本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数MemIntegrityTest。
 
+qemu平台运行时需确保target_config.h 中对应的LOSCFG_MEM_FREE_BY_TASKID为0。
+
+由于执行时主动触发异常，执行结束后需要重启qemu（例如打开一个新的终端界面输入killall qemu-system-arm）
+
 
 ```
 #include <stdio.h>
@@ -344,7 +350,7 @@ memory used but magic num wrong, magic num = 0x0
  /* 被破坏节点和其前节点关键字段信息，分别为其前节点地址、节点的魔鬼数字、节点的sizeAndFlag；可以看出被破坏节点的魔鬼数字字段被清零，符合用例场景 */
  broken node head: 0x2103d7e8  0x0  0x80000020, prev node head: 0x2103c7cc  0xabcddcba  0x80000020
 
- /* 节点的LR信息需要开启内存检测功能才有有效输出 */
+ /* 节点的LR信息需要开启前文的内存泄漏检测功能才有有效输出 */
  broken node head LR info:
  LR[0]:0x2101906c
  LR[1]:0x0

@@ -1429,7 +1429,7 @@ Now, there are two debugging ideas:
 
    
 
-According to the entire debugging process, the camera supports the YUYV and MJPEG formats. By default, preview in **v4l2_main** uses the YUYV format. Change the format to MJEPG and try again.
+According to the entire debugging process, the camera supports the YUYV and MJPEG formats. By default, preview in **v4l2_main** uses the YUYV format. Change the format to MJPEG and try again.
 
 Modification:
 
@@ -1577,7 +1577,7 @@ Disable the Linux TP driver by disabling **TOUCHSCREEN_GT9XX** in the **<rockchi
 ```
 #### Driver Adaptation
 
-1. Modify content in **vendor/rockchip/rk3399/hdf_config/khdf/device_info/device_info.hcs** as follows or add the following content to  the file:
+1. Modify content in **vendor/rockchip/rk3399/hdf_config/khdf/device_info/device_info.hcs** as follows or add the following content to the file:
 
    ```json
    	device_touch_chip :: device {
@@ -1595,7 +1595,7 @@ Disable the Linux TP driver by disabling **TOUCHSCREEN_GT9XX** in the **<rockchi
 
    
 
-2. Modify content in **vendor/rockchip/rk3399/hdf_config/khdf/input/input_config.hcs** as follows or add the following content to  the file:
+2. Modify content in **vendor/rockchip/rk3399/hdf_config/khdf/input/input_config.hcs** as follows or add the following content to the file:
 
    ```json
     busConfig {

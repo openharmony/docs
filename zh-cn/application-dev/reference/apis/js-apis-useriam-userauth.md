@@ -22,8 +22,8 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | 是   | 认证结果。       |
 | token        | Uint8Array | 否   | 用户身份认证通过的凭证。 |
-| remainAttempts  | number     | 否   | 剩余的认证操作次数。 |
-| lockoutDuration | number     | 否   | 认证操作的冻结时间。 |
+| remainAttempts  | number     | 否   | 剩余的认证尝试次数。 |
+| lockoutDuration | number     | 否   | 认证操作的锁定时长，时间单位为毫秒ms。 |
 
 ## TipInfo<sup>9+</sup>
 
@@ -277,7 +277,7 @@ start : () => void
 | -------- | ------- |
 | 201 | Permission verification failed. |
 | 401 | Incorrect parameters. |
-| 12500001 | Execution failed. |
+| 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
 | 12500004 | The operation is time-out. |
@@ -399,44 +399,6 @@ try {
 }
 ```
 
-## userIAM_userAuth.getVersion<sup>9+</sup>
-
-getVersion(): number
-
-获取认证器的版本信息。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
-**返回值：**
-
-| 类型   | 说明                   |
-| ------ | ---------------------- |
-| number | 认证器版本信息。 |
-
-以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | ------- |
-| 201 | Permission verification failed. |
-| 12500002 | General operation error. |
-
-**示例：**
-
-```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-try {
-    let version = userIAM_userAuth.getVersion();
-    console.info("auth version = " + version);
-} catch (error) {
-    console.info("get version failed, error = " + error);
-}
-```
-
 ## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
@@ -480,7 +442,7 @@ try {
 }
 ```
 
-## ResultCodeV9<sup>9+</sup>
+## UserAuthResultCode<sup>9+</sup>
 
 表示返回码的枚举。
 
@@ -489,7 +451,7 @@ try {
 | 名称                    |   值   | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 12500000      | 执行成功。           |
-| FAIL                    | 12500001      | 执行失败。           |
+| FAIL                    | 12500001      | 认证失败。           |
 | GENERAL_ERROR           | 12500002      | 操作通用错误。       |
 | CANCELED                | 12500003      | 操作取消。           |
 | TIMEOUT                 | 12500004      | 操作超时。           |
@@ -510,8 +472,7 @@ constructor()
 创建认证器对象。
 
 > **说明：**
-> 从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstance9)替代。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstance9)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -536,8 +497,7 @@ getVersion() : number
 获取认证器的版本信息。
 
 > **说明：**
-> 从 API version 9 开始废弃，请使用[getVersion](#useriam_userauthgetversion9)替代。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -566,8 +526,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 查询指定类型和等级的认证能力是否支持。
 
 > **说明：**
-> 从 API version 9 开始废弃，请使用[getAvailableStatus](#useriam_userauthgetavailablestatus9)替代。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAvailableStatus](#useriam_userauthgetavailablestatus9)替代。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -607,8 +566,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 执行用户认证，使用回调函数返回结果。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[start](#start9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[start](#start9)代替。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -659,8 +617,7 @@ cancelAuth(contextID : Uint8Array) : number
 表示通过contextID取消本次认证操作。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[cancel](#cancel9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[cancel](#cancel9)代替。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -699,8 +656,7 @@ if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
 返回认证结果的回调对象。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[AuthEvent](#authevent9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthEvent](#authevent9)代替。
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -709,8 +665,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 回调函数，返回认证结果。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -751,8 +706,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 回调函数，返回认证过程中的提示信息，非必须实现。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[callback](#callback9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -788,8 +742,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示认证结果的对象。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
-<br/>从 API version 8 开始支持。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -804,14 +757,14 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示返回码的枚举。
 
 > **说明：**
-> 从 API version 9 开始废弃，建议使用[ResultCodeV9](#resultcodev99)代替。
+> 从 API version 9 开始废弃，建议使用[UserAuthResultCode](#userauthresultcode9)代替。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                    | 值 | 说明                 |
 | ----------------------- | ------ | -------------------- |
 | SUCCESS                 | 0      | 执行成功。           |
-| FAIL                    | 1      | 执行失败。           |
+| FAIL                    | 1      | 认证失败。           |
 | GENERAL_ERROR           | 2      | 操作通用错误。       |
 | CANCELED                | 3      | 操作取消。           |
 | TIMEOUT                 | 4      | 操作超时。           |

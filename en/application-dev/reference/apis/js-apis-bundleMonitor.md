@@ -1,4 +1,4 @@
-# @ohos.bundle.bundleMonitor
+# @ohos.bundle.bundleMonitor (bundleMonitor)
 
 The **Bundle.bundleMonitor** module provides APIs for listens for bundle installation, uninstall, and updates.
 
@@ -16,7 +16,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | Permission                                | Permission Level   | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | Permission to listen for bundle installation, uninstall, and updates.|
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
@@ -47,8 +47,8 @@ Subscribes to bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description              |
 | ---------------------------- | -------- | ---- | ------------------ |
-| BundleChangedEvent           | string   | Yes  | Type of the event to subscribe to.|
-| Callback\<BundleChangedInfo> | callback | Yes  | Callback used for the subscription.|
+| type| BundleChangedEvent| Yes  | Type of the event to subscribe to.|
+| callback | callback\<BundleChangedInfo>| Yes  | Callback used for the subscription.|
 
 **Example**
 
@@ -80,8 +80,8 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
-| BundleChangedEvent           | string   | Yes  | Type of the event to unsubscribe from.                                        |
-| Callback\<BundleChangedInfo> | callback | Yes  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
+| type| BundleChangedEvent| Yes  | Type of the event to unsubscribe from.                                        |
+| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
 
 **Example**
 

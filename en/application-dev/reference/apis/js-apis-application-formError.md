@@ -1,6 +1,6 @@
-# @ohos.application.formError
+# @ohos.application.formError (formError)
 
-The **FormError** module provides error codes for widgets.
+The **formError** module provides error codes for widgets.
 
 > **NOTE**
 >
@@ -50,5 +50,3 @@ SystemCapability.Ability.Form
 | ERR_FORM_DUPLICATE_ADDED        | 31    | The widget has been added.  |
 | ERR_IN_RECOVERY    | 36    | Failed to overwrite the widget data.  |
 | ERR_DISTRIBUTED_SCHEDULE_FAILED<sup>9+</sup> | 37 | The distributed scheduler failed.<br>**System API**: This is a system API. |
-
- <!--no_check--> 

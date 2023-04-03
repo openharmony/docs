@@ -24,7 +24,7 @@ Obtain a **Preferences** instance for data operations. A **Preferences** instanc
 
 **Table 1** API for obtaining a **Preferences** instance
 
-| Package                 | API                                                      | Description                                                        |
+| Bundle Name           | API                                                      | Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | getPreferences(context: Context, name: string): Promise\<Preferences> | Obtains a **Preferences** instance.|
 
@@ -75,7 +75,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
 
 **Table 6** APIs for deleting **Preferences**
 
-| Package                 | API                                                      | Description                                                        |
+| Bundle Name           | API                                                      | Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void> | Deletes a **Preferences** instance from the memory and its files from the device.|
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void> | Removes a **Preferences** instance from the memory to release memory.   |
@@ -113,22 +113,20 @@ You can use the following APIs to delete a **Preferences** instance or data file
 
    ```ts
    // Obtain the context.
-   import Ability from '@ohos.application.Ability'
-   let context = null;
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let preferences = null;
-   export default class MainAbility extends Ability {
-       onWindowStageCreate(windowStage){
-           context = this.context;
+   export default class EntryAbility extends UIAbility {
+       onWindowStageCreate(windowStage) {
+           let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((pref) => {
+                preferences = pref;
+            }).catch((err) => {
+                console.info("Failed to get the preferences.");
+            })
        }
    }
    
-   let promise = data_preferences.getPreferences(context, 'mystore');
    
-   promise.then((pref) => {
-       preferences = pref;
-   }).catch((err) => {
-       console.info("Failed to get the preferences.");
-   })
    ```
 
 3. Write data.
@@ -159,7 +157,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
    
 5. Store data persistently.
 
-   Use **flush()** to flush data from the **Preferences** instance to its file.
+   Use **preferences.flush()** to flush data from the **Preferences** instance to its file.
 
    ```js
    preferences.flush();
@@ -186,7 +184,7 @@ You can use the following APIs to delete a **Preferences** instance or data file
                console.info("Failed to flush data. Cause: " + err);
                return;
            }
-            console.info("Flushed data successfully."); // The observer will be called.
+           console.info("Flushed data successfully."); // The observer will be called.
        })
    })
    ```

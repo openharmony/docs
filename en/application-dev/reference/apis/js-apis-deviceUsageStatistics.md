@@ -1,4 +1,4 @@
-# @ohos.deviceUsageStatistics (Device Usage Statistics)
+# @ohos.bundleState (Device Usage Statistics)
 
 This module provides APIs for collecting statistics on device usage.
 
@@ -453,6 +453,20 @@ Provides the usage duration information of an application.
 | fgAbilityPrevAccessTime  | number | No   | Last time when the application accessed the foreground.|
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.|
+
+### merge<sup>(deprecated)</sup>
+
+merge(toMerge: BundleStateInfo): void
+
+Merges the device usage statistics of applications with the same bundle name.
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Device usage statistics to merge.|
 
 ## BundleActiveState
 

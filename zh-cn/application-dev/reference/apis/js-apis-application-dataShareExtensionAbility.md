@@ -14,8 +14,28 @@
 ## 导入模块
 
 ```ts
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
+import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
 ```
+
+## uri命名规则
+
+标准uri定义结构如下:
+
+**Scheme://authority/path** 
+- Scheme: 协议名，对于data share统一为datashare
+- authority: [userinfo@]host[:port]
+    - userinfo: 登录信息，不需要填写。
+    - host: 服务器地址，如果跨设备访问则为目标设备的ID，如果为本设备则为空。
+    - port: 服务器端口，不需要填写。
+- path: data share的标识信息和资源的路径信息，需要包含data share的标识信息，资源的路径信息可以不填写。
+
+uri示例:
+
+- 不包含资源路径: `datashare:///com.samples.datasharetest.DataShare`
+
+- 包含资源路径: `datashare:///com.samples.datasharetest.DataShare/DB00/TBL00`
+
+其中，data share的标识信息为`com.samples.datasharetest.DataShare`，资源路径为`DB00/TBL00`。
 
 ## 属性
 
@@ -43,24 +63,25 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
-            name: DB_NAME
-        }, 1, function (err, data) {
-            console.log('getRdbStore done, data : ' + data);
+            name: DB_NAME,
+            securityLevel: rdb.SecurityLevel.S1
+        }, function (err, data) {
+            console.log('getRdbStore done, data : ${data}');
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.log('executeSql done, error message : ' + err);
+                console.error('executeSql done, error message : ${err}');
             });
             if (callback) {
                 callback();
@@ -89,24 +110,24 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
-        if (valueBucket == null) {
+        if (valueBucket === null) {
             console.info('invalid valueBuckets');
             return;
         }
         rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
-            console.info('callback ret:' + ret);
-            if (callback != undefined) {
+            console.info('callback ret: ${ret}');
+            if (callback !== undefined) {
                 callback(err, ret);
             }
         });
@@ -134,22 +155,22 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     update(uri, predicates, valueBucket, callback) {
-        if (predicates == null || predicates == undefined) {
+        if (predicates === null || predicates === undefined) {
             return;
         }
         rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
-            if (callback != undefined) {
+            if (callback !== undefined) {
                 callback(err, ret);
             }
         });
@@ -176,22 +197,22 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     delete(uri, predicates, callback) {
-        if (predicates == null || predicates == undefined) {
+        if (predicates === null || predicates === undefined) {
             return;
         }
         rdbStore.delete(TBL_NAME, predicates, function (err, ret) {
-            if (callback != undefined) {
+            if (callback !== undefined) {
                 callback(err, ret);
             }
         });
@@ -219,25 +240,25 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     query(uri, predicates, columns, callback) {
-        if (predicates == null || predicates == undefined) {
+        if (predicates === null || predicates === undefined) {
             return;
         }
         rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
-            if (resultSet != undefined) {
-                console.info('resultSet.rowCount: ' + resultSet.rowCount);
+            if (resultSet !== undefined) {
+                console.info('resultSet.rowCount: ${resultSet.rowCount}');
             }
-            if (callback != undefined) {
+            if (callback !== undefined) {
                 callback(err, resultSet);
             }
         });
@@ -264,25 +285,25 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import rdb from '@ohos.data.rdb';
+import rdb from '@ohos.data.relationalStore';
 
-let DB_NAME = "DB00.db";
-let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+let DB_NAME = 'DB00.db';
+let TBL_NAME = 'TBL00';
+let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
     + TBL_NAME
-    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+    + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     batchInsert(uri, valueBuckets, callback) {
-        if (valueBuckets == null || valueBuckets.length == undefined) {
+        if (valueBuckets === null || valueBuckets.length === undefined) {
             console.info('invalid valueBuckets');
             return;
         }
-        let resultNum = valueBuckets.length
+        let resultNum = valueBuckets.length;
         valueBuckets.forEach(vb => {
             rdbStore.insert(TBL_NAME, vb, function (err, ret) {
-                if (callback != undefined) {
+                if (callback !== undefined) {
                     callback(err, resultNum);
                 }
             });
@@ -311,8 +332,8 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     normalizeUri(uri, callback) {
-        let err = {"code":0};
-        let ret = "normalize+" + uri;
+        let err = {'code':0};
+        let ret = 'normalize+${uri}';
         callback(err, ret);
     }
 };
@@ -338,8 +359,8 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     denormalizeUri(uri, callback) {
-        let err = {"code":0};
-        let ret = "denormalize+" + uri;
+        let err = {'code':0};
+        let ret = 'denormalize+${uri}';
         callback(err, ret);
     }
 };

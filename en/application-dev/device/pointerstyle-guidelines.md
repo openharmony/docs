@@ -7,7 +7,7 @@ Mouse pointer management provides the functions such as displaying or hiding the
 ## Modules to Import
 
 ```js
-import inputDevice from '@ohos.multimodalInput.pointer';
+import pointer from '@ohos.multimodalInput.pointer';
 ```
 
 ## Available APIs
@@ -77,43 +77,48 @@ When designing a color picker, you can have the mouse pointer switched to the co
 5. Set the mouse pointer to the default style.
 
 ```js
+import pointer from '@ohos.multimodalInput.pointer';
 import window from '@ohos.window';
 
 // 1. Enable the color pickup function.
 // 2. Obtain the window ID.
-window.getTopWindow((error, windowClass) => {
-  windowClass.getProperties((error, data) => {
-    var windowId = data.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      // 3. Set the mouse pointer to the color picker style.
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
-        console.log(`Successfully set mouse pointer style`);
-      });
-    } catch (error) {
-      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
-    }
-  });
+window.getLastWindow(this.context, (error, windowClass) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  var windowId = windowClass.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    // 3. Set the mouse pointer to the color picker style.
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.COLOR_SUCKER).then(() => {
+      console.log(`Successfully set mouse pointer style`);
+    });
+  } catch (error) {
+    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+  }
 });
 // 4. End color pickup.
-window.getTopWindow((error, windowClass) => {
-  windowClass.getProperties((error, data) => {
-    var windowId = data.id;
-    if (windowId < 0) {
-      console.log(`Invalid windowId`);
-      return;
-    }
-    try {
-      // 5. Set the mouse pointer to the default style.
-      pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
-        console.log(`Successfully set mouse pointer style`);
-      });
-    } catch (error) {
-      console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(message)}`);
-    }
-  });
+window.getLastWindow(this.context, (error, windowClass) => {
+  if (error.code) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    return;
+  }
+  var windowId = windowClass.getWindowProperties().id;
+  if (windowId < 0) {
+    console.log(`Invalid windowId`);
+    return;
+  }
+  try {
+    // 5. Set the mouse pointer to the default style.
+    pointer.setPointerStyle(windowId, pointer.PointerStyle.DEFAULT).then(() => {
+      console.log(`Successfully set mouse pointer style`);
+    });
+  } catch (error) {
+    console.log(`Failed to set the pointer style, error=${JSON.stringify(error)}, msg=${JSON.stringify(`message`)}`);
+  }
 });
 ```

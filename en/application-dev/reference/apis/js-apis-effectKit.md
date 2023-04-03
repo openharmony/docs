@@ -1,4 +1,4 @@
-# Image Effect
+# @ohos.effectKit (Image Effects)
 
 The **EffectKit** module provides basic image processing capabilities, including brightness adjustment, blurring, grayscale adjustment, and color picker.
 

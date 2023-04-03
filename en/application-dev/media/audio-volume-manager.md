@@ -16,7 +16,7 @@ The figure below shows the common APIs provided by the **AudioVolumeManager** mo
 
 ## Constraints
 
-Before developing a microphone management application, configure the permission **ohos.permission.MICROPHONE** for the application. To set the microphone state, configure the permission **ohos.permission.MANAGE_AUDIO_CONFIG** (a system permission). For details about the permission configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before developing a microphone management application, configure the permission **ohos.permission.MICROPHONE** for the application. To set the microphone state, configure the permission **ohos.permission.MANAGE_AUDIO_CONFIG** (a system permission). For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 ## How to Develop
 
@@ -38,7 +38,7 @@ For details about the APIs, see [AudioVolumeManager in Audio Management](../refe
 
 2. (Optional) Obtain the volume information and ringer mode.
    
-   To obtain the volume information (such as the ringtone, voice call, media, and voice assistant) of an audio stream or obtain the ringer mode (silent, vibration, or normal) of the current device, refer to the code below. For more details, see [Audio Management](../reference/apis/js-apis-audio.md).
+   To obtain the volume information of an audio stream (such as the ringtone, voice call, media, and voice assistant) or obtain the ringer mode (silent, vibration, or normal) of the current device, refer to the code below. For more details, see [Audio Management](../reference/apis/js-apis-audio.md).
 
    ```js
    import audio from '@ohos.multimedia.audio';
@@ -89,34 +89,34 @@ For details about the APIs, see [AudioVolumeManager in Audio Management](../refe
      var audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
      console.info('audioVolumeGroupManager create success.');
    }
-
+   
    async on() {   // Subscribe to microphone state changes.
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.on('micStateChange', (micStateChange) => {
        console.info(`Current microphone status is: ${micStateChange.mute} `);
      });
    }
-
+   
    async isMicrophoneMute() { // Check whether the microphone is muted.
      await audioVolumeGroupManager.audioVolumeGroupManager.isMicrophoneMute().then((value) => {
        console.info(`isMicrophoneMute is: ${value}.`);
      });
    }
- 
+    
    async setMicrophoneMuteTrue() { // Mute the microphone.
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
        console.info('setMicrophoneMute to mute.');
      });
    }
- 
+    
    async setMicrophoneMuteFalse() { // Unmute the microphone.
      await loadVolumeGroupManager();
      await audioVolumeGroupManager.audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
        console.info('setMicrophoneMute to not mute.');
      });
    }
-   async test(){  // Complete process: Subscribe to microphone state changes, obtain the microphone state, mute the microphone, obtain the microphone state, and unmute the microphone.
+   async test(){  // Complete process: Subscribe to microphone state changes, obtain the microphone state, mute the microphone, obtain the microphone state, and then unmute the microphone.
      await on();
      await isMicrophoneMute();
      await setMicrophoneMuteTrue();

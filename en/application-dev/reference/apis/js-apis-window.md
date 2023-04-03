@@ -1,4 +1,4 @@
-# @ohos.window
+# @ohos.window (Window)
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
@@ -40,7 +40,7 @@ Enumerates the window types.
 | TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | Dock bar on the home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_POINTER<sup>9+</sup> | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW|
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | Floating camera window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_DIALOG<sup>9+</sup>  | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
@@ -54,7 +54,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- | ----------------------------------- |
 | name       | string                     | Yes| Name of the window.                        |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                        |
-| ctx        | BaseContext                | No| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md). If this parameter is not set, no context is used.<br>A system window is created when **Context** is [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | No| Current application context. If this parameter is not set, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model. |
 | displayId  | number                     | No| ID of the current physical screen. If this parameter is not set, the default value **-1** is used.|
 | parentId   | number                     | No| ID of the parent window. If this parameter is not set, the default value **-1** is used.     |
 
@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle.|
-| width  | number   | Yes  | Yes  | Width of the rectangle.  |
-| height | number   | Yes  | Yes  | Height of the rectangle.  |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in pixels.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width.|
-| height | number   | Yes  | Yes  | Window height.|
+| width  | number   | Yes  | Yes  | Window width, in pixels.|
+| height | number   | Yes  | Yes  | Window height, in pixels.|
 
 ## WindowProperties
 
@@ -248,7 +248,7 @@ Enumerates the color spaces.
 
 | Name      | Value| Description          |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | Default gamut.|
+| DEFAULT    | 0      | Default SRGB gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
 
 ## ScaleOptions<sup>9+</sup>
@@ -295,6 +295,21 @@ Describes the translation parameters.
 | x    | number   | No  | Yes  | Distance to translate along the x-axis. The default value is **0.0**.|
 | y    | number   | No  | Yes  | Distance to translate along the y-axis. The default value is **0.0**.|
 | z    | number   | No  | Yes  | Distance to translate along the z-axis. The default value is **0.0**.|
+
+## WindowEventType<sup>10+</sup>
+
+Enumerates the window lifecycle states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name      | Value| Description      |
+| ---------- | ------ | ---------- |
+| WINDOW_SHOWN      | 1      | The window is running in the foreground.|
+| WINDOW_ACTIVE     | 2      | The window gains focus.|
+| WINDOW_INACTIVE   | 3      | The window loses focus.|
+| WINDOW_HIDDEN     | 4      | The window is running in the background.|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -430,7 +445,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | Yes| Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
@@ -472,7 +487,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -824,7 +839,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -860,7 +875,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 Creates a subwindow. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -897,22 +912,22 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
+Creates a system window. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory| Description                                                        |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
-| id       | string                                 | Yes  | Window ID.                                                    |
-| type     | [WindowType](#windowtype7)              | Yes  | Window type.                                                  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
+| Name  | Type                                                   | Mandatory| Description                                |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
+| id       | string                                                  | Yes  | Window ID.                            |
+| type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
 **Example**
 
@@ -933,10 +948,10 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
+Creates a system window. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -945,7 +960,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
@@ -975,7 +990,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 Finds a window based on the ID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1008,7 +1023,7 @@ find(id: string): Promise&lt;Window&gt;
 Finds a window based on the ID. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1045,7 +1060,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1079,7 +1094,7 @@ getTopWindow(): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1112,7 +1127,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1121,7 +1136,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md)                            | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1145,7 +1160,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
-> 
+>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1154,7 +1169,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | Yes  | Current application context.<br>For details about the context in the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the context in the stage model, see [Context](js-apis-ability-context.md).|
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -1544,6 +1559,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1584,6 +1601,8 @@ try {
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1636,6 +1655,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1682,6 +1703,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1856,7 +1879,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
@@ -2492,7 +2515,7 @@ Disables listening for window size changes.
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the window size.                          |
+| callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size.                          |
 
 **Example**
 
@@ -2727,7 +2750,7 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>9+</sup>
+### on('dialogTargetTouch')<sup>10+</sup>
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
@@ -2754,7 +2777,7 @@ try {
 }
 ```
 
-### off('dialogTargetTouch')<sup>9+</sup>
+### off('dialogTargetTouch')<sup>10+</sup>
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
@@ -2774,6 +2797,62 @@ Unsubscribes from click events of the target window in the modal window mode.
 ```js
 try {
     windowClass.off('dialogTargetTouch');
+} catch (exception) {
+    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowEvent')<sup>10+</sup>
+
+on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
+
+Enables listening for window lifecycle changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event.|
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | Yes  | Callback used to return the window lifecycle state.                |
+
+**Example**
+
+```js
+try {
+    windowClass.on('windowEvent', (data) => {
+        console.info('Window event happened. Event:' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowEvent')<sup>10+</sup>
+
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+
+Disables listening for window lifecycle changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event.|
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | No  | Callback used to return the window lifecycle state.                |
+
+**Example**
+
+```js
+try {
+    windowClass.off('windowEvent');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
@@ -2919,6 +2998,154 @@ try {
 }
 ```
 
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Binds the modal window to the target window, and adds a callback to listen for modal window destruction events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name      | Type                     | Mandatory| Description                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
+| deathCallback | Callback&lt;void&gt;    | Yes  | Callback used to listen for modal window destruction events.|
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        try {
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            }, (err) => {
+                if (err.code) {
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in binding dialog target.');
+            });
+        } catch(err) {
+            console.error('getRequestInfo err = ' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
+}
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;): Promise&lt;void&gt;
+
+Binds the modal window to the target window, and adds a callback to listen for modal window destruction events. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name      | Type                     | Mandatory| Description                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | Yes  | **RequestInfo** of the target window.|
+| deathCallback | Callback&lt;void&gt;    | Yes  | Callback used to listen for modal window destruction events.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        try {
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            let promise = windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            });
+            promise.then(()=> {
+                console.info('Succeeded in binding dialog target.');
+            }).catch((err)=>{
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+            });
+        } catch(err) {
+            console.error('getRequestInfo err = ' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
+}
+```
+
 ### isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -2998,7 +3225,7 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
@@ -3037,7 +3264,7 @@ Sets a color space for this window. This API uses a promise to return the result
 
 | Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes| Color space to set.|
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 
 **Return value**
 
@@ -3080,7 +3307,7 @@ Obtains the color space of this window.
 
 | Type| Description|
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | Color space obtained.|
+| [ColorSpace](#colorspace8) | Color space obtained.|
 
 **Error codes**
 
@@ -3108,7 +3335,7 @@ Sets the background color for this window. In the stage model, this API must be 
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | Yes| Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| color | string | Yes| Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 
 **Error codes**
 
@@ -3721,6 +3948,41 @@ try {
 
 ### snapshot<sup>9+</sup>
 
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Captures this window. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                         |
+| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```js
+windowClass.snapshot((err, pixelMap) => {
+    if (err.code) {
+        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
+```
+
+### snapshot<sup>9+</sup>
+
 snapshot(): Promise&lt;image.PixelMap&gt;
 
 Captures this window. This API uses a promise to return the result.
@@ -3951,7 +4213,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal // Animation playback mode.
         onFinish: ()=> {
             context.completeTransition(true)
-        }    
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,
@@ -4041,6 +4303,7 @@ try {
 } catch (exception) {
     console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
+
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -4094,7 +4357,7 @@ Sets the shadow for the window borders.
 | Name    | Type   | Mandatory | Description                                                  |
 | ------- | ------ | --------- | ------------------------------------------------------------ |
 | radius  | number | Yes       | Radius of the shadow. The value is greater than or equal to 0. The value **0** means that the shadow is disabled for the window borders. |
-| color   | string | No        | Color of the shadow. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color   | string | No        | Color of the shadow. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | offsetX | number | No        | Offset of the shadow along the x-axis, in pixels.            |
 | offsetY | number | No        | Offset of the shadow along the y-axis, in pixels.            |
 
@@ -4150,6 +4413,354 @@ try {
     windowClass.setCornerRadius(4.0);
 } catch (exception) {
     console.error('Failed to set corner radius. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
+
+Raises the application subwindow to the top layer of the application. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                         |
+| -------- | ------------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300009 | The parent window is invalid.                 |
+
+**Example**
+
+```js
+windowClass.raiseToAppTop((err) => {
+    if (err.code) {
+        console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the window to app top.');
+});
+
+```
+
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(): Promise&lt;void&gt;
+
+Raises the application subwindow to the top layer of the application. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300009 | The parent window is invalid.                 |
+
+**Example**
+
+```js
+let promise = windowClass.raiseToAppTop();
+promise.then(()=> {
+    console.info('Succeeded in raising the window to app top.');
+}).catch((err)=>{
+    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+});
+
+```
+
+### setAspectRatio<sup>10+</sup>
+
+setAspectRatio(ratio: number): Promise&lt;void&gt;
+
+Sets the aspect ratio of the window content layout. This API uses a promise to return the result.
+
+This API is available only for the main window of the application. The aspect ratio will be saved permanently and takes effect even after the application is closed or the device is restarted.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type   | Mandatory | Description                                                  |
+| ----- | ------ | --------- | ------------------------------------------------------------ |
+| ratio | number | Yes       | Aspect ratio of the window content layout except border decoration. The value must be greater than 0. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```js
+try {
+    let ratio = 1.0;
+    let promise = windowClass.setAspectRatio(ratio);
+    promise.then(()=> {
+        console.info('Succeeded in setting aspect ratio of window.');
+    }).catch((err)=>{
+        console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### setAspectRatio<sup>10+</sup>
+
+setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the aspect ratio of the window content layout. This API uses an asynchronous callback to return the result.
+
+This API is available only for the main window of the application. The aspect ratio will be saved permanently and takes effect even after the application is closed or the device is restarted.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| ratio    | number                    | Yes       | Aspect ratio of the window content layout except border decoration. The value must be greater than 0. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```js
+try {
+    let ratio = 1.0;
+    windowClass.setAspectRatio(ratio, (err) => {
+        if (err.code) {
+            console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### resetAspectRatio<sup>10+</sup>
+
+resetAspectRatio(): Promise&lt;void&gt;
+
+Resets the aspect ratio of the window content layout. This API uses a promise to return the result.
+
+This API is available only for the main window of the application. After this API is called, the persistently stored aspect ratio is cleared.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```js
+try {
+    let promise = windowClass.resetAspectRatio();
+    promise.then(()=> {
+        console.info('Succeeded in resetting aspect ratio of window.');
+    }).catch((err)=>{
+        console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### resetAspectRatio<sup>10+</sup>
+
+resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
+
+Resets the aspect ratio of the window content layout. This API uses an asynchronous callback to return the result.
+
+This API is available only for the main window of the application. After this API is called, the persistently stored aspect ratio is cleared.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                         |
+| -------- | ------------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```js
+try {
+    windowClass.resetAspectRatio((err) => {
+        if (err.code) {
+            console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+    });
+} catch (exception) {
+    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+Adds or deletes the watermark flag for this window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description                                                  |
+| ------ | ------- | --------- | ------------------------------------------------------------ |
+| enable | boolean | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300008 | The operation is on invalid display.          |
+
+**Example**
+
+```js
+try {
+    let enable = true;
+    let promise = windowClass.setWaterMarkFlag(enable);
+    promise.then(()=> {
+        console.info('Succeeded in setting water mark flag of window.');
+    }).catch((err)=>{
+        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Adds or deletes the watermark flag for this window. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| enable   | boolean                   | Yes       | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300008 | The operation is on invalid display.          |
+
+**Example**
+
+```js
+try {
+    let enable = true;
+    windowClass.setWaterMarkFlag(enable, (err) => {
+        if (err.code) {
+            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting water mark flag of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 
 ```
@@ -4282,6 +4893,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [moveWindowTo()](#movewindowto9) instead.
@@ -4314,6 +4927,8 @@ windowClass.moveTo(300, 300, (err)=>{
 moveTo(x: number, y: number): Promise&lt;void&gt;
 
 Moves this window. This API uses a promise to return the result.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4358,6 +4973,8 @@ The system window has the following size limits: [0, 2560] in width and [0, 2560
 
 The new width and height you set must meet the limits.
 
+This operation is not supported in a window in full-screen mode.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [resize()](#resize9) instead.
@@ -4396,6 +5013,8 @@ The main window and subwindow have the following size limits: [320, 2560] in wid
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The new width and height you set must meet the limits.
+
+This operation is not supported in a window in full-screen mode.
 
 > **NOTE**
 >
@@ -4577,10 +5196,10 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
+| Name     | Type                                          | Mandatory | Description                       |
+| -------- | --------------------------------------------- | --------- | --------------------------------- |
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes       | Type of the area.                 |
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area. |
 
 **Example**
 
@@ -4610,9 +5229,9 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description                                                  |
-| ---- | -------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. **TYPE_SYSTEM** indicates the default area of the system. **TYPE_CUTOUT** indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area. |
+| Name | Type                             | Mandatory | Description       |
+| ---- | -------------------------------- | --------- | ----------------- |
+| type | [AvoidAreaType](#avoidareatype7) | Yes       | Type of the area. |
 
 **Return value**
 
@@ -5185,10 +5804,10 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description                         |
-| ---------- | ------------------------- | --------- | ----------------------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set.                 |
-| callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result. |
+| Name       | Type                       | Mandatory | Description                         |
+| ---------- | -------------------------- | --------- | ----------------------------------- |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
+| callback   | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -5217,9 +5836,9 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Parameters**
 
-| Name       | Type                      | Mandatory | Description         |
-| ---------- | ------------------------- | --------- | ------------------- |
-| colorSpace | [ColorSpace](#colorspace) | Yes       | Color space to set. |
+| Name       | Type                       | Mandatory | Description         |
+| ---------- | -------------------------- | --------- | ------------------- |
+| colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set. |
 
 **Return value**
 
@@ -5253,9 +5872,9 @@ Obtains the color space of this window. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory | Description                                                  |
-| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
+| Name     | Type                                            | Mandatory | Description                                                  |
+| -------- | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | Yes       | Callback used to return the result. When the color space is obtained successfully, **err** is **undefined**, and **data** is the current color space. |
 
 **Example**
 
@@ -5284,9 +5903,9 @@ Obtains the color space of this window. This API uses a promise to return the re
 
 **Return value**
 
-| Type                                     | Description                                     |
-| ---------------------------------------- | ----------------------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise used to return the current color space. |
+| Type                                      | Description                                     |
+| ----------------------------------------- | ----------------------------------------------- |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise used to return the current color space. |
 
 **Example**
 
@@ -5316,7 +5935,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| color    | string                    | Yes       | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color    | string                    | Yes       | Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -5349,7 +5968,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name  | Type   | Mandatory | Description                                                  |
 | ----- | ------ | --------- | ------------------------------------------------------------ |
-| color | string | Yes       | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
+| color | string | Yes       | Background color to set. The value is a hexadecimal RGB or aRGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 
 **Return value**
 
@@ -5864,18 +6483,18 @@ Describes the lifecycle of a window stage.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value | Description                                    |
-| ---------- | ----- | ---------------------------------------------- |
-| FOREGROUND | 1     | The window stage is running in the foreground. |
-| ACTIVE     | 2     | The window stage gains focus.                  |
-| INACTIVE   | 3     | The window stage loses focus.                  |
-| BACKGROUND | 4     | The window stage is running in the background. |
+| Name     | Value | Description                                    |
+| -------- | ----- | ---------------------------------------------- |
+| SHOWN    | 1     | The window stage is running in the foreground. |
+| ACTIVE   | 2     | The window stage gains focus.                  |
+| INACTIVE | 3     | The window stage loses focus.                  |
+| HIDDEN   | 4     | The window stage is running in the background. |
 
 ## WindowStage<sup>9+</sup>
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
 
 ### getMainWindow<sup>9+</sup>
 
@@ -5905,9 +6524,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5952,9 +6573,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5998,9 +6621,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6042,9 +6667,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6100,9 +6727,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6149,9 +6778,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6195,9 +6826,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6243,9 +6876,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6302,9 +6937,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6354,9 +6991,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6404,9 +7043,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6452,9 +7093,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6492,9 +7135,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6533,9 +7178,11 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6646,7 +7293,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal // Animation playback mode.
         onFinish: ()=> {
             context.completeTransition(true)
-        }  
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,
@@ -6659,6 +7306,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
     );
     console.info('complete transition end');
 };
+
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -6692,7 +7340,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal // Animation playback mode.
         onFinish: ()=> {
             context.completeTransition(true)
-        }  
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,
@@ -6706,4 +7354,3 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     console.info('complete transition end');
 };
 ```
-

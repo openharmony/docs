@@ -1,4 +1,4 @@
-# @ohos.connectedTag
+# @ohos.connectedTag (Active Tags)
 
 The **connectedTag** module provides APIs for using active tags. You can use the APIs to initialize the active tag chip and read and write active tags.
 
@@ -129,7 +129,7 @@ Writes data to this active tag. This API uses a promise to return the result.
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-var rawData = "010203"; // change it tobe correct.
+var rawData = "010203"; // Set it as required.
 connectedTag.writeNdefTag(rawData).then(() => {
     console.log("connectedTag writeNdefTag Promise success.");
 }).catch((err)=> {
@@ -159,7 +159,7 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-var rawData = "010203"; // change it tobe correct.
+var rawData = "010203"; // Set it as required.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
@@ -220,7 +220,7 @@ connectedTag.on("notify", (err, rfState)=> {
 var initStatus = connectedTag.init();
 console.log("connectedTag init status: " + initStatus);
 
-// Add nfc connecected tag business oprations here...
+// Add NFC connected tag business operations here.
 // connectedTag.writeNdefTag(rawData)
 // connectedTag.readNdefTag()
 

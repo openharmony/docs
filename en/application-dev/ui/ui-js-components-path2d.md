@@ -36,7 +36,7 @@ canvas {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 
 export default {
     onShow() {
@@ -60,7 +60,7 @@ export default {
         path.closePath();
         // Door
         path.moveTo(250, 450);
-        path.rect(250, 450, 350, 600);
+        path.rect(250, 450, 100, 600);
         path.closePath();
         // Chimney
         path.moveTo(365, 250);
@@ -139,7 +139,7 @@ text {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 
 export default {
     data: {

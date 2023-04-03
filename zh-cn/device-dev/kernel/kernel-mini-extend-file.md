@@ -168,13 +168,11 @@ mount接口：int mount(const char *source, const char *target, const char *file
 >   - 读写指针未分离，例如以O_APPEND（追加写）方式打开文件后，读指针也在文件尾，从头读文件前需要用户手动置位。
 >   - 暂不支持文件与目录的权限管理。
 >   - stat及fstat接口暂不支持查询修改时间、创建时间和最后访问时间。微软FAT协议不支持1980年以前的时间。
-> 
 > - FATFS分区挂载与卸载：
 >   - 支持以只读属性挂载分区。当mount函数的入参为MS_RDONLY时，所有的带有写入的接口，如write、mkdir、unlink，以及非O_RDONLY属性的open，将均被拒绝。
 >   - mount支持通过MS_REMOUNT标记修改已挂载分区的权限。
 >   - 在umount操作前，需确保所有目录及文件全部关闭。
 >   - umount2支持通过MNT_FORCE参数强制关闭所有文件与文件夹并umount，但可能造成数据丢失，请谨慎使用。
-> 
 > - FATFS支持重新划分存储设备分区、格式化分区，对应接口为fatfs_fdisk与fatfs_format：
 >   - 在fatfs_format操作之前，若需要格式化的分区已挂载，需确保分区中的所有目录及文件全部关闭，并且分区umount。
 >   - 在fatfs_fdisk操作前，需要该设备中的所有分区均已umount。
@@ -212,6 +210,10 @@ mount接口：int mount(const char *source, const char *target, const char *file
  **前提条件：** 
 
  系统已将设备分区挂载到目录，qemu默认已挂载system。
+
+ 在kernel/liteos_m目录下执行 make menuconfig 命令配置"FileSystem->Enable FS VFS"开启FS功能；
+
+ 开启FS后出现新选项“Enable FAT”开启FAT。
 
  **代码实现如下：** 
 
@@ -424,6 +426,10 @@ blockCount 可以被擦除的块数量，这取决于块设备的容量及擦除
  **前提条件：** 
 
 系统已将设备分区挂载到目录，qemu默认已挂载/littlefs。
+
+在kernel/liteos_m目录下执行 make menuconfig 命令配置"FileSystem->Enable FS VFS"开启FS功能；
+
+开启FS后出现新选项“Enable Little FS”开启littlefs。
 
 代码实现如下：
 

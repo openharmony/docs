@@ -1,9 +1,5 @@
 # @ohos.util.Vector (Linear Container Vector)
 
-> **NOTE**
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **Vector** is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. **Vector** can be used to efficiently access elements.
 
 Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. Both of them can dynamically adjust the capacity. **Vector** doubles the capacity each time, whereas **ArrayList** increases the capacity by 50%.
@@ -12,6 +8,12 @@ Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based 
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.util.ArrayList](js-apis-arraylist.md).
 
 ## Modules to Import
 
@@ -251,7 +253,7 @@ Removes the first occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -320,11 +322,9 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-vector.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+vector.replaceAllElements((value) => {
+    // Add the user operation logic based on the actual scenario.
+    return value;
 });
 ```
 
@@ -361,7 +361,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log("value:" + value, index)
+    console.log("value:" + value, "index:" + index);
 });
 
 ```
@@ -421,7 +421,7 @@ Obtains elements within a range in this container, including the element at the 
 | -------- | -------- |
 | Vector&lt;T&gt; | New **Vector** instance obtained.|
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -444,7 +444,7 @@ Clears all elements in this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -639,18 +639,6 @@ Copies elements in this container into an array to overwrite elements of the sam
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | Yes| Array to which the elements in the container will be copied.|
 
-**Example**
-
-```ts
-let vector = new Vector();
-vector.add(2);
-vector.add(4);
-vector.add(5);
-vector.add(4);
-let array = ["a", "b", "c", "d", "e", "f"];
-let result = vector.copyToArray(array);
-```
-
 ### getFirstElement
 
 getFirstElement(): T
@@ -803,15 +791,15 @@ Obtains an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | index | number | Yes| Position index of the target element.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | Element obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | T | Element obtained.|
 
 **Example**
 
@@ -840,20 +828,9 @@ Replaces an element at the specified position in this container with a given ele
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | New element.|
-
-**Example**
-
-  ```ts
-  let vector = new Vector();
-  vector.add(2);
-  vector.add(4);
-  vector.add(5);
-  vector.add(4);
-  let result = vector.set(2, "A");
-  ```
+  | Type| Description|
+  | -------- | -------- |
+  | T | New element.|
 
 ### [Symbol.iterator]
 

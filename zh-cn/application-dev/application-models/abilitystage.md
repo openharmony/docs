@@ -29,6 +29,18 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
        }
    }
    ```
+   
+4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中`srcEntry`参数中配置Module所对应的代码路径。
+   ```json
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       // ...
+     }
+   }
+   ```
 
 
 [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)拥有[onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调和[onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调。

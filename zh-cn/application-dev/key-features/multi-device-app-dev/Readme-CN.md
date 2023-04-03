@@ -39,6 +39,7 @@
     - 典型页面场景
       - [应用市场首页](appgallery-home-page.md)
       - [音乐专辑页](music-album-page.md)
+      - [设置应用页面](settings-application-page.md)
   - [交互归一](interaction-event-normalization.md)
   - [多态组件](polymorphic-controls.md)
   - [资源使用](resource-usage.md)

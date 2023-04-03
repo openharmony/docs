@@ -36,7 +36,9 @@ In OpenHarmony, the **Window** module provides system windows and application wi
 - A **system window** implements specific functionalities of the system, such as the volume bar, wallpaper, notification panel, status bar, and navigation bar.
 - An **application window** is related to the application display. Based on the displayed content, application windows are further classified into main windows and subwindows.
   - A main window shows the application UI and appears on the **Recent tasks** page.
-  - A subwindow shows auxiliary windows such as dialog boxes and floating windows of an application. It is not displayed on the **Task Management** page.
+  - A subwindow shows auxiliary windows such as dialog boxes and floating windows of an application. It is not displayed on the **Task Management** page. Its lifecycle follows that of the main window.
+
+
 
 
 ### Application Window Mode
@@ -56,7 +58,7 @@ The application window mode refers to the display mode of the main window when i
 
 The window implementation and development vary according to the application development model, that is, FA model and stage model.
 
-For details about the overall architecture and design ideas of the two models, see [FA Model Overview](../ability/fa-brief.md) and [Stage Model Overview](../ability/stage-brief.md).
+For details about the overall architecture and design ideas of the two models, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
 You are advised to use the stage model for window development.
 

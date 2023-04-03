@@ -263,7 +263,7 @@ HapModuleInfo结构体发生变化的字段内容如下表所示。其余字段�
 
 ## cl.bundlemanager.7 ModuleInfo结构体废弃，使用bundleManager/hapModuleInfo.d.ts中的HapModuleInfo代替。
 
-HapModuleInfo结构体字段变更，包管理原有bundle/hapModuleInfo.d.ts 和 moduleInfo.d.ts字段全部废弃，变更为[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts)，涉及字段属性变化。
+包管理原有bundle/hapModuleInfo.d.ts 和 moduleInfo.d.ts字段全部废弃，变更为[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts)，涉及字段属性变化。
 ModuleInfo结构体废弃，使用[bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/hapModuleInfo.d.ts)中的HapModuleInfo代替。
 
 **变更影响**<br>

@@ -17,7 +17,7 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 | Name   | Type   | Description                                                  |
 | ------ | ------ | ------------------------------------------------------------ |
 | offset | number | Proportion of the distance between the color stop and the start point to the total length. The value ranges from 0 to 1. |
-| color   | string | Gradient color to set.                                       |
+| color  | string | Gradient color to set.                                       |
 
 **Example** 
 
@@ -35,9 +35,9 @@ export default {
     const el =this.$refs.canvas;
     const ctx = el.getContext('2d');
     const gradient = ctx.createLinearGradient(50,0,300,100);
-    gradient.addColorStop(0.0, 'red')
-    gradient.addColorStop(0.5, 'white')
-    gradient.addColorStop(1.0, 'green')
+    gradient.addColorStop(0.0, '#ff0000')
+    gradient.addColorStop(0.5, '#ffffff')
+    gradient.addColorStop(1.0, '#00ff00')
     ctx.fillStyle = gradient
     ctx.fillRect(0, 0, 300, 300)
   }

@@ -5,7 +5,7 @@ The **ExtensionContext** module, inherited from **Context**, implements the cont
 This module provides APIs for accessing resources of a specific Extension ability. An Extension ability can use the context directly provided by **ExtensionContext** or that extended from **ExtensionContext**. For example, **ServiceExtension** uses [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md), which extends the capabilities of starting, stopping, binding, and unbinding abilities based on **ExtensionContext**.
 
 > **NOTE**
-> 
+>
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
@@ -31,26 +31,27 @@ To adapt to devices with different performance, an application provides three mo
 
 Define a **ServiceExtension** with the same name for the three modules.
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility'
-import Want from '@ohos.application.Want'
+import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
-        console.log('ServiceAbility onCreate, want: ' + want.abilityName);
+        console.log('ServiceAbility onCreate, want: ${want.abilityName}');
         // Pass ExtensionContext to entry via globalThis.
         globalThis.ExtensionContext = this.context;
     }
 
     onRequest(want, startId) {
-        console.log('ServiceAbility onRequest, want: ' + want.abilityName + ', startId: ' + startId);
+        console.log('ServiceAbility onRequest, want: ${want.abilityName}, startId: ${startId}');
     }
 
     onConnect(want) {
-        console.log('ServiceAbility onConnect, want:' + want.abilityName);
+        console.log('ServiceAbility onConnect, want: ${want.abilityName}');
         return null;
     }
 
     onDisconnect(want) {
-        console.log('ServiceAbility onDisconnect, want:' + want.abilityName);
+        console.log('ServiceAbility onDisconnect, want: ${want.abilityName}');
     }
 
     onDestroy() {
@@ -61,14 +62,15 @@ export default class TheServiceExtension extends ServiceExtension {
 
 Start **ServiceExtension** within the **onCreate** callback of the main ability of the entry.
 ```ts
-import Ability from '@ohos.app.ability.Ability'
-export default class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
+        console.log('[Demo] EntryAbility onCreate');
         let wantExt = {
-            deviceId: "",
-            bundleName: "com.example.TheServiceExtension",
-            abilityName: "TheServiceExtension",
+            deviceId: '',
+            bundleName: 'com.example.TheServiceExtension',
+            abilityName: 'TheServiceExtension',
         };
         this.context.startServiceExtensionAbility(wantExt);
     }
@@ -83,29 +85,29 @@ export default class ServiceModel {
     constructor() {}
 
     executeTask() {
-        if (globalThis.ExtensionContext == undefined) {
-            console.log("ERROR, ServiceExtension does not exist");
+        if (globalThis.ExtensionContext === undefined) {
+            console.log('ERROR, ServiceExtension does not exist');
             return;
         }
 
-        var moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
+        let moduleInfo = globalThis.ExtensionContext.currentHapModuleInfo;
         this.moduleName = moduleInfo.name;
         // Execute service logic based on the module name, which differentiates devices with different performance.
         switch (this.moduleName) {
-            case "highPerformance":
-                console.log("This is high performance device.");
+            case 'highPerformance':
+                console.log('This is high performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "midPerformance":
-                console.log("This is mid performance device.");
+            case 'midPerformance':
+                console.log('This is mid performance device.');
                 // Execute the corresponding service logic.
                 break;
-            case "lowPerformance":
-                console.log("This is low performance device.");
+            case 'lowPerformance':
+                console.log('This is low performance device.');
                 // Execute the corresponding service logic.
                 break;
             default:
-                console.log("ERROR, invalid moduleName.");
+                console.log('ERROR, invalid moduleName.');
                 break;
         }
     }

@@ -1,4 +1,4 @@
-# Resource Manager
+# @ohos.resourceManager (Resource Manager)
 
 The Resource Manager module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
 
@@ -15,12 +15,13 @@ import resourceManager from '@ohos.resourceManager';
 
 ## Instruction
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model.
-For details about how to reference **context** in the stage model, see [Context in the Stage Model].
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let resourceManager = context.resourceManager;
@@ -60,6 +61,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       });
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -97,6 +99,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
+
 | Type                                      | Description               |
 | ---------------------------------------- | ----------------- |
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
@@ -115,6 +118,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
       console.log("error is " + error);
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -134,6 +138,7 @@ Obtains the **ResourceManager** object of an application based on the specified 
 | bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
+
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
@@ -305,7 +310,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example (stage)**
   ```ts
     try {
-        this.context.getStringValue($r('app.string.test').id, (error, value) => {
+        this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
           if (error != null) {
               console.log("error is " + error);
           } else {
@@ -333,6 +338,7 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                   | Description         |
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -423,6 +429,7 @@ Obtains the string corresponding to the specified resource object. This API uses
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type                   | Description              |
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -512,6 +519,7 @@ Obtains the string array corresponding to the specified resource ID. This API us
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
@@ -599,6 +607,7 @@ Obtains the string array corresponding to the specified resource object. This AP
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type                                | Description                |
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
@@ -687,6 +696,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                       | Description            |
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -772,6 +782,7 @@ Obtains the content of the media file corresponding to the specified resource ob
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -859,6 +870,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                   | Description                  |
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -944,6 +956,7 @@ Obtains the Base64 code of the image corresponding to the specified resource obj
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; |  Promise used to return the result.|
@@ -1014,6 +1027,7 @@ Obtains the device configuration. This API uses a promise to return the result.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
+
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
 | Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
@@ -1069,6 +1083,7 @@ Obtains the device capability. This API uses a promise to return the result.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
+
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result.|
@@ -1144,6 +1159,7 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 | num   | number | Yes   | Number.  |
 
 **Return value**
+
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -1234,6 +1250,7 @@ Obtains the singular-plural string corresponding to the specified resource objec
 | num      | number                 | Yes   | Number. |
 
 **Return value**
+
 | Type                   | Description                            |
 | --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -1321,6 +1338,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                       | Description         |
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -1402,6 +1420,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|
@@ -1470,6 +1489,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                 | Description  |
 | ------------------- | ---- |
 | Promise&lt;void&gt; | Promise that returns no value.|
@@ -1538,6 +1558,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                 | Description  |
 | ------------------- | ---- |
 | Promise&lt;void&gt; | Promise that returns no value.|
@@ -1634,6 +1655,7 @@ Obtains the string corresponding to the specified resource name. This API uses a
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type                   | Description        |
 | --------------------- | ---------- |
 | Promise&lt;string&gt; | String corresponding to the resource name.|
@@ -1716,6 +1738,7 @@ Obtains the string array corresponding to the specified resource name. This API 
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type                                | Description          |
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
@@ -1747,7 +1770,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1798,6 +1821,7 @@ Obtains the content of the media file corresponding to the specified resource na
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type                       | Description           |
 | ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -1880,6 +1904,7 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -1965,6 +1990,7 @@ Obtains the plural string corresponding to the specified resource name based on 
 | num     | number | Yes   | Number. |
 
 **Return value**
+
 | Type                   | Description                    |
 | --------------------- | ---------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -2007,6 +2033,7 @@ Obtains the string corresponding to the specified resource ID. This API returns 
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | string | Promise used to return the result.|
@@ -2045,6 +2072,7 @@ Obtains the string corresponding to the specified resource object. This API retu
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type    | Description              |
 | ------ | ---------------- |
 | string | Promise used to return the result.|
@@ -2088,6 +2116,7 @@ Obtains the string corresponding to the specified resource name. This API return
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | String corresponding to the specified resource name.|
@@ -2126,6 +2155,7 @@ Obtains the Boolean result corresponding to the specified resource ID. This API 
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type     | Description          |
 | ------- | ------------ |
 | boolean | Boolean result corresponding to the specified resource ID.|
@@ -2163,6 +2193,7 @@ Obtains the Boolean result corresponding to the specified resource object. This 
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type     | Description               |
 | ------- | ----------------- |
 | boolean | Boolean result corresponding to the specified resource object.|
@@ -2206,6 +2237,7 @@ Obtains the Boolean result corresponding to the specified resource name. This AP
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type     | Description         |
 | ------- | ----------- |
 | boolean | Boolean result corresponding to the specified resource name.|
@@ -2244,6 +2276,7 @@ Obtains the integer or float value corresponding to the specified resource ID. T
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | number | Integer or float value corresponding to the specified resource ID.|
@@ -2288,6 +2321,7 @@ Obtains the integer or float value corresponding to the specified resource objec
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 
 **Return value**
+
 | Type    | Description             |
 | ------ | --------------- |
 | number | Integer or float value corresponding to the specified resource object.|
@@ -2331,6 +2365,7 @@ Obtains the integer or float value corresponding to the specified resource name.
 | resName | string | Yes   | Resource name.|
 
 **Return value**
+
 | Type    | Description       |
 | ------ | --------- |
 | number | Integer or float value corresponding to the specified resource name.|
@@ -2360,6 +2395,142 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object based on the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object based on the specified resource. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type     | Description               |
+| ------- | ----------------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.icon').id
+  };
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptorByName<sup>10+</sup>
+
+getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object based on the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon');
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getString<sup>(deprecated)</sup>
 
@@ -2409,6 +2580,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                   | Description         |
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -2473,6 +2645,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
@@ -2495,7 +2668,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2526,7 +2699,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the media file corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent-1) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2537,6 +2710,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                       | Description            |
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -2559,7 +2733,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase64) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2590,7 +2764,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase64-1) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2601,6 +2775,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | resId | number | Yes   | Resource ID.|
 
 **Return value**
+
 | Type                   | Description                  |
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -2623,7 +2798,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue) instead.
+This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2635,6 +2810,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | num   | number | Yes   | Number.  |
 
 **Return value**
+
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
@@ -2657,7 +2833,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue-1) instead.
+This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2731,6 +2907,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                       | Description         |
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
@@ -2796,6 +2973,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 | path | string | Yes   | Path of the raw file.|
 
 **Return value**
+
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|

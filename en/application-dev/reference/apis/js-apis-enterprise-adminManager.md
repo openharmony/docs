@@ -1,4 +1,4 @@
-# @ohos.enterprise.adminManager
+# @ohos.enterprise.adminManager (Enterprise Device Management)
 
 The **adminManager** module provides enterprise device management capabilities so that devices have the custom capabilities required in enterprise settings.
 
@@ -35,7 +35,7 @@ Enables a device administrator application based on the specified bundle name an
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -48,7 +48,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -87,7 +87,7 @@ Enables a device administrator application for the specified user based on the s
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -100,7 +100,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -144,7 +144,7 @@ Enables a device administrator application based on the specified bundle name an
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                        |
 | ------- | --------------------------------------------------------------- |
@@ -157,7 +157,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -190,7 +190,7 @@ Disables a device common administrator application based on the specified bundle
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -234,7 +234,7 @@ Disables a device common administrator application for the specified user based 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -283,7 +283,7 @@ Disables a device common administrator application based on the specified bundle
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -322,9 +322,9 @@ Disables a device super administrator application based on the specified bundle 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |
+| ID| Error Message                                                          |   
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
@@ -367,7 +367,7 @@ Disables a device super administrator application based on the specified bundle 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                          |
 | ------- | ----------------------------------------------------------------- |
@@ -571,7 +571,7 @@ Sets the enterprise information of a device administrator application. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -582,7 +582,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -624,7 +624,7 @@ Sets the enterprise information of a device administrator application. This API 
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -635,7 +635,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -665,7 +665,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -676,7 +676,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
     if (error != null) {
@@ -712,7 +712,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -723,7 +723,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
     console.log(result.name);
@@ -755,7 +755,7 @@ Subscribes to system management events. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 |ID| Error Message                                               |
 | ------- | ----------------------------------------------------- |
@@ -804,7 +804,7 @@ Subscribes to system management events. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -847,7 +847,7 @@ Unsubscribes from system management events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -896,7 +896,7 @@ Unsubscribes from system management events. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                              |
 | ------- | ----------------------------------------------------- |
@@ -953,5 +953,7 @@ Enumerates the system management events that can be subscribed to.
 
 | Name                       | Value | Description          |
 | -------------------------- | ---- | ------------- |
-| MANAGED_EVENT_BUNDLE_ADDED | 0    | Application installation event.|
-| MANAGED_EVENT_BUNDLE_REMOVED | 1  | Application uninstallation event.|
+| MANAGED_EVENT_BUNDLE_ADDED | 0    | Bundle added.|
+| MANAGED_EVENT_BUNDLE_REMOVED | 1  | Bundle removed.|
+| MANAGED_EVENT_APP_START | 2    | Application started.|
+| MANAGED_EVENT_APP_STOP | 3  | Application stopped.|

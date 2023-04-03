@@ -173,7 +173,7 @@ The following examples are not intended as copy-paste-ready. Further customizati
         "clickOneDay": {
             "action": "router",
             "bundleName": "com.example.calendar",
-            "abilityName": "com.example.calendar.MainAbility",
+            "abilityName": "EntryAbility",
             "params": {
                 "action": "click_month_view_event",
                 "day": "$event.day",

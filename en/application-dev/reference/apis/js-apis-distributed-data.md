@@ -1,4 +1,4 @@
-# Distributed Data Management
+# @ohos.data.distributedData (Distributed Data Management)
 
 The distributed data management module implements collaboration between databases of different devices for applications. The APIs provided by distributed data management can be used to save data to distributed databases and perform operations such as adding, deleting, modifying, querying, and synchronizing data in distributed databases.
 
@@ -119,7 +119,7 @@ Provides configuration of the **KVManager** object, including the bundle name an
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | userInfo | [UserInfo](#userinfo) | Yes | User information.|
-| bundleName | string | Yes | Bundle name.|
+| bundleName | string | Yes | Bundle name of the caller.|
 
 ## UserInfo
 

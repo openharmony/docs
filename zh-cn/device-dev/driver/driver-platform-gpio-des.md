@@ -133,7 +133,7 @@ int32_t ret;
 
 ret = GpioSetDir(3, GPIO_DIR_OUT);    // 将3号GPIO管脚配置为输出
 if (ret != 0) {
-    HDF_LOGE("GpioSerDir: failed, ret %d\n", ret);
+    HDF_LOGE("GpioSetDir: failed, ret %d\n", ret);
     return ret;
 }
 ```
@@ -146,17 +146,17 @@ if (ret != 0) {
 int32_t GpioGetDir(uint16_t gpio, uint16_t *dir);
 ```
 
-**表2** GpioGetDir参数和返回值描述
+**表3** GpioGetDir参数和返回值描述
 
 | **参数**   | **参数描述**       |
 | ---------- | ------------------ |
 | gpio       | GPIO管脚号 |
-| dir        | 待获取的方向值     |
+| dir        | 获取到的方向值指针     |
 | **返回值** | **返回值描述**     |
 | 0          | 设置成功           |
 | 负数       | 设置失败           |
 
-假设需要将GPIO管脚3的方向配置为输出，其使用示例如下：
+假设需要获取GPIO管脚3的方向，其使用示例如下：
 
 ```c
 int32_t ret;
@@ -177,7 +177,7 @@ if (ret != 0) {
 int32_t GpioRead(uint16_t gpio, uint16_t *val);
 ```
 
-**表3** GpioRead参数和返回值描述
+**表4** GpioRead参数和返回值描述
 
 | **参数**   | **参数描述**         |
 | ---------- | -------------------- |
@@ -208,7 +208,7 @@ if (ret != 0) {
 int32_t GpioWrite(uint16_t gpio, uint16_t val);
 ```
 
-**表4** GpioWrite参数和返回值描述
+**表5** GpioWrite参数和返回值描述
 
 | **参数**   | **参数描述**       |
 | ---------- | ------------------ |
@@ -238,7 +238,7 @@ if (ret != 0) {
 int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void *arg);
 ```
 
-**表5** GpioSetIrq参数和返回值描述
+**表6** GpioSetIrq参数和返回值描述
 
 | **参数**   | **参数描述**             |
 | ---------- | ------------------------ |
@@ -261,7 +261,7 @@ int32_t GpioSetIrq(uint16_t gpio, uint16_t mode, GpioIrqFunc func, void *arg);
 int32_t GpioUnsetIrq(uint16_t gpio, void *arg);
 ```
 
-**表6** GpioUnsetIrq参数和返回值描述
+**表7** GpioUnsetIrq参数和返回值描述
 
 | **参数**   | **参数描述**   |
 | ---------- | -------------- |
@@ -279,7 +279,7 @@ int32_t GpioUnsetIrq(uint16_t gpio, void *arg);
 int32_t GpioEnableIrq(uint16_t gpio);
 ```
 
-**表7** GpioEnableIrq参数和返回值描述
+**表8** GpioEnableIrq参数和返回值描述
 
 | **参数**   | **参数描述**   |
 | ---------- | -------------- |
@@ -298,7 +298,7 @@ int32_t GpioEnableIrq(uint16_t gpio);
 ```c
 int32_t GpioDisableIrq(uint16_t gpio);
 ```
-**表8** GpioDisableIrq参数和返回值描述
+**表9** GpioDisableIrq参数和返回值描述
 
 | **参数**   | **参数描述**   |
 | ---------- | -------------- |

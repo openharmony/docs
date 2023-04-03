@@ -51,7 +51,7 @@ The directory structure of the Globalization subsystem for the standard system i
 
 ```
 /base/global
-├── i18n_standard           # Code repository for the i18n framework
+├── i18n           # Code repository for the i18n framework
 │   ├── frameworks          # Core code of the i18n framework
 │   ├── interfaces          # APIs
 │   │   ├── js              # JavaScript APIs
@@ -73,7 +73,7 @@ The directory structure of the Globalization subsystem for the standard system i
 
 [global\_i18n\_lite](https://gitee.com/openharmony/global_i18n_lite)
 
-[global\_i18n\_standard](https://gitee.com/openharmony/global_i18n_standard)
+[global\_i18n](https://gitee.com/openharmony/global_i18n)
 
 [global\_resmgr\_lite](https://gitee.com/openharmony/global_resmgr_lite)
 

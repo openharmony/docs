@@ -6,27 +6,26 @@ The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data in
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-  
-
 
 ## Child Components
-  Child components are not supported when **type** is set to **"surface"**.\
-  Since API version 9, child components are supported when **type** is set to **"component"**.
+Child components are not supported when **type** is set to **"surface"**.
+
+Since API version 9, child components are supported when **type** is set to **"component"**.
 
 ## APIs
 
-  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
-| Name      | Type    | Mandatory  | Description   |
-| --------- | ------ | ---- | ----- |
-| id  | string | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.|
-| type      | string | Yes   | Type of the component. The options are as follows:<br>- **"surface"**: The content of the component is displayed individually, without being combined with that of other components. This option is used for displaying EGL/OpenGL ES and media data.<br>- **"component"**<sup>9+</sup>: The component becomes a container where non-UI logic can be executed to dynamically load the display content.|
-| libraryname | string | No   | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when the component type is **"surface"**.|
-| controller   | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke the methods of the component. This parameter is valid only when the component type is **"surface"**. |
+| Name        | Type                                    | Mandatory  | Description                                      |
+| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| id          | string                                   | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.                  |
+| type        | string                                   | Yes   | Type of the component. The options are as follows:<br>- **"surface"**: The content of the component is displayed individually, without being combined with that of other components. This option is used for displaying EGL/OpenGL ES and media data.<br>- **"component"**<sup>9+</sup>: The component becomes a container where non-UI logic can be executed to dynamically load the display content.|
+| libraryname | string                                   | No   | Name of the dynamic library generated after compilation at the application native layer. This parameter is valid only when the component type is **"surface"**.|
+| controller  | [XComponentcontroller](#xcomponentcontroller) | No   | Controller bound to the component, which can be used to invoke methods of the component. This parameter is valid only when the component type is **"surface"**.|
 
-> **NOTE**<br>
+> **NOTE**
 >
 > When **type** is set to **"component"**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
 >
@@ -46,7 +45,7 @@ The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data in
 
 ## Events
 
-The following events are supported only when **type** is set to **"surface"**. The [universal events and gestures](./Readme-EN.md) are not supported.
+The following events are supported only when **type** is set to **"surface"**. The [universal events](ts-universal-events-click.md) and [universal gestures](ts-gesture-settings.md) are not supported.
 
 ### onLoad
 
@@ -56,9 +55,9 @@ Triggered when the plug-in is loaded.
 
 **Parameters**
 
-| Name          | Type  | Mandatory | Description                     |
-| ------------- | ------ | ---- | ----------------------- |
-| event  | object |   No | Context of the **\<XComponent>** object. The APIs contained in the context are defined at the C++ layer by developers.|
+| Name  | Type  | Mandatory  | Description                                      |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | object | No   | Context of the **\<XComponent>** object. The APIs contained in the context are defined at the C++ layer by developers.|
 
 ### onDestroy
 
@@ -99,7 +98,7 @@ Sets the width and height of the surface held by the **\<XComponent>**. This API
 
 **Parameters**
 
-| Name          | Type  | Mandatory | Description                     |
+| Name          | Type  | Mandatory  | Description                     |
 | ------------- | ------ | ---- | ----------------------- |
 | surfaceWidth  | number | Yes   | Width of the surface held by the **\<XComponent>**.|
 | surfaceHeight | number | Yes   | Height of the surface held by the **\<XComponent>**.|

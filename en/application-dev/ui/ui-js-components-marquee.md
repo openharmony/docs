@@ -79,7 +79,7 @@ Set the **scrollamount**, **loop**, and **direction** attributes to define the m
 <div class="tutorial-page">
   <div class="mymarquee">
     <marquee loop="{{loopval}}" scrollamount="{{scroll}}" direction="{{isleft}}" class="marqueetext" id="testmarquee" onclick="makestart">
-      It's a racing lamp
+      Life is a journey, not the destination.
     </marquee>
   </div>
   <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
@@ -128,7 +128,9 @@ button{
 // xxx.js
 export default {
   private: {
-    loopval: -1,    scroll: 10,    isleft: "left",
+    loopval: -1,
+    scroll: 10,    
+    isleft: "left",
   },
   onInit(){
   },
@@ -148,7 +150,7 @@ export default {
 >
 > When the value of **loop** is less than or equal to 0, the marquee scrolls continuously. If **loop** is not set, the default value **-1** is used.
 
-![en-us_image_0000001276162773](figures/en-us_image_0000001276162773.gif)
+![en-us_image_0000001227701867](figures/en-us_image_0000001227701867.gif)
 
 
 ## Example Scenario
@@ -164,7 +166,7 @@ Set **loop** to **1**. When scrolling ends, trigger a **finish** event to increa
   <div class="mymarquee">
     <marquee  style="color: {{color1}}" loop="{{loopval}}" scrollamount="{{scroll}}" direction="{{isleft}}" class="marqueetext" 
     id="testmarquee" onfinish="setfinish">
-      It's a racing lamp
+      Life is a journey, not the destination.
     </marquee>
   </div>
   <div style="width: 600px;height: 150px;flex-direction: row;justify-content: space-around;">
@@ -233,4 +235,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001276003541](figures/en-us_image_0000001276003541.gif)
+![en-us_image_0000001176075554](figures/en-us_image_0000001176075554.gif)

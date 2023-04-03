@@ -12,15 +12,15 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     eventFunc(){
-        console.log("eventFunc is called");
+        console.log('eventFunc is called');
     }
 
     onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
+        this.context.eventHub.on('myEvent', this.eventFunc);
     }
 }
 ```
@@ -43,23 +43,23 @@ on(event: string, callback: Function): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
+        this.context.eventHub.on('myEvent', this.eventFunc);
         // 支持使用匿名函数订阅事件
-        this.context.eventHub.on("myEvent", () => {
-            console.log("call anonymous eventFunc");
+        this.context.eventHub.on('myEvent', () => {
+            console.log('call anonymous eventFunc');
         });
         // 结果：
         // eventFunc is called
         // call anonymous eventFunc
-        this.context.eventHub.emit("myEvent"); 
+        this.context.eventHub.emit('myEvent'); 
     }
 
     eventFunc() {
-        console.log("eventFunc is called");
+        console.log('eventFunc is called');
     }
 }
 ```
@@ -84,23 +84,23 @@ off(event: string, callback?: Function): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc1);
-        this.context.eventHub.off("myEvent", this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
-        this.context.eventHub.on("myEvent", this.eventFunc1);
-        this.context.eventHub.on("myEvent", this.eventFunc2);
-        this.context.eventHub.off("myEvent");  // 取消eventFunc1和eventFunc2对myEvent事件的订阅
+        this.context.eventHub.on('myEvent', this.eventFunc1);
+        this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
+        this.context.eventHub.on('myEvent', this.eventFunc1);
+        this.context.eventHub.on('myEvent', this.eventFunc2);
+        this.context.eventHub.off('myEvent');  // 取消eventFunc1和eventFunc2对myEvent事件的订阅
     }
 
     eventFunc1() {
-        console.log("eventFunc1 is called");
+        console.log('eventFunc1 is called');
     }
 
     eventFunc2() {
-        console.log("eventFunc2 is called");
+        console.log('eventFunc2 is called');
     }
 }
 ```
@@ -123,24 +123,24 @@ emit(event: string, ...args: Object[]): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onForeground() {
-        this.context.eventHub.on("myEvent", this.eventFunc);
+        this.context.eventHub.on('myEvent', this.eventFunc);
         // 结果：
         // eventFunc is called,undefined,undefined
-        this.context.eventHub.emit("myEvent");
+        this.context.eventHub.emit('myEvent');
         // 结果：
         // eventFunc is called,1,undefined
-        this.context.eventHub.emit("myEvent", 1);
+        this.context.eventHub.emit('myEvent', 1);
         // 结果：
         // eventFunc is called,1,2
-        this.context.eventHub.emit("myEvent", 1, 2);
+        this.context.eventHub.emit('myEvent', 1, 2);
     }
 
     eventFunc(argOne, argTwo) {
-        console.log("eventFunc is called," + argOne + "," + argTwo);
+        console.log('eventFunc is called, ${argOne}, ${argTwo}');
     }
 }
 ```

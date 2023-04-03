@@ -29,20 +29,72 @@ The following scenarios are common for native window development:
 | OH_NativeWindow_NativeWindowSetMetaDataSet(OHNativeWindow \*window, uint32_t sequence, OHHDRMetadataKey key, int32_t size, const uint8_t \*metaData) | Sets the HDR static metadata set of the native window.|
 | OH_NativeWindow_NativeWindowSetTunnelHandle(OHNativeWindow \*window, const OHExtDataHandle \*handle) | Sets the tunnel handle to the native window.|
 
-
 ## How to Develop
 
 The following describes how to use the NAPI provided by **NativeWindow** to request a graphics buffer, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
 
-1. Obtain a **NativeWindow** instance. For example, use **Surface** to create a **NativeWindow** instance.
-    ```c++
-    sptr<OHOS::Surface> cSurface = Surface::CreateSurfaceAsConsumer();
-    sptr<IBufferConsumerListener> listener = new BufferConsumerListenerTest();
-    cSurface->RegisterConsumerListener(listener);
-    sptr<OHOS::IBufferProducer> producer = cSurface->GetProducer();
-    sptr<OHOS::Surface> pSurface = Surface::CreateSurfaceAsProducer(producer);
-    OHNativeWindow* nativeWindow = OH_NativeWindow_CreateNativeWindow(&pSurface);
-    ```
+1. Obtain a **NativeWindow** instance, which can be obtained by running the APIs provided by **OH_NativeXComponent_Callback**.
+   1. Define **XComponent** in an .ets file.
+        ```ts
+        XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'nativerender'})
+            .onLoad((context) => {
+                this.context = context;
+            })
+            .onDestroy(() => {
+            })
+        ```
+   2. Obtain **NativeXComponent** at the native C++ layer.
+       ```c++
+       napi_value exportInstance = nullptr;
+       napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance);
+
+       OH_NativeXComponent *nativeXComponent = nullptr;
+       napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent));
+
+       char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { };
+       uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+       OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
+       ```
+   3. Define **OH_NativeXComponent_Callback**.
+       ```c++
+       // Define the callback.
+       void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
+       {
+           // Obtain a NativeWindow instance.
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
+       {
+           // Obtain a NativeWindow instance.
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
+       {
+           // Obtain a NativeWindow instance.
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
+       {
+           // Obtain a NativeWindow instance.
+           OHNativeWindow* nativeWindow = window;
+           // ...
+       }
+       ```
+       ```c++
+       // Initialize OH_NativeXComponent_Callback.
+       OH_NativeXComponent_Callback callback_;
+       callback_->OnSurfaceCreated = OnSurfaceCreatedCB;
+       callback_->OnSurfaceChanged = OnSurfaceChangedCB;
+       callback_->OnSurfaceDestroyed = OnSurfaceDestroyedCB;
+       callback_->DispatchTouchEvent = DispatchTouchEventCB;
+       ```
+   4. Register **OH_NativeXComponent_Callback** with **NativeXComponent**.
+       ```c++
+       OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
+       ```
 
 2. Set the attributes of a native window buffer by using **OH_NativeWindow_NativeWindowHandleOpt**.
     ```c++
@@ -90,7 +142,6 @@ The following describes how to use the NAPI provided by **NativeWindow** to requ
     ```
 
 5. Flush the native window buffer to the graphics queue.
-
     ```c++
     // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the native window buffer are changed.
     Region region{nullptr, 0};

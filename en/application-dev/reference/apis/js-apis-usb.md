@@ -1,10 +1,12 @@
-# USB
+# @ohos.usbV9 (USB)
 
-The USB module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
+The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
 >  **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [`@ohos.usbManager`](js-apis-usbManager.md).
 
 ## Modules to Import
 
@@ -30,7 +32,7 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 ```js
 let devicesList = usb.getDevices();
-console.log(`devicesList = ${JSON.stringify(devicesList)}`);
+console.log(`devicesList = ${devicesList}`);
 // devicesList is a list of USB devices.
 // A simple example of devicesList is provided as follows:
 [
@@ -43,7 +45,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
     vendorId: 7531,
     productId: 2,
     clazz: 9,
-    subclass: 0,
+    subClass: 0,
     protocol: 1,
     devAddress: 1,
     busNum: 1,
@@ -60,7 +62,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
             id: 0,
             protocol: 0,
             clazz: 9,
-            subclass: 0,
+            subClass: 0,
             alternateSetting: 0,
             name: "1-1",
             endpoints: [
@@ -87,7 +89,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
 
 connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
-Connects to a USB device.
+Connects to the USB device based on the device information returned by **getDevices()**.
 
 Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and device information, and then call [usb.requestRight](#usbrequestright) to request the device access permission.
 
@@ -119,13 +121,12 @@ For details about the error codes, see [USB Error Codes](../errorcodes/errorcode
 let devicesList = usb.getDevices();
 if (devicesList.length == 0) {
   console.log(`device list is empty`);
-  return;
 }
 
 let device = devicesList[0];
 usb.requestRight(device.name);
 let devicepipe = usb.connectDevice(device);
-console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
+console.log(`devicepipe = ${devicepipe}`);
 ```
 
 ## usb.hasRight
@@ -133,6 +134,8 @@ console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
 hasRight(deviceName: string): boolean
 
 Checks whether the application has the permission to access the device.
+
+Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -181,13 +184,13 @@ Requests the temporary permission for the application to access a USB device. Th
 ```js
 let devicesName="1-1";
 usb.requestRight(devicesName).then((ret) => {
-  console.log(`requestRight = ${JSON.stringify(ret)}`);
+  console.log(`requestRight = ${ret}`);
 });
 ```
 
 ## usb.removeRight
 
-removeRight(deviceName: string): boolean;
+removeRight(deviceName: string): boolean
 
 Removes the permission for the application to access a USB device.
 
@@ -209,14 +212,14 @@ Removes the permission for the application to access a USB device.
 
 ```js
 let devicesName="1-1";
-if (usb.removeRight(devicesName) {
+if usb.removeRight(devicesName) {
   console.log(`Succeed in removing right`);
 }
 ```
 
 ## usb.addRight
 
-addRight(bundleName: string, deviceName: string): boolean;
+addRight(bundleName: string, deviceName: string): boolean
 
 Adds the permission for the application to access a USB device.
 
@@ -244,14 +247,14 @@ Adds the permission for the application to access a USB device.
 ```js
 let devicesName = "1-1";
 let bundleName = "com.example.hello";
-if (usb.addRight(bundleName, devicesName) {
+if usb.addRight(bundleName, devicesName) {
   console.log(`Succeed in adding right`);
 }
 ```
 
 ## usb.claimInterface
 
-claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
+claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 Claims a USB interface.
 
@@ -428,7 +431,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 Performs control transfer.
 
@@ -453,14 +456,15 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
- console.log(`controlTransfer = ${JSON.stringify(ret)}`);
+let param = new usb.USBControlParams();
+usb.controlTransfer(devicepipe, param).then((ret) => {
+ console.log(`controlTransfer = ${ret}`);
 })
 ```
 
 ## usb.bulkTransfer
 
-bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 Performs bulk transfer.
 
@@ -490,7 +494,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
 // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
+ console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -577,13 +581,13 @@ Converts the USB function list in the numeric mask format to a string in Device 
 **Example**
 
 ```js
-let funcs = ACM | ECM;
+let funcs = usb.ACM | usb.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
 ## usb.setCurrentFunctions
 
-setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
+setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 Sets the current USB function list in Device mode.
 
@@ -599,15 +603,19 @@ Sets the current USB function list in Device mode.
 
 **Return value**
 
-| Type              | Description                                                        |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Type           | Description         |
+| --------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let funcs = HDC;
-let ret = usb.setCurrentFunctions(funcs);
+let funcs = usb.HDC;
+usb.setCurrentFunctions(funcs).then(() => {
+    console.info('usb setCurrentFunctions successfully.');
+}).catch(err => {
+    console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## usb.getCurrentFunctions
@@ -684,7 +692,7 @@ let ret = usb.getSupportedModes(0);
 
 ## usb.setPortRoles
 
-setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<boolean\>
+setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
@@ -702,14 +710,19 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 **Return value**
 
-| Type              | Description                                                        |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
+| Type           | Description         |
+| --------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let ret = usb.getSupportedModes(0);
+let portId = 1;
+usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+    console.info('usb setPortRoles successfully.');
+}).catch(err => {
+    console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## USBEndpoint

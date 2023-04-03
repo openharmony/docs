@@ -1,4 +1,4 @@
-# System Timer
+# @ohos.systemTimer (System Timer)
 
 The **systemTimer** module provides system timer features. You can use the APIs of this module to implement the alarm clock and other timer services.
 
@@ -33,13 +33,13 @@ Defines the initialization options for **createTimer**.
 
 **System capability**: SystemCapability.MiscServices.Time
 
-| Name     | Type                             | Mandatory| Description                                                        |
-| --------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | number                            | Yes  | Timer type.<br>**1**: CPU time type. The start time of the timer cannot be later than the current system time.<br>**2**: wakeup type.<br>**4**: exact type.<br>**5**: idle type (not supported currently).|
-| repeat    | boolean                           | Yes  | Whether the timer is a repeating timer. The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
-| interval  | number                            | No  | Repeat interval. For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
-| wantAgent | [WantAgent](js-apis-wantAgent.md) | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
-| callback  | number                            | Yes  | Callback used to return the timer ID.                            |
+| Name     | Type                                         | Mandatory| Description                                                        |
+| --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type      | number                                        | Yes  | Timer type.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type.<br>**8**: idle type (not supported currently).|
+| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer. The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
+| interval  | number                                        | No  | Repeat interval. For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
+| callback  | number                                        | Yes  | Callback used to return the timer ID.                            |
 
 
 ## systemTimer.createTimer
@@ -47,6 +47,8 @@ Defines the initialization options for **createTimer**.
 createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 Creates a timer. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -61,19 +63,23 @@ Creates a timer. This API uses an asynchronous callback to return the result.
 
 ```js
 export default {
-    systemTimer () {
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat: false
-        };
-        systemTimer.createTimer(options, (error, data) => {
-            if (error) {
-                console.error(`Failed to create timer. Cause:` + JSON.stringify(error));
-                return;
-            }
-            console.log(`Succeeded in creating timer. Data:` + JSON.stringify(data));
-        });
+  systemTimer () {
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat: false
+    };
+    try {
+      systemTimer.createTimer(options, (error, timerId) => {
+        if (error) {
+          console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+      });
+    } catch(e) {
+      console.info(`Failed to create timer. message: ${e.message}, code: ${e.code}`);
     }
+  }
 }
 ```
 
@@ -82,6 +88,8 @@ export default {
 createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 Creates a timer. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -101,17 +109,21 @@ Creates a timer. This API uses a promise to return the result.
 
 ```js
 export default {
-    systemTimer () {
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat:false
-        };
-        systemTimer.createTimer(options).then((data) => {
-            console.log(`Succeeded in creating timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to create timer. Cause:` + JSON.stringify(error));
-        });
+  systemTimer () {
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
+    };   
+    try {
+      systemTimer.createTimer(options).then((timerId) => {
+        console.info(`Succeeded in creating timer. timerId: ${timerId}`);
+      }).catch((error) => {
+        console.info(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
+      });
+    } catch(e) {
+      console.info(`Failed to create timer. message: ${e.message}, code: ${e.code}`);
     }
+  }
 }
 ```
 
@@ -120,6 +132,8 @@ export default {
 startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&gt;): void
 
 Starts a timer. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -135,21 +149,26 @@ Starts a timer. This API uses an asynchronous callback to return the result.
 
 ```js
 export default {
-    async systemTimer () {
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat:false
-        }
-      let timerId = await systemTimer.createTimer(options)
-      let triggerTime = new Date().getTime()
-      triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime, (error) => {
-          if (error) {
-              console.error(`Failed to start timer. Cause:` + JSON.stringify(error));
-              return;
-          }
-      });
+  async systemTimer () {
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
     }
+  let timerId = await systemTimer.createTimer(options);
+  let triggerTime = new Date().getTime();
+  triggerTime += 3000;
+  try {
+      systemTimer.startTimer(timerId, triggerTime, (error) => {
+        if (error) {
+          console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in starting timer.`);
+      });
+    } catch(e) {
+      console.info(`Failed to start timer. message: ${e.message}, code: ${e.code}`);
+    }
+  }
 }
 ```
 
@@ -158,6 +177,8 @@ export default {
 startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 Starts a timer. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -178,20 +199,24 @@ Starts a timer. This API uses a promise to return the result.
 
 ```js
 export default {
-    async systemTimer (){
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat:false
-        }
-        let timerId = await systemTimer.createTimer(options)
-        let triggerTime = new Date().getTime()
-        triggerTime += 3000
-        systemTimer.startTimer(timerId, triggerTime).then((data) => {
-            console.log(`Succeeded in startting timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to start timer. Cause:` + JSON.stringify(error));
-        });
+  async systemTimer (){
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
     }
+    let timerId = await systemTimer.createTimer(options);
+    let triggerTime = new Date().getTime();
+    triggerTime += 3000;
+    try {
+      systemTimer.startTimer(timerId, triggerTime).then(() => {
+        console.info(`Succeeded in starting timer.`);
+         }).catch((error) => {
+        console.info(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
+      });
+    } catch(e) {
+      console.info(`Failed to start timer. message: ${e.message}, code: ${e.code}`);
+    } 
+  }
 }
 ```
 
@@ -200,6 +225,8 @@ export default {
 stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 Stops a timer. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -215,20 +242,25 @@ Stops a timer. This API uses an asynchronous callback to return the result.
 ```js
 export default {
   async systemTimer () {
-      let options = {
-          type: systemTimer.TIMER_TYPE_REALTIME,
-          repeat:false
-      }
-      let timerId = await systemTimer.createTimer(options)
-      let triggerTime = new Date().getTime()
-      triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime)
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
+    }
+    let timerId = await systemTimer.createTimer(options);
+    let triggerTime = new Date().getTime();
+    triggerTime += 3000;
+    systemTimer.startTimer(timerId, triggerTime);
+    try {
       systemTimer.stopTimer(timerId, (error) => {
-          if (error) {
-              console.error(`Failed to stop timer. Cause:` + JSON.stringify(error));
-              return;
-          }
+        if (error) {
+          console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in stopping timer.`);
       });
+    } catch(e) {
+      console.info(`Failed to stop timer. message: ${e.message}, code: ${e.code}`);
+    }
   }
 }
 ```
@@ -238,6 +270,8 @@ export default {
 stopTimer(timer: number): Promise&lt;void&gt;
 
 Stops a timer. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -258,19 +292,23 @@ Stops a timer. This API uses a promise to return the result.
 ```js
 export default {
   async systemTimer (){
-      let options = {
-          type: systemTimer.TIMER_TYPE_REALTIME,
-          repeat:false
-      }
-      let timerId = await systemTimer.createTimer(options)
-  	  let triggerTime = new Date().getTime()
-      triggerTime += 3000
-      systemTimer.startTimer(timerId, triggerTime)
-      systemTimer.stopTimer(timerId).then((data) => {
-          console.log(`Succeeded in stopping timer. Data:` + JSON.stringify(data));
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
+    }
+    let timerId = await systemTimer.createTimer(options);
+    let triggerTime = new Date().getTime();
+    triggerTime += 3000;
+    systemTimer.startTimer(timerId, triggerTime);
+    try {
+      systemTimer.stopTimer(timerId).then(() => {
+        console.info(`Succeeded in stopping timer.`);
       }).catch((error) => {
-          console.error(`Failed to stop timer. Cause:` + JSON.stringify(error));
+        console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
       });
+    } catch(e) {
+      console.info(`Failed to stop timer. message: ${e.message}, code: ${e.code}`);
+    }
   }
 }
 ```
@@ -280,6 +318,8 @@ export default {
 destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 Destroys a timer. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -294,23 +334,28 @@ Destroys a timer. This API uses an asynchronous callback to return the result.
 
 ```js
 export default {
-    async systemTimer () {
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat:false
-        }
-        let timerId = await systemTimer.createTimer(options)
-        let triggerTime = new Date().getTime()
-        triggerTime += 3000
-        systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId, (error) => {
-            if (error) {
-                console.error(`Failed to destroy timer. Cause:` + JSON.stringify(error));
-                return;
-            }
-        });
+  async systemTimer () {
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
     }
+    let timerId = await systemTimer.createTimer(options);
+    let triggerTime = new Date().getTime();
+    triggerTime += 3000;
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId);
+    try {
+      systemTimer.destroyTimer(timerId, (error) => {
+        if (error) {
+          console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in destroying timer.`);
+      });
+    } catch(e) {
+      console.info(`Failed to destroying timer. message: ${e.message}, code: ${e.code}`);
+    }
+  }
 }
 ```
 
@@ -319,6 +364,8 @@ export default {
 destroyTimer(timer: number): Promise&lt;void&gt;
 
 Destroys a timer. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -338,21 +385,25 @@ Destroys a timer. This API uses a promise to return the result.
 
 ```js
 export default {
-    async systemTimer (){
-        let options = {
-            type: systemTimer.TIMER_TYPE_REALTIME,
-            repeat:false
-        }
-        let timerId = await systemTimer.createTimer(options)
-        let triggerTime = new Date().getTime()
-        triggerTime += 3000
-        systemTimer.startTimer(timerId, triggerTime)
-        systemTimer.stopTimer(timerId)
-        systemTimer.destroyTimer(timerId).then((data) => {
-            console.log(`Succeeded in destroying timer. Data:` + JSON.stringify(data));
-        }).catch((error) => {
-            console.error(`Failed to destroy timer. Cause:` + JSON.stringify(error));
-        });
+  async systemTimer (){
+    let options = {
+      type: systemTimer.TIMER_TYPE_REALTIME,
+      repeat:false
     }
+    let timerId = await systemTimer.createTimer(options);
+    let triggerTime = new Date().getTime();
+    triggerTime += 3000;
+    systemTimer.startTimer(timerId, triggerTime);
+    systemTimer.stopTimer(timerId);
+    try {
+      systemTimer.destroyTimer(timerId).then(() => {
+         console.info(`Succeeded in destroying timer.`);
+      }).catch((error) => {
+        console.info(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
+      });
+    } catch(e) {
+      console.info(`Failed to destroying timer. message: ${e.message}, code: ${e.code}`);
+    }
+  }
 }
 ```

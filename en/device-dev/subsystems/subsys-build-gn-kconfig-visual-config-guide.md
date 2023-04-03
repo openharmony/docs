@@ -3,7 +3,7 @@
 ## Overview
 
 ### Kconfig Visual Configuration
-Kconfig visual configuration is implemented on [Kconfiglib](https://github.com/ulfalizer/Kconfiglib) and [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html#introduction). It allows customized configuration of OpenHarmony subsystem components.
+Kconfig visual configuration is implemented on [Kconfiglib](https://github.com/ulfalizer/Kconfiglib) and [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html). It allows customized configuration of OpenHarmony subsystem components.
 
 Kconfig visual configuration has the following advantages:
 
@@ -40,13 +40,13 @@ Kconfig visual configuration has the following advantages:
    menuconfig kconfig
    ```
 
-   ![Kconfig example](./figure/kconfig_interface.png)
+   ![Kconfig example](./figures/kconfig_interface.png)
 
 4. Set parameters.
 
-   For details about the parameters, see [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json).
+   For details about the parameters, see productdefine/common/base/base_product.json.
 
-   ![Setting parameters](./figure/kconfig_set_parameters.gif)
+   ![Setting parameters](./figures/kconfig_set_parameters.gif)
 
 5. Select and configure the component.
 
@@ -56,13 +56,13 @@ Kconfig visual configuration has the following advantages:
 
    3. When setting `feature`, use commas (,) to separate multiple values.
 
-      ![Selecting a component](./figure/kconfig_select_component.gif)
+      ![Selecting a component](./figures/kconfig_select_component.gif)
 
 6. Save the settings.
 
    Press **S** to save the settings. You can set the name of the file to generate. By default, a file named `.config` file is generated in the current directory.
 
-   ![Save settings](./figure/kconfig_save.png)
+   ![Save settings](./figures/kconfig_save.png)
 
 7. Generate the OpenHarmony style configuration file.
 
@@ -99,7 +99,7 @@ Kconfig visual configuration has the following advantages:
 
 ### Latest Components Not Displayed in the Menu List
 
-The component list [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json) is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
+The component list productdefine/common/base/base_product.json is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
 
 **Solution**
 

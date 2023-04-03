@@ -356,7 +356,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 }.width('90%').height(220).backgroundColor(0xAFEEEE)
 ```
 
-![](figures/alignself.png)
+![alignself](figures/alignself.png)
 
 上例中，Flex容器中alignItems设置交叉轴子组件的对齐方式为居中，子组件自身设置了alignSelf属性的情况，覆盖父组件的alignItem值，表现为alignSelf的定义。
 
@@ -452,7 +452,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 - FlexAlign.SpaceEvenly:  子组件各行间距，子组件首尾行与交叉轴两端距离都相等。
 
     ```ts
-    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
+    Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceEvenly }) {
       Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
       Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
       Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
@@ -496,7 +496,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
   }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
-  ![](figures/flexbasis.png)
+  ![flexbasis](figures/flexbasis.png)
 
 - flexGrow: 设置父容器的剩余空间分配给此属性所在组件的比例。用于"瓜分"父组件的剩余空间。
 
@@ -508,7 +508,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
       .height(100)
       .backgroundColor(0xF5DEB3)
     
-    Text('flexGrow(3)')
+    Text('flexGrow(2)')
       .flexGrow(2)
       .width(100)
       .height(100)
@@ -521,7 +521,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
-  ![](figures/flexgrow.png)
+  ![flexgrow](figures/flexgrow.png)
 
 上图中，父容器宽度400vp, 三个子组件原始宽度为100vp，综合300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
 第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp*2/5=140vp，第二个元素为100vp+100vp*3/5=160vp。
@@ -549,7 +549,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
   }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
   ```
   
-  ![](figures/flexshrink.png)
+  ![flexshrink](figures/flexshrink.png)
 
 ## 场景示例
 
@@ -584,4 +584,3 @@ struct FlexExample {
 
 - [弹性布局（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
 
-- [ArkUI常用布局容器对齐方式（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/LayoutAlignmentDemo)

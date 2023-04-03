@@ -1,6 +1,6 @@
-# @ohos.ability.featureAbility
+# @ohos.ability.featureAbility (FeatureAbility)
 
-The **FeatureAbility** module provides a UI for interacting with users. You can use APIs of this module to start a new ability, obtain the **dataAbilityHelper**, set a Page ability, obtain the window corresponding to this ability, and connect to a Service ability.
+The **FeatureAbility** module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a **dataAbilityHelper** object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 > 
@@ -9,7 +9,7 @@ The **FeatureAbility** module provides a UI for interacting with users. You can 
 
 ## Constraints
 
-APIs of the **FeatureAbility** module can be called only by Page abilities.
+The APIs of the **FeatureAbility** module can be called only by PageAbilities.
 
 ## Modules to Import
 
@@ -22,6 +22,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -36,24 +41,28 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
         {
-            action: "",
-            entities: [""],
-            type: "",
+            action: '',
+            entities: [''],
+            type: '',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     },
-    (err, data) => {
-        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -66,6 +75,11 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 Starts an ability. This API uses a promise to return the result.
 
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 **Parameters**
@@ -74,28 +88,34 @@ Starts an ability. This API uses a promise to return the result.
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
 
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise\<number> | Promise used to return the result.|
+
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri: ""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri: ''
         },
     }
 ).then((data) => {
-    console.info("startAbility data: " + JSON.stringify(data));
+    console.info('startAbility data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -104,6 +124,12 @@ featureAbility.startAbility(
 acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
+
+Observe the following when using this API:
+ - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
+ - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -117,14 +143,14 @@ Obtains a **dataAbilityHelper** object.
 
 | Type               | Description                             |
 | ----------------- | ------------------------------- |
-| DataAbilityHelper | A utility class used to help other abilities access the Data ability.|
+| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | A utility class used to help other abilities access the Data ability.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    "dataability:///com.example.DataAbility"
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+    'dataability:///com.example.DataAbility'
 );
 ```
 
@@ -132,7 +158,15 @@ var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability. This API uses an asynchronous callback to return the execution result when the ability is destroyed.
+Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
+ - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
+ - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
+ - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -147,24 +181,28 @@ Starts an ability. This API uses an asynchronous callback to return the executio
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri:""
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:''
         },
     },
-    (err, data) => {
-        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -173,7 +211,15 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-Starts an ability. This API uses a promise to return the execution result when the ability is destroyed.
+Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible to an ability after it is started:
+ - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
+ - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
+ - If different applications call this API to start an ability that uses the sington mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -187,41 +233,41 @@ Starts an ability. This API uses a promise to return the execution result when t
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promised returned with the execution result.|
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise used to return the result.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters:
             {
                 mykey0: 1111,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "xxxxxxxxxxxxxxxxxxxxxx",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'xxxxxxxxxxxxxxxxxxxxxx',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["aaaaaa", "bbbbb", "ccccccccccc"],
+                mykey6: ['aaaaaa', 'bbbbb', 'ccccccccccc'],
                 mykey7: true,
             },
         },
     },
 ).then((data) => {
-    console.info("startAbilityForResult data: " + JSON.stringify(data));
+    console.info('startAbilityForResult data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -229,7 +275,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller in the form of a callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -237,42 +283,42 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Ability to start.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     },
-    (err) => {
-        console.info("err: " + JSON.stringify(err))
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 );
 ```
@@ -281,7 +327,7 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a promise to return the result.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -289,7 +335,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 | Name       | Type                             | Mandatory  | Description           |
 | --------- | ------------------------------- | ---- | ------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Ability to start.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
 
 **Return value**
 
@@ -301,35 +347,35 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant';
+import wantConstant from '@ohos.app.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
         want:
         {
-            action: "action.system.home",
-            entities: ["entity.system.home"],
-            type: "MIMETYPE",
+            action: 'ohos.want.action.home',
+            entities: ['entity.system.home'],
+            type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: "",
-            bundleName: "com.example.myapplication",
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
             /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: "com.example.entry.secondAbility",
-            uri:"",
+            abilityName: 'com.example.myapplication.secondAbility',
+            uri:'',
             parameters: {
                 mykey0: 2222,
                 mykey1: [1, 2, 3],
-                mykey2: "[1, 2, 3]",
-                mykey3: "ssssssssssssssssssssssssss",
+                mykey2: '[1, 2, 3]',
+                mykey3: 'ssssssssssssssssssssssssss',
                 mykey4: [1, 15],
                 mykey5: [false, true, false],
-                mykey6: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
+                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
                 mykey7: true,
             }
         },
     }
 ).then((data) => {
-    console.info("==========================>terminateSelfWithResult=======================>");
+    console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
 
@@ -345,14 +391,18 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 | Name      | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus((err, data) => {
-    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+featureAbility.hasWindowFocus((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -368,14 +418,14 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 
 | Type               | Description                                   |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Returns **true** if the main window of this ability has the focus; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("hasWindowFocus data: " + JSON.stringify(data));
+    console.info('hasWindowFocus data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -383,7 +433,7 @@ featureAbility.hasWindowFocus().then((data) => {
 
 getWant(callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object sent from this ability. This API uses an asynchronous callback to return the result.
+Obtains the Want corresponding to the ability to start. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -391,14 +441,18 @@ Obtains the **Want** object sent from this ability. This API uses an asynchronou
 
 | Name      | Type                           | Mandatory  | Description       |
 | -------- | ----------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes   | Callback used to return the Want.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant((err, data) => {
-    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+featureAbility.getWant((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWant fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWant success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -406,7 +460,7 @@ featureAbility.getWant((err, data) => {
 
 getWant(): Promise\<Want>
 
-Obtains the **Want** object sent from this ability. This API uses a promise to return the result.
+Obtains the Want corresponding to the ability to start. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -414,14 +468,14 @@ Obtains the **Want** object sent from this ability. This API uses a promise to r
 
 | Type                     | Description              |
 | ----------------------- | ---------------- |
-| Promise\<[Want](js-apis-application-want.md)> | Promise used to return the result.|
+| Promise\<[Want](js-apis-application-want.md)> | Promise used to return the Want.|
 
 **Example**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-    console.info("getWant data: " + JSON.stringify(data));
+    console.info('getWant data: ${JSON.stringify(data)}');
 });
 ```
 
@@ -443,9 +497,13 @@ Obtains the application context.
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-var context = featureAbility.getContext()
-context.getBundleName((err, data) => {
-    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+let context = featureAbility.getContext();
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -453,7 +511,7 @@ context.getBundleName((err, data) => {
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
+Terminates this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -468,8 +526,8 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err) => {
-        console.info("err: " + JSON.stringify(err))
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 )
 ```
@@ -478,7 +536,7 @@ featureAbility.terminateSelf(
 
 terminateSelf(): Promise\<void>
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a promise to return the result.
+Terminates this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -493,7 +551,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelf=======================>");
+    console.info('==========================>terminateSelf=======================>');
 });
 ```
 
@@ -501,7 +559,13 @@ featureAbility.terminateSelf().then((data) => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This API uses an asynchronous callback to return the result.
+Connects this ability to a ServiceAbility.
+
+Observe the following when using this API:
+ - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
+ - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -509,14 +573,14 @@ Connects this ability to a specific Service ability. This API uses an asynchrono
 
 | Name     | Type            | Mandatory  | Description                   |
 | ------- | -------------- | ---- | --------------------- |
-| request | [Want](js-apis-application-want.md)  | Yes   | Service ability to connect.|
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes   | Callback used to return the result.            |
+| request | [Want](js-apis-application-want.md)  | Yes   | ServiceAbility to connect.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes   | Connection options.            |
 
 **Return value**
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | ID of the Service ability connected.|
+| number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
 
 **Example**
 
@@ -524,19 +588,19 @@ Connects this ability to a specific Service ability. This API uses an asynchrono
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        deviceId: "",
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        deviceId: '',
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -550,7 +614,7 @@ var connectId = featureAbility.connectAbility(
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-Disconnects this ability from a specific Service ability. This API uses an asynchronous callback to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -558,7 +622,7 @@ Disconnects this ability from a specific Service ability. This API uses an async
 
 | Name        | Type                  | Mandatory  | Description                     |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | Yes   | ID of the Service ability to disconnect.|
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
 | callback   | AsyncCallback\<void> | Yes   | Callback used to return the result.               |
 
 **Example**
@@ -567,18 +631,18 @@ Disconnects this ability from a specific Service ability. This API uses an async
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -586,18 +650,21 @@ var connectId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connectId,
-    (error) => {
-        console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code)
-    },
-);
+
+featureAbility.disconnectAbility(connectId, (error) => {
+    if (error && error.code !== 0) {
+        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('disconnectAbility success, connectId: ${connectId}');
+    }
+});
 ```
 
 ## featureAbility.disconnectAbility<sup>7+</sup>
 
 disconnectAbility(connection: number): Promise\<void>
 
-Disconnects this ability from a specific Service ability. This API uses a promise to return the result.
+Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -605,7 +672,7 @@ Disconnects this ability from a specific Service ability. This API uses a promis
 
 | Name        | Type    | Mandatory  | Description                     |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | Yes   | ID of the Service ability to disconnect.|
+| connection | number | Yes   | ID of the ServiceAbility to disconnect.|
 
 **Return value**
 
@@ -619,18 +686,18 @@ Disconnects this ability from a specific Service ability. This API uses a promis
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
-    console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
+    console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
 }
 function onDisconnectCallback(element){
-    console.log('ConnectAbility onDisconnect element.deviceId : ' + element.deviceId)
+    console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
-var connectId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
-        bundleName: "com.ix.ServiceAbility",
-        abilityName: "ServiceAbilityA",
+        bundleName: 'com.ix.ServiceAbility',
+        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
     },
     {
         onConnect: onConnectCallback,
@@ -640,9 +707,9 @@ var connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data : '  + data);
+    console.log('data: ${data)}';
 }).catch((error)=>{
-    console.log('featureAbilityTest result errCode : ' + error.code);
+    console.error('featureAbilityTest result errCode : ${error.code}');
 });
 ```
 
@@ -659,13 +726,17 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 
 | Name    | Type                         | Mandatory| Description                         |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<window.Window> | Yes  | Callback used to return the window.|
+| callback | AsyncCallback\<[window.Window](js-apis-window.md#window)> | Yes  | Callback used to return the window.|
 
 **Example**
 
 ```ts
-featureAbility.getWindow((err, data) => {
-    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+featureAbility.getWindow((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWindow success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -681,19 +752,19 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 | Type                   | Description                         |
 | ----------------------- | ----------------------------- |
-| Promise\<window.Window> | Promise used to return the window.|
+| Promise\<[window.Window](js-apis-window.md#window)> | Promise used to return the window.|
 
 **Example**
 
 ```ts
 featureAbility.getWindow().then((data) => {
-    console.info("getWindow data: " + typeof(data));
+    console.info('getWindow data: ${typeof(data)}');
 });
 ```
 
 ## AbilityWindowConfiguration
 
-The value is obtained through the **featureAbility.AbilityWindowConfiguration** API.
+Defines the window configuration corresponding to this ability. The configuration is obtained through **featureAbility.AbilityWindowConfiguration**.
 
 **Example**
 
@@ -705,18 +776,18 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 | Name                                    | Value  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The Page ability is in an undefined window display mode.|
-| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The Page ability is in full screen mode.   |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The Page ability is displayed in the primary window when it is in split-screen mode.|
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The Page ability is displayed in the secondary window when it is in split-screen mode.|
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The Page ability is displayed in floating window mode.|
+| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The PageAbility is in an undefined window display mode.|
+| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The PageAbility is in full screen mode.   |
+| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.|
+| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.|
+| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The PageAbility is displayed in floating window mode.|
 
 
 ## AbilityStartSetting
 
-The **AbilityStartSetting** attribute is an object defined as [key: string]: any. The key is a type of **AbilityStartSetting**, and the value is a type of **AbilityWindowConfiguration**.
+Defines the window attribute corresponding to this ability. The **abilityStartSetting** attribute is an object defined in the format of [**key: string]: any**, where **key** is an enumerated value of **AbilityStartSetting** and **value** is an enumerated value of **AbilityWindowConfiguration**.
 
-The value is obtained through the **featureAbility.AbilityStartSetting** API.
+The value is obtained through **featureAbility.AbilityStartSetting**.
 
 **Example**
 
@@ -728,13 +799,13 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | Name                          | Value             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | "abilityBounds" | Ability window size.|
-| WINDOW_MODE_KEY<sup>7+</sup> | "windowMode"    | Ability window display mode.|
-| DISPLAY_ID_KEY<sup>7+</sup>  | "displayId"     | Display device ID.|
+| BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | Ability window size.|
+| WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | Ability window display mode.|
+| DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | Display device ID.|
 
 ## ErrorCode
 
-Enumerates error codes.
+Enumerates the error codes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -743,12 +814,12 @@ Enumerates error codes.
 | NO_ERROR<sup>7+</sup>          | 0    | No error occurs.|
 | INVALID_PARAMETER<sup>7+</sup> | -1   | Invalid parameter.|
 | ABILITY_NOT_FOUND<sup>7+</sup> | -2   | The ability is not found.|
-| PERMISSION_DENY<sup>7+</sup>   | -3   | The request is denied.|
+| PERMISSION_DENY<sup>7+</sup>   | -3   | Permission denied.|
 
 
 ## DataAbilityOperationType
 
-Enumerates operation types of the Data ability.
+Enumerates the operation types of a DataAbility. The DataAbility can use an enumerated value to specify the operation type when operating data in batches.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -761,23 +832,25 @@ Enumerates operation types of the Data ability.
 
 ## flags
 
+Enumerates the flags that specify how the Want will be handled.
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
 | Name                                  | Value        | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Grants the permission to read the URI.                        |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Grants the permission to write data to the URI.                        |
 | FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | Returns the result to the ability.                              |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be migrated to a remote device.                 |
+| FLAG_ABILITY_CONTINUATION            | 0x00000008 | Continues the ability on a remote device.                 |
 | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.                           |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether to enable an ability.                             |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications.                         |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.                       |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.                       |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.<br>**System API**: This is a system API and cannot be called by third-party applications.          |
+| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether the FormAbility is enabled.                             |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Grants the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications.                         |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Grants the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.                       |
+| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Indicates the support for cross-device startup in the distributed scheduler.                       |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the ability is started in the foreground regardless of whether the host application is started.<br>**System API**: This is a system API and cannot be called by third-party applications.          |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the historical mission stack.                      |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Starts the mission on the top of the existing mission stack; creates an ability instance if no mission exists.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for [Want](js-apis-application-want.md) under the [parameter](js-apis-inner-ability-startAbilityParameter.md) object passed to the [startAbility](#featureabilitystartability) API in **FeatureAbility**. It must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on an existing mission stack.                      |
+| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

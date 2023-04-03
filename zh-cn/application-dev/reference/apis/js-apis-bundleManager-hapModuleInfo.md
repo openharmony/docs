@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)获取自身或其他应用的HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的HAP信息，其中入参[bundleFlags](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-bundleManager.md#bundleflag)需要使用GET_BUNDLE_INFO_WITH_HAP_MODULE。
+HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)获取自身或其他应用的HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的HAP信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)需要使用GET_BUNDLE_INFO_WITH_HAP_MODULE。
 
 ## HapModuleInfo
 
@@ -25,5 +25,28 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | deviceTypes                       | Array\<string>                                               | 是   | 否   | 可以运行模块的设备类型。   |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。       |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。              |
-| moduleSourceDir                   | string                                                       | 是   | 否   | 模块的路径。|
+| moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。      |
+| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 原子化服务中模块的预加载列表。|
+| dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 
+## PreloadItem
+
+描述原子化服务中模块的预加载模块信息。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+|moduleName | string         | 是   | 否   | 模块运行时，由系统自动执行预加载的模块名称。|
+
+## Dependency
+
+描述模块所依赖的动态共享库信息。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称        | 类型   | 可读 | 可写 | 说明                   |
+| ----------- | ------ | ---- | ---- | ---------------------- |
+| bundleName  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
+| moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
+| versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |

@@ -37,6 +37,7 @@ getUserFileMgr(context: Context): UserFileManager
 **示例：**
 
 ```ts
+//此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
 const context = getContext(this);
 let mgr = userFileManager.getUserFileMgr(context);
 ```
@@ -81,10 +82,10 @@ async function example() {
       console.info('fetchResult success');
       let fileAsset = await fetchResult.getFirstObject();
       if (fileAsset != undefined) {
-        console.info("fileAsset.displayName :" + fileAsset.displayName);
+        console.info("fileAsset.displayName : " + fileAsset.displayName);
       }
     } else {
-      console.info('fetchResult fail' + err);
+      console.error('fetchResult fail' + err);
     }
   });
 }
@@ -126,7 +127,7 @@ async function example() {
     predicates: predicates
   };
   try {
-    var fetchResult = await mgr.getPhotoAssets(fetchOptions);
+    let fetchResult = await mgr.getPhotoAssets(fetchOptions);
     if (fetchResult != undefined) {
       console.info('fetchResult success');
       let fileAsset = await fetchResult.getFirstObject();
@@ -135,7 +136,7 @@ async function example() {
       }
     }
   } catch (err) {
-    console.info('getPhotoAssets failed, message = ', err);
+    console.error('getPhotoAssets failed, message = ', err);
   }
 }
 ```
@@ -176,7 +177,7 @@ async function example() {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
     } else {
-      console.info('createPhotoAsset failed, message = ', err);
+      console.error('createPhotoAsset failed, message = ', err);
     }
   });
 }
@@ -210,7 +211,7 @@ async function example() {
       console.info('createPhotoAsset file displayName' + fileAsset.displayName);
       console.info('createPhotoAsset successfully');
     } else {
-      console.info('createPhotoAsset failed, message = ', err);
+      console.error('createPhotoAsset failed, message = ', err);
     }
   });
 }
@@ -250,7 +251,7 @@ async function example() {
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
-    console.info('createPhotoAsset failed, message = ', err);
+    console.error('createPhotoAsset failed, message = ', err);
   }
 }
 ```
@@ -292,11 +293,11 @@ async function example() {
         if (album != undefined) {
           console.info('first album.albumName = ' + album.albumName);
         } else {
-          console.info('album is undefined, err = ', err);
+          console.error('album is undefined, err = ', err);
         }
       });
     } else {
-      console.info('getPhotoAlbums fail, message = ', err);
+      console.error('getPhotoAlbums fail, message = ', err);
     }
   });
 }
@@ -306,7 +307,7 @@ async function example() {
 
 getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
-获取相册，使用callback方式返回结果。
+获取相册，使用Promise方式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -341,7 +342,7 @@ async function example() {
     const album = await fetchResult.getFirstObject();
     console.info('first album.albumName = ' + album.albumName);
   } catch (err) {
-    console.info('getPhotoAlbums fail, message = ' + err);
+    console.error('getPhotoAlbums fail, message = ' + err);
   }
 }
 ```
@@ -374,7 +375,7 @@ async function example() {
       let trashAlbum = await fetchResult.getFirstObject();
       console.info('first album.albumName = ' + trashAlbum.albumName);
     } else {
-      console.info('getPrivateAlbum failed. message = ', err);
+      console.error('getPrivateAlbum failed. message = ', err);
     }
   });
 }
@@ -409,11 +410,11 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 async function example() {
   console.info('getPrivateAlbumDemo');
   try {
-    var fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+    let fetchResult = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
     let trashAlbum = await fetchResult.getFirstObject();
     console.info('first album.albumName = ' + trashAlbum.albumName);
   } catch (err) {
-    console.info('getPrivateAlbum failed. message = ', err);
+    console.error('getPrivateAlbum failed. message = ', err);
   }
 }
 ```
@@ -434,7 +435,7 @@ getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | 是   | 检索选项              |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback 返回相册检索结果 |
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | 是   | callback 返回音频检索结果 |
 
 **示例：**
 
@@ -457,7 +458,7 @@ async function example() {
         console.info("fileAsset.displayName :" + fileAsset.displayName);
       }
     } else {
-      console.info('fetchFileResult fail' + err);
+      console.error('fetchFileResult fail' + err);
     }
   });
 }
@@ -484,7 +485,7 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise 返回相册检索结果 |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[FileAsset](#fileasset)&gt;&gt; | Promise 返回音频检索结果 |
 
 **示例：**
 
@@ -501,7 +502,7 @@ async function example() {
   try {
     var fetchResult = await mgr.getAudioAssets(fetchOptions);
   } catch (err) {
-    console.info('getAudioAssets failed, message = ', err);
+    console.error('getAudioAssets failed, message = ', err);
   }
 
   if (fetchResult != undefined) {
@@ -557,7 +558,7 @@ async function example() {
     if (err == undefined) {
       console.info("delete successfully");
     } else {
-      console.info("delete failed with error:" + err);
+      console.error("delete failed with error: " + err);
     }
   });
 }
@@ -611,7 +612,7 @@ async function example() {
     await mgr.delete(asset.uri);
     console.info("delete successfully");
   } catch (err) {
-    console.info("delete failed with error:" + err);
+    console.error("delete failed with error: " + err);
   }
 }
 ```
@@ -647,13 +648,13 @@ async function example() {
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
-    console.info('createPhotoAsset failed, message = ' + err);
+    console.error('createPhotoAsset failed, message = ' + err);
   }
   //sleep 1s
   if (count > 0) {
     console.info("onDemo success");
   } else {
-    console.info("onDemo fail");
+    console.error("onDemo fail");
   }
   mgr.off('imageChange', () => {
     // stop listening success
@@ -697,13 +698,13 @@ async function example() {
     console.info('createPhotoAsset file displayName' + fileAsset.displayName);
     console.info('createPhotoAsset successfully');
   } catch (err) {
-    console.info('createPhotoAsset failed, message = ' + err);
+    console.error('createPhotoAsset failed, message = ' + err);
   }
   //sleep 1s
   if (count == 0) {
     console.info("offDemo success");
   } else {
-    console.info("offDemo fail");
+    console.error("offDemo fail");
   }
 }
 ```
@@ -734,7 +735,7 @@ async function example() {
         console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
       }
     } else {
-      console.info('getActivePeers failed. message = ', err);
+      console.error('getActivePeers failed. message = ', err);
     }
   });
 }
@@ -762,7 +763,7 @@ async function example() {
   try {
     var devicesInfo = await mgr.getActivePeers();
   } catch (err) {
-    console.info('getActivePeers failed. message = ', err);
+    console.error('getActivePeers failed. message = ', err);
   }
   if (devicesInfo != undefined) {
     console.log('getActivePeers succeed.');
@@ -770,7 +771,7 @@ async function example() {
       console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
     }
   } else {
-    console.info('get distributed fail');
+    console.error('get distributed fail');
   }
 }
 ```
@@ -801,7 +802,7 @@ async function example() {
         console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
       }
     } else {
-      console.info('getAllPeers failed. message = ', err);
+      console.error('getAllPeers failed. message = ', err);
     }
   });
 }
@@ -829,7 +830,7 @@ async function example() {
   try {
     var devicesInfo = await mgr.getAllPeers();
   } catch (err) {
-    console.info('getAllPeers failed. message = ', err);
+    console.error('getAllPeers failed. message = ', err);
   }
   if (devicesInfo != undefined) {
     console.log('getAllPeers succeed.');
@@ -837,7 +838,7 @@ async function example() {
       console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
     }
   } else {
-    console.info('get distributed fail');
+    console.error('get distributed fail');
   }
 }
 ```
@@ -864,7 +865,7 @@ async function example() {
   console.info('releaseDemo');
   mgr.release((err) => {
     if (err != undefined) {
-      console.info('release failed. message = ', err);
+      console.error('release failed. message = ', err);
     } else {
       console.info('release ok.');
     }
@@ -896,7 +897,7 @@ async function example() {
     await mgr.release();
     console.info('release ok.');
   } catch (err) {
-    console.info('release failed. message = ', err);
+    console.error('release failed. message = ', err);
   }
 }
 ```
@@ -949,7 +950,7 @@ async function example() {
     let fileAssetTitle = fileAsset.get(title.toString());
     console.info('fileAsset Get fileAssetTitle = ', fileAssetTitle);
   } catch (err) {
-    console.info('release failed. message = ', err);
+    console.error('release failed. message = ', err);
   }
 }
 ```
@@ -987,7 +988,7 @@ async function example() {
     let title = userFileManager.ImageVideoKey.TITLE;
     fileAsset.set(title.toString(), "newTitle");
   } catch (err) {
-    console.info('release failed. message = ', err);
+    console.error('release failed. message = ', err);
   }
 }
 ```
@@ -1031,7 +1032,7 @@ async function example() {
       let newFileAssetTitle = fileAsset.get(title.toString());
       console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
     } else {
-      console.info('commitModify failed, message =', err);
+      console.error('commitModify failed, message =', err);
     }
   });
 }
@@ -1076,7 +1077,7 @@ async function example() {
     let newFileAssetTitle = fileAsset.get(title.toString());
     console.info('fileAsset Get newFileAssetTitle = ', newFileAssetTitle);
   } catch (err) {
-    console.info('release failed. message = ', err);
+    console.error('release failed. message = ', err);
   }
 }
 ```
@@ -1099,7 +1100,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                          | 必填   | 说明                                  |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写） |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件句柄                            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调返回文件描述符                            |
 
 **示例：**
 
@@ -1113,7 +1114,7 @@ async function example() {
       console.info('File fd' + fd);
       fileAsset.close(fd);
     } else {
-      console.info('File err' + err);
+      console.error('File err' + err);
     }
   });
 }
@@ -1141,7 +1142,7 @@ open(mode: string): Promise&lt;number&gt;
 
 | 类型                    | 说明            |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise返回文件句柄 |
+| Promise&lt;number&gt; | Promise返回文件描述符 |
 
 **示例：**
 
@@ -1156,10 +1157,10 @@ async function example() {
       console.info('File fd' + fd);
       fileAsset.close(fd);
     } else {
-      console.info(' open File fail');
+      console.error(' open File fail');
     }
   } catch (err) {
-    console.info('open Demo err' + err);
+    console.error('open Demo err' + err);
   }
 }
 ```
@@ -1200,11 +1201,11 @@ async function example() {
       if (err == undefined) {
         console.info('asset close succeed.');
       } else {
-        console.info('close failed, message = ' + err);
+        console.error('close failed, message = ' + err);
       }
     });
   } catch (err) {
-    console.info('close failed, message = ' + err);
+    console.error('close failed, message = ' + err);
   }
 }
 ```
@@ -1249,7 +1250,7 @@ async function example() {
     await asset.close(fd);
     console.info('asset close succeed.');
   } catch (err) {
-    console.info('close failed, message = ' + err);
+    console.error('close failed, message = ' + err);
   }
 }
 ```
@@ -1289,7 +1290,7 @@ async function example() {
     if (err == undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.info('getThumbnail fail', err);
+      console.error('getThumbnail fail', err);
     }
   });
 }
@@ -1332,7 +1333,7 @@ async function example() {
     if (err == undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
-      console.info('getThumbnail fail', err);
+      console.error('getThumbnail fail', err);
     }
   });
 }
@@ -1379,7 +1380,7 @@ async function example() {
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
   }).catch((err) => {
-    console.info('getThumbnail fail' + err);
+    console.error('getThumbnail fail' + err);
   });
 }
 ```
@@ -1419,7 +1420,7 @@ async function example() {
     if (err == undefined) {
       console.info("favorite successfully");
     } else {
-      console.info("favorite failed with error:" + err);
+      console.error("favorite failed with error:" + err);
     }
   });
 }
@@ -1464,7 +1465,7 @@ async function example() {
   asset.favorite(true).then(function () {
     console.info("favorite successfully");
   }).catch(function (err) {
-    console.info("favorite failed with error:" + err);
+    console.error("favorite failed with error:" + err);
   });
 }
 ```
@@ -1567,7 +1568,7 @@ async function example() {
     await fetchResult.close();
     console.info('close succeed.');
   } catch (err) {
-    console.info('close fail. message = ' + err);
+    console.error('close fail. message = ' + err);
   }
 }
 ```
@@ -1603,7 +1604,7 @@ async function example() {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
     } else {
-      console.info("fileAsset failed with err:" + err);
+      console.error("fileAsset failed with err:" + err);
     }
   });
 }
@@ -1674,7 +1675,7 @@ async function example() {
       if (fileAsset != undefined) {
         console.info('fileAsset displayName: ', fileAsset.displayName);
       } else {
-        console.info("fileAsset failed with err:" + err);
+        console.error("fileAsset failed with err: " + err);
       }
     });
   }
@@ -1747,7 +1748,7 @@ async function example() {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
     } else {
-      console.info("fileAsset failed with err:" + err);
+      console.error("fileAsset failed with err: " + err);
     }
   });
 }
@@ -1817,7 +1818,7 @@ async function example() {
     if (fileAsset != undefined) {
       console.info('fileAsset displayName: ', fileAsset.displayName);
     } else {
-      console.info("fileAsset failed with err:" + err);
+      console.error("fileAsset failed with err: " + err);
     }
   });
 }
@@ -1914,9 +1915,9 @@ async function example() {
   const album = await albumList.getFirstObject();
   album.getPhotoAssets(fetchOption, (err, albumFetchResult) => {
     if (albumFetchResult != undefined) {
-      console.info("album getPhotoAssets successfully, getCount:" + albumFetchResult.getCount());
+      console.info("album getPhotoAssets successfully, getCount: " + albumFetchResult.getCount());
     } else {
-      console.info("album getPhotoAssets failed with error:" + err);
+      console.error("album getPhotoAssets failed with error: " + err);
     }
   });
 }
@@ -1957,9 +1958,9 @@ async function example() {
   const albumList = await mgr.getPhotoAlbums(albumFetchOptions);
   const album = await albumList.getFirstObject();
   album.getPhotoAssets(fetchOption).then((albumFetchResult) => {
-    console.info("album getFileAssets successfully, getCount:" + albumFetchResult.getCount());
+    console.info("album getFileAssets successfully, getCount: " + albumFetchResult.getCount());
   }).catch((err) => {
-    console.info("album getFileAssets failed with error:" + err);
+    console.error("album getFileAssets failed with error: " + err);
   });
 }
 ```
@@ -1996,7 +1997,7 @@ async function example() {
   album.albumName = 'hello';
   album.commitModify((err) => {
     if (err != undefined) {
-      console.info("commitModify failed with error:" + err);
+      console.error("commitModify failed with error: " + err);
     } else {
       console.info("commitModify successfully");
     }
@@ -2034,14 +2035,14 @@ async function example() {
   try {
     var albumList = await mgr.getPhotoAlbums(albumFetchOptions);
   } catch (err) {
-    console.info('getPhotoAlbums failed. message = ', err);
+    console.error('getPhotoAlbums failed. message = ', err);
   }
   const album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info("commitModify successfully");
   }).catch((err) => {
-    console.info("commitModify failed with error:" + err);
+    console.error("commitModify failed with error: " + err);
   });
 }
 ```
@@ -2098,7 +2099,7 @@ async function example() {
       let count = fetchResult.getCount();
       console.info('fetchResult.count = ', count);
     } else {
-      console.info('getFileAssets failed, message = ', err);
+      console.error('getFileAssets failed, message = ', err);
     }
   });
 }
@@ -2181,7 +2182,7 @@ async function example() {
   let deleteFileUri = fileAsset.uri;
   trashAlbum.delete(deleteFileUri, (err) => {
     if (err != undefined) {
-      console.info('trashAlbum.delete failed, message = ', err);
+      console.error('trashAlbum.delete failed, message = ', err);
     } else {
       console.info('trashAlbum.delete successfully');
     }
@@ -2230,7 +2231,7 @@ async function example() {
   trashAlbum.delete(deleteFileUri).then(() => {
     console.info('trashAlbum.delete successfully');
   }).catch((err) => {
-    console.info('trashAlbum.delete failed, message = ', err);
+    console.error('trashAlbum.delete failed, message = ', err);
   });
 }   
 ```
@@ -2271,7 +2272,7 @@ async function example() {
   let recoverFileUri = fileAsset.uri;
   trashAlbum.recover(recoverFileUri, (err) => {
     if (err != undefined) {
-      console.info('trashAlbum.recover failed, message = ', err);
+      console.error('trashAlbum.recover failed, message = ', err);
     } else {
       console.info('trashAlbum.recover successfully');
     }
@@ -2320,7 +2321,7 @@ async function example() {
   trashAlbum.recover(recoverFileUri).then(() => {
     console.info('trashAlbum.recover successfully');
   }).catch((err) => {
-    console.info('trashAlbum.recover failed, message = ', err);
+    console.error('trashAlbum.recover failed, message = ', err);
   });
 }
 ```
@@ -2401,7 +2402,7 @@ async function example() {
 | URI           | uri                 | 文件uri                                                   |
 | DISPLAY_NAME  | display_name        | 显示名字                                                   |
 | DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新） |
 | TITLE         | title               | 文件标题                                                   |
 | ARTIST        | artist              | 作者                                                   |
 | AUDIOALBUM    | audio_album         | 专辑                                                   |
@@ -2420,7 +2421,7 @@ async function example() {
 | FILE_TYPE     | file_type           | 媒体文件类型                                              |
 | DISPLAY_NAME  | display_name        | 显示名字                                                   |
 | DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新） |
 | TITLE         | title               | 文件标题                                                   |
 | DURATION      | duration            | 持续时间（单位：毫秒）                                    |
 | WIDTH         | width               | 图片宽度（单位：像素）                                    |
@@ -2441,7 +2442,7 @@ async function example() {
 | FILE_TYPE     | file_type           | 媒体文件类型                                              |
 | ALBUM_NAME    | album_name          | 相册名字                                                   |
 | DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
-| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值）             |
+| DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新） |
 
 
 ## FetchOptions

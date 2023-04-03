@@ -34,38 +34,35 @@
 
 新增一个内核模块，需要在内核初始化时进行该模块的初始化，则通过内核启动框架将该模块的初始化函数注册进内核启动流程中。
 
+为方便学习，本演示代码直接在 . kernel /liteos_a/testsuites /kernel /src /osTest.c中编译验证即可。
 
 **示例代码**
-
-
 
 ```c
 /* 内核启动框架头文件 */
 #include "los_init.h"
-......
 
 /* 新增模块的初始化函数 */
 unsigned int OsSampleModInit(void)
 {
     PRINTK("OsSampleModInit SUCCESS!\n");
-    ......
 }
-......
+
 /* 在启动框架的目标层级中注册新增模块 */
 LOS_MODULE_INIT(OsSampleModInit, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
-
 **结果验证**
 
-
-
 ```
+
 main core booting up...
+
+/* 根据实际运行环境，过程打印会有差异 */
+......
+
+/* 打印测试代码新增模块初始化函数 */
 OsSampleModInit SUCCESS!
-releasing 1 secondary cores
-cpu 1 entering scheduler
-cpu 0 entering scheduler
 ```
 
 

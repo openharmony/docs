@@ -207,6 +207,9 @@ Usage: hiperf record [options]
 
 ## report 命令
 
+
+### 参数说明
+
 此命令主要用于展示record中抓取的采样数据
 
   
@@ -230,7 +233,7 @@ Usage: hiperf report [option]
 | -o&nbsp;&lt;_filename_&gt; | 指定输出的报告文件名。 | 
 
 
-## 使用示例
+### 使用示例
 
 - 输出采样数据的报告，默认读取perf.data文件
     

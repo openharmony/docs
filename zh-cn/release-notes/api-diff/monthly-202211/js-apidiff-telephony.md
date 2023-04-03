@@ -1,4 +1,4 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
 |删除(权限)|方法名 or 属性名：getDefaultCellularDataSlotId<br>权限:ohos.permission.GET_NETWORK_INFO|方法名 or 属性名：getDefaultCellularDataSlotId<br>权限:N/A|@ohos.telephony.data.d.ts|
 |删除(权限)|方法名 or 属性名：getDefaultCellularDataSlotId<br>权限:ohos.permission.GET_NETWORK_INFO|方法名 or 属性名：getDefaultCellularDataSlotId<br>权限:N/A|@ohos.telephony.data.d.ts|

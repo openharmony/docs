@@ -1,6 +1,6 @@
-# @ohos.app.ability.contextConstant
+# @ohos.app.ability.contextConstant (ContextConstant)
 
-The **ContextConstant** module defines data encryption levels.
+The **ContextConstant** module defines context-related enums. Currently, it defines only the enum of data encryption levels.
 
 > **NOTE**
 > 
@@ -19,7 +19,7 @@ You can obtain the value of this constant by calling the **ContextConstant.AreaM
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Value| Description| 
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| EL1 | 0 | Device-level encryption area.| 
-| EL2 | 1 | User credential encryption area.| 
+| EL1 | 0 | Device-level encryption area, which is accessible after the device is powered on.|
+| EL2 | 1 | User-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).|

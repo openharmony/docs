@@ -50,7 +50,7 @@ struct TransitionExample {
           })
         })
       if (this.flag) {
-        // Apply different transition effects to the appearance and disappearance of the image.
+        // Apply different transition effects to the showing and hiding of the image.
         Image($r('app.media.testImg')).width(300).height(300)
           .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0 } })
           .transition({ type: TransitionType.Delete, rotate: { angle: 180 } })
@@ -60,4 +60,20 @@ struct TransitionExample {
 }
 ```
 
-![animateTo](figures/animateTo.gif)
+Diagrams:
+
+When the image is completely displayed:
+
+![animationComponent1](figures/animationComponent1.png)
+
+When the transition effect of 180° clockwise rotation is applied to the hiding of the image:
+
+![animationComponent3](figures/animationComponent3.png)
+
+When the image disappears completely:
+
+![animationComponent2](figures/animationComponent2.png)
+
+When the transition effect of zooming in twice horizontally is applied to the image displayed:
+
+![animationComponent4](figures/animationComponent4.png)

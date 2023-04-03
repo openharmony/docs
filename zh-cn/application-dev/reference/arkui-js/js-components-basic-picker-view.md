@@ -137,15 +137,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 454px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
         font-size: 30px;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50%;
     }
     ```
     
@@ -163,8 +161,8 @@
         },
     }
     ```
-    ![](figures/pickerview1.gif)
-
+    ![picker-view0](figures/picker-view0.gif)
+    
 2. 时间选择器
     ```html
     <!-- xxx.hml -->
@@ -179,22 +177,16 @@
     ```css
     /* xxx.css */
     .container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 0px;
-      top: 0px;
-      width: 454px;
-      height: 454px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
     }
     .title {
-      font-size: 30px;
-      text-align: center;
-    }
-    .time-picker {
-      width: 500px;
-      height: 400px;
-      margin-top: 20px;
+        font-size: 31px;
+        text-align: center;
+        margin-top: 50%;
     }
     ```
     
@@ -226,16 +218,16 @@
     }
     ```
     
-    ![](figures/pickerview2.gif)
-
+    ![picker-view1](figures/picker-view1.gif)
+    
 3. 日期选择器
     ```html
     <!-- xxx.hml -->
     <div class="container">
         <text class="title">
-            Selected：{{time}}
+            Selected：{{date}}
         </text>
-        <picker-view class="time-picker" type="time" selected="{{defaultTime}}" @change="handleChange"></picker-view>
+        <picker-view class="time-picker" type="date" selected="{{defaultTime}}" @change="handleChange" lunarswitch="true"></picker-view>
     </div>
     ```
     
@@ -245,20 +237,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 454px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
-    }
-    .date-picker {
-        width: 500px;
-        height: 400px;
-        margin-top: 50px;
+        margin-top: 50%;
     }
     ```
     
@@ -273,8 +258,8 @@
         },
     }
     ```
-    ![](figures/pickerview3.gif)
-
+    ![picker-view2](figures/picker-view2.gif)
+    
 4. 日期时间选择器
     ```html
     <!-- xxx.hml -->
@@ -292,20 +277,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 500px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
-    }
-    .date-picker {
-        width: 500px;
-        height: 400px;
-        margin-top: 50px;
+        margin-top: 50%;
     }
     ```
     
@@ -320,8 +298,8 @@
         },
     }
     ```
-    ![](figures/pickerview4.gif)
-
+    ![picker-view3](figures/picker-view3.gif)
+    
 5. 多列文本选择器
 
     ```html
@@ -340,15 +318,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        left: 0px;
-        top: 0px;
-        width: 500px;
-        height: 454px;
+        width: 100%;
+        height: 50%;
     }
     .title {
-        font-size: 30px;
+        font-size: 31px;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 50%;
     }
     ```
     
@@ -368,4 +344,4 @@
         },
     }
     ```
-    ![](figures/pickerview5.gif)
+    ![picker-view4](figures/picker-view4.gif)

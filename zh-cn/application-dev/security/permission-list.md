@@ -246,7 +246,7 @@
 
 ## ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-允许应用管理本地用户账号。
+允许应用管理本地用户帐号。
 
 **权限级别**：system_basic
 
@@ -256,7 +256,7 @@
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-允许多个系统账号之间相互访问。
+允许多个系统帐号之间相互访问。
 
 **权限级别**：system_basic
 
@@ -534,9 +534,9 @@
 
 **ACL使能**：TRUE
 
-## ohos.permission.START_ABILIIES_FROM_BACKGROUND
+## ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
-允许应用在后台启动FA。
+允许应用在后台启动或者访问其他组件。
 
 **权限级别**：system_basic
 
@@ -924,6 +924,56 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_RESET_DEVICE
+
+允许设备管理员恢复设备出厂设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_WIFI
+
+允许设备管理员应用设置和查询WiFi信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_NETWORK_INFO
+
+允许设备管理员应用查询网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
+
+允许设备管理员设置账户管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+允许设备管理员设置包安装管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1144,6 +1194,8 @@
 
 **ACL使能**：TRUE
 
+**申请条件**：使用API version 9以下版本的SDK开发的应用，可以直接申请此权限。使用API version 9及API version 9以上版本的SDK开发的应用，需要先申请权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+
 ## ohos.permission.APPROXIMATELY_LOCATION
 
 允许应用获取设备模糊位置信息。
@@ -1153,6 +1205,8 @@
 **授权方式**：user_grant
 
 **ACL使能**：FALSE
+
+**申请条件**：仅供使用API version 9及API version 9以上版本的SDK开发的应用申请。
 
 ## ohos.permission.MEDIA_LOCATION
 
@@ -1454,6 +1508,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.READ_APP_PUSH_DATA
+
+允许推送服务读取应用中推送服务存储的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.WRITE_APP_PUSH_DATA
+
+允许推送服务往应用中写入数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
 ## ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 允许应用订阅开机广播。
@@ -1584,6 +1658,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.APP_TRACKING_CONSENT
+
+允许应用读取广告标识符。
+
+**权限级别**：normal
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.RUN_ANY_CODE
 
 允许应用运行未签名的代码。
@@ -1593,3 +1677,83 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
+
+允许应用发布系统公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+允许应用调用锁屏服务的系统API。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.PRINT
+
+允许应用获取打印框架的能力。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_PRINT_JOB
+
+允许应用获取管理打印任务的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
+
+允许系统应用禁用使能overlay特性的应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
+
+允许系统服务访问蜂窝通话SA。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.CONNECT_IMS_SERVICE
+
+允许系统服务访问IMS SA。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
+
+允许应用使用超声波感知。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE

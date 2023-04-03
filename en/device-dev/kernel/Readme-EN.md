@@ -26,6 +26,7 @@
             - [Exception Debugging](kernel-mini-memory-exception.md)
             - [Trace](kernel-mini-memory-trace.md)
             - [LMS](kernel-mini-memory-lms.md)
+           - [Shell](kernel-mini-debug-shell.md)
         - Appendix
             - [Kernel Coding Specification](kernel-mini-appx-code.md)
             - [Standard Libraries](kernel-mini-appx-lib.md)
@@ -135,7 +136,7 @@
                 - [Magic Key](kernel-small-debug-shell-magickey.md)
                 - [User-Space Exception Information](kernel-small-debug-shell-error.md)
             - [Trace](kernel-small-debug-trace.md)
-            - [Perf](kernel-mini-memory-perf.md)
+            - [Perf](kernel-small-debug-perf.md)
             - [LMS](kernel-small-memory-lms.md)
             - [Process Debugging](kernel-small-debug-process-cpu.md)
             - Kernel-Mode Memory Debugging

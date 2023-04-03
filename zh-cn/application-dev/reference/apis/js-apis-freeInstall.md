@@ -267,7 +267,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName     | string                                                       | 是   | 应用Bundle名称。                                             |
 | bundlePackFlag | [BundlePackFlag](#bundlepackflag)                            | 是   | 指示要查询的应用包标志。                                     |
-| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
+| callback       | AsyncCallback<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)> | 是   | 回调函数。当函数调用成功，err为null，data为获取到的BundlePackInfo信息。否则为错误对象。 |
 
 **错误码：**
 
@@ -299,7 +299,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-基于bundleName和bundleFlag来获取bundlePackInfo。使用Promise异步回调。
+基于bundleName和BundlePackFlag来获取bundlePackInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -318,7 +318,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 | 类型                                                       | 说明                                |
 | ---------------------------------------------------------- | ----------------------------------- |
-| Promise<[BundlePackInfo](js-apis-bundleManager-packInfo.md)> | Promise对象，返回BundlePackInfo信息。 |
+| Promise<[BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)> | Promise对象，返回BundlePackInfo信息。 |
 
 **错误码：**
 

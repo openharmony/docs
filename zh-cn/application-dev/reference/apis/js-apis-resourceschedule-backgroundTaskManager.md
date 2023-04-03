@@ -66,8 +66,8 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
         console.info("Request suspension delay will time out.");
     })
-    var id = delayInfo.requestId;
-    var time = delayInfo.actualDelayTime;
+    let id = delayInfo.requestId;
+    let time = delayInfo.actualDelayTime;
     console.info("The requestId is: " + id);
     console.info("The actualDelayTime is: " + time);
   } catch (error) {
@@ -233,7 +233,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
@@ -255,9 +255,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(error, data) {
     if (error) {
@@ -267,13 +267,13 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -281,14 +281,18 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -307,7 +311,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
@@ -334,17 +338,17 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -352,18 +356,22 @@ export default class MainAbility extends Ability {
             wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
 
-        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-            try {
-                backgroundTaskManager.startBackgroundRunning(this.context,
-                    backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
-                    console.info("Operation startBackgroundRunning succeeded");
-                }).catch((error) => {
+        try {
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+                try {
+                    backgroundTaskManager.startBackgroundRunning(this.context,
+                        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
                     console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                });
-            } catch (error) {
-                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            }
-        });
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${error.code} message is ${error.message}`);
+        }
     }
 };
 ```
@@ -380,7 +388,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **错误码**：
@@ -400,7 +408,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 function callback(error, data) {
@@ -411,7 +419,7 @@ function callback(error, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context, callback);
@@ -436,7 +444,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 
 **返回值**：
 
@@ -461,10 +469,10 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         try {
             backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {

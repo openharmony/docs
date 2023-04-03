@@ -1,4 +1,4 @@
-# @ohos.enterprise.deviceInfo
+# @ohos.enterprise.deviceInfo (Device Information Management)
 
 The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. These APIs can only be called by device administrator applications.
 
@@ -33,7 +33,7 @@ Obtains the device serial number. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -45,7 +45,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
     if (error != null) {
@@ -82,7 +82,7 @@ Obtains the device serial number. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -94,7 +94,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceSerial(wantTemp).then((result) => {
     console.log(result);
@@ -124,7 +124,7 @@ Obtains the device version number. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -136,7 +136,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
     if (error != null) {
@@ -173,7 +173,7 @@ Obtains the device version number. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -185,7 +185,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDisplayVersion(wantTemp).then((result) => {
     console.log(result);
@@ -215,7 +215,7 @@ Obtains the device name. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -227,7 +227,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp, (error, result) => {
     if (error != null) {
@@ -264,7 +264,7 @@ Obtains the device name. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -276,7 +276,7 @@ For details about the following error codes, see [Enterprise Device Management E
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 deviceInfo.getDeviceName(wantTemp).then((result) => {
     console.log(result);

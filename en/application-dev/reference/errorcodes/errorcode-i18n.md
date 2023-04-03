@@ -1,4 +1,4 @@
-# I18N Error Codes
+# i18n Error Codes
 
 ## 890001 Incorrect Parameter Type
 

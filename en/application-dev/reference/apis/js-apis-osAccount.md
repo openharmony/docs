@@ -1,4 +1,4 @@
-# @ohos.account.osAccount
+# @ohos.account.osAccount (OS Account Management)
 
 The **osAccount** module provides basic capabilities for managing OS accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account.
 
@@ -84,13 +84,13 @@ Activates an OS account. This API uses an asynchronous callback to return the re
   try {
     accountManager.activateOsAccount(localId, (err)=>{
       if (err) {
-        console.log("activateOsAccount failed, error:" + JSON.stringify(err));
+        console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.log("activateOsAccount successfully");
       }
     });
   } catch (err) {
-    console.log("activateOsAccount exception:" + JSON.stringify(err));
+    console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -155,7 +155,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -170,13 +170,13 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
   try {
     accountManager.checkMultiOsAccountEnabled((err, isEnabled) => {
       if (err) {
-        console.log("checkMultiOsAccountEnabled failed, error: " + JSON.stringify(err));
+        console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
       console.log("checkMultiOsAccountEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkMultiOsAccountEnabled exception: " + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -192,7 +192,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                       |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -208,10 +208,10 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
     accountManager.checkMultiOsAccountEnabled().then((isEnabled) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log('checkMultiOsAccountEnabled failed, error: '  + JSON.stringify(err));
+      console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
-    console.log('checkMultiOsAccountEnabled exception: ' + JSON.stringify(err));
+    console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -304,13 +304,13 @@ Checks whether an OS account is activated. This API uses a promise to return the
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
+checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the specified constraint is enabled for an OS account. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -326,9 +326,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -337,25 +337,25 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint, (err, isEnabled)=>{
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err, isEnabled)=>{
       if (err) {
-        console.log("checkConstraintEnabled failed, error: " + JSON.stringify(err));
+        console.log("checkOsAccountConstraintEnabled failed, error: " + JSON.stringify(err));
       } else {
-        console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+        console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
-### checkConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>9+</sup>
 
-checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
 Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -376,9 +376,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId or constraint.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -387,13 +387,13 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   let localId = 100;
   let constraint = "constraint.wifi";
   try {
-    accountManager.checkConstraintEnabled(localId, constraint).then((isEnabled) => {
-      console.log("checkConstraintEnabled successfully, isEnabled: " + isEnabled);
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled) => {
+      console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
     }).catch((err) => {
-      console.log("checkConstraintEnabled failed, error: "  + JSON.stringify(err));
+      console.log("checkOsAccountConstraintEnabled failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkConstraintEnabled exception: " + JSON.stringify(err));
+    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
   }
   ```
 
@@ -475,8 +475,6 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
@@ -489,9 +487,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
 
 **Example**
 
@@ -531,9 +527,9 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -555,7 +551,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 ### checkOsAccountVerified<sup>9+</sup>
 
-checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
+checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This API uses a promise to return the result.
 
@@ -567,7 +563,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | No  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | Yes  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
 
 **Return value**
 
@@ -579,9 +575,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
@@ -973,9 +969,9 @@ Obtains the number of OS accounts created. This API uses a promise to return the
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the ID of the OS account to which the current process belongs. This API uses an asynchronous callback to return the result.
 
@@ -991,28 +987,28 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess((err, localId) => {
+    accountManager.getOsAccountLocalId((err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromProcess failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalId failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+        console.log("getOsAccountLocalId successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromProcess exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalId exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromProcess<sup>9+</sup>
+### getOsAccountLocalId<sup>9+</sup>
 
-queryOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
+getOsAccountLocalId(): Promise&lt;number&gt;
 
 Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result.
 
@@ -1028,26 +1024,26 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromProcess().then((localId) => {
-      console.log("queryOsAccountLocalIdFromProcess successfully, localId: " + localId);
+    accountManager.getOsAccountLocalId().then((localId) => {
+      console.log("getOsAccountLocalId successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromProcess failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalId failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromProcess exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the process UID. This API uses an asynchronous callback to return the result.
 
@@ -1064,8 +1060,8 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 | ID| Error Message        |
 | -------- | --------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid.    |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid.    |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1073,20 +1069,20 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid, (err, localId) => {
+    accountManager.getOsAccountLocalIdForUid(uid, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
       }
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromUid exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForUid exception: " + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromUid<sup>9+</sup>
+### getOsAccountLocalIdForUid<sup>9+</sup>
 
-queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
+getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the process UID. This API uses a promise to return the result.
 
@@ -1108,8 +1104,8 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1117,19 +1113,19 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   try {
-    accountManager.queryOsAccountLocalIdFromUid(uid).then((localId) => {
-      console.log("queryOsAccountLocalIdFromUid successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForUid(uid).then((localId) => {
+      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromUid exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the domain account information. This API uses an asynchronous callback to return the result.
 
@@ -1148,8 +1144,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **Example**
 
@@ -1157,21 +1153,21 @@ Obtains the OS account ID based on the domain account information. This API uses
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo, (err, localId) => {
+    accountManager.getOsAccountLocalIdForDomain(domainInfo, (err, localId) => {
       if (err) {
-        console.log("queryOsAccountLocalIdFromDomain failed, error: " + JSON.stringify(err));
+        console.log("getOsAccountLocalIdForDomain failed, error: " + JSON.stringify(err));
       } else {
-        console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+        console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
       }
     });
   } catch (err) {
-    console.log('queryOsAccountLocalIdFromDomain exception: ' + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
   }
   ```
 
-### queryOsAccountLocalIdFromDomain<sup>9+</sup>
+### getOsAccountLocalIdForDomain<sup>9+</sup>
 
-queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
+getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the domain account information. This API uses a promise to return the result.
 
@@ -1195,8 +1191,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid domainInfo. |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainInfo. |
 
 **Example**
 
@@ -1204,13 +1200,13 @@ Obtains the OS account ID based on the domain account information. This API uses
   let accountManager = account_osAccount.getAccountManager();
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    accountManager.queryOsAccountLocalIdFromDomain(domainInfo).then((localId) => {
-      console.log("queryOsAccountLocalIdFromDomain successfully, localId: " + localId);
+    accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId) => {
+      console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
     }).catch((err) => {
-      console.log("queryOsAccountLocalIdFromDomain failed, error: "  + JSON.stringify(err));
+      console.log("getOsAccountLocalIdForDomain failed, error: "  + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("queryOsAccountLocalIdFromDomain exception: " + JSON.stringify(err));
+    console.log("getOsAccountLocalIdForDomain exception: " + JSON.stringify(err));
   }
   ```
 
@@ -1456,9 +1452,9 @@ Obtains information about all the OS accounts created. This API uses a promise t
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains information about all activated OS accounts. This API uses an asynchronous callback to return the result.
 
@@ -1474,28 +1470,28 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds((err, idArray)=>{
-      console.log('getActivatedOsAccountIds err:' + JSON.stringify(err));
-      console.log('getActivatedOsAccountIds idArray length:' + idArray.length);
+    accountManager.getActivatedOsAccountLocalIds((err, idArray)=>{
+      console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
       for(let i=0;i<idArray.length;i++) {
         console.info('activated os account id: ' + idArray[i]);
       }
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
-### getActivatedOsAccountIds<sup>9+</sup>
+### getActivatedOsAccountLocalIds<sup>9+</sup>
 
-getActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
+getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains information about all activated OS accounts. This API uses a promise to return the result.
 
@@ -1511,20 +1507,20 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 12300001 | system service exception. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountIds().then((idArray) => {
-      console.log('getActivatedOsAccountIds, idArray: ' + idArray);
+    accountManager.getActivatedOsAccountLocalIds().then((idArray) => {
+      console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
     }).catch((err) => {
-      console.log('getActivatedOsAccountIds err: '  + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getActivatedOsAccountIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
   }
   ```
 
@@ -1690,7 +1686,7 @@ Creates an OS account and associates it with the specified domain account. This 
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the OS account created.|
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise used to return the information about the created OS account.|
 
 **Error codes**
 
@@ -2214,9 +2210,9 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
+getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the OS account ID based on the serial number (SN). This API uses an asynchronous callback to return the result.
 
@@ -2233,9 +2229,9 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2243,7 +2239,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err, localId)=>{
       console.log('ger localId err:' + JSON.stringify(err));
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
@@ -2252,9 +2248,9 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
   }
   ```
 
-### queryOsAccountLocalIdBySerialNumber<sup>9+</sup>
+### getOsAccountLocalIdForSerialNumber<sup>9+</sup>
 
-queryOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
+getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 Obtains the OS account ID based on the SN. This API uses a promise to return the result.
 
@@ -2276,9 +2272,9 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid serialNumber. |
+| 12300003 | the account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2286,19 +2282,19 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
   let accountManager = account_osAccount.getAccountManager();
   let serialNumber = 12345;
   try {
-    accountManager.queryOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
-      console.log('queryOsAccountLocalIdBySerialNumber localId: ' + localId);
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId) => {
+      console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
     }).catch((err) => {
-      console.log('queryOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForSerialNumber err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountLocalIdBySerialNumber exception: '  + JSON.stringify(e));
+    console.log('getOsAccountLocalIdForSerialNumber exception: '  + JSON.stringify(e));
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
+getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the SN of an OS account based on the account ID. This API uses an asynchronous callback to return the result.
 
@@ -2315,9 +2311,9 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2325,7 +2321,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
+    accountManager.getSerialNumberForOsAccountLocalId(localId, (err, serialNumber)=>{
       console.log('ger serialNumber err:' + JSON.stringify(err));
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
@@ -2334,9 +2330,9 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
   }
   ```
 
-### querySerialNumberByOsAccountLocalId<sup>9+</sup>
+### getSerialNumberForOsAccountLocalId<sup>9+</sup>
 
-querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
+getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result.
 
@@ -2358,9 +2354,9 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId.    |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2368,13 +2364,13 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.querySerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
-      console.log('querySerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
+    accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber) => {
+      console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
     }).catch((err) => {
-      console.log('querySerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
+      console.log('getSerialNumberForOsAccountLocalId err: '  + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('querySerialNumberByOsAccountLocalId exception:' + JSON.stringify(e));
+    console.log('getSerialNumberForOsAccountLocalId exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2462,9 +2458,9 @@ Unsubscribes from the OS account activation states, including the states of the 
   }
   ```
 
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
+getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the bundle ID based on the UID. This API uses an asynchronous callback to return the result.
 
@@ -2483,8 +2479,8 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**
 
@@ -2492,17 +2488,17 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(bundleId));
+    accountManager.getBundleIdForUid(testUid, (err, bundleId) => {
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
-### getBundleIdFromUid<sup>9+</sup>
+### getBundleIdForUid<sup>9+</sup>
 
-getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
+getBundleIdForUid(uid: number): Promise&lt;number&gt;;
 
 Obtains the bundle ID based on the UID. This API uses a promise to return the result.
 
@@ -2526,8 +2522,8 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid uid. |
+| 12300001 | system service exception. |
+| 12300002 | invalid uid. |
 
 **Example**
 
@@ -2535,13 +2531,13 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
   let accountManager = account_osAccount.getAccountManager();
   let testUid = 1000000;
   try {
-    accountManager.getBundleIdFromUid(testUid).then((result) => {
-      console.info('getBundleIdFromUid bundleId:' + JSON.stringify(result));
+    accountManager.getBundleIdForUid(testUid).then((result) => {
+      console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
+      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdFromUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
   }
   ```
 
@@ -2620,9 +2616,9 @@ Checks whether the current process belongs to the main OS account. This API uses
     console.info('isMainOsAccount exception:' + JSON.stringify(e));
   }
   ```
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
 Obtains the constraint source information of an OS account. This API uses an asynchronous callback to return the result.
 
@@ -2644,27 +2640,27 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
 
-### queryOsAccountConstraintSourceTypes<sup>9+</sup>
+### getOsAccountConstraintSourceTypes<sup>9+</sup>
 
-queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
+getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
 Obtains the constraint source information of an OS account. This API uses a promise to return the result.
 
@@ -2691,24 +2687,25 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
-| 12300003 | Account not found. |
+| 12300001 | system service exception. |
+| 12300002 | invalid name or constraint. |
+| 12300003 | the account indicated by localId dose not exist. |
 
 **Example**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
-      console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(result));
+    accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
+      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err)=>{
-      console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
+      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('queryOsAccountConstraintSourceType exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
   }
   ```
+
 ### isMultiOsAccountEnable<sup>(deprecated)</sup>
 
 isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
@@ -2725,7 +2722,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 | Name  | Type                        | Mandatory| Description                                                    |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -2756,7 +2753,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 | Type                  | Description                                                      |
 | :--------------------- | :--------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value false means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means multiple OS accounts are supported; the value **false** means the opposite.|
 
 **Example**
 
@@ -2851,7 +2848,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkConstraintEnabled](#checkconstraintenabled9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2888,7 +2885,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkConstraintEnabled](#checkconstraintenabled9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3157,7 +3154,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3188,7 +3185,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromProcess](#queryosaccountlocalidfromprocess9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalId](#getosaccountlocalid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3217,7 +3214,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3250,7 +3247,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromUid](#queryosaccountlocalidfromuid9-1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3286,7 +3283,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3321,7 +3318,7 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdFromDomain](#queryosaccountlocalidfromdomain9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1).
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3429,7 +3426,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountIds](#getactivatedosaccountids9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3458,7 +3455,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountIds](#getactivatedosaccountids9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1).
 
 Obtains information about all activated OS accounts. This API uses a promise to return the result.
 
@@ -3603,7 +3600,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of the distributed virtual device. This API uses an asynchronous callback to return the result.
+Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3633,7 +3630,7 @@ Obtains the ID of the distributed virtual device. This API uses an asynchronous 
 
 getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of the distributed virtual device. This API uses a promise to return the result.
+Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -3668,7 +3665,7 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3698,7 +3695,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [queryOsAccountLocalIdBySerialNumber](#queryosaccountlocalidbyserialnumber9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3734,7 +3731,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3764,7 +3761,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [querySerialNumberByOsAccountLocalId](#queryserialnumberbyosaccountlocalid9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1).
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -4322,13 +4319,13 @@ Unregisters this PIN inputer.
   pinAuth.unregisterInputer();
   ```
 
-### InputerManager <sup>10+</sup>
+## InputerManager <sup>9+</sup>
 
 Provides APIs for managing credential inputers.
 
-### registerInputer<sup>10+</sup>
+### registerInputer<sup>9+</sup>
 
-registerInputer(authType: AuthType, inputer: IInputer): void;
+static registerInputer(authType: AuthType, inputer: IInputer): void
 
 Register a credential inputer.
 
@@ -4356,11 +4353,10 @@ Register a credential inputer.
 
 **Example**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    InputerMgr.registerInputer(authType, {
+    account_osAccount.InputerManager.registerInputer(authType, {
         onGetData: (authSubType, callback) => {
           callback.onSetData(authSubType, password);
         }
@@ -4371,9 +4367,9 @@ Register a credential inputer.
   }
   ```
 
-### unregisterInputer<sup>10+</sup>
+### unregisterInputer<sup>9+</sup>
 
-unregisterInputer(authType: AuthType): void;
+static unregisterInputer(authType: AuthType): void
 
 Unregisters this credential inputer.
 
@@ -4397,13 +4393,615 @@ Unregisters this credential inputer.
 
 **Example**
   ```js
-  let inputerMgr = new account_osAccount.InputerManager();
   let authType = account_osAccount.AuthType.DOMAIN;
   try {
-    inputerMgr.unregisterInputer(authType);
+    account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
     console.log("unregisterInputer err:" + JSON.stringify(err));
+  }
+  ```
+
+## DomainPlugin<sup>9+</sup>
+
+Provides APIs for domain account authentication.
+
+**System API**: This is a system API.
+
+### auth<sup>9+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| credential   | Uint8Array  | Yes  | Credentials of the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.DOMAIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (resultCode, authResult) => {
+          console.log('auth resultCode = ' + resultCode);
+          console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback): void
+
+Authenticates a domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### authWithToken<sup>10+</sup>
+
+authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account by the authorization token.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| token   | Uint8Array  | Yes  | Authorization token generated when the PIN or biometric authentication is successful.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+Obtains information about a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domain   | string  | Yes  | Domain to which the account belongs.|
+| accountName   | string  | Yes  | Name of the account.|
+| callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {
+      // mock getting account information
+      // notify result
+      callback({
+        code: 0
+      }, {
+        domain: domain,
+        accountName: accountName,
+        accountId: "xxxx"
+      })
+    },
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAuthStatusInfo<sup>10+</sup>
+
+getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;AuthStatusInfo&gt;): void
+
+Obtains the authentication status of a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {
+      callback({
+        code: 0
+      }, {
+        remainTimes: 5,
+        freezingTime: 0
+      })
+    },
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### bindAccount<sup>10+</sup>
+
+bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: AsyncCallback&lt;void&gt;): void
+
+Binds a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {
+      // mock unbinding operation
+      // notify binding result
+      callback({code: 0})
+    },
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### unbindAccount<sup>10+</sup>
+
+unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;void&gt;): void
+
+Unbinds a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {
+      // mock unbinding operation
+      // notify unbinding result
+      callback({code: 0})
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+## DomainAccountManager <sup>9+</sup>
+Provides APIs for domain account management.
+
+### registerPlugin<sup>9+</sup>
+
+static registerPlugin(plugin: DomainPlugin): void
+
+Registers a domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                     |
+| ----------| ----------------------- | --- | -------------------------- |
+| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300201 | the domain plugin has been registered. |
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  try {
+    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    console.log('registerPlugin success.');
+  } catch(err) {
+    console.log("registerPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### unregisterPlugin<sup>9+</sup>
+
+static unregisterPlugin(): void
+
+Unregisters this domain plug-in.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.unregisterPlugin();
+    console.log('unregisterPlugin success.');
+  } catch(err) {
+    console.log("unregisterPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### auth<sup>10+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| credential   | Uint8Array  | Yes  | Credentials of the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo or credential. |
+| 12300003 | domain account does not exist. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  let credential = new Uint8Array([0])
+  try {
+    account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(callback: IUserAuthCallback): void
+
+Authenticates this domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300003 | no domain account is bound. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup({
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(localId: number, callback: IUserAuthCallback): void
+
+Authenticates a domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| localId   | number  | Yes  | Local ID of the OS account bound to the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid localId. |
+| 12300003 | no domain account is bound. |
+| 12300013 | network exception. |
+| 12300101 | authentication failed. |
+| 12300109 | authentication is canceled. |
+| 12300110 | authentication is locked. |
+| 12300111 | authentication timeout. |
+| 12300112 | authentication service is busy. |
+| 12300113 | authentication service does not exist. |
+| 12300114 | authentication service exception. |
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup(100, {
+      onResult: (resultCode, authResult) => {
+        console.log('authWithPopup resultCode = ' + resultCode);
+        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('authWithPopup exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a domain account exists.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo. |
+| 12300013 | network exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err, result) => {
+      if (err) {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+      } else {
+        console.log("hasAccount result: " + result);
+      }
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
+
+Checks whether a domain account exists.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | system service exception. |
+| 12300002 | invalid domainAccountInfo. |
+| 12300013 | network exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result) => {
+      console.log("hasAccount result: " + result);
+    }).catch((err) => {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -5141,7 +5739,7 @@ Defines the executor property.
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | Yes   | Result.        |
 | authSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.|
-| remainTimes  | number                                   | No   | Remaining time.    |
+| remainTimes  | number                                   | No   | Number of remaining authentication times.    |
 | freezingTime | number                                   | No   | Freezing time.    |
 
 ## AuthResult<sup>8+</sup>
@@ -5155,7 +5753,7 @@ Defines the authentication result information.
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
 | token        | Uint8Array  | No   | Authentication token.    |
-| remainTimes  | number      | No   | Remaining time.    |
+| remainTimes  | number      | No   | Number of remaining authentication times.    |
 | freezingTime | number      | No   | Freezing time.    |
 
 ## CredentialInfo<sup>8+</sup>
@@ -5238,7 +5836,7 @@ Enumerates the authentication credential types.
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
 | FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
-| DOMAIN<sup>10+</sup>  | 1024     | Domain authentication.|
+| DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5255,7 +5853,7 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
-| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | Mixed domain authentication credentials.  |
+| DOMAIN_MIXED<sup>9+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -5377,6 +5975,7 @@ Defines the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.|
 
 ## Constraints
 
@@ -5473,3 +6072,16 @@ Enumerates the constraint sources.
 | CONSTRAINT_TYPE_BASE | 1      | Constraint from system settings.  |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | Constraint from the device owners' settings.  |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | Constraint from the profile owners' settings.  |
+
+## AuthStatusInfo<sup>10+</sup>
+
+Presents the authentication status information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| remainTimes  | number | Yes  | Number of remaining authentication times.  |
+| freezingTime | number | Yes  | Freezing time.|

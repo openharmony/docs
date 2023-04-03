@@ -161,7 +161,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名    | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode8)            | 是   | 向系统申请的后台模式。                                       |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是   | 通知参数，用于指定长时任务通知点击后跳转的界面。             |
 | callback  | AsyncCallback&lt;void&gt;                     | 是   | callback形式返回启动长时任务的结果。                         |
@@ -173,7 +173,7 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -187,7 +187,7 @@ let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -205,9 +205,9 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function callback(err, data) {
     if (err) {
@@ -217,13 +217,13 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -253,7 +253,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 参数名    | 类型                                          | 必填 | 说明                                                         |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context   | Context                                       | 是   | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | bgMode    | [BackgroundMode](#backgroundmode8)            | 是   | 向系统申请的后台模式。                                       |
 | wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是   | 通知参数，用于指定长时任务通知点击跳转的界面。               |
 
@@ -270,13 +270,13 @@ FA模型示例：
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let wantAgentInfo = {
     wants: [
         {
             bundleName: "com.example.myapplication",
-            abilityName: "com.example.myapplication.MainAbility"
+            abilityName: "EntryAbility"
         }
     ],
     operationType: wantAgent.OperationType.START_ABILITY,
@@ -297,17 +297,17 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         let wantAgentInfo = {
             wants: [
                 {
                     bundleName: "com.example.myapplication",
-                    abilityName: "com.example.myapplication.MainAbility"
+                    abilityName: "EntryAbility"
                 }
             ],
             operationType: wantAgent.OperationType.START_ABILITY,
@@ -339,7 +339,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **示例**：
@@ -365,7 +365,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 function callback(err, data) {
@@ -376,7 +376,7 @@ function callback(err, data) {
     }
 }
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context, callback);
     }
@@ -395,7 +395,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 
 **返回值**：
 
@@ -422,10 +422,10 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 Stage模型示例：
 
 ```ts
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
             console.info("Operation stopBackgroundRunning succeeded");

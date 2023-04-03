@@ -1,4 +1,4 @@
-# Sensor
+# @system.sensor (Sensor)
 
 The **Sensor** module provides APIs for querying the sensor list, subscribing to or unsubscribing from sensor data, and executing control commands.
 
@@ -8,7 +8,7 @@ The sensors are classified into the following categories based on their function
 > **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.sensor`](js-apis-sensor.md) instead.
-> - The initial APIs of this module are supported since API version 4. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This module requires hardware support and can only be debugged on real devices.
 
 
@@ -19,15 +19,9 @@ The sensors are classified into the following categories based on their function
 import sensor from '@system.sensor';
 ```
 
-## Error Codes
-
-| Error Code | Description                              |
-| ---------- | ---------------------------------------- |
-| 900        | The current device does not support the corresponding sensor. |
-
 ## sensor.subscribeAccelerometer
 
-subscribeAccelerometer(Object): void
+ subscribeAccelerometer(options: subscribeAccelerometerOptions): void
 
 Subscribes to data changes of the acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -37,23 +31,13 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **Parameters**
 
-| Name     | Type     | Mandatory | Description                              |
-| -------- | -------- | --------- | ---------------------------------------- |
-| interval | string   | Yes       | Execution frequency of the callback for returning the acceleration sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
-| success  | Function | Yes       | Called when the acceleration sensor data changes. |
-| fail     | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name | Type   | Description                 |
-| ---- | ------ | --------------------------- |
-| x    | number | Acceleration on the x-axis. |
-| y    | number | Acceleration on the y-axis. |
-| z    | number | Acceleration on the z-axis. |
+| Name | Type                                                        | Mandatory| Description                                      |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| options | [subscribeAccelerometerOptions](#subscribeaccelerometeroptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeAccelerometer({
   interval: 'normal',
   success: function(ret) {
@@ -68,7 +52,6 @@ sensor.subscribeAccelerometer({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeAccelerometer
@@ -83,13 +66,13 @@ Unsubscribes from data changes of the acceleration sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeAccelerometer();
 ```
 
 ## sensor.subscribeCompass
 
-subscribeCompass(Object): void
+ subscribeCompass(options: SubscribeCompassOptions): void
 
 Subscribes to data changes of the compass sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -97,20 +80,13 @@ Subscribes to data changes of the compass sensor. If this API is called multiple
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the compass sensor data changes. |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name      | Type   | Description                          |
-| --------- | ------ | ------------------------------------ |
-| direction | number | Direction of the device, in degrees. |
+| Name | Type                                               | Mandatory| Description                            |
+| ------- | --------------------------------------------------- | ---- | -------------------------------- |
+| options | [SubscribeCompassOptions](#subscribecompassoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeCompass({
   success: function(ret) {
     console.log('get data direction:' + ret.direction);
@@ -122,7 +98,6 @@ sensor.subscribeCompass({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeCompass
@@ -135,13 +110,13 @@ Unsubscribes from data changes of the compass sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeCompass();
 ```
 
 ## sensor.subscribeProximity
 
-subscribeProximity(Object): void
+ subscribeProximity(options: SubscribeProximityOptions): void
 
 Subscribes to data changes of the proximity sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -149,20 +124,13 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the proximity sensor data changes. |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name     | Type   | Description                              |
-| -------- | ------ | ---------------------------------------- |
-| distance | number | Distance between a visible object and the device screen. |
+| Name | Type                                                   | Mandatory| Description                            |
+| ------- | ------------------------------------------------------- | ---- | -------------------------------- |
+| options | [SubscribeProximityOptions](#subscribeproximityoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeProximity({
   success: function(ret) {
     console.log('get data distance:' + ret.distance);
@@ -174,7 +142,6 @@ sensor.subscribeProximity({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeProximity
@@ -187,13 +154,13 @@ Unsubscribes from data changes of the proximity sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeProximity();
 ```
 
 ## sensor.subscribeLight
 
-sensor.subscribeLight(Object): void
+ subscribeLight(options: SubscribeLightOptions): void
 
 Subscribes to data changes of the ambient light sensor. If this API is called multiple times, the last call takes effect.
 
@@ -201,20 +168,13 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the ambient light sensor data changes |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name      | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| intensity | number | Light intensity, in lux. |
+| Name | Type                                           | Mandatory| Description                              |
+| ------- | ----------------------------------------------- | ---- | ---------------------------------- |
+| options | [SubscribeLightOptions](#subscribelightoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeLight({
   success: function(ret) {
     console.log('get data intensity:' + ret.intensity);
@@ -226,7 +186,6 @@ sensor.subscribeLight({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeLight
@@ -239,13 +198,13 @@ Unsubscribes from data changes of the ambient light sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeLight();
 ```
 
 ## sensor.subscribeStepCounter
 
-subscribeStepCounter(Object): void
+ subscribeStepCounter(options: SubscribeStepCounterOptions): void
 
 Subscribes to data changes of the step counter sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -255,20 +214,13 @@ Subscribes to data changes of the step counter sensor. If this API is called mul
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the step counter sensor data changes. |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name  | Type   | Description                              |
-| ----- | ------ | ---------------------------------------- |
-| steps | number | Number of counted steps after the sensor is restarted.<br> |
+| Name | Type                                                       | Mandatory| Description                                  |
+| ------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
+| options | [SubscribeStepCounterOptions](#subscribestepcounteroptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeStepCounter({
   success: function(ret) {
     console.log('get step value:' + ret.steps);
@@ -280,7 +232,6 @@ sensor.subscribeStepCounter({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeStepCounter
@@ -295,14 +246,14 @@ Unsubscribes from data changes of the step counter sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeStepCounter();
 ```
 
 
 ## sensor.subscribeBarometer
 
-subscribeBarometer(Object): void
+subscribeBarometer(options: SubscribeBarometerOptions): void
 
 Subscribes to data changes of the barometer sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -310,20 +261,13 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the barometer sensor data changes. |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name     | Type   | Description          |
-| -------- | ------ | -------------------- |
-| pressure | number | Pressure, in pascal. |
+| Name | Type                                                   | Mandatory| Description                              |
+| ------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| options | [SubscribeBarometerOptions](#subscribebarometeroptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeBarometer({
   success: function(ret) {
     console.log('get data value:' + ret.pressure);
@@ -335,7 +279,6 @@ sensor.subscribeBarometer({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 
@@ -349,14 +292,14 @@ Unsubscribes from data changes of the barometer sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeBarometer();
 ```
 
 
 ## sensor.subscribeHeartRate
 
-subscribeHeartRate(Object): void
+ subscribeHeartRate(options: SubscribeHeartRateOptions): void
 
 Subscribes to data changes of the heart rate sensor. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -366,20 +309,13 @@ Subscribes to data changes of the heart rate sensor. If this API is called multi
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                              |
-| ------- | -------- | --------- | ---------------------------------------- |
-| success | Function | Yes       | Called when the heart rate sensor data changes. This callback is invoked every five seconds. |
-| fail    | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name      | Type   | Description |
-| --------- | ------ | ----------- |
-| heartRate | number | Heart rate. |
+| Name | Type                                                   | Mandatory| Description                            |
+| ------- | ------------------------------------------------------- | ---- | -------------------------------- |
+| options | [SubscribeHeartRateOptions](#subscribeheartrateoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeHeartRate({
   success: function(ret) {
     console.log('get heartrate value:' + ret.heartRate);
@@ -391,7 +327,6 @@ sensor.subscribeHeartRate({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 
@@ -407,13 +342,13 @@ Unsubscribes from data changes of the heart rate sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeHeartRate();
 ```
 
 ## sensor.subscribeOnBodyState
 
-subscribeOnBodyState(Object): void
+ subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void
 
 Subscribes to changes of the wearing state of a wearable device. If this API is called multiple times for the same application, the last call takes effect.
 
@@ -421,20 +356,13 @@ Subscribes to changes of the wearing state of a wearable device. If this API is 
 
 **Parameters**
 
-| Name    | Type     | Mandatory | Description                            |
-| ------- | -------- | --------- | -------------------------------------- |
-| success | Function | Yes       | Called when the wearing state changes. |
-| fail    | Function | No        | Callback upon failure.                 |
-
-Return values of the success callback
-
-| Name  | Type    | Description                          |
-| ----- | ------- | ------------------------------------ |
-| value | boolean | Whether the wearable device is worn. |
+| Name | Type                                                       | Mandatory| Description                  |
+| ------- | ----------------------------------------------------------- | ---- | ---------------------- |
+| options | [SubscribeOnBodyStateOptions](#subscribeonbodystateoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeOnBodyState({
   success: function(ret) {
     console.log('get on-body state value:' + ret.value);
@@ -446,7 +374,6 @@ sensor.subscribeOnBodyState({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeOnBodyState
@@ -459,13 +386,13 @@ Unsubscribes from changes of the wearing state of a wearable device.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeOnBodyState();
 ```
 
 ## sensor.getOnBodyState
 
-getOnBodyState(Object): void
+ getOnBodyState(options: GetOnBodyStateOptions): void
 
 Obtains the wearing state of a wearable device.
 
@@ -473,21 +400,13 @@ Obtains the wearing state of a wearable device.
 
 **Parameters**
 
-| Name     | Type     | Mandatory | Description                            |
-| -------- | -------- | --------- | -------------------------------------- |
-| success  | Function | No        | Callback upon success.                 |
-| fail     | Function | No        | Callback upon failure.                 |
-| complete | Function | No        | Called when the execution is complete. |
-
-Return values of the success callback
-
-| Name  | Type    | Description                          |
-| ----- | ------- | ------------------------------------ |
-| value | boolean | Whether the wearable device is worn. |
+| Name | Type                                           | Mandatory| Description                      |
+| ------- | ----------------------------------------------- | ---- | -------------------------- |
+| options | [GetOnBodyStateOptions](#getonbodystateoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.getOnBodyState({
   success: function(ret) {
     console.log('on body state: ' + ret.value);
@@ -500,7 +419,7 @@ sensor.getOnBodyState({
 
 ## sensor.subscribeDeviceOrientation<sup>6+</sup>
 
-subscribeDeviceOrientation(interval: string, success: (data: DeviceOrientationResponse), fail?: (data: string, code: number)): void
+ subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void
 
 Subscribes to data changes of the device orientation sensor.
 
@@ -510,22 +429,13 @@ If this API is called multiple times for the same application, the last call tak
 
 **Parameters**
 
-| Name     | Type     | Mandatory | Description                              |
-| -------- | -------- | --------- | ---------------------------------------- |
-| interval | string   | Yes       | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
-| success  | Function | Yes       | Called when the device orientation sensor data changes. |
-| fail     | Function | No        | Callback upon failure.                   |
-
- Return values of the success callback
-| Name  | Type   | Description                              |
-| ----- | ------ | ---------------------------------------- |
-| alpha | number | Rotation angle around the Z axis when the X/Y axis of the device coincides with the X/Y axis of the earth. |
-| beta  | number | Rotation angle around the X axis when the Y/Z axis of the device coincides with the Y/Z axis of the earth. |
-| gamma | number | Rotation angle around the Y axis when the X/Z axis of the device coincides with the X/Z axis of the earth. |
+| Name | Type                                                        | Mandatory| Description                                            |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeDeviceOrientation({
   interval: 'normal',
   success: function(ret) {
@@ -540,7 +450,6 @@ sensor.subscribeDeviceOrientation({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
@@ -553,13 +462,13 @@ Unsubscribes from data changes of the device orientation sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeDeviceOrientation();
 ```
 
 ## sensor.subscribeGyroscope<sup>6+</sup>
 
-subscribeGyroscope(interval: string, success: (data: GyroscopeResponse), fail?: (data: string, code: number)): void
+ subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
 Subscribes to data changes of the gyroscope sensor.
 
@@ -571,23 +480,13 @@ If this API is called multiple times for the same application, the last call tak
 
 **Parameters**
 
-| Name     | Type     | Mandatory | Description                              |
-| -------- | -------- | --------- | ---------------------------------------- |
-| interval | string   | Yes       | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios. |
-| success  | Function | Yes       | Called when the gyroscope sensor data changes. |
-| fail     | Function | No        | Callback upon failure.                   |
-
-Return values of the success callback
-
-| Name | Type   | Description                              |
-| ---- | ------ | ---------------------------------------- |
-| x    | number | Rotation angular velocity of the X axis. |
-| y    | number | Rotation angular velocity of the Y axis. |
-| z    | number | Rotation angular velocity of the Z axis. |
+| Name | Type                                                   | Mandatory| Description                                          |
+| ------- | ------------------------------------------------------- | ---- | ---------------------------------------------- |
+| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions) | Yes  | Type of data to return.|
 
 **Example**
 
-```
+```js
 sensor.subscribeGyroscope({
   interval: 'normal',
   success: function(ret) {
@@ -602,7 +501,6 @@ sensor.subscribeGyroscope({
 ```
 
 > **NOTE**
->
 > To reduce performance overhead, you are advised to unsubscribe from the sensor data in the **onDestory** callback.
 
 ## sensor.unsubscribeGyroscope<sup>6+</sup>
@@ -617,6 +515,253 @@ Unsubscribes from data changes of the gyroscope sensor.
 
 **Example**
 
-```
+```js
 sensor.unsubscribeGyroscope();
 ```
+
+## subscribeAccelerometerOptions
+
+Defines the type of data to return for a subscription to the acceleration sensor data.
+
+**Required permissions**: ohos.permission.ACCELEROMETER
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type                                           | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                          | Yes  | Execution frequency of the callback for returning the acceleration sensor data. The default value is **normal**. The options are as follows: - **game**: called at an interval of 20 ms, which is applicable to gaming scenarios. - **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios. - **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| success  | [AccelerometerResponse](#accelerometerresponse) | Yes  | Called when the acceleration sensor data changes.                          |
+| fail     | Function                                        | No  | Callback upon an API call failure.                                    |
+
+## AccelerometerResponse 
+
+Defines the type of data to include in an **AccelerometerResponse** object. 
+
+**Required permissions**: ohos.permission.ACCELEROMETER
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name| Type  | Mandatory| Description         |
+| ---- | ------ | ---- | ------------- |
+| x    | number | Yes  | Acceleration on the x-axis.|
+| y    | number | Yes  | Acceleration on the y-axis.|
+| z    | number | Yes  | Acceleration on the z-axis.|
+
+## SubscribeCompassOptions
+
+Defines the type of data to return for a subscription to the compass sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                               | Mandatory| Description                          |
+| ------- | ----------------------------------- | ---- | ------------------------------ |
+| success | [CompassResponse](#compassresponse) | Yes  | Called when the compass sensor data changes.|
+| fail    | Function                            | No  | Callback upon an API call failure.      |
+
+## CompassResponse 
+
+Defines the type of data to include in a **CompassResponse** object.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name     | Type  | Mandatory| Description                |
+| --------- | ------ | ---- | -------------------- |
+| direction | number | Yes  | Direction of the device, in degrees.|
+
+## SubscribeProximityOptions
+
+Defines the type of data to return for a subscription to the proximity sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                                   | Mandatory| Description                              |
+| ------- | --------------------------------------- | ---- | ---------------------------------- |
+| success | [ProximityResponse](#proximityresponse) | Yes  | Called when the proximity sensor data changes.|
+| fail    | Function                                | No  | Callback upon an API call failure.          |
+
+## ProximityResponse 
+
+Defines the type of data to include in a **ProximityResponse** object.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type  | Mandatory| Description                                      |
+| -------- | ------ | ---- | ------------------------------------------ |
+| distance | number | Yes  | Distance between a visible object and the device screen.|
+
+## SubscribeLightOptions
+
+Defines the type of data to return for a subscription to the ambient light sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                           | Mandatory| Description                          |
+| ------- | ------------------------------- | ---- | ------------------------------ |
+| success | [LightResponse](#lightresponse) | Yes  | Called when the ambient light sensor data changes|
+| fail    | Function                        | No  | Callback upon an API call failure.      |
+
+## LightResponse 
+
+Defines the type of data to include in a **LightResponse** object.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name     | Type  | Mandatory| Description                 |
+| --------- | ------ | ---- | --------------------- |
+| intensity | number | Yes  | Light intensity, in lux.|
+
+## SubscribeStepCounterOptions
+
+Defines the type of data to return for a subscription to the step counter sensor data.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                                       | Mandatory| Description                            |
+| ------- | ------------------------------------------- | ---- | -------------------------------- |
+| success | [StepCounterResponse](#stepcounterresponse) | Yes  | Called when the step counter sensor data changes.|
+| fail    | Function                                    | No  | Callback upon an API call failure.        |
+
+## StepCounterResponse 
+
+Defines the type of data to include in a **StepCounterResponse** object.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name | Type  | Mandatory| Description                            |
+| ----- | ------ | ---- | -------------------------------- |
+| steps | number | Yes  | Number of counted steps after the sensor is restarted.|
+
+## SubscribeBarometerOptions
+
+Defines the type of data to return for a subscription to the barometer sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                                   | Mandatory| Description                            |
+| ------- | --------------------------------------- | ---- | -------------------------------- |
+| success | [BarometerResponse](#barometerresponse) | Yes  | Called when the barometer sensor data changes.|
+| fail    | Function                                | No  | Callback upon an API call failure.        |
+
+## BarometerResponse 
+
+Defines the type of data to include in a **BarometerResponse** object.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| pressure | number | Yes  | Pressure, in pascal.|
+
+## SubscribeHeartRateOptions
+
+Defines the type of data to return for a subscription to the heart rate sensor data.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                                   | Mandatory| Description                                           |
+| ------- | --------------------------------------- | ---- | ----------------------------------------------- |
+| success | [HeartRateResponse](#heartrateresponse) | Yes  | Called when the heart rate sensor data changes. This callback is invoked every five seconds.|
+| fail    | Function                                | No  | Callback upon an API call failure.                       |
+
+## HeartRateResponse 
+
+Defines the type of data to include in a **HeartRateResponse** object.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name     | Type  | Mandatory| Description    |
+| --------- | ------ | ---- | -------- |
+| heartRate | number | Yes  | Heart rate.|
+
+## SubscribeOnBodyStateOptions
+
+Defines the type of data to return for a subscription to the wearing state changes.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name   | Type                                       | Mandatory| Description                      |
+| ------- | ------------------------------------------- | ---- | -------------------------- |
+| success | [OnBodyStateResponse](#onbodystateresponse) | Yes  | Called when the wearing state changes.|
+| fail    | Function                                    | No  | Callback upon an API call failure.  |
+
+## OnBodyStateResponse 
+
+Defines the wearing state.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name | Type   | Mandatory| Description        |
+| ----- | ------- | ---- | ------------ |
+| value | boolean | Yes  | Whether the wearable device is worn.|
+
+## GetOnBodyStateOptions
+
+ Defines the type of data to return for obtaining the wearing state.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type                                       | Mandatory| Description                    |
+| -------- | ------------------------------------------- | ---- | ------------------------ |
+| success  | [OnBodyStateResponse](#onbodystateresponse) | No  | Callback upon a successful API call.|
+| fail     | Function                                    | No  | Callback upon an API call failure.|
+| complete | Function                                    | No  | Called when the API call is complete.|
+
+## SubscribeDeviceOrientationOptions<sup>6+</sup>
+
+Defines the type of data to return for a subscription to the device orientation sensor data.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                                  | Yes  | Interval at which the callback is invoked to return the device orientation sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| success  | [DeviceOrientationResponse](#deviceorientationresponse) | Yes  | Called when the device orientation sensor data changes.                  |
+| fail     | Function                                                | No  | Callback upon an API call failure.                                    |
+
+## DeviceOrientationResponse<sup>6+</sup> 
+
+Defines the type of data to include in a **DeviceOrientationResponse** object.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name | Type  | Mandatory| Description                                                        |
+| ----- | ------ | ---- | ------------------------------------------------------------ |
+| alpha | number | Yes  | Rotation angle around the Z axis when the X/Y axis of the device coincides with the X/Y axis of the earth.|
+| beta  | number | Yes  | Rotation angle around the X axis when the Y/Z axis of the device coincides with the Y/Z axis of the earth.|
+| gamma | number | Yes  | Rotation angle around the Y axis when the X/Z axis of the device coincides with the X/Z axis of the earth.|
+
+## SubscribeGyroscopeOptions<sup>6+</sup> 
+
+Defines the type of data to return for a subscription to the gyroscope sensor data.
+
+**Required permissions**: ohos.permission.GYROSCOPE
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name    | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                  | Yes  | Interval at which the callback is invoked to return the gyroscope sensor data.<br>The default value is **normal**. The options are as follows:<br>- **game**: called at an interval of 20 ms, which is applicable to gaming scenarios.<br>- **ui**: called at an interval of 60 ms, which is applicable to UI updating scenarios.<br>- **normal**: called at an interval of 200 ms, which is applicable to power-saving scenarios.|
+| success  | [GyroscopeResponse](#gyroscoperesponse) | Yes  | Called when the gyroscope sensor data changes.                          |
+| fail     | Function                                | No  | Callback upon an API call failure.                                    |
+
+## GyroscopeResponse<sup>6+</sup> 
+
+Defines the type of data to include in a **GyroscopeResponse** object.
+
+**Required permissions**: ohos.permission.GYROSCOPE
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name| Type  | Mandatory| Description             |
+| ---- | ------ | ---- | ----------------- |
+| x    | number | Yes  | Rotation angular velocity of the X axis.|
+| y    | number | Yes  | Rotation angular velocity of the Y axis.|
+| z    | number | Yes  | Rotation angular velocity of the Z axis.|

@@ -120,12 +120,12 @@ hiAppEvent.write({
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称      | 类型                    | 必填 | 说明       |
-| --------- | ----------------------- | ---- | ---------- |
-| domain    | string                  | 是   | 事件领域。 |
-| name      | string                  | 是   | 事件名称。 |
-| eventType | [EventType](#eventtype) | 是   | 事件类型。 |
-| params    | object                  | 是   | 事件参数。 |
+| 名称      | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
+| name      | string                  | 是   | 事件名称。事件名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过48个字符。 |
+| eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
+| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，只支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
 
 ## hiAppEvent.configure
 
@@ -448,27 +448,27 @@ hiAppEvent.clearData();
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## Event
+## event
 
 此接口提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 类型   | 可读 | 可写 | 说明                 |
-| ------------------------- | ------ | ---- | ---- | -------------------- |
-| USER_LOGIN                | string | 是   | 否   | 用户登录事件。       |
-| USER_LOGOUT               | string | 是   | 否   | 用户登出事件。       |
-| DISTRIBUTED_SERVICE_START | string | 是   | 否   | 分布式服务启动事件。 |
+| 名称                      | 类型   | 说明                 |
+| ------------------------- | ------ | -------------------- |
+| USER_LOGIN                | string | 用户登录事件。       |
+| USER_LOGOUT               | string | 用户登出事件。       |
+| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。 |
 
 
-## Param
+## param
 
 此接口提供了所有预定义参数的参数名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 类型   | 可读 | 可写 | 说明               |
-| ------------------------------- | ------ | ---- | ---- | ------------------ |
-| USER_ID                         | string | 是   | 否   | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string | 是   | 否   | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是   | 否   | 分布式服务实例ID。 |
+| 名称                            | 类型   | 说明               |
+| ------------------------------- | ------ | ------------------ |
+| USER_ID                         | string | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 分布式服务实例ID。 |

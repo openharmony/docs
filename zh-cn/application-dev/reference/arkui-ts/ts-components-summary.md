@@ -288,3 +288,15 @@
 - [RemoteWindow](ts-basic-components-remotewindow.md)
 
     远程控制窗口组件，可以通过此组件控制应用窗口，提供启动退出过程中控件动画和应用窗口联动动画的能力。
+- [Formcomponent](ts-basic-components-formcomponent.md)
+
+    提供卡片组件，实现卡片的显示功能。
+- [Menu](ts-basic-components-menu.md)
+
+    以垂直列表形式显示的菜单。
+- [MenuItem](ts-basic-components-menuitem.md)
+
+    用来展示菜单Menu中具体的item菜单项。
+- [MenuItemGroup](ts-basic-components-menuitemgroup.md)
+
+    用来展示菜单MenuItem的分组。

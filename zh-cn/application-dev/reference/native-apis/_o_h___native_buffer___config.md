@@ -5,7 +5,7 @@
 
 OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性。
 
-**自从：**
+**起始版本：**
 
 9
 

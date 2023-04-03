@@ -19,7 +19,7 @@ vendor
     └── ......
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Directories and files must be created for new products based on the preceding rules. The Compilation and Building subsystem scans the configured products based on the rules.
+> **NOTE**<br>Directories and files must be created for new products based on the preceding rules. The Compilation and Building subsystem scans the configured products based on the rules.
 
 The key directories and files are described as follows:
 
@@ -135,7 +135,7 @@ The key directories and files are described as follows:
    - **out** directory of the product, which corresponds to **{root_out_dir}** of GN.
    - File system directory **${fs_dir}**, which consists of variables **${root_path}** and **${fs_dir_name}**.
 
->  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>**fs.yml** is optional. You do not need to configure it for devices without a file system.
+>  **NOTE**<br>**fs.yml** is optional. You do not need to configure it for devices without a file system.
 
 6. **vendor/company/product/BUILD.gn**<br>**BUILD.gn** provides the entry for product build. It is used to compile the source code of the solution vendor and copy the startup configuration file. The **BUILD.gn** file in the corresponding product directory will be built by default if a product is selected. The following is an example of the **BUILD.gn** file of a product:
 
@@ -184,7 +184,7 @@ You can customize a product solution by assembling any chipset solution and comp
    }
    ```
 
-   ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>Before the build, the Compilation and Building subsystem checks the validity of the fields in **config.json**. The **device_company**, **board**, **kernel_type**, and **kernel_version** fields must match the chipset solution, and the **subsystem** and **component** fields must match the component description in **build/lite/components**.
+   >**NOTE**<br>Before the build, the Compilation and Building subsystem checks the validity of the fields in **config.json**. The **device_company**, **board**, **kernel_type**, and **kernel_version** fields must match the chipset solution, and the **subsystem** and **component** fields must match the component description in **build/lite/components**.
 
 3. Implement OS adaptation APIs. Create the **hals** directory in the product directory and save the source code as well as the build script for OS adaptation in the **hals** directory.
 

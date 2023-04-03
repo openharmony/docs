@@ -24,7 +24,7 @@ Custom components are existing components encapsulated based on service requirem
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | data | Object | Data model of the page. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (**for**, **if**, **show**, and **tid**).|
-| props | Array/Object | Used for communication between components. This attribute can be transferred to components via **<tag xxxx='value'>**. A **props** name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (**for**, **if**, **show**, and **tid**). Currently, **props** does not support functions.|
+| props | Array/Object | Used for communication between components. This attribute can be transferred to components via **\<tag xxxx='value'>**. A **props** name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (**for**, **if**, **show**, and **tid**). Currently, **props** does not support functions. |
 
 
 ## Adding a Custom Event

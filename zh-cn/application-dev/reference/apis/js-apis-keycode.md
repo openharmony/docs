@@ -13,6 +13,8 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode';
 
 ## KeyCode
 
+按键键码值。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称                               | 值   |  说明        |

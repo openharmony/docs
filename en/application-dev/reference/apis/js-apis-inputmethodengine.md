@@ -1,6 +1,6 @@
-# Input Method Engine
+# @ohos.inputMethodEngine (Input Method Service)
 
-The **inputMethodEngine** module streamlines the interaction between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input through the input methods, request the keyboard to display or hide, listen for the input method status, and much more.
+The **inputMethodEngine** module streamlines the interactions between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input, request the keyboard to display or hide, listen for the input method status, and much more.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **inputMethodEngine** module streamlines the interaction between input metho
 ## Modules to Import
 
 ```
-import inputMethodEngine from '@ohos.inputmethodengine';
+import inputMethodEngine from '@ohos.inputMethodEngine';
 ```
 
 ## Constants
@@ -137,7 +137,7 @@ Obtains a **KeyboardDelegate** instance.
 **Example**
 
 ```js
-let KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
 ## InputMethodEngine
@@ -162,9 +162,9 @@ Enables listening for the input method binding event. This API uses an asynchron
 **Example**
 
 ```js
-inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textInputClient) => {
-    KeyboardController = kbController;
-    TextInputClient = textInputClient;
+inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textClient) => {
+    let keyboardController = kbController;
+    let textInputClient = textClient;
 });
 ```
 
@@ -203,7 +203,7 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -229,18 +229,14 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | No  | Callback used to return the result.|
 
 **Example**
 
 ```js
-inputMethodEngine.getInputMethodEngine().off('keyboardShow', () => {
-    console.log('inputMethodEngine delete keyboardShow notification.');
-});
-inputMethodEngine.getInputMethodEngine().off('keyboardHide', () => {
-    console.log('inputMethodEngine delete keyboardHide notification.');
-});
+inputMethodEngine.getInputMethodEngine().off('keyboardShow');
+inputMethodEngine.getInputMethodEngine().off('keyboardHide');
 ```
 
 ## InputMethodAbility
@@ -265,9 +261,9 @@ Enables listening for the input method binding event. This API uses an asynchron
 **Example**
 
 ```js
-inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, inputClient) => {
-    KeyboardController = kbController;
-    InputClient = inputClient;
+inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client) => {
+    let keyboardController = kbController;
+    let inputClient = client;
 });
 ```
 
@@ -289,9 +285,7 @@ Cancels listening for the input method binding event. This API uses an asynchron
 **Example**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('inputStart', (kbController, inputClient) => {
-    console.log('delete inputStart notification.');
-});
+inputMethodEngine.getInputMethodAbility().off('inputStart');
 ```
 
 ### on('inputStop')<sup>9+</sup>
@@ -390,7 +384,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-Enables listening for an input method event. This API uses an asynchronous callback to return the result.
+Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -398,7 +392,7 @@ Enables listening for an input method event. This API uses an asynchronous callb
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event. |
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -416,7 +410,7 @@ inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-Disables listening for an input method event. This API uses an asynchronous callback to return the result.
+Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -424,7 +418,7 @@ Disables listening for an input method event. This API uses an asynchronous call
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>The value **'keyboardShow'** indicates the keyboard display event.<br>The value **'keyboardHide'** indicates the keyboard hiding event.|
+| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | No  | Callback used to return the result.    |
 
 **Example**
@@ -602,14 +596,14 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
-  **Example**
+**Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
@@ -652,14 +646,14 @@ Enables listening for the text change event. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Listening type.<br>The value **'textChange'** indicates the text change event.|
 | callback | (text: string) => void | Yes  | Callback used to return the text content.                                  |
 
-  **Example**
+**Example**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
@@ -714,17 +708,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
-KeyboardController.hide((err) => {
-    if (err === undefined) {
-        console.error('hide err: ' + JSON.stringify(err));
+keyboardController.hide((err) => {
+    if (err !== undefined) {
+        console.error('Failed to hide keyboard: ' + JSON.stringify(err));
         return;
     }
-    console.log('hide success.');
+    console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -748,15 +742,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
-KeyboardController.hide().then(() => {
-    console.info('hide success.');
+keyboardController.hide().then(() => {
+    console.info('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('hide err: ' + JSON.stringify(err));
+    console.info('Failed to hide keyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -781,12 +775,12 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-KeyboardController.hideKeyboard((err) => {
-    if (err === undefined) {
-        console.error('hideKeyboard err: ' + JSON.stringify(err));
+keyboardController.hideKeyboard((err) => {
+    if (err !== undefined) {
+        console.error('Failed to hide Keyboard: ' + JSON.stringify(err));
         return;
     }
-    console.log('hideKeyboard success.');
+    console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -811,10 +805,10 @@ Hides the keyboard. This API uses a promise to return the result.
 **Example**
 
 ```js
-KeyboardController.hideKeyboard().then(() => {
-    console.info('hideKeyboard success.');
+keyboardController.hideKeyboard().then(() => {
+    console.info('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('hideKeyboard err: ' + JSON.stringify(err));
+    console.info('Failed to hide Keyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -843,20 +837,20 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
  **Example**
 
 ```js
 let action = 1;
 try {
-    InputClient.sendKeyFunction(action, (err, result) => {
-        if (err) {
-            console.error('sendKeyFunction err: ' + JSON.stringify(err));
+    inputClient.sendKeyFunction(action, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to sendKeyFunction. ');
+            console.info('Succeeded in sending key function. ');
         } else {
             console.error('Failed to sendKeyFunction. ');
         }
@@ -892,24 +886,24 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 let action = 1;
 try {
-    InputClient.sendKeyFunction(action).then((result) => {
+    inputClient.sendKeyFunction(action).then((result) => {
         if (result) {
-            console.info('Success to sendKeyFunction. ');
+            console.info('Succeeded in sending key function. ');
         } else {
             console.error('Failed to sendKeyFunction. ');
         }
     }).catch((err) => {
-        console.error('sendKeyFunction err:' + JSON.stringify(err));
+        console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+    console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
 }
 ```
 
@@ -934,7 +928,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -942,15 +936,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    InputClient.getForward(length, (err, text) => {
-        if (err) {
-            console.error('getForward err: ' + JSON.stringify(err));
+    inputClient.getForward(length, (err, text) => {
+        if (err !== undefined) {
+            console.error('Failed to getForward: ' + JSON.stringify(err));
             return;
         }
-        console.log('getForward result: ' + text);
+        console.log('Succeeded in getting forward, text: ' + text);
     });
 } catch (err) {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -980,7 +974,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -988,13 +982,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    InputClient.getForward(length).then((text) => {
-        console.info('getForward resul: ' + text);
+    inputClient.getForward(length).then((text) => {
+        console.info('Succeeded in getting forward, text: ' + text);
     }).catch((err) => {
-        console.error('getForward err: ' + JSON.stringify(err));
+        console.error('Failed to getForward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1019,7 +1013,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -1027,15 +1021,15 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    InputClient.getBackward(length, (err, text) => {
-        if (err) {
-            console.error('getBackward result: ' + JSON.stringify(err));
+    inputClient.getBackward(length, (err, text) => {
+        if (err !== undefined) {
+            console.error('Failed to getForward: ' + JSON.stringify(err));
             return;
         }
-        console.log('getBackward result---text: ' + text);
+        console.log('Succeeded in getting backward, text: ' + text);
     });
 } catch (err) {
-    console.error('getBackward result: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1065,7 +1059,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **Example**
@@ -1073,13 +1067,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 let length = 1;
 try {
-    InputClient.getBackward(length).then((text) => {
-        console.info('getBackward result: ' + text);
+    inputClient.getBackward(length).then((text) => {
+        console.info('Succeeded in getting backward, text: ' + text);
     }).catch((err) => {
-        console.error('getBackward err: ' + JSON.stringify(err));
+        console.error('Failed to getForward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('getBackward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1105,26 +1099,26 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 let length = 1;
 try {
-    InputClient.deleteForward(length, (err, result) => {
-        if (err) {
-            console.error('deleteForward result: ' + JSON.stringify(err));
+    inputClient.deleteForward(length, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to delete forward: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to deleteForward. ');
+            console.info('Succeeded in deleting forward. ');
         } else {
-            console.error('Failed to deleteForward. ');
+            console.error('Failed to delete forward: ' + JSON.stringify(err));
         }
     });
 } catch (err) {
-    console.error('deleteForward result: ' + JSON.stringify(err));
+    console.error('Failed to delete forward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1155,24 +1149,24 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 let length = 1;
 try {
-    InputClient.deleteForward(length).then((result) => {
+    inputClient.deleteForward(length).then((result) => {
         if (result) {
-            console.info('Success to deleteForward. ');
+            console.info('Succeeded in deleting forward. ');
         } else {
-            console.error('Failed to deleteForward. ');
+            console.error('Failed to delete Forward. ');
         }
     }).catch((err) => {
-        console.error('deleteForward err: ' + JSON.stringify(err));
+        console.error('Failed to delete Forward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('deleteForward err: ' + JSON.stringify(err));
+    console.error('Failed to delete Forward: ' + JSON.stringify(err));
 }
 ```
 
@@ -1198,22 +1192,22 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 let length = 1;
 try {
-    InputClient.deleteBackward(length, (err, result) => {
-        if (err) {
-            console.error('deleteBackward err: ' + JSON.stringify(err));
+    inputClient.deleteBackward(length, (err, result) => {
+        if (err !== undefined) {
+            console.error('Failed to delete Backward: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to deleteBackward. ');
+            console.info('Succeeded in deleting backward. ');
         } else {
-            console.error('Failed to deleteBackward. ');
+            console.error('Failed to delete Backward: ' + JSON.stringify(err));
         }
     });
 } catch (err) {
@@ -1248,20 +1242,20 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 let length = 1;
-InputClient.deleteBackward(length).then((result) => {
+inputClient.deleteBackward(length).then((result) => {
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
 }).catch((err) => {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1287,18 +1281,18 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
-InputClient.insertText('test', (err, result) => {
-    if (err) {
-        console.error('insertText err: ' + JSON.stringify(err));
+inputClient.insertText('test', (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to insertText: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
@@ -1332,23 +1326,23 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 try {
-    InputClient.insertText('test').then((result) => {
+    inputClient.insertText('test').then((result) => {
         if (result) {
-            console.info('Success to insertText. ');
+            console.info('Succeeded in inserting text. ');
         } else {
             console.error('Failed to insertText. ');
         }
     }).catch((err) => {
-        console.error('insertText err: ' + JSON.stringify(err));
+        console.error('Failed to insertText: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('insertText err: ' + JSON.stringify(err));
+    console.error('Failed to insertText: ' + JSON.stringify(err));
 }
 ```
 
@@ -1372,14 +1366,14 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
-InputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err) {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
+inputClient.getEditorAttribute((err, editorAttribute) => {
+    if (err !== undefined) {
+        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
         return;
     }
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -1407,16 +1401,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
-InputClient.getEditorAttribute().then((editorAttribute) => {
+inputClient.getEditorAttribute().then((editorAttribute) => {
     console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
     console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```
 
@@ -1441,21 +1435,21 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 try {
-    InputClient.moveCursor(inputMethodEngine.CURSOR_xxx, (err) => {
-        if (err) {
-            console.error('moveCursor err: ' + JSON.stringify(err));
+    inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to moveCursor: ' + JSON.stringify(err));
             return;
         }
-        console.info('moveCursor success');
+        console.info('Succeeded in moving cursor.');
     });
 } catch (err) {
-    console.error('moveCursor err: ' + JSON.stringify(err));
+    console.error('Failed to moveCursor: ' + JSON.stringify(err));
 }
 ```
 
@@ -1485,20 +1479,255 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **Example**
 
 ```js
 try {
-    InputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
-        console.log('moveCursor success');
+    inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+        console.log('Succeeded in moving cursor.');
     }).catch((err) => {
-        console.error('moveCursor success err: ' + JSON.stringify(err));
+        console.error('Failed to moveCursor: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.log('moveCursor err: ' + JSON.stringify(err));
+    console.log('Failed to moveCursor: ' + JSON.stringify(err));
 }
+```
+
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
+
+Selects text based on the specified range. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.                                            |
+| callback | AsyncCallback&lt;void&gt;                                 | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByRange: ${err.message}');
+            return;
+        }
+        console.info('Succeeded in selecting by range.');
+    });
+} catch (err) {
+    console.error('Failed to selectByRange: ${err.message}');
+}
+```
+
+### selectByRange<sup>10+</sup>
+
+selectByRange(range: Range): Promise&lt;void&gt;
+
+Selects text based on the specified range. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                                     | Mandatory| Description            |
+| ------ | --------------------------------------------------------- | ---- | ---------------- |
+| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | Yes  | Range of the selected text.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByRange({start: 0, end:1}).then(() => {
+        console.log('Succeeded in selecting by range.');
+    }).catch((err) => {
+        console.error('Failed to selectByRange: ${err.message}');
+    });
+} catch (err) {
+    console.log('Failed to selectByRange: ${err.message}');
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
+
+Selects text based on the cursor movement direction. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.                                      |
+| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the selection event is sent, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}, (err) => {
+        if (err !== undefined) {
+            console.error('Failed to selectByMovement: ${err.message}');
+            return;
+        }
+        console.info('Succeeded in selecting by movement.');
+    });
+} catch (err) {
+    console.error('Failed to selectByMovement: ${err.message}');
+}
+```
+
+### selectByMovement<sup>10+</sup>
+
+selectByMovement(movement: Movement): Promise&lt;void&gt;
+
+Selects text based on the specified range. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                  |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
+| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | Yes  | Direction in which the cursor moves when the text is selected.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                  |
+| -------- | -------------------------- |
+| 401      | parameter error.           |
+| 12800003 | input method client error. |
+
+**Example**
+
+```js
+try {
+    inputClient.selectByMovement({direction: 1}).then(() => {
+        console.log('Succeeded in selecting by movement.');
+    }).catch((err) => {
+        console.error('Failed to selectByMovement: ${err.message}');
+    });
+} catch (err) {
+    console.log('Failed to selectByMovement: ${err.message}');
+}
+```
+
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the index of the text where the cursor is located. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the text index is obtained, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401      | parameter error.               |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+inputClient.getTextIndexAtCursor((err, index) => {
+    if (err !== undefined) {
+        console.error('Failed to getTextIndexAtCursor: ${err.message}');
+        return;
+    }
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+});
+```
+
+### getTextIndexAtCursor<sup>10+</sup>
+
+getTextIndexAtCursor(): Promise&lt;number&gt;
+
+Obtains the index of the text where the cursor is located. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type                 | Description                                   |
+| --------------------- | --------------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+
+| Error Code ID| Error Message                      |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**Example**
+
+```js
+inputClient.getTextIndexAtCursor().then((index) => {
+    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+}).catch((err) => {
+    console.error('Failed to getTextIndexAtCursor: ${err.message}');
+});
 ```
 
 ## EditorAttribute
@@ -1554,12 +1783,12 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 ```js
 let length = 1;
-TextInputClient.getForward(length, (err, text) => {
-    if (err === undefined) {
-        console.error('getForward err: ' + JSON.stringify(err));
+textInputClient.getForward(length, (err, text) => {
+    if (err !== undefined) {
+        console.error('Failed to getForward: ' + JSON.stringify(err));
         return;
     }
-    console.log('getForward result---text: ' + text);
+    console.log('Succeeded in getting forward, text: ' + text);
 });
 ```
 
@@ -1591,10 +1820,10 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 ```js
 let length = 1;
-TextInputClient.getForward(length).then((text) => {
-    console.info('getForward result: ' + JSON.stringify(text));
+textInputClient.getForward(length).then((text) => {
+    console.info('Succeeded in getting forward, text: ' + text);
 }).catch((err) => {
-    console.error('getForward err: ' + JSON.stringify(err));
+    console.error('Failed to getForward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1621,12 +1850,12 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 ```js
 let length = 1;
-TextInputClient.getBackward(length, (err, text) => {
-    if (err === undefined) {
-        console.error('getBackward err: ' + JSON.stringify(err));
+textInputClient.getBackward(length, (err, text) => {
+    if (err !== undefined) {
+        console.error('Failed to getBackward: ' + JSON.stringify(err));
         return;
     }
-    console.log('getBackward result---text: ' + text);
+    console.log('Succeeded in getting borward, text: ' + text);
 });
 ```
 
@@ -1658,10 +1887,10 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 ```js
 let length = 1;
-TextInputClient.getBackward(length).then((text) => {
-    console.info('getBackward result: ' + JSON.stringify(text));
+textInputClient.getBackward(length).then((text) => {
+    console.info('Succeeded in getting backward: ' + JSON.stringify(text));
 }).catch((err) => {
-    console.error('getBackward err: ' + JSON.stringify(err));
+    console.error('Failed to getBackward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1688,13 +1917,13 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 ```js
 let length = 1;
-TextInputClient.deleteForward(length, (err, result) => {
-    if (err === undefined) {
-        console.error('deleteForward err: ' + JSON.stringify(err));
+textInputClient.deleteForward(length, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to deleteForward: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteForward. ');
+        console.info('Succeeded in deleting forward. ');
     } else {
         console.error('Failed to deleteForward. ');
     }
@@ -1729,14 +1958,14 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 ```js
 let length = 1;
-TextInputClient.deleteForward(length).then((result) => {
+textInputClient.deleteForward(length).then((result) => {
     if (result) {
-        console.info('Succeed in deleting forward. ');
+        console.info('Succeeded in deleting forward. ');
     } else {
         console.error('Failed to delete forward. ');
     }
 }).catch((err) => {
-    console.error('Failed to delete forward err: ' + JSON.stringify(err));
+    console.error('Failed to delete forward: ' + JSON.stringify(err));
 });
 ```
 
@@ -1763,13 +1992,13 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 ```js
 let length = 1;
-TextInputClient.deleteBackward(length, (err, result) => {
-    if (err === undefined) {
-        console.error('deleteBackward err: ' + JSON.stringify(err));
+textInputClient.deleteBackward(length, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to delete backward: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
@@ -1804,14 +2033,14 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 ```js
 let length = 1;
-TextInputClient.deleteBackward(length).then((result) => {
+textInputClient.deleteBackward(length).then((result) => {
     if (result) {
-        console.info('Success to deleteBackward. ');
+        console.info('Succeeded in deleting backward. ');
     } else {
         console.error('Failed to deleteBackward. ');
     }
 }).catch((err) => {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
 });
 ```
 ### sendKeyFunction<sup>(deprecated)</sup>
@@ -1837,13 +2066,13 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 ```js
 let action = 1;
-TextInputClient.sendKeyFunction(action, (err, result) => {
-    if (err === undefined) {
-        console.error('sendKeyFunction err: ' + JSON.stringify(err));
+textInputClient.sendKeyFunction(action, (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to sendKeyFunction. ');
+        console.info('Succeeded in sending key function. ');
     } else {
         console.error('Failed to sendKeyFunction. ');
     }
@@ -1878,14 +2107,14 @@ Sends the function key. This API uses a promise to return the result.
 
 ```js
 let action = 1;
-TextInputClient.sendKeyFunction(action).then((result) => {
+textInputClient.sendKeyFunction(action).then((result) => {
     if (result) {
-        console.info('Success to sendKeyFunction. ');
+        console.info('Succeeded in sending key function. ');
     } else {
         console.error('Failed to sendKeyFunction. ');
     }
 }).catch((err) => {
-    console.error('sendKeyFunction err:' + JSON.stringify(err));
+    console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
 });
 ```
 
@@ -1911,13 +2140,13 @@ Inserts text. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-TextInputClient.insertText('test', (err, result) => {
-    if (err === undefined) {
-        console.error('insertText err: ' + JSON.stringify(err));
+textInputClient.insertText('test', (err, result) => {
+    if (err !== undefined) {
+        console.error('Failed to insertText: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
@@ -1951,14 +2180,14 @@ Inserts text. This API uses a promise to return the result.
 **Example**
 
 ```js
-TextInputClient.insertText('test').then((result) => {
+textInputClient.insertText('test').then((result) => {
     if (result) {
-        console.info('Success to insertText. ');
+        console.info('Succeeded in inserting text. ');
     } else {
         console.error('Failed to insertText. ');
     }
 }).catch((err) => {
-    console.error('insertText err: ' + JSON.stringify(err));
+    console.error('Failed to insertText: ' + JSON.stringify(err));
 });
 ```
 
@@ -1983,9 +2212,9 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 **Example**
 
 ```js
-TextInputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err === undefined) {
-        console.error('getEditorAttribute err: ' + JSON.stringify(err));
+textInputClient.getEditorAttribute((err, editorAttribute) => {
+    if (err !== undefined) {
+        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
         return;
     }
     console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
@@ -2014,10 +2243,10 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 **Example**
 
 ```js
-TextInputClient.getEditorAttribute().then((editorAttribute) => {
+textInputClient.getEditorAttribute().then((editorAttribute) => {
     console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
     console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('getEditorAttribute err: ' + JSON.stringify(err));
+    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```

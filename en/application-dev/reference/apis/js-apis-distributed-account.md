@@ -1,4 +1,4 @@
-# @ohos.account.distributedAccount
+# @ohos.account.distributedAccount (Distributed Account Management)
 
 The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login states.
 
@@ -252,7 +252,7 @@ Sets the distributed account information. This API uses a promise to return the 
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-Updates distributed account information. This API uses an asynchronous callback to return the result.
+Updates the distributed account information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >

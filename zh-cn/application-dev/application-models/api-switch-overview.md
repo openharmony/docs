@@ -13,8 +13,8 @@ startAbility接口由FA模型切换到Stage模型的示例：
   import fa from '@ohos.ability.featureAbility';
   let parameter = {
     "want": {
-      bundleName: "ohos.samples.demo",
-      abilityName: "ohos.samples.demo.MainAbility"
+      bundleName: "com.example.myapplication",
+      abilityName: "com.example.myapplication.EntryAbility"
     }
   }
   fa.startAbility(parameter).then((data) => {
@@ -30,8 +30,8 @@ startAbility接口由FA模型切换到Stage模型的示例：
   // context为Ability对象的成员，在非Ability对象内部调用需要
   // 将Context对象传递过去
   let wantInfo = {
-    bundleName: "ohos.samples.demo",
-    abilityName: "ohos.samples.demo.MainAbility"
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility"
   };
   this.context.startAbility(wantInfo).then((data) => {
     console.info('startAbility success.');

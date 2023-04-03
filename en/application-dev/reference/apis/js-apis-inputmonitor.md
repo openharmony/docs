@@ -1,11 +1,10 @@
-# Input Monitor
+# @ohos.multimodalInput.inputMonitor (Input Monitor)
 
-The Input Monitor module implements listening for events of input devices (namely, touchscreen and mouse). 
+The **inputMonitor** module implements listening for events of input devices (namely, touchscreen and mouse). 
 
 >  **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 >  - The APIs provided by this module are system APIs.
 
 
@@ -204,9 +203,8 @@ try {
   inputMonitor.on("touch", touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
       return true;
-    } else {
-      return false;
     }
+    return false;
   });
 } catch (error) {
     console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);

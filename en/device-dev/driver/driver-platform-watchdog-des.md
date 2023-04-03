@@ -1,49 +1,83 @@
 # Watchdog
 
+## Overview
 
-## **Overview**
+### Function
 
-A watchdog, also called a watchdog timer, is a hardware timing device used to facilitate automatic correction of temporary hardware faults or recover from system malfunctions. If an error occurs in the main program of the system and the watchdog timer is not cleared in time, the watchdog timer sends a reset signal to restore the system to the normal state.
+A watchdog, also called a watchdog timer, is a hardware timing device used to facilitate automatic correction of temporary hardware faults or recover from system malfunctions. Generally, it has an input to feed the watchdog and an output to the reset pin of the system. If an error occurs in the main program of the system and the watchdog timer is not cleared in time, the watchdog timer sends a reset signal to restore the system to the normal state.
 
+The watchdog module provides APIs for watchdog operations, including:
 
-## Available APIs
+- Opening or closing a watchdog
+- Starting or stopping a watchdog
+- Setting or obtaining the watchdog timeout period
+- Obtaining the watchdog status
+- Feeding a watchdog
+
+### Basic Concepts
+
+When the system works properly, a signal is output to the watchdog to prevent it from timing out. This operation is called watchdog feeding. If the watchdog is not fed within the specified time, the watchdog times out and a reset signal is sent to the system to reset the system.
+
+### Working Principles
+
+In the Hardware Driver Foundation (HDF), the PWM uses the independent service mode (see Figure 1) for API adaptation. In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device, which increases memory usage.
+
+In the independent service mode, the core layer does not publish a service for the upper layer. Therefore, a service must be published for each controller. To achieve this purpose:
+
+- You need to implement the **Bind()** function in **HdfDriverEntry** to bind services.
+- The **policy** field of **deviceNode** in the **device_info.hcs** file can be **1** or **2**, but not **0**.
+
+The watchdog module is divided into the following layers:
+
+- Interface layer: provides APIs for opening or closing a watchdog, starting or stopping a watchdog, setting or obtaining the watchdog timeout period, and feeding a watchdog
+- Core layer: provides the capabilities of adding or removing a watchdog controller and managing watchdog devices. The core layer interacts with the adaptation layer through hook functions.
+- Adaptation layer: instantiates the hook functions to implement specific features.
+
+**Figure 1** Independent service mode
+
+![image1](figures/independent-service-mode.png "Watchdog independent service mode")
+
+## Usage Guidelines
+
+### When to Use
+
+Watchdogs are used to automatically detect the software exceptions that cannot be directly observed and reset the system when an exception is detected.
+
+### Available APIs
+
+The following table describes the APIs provided by the watchdog module.
 
 **Table 1** Watchdog APIs
 
 | API| Description|
 | -------- | -------- |
-| WatchdogOpen | Opens a watchdog.|
-| WatchdogClose | Closes a watchdog.|
-| WatchdogStart | Starts a watchdog.|
-| WatchdogStop | Stops a watchdog.|
-| WatchdogSetTimeout | Sets the watchdog timeout duration.|
-| WatchdogGetTimeout | Obtains the watchdog timeout duration.|
-| WatchdogGetStatus | Obtains the watchdog status.|
-| WatchdogFeed | Feeds a watchdog or resets a watchdog timer.|
+| int32_t WatchdogOpen(int16_t wdtId, DevHandle *handle) | Opens a watchdog.|
+| void WatchdogClose(DevHandle handle) | Closes a watchdog.|
+| int32_t WatchdogStart(DevHandle handle) | Starts a watchdog.|
+| int32_t WatchdogStop(DevHandle handle) | Stops a watchdog.|
+| int32_t WatchdogSetTimeout(DevHandle handle, uint32_t seconds) | Sets the watchdog timeout duration.|
+| int32_t WatchdogGetTimeout(DevHandle handle, uint32_t *seconds) | Obtains the watchdog timeout duration.|
+| int32_t WatchdogGetStatus(DevHandle handle, int32_t *status) | Obtains the watchdog status.|
+| int32_t WatchdogFeed(DevHandle handle) | Feeds a watchdog or resets a watchdog timer.|
 
-> ![](../public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 >
-> All watchdog APIs provided in this document can be called only in kernel mode.
+> All watchdog APIs described in this document can be used in kernel mode and user mode.
 
+### How to Develop
 
-## Usage Guidelines
+The following figure shows how to use the watchdog driver APIs.
 
+**Figure 2** Using watchdog driver APIs
 
-### How to Use
+![image2](figures/using-watchdog-process.png)
 
-The figure below shows how to use the watchdog APIs.
+#### Opening a Watchdog
 
-Figure 1 Using watchdog APIs
+Before operating a watchdog, you need to use **WatchdogOpen()** to open a watchdog. A system may have multiple watchdogs. You need to specify the ID of the watchdog to open.
 
-![image](figures/using-watchdog-process.png)
-
-
-### Opening a Watchdog
-
-Use **WatchdogOpen()** to open a watchdog. A system may have multiple watchdogs. You need to specify the ID of the watchdog to open.
-
-```
-DevHandle WatchdogOpen(int16_t wdtId);
+```c
+DevHandle WatchdogOpen(int16_t wdtId, DevHandle *handle);
 ```
 
 **Table 2** Description of WatchdogOpen
@@ -51,24 +85,26 @@ DevHandle WatchdogOpen(int16_t wdtId);
 | **Parameter**| **Description**|
 | -------- | -------- |
 | wdtId | Watchdog ID.|
+| handle | Pointer to the watchdog device handle obtained.|
 | **Return Value**| **Description**|
-| NULL | The operation failed.|
-| **DevHandle** pointer| The operation is successful. The pointer to the watchdog device handle is returned.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
+```c
+int16_t wdtId = 0;
+int32_t ret;
+DevHandle *handle = NULL;
 
-```
-DevHandle handle = NULL;
-handle = WatchdogOpen(0); /* Open watchdog 0.*/
-if (handle == NULL) {
-    HDF_LOGE("WatchdogOpen: failed, ret %d\n", ret);
-    return;
+ret = WatchdogOpen(wdtId, handle); // Open watchdog 0.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogOpen: open watchdog_%hd failed, ret:%d\n", wdtId, ret);
+    return ret;
 }
 ```
 
+#### Obtaining the Watchdog Status
 
-### Obtaining the Watchdog Status
-
-```
+```c
 int32_t WatchdogGetStatus(DevHandle handle, int32_t *status); 
 ```
 
@@ -79,25 +115,24 @@ int32_t WatchdogGetStatus(DevHandle handle, int32_t *status);
 | handle | Watchdog device handle.|
 | status | Pointer to the watchdog status obtained.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
-
-```
+```c
 int32_t ret;
 int32_t status;
-/* Obtain the watchdog status. */
-ret = WatchdogGetStatus(handle, &status);
-if (ret != 0) {
-    HDF_LOGE("WatchdogGetStatus: failed, ret %d\n", ret);
-    return;
+
+ret = WatchdogGetStatus(handle, &status);    // Obtain the watchdog status.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogGetStatus: watchdog get status failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Setting the Timeout Duration
 
-### Setting the Timeout Duration
 
-```
+```c
 int32_t WatchdogSetTimeout(DevHandle *handle, uint32_t seconds); 
 ```
 
@@ -108,25 +143,22 @@ int32_t WatchdogSetTimeout(DevHandle *handle, uint32_t seconds);
 | handle | Pointer to the watchdog device handle.|
 | seconds | Timeout duration to set, in seconds.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
-
-```
+```c
 int32_t ret;
-uint32_t timeOut = 60;
-/* Set the timeout duration to 60 seconds. */
-ret = WatchdogSetTimeout(handle, timeOut);
-if (ret != 0) {
-    HDF_LOGE("WatchdogSetTimeout: failed, ret %d\n", ret);
-    return;
+
+ret = WatchdogSetTimeout(handle, 2);    // Set the timeout duration to 2 seconds.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogSetTimeout: watchdog set timeOut failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Obtaining the Timeout Duration
 
-### Obtaining the Timeout Duration
-
-```
+```c
 int32_t WatchdogGetTimeout(DevHandle *handle, uint32_t *seconds);
 ```
 
@@ -135,27 +167,25 @@ int32_t WatchdogGetTimeout(DevHandle *handle, uint32_t *seconds);
 | **Parameter**| **Description**|
 | -------- | -------- |
 | handle | Pointer to the watchdog device handle.|
-| seconds | Pointer to the timeout duration, in seconds.|
+| seconds | Pointer to the watchdog timeout duration obtained.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
+```c
+ int32_t ret;
+ uint32_t timeOut;
 
+ ret = WatchdogGetTimeout(handle, &timeOut);     // Obtain the watchdog timeout duration.
+ if (ret != HDF_SUCCESS) {
+     HDF_LOGE("WatchdogGetTimeout: watchdog get timeOut failed, ret:%d\n", ret);
+     return ret;
+ }
 ```
-int32_t ret;
-uint32_t timeOut;
-/* Obtain the timeout duration, in seconds. */
-ret = WatchdogGetTimeout(handle, &timeOut);
-if (ret != 0) {
-    HDF_LOGE("WatchdogGetTimeout: failed, ret %d\n", ret);
-    return;
-}
-```
 
+#### Starting a Watchdog
 
-### Starting a Watchdog
-
-```
+```c
 int32_t WatchdogStart(DevHandle handle);
 ```
 
@@ -165,24 +195,22 @@ int32_t WatchdogStart(DevHandle handle);
 | -------- | -------- |
 | handle | Watchdog device handle.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
-
-```
+```c
 int32_t ret;
-/* Start the watchdog. */
-ret = WatchdogStart(handle);
-if (ret != 0) {
-    HDF_LOGE("WatchdogStart: failed, ret %d\n", ret);
-    return;
+
+ret = WatchdogStart(handle);    // Start a watchdog.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogStart: start watchdog failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Feeding a Watchdog
 
-### Feeding a Watchdog
-
-```
+```c
 int32_t WatchdogFeed(DevHandle handle);
 ```
 
@@ -192,24 +220,22 @@ int32_t WatchdogFeed(DevHandle handle);
 | -------- | -------- |
 | handle | Watchdog device handle.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
-
-```
+```c
 int32_t ret;
-/* Feed the watchdog. */
-ret = WatchdogFeed(handle);
-if (ret != 0) {
-    HDF_LOGE("WatchdogFeed: failed, ret %d\n", ret);
-    return;
+
+ret = WatchdogFeed (handle);  // Feed a watchdog.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogFeed: feed watchdog failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Stopping a Watchdog
 
-### Stopping a Watchdog
-
-```
+```c
 int32_t WatchdogStop(DevHandle handle);
 ```
 
@@ -219,26 +245,24 @@ int32_t WatchdogStop(DevHandle handle);
 | -------- | -------- |
 | handle | Watchdog device handle.|
 | **Return Value**| **Description**|
-| 0 | The operation is successful.|
-| Negative value| The operation failed.|
+| HDF_SUCCESS | The operation is successful.|
+| Negative value| The operation fails.|
 
-
-```
+```c
 int32_t ret;
-/* Stop the watchdog. */
-ret = WatchdogStop(handle);
-if (ret != 0) {
-    HDF_LOGE("WatchdogStop: failed, ret %d\n", ret);
-    return;
+
+ret = WatchdogStop(handle); // Stop a watchdog.
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("WatchdogStop: stop watchdog failed, ret:%d\n", ret);
+    return ret;
 }
 ```
 
+#### Closing a Watchdog
 
-### Closing a Watchdog
+After all operations are complete, use **WatchdogClose()** to close the watchdog.
 
-If a watchdog is no longer required, call **WatchdogClose()** to close it.
-
-```
+```c
 void WatchdogClose(DevHandle handle);
 ```
 
@@ -248,29 +272,26 @@ void WatchdogClose(DevHandle handle);
 | -------- | -------- |
 | handle | Watchdog device handle.|
 
-
+```c
+WatchdogClose(handle);    // Close a watchdog.
 ```
-/* Close the watchdog. */
-ret = WatchdogClose(handle);
-```
-
 
 ## Example
 
-The following example provides the complete development process.
+The following uses the Hi3516D V300 development board as an example to describe how to operate the watchdog. The procedure is as follows: 
 
-1. Open a watchdog, set the timeout duration, and start the watchdog.
+1. Open a watchdog. You need to pass in the watchdog ID. The device handle of the watchdog opened is returned.
+2. Set the timeout duration for the watchdog.
+3. Obtain the timeout duration of the watchdog.
+4. Start the watchdog.
+5. Feed the watchdog.
+6. Stop the watchdog.
+7. Close the watchdog.
 
-2. Feed the watchdog periodically to ensure that the system is not reset due to timer expiry.
-3. Stop feeding the watchdog and check whether the system is reset after the timer expires.
-
-Sample code:
-
-```
-#include "watchdog_if.h"
-#include "hdf_log.h"
-#include "osal_irq.h"
-#include "osal_time.h"
+```c
+#include "watchdog_if.h"              /* Header file of the standard watchdog APIs. */
+#include "hdf_log.h"                  /* Header file of the HDF log APIs. */
+#include "osal_time.h"                /* Header file of the delay and sleep APIs. */
 
 #define WATCHDOG_TEST_TIMEOUT     2
 #define WATCHDOG_TEST_FEED_TIME   6
@@ -279,14 +300,16 @@ static int32_t TestCaseWatchdog(void)
 {
     int32_t i;
     int32_t ret;
+    int16_t wdtId = 0;
+    int32_t status;
     uint32_t timeout;
-    DevHandle handle = NULL;
+    DevHandle *handle = NULL;
 
     /* Open watchdog 0. */
-    handle = WatchdogOpen(0);
-    if (handle == NULL) {
-        HDF_LOGE("Open watchdog failed!");
-        return -1;
+    ret = WatchdogOpen(wdtId, handle);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("WatchdogOpen: open watchdog_%hd failed, ret:%d\n", wdtId, ret);
+        return ret;
     }
 
     /* Set the timeout duration. */
@@ -297,12 +320,18 @@ static int32_t TestCaseWatchdog(void)
         return ret;
     }
 
-    /* Obtain the timeout duration. */
+    /* Obtain the timeout duration. */ 
     ret = WatchdogGetTimeout(handle, &timeout);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s: get timeout fail! ret:%d\n", __func__, ret);
         WatchdogClose(handle);
         return ret;
+    }
+    /* Check whether the timeout duration obtained is the same as the timeout duration set. */
+    if (timeout != WATCHDOG_TEST_TIMEOUT) {
+        HDF_LOGE("%s: set:%u, but get:%u", __func__, WATCHDOG_TEST_TIMEOUT, timeout);
+        WatchdogClose(handle);
+        return HDF_FAILURE;
     }
     HDF_LOGI("%s: read timeout back:%u\n", __func__, timeout);
 
@@ -312,6 +341,19 @@ static int32_t TestCaseWatchdog(void)
         HDF_LOGE("%s: start fail! ret:%d\n", __func__, ret);
         WatchdogClose(handle);
         return ret;
+    }
+    /* Obtain the watchdog status and determine whether to start the watchdog. */
+    status = WATCHDOG_STOP;
+    ret = WatchdogGetStatus(handle, &status);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("%s: get status fail! ret:%d", __func__, ret);
+        WatchdogClose(handle);
+        return ret;
+    }
+    if (status != WATCHDOG_START) {
+        HDF_LOGE("%s: status is:%d after start", __func__, status);
+        WatchdogClose(handle);
+        return HDF_FAILURE;
     }
 
     /* Feed the watchdog every other second. */
@@ -328,15 +370,26 @@ static int32_t TestCaseWatchdog(void)
     /* Because the interval for feeding the watchdog is shorter than the timeout duration, the system does not reset, and logs can be printed normally. */
     HDF_LOGI("%s: no reset ... feeding test OK!!!\n", __func__);
 
-    /* Stop feeding the watchdog to make the timer expire. */
-    for (i = 0; i < WATCHDOG_TEST_FEED_TIME; i++) {
-        HDF_LOGI("%s: waiting dog buck %d times... \n", __func__, i);
-        OsalSleep(1);
+    ret = WatchdogStop(handle);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("%s: stop fail! ret:%d", __func__, ret);
+        WatchdogClose(handle);
+        return ret;
     }
-
-    /* The system resets when the timer expires. Theoretically, this log is not displayed. */
-    HDF_LOGI("%s: dog hasn't back!!! \n", __func__, i);
+    /* Obtain the watchdog status and determine whether to close the watchdog. */
+    status = WATCHDOG_START;
+    ret = WatchdogGetStatus(handle, &status);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("%s: get status fail! ret:%d", __func__, ret);
+        WatchdogClose(handle);
+        return ret;
+    }
+    if (status != WATCHDOG_STOP) {
+        HDF_LOGE("%s: status is:%d after stop", __func__, status);
+        WatchdogClose(handle);
+        return HDF_FAILURE;
+    }
     WatchdogClose(handle);
-    return -1;
+    return HDF_SUCCESS;
 }
 ```

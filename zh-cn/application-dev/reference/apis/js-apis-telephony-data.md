@@ -85,7 +85,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -98,11 +98,26 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 | slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **示例：**
 
 ```js
-data.setDefaultCellularDataSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.setDefaultCellularDataSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
 
@@ -112,7 +127,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -130,12 +145,27 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **示例：**
 
 ```js
 let promise = data.setDefaultCellularDataSlotId(0);
-promise.then((data) => {
-    console.log(`setDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`setDefaultCellularDataSlotId success.`);
 }).catch((err) => {
     console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -251,6 +281,19 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -274,6 +317,19 @@ isCellularDataEnabled(): Promise\<boolean\>
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回检查蜂窝数据业务是否启用。<br />true：蜂窝数据业务已启用。<br />false：蜂窝数据业务已禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -302,6 +358,19 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                   | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。                     |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -333,6 +402,19 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 | ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回检查蜂窝数据业务是否启用漫游。<br />true：蜂窝数据业务已启用漫游。<br />false：蜂窝数据业务已禁用漫游。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -350,7 +432,7 @@ enableCellularData(callback: AsyncCallback<void\>): void
 
 启用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -362,11 +444,24 @@ enableCellularData(callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-data.enableCellularData((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.enableCellularData((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -376,7 +471,7 @@ enableCellularData(): Promise<void\>
 
 启用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -388,12 +483,25 @@ enableCellularData(): Promise<void\>
 | --------------- | ----------------------- |
 | Promise\<void\> | 以Promise形式返回结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let promise = data.enableCellularData();
-promise.then((data) => {
-    console.log(`enableCellularData success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`enableCellularData success.`);
 }).catch((err) => {
     console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -405,7 +513,7 @@ disableCellularData(callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据服务，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -417,11 +525,24 @@ disableCellularData(callback: AsyncCallback<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-data.disableCellularData((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.disableCellularData((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -431,7 +552,7 @@ disableCellularData(): Promise<void\>
 
 禁用蜂窝数据服务，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -443,12 +564,25 @@ disableCellularData(): Promise<void\>
 | --------------- | --------------------------- |
 | Promise\<void\> | 以Promise形式返回禁用结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let promise = data.disableCellularData();
-promise.then((data) => {
-    console.log(`disableCellularData success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`disableCellularData success.`);
 }).catch((err) => {
     console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -460,7 +594,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 启用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -473,11 +607,24 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-data.enableCellularDataRoaming(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.enableCellularDataRoaming(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -487,7 +634,7 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 
 启用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -505,12 +652,25 @@ enableCellularDataRoaming(slotId: number): Promise<void\>
 | --------------- | ------------------------- |
 | Promise\<void\> | 以Promise形式返回启用结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let promise = data.enableCellularDataRoaming(0);
-promise.then((data) => {
-    console.log(`enableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`enableCellularDataRoaming success.`);
 }).catch((err) => {
     console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -522,7 +682,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 
 禁用蜂窝数据漫游，使用callback方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -535,11 +695,24 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
 | slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-data.disableCellularDataRoaming(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+data.disableCellularDataRoaming(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -549,7 +722,7 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 
 禁用蜂窝数据漫游，使用Promise方式作为异步方法。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -567,12 +740,25 @@ disableCellularDataRoaming(slotId: number): Promise<void\>
 | --------------- | ------------------------- |
 | Promise\<void\> | 以Promise形式返回禁用结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let promise = data.disableCellularDataRoaming(0);
-promise.then((data) => {
-    console.log(`disableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+promise.then(() => {
+    console.log(`disableCellularDataRoaming success.`);
 }).catch((err) => {
     console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -582,7 +768,7 @@ promise.then((data) => {
 
 描述蜂窝数据流类型。 
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
+**系统能力**：SystemCapability.Telephony.CellularData
 
 | 名称                   | 值   | 说明                                       |
 | ---------------------- | ---- | ------------------------------------------ |
@@ -596,7 +782,7 @@ promise.then((data) => {
 
 描述蜂窝数据链路连接状态。 
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CellularData。
+**系统能力**：SystemCapability.Telephony.CellularData
 
 | 名称                    | 值   | 说明                       |
 | ----------------------- | ---- | -------------------------- |

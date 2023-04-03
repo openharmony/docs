@@ -173,7 +173,7 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
             let want = {
                 deviceId: remoteDeviceId,
                 bundleName: 'ohos.samples.continuationmanager',
-                abilityName: 'MainAbility'
+                abilityName: 'EntryAbility'
             };
             globalThis.abilityContext.startAbility(want).then((data) => {
                 console.info('StartRemoteAbility finished, ' + JSON.stringify(data));

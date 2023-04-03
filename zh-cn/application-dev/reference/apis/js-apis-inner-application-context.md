@@ -22,8 +22,8 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 | preferencesDir | string | 是    | 否    | preferences目录。 |
 | bundleCodeDir | string | 是    | 否    | 安装包目录。 |
 | distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
-| eventHub | string | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
-| area | [AreaMode](#areamode) | 是    | 否    | 文件分区信息。 |
+| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 是    | 否    | 文件分区信息。 |
 
 ## Context.createBundleContext
 
@@ -52,17 +52,17 @@ createBundleContext(bundleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 let bundleContext;
 try {
-    bundleContext = this.context.createBundleContext("com.example.test");
+    bundleContext = this.context.createBundleContext('com.example.test');
 } catch (error) {
-    console.log('createBundleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createBundleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -91,19 +91,21 @@ createModuleContext(moduleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("entry");
+    moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
+
+## Context.createModuleContext
 
 createModuleContext(bundleName: string, moduleName: string): Context;
 
@@ -129,17 +131,17 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 let moduleContext;
 try {
-    moduleContext = this.context.createModuleContext("com.example.test", "entry");
+    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
-    console.log('createModuleContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('createModuleContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
@@ -164,18 +166,7 @@ let applicationContext;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
-    console.log('getApplicationContext failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('getApplicationContext failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
 }
 ```
 
-## AreaMode
-
-文件分区
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。 |
-| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。 |

@@ -27,6 +27,7 @@ By changing the **background-position** attribute (where the first value is the 
 .content{
   width: 400px;
   height: 400px;
+  /* The aspect ratio 1:1 is not recommended. */
   background-image: url('common/images/bg-tv.jpg');
   background-size: 100%;
   background-repeat: no-repeat;

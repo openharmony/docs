@@ -40,7 +40,7 @@ import window from '@ohos.window';
 | TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 
@@ -54,7 +54,7 @@ import window from '@ohos.window';
 | ---------- | -------------------------- | -- | ----------------------------------- |
 | name       | string                     | 是 | 窗口名字。                         |
 | windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                         |
-| ctx        | BaseContext                | 否 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。不设置，则默认为空。<br>当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口。 |
+| ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1。 |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1。      |
 
@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度。 |
-| height | number   | 是   | 是   | 窗口高度。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px。 |
 
 ## WindowProperties
 
@@ -295,6 +295,21 @@ import window from '@ohos.window';
 | x    | number   | 否   | 是   | X轴的平移参数，默认值为0.0。 |
 | y    | number   | 否   | 是   | Y轴的平移参数，默认值为0.0。 |
 | z    | number   | 否   | 是   | Z轴的平移参数，默认值为0.0。 |
+
+## WindowEventType<sup>10+</sup>
+
+窗口生命周期。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值 | 说明       |
+| ---------- | ------ | ---------- |
+| WINDOW_SHOWN      | 1      | 切到前台。 |
+| WINDOW_ACTIVE     | 2      | 获焦状态。 |
+| WINDOW_INACTIVE   | 3      | 失焦状态。 |
+| WINDOW_HIDDEN     | 4      | 切到后台。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -430,7 +445,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | BaseContext                            | 是 | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是 | 回调函数。返回当前应用内最后显示的窗口对象。 |
 
 **错误码：**
@@ -472,7 +487,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
@@ -824,7 +839,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 创建子窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
@@ -860,7 +875,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 创建子窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
@@ -897,24 +912,22 @@ promise.then((data)=> {
 
 create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口，使用callback异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
-
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用callback异步回调。
+创建系统窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
-| 参数名   | 类型                                   | 必填 | 说明                                                         |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
-| id       | string                                 | 是   | 窗口id。                                                     |
-| type     | [WindowType](#windowtype7)              | 是   | 窗口类型。                                                   |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。                         |
+| 参数名   | 类型                                                    | 必填 | 说明                                 |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。                 |
+| id       | string                                                  | 是   | 窗口id。                             |
+| type     | [WindowType](#windowtype7)                              | 是   | 窗口类型。                           |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | 是   | 回调函数。返回当前创建的子窗口对象。 |
 
 **示例：**
 
@@ -935,12 +948,10 @@ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, 
 
 create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
-创建子窗口，使用Promise异步回调，其中Context详见[Context](js-apis-inner-app-context.md)。
-
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)时，创建系统窗口，使用Promise异步回调。
+创建系统窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -949,7 +960,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext               | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 | id     | string                    | 是   | 窗口id。                                                     |
 | type   | [WindowType](#windowtype7) | 是   | 窗口类型。                                                   |
 
@@ -979,7 +990,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 查找id所对应的窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -1012,7 +1023,7 @@ find(id: string): Promise&lt;Window&gt;
 查找id所对应的窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -1049,7 +1060,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 获取当前应用内最后显示的窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
@@ -1083,7 +1094,7 @@ getTopWindow(): Promise&lt;Window&gt;
 获取当前应用内最后显示的窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
@@ -1116,7 +1127,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 获取当前应用内最后显示的窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -1125,7 +1136,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | BaseContext                            | 是   | 当前应用上下文信息。<br>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | [BaseContext](js-apis-inner-application-baseContext.md)                            | 是   | 当前应用上下文信息。 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前应用内最后显示的窗口对象。                 |
 
 **示例：**
@@ -1149,7 +1160,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 获取当前应用内最后显示的窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -1158,7 +1169,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | BaseContext | 是   | 当前应用上下文信息。<br/>FA模型的Context定义见[Context](js-apis-inner-app-context.md)。<br/>Stage模型的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：**
 
@@ -1868,7 +1879,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | 是 | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type | [AvoidAreaType](#avoidareatype7) | 是 | 表示规避区类型。 |
 
 **返回值：**
 
@@ -2504,7 +2515,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                        | 是   | 监听事件，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | Callback&lt;[Size](#size)&gt; | 否   | 回调函数。返回当前的窗口尺寸。                           |
+| callback | Callback&lt;[Size](#size7)&gt; | 否   | 回调函数。返回当前的窗口尺寸。                           |
 
 **示例：**
 
@@ -2739,7 +2750,7 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>9+</sup>
+### on('dialogTargetTouch')<sup>10+</sup>
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
@@ -2766,7 +2777,7 @@ try {
 }
 ```
 
-### off('dialogTargetTouch')<sup>9+</sup>
+### off('dialogTargetTouch')<sup>10+</sup>
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
@@ -2786,6 +2797,62 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 ```js
 try {
     windowClass.off('dialogTargetTouch');
+} catch (exception) {
+    console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowEvent')<sup>10+</sup>
+
+on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
+
+开启窗口生命周期变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'windowEvent'，即窗口生命周期变化事件。 |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 是   | 回调函数。返回当前的窗口生命周期状态。                 |
+
+**示例：**
+
+```js
+try {
+    windowClass.on('windowEvent', (data) => {
+        console.info('Window event happened. Event:' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowEvent')<sup>10+</sup>
+
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+
+关闭窗口生命周期变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                     | 是   | 监听事件，固定为'windowEvent'，即窗口生命周期变化事件。 |
+| callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | 否   | 回调函数。返回当前的窗口生命周期状态。                 |
+
+**示例：**
+
+```js
+try {
+    windowClass.off('windowEvent');
 } catch (exception) {
     console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
 }
@@ -2931,6 +2998,154 @@ try {
 }
 ```
 
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        try {
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            }, (err) => {
+                if (err.code) {
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in binding dialog target.');
+            });
+        } catch(err) {
+            console.error('getRequestInfo err = ' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
+}
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(requestInfo: dialogRequest.RequestInfo, deathCallback: Callback&lt;void&gt;): Promise&lt;void&gt;
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| requestInfo | [dialogRequest.RequestInfo](js-apis-app-ability-dialogRequest.md#requestinfo) | 是   | 目标窗口RequestInfo值。 |
+| deathCallback | Callback&lt;void&gt;    | 是   | 模态窗口销毁监听。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import rpc from '@ohos.rpc';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
+import window from '@ohos.window';
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+    onCreate(want) {
+        console.info('onCreate');
+    }
+
+    onRequest(want, startId) {
+        console.info('onRequest');
+        try {
+            let requestInfo = dialogRequest.getRequestInfo(want)
+            let promise = windowClass.bindDialogTarget(requestInfo, () => {
+                console.info('Dialog Window Need Destroy.');
+            });
+            promise.then(()=> {
+                console.info('Succeeded in binding dialog target.');
+            }).catch((err)=>{
+                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+            });
+        } catch(err) {
+            console.error('getRequestInfo err = ' + JSON.stringify(err))
+        }
+    }
+
+    onConnect(want) {
+        console.info('onConnect');
+    }
+
+    onDisconnect(want) {
+        console.info('onDisconnect');
+    }
+
+    onDestroy() {
+        console.info('onDestroy');
+    }
+}
+```
+
 ### isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -3010,7 +3225,7 @@ setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace) | 是 | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是 | 设置色域模式。 |
 | callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。   |
 
 **错误码：**
@@ -3049,7 +3264,7 @@ setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace) | 是 | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是 | 设置色域模式。 |
 
 **返回值：**
 
@@ -3092,7 +3307,7 @@ getWindowColorSpace(): ColorSpace
 
 | 类型 | 说明 |
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace) | 当前色域模式。 |
+| [ColorSpace](#colorspace8) | 当前色域模式。 |
 
 **错误码：**
 
@@ -3120,7 +3335,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **错误码：**
 
@@ -3998,7 +4213,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal, // 动画模式
         onFinish: ()=> {
             context.completeTransition(true)
-        }    
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,
@@ -4140,7 +4355,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
-| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
 | offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
 
@@ -4198,6 +4413,345 @@ try {
 }
 ```
 
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
+
+提升应用子窗口到应用顶层。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+windowClass.raiseToAppTop((err) => {
+    if (err.code) {
+        console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in raising the window to app top.');
+});
+```
+
+### raiseToAppTop<sup>10+</sup>
+
+raiseToAppTop(): Promise&lt;void&gt;
+
+提升应用子窗口到应用顶层。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**示例：**
+
+```js
+let promise = windowClass.raiseToAppTop();
+promise.then(()=> {
+    console.info('Succeeded in raising the window to app top.');
+}).catch((err)=>{
+    console.error('Failed to raise the window to app top. Cause: ' + JSON.stringify(err));
+});
+```
+### setAspectRatio<sup>10+</sup>
+
+setAspectRatio(ratio: number): Promise&lt;void&gt;
+
+设置窗口内容布局的比例，使用Promise异步回调。
+
+仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名             | 类型    | 必填 | 说明                                                         |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
+
+**示例：**
+
+```js
+try {
+    let ratio = 1.0;
+    let promise = windowClass.setAspectRatio(ratio);
+    promise.then(()=> {
+        console.info('Succeeded in setting aspect ratio of window.');
+    }).catch((err)=>{
+        console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setAspectRatio<sup>10+</sup>
+
+setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口内容布局的比例，使用callback异步回调。
+
+仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名             | 类型    | 必填 | 说明                                                         |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
+
+**示例：**
+
+```js
+try {
+    let ratio = 1.0;
+    windowClass.setAspectRatio(ratio, (err) => {
+        if (err.code) {
+            console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### resetAspectRatio<sup>10+</sup>
+
+resetAspectRatio(): Promise&lt;void&gt;
+
+取消设置窗口内容布局的比例，使用Promise异步回调。
+
+仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
+
+**示例：**
+
+```js
+try {
+    let promise = windowClass.resetAspectRatio();
+    promise.then(()=> {
+        console.info('Succeeded in resetting aspect ratio of window.');
+    }).catch((err)=>{
+        console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### resetAspectRatio<sup>10+</sup>
+
+resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
+
+取消设置窗口内容布局的比例，使用callback异步回调。
+
+仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名             | 类型    | 必填 | 说明                                                         |
+| ------------------ | ------- | ---- | ------------------------------------------------------------ |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300004 | Unauthorized operation.                      |
+
+**示例：**
+
+```js
+try {
+    windowClass.resetAspectRatio((err) => {
+        if (err.code) {
+            console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+    });
+} catch (exception) {
+    console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    let promise = windowClass.setWaterMarkFlag(enable);
+    promise.then(()=> {
+        console.info('Succeeded in setting water mark flag of window.');
+    }).catch((err)=>{
+        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+为当前窗口添加或删除安全水印标志，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                              |
+| -------- | ------------------------- | ---  | ----------------------------------------------- |
+| enable   | boolean                   | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    windowClass.setWaterMarkFlag(enable, (err) => {
+        if (err.code) {
+            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting water mark flag of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -4205,7 +4759,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 显示当前窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4235,7 +4789,7 @@ show(): Promise&lt;void&gt;
 显示当前窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4264,7 +4818,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 销毁当前窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4294,7 +4848,7 @@ destroy(): Promise&lt;void&gt;
 销毁当前窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4325,7 +4879,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 全屏模式窗口不支持该操作。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4359,7 +4913,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 全屏模式窗口不支持该操作。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4403,7 +4957,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 全屏模式窗口不支持该操作。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4443,7 +4997,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 全屏模式窗口不支持该操作。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4481,7 +5035,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 **系统接口：** 此接口为系统接口。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4515,7 +5069,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 **系统接口：** 此接口为系统接口。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4551,7 +5105,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 获取当前窗口的属性，使用callback异步回调，返回WindowProperties。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4581,7 +5135,7 @@ getProperties(): Promise&lt;WindowProperties&gt;
 获取当前窗口的属性，使用Promise异步回调，返回WindowProperties。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4610,7 +5164,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4619,7 +5173,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。|
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
 
 **示例：**
@@ -4642,7 +5196,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4651,7 +5205,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 
 | 参数名 | 类型                               | 必填 | 说明                                                         |
 | ------ |----------------------------------| ---- | ------------------------------------------------------------ |
-| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。 |
 
 **返回值：**
 
@@ -4678,7 +5232,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 设置是否为全屏状态，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4710,7 +5264,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 设置是否为全屏状态，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4746,7 +5300,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 设置窗口的布局是否为全屏显示状态，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4778,7 +5332,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4814,7 +5368,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 设置导航栏、状态栏的可见模式，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4847,7 +5401,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 设置导航栏、状态栏的可见模式，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4884,7 +5438,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 设置窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4922,7 +5476,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 设置窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4964,7 +5518,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 为当前窗口加载具体页面内容，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -4995,7 +5549,7 @@ loadContent(path: string): Promise&lt;void&gt;
 为当前窗口加载具体页面内容，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5030,7 +5584,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 判断当前窗口是否已显示，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5060,7 +5614,7 @@ isShowing(): Promise&lt;boolean&gt;
 判断当前窗口是否已显示，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5089,7 +5643,7 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 开启系统规避区变化的监听。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[on('avoidAreaChange')](#onavoidareachange9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5116,7 +5670,7 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 关闭系统规避区变化的监听。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[off('avoidAreaChange')](#offavoidareachange9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5141,7 +5695,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 判断当前窗口是否支持广色域模式，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5171,7 +5725,7 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 判断当前窗口是否支持广色域模式，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5200,7 +5754,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 设置当前窗口为广色域模式或默认色域模式，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5209,7 +5763,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是   | 设置色域模式。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。   |
 
 **示例：**
@@ -5231,7 +5785,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 设置当前窗口为广色域模式或默认色域模式，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5240,7 +5794,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | ---------- | ------------------------- | ---- | -------------- |
-| colorSpace | [ColorSpace](#colorspace) | 是   | 设置色域模式。 |
+| colorSpace | [ColorSpace](#colorspace8) | 是   | 设置色域模式。 |
 
 **返回值：**
 
@@ -5266,7 +5820,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 获取当前窗口色域模式，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5275,7 +5829,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 | 参数名   | 类型                                           | 必填 | 说明                                                       |
 | -------- | ---------------------------------------------- | ---- | ---------------------------------------------------------- |
-| callback | AsyncCallback&lt;[ColorSpace](#colorspace)&gt; | 是   | 回调函数。当获取成功，err为undefined，data为当前色域模式。 |
+| callback | AsyncCallback&lt;[ColorSpace](#colorspace8)&gt; | 是   | 回调函数。当获取成功，err为undefined，data为当前色域模式。 |
 
 **示例：**
 
@@ -5296,7 +5850,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 获取当前窗口色域模式，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5305,7 +5859,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 | 类型                                     | 说明                            |
 | ---------------------------------------- | ------------------------------- |
-| Promise&lt;[ColorSpace](#colorspace)&gt; | Promise对象。返回当前色域模式。 |
+| Promise&lt;[ColorSpace](#colorspace8)&gt; | Promise对象。返回当前色域模式。 |
 
 **示例：**
 
@@ -5325,7 +5879,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5334,7 +5888,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5357,7 +5911,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5366,7 +5920,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **返回值：**
 
@@ -5393,7 +5947,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 设置屏幕亮度值，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5425,7 +5979,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 设置屏幕亮度值，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5461,7 +6015,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5492,7 +6046,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5527,7 +6081,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 设置点击时是否支持切换焦点窗口，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5559,7 +6113,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 设置点击时是否支持切换焦点窗口，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5595,7 +6149,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 设置屏幕是否为常亮状态，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5627,7 +6181,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 设置屏幕是否为常亮状态，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5663,7 +6217,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5694,7 +6248,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
 > **说明：**
-> 
+>
 > 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5729,7 +6283,7 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5761,7 +6315,7 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5797,7 +6351,7 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 设置窗口是否为可触状态，使用callback异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5829,7 +6383,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 设置窗口是否为可触状态，使用Promise异步回调。
 
 > **说明：**
-> 
+>
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -5877,7 +6431,7 @@ WindowStage生命周期。
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
-下列API示例中都需在[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+下列API示例中都需在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ### getMainWindow<sup>9+</sup>
 
@@ -5907,9 +6461,11 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5953,9 +6509,11 @@ getMainWindow(): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -5998,9 +6556,11 @@ getMainWindowSync(): Window
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6041,9 +6601,11 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6097,9 +6659,11 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6145,9 +6709,11 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6189,9 +6755,11 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         let windowClass = null;
@@ -6235,9 +6803,11 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6293,9 +6863,11 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
@@ -6344,9 +6916,11 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6393,9 +6967,11 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6440,9 +7016,11 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6479,9 +7057,11 @@ disableWindowDecor(): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('disableWindowDecor');
         windowStage.disableWindowDecor();
@@ -6519,9 +7099,11 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 **示例：**
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-class myAbility extends Ability {
+export default class EntryAbility extends UIAbility {
+    // ...
+
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
         try {
@@ -6629,7 +7211,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal, // 动画模式
         onFinish: ()=> {
             context.completeTransition(true)
-        }  
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,
@@ -6675,7 +7257,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         playMode: PlayMode.Normal, // 动画模式
         onFinish: ()=> {
             context.completeTransition(true)
-        }  
+        }
       }, () => {
         let obj : window.TranslateOptions = {
           x : 100.0,

@@ -1,6 +1,6 @@
 # 应用级变量的状态管理
 
-状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态，其中Ability数据存储从API version9开始支持。
+状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态。
 
 > **说明：**
 >
@@ -77,7 +77,7 @@ let simple = AppStorage.Prop('simpleProp')
 
 ### SetAndProp
 
-SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>;
+SetAndProp\<S>(propName: string, defaultValue: S): SubscribedAbstractProperty\<S>
 
 与Prop接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Prop返回。
 
@@ -162,7 +162,7 @@ Set\<T>(propName: string, newValue: T): boolean
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
 ```ts
-let simple = AppStorage.Set('simpleProp', 121);
+let simple = AppStorage.Set('simpleProp', 121)
 ```
 
 ### SetOrCreate
@@ -256,7 +256,7 @@ Clear(): boolean
 | ------- | --------------------------------- |
 | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
 
-```typescript
+```ts
 let simple = AppStorage.Clear()
 ```
 
@@ -313,7 +313,7 @@ constructor(initializingProperties?: Object)
 | initializingProperties | Object | 否    | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
 
 ```ts
-this.storage = new LocalStorage()
+let storage = new LocalStorage()
 ```
 
 ### GetShared<sup>9+</sup>
@@ -353,8 +353,8 @@ has(propName: string): boolean
 | boolean | 返回属性的属性值是否存在。 |
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.has('storageSimpleProp')
+let storage = new LocalStorage()
+storage.has('storageSimpleProp')
 ```
 
 ### get<sup>9+</sup>
@@ -376,8 +376,8 @@ get\<T>(propName: string): T
 | T \| undefined | 当keyvalue存在时，返回keyvalue值。不存在返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage()
-let simpleValue = this.storage.get('storageSimpleProp')
+let storage = new LocalStorage()
+let simpleValue = storage.get('storageSimpleProp')
 ```
 
 ### set<sup>9+</sup>
@@ -400,8 +400,8 @@ set\<T>(propName: string, newValue: T): boolean
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.set('storageSimpleProp', 121)
+let storage = new LocalStorage()
+storage.set('storageSimpleProp', 121)
 ```
 
 ### setOrCreate<sup>9+</sup>
@@ -424,8 +424,8 @@ setOrCreate\<T>(propName: string, newValue: T): boolean
 | boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型，不允许undefined 或 null 。 |
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.setOrCreate('storageSimpleProp', 121)
+let storage = new LocalStorage()
+storage.setOrCreate('storageSimpleProp', 121)
 ```
 
 ### link<sup>9+</sup>
@@ -447,8 +447,8 @@ link\<T>(propName: string): T
 | T    | 如果存在具有给定键的属性，返回到此属性的双向绑定，该双向绑定意味着变量或者组件对数据的更改将同步到LocalStorage，然后通过LocalStorage实例同步到任何变量或组件。如果不存在给定键的属性，返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.link('storageSimpleProp')
+let storage = new LocalStorage()
+let localStorage = storage.link('storageSimpleProp')
 ```
 
 ### setAndLink<sup>9+</sup>
@@ -471,8 +471,8 @@ setAndLink\<T>(propName: string, defaultValue: T): T
 | @Link | 与Link接口类似，如果当前的key保存于LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Link返回。 |
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.setAndLink('storageSimpleProp', 121)
+let storage = new LocalStorage()
+let localStorage = storage.setAndLink('storageSimpleProp', 121)
 ```
 
 ### prop<sup>9+</sup>
@@ -494,8 +494,8 @@ prop\<T>(propName: string): T
 | @Prop | 如果存在具有给定键的属性，返回此属性的单向数据绑定。该单向绑定意味着只能通过LocalStorage将属性的更改同步到变量或组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态变量。如果此键的属性不存在则返回undefined。 |
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.prop('storageSimpleProp')
+let storage = new LocalStorage()
+let localStorage = storage.prop('storageSimpleProp')
 ```
 
 ### setAndProp<sup>9+</sup>
@@ -518,8 +518,8 @@ setAndProp\<T>(propName: string, defaultValue: T): T
 | @Prop | 如果当前的key保存与LocalStorage，返回该key值对应的value值。如果该key值未被创建，则创建一个对应的defaultValue的Prop返回。 |
 
 ```ts
-this.storage = new LocalStorage()
-let localStorage = this.storage.setAndProp('storageSimpleProp', 121)
+let storage = new LocalStorage()
+let localStorage = storage.setAndProp('storageSimpleProp', 121)
 ```
 
 ### delete<sup>9+</sup>
@@ -541,8 +541,8 @@ delete(propName: string): boolean
 | boolean | 删除key指定的键值对。存在且删除成功，返回true。不存在、删除失败或有状态变量依旧引用propName，返回false。 |
 
 ```ts
-this.storage = new LocalStorage()
-this.storage.delete('storageSimpleProp')
+let storage = new LocalStorage()
+storage.delete('storageSimpleProp')
 ```
 
 ### keys<sup>9+</sup>
@@ -558,8 +558,8 @@ keys(): IterableIterator\<string>
 | array\<string> | 返回包含所有键不可序列化的字符串数组。 |
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.keys()
+let storage = new LocalStorage()
+let simple = storage.keys()
 ```
 
 ### size<sup>9+</sup>
@@ -575,8 +575,8 @@ size(): number
 | number | 返回键值对的数量。 |
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.size()
+let storage = new LocalStorage()
+let simple = storage.size()
 ```
 
 ### Clear<sup>9+</sup>
@@ -592,8 +592,8 @@ clear(): boolean
 | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
 
 ```ts
-this.storage = new LocalStorage()
-let simple = this.storage.clear()
+let storage = new LocalStorage()
+let simple = storage.clear()
 ```
 
 ## PersistentStorage
@@ -612,7 +612,7 @@ constructor(appStorage: AppStorage, storage: Storage)
 | storage    | Storage    | 是    | Storage实例对象。     |
 
 ```ts
-this.persistentstorage = new PersistentStorage(AppStorage,Storage)
+let persistentstorage = new PersistentStorage(AppStorage,Storage)
 ```
 
 ### PersistProp
@@ -650,7 +650,7 @@ PersistentStorage.DeleteProp('highScore')
 
 ### PersistProps
 
-PersistProps(properties: {key: string, defaultValue: any}[]): void;
+PersistProps(properties: {key: string, defaultValue: any}[]): void
 
 关联多个命名的属性绑定。
 

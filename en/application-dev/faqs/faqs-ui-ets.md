@@ -165,9 +165,9 @@ Before the window content is loaded, enable listening for the **systemAvoidAreaC
 
 Example:
 
-```
-// MainAbility.ts
-import window from '@ohos.window';
+```ts
+import Window from '@ohos.window';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 /**
  * Set the immersive window and obtain the height of the status bar and navigation bar.
@@ -187,7 +187,7 @@ async function enterImmersion(mainWindow: window.Window) {
     statusBarContentColor: "#FF0000"
   })
 }
-export default class MainAbility extends Ability {
+export default class EntryAbility extends UIAbility {
   // do something
   async onWindowStageCreate(windowStage: window.WindowStage) {
     let mainWindow = await windowStage.getMainWindow()
@@ -213,7 +213,7 @@ You can obtain the changes in the width and height of a component through **onAr
 Example:
 
 
-```
+```ts
 Column() {
   Text(this.value)
     .backgroundColor(Color.Green).margin(30).fontSize(20)
@@ -235,7 +235,7 @@ Bind the **\<List>** component to a **Scoller** object and obtain the offset thr
 Example:
 
 
-```
+```ts
 Column() {
   List({ space: 20, initialIndex: 0,scroller: this.scroller}) {
     ForEach(this.arr, (item) => {
@@ -259,7 +259,7 @@ Column() {
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 
-```
+```ts
 // In versions earlier than 3.1.5.5, obtain the value through router.getParams().key.
 private value: string = router.getParams().value;  
 // In 3.1.6.5 and later versions, obtain the value through router.getParams()['key'].
@@ -299,7 +299,7 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 The color can be represented in two formats, for example, 0x7F000000 or '\#7F000000'. The first two digits indicate opacity, and the last six digits indicate RGB.
 
 
-```
+```ts
 fontColor(0x7F000000)
 fontColor( '#7F000000' )
 ```

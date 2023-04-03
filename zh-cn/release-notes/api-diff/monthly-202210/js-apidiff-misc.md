@@ -1,170 +1,99 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_PERMISSION|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_PARAMCHECK|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_UNSUPPORTED|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_PACKAGEMANAGER|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_IMENGINE|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_IMCLIENT|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_KEYEVENT|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_CONFPERSIST|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_CONTROLLER|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_SETTINGS|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_IMMS|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:EXCEPTION_OTHERS|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:getSetting|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:getController|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:switchCurrentInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:switchCurrentInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:getCurrentInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:switchCurrentInputMethodAndSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:inputMethod<br>方法名 or 属性名:switchCurrentInputMethodAndSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:on_imeChange|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:off_imeChange|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:listInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:listInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:listCurrentInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:listCurrentInputMethodSubtype|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:getInputMethods|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:getInputMethods|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:showOptionalInputMethods|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodSetting<br>方法名 or 属性名:showOptionalInputMethods|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodController<br>方法名 or 属性名:stopInputSession|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodController<br>方法名 or 属性名:stopInputSession|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:name|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:id|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:label|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:icon|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:iconId|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethod<br>类名:InputMethodProperty<br>方法名 or 属性名:extra|@ohos.inputmethod.d.ts|
-|新增||模块名：ohos.inputmethodengine<br>类名:inputMethodEngine<br>方法名 or 属性名:getInputMethodAbility|@ohos.inputmethodengine.d.ts|
-|新增||模块名：ohos.inputmethodengine<br>类名:inputMethodEngine<br>方法名 or 属性名:getKeyboardDelegate|@ohos.inputmethodengine.d.ts|
-|新增||模块名：ohos.inputmethodengine<br>类名:KeyboardController<br>方法名 or 属性名:hide|@ohos.inputmethodengine.d.ts|
-|新增||模块名：ohos.inputmethodengine<br>类名:KeyboardController<br>方法名 or 属性名:hide|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_inputStart|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_inputStart|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_inputStop|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_inputStop|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_setCallingWindow|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_setCallingWindow|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_keyboardShow|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_keyboardHide|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_keyboardShow|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_keyboardHide|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_setSubtype|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：sendKeyFunction|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：sendKeyFunction|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteForward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteForward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteBackward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteBackward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：insertText|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：insertText|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getForward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getForward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getBackward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getBackward|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getEditorAttribute|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getEditorAttribute|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：moveCursor|@ohos.inputmethodengine.d.ts|
-|新增||模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：moveCursor|@ohos.inputmethodengine.d.ts|
-|新增||模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:destroy|@ohos.inputmethodextensioncontext.d.ts|
-|新增||模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:destroy|@ohos.inputmethodextensioncontext.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： label|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： name|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： id|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： mode|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： locale|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： language|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： icon|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： iconId|@ohos.inputMethodSubtype.d.ts|
-|新增||模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： extra|@ohos.inputMethodSubtype.d.ts|
-|新增||方法名 or 属性名：createData<br>函数：function createData(mimeType: string, value: ValueType): PasteData;|@ohos.pasteboard.d.ts|
-|新增||方法名 or 属性名：createRecord<br>函数：function createRecord(mimeType: string, value: ValueType): PasteDataRecord;|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteDataRecord<br>方法名 or 属性名:convertToTextV9|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteDataRecord<br>方法名 or 属性名:convertToTextV9|@ohos.pasteboard.d.ts|
-|新增||方法名 or 属性名：addRecord<br>函数：addRecord(mimeType: string, value: ValueType): void;|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:getRecord|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:hasType|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:removeRecord|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:replaceRecord|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:clearData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:clearData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:getData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:getData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:hasData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:hasData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:setData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.pasteboard<br>类名:SystemPasteboard<br>方法名 or 属性名:setData|@ohos.pasteboard.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_PERMISSION|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_PARAMCHECK|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_UNSUPPORTED|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_FILEIO|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_FILEPATH|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_SERVICE|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:EXCEPTION_OTHERS|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:ERROR_OFFLINE|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:ERROR_UNSUPPORTED_NETWORK_TYPE|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:downloadFile|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:downloadFile|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:uploadFile|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:request<br>方法名 or 属性名:uploadFile|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:delete|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:delete|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:suspend|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:suspend|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:restore|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:restore|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:getTaskInfo|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:getTaskInfo|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:getTaskMimeType|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:DownloadTask<br>方法名 or 属性名:getTaskMimeType|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:UploadTask<br>方法名 or 属性名:delete|@ohos.request.d.ts|
-|新增||模块名：ohos.request<br>类名:UploadTask<br>方法名 or 属性名:delete|@ohos.request.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:isLocked|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:isSecure|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:unlock|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:unlock|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:lock|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:lock|@ohos.screenLock.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getColorsSync|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getIdSync|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getFileSync|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getMinHeightSync|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getMinWidthSync|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:isChangeAllowed|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:isUserChangeAllowed|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:restore|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:restore|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:setImage|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:setImage|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getImage|@ohos.wallpaper.d.ts|
-|新增||模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:getImage|@ohos.wallpaper.d.ts|
-|删除|模块名: ohos.inputmethodengine<br>类名: InputMethodEngine<br>方法名 or 属性名：on_inputStop||@ohos.inputmethodengine.d.ts|
-|删除|模块名: ohos.inputmethodengine<br>类名: InputMethodEngine<br>方法名 or 属性名：off_inputStop||@ohos.inputmethodengine.d.ts|
-|删除|模块名: ohos.inputmethodengine<br>类名: InputMethodEngine<br>方法名 or 属性名：on_setCallingWindow||@ohos.inputmethodengine.d.ts|
-|删除|模块名: ohos.inputmethodengine<br>类名: InputMethodEngine<br>方法名 or 属性名：off_setCallingWindow||@ohos.inputmethodengine.d.ts|
-|删除|模块名：ohos.inputmethodengine<br>类名:TextInputClient<br>方法名 or 属性名:moveCursor||@ohos.inputmethodengine.d.ts|
-|删除|模块名：ohos.inputmethodengine<br>类名:TextInputClient<br>方法名 or 属性名:moveCursor||@ohos.inputmethodengine.d.ts|
-|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility||@ohos.inputmethodextensioncontext.d.ts|
-|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility||@ohos.inputmethodextensioncontext.d.ts|
-|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility||@ohos.inputmethodextensioncontext.d.ts|
-|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:terminateSelf||@ohos.inputmethodextensioncontext.d.ts|
-|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:terminateSelf||@ohos.inputmethodextensioncontext.d.ts|
-|删除|模块名：ohos.pasteboard<br>类名:pasteboard<br>方法名 or 属性名:createPixelMapData||@ohos.pasteboard.d.ts|
-|删除|模块名：ohos.pasteboard<br>类名:pasteboard<br>方法名 or 属性名:createPixelMapRecord||@ohos.pasteboard.d.ts|
-|删除|模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:addPixelMapRecord||@ohos.pasteboard.d.ts|
-|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:lockScreen||@ohos.screenLock.d.ts|
-|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:lockScreen||@ohos.screenLock.d.ts|
-|删除|模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:screenshotLiveWallpaper||@ohos.wallpaper.d.ts|
-|删除|模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:screenshotLiveWallpaper||@ohos.wallpaper.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_inputStart|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_inputStart|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_inputStop|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_inputStop|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_setCallingWindow|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_setCallingWindow|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_keyboardShow|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_keyboardHide|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_keyboardShow|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off_keyboardHide|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：on_setSubtype|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputMethodAbility<br>方法名 or 属性名：off|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：sendKeyFunction|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：sendKeyFunction|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteForward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteForward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteBackward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：deleteBackward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：insertText|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：insertText|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getForward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getForward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getBackward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getBackward|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getEditorAttribute|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：getEditorAttribute|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：moveCursor|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputmethodengine<br>类名: InputClient<br>方法名 or 属性名：moveCursor|@ohos.inputmethodengine.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： label|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： name|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： id|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： mode|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： locale|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： language|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： icon|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： iconId|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.inputMethodSubtype<br>类名: InputMethodSubtype<br>方法名 or 属性名： extra|@ohos.inputMethodSubtype.d.ts|
+|新增|NA|模块名: ohos.pasteboard<br>类名: ShareOption|@ohos.pasteboard.d.ts|
+|新增|NA|模块名: ohos.pasteboard<br>类名: ShareOption<br>方法名 or 属性名：InApp|@ohos.pasteboard.d.ts|
+|新增|NA|模块名: ohos.pasteboard<br>类名: ShareOption<br>方法名 or 属性名：LocalDevice|@ohos.pasteboard.d.ts|
+|新增|NA|模块名: ohos.pasteboard<br>类名: ShareOption<br>方法名 or 属性名：CrossDevice|@ohos.pasteboard.d.ts|
+|新增|NA|模块名: ohos.pasteboard<br>类名: PasteDataProperty<br>方法名 or 属性名：shareOption|@ohos.pasteboard.d.ts|
+|新增|NA|模块名: ohos.request<br>类名: TaskState|@ohos.request.d.ts|
+|新增|NA|模块名: ohos.request<br>类名: TaskState<br>方法名 or 属性名：path|@ohos.request.d.ts|
+|新增|NA|模块名: ohos.request<br>类名: TaskState<br>方法名 or 属性名：responseCode|@ohos.request.d.ts|
+|新增|NA|模块名: ohos.request<br>类名: TaskState<br>方法名 or 属性名：message|@ohos.request.d.ts|
+|新增|NA|模块名: ohos.screenLock<br>类名: SystemEvent|@ohos.screenLock.d.ts|
+|新增|NA|模块名: ohos.screenLock<br>类名: SystemEvent<br>方法名 or 属性名：eventType|@ohos.screenLock.d.ts|
+|新增|NA|模块名: ohos.screenLock<br>类名: SystemEvent<br>方法名 or 属性名：params|@ohos.screenLock.d.ts|
+|新增|NA|方法名 or 属性名：getCurrentTime<br>函数：function getCurrentTime(isNano: boolean, callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|新增|NA|方法名 or 属性名：getCurrentTime<br>函数：function getCurrentTime(callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|新增|NA|方法名 or 属性名：getRealActiveTime<br>函数：function getRealActiveTime(isNano: boolean, callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|新增|NA|方法名 or 属性名：getRealActiveTime<br>函数：function getRealActiveTime(callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|新增|NA|方法名 or 属性名：getRealTime<br>函数：function getRealTime(isNano: boolean, callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|新增|NA|方法名 or 属性名：getRealTime<br>函数：function getRealTime(callback: AsyncCallback<number>): void;|@ohos.systemTime.d.ts|
+|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility|NA|@ohos.inputmethodextensioncontext.d.ts|
+|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility|NA|@ohos.inputmethodextensioncontext.d.ts|
+|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:startAbility|NA|@ohos.inputmethodextensioncontext.d.ts|
+|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:terminateSelf|NA|@ohos.inputmethodextensioncontext.d.ts|
+|删除|模块名：ohos.inputmethodextensioncontext<br>类名:InputMethodExtensionContext<br>方法名 or 属性名:terminateSelf|NA|@ohos.inputmethodextensioncontext.d.ts|
+|删除|模块名：ohos.pasteboard<br>类名:pasteboard<br>方法名 or 属性名:createPixelMapData|NA|@ohos.pasteboard.d.ts|
+|删除|模块名：ohos.pasteboard<br>类名:pasteboard<br>方法名 or 属性名:createPixelMapRecord|NA|@ohos.pasteboard.d.ts|
+|删除|模块名：ohos.pasteboard<br>类名:PasteData<br>方法名 or 属性名:addPixelMapRecord|NA|@ohos.pasteboard.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_beginWakeUp|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_endWakeUp|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_beginScreenOn|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_endScreenOn|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_beginScreenOff|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_endScreenOff|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_unlockScreen|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_beginExitAnimation|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_beginSleep|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_endSleep|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_changeUser|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:on_screenlockEnabled|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_beginWakeUp|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_endWakeUp|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_beginScreenOn|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_endScreenOn|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_beginScreenOff|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_endScreenOff|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_unlockScreen|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_beginExitAnimation|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_screenlockEnabled|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_beginSleep|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_endSleep|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.screenLock<br>类名:screenLock<br>方法名 or 属性名:off_changeUser|NA|@ohos.screenLock.d.ts|
+|删除|模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:screenshotLiveWallpaper|NA|@ohos.wallpaper.d.ts|
+|删除|模块名：ohos.wallpaper<br>类名:wallpaper<br>方法名 or 属性名:screenshotLiveWallpaper|NA|@ohos.wallpaper.d.ts|
 |model有变化|方法名 or 属性名：switchInputMethod<br>model:@StageModelOnly|方法名 or 属性名：switchInputMethod<br>model:|@ohos.inputmethod.d.ts|
 |model有变化|方法名 or 属性名：switchInputMethod<br>model:@StageModelOnly|方法名 or 属性名：switchInputMethod<br>model:|@ohos.inputmethod.d.ts|
-|model有变化|方法名 or 属性名：getCurrentInputMethod<br>model:@StageModelOnly|方法名 or 属性名：getCurrentInputMethod<br>model:|@ohos.inputmethod.d.ts|
 |model有变化|类名：InputMethodExtensionAbility<br>model:@StageModelOnly|类名：InputMethodExtensionAbility<br>model:|@ohos.inputmethodextensionability.d.ts|
 |model有变化|方法名 or 属性名：context<br>model:@StageModelOnly|方法名 or 属性名：context<br>model:|@ohos.inputmethodextensionability.d.ts|
 |model有变化|方法名 or 属性名：onCreate<br>model:@StageModelOnly|方法名 or 属性名：onCreate<br>model:|@ohos.inputmethodextensionability.d.ts|
@@ -318,9 +247,8 @@
 |起始版本有变化|方法名 or 属性名：getFile<br>起始版本：9|方法名 or 属性名：getFile<br>起始版本：8|@ohos.wallpaper.d.ts|
 |起始版本有变化|方法名 or 属性名：on_colorChange<br>起始版本：7|方法名 or 属性名：on_colorChange<br>起始版本：9|@ohos.wallpaper.d.ts|
 |起始版本有变化|方法名 or 属性名：off_colorChange<br>起始版本：7|方法名 or 属性名：off_colorChange<br>起始版本：9|@ohos.wallpaper.d.ts|
-|新增(错误码)||方法名 or 属性名：setProperty<br>错误码内容:401|@ohos.pasteboard.d.ts|
-|新增(错误码)||方法名 or 属性名：on_update<br>错误码内容:401|@ohos.pasteboard.d.ts|
-|新增(错误码)||方法名 or 属性名：off_update<br>错误码内容:401|@ohos.pasteboard.d.ts|
+|新增(错误码)|NA|方法名 or 属性名：on_update<br>错误码内容:401|@ohos.pasteboard.d.ts|
+|新增(错误码)|NA|方法名 or 属性名：off_update<br>错误码内容:401|@ohos.pasteboard.d.ts|
 |新增(权限)|方法名 or 属性名：switchInputMethod<br>权限:N/A|方法名 or 属性名：switchInputMethod<br>权限:ohos.permission.CONNECT_IME_ABILITY|@ohos.inputmethod.d.ts|
 |新增(权限)|方法名 or 属性名：switchInputMethod<br>权限:N/A|方法名 or 属性名：switchInputMethod<br>权限:ohos.permission.CONNECT_IME_ABILITY|@ohos.inputmethod.d.ts|
 |新增(权限)|方法名 or 属性名：showSoftKeyboard<br>权限:N/A|方法名 or 属性名：showSoftKeyboard<br>权限:ohos.permission.CONNECT_IME_ABILITY|@ohos.inputmethod.d.ts|

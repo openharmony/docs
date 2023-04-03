@@ -25,7 +25,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化Locale对象。
@@ -100,7 +100,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化日期时间格式化对象。
@@ -111,7 +111,7 @@
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9)。
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
@@ -170,7 +170,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化数字格式化对象。
@@ -181,7 +181,7 @@
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9)。
    
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
@@ -195,7 +195,7 @@
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let number = 1234.5678
+   let number = 1234.5678;
    let formatResult = numberFormat.format(number); // formatResult = "1235"
    ```
 
@@ -229,7 +229,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化排序对象。
@@ -290,7 +290,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化单复数对象。
@@ -313,7 +313,7 @@
      
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
-   let number = 1234.5678
+   let number = 1234.5678;
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
 
@@ -338,7 +338,7 @@
    未正确导入包可能会产生不明确的接口行为。
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. 实例化相对时间格式化对象。
@@ -349,7 +349,7 @@
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
    
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
@@ -362,7 +362,7 @@
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatResult = relativeTimeFormat.format(number, unit); // 2年后
    ```
 
@@ -373,7 +373,7 @@
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "年后"}]
    ```
 
@@ -390,6 +390,4 @@
 
 针对Intl开发，有以下相关实例可供参考：
 
--[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
-
--[`International`：国际化（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
+-[`International`：国际化（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International)

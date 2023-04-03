@@ -43,7 +43,7 @@ text{
 }
 ```
 
-![en-us_image_0000001223287656](figures/en-us_image_0000001223287656.gif)
+![en-us_image_0000001234289455](figures/en-us_image_0000001234289455.gif)
 
 
 ## Setting the Index
@@ -82,7 +82,7 @@ text{
 }
 ```
 
-![en-us_image_0000001267767837](figures/en-us_image_0000001267767837.gif)
+![en-us_image_0000001234011019](figures/en-us_image_0000001234011019.gif)
 
 Set the **label** attribute to customize the label for the **\<stepper-item>**.
 
@@ -143,7 +143,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001267767841](figures/en-us_image_0000001267767841.gif)
+![en-us_image_0000001163531210](figures/en-us_image_0000001163531210.gif)
 
 
 ## Setting Styles
@@ -187,7 +187,7 @@ text{
 }
 ```
 
-![en-us_image_0000001223287668](figures/en-us_image_0000001223287668.png)
+![en-us_image_0000001234130975](figures/en-us_image_0000001234130975.png)
 
 
 ## Adding Events
@@ -249,7 +249,7 @@ button{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     index:0,
@@ -262,20 +262,20 @@ export default {
     this.$element('stepperId').setNextButtonStatus({status: 'skip', label: 'SKIP'});
   },
   stepperFinish(){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'All Finished'
     })
   },
   stepperChange(e){
     console.log("stepperChange"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
       // index indicates the sequence number of the current step.
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
       // pendingIndex indicates the sequence number of the step to be redirected to.
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
@@ -290,7 +290,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001267607869](figures/en-us_image_0000001267607869.gif)
+![en-us_image_0000001189089950](figures/en-us_image_0000001189089950.gif)
 
 
 ## Example Scenario
@@ -364,8 +364,8 @@ Use a **\<stepper>** component to navigate through the steps. Create a **\<Toggl
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 let myset = new Set();
 export default {
   data: {
@@ -404,4 +404,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)
+![en-us_image_0000001189249862](figures/en-us_image_0000001189249862.gif)

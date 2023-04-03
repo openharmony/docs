@@ -1,16 +1,15 @@
-| 操作 | 新版本 | 旧版本 | d.ts文件 |
+| 操作 | 旧版本 | 新版本 | d.ts文件 |
 | ---- | ------ | ------ | -------- |
-|新增||方法名 or 属性名：ACTION_APP_ACCOUNT_AUTH<br>函数：ACTION_APP_ACCOUNT_AUTH = "ohos.appAccount.action.auth"|@ohos.ability.wantConstant.d.ts|
-|新增||模块名: ohos.app.ability.appRecovery<br>类名: appRecovery|@ohos.app.ability.appRecovery.d.ts|
-|新增||模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：enableAppRecovery|@ohos.app.ability.appRecovery.d.ts|
-|新增||模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：restartApp|@ohos.app.ability.appRecovery.d.ts|
-|新增||模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：saveAppState|@ohos.app.ability.appRecovery.d.ts|
-|新增||模块名：ohos.app.ability.UIAbility<br>类名:UIAbility<br>方法名 or 属性名:onSaveState|@ohos.app.ability.UIAbility.d.ts|
-|删除|模块名：ohos.app.ability.Ability<br>类名:Ability<br>方法名 or 属性名:onSaveState||@ohos.app.ability.Ability.d.ts|
-|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery||@ohos.app.ability.appRecovery.d.ts|
-|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：enableAppRecovery||@ohos.app.ability.appRecovery.d.ts|
-|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：restartApp||@ohos.app.ability.appRecovery.d.ts|
-|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：saveAppState||@ohos.app.ability.appRecovery.d.ts|
+|新增|NA|方法名 or 属性名：ACTION_APP_ACCOUNT_AUTH<br>函数：ACTION_APP_ACCOUNT_AUTH = "ohos.appAccount.action.auth"|@ohos.ability.wantConstant.d.ts|
+|新增|NA|模块名: ohos.app.ability.appRecovery<br>类名: appRecovery|@ohos.app.ability.appRecovery.d.ts|
+|新增|NA|模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：enableAppRecovery|@ohos.app.ability.appRecovery.d.ts|
+|新增|NA|模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：restartApp|@ohos.app.ability.appRecovery.d.ts|
+|新增|NA|模块名: ohos.app.ability.appRecovery<br>类名: appRecovery<br>方法名 or 属性名：saveAppState|@ohos.app.ability.appRecovery.d.ts|
+|删除|模块名：ohos.app.ability.Ability<br>类名:Ability<br>方法名 or 属性名:onSaveState|NA|@ohos.app.ability.Ability.d.ts|
+|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery|NA|@ohos.app.ability.appRecovery.d.ts|
+|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：enableAppRecovery|NA|@ohos.app.ability.appRecovery.d.ts|
+|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：restartApp|NA|@ohos.app.ability.appRecovery.d.ts|
+|删除|模块名: ohos.app.ability.appRecovery<br>类名: appReceovery<br>方法名 or 属性名：saveAppState|NA|@ohos.app.ability.appRecovery.d.ts|
 |model有变化|类名：Ability<br>model:@stagemodelonly|类名：Ability<br>model:@StageModelOnly|@ohos.app.ability.Ability.d.ts|
 |model有变化|方法名 or 属性名：onConfigurationUpdate<br>model:@stagemodelonly|方法名 or 属性名：onConfigurationUpdate<br>model:@StageModelOnly|@ohos.app.ability.Ability.d.ts|
 |model有变化|方法名 or 属性名：onMemoryLevel<br>model:@stagemodelonly|方法名 or 属性名：onMemoryLevel<br>model:@StageModelOnly|@ohos.app.ability.Ability.d.ts|

@@ -35,7 +35,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 | 参数名 | 类型           | 必填 | 说明                                                         |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | 否   | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。其中图片数据以"formImages"作为标识，内容为图片标识与图片文件描述符的键值对{"formImages": {"key1": fd1, "key2": fd2}} |
+| obj    | Object\|string | 否   | js卡片要展示的数据。可以是包含若干键值对的Object或者 json 格式的字符串。其中图片数据以'formImages'作为标识，内容为图片标识与图片文件描述符的键值对{'formImages': {'key1': fd1, 'key2': fd2}} |
 
 
 **返回值：**
@@ -48,16 +48,17 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
-let context=featureAbility.getContext();
-context.getOrCreateLocalDir((err,data)=>{
-  let path=data+"/xxx.jpg";
-  let fd = fileio.openSync(path);
+import formBindingData from '@ohos.application.formBindingData';
+import fs from '@ohos.file.fs';
+
+try {
+  let fd = fs.openSync('/path/to/form.png');
   let obj = {
-    "temperature": "21°",
-    "formImages": {"image": fd}
+    'temperature': '21°',
+    'formImages': { 'image': fd }
   };
-  let formBindingDataObj = formBindingData.createFormBindingData(obj);
-})
+  formBindingData.createFormBindingData(obj);
+} catch (error) {
+  console.error('catch error, error: ${JSON.stringify(error)}');
+}
 ```

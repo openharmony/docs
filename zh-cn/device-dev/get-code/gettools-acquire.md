@@ -27,6 +27,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
    > HPM Docker环境无需单独获取源码。
 
+3. 请使用具备root权限的用户，或已被授予docker使用权限的用户进行后续操作。
 
 ## 独立Docker环境
 

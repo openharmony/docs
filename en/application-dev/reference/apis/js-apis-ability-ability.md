@@ -1,4 +1,4 @@
-# @ohos.ability.ability
+# @ohos.ability.ability (Ability)
 
 The **Ability** module provides all level-2 module APIs for developers to export.
 
@@ -10,7 +10,7 @@ The **Ability** module provides all level-2 module APIs for developers to export
 ## Modules to Import
 
 ```ts
-import ability from '@ohos.ability.ability'
+import ability from '@ohos.ability.ability';
 ```
 
 **System capability**: SystemCapability.Ability.AbilityBase

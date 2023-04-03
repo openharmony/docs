@@ -1,6 +1,6 @@
 # AbilityResult
 
-The **AbilityResult** module defines the result code and data returned when an ability is started or destroyed.
+The **AbilityResult** module defines the result code and data returned when an ability is terminated after being started. You can use [startAbilityForResult](js-apis-ability-context.md#abilitycontextstartabilityforresult) to obtain the **AbilityResult** object returned after the started ability is terminated. The startedability returns the **AbilityResult** object by calling [terminateSelfWithResult](js-apis-ability-context.md#abilitycontextterminateselfwithresult).
 
 > **NOTE**
 >
@@ -10,17 +10,5 @@ The **AbilityResult** module defines the result code and data returned when an a
 
 | Name       | Readable   | Writable    | Type                | Mandatory| Description                                                        |
 | ----------- | -------- |-------- | -------------------- | ---- | ------------------------------------------------------------ |
-| resultCode    | Yes   | No     | number               | No  | Result code returned when the ability is started or destroyed.                               |
-| want   | Yes   | No     | [Want](./js-apis-app-ability-want.md)               | No  | Data returned when the ability is destroyed.|
-
-**Example**
-  ```ts
-  let want = {
-    bundleName: 'com.example.mydocapplication',
-    abilityName: 'MainAbility',
-  };
-  this.context.startAbilityForResult(want, (error, data) => {
-      let resultCode = data.resultCode;
-      let want = data.want;
-  });
-  ```
+| resultCode    | Yes   | Yes     | number               | Yes  | Result code returned after the started ability is terminated.                              |
+| want   | Yes   | Yes     | [Want](./js-apis-app-ability-want.md)               | No  | Data returned after the started ability is terminated. |

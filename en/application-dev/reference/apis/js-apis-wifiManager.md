@@ -1,5 +1,4 @@
-# WLAN
-
+# @ohos.wifiManager (WLAN)
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
 
 > **NOTE**
@@ -31,6 +30,14 @@ Enables WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 
 ## wifi.disableWifi<sup>9+</sup>
 
@@ -50,6 +57,13 @@ Disables WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.isWifiActive<sup>9+</sup>
 
@@ -67,6 +81,13 @@ Checks whether WLAN is enabled.
   | -------- | -------- |
   | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.scan<sup>9+</sup>
 
@@ -84,6 +105,13 @@ Starts a scan for WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -99,8 +127,15 @@ Obtains the scan result. This API uses a promise to return the result.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the hotspots detected.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getScanResults<sup>9+</sup>
 
@@ -117,6 +152,14 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **Example**
   ```js
@@ -251,6 +294,13 @@ Obtains the scan result. This API returns the result synchronously.
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addDeviceConfig<sup>9+</sup>
 
@@ -275,6 +325,14 @@ Adds network configuration. This API uses a promise to return the result.
   | **Type**| **Description**|
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## WifiDeviceConfig<sup>9+</sup>
 
@@ -351,6 +409,8 @@ Represents EAP configuration information.
 | caCertAliases | string | Yes| No| CA certificate alias.|
 | caPath | string | Yes| No| CA certificate path.|
 | clientCertAliases | string | Yes| No| Client certificate alias.|
+| certEntry | Uint8Array | Yes| Yes| CA certificate content.|
+| certPassword | string | Yes| Yes| CA certificate password.|
 | altSubjectMatch | string | Yes| No| A string to match the alternate subject.|
 | domainSuffixMatch | string | Yes| No| A string to match the domain suffix.|
 | realm | string | Yes| No| Realm for the passpoint credential.|
@@ -418,6 +478,13 @@ Adds network configuration. This API uses an asynchronous callback to return the
   | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -441,6 +508,13 @@ Adds the configuration of a candidate network. This API uses a promise to return
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.addCandidateConfig<sup>9+</sup>
 
@@ -459,6 +533,13 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
   | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -482,6 +563,13 @@ Removes the configuration of a candidate network. This API uses a promise to ret
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
@@ -500,6 +588,13 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
   | networkId | number | Yes| ID of the network configuration to remove.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
 
@@ -517,6 +612,13 @@ Obtains candidate network configuration.
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
 
@@ -534,6 +636,14 @@ Connects to a candidate network.
   | -------- | -------- | -------- | -------- |
   | networkId | number | Yes| ID of the candidate network configuration.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToNetwork<sup>9+</sup>
 
@@ -553,12 +663,14 @@ Connects to the specified network.
   | -------- | -------- | -------- | -------- |
   | networkId | number | Yes| Network configuration ID.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.connectToDevice<sup>9+</sup>
 
@@ -579,12 +691,14 @@ Connects to the specified network.
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.disconnect<sup>9+</sup>
 
@@ -599,12 +713,13 @@ Disconnects the network.
 **System capability**:
   SystemCapability.Communication.WiFi.STA
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
 
 ## wifi.getSignalLevel<sup>9+</sup>
 
@@ -629,6 +744,13 @@ Obtains the WLAN signal level.
   | -------- | -------- |
   | number | Signal level obtained. The value range is [0, 4].|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -646,6 +768,14 @@ Obtains WLAN connection information. This API uses a promise to return the resul
   | -------- | -------- |
   | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getLinkedInfo<sup>9+</sup>
 
@@ -662,6 +792,15 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 **Example**
   ```js
@@ -767,6 +906,13 @@ Checks whether the WLAN is connected.
   | -------- | -------- |
   | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getSupportedFeatures<sup>9+</sup>
 
@@ -795,12 +941,19 @@ Obtains the features supported by this device.
 | 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
 | 0x0008 | Wi-Fi Direct|
 | 0x0010 | SoftAP|
-| 0x0040 | Wi-Fi AWare|
+| 0x0040 | Wi-Fi Aware|
 | 0x8000 | WLAN AP/STA concurrency|
 | 0x8000000 | WPA3 Personal (WPA-3 SAE)|
 | 0x10000000 | WPA3-Enterprise Suite B |
 | 0x20000000 | Enhanced open feature|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.isFeatureSupported<sup>9+</sup>
 
@@ -825,6 +978,13 @@ Checks whether the device supports the specified WLAN feature.
   | -------- | -------- |
   | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.getDeviceMacAddress<sup>9+</sup>
 
@@ -844,6 +1004,13 @@ Obtains the device MAC address.
   | -------- | -------- |
   | string[] | MAC address obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.getIpInfo<sup>9+</sup>
 
@@ -861,6 +1028,13 @@ Obtains IP information.
   | -------- | -------- |
   | [IpInfo](#ipinfo9) | IP information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## IpInfo<sup>9+</sup>
 
@@ -895,6 +1069,13 @@ Obtains the country code.
   | -------- | -------- |
   | string | Country code obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2401000  | Operation failed.|
 
 ## wifi.reassociate<sup>9+</sup>
 
@@ -908,12 +1089,14 @@ Re-associates with the network.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.reconnect<sup>9+</sup>
 
@@ -927,12 +1110,14 @@ Reconnects to the network.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
+| 2501001  | Wifi is closed.|
 
 ## wifi.getDeviceConfigs<sup>9+</sup>
 
@@ -952,6 +1137,13 @@ Obtains network configuration.
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.updateNetwork<sup>9+</sup>
 
@@ -969,7 +1161,7 @@ Updates network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
@@ -977,6 +1169,13 @@ Updates network configuration.
   | -------- | -------- |
   | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.disableNetwork<sup>9+</sup>
 
@@ -996,12 +1195,13 @@ Disables network configuration.
   | -------- | -------- | -------- | -------- |
   | netId | number | Yes| ID of the network configuration to disable.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
 
 ## wifi.removeAllNetwork<sup>9+</sup>
 
@@ -1015,12 +1215,13 @@ Removes the configuration of all networks.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
 
 ## wifi.removeDevice<sup>9+</sup>
 
@@ -1038,14 +1239,15 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | id | number | Yes| ID of the network configuration to remove.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2501000  | Operation failed.|
 
 ## wifi.enableHotspot<sup>9+</sup>
 
@@ -1059,12 +1261,13 @@ Enables this hotspot.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2601000  | Operation failed.|
 
 ## wifi.disableHotspot<sup>9+</sup>
 
@@ -1078,12 +1281,13 @@ Disables this hotspot.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotDualBandSupported<sup>9+</sup>
 
@@ -1101,8 +1305,15 @@ Checks whether the hotspot supports dual band.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+  | boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.isHotspotActive<sup>9+</sup>
 
@@ -1122,6 +1333,13 @@ Checks whether this hotspot is active.
   | -------- | -------- |
   | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.setHotspotConfig<sup>9+</sup>
 
@@ -1141,12 +1359,13 @@ Sets hotspot configuration.
   | -------- | -------- | -------- | -------- |
   | config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2601000  | Operation failed.|
 
 ## HotspotConfig<sup>9+</sup>
 
@@ -1169,7 +1388,7 @@ Represents the hotspot configuration.
 
 getHotspotConfig(): HotspotConfig
 
-obtains hotspot configuration.
+Obtains hotspot configuration.
 
 **System API**: This is a system API.
 
@@ -1183,6 +1402,13 @@ obtains hotspot configuration.
   | -------- | -------- |
   | [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.getStations<sup>9+</sup>
 
@@ -1202,6 +1428,13 @@ Obtains information about the connected stations.
   | -------- | -------- |
   | &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | Connected stations obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## StationInfo<sup>9+</sup>
 
@@ -1234,7 +1467,13 @@ Obtains P2P link information. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Promise used to return the P2P link information obtained.|
 
+**Error codes**
 
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pLinkedInfo<sup>9+</sup>
 
@@ -1294,6 +1533,13 @@ Obtains the current P2P group information. This API uses a promise to return the
   | -------- | -------- |
   | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getCurrentGroup<sup>9+</sup>
 
@@ -1311,6 +1557,13 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1328,6 +1581,13 @@ Obtains the peer device list in the P2P connection. This API uses a promise to r
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise used to return the peer device list.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pPeerDevices<sup>9+</sup>
 
@@ -1345,6 +1605,13 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pDevice<sup>9+</sup>
 
@@ -1392,6 +1659,13 @@ Obtains the local device information in the P2P connection. This API uses a prom
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Promise used to return the local device information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pLocalDevice<sup>9+</sup>
 
@@ -1426,12 +1700,13 @@ Creates a P2P group.
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#wifip2pconfig9) | Yes| Group configuration.|
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## WifiP2PConfig<sup>9+</sup>
 
@@ -1471,12 +1746,13 @@ Removes this P2P group.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.p2pConnect<sup>9+</sup>
 
@@ -1495,12 +1771,13 @@ Sets up a P2P connection.
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#wifip2pconfig9) | Yes| P2P group configuration.|
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 **Example**
   ```js
@@ -1579,12 +1856,13 @@ Cancels this P2P connection.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.startDiscoverDevices<sup>9+</sup>
 
@@ -1596,12 +1874,13 @@ Starts to discover devices.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.stopDiscoverDevices<sup>9+</sup>
 
@@ -1613,12 +1892,13 @@ Stops discovering devices.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.deletePersistentGroup<sup>9+</sup>
 
@@ -1639,12 +1919,13 @@ Deletes a persistent group.
   | -------- | -------- | -------- | -------- |
   | netId | number | Yes| ID of the group to delete.|
 
-**Return value**
+**Error codes**
 
-  | Type| Description|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.getP2pGroups<sup>9+</sup>
 
@@ -1664,6 +1945,13 @@ Obtains information about all P2P groups. This API uses a promise to return the 
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## WifiP2pGroupInfo<sup>9+</sup>
 
@@ -1702,6 +1990,13 @@ Obtains information about all P2P groups. This API uses an asynchronous callback
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.setDeviceName<sup>9+</sup>
 
@@ -1721,12 +2016,13 @@ Sets the device name.
   | -------- | -------- | -------- | -------- |
   | devName | string | Yes| Device name to set.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
-
+| 2801000  | Operation failed.|
 
 ## wifi.on('wifiStateChange')<sup>9+</sup>
 
@@ -1744,6 +2040,14 @@ Registers the WLAN state change events.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **WLAN states** 
 
@@ -1770,7 +2074,15 @@ Unregisters the WLAN state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the WLAN state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 **Example**
   ```js
@@ -1788,7 +2100,7 @@ Unregisters the WLAN state change events.
   ```
 
 
-## wifi.on('wifiConnectionChange')<sup>7+</sup>
+## wifi.on('wifiConnectionChange')<sup>9+</sup>
 
 on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
@@ -1812,6 +2124,13 @@ Registers the WLAN connection state change events.
 | 0 | Disconnected.|
 | 1 | Connected.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiConnectionChange')<sup>9+</sup>
 
@@ -1828,8 +2147,15 @@ Unregisters the WLAN connection state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiScanStateChange')<sup>9+</sup>
 
@@ -1855,6 +2181,13 @@ Registers the WLAN scan state change events.
 | 0 | Scan failed.|
 | 1 | Scan successful.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiScanStateChange')<sup>9+</sup>
 
@@ -1871,8 +2204,15 @@ Unregisters the WLAN scan state change events.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('wifiRssiChange')<sup>9+</sup>
 
@@ -1891,6 +2231,13 @@ Registers the RSSI change events.
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.off('wifiRssiChange')<sup>9+</sup>
 
@@ -1907,8 +2254,15 @@ Unregisters the RSSI change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the RSSI change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2501000  | Operation failed.|
 
 ## wifi.on('hotspotStateChange')<sup>9+</sup>
 
@@ -1936,6 +2290,13 @@ Registers the hotspot state change events.
 | 2 | Activating|
 | 3 | Deactivating|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.off('hotspotStateChange')<sup>9+</sup>
 
@@ -1952,8 +2313,15 @@ Unregisters the hotspot state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the hotspot state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2601000  | Operation failed.|
 
 ## wifi.on('p2pStateChange')<sup>9+</sup>
 
@@ -1982,6 +2350,14 @@ Registers the P2P state change events.
 | 4 | Closing|
 | 5 | Closed|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
+
 ## wifi.off('p2pStateChange')<sup>9+</sup>
 
 off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
@@ -1997,8 +2373,15 @@ Unregisters the P2P state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the P2P state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
   ## wifi.on('p2pConnectionChange')<sup>9+</sup>
 
@@ -2017,6 +2400,13 @@ Registers the P2P connection state change events.
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
   | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback invoked to return the P2P connection state.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pConnectionChange')<sup>9+</sup>
 
@@ -2033,8 +2423,15 @@ Unregisters the P2P connection state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback for the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | No| Callback for the P2P connection state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDeviceChange')<sup>9+</sup>
 
@@ -2053,6 +2450,13 @@ Registers the P2P device state change events.
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
   | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the P2P device state.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDeviceChange')<sup>9+</sup>
 
@@ -2069,8 +2473,15 @@ Unregisters the P2P device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback for the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | No| Callback for the P2P device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2089,6 +2500,13 @@ Registers the P2P peer device state change events.
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
   | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback invoked to return the P2P peer device state.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPeerDeviceChange')<sup>9+</sup>
 
@@ -2105,8 +2523,15 @@ Unregisters the P2P peer device state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback for the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback for the P2P peer device state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2125,6 +2550,13 @@ Registers the P2P persistent group state change events.
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
   | callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pPersistentGroupChange')<sup>9+</sup>
 
@@ -2141,8 +2573,15 @@ Unregisters the P2P persistent group state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.on('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2168,6 +2607,13 @@ Registers the P2P device discovery state change events.
 | 0 | Initial state.|
 | 1 | Discovered.|
 
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|
 
 ## wifi.off('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -2184,4 +2630,12 @@ Unregisters the P2P device discovery state change events.
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state change. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+  | -------- | -------- |
+| 2801000  | Operation failed.|

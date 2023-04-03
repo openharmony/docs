@@ -388,11 +388,11 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-        this.context.fillStyle = 'rgb(255,0,0)'
-        this.context.fillRect(0, 0, 50, 50)
-        this.context.globalAlpha = 0.4
-        this.context.fillStyle = 'rgb(0,0,255)'
-        this.context.fillRect(50, 50, 50, 50)
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(0, 0, 50, 50)
+          this.context.globalAlpha = 0.4
+          this.context.fillStyle = 'rgb(0,0,255)'
+          this.context.fillRect(50, 50, 50, 50)
       })
     }
     .width('100%')
@@ -683,7 +683,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.fillRect(0,30,100,100)
+            this.context.fillRect(30,30,100,100)
          })
         }
       .width('100%')
@@ -1579,7 +1579,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.context.fillStyle = 'green'
+          this.context.fillStyle = '#00ff00'
           this.context.fill(region, "evenodd")
         })
     }
@@ -1666,10 +1666,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.context.clip(region,"evenodd")
-          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillStyle = "rgb(0,255,0)"
           this.context.fillRect(0, 0, this.context.width, this.context.height)
         })
     }
@@ -1917,6 +1922,8 @@ setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ### translate
 
@@ -1971,6 +1978,8 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number):void
 
 进行图像绘制。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -2348,6 +2357,8 @@ toDataURL(type?: string, quality?: number): string
 
 生成一个包含图片展示的URL。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名     | 参数类型   | 必填   | 描述                                       |
@@ -2412,7 +2423,7 @@ restore(): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2450,7 +2461,7 @@ save(): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.save() // save the default state
-            this.context.fillStyle = "green"
+            this.context.fillStyle = "#00ff00"
             this.context.fillRect(20, 20, 100, 100)
             this.context.restore() // restore to the default state
             this.context.fillRect(150, 75, 100, 100)
@@ -2497,9 +2508,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })
@@ -2548,9 +2559,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.context.fillStyle = grad
             this.context.fillRect(0, 0, 500, 500)
           })

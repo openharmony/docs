@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<popup>** component is used to display a pop-up to offer instructions after a user clicks a bound component.
+ The **\<popup>** component is used to display a pop-up to offer instructions after a user clicks a bound component or calls the specific API.
 
 ## Required Permissions
 
@@ -23,9 +23,9 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | target | string | - | Yes| ID of the target element. Dynamic switch is not supported.|
-| placement | string | bottom | No| Position of the pop-up. Available values are as follows:<br>- **left**: The pop-up is displayed on the left of the target item.<br>- **right**: The pop-up is displayed on the right of the target item.<br>- **top**: The pop-up is displayed at the top of the target item.<br>- **bottom**: The pop-up is displayed at the bottom of the target item.<br>- **topLeft**: The pop-up is displayed on the upper left of the target item.<br>- **topRight**: The pop-up is displayed on the upper right of the target item.<br>- **bottomLeft**: The pop-up is displayed on the bottom left of the target item.<br>- **bottomRight**: The pop-up is displayed on the bottom right of the target item.|
+| placement | string | bottom | No| Position of the pop-up relative to the target element. Available values are as follows:<br>- **left**: on the left of the target element.<br>- **right**: on the right of the target element.<br>- **top**: at the top of the target element;<br>- **bottom**: at the bottom of the target element.<br>- **topLeft**: in the upper left corner of the target element.<br>- **topRight**: in the upper right corner of the target element.<br>- **bottomLeft**: in the lower left corner of the target element.<br>- **bottomRight**: in the lower right corner of the target element.|
 | keepalive<sup>5+</sup> | boolean | false | No| Whether to retain this pop-up. **true**: The pop-up does not disappear when users tap other areas or switch the page. To hide the pop-up, call the **hide** method.<br>**false**: The pop-up disappears when users tap other areas or switch the page.|
-| clickable<sup>5+</sup> | boolean | true | No| Whether to display the pop-up when users click the bound control. If this parameter is set to **false**, the pop-up can be triggered only by a method call.|
+| clickable<sup>5+</sup> | boolean | true | No| Whether to display the pop-up when the user clicks the target element. If this attribute is set to **false**, the pop-up can be triggered only by an API call.|
 | arrowoffset<sup>5+</sup> | &lt;length&gt; | 0 | No| Offset of the pop-up arrow. By default, the arrow is centered. A positive value means that the arrow moves along the language direction (LTR or RTL), and a negative value means that the arrow moves along the opposite direction of the language direction.|
 
 >  **NOTE**
@@ -111,10 +111,10 @@ The following methods are supported.
 
 ```js
 // xxx.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   visibilitychange(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'visibility change visibility: ' + e.visibility,
         duration: 3000
     }); 

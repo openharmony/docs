@@ -43,7 +43,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -79,7 +79,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -118,7 +118,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -148,7 +148,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -175,7 +175,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
 **参数：**
 
@@ -213,7 +213,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 
 **参数：**
 
@@ -232,7 +232,8 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | invalid accountInfo. |
+| 12300002 | Invalid accountInfo. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```js
@@ -260,7 +261,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **参数：**
 
@@ -288,7 +289,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)。
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **参数：**
 
@@ -325,4 +326,4 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 | event | string | 是 | 分布式帐号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
 | nickname<sup>9+</sup> | string | 否 | 分布式帐号的昵称，非空字符串。 |
 | avatar<sup>9+</sup> | string | 否 | 分布式帐号的头像，非空字符串。 |
-| scalableData | object | 否 | 分布式帐号扩展信息，根据业务所需，以k-v形式传递定制化信息。<br/>说明：该参数是预留的可选项，目前查询和更新的方法实现中未使用。 |
+| scalableData<sup>8+</sup> | object | 否 | 分布式帐号扩展信息，根据业务所需，以k-v形式传递定制化信息。<br/>说明：该参数是预留的可选项，目前查询和更新的方法实现中未使用。 |

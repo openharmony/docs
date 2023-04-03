@@ -7,7 +7,7 @@
 
 RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor()](rawfile.md#oh_resourcemanager_getrawfiledescriptor)的输出参数，涵盖了rawfile文件的文件描述符以及在HAP中的起始位置和长度。
 
-**自从：**
+**起始版本：**
 
 8
 

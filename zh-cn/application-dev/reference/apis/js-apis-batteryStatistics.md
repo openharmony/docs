@@ -46,7 +46,7 @@ batteryStats.getBatteryStats()
     console.info('battery statistics info: ' + data);
 })
 .catch(err => {
-    console.error('get battery statisitics failed, err: ' + err);
+    console.error('get battery statistics failed, err: ' + err);
 });
 ```
 
@@ -81,7 +81,7 @@ batteryStats.getBatteryStats((err, data) => {
     if (typeof err === 'undefined') {
         console.info('battery statistics info: ' + data);
     } else {
-        console.error('get battery statisitics failed, err: ' + err);
+        console.error('get battery statistics failed, err: ' + err);
     }
 });
 ```
@@ -123,7 +123,7 @@ try {
     var value = batteryStats.getAppPowerValue(10021);
     console.info('battery statistics value of app is: ' + value);
 } catch(err) {
-    console.error('get battery statisitics value of app failed, err: ' + err);
+    console.error('get battery statistics value of app failed, err: ' + err);
 }
 ```
 
@@ -164,7 +164,7 @@ try {
     var percent = batteryStats.getAppPowerPercent(10021);
     console.info('battery statistics percent of app is: ' + percent);
 } catch(err) {
-    console.error('get battery statisitics percent of app failed, err: ' + err);
+    console.error('get battery statistics percent of app failed, err: ' + err);
 }
 ```
 
@@ -203,9 +203,9 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 ```js
 try {
     var value = batteryStats.getHardwareUnitPowerValue(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
-    console.info('battery statistics percent of hardware is: ' + percent);
+    console.info('battery statistics value of hardware is: ' + value);
 } catch(err) {
-    console.error('get battery statisitics percent of hardware failed, err: ' + err);
+    console.error('get battery statistics percent of hardware failed, err: ' + err);
 }
 ```
 
@@ -243,10 +243,10 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 ```js
 try {
-    var value = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var percent = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
 } catch(err) {
-    console.error('get battery statisitics percent of hardware failed, err: ' + err);
+    console.error('get battery statistics percent of hardware failed, err: ' + err);
 }
 ```
 

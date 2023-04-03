@@ -32,7 +32,7 @@ showToast(options: ShowToastOptions): void
 ```js
 prompt.showToast({            
   message: 'Message Info',
-    duration: 2000,      
+    duration: 2000
 });
 ```
 
@@ -44,11 +44,11 @@ prompt.showToast({
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称       | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| message  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 是    | 显示的文本信息。                                 |
-| duration | number                                   | 否    | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
-| bottom   | string\| number                          | 否    | 设置弹窗边框距离屏幕底部的位置，无上限值，默认单位vp。                |
+| 名称     | 类型            | 必填 | 说明                                                         |
+| -------- | --------------- | ---- | ------------------------------------------------------------ |
+| message  | string          | 是   | 显示的文本信息。                                             |
+| duration | number          | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
+| bottom   | string\| number | 否   | 设置弹窗边框距离屏幕底部的位置，无上限值，默认单位vp。       |
 
 ## prompt.showDialog
 
@@ -79,11 +79,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ],
 })
@@ -121,11 +121,11 @@ prompt.showDialog({
   buttons: [
     {
       text: 'button1',
-      color: '#000000',
+      color: '#000000'
     },
     {
       text: 'button2',
-      color: '#000000',
+      color: '#000000'
     }
   ]
 }, (err, data) => {
@@ -145,11 +145,11 @@ prompt.showDialog({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 否   | 标题文本。                                                   |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 否   | 内容文本。                                                   |
-| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?]    | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
+| 名称    | 类型                                                      | 必填 | 说明                                                         |
+| ------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| title   | string                                                    | 否   | 标题文本。                                                   |
+| message | string                                                    | 否   | 内容文本。                                                   |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?] | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
 
 ## ShowDialogSuccessResponse 
 
@@ -185,11 +185,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 }, (err, data) => {
@@ -231,11 +231,11 @@ prompt.showActionMenu({
   buttons: [
     {
       text: 'item1',
-      color: '#666666',
+      color: '#666666'
     },
     {
       text: 'item2',
-      color: '#000000',
+      color: '#000000'
     },
   ]
 })
@@ -256,7 +256,7 @@ prompt.showActionMenu({
 
 | 名称    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 否   | 标题文本。                                                   |
+| title   | string                                                       | 否   | 标题文本。                                                   |
 | buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
@@ -275,8 +275,8 @@ prompt.showActionMenu({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                       | 必填   | 说明      |
-| ----- | ---------------------------------------- | ---- | ------- |
-| text  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 是    | 按钮文本内容。 |
-| color | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup> | 是    | 按钮文本颜色。 |
+| 名称  | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| text  | string | 是   | 按钮文本内容。 |
+| color | string | 是   | 按钮文本颜色。 |
 

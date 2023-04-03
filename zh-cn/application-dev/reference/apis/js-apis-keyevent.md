@@ -14,6 +14,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Action
 
+按键事件类型。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称   | 值  | 说明     |
@@ -24,6 +26,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Key
 
+按键。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称        | 类型 | 可读 | 可写 | 说明           |
@@ -33,6 +37,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | deviceId    | number   | 是   | 否   | 按键所属设备id   |
 
 ## KeyEvent
+
+按键事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 

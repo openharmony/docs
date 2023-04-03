@@ -11,7 +11,7 @@ TestRunner模块提供了框架测试的能力。包括准备单元测试环境�
 ## 导入模块
 
 ```ts
-import TestRunner from '@ohos.application.testRunner'
+import TestRunner from '@ohos.application.testRunner';
 ```
 
 ## TestRunner.onPrepare
@@ -27,7 +27,7 @@ onPrepare(): void
 ```ts
 export default class UserTestRunner implements TestRunner {
     onPrepare() {
-        console.log("Trigger onPrepare")
+        console.log('Trigger onPrepare');
     }
     onRun() {}
 };
@@ -49,7 +49,7 @@ onRun(): void
 export default class UserTestRunner implements TestRunner {
     onPrepare() {}
     onRun() {
-        console.log("Trigger onRun")
+        console.log('Trigger onRun');
     }
 };
 ```

@@ -1,4 +1,9 @@
-# 文件管理子系统错误码
+# 文件管理错误码
+
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+
 文件管理子系统错误码由四部分组成，分别是基础文件IO错误码、用户数据管理错误码、公共文件访问错误码和空间统计错误码组成。
 
 ## 基础文件IO错误码
@@ -714,3 +719,41 @@ Fail to notify agent
 
 **处理步骤**
 检查client是否异常
+
+## 错误码适配指导
+文件管理子系统API支持异常处理。
+同步接口异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("openSync errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+异步接口promise方法异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    let file = await fs.open(path, fs.OpenMode.READ_ONLY);
+} catch (err) {
+    console.error("open promise errCode:" + err.code + ", errMessage:" + err.message);
+}
+```
+
+异步接口callback方法异常处理示例代码:
+```js
+import fs from '@ohos.file.fs'
+
+try {
+    fs.open(path, fs.OpenMode.READ_ONLY, function(e, file){ //异步线程的错误（如系统调用等）在回调中获取
+        if (e) {
+            console.error("open in async errCode:" + e.code + ", errMessage:" + e.message);
+        }
+    });
+} catch (err) { //主线程的错误（如非法参数等）通过try catch获取
+    console.error("open callback errCode:" + err.code + ", errMessage:" + err.message);
+}
+```

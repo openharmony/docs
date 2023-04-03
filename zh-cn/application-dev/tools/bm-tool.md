@@ -1,7 +1,11 @@
 # bm工具
 
 
-Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力，开发者可以在hdc shell中，执行bm命令以触发各种系统操作，例如：安装应用，卸载应用，查询安装包信息等。
+Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力，例如：安装应用，卸载应用，查询安装包信息等。
+
+> **说明：**
+>
+> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
 
 
   **表1** bm工具命令列表
@@ -52,6 +56,7 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 | -u | 否，默认安装到当前所有用户上 | 给指定用户安装一个HAP |
 | -r | 否，默认值为覆盖安装 | 覆盖安装一个HAP |
 | -w | 否，默认等待5s | 安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s |
+| -s | 否 | 安装应用间HSP路径，支持指定多个应用间HSP路径同时安装 |
 
 
 示例：
@@ -60,6 +65,12 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 bm install -p /data/app/ohosapp.hap -u 100 -w 5s -r
 // 执行结果
 install bundle successfully.
+# 安装一个应用间共享库
+bm install -s xxx.hsp
+# 同时安装多个应用间共享库
+bm install -s xxx.hsp yyy.hsp
+# 同时安装使用方应用和其依赖的应用间共享库
+bm install -p aaa.hap -s xxx.hsp yyy.hsp
 ```
 
 
@@ -79,14 +90,20 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 | -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块 |
 | -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用 |
 | -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据 |
+| -s | 否 | 安装应用间HSP路径，支持指定多个应用间HSP路径同时安装 |
+| -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号 |
 
 
 示例：
 
 ```bash
-bm uninstall -n com.ohos.app -m com.ohos.app.MainAbility -u 100 -k
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
 // 执行结果
 uninstall bundle successfully.
+# 卸载一个shared bundle
+bm uninstall -s -n com.ohos.example
+# 卸载一个shared bundle的指定版本
+bm uninstall -s -n com.ohos.example -v 100001
 ```
 
 
@@ -184,7 +201,7 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 ```bash
 # 使能该应用
-bm enable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm enable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // 执行结果
 enable bundle successfully.
 ```
@@ -213,7 +230,7 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
 ```bash
 # 禁用该应用
-bm disable -n com.ohos.app -a com.ohos.app.MainAbility -u 100
+bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // 执行结果
 disable bundle successfully.
 ```
@@ -281,4 +298,31 @@ bm quickfix -q -b com.ohos.app
 bm quickfix -a -f /data/app/
 //执行结果
 apply quickfix succeed.
+```
+
+## 共享库查询命令
+
+```bash
+bm dump-shared [-h help] [-a] [-n bundleName] [-m moudleName]
+```
+
+  **表11** 共享库查询命令列表
+
+| 命令                                             | 描述                                   |
+| ------------------------------------------------ | -------------------------------------- |
+| bm dump-shared -h                                | 显示dump-shared支持的命令信息          |
+| bm dump-shared -a                                | 查询系统中已安装所有共享库             |
+| bm dump-shared -n                                | 查询指定共享库包名的详细信息           |
+| bm dump-dependencies -h                          | 显示bm dump-dependencies支持的命令信息 |
+| bm dump-dependencies -n bundleName -m moudleName | 查询指定应用指定模块依赖的共享库信息   |
+
+示例：
+
+```bash
+# 显示所有已安装共享库包名
+bm dump-shared -a
+# 显示该共享库的详细信息
+bm dump-shared -n com.ohos.lib
+# 显示指定应用指定模块依赖的共享库信息
+bm dump-dependencies -n com.ohos.app -m entry
 ```

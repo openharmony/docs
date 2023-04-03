@@ -8,7 +8,7 @@
 
 ## 功能配置
 
-1. LOSCFG_MEM_LEAKCHECK：开关宏，默认关闭；如需要打开这个功能，可以在配置项中开启“Debug-&gt; Enable Function call stack of Mem operation recorded”。
+1. LOSCFG_MEM_LEAKCHECK：开关宏，默认关闭；如需要打开这个功能，可以在配置项中开启“Debug-&gt; Enable MEM Debug-&gt; Enable Function call stack of Mem operation recorded”。
 
 2. LOS_RECORD_LR_CNT：记录的LR层数，默认3层；每层LR消耗sizeof(void \*)字节数的内存。
 
@@ -61,8 +61,10 @@ node        size   LR[0]      LR[1]       LR[2]
 
 **示例代码**
 
+本演示代码在 . kernel /liteos_a/testsuites /kernel /src /osTest.c中编译验证，在TestTaskEntry中调用验证入口函数MemLeakTest。
 
-该示例代码的测试函数可以加在 kernel /liteos_a/testsuites /kernel /src /osTest.c  中的 TestTaskEntry 中进行测试.
+为了方便展示建议创建新的内存池，需要在target_config.h 中定义 LOSCFG_MEM_MUL_POOL
+
 代码实现如下：
 
 ```c
@@ -71,12 +73,24 @@ node        size   LR[0]      LR[1]       LR[2]
 #include "los_memory.h"
 #include "los_config.h"
 
+#define TEST_NEW_POOL_SIZE 2000
+#define TEST_MALLOC_SIZE 8
+
 void MemLeakTest(void)
 {
-    OsMemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
-    void *ptr1 = LOS_MemAlloc(LOSCFG_SYS_HEAP_ADDR, 8);
-    void *ptr2 = LOS_MemAlloc(LOSCFG_SYS_HEAP_ADDR, 8);
-    OsMemUsedNodeShow(LOSCFG_SYS_HEAP_ADDR);
+    VOID *pool = NULL;
+
+    /* 由于原内存池分配过多, 为了方便展示, 创建新的内存池 */
+    pool = LOS_MemAlloc(OS_SYS_MEM_ADDR, TEST_NEW_POOL_SIZE);
+    (VOID)LOS_MemInit(pool, TEST_NEW_POOL_SIZE);
+
+    OsMemUsedNodeShow(pool);
+    void *ptr1 = LOS_MemAlloc(pool, TEST_MALLOC_SIZE);
+    void *ptr2 = LOS_MemAlloc(pool, TEST_MALLOC_SIZE);
+    OsMemUsedNodeShow(pool);
+    
+    /* 释放内存池 */
+    (VOID)LOS_MemDeInit(pool);
 }
 ```
 
@@ -87,51 +101,50 @@ void MemLeakTest(void)
 编译运行输出log如下：
 
 ```
-node         size   LR[0]       LR[1]       LR[2]
-0x20001b04:  0x24   0x08001a10  0x080035ce  0x080028fc
-0x20002058:  0x40   0x08002fe8  0x08003626  0x080028fc
-0x200022ac:  0x40   0x08000e0c  0x08000e56  0x0800359e
-0x20002594:  0x120  0x08000e0c  0x08000e56  0x08000c8a
-0x20002aac:  0x56   0x08000e0c  0x08000e56  0x08004220
+/* 第一次OsMemUsedNodeShow打印，由于该内存池未分配，所以无内存节点 */
+node            LR[0]       LR[1]       LR[2]
 
-node         size   LR[0]       LR[1]       LR[2]
-0x20001b04:  0x24   0x08001a10  0x080035ce  0x080028fc
-0x20002058:  0x40   0x08002fe8  0x08003626  0x080028fc
-0x200022ac:  0x40   0x08000e0c  0x08000e56  0x0800359e
-0x20002594:  0x120  0x08000e0c  0x08000e56  0x08000c8a
-0x20002aac:  0x56   0x08000e0c  0x08000e56  0x08004220
-0x20003ac4:  0x1d   0x08001458  0x080014e0  0x080041e6
-0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000
+
+/* 第二次OsMemUsedNodeShow打印，有两个新的内存节点 */
+node            LR[0]       LR[1]       LR[2]
+0x00402e0d90:  0x004009f040  0x0040037614  0x0040005480
+0x00402e0db0:  0x004009f04c  0x0040037614  0x0040005480
+
 ```
 
 
 对比两次log，差异如下，这些内存节点就是疑似泄漏的内存块：
 
 ```
-0x20003ac4:  0x1d   0x08001458  0x080014e0  0x080041e6
-0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000
+0x00402e0d90:  0x004009f040  0x0040037614  0x0040005480
+0x00402e0db0:  0x004009f04c  0x0040037614  0x0040005480
 ```
 
 
 部分汇编文件如下:
 
 ```
-                MemLeakTest:
-  0x80041d4: 0xb510         PUSH     {R4, LR}
-  0x80041d6: 0x4ca8         LDR.N    R4, [PC, #0x2a0]       ; g_memStart
-  0x80041d8: 0x0020         MOVS     R0, R4
-  0x80041da: 0xf7fd 0xf93e  BL       LOS_MemUsedNodeShow    ; 0x800145a
-  0x80041de: 0x2108         MOVS     R1, #8
-  0x80041e0: 0x0020         MOVS     R0, R4
-  0x80041e2: 0xf7fd 0xfbd9  BL       LOS_MemAlloc           ; 0x8001998
-  0x80041e6: 0x2108         MOVS     R1, #8
-  0x80041e8: 0x0020         MOVS     R0, R4
-  0x80041ea: 0xf7fd 0xfbd5  BL       LOS_MemAlloc           ; 0x8001998
-  0x80041ee: 0x0020         MOVS     R0, R4
-  0x80041f0: 0xf7fd 0xf933  BL       LOS_MemUsedNodeShow    ; 0x800145a
-  0x80041f4: 0xbd10         POP      {R4, PC}
-  0x80041f6: 0x0000         MOVS     R0, R0
+4009f014: 7d 1e a0 e3  	mov	r1, #2000
+4009f018: 00 00 90 e5  	ldr	r0, [r0]
+4009f01c: 67 7a fe eb  	bl	#-398948 <LOS_MemAlloc>
+4009f020: 7d 1e a0 e3  	mov	r1, #2000
+4009f024: 00 40 a0 e1  	mov	r4, r0
+4009f028: c7 79 fe eb  	bl	#-399588 <LOS_MemInit>
+4009f02c: 04 00 a0 e1  	mov	r0, r4
+4009f030: 43 78 fe eb  	bl	#-401140 <OsMemUsedNodeShow>
+4009f034: 04 00 a0 e1  	mov	r0, r4
+4009f038: 08 10 a0 e3  	mov	r1, #8
+4009f03c: 5f 7a fe eb  	bl	#-398980 <LOS_MemAlloc>
+4009f040: 04 00 a0 e1  	mov	r0, r4
+4009f044: 08 10 a0 e3  	mov	r1, #8
+4009f048: 5c 7a fe eb  	bl	#-398992 <LOS_MemAlloc>
+4009f04c: 04 00 a0 e1  	mov	r0, r4
+4009f050: 3b 78 fe eb  	bl	#-401172 <OsMemUsedNodeShow>
+4009f054: 3c 00 9f e5  	ldr	r0, [pc, #60]
+4009f058: 40 b8 fe eb  	bl	#-335616 <dprintf>
+4009f05c: 04 00 a0 e1  	mov	r0, r4
+4009f060: 2c 7a fe eb  	bl	#-399184 <LOS_MemDeInit>
 ```
 
 
-其中，通过查找0x080041ee，就可以发现该内存节点是在MemLeakTest接口里申请的且是没有释放的。
+其中，通过查找0x4009f040，就可以发现该内存节点是在MemLeakTest接口里申请的且是没有释放的。

@@ -51,9 +51,9 @@ build() {
 
 Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
-1. Obtain data in Uint8Array format by calling the **RawFile** API of **resourceManager**.
+1. Obtain Uint8Array data by calling the **RawFile** API of **resourceManager**.
 
-2. Convert data in Uint8Array format to the string type by calling the **String.fromCharCode** API.
+2. Convert the Uint8Array data to strings by calling the **String.fromCharCode** API.
 
 Reference: [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 
@@ -155,7 +155,9 @@ The global function **encodeURI** is used for URI encoding, and **decodeURI** is
 
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
-Yes. The **convert** API of the **convertxml** module can be used to convert XML text into JavaScript objects. Reference: [@ohos.convertxml](../reference/apis/js-apis-convertxml.md)
+Yes. The **convert** API of the **convertxml** module can be used to convert XML text into JavaScript objects.
+
+Reference: [@ohos.convertxml](../reference/apis/js-apis-convertxml.md)
 
 ## How do I configure application icons to be used across devices?
 
@@ -287,4 +289,4 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 No. Relational database operations cannot be performed in the worker thread.
 
-<!--no_check-->  
+ <!--no_check--> 

@@ -61,6 +61,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       });
   });
   ```
+注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 
 ## resourceManager.getResourceManager
@@ -117,6 +118,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
       console.log("error is " + error);
   });
   ```
+注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
 
 ## resourceManager.getResourceManager
@@ -2393,6 +2395,142 @@ getNumberByName(resName: string): number
   }
   ```
 
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+
+用户获取指定资源ID对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+
+用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型      | 说明                |
+| ------- | ----------------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.icon').id
+  };
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptorByName<sup>10+</sup>
+
+getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+
+用户获取指定资源名称对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon');
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getString<sup>(deprecated)</sup>
 

@@ -724,8 +724,8 @@ try {
 | 名称      | 类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
 | name      | string   | 是   | 是   | 指定虚拟屏幕的名称。      |
-| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度。      |
-| height    | number   | 是   | 是   | 指定虚拟屏幕的高度。      |
+| width     | number   | 是   | 是   | 指定虚拟屏幕的宽度，单位为像素。 |
+| height    | number   | 是   | 是   | 指定虚拟屏幕的高度，单位为像素。 |
 | density   | number   | 是   | 是   | 指定虚拟屏幕的密度。      |
 | surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。 |
 
@@ -734,6 +734,8 @@ try {
 屏幕实例。
 
 下列API示例中都需先使用[getAllScreens()](#screengetallscreens)、[createVirtualScreen()](#screencreatevirtualscreen)中的任一方法获取到Screen实例，再通过此实例调用对应方法。
+
+### 属性
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -744,6 +746,7 @@ try {
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。             |
 
 ### setOrientation
 
@@ -997,6 +1000,19 @@ try {
 | REVERSE_VERTICAL   | 3    | 表示指定屏幕为反向垂直方向。     |
 | REVERSE_HORIZONTAL | 4    | 表示指定屏幕为反向水平方向。     |
 
+## ScreenSourceMode<sup>10+</sup>
+
+屏幕显示内容来源模式枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称               | 值   | 说明                             |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MAIN         | 0    | 表示屏幕为默认主屏。 |
+| SCREEN_MIRROR       | 1    | 表示屏幕内容来自镜像。         |
+| SCREEN_EXTEND       | 2    | 表示屏幕内容来自扩展。         |
+| SCREEN_ALONE        | 3    | 表示屏幕为未指定来源。     |
+
 ## ScreenModeInfo
 
 屏幕显示模式信息。
@@ -1006,6 +1022,6 @@ try {
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
 | id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定。 |
-| width       | number   | 是   | 是   | 屏幕的宽度。                                       |
-| height      | number   | 是   | 是   | 屏幕的高度。                                       |
+| width       | number   | 是   | 是   | 屏幕的宽度，单位为像素。                                |
+| height      | number   | 是   | 是   | 屏幕的高度，单位为像素。                                |
 | refreshRate | number   | 是   | 是   | 屏幕的刷新率。                                     |

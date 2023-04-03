@@ -1,4 +1,4 @@
-# @ohos.accessibility.GesturePath
+# @ohos.accessibility.GesturePath (Gesture Path)
 
  The **GesturePath** module provides APIs for creating gesture path information required for an accessibility application to inject gestures.
 

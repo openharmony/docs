@@ -7,7 +7,7 @@ A relational database (RDB) store allows you to operate local data with or witho
 
 ## Available APIs
 
-Most of the RDB store APIs are asynchronous interfaces, which can use a callback or promise to return the result. This document uses the promise-based APIs as an example. For details about the APIs, see [Relational Database](../reference/apis/js-apis-data-rdb.md).
+Most of the RDB store APIs are asynchronous interfaces, which can use a callback or promise to return the result. This document uses the promise-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis/js-apis-data-relationalStore.md).
 
 ### Creating or Deleting an RDB Store
 
@@ -17,8 +17,8 @@ The following table describes the APIs for creating and deleting an RDB store.
 
 | API                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getRdbStoreV9(context: Context, config: StoreConfigV9, version: number): Promise&lt;RdbStoreV9&gt; | Obtains an **RdbStoreV9** instance. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.<br>- **context**: context of the application or function.<br>- **config**: configuration of the RDB store.<br>- **version**: version of the RDB store. Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.|
-| deleteRdbStoreV9(context: Context, name: string): Promise&lt;void&gt; | Deletes an RDB store. This API uses a promise to return the result.<br>- **context**: context of the application or function.<br>- **name**: name of the RDB store to delete.|
+| getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt; | Obtains an **RdbStore** object. This API uses a promise to return the result. You can set parameters for the **RdbStore** object based on service requirements and use **RdbStore** APIs to perform data operations.<br>- **context**: application context.<br>- **config**: configuration of the RDB store.|
+| deleteRdbStore(context: Context, name: string): Promise&lt;void&gt; | Deletes an RDB store. This API uses a promise to return the result.<br>- **context**: application context.<br>- **name**: name of the RDB store to delete.|
 
 ### Managing Data in an RDB Store
 
@@ -33,29 +33,29 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   | Class      | API                                                      | Description                                                        |
   | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStoreV9 | insert(table: string, values: ValuesBucket): Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.|
+  | RdbStore | insert(table: string, values: ValuesBucket): Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.|
   
 - **Updating Data**
   
-  Call **update()** to update data based on the passed data and the conditions specified by **RdbPredicatesV9**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
+  Call **update()** to pass the new data and specify the update conditions by using **RdbPredicates**. If the data is updated, the number of rows of the updated data will be returned; otherwise, **0** will be returned.
   
   **Table 3** API for updating data
   
 
-  | Class      | API                                                          | Description                                                  |
+  | Class      | API                                                      | Description                                                        |
   | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStoreV9 | update(values: ValuesBucket, predicates: RdbPredicatesV9): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicatesV9** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data. |
+  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data.|
   
 - **Deleting Data**
   
-  Call **delete()** to delete the data that meets the conditions specified by **RdbPredicatesV9**. If the data is deleted, the number of rows of the deleted data will be returned; otherwise, **0** will be returned.
+  Call **delete()** to delete the data that meets the conditions specified by **RdbPredicates**. If the data is deleted, the number of rows of the deleted data will be returned; otherwise, **0** will be returned.
   
   **Table 4** API for deleting data
   
 
-  | Class      | API                                                        | Description                                                  |
+  | Class      | API                                                    | Description                                                        |
   | ---------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-  | RdbStoreV9 | delete(predicates: RdbPredicatesV9): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicatesV9** object. This API uses a promise to return the number of rows updated.<br>- **predicates**: conditions for deleting data. |
+  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the number of rows deleted.<br>- **predicates**: conditions for deleting data.|
   
 - **Querying Data**
 
@@ -66,50 +66,48 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   **Table 5** APIs for querying data
 
-
-| Class      | API                                                      | Description                                                        |
-| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | query(predicates: RdbPredicatesV9, columns?: Array&lt;string&gt;): Promise&lt;ResultSetV9&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
-| RdbStoreV9 | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSetV9&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
-| RdbStoreV9 | remoteQuery(device: string, table: string, predicates: RdbPredicatesV9, columns: Array&lt;string&gt;): Promise&lt;ResultSetV9&gt; | Queries data from the database of a remote device based on specified conditions. This API uses a promise to return the result.<br>- **device**: network ID of the remote device.<br>- **table**: name of the table to be queried.<br>- **predicates**: **RdbPredicatesV9** that specifies the query conditions.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
+  | Class      | API                                                      | Description                                                        |
+  | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
+  | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
+  | RdbStore | remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | Queries data from the database of a remote device based on specified conditions. This API uses a promise to return the result.<br>- **device**: network ID of the remote device.<br>- **table**: name of the table to be queried.<br>- **predicates**: **RdbPredicates** that specifies the query condition.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
 
 ### Using Predicates
 
-The **RDB** module provides **RdbPredicatesV9** for you to set database operation conditions.
+The **RDB** module provides **RdbPredicates** for you to set database operation conditions.
 
-The following table lists common predicates. For more information about predicates, see [**RdbPredicates**](../reference/apis/js-apis-data-rdb.md#rdbpredicates).
+The following table lists common predicates. For more information about predicates, see [**RdbPredicates**](../reference/apis/js-apis-data-relationalStore.md#rdbpredicates).
 
 **Table 6** APIs for using RDB store predicates
 
-| Class           | API                                                          | Description                                                  |
+| Class           | API                                                      | Description                                                        |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbPredicatesV9 | equalTo(field: string, value: ValueType): RdbPredicatesV9    | Sets an **RdbPredicatesV9** to search for the data that is equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match.<br>- **RdbPredicatesV9**: **RdbPredicatesV9** object created. |
-| RdbPredicatesV9 | notEqualTo(field: string, value: ValueType): RdbPredicatesV9 | Sets an **RdbPredicatesV9** to search for the data that is not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match.<br>- **RdbPredicatesV9**: **RdbPredicatesV9** object created. |
-| RdbPredicatesV9 | or(): RdbPredicatesV9                                        | Adds the OR condition to the **RdbPredicatesV9**.<br>- **RdbPredicatesV9**: **RdbPredicatesV9** with the OR condition. |
-| RdbPredicatesV9 | and(): RdbPredicatesV9                                       | Adds the AND condition to the **RdbPredicatesV9**.<br>- **RdbPredicatesV9**: **RdbPredicatesV9** with the AND condition. |
-| RdbPredicatesV9 | contains(field: string, value: string): RdbPredicatesV9      | Sets an **RdbPredicatesV9** to search for the data that contains the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match.<br>- **RdbPredicatesV9**: **RdbPredicatesV9** object created. |
+| RdbPredicates | equalTo(field: string, value: ValueType): RdbPredicates    | Sets an **RdbPredicates** to search for the data that is equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
+| RdbPredicates | notEqualTo(field: string, value: ValueType): RdbPredicates | Sets an **RdbPredicates** to search for the data that is not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
+| RdbPredicates | or(): RdbPredicates                                        | Adds the OR condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the OR condition.|
+| RdbPredicates | and(): RdbPredicates                                       | Adds the AND condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the AND condition.|
+| RdbPredicates | contains(field: string, value: string): RdbPredicates      | Sets an **RdbPredicates** to search for the data that contains the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
 
 
 ### Using the Result Set
 
-You can use the APIs provided by **ResultSetV9** to traverse and access the data you have queried. A result set can be regarded as a row of data in the queried result.
+You can use the APIs provided by **ResultSet** to traverse and access the data you have queried. A result set can be regarded as a row of data in the queried result.
 
-For details about how to use result set APIs, see [Result Set](../reference/apis/js-apis-data-resultset.md).
+For details about how to use **ResultSet** APIs, see [ResultSet](../reference/apis/js-apis-data-relationalStore.md#resultset).
 
-> **NOTICE**
->
+> **NOTICE**<br>
 > After a result set is used, you must call the **close()** method to close it explicitly.
 
 **Table 7** APIs for using the result set
 
 | Class       | API                                  | Description                                      |
 | ----------- | ---------------------------------------- | ------------------------------------------ |
-| ResultSetV9 | goToFirstRow(): boolean                  | Moves to the first row of the result set.                    |
-| ResultSetV9 | getString(columnIndex: number): string   | Obtains the value in the form of a string based on the specified column and current row.  |
-| ResultSetV9 | getBlob(columnIndex: number): Uint8Array | Obtains the value in the form of a byte array based on the specified column and the current row.|
-| ResultSetV9 | getDouble(columnIndex: number): number   | Obtains the value in the form of double based on the specified column and current row.    |
-| ResultSetV9 | getLong(columnIndex: number): number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
-| ResultSetV9 | close(): void                            | Closes the result set.                              |
+| ResultSet | goToFirstRow(): boolean                  | Moves to the first row of the result set.                    |
+| ResultSet | getString(columnIndex: number): string   | Obtains the value in the form of a string based on the specified column and current row.  |
+| ResultSet | getBlob(columnIndex: number): Uint8Array | Obtains the value in the form of a byte array based on the specified column and the current row.|
+| ResultSet | getDouble(columnIndex: number): number   | Obtains the value in the form of double based on the specified column and current row.    |
+| ResultSet | getLong(columnIndex: number): number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
+| ResultSet | close(): void                            | Closes the result set.                              |
 
 
 
@@ -117,7 +115,7 @@ For details about how to use result set APIs, see [Result Set](../reference/apis
 
 > **NOTE** 
 >
-> - The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required for calling the **setDistributedTables**, **obtainDistributedTableName**, **sync**, **on** and **off** APIs of **RdbStore V9**.
+> - The **ohos.permission.DISTRIBUTED_DATASYNC** permission is required for calling the **setDistributedTables**, **obtainDistributedTableName**, **sync**, **on** and **off** APIs of **RdbStore**.
 > - The devices must be connected over network before the distributed tables are used. For details about the APIs and usage, see [Device Management](../reference/apis/js-apis-device-manager.md).
 
 **Setting Distributed Tables**
@@ -126,7 +124,7 @@ For details about how to use result set APIs, see [Result Set](../reference/apis
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | setDistributedTables(tables: Array\<string>): Promise\<void> | Sets distributed tables. This API uses a promise to return the result.<br>- **tables**: names of the distributed tables to set.|
+| RdbStore | setDistributedTables(tables: Array\<string>): Promise\<void> | Sets distributed tables. This API uses a promise to return the result.<br>- **tables**: names of the distributed tables to set.|
 
 **Obtaining the Distributed Table Name for a Remote Device**
 
@@ -136,7 +134,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | obtainDistributedTableName(device: string, table: string): Promise\<string> | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the RDB store of a remote device is queried. This API uses a promise to return the result.<br>- **device**: remote device.<br>- **table**: local table name.|
+| RdbStore | obtainDistributedTableName(device: string, table: string): Promise\<string> | Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the RDB store of a remote device is queried. This API uses a promise to return the result.<br>- **device**: remote device.<br>- **table**: local table name.|
 
 **Synchronizing Data Between Devices**
 
@@ -144,7 +142,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | sync(mode: SyncMode, predicates: RdbPredicatesV9): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode.  **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
+| RdbStore | sync(mode: SyncMode, predicates: RdbPredicates): Promise\<Array\<[string, number]>> | Synchronizes data between devices. This API uses a promise to return the result.<br>- **mode**: synchronization mode. **SYNC_MODE_PUSH** means to push data from the local device to a remote device. **SYNC_MODE_PULL** means to pull data from a remote device to the local device.<br>- **predicates**: specifies the data and devices to synchronize.<br>- **string**: device ID. <br>- **number**: synchronization status of each device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure.|
 
 **Registering an RDB Store Observer**
 
@@ -152,7 +150,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | on(event: 'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void | Registers an observer for this RDB store to subscribe to distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE**: subscribes to remote data changes.<br>- **observer**: observer that listens for data changes in the RDB store.|
+| RdbStore | on(event: 'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void | Registers an observer for this RDB store to subscribe to distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE**: subscribes to remote data changes.<br>- **observer**: observer that listens for data changes in the RDB store.|
 
 **Unregistering an RDB Store Observer**
 
@@ -160,7 +158,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                                      | Description                                                        |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStoreV9 | off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void; | Unregisters the observer of the specified type from the RDB store. This API uses an asynchronous callback to return the result.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE**: subscribes to remote data changes.<br>- **observer**: observer to unregister.|
+| RdbStore | off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void; | Unregisters the observer of the specified type from the RDB store. This API uses an asynchronous callback to return the result.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE**: subscribes to remote data changes.<br>- **observer**: observer to unregister.|
 
 ### Backing Up and Restoring an RDB Store
 
@@ -170,7 +168,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                       | Description                                                        |
 | ---------- | --------------------------------------------- | ------------------------------------------------------------ |
-| RdbStoreV9 | backup(destName: string): Promise&lt;void&gt; | Backs up an RDB store. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
+| RdbStore | backup(destName: string): Promise&lt;void&gt; | Backs up an RDB store. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
 
 **Restoring an RDB Store**
 
@@ -178,17 +176,17 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class      | API                                       | Description                                                        |
 | ---------- | --------------------------------------------- | ------------------------------------------------------------ |
-| RdbStoreV9 | restore(srcName: string): Promise&lt;void&gt; | Restores an RDB store from a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the backup file used to restore the RDB store.|
+| RdbStore | restore(srcName: string): Promise&lt;void&gt; | Restores an RDB store from a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the backup file used to restore the RDB store.|
 
-**Transaction**
+### Transaction
 
-Table 15 Transaction APIs
+**Table 15** Transaction APIs
 
 | Class    | API                 | Description                             |
 | -------- | ----------------------- | --------------------------------- |
-| RdbStoreV9 | beginTransaction(): void | Starts the transaction before executing SQL statements.|
-| RdbStoreV9 | commit(): void           | Commits the executed SQL statements.            |
-| RdbStoreV9 | rollBack(): void         | Rolls back the SQL statements that have been executed.          |
+| RdbStore | beginTransaction(): void | Starts the transaction before executing SQL statements.|
+| RdbStore | commit(): void           | Commits the executed SQL statements.            |
+| RdbStore | rollBack(): void         | Rolls back the SQL statements that have been executed.          |
 
 ## How to Develop
 
@@ -203,59 +201,118 @@ Table 15 Transaction APIs
    FA model:
 
     ```js
-   import data_rdb from '@ohos.data.rdb'
-    // Obtain the context.
+   import relationalStore from '@ohos.data.relationalStore'
    import featureAbility from '@ohos.ability.featureAbility'
-   let context = featureAbility.getContext()
    
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+   var store;
    
-   const STORE_CONFIGV9 = { name: "RdbTest.db",
-                         securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStoreV9(context, STORE_CONFIGV9, 1, function (err, rdbStoreV9) {
-      rdbStoreV9.executeSql(CREATE_TABLE_TEST)
-      console.info('create table done.')
+   // Obtain the context.
+   let context = featureAbility.getContext();
+   
+   const STORE_CONFIG = { 
+       name: "RdbTest.db",
+       securityLevel: relationalStore.SecurityLevel.S1
+   };
+   
+   // Assume that the current RDB store version is 3.
+   relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
+     store = rdbStore;
+     // When an RDB store is created, the default version is 0.
+     if (store.version == 0) {
+       store.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null);
+       // Set the RDB store version. The input parameter must be an integer greater than 0.
+       store.version = 3;
+     }
+        
+     // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+     if (store.version != 3 && store.version == 1) {
+       // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+       store.executeSql("ALTER TABLE student ADD COLUMN score REAL", null);
+       store.version = 2;
+     }
+        
+     // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+     if (store.version != 3 && store.version == 2) {
+       // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+       store.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null);
+       store.version = 3;
+     }
    })
     ```
     Stage model:
      ```ts
-   import data_rdb from '@ohos.data.rdb'
-    // Obtain the context.
-   import Ability from '@ohos.application.Ability'
-   let context = null
-   class MainAbility extends Ability {
+   import relationalStore from '@ohos.data.relationalStore'
+   import UIAbility from '@ohos.app.ability.UIAbility'
+   
+   class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
-         context = this.context
+         var store;   
+         const STORE_CONFIG = {
+           name: "RdbTest.db",
+           securityLevel: relationalStore.SecurityLevel.S1
+         };
+   
+         // Assume that the current RDB store version is 3.
+         relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
+           store = rdbStore;
+           // When an RDB store is created, the default version is 0.
+           if (store.version == 0) {
+             store.executeSql("CREATE TABLE IF NOT EXISTS student (id INTEGER PRIMARY KEY AUTOINCREMENT, score REAL);", null);
+             // Set the RDB store version. The input parameter must be an integer greater than 0.
+             store.version = 3;
+           }
+    
+           // When an app is updated to the current version, the RDB store needs to be updated from version 1 to version 2.
+           if (store.version != 3 && store.version == 1) {
+             // version = 1: table structure: student (id, age) => version = 2: table structure: student (id, age, score)
+             store.executeSql("ALTER TABLE student ADD COLUMN score REAL", null);
+             store.version = 2;
+           }
+    
+           // When an app is updated to the current version, the RDB store needs to be updated from version 2 to version 3.
+           if (store.version != 3 && store.version == 2) {
+             // version = 2: table structure: student (id, age, score) => version = 3: table structure: student (id, score)
+             store.executeSql("ALTER TABLE student DROP COLUMN age INTEGER", null);
+             store.version = 3;
+           }
+         })
        }
    }
-   
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
-   const STORE_CONFIGV9 = { name: "rdbstore.db",
-                          securityLevel: data_rdb.SecurityLevel.S1}
-   data_rdb.getRdbStoreV9(context, STORE_CONFIGV9, 1, function (err, rdbStoreV9) {
-       rdbStoreV9.executeSql(CREATE_TABLE_TEST)
-       console.info('create table done.')
-   })
      ```
 
 2. Insert data.
 
-   (1) Create a **ValuesBucket** to store the data you need to insert.
+   (1) Create a **ValuesBucket** instance to store the data you need to insert.
 
    (2) Call the **insert()** method to insert data into the RDB store.
 
    The sample code is as follows:
 
     ```js
-    var u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
-    let insertPromise = rdbStoreV9.insert("test", valueBucket)
+    let u8 = new Uint8Array([1, 2, 3]);
+    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+    let insertPromise = store.insert("test", valueBucket);
+    ```
+   
+    ```js
+    // Use a transaction to insert data.
+    try {
+      store.beginTransaction();
+      let u8 = new Uint8Array([1, 2, 3]);
+      const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 };
+      let promise = store.insert("test", valueBucket);
+      promise.then(() => {
+        store.commit();
+      })
+    } catch (err) {
+      console.error(`Transaction failed, err: ${err}`);
+      store.rollBack();
+    }
     ```
 
 3. Query data.
 
-   (1) Create an **RdbPredicatesV9** object to specify query conditions.
+   (1) Create an **RdbPredicates** object to specify query conditions.
 
    (2) Call the **query()** API to query data.
 
@@ -264,17 +321,17 @@ Table 15 Transaction APIs
    The sample code is as follows:
 
     ```js
-    let predicatesV9 = new data_rdb.RdbPredicatesV9("test");
-    predicatesV9.equalTo("name", "Tom")
-    let promisequery = rdbStoreV9.query(predicatesV9)
-    promisequery.then((resultSetV9) => {
-        resultSetV9.goToFirstRow()
-        const id = resultSetV9.getLong(resultSetV9.getColumnIndex("id"))
-        const name = resultSetV9.getString(resultSetV9.getColumnIndex("name"))
-        const age = resultSetV9.getLong(resultSetV9.getColumnIndex("age"))
-        const salary = resultSetV9.getDouble(resultSetV9.getColumnIndex("salary"))
-        const blobType = resultSetV9.getBlob(resultSetV9.getColumnIndex("blobType"))
-        resultSetV9.close()
+    let predicates = new relationalStore.RdbPredicates("test");
+    predicates.equalTo("name", "Tom");
+    let promisequery = store.query(predicates);
+    promisequery.then((resultSet) => {
+      resultSet.goToFirstRow();
+      const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+      const name = resultSet.getString(resultSet.getColumnIndex("name"));
+      const age = resultSet.getLong(resultSet.getColumnIndex("age"));
+      const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"));
+      const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"));
+      resultSet.close();
     })
     ```
 
@@ -284,9 +341,9 @@ Table 15 Transaction APIs
 
     ```json
     "requestPermissions": 
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-      }
+    {
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) Obtain the required permissions.
@@ -300,19 +357,19 @@ Table 15 Transaction APIs
     ```js
     let context = featureAbility.getContext();
     context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-        console.info(`result.requestCode=${result.requestCode}`)
+      console.info(`result.requestCode=${result.requestCode}`);
     })
-    let promise = rdbStoreV9.setDistributedTables(["test"])
+    let promise = store.setDistributedTables(["test"]);
     promise.then(() => {
-        console.info("setDistributedTables success.")
+      console.info(`setDistributedTables success.`);
     }).catch((err) => {
-        console.info("setDistributedTables failed.")
+      console.error(`setDistributedTables failed, ${err}`);
     })
     ```
 
 5. Synchronize data across devices.
 
-    (1) Construct an **RdbPredicatesV9** object to specify remote devices within the network to be synchronized.
+    (1) Construct an **RdbPredicates** object to specify remote devices within the network to be synchronized.
 
     (2) Call **rdbStore.sync()** to synchronize data.
 
@@ -321,16 +378,16 @@ Table 15 Transaction APIs
     The sample code is as follows:
 
     ```js
-    let predicateV9 = new data_rdb.RdbPredicatesV9('test')
-    predicateV9.inDevices(['12345678abcde'])
-    let promise = rdbStoreV9.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicateV9)
+    let predicate = new relationalStore.RdbPredicates('test');
+    predicate.inDevices(['12345678abcde']);
+    let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicate);
     promise.then((result) => {
-        console.log('sync done.')
-        for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + 'status=' + result[i][1])
-        }
+      console.info(`sync done.`);
+      for (let i = 0; i < result.length; i++) {
+        console.info(`device=${result[i][0]}, status=${result[i][1]}`);
+      }
     }).catch((err) => {
-        console.log('sync failed')
+      console.error(`sync failed, err: ${err}`);
     })
     ```
 
@@ -344,15 +401,15 @@ Table 15 Transaction APIs
 
     ```js
     function storeObserver(devices) {
-        for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + 'data changed')
-        }
+      for (let i = 0; i < devices.length; i++) {
+        console.info(`device= ${devices[i]} data changed`);
+      }
     }
     
     try {
-        rdbStoreV9.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+      store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
     } catch (err) {
-        console.log('register observer failed')
+      console.error(`register observer failed, err: ${err}`);
     }
     ```
 
@@ -365,59 +422,75 @@ Table 15 Transaction APIs
     The sample code is as follows:
 
     ```js
-    let tableName = rdbStoreV9.obtainDistributedTableName(deviceId, "test");
-    let resultSetV9 = rdbStoreV9.querySql("SELECT * FROM " + tableName)
+   import deviceManager from '@ohos.distributedHardware.deviceManager'
+  
+   let deviceIds = [];
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
+     if (!err) {
+       let devManager = value;
+       if (devManager != null) {
+         // Obtain device IDs.
+         let devices = devManager.getTrustedDeviceListSync();
+         for (let i = 0; i < devices.length; i++) {
+           deviceIds[i] = devices[i].deviceId;
+         }
+       }
+     }
+   })
+   
+   let tableName = store.obtainDistributedTableName(deviceIds[0], "test");
+   let resultSet = store.querySql("SELECT * FROM " + tableName);
     ```
     
 8. Query data of a remote device.
-   
    
    (1) Construct a predicate object for querying distributed tables, and specify the remote distributed table name and the remote device.
    
    (2) Call the resultSet() API to obtain the result.
    
    The sample code is as follows:
-   
-    ```js
-    let rdbPredicateV9 = new data_rdb.RdbPredicatesV9('employee')
-    predicatesV9.greaterThan("id", 0) 
-    let promiseQuery = rdbStoreV9.remoteQuery('12345678abcde', 'employee', rdbPredicateV9)
-    promiseQuery.then((resultSetV9) => {
-        while (resultSetV9.goToNextRow()) {
-            let idx = resultSetV9.getLong(0);
-            let name = resultSetV9.getString(1);
-            let age = resultSetV9.getLong(2);
-            console.info(idx + " " + name + " " + age);
-        }
-        resultSetV9.close();
+
+   ```js
+    let rdbPredicate = new relationalStore.RdbPredicates('employee');
+    predicates.greaterThan("id", 0) ;
+    let promiseQuery = store.remoteQuery('12345678abcde', 'employee', rdbPredicate);
+    promiseQuery.then((resultSet) => {
+      while (resultSet.goToNextRow()) {
+        let idx = resultSet.getLong(0);
+        let name = resultSet.getString(1);
+        let age = resultSet.getLong(2);
+        console.info(`indx: ${idx}, name: ${name}, age: ${age}`);
+      }
+      resultSet.close();
     }).catch((err) => {
-        console.info("failed to remoteQuery, err: " + err)
+      console.error(`failed to remoteQuery, err: ${err}`);
     })
-    ```
-   
+   ```
+
 9. Back up and restore an RDB store.
 
    (1) Back up the current RDB store.
 
-    The sample code is as follows:
+   The sample code is as follows:
 
-    ```js
-    let promiseBackup = rdbStoreV9.backup("dbBackup.db")
+   ```js
+    let promiseBackup = store.backup("dbBackup.db");
     promiseBackup.then(() => {
-        console.info('Backup success.')
+      console.info(`Backup success.`);
     }).catch((err) => {
-        console.info('Backup failed, err: ' + err)
+      console.error(`Backup failed, err: ${err}`);
     })
-    ```
-   (2) Restore the RDB store using the backup file.
+   ```
    
-    The sample code is as follows:
+   (2) Restore the RDB store using the backup file.
 
-    ```js
-    let promiseRestore = rdbStoreV9.restore("dbBackup.db")
+   The sample code is as follows:
+
+   ```js
+    let promiseRestore = store.restore("dbBackup.db");
     promiseRestore.then(() => {
-        console.info('Restore success.')
+      console.info(`Restore success.`);
     }).catch((err) => {
-        console.info('Restore failed, err: ' + err)
+      console.error(`Restore failed, err: ${err}`);
     })
-    ```
+   ```

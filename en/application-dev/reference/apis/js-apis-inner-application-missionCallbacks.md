@@ -1,33 +1,33 @@
-# MissionCallbacks
+# MissionCallback
 
-The **MissionCallbacks** module defines the callbacks that can be registered as a mission status listener.
+The **MissionCallback** module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-| Name                   | Template      | Readable  | Writable  | Description                |
-| --------------------- | -------- | ---- | ---- | ------------------ |
-| notifyMissionsChanged | function | Yes   | No   | Callback used to notify the mission change event and return the device ID.    |
-| notifySnapshot        | function | Yes   | No   | Callback used to notify the snapshot change event and return the device ID and mission ID.|
-| notifyNetDisconnect   | function | Yes   | No   | Callback used to notify the disconnection event and return the device ID and network status.|
+| Name                                                | Template    | Readable| Writable| Description                              |
+| ---------------------------------------------------- | -------- | ---- | ---- | ---------------------------------- |
+| notifyMissionsChanged(deviceId: string)              | function | Yes  | No  | Callback used to notify the mission change event and return the device ID.        |
+| notifySnapshot(deviceId: string, mission: number)    | function | Yes  | No  | Callback used to notify the snapshot change event and return the device ID and mission ID.  |
+| notifyNetDisconnect(deviceId: string, state: number) | function | Yes  | No  | Callback used to notify the disconnection event and return the device ID and network status.|
 
 **Example**
 ```ts
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 let missionDeviceInfo = {
-    deviceId: "123456"
+    deviceId: '123456'
 };
 let missionCallback = {
     notifyMissionsChanged: function (deviceId) {
-        console.log("notifyMissionsChanged deviceId: " + JSON.stringify(deviceId));
+        console.log('notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}');
     },
-    notifySnapshot: function (mission, deviceId) {
-        console.log("notifySnapshot mission: " + JSON.stringify(mission));
-        console.log("notifySnapshot deviceId: " + JSON.stringify(deviceId));
+    notifySnapshot: function (deviceId, mission) {
+        console.log('notifySnapshot deviceId: ${JSON.stringify(deviceId)}');
+        console.log('notifySnapshot mission: ${JSON.stringify(mission)}');
     },
-    notifyNetDisconnect: function (mission, state) {
-        console.log("notifyNetDisconnect mission: " + JSON.stringify(mission));
-        console.log("notifyNetDisconnect state: " + JSON.stringify(state));
+    notifyNetDisconnect: function (deviceId, state) {
+        console.log('notifyNetDisconnect deviceId: ${JSON.stringify(deviceId)}');
+        console.log('notifyNetDisconnect state: ${JSON.stringify(state)}');
     }
 };
 distributedMissionManager.registerMissionListener(missionDeviceInfo, missionCallback);

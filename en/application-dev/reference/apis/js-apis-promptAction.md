@@ -1,4 +1,4 @@
-# Prompt
+# @ohos.promptAction (Prompt)
 
 The **PromptAction** module provides APIs for creating and showing toasts, dialog boxes, and action menus.
 
@@ -32,7 +32,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -40,7 +40,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 try {
   promptAction.showToast({            
     message: 'Message Info',
-    duration: 2000,      
+    duration: 2000 
   });
 } catch (error) {
   console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
@@ -88,7 +88,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -100,11 +100,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ],
   })
@@ -142,7 +142,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -154,11 +154,11 @@ try {
     buttons: [
       {
         text: 'button1',
-        color: '#000000',
+        color: '#000000'
       },
       {
         text: 'button2',
-        color: '#000000',
+        color: '#000000'
       }
     ]
   }, (err, data) => {
@@ -181,11 +181,11 @@ Describes the options for showing the dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                                      | Mandatory  | Description                                      |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Title of the dialog box.                                   |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Text body.                                   |
-| buttons | Array                                    | No   | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
+| Name   | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
+| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Text body.                                                  |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?]    | No  | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
 
@@ -193,9 +193,9 @@ Describes the dialog box response result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type    | Description                 |
-| ----- | ------ | ------------------- |
-| index | number | Index of the selected button in the **buttons** array.|
+| Name | Type  | Mandatory| Description                           |
+| ----- | ------ | ---- | ------------------------------- |
+| index | number | No  | Index of the selected button in the **buttons** array.|
 
 ## promptAction.showActionMenu
 
@@ -218,7 +218,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -229,11 +229,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   }, (err, data) => {
@@ -276,7 +276,7 @@ For details about the error codes, see [promptAction Error Codes](../errorcodes/
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | Internal error. |
+| 100001    | if UI execution context not found. |
 
 **Example**
 
@@ -287,11 +287,11 @@ try {
     buttons: [
       {
         text: 'item1',
-        color: '#666666',
+        color: '#666666'
       },
       {
         text: 'item2',
-        color: '#000000',
+        color: '#000000'
       },
     ]
   })
@@ -314,10 +314,10 @@ Describes the options for showing the action menu.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                                      | Mandatory  | Description                                      |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No   | Title of the dialog box.                                   |
-| buttons | Array&lt;[Button](#button)&gt;           | Yes   | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
+| Name   | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
+| buttons | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
 
 ## ActionMenuSuccessResponse
 

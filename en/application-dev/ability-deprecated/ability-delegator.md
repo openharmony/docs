@@ -63,7 +63,7 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 **Example**
 
 ```javascript
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
@@ -87,11 +87,11 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 **Modules to Import**
 
 ```javascript
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
 ```javascript
-var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 ```
 
 ### Starting an Ability and Listening for the Ability State

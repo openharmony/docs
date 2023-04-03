@@ -109,7 +109,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -165,7 +165,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -217,7 +217,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -266,7 +266,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -297,9 +297,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -308,9 +308,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -318,9 +318,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -338,7 +338,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -365,9 +365,9 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -377,9 +377,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -399,7 +399,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -424,9 +424,9 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -436,9 +436,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.test.app",
+    bundleName: "com.example.myapplication",
     moduleName: "module01",
-    abilityName: "MainAbility"
+    abilityName: "EntryAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -458,7 +458,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -508,7 +508,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -559,7 +559,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.DefaultApp
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 

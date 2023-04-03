@@ -35,9 +35,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | Background color of the selected item.<br>Default value: **0x1F0A59F7**                          |
 | popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | Background color of the pop-up text.<br>Default value: **0xFFF1F3F5**                           |
 | usingPopup              | boolean                                  | Whether to use pop-up text.<br>Default value: **false**                        |
-| selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                          |
-| popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                         |
-| font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>fontSize:10,<br> fontStyle:FontStyle.Normal,<br> fontWeight:FontWeight.Normal,<br> fontFamily:HarmonyOS Sans<br>}                      |
+| selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                          |
+| popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                         |
+| font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                      |
 | itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **24.0**      |
 | alignStyle              | IndexerAlign                             | Alignment style of the alphabetic index bar. Left alignment and right alignment are supported.<br>Default value: **IndexerAlign.Right**|
 | selected | number | Index of the selected item.<br>Default value: **0**|
@@ -134,7 +134,7 @@ struct AlphabetIndexerSample {
           .selectedFont({size: 16, weight: FontWeight.Bolder}) // Font style of the selected text.
           .popupFont({ size: 30, weight: FontWeight.Bolder}) // Font style of the pop-up text.
           .itemSize(28) // Size of an item in the alphabetic index bar.
-          .alignStyle(IndexerAlign.Left) // Position of the pop-up window relative to the center of the indexer bar's top border, which is left in this example.
+          .alignStyle(IndexerAlign.Left) // The pop-up window is displayed on the right of the alphabetic index bar.
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })
@@ -162,4 +162,4 @@ struct AlphabetIndexerSample {
 }
 ```
 
-![en-us_image_0000001212378392](figures/en-us_image_0000001212378392.gif)
+![alphabet](figures/alphabet.gif)

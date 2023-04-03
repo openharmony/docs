@@ -16,8 +16,9 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包�
 ```ts
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
-  let context = undefined;
-  class MainAbility extends ServiceExtensionAbility {
+  let context;
+  let commRemote; // 断开连接时需要释放
+  class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // 获取ServiceExtensionContext
     }
@@ -55,6 +56,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -68,17 +70,16 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
 
   try {
     this.context.startAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -86,8 +87,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -128,6 +128,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -141,11 +142,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
+  let options = {
   	windowMode: 0,
   };
 
@@ -157,13 +158,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -199,6 +198,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -212,12 +212,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var options = {
+  let options = {
     windowMode: 0
   };
 
@@ -225,8 +225,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -234,8 +233,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -277,6 +275,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -290,19 +289,18 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -310,8 +308,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -354,6 +351,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -367,13 +365,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -381,8 +379,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
     this.context.startAbilityWithAccount(want, accountId, options, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -390,8 +387,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -440,6 +436,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -453,13 +450,13 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
+  let accountId = 100;
+  let options = {
     windowMode: 0
   };
 
@@ -471,13 +468,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -518,18 +513,17 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
     this.context.startServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -537,8 +531,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -584,10 +577,10 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -598,13 +591,11 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -650,19 +641,18 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -670,8 +660,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -721,12 +710,12 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.startServiceExtensionAbilityWithAccount(want, accountId)
@@ -736,13 +725,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -780,18 +767,17 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
     this.context.stopServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -799,8 +785,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -843,10 +828,10 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
 
   try {
@@ -857,13 +842,11 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -905,19 +888,18 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code), error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
@@ -925,8 +907,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
     });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -973,12 +954,12 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
+  let accountId = 100;
 
   try {
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
@@ -988,13 +969,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
       })
       .catch((error) => {
         // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1031,8 +1010,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
   this.context.terminateSelf((error) => {
     if (error.code) {
       // 处理业务逻辑错误
-      console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+      console.error('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       return;
     }
     // 执行正常业务
@@ -1075,8 +1053,7 @@ terminateSelf(): Promise&lt;void&gt;;
     console.log('terminateSelf succeed');
   }).catch((error) => {
     // 处理业务逻辑错误
-    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
+    console.error('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
   });
   ```
 
@@ -1118,23 +1095,25 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  var want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
+  let want = {
+    bundleName: 'com.example.myapp',
+    abilityName: 'MyAbility'
   };
-  var options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+  let options = {
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------'); 
+    },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+    onFailed(code) { console.error('----------- onFailed -----------') }
+  };
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1178,25 +1157,27 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  var want = {
-    deviceId: "",
-    bundleName: "com.extreme.test",
-    abilityName: "MainAbility"
+  let want = {
+    deviceId: '',
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
   };
-  var accountId = 100;
-  var options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
-  }
+  let accountId = 100;
+  let options = {
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------');
+    },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
+    onFailed(code) { console.log('----------- onFailed -----------'); }
+  };
 
-  var connection = null;
+  let connection = null;
   try {
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1204,7 +1185,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-将一个Ability与绑定的服务类型的Ability解绑。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1214,7 +1195,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1232,23 +1213,23 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
   ```ts
   // connection为connectServiceExtensionAbility中的返回值
-  var connection = 1;
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
+      commRemote = null;
       if (error.code) {
         // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
         return;
       }
       // 执行正常业务
       console.log('disconnectServiceExtensionAbility succeed');
     });
   } catch (paramError) {
+    commRemote = null;
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1256,7 +1237,7 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
-将一个Ability与绑定的服务类型的Ability解绑。通过Promise返回结果。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1266,7 +1247,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在connectAbility中返回的number。 |
+| connection | number | 是 | 在connectServiceExtensionAbility中返回的number。 |
 
 **返回值：**
 
@@ -1288,24 +1269,25 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
   ```ts
-  // connection为connectAbility中的返回值
-  var connection = 1;
+  // connection为connectServiceExtensionAbility中的返回值
+  let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
       .then((data) => {
+        commRemote = null;
         // 执行正常业务
         console.log('disconnectServiceExtensionAbility succeed');
       })
       .catch((error) => {
+        commRemote = null;
         // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
+    commRemote = null;
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
@@ -1348,6 +1330,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
 | 16000008 | Crowdtest App Expiration. |
 | 16000009 | Can not start ability in wukong mode. |
+| 16000012 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal Error. |
 
 **示例：**
@@ -1355,14 +1338,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   后台启动：
 
   ```ts
-  var caller = undefined;
+  let caller;
 
   // 后台启动Ability，不配置parameters
-  var wantBackground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: ""
+  let wantBackground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: ''
   };
 
   try {
@@ -1373,29 +1356,27 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```
 
   前台启动：
 
   ```ts
-  var caller = undefined;
+  let caller;
 
-  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  var wantForeground = {
-      bundleName: "com.example.myservice",
-      moduleName: "entry",
-      abilityName: "MainAbility",
-      deviceId: "",
+  // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
+  let wantForeground = {
+      bundleName: 'com.example.myservice',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility',
+      deviceId: '',
       parameters: {
-        "ohos.aafwk.param.callAbilityToForeground": true
+        'ohos.aafwk.param.callAbilityToForeground': true
       }
   };
 
@@ -1407,12 +1388,10 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // 处理业务逻辑错误
-        console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
     // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
+    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
   ```

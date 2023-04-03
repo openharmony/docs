@@ -14,13 +14,11 @@ import fetch from '@system.fetch';
 ```
 
 
-## fetch.fetch
+## fetch.fetch<sup>3+</sup>
 
 fetch(Object): void
 
 通过网络获取数据。
-
-**需要权限：** ohos.permission.INTERNET
 
 **系统能力：** SystemCapability.Communication.NetStack 
 
@@ -32,7 +30,7 @@ fetch(Object): void
 | header | Object | 否 | 设置请求的header。 |
 | method | string | 否 | 请求方法默认为GET，可选值为：OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE。 |
 | responseType | string | 否 | 默认会根据服务器返回header中的Content-Type确定返回类型，支持文本和json格式。详见success返回值。 |
-| success | Function | 否 | 接口调用成功的回调函数。 |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse) |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
 | complete | Function | 否 | 接口调用结束的回调函数。 |
 
@@ -45,13 +43,13 @@ fetch(Object): void
 | Object | 不设置 | Content-Type默认为application/x-www-form-urlencoded，data按照资源地址规则进行encode拼接作为请求的body。 |
 | Object | application/x-www-form-urlencoded | data按照资源地址规则进行encode拼接作为请求的body。 |
 
-success返回值：
+## FetchResponse
 
-| 参数名 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| code | number | 表示服务器的状态code。 |
-| data | string \| Object | 返回数据类型由responseType确定，详见表 responseType与success中data关系。 |
-| headers | Object | 表示服务器response的所有header。 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| code | number | 是 | 否 | 表示服务器的状态code。 |
+| data | string \| Object | 是 | 否 | 返回数据类型由responseType确定，详见表 responseType与success中data关系。 |
+| headers | Object | 是 | 否 | 表示服务器response的所有header。 |
 
 **表2** responseType与success中data关系
 

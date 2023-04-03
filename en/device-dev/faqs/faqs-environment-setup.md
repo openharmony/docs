@@ -83,12 +83,10 @@
   1. Check that your computer has a good network connection. If the network connection is unstable, rectify the network fault and reinstall hb.
 
   2. If the network is functional, run the following commands to install hb by specifying a temporary PyPI source:
-  
+
      ```
      python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ohos-build
      ```
-  
-     
 
 ### Python 3 Installation
 
@@ -109,9 +107,8 @@
 - **Solution**
 
   1. Run the **apt-get install gcc** command to install GCC online.
+
   2. Install Python 3.
-
-
 
 
 #### "-bash: make: command not found"
@@ -133,8 +130,6 @@
   1. Run the **apt-get install make** command to install make online.
 
   2. Install Python 3.
-
-  
 
 
 #### "zlib not available"
@@ -240,3 +235,43 @@
   sudo apt-get remove  python3-apt
   sudo apt-get install python3-apt
   ```
+
+### Updating Source Code
+- **Scenario**
+
+  Update the OpenHarmony source code downloaded to the branch (for example, Master) source code.
+
+- **Solution**
+
+  1. Go to the OpenHarmony root directory.
+  
+     Check that the root directory has a **.repo** folder, which is usually hidden. If the **.repo** folder does not exist, decompress the obtained source code package again to obtain complete source code.
+  
+  2. Run the **repo init** command to initialize the source code repository information.
+
+     In the command, *branch* indicates the branch name, for example, **master** or **OpenHarmony-3.2-Beta3**.
+     ```shell
+     repo init -u https://gitee.com/openharmony/manifest -b branch --no-repo-verify
+     ```
+
+  3. Download and update the source code file.
+
+     ```shell
+     repo sync -c
+     repo forall -c 'pwd;git lfs pull'
+     ```
+     To keep the working directory clean, run the following command:
+  
+     >![icon-note.gif](public_sys-resources/icon-caution.gif) **CAUTION**<br>
+     >This command will reset the local workspace and delete files or directories that are not managed by gitee. Exercise caution when performing this operation.
+     ```shell
+     repo forall -c 'git reset --hard;git clean -fdx'
+     ```
+
+  4. Run the prebuilts script to install the compiler and binary tool.
+
+     ```shell
+     bash build/prebuilts_download.sh
+     ```
+  
+   

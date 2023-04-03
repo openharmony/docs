@@ -157,7 +157,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo\>\>
 
 以异步方法获取指定用户所有的BundleInfo，使用Promise形式异步回调，
 
@@ -201,7 +201,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 以异步方法获取当前用户所有的BundleInfo，使用callback形式返回结果。
 
@@ -238,7 +238,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 以异步方法获取系统中指定用户下所有的BundleInfo，使用callback形式返回结果。
 
@@ -426,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **返回值：**
 
@@ -462,7 +462,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -499,7 +499,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -540,7 +540,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -584,7 +584,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -626,7 +626,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -671,7 +671,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -699,7 +699,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -721,7 +721,7 @@ let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
@@ -754,7 +754,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -794,7 +794,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -806,7 +806,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型                                                   | 说明                                                   |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise对象，获取成功时返回权限详细信息。 |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef.md)> | Promise对象，获取成功时返回权限详细信息。 |
 
 **示例：**
 
@@ -823,7 +823,7 @@ bundle.getPermissionDef(permissionName).then((data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo)替代。
 
-getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
+getAllApplicationInfo(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
 获取指定用户下所有已安装的应用信息，使用promise异步回调。
 
@@ -865,7 +865,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo)替代。
 
-getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
+getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
 获取指定用户下所有已安装的应用信息，使用callback异步回调。
 
@@ -1042,7 +1042,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1081,7 +1081,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1126,7 +1126,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1165,7 +1165,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1203,7 +1203,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo).then((data) => {
         console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1236,7 +1236,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -1320,7 +1320,7 @@ bundle.isApplicationEnabled(bundleName, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
+queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise\<Array\<AbilityInfo\>\>
 
 以异步方法根据给定的意图获取Ability组件信息，使用Promise形式返回结果。
 
@@ -1355,7 +1355,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId)
 .then((data) => {
@@ -1371,7 +1371,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
 以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
@@ -1401,7 +1401,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
     if (err) {
@@ -1416,7 +1416,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -1444,7 +1444,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleFlags = 0;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
     if (err) {
@@ -1603,7 +1603,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
@@ -1635,7 +1635,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1646,7 +1646,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 ## bundle.getAbilityIcon<sup>8+</sup> <sup>deprecated<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager.getAbilityIcon](js-apis-bundleManager.md#bundlemanagergetabilityicon)替代。
+> 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
@@ -1675,7 +1675,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

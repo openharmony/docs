@@ -31,5 +31,114 @@ Rendering attributes are used to set whether a component is rendered.
 | if   | boolean | -    | Whether the element is added or removed.|
 | show | boolean | -    | Whether the element is displayed or hidden.|
 
->  **NOTE**<br>
+>  **NOTE**
+>
 >  Do not set styles in attribute fields.
+
+## Example
+
+### Example 1
+
+```html
+<!-- xxx.hml -->
+<div id="container">
+    <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
+	<list class="list">
+		<list-item for="{{ array }}" class="listItem">
+			<text class="text" onclick="toggleShow" show="{{ visible }}"
+                  if="{{ display }}">{{ $item.value }}</text>
+		</list-item>
+	</list>
+</div>
+```
+
+```css
+/* xxx.css */
+#container {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+.text {
+    font-size: 50px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+.listItem {
+    width: 100%;
+    height: 100px;
+    line-height: 60px;
+    border-bottom: 1px solid #DEDEDE;
+    font-size: 20px;
+}
+.btn{
+    width: 280px;
+    font-size: 26px;
+    margin: 10px 0;
+}
+```
+
+```js
+// xxx.js
+export default {
+	data: {
+        visible: true,
+        display: true,
+        title: "",
+        i: 4,
+        array: [
+            {"value": "Item 0"},
+            {"value": "Item 1"},
+            {"value": "Item 2"},
+            {"value": "Item 3"},
+        ],
+    },
+    toggleShow: function() {
+        this.array.push ({"value": "Item" + this.i })
+        this.i++
+    },
+    toggleDisplay: function() {
+        this.display = !this.display
+    },
+}
+```
+
+![en-us-attributes](figures/en-us-attributes.gif)
+
+### Example 2
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <div>
+        <text class="text1" dir='rtl' >hello world</text>
+    </div>
+    <div>
+        <text class="text2" dir='ltr' >hello world</text>
+    </div>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.text1{
+    width: 90%;
+    height: 100px;
+    background-color: aqua;
+}
+.text2{
+    width: 90%;
+    height: 100px;
+    background-color: blue;
+}
+```
+
+![en-us_image1](figures/en-us_image1.png)

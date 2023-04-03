@@ -8,14 +8,9 @@ The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** in
 
 ## Usage
 
-The ability delegator can be obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
+An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**.
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-
-var abilityDelegator;
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
 ## AbilityDelegator
@@ -38,20 +33,20 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info("addAbilityMonitor callback");
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -78,24 +73,22 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor).then(() => {
-    console.info("addAbilityMonitor promise");
+    console.info('addAbilityMonitor promise');
 });
 ```
-
-
 
 ### removeAbilityMonitor<sup>9+</sup>
 
@@ -115,24 +108,22 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
-    console.info("removeAbilityMonitor callback");
+abilityDelegator.removeAbilityMonitor(monitor, (error : any) => {
+    console.error('removeAbilityMonitor fail, error: ${JSON.stringify(error)}');
 });
 ```
-
-
 
 ### removeAbilityMonitor<sup>9+</sup>
 
@@ -157,24 +148,22 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 - Example
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityMonitor(monitor).then(() => {
-    console.info("removeAbilityMonitor promise");
+    console.info('removeAbilityMonitor promise');
 });
 ```
-
-
 
 ### waitAbilityMonitor<sup>9+</sup>
 
@@ -194,20 +183,24 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
-    console.info("waitAbilityMonitor callback");
+abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -230,21 +223,25 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 **Example**
 
 ```ts
-var abilityDelegator;
-var timeout = 100;
+let abilityDelegator;
+let timeout = 100;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) => {
-    console.info("waitAbilityMonitor callback");
+abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : any, data : any) => {
+    if (error && error.code !== 0) {
+        console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -274,24 +271,22 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor).then((data : any) => {
-    console.info("waitAbilityMonitor promise");
+    console.info('waitAbilityMonitor promise');
 });
 ```
-
-
 
 ### getAppContext<sup>9+</sup>
 
@@ -310,13 +305,11 @@ Obtains the application context.
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-var context = abilityDelegator.getAppContext();
+let context = abilityDelegator.getAppContext();
 ```
-
-
 
 ### getAbilityState<sup>9+</sup>
 
@@ -341,19 +334,17 @@ Obtains the lifecycle state of an ability.
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
-    var state = abilityDelegator.getAbilityState(ability);
-    console.info("getAbilityState" + state);
+    let state = abilityDelegator.getAbilityState(ability);
+    console.info('getAbilityState ${state}');
 });
 ```
-
-
 
 ### getCurrentTopAbility<sup>9+</sup>
 
@@ -372,17 +363,15 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
 });
 ```
-
-
 
 ### getCurrentTopAbility<sup>9+</sup>
 
@@ -401,17 +390,15 @@ Obtains the top ability of this application. This API uses a promise to return t
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility().then((data : any) => {
-    console.info("getCurrentTopAbility promise");
+    console.info('getCurrentTopAbility promise');
     ability = data;
 });
 ```
-
-
 
 ### startAbility<sup>9+</sup>
 
@@ -431,19 +418,17 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-var abilityDelegator;
-var want = {
-    bundleName: "bundleName",
-    abilityName: "abilityName"
+let abilityDelegator;
+let want = {
+    bundleName: 'bundleName',
+    abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.startAbility(want, (err : any, data : any) => {
-    console.info("startAbility callback");
+    console.info('startAbility callback');
 });
 ```
-
-
 
 ### startAbility<sup>9+</sup>
 
@@ -468,19 +453,17 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var abilityDelegator;
-var want = {
-    bundleName: "bundleName",
-    abilityName: "abilityName"
+let abilityDelegator;
+let want = {
+    bundleName: 'bundleName',
+    abilityName: 'abilityName'
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.startAbility(want).then((data: any) => {
-    console.info("startAbility promise");
+    console.info('startAbility promise');
 });
 ```
-
-
 
 ### doAbilityForeground<sup>9+</sup>
 
@@ -500,20 +483,18 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability, (err : any, data : any) => {
+    abilityDelegator.doAbilityForeground(ability, (err : any) => {
         console.info("doAbilityForeground callback");
     });
 });
 ```
-
-
 
 ### doAbilityForeground<sup>9+</sup>
 
@@ -538,20 +519,18 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityForeground(ability).then((data : any) => {
+    abilityDelegator.doAbilityForeground(ability).then(() => {
         console.info("doAbilityForeground promise");
     });
 });
 ```
-
-
 
 ### doAbilityBackground<sup>9+</sup>
 
@@ -571,20 +550,18 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability, (err : any, data : any) => {
+    abilityDelegator.doAbilityBackground(ability, (err : any) => {
         console.info("doAbilityBackground callback");
     });
 });
 ```
-
-
 
 ### doAbilityBackground<sup>9+</sup>
 
@@ -609,20 +586,18 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 **Example**
 
 ```ts
-var abilityDelegator;
-var ability;
+let abilityDelegator;
+let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
-    console.info("getCurrentTopAbility callback");
+    console.info('getCurrentTopAbility callback');
     ability = data;
-    abilityDelegator.doAbilityBackground(ability).then((data : any) => {
+    abilityDelegator.doAbilityBackground(ability).then(() => {
         console.info("doAbilityBackground promise");
     });
 });
 ```
-
-
 
 ### printSync<sup>9+</sup>
 
@@ -641,14 +616,12 @@ Prints log information to the unit test console.
 **Example**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.printSync(msg);
 ```
-
-
 
 ### print
 
@@ -668,16 +641,14 @@ Prints log information to the unit test console. This API uses an asynchronous c
 **Example**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg, (err : any) => {
-    console.info("print callback");
+    console.info('print callback');
 });
 ```
-
-
 
 ### print
 
@@ -702,16 +673,14 @@ Prints log information to the unit test console. This API uses a promise to retu
 **Example**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.print(msg).then(() => {
-    console.info("print promise");
+    console.info('print promise');
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -731,16 +700,14 @@ Executes a shell command. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
+let abilityDelegator;
+let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, (err : any, data : any) => {
-    console.info("executeShellCommand callback");
+    console.info('executeShellCommand callback');
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -761,17 +728,15 @@ Executes a shell command with the timeout period specified. This API uses an asy
 **Example**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+let abilityDelegator;
+let cmd = 'cmd';
+let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout, (err : any, data : any) => {
-    console.info("executeShellCommand callback");
+    console.info('executeShellCommand callback');
 });
 ```
-
-
 
 ### executeShellCommand
 
@@ -797,17 +762,15 @@ Executes a shell command with the timeout period specified. This API uses a prom
 **Example**
 
 ```ts
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+let abilityDelegator;
+let cmd = 'cmd';
+let timeout = 100;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
-    console.info("executeShellCommand promise");
+    console.info('executeShellCommand promise');
 });
 ```
-
-
 
 ### finishTest<sup>9+</sup>
 
@@ -828,16 +791,14 @@ Finishes the test and prints log information to the unit test console. This API 
 **Example**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0, (err : any) => {
-    console.info("finishTest callback");
+    console.info('finishTest callback');
 });
 ```
-
-
 
 ### finishTest<sup>9+</sup>
 
@@ -863,12 +824,12 @@ Finishes the test and prints log information to the unit test console. This API 
 **Example**
 
 ```ts
-var abilityDelegator;
-var msg = "msg";
+let abilityDelegator;
+let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.finishTest(msg, 0).then(() => {
-    console.info("finishTest promise");
+    console.info('finishTest promise');
 });
 ```
 
@@ -890,20 +851,18 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
-    console.info("addAbilityStageMonitor callback");
+    console.info('addAbilityStageMonitor callback');
 });
 ```
-
-
 
 ### addAbilityStageMonitor<sup>9+</sup>
 
@@ -928,16 +887,16 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
-    console.info("addAbilityStageMonitor promise");
+    console.info('addAbilityStageMonitor promise');
 });
 ```
 
@@ -959,20 +918,18 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
-    console.info("removeAbilityStageMonitor callback");
+    console.info('removeAbilityStageMonitor callback');
 });
 ```
-
-
 
 ### removeAbilityStageMonitor<sup>9+</sup>
 
@@ -997,16 +954,16 @@ Removes an **AbilityStageMonitor** object from the application memory. This API 
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
-    console.info("removeAbilityStageMonitor promise");
+    console.info('removeAbilityStageMonitor promise');
 });
 ```
 
@@ -1028,23 +985,23 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
-    console.info("waitAbilityStageMonitor callback");
+    console.info('waitAbilityStageMonitor callback');
 });
 ```
-  
+
 ### waitAbilityStageMonitor<sup>9+</sup>
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;
@@ -1069,20 +1026,20 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 **Example**
 
 ```ts
-var abilityDelegator;
+let abilityDelegator;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
-    console.info("waitAbilityStageMonitor promise");
+    console.info('waitAbilityStageMonitor promise');
 });
 ```
 
@@ -1105,20 +1062,20 @@ Waits a period of time for an **AbilityStage** instance that matches the conditi
 **Example**
 
 ```ts
-var abilityDelegator;
-var timeout = 100;
+let abilityDelegator;
+let timeout = 100;
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback');
 }
 
-var monitor = {
-    moduleName: "moduleName",
-    srcEntrance: "srcEntrance",
-}
+let monitor = {
+    moduleName: 'moduleName',
+    srcEntrance: 'srcEntrance',
+};
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : any) => {
-    console.info("waitAbilityStageMonitor callback");
+    console.info('waitAbilityStageMonitor callback');
 });
 ```

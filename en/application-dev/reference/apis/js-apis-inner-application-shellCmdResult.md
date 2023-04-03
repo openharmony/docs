@@ -19,13 +19,16 @@ The result is obtained by calling [executeShellCommand](js-apis-inner-applicatio
 
 **Example**
 ```ts
-import AbilityDelegatorRegistry from "@ohos.application.abilityDelegatorRegistry";
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 let abilityDelegator;
-let cmd = "cmd";
+let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, (err: any, data: any) => {
-    console.info("executeShellCommand callback, failed: ", err);
-    console.info("executeShellCommand callback, success: ", data);
+abilityDelegator.executeShellCommand(cmd, (error: any, data: any) => {
+    if (error && error.code !== 0) {
+        console.error('executeShellCommand fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('executeShellCommand success, data: ${JSON.stringify(data)}');
+    }
 });
 ```

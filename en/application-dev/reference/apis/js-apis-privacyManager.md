@@ -1,10 +1,11 @@
-# Privacy Management
+# @ohos.privacyManager (Privacy Management)
 
 The **privacyManager** module provides APIs for privacy management, such as management of permission usage records.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are system APIs.
+>
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -42,11 +43,14 @@ The permission usage record includes the application identity (token ID) of the 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -89,11 +93,14 @@ The permission usage record includes the application identity (token ID) of the 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -114,9 +121,9 @@ try {
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
+getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
 
 Obtains historical permission usage records. This API uses a promise to return the result.
 
@@ -139,11 +146,14 @@ Obtains historical permission usage records. This API uses a promise to return t
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -161,19 +171,19 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request).then((data) => {
-        console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+    privacyManager.getPermissionUsedRecord(request).then((data) => {
+        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
-        console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
+getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
 
 Obtains historical permission usage records. This API uses an asynchronous callback to return the result.
 
@@ -191,11 +201,14 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -213,11 +226,11 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err, data) => {
         if (err) {
-            console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
-            console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
         }
     });
 } catch(err) {
@@ -251,12 +264,15 @@ Starts to use a permission and flushes the permission usage record. This API is 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -296,12 +312,15 @@ Starts to use a permission and flushes the permission usage record. This API is 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -324,7 +343,7 @@ try {
 
 ## privacyManager.stopUsingPermission
 
-stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
 Stops using a permission. This API is called by a system application and uses a promise to return the result. **startUsingPermission** and **stopUsingPermission** are used in pairs. This API uses a promise to return the result.
 
@@ -348,12 +367,15 @@ Stops using a permission. This API is called by a system application and uses a 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -393,12 +415,15 @@ Stops using a permission. This API is called by a system application and uses a 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
+| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100004 | The interface is not used with |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
@@ -421,7 +446,7 @@ try {
 
 ## privacyManager.on
 
-on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
+on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 Subscribes to the permission usage status changes of the specified permissions.
 
@@ -434,26 +459,29 @@ Subscribes to the permission usage status changes of the specified permissions.
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionNameList | Array&lt;Permissions&gt;   | No  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
-| 12100005 | The number of listeners exceeds the limit. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100004 | The interface is called repeatedly with the same input. |
+| 12100005 | The registration time has exceeded the limitation. |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<Permissions> = [];
+let permissionList = [];
 try {
-    atManager.on('activeStateChange', permissionNameList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
     });
 } catch(err) {
@@ -463,7 +491,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 Unsubscribes from the permission usage status changes of the specified permissions.
 
@@ -476,25 +504,28 @@ Unsubscribes from the permission usage status changes of the specified permissio
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionNameList | Array&lt;Permissions&gt;   | No  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | Parameter invalid. |
-| 12100004 | The interface is not used together. |
+| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
+| 12100004 | The API is not used together with "on()". |
+| 12100007 | Service is abnormal. |
+| 12100008 | Out of memory. |
 
 **Example**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<Permissions> = [];
+let permissionList = [];
 try {
-    privacyManager.off('activeStateChange', permissionNameList);
+    privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
@@ -589,7 +620,7 @@ Enumerates the permission usage statuses.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name                     | Default Value| Description             |
+| Name                     | Value    | Description             |
 | ------------------------- | ------ | ---------------- |
 | PERM_INACTIVE             | 0      | The permission is not used.  |
 | PERM_ACTIVE_IN_FOREGROUND | 1      | The permission is being used by an application running in the foreground.|

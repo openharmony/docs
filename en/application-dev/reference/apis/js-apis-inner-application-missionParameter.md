@@ -1,6 +1,6 @@
 # MissionParameter
 
-The **MissionParameter** module defines the parameters required for mission synchronization.
+The **MissionParameter** module defines the parameters required for mission synchronization. It can be used an input parameter in [startSyncRemoteMissions](js-apis-distributedMissionManager.md#distributedmissionmanagerstartsyncremotemissions).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -15,17 +15,21 @@ The **MissionParameter** module defines the parameters required for mission sync
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 let missionParameter = {
-    deviceId: "123456",
+    deviceId: '123456',
     fixConflict: true,
     tag: 123
 };
 try {
     distributedMissionManager.startSyncRemoteMissions(missionParameter,
-        (err, data) => {
-            console.log("startSyncRemoteMissions, data: " + JSON.stringify(data));
+        (error, data) => {
+            if (error && error.code !== 0) {
+                console.error('startSyncRemoteMissions fail, error: ${JSON.stringify(error)}');
+            } else {
+                console.log('startSyncRemoteMissions success, data: ${JSON.stringify(data)}');
+            }
         }
     );
 } catch (err) {
-    console.error('startSyncRemoteMissions fail: ' + JSON.stringify(err));
+    console.error('startSyncRemoteMissions fail: ${JSON.stringify(err)}');
 }
 ```

@@ -27,7 +27,7 @@ loadAnimation(
 
 path: string, container: object, render: string, loop: boolean, autoplay: boolean, name: string ): AnimationItem
 
-加载动画，须提前声明Animator('__lottie_ets')对象，并在Canvas完成布局后调用。可配合Canvas组件生命周期接口使用，比如onAppear()与onPageShow()。
+加载动画，须提前声明Animator('__lottie_ets')对象，并在Canvas完成布局后调用。可配合Canvas组件生命周期接口onReady()使用。
 
 **参数：**
 

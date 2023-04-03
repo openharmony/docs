@@ -48,7 +48,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -100,7 +100,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -157,7 +157,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -582,7 +582,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -635,7 +635,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 let enterpriseInfo = {
     name: "enterprise name",
@@ -676,7 +676,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
     if (error != null) {
@@ -723,7 +723,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 ```js
 let wantTemp = {
     bundleName: "com.example.myapplication",
-    abilityName: "com.example.myapplication.MainAbility",
+    abilityName: "EntryAbility",
 };
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
     console.log(result.name);
@@ -955,4 +955,6 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
+| MANAGED_EVENT_APP_START | 2    | 应用启动事件。 |
+| MANAGED_EVENT_APP_STOP | 3  | 应用停止事件。 |
 

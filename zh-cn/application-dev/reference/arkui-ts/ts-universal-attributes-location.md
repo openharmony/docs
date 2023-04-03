@@ -12,12 +12,12 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容在元素绘制区域内的对齐方式。<br/>默认值：Alignment.Center |
-| direction | [Direction](ts-appendix-enums.md#direction) | 设置元素水平方向的布局。<br/>默认值：Direction.Auto |
-| position | [Position](ts-types.md#position8) | 绝对定位，设置元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
-| markAnchor | [Position](ts-types.md#position8) | 设置元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
-| offset | [Position](ts-types.md#position8) | 相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
-| alignRules<sup>9+</sup> | {<br/>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br/>} | 指定相对容器的对齐规则。<br/>-&nbsp;left：设置左对齐参数。<br/>-&nbsp;right：设置右对齐参数。<br/>-&nbsp;middle：设置中间对齐的参数。<br/>-&nbsp;top：设置顶部对齐的参数。<br/>-&nbsp;bottom：设置底部对齐的参数。<br/>-&nbsp;center：设置中心对齐的参数。<br/>**说明：**<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br>-&nbsp;align：设置相对于锚点组件的对齐方式。 |
+| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容在元素绘制区域内的对齐方式。<br/>默认值：Alignment.Center<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| direction | [Direction](ts-appendix-enums.md#direction) | 设置元素水平方向的布局。<br/>默认值：Direction.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| position | [Position](ts-types.md#position8) | 绝对定位，设置元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| markAnchor | [Position](ts-types.md#position8) | 设置元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| offset | [Position](ts-types.md#position8) | 相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| alignRules<sup>9+</sup> | {<br/>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br/>} | 指定相对容器的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。<br/>-&nbsp;left：设置左对齐参数。<br/>-&nbsp;right：设置右对齐参数。<br/>-&nbsp;middle：设置中间对齐的参数。<br/>-&nbsp;top：设置顶部对齐的参数。<br/>-&nbsp;bottom：设置底部对齐的参数。<br/>-&nbsp;center：设置中心对齐的参数。<br/>该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br>-&nbsp;align：设置相对于锚点组件的对齐方式。 |
 
 
 ## 示例
@@ -32,19 +32,15 @@ struct PositionExample1 {
       Column({ space: 10 }) {
         // 元素内容<元素宽高，设置内容在与元素内的对齐方式
         Text('align').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Text('top start')
-          .align(Alignment.TopStart)
-          .height(50)
-          .width('90%')
-          .fontSize(16)
-          .backgroundColor(0xFFE4C4)
-
-        Text('Bottom end')
-          .align(Alignment.BottomEnd)
-          .height(50)
-          .width('90%')
-          .fontSize(16)
-          .backgroundColor(0xFFE4C4)
+        Stack() {
+          Text('First show in bottom end').height('65%').backgroundColor(0xD2B48C)
+          Text('Second show in bottom end').backgroundColor(0xF5DEB3).opacity(0.9)
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .align(Alignment.BottomEnd)
+        Stack() {
+          Text('top start')
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart)
 
         // 父容器设置direction为Direction.Ltr，子元素从左到右排列
         Text('direction').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -86,6 +82,7 @@ struct PositionExample2 {
       Text('position').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
         Text('1').size({ width: '30%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('2 position(30, 10)')
           .size({ width: '60%', height: '30' })
           .backgroundColor(0xbbb2cb)
@@ -94,6 +91,7 @@ struct PositionExample2 {
           .align(Alignment.Start)
           .position({ x: 30, y: 10 })
         Text('3').size({ width: '45%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('4 position(50%, 70%)')
           .size({ width: '50%', height: '50' })
           .backgroundColor(0xbbb2cb)
@@ -110,14 +108,20 @@ struct PositionExample2 {
           .size({ width: '100', height: '100' })
           .backgroundColor(0xdeb887)
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: 25, y: 25 })
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: -100, y: -25 })
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: 25, y: -25 })
@@ -127,6 +131,7 @@ struct PositionExample2 {
       Text('offset').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
         Text('1').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('2  offset(15, 30)')
           .size({ width: 120, height: '50' })
           .backgroundColor(0xbbb2cb)
@@ -135,6 +140,7 @@ struct PositionExample2 {
           .align(Alignment.Start)
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('4 offset(-10%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)

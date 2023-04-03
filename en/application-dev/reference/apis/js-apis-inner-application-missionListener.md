@@ -1,6 +1,6 @@
 # MissionListener
 
-The **MissionListener** module defines the listeners used to observe the mission status.
+The **MissionListener** module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager.md#missionmanageron).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -16,27 +16,36 @@ The **MissionListener** module defines the listeners used to observe the mission
 
 **Example**
 ```ts
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.app.ability.missionManager';
 
 let listener = {
     onMissionCreated: function (mission) {
-        console.log("onMissionCreated mission: " + JSON.stringify(mission));
+        console.log('onMissionCreated mission: ${JSON.stringify(mission)}');
     },
     onMissionDestroyed: function (mission) {
-        console.log("onMissionDestroyed mission: " + JSON.stringify(mission));
+        console.log('onMissionDestroyed mission: ${JSON.stringify(mission)}');
     },
     onMissionSnapshotChanged: function (mission) {
-        console.log("onMissionSnapshotChanged mission: " + JSON.stringify(mission));
+        console.log('onMissionSnapshotChanged mission: ${JSON.stringify(mission)}');
     },
     onMissionMovedToFront: function (mission) {
-        console.log("onMissionMovedToFront mission: " + JSON.stringify(mission));
+        console.log('onMissionMovedToFront mission: ${JSON.stringify(mission)}');
     },
-    onMissionIconUpdated: function (mission, icon) {
-        console.log("onMissionIconUpdated mission: " + JSON.stringify(mission));
+    onMissionLabelUpdated: function (mission) {
+        console.log('onMissionLabelUpdated mission: ' + JSON.stringify(mission));
     },
+     onMissionIconUpdated: function (mission, icon) {
+        console.log('onMissionIconUpdated mission: ' + JSON.stringify(mission));
+        console.log('onMissionIconUpdated icon: ' + JSON.stringify(icon));
+     },
     onMissionClosed: function (mission) {
-        console.log("onMissionClosed mission: " + JSON.stringify(mission));
+        console.log('onMissionClosed mission: ${JSON.stringify(mission)}');
     }
 };
-let listenerid = missionManager.registerMissionListener(listener);
+
+try {
+    let listenerId = missionManager.on('mission', listener);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
+}
 ```

@@ -16,8 +16,8 @@ The following table lists the common APIs for input device management. For detai
 
 | Instance| API | Description|
 | ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputDevice | function getDeviceList(callback: AsyncCallback\<Array\<number>>): void; | Obtains the list of input devices.|
-| inputDevice | function getKeyboardType(deviceId: number, callback: AsyncCallback\<KeyboardType>): void; | Obtains the keyboard type of the input device.|
+| inputDevice | function getDeviceList(): Promise\<Array\<number>>; | Obtains the list of input devices.|
+| inputDevice | function getKeyboardType(deviceId: number): Promise\<KeyboardType>; | Obtains the keyboard type of the input device.|
 | inputDevice | function on(type: "change", listener: Callback\<DeviceListener>): void; | Enables listening for device hot swap events.|
 | inputDevice | function off(type: "change", listener?: Callback\<DeviceListener>): void; | Disables listening for device hot swap events.|
 
@@ -40,8 +40,8 @@ try {
   // 1. Obtain the list of input devices and check whether a physical keyboard is connected.
   inputDevice.getDeviceList().then(data => {
     for (let i = 0; i < data.length; ++i) {
-      inputDevice.getKeyboardType(data[i]).then(res => {
-        if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
+      inputDevice.getKeyboardType(data[i]).then(type => {
+        if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD) {
           // The physical keyboard is connected.
           isPhysicalKeyboardExist = true;
         }
@@ -51,9 +51,9 @@ try {
   // 2. Listen for device hot swap events.
   inputDevice.on("change", (data) => {
     console.log(`Device event info: ${JSON.stringify(data)}`);
-    inputDevice.getKeyboardType(data.deviceId, (error, type) => {
+    inputDevice.getKeyboardType(data.deviceId).then((type) => {
       console.log("The keyboard type is: " + type);
-      if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+      if (type === inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
         // The physical keyboard is inserted.
         isPhysicalKeyboardExist = true;
       } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {

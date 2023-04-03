@@ -26,6 +26,8 @@ In the following example, you first create an offscreen canvas, and then create 
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ select{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     el: null,
@@ -68,7 +70,7 @@ export default {
       _this.offCanvas.drawImage(_this.img, 100, 100, 400, 300);
     };
     this.img.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
     var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
   },
@@ -106,6 +108,8 @@ Use **isPointInPath** to determine whether a coordinate is within the path area 
 ```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

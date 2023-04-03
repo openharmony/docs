@@ -1,4 +1,4 @@
-# @ohos.application.AccessibilityExtensionAbility
+# @ohos.application.AccessibilityExtensionAbility (AccessibilityExtensionAbility)
 
 The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the ExtensionAbility framework.
 
@@ -9,7 +9,7 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 ## Modules to Import
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 ```
 
 ## Attributes
@@ -31,7 +31,7 @@ Defines an accessibility event.
 | Name       | Type                                    | Readable  | Writable  | Description        |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
 | eventType | [accessibility.EventType](js-apis-accessibility.md#EventType) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes   | No   | Event type.   |
-| target    | AccessibilityElement                     | Yes   | No   | Target component where the event occurs.|
+| target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)                     | Yes   | No   | Target component where the event occurs.|
 | timeStamp | number                                   | Yes   | No   | Timestamp of the event.    |
 
 ## GestureType
@@ -42,22 +42,22 @@ Enumerates gesture types.
 
 | Name           | Description          |
 | ------------- | ------------ |
-| left          | Left gesture.    |
-| leftThenRight | Left-then-right gesture.|
-| leftThenUp    | Left-then-up gesture.|
-| leftThenDown  | Left-then-down gesture.|
-| right         | Right gesture.    |
-| rightThenLeft | Right-then-left gesture.|
-| rightThenUp   | Right-then-up gesture.|
-| rightThenDown | Right-then-down gesture.|
-| up            | Up gesture.    |
-| upThenLeft    | Up-then-left gesture.|
-| upThenRight   | Up-then-right gesture.|
-| upThenDown    | Up-then-down gesture.|
-| down          | Down gesture.    |
-| downThenLeft  | Down-then-left gesture.|
-| downThenRight | Down-then-right gesture.|
-| downThenUp    | Down-then-up gesture.|
+| left          | Left gesture. String type. |
+| leftThenRight | Left-then-right gesture. String type. |
+| leftThenUp    | Left-then-up gesture. String type. |
+| leftThenDown  | Left-then-down gesture. String type. |
+| right         | Right gesture. String type. |
+| rightThenLeft | Right-then-left gesture. String type. |
+| rightThenUp   | Right-then-up gesture. String type. |
+| rightThenDown | Right-then-down gesture. String type. |
+| up            | Up gesture. String type. |
+| upThenLeft    | Up-then-left gesture. String type. |
+| upThenRight   | Up-then-right gesture. String type. |
+| upThenDown    | Up-then-down gesture. String type. |
+| down          | Down gesture. String type. |
+| downThenLeft  | Down-then-left gesture. String type. |
+| downThenRight | Down-then-right gesture. String type. |
+| downThenUp    | Down-then-up gesture. String type. |
 
 ## PageUpdateType
 
@@ -67,8 +67,8 @@ Enumerates the page update types.
 
 | Name               | Description       |
 | ----------------- | --------- |
-| pageContentUpdate | Update of the page content.|
-| pageStateUpdate   | Update of the page status.|
+| pageContentUpdate | Update of the page content. String type. |
+| pageStateUpdate   | Update of the page status. String type. |
 
 ## TouchGuideType
 
@@ -78,8 +78,8 @@ Enumerates the touch guide event types.
 
 | Name        | Description          |
 | ---------- | ------------ |
-| touchBegin | Start of touch in touch guide mode. |
-| touchEnd   | End of touch in touch guide mode. |
+| touchBegin | Start of touch in touch guide mode. String type. |
+| touchEnd   | End of touch in touch guide mode. String type. |
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -137,7 +137,7 @@ Called when an event that matches the specified bundle and event type occurs. In
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onAccessibilityEvent(event) {
         console.log('AxExtensionAbility onAccessibilityEvent');
-        if (event.eventType == 'click') {
+        if (event.eventType === 'click') {
             console.log('AxExtensionAbility onAccessibilityEvent: click');
         }
     }
@@ -164,7 +164,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
     onKeyEvent(keyEvent) {
         console.log('AxExtensionAbility onKeyEvent');
-        if (keyEvent.keyCode == 22) {
+        if (keyEvent.keyCode === 22) {
             console.log('AxExtensionAbility onKeyEvent: intercept 22');
             return true;
         }

@@ -1,5 +1,9 @@
 # AVSession Development
 
+> **NOTE**
+>
+> All APIs of the **AVSession** module are system APIs and can be called only by system applications.
+
 ## Development for the Session Access End
 
 ### Basic Concepts
@@ -28,7 +32,7 @@ Table 1 Common APIs for session access end development
 
 ```js
 import avSession from '@ohos.multimedia.avsession';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import featureAbility from '@ohos.ability.featureAbility';
 ```
 
@@ -50,7 +54,7 @@ avSession.createAVSession(context, "AudioAppSample", 'audio').then((session) => 
 
 3. Set the session information, including:
 - Session metadata. In addition to the current media asset ID (mandatory), you can set the title, album, author, duration, and previous/next media asset ID. For details about the session metadata, see **AVMetadata** in the API document.
-- Launcher ability, which is implemented by calling an API of **WantAgent**. Generally, **WantAgent** is used to encapsulate want information. For more information, see [wantAgent](../reference/apis/js-apis-wantAgent.md).
+- Launcher ability, which is implemented by calling an API of [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md). Generally, **WantAgent** is used to encapsulate want information.
 - Playback state information.
 ```js
 // Set the session metadata.
@@ -83,7 +87,7 @@ let wantAgentInfo = {
   wants: [
     {
       bundleName: "com.neu.setResultOnAbilityResultTest1",
-      abilityName: "com.example.test.MainAbility",
+      abilityName: "com.example.test.EntryAbility",
     }
   ],
   operationType: wantAgent.OperationType.START_ABILITIES,
@@ -187,7 +191,7 @@ currentSession.on('playNext', () => {
    });
    console.log ("Call AudioPlayer.play.");
    // Set the playback state information.
-   let time = (new Data()).getTime();
+   let time = (new Date()).getTime();
    currentSession.setAVPlaybackState({state: avSession.PlaybackState.PLAYBACK_STATE_PLAY, position: {elapsedTime: 0, updateTime: time}, bufferedTime:2000}).then(() => {
        console.info('setAVPlaybackState successfully');
    }).catch((err) => {
@@ -282,7 +286,7 @@ currentSession.off('outputDeviceChange');
 
 // Deactivate the session and destroy the object.
 currentSession.deactivate().then(() => {
-   currentSession.destory();
+   currentSession.destroy();
 });
 ```
 
@@ -365,7 +369,7 @@ Table 2 Common APIs for session control end development
 ```js
 import avSession from '@ohos.multimedia.avsession';
 import {Action, KeyEvent} from '@ohos.multimodalInput.KeyEvent';
-import wantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.app.ability.wantAgent';
 import audio from '@ohos.multimedia.audio';
 ```
 

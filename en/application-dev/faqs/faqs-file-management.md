@@ -59,7 +59,7 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In addition, this permission needs user authorization. For details, see [OpenHarmony Permission List](../security/permission-list.md).
 
 1. Configure the required permission in the **module.json5** file.
-   
+  
    ```
    "requestPermissions": [
      {
@@ -69,13 +69,16 @@ The **ohos.permission.READ_MEDIA** is required for using **getAlbums()**. In add
    ```
 
 2. Add the code for user authorization before the **MainAbility.ts -> onWindowStageCreate** page is loaded.
-   
+  
    ```
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+   
    private requestPermissions() {
    let permissionList: Array<string> = [
      "ohos.permission.READ_MEDIA"
    ];
-   this.context.requestPermissionsFromUser(permissionList)
+   let atManager = abilityAccessCtrl.createAtManager();
+   atManager.requestPermissionsFromUser(this.context, permissionList)
      .then(data => {
        console.info(`request permission data result = ${data.authResults}`)
      })

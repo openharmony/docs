@@ -45,9 +45,9 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -95,9 +95,9 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -120,9 +120,9 @@ try {
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
+getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUsedResponse&gt;
 
 获取历史权限使用记录。使用Promise异步回调。
 
@@ -149,8 +149,8 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. the value of flag in request is invalid. |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -170,19 +170,19 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request).then((data) => {
-        console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+    privacyManager.getPermissionUsedRecord(request).then((data) => {
+        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
-        console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
-## privacyManager.getPermissionUsedRecords
+## privacyManager.getPermissionUsedRecord
 
-getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
+getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&lt;PermissionUsedResponse&gt;): void
 
 获取历史权限使用记录。使用callback异步回调。
 
@@ -204,8 +204,8 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. the value of flag in request is invalid. |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -225,11 +225,11 @@ let request = {
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
-    privacyManager.getPermissionUsedRecords(request, (err, data) => {
+    privacyManager.getPermissionUsedRecord(request, (err, data) => {
         if (err) {
-            console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
-            console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
         }
     });
 } catch(err) {
@@ -266,9 +266,9 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -314,9 +314,9 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -369,9 +369,9 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -417,9 +417,9 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
-| 12100002 | The specified tokenID does not exist or it does not refer to an application process. |
-| 12100003 | The specified permission does not exist or it is not an user_grant permission. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100002 | The specified tokenID does not exist or refer to an application process. |
+| 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100004 | The interface is not used with |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -445,7 +445,7 @@ try {
 
 ## privacyManager.on
 
-on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
+on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
 订阅指定权限列表的权限使用状态变更事件。
 
@@ -458,7 +458,7 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, call
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
 
 **错误码：**
@@ -467,7 +467,7 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, call
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -478,9 +478,9 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, call
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList = [];
+let permissionList = [];
 try {
-    privacyManager.on('activeStateChange', permissionNameList, (data) => {
+    privacyManager.on('activeStateChange', permissionList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
     });
 } catch(err) {
@@ -490,7 +490,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
 取消订阅指定权限列表的权限使用状态变更事件。
 
@@ -503,7 +503,7 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, cal
 | 参数名             | 类型                   | 必填 | 说明                                                          |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
-| permissionNameList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
@@ -512,8 +512,8 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, cal
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The permissionName in list is all invalid or the list size is larger than 1024. |
-| 12100004 | The interface is not used with |
+| 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100004 | The interface is not used together with "on"|
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
@@ -522,9 +522,9 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, cal
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList = [];
+let permissionList = [];
 try {
-    privacyManager.off('activeStateChange', permissionNameList);
+    privacyManager.off('activeStateChange', permissionList);
 }catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }

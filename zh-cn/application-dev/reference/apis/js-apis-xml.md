@@ -31,9 +31,16 @@ XmlSerializer的构造函数。
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
-let bufView = new DataView(arrayBuffer);
-let thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(2048);
+let thatSer = new xml.XmlSerializer(arrayBuffer,"utf-8");
+thatSer.setDeclaration();
+let result = '<?xml version="1.0" encoding="utf-8"?>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -55,12 +62,19 @@ setAttributes(name: string, value: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
-let bufView = new DataView(arrayBuffer);
-let thatSer = new xml.XmlSerializer(bufView);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
-thatSer.setAttributes("importance", "high"); 
-thatSer.endElement(); 
+thatSer.setAttributes("importance1", "high1");
+thatSer.endElement();
+let result = '<note importance1="high1"/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //<note importance1="high1"/>
 ```
 
 
@@ -81,10 +95,17 @@ addEmptyElement(name: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
-let bufView = new DataView(arrayBuffer);
-let thatSer = new xml.XmlSerializer(bufView);
-thatSer.addEmptyElement("b"); // => <b/>
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
+thatSer.addEmptyElement("d");
+let result = '<d/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //<d/>
 ```
 
 
@@ -99,10 +120,20 @@ setDeclaration(): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
-let bufView = new DataView(arrayBuffer);
-let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
+thatSer.setDeclaration();
+thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.startElement("note");
+thatSer.endElement();
+let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //<?xml version="1.0" encoding="utf-8"?>
 ```
 
 
@@ -123,12 +154,21 @@ startElement(name: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.startElement("notel");
-thatSer.endElement();// => '<notel/>';
+thatSer.setDeclaration();
+thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.startElement("note");
+thatSer.endElement();
+let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
-
 
 ### endElement
 
@@ -141,14 +181,20 @@ endElement(): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
-let bufView = new DataView(arrayBuffer);
-let thatSer = new xml.XmlSerializer(bufView);
-thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
-thatSer.startElement("table");
-thatSer.setAttributes("importance", "high");
-thatSer.setText("Happy");
-thatSer.endElement(); // => <h:table importance="high" xmlns:h="https://www.w3.org/TR/html4/">Happy</h:table>
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
+thatSer.setDeclaration();
+thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
+thatSer.startElement("note");
+thatSer.endElement();
+let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 
@@ -170,12 +216,20 @@ setNamespace(prefix: string, namespace: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
-thatSer.setNamespace("h", "https://www.w3.org/TR/html4/");
+thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
-thatSer.endElement();// = >'<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="https://www.w3.org/TR/html4/"/>';
+thatSer.endElement();
+let result = '<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(JSON.stringify(view1)) //<?xml version="1.0" encoding="utf-8"?>\r\n<h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
 ### setComment
@@ -195,11 +249,17 @@ setComment(text: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.startElement("note");
-thatSer.setComment("Hi!");
-thatSer.endElement(); // => '<note>\r\n  <!--Hi!-->\r\n</note>';
+thatSer.setComment("Hello, World!");
+let result = '<!--Hello, World!-->';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //<!--Hello, World!-->'
 ```
 
 
@@ -220,9 +280,17 @@ setCDATA(text: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1028);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
+thatSer.setCDATA('root SYSTEM')
+let result = '<![CDATA[root SYSTEM]]>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //'<![CDATA[root SYSTEM]]>''
 ```
 
 
@@ -243,12 +311,20 @@ setText(text: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy1");
-thatSer.endElement(); // => '<note importance="high">Happy1</note>';
+thatSer.endElement();
+let result = '<note importance="high">Happy1</note>';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) // '<note importance="high">Happy1</note>'
 ```
 
 
@@ -269,9 +345,17 @@ setDocType(text: string): void
 **示例：**
 
 ```js
-let arrayBuffer = new ArrayBuffer(1024);
+const myMAX = 2048;
+let arrayBuffer = new ArrayBuffer(myMAX);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
-thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
+thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
+let result = '<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">';
+let view = new Uint8Array(arrayBuffer);
+let view1 = "";
+for (let i = 0; i < result.length; ++i) {
+    view1 = view1 + String.fromCodePoint(view[i]);
+}
+console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
 ```
 
 
@@ -297,19 +381,40 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 ```js
 let strXml =
-            '<?xml version="1.0" encoding="utf-8"?>' +
-            '<note importance="high" logged="true">' +
-            '    <title>Happy</title>' +
-            '    <todo>Work</todo>' +
-            '    <todo>Play</todo>' +
-            '</note>';
+    '<?xml version="1.0" encoding="utf-8"?>' +
+    '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
+    '<note importance="high" logged="true">' +
+    '    <![CDATA[\r\nfuncrion matchwo(a,6)\r\n{\r\nreturn 1;\r\n}\r\n]]>' +
+    '    <!--Hello, World!-->' +
+    '    <company>John &amp; Hans</company>' +
+    '    <title>Happy</title>' +
+    '    <title>Happy</title>' +
+    '    <lens>Work</lens>' +
+    '    <lens>Play</lens>' +
+    '    <?go there?>' +
+    '    <a><b/></a>' +
+    '    <h:table xmlns:h="http://www.w3.org/TR/html4/">' +
+    '        <h:tr>' +
+    '            <h:td>Apples</h:td>' +
+    '            <h:td>Bananas</h:td>' +
+    '        </h:tr>' +
+    '    </h:table>' +
+    '</note>';
 let arrayBuffer = new ArrayBuffer(strXml.length);
 let bufView = new Uint8Array(arrayBuffer);
 let strLen = strXml.length;
-for (var i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);//设置arraybuffer方式
+for (let i = 0; i < strLen; ++i) {
+    bufView[i] = strXml.charCodeAt(i);
 }
-let that = new xml.XmlPullParser(arrayBuffer);
+let that = new xml.XmlPullParser(arrayBuffer, 'UTF-8');
+let str1 = '';
+function func1(name, value){
+    str1 += name+':'+value;
+    return true;
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func1}
+that.parse(options);
+console.log(str1) //'note:company:title:title:lens:lens:a:b:h:table:h:tr:h:td:h:td:'
 ```
 
 
@@ -340,7 +445,7 @@ let strXml =
 let arrayBuffer = new ArrayBuffer(strXml.length);
 let bufView = new Uint8Array(arrayBuffer);
 let strLen = strXml.length;
-for (var tmp = 0; tmp < strLen; ++tmp) {
+for (let tmp = 0; tmp < strLen; ++tmp) {
     bufView[tmp] = strXml.charCodeAt(tmp);
 }
 let that = new xml.XmlPullParser(arrayBuffer);
@@ -398,6 +503,38 @@ getColumnNumber(): number
 | ------ | -------------- |
 | number | 返回当前列号。 |
 
+**示例：**
+
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getColumnNumber();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:1key:2 value:77key:10 value:81key:2 value:88key:4 value:93key:3 value:101key:10 value:105key:2 value:111key:4 value:115key:3 value:122key:10 value:126key:2 value:132key:4 value:136key:3 value:143key:3 value:150key:1 value:299
+```
 
 ### getDepth
 
@@ -413,6 +550,41 @@ getDepth(): number
 | ------ | -------------------- |
 | number | 返回元素的当前深度。 |
 
+**示例：**
+
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
+// 解析:
+// key代表了当前事件类型，value为当前解析的深度。你可以根据EVENTTYPE来知道具体的解析事件。例如本示例结果key: value代表含义为:
+// 0(START_DOCUMENT):0(起始深度为0), 2(START_TAG):1(解析到开始标签node, 对应深度为1), 10(WHITESPACE):1(解析到空白标签空格, 对应深度为1), 2(START_TAG):2(解析到开始标签title, 对应深度为2), ...
+```
 
 ### getLineNumber
 
@@ -428,6 +600,38 @@ getLineNumber(): number
 | ------ | -------------- |
 | number | 返回当前行号。 |
 
+**示例：**
+
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getLineNumber();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:1key:2 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:10 value:1key:2 value:1key:4 value:1key:3 value:1key:3 value:1key:1 value:1
+```
 
 ### getName
 
@@ -443,7 +647,38 @@ getName(): string
 | ------ | ------------------ |
 | string | 返回当前元素名称。 |
 
+**示例：**
 
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getName();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:key:2 value:notekey:10 value:key:2 value:titlekey:4 value:key:3 value:titlekey:10 value:key:2 value:todokey:4 value:key:3 value:todokey:10 value:key:2 value:todokey:4 value:key:3 value:todokey:3 value:notekey:1 value:
+```
 ### getNamespace
 
 getNamespace(): string
@@ -458,7 +693,38 @@ getNamespace(): string
 | ------ | ------------------------ |
 | string | 返回当前元素的命名空间。 |
 
+**示例：**
 
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getNamespace();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:key:2 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:3 value:key:1 value:
+```
 ### getPrefix
 
 getPrefix(): string
@@ -473,6 +739,38 @@ getPrefix(): string
 | ------ | ------------------ |
 | string | 返回当前元素前缀。 |
 
+**示例：**
+
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getPrefix();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:key:2 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:10 value:key:2 value:key:4 value:key:3 value:key:3 value:key:1 value:
+```
 
 ### getText
 
@@ -488,7 +786,38 @@ getText(): string
 | ------ | ------------------------ |
 | string | 返回当前事件的文本内容。 |
 
+**示例：**
 
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getText();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:key:2 value:key:10 value:    key:2 value:key:4 value:Happykey:3 value:key:10 value:    key:2 value:key:4 value:Workkey:3 value:key:10 value:    key:2 value:key:4 value:Playkey:3 value:key:3 value:key:1 value:
+```
 ### isEmptyElementTag
 
 isEmptyElementTag(): boolean
@@ -503,7 +832,38 @@ isEmptyElementTag(): boolean
 | ------- | ---------------------------- |
 | boolean | 返回true，当前元素为空元素。 |
 
+**示例：**
 
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.isEmptyElementTag();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:falsekey:2 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:10 value:falsekey:2 value:falsekey:4 value:falsekey:3 value:falsekey:3 value:falsekey:1 value:false
+```
 ### isWhitespace
 
 isWhitespace(): boolean
@@ -518,7 +878,38 @@ isWhitespace(): boolean
 | ------- | -------------------------------------- |
 | boolean | 返回true，当前文本事件仅包含空格字符。 |
 
+**示例：**
 
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.isWhitespace();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:truekey:2 value:falsekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:10 value:truekey:2 value:truekey:4 value:falsekey:3 value:truekey:3 value:truekey:1 value:true
+```
 ### getAttributeCount
 
 getAttributeCount(): number
@@ -532,6 +923,38 @@ getAttributeCount(): number
 | ------ | ---------------------- |
 | number | 当前开始标记的属性数。 |
 
+**示例：**
+
+```js
+let strXml =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<note importance="high" logged="true">' +
+            '    <title>Happy</title>' +
+            '    <todo>Work</todo>' +
+            '    <todo>Play</todo>' +
+            '</note>';
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (let tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
+}
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
+function func(key, value){
+    arrTag[i] = 'key:'+key+' value:'+ value.getAttributeCount();
+    str += arrTag[i];
+    i++;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:0key:2 value:2key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:10 value:0key:2 value:0key:4 value:0key:3 value:0key:3 value:0key:1 value:0
+```
 
 ## EventType
 

@@ -18,7 +18,7 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
- - OpenHarmony 3.2 Beta3. [Learn more](en/release-notes/OpenHarmony-v3.2-beta3.md)
+ - OpenHarmony 3.2 Beta5. [Learn more](en/release-notes/OpenHarmony-v3.2-beta5.md)
 
  - OpenHarmony 3.1 Release. [Learn more](en/release-notes/OpenHarmony-v3.1-release.md)
 
@@ -34,7 +34,7 @@ This repository stores device and application development documents provided by 
 
 ### Historical Stable Versions
 
-OpenHarmony_v1.x_release: OpenHarmony v1.1.5 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.5-LTS.md)
+OpenHarmony_v1.x_release: OpenHarmony 1.1.5 LTS. [Learn more](en/release-notes/OpenHarmony-v1.1.5-LTS.md)
 
 [More versions](en/release-notes/)
 
@@ -51,6 +51,6 @@ You can evaluate available documents, make simple modifications, provide feedbac
 
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
 
-- Mail list: docs@openharmony.io
+- Mailing list: docs@openharmony.io
 
 - Zulip group: documentation_sig

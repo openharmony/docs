@@ -31,17 +31,24 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                      | Type                                    | Description                                      |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| type                     | InputType                                | Input box type.<br>Default value: **InputType.Normal**       |
+| type                     | [InputType](#inputtype)     | Input box type.<br>Default value: **InputType.Normal**       |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | Placeholder text color.|
 | placeholderFont          | [Font](ts-types.md#font) | Placeholder text font.|
-| enterKeyType             | EnterKeyType                             | Type of the Enter key. Currently, only the default value is supported.<br>Default value: **EnterKeyType.Done**|
+| enterKeyType             | [EnterKeyType](#enterkeytype) | Type of the Enter key. Only the default value is supported.<br>Default value: **EnterKeyType.Done**|
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | Color of the caret in the text box.                              |
 | maxLength                | number                                   | Maximum number of characters in the text input.                           |
-| inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
-| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.|
+| inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.|
 | showPasswordIcon<sup>9+</sup> | boolean | Whether to display the show password icon at the end of the password text box.<br>Default value: **true**|
-| style<sup>9+</sup> | TextInputStyle | Text input style.<br>Default value: **TextInputStyle.Default**|
+| style<sup>9+</sup> | [TextInputStyle](#textinputstyle9) | Text input style.<br>Default value: **TextInputStyle.Default**|
 | textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | Alignment mode of the text in the text box.<br>Default value: **TextAlign.Start** |
+| selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected text.|
+| caretStyle<sup>10+</sup> | {<br>caretWidth: [Length](ts-types.md#length)<br>} | Caret style.                                       |
+| caretPosition<sup>10+</sup> | number | Caret position.|
+
+>  **NOTE**
+>
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 16 vp,<br> left: 8 vp<br> }
 
 ## EnterKeyType
 
@@ -53,7 +60,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Next   | The Enter key is labeled "Next."|
 | Done   | The Enter key is labeled "Done."    |
 
-## InputType enums
+## InputType
 
 | Name                | Description           |
 | ------------------ | ------------- |
@@ -70,16 +77,16 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.  |
 | Inline    | Inline input style. The background height of the selected text is the same as the height of the text box.     |
 
-## Event
+## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.             |
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the keyboard is pressed. The return value is the current type of the Enter key.         |
-| onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Sicne API version 8, **onEditChange** is recommended.         |
-| onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. If the value of **isEditing** is **true**, text input is in progress.       |
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.<br>**value**: text content.|
+| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the keyboard is pressed. The return value is the current type of the Enter key.<br>**enterKeyType**: type of the Enter key. For details, see [EnterKeyType](#enterkeytype).|
+| onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
+| onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. If the value of **isEditing** is **true**, text input is in progress.   |
 | onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
 | onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
 | onPaste(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.|
@@ -92,7 +99,7 @@ Implements the controller of the **\<TextInput>** component.
 ```
 controller: TextInputController = new TextInputController()
 ```
-### caretPosition
+### caretPosition<sup>8+</sup>
 
 caretPosition(value: number): void
 
@@ -103,7 +110,18 @@ Sets the position of the caret.
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
+### setTextSelection<sup>10+</sup>
 
+setTextSelection(selectionStart: number, selectionStart: number): void
+
+Sets the text selection area, which will be highlighted.
+
+**Parameters**
+
+| Name        | Type| Mandatory| Description              |
+| -------------- | -------- | ---- | ---------------------- |
+| selectionStart | number   | Yes  | Start position of the text selection area. The start position of the text in the text box is 0.|
+| selectionEnd   | number   | Yes  | End position of the text selection area.|
 
 ## Example
 

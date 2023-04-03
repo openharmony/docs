@@ -12,7 +12,7 @@
 ## 导入模块
 
 
-```
+```ts
 import mediaquery from '@system.mediaquery';
 ```
 
@@ -39,8 +39,8 @@ matchMedia(condition: string): MediaQueryList
 
 **示例：**
 
-```
-var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
+```ts
+let mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -49,7 +49,7 @@ var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明    |
+| 名称      | 类型    | 必填   | 说明    |
 | ------- | ------- | ---- | ----- |
 | matches | boolean | 是    | 匹配结果。 |
 
@@ -61,7 +61,7 @@ var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型    | 必填   | 说明                |
+| 名称      | 类型    | 必填   | 说明                |
 | ------- | ------- | ---- | ----------------- |
 | media   | string  | 否    | 序列化媒体查询条件，该参数为只读。 |
 | matches | boolean | 是    | 匹配结果。             |
@@ -97,7 +97,7 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something
@@ -123,7 +123,7 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 
 **示例：**
 
-```
+```ts
 function maxWidthMatch(e){
   if(e.matches){
     // do something

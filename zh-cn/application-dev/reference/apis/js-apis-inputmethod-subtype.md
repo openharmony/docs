@@ -1,4 +1,4 @@
-# @ohos.inputmethodsubtype (输入法子类型)
+# @ohos.InputMethodSubtype (输入法子类型)
 
 本模块提供对输入法子类型的属性管理。输入法应用子类型的含义，如：输入法的中文版、英文版、大写模式、小写模式等都属于输入法的子类型。
 
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import inputMethodEngine from '@ohos.inputMethodSubtype';
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
 ```
 
 ## 属性
@@ -21,7 +21,7 @@ import inputMethodEngine from '@ohos.inputMethodSubtype';
 | 名称 | 类型 | 可读 | 可写 | 必选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
-| name | string | 是 | 否 | 是 | 输入法子类型的名字。 |
+| name | string | 是 | 否 | 是 | 输入法应用的包名。 |
 | id | string | 是 | 否 | 是 | 输入法子类型的id。 |
 | mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper（大写）和lower（小写）。 |
 | locale | string | 是 | 否 | 是 | 输入法子类型的方言版本。 |

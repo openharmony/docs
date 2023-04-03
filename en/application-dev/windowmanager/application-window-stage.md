@@ -49,55 +49,58 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by an **Ability** instance. In the **onWindowStageCreate** callback of the **Ability** instance, use **WindowStage** to obtain the main window of the application and set its properties.
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 
 ### How to Develop
 
 1. Obtain the main window.
+   
    Call **getMainWindow** to obtain the main window of the application.
 
 2. Set the properties of the main window.
+
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
 
 3. Load content for the main window.
+
    Call **loadContent** to load the page content to the main window.
 
-```ts
-import Ability from '@ohos.application.Ability'
+   ```ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
 
-class MainAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        // 1. Obtain the main window of the application.
-        let windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // 2. Set the touchable property of the main window.
-            let isTouchable = true;
-            windowClass.setWindowTouchable(isTouchable, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the window to be touchable.');
-            })
-        })
-        // 3. Load the page content to the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-    }
-};
-```
+   export default class EntryAbility extends UIAbility {
+       onWindowStageCreate(windowStage) {
+           // 1. Obtain the main window of the application.
+           let windowClass = null;
+           windowStage.getMainWindow((err, data) => {
+               if (err.code) {
+                   console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                   return;
+               }
+               windowClass = data;
+               console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+               // 2. Set the touchable property of the main window.
+               let isTouchable = true;
+               windowClass.setWindowTouchable(isTouchable, (err) => {
+                   if (err.code) {
+                       console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
+                       return;
+                   }
+                   console.info('Succeeded in setting the window to be touchable.');
+               })
+           })
+           // 3. Load the page content to the main window.
+           windowStage.loadContent("pages/page2", (err) => {
+               if (err.code) {
+                   console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                   return;
+               }
+               console.info('Succeeded in loading the content.');
+           });
+       }
+   };
+   ```
 
 
 ## Setting a Subwindow of an Application
@@ -108,23 +111,27 @@ You can create an application subwindow, such as a dialog box, and set its prope
 ### How to Develop
 
 1. Create a subwindow.
+   
    Call **createSubWindow** to create a subwindow.
 
 2. Set the properties of the subwindow.
+
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
 
 3. Load content for the subwindow and show it.
+
    Call **setUIContent** and **showWindow** to load and display the content in the subwindow.
 
 4. Destroy the subwindow.
+
    When the subwindow is no longer needed, you can call **destroyWindow** to destroy it.
-   
+
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
    let windowStage_ = null;
    let sub_windowClass = null;
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        showSubWindow() {
            // 1. Create a subwindow.
            windowStage_.createSubWindow("mySubWindow", (err, data) => {
@@ -201,19 +208,21 @@ To create a better video watching and gaming experience, you can use the immersi
 ### How to Develop
 
 1. Obtain the main window.
+   
    Call **getMainWindow** to obtain the main window of the application.
 
-2. Implement the immersive effect. You can use any of the following methods:
+2. Implement the immersive effect. You can use either of the following methods:
    - Method 1: Call **setWindowSystemBarEnable** to hide the navigation bar and status bar.
    - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
 3. Load content for the immersive window and show it.
+
    Call **loadContent** to load the content to the immersive window.
-   
+
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 1. Obtain the main window of the application.
            let windowClass = null;
@@ -273,18 +282,19 @@ To create a better video watching and gaming experience, you can use the immersi
 
 ## Setting a Floating Window
 
-A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. You can create a floating window and set its properties.
+A floating window is created based on an existing task. It is always displayed in the foreground, even if the task used for creating the floating window is switched to the background. Generally, the floating window is above all application windows. You can create a floating window and set its properties.
 
 
 ### How to Develop
 
 1. Apply for permissions.
+   
    To create a floating window (of the **WindowType.TYPE_FLOAT** type), you must configure the **ohos.permission.SYSTEM_FLOAT_WINDOW** permission in the **requestPermissions** field of the **module.json5** file. For more configuration information, see [module.json5 Configuration File](../quick-start/module-configuration-file.md).
 
    > **NOTE**
    >
    > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
-   
+
    ```json
    {
      "module": {
@@ -293,7 +303,7 @@ A floating window is created based on an existing task. It is always displayed i
            "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
            "usedScene": {
              "abilities": [
-               "MainAbility"
+               "EntryAbility"
              ],
              "when":"inuse"
            }
@@ -304,12 +314,15 @@ A floating window is created based on an existing task. It is always displayed i
    ```
 
 2. Create a floating window.
+
    Call **window.createWindow** to create a floating window.
 
 3. Set properties for the floating window.
+
    After the floating window is created, you can set its properties, such as the size, position, background color, and brightness.
 
 4. Load content for the floating window and show it.
+
    Call **setUIContent** and **showWindow** to load and display the content in the floating window.
 
 5. Destroy the floating window.
@@ -317,11 +330,11 @@ A floating window is created based on an existing task. It is always displayed i
    When the floating window is no longer needed, you can call **destroyWindow** to destroy it.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
-   class MainAbility extends Ability {
+   export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 2. Create a floating window.
            let windowClass = null;
@@ -377,4 +390,3 @@ A floating window is created based on an existing task. It is always displayed i
    };
    ```
 
- <!--no_check--> 

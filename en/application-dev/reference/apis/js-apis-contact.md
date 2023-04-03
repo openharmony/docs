@@ -1,4 +1,4 @@
-# Contacts
+# @ohos.contact (Contacts)
 
 >**NOTE**
 >
@@ -166,6 +166,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
   ```js
   contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err) => {
@@ -200,6 +201,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
@@ -241,6 +243,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   let promise = contact.updateContact({
+      id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {

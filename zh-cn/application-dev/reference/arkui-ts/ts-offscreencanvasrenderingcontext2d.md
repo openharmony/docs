@@ -407,7 +407,7 @@ struct GlobalAlpha {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() =>{
-          this.offContext.fillStyle = 'rgb(255,0,0)'
+          this.offContext.fillStyle = 'rgb(0,0,255)'
           this.offContext.fillRect(0, 0, 50, 50)
           this.offContext.globalAlpha = 0.4
           this.offContext.fillStyle = 'rgb(0,0,255)'
@@ -727,7 +727,7 @@ fillRect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.offContext.fillRect(0,30,100,100)
+            this.offContext.fillRect(30,30,100,100)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
          })
@@ -1673,7 +1673,7 @@ struct Fill {
           region.lineTo(270, 90)
           region.closePath()
           // Fill path
-          this.offContext.fillStyle = 'green'
+          this.offContext.fillStyle = '#00ff00'
           this.offContext.fill(region, "evenodd")
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -1767,10 +1767,15 @@ struct Clip {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           let region = new Path2D()
-          region.rect(80,10,20,130)
-          region.rect(40,50,100,50)
+          region.moveTo(30, 90)
+          region.lineTo(110, 20)
+          region.lineTo(240, 130)
+          region.lineTo(60, 130)
+          region.lineTo(190, 20)
+          region.lineTo(270, 90)
+          region.closePath()
           this.offContext.clip(region,"evenodd")
-          this.offContext.fillStyle = "rgb(255,0,0)"
+          this.offContext.fillStyle = "rgb(0,255,0)"
           this.offContext.fillRect(0, 0, 600, 600)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -2406,6 +2411,8 @@ toDataURL(type?: string, quality?: number): string
 
 生成一个包含图片展示的URL。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名     | 参数类型   | 必填   | 描述                                       |
@@ -2535,7 +2542,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2576,7 +2583,7 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.save() // save the default state
-          this.offContext.fillStyle = "green"
+          this.offContext.fillStyle = "#00ff00"
           this.offContext.fillRect(20, 20, 100, 100)
           this.offContext.restore() // restore to the default state
           this.offContext.fillRect(150, 75, 100, 100)
@@ -2626,9 +2633,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createLinearGradient(50,0, 300,100)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()
@@ -2680,9 +2687,9 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
           .backgroundColor('#ffff00')
           .onReady(() =>{
             var grad = this.offContext.createRadialGradient(200,200,50, 200,200,200)
-            grad.addColorStop(0.0, 'red')
-            grad.addColorStop(0.5, 'white')
-            grad.addColorStop(1.0, 'green')
+            grad.addColorStop(0.0, '#ff0000')
+            grad.addColorStop(0.5, '#ffffff')
+            grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
             this.offContext.fillRect(0, 0, 500, 500)
             var image = this.offContext.transferToImageBitmap()

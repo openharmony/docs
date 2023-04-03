@@ -1,4 +1,4 @@
-# @ohos.app.form.formBindingData
+# @ohos.application.formBindingData (formBindingData)
 
 The **FormBindingData** module provides APIs for widget data binding. You can use the APIs to create a **FormBindingData** object and obtain related information.
 
@@ -35,7 +35,7 @@ Creates a **FormBindingData** object.
 
 | Name| Type          | Mandatory| Description                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------------------ |
-| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by "formImages", and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {"formImages": {"key1": fd1, "key2": fd2}}.|
+| obj    | Object\|string | No  | Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format. The image data is identified by **'formImages'**, and the content is multiple key-value pairs, each of which consists of an image identifier and image file descriptor. The final format is {'formImages': {'key1': fd1, 'key2': fd2}}.|
 
 
 **Return value**
@@ -48,20 +48,17 @@ Creates a **FormBindingData** object.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import fileio from '@ohos.fileio';
-let context=featureAbility.getContext();
-context.getOrCreateLocalDir((err,data)=>{
-  let path=data+"/xxx.jpg";
-  let fd = fileio.openSync(path);
+import formBindingData from '@ohos.app.form.formBindingData';
+import fs from '@ohos.file.fs';
+
+try {
+  let fd = fs.openSync('/path/to/form.png');
   let obj = {
-    "temperature": "21°",
-    "formImages": {"image": fd}
+    'temperature': '21°',
+    'formImages': { 'image': fd }
   };
-  try {
-    formBindingData.createFormBindingData(obj);
-  } catch (error) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-  }
-})
+  formBindingData.createFormBindingData(obj);
+} catch (error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
 ```

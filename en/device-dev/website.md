@@ -263,7 +263,7 @@
            - [Magic Key](kernel/kernel-small-debug-shell-magickey.md)
            - [User-Mode Exception Information](kernel/kernel-small-debug-shell-error.md)
          - [Trace](kernel/kernel-small-debug-trace.md)
-         - [perf](kernel/kernel-mini-memory-perf.md)
+         - [perf](kernel/kernel-small-debug-perf.md)
          - [LMS](kernel/kernel-small-memory-lms.md)
          - [Process Debugging](kernel/kernel-small-debug-process-cpu.md)
          - Kernel-Mode Memory Debugging
@@ -385,11 +385,8 @@
      - Audio/Video
        - [Audio/Video Overview](subsystems/subsys-multimedia-video-overview.md)
        - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
-       - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)
-  -  Utils
-     - [Utils Overview](subsystems/subsys-utils-overview.md)
-     - [Utils Development](subsystems/subsys-utils-guide.md)
-     - [Utils FAQ](subsystems/subsys-utils-faqs.md)
+       - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
+  -  [Utils Development](subsystems/subsys-utils-guide.md)  
   -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
   -  Data Management
      - RDB
@@ -496,7 +493,7 @@
 - Debugging
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc\_std](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf](subsystems/subsys-toolchain-hiperf.md)
 - Tools
 

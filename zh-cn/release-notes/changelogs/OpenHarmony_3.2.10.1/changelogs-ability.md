@@ -99,7 +99,7 @@ onWindowStageCreate() {
   - 方法 registerAbilityLifecycleCallback、unregisterAbilityLifecycleCallback、registerEnvironmentCallback、unregisterEnvironmentCallback 被删除。可以使用 on、off 替换。
 - application/ServiceExtensionContext.d.ts
   - 方法 connectAbility、connectAbilityWithAccount、disconnectAbility 被删除。可以使用 connectServiceExtensionAbility、connectServiceExtensionAbilityWithAccount、disconnectServiceExtensionAbility 替换。
-- @ohos.application.ExtensionAbility.d.ts
+- @ohos.application.FormExtension.d.ts
   - 生命周期onCreate、onCastToNormal、onUpdate、onVisibilityChange、onEvent、onDestroy、onAcquireFormState、onShare 被删除。可以使用@ohos.app.form.FormExtensionAbility.d.ts的onAddForm、onCastToNormalForm、onUpdateForm、onChangeFormVisibility、onFormEvent、onRemoveForm、onAcquireFormState、onShareForm
 - @ohos.application.abilityDelegatorRegistry.d.ts
   - 导出类 AbilityDelegator、AbilityDelegatorArgs、AbilityMonitor、ShellCmdResult 被删除。可以使用@ohos.app.ability.abilityDelegatorRegistry.d.ts中的同名导出类替换。

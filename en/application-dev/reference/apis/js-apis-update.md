@@ -1,6 +1,6 @@
-# Update
+# @ohos.update (Update)
 
-The Update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
+The **update** module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
 
@@ -2036,7 +2036,7 @@ Enumerates update states.
 | WAITING_INSTALL  | 30   | Waiting for installation. |
 | UPDATING         | 31   | Updating. |
 | WAITING_APPLY    | 40   | Waiting for applying the update. |
-| APPLYING         | 21   | Applying the update. |
+| APPLYING         | 41   | Applying the update. |
 | UPGRADE_SUCCESS  | 50   | Update succeeded.|
 | UPGRADE_FAIL     | 51   | Update failed.|
 
@@ -2058,7 +2058,7 @@ Enumerates event IDs.
 
 | Name                    | Value       | Description    |
 | ---------------------- | ---------- | ------ |
-| EVENT_TASK_BASE        | 0x01000000 | Task event.  |
+| EVENT_TASK_BASE        | EventClassify.TASK | Task event.  |
 | EVENT_TASK_RECEIVE     | 0x01000001 | Task received.  |
 | EVENT_TASK_CANCEL      | 0x01000010 | Task cancelled.  |
 | EVENT_DOWNLOAD_WAIT    | 0x01000011 | Waiting for download.   |

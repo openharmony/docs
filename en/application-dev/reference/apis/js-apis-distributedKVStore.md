@@ -1,4 +1,4 @@
-# Distributed KV Store
+# @ohos.data.distributedKVStore (Distributed KV Store)
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. The APIs provided by this module can be used to save data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
@@ -10,7 +10,7 @@ The **distributedKVStore** module provides the following functions:
 - [SingleKVStore](#singlekvstore): provides APIs for querying data in single KV stores and synchronizing data. The single KV stores manage data without distinguishing devices.
 - [DeviceKVStore](#devicekvstore): provides APIs for querying in device KV stores and synchronizing data. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -28,7 +28,7 @@ Provides the **KVManager** instance configuration, including the bundle name of 
 
 | Name    | Type             | Mandatory| Description                                                        |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context               | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context    | Context               | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).|
 | bundleName | string                | Yes  | Bundle name.                                              |
 
 ## Constants
@@ -248,79 +248,9 @@ try {
 
 ## distributedKVStore.createKVManager
 
-createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
+createKVManager(config: KVManagerConfig): KVManager
 
-Creates a **KVManager** instance to manage KV stores. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
-
-**Parameters**
-
-| Name  | Type                                    | Mandatory| Description                                                       |
-| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
-| config   | [KVManagerConfig](#kvmanagerconfig)          | Yes  | **KVManager** instance configuration, including the bundle name of the invoker and the context of the application.|
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes  | Callback invoked to return the **KVManager** instance created.                    |
-
-**Example**
-
-Stage model:
-
-```js
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-        }
-        try {
-            distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-                if (err) {
-                    console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-                    return;
-                }
-                console.log("Created KVManager successfully");
-                kvManager = manager;
-            });
-        } catch (e) {
-            console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-        }
-    }
-}
-```
-
-FA model:
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-}
-try {
-    distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            return;
-        }
-        console.log("Created KVManager successfully");
-        kvManager = manager;
-    });
-} catch (e) {
-    console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
-}
-```
-
-## distributedKVStore.createKVManager
-
-createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
-
-Creates a **KVManager** instance to manage KV stores. This API uses a promise to return the result.
+Creates a **KVManager** instance to manage KV stores.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -328,22 +258,22 @@ Creates a **KVManager** instance to manage KV stores. This API uses a promise to
 
 | Name| Type                     | Mandatory| Description                                                     |
 | ------ | ----------------------------- | ---- | --------------------------------------------------------- |
-| config | [KVManagerConfig](#kvmanager) | Yes  | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes  | **KVManager** instance configuration, including the bundle name of the caller and user information.|
 
 **Return value**
 
 | Type                                  | Description                                      |
 | -------------------------------------- | ------------------------------------------ |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created.|
+| [KVManager](#kvmanager) | **KVManager** instance created.|
 
 **Example**
 
 Stage model:
 
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
+export default class EntryAbility extends UIAbility {
     onCreate() {
         console.log("MyAbilityStage onCreate")
         let context = this.context
@@ -352,12 +282,8 @@ export default class MyAbilityStage extends AbilityStage {
             bundleName: 'com.example.datamanagertest',
         }
         try {
-            distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-                console.log("Created KVManager successfully");
-                kvManager = manager;
-            }).catch((err) => {
-                console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-            });
+            kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+            console.log("Created KVManager successfully");
         } catch (e) {
             console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
         }
@@ -376,12 +302,8 @@ const kvManagerConfig = {
     bundleName: 'com.example.datamanagertest',
 }
 try {
-    distributedKVStore.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("Created KVManager successfully");
-        kvManager = manager;
-    }).catch((err) => {
-        console.error(`Failed to create KVManager.code is ${err.code},message is ${err.message}`);
-    });
+    kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+    console.log("Created KVManager successfully");
 } catch (e) {
     console.error(`Failed to create KVManager.code is ${e.code},message is ${e.message}`);
 }
@@ -405,7 +327,7 @@ Creates and obtains a distributed KV store. This API uses an asynchronous callba
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | storeId  | string                 | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the distributed single or device KV store created. |
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the distributed KV store (**SingleKVStore** or **DeviceKVStore**) instance created.|
 
 **Error codes**
 
@@ -435,7 +357,7 @@ try {
             console.error(`Fail to get KVStore.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log("Obtained the KVStore successfully.");
+        console.log("Succeeded in getting KVStore");
         kvStore = store;
     });
 } catch (e) {
@@ -462,7 +384,7 @@ Creates and obtains a distributed KV store. This API uses a promise to return th
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;T&gt; | Promise used to return the distributed single or device KV store created.|
+| Promise&lt;T&gt; | Promise used to return the distributed KV store (**SingleKVStore** or **DeviceKVStore**) instance created.|
 
 **Error codes**
 
@@ -488,7 +410,7 @@ try {
         securityLevel: distributedKVStore.SecurityLevel.S2,
     };
     kvManager.getKVStore('storeId', options).then((store) => {
-        console.log("Obtained the KVStore successfully.");
+        console.log("Succeeded in getting KVStore");
         kvStore = store;
     }).catch((err) => {
         console.error(`Fail to get KVStore.code is ${err.code},message is ${err.message}`);
@@ -530,14 +452,14 @@ const options = {
 }
 try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
-        console.log('Obtained the KVStore successfully.');
+        console.log('Succeeded in getting KVStore');
         kvStore = store;
         kvManager.closeKVStore('appId', 'storeId', function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to close KVStore.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Closed the KVStore successfully.');
+            console.log('Succeeded in closing KVStore');
         });
     });
 } catch (e) {
@@ -582,10 +504,10 @@ const options = {
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
-        console.log('Obtained the KVStore successfully.');
+        console.log('Succeeded in getting KVStore');
         kvStore = store;
         kvManager.closeKVStore('appId', 'storeId').then(() => {
-            console.log('Closed the KVStore successfully.');
+            console.log('Succeeded in closing KVStore');
         }).catch((err) => {
             console.error(`Fail to close KVStore.code is ${err.code},message is ${err.message}`);
         });
@@ -617,7 +539,7 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**|
+| ID| **Error Message**|
 | ------------ | ------------ |
 | 15100004     | Not found.   |
 
@@ -641,14 +563,14 @@ try {
             console.error(`Fail to get KVStore.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained the KVStore successfully.');
+        console.log('Succeeded in getting KVStore');
         kvStore = store;
         kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to delete KVStore.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log(`Deleted the KVStore successfully.`);
+            console.log(`Succeeded in deleting KVStore`);
         });
     });
 } catch (e) {
@@ -681,7 +603,7 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**|
+| ID| **Error Message**|
 | ------------ | ------------ |
 | 15100004     | Not found.   |
 
@@ -701,10 +623,10 @@ const options = {
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
-        console.log('Obtained the KVStore successfully.');
+        console.log('Succeeded in getting KVStore');
         kvStore = store;
         kvManager.deleteKVStore('appId', 'storeId').then(() => {
-            console.log('Deleted the KVStore successfully.');
+            console.log('Succeeded in deleting KVStore');
         }).catch((err) => {
             console.error(`Fail to delete KVStore.code is ${err.code},message is ${err.message}`);
         });
@@ -741,7 +663,7 @@ try {
             console.error(`Fail to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained all KV store IDs successfully.');
+        console.log('Succeeded in getting AllKVStoreId');
         console.log(`GetAllKVStoreId size = ${data.length}`);
     });
 } catch (e) {
@@ -776,7 +698,7 @@ let kvManager;
 try {
     console.log('GetAllKVStoreId');
     kvManager.getAllKVStoreId('appId').then((data) => {
-        console.log('Obtained all KV store IDs successfully.');
+        console.log('Succeeded in getting AllKVStoreId');
         console.log(`GetAllKVStoreId size = ${data.length}`);
     }).catch((err) => {
         console.error(`Fail to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
@@ -799,7 +721,7 @@ Subscribes to service status changes.
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | Yes  | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
 
 **Example**
 
@@ -906,7 +828,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
@@ -1077,7 +999,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
@@ -1116,7 +1038,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
@@ -1319,7 +1241,7 @@ Resets the **Query** object.
 
 | Type          | Description                 |
 | -------------- | --------------------- |
-| [Query](query) | **Query** object reset.|
+| [Query](#query) | **Query** object reset.|
 
 **Example**
 
@@ -1355,7 +1277,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1389,7 +1311,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1422,7 +1344,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1457,7 +1379,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1492,7 +1414,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1527,7 +1449,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1560,7 +1482,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1594,7 +1516,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1628,7 +1550,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1662,7 +1584,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1696,7 +1618,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1730,7 +1652,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1764,7 +1686,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1791,7 +1713,7 @@ Creates a **Query** object with the AND condition.
 
 | Type          | Description          |
 | -------------- | -------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1820,7 +1742,7 @@ Creates a **Query** object with the OR condition.
 
 | Type          | Description          |
 | -------------- | -------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1855,7 +1777,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1889,7 +1811,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1924,7 +1846,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1960,7 +1882,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -1987,7 +1909,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -2016,7 +1938,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -2051,7 +1973,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -2085,7 +2007,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -2119,7 +2041,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 | Type          | Description           |
 | -------------- | --------------- |
-| [Query](query) | **Query** object created.|
+| [Query](#query) | **Query** object created.|
 
 **Example**
 
@@ -2185,7 +2107,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2202,7 +2124,7 @@ try {
             console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log("Put data successfully.");
+        console.log("Succeeded in putting");
     });
 } catch (e) {
     console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
@@ -2234,7 +2156,7 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2247,7 +2169,7 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.log(`Put data successfully. data=${data}`);
+        console.log(`Succeeded in putting.data=${data}`);
     }).catch((err) => {
         console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
     });
@@ -2275,7 +2197,7 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2303,12 +2225,12 @@ try {
             console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key', function (err, entries) {
             if (err != undefined) {
                 console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -2342,7 +2264,7 @@ Batch inserts KV pairs to this single KV store. This API uses a promise to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2366,9 +2288,9 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (entries) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`PutBatch ${entries}`);
         }).catch((err) => {
             console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
@@ -2395,14 +2317,14 @@ Writes data to this single KV store. This API uses an asynchronous callback to r
 
 | Name  | Type                                                    | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| value    | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
+| value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
 | callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2426,7 +2348,7 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     })
 } catch (e) {
     console.error(`Fail to put batch.code is ${e.code},message is ${e.message}`);
@@ -2447,7 +2369,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 | Name| Type                                                    | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
 
 **Return value**
 
@@ -2459,7 +2381,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2479,7 +2401,7 @@ try {
     v8Arr.push(vb2);
     v8Arr.push(vb3);
     kvStore.putBatch(v8Arr).then(async (data) => {
-        console.log(`Batch put data successfully.`);
+        console.log(`Succeeded in putting patch`);
     }).catch((err) => {
         console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
     });
@@ -2507,7 +2429,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
@@ -2524,13 +2446,13 @@ try {
             console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting');
         kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to delete.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Deleted data successfully.');
+            console.log('Succeeded in deleting');
         });
     });
 } catch (e) {
@@ -2562,7 +2484,7 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2575,9 +2497,9 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.log(`Put data successfully: ${data}`);
+        console.log(`Succeeded in putting: ${data}`);
         kvStore.delete(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log('Deleted data successfully.');
+            console.log('Succeeded in deleting');
         }).catch((err) => {
             console.error(`Fail to delete.code is ${err.code},message is ${err.message}`);
         });
@@ -2610,7 +2532,7 @@ Deletes KV pairs from this KV store. This API uses an asynchronous callback to r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
@@ -2624,7 +2546,7 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     kvStore.delete(predicates, function (err, data) {
         if (err == undefined) {
-            console.log('Deleted data successfully.');
+            console.log('Succeeded in deleting');
         } else {
             console.error(`Fail to delete.code is ${err.code},message is ${err.message}`);
         }
@@ -2660,7 +2582,7 @@ Deletes KV pairs from this KV store. This API uses a promise to return the resul
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2676,9 +2598,9 @@ try {
     let arr = ["name"];
     predicates.inKeys(arr);
     kvStore.put("name", "bob").then((data) => {
-        console.log(`Put data successfully: ${data}`);
+        console.log(`Succeeded in putting: ${data}`);
         kvStore.delete(predicates).then((data) => {
-            console.log('Deleted data successfully.');
+            console.log('Succeeded in deleting');
         }).catch((err) => {
             console.error(`Fail to delete.code is ${err.code},message is ${err.message}`);
         });
@@ -2709,7 +2631,7 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2739,13 +2661,13 @@ try {
             console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.deleteBatch(keys, async function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to delete Batch.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Batch deleted data successfully.');
+            console.log('Succeeded in deleting Batch');
         });
     });
 } catch (e) {
@@ -2777,7 +2699,7 @@ Batch deletes KV pairs from this single KV store. This API uses a promise to ret
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -2803,9 +2725,9 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (data) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.deleteBatch(keys).then((err) => {
-            console.log('Batch deleted data successfully.');
+            console.log('Succeeded in deleting Batch');
         }).catch((err) => {
             console.error(`Fail to delete Batch.code is ${err.code},message is ${err.message}`);
         });
@@ -2836,7 +2758,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -2848,15 +2770,15 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err, data) {
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting data');
         const deviceid = 'no_exist_device_id';
         kvStore.removeDeviceData(deviceid, async function (err, data) {
             if (err == undefined) {
-                console.log('Removed device data successfully.');
+                console.log('succeeded in removing device data');
             } else {
                 console.error(`Fail to remove device data.code is ${err.code},message is ${err.message} `);
                 kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err, data) {
-                    console.log('Obtained data successfully.');
+                    console.log('Succeeded in getting data');
                 });
             }
         });
@@ -2890,7 +2812,7 @@ Deletes data of a device. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -2902,18 +2824,18 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting data');
     }).catch((err) => {
         console.error(`Fail to put data.code is ${err.code},message is ${err.message} `);
     });
     const deviceid = 'no_exist_device_id';
     kvStore.removeDeviceData(deviceid).then((err) => {
-        console.log('Removed device data successfully.');
+        console.log('succeeded in removing device data');
     }).catch((err) => {
         console.error(`Fail to remove device data.code is ${err.code},message is ${err.message} `);
     });
     kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-        console.log('Obtained data successfully.');
+        console.log('Succeeded in getting data');
     }).catch((err) => {
         console.error(`Fail to get data.code is ${err.code},message is ${err.message} `);
     });
@@ -2924,7 +2846,7 @@ try {
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains the value of the specified key. This API uses an asynchronous callback to return the result.
 
@@ -2941,7 +2863,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -2959,13 +2881,13 @@ try {
             console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log("Put data successfully.");
+        console.log("Succeeded in putting");
         kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log(`Obtained data successfully. data=${data}`);
+            console.log(`Succeeded in getting data.data=${data}`);
         });
     });
 } catch (e) {
@@ -2975,7 +2897,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains the value of the specified key. This API uses a promise to return the result.
 
@@ -2997,7 +2919,7 @@ Obtains the value of the specified key. This API uses a promise to return the re
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -3011,9 +2933,9 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.log(`Put data successfully. data=${data}`);
+        console.log(`Succeeded in putting data.data=${data}`);
         kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log(`Obtained data successfully. data=${data}`);
+            console.log(`Succeeded in getting data.data=${data}`);
         }).catch((err) => {
             console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
         });
@@ -3044,7 +2966,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3072,13 +2994,13 @@ try {
             console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key', function (err, entries) {
             if (err != undefined) {
                 console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -3112,7 +3034,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3136,9 +3058,9 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (entries) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`PutBatch ${entries}`);
         }).catch((err) => {
             console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
@@ -3163,14 +3085,14 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 | Name  | Type                              | Mandatory| Description                                           |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
-| query    | [Query](query)                         | Yes  | Key prefix to match.                           |
+| query    | [Query](#query)                         | Yes  | Key prefix to match.                           |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3195,7 +3117,7 @@ try {
     }
     console.log(`entries: {entries}`);
     kvStore.putBatch(entries, async function (err, data) {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getEntries(query, function (err, entries) {
@@ -3203,7 +3125,7 @@ try {
                 console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -3225,7 +3147,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 | Name| Type      | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -3237,7 +3159,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3262,18 +3184,18 @@ try {
     }
     console.log(`entries: {entries}`);
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getEntries(query).then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
         }).catch((err) => {
             console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
         });
     }).catch((err) => {
         console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`)
     });
-    console.log('Obtained the entries successfully.');
+    console.log('Succeeded in getting Entries');
 } catch (e) {
     console.error(`Fail to get Entries.code is ${e.code},message is ${e.message}`);
 }
@@ -3298,7 +3220,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3326,20 +3248,20 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         kvStore.getResultSet('batch_test_string_key', async function (err, result) {
             if (err != undefined) {
                 console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set successfully');
+            console.log('Succeeded in getting result set');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
                 if (err != undefined) {
                     console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
                     return;
                 }
-                console.log('Closed the result set successfully');
+                console.log('Succeeded in closing result set');
             })
         });
     });
@@ -3372,7 +3294,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3396,18 +3318,18 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -3435,7 +3357,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3463,7 +3385,7 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSet(query, async function (err, result) {
@@ -3471,7 +3393,7 @@ try {
                 console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set successfully');
+            console.log('Succeeded in getting result set');
         });
     });
 } catch (e) {
@@ -3491,7 +3413,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 | Name| Type      | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -3503,7 +3425,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3527,14 +3449,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet(query).then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
@@ -3565,7 +3487,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3585,14 +3507,14 @@ try {
             console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
         kvStore.closeResultSet(resultSet, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Closed the result set successfully');
+            console.log('Succeeded in closing result set');
         })
     });
 } catch (e) {
@@ -3626,7 +3548,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3642,13 +3564,13 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.prefixKey("batch_test_string_key");
     kvStore.getResultSet(predicates).then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -3680,7 +3602,7 @@ try {
     let resultSet = null;
     kvStore.closeResultSet(resultSet, function (err, data) {
         if (err == undefined) {
-            console.log('Closed the result set successfully');
+            console.log('Succeeded in closing result set');
         } else {
             console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
         }
@@ -3717,7 +3639,7 @@ let kvStore;
 try {
     let resultSet = null;
     kvStore.closeResultSet(resultSet).then(() => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -3738,14 +3660,14 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name  | Type                   | Mandatory| Description                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
-| query    | [Query](query)              | Yes  | **Query** object to match.                             |
+| query    | [Query](#query)              | Yes  | **Query** object to match.                             |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3768,7 +3690,7 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries, async function (err, data) {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSize(query, async function (err, resultSize) {
@@ -3776,7 +3698,7 @@ try {
                 console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set size successfully');
+            console.log('Succeeded in getting result set size');
         });
     });
 } catch (e) {
@@ -3796,7 +3718,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Name| Type      | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -3808,7 +3730,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -3831,14 +3753,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('Obtained the result set size successfully');
+        console.log('Succeeded in getting result set size');
     }).catch((err) => {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
@@ -3866,7 +3788,7 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3880,7 +3802,7 @@ try {
         if (err) {
             console.error(`Fail to backup.code is ${err.code},message is ${err.message} `);
         } else {
-            console.info(`Backed up data successfully. data=${data}`);
+            console.info(`Succeeded in backupping data.data=${data}`);
         }
     });
 } catch (e) {
@@ -3912,7 +3834,7 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3923,7 +3845,7 @@ let kvStore;
 let file = "BK001";
 try {
     kvStore.backup(file).then((data) => {
-        console.info(`Backed up data successfully. data=${data}`);
+        console.info(`Succeeded in backupping data.data=${data}`);
     }).catch((err) => {
         console.error(`Fail to backup.code is ${err.code},message is ${err.message}`);
     });
@@ -3951,7 +3873,7 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -3965,7 +3887,7 @@ try {
         if (err) {
             console.error(`Fail to restore.code is ${err.code},message is ${err.message}`);
         } else {
-            console.info(`Restored data successfully. data=${data}`);
+            console.info(`Succeeded in restoring data.data=${data}`);
         }
     });
 } catch (e) {
@@ -3997,7 +3919,7 @@ Restores a distributed KV store from a database file. This API uses a promise to
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4008,7 +3930,7 @@ let kvStore;
 let file = "BK001";
 try {
     kvStore.restore(file).then((data) => {
-        console.info(`Restored data successfully. data=${data}`);
+        console.info(`Succeeded in restoring data.data=${data}`);
     }).catch((err) => {
         console.error(`Fail to restore.code is ${err.code},message is ${err.message}`);
     });
@@ -4042,7 +3964,7 @@ try {
         if (err) {
             console.error(`Fail to delete Backup.code is ${err.code},message is ${err.message}`);
         } else {
-            console.info(`Deleted the backup file successfully. data=${data}`);
+            console.info(`Succeed in deleting Backup.data=${data}`);
         }
     });
 } catch (e) {
@@ -4077,7 +3999,7 @@ let kvStore;
 let files = ["BK001", "BK002"];
 try {
     kvStore.deleteBackup(files).then((data) => {
-        console.info(`Deleted the backup file successfully. data=${data}`);
+        console.info(`Succeed in deleting Backup.data=${data}`);
     }).catch((err) => {
         console.error(`Fail to delete Backup.code is ${err.code},message is ${err.message}`);
     })
@@ -4104,7 +4026,7 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4138,7 +4060,7 @@ try {
             console.error(`Fail to start Transaction.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Started the transaction successfully.');
+        console.log('Succeeded in starting Transaction');
         let entries = putBatchString(10, 'batch_test_string_key');
         console.log(`entries: ${entries}`);
         kvStore.putBatch(entries, async function (err, data) {
@@ -4146,7 +4068,7 @@ try {
                 console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Batch put data successfully.');
+            console.log('Succeeded in putting Batch');
         });
     });
 } catch (e) {
@@ -4172,7 +4094,7 @@ Starts the transaction in this single KV store. This API uses a promise to retur
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4187,7 +4109,7 @@ try {
         count++;
     });
     kvStore.startTransaction().then(async (err) => {
-        console.log('Started the transaction successfully.');
+        console.log('Succeeded in starting Transaction');
     }).catch((err) => {
         console.error(`Fail to start Transaction.code is ${err.code},message is ${err.message}`);
     });
@@ -4214,7 +4136,7 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4225,7 +4147,7 @@ let kvStore;
 try {
     kvStore.commit(function (err, data) {
         if (err == undefined) {
-            console.log('Committed the transaction successfully.');
+            console.log('Succeeded in committing');
         } else {
             console.error(`Fail to commit.code is ${err.code},message is ${err.message}`);
         }
@@ -4253,7 +4175,7 @@ Commits the transaction in this single KV store. This API uses a promise to retu
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4263,7 +4185,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 let kvStore;
 try {
     kvStore.commit().then(async (err) => {
-        console.log('Committed the transaction successfully.');
+        console.log('Succeeded in committing');
     }).catch((err) => {
         console.error(`Fail to commit.code is ${err.code},message is ${err.message}`);
     });
@@ -4290,7 +4212,7 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4301,7 +4223,7 @@ let kvStore;
 try {
     kvStore.rollback(function (err,data) {
         if (err == undefined) {
-            console.log('Rolled back the transaction successfully');
+            console.log('Succeeded in rolling back');
         } else {
             console.error(`Fail to rollback.code is ${err.code},message is ${err.message}`);
         }
@@ -4329,7 +4251,7 @@ Rolls back the transaction in this single KV store. This API uses a promise to r
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4339,7 +4261,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 let kvStore;
 try {
     kvStore.rollback().then(async (err) => {
-        console.log('Rolled back the transaction successfully');
+        console.log('Succeeded in rolling back');
     }).catch((err) => {
         console.error(`Fail to rollback.code is ${err.code},message is ${err.message}`);
     });
@@ -4370,7 +4292,7 @@ let kvStore;
 try {
     kvStore.enableSync(true, function (err, data) {
         if (err == undefined) {
-            console.log('Enabled sync successfully.');
+            console.log('Succeeded in enabling sync');
         } else {
             console.error(`Fail to enable sync.code is ${err.code},message is ${err.message}`);
         }
@@ -4406,7 +4328,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses a pro
 let kvStore;
 try {
     kvStore.enableSync(true).then((err) => {
-        console.log('Enabled sync successfully.');
+        console.log('Succeeded in enabling sync');
     }).catch((err) => {
         console.error(`Fail to enable sync.code is ${err.code},message is ${err.message}`);
     });
@@ -4443,7 +4365,7 @@ try {
             console.error(`Fail to set syncRange.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Set syncRange successfully.');
+        console.log('Succeeded in setting syncRange');
     });
 } catch (e) {
     console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
@@ -4479,7 +4401,7 @@ try {
     const localLabels = ['A', 'B'];
     const remoteSupportLabels = ['C', 'D'];
     kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
-        console.log('Set syncRange successfully.');
+        console.log('Succeeded in setting syncRange');
     }).catch((err) => {
         console.error(`Fail to set syncRange.code is ${err.code},message is ${err.message}`);
     });
@@ -4514,7 +4436,7 @@ try {
             console.error(`Fail to set syncParam.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Set syncParam successfully');
+        console.log('Succeeded in setting syncParam');
     });
 } catch (e) {
     console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
@@ -4548,7 +4470,7 @@ let kvStore;
 try {
     const defaultAllowedDelayMs = 500;
     kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
-        console.log('Set syncParam successfully');
+        console.log('Succeeded in setting syncParam');
     }).catch((err) => {
         console.error(`Fail to set syncParam.code is ${err.code},message is ${err.message}`);
     });
@@ -4579,7 +4501,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**       |
+| ID| **Error Message**       |
 | ------------ | ------------------- |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
@@ -4599,7 +4521,7 @@ try {
             console.error(`Fail to sync.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting data');
         const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
         kvStore.sync(devices, mode, 1000);
@@ -4625,14 +4547,14 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| query     | [Query](query)        | Yes  | **Query** object to match.                      |
+| query     | [Query](#query)        | Yes  | **Query** object to match.                      |
 | delayMs   | number                | No  | Allowed synchronization delay time, in ms.    |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**       |
+| ID| **Error Message**       |
 | ------------ | ------------------- |
 | 15100003     | Database corrupted. |
 | 15100004     | Not found.          |
@@ -4652,7 +4574,7 @@ try {
             console.error(`Fail to sync.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting data');
         const devices = ['deviceList'];
         const mode = distributedKVStore.SyncMode.PULL_ONLY;
         const query = new distributedKVStore.Query();
@@ -4679,13 +4601,13 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                         |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100001     | Over max subscribe limits.             |
 | 15100005     | Database or result set already closed. |
@@ -4716,7 +4638,7 @@ Subscribes to synchronization complete events.
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the synchronization result.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event. |
 
 **Example**
 
@@ -4729,7 +4651,7 @@ try {
         console.log(`syncComplete ${data}`);
     });
     kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
-        console.log('Put data successfully.');
+        console.log('succeeded in putting');
     }).catch((err) => {
         console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
     });
@@ -4751,13 +4673,13 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback invoked to return the result.                                              |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for data changes.                           |
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4805,7 +4727,7 @@ Unsubscribes from synchronization complete events.
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback used to return the synchronization result.                |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event.                |
 
 **Example**
 
@@ -4856,7 +4778,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID** | **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4870,7 +4792,7 @@ try {
             console.error(`Fail to get SecurityLevel.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained securityLevel successfully');
+        console.log('Succeeded in getting securityLevel');
     });
 } catch (e) {
     console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
@@ -4895,7 +4817,7 @@ Obtains the security level of this KV store. This API uses a promise to return t
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100005     | Database or result set already closed. |
 
@@ -4905,7 +4827,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 let kvStore;
 try {
     kvStore.getSecurityLevel().then((data) => {
-        console.log('Obtained securityLevel successfully');
+        console.log('Succeeded in getting securityLevel');
     }).catch((err) => {
         console.error(`Fail to get SecurityLevel.code is ${err.code},message is ${err.message}`);
     });
@@ -4926,7 +4848,7 @@ Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkv
 
 ### get
 
-get(key: string, callback: AsyncCallback<boolean | string| number | Uint8Array>): void
+get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains the value of the specified key for this device. This API uses an asynchronous callback to return the result.
 
@@ -4943,7 +4865,7 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -4961,13 +4883,13 @@ try {
             console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log("Put data successfully.");
+        console.log("Succeeded in putting");
         kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log(`Obtained data successfully. data=${data}`);
+            console.log(`Succeeded in getting data.data=${data}`);
         });
     });
 } catch (e) {
@@ -4977,7 +4899,7 @@ try {
 
 ### get
 
-get(key: string): Promise&lt;boolean | string| number | Uint8Array&gt;
+get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains the value of the specified key for this device. This API uses a promise to return the result.
 
@@ -4999,7 +4921,7 @@ Obtains the value of the specified key for this device. This API uses a promise 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5013,9 +4935,9 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.log(`Put data successfully. data=${data}`);
+        console.log(`Succeeded in putting data.data=${data}`);
         kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log(`Obtained data successfully. data=${data}`);
+            console.log(`Succeeded in getting data.data=${data}`);
         }).catch((err) => {
             console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
         });
@@ -5029,7 +4951,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
+get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
 
@@ -5047,7 +4969,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5065,13 +4987,13 @@ try {
             console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting');
         kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained data successfully');
+            console.log('Succeeded in getting');
         });
     })
 } catch (e) {
@@ -5081,7 +5003,7 @@ try {
 
 ### get
 
-get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
+get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
 
@@ -5104,7 +5026,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100004     | Not found.                             |
@@ -5118,9 +5040,9 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
-        console.log('Put data successfully.');
+        console.log('Succeeded in putting');
         kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
-            console.log('Obtained data successfully');
+            console.log('Succeeded in getting');
         }).catch((err) => {
             console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
         });
@@ -5151,7 +5073,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5179,13 +5101,13 @@ try {
             console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key', function (err, entries) {
             if (err != undefined) {
                 console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -5219,7 +5141,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5243,9 +5165,9 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (entries) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`PutBatch ${entries}`);
         }).catch((err) => {
             console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
@@ -5278,7 +5200,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5306,13 +5228,13 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err, entries) {
             if (err != undefined) {
                 console.error(`Fail to get entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -5347,7 +5269,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5371,9 +5293,9 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
             console.log(`entries[0].value: ${entries[0].value}`);
@@ -5401,14 +5323,14 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 | Name  | Type                                  | Mandatory| Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
-| query    | [Query](query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
+| query    | [Query](#query)                         | Yes  | Key prefix to match.                                 |
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5433,7 +5355,7 @@ try {
     }
     console.log(`entries: {entries}`);
     kvStore.putBatch(entries, async function (err, data) {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getEntries(query, function (err, entries) {
@@ -5441,7 +5363,7 @@ try {
                 console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         });
@@ -5463,7 +5385,7 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 | Name| Type          | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -5475,7 +5397,7 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5500,18 +5422,18 @@ try {
     }
     console.log(`entries: {entries}`);
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getEntries(query).then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting Entries');
         }).catch((err) => {
             console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`);
         });
     }).catch((err) => {
         console.error(`Fail to get Entries.code is ${err.code},message is ${err.message}`)
     });
-    console.log('Obtained the entries successfully.');
+    console.log('Succeeded in getting Entries');
 } catch (e) {
     console.error(`Fail to get Entries.code is ${e.code},message is ${e.message}`);
 }
@@ -5530,14 +5452,14 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | Name  | Type                              | Mandatory| Description                                                   |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | Yes  | ID of the target device.                                   |
-| query    | [Query](query)                         | Yes  | **Query** object to match.                                         |
+| query    | [Query](#query)                         | Yes  | **Query** object to match.                                         |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5566,7 +5488,7 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         var query = new distributedKVStore.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
@@ -5575,12 +5497,12 @@ try {
                 console.error(`Fail to get entries.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting entries');
             console.log(`entries.length: ${entries.length}`);
             console.log(`entries[0]: ${entries[0]}`);
         })
     });
-    console.log('Obtained the entries successfully.');
+    console.log('Succeeded in getting entries');
 } catch (e) {
     console.error(`Fail to get entries.code is ${e.code},message is ${e.message}`);
 }
@@ -5599,7 +5521,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | Name  | Type      | Mandatory| Description                |
 | -------- | -------------- | ---- | -------------------- |
 | deviceId | string         | Yes  | ID of the target device.|
-| query    | [Query](query) | Yes  | **Query** object to match.      |
+| query    | [Query](#query) | Yes  | **Query** object to match.      |
 
 **Return value**
 
@@ -5611,7 +5533,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5636,19 +5558,19 @@ try {
     }
     console.log(`entries: ${entries}`);
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         var query = new distributedKVStore.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
         kvStore.getEntries('localDeviceId', query).then((entries) => {
-            console.log('Obtained the entries successfully.');
+            console.log('Succeeded in getting entries');
         }).catch((err) => {
             console.error(`Fail to get entries.code is ${err.code},message is ${err.message}`);
         });
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
-    console.log('Obtained the entries successfully.');
+    console.log('Succeeded in getting entries');
 } catch (e) {
     console.error(`Fail to get entries.code is ${e.code},message is ${e.message}`);
 }
@@ -5673,7 +5595,7 @@ Obtains a result set with the specified prefix for this device. This API uses an
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5701,20 +5623,20 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         kvStore.getResultSet('batch_test_string_key', async function (err, result) {
             if (err != undefined) {
                 console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set successfully');
+            console.log('Succeeded in getting result set');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
                 if (err != undefined) {
                     console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
                     return;
                 }
-                console.log('Closed the result set successfully');
+                console.log('Succeeded in closing result set');
             })
         });
     });
@@ -5747,7 +5669,7 @@ Obtains a result set with the specified prefix for this device. This API uses a 
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5771,18 +5693,18 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -5811,7 +5733,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5827,14 +5749,14 @@ try {
             console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
         kvStore.closeResultSet(resultSet, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Closed the result set successfully.');
+            console.log('Succeeded in closing resultSet');
         })
     });
 } catch (e) {
@@ -5867,7 +5789,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5879,13 +5801,13 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully.');
+        console.log('Succeeded in closing resultSet');
     }).catch((err) => {
         console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
     });
@@ -5907,14 +5829,14 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | Name  | Type                                                    | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
-| query    | [Query](query)                                               | Yes  | **Query** object to match.                                              |
+| query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
 | callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -5942,7 +5864,7 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSet('localDeviceId', query, async function (err, result) {
@@ -5950,14 +5872,14 @@ try {
                 console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set successfully.');
+            console.log('Succeeded in getting resultSet');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
                 if (err != undefined) {
                     console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
                     return;
                 }
-                console.log('Closed the result set successfully.');
+                console.log('Succeeded in closing resultSet');
             })
         });
     });
@@ -5979,7 +5901,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | Name  | Type      | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.|
-| query    | [Query](query) | Yes  | **Query** object to match.                    |
+| query    | [Query](#query) | Yes  | **Query** object to match.                    |
 
 **Return value**
 
@@ -5991,7 +5913,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6015,14 +5937,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet('localDeviceId', query).then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
@@ -6030,7 +5952,7 @@ try {
     query.deviceId('localDeviceId');
     console.log("GetResultSet " + query.getSqlLike());
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully.');
+        console.log('Succeeded in closing resultSet');
     }).catch((err) => {
         console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
     });
@@ -6052,7 +5974,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 | Name| Type          | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -6064,7 +5986,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6088,14 +6010,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet(query).then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
@@ -6118,7 +6040,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | Name  | Type          | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.|
-| query    | [Query](query) | Yes  | **Query** object to match.                    |
+| query    | [Query](#query) | Yes  | **Query** object to match.                    |
 
 **Return value**
 
@@ -6130,7 +6052,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6154,14 +6076,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet('localDeviceId', query).then((result) => {
-        console.log('Obtained the result set successfully.');
+        console.log('Succeeded in getting resultSet');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultSet.code is ${err.code},message is ${err.message}`);
@@ -6169,7 +6091,7 @@ try {
     query.deviceId('localDeviceId');
     console.log("GetResultSet " + query.getSqlLike());
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully.');
+        console.log('Succeeded in closing resultSet');
     }).catch((err) => {
         console.error(`Fail to close resultSet.code is ${err.code},message is ${err.message}`);
     });
@@ -6200,7 +6122,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6220,14 +6142,14 @@ try {
             console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
         kvStore.closeResultSet(resultSet, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Closed the result set successfully');
+            console.log('Succeeded in closing result set');
         })
     });
 } catch (e) {
@@ -6261,7 +6183,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6277,13 +6199,13 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.prefixKey("batch_test_string_key");
     kvStore.getResultSet(predicates).then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -6314,7 +6236,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6334,14 +6256,14 @@ try {
             console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
         kvStore.closeResultSet(resultSet, function (err, data) {
             if (err != undefined) {
                 console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Closed the result set successfully');
+            console.log('Succeeded in closing result set');
         })
     });
 } catch (e) {
@@ -6376,7 +6298,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6391,13 +6313,13 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.prefixKey("batch_test_string_key");
     kvStore.getResultSet('localDeviceId', predicates).then((result) => {
-        console.log('Obtained the result set successfully');
+        console.log('Succeeded in getting result set');
         resultSet = result;
     }).catch((err) => {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
     kvStore.closeResultSet(resultSet).then((err) => {
-        console.log('Closed the result set successfully');
+        console.log('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
@@ -6418,14 +6340,14 @@ Obtains the number of results that match the specified **Query** object for this
 
 | Name  | Type                       | Mandatory| Description                                             |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
-| query    | [Query](query)              | Yes  | **Query** object to match.                                   |
+| query    | [Query](#query)              | Yes  | **Query** object to match.                                   |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results that match the specified **Query** object.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6448,7 +6370,7 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries, async function (err, data) {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSize(query, async function (err, resultSize) {
@@ -6456,7 +6378,7 @@ try {
                 console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained the result set size successfully');
+            console.log('Succeeded in getting result set size');
         });
     });
 } catch (e) {
@@ -6476,7 +6398,7 @@ Obtains the number of results that match the specified **Query** object for this
 
 | Name| Type          | Mandatory| Description          |
 | ------ | -------------- | ---- | -------------- |
-| query  | [Query](query) | Yes  | **Query** object to match.|
+| query  | [Query](#query) | Yes  | **Query** object to match.|
 
 **Return value**
 
@@ -6488,7 +6410,7 @@ Obtains the number of results that match the specified **Query** object for this
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6511,14 +6433,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('Obtained the result set size successfully');
+        console.log('Succeeded in getting result set size');
     }).catch((err) => {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
@@ -6540,14 +6462,14 @@ Obtains the number of results that matches the specified device ID and **Query**
 | Name  | Type                   | Mandatory| Description                                               |
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                 |
-| query    | [Query](query)              | Yes  | **Query** object to match.                                     |
+| query    | [Query](#query)              | Yes  | **Query** object to match.                                     |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6574,7 +6496,7 @@ try {
             console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
             return;
         }
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
         kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
@@ -6582,7 +6504,7 @@ try {
                 console.error(`Fail to get resultSize.code is ${err.code},message is ${err.message}`);
                 return;
             }
-            console.log('Obtained resultSize successfully');
+            console.log('Succeeded in getting resultSize');
             ;
         });
     });
@@ -6604,7 +6526,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 | Name  | Type      | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | deviceId | string         | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.|
-| query    | [Query](query) | Yes  | **Query** object to match.                    |
+| query    | [Query](#query) | Yes  | **Query** object to match.                    |
 
 **Return value**
 
@@ -6616,7 +6538,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 For details about the error codes, see [Distributed KV Store Error Codes](../errorcodes/errorcode-distributedKVStore.md).
 
-| **ID**| **Error Message**                          |
+| ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -6639,14 +6561,14 @@ try {
         entries.push(entry);
     }
     kvStore.putBatch(entries).then(async (err) => {
-        console.log('Batch put data successfully.');
+        console.log('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Fail to put batch.code is ${err.code},message is ${err.message}`);
     });
     var query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
-        console.log('Obtained resultSize successfully');
+        console.log('Succeeded in getting resultSize');
         ;
     }).catch((err) => {
         console.error(`Fail to get resultSize.code is ${err.code},message is ${err.message}`);

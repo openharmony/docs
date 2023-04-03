@@ -12,7 +12,7 @@
 
 OpenHarmony软件栈中包含了多个角色，因此API也分作多种类型。
 
-<img src="figures/API-Category.png" width="800" />
+![](figures/API-Category.png)
 
 不同的API类型其兼容性要求也不一样，具体如下表所述：
 
@@ -60,7 +60,7 @@ OpenHarmony的目标是构建面向万物互联时代的新一代操作系统，
 ### API评审流程
 API评审流程如下：
 
-<img src="figures/API-Workflow.png" width="800" />
+![](figures/API-Workflow.png)
 
 主要过程说明：
 

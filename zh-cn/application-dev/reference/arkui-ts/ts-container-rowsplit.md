@@ -22,9 +22,12 @@ RowSplit()
 | resizeable | boolean | 分割线是否可拖拽，默认为false。 | 
 
 >  **说明：**
+>
 > RowSplit的分割线最小能拖动到刚好包含子组件。
 > 
 > 在真机中查看拖动效果，预览器中不支持拖动。
+>
+> 不支持clip、margin通用属性。
 
 
 ## 示例

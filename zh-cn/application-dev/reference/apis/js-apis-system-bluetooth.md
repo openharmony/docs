@@ -19,14 +19,12 @@ import bluetooth from '@system.bluetooth';
 
 开始搜寻附近的低功耗蓝牙外围设备。此操作比较耗费系统资源，请在搜索并连接到设备后调用[bluetooth.stopBLEScan](#bluetoothstopblescanobject)方法停止搜索。
 
-**需要权限：** ohos.permission.DISCOVER_BLUETOOTH、ohos.permission.LOCATION
-
 **系统能力：** SystemCapability.Communication.Bluetooth.Lite
 
 **参数：**
 **表1** StartBLEScanOptions
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 上报设备的间隔，单位毫秒，默认值为0。0表示找到新设备立即上报，其他数值根据传入的间隔上报。 |
 | success | Function | 否 | 接口调用成功的回调函数。 |
@@ -42,7 +40,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.startBLEScan success.');
     },
     fail(code, data) {
-      console.log('call bluetooth.startBLEScan failed, code: ${code}, data: ${data}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluetooth.startBLEScan complete.');
@@ -55,14 +53,12 @@ import bluetooth from '@system.bluetooth';
 
 停止搜寻附近的低功耗蓝牙外围设备。与[bluetooth.startBLEScan(OBJECT)](#bluetoothstartblescanobject)接口配套使用。
 
-**需要权限：** ohos.permission.DISCOVER_BLUETOOTH、ohos.permission.LOCATION
-
 **系统能力：** SystemCapability.Communication.Bluetooth.Lite
 
 **参数：**
 **表2** StopBLEScanOptions
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | success | Function | 否 | 接口调用成功的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
@@ -76,7 +72,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.stopBLEScan success.');
     },
     fail(data, code) {
-      console.log('call bluethooth.stopBLEScan fail, code: ${code}, data: ${data}.');
+      console.log('call bluethooth.stopBLEScan fail, code:' + code + ', data:' + data);
     },
     complete() {
       console.log('call bluethooth.stopBLEScan complete.');
@@ -89,14 +85,12 @@ import bluetooth from '@system.bluetooth';
 
 订阅寻找到新设备。再次调用时，会覆盖前一次调用效果，即仅最后一次调用生效。
 
-**需要权限：**  ohos.permission.DISCOVER_BLUETOOTH、ohos.permission.LOCATION
-
 **系统能力：** SystemCapability.Communication.Bluetooth.Lite
 
 **参数：**
 **表3** SubscribeBLEFoundOptions
 
-| 参数 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | success | Function | 是 | 寻找到新设备上报时调用的回调函数。 |
 | fail | Function | 否 | 接口调用失败的回调函数。 |
@@ -125,7 +119,7 @@ import bluetooth from '@system.bluetooth';
       console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
     fail(data, code) {
-      console.log('call bluetooth.startBLEScan failed, data: ${data}, code: ${code}.');
+      console.log('call bluetooth.startBLEScan failed, code:' + code + ', data:' + data);
     }
   });
   ```
@@ -134,8 +128,6 @@ import bluetooth from '@system.bluetooth';
 ## bluetooth.unsubscribeBLEFound()
 
 解除订阅寻找到新设备。
-
-**需要权限：**  ohos.permission.DISCOVER_BLUETOOTH、ohos.permission.LOCATION
 
 **系统能力：** SystemCapability.Communication.Bluetooth.Lite
 

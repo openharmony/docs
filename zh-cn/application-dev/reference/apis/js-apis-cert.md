@@ -1,6 +1,6 @@
-# 证书模块
+# @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](./js-apis-cryptoFramework.md)。
+crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
 > 
@@ -104,6 +104,11 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 | inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
 | callback | AsyncCallback\<X509Cert>      | 是   | 回调函数。表示X509证书对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
 
 **示例：**
 
@@ -115,7 +120,7 @@ let encodingData = null;
 let encodingBlob = {
     data: encodingData,
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: cryptoFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_PEM
 };
 cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
     if (error != null) {
@@ -145,6 +150,12 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 | 类型     | 说明             |
 | ------- | ---------------- |
 | Promise\<X509Cert> | 表示X509证书对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
 
 **示例：**
 
@@ -184,12 +195,16 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 | key      | cryptoFramework.PubKey     | 是   | 用于验签的公钥对象                                           |
 | callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 19030001 | crypto operation error.      |
 
 **示例：**
 
 ```js
 import cryptoCert from '@ohos.security.cert';
-import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 证书二进制数据，需业务自行赋值
 let encodingData = null;
@@ -203,7 +218,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
         console.log("createX509Cert failed, errCode: " + error.code + ", errMsg: " + error.message);
     } else {
         console.log("createX509Cert success");
-        // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+        // 业务需通过上级X509Cert证书对象的getPublicKey获取PubKey
 		let pubKey = null;
         x509Cert.verify(pubKey, function (error, data) {
             if (error != null) {
@@ -236,6 +251,12 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 19030001 | crypto operation error.      |
+
 **示例：**
 
 ```js
@@ -250,7 +271,7 @@ let encodingBlob = {
 };
 cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
     console.log("createX509Cert success");
-    // 业务需通过AsyKeyGenerator生成PubKey或通过上级X509Cert证书对象的getPublicKey获取PubKey
+    // 业务可通过上级X509Cert证书对象的getPublicKey获取PubKey
 	let pubKey = null;
     x509Cert.verify(pubKey).then(result => {
         console.log("verify success");
@@ -276,6 +297,13 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示X509证书序列化数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -319,6 +347,14 @@ getEncoded() : Promise\<EncodingBlob>
 | --------------------------------------- | ---------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书序列化数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -355,8 +391,14 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X509证书公钥对象 |
+| cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -398,8 +440,16 @@ checkValidityWithDate(date: string) : void
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期        |
+| date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19030001 | crypto operation error.|
+| 19030003 | the certificate has not taken effect.                                     |
+| 19030004 | the certificate has expired.|
 
 **示例：**
 
@@ -516,6 +566,14 @@ getIssuerName() : DataBlob
 | --------------------- | ---------------------- |
 | [DataBlob](#datablob) | 表示X509证书颁发者名称 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -552,6 +610,14 @@ getSubjectName() : DataBlob
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书主体名称 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -584,9 +650,17 @@ getNotBeforeTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期起始时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期起始时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -620,9 +694,17 @@ getNotAfterTime() : string
 
 **返回值**：
 
-| 类型   | 说明                       |
-| ------ | -------------------------- |
-| string | 表示X509证书有效期截止时间 |
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -660,6 +742,14 @@ getSignature() : DataBlob
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书签名数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -695,6 +785,14 @@ getSignatureAlgName() : string
 | 类型   | 说明                     |
 | ------ | ------------------------ |
 | string | 表示X509证书签名算法名称 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -732,6 +830,14 @@ getSignatureAlgOid() : string
 | ------ | --------------------------------- |
 | string | 表示X509证书签名算法对象标志符OID |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -767,6 +873,14 @@ getSignatureAlgParams() : DataBlob
 | 类型                  | 说明                     |
 | --------------------- | ------------------------ |
 | [DataBlob](#datablob) | 表示X509证书签名算法参数 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -804,6 +918,13 @@ getKeyUsage() : DataBlob
 | --------------------- | -------------------- |
 | [DataBlob](#datablob) | 表示X509证书秘钥用途 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -839,6 +960,14 @@ getExtKeyUsage() : DataArray
 | 类型                    | 说明                     |
 | ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | 表示X509证书扩展秘钥用途 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -912,6 +1041,14 @@ getSubjectAltNames() : DataArray
 | ----------------------- | ------------------------ |
 | [DataArray](#dataarray) | 表示X509证书主体可选名称 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
+
 **示例：**
 
 ```js
@@ -947,6 +1084,14 @@ getIssuerAltNames() : DataArray
 | 类型                    | 说明                       |
 | ----------------------- | -------------------------- |
 | [DataArray](#dataarray) | 表示X509证书颁发者可选名称 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.|
 
 **示例：**
 
@@ -985,6 +1130,11 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 | inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
 | callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
 
 **示例：**
 
@@ -1026,6 +1176,12 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 | 类型              | 说明                 |
 | ----------------- | -------------------- |
 | Promise\<X509Crl> | 表示证书吊销列表对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
 
 **示例：**
 
@@ -1148,6 +1304,13 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1191,6 +1354,14 @@ getEncoded() : Promise\<EncodingBlob>
 | ---------------------- | -------------------------------- |
 | Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1219,7 +1390,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1227,9 +1398,14 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey               | 是   | 表示用于验签的公钥对象                                       |
+| key      | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1266,7 +1442,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对X509证书吊销列表进行验签。
+表示对X509证书吊销列表进行验签。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1274,13 +1450,19 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象 |
+| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象。 |
 
 **返回值**：
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1359,6 +1541,14 @@ getIssuerName() : DataBlob
 | --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1395,6 +1585,14 @@ getLastUpdate() : string
 | ------ | ------------------------------------ |
 | string | 表示X509证书吊销列表最后一次更新日期 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1430,6 +1628,14 @@ getNextUpdate() : string
 | 类型   | 说明                                 |
 | ------ | ------------------------------------ |
 | string | 表示X509证书吊销列表下一次更新的日期 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1472,6 +1678,13 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 | 类型                   | 说明                   |
 | ---------------------- | --------------------- |
 | X509CrlEntry | 表示被吊销X509证书对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1521,6 +1734,13 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 | ------------ | -------------------- |
 | X509CrlEntry | 表示被吊销X509证书对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1563,6 +1783,12 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 | -------- | ----------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1606,6 +1832,13 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 | ----------------------------- | ---------------------- |
 | Promise<Array\<X509CrlEntry>> | 表示被吊销X509证书列表 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1643,6 +1876,14 @@ getTbsInfo() : DataBlob
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
 | [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1684,6 +1925,14 @@ getSignature() : DataBlob
 | --------------------- | ------------------------------ |
 | [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1719,6 +1968,14 @@ getSignatureAlgName() : string
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
 | string | 表示X509证书吊销列表签名的算法名 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1756,6 +2013,14 @@ getSignatureAlgOid() : string
 | ------ | --------------------------------------------- |
 | string | 表示X509证书吊销列表签名算法的对象标志符OID。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1791,6 +2056,14 @@ getSignatureAlgParams() : DataBlob
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
 | [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -1834,6 +2107,14 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 | ------------------ | -------------------- |
 | CertChainValidator | 表示证书链校验器对象 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
 **示例：**
 
 ```js
@@ -1849,7 +2130,7 @@ let validator = cryptoCert.createCertChainValidator("PKIX");
 
 ### 属性
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.Cert
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | -------------------------- |
@@ -1872,6 +2153,19 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 | certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据                                     |
 | callback  | AsyncCallback\<void>            | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
 
 **示例：**
 
@@ -1918,6 +2212,20 @@ validate(certChain : CertChainData) : Promise\<void>
 | 类型           | 说明        |
 | -------------- | ----------- |
 | Promise\<void> | Promise对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
 
 **示例：**
 
@@ -1983,6 +2291,13 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -2013,6 +2328,14 @@ getEncoded() : Promise\<EncodingBlob>
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 
@@ -2063,8 +2386,15 @@ getCertIssuer() : DataBlob
 **返回值**：
 
 | 类型                  | 说明                     |
-| --------------------- | ---------------------- - |
+| --------------------- | ----------------------- |
 | [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
 
 **示例：**
 
@@ -2093,6 +2423,14 @@ getRevocationDate() : string
 | 类型   | 说明                |
 | ------ | ------------------ |
 | string | 表示证书被吊销的日期 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
 
 **示例：**
 

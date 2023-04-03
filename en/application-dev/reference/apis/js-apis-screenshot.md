@@ -1,4 +1,4 @@
-# @ohos.screenshot
+# @ohos.screenshot (Screenshot)
 
 The **Screenshot** module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
 
@@ -37,10 +37,10 @@ Describes the region of the screen to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | Yes  | Left boundary of the screen region to capture.|
-| top    | number | Yes  | Top boundary of the screen region to capture.|
-| width  | number | Yes  | Width of the screen region to capture.|
-| height | number | Yes  | Height of the screen region to capture.|
+| left   | number | Yes  | Left boundary of the screen region to capture, in pixels.|
+| top    | number | Yes  | Top boundary of the screen region to capture, in pixels.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels.|
+| height | number | Yes  | Height of the screen region to capture, in pixels.|
 
 
 ## Size
@@ -51,8 +51,8 @@ Describes the size of the screen region to capture.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | Yes  | Width of the screen region to capture.|
-| height | number | Yes  | Height of the screen region to capture.|
+| width  | number | Yes  | Width of the screen region to capture, in pixels.|
+| height | number | Yes  | Height of the screen region to capture, in pixels.|
 
 ## screenshot.save
 

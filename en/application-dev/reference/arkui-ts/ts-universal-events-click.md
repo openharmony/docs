@@ -11,9 +11,12 @@ A click event is triggered when a component is clicked.
 
 | Name                                      | Bubbling Supported| Description                             |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.|
+| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about **event**, see **ClickEvent**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ClickEvent
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name           | Type                                | Description                                                    |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
 | screenX             | number                               | X coordinate of the click relative to the upper left corner of the application window.                     |
@@ -25,6 +28,8 @@ A click event is triggered when a component is clicked.
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
 
 ## EventTarget<sup>8+</sup>
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type                     | Description        |
 | ---- | ------------------------- | ---------- |

@@ -26,7 +26,7 @@ The hapsigner tool is implemented based on the Public Key Infrastructure (PKI). 
 
  - Profile
 
-   [HarmonyAppProvision configuration file](../quick-start/app-provision-structure.md) provides information such as the authorized application permissions and device ID.
+   [HarmonyAppProvision configuration file](app-provision-structure.md) provides information such as the authorized application permissions and device ID.
 
 ## Constraints
 

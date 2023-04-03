@@ -42,4 +42,4 @@ struct AreaExample {
 }
 ```
 
-![en-us_image_0000001257058403](figures/en-us_image_0000001257058403.gif)
+![en-us_image_0000001189634870](figures/en-us_image_0000001189634870.gif)

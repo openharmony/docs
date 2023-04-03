@@ -12,7 +12,7 @@ The **zIndex** attribute sets the z-order of a component in the stacking context
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| zIndex | number | Hierarchy of sibling components in a container. A larger value indicates a higher display level.|
+| zIndex | number | Hierarchy of sibling components in a container. A larger value indicates a higher display level.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example

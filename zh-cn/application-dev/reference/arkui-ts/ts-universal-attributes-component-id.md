@@ -11,7 +11,7 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 | 名称   | 参数说明     | 描述                         |
 | -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：'' |
+| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 接口
@@ -39,7 +39,7 @@ getInspectorByKey(id: string): string
 
 ### getInspectorTree<sup>9+</sup>
 
-getInspectorTree(): string
+getInspectorTree(): Object
 
 获取组件树及组件属性。
 
@@ -49,7 +49,7 @@ getInspectorTree(): string
 
 | 类型     | 描述                            |
 | ------ | --------------------------- |
-| string | 组件树及组件属性列表的JSON字符串。 |
+| Object | 组件树及组件属性列表的JSON对象。 |
 
 ### sendEventByKey<sup>9+</sup>
 
@@ -181,7 +181,7 @@ struct IdExample {
       }.margin({ top: 20 })
       .onClick(() => {
         console.info(getInspectorByKey("click"))
-        console.info(getInspectorTree())
+        console.info(JSON.stringify(getInspectorTree()))
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
           sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件

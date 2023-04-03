@@ -1,6 +1,6 @@
 # 共享元素转场
 
-设置页面间转场时共享元素的转场动效。 
+当路由进行切换时，可以通过设置组件的 sharedTransition 属性将该元素标记为共享元素并设置对应的共享元素转场动效。
 
 > **说明：**
 >
@@ -12,7 +12,7 @@
 
 | 名称             | 参数                                                         | 参数描述                                                     |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| sharedTransition | id:&nbsp;string,<br/>{<br/>&nbsp;duration?: number,<br/>&nbsp;curve?: Curve&nbsp;\|&nbsp;string,<br/>&nbsp;delay?: number,<br/>&nbsp;motionPath?: <br/>{<br/>&nbsp;path: string,<br/>&nbsp;form?: number,<br/>&nbsp;to?: number,<br/>&nbsp;rotatable?: boolean<br/>},<br/>zIndex?: number,<br/>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br/>} | 两个页面中id值相同且不为空字符串的组件即为共享元素，在页面转场时可显示共享元素转场动效。<br/>-&nbsp;id：设置组件的id。<br/>-&nbsp;duration：单位为毫秒，默认动画时长为1000毫秒。<br/>-&nbsp;curve：默认曲线为Linear，有效值参见[Curve](ts-animatorproperty.md)说明。<br/>-&nbsp;delay：单位为毫秒，默认不延时播放。<br/>-&nbsp;motionPath：运动路径信息，详细说明请参考[路径动画](ts-motion-path-animation.md)。<br/>-&nbsp;path：设置路径。<br/>-&nbsp;from：设置起始值。<br/>-&nbsp;to：设置终止值。<br/>-&nbsp;rotatable：是否旋转。<br/>-&nbsp;zIndex：设置Z轴。<br/>-&nbsp;type：动画类型。 |
+| sharedTransition | id:&nbsp;string,<br/>{<br/>&nbsp;duration?: number,<br/>&nbsp;curve?: Curve&nbsp;\|&nbsp;string,<br/>&nbsp;delay?: number,<br/>&nbsp;motionPath?: <br/>{<br/>&nbsp;path: string,<br/>&nbsp;form?: number,<br/>&nbsp;to?: number,<br/>&nbsp;rotatable?: boolean<br/>},<br/>zIndex?: number,<br/>type?: [SharedTransitionEffectType](ts-appendix-enums.md#sharedtransitioneffecttype)<br/>} | 两个页面中id值相同且不为空字符串的组件即为共享元素，在页面转场时可显示共享元素转场动效。<br/>-&nbsp;id：设置组件的id。<br/>-&nbsp;duration：描述共享元素转场动效播放时长。<br/>默认值：1000<br/>单位：毫秒<br/>取值范围：[0, +∞)<br/>值为0时表示无动画。设置小于0的值时，按值为0处理。<br/>-&nbsp;curve：默认曲线为Linear，有效值参见[Curve](ts-animatorproperty.md)说明。<br/>-&nbsp;delay：用来描述共享元素转场动效延迟播放的时长。<br/>默认值：0<br/>单位：毫秒<br/>取值范围：[0, +∞)<br/>设置小于0的值时，按值为0处理。<br/>-&nbsp;motionPath：运动路径信息，详细说明请参考[路径动画](ts-motion-path-animation.md)。<br/>-&nbsp;path：设置路径。<br/>-&nbsp;from：设置起始值。<br/>-&nbsp;to：设置终止值。<br/>-&nbsp;rotatable：是否旋转。<br/>-&nbsp;zIndex：设置Z轴。<br/>-&nbsp;type：动画类型。 |
 
 
 ## 示例
@@ -47,7 +47,8 @@ struct SharedTransitionExample {
 struct pageBExample {
   build() {
     Stack() {
-      Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage')
+      Image($r('app.media.ic_health_heart')).width(150).height(150)
+        .sharedTransition('sharedImage', { duration: 800, curve: Curve.Linear, delay: 100 })
     }.width('100%').height('100%')
   }
 }

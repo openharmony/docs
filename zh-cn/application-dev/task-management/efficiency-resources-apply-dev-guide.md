@@ -6,6 +6,9 @@
 
 对于需要升级为特权应用的，开发者需要合理评估自己的业务诉求，向应用中心提出申请。
 
+## 约束与限制
+仅支持系统应用。
+
 ## 接口说明
 
 **表1** 申请能效资源主要接口
@@ -23,7 +26,7 @@
 2、当资源使用完毕，需要及时释放。支持释放部分资源或全部资源。
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
 // 申请能效资源
 let request = {
@@ -35,8 +38,14 @@ let request = {
     isPersist: true,
     isProcess: true,
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+
+let res;
+try {
+    res = backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("the result of request is: " + res);
+} catch (error) {
+    console.error(`Operation applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 释放部分资源
 request = {
@@ -44,10 +53,20 @@ request = {
     isApply: false,
     timeOut: 0,
     reason: "reset",
+    isPersist: true,
+    isProcess: true,
 };
-res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    res = backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("the result of request is: " + res);
+} catch (error) {
+    console.error(`Operation applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 释放全部资源
-backgroundTaskManager.resetAllEfficiencyResources();
+try {
+    backgroundTaskManager.resetAllEfficiencyResources();
+} catch (error) {
+    console.error(`Operation resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```

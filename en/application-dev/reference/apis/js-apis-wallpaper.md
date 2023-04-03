@@ -1,6 +1,6 @@
-# @ohos.wallpaper
+# @ohos.wallpaper (Wallpaper)
 
-The **wallpaper** module is part of the theme framework and provides the system-level wallpaper management service in OpenHarmony. You can use the APIs of this module to show, set, and switch between wallpapers.
+The **wallpaper** module is a system service module in OpenHarmony that provides the wallpaper management service. You can use the APIs of this module to show, set, and switch between wallpapers.
 
 > **NOTE**
 > 
@@ -14,7 +14,7 @@ The **wallpaper** module is part of the theme framework and provides the system-
 import wallpaper from '@ohos.wallpaper';
 ```
 
-## WallpaperType
+## WallpaperType<sup>7+</sup>
 
 Enumerates the wallpaper types.
 
@@ -26,11 +26,13 @@ Enumerates the wallpaper types.
 | WALLPAPER_LOCKSCREEN | 1 |Lock screen wallpaper.|
 
 
-## RgbaColor
+## RgbaColor<sup>9+</sup>
 
 Defines the RGBA color space for the wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -48,6 +50,8 @@ Obtains the main color information of the wallpaper of the specified type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -63,33 +67,12 @@ Obtains the main color information of the wallpaper of the specified type.
 **Example**
 
 ```js
-let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-```
-
-## wallpaper.getIdSync<sup>9+</sup>
-
-getIdSync(wallpaperType: WallpaperType): number
-
-Obtains the ID of the wallpaper of the specified type.
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | ID of the wallpaper. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1.|
-
-**Example**
-
-```js
-let id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+try {
+    let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+    console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
+} catch (error) {
+    console.error(`failed to getColorsSync because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getMinHeightSync<sup>9+</sup>
@@ -99,6 +82,8 @@ getMinHeightSync(): number
 Obtains the minimum height of this wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
 
 **Return value**
 
@@ -120,6 +105,8 @@ Obtains the minimum width of this wallpaper.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type| Description|
@@ -132,46 +119,6 @@ Obtains the minimum width of this wallpaper.
 let minWidth = wallpaper.getMinWidthSync();
 ```
 
-## wallpaper.isChangeAllowed<sup>9+</sup>
-
-isChangeAllowed(): boolean
-
-Checks whether to allow the application to change the wallpaper for the current user.
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Whether to allow the application to change the wallpaper for the current user. The value **true** means that the operation is allowed, and **false** means the opposite.|
-
-**Example**
-
-```js
-let isChangeAllowed = wallpaper.isChangeAllowed();
-```
-
-## wallpaper.isUserChangeAllowed<sup>9+</sup>
-
-isUserChangeAllowed(): boolean
-
-Checks whether the user is allowed to set wallpapers.
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Whether the user is allowed to set wallpapers. The value **true** means that the operation is allowed, and **false** means the opposite.|
-
-**Example**
-
-```js
-let isUserChangeAllowed = wallpaper.isUserChangeAllowed();
-```
-
 ## wallpaper.restore<sup>9+</sup>
 
 restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
@@ -182,12 +129,14 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is error information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is reset, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -210,6 +159,8 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -243,18 +194,20 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is error information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```js
-//The source type is string.
+// The source type is string.
 let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
@@ -296,11 +249,13 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
@@ -312,7 +267,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 **Example**
 
 ```js
-//The source type is string.
+// The source type is string.
 let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setImage.`);
@@ -340,34 +295,6 @@ imageSource.createPixelMap(opts).then((pixelMap) => {
 });
 ```
 
-## wallpaper.getFileSync<sup>9+</sup>
-
-getFileSync(wallpaperType: WallpaperType): number;
-
-Obtains the wallpaper of the specified type.
-
-**Required permissions**: ohos.permission.GET_WALLPAPER
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| number | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
-
-**Example**
-
-```js
-let file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-```
-
 ## wallpaper.getImage<sup>9+</sup>
 
 getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
@@ -385,7 +312,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes| Callback used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -422,7 +349,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -434,11 +361,15 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
 });
 ```
 
-## wallpaper.on('colorChange')<sup>9+</sup>
+## wallpaper.on('colorChange')<sup>(deprecated)</sup>
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
 Subscribes to the wallpaper color change event.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -452,17 +383,25 @@ Subscribes to the wallpaper color change event.
 **Example**
 
 ```js
-let listener = (colors, wallpaperType) => {
-    console.log(`wallpaper color changed.`);
-};
-wallpaper.on('colorChange', listener);
+try {
+    let listener = (colors, wallpaperType) => {
+        console.log(`wallpaper color changed.`);
+    };
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
 ```
 
-## wallpaper.off('colorChange')<sup>9+</sup>
+## wallpaper.off('colorChange')<sup>(deprecated)</sup>
 
 off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
 Unsubscribes from the wallpaper color change event.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -479,11 +418,25 @@ Unsubscribes from the wallpaper color change event.
 let listener = (colors, wallpaperType) => {
     console.log(`wallpaper color changed.`);
 };
-wallpaper.on('colorChange', listener);
-// Unsubscribe from the listener.
-wallpaper.off('colorChange', listener);
-// Unsubscribe from all subscriptions of the colorChange type.
-wallpaper.off('colorChange');
+try {
+    wallpaper.on('colorChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // Unsubscribe from the listener.
+    wallpaper.off('colorChange', listener);
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // Unsubscribe from all subscriptions of the colorChange type.
+    wallpaper.off('colorChange');
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
 ```
 
 ## wallpaper.getColors<sup>(deprecated)</sup>
@@ -494,7 +447,7 @@ Obtains the main color information of the wallpaper of the specified type. This 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -525,7 +478,7 @@ Obtains the main color information of the wallpaper of the specified type. This 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -559,7 +512,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses an asynchro
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -568,7 +521,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses an asynchro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to (2^31-1).|
 
 **Example**
 
@@ -590,7 +543,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses a promise t
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -604,7 +557,7 @@ Obtains the ID of the wallpaper of the specified type. This API uses a promise t
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the wallpaper ID. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1.|
+| Promise&lt;number&gt; | Promise used to return the wallpaper ID. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to (2^31-1).|
 
 **Example**
 
@@ -624,7 +577,7 @@ Obtains the minimum height of this wallpaper. This API uses an asynchronous call
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -654,7 +607,7 @@ Obtains the minimum height of this wallpaper. This API uses a promise to return 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -682,7 +635,7 @@ Obtains the minimum width of this wallpaper. This API uses an asynchronous callb
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -712,7 +665,7 @@ Obtains the minimum width of this wallpaper. This API uses a promise to return t
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -740,7 +693,7 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -770,7 +723,7 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -798,7 +751,7 @@ Checks whether the user is allowed to set wallpapers. This API uses an asynchron
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -828,7 +781,7 @@ Checks whether the user is allowed to set wallpapers. This API uses a promise to
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -856,7 +809,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.restore<sup>9+</sup>](#wallpaperrestore9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -867,7 +820,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is error information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is reset, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -889,7 +842,7 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.restore<sup>9+</sup>](#wallpaperrestore9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -925,7 +878,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -935,14 +888,14 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is error information.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```js
-//The source type is string.
+// The source type is string.
 let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
@@ -982,7 +935,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -992,7 +945,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| source | string \| [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or pixel map of a PNG file.|
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
@@ -1004,7 +957,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 **Example**
 
 ```js
-//The source type is string.
+// The source type is string.
 let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setWallpaper.`);
@@ -1041,7 +994,7 @@ Obtains the wallpaper of the specified type. This API uses an asynchronous callb
 
 > **NOTE**
 > 
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9) instead.
+> This API is supported since API version 8 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
@@ -1074,7 +1027,7 @@ Obtains the wallpaper of the specified type. This API uses a promise to return t
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9) instead.
+> This API is supported since API version 8 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
@@ -1110,7 +1063,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
@@ -1123,7 +1076,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes| Callback used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes| Callback used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -1145,7 +1098,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
@@ -1163,7 +1116,7 @@ Obtains the pixel map for the wallpaper of the specified type. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;image.PixelMap&gt; | Promise used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
+| Promise&lt;image.PixelMap&gt; | Promise used to return the result. If the operation is successful, the pixel map of the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 

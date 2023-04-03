@@ -2,7 +2,7 @@
 
 In this section, we will develop an infographic food details page, by building custom components through the container components **\<Stack>** and **\<Flex>** as well as basic components **\<Image>** and **\<Text>**.
 
-Before creating a page, create an ArkTS project. For details, see [Creating an ArkTS Project in FA model](../quick-start/start-with-ets-stage.md#creating-an-arkts-project) or [Creating an ArkTS Project in Stage model](../quick-start/start-with-ets-fa.md#creating-an-arkts-project).
+Before creating a page, create an ArkTS project. For details, see [Creating an ArkTS Project in Stage Model](../quick-start/start-with-ets-stage.md#creating-an-arkts-project) or [Creating an ArkTS Project in FA Model](../quick-start/start-with-ets-fa.md#creating-an-arkts-project).
 
 
 ## Building the Stack Layout
@@ -45,7 +45,6 @@ Before creating a page, create an ArkTS project. For details, see [Creating an A
      }
    }
    ```
-
 
    ![en-us_image_0000001168410342](figures/en-us_image_0000001168410342.png)
 
@@ -219,12 +218,13 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
    ```
 
 2. Create a **\<Flex>** component to display two food composition categories in the tomato: **Calories** and **Nutrition**.
+   
    **Calories** contains information about calories. **Nutrition** contains information about protein, fat, carbohydrates, and vitamin C.
-
+   
    Create the **Calories** class. Create a **\<Flex>** component and set its height to **280**, and the top, right, and left margins to **30**. The **Flex** component contains three **\<Text>** child components, which represent the category name (**Calories**), content name (**Calories**), and contain value (**17 kcal**), respectively. By default, child components in the **Flex** component are arranged horizontally.
-
+   
    In the following example, code of **FoodImageDisplay** is omitted, and only code of **ContentTable** is provided.
-
+   
    ```ts
    @Component
    struct ContentTable {
@@ -311,9 +311,9 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
      }
    }
    ```
-   
+
      ![en-us_image_0000001215079443](figures/en-us_image_0000001215079443.png)
-   
+
 4. Create the **Nutrient** class in a similar process. **Nutrition** consists of four parts: **Protein**, **Fat**, **Carbohydrates**, and **VitaminC**. The names of the last three parts are omitted in the table and represented by spaces.
    
    Set **FlexDirection.Column**, **FlexAlign.SpaceBetween**, and **ItemAlign.Start**.
@@ -412,13 +412,16 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
    }
    ```
    
+   ![en-us_image_0000001215199399](figures/en-us_image_0000001215199399.png)
+   
 5. Use the custom constructor **\@Builder** to simplify the code. It can be found that the food groups in each food composition table are actually of the same UI structure.
 
-  ![en-us_image_0000001169599582](figures/en-us_image_0000001169599582.png)
+   ![en-us_image_0000001169599582](figures/en-us_image_0000001169599582.png)
 
-   Currently, all food groups are declared, resulting in code duplication and redundancy. You can use **\@Builder** to build a custom method and abstract the same UI structure declaration. The **\@Builder** decorated method and the **build** method for the **@Component** decorated component are used to declare some UI rendering structures and comply with the same ArkTS syntax. You can define one or more methods decorated by **\@Builder**, but a component decorated by **@Component** can have only one **build** method.
 
-   Declare the **IngredientItem** method decorated by **\@Builder** in **ContentTable** to declare the UI descriptions for the category name, content name, and content value.
+Currently, all food groups are declared, resulting in code duplication and redundancy. You can use **\@Builder** to build a custom method and abstract the same UI structure declaration. The **\@Builder** decorated method and the **build** method for the **@Component** decorated component are used to declare some UI rendering structures and comply with the same ArkTS syntax. You can define one or more methods decorated by **\@Builder**, but a component decorated by **@Component** can have only one **build** method.
+
+Declare the **IngredientItem** method decorated by **\@Builder** in **ContentTable** to declare the UI descriptions for the category name, content name, and content value.
 
    ```ts
     @Component
@@ -442,7 +445,7 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
    }
    ```
 
-   When the **IngredientItem** API is called in the **build** method of **ContentTable**, **this** needs to be used to invoke the method in the scope of the component to distinguish the global method call.
+When the **IngredientItem** API is called in the **build** method of **ContentTable**, **this** needs to be used to invoke the method in the scope of the component to distinguish the global method call.
 
    ```ts
    @Component
@@ -462,7 +465,7 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
    }
    ```
 
-   The overall code of the **ContentTable** component is as follows:
+The overall code of the **ContentTable** component is as follows:
 
    ```ts
    @Component
@@ -510,6 +513,6 @@ Use the **Flex** layout to build a food composition table. In this way, cell siz
    }
    ```
 
- ![en-us_image_0000001215199399](figures/en-us_image_0000001215199399.png)
+  ![en-us_image_0000001215199399](figures/en-us_image_0000001215199399.png)
 
 You've learned how to build a simple food details page. Read on to learn how to define the page layout and connection.

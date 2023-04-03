@@ -1,11 +1,10 @@
-# WLAN Extension Interface
-
+# @ohos.wifiManagerExt (WLAN Extension Interface)
 This **wifiext** module provides WLAN extension interfaces for non-universal products.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-The APIs described in this document are used only for non-universal products, such as routers.
+>
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs described in this document are used only for non-universal products, such as routers.
 
 
 ## Modules to Import
@@ -14,9 +13,9 @@ The APIs described in this document are used only for non-universal products, su
 import wifiManagerExt from '@ohos.wifiManagerExt';
 ```
 
-## wifiext.enableHotspot
+## wifiext.enableHotspot<sup>9+</sup>
 
-enableHotspot(): boolean;
+enableHotspot(): void;
 
 Enables the WLAN hotspot.
 
@@ -24,16 +23,17 @@ Enables the WLAN hotspot.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
 
-## wifiext.disableHotspot
+## wifiext.disableHotspot<sup>9+</sup>
 
-disableHotspot(): boolean;
+disableHotspot(): void;
 
 Disables the WLAN hotspot.
 
@@ -41,18 +41,19 @@ Disables the WLAN hotspot.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
 
-## wifiext.getSupportedPowerModel
+## wifiext.getSupportedPowerMode<sup>9+</sup>
 
-getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
+getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
-Obtains the supported power models. This API uses a promise to return the result.
+Obtains the supported power modes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -60,14 +61,21 @@ Obtains the supported power models. This API uses a promise to return the result
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise used to return the power models obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise used to return the power modes obtained.|
 
+**Error codes**
 
-## PowerModel
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
-Enumerates the power models.
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
+
+## PowerMode
+
+Enumerates the power modes.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
@@ -78,11 +86,11 @@ Enumerates the power models.
 | THROUGH_WALL | 2 | Through_wall|
 
 
-## wifiext.getSupportedPowerModel
+## wifiext.getSupportedPowerMode<sup>9+</sup>
 
-getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): void
+getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): void
 
-Obtains the supported power models. This API uses an asynchronous callback to return the result.
+Obtains the supported power modes. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -90,16 +98,23 @@ Obtains the supported power models. This API uses an asynchronous callback to re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
 
-## wifiext.getPowerModel
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
-getPowerModel(): Promise&lt;PowerModel&gt;
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
 
-Obtains the power model. This API uses a promise to return the result.
+## wifiext.getPowerMode<sup>9+</sup>
+
+getPowerMode(): Promise&lt;PowerMode&gt;
+
+Obtains the power mode. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -107,16 +122,23 @@ Obtains the power model. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[PowerModel](#powermodel)&gt; | Promise used to return the power model obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[PowerMode](#powermode)&gt; | Promise used to return the power modes obtained.|
 
+**Error codes**
 
-## wifiext.getPowerModel
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
-getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
 
-Obtains the power model. This API uses an asynchronous callback to return the result.
+## wifiext.getPowerMode<sup>9+</sup>
+
+getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
+
+Obtains the power mode. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -124,16 +146,23 @@ Obtains the power model. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If **err** is not **0**, an error has occurred.|
 
+**Error codes**
 
-## wifiext.setPowerModel
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
 
-setPowerModel(model: PowerModel) : boolean;
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|
 
- Sets the power model.
+## wifiext.setPowerMode<sup>9+</sup>
+
+setPowerMode(model: PowerMode) : boolean;
+
+ Sets the power mode.
 
 **Required permissions**: ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -141,12 +170,14 @@ setPowerModel(model: PowerModel) : boolean;
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | model | [PowerModel](#powermodel) | Yes| Power model to set.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| model | [PowerMode](#powermode) | Yes| Power mode to set.|
 
-**Return value**
+**Error codes**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorcode-wifi.md).
+
+| **Type**| **Description**|
+| -------- | -------- |
+| 2701000  | Operation failed.|

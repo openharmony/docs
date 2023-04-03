@@ -5,7 +5,7 @@
 > 
 > To use ArkTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
 > 
-> For best possible results, use [DevEco Studio V3.1.0.100](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
+> For best possible results, use [DevEco Studio 3.1 Beta1](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
 
 
 ## Creating an ArkTS Project
@@ -20,7 +20,7 @@
 
    > **NOTE**
    >
-   > You can use the [low-code development](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652) mode apart from the traditional coding approach.
+   > You can use the low-code development mode apart from the traditional coding approach.
    >
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
    >
@@ -34,11 +34,11 @@
 ![en-us_image_0000001364054489](figures/en-us_image_0000001364054489.png)
 
 - **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
-  - **src > main > ets**: a collection of eTS source code.
+  - **src > main > ets**: a collection of ArkTS source code.
   - **src > main > ets > entryability**: entry to your application/service.
   - **src > main > ets > pages**: pages included in your application/service.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
-  - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details about the configuration file, see [Application Package Structure Configuration File (Stage Model)](stage-structure.md).
+  - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [module.json5 Configuration File](module-configuration-file.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
   - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
 
@@ -216,7 +216,7 @@ You can implement page redirection through the [page router](../reference/apis/j
            .height('5%')
            // Bind the onClick event to the Next button so that clicking the button redirects the user to the second page.
            .onClick(() => {
-             router.push({ url: 'pages/Second' })
+             router.pushUrl({ url: 'pages/Second' })
            })
          }
          .width('100%')

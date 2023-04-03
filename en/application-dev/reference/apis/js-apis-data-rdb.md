@@ -1,4 +1,4 @@
-# Relational Database
+# @ohos.data.rdb (RDB)
 
 The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
 
@@ -8,15 +8,17 @@ This module provides the following RDB-related functions:
 - [RdbStore](#rdbstore): provides APIs for managing an RDB store.
 
 > **NOTE**<br/>
-> 
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore](js-apis-data-relationalStore.md).
+
 
 ## Modules to Import
 
 ```js
 import data_rdb from '@ohos.data.rdb';
 ```
-
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
@@ -27,12 +29,12 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-| version | number | Yes| RDB store version.|
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
+| Name  | Type                                      | Mandatory| Description                                                        |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
+| version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
 
 **Example**
 
@@ -41,7 +43,7 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db"}
@@ -58,9 +60,10 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -76,6 +79,7 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     console.log("Got RdbStore successfully.")
 })
 ```
+
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
@@ -86,16 +90,16 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes|Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-| version | number | Yes| RDB store version.|
+| Name | Type                       | Mandatory| Description                                                        |
+| ------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
+| version | number                      | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                | Description                           |
+| ------------------------------------ | ------------------------------- |
 | Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
 
 **Example**
@@ -105,7 +109,7 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db" }
@@ -121,9 +125,10 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -149,11 +154,11 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| name | string | Yes| Name of the RDB store to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| name     | string                    | Yes  | Name of the RDB store to delete.                                                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
 **Example**
 
@@ -162,7 +167,7 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // Call deleteRdbStore.
 data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
@@ -178,9 +183,10 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -206,16 +212,16 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
-| name | string | Yes| Name of the RDB store to delete.|
+| Name | Type   | Mandatory| Description                                                        |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -224,11 +230,11 @@ FA model:
 ```js
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 
 // Call deleteRdbStore.
 let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
-promise.then(()=>{
+promise.then(() => {
     console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
     console.info("Failed to delete RdbStore, err: " + err)
@@ -239,9 +245,10 @@ Stage model:
 
 ```ts
 // Obtain the context.
-import Ability from '@ohos.application.Ability'
-var context
-class MainAbility extends Ability{
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let context;
+class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
         context = this.context
     }
@@ -256,15 +263,69 @@ promise.then(()=>{
 })
 ```
 
+## ValueType
+
+Defines the data types allowed.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Type   | Description                |
+| ------- | -------------------- |
+| number  | Number.  |
+| string  | String.  |
+| boolean | Boolean.|
+
+
+## ValuesBucket
+
+Defines the types of the key and value in a KV pair.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Key Type| Value Type                                                     |
+| ------ | ----------------------------------------------------------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
+
+## SyncMode<sup>8+</sup>
+
+Defines the database synchronization mode.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name          | Value  | Description                              |
+| -------------- | ---- | ---------------------------------- |
+| SYNC_MODE_PUSH | 0    | Data is pushed from a local device to a remote device.|
+| SYNC_MODE_PULL | 1    | Data is pulled from a remote device to a local device.  |
+
+## SubscribeType<sup>8+</sup>
+
+Defines the subscription type.
+
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name                 | Value  | Description              |
+| --------------------- | ---- | ------------------ |
+| SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.|
+
+## StoreConfig
+
+Defines the RDB store configuration.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Database file name.|
+
 ## RdbPredicates
 
 Defines predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false.
 
-
 ### constructor
 
 constructor(name: string)
-
 
 A constructor used to create an **RdbPredicates** object.
 
@@ -286,8 +347,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-
-Sets an **RdbPredicates** to specify the remote devices on the network to connect during distributed database synchronization.
+Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -314,7 +374,6 @@ predicates.inDevices(['12345678abcde'])
 
 inAllDevices(): RdbPredicates
 
-
 Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -335,7 +394,6 @@ predicates.inAllDevices()
 ### equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
-
 
 Sets an **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.
 
@@ -366,7 +424,6 @@ predicates.equalTo("NAME", "lisi")
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
 Sets an **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -395,7 +452,6 @@ predicates.notEqualTo("NAME", "lisi")
 ### beginWrap
 
 beginWrap(): RdbPredicates
-
 
 Adds a left parenthesis to the **RdbPredicates**.
 
@@ -1098,7 +1154,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 Provides methods to manage an RDB store.
 
-Before using the following APIs, use [executeSql](#executesql) to initialize the database table structure and related data. For details, see [RDB Development](../../database/database-relational-guidelines.md).
+Before using the following APIs, use [executeSql](#executesql8) to initialize the database table structure and related data. For details, see [RDB Development](../../database/database-relational-guidelines.md).
 
 ### insert
 
@@ -1172,7 +1228,7 @@ promise.then((rowId) => {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
 
@@ -1210,7 +1266,7 @@ const valueBucket3 = {
     "CODES": new Uint8Array([11, 12, 13, 14, 15])
 }
 
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
         console.log("Failed to batch insert data, status = " + status);
@@ -1220,7 +1276,7 @@ rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
 })
 ```
 
-### batchInsert<sup>9+</sup>
+### batchInsert
 
 batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
 
@@ -1263,7 +1319,7 @@ const valueBucket3 = {
     "CODES": new Uint8Array([11, 12, 13, 14, 15])
 }
 
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
     console.log("Batch inserted data successfully. The number of values that were inserted = " + insertNum);
@@ -1299,12 +1355,12 @@ const valueBucket = {
 }
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
-rdbStore.update(valueBucket, predicates, function (err, ret) {
+rdbStore.update(valueBucket, predicates, function (err, rows) {
     if (err) {
         console.info("Failed to update data, err: " + err)
         return
     }
-    console.log("Updated row count: " + ret)
+    console.log("Updated row count: " + rows)
 })
 ```
 
@@ -1341,91 +1397,8 @@ const valueBucket = {
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update(valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
-}).catch((err) => {
-    console.info("Failed to update data, err: " + err)
-})
-```
-
-### update<sup>9+</sup>
-update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
-
-Updates data in the RDB store based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
-    if (err) {
-        console.info("Failed to update data, err: " + err)
-        return
-    }
-    console.log("Updated row count: " + ret)
-})
-```
-
-### update<sup>9+</sup>
-
-update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
-
-Updates data in the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-const valueBucket = {
-    "NAME": "Rose",
-    "AGE": 22,
-    "SALARY": 200.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5]),
-}
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
-promise.then(async (ret) => {
-    console.log("Updated row count: " + ret)
+promise.then(async (rows) => {
+    console.log("Updated row count: " + rows)
 }).catch((err) => {
     console.info("Failed to update data, err: " + err)
 })
@@ -1486,76 +1459,6 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.delete(predicates)
-promise.then((rows) => {
-    console.log("Deleted rows: " + rows)
-}).catch((err) => {
-    console.info("Failed to delete data, err: " + err)
-})
-```
-
-### delete<sup>9+</sup>
-
-delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
-
-Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
-    if (err) {
-        console.info("Failed to delete data, err: " + err)
-        return
-    }
-    console.log("Deleted rows: " + rows)
-})
-```
-
-### delete<sup>9+</sup>
-
-delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
-
-Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Lisa")
-let promise = rdbStore.delete("EMPLOYEE", predicates)
 promise.then((rows) => {
     console.log("Deleted rows: " + rows)
 }).catch((err) => {
@@ -1629,151 +1532,6 @@ Queries data from the RDB store based on specified conditions. This API uses a p
   })
   ```
 
-### query<sup>9+</sup>
-
-query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
-
-Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
-| columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
-    if (err) {
-        console.info("Failed to query data, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-})
-```
-
-### query<sup>9+</sup>
-
-query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
-
-Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
-| columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
-
-**Example**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
-let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("Failed to query data, err: " + err)
-})
-```
-
-### remoteQuery<sup>9+</sup>
-
-remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
-
-Queries data from the RDB store of a remote device based on specified conditions. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| device | string | Yes| Network ID of the remote device.|
-| table | string | Yes| Name of the target table.|
-| predicates | [RdbPredicates](#rdbpredicates)  | Yes| Query conditions specified by the **RdbPredicates** object.|
-| columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
-
-**Example**
-
-```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
-    function(err, resultSet){
-    if (err) {
-        console.info("Failed to remoteQuery, err: " + err)
-        return
-    }
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
-})
-```
-
-### remoteQuery<sup>9+</sup>
-
-remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
-
-Queries data from the RDB store of a remote device based on specified conditions. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| device | string | Yes| Network ID of the remote device.|
-| table | string | Yes| Name of the target table.|
-| predicates | [RdbPredicates](#rdbpredicates)  | Yes| Query conditions specified by the **RdbPredicates** object.|
-| columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
-
-**Return value**
-
-| Type                                                        | Description                                                    |
-| ------------------------------------------------------------ | -------------------------------------------------------- |
-| Promise&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
-
-**Example**
-
-```js
-let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.greaterThan("id", 0)
-let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
-promise.then((resultSet) => {
-    console.info("ResultSet column names: " + resultSet.columnNames)
-    console.info("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("Failed to remoteQuery , err: " + err)
-})
-```
-
 ### querySql<sup>8+</sup>
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
@@ -1836,7 +1594,7 @@ promise.then((resultSet) => {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
@@ -1865,7 +1623,7 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 })
 ```
 
-### executeSql
+### executeSql<sup>8+</sup>
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
@@ -1884,7 +1642,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1910,7 +1668,7 @@ Starts the transaction before executing an SQL statement.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     rdbStore.beginTransaction()
@@ -1937,7 +1695,7 @@ Commits the executed SQL statements.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     rdbStore.beginTransaction()
@@ -1964,7 +1722,7 @@ Rolls back the SQL statements that have been executed.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-var context = featureAbility.getContext()
+let context = featureAbility.getContext()
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
     try {
@@ -1981,122 +1739,6 @@ data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
 	} catch (e) {
 		rdbStore.rollBack()
 	}
-})
-```
-
-### backup<sup>9+</sup>
-
-backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
-
-Backs up an RDB store. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| destName | string | Yes| Name of the RDB store backup file.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
-
-**Example**
-
-```js
-rdbStore.backup("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Failed to back up data, err: ' + err)
-        return
-    }
-    console.info('Backed up data successfully.')
-})
-```
-
-### backup<sup>9+</sup>
-
-backup(destName:string): Promise&lt;void&gt;
-
-Backs up an RDB store. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| destName | string | Yes| Name of the RDB store backup file.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
-**Example**
-
-```js
-let promiseBackup = rdbStore.backup("dbBackup.db")
-promiseBackup.then(()=>{
-    console.info('Backed up data successfully.')
-}).catch((err)=>{
-    console.info('Failed to back up data, err: ' + err)
-})
-```
-
-### restore<sup>9+</sup>
-
-restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
-
-Restores an RDB store from a backup file. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| srcName | string | Yes| Name of the RDB store backup file.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
-
-**Example**
-
-```js
-rdbStore.restore("dbBackup.db", function(err) {
-    if (err) {
-        console.info('Failed to restore data, err: ' + err)
-        return
-    }
-    console.info('Restored data successfully.')
-})
-```
-
-### restore<sup>9+</sup>
-
-restore(srcName:string): Promise&lt;void&gt;
-
-Restores an RDB store from a backup file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| srcName | string | Yes| Name of the RDB store backup file.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
-**Example**
-
-```js
-let promiseRestore = rdbStore.restore("dbBackup.db")
-promiseRestore.then(()=>{
-    console.info('Restored data successfully.')
-}).catch((err)=>{
-    console.info('Failed to restore data, err: ' + err)
 })
 ```
 
@@ -2149,7 +1791,7 @@ Sets distributed tables. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -2306,8 +1948,6 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 Registers an observer for this RDB store. When the data in the RDB store changes, a callback is invoked to return the data changes.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -2315,7 +1955,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
-| type | [SubscribeType](#subscribetype8) | Yes| Type defined in **SubscribeType**.|
+| type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
 | observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store.|
 
 **Example**
@@ -2339,8 +1979,6 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 
 Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -2348,7 +1986,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
-| type | [SubscribeType](#subscribetype8)    | Yes| Type defined in **SubscribeType**.|
+| type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
 | observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered.|
 
 **Example**
@@ -2365,60 +2003,3 @@ try {
     console.log('Failed to unregister observer')
 }
 ```
-
-## StoreConfig
-
-Defines the RDB store configuration.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Database file name.|
-| encrypt<sup>9+</sup> | boolean | No| Whether to encrypt the RDB store.<br>The value **true** means to encrypt the RDB store, and the value **false** means the opposite.|
-
-## ValueType
-
-Defines the data types allowed.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Type| Description|
-| -------- | -------- |
-| number | Number.|
-| string | String.|
-| boolean | Boolean.|
-
-
-## ValuesBucket
-
-Defines the types of the key and value in a KV pair.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Key Type| Value Type|
-| -------- | -------- |
-| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 
-
-## SyncMode<sup>8+</sup>
-
-Defines the database synchronization mode.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name      | Default Value| Description|
-| --------  | ----- |----- |
-| SYNC_MODE_PUSH | 0 | Data is pushed from a local device to a remote device.|
-| SYNC_MODE_PULL | 1 | Data is pulled from a remote device to a local device.|
-
-## SubscribeType<sup>8+</sup>
-
-Defines the subscription type.
-
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| Name     | Default Value| Description|
-| -------- | ----- |---- |
-| SUBSCRIBE_TYPE_REMOTE | 0 | Subscribe to remote data changes.|

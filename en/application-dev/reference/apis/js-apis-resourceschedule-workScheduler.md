@@ -1,4 +1,4 @@
-# @ohos.resourceschedule.workScheduler
+# @ohos.resourceschedule.workScheduler (Work Scheduler)
 
 The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
 
@@ -346,6 +346,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
+| 9700004 | Checking workInfo failed. |
 
 **Example**
 
@@ -391,6 +392,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
+| 9700004 | Checking workInfo failed. |
 
 **Example**
 
@@ -430,7 +432,7 @@ Provides detailed information about the task. For details about the constraints 
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: any}              | No   | Carried parameters.          |
+| parameters      | {[key: string]: number | string | boolean}              | No   | Carried parameters.          |
 
 ## NetworkType
 Enumerates the network types that can trigger the task.

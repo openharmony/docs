@@ -1,4 +1,4 @@
-# DataAbilityPredicates
+# @ohos.data.dataAbility (DataAbility Predicates)
 
 **DataAbility** provides APIs for creating predicates, which implement different query methods for relational database (RDB) stores.
 
@@ -23,16 +23,16 @@ Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | name | string | Yes| Name of a database table.|
-  | dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Name of a database table.|
+| dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
+| Type| Description|
+| -------- | -------- |
+| rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
 
@@ -56,16 +56,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -83,16 +83,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -110,9 +110,9 @@ Adds a left parenthesis to this **DataAbilityPredicates**.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
 
 **Example**
 
@@ -135,9 +135,9 @@ Adds a right parenthesis to this **DataAbilityPredicates**.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
 
 **Example**
 
@@ -160,9 +160,9 @@ Adds the OR condition to this **DataAbilityPredicates**.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
 
 **Example**
 
@@ -182,9 +182,9 @@ Adds the AND condition to this **DataAbilityPredicates**.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
 
 **Example**
 
@@ -204,16 +204,16 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -231,16 +231,16 @@ Sets a **DataAbilityPredicates** object to match a string that starts with the s
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -258,16 +258,16 @@ Sets a **DataAbilityPredicates** object to match a string that ends with the spe
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -285,15 +285,15 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -311,15 +311,15 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -337,16 +337,16 @@ Sets a **DataAbilityPredicates** object to match a string that is similar to the
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -364,16 +364,16 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -391,17 +391,17 @@ Sets a **DataAbilityPredicates** object to match a field whose data type is **Va
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -419,17 +419,17 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -447,16 +447,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -474,16 +474,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -501,16 +501,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -528,16 +528,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -555,15 +555,15 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -581,15 +581,15 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -607,9 +607,9 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
 
 **Example**
 
@@ -627,15 +627,15 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | value | number | Yes| Maximum number of records.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Maximum number of records.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
 
 **Example**
 
@@ -653,15 +653,15 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
 
 **Example**
 
@@ -680,15 +680,15 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | fields | Array&lt;string&gt; | Yes| Names of columns to group.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fields | Array&lt;string&gt; | Yes| Names of columns to group.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
 
 **Example**
 
@@ -706,15 +706,15 @@ Sets a **DataAbilityPredicates** object to specify the index column.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | indexName | string | Yes| Name of the index column.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| indexName | string | Yes| Name of the index column.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
 
 **Example**
 
@@ -732,17 +732,17 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 
@@ -760,16 +760,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
 

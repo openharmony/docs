@@ -113,22 +113,20 @@
 
    ```ts
    // 获取context
-   import Ability from '@ohos.application.Ability'
-   let context = null;
+   import UIAbility from '@ohos.app.ability.UIAbility';
    let preferences = null;
-   export default class MainAbility extends Ability {
-       onWindowStageCreate(windowStage){
-           context = this.context;
+   export default class EntryAbility extends UIAbility {
+       onWindowStageCreate(windowStage) {
+           let promise = data_preferences.getPreferences(this.context, 'mystore');
+            promise.then((pref) => {
+                preferences = pref;
+            }).catch((err) => {
+                console.info("Failed to get preferences.");
+            })
        }
    }
    
-   let promise = data_preferences.getPreferences(context, 'mystore');
    
-   promise.then((pref) => {
-       preferences = pref;
-   }).catch((err) => {
-       console.info("Failed to get preferences.");
-   })
    ```
 
 3. 存入数据。
@@ -208,4 +206,6 @@
 
 针对首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)
+- [`Preferences`：首选项（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
+
+- [首选项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Preferences)

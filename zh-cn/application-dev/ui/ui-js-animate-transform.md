@@ -38,8 +38,8 @@
   height: 428px;
   background-color: #860303;
   transform: rotate(45deg);
-  margin-top: 284px;
-  margin-left: 148px;
+  margin-top: 290px;
+  margin-left: 145px;
 }
 .content{
   margin-top: 500px;
@@ -52,7 +52,7 @@
   width: 100px;
   height: 150px;
   background-color: #1033d9;
-  transform: translate(150px,-137px);
+  transform: translate(150px,-152px);
 }
 .window{
   z-index: 1;
@@ -85,7 +85,7 @@
   height: 100px;
   border-radius: 15px;
   background-color: #9a7404;
-  transform: translate(200px,-710px) skewX(-5deg);
+  transform: translate(200px,-700px) skewX(-5deg);
 }
 ```
 
@@ -586,11 +586,9 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimationStyle)
-
-- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Clock)
+- [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
 
 - [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
 

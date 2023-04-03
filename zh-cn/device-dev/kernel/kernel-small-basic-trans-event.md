@@ -31,7 +31,7 @@ OpenHarmony LiteOS-A的事件模块提供的事件，具有如下特点：
 
 ### 事件控制块
 
-  
+
 ```
 /**
   * 事件控制块数据结构
@@ -144,21 +144,21 @@ UINT32 g_testTaskId;
 EVENT_CB_S g_exampleEvent;
 
 /* 等待的事件类型 */
-#define EVENT_WAIT 0x00000001
-
+#define EVENT_WAIT      0x00000001
+#define EVENT_TIMEOUT   500
 /* 用例任务入口函数 */
 VOID Example_Event(VOID)
 {
      UINT32 event;
 
     /* 超时等待方式读事件,超时时间为100 ticks, 若100 ticks后未读取到指定事件，读事件超时，任务直接唤醒 */
-    printf("Example_Event wait event 0x%x \n", EVENT_WAIT);
+    dprintf("Example_Event wait event 0x%x \n", EVENT_WAIT);
 
-    event = LOS_EventRead(&g_exampleEvent, EVENT_WAIT, LOS_WAITMODE_AND, 100);
+    event = LOS_EventRead(&g_exampleEvent, EVENT_WAIT, LOS_WAITMODE_AND, EVENT_TIMEOUT);
     if (event == EVENT_WAIT) {
-        printf("Example_Event,read event :0x%x\n", event);
+        dprintf("Example_Event,read event :0x%x\n", event);
     } else {
-        printf("Example_Event,read event timeout\n");
+        dprintf("Example_Event,read event timeout\n");
     }
 }
 
@@ -170,7 +170,7 @@ UINT32 Example_EventEntry(VOID)
     /* 事件初始化 */
     ret = LOS_EventInit(&g_exampleEvent);
     if (ret != LOS_OK) {
-        printf("init event failed .\n");
+        dprintf("init event failed .\n");
         return -1;
     }
 
@@ -182,30 +182,23 @@ UINT32 Example_EventEntry(VOID)
     task1.usTaskPrio   = 5;
     ret = LOS_TaskCreate(&g_testTaskId, &task1);
     if (ret != LOS_OK) {
-        printf("task create failed.\n");
+        dprintf("task create failed.\n");
         return LOS_NOK;
     }
 
     /* 写g_testTaskId 等待事件 */
-    printf("Example_TaskEntry write event.\n");
+    dprintf("Example_TaskEntry write event.\n");
 
     ret = LOS_EventWrite(&g_exampleEvent, EVENT_WAIT);
     if (ret != LOS_OK) {
-        printf("event write failed.\n");
+        dprintf("event write failed.\n");
         return LOS_NOK;
     }
 
     /* 清标志位 */
-    printf("EventMask:%d\n", g_exampleEvent.uwEventID);
+    dprintf("EventMask:%d\n", g_exampleEvent.uwEventID);
     LOS_EventClear(&g_exampleEvent, ~g_exampleEvent.uwEventID);
-    printf("EventMask:%d\n", g_exampleEvent.uwEventID);
-
-    /* 删除任务 */
-    ret = LOS_TaskDelete(g_testTaskId);
-    if (ret != LOS_OK) {
-        printf("task delete failed.\n");
-        return LOS_NOK;
-    }
+    dprintf("EventMask:%d\n", g_exampleEvent.uwEventID);
 
     return LOS_OK;
 }
@@ -216,7 +209,7 @@ UINT32 Example_EventEntry(VOID)
 
 编译运行得到的结果为：
 
-  
+
 ```
 Example_Event wait event 0x1 
 Example_TaskEntry write event.

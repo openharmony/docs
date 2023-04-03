@@ -8,6 +8,7 @@
       - [Building a Product](subsys-build-product.md)
       - [Building a Subsystem](subsys-build-subsystem.md)
       - [Building a Component](subsys-build-component.md)
+      - [Component Building Specifications](subsys-build-component-building-rules.md)
       - [Building a Module](subsys-build-module.md)
       - [Building a Chipset Solution](subsys-build-chip_solution.md)
       - [Configuring Features](subsys-build-feature.md)
@@ -36,10 +37,7 @@
     - [Audio/Video Overview](subsys-multimedia-video-overview.md)
     - [Audio/Video Playback Development](subsys-multimedia-video-play-guide.md)
     - [Audio/Video Recording Development](subsys-multimedia-video-record-guide.md)
-- Utils
-  - [Utils Overview](subsys-utils-overview.md)
-  - [Utils Development](subsys-utils-guide.md)
-  - [Utils FAQ](subsys-utils-faqs.md)
+- [Utils Development](subsys-utils-guide.md)
 - [AI Framework Development](subsys-ai-aiframework-devguide.md)
 - Data Management
   - RDB
@@ -52,10 +50,6 @@
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
   - [Sensor Usage Example](subsys-sensor-demo.md)
-- USB
-  - [USB Overview](subsys-usbservice-overview.md)
-  - [USB Usage Guidelines](subsys-usbservice-guide.md)
-  - [USB Usage Example](subsys-usbservice-demo.md)
 - Application Framework
   - [Application Framework Overview](subsys-application-framework-overview.md)
   - [Setting Up a Development Environment](subsys-application-framework-envbuild.md)
@@ -109,5 +103,8 @@
   - [Hiview Development](subsys-dfx-hiview.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
-  - [hdc_std](subsys-toolchain-hdc-guide.md)
+  - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
+- Power Management
+    - Display Management
+        - [System Brightness Customization](subsys-power-brightness-customization.md)

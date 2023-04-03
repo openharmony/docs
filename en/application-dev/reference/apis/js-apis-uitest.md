@@ -1,4 +1,4 @@
-# @ohos.uitest
+# @ohos.UiTest
 
 The **UiTest** module provides APIs that you can use to simulate UI actions during testing, such as clicks, double-clicks, long-clicks, and swipes.
 
@@ -20,7 +20,7 @@ This module provides the following functions:
 ## Modules to Import
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -31,7 +31,7 @@ Enumerates the match patterns supported for component attributes.
 
 | Name       | Value  | Description          |
 | ----------- | ---- | -------------- |
-| EQUALS      | 0    | Equal to the given value.  |
+| EQUALS      | 0    | Equals the given value.  |
 | CONTAINS    | 1    | Contains the given value.  |
 | STARTS_WITH | 2    | Starts with the given value.|
 | ENDS_WITH   | 3    | Ends with the given value.|
@@ -61,8 +61,8 @@ Provides the coordinates of a point.
 
 | Name| Type  | Readable| Writable| Description            |
 | ---- | ------ | ---- | ---- | ---------------- |
-| X    | number | Yes  | No  | X-coordinate of a point.|
-| Y    | number | Yes  | No  | Y-coordinate of a point.|
+| x    | number | Yes  | No  | X-coordinate of a point.|
+| y    | number | Yes  | No  | Y-coordinate of a point.|
 
 ## Rect<sup>9+</sup>
 
@@ -70,18 +70,18 @@ Provides bounds information of a component.
 
 **System capability**: SystemCapability.Test.UiTest
 
-| Name   | Type  | Readable| Writable| Description                     |
-| ------- | ------ | ---- | ---- | ------------------------- |
-| leftX   | number | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
-| topY    | number | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
-| rightX  | number | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
-| bottomY | number | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
+| Name  | Type  | Readable| Writable| Description                     |
+| ------ | ------ | ---- | ---- | ------------------------- |
+| left   | number | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
+| top    | number | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
+| right  | number | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
+| bottom | number | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
 
 ## WindowMode<sup>9+</sup>
 
-**System capability**: SystemCapability.Test.UiTest
-
 Enumerates the window modes.
+
+**System capability**: SystemCapability.Test.UiTest
 
 | Name      | Value  | Description      |
 | ---------- | ---- | ---------- |
@@ -92,9 +92,9 @@ Enumerates the window modes.
 
 ## DisplayRotation<sup>9+</sup>
 
-**System capability**: SystemCapability.Test.UiTest
-
 Describes the display rotation of the device.
+
+**System capability**: SystemCapability.Test.UiTest
 
 | Name        | Value  | Description                                    |
 | ------------ | ---- | ---------------------------------------- |
@@ -115,6 +115,31 @@ Provides the flag attributes of this window.
 | title      | string  | Yes  | No  | Title of the window.          |
 | focused    | boolean | Yes  | No  | Whether the window is in focused state.    |
 | actived    | boolean | Yes  | No  | Whether the window is interacting with the user.|
+
+## UiDirection<sup>10+</sup>
+
+Describes the direction of a UI operation such as fling.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name | Value  | Description  |
+| ----- | ---- | ------ |
+| LEFT  | 0    | Leftward.|
+| RIGHT | 1    | Rightward.|
+| UP    | 2    | Upward.|
+| DOWN  | 3    | Downward.|
+
+## MouseButton<sup>10+</sup>
+
+Describes the injected simulated mouse button.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name               | Value  | Description        |
+| ------------------- | ---- | ------------ |
+| MOUSE_BUTTON_LEFT   | 0    | Left button on the mouse.  |
+| MOUSE_BUTTON_RIGHT  | 1    | Right button on the mouse.  |
+| MOUSE_BUTTON_MIDDLE | 2    | Middle button on the mouse.|
 
 ## On<sup>9+</sup>
 
@@ -219,7 +244,7 @@ Specifies the clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -245,7 +270,7 @@ Specifies the long-clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br> Default value: **true**|
+| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -272,7 +297,7 @@ Specifies the scrollable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
 
 **Return value**
 
@@ -298,7 +323,7 @@ Specifies the enabled status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: disabled.<br> Default value: **true**|
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
 
 **Return value**
 
@@ -324,7 +349,7 @@ Specifies the focused status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
 
 **Return value**
 
@@ -350,7 +375,7 @@ Specifies the selected status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
 
 **Return value**
 
@@ -376,7 +401,7 @@ Specifies the checked status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br> Default value: **false**|
+| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br>Default value: **false** |
 
 **Return value**
 
@@ -402,7 +427,7 @@ Specifies the checkable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br> Default value: **false**|
+| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br>Default value: **false** |
 
 **Return value**
 
@@ -420,7 +445,7 @@ let on = ON.checkable(true); // Use the static constructor ON to create an On ob
 
 isBefore(on: On): On
 
-Specifies the attributes of the component before which the target component is located.
+Specifies that the target component is located before the given attribute component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -428,7 +453,7 @@ Specifies the attributes of the component before which the target component is l
 
 | Name| Type      | Mandatory| Description                |
 | ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | Yes  | Attributes of the component before which the target component is located.|
+| on     | [On](#on9) | Yes  | Information about the attribute component.|
 
 **Return value**
 
@@ -439,14 +464,14 @@ Specifies the attributes of the component before which the target component is l
 **Example**
 
 ```js
-let on = ON.isBefore(ON.text('123')); // Use the static constructor ON to create an On object and specify the attributes of the component before which the target component is located.
+let on = ON.isBefore(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located before the given attribute component.
 ```
 
 ### isAfter<sup>9+</sup>
 
 isAfter(on: On): On
 
-Specifies the attributes of the component after which the target component is located.
+Specifies that the target component is located after the given attribute component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -454,7 +479,7 @@ Specifies the attributes of the component after which the target component is lo
 
 | Name| Type      | Mandatory| Description                |
 | ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | Yes  | Attributes of the component after which the target component is located.|
+| on     | [On](#on9) | Yes  | Information about the attribute component.|
 
 **Return value**
 
@@ -465,7 +490,59 @@ Specifies the attributes of the component after which the target component is lo
 **Example**
 
 ```js
-let on = ON.isAfter(ON.text('123')); // Use the static constructor ON to create an On object and specify the attributes of the component after which the target component is located.
+let on = ON.isAfter(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located after the given attribute component.
+```
+
+### within<sup>10+</sup>
+
+within(on: On): On
+
+Specifies that the target component is located within the given attribute component.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description                |
+| ------ | ---------- | ---- | -------------------- |
+| on     | [On](#on9) | Yes  | Information about the attribute component.|
+
+**Return value**
+
+| Type      | Description                                              |
+| ---------- | -------------------------------------------------- |
+| [On](#on9) | **On** object.|
+
+**Example**
+
+```js
+let on = ON.within(ON.type('List')); // Create an On object using the static constructor ON, specifying that the target component is located within the given attribute component.
+```
+
+### inWindow<sup>10+</sup>
+
+inWindow(bundleName: string): On;
+
+Specifies that the target component is within the given application window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description            |
+| ---------- | ------ | ---- | ---------------- |
+| bundleName | string | Yes  | Bundle name of the application window.|
+
+**Return value**
+
+| Type      | Description                                          |
+| ---------- | ---------------------------------------------- |
+| [On](#on9) | **On** object.|
+
+**Example**
+
+```js
+let on = ON.inWindow(ON.inWindow('com.uitestScene.acts')); // Create an On object using the static constructor ON, specifying that the target component is within the given application window.
 ```
 
 ## Component<sup>9+</sup>
@@ -1816,7 +1893,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.screenCap('/local/tmp/1.png');
+    await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```
 
@@ -2078,7 +2155,7 @@ Simulates a fling operation on the screen.
 | from    | [Point](#point9) | Yes  | Coordinates of the point where the finger touches the screen.                                  |
 | to      | [Point](#point9) | Yes  | Coordinates of the point where the finger leaves the screen.                                    |
 | stepLen | number           | Yes  | Fling step length, in pixels.                                    |
-| speed   | number           | Yes  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed   | number           | Yes  | Fling speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2093,7 +2170,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600);
+    await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
 }
 ```
 
@@ -2132,13 +2209,183 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 async function demo() {
     let driver = Driver.create();
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
     await driver.injectMultiPointerAction(pointers);
+}
+```
+
+### fling<sup>10+</sup>
+
+fling(direction: UiDirection, speed: number): Promise<void>;
+
+Simulates a fling operation on the screen, in the specified direction and speed.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name   | Type                         | Mandatory| Description                                                        |
+| --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
+| direction | [UiDirection](#uidirection10) | Yes  | Direction of the fling operation.                                            |
+| speed     | number                        | Yes  | Fling speed, in pixel/s. The value ranges from 200 to 40000. If the set value is not in the range, the default value 600 is used.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.fling(UiDirection.DOWN, 10000);
+}
+```
+
+### screenCapture<sup>10+</sup>
+
+screenCapture(savePath: string, rect?: Rect): Promise<boolean>;
+
+Captures the specified area of the current screen and saves the captured screenshot as a PNG image to the specified path.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name  | Type          | Mandatory| Description                  |
+| -------- | -------------- | ---- | ---------------------- |
+| savePath | string         | Yes  | File save path.        |
+| rect     | [Rect](#rect9) | No  | Area of the screen to capture. The default value is the entire screen.|
+
+**Return value**
+
+| Type             | Description                                  |
+| ----------------- | -------------------------------------- |
+| Promise\<boolean> | Promise used to return the operation result. The value **true** means that the operation is successful.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.screenCapture('/data/storage/el2/base/cache/1.png', {left: 0, top: 0, right: 100, bottom: 100});
+}
+```
+
+### mouseClick<sup>10+</sup>
+
+mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<void>;
+
+Injects a mouse click at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with the mouse click.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description               |
+| ------ | ----------------------------- | ---- | ------------------- |
+| p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.   |
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressesd.   |
+| key1   | number                        | Yes  | The first key value.|
+| key2   | number                        | No  | The second key value.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseClick({x:248, y:194}, MouseButton.MOUSE_BUTTON_LEFT, 2072);
+}
+```
+
+### mouseScroll<sup>10+</sup>
+
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise<void>;
+
+Injects a mouse scroll action at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with mouse scrolling.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description                                               |
+| ------ | ---------------- | ---- | --------------------------------------------------- |
+| p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                   |
+| down   | boolean          | Yes  | Whether the scroll wheel slides downward.                             |
+| d      | number           | Yes  | Number of grids by which the scroll wheel slides. Sliding by one grid means a 120-pixel offset of the target point.|
+| key1   | number           | Yes  | The first key value.                                |
+| key2   | number           | No  | The second key value.                                |
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+}
+```
+
+### mouseMoveTo<sup>10+</sup>
+
+mouseMoveTo(p: Point): Promise<void>;
+
+Moves the cursor to the target point.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description          |
+| ------ | ---------------- | ---- | -------------- |
+| p      | [Point](#point9) | Yes  | Coordinates of the target point.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    await driver.mouseMoveTo({x:100, y:100})
 }
 ```
 
@@ -2196,12 +2443,12 @@ Sets the coordinates for the action corresponding to the specified finger and st
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3);
-    pointers.setPoint(0,0,{X:230,Y:480});
-    pointers.setPoint(0,1,{X:250,Y:380});
-    pointers.setPoint(0,2,{X:270,Y:280});
-    pointers.setPoint(1,0,{X:230,Y:680});
-    pointers.setPoint(1,1,{X:240,Y:580});
-    pointers.setPoint(1,2,{X:250,Y:480});
+    pointers.setPoint(0,0,{x:230,y:480});
+    pointers.setPoint(0,1,{x:250,y:380});
+    pointers.setPoint(0,2,{x:270,y:280});
+    pointers.setPoint(1,0,{x:230,y:680});
+    pointers.setPoint(1,1,{x:240,y:580});
+    pointers.setPoint(1,2,{x:250,y:480});
 }
 ```
 
@@ -2788,7 +3035,7 @@ This API is deprecated since API version 9. You are advised to use [clickable<su
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
 
 **Return value**
 
@@ -2817,7 +3064,7 @@ This API is deprecated since API version 9. You are advised to use [scrollable<s
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
 
 **Return value**
 
@@ -2845,7 +3092,7 @@ This API is deprecated since API version 9. You are advised to use [enabled<sup>
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not disabled.<br> Default value: **true**|
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
 
 **Return value**
 
@@ -2873,7 +3120,7 @@ This API is deprecated since API version 9. You are advised to use [focused<sup>
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
 
 **Return value**
 
@@ -2901,7 +3148,7 @@ This API is deprecated since API version 9. You are advised to use [selected<sup
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
 
 **Return value**
 
@@ -2919,7 +3166,7 @@ let by = BY.selected(true); // Use the static constructor BY to create a By obje
 
 isBefore(by: By): By
 
-Specifies the attributes of the component before which the target component is located.
+Specifies that the target component is located before the given attribute component.
 
 This API is deprecated since API version 9. You are advised to use [isBefore<sup>9+</sup>](#isbefore9).
 
@@ -2929,7 +3176,7 @@ This API is deprecated since API version 9. You are advised to use [isBefore<sup
 
 | Name| Type               | Mandatory| Description            |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | Yes  | Attributes of the component before which the target component is located.|
+| by     | [By](#bydeprecated) | Yes  | Information about the attribute component.|
 
 **Return value**
 
@@ -2940,14 +3187,14 @@ This API is deprecated since API version 9. You are advised to use [isBefore<sup
 **Example**
 
 ```js
-let by = BY.isBefore(BY.text('123')); // Use the static constructor BY to create a By object and specify the attributes of the component before which the target component is located.
+let by = BY.isBefore(BY.text('123')); // Use the static constructor BY to create a By object, specifying that the target component is located before the given attribute component.
 ```
 
 ### isAfter<sup>(deprecated)</sup>
 
 isAfter(by: By): By
 
-Specifies the attributes of the component after which the target component is located.
+Specifies the target component is located after the given attribute component.
 
 This API is deprecated since API version 9. You are advised to use [isAfter<sup>9+</sup>](#isafter9).
 
@@ -2957,7 +3204,7 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 
 | Name| Type               | Mandatory| Description            |
 | ------ | ------------------- | ---- | ---------------- |
-| by     | [By](#bydeprecated) | Yes  | Attributes of the component before which the target component is located.|
+| by     | [By](#bydeprecated) | Yes  | Information about the attribute component.|
 
 **Return value**
 
@@ -2968,7 +3215,7 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 **Example**
 
 ```js
-let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create a By object and specify the attributes of the component after which the target component is located.
+let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create a By object, specifying that the target component is located after the given attribute component.
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
@@ -3673,6 +3920,6 @@ This API is deprecated since API version 9. You are advised to use [screenCap<su
 ```js
 async function demo() {
     let driver = UiDriver.create();
-    await driver.screenCap('/local/tmp/1.png');
+    await driver.screenCap('/data/storage/el2/base/cache/1.png');
 }
 ```

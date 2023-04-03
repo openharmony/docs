@@ -47,7 +47,7 @@ UIAbility创建时回调，执行初始化业务逻辑操作。
   ```ts
   class MyUIAbility extends UIAbility {
       onCreate(want, param) {
-          console.log('onCreate, want:' + want.abilityName);
+          console.log('onCreate, want: ${want.abilityName}');
       }
   }
   ```
@@ -124,7 +124,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ## UIAbility.onDestroy
 
-onDestroy(): void;
+onDestroy(): void | Promise&lt;void&gt;;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -181,7 +181,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
 
 当ability迁移准备迁移时触发，保存数据。
 
@@ -202,11 +202,11 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 **示例：**
     
   ```ts
-  import AbilityConstant from "@ohos.app.ability.AbilityConstant"
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   class MyUIAbility extends UIAbility {
       onContinue(wantParams) {
           console.log('onContinue');
-          wantParams["myData"] = "my1234567";
+          wantParams['myData'] = 'my1234567';
           return AbilityConstant.OnContinueResult.AGREE;
       }
   }
@@ -233,8 +233,8 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
   ```ts
   class MyUIAbility extends UIAbility {
       onNewWant(want, launchParams) {
-          console.log('onNewWant, want:' + want.abilityName);
-          console.log('onNewWant, launchParams:' + JSON.stringify(launchParams));
+          console.log('onNewWant, want: ${want.abilityName}');
+          console.log('onNewWant, launchParams: ${JSON.stringify(launchParams)}');
       }
   }
   ```
@@ -258,8 +258,8 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class MyUIAbility extends UIAbility {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          console.log('dump, params: ${JSON.stringify(params)}');
+          return ['params'];
       }
   }
   ```
@@ -267,7 +267,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
@@ -289,12 +289,12 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 **示例：**
 
   ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 class MyUIAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         console.log('onSaveState');
-        wantParam["myData"] = "my1234567";
+        wantParam['myData'] = 'my1234567';
         return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
     }
 }
@@ -308,7 +308,7 @@ class MyUIAbility extends UIAbility {
 
 ## Caller.call
 
-call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
+call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 向通用组件服务端发送约定序列化数据。
 
@@ -319,7 +319,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
@@ -332,54 +332,53 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
   ```ts
-  class MyMessageAble{ // 自定义的Sequenceable数据结构
-    name:""
-    str:""
+  class MyMessageAble{ // 自定义的Parcelable数据结构
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
       return true;
     }
   };
-  var method = 'call_Function'; // 约定的通知消息字符串
-  var caller;
+  let method = 'call_Function'; // 约定的通知消息字符串
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble("msg", "world"); // 参考Sequenceable数据定义
+        let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
         caller.call(method, msg)
           .then(() => {
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -388,7 +387,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessageParcel&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -399,69 +398,68 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 约定的服务端注册事件字符串。 |
-| data | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 是 | 由开发者实现的Sequenceable可序列化数据。 |
+| data | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 是 | 由开发者实现的Parcelable可序列化数据。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[rpc.MessageParcel](js-apis-rpc.md#sequenceabledeprecated)&gt; | Promise形式返回通用组件服务端应答数据。 |
+| Promise&lt;[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)&gt; | Promise形式返回通用组件服务端应答数据。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   class MyMessageAble{
-    name:""
-    str:""
+    name:''
+    str:''
     num: 1
     constructor(name, str) {
       this.name = name;
       this.str = str;
     }
-    marshalling(messageParcel) {
-      messageParcel.writeInt(this.num);
-      messageParcel.writeString(this.str);
-      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+    marshalling(messageSequence) {
+      messageSequence.writeInt(this.num);
+      messageSequence.writeString(this.str);
+      console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
       return true;
     }
-    unmarshalling(messageParcel) {
-      this.num = messageParcel.readInt();
-      this.str = messageParcel.readString();
-      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+    unmarshalling(messageSequence) {
+      this.num = messageSequence.readInt();
+      this.str = messageSequence.readString();
+      console.log('MyMessageAble unmarshalling num[${this.num] str[${this.str}]');
       return true;
     }
   };
-  var method = 'call_Function';
-  var caller;
+  let method = 'call_Function';
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, "world");
+        let msg = new MyMessageAble(1, 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, "");
-            data.readSequenceable(retmsg);
+            let retmsg = new MyMessageAble(0, '');
+            data.readParcelable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
-              ' error.message: ' + JSON.stringify(callErr.message));
+            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -488,24 +486,22 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
         caller = obj;
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
-            ' error.message: ' + JSON.stringify(releaseErr.message));
+          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -513,7 +509,7 @@ release(): void;
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallBack): void;
+ onRelease(callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -523,31 +519,29 @@ release(): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
 
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
             caller.onRelease((str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
+                console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
@@ -555,7 +549,7 @@ release(): void;
 
 ## Caller.on
 
- on(type: "release", callback: OnReleaseCallback): void;
+ on(type: 'release', callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -566,7 +560,56 @@ release(): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-| callback | [OnReleaseCallBack](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回onRelease回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
+      }).then((obj) => {
+          caller = obj;
+          try {
+            caller.on('release', (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
+            });
+          } catch (error) {
+            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+      });
+    }
+  }
+  ```
+
+## Caller.off
+
+off(type: 'release', callback: OnReleaseCallback): void;
+
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+| callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
 
 **错误码：**
 
@@ -578,31 +621,79 @@ release(): void;
 **示例：**
     
   ```ts
-  var caller;
+  let caller;
   export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
-      this.context.startUIAbilityByCall({
-        bundleName: "com.example.myservice",
-        abilityName: "MainUIAbility",
-        deviceId: ""
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
       }).then((obj) => {
           caller = obj;
           try {
-            caller.on("release", (str) => {
-                console.log(' Caller OnRelease CallBack is called ' + str);
-            });
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
+            };
+            caller.on('release', onReleaseCallBack);
+            caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
-              ' error.message: ' + JSON.stringify(error.message));
+            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
-          ' error.message: ' + JSON.stringify(err.message));
+        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
       });
     }
   }
   ```
 
+## Caller.off
+
+off(type: 'release'): void;
+
+取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+**示例：**
+    
+  ```ts
+  let caller;
+  export default class MainUIAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: 'com.example.myservice',
+        abilityName: 'MainUIAbility',
+        deviceId: ''
+      }).then((obj) => {
+          caller = obj;
+          try {
+            let onReleaseCallBack = (str) => {
+                console.log(' Caller OnRelease CallBack is called ${str}');
+            };
+            caller.on('release', onReleaseCallBack);
+            caller.off('release');
+          } catch (error) {  
+            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          }
+      }).catch((err) => {
+        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+      });
+    }
+  }
+  ```
 
 ## Callee
 
@@ -621,45 +712,46 @@ on(method: string, callback: CalleeCallback): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | method | string | 是 | 与客户端约定的通知消息字符串。 |
-| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated)数据对象,&nbsp;其他视为函数执行错误。 |
+| callback | [CalleeCallback](#calleecallback) | 是 | 一个[rpc.MessageSequence](js-apis-rpc.md#messagesequence9)类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的[rpc.Parcelable](js-apis-rpc.md#parcelable9)数据对象,&nbsp;其他视为函数执行错误。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
   ```ts
   class MyMessageAble{
-      name:""
-      str:""
+      name:''
+      str:''
       num: 1
       constructor(name, str) {
         this.name = name;
         this.str = str;
       }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          console.log('MyMessageAble marshalling num[${this.num}] str[${this.str}]');
           return true;
       }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          console.log('MyMessageAble unmarshalling num[${this.num}] str[${this.str}]');
           return true;
       }
   };
-  var method = 'call_Function';
+  let method = 'call_Function';
   function funcCallBack(pdata) {
-      console.log('Callee funcCallBack is called ' + pdata);
-      let msg = new MyMessageAble("test", "");
-      pdata.readSequenceable(msg);
-      return new MyMessageAble("test1", "Callee test");
+      console.log('Callee funcCallBack is called ${pdata}');
+      let msg = new MyMessageAble('test', '');
+      pdata.readParcelable(msg);
+      return new MyMessageAble('test1', 'Callee test');
   }
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
@@ -667,8 +759,7 @@ on(method: string, callback: CalleeCallback): void;
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }
@@ -693,21 +784,21 @@ off(method: string): void;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
     
   ```ts
-  var method = 'call_Function';
+  let method = 'call_Function';
   export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       }
     }
   }
@@ -725,10 +816,10 @@ off(method: string): void;
 
 ## CalleeCallback
 
-(indata: rpc.MessageParcel): rpc.Sequenceable;
+(indata: rpc.MessageSequence): rpc.Parcelable;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: [rpc.MessageParcel](js-apis-rpc.md#messageparceldeprecated)) | 是 | 否 | [rpc.Sequenceable](js-apis-rpc.md#sequenceabledeprecated) | 被调用方注册的消息侦听器函数接口的原型。 |
+| (indata: [rpc.MessageSequence](js-apis-rpc.md#messagesequence9)) | 是 | 否 | [rpc.Parcelable](js-apis-rpc.md#parcelable9) | 被调用方注册的消息侦听器函数接口的原型。 |

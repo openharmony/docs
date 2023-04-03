@@ -21,6 +21,8 @@
 
 Shape(value?: PixelMap)
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -34,19 +36,19 @@ Shape(value?: PixelMap)
 
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 形状的视口。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 |
-| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 设置边框宽度。 |
-| antiAlias | boolean | true | 是否开启抗锯齿效果。 |
-| mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 |
+| viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 形状的视口。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 设置边框宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## 示例
 
@@ -145,91 +147,3 @@ struct ShapeExample {
 ```
 
 ![zh-cn_image_0000001184628104](figures/zh-cn_image_0000001184628104.png)
-
-### 示例2
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ShapeMeshExample {
-  @State columnVal: number = 0
-  @State rowVal: number = 0
-  @State count: number = 0
-  @State verts: Array<number> = []
-  @State shapeWidth: number = 600
-  @State shapeHeight: number = 600
-
-  build() {
-    Column() {
-      Shape() {
-        Rect()
-          .width('250px')
-          .height('250px')
-          .radiusWidth('10px')
-          .radiusHeight('10px')
-          .stroke('10px')
-          .margin({ left: '10px', top: '10px' })
-          .strokeWidth('10px')
-          .fill(Color.Blue)
-        Rect()
-          .width('250px')
-          .height('250px')
-          .radiusWidth('10px')
-          .radiusHeight('10px')
-          .stroke('10px')
-          .margin({ left: '270px', top: '10px' })
-          .strokeWidth('10px')
-          .fill(Color.Red)
-      }
-      .mesh(this.verts, this.columnVal, this.rowVal)
-      .width(this.shapeWidth + 'px')
-      .height(this.shapeHeight + 'px')
-      // 手指触摸Shape组件时会显示mesh扭曲效果
-      .onTouch((event: TouchEvent) => {
-        var touchX = event.touches[0].x * 2
-        var touchY = event.touches[0].y * 2
-        this.columnVal = 20
-        this.rowVal = 20
-        this.count = (this.columnVal + 1) * (this.rowVal + 1)
-        var orig = [this.count * 2]
-        var index = 0
-        for (var i = 0; i <= this.rowVal; i++) {
-          var fy = this.shapeWidth * i / this.rowVal
-          for (var j = 0; j <= this.columnVal; j++) {
-            var fx = this.shapeWidth * j / this.columnVal
-            orig[index * 2 + 0] = this.verts[index * 2 + 0] = fx
-            orig[index * 2 + 1] = this.verts[index * 2 + 1] = fy
-            index++;
-          }
-        }
-        for (var k = 0; k < this.count * 2; k += 2) {
-          var dx = touchX - orig[k + 0]
-          var dy = touchY - orig[k + 1]
-          var dd = dx * dx + dy * dy
-          var d = Math.sqrt(dd)
-          var pull = 80000 / (dd * d)
-          if (pull >= 1) {
-            this.verts[k + 0] = touchX
-            this.verts[k + 1] = touchY
-          } else {
-            this.verts[k + 0] = orig[k + 0] + dx * pull
-            this.verts[k + 1] = orig[k + 1] + dy * pull
-          }
-        }
-      })
-    }
-    .width('600px')
-    .height('600px')
-    .border({ width: 3, color: Color.Black })
-  }
-}
-```
-
-示意图：
-
-![zh-cn_image1_0000001184628104](figures/zh-cn_image1_0000001184628104.png)
-
-手指触摸Shape组件时会显示mesh扭曲效果：
-
-![zh-cn_image2_0000001184628104](figures/zh-cn_image2_0000001184628104.png)

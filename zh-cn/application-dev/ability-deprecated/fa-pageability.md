@@ -134,13 +134,13 @@ ability支持单实例和多实例两种启动模式。
       if (typeof dmClass === 'object' && dmClass != null) {
           let list = dmClass.getTrustedDeviceListSync();
           if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-            console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
+            console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
           }
-          console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+          console.log("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
           return list[0].deviceId;
       } else {
-          console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+          console.log("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
       }
   }
 ```
@@ -221,8 +221,3 @@ export default {
   },
 }
 ```
-## 相关实例
-
-针对PageAbility开发，有以下相关实例可供参考：
-
-- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)

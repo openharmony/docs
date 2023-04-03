@@ -1,6 +1,6 @@
-# @ohos.app.form.formInfo
+# @ohos.app.form.formInfo (formInfo)
 
-The **FormInfo** module provides widget information and state.
+The **formInfo** module provides types and enums related to the widget information and state.
 
 > **NOTE**
 >
@@ -20,8 +20,8 @@ Describes widget information.
 
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                          |
-| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                      |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                  |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
 | name        | string               | Yes   | No    | Widget name.                                |
 | description | string               | Yes   | No    | Description of the widget.  |
@@ -30,11 +30,10 @@ Describes widget information.
 | colorMode  | [ColorMode](#colormode) | Yes   | No    | Color mode of the widget.                                      |
 | isDefault    | boolean      | Yes   | No    | Whether the widget is the default one.                             |
 | updateEnabled  | boolean               | Yes   | No    | Whether the widget is updatable.                   |
-| formVisibleNotify  | string               | Yes   | No    | Whether to send a notification when the widget is visible.           |
-| relatedBundleName | string               | Yes   | No    | Name of the associated bundle to which the widget belongs.                  |
+| formVisibleNotify  | boolean        | Yes   | No    | Whether to send a notification when the widget is visible.           |
 | scheduledUpdateTime        | string               | Yes   | No    | Time when the widget was updated.    |
 | formConfigAbility | string               | Yes   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.  |
-| updateDuration        | string             | Yes   | No    | Update period of the widget.|
+| updateDuration        | number       | Yes   | No    | Update period of the widget.|
 | defaultDimension  | number | Yes   | No    | Default dimension of the widget.                                      |
 | supportDimensions    | Array&lt;number&gt;      | Yes   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).  |
 | customizeData    | {[key: string]: [value: string]}      | Yes   | No    | Custom data of the widget.        |
@@ -48,7 +47,7 @@ Enumerates the widget types.
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
 | JS      | 1    | JS widget.  |
-| eTS     | 2    | eTS widget.|
+| eTS     | 2    | ArkTS widget.|
 
 ## ColorMode
 
@@ -93,16 +92,16 @@ Enumerates the widget parameters.
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | Widget ID.  |
-| DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | Widget dimension.  |
-| NAME_KEY       | "ohos.extra.param.key.form_name"   | Widget name.  |
-| MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | Name of the module to which the widget belongs.  |
-| WIDTH_KEY        | "ohos.extra.param.key.form_width"   | Widget width.  |
-| HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | Widget height.  |
-| TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | Temporary widget.  |
-| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | Ability name.  |
-| DEVICE_ID_KEY    | "ohos.extra.param.key.device_id"   | Device ID.<br>**System API**: This is a system API.  |
-| BUNDLE_NAME_KEY    | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.|
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | Widget ID.  |
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | Widget dimension.  |
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | Widget name.  |
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | Name of the module to which the widget belongs.  |
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | Widget width.  |
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
+| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | Ability name. |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.  |
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Key that specifies the target bundle name.|
 
 ##  FormDimension
 
@@ -125,9 +124,9 @@ Defines the widget information filter. Only the widget information that meets th
 
 **System capability**: SystemCapability.Ability.Form
 
-| Name       | Description        |
-| ----------- | ------------ |
-| moduleName   | Only the information about the widget whose **moduleName** is the same as the provided value is returned.|
+| Name       | Type  | Description        |
+| ----------- | ---- | ------------ |
+| moduleName    | string    | Optional. Only the information about the widget whose **moduleName** is the same as the provided value is returned.<br>If this parameter is not set, **moduleName** is not used for filtering.  |
 
 ## VisibilityType
 

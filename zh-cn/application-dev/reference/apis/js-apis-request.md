@@ -16,24 +16,6 @@ import request from '@ohos.request';
 
 
 ## 限制与约束
-
-在开发FA模型下的应用程序时, 默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
-
-```js
-var config = {
-  "deviceConfig": {
-    "default": {
-      "network": {
-        "cleartextTraffic": true
-      }
-      //...
-    }
-  }
-}
-```
-
-在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
-
 下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
 上传目前仅支持HTTP请求，不支持HTTPS。
@@ -274,91 +256,6 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
-  });
-  ```
-
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
-
-上传，异步方法，使用promise形式返回结果。
-
->  **说明：** 从API Version 9开始支持，从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9)替代。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Upload
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
-  
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
-
-**示例：**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
-      uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
-
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-上传，异步方法，使用callback形式返回结果。
-
->  **说明：** 从API Version 9开始支持，从API Version 9开始不再维护，建议使用[request.uploadFile<sup>9+</sup>](#requestuploadfile9-1)替代。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Upload
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
-
-**示例：**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
@@ -755,7 +652,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 是 | multipart提交时，请求头中的文件名。 |
 | name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
-| uri | string | 是 | 文件的本地存储路径。<br/>支持“dataability”和“internal”两种协议类型，但“internal”仅支持临时目录，示例：<br/>dataability:///com.domainname.dataability.persondata/person/10/file.txt<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>仅支持“internal”协议类型，“internal://cache/”为必填字段，示例：<br/>internal://cache/path/to/file.txt |
 | type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
@@ -935,78 +832,6 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
       downloadTask = data;
   });
   ```
-
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
-
-下载，异步方法，使用promise形式返回结果。
-
->  **说明：** 从API Version 9开始支持，从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9)替代。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
-
-**示例：**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
-
-下载，异步方法，使用callback形式返回结果。
-
->  **说明：** 从API Version 9开始支持，从API Version 9开始不再维护，建议使用[request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1)替代。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: SystemCapability.MiscServices.Download
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
-
-**示例：**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
-  ```
-
 
 ## DownloadTask
 

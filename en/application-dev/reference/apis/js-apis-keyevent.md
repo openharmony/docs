@@ -1,9 +1,8 @@
-# Key Event
+# @ohos.multimodalInput.keyEvent (Key Event)
 
-The Key Event module provides key events reported by an input device.
+The **keyEvent** module provides key events reported by an input device.
 
->  **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -13,6 +12,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 ```
 
 ## Action
+
+Defines a key action.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -24,6 +25,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 
 ## Key
 
+Defines a key.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Type| Readable| Writable| Description          |
@@ -33,6 +36,8 @@ import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
 | deviceId    | number   | Yes  | No  | ID of the device to which the key belongs.  |
 
 ## KeyEvent
+
+Defines a key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

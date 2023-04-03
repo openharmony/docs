@@ -1,8 +1,9 @@
-# Sensor
+# @ohos.sensor (Sensor)
 
 The **Sensor** module provides APIs for obtaining the sensor list and subscribing to sensor data. It also provides some common sensor algorithms.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -2660,7 +2661,7 @@ try {
 ## sensor.getAngleVariation<sup>9+</sup>
 
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the angle change between two rotation matrices. This API uses an asynchronous callback to return the result.
 
@@ -2716,7 +2717,7 @@ try {
 
 ## sensor.getAngleVariation<sup>9+</sup>
 
-getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 Obtains the angle change between two rotation matrices. This API uses a promise to return the result.
 
@@ -2776,7 +2777,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
+getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the rotation matrix from a rotation vector. This API uses an asynchronous callback to return the result.
 
@@ -2818,7 +2819,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup>
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
+getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 Obtains the rotation matrix from a rotation vector. This API uses a promise to return the result.
 
@@ -2865,7 +2866,7 @@ try {
 ## sensor.transformRotationMatrix<sup>9+</sup> 
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Transforms a rotation vector based on the coordinate system. This API uses an asynchronous callback to return the result.
 
@@ -2875,7 +2876,7 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 
 | Name          | Type                                     | Mandatory| Description                  |
 | ---------------- | ----------------------------------------- | ---- | ---------------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation matrix.        |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector.        |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Rotation vector to transform.      |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being transformed.|
 
@@ -2912,7 +2913,7 @@ try {
 
 ## sensor.transformRotationMatrix<sup>9+</sup>
 
-transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 Transforms a rotation vector based on the coordinate system. This API uses a promise to return the result.
 
@@ -2922,7 +2923,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 | Name          | Type                                     | Mandatory| Description            |
 | ---------------- | ----------------------------------------- | ---- | ---------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation matrix.  |
+| inRotationVector | Array&lt;number&gt;                       | Yes  | Rotation vector.  |
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Rotation vector to transform.|
 
 **Return value**
@@ -2963,7 +2964,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup> 
 
-getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 Obtains the quaternion from a rotation vector. This API uses an asynchronous callback to return the result.
 
@@ -3005,7 +3006,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup>
 
-getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the quaternion from a rotation vector. This API uses a promise to return the result.
 
@@ -3051,7 +3052,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 Obtains the device direction based on the rotation matrix. This API uses an asynchronous callback to return the result.
 
@@ -3100,7 +3101,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the device direction based on the rotation matrix. This API uses a promise to return the result.
 
@@ -3178,7 +3179,7 @@ For details about the following error codes, see [Error Codes of sensor.getRotat
 try {
     let gravity = [-0.27775216, 0.5351276, 9.788099];
     let geomagnetic = [210.87253, -78.6096, -111.44444];
-    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) => {
+    sensor.getRotationMatrix(gravity, geomagnetic, function (err, data) {
         if (err) {
             console.error('Get rotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
             return;
@@ -3192,7 +3193,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 Obtains the rotation matrix based on a gravity vector and geomagnetic vector. This API uses a promise to return the result.
 
@@ -3238,7 +3239,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
-getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.
 
@@ -3248,7 +3249,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 | Name  | Type                                          | Mandatory| Description            |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | Yes  | Callback used to return the sensor list.|
+| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Callback used to return the sensor list.|
 
 **Error code**
 
@@ -3278,7 +3279,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
- getSensorList(): Promise< Array&lt;Sensor&gt;>
+ getSensorList(): Promise&lt;Array&lt;Sensor&gt;&gt;
 
 Obtains information about all sensors on the device. This API uses a promise to return the result.
 
@@ -3288,7 +3289,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 | Name | Type                                    | Mandatory| Description            |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | Yes  | Promise used to return the sensor list.|
+| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | Promise used to return the sensor list.|
 
 **Error code**
 
@@ -3476,7 +3477,7 @@ Describes the sensor information.
 | Name           | Type| Readable| Writable| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
 | sensorName      | string   | Yes | Yes | Sensor name.          |
-| venderName      | string   | Yes | Yes | Vendor of the sensor.        |
+| vendorName      | string   | Yes | Yes | Vendor of the sensor.        |
 | firmwareVersion | string   | Yes | Yes | Firmware version of the sensor.      |
 | hardwareVersion | string   | Yes | Yes | Hardware version of the sensor.      |
 | sensorId        | number   | Yes | Yes | Sensor type ID.        |
@@ -3495,9 +3496,9 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                |
 | ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s².|
 
 
 ## LinearAccelerometerResponse
@@ -3509,9 +3510,9 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Linear acceleration along the z-axis of the device, in m/s².|
 
 
 ## AccelerometerUncalibratedResponse
@@ -3523,12 +3524,12 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 
 | Name | Type  | Readable| Writable| Description                                            |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
-| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s2.      |
-| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s2.      |
-| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s2.      |
-| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s2.  |
-| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s2.|
-| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s2.  |
+| x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s².      |
+| y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s².      |
+| z     | number | Yes  | Yes  | Uncalibrated acceleration along the z-axis of the device, in m/s².      |
+| biasX | number | Yes  | Yes  | Uncalibrated acceleration bias along the x-axis of the device, in m/s².  |
+| biasY | number | Yes  | Yes  | Uncalibrated acceleration bias along the y-axis of the device, in m/s².|
+| biasZ | number | Yes  | Yes  | Uncalibrated acceleration bias along the z-axis of the device, in m/s².  |
 
 
 ## GravityResponse
@@ -3540,9 +3541,9 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 | Name| Type  | Readable| Writable| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s2.|
-| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s2.|
-| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s2.|
+| x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s².|
+| y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s².|
+| z    | number | Yes  | Yes  | Gravitational acceleration along the z-axis of the device, in m/s².|
 
 
 ## OrientationResponse
@@ -6230,7 +6231,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
       }
       console.info(JSON.stringify(data));
   })
-
   ```
 
 

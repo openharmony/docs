@@ -1,4 +1,4 @@
-# @ohos.nfc.tag
+# @ohos.nfc.tag (Standard NFC Tags)
 
 The **nfcTag** module provides APIs for managing Near-Field Communication (NFC) tags.
 
@@ -48,11 +48,11 @@ Before developing applications related to tag read and write, you must declare N
 }
 ```
 > **CAUTION**<br>
-1. The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-2. The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
-3. The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
-4. The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
-
+>
+> - The **actions** field is mandatory. It must be **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
+> - The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
+> - The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
+> - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
 ## **Modules to Import**
 
 ```js
@@ -73,7 +73,7 @@ onCreate(want, launchParam) {
     try {
         tagInfo = tag.getTagInfo(want);
     } catch (error) {
-        console.log("tag.getTagInfo catched error: " + error);
+        console.log("tag.getTagInfo caught error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
         console.log("no TagInfo to be created, ignore it.");
@@ -100,7 +100,7 @@ onCreate(want, launchParam) {
         try {
             nfcA = tag.getNfcATag(taginfo);
         } catch (error) {
-            console.log("tag.getNfcATag catched error: " + error);
+            console.log("tag.getNfcATag caught error: " + error);
         }
         // Other code to read or write this tag.
     }
@@ -111,7 +111,7 @@ onCreate(want, launchParam) {
         try {
             isoDep = tag.getIsoDep(taginfo);
         } catch (error) {
-            console.log("tag.getIsoDep catched error: " + error);
+            console.log("tag.getIsoDep caught error: " + error);
         }
         // Other code to read or write this tag.
     }
@@ -126,9 +126,16 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcA](#taggetnfca9).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -136,15 +143,50 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 | -------- | -------- |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
 
+## tag.getNfcA<sup>9+</sup>
+
+getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
+
+Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**|
+| -------- | -------- |
+| [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcBTag
 
 getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcB](#taggetnfcb9).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -152,15 +194,50 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 | -------- | ---------------- |
 | [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
 
+## tag.getNfcB<sup>9+</sup>
+
+getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
+
+Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-B technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcFTag
 
 getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcF](#taggetnfcf9).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -168,15 +245,50 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 | -------- | ---------------- |
 | [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
 
+## tag.getNfcF<sup>9+</sup>
+
+getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
+
+Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-F technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getNfcVTag
 
 getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
 
-**Required permissions**: ohos.permission.NFC_TAG
+> **NOTE**
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tag.getNfcV](#taggetnfcv9).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
 
 **Return value**
 
@@ -184,19 +296,47 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 | -------- | ---------------- |
 | [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
 
+## tag.getNfcV<sup>9+</sup>
+
+getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
+
+Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-V technology.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                      |
+| --------- | ------------------------- | ---- | ---------------------------------------- |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.
+
+**Return value**
+
+| **Type**| **Description**        |
+| -------- | ---------------- |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 3100201 | Tag running state is abnormal in service. |
+
 ## tag.getIsoDep<sup>9+</sup>
 
 getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
 
 Obtains an **IsoDepTag** object, which allows access to the tags that use the ISO-DEP technology.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.                             |
+| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
 
 **Return value**
 
@@ -218,13 +358,13 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 Obtains an **NdefTag** object, which allows access to the tags in the NFC Data Exchange Format (NDEF).
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.                             |
+| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
 
 **Return value**
 
@@ -246,7 +386,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 Obtains a **MifareClassicTag** object, which allows access to the tags that use MIFARE Classic.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -274,12 +414,12 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 Obtains a **MifareUltralightTag** object, which allows access to the tags that use MIFARE Ultralight.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 | Name      | Type                       | Mandatory  | Description                                      |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.                             |
+| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
 
 **Return value**
 
@@ -301,7 +441,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 Obtains an **NdefFormatableTag** object, which allows access to the tags that are NDEF formattable.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
 
@@ -323,7 +463,7 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 Obtains **TagInfo** from **Want**, which is initialized by the NFC service and contains the attributes required by **TagInfo**.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -344,7 +484,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
 
 Creates an NDEF record based on the specified URI.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -373,7 +513,7 @@ try {
         console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeUriRecord catched busiError: " + busiError);
+    console.log("ndefMessage makeUriRecord caught busiError: " + busiError);
 }
 ```
 
@@ -383,7 +523,7 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
 
 Creates an NDEF record based on the specified text data and encoding type.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -414,7 +554,7 @@ try {
         console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeTextRecord catched busiError: " + busiError);
+    console.log("ndefMessage makeTextRecord caught busiError: " + busiError);
 }
 ```
 
@@ -425,7 +565,7 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 Creates an NDEF record based on the specified MIME data and type.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -456,7 +596,7 @@ try {
         console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeMimeRecord catched busiError: " + busiError);
+    console.log("ndefMessage makeMimeRecord caught busiError: " + busiError);
 }
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
@@ -465,7 +605,7 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 
 Creates an NDEF record based on application-specific data.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -498,7 +638,7 @@ try {
         console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
     }
 } catch (busiError) {
-    console.log("ndefMessage makeExternalRecord catched busiError: " + busiError);
+    console.log("ndefMessage makeExternalRecord caught busiError: " + busiError);
 }
 ```
 
@@ -508,7 +648,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 Converts an NDEF message to bytes.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -540,7 +680,7 @@ try {
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
 } catch (busiError) {
-    console.log("ndefMessage messageToBytes catched busiError: " + busiError);
+    console.log("ndefMessage messageToBytes caught busiError: " + busiError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -549,7 +689,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 Creates an NDEF message from raw byte data. The data must comply with the NDEF record format. Otherwise, the NDE record list contained in the **NdefMessage** object will be empty.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -583,7 +723,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 
 Creates an NDEF message from the NDEF records list.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
 
@@ -618,7 +758,7 @@ try {
 
 Defines the **TagInfo** object, which provides information about the tag technologies supported by a card.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -626,14 +766,15 @@ Defines the **TagInfo** object, which provides information about the tag technol
 | -------- | -------- | -------- | -------- | -------- |
 | uid<sup>9+</sup> | number[] | Yes| No| Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 | technology<sup>9+</sup> | number[] | Yes| No| Supported technologies. Each number is a constant indicating the supported technology.|
-| supportedProfiles | number[] | Yes| No|  Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#taginfo) instead.|
+| supportedProfiles | number[] | Yes| No|  Supported profiles. This parameter is not supported since API version 9. Use [technology](#taginfo).|
 | extrasData<sup>9+</sup> | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | Yes| No|  Extended attribute value of the tag technology.<br>**System API**: This is a system API.|
 | tagRfDiscId<sup>9+</sup> | number | Yes| No|  ID allocated when the tag is discovered.<br>**System API**: This is a system API.|
 | remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Yes| No| Remote object of the NFC service process used for interface communication between the client and the service.<br>**System API**: This is a system API.|
+
 ## NdefRecord<sup>9+</sup>
 Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
@@ -645,7 +786,7 @@ Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 ## Technology Type Definition
 Enumerates the tag technology types.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -662,7 +803,7 @@ Enumerates the tag technology types.
 ## TnfType<sup>9+</sup>
 Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -677,7 +818,7 @@ Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.
 ## NDEF Record RTD
 Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-NDEF_1.0*.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -687,7 +828,7 @@ Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-ND
 ## NfcForumType<sup>9+</sup>
 Enumerates the NFC Forum tag types.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -700,7 +841,7 @@ Enumerates the NFC Forum tag types.
 ## MifareClassicType<sup>9+</sup>
 Enumerates the MIFARE Classic tag types.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -710,9 +851,9 @@ Enumerates the MIFARE Classic tag types.
 | TYPE_PRO  | 3 |  MIFARE Pro.|
 
 ## MifareClassicSize<sup>9+</sup>
-Enumerates the sizes of MIFARE Classic tags.
+Enumerates the sizes of a MIFARE Classic tag.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
@@ -724,11 +865,11 @@ Enumerates the sizes of MIFARE Classic tags.
 ## MifareUltralightType<sup>9+</sup>
 Enumerates the MIFARE Ultralight tag types.
 
-**System capability**: SystemCapability.Communication.NFC.Core
+**System capability**: SystemCapability.Communication.NFC.Tag
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
 | TYPE_UNKNOWN  | 0 |  Unknown type.|
 | TYPE_ULTRALIGHT   | 1 |  MIFARE Ultralight.|
 | TYPE_ULTRALIGHT_C    | 2 |  MIFARE Ultralight C.|
-<!--no_check-->
+

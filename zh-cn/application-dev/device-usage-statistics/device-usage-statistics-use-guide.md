@@ -227,7 +227,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态，不需要配置权限，三方应用只能查询自身的空闲状态。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -538,5 +538,5 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 针对设备使用信息统计，有以下相关实例可供参考：
 
-- [`DeviceUsageStatistics`：设备使用信息统计（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/DeviceUsageStatistics)
+- [`DeviceUsageStatistics`：设备使用信息统计（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
 

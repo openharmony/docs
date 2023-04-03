@@ -24,8 +24,6 @@ The differences between **onCommand()** and **onConnect()** are as follows:
 
 1. Override the Service ability-related lifecycle callbacks to implement your own logic for processing interaction requests.
    
-    
-   
    ```ts
     export default {
         onStart() {
@@ -47,7 +45,7 @@ The differences between **onCommand()** and **onConnect()** are as follows:
         }
     }
    ```
-
+   
 2. Register a Service ability.
 
    Declare the Service ability in the **config.json** file by setting its **type** attribute to **service**.
@@ -155,7 +153,7 @@ You can use either of the following methods to connect to a Service ability:
 
     ```ts
     import prompt from '@system.prompt'
-
+    
     var option = {
         onConnect: function onConnectCallback(element, proxy) {
             console.log(`onConnectLocalService onConnectDone`);
@@ -194,7 +192,7 @@ You can use either of the following methods to connect to a Service ability:
 
     ```ts
     import featureAbility from '@ohos.ability.featureAbility'
-
+    
     let want = {
         bundleName: "com.jstest.service",
         abilityName: "com.jstest.service.ServiceAbility"
@@ -208,7 +206,7 @@ You can use either of the following methods to connect to a Service ability:
 
     ```ts
     import rpc from "@ohos.rpc"
-
+    
     class ServiceAbilityStub extends rpc.RemoteObject {
         constructor(des: any) {
             if (typeof des === 'string') {
@@ -218,7 +216,7 @@ You can use either of the following methods to connect to a Service ability:
                 return;
             }
         }
-
+    
         onRemoteRequest(code: number, data: any, reply: any, option: any) {
             console.log("onRemoteRequest called");
             // Execute the service logic.
@@ -235,7 +233,7 @@ You can use either of the following methods to connect to a Service ability:
             return true;
         }
     }
-
+    
     export default {
         onStart() {
             console.log('ServiceAbility onStart');

@@ -27,21 +27,25 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                  | 参数类型     | 描述                                                              |
-| ----------------------- | --------------- | ----------------------------------------------------------- |
+| 名称                  | 参数类型     | 描述                                                                    |
+| ----------------------- | --------------------| ------------------------------------------------------------------|
 | color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。<br/>默认值：0x99000000。                           |
 | selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。<br/>默认值：0xFF254FF7。                           |
 | popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。<br/>默认值：0xFF254FF7。                         |
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。<br/>默认值：0x1F0A59F7。                           |
 | popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。<br/>默认值：0xFFF1F3F5。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。<br/>默认值：false。                         |
-| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>fontSize:10,<br/> fontStyle:FontStyle.Normal,<br/> fontWeight:FontWeight.Normal,<br/> fontFamily:HarmonyOS Sans<br/>}                          |
-| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>fontSize:10,<br/> fontStyle:FontStyle.Normal,<br/> fontWeight:FontWeight.Normal,<br/> fontFamily:HarmonyOS Sans<br/>}                         |
-| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>fontSize:10,<br/> fontStyle:FontStyle.Normal,<br/> fontWeight:FontWeight.Normal,<br/> fontFamily:HarmonyOS Sans<br/>}                      |
+| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                          |
+| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                         |
+| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
 | itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：24.0。       |
-| alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值:IndexerAlign.Right。 |
+| alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。 |
 | selected | number | 设置选中项索引值。<br/>默认值：0。 |
 | popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:96.0, y:48.0}。 |
+| popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
+| popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
+| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>style:FontStyle.Medium<br/>}|
+| popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
 
 ## IndexerAlign枚举说明
 
@@ -134,7 +138,7 @@ struct AlphabetIndexerSample {
           .selectedFont({ size: 16, weight: FontWeight.Bolder }) // 选中项字体样式
           .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
           .itemSize(28) // 每一项的尺寸大小
-          .alignStyle(IndexerAlign.Left) // 弹出框在索引条左侧弹出
+          .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
           .onSelect((index: number) => {
             console.info(this.value[index] + ' Selected!')
           })

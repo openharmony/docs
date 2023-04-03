@@ -8,7 +8,7 @@ The **AbilityMonitor** module provides monitors for abilities that meet specifie
 
 ## Usage
 
-The ability monitor can be set by calling **addAbilityMonitor** in **abilityDelegator**.
+**AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
 
 ## AbilityMonitor
 
@@ -19,6 +19,7 @@ Describes an ability monitor.
 | Name                                                        | Type    | Readable| Writable| Description                                                        |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
 | abilityName                                                  | string   | Yes  | Yes  | Name of the ability bound to the ability monitor.|
+| moduleName?                                                  | string   | Yes  | Yes  | Name of the module bound to the ability monitor.|
 | onAbilityCreate?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | Yes  | Yes  | Called when the ability is created.<br>If this attribute is not set, the corresponding lifecycle callback cannot be received.|
 | onAbilityForeground?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | Yes  | Yes  | Called when the ability starts to run in the foreground.<br>If this attribute is not set, the corresponding lifecycle callback cannot be received.|
 | onAbilityBackground?:(data: [UIAbility](js-apis-app-ability-uiAbility.md)) | function | Yes  | Yes  | Called when the ability starts to run in the background.<br>If this attribute is not set, the corresponding lifecycle callback cannot be received.|
@@ -30,20 +31,22 @@ Describes an ability monitor.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 function onAbilityCreateCallback(data) {
-    console.info("onAbilityCreateCallback");
+    console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
 }
 
-var monitor = {
-    abilityName: "abilityname",
+let monitor = {
+    abilityName: 'abilityname',
+    moduleName: "moduleName",
     onAbilityCreate: onAbilityCreateCallback
-}
+};
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info("addAbilityMonitor callback");
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    if (error && error.code !== 0) {
+        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```

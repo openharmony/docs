@@ -15,6 +15,8 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - [启动其他应用的UIAbility并获取返回结果](#启动其他应用的uiability并获取返回结果)
 
+- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式仅对系统应用开放)
+
 - [启动UIAbility的指定页面](#启动uiability的指定页面)
 
 - [通过Call调用实现UIAbility交互（仅对系统应用开放）](#通过call调用实现uiability交互仅对系统应用开放)
@@ -26,7 +28,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在应用的一个Module中，也可以在的不同Module中），需要从EntryAbility的页面中启动FuncAbility。
 
-1. 在EntryAbility中，通过调用startAbility()方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+1. 在EntryAbility中，通过调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
    
    ```ts
    let wantInfo = {
@@ -50,7 +52,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
+   import window from '@ohos.window';
    
    export default class FuncAbility extends UIAbility {
        onCreate(want, launchParam) {
@@ -62,7 +64,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用terminateSelf()方法实现。
+3. 在FuncAbility业务完成之后，如需要停止当前UIAbility实例，在FuncAbility中通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
    ```ts
    // context为需要停止的UIAbility实例的AbilityContext
@@ -70,13 +72,19 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
        // ...
    });
    ```
+   
+   > **说明：**
+   >
+   > 调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
+   
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[killProcessBySelf()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9)方法实现关闭应用所有的进程。
 
 
 ## 启动应用内的UIAbility并获取返回结果
 
 在一个EntryAbility启动另外一个FuncAbility时，希望在被启动的FuncAbility完成相关业务后，能将结果返回给调用方。例如在应用中将入口功能和帐号登录功能分别设计为两个独立的UIAbility，在帐号登录UIAbility中完成登录操作后，需要将登录的结果返回给入口UIAbility。
 
-1. 在EntryAbility中，调用startAbilityForResult()接口启动FuncAbility，异步回调中的data用于接收FuncAbility停止自身后返回给EntryAbility的信息。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+1. 在EntryAbility中，调用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口启动FuncAbility，异步回调中的data用于接收FuncAbility停止自身后返回给EntryAbility的信息。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
    
    ```ts
    let wantInfo = {
@@ -96,7 +104,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-2. 在FuncAbility停止自身时，需要调用terminateSelfWithResult()方法，入参abilityResult为FuncAbility需要返回给EntryAbility的信息。
+2. 在FuncAbility停止自身时，需要调用[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法，入参abilityResult为FuncAbility需要返回给EntryAbility的信息。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -117,7 +125,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    });
    ```
 
-3. FuncAbility停止自身后，EntryAbility通过startAbilityForResult()方法回调接收被FuncAbility返回的信息，RESULT_CODE需要与前面的数值保持一致。
+3. FuncAbility停止自身后，EntryAbility通过[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调接收被FuncAbility返回的信息，RESULT_CODE需要与前面的数值保持一致。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -145,11 +153,11 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 - 显式Want启动：启动一个确定应用的UIAbility，在want参数中需要设置该应用bundleName和abilityName，当需要拉起某个明确的UIAbility时，通常使用显式Want启动方式。
 
-- 隐式Want启动：根据匹配条件由用户选择启动哪一个UIAbility，即不明确指出要启动哪一个UIAbility（abilityName参数未设置），在调用startAbility()方法时，其入参want中指定了一系列的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段（表示目标UIAbility额外的类别信息，如浏览器、视频播放器）和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段（表示要执行的通用操作，如查看、分享、应用详情等）等参数信息，然后由系统去分析want，并帮助找到合适的UIAbility来启动。当需要拉起其他应用的UIAbility时，开发者通常不知道用户设备中应用的安装情况，也无法确定目标应用的bundleName和abilityName，通常使用隐式Want启动方式。
+- 隐式Want启动：根据匹配条件由用户选择启动哪一个UIAbility，即不明确指出要启动哪一个UIAbility（abilityName参数未设置），在调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，其入参want中指定了一系列的entities字段（表示目标UIAbility额外的类别信息，如浏览器、视频播放器）和actions字段（表示要执行的通用操作，如查看、分享、应用详情等）等参数信息，然后由系统去分析want，并帮助找到合适的UIAbility来启动。当需要拉起其他应用的UIAbility时，开发者通常不知道用户设备中应用的安装情况，也无法确定目标应用的bundleName和abilityName，通常使用隐式Want启动方式。
 
 本章节主要讲解如何通过隐式Want启动其他应用的UIAbility。
 
-1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的module.json5配置文件中，配置skills的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段。
+1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的entities字段和actions字段。
    
    ```json
    {
@@ -175,7 +183,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-2. 在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+2. 在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
    
    ```ts
    let wantInfo = {
@@ -195,10 +203,10 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。
-   <img src="figures/uiability-intra-device-interaction.png" alt="uiability-intra-device-interaction" style="zoom:50%;" />
+   效果示意如下图所示，点击“打开PDF文档”时，会弹出选择框供用户选择。   
+   ![](figures/uiability-intra-device-interaction.png)
    
-3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用terminateSelf()方法实现。
+3. 在文档应用使用完成之后，如需要停止当前UIAbility实例，通过调用[terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法实现。
    
    ```ts
    // context为需要停止的UIAbility实例的AbilityContext
@@ -210,9 +218,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 ## 启动其他应用的UIAbility并获取返回结果
 
-当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用startAbilityForResult()方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
+当使用隐式Want启动其他应用的UIAbility并希望获取返回结果时，调用方需要使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动目标UIAbility。例如主应用中需要启动三方支付并获取支付结果。
 
-1. 在支付应用对应UIAbility的module.json5配置文件中，配置skills的[entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)字段和[actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)字段。
+1. 在支付应用对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills的entities字段和actions字段。
    
    ```json
    {
@@ -238,7 +246,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-2. 调用方使用startAbilityForResult()方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
+2. 调用方使用[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
    
    ```ts
    let wantInfo = {
@@ -258,7 +266,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
-3. 在支付UIAbility完成支付之后，需要调用terminateSelfWithResult()方法实现停止自身，并将abilityResult参数信息返回给调用方。
+3. 在支付UIAbility完成支付之后，需要调用[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法实现停止自身，并将abilityResult参数信息返回给调用方。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -279,7 +287,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    });
    ```
 
-4. 在调用方startAbilityForResult()方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面terminateSelfWithResult()返回的数值保持一致。
+4. 在调用方[startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法回调中接收支付应用返回的信息，RESULT_CODE需要与前面[terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)返回的数值保持一致。
    
    ```ts
    const RESULT_CODE: number = 1001;
@@ -300,6 +308,55 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    })
    ```
 
+## 启动UIAbility指定窗口模式（仅对系统应用开放）
+
+当用户打开应用时，应用程序会以不同的窗口模式进行展示，即启动UIAbility的窗口模式。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
+
+全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序。
+
+悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序。
+
+分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧/上侧的一部分，另一个应用程序占据右侧/下侧的一部分。分屏模式主要用于提高用户的多任务处理效率。
+
+使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过在入参中增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置启动UIAbility的窗口模式。
+
+> **说明：**
+>
+> 1. 如果在使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，入参中未指定[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
+> 2. 为了确保启动的UIAbility展示形态能够被支持，需要在该UIAbility对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段确认启动的展示形态被支持。
+
+以下是具体的操作步骤，以悬浮窗模式为例，假设需要从EntryAbility的页面中启动FuncAbility：
+
+1. 在调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数。
+2. 在[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+
+示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
+
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let wantInfo = {
+  deviceId: '', // deviceId为空表示本设备
+  bundleName: 'com.example.myapplication',
+  abilityName: 'FuncAbility',
+  moduleName: 'module1', // moduleName非必选
+  parameters: { // 自定义信息
+    info: '来自EntryAbility Index页面',
+  },
+}
+let options = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+}
+// context为调用方UIAbility的UIAbilityContext
+this.context.startAbility(wantInfo, options).then(() => {
+  // ...
+}).catch((err) => {
+  // ...
+})
+```
+
+效果示意如下图所示。   
+![](figures/start-uiability-floating-window.png)
 
 ## 启动UIAbility的指定页面
 
@@ -308,7 +365,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 ### 调用方UIAbility指定启动页面
 
-调用方UIAbility启动另外一个UIAbility时，通常需要跳转到指定的页面。例如FuncAbility包含两个页面（Index对应首页，Second对应功能A页面），此时需要在传入的want参数中配置指定的页面路径信息，可以通过want中的parameters参数增加一个自定义参数传递页面跳转信息。示例中的context的获取方式参见[获取UIAbility的Context属性](uiability-usage.md#获取uiability的上下文信息)。
+调用方UIAbility启动另外一个UIAbility时，通常需要跳转到指定的页面。例如FuncAbility包含两个页面（Index对应首页，Second对应功能A页面），此时需要在传入的want参数中配置指定的页面路径信息，可以通过want中的parameters参数增加一个自定义参数传递页面跳转信息。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
 
 ```ts
@@ -441,8 +498,9 @@ Call调用的使用场景主要包括：
 
 Call调用示意图如下所示。
 
-  **图1** Call调用示意图  
-<img src="figures/call.png" alt="call" style="zoom:67%;" />
+  **图1** Call调用示意图
+
+  ![call](figures/call.png)  
 
 - CallerAbility调用startAbilityByCall接口获取Caller，并使用Caller对象的call方法向CalleeAbility发送数据。
 
@@ -467,8 +525,8 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 | startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt; | 启动指定UIAbility并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。 |
 | on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 |
 | off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 |
-| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
-| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;rpc.MessageSequence&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
 | release():&nbsp;void | 释放通用组件的Caller通信接口。 |
 | on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 |
 
@@ -516,7 +574,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
    
    ```ts
-   export default class MySequenceable {
+   export default class MyParcelable {
        num: number = 0
        str: string = ""
    
@@ -525,15 +583,15 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
            this.str = string
        }
    
-       marshalling(messageParcel) {
-           messageParcel.writeInt(this.num)
-           messageParcel.writeString(this.str)
+       marshalling(messageSequence) {
+           messageSequence.writeInt(this.num)
+           messageSequence.writeString(this.str)
            return true
        }
    
-       unmarshalling(messageParcel) {
-           this.num = messageParcel.readInt()
-           this.str = messageParcel.readString()
+       unmarshalling(messageSequence) {
+           this.num = messageSequence.readInt()
+           this.str = messageSequence.readString()
            return true
        }
    }
@@ -551,13 +609,13 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        console.info('CalleeSortFunc called');
    
        // 获取Caller发送的序列化数据
-       let receivedData = new MySequenceable(0, '');
-       data.readSequenceable(receivedData);
+       let receivedData = new MyParcelable(0, '');
+       data.readParcelable(receivedData);
        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
    
        // 作相应处理
        // 返回序列化数据result给Caller
-       return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+       return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
    export default class CalleeAbility extends Ability {

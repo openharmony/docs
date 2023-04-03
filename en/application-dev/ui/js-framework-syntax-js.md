@@ -13,7 +13,7 @@ The ES6 syntax is supported.
   Import functionality modules.
 
   ```js
-  import router from '@system.router';
+  import router from '@ohos.router';
   ```
 
 - Code reference

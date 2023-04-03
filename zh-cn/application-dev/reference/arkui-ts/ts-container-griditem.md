@@ -25,7 +25,7 @@ GridItem()
 | rowEnd | number | 指定当前元素终点行号。 |
 | columnStart | number | 指定当前元素起始列号。 |
 | columnEnd | number | 指定当前元素终点列号。 |
-| forceRebuild | boolean | 设置在触发组件build时是否重新创建此节点。<br/>默认值：false |
+| forceRebuild<sup>(deprecated)</sup> | boolean | 设置在触发组件build时是否重新创建此节点。<br/>从API version9开始废弃。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
 
 
@@ -67,7 +67,7 @@ struct GridItemExample {
               .width('100%')
               .height('100%')
               .textAlign(TextAlign.Center)
-          }.forceRebuild(false)
+          }
         }, item => item)
 
         GridItem() {

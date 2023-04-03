@@ -8,11 +8,11 @@
 
 ## 导入模块
 
-```js
-import Notification from '@ohos.notificationManager';
+```ts
+import notificationManager from '@ohos.notificationManager';
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
@@ -24,10 +24,12 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | callback | AsyncCallback\<void\>                       | 是   | 发布通知的回调方法。                        |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -40,33 +42,31 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 //publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
 }
 //通知Request对象
-var notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
-Notification.publish(notificationRequest, publishCallback)
+};
+notificationManager.publish(notificationRequest, publishCallback);
 ```
 
-
-
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest): Promise\<void\>
 
@@ -78,9 +78,11 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -93,26 +95,26 @@ publish(request: NotificationRequest): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知Request对象
-var notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
-Notification.publish(notificationRequest).then(() => {
+};
+notificationManager.publish(notificationRequest).then(() => {
 	console.info("publish success");
 });
 
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -128,11 +130,13 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -146,33 +150,33 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **示例：**
 
-```js
+```ts
 // publish回调
 function publishCallback(err) {
     if (err) {
-        console.info("publish failed " + JSON.stringify(err));
+        console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publish success");
     }
 }
 // 用户ID
-var userId = 1
+let userId = 1;
 // 通知Request对象
-var notificationRequest = {
+let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
-Notification.publish(notificationRequest, userId, publishCallback);
+};
+notificationManager.publish(notificationRequest, userId, publishCallback);
 ```
 
-## Notification.publish
+## notificationManager.publish
 
 publish(request: NotificationRequest, userId: number): Promise\<void\>
 
@@ -188,10 +192,12 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -205,28 +211,28 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **示例：**
 
-```js
-var notificationRequest = {
+```ts
+let notificationRequest: notificationManager.NotificationRequest = {
     notificationId: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-var userId = 1
+let userId = 1;
 
-Notification.publish(notificationRequest, userId).then(() => {
+notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 });
 ```
 
 
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
@@ -244,6 +250,8 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -253,21 +261,19 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, "label", cancelCallback)
+notificationManager.cancel(0, "label", cancelCallback);
 ```
 
-
-
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, label?: string): Promise\<void\>
 
@@ -284,6 +290,8 @@ cancel(id: number, label?: string): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -293,15 +301,13 @@ cancel(id: number, label?: string): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.cancel(0).then(() => {
+```ts
+notificationManager.cancel(0).then(() => {
 	console.info("cancel success");
 });
 ```
 
-
-
-## Notification.cancel
+## notificationManager.cancel
 
 cancel(id: number, callback: AsyncCallback\<void\>): void
 
@@ -318,6 +324,8 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -327,21 +335,19 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelCallback(err) {
     if (err) {
-        console.info("cancel failed " + JSON.stringify(err));
+        console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
     }
 }
-Notification.cancel(0, cancelCallback)
+notificationManager.cancel(0, cancelCallback);
 ```
 
-
-
-## Notification.cancelAll
+## notificationManager.cancelAll
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
@@ -350,6 +356,8 @@ cancelAll(callback: AsyncCallback\<void\>): void
 **系统能力**：SystemCapability.Notification.Notification
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -365,21 +373,19 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // cancel回调
 function cancelAllCallback(err) {
     if (err) {
-        console.info("cancelAll failed " + JSON.stringify(err));
+        console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAll success");
     }
 }
-Notification.cancelAll(cancelAllCallback)
+notificationManager.cancelAll(cancelAllCallback);
 ```
 
-
-
-## Notification.cancelAll
+## notificationManager.cancelAll
 
 cancelAll(): Promise\<void\>
 
@@ -389,6 +395,8 @@ cancelAll(): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -397,15 +405,13 @@ cancelAll(): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.cancelAll().then(() => {
+```ts
+notificationManager.cancelAll().then(() => {
 	console.info("cancelAll success");
 });
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -421,10 +427,12 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](#notificationslot)       | 是   | 要创建的通知通道对象。 |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知通道对象。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -434,25 +442,23 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
 }
 // 通知slot对象
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.addSlot(notificationSlot, addSlotCallBack)
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
+notificationManager.addSlot(notificationSlot, addSlotCallBack);
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(slot: NotificationSlot): Promise\<void\>
 
@@ -468,9 +474,11 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 参数名 | 类型             | 必填 | 说明                 |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](#notificationslot) | 是   | 要创建的通知通道对象。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知通道对象。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -480,19 +488,17 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知slot对象
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.addSlot(notificationSlot).then(() => {
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
+notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
 });
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
@@ -509,6 +515,8 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -517,21 +525,19 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // addslot回调
 function addSlotCallBack(err) {
     if (err) {
-        console.info("addSlot failed " + JSON.stringify(err));
+        console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlot success");
     }
 }
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack)
+notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
 ```
 
-
-
-## Notification.addSlot
+## notificationManager.addSlot
 
 addSlot(type: SlotType): Promise\<void\>
 
@@ -547,6 +553,8 @@ addSlot(type: SlotType): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -555,15 +563,13 @@ addSlot(type: SlotType): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.addSlot(Notification.SlotType.SOCIAL_COMMUNICATION).then(() => {
+```ts
+notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
 	console.info("addSlot success");
 });
 ```
 
-
-
-## Notification.addSlots
+## notificationManager.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): void
 
@@ -579,10 +585,12 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -592,29 +600,27 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **示例：**
 
-```js
+```ts
 // addSlots回调
 function addSlotsCallBack(err) {
     if (err) {
-        console.info("addSlots failed " + JSON.stringify(err));
+        console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("addSlots success");
     }
 }
 // 通知slot对象
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
 // 通知slot array 对象
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray, addSlotsCallBack)
+notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
-
-
-## Notification.addSlots
+## notificationManager.addSlots
 
 addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
@@ -630,9 +636,11 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -642,23 +650,21 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **示例：**
 
-```js
+```ts
 // 通知slot对象
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
 // 通知slot array 对象
-var notificationSlotArray = new Array();
+let notificationSlotArray = new Array();
 notificationSlotArray[0] = notificationSlot;
 
-Notification.addSlots(notificationSlotArray).then(() => {
+notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 });
 ```
 
-
-
-## Notification.getSlot
+## notificationManager.getSlot
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
@@ -671,9 +677,11 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 | 参数名     | 类型                              | 必填 | 说明                                                        |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。                                        |
+| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 表示被指定的回调方法。                                        |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -683,22 +691,20 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 **示例：**
 
-```js
+```ts
 // getSlot回调
 function getSlotCallback(err,data) {
     if (err) {
-        console.info("getSlot failed " + JSON.stringify(err));
+        console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlot success");
     }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType, getSlotCallback)
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.getSlot(slotType, getSlotCallback);
 ```
 
-
-
-## Notification.getSlot
+## notificationManager.getSlot
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
@@ -720,6 +726,8 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -728,16 +736,14 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 **示例：**
 
-```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.getSlot(slotType).then((data) => {
+```ts
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.getSlot(slotType).then((data) => {
 	console.info("getSlot success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getSlots
+## notificationManager.getSlots
 
 getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
@@ -747,9 +753,11 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 **参数：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 参数名     | 类型                              | 必填 | 说明                 |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
 
 **错误码：**
 
@@ -761,21 +769,19 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 **示例：**
 
-```js
+```ts
 // getSlots回调
 function getSlotsCallback(err,data) {
     if (err) {
-        console.info("getSlots failed " + JSON.stringify(err));
+        console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlots success");
     }
 }
-Notification.getSlots(getSlotsCallback)
+notificationManager.getSlots(getSlotsCallback);
 ```
 
-
-
-## Notification.getSlots
+## notificationManager.getSlots
 
 getSlots(): Promise\<Array\<NotificationSlot\>>
 
@@ -787,9 +793,11 @@ getSlots(): Promise\<Array\<NotificationSlot\>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](#notificationslot)\>\> | 以Promise形式返回获取此应用程序的所有通知通道的结果。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 以Promise形式返回获取此应用程序的所有通知通道的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -799,15 +807,13 @@ getSlots(): Promise\<Array\<NotificationSlot\>>
 
 **示例：**
 
-```js
-Notification.getSlots().then((data) => {
+```ts
+notificationManager.getSlots().then((data) => {
 	console.info("getSlots success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.removeSlot
+## notificationManager.removeSlot
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
@@ -824,6 +830,8 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -832,22 +840,20 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 // removeSlot回调
 function removeSlotCallback(err) {
     if (err) {
-        console.info("removeSlot failed " + JSON.stringify(err));
+        console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeSlot success");
     }
 }
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType,removeSlotCallback)
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.removeSlot(slotType,removeSlotCallback);
 ```
 
-
-
-## Notification.removeSlot
+## notificationManager.removeSlot
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
@@ -863,6 +869,8 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -871,16 +879,14 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 **示例：**
 
-```js
-var slotType = Notification.SlotType.SOCIAL_COMMUNICATION;
-Notification.removeSlot(slotType).then(() => {
+```ts
+let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+notificationManager.removeSlot(slotType).then(() => {
 	console.info("removeSlot success");
 });
 ```
 
-
-
-## Notification.removeAllSlots
+## notificationManager.removeAllSlots
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
@@ -896,6 +902,8 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -904,20 +912,18 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 function removeAllCallBack(err) {
     if (err) {
-        console.info("removeAllSlots failed " + JSON.stringify(err));
+        console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
 }
-Notification.removeAllSlots(removeAllCallBack)
+notificationManager.removeAllSlots(removeAllCallBack);
 ```
 
-
-
-## Notification.removeAllSlots
+## notificationManager.removeAllSlots
 
 removeAllSlots(): Promise\<void\>
 
@@ -927,6 +933,8 @@ removeAllSlots(): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -935,15 +943,13 @@ removeAllSlots(): Promise\<void\>
 
 **示例：**
 
-```js
-Notification.removeAllSlots().then(() => {
+```ts
+notificationManager.removeAllSlots().then(() => {
 	console.info("removeAllSlots success");
 });
 ```
 
-
-
-## Notification.setNotificationEnable
+## notificationManager.setNotificationEnable
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -959,11 +965,13 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。        |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)   | 是   | 指定应用的包信息。        |
 | enable   | boolean               | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -974,23 +982,21 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 function setNotificationEnablenCallback(err) {
     if (err) {
-        console.info("setNotificationEnablenCallback failed " + JSON.stringify(err));
+        console.error(`setNotificationEnablenCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnablenCallback success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
+};
+notificationManager.setNotificationEnable(bundle, false, setNotificationEnablenCallback);
 ```
 
-
-
-## Notification.setNotificationEnable
+## notificationManager.setNotificationEnable
 
 setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
@@ -1006,10 +1012,12 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1020,18 +1028,16 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.setNotificationEnable(bundle, false).then(() => {
+};
+notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
 });
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
@@ -1047,10 +1053,12 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。            |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。            |
 | callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1061,23 +1069,21 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **示例：**
 
-```js
+```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.isNotificationEnabled(bundle, isNotificationEnabledCallback);
+};
+notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
@@ -1093,7 +1099,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1102,6 +1108,8 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 | Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1112,18 +1120,16 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.isNotificationEnabled(bundle).then((data) => {
+};
+notificationManager.isNotificationEnabled(bundle).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
@@ -1143,6 +1149,8 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1151,21 +1159,19 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 function isNotificationEnabledCallback(err, data) {
     if (err) {
-        console.info("isNotificationEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationEnabled success");
     }
 }
 
-Notification.isNotificationEnabled(isNotificationEnabledCallback);
+notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
-
-
-## Notification.isNotificationEnabled
+## notificationManager.isNotificationEnabled
 
 isNotificationEnabled(): Promise\<boolean\>
 
@@ -1181,7 +1187,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1190,6 +1196,8 @@ isNotificationEnabled(): Promise\<boolean\>
 | Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1200,15 +1208,13 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **示例：**
 
-```js
-Notification.isNotificationEnabled().then((data) => {
+```ts
+notificationManager.isNotificationEnabled().then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.displayBadge
+## notificationManager.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -1224,11 +1230,13 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
 | enable   | boolean               | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1239,23 +1247,21 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **示例：**
 
-```js
+```ts
 function displayBadgeCallback(err) {
     if (err) {
-        console.info("displayBadge failed " + JSON.stringify(err));
+        console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("displayBadge success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.displayBadge(bundle, false, displayBadgeCallback);
+};
+notificationManager.displayBadge(bundle, false, displayBadgeCallback);
 ```
 
-
-
-## Notification.displayBadge
+## notificationManager.displayBadge
 
 displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
@@ -1271,10 +1277,12 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 | enable | boolean      | 是   | 使能状态。   |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1285,18 +1293,16 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.displayBadge(bundle, false).then(() => {
+};
+notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 });
 ```
 
-
-
-## Notification.isBadgeDisplayed
+## notificationManager.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
@@ -1312,10 +1318,12 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                     |
 | -------- | --------------------- | ---- | ------------------------ |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。               |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。               |
 | callback | AsyncCallback\<void\> | 是   | 获取角标使能状态回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1326,23 +1334,21 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
+```ts
 function isBadgeDisplayedCallback(err, data) {
     if (err) {
-        console.info("isBadgeDisplayed failed " + JSON.stringify(err));
+        console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isBadgeDisplayed success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
+};
+notificationManager.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 ```
 
-
-
-## Notification.isBadgeDisplayed
+## notificationManager.isBadgeDisplayed
 
 isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
@@ -1358,7 +1364,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1367,6 +1373,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 | Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1377,18 +1385,89 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.isBadgeDisplayed(bundle).then((data) => {
+};
+notificationManager.isBadgeDisplayed(bundle).then((data) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 });
 ```
 
+## notificationManager.setBadgeNumber<sup>10+</sup>
 
+setBadgeNumber(badgeNumber: number): Promise\<void\>
 
-## Notification.setSlotByBundle
+设定角标个数，在应用的桌面图标上呈现（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| badgeNumber | number | 是   | 角标个数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+let badgeNumber = 10
+notificationManager.setBadgeNumber(badgeNumber).then(() => {
+	console.info("displayBadge success");
+});
+```
+
+## notificationManager.setBadgeNumber<sup>10+</sup>
+
+setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
+
+设定角标个数，在应用的桌面图标上呈现（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明               |
+| ----------- | --------------------- | ---- | ------------------ |
+| badgeNumber | number                | 是   | 角标个数。         |
+| callback    | AsyncCallback\<void\> | 是   | 设定角标回调函数。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+function setBadgeNumberCallback(err) {
+    if (err) {
+        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("displayBadge success");
+    }
+}
+
+let badgeNumber = 10
+notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+```
+
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -1404,11 +1483,13 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。           |
-| slot     | [NotificationSlot](#notificationslot)      | 是   | 通知通道。             |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知通道。             |
 | callback | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1417,30 +1498,26 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 1600003  | Failed to connect service.               |
 | 17700001 | The specified bundle name was not found. |
 
-
-
 **示例：**
 
-```js
+```ts
 function setSlotByBundleCallback(err) {
     if (err) {
-        console.info("setSlotByBundle failed " + JSON.stringify(err));
+        console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSlotByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
+};
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
+notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
 
-
-
-## Notification.setSlotByBundle
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
@@ -1456,10 +1533,12 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
-| slot   | [NotificationSlot](#notificationslot) | 是   | 通知通道。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知通道。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1470,21 +1549,19 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-var notificationSlot = {
-    type: Notification.SlotType.SOCIAL_COMMUNICATION
-}
-Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
+};
+let notificationSlot = {
+    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
+notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 });
 ```
 
-
-
-## Notification.getSlotsByBundle
+## notificationManager.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
@@ -1500,10 +1577,12 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | [BundleOption](#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | 是   | 获取通知通道回调函数。 |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
+| callback | AsyncCallback<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 是   | 获取通知通道回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1514,23 +1593,21 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 **示例：**
 
-```js
+```ts
 function getSlotsByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotsByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotsByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
+};
+notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 ```
 
-
-
-## Notification.getSlotsByBundle
+## notificationManager.getSlotsByBundle
 
 getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
@@ -1546,15 +1623,17 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](#notificationslot)\>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 以Promise形式返回获取指定应用的通知通道。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1565,18 +1644,16 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.getSlotsByBundle(bundle).then((data) => {
+};
+notificationManager.getSlotsByBundle(bundle).then((data) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getSlotNumByBundle
+## notificationManager.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
@@ -1592,10 +1669,12 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption)              | 是   | 指定应用的包信息。             |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | 是   | 指定应用的包信息。             |
 | callback | AsyncCallback\<number\> | 是   | 获取通知通道数量回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1606,23 +1685,21 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **示例：**
 
-```js
+```ts
 function getSlotNumByBundleCallback(err, data) {
     if (err) {
-        console.info("getSlotNumByBundle failed " + JSON.stringify(err));
+        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getSlotNumByBundle success");
     }
 }
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
+};
+notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
-
-
-## Notification.getSlotNumByBundle
+## notificationManager.getSlotNumByBundle
 
 getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
@@ -1638,7 +1715,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 指定应用的包信息。 |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
 
 **返回值：**
 
@@ -1647,6 +1724,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 | Promise\<number\> | 以Promise形式返回获取指定应用的通知通道数量。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1657,19 +1736,17 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **示例：**
 
-```js
-var bundle = {
+```ts
+let bundle = {
     bundle: "bundleName1",
-}
-Notification.getSlotNumByBundle(bundle).then((data) => {
+};
+notificationManager.getSlotNumByBundle(bundle).then((data) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
 
-
-
-## Notification.getAllActiveNotifications
+## notificationManager.getAllActiveNotifications
 
 getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
 
@@ -1685,7 +1762,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
@@ -1697,23 +1774,21 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 **示例：**
 
-```js
+```ts
 function getAllActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getAllActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getAllActiveNotifications success");
     }
 }
 
-Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
+notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback);
 ```
 
+## notificationManager.getAllActiveNotifications
 
-
-## Notification.getAllActiveNotifications
-
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
 获取当前未删除的所有通知（Promise形式）。
 
@@ -1727,9 +1802,11 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1739,15 +1816,13 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 **示例：**
 
-```js
-Notification.getAllActiveNotifications().then((data) => {
+```ts
+notificationManager.getAllActiveNotifications().then((data) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getActiveNotificationCount
+## notificationManager.getActiveNotificationCount
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
@@ -1763,6 +1838,8 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1771,21 +1848,19 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 **示例：**
 
-```js
+```ts
 function getActiveNotificationCountCallback(err, data) {
     if (err) {
-        console.info("getActiveNotificationCount failed " + JSON.stringify(err));
+        console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotificationCount success");
     }
 }
 
-Notification.getActiveNotificationCount(getActiveNotificationCountCallback);
+notificationManager.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
-
-
-## Notification.getActiveNotificationCount
+## notificationManager.getActiveNotificationCount
 
 getActiveNotificationCount(): Promise\<number\>
 
@@ -1801,6 +1876,8 @@ getActiveNotificationCount(): Promise\<number\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1809,15 +1886,13 @@ getActiveNotificationCount(): Promise\<number\>
 
 **示例：**
 
-```js
-Notification.getActiveNotificationCount().then((data) => {
+```ts
+notificationManager.getActiveNotificationCount().then((data) => {
 	console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.getActiveNotifications
+## notificationManager.getActiveNotifications
 
 getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
 
@@ -1829,9 +1904,11 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取当前应用通知列表回调函数。 |
+| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取当前应用通知列表回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1841,23 +1918,21 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 **示例：**
 
-```js
+```ts
 function getActiveNotificationsCallback(err, data) {
     if (err) {
-        console.info("getActiveNotifications failed " + JSON.stringify(err));
+        console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getActiveNotifications success");
     }
 }
 
-Notification.getActiveNotifications(getActiveNotificationsCallback);
+notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
+## notificationManager.getActiveNotifications
 
-
-## Notification.getActiveNotifications
-
-getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
 获取当前应用未删除的通知列表（Promise形式）。
 
@@ -1867,9 +1942,11 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationreq
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | 以Promise形式返回获取当前应用通知列表。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取当前应用通知列表。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1879,15 +1956,13 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationreq
 
 **示例：**
 
-```js
-Notification.getActiveNotifications().then((data) => {
+```ts
+notificationManager.getActiveNotifications().then((data) => {
 	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.cancelGroup
+## notificationManager.cancelGroup
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1899,10 +1974,12 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](#notificationrequest)对象指定。 |
+| groupName | string                | 是   | 通知组名称，此名称需要在发布通知时通过[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象指定。 |
 | callback  | AsyncCallback\<void\> | 是   | 取消本应用指定组下通知的回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -1912,23 +1989,21 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
-```js
+```ts
 function cancelGroupCallback(err) {
     if (err) {
-        console.info("cancelGroup failed " + JSON.stringify(err));
+        console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelGroup success");
     }
 }
 
-var groupName = "GroupName";
+let groupName = "GroupName";
 
-Notification.cancelGroup(groupName, cancelGroupCallback);
+notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
 
-
-
-## Notification.cancelGroup
+## notificationManager.cancelGroup
 
 cancelGroup(groupName: string): Promise\<void\>
 
@@ -1944,6 +2019,8 @@ cancelGroup(groupName: string): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -1952,16 +2029,14 @@ cancelGroup(groupName: string): Promise\<void\>
 
 **示例：**
 
-```js
-var groupName = "GroupName";
-Notification.cancelGroup(groupName).then(() => {
+```ts
+let groupName = "GroupName";
+notificationManager.cancelGroup(groupName).then(() => {
 	console.info("cancelGroup success");
 });
 ```
 
-
-
-## Notification.removeGroupByBundle
+## notificationManager.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
@@ -1977,11 +2052,13 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 | 参数名      | 类型                  | 必填 | 说明                         |
 | --------- | --------------------- | ---- | ---------------------------- |
-| bundle    | [BundleOption](#bundleoption)          | 是   | 应用的包信息。                   |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 应用的包信息。                   |
 | groupName | string                | 是   | 通知组名称。               |
 | callback  | AsyncCallback\<void\> | 是   | 删除指定应用指定组下通知的回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -1992,24 +2069,22 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **示例：**
 
-```js
+```ts
 function removeGroupByBundleCallback(err) {
     if (err) {
-        console.info("removeGroupByBundle failed " + JSON.stringify(err));
+        console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeGroupByBundle success");
     }
 }
 
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
 
-Notification.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
+notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
 
-
-
-## Notification.removeGroupByBundle
+## notificationManager.removeGroupByBundle
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
@@ -2025,10 +2100,12 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 参数名      | 类型         | 必填 | 说明           |
 | --------- | ------------ | ---- | -------------- |
-| bundle    | [BundleOption](#bundleoption) | 是   | 应用的包信息。     |
+| bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。     |
 | groupName | string       | 是   | 通知组名称。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2039,17 +2116,15 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **示例：**
 
-```js
-var bundleOption = {bundle: "Bundle"};
-var groupName = "GroupName";
-Notification.removeGroupByBundle(bundleOption, groupName).then(() => {
+```ts
+let bundleOption = {bundle: "Bundle"};
+let groupName = "GroupName";
+notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 });
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
@@ -2070,6 +2145,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2078,27 +2155,25 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **示例：**
 
-```js
+```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
 }
 
-var doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+let doNotDisturbDate = {
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
@@ -2118,6 +2193,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2126,19 +2203,19 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **示例：**
 
-```js
-var doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+```ts
+let doNotDisturbDate = {
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
-Notification.setDoNotDisturbDate(doNotDisturbDate).then(() => {
+};
+notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
 });
 ```
 
 
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -2160,6 +2237,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2169,29 +2248,27 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **示例：**
 
-```js
+```ts
 function setDoNotDisturbDateCallback(err) {
     if (err) {
-        console.info("setDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDoNotDisturbDate success");
     }
 }
 
-var doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+let doNotDisturbDate = {
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
+let userId = 1;
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.setDoNotDisturbDate
+## notificationManager.setDoNotDisturbDate
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
@@ -2212,6 +2289,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2221,22 +2300,22 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **示例：**
 
-```js
-var doNotDisturbDate = {
-    type: Notification.DoNotDisturbType.TYPE_ONCE,
+```ts
+let doNotDisturbDate = {
+    type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
-}
+};
 
-var userId = 1
+let userId = 1;
 
-Notification.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
+notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 });
 ```
 
 
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2256,6 +2335,8 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2264,21 +2345,19 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **示例：**
 
-```js
+```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
 }
 
-Notification.getDoNotDisturbDate(getDoNotDisturbDateCallback);
+notificationManager.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
@@ -2298,6 +2377,8 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2306,14 +2387,14 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **示例：**
 
-```js
-Notification.getDoNotDisturbDate().then((data) => {
+```ts
+notificationManager.getDoNotDisturbDate().then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
@@ -2334,6 +2415,8 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2343,23 +2426,21 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **示例：**
 
-```js
+```ts
 function getDoNotDisturbDateCallback(err,data) {
     if (err) {
-        console.info("getDoNotDisturbDate failed " + JSON.stringify(err));
+        console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDoNotDisturbDate success");
     }
 }
 
-var userId = 1
+let userId = 1;
 
-Notification.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
+notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
 
-
-
-## Notification.getDoNotDisturbDate
+## notificationManager.getDoNotDisturbDate
 
 getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
@@ -2385,6 +2466,8 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2394,18 +2477,18 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **示例：**
 
-```js
-var userId = 1
+```ts
+let userId = 1;
 
-Notification.getDoNotDisturbDate(userId).then((data) => {
+notificationManager.getDoNotDisturbDate(userId).then((data) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.supportDoNotDisturbMode
+## notificationManager.isSupportDoNotDisturbMode
 
-supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
+ isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 查询是否支持免打扰功能（Callback形式）。
 
@@ -2431,23 +2514,21 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 **示例：**
 
-```js
-function supportDoNotDisturbModeCallback(err,data) {
+```ts
+function isSupportDoNotDisturbModeCallback(err,data) {
     if (err) {
-        console.info("supportDoNotDisturbMode failed " + JSON.stringify(err));
+        console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("supportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success");
     }
 }
 
-Notification.supportDoNotDisturbMode(supportDoNotDisturbModeCallback);
+notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback);
 ```
 
+## notificationManager.isSupportDoNotDisturbMode
 
-
-## Notification.supportDoNotDisturbMode
-
-supportDoNotDisturbMode(): Promise\<boolean\>
+isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 查询是否支持勿扰模式功能（Promise形式）。
 
@@ -2465,6 +2546,8 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2473,15 +2556,13 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 
 **示例：**
 
-```js
-Notification.supportDoNotDisturbMode().then((data) => {
+```ts
+notificationManager.isSupportDoNotDisturbMode().then((data) => {
 	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.isSupportTemplate
+## notificationManager.isSupportTemplate
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
@@ -2498,6 +2579,8 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2508,21 +2591,19 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 **示例：**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 function isSupportTemplateCallback(err, data) {
     if (err) {
-        console.info("isSupportTemplate failed " + JSON.stringify(err));
+        console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isSupportTemplate success");
     }
 }
 
-Notification.isSupportTemplate(templateName, isSupportTemplateCallback);
+notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
-
-
-## Notification.isSupportTemplate
+## notificationManager.isSupportTemplate
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
@@ -2544,6 +2625,8 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2554,16 +2637,14 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 **示例：**
 
 ```javascript
-var templateName = 'process';
+let templateName = 'process';
 
-Notification.isSupportTemplate(templateName).then((data) => {
+notificationManager.isSupportTemplate(templateName).then((data) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 });
 ```
 
-
-
-## Notification.requestEnableNotification
+## notificationManager.requestEnableNotification
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
@@ -2579,6 +2660,8 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2590,18 +2673,16 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 ```javascript
 function requestEnableNotificationCallback(err) {
     if (err) {
-        console.info("requestEnableNotification failed " + JSON.stringify(err));
+        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("requestEnableNotification success");
     }
 };
 
-Notification.requestEnableNotification(requestEnableNotificationCallback);
+notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
-
-
-## Notification.requestEnableNotification
+## notificationManager.requestEnableNotification
 
 requestEnableNotification(): Promise\<void\>
 
@@ -2610,6 +2691,8 @@ requestEnableNotification(): Promise\<void\>
 **系统能力**：SystemCapability.Notification.Notification
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -2620,14 +2703,14 @@ requestEnableNotification(): Promise\<void\>
 **示例：**
 
 ```javascript
-Notification.requestEnableNotification().then(() => {
+notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
 });
 ```
 
 
 
-## Notification.setDistributedEnable
+## notificationManager.setDistributedEnable
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -2648,6 +2731,8 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2658,22 +2743,20 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```javascript
-function setDistributedEnableCallback() {
+function setDistributedEnableCallback(err) {
     if (err) {
-        console.info("setDistributedEnable failed " + JSON.stringify(err));
+        console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setDistributedEnable success");
     }
 };
 
-var enable = true
+let enable = true;
 
-Notification.setDistributedEnable(enable, setDistributedEnableCallback);
+notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
-
-
-## Notification.setDistributedEnable
+## notificationManager.setDistributedEnable
 
 setDistributedEnable(enable: boolean): Promise\<void>
 
@@ -2693,6 +2776,8 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2703,15 +2788,15 @@ setDistributedEnable(enable: boolean): Promise\<void>
 **示例：**
 
 ```javascript
-var enable = true
+let enable = true;
 
-Notification.setDistributedEnable(enable).then(() => {
+notificationManager.setDistributedEnable(enable).then(() => {
         console.info("setDistributedEnable success");
     });
 ```
 
 
-## Notification.isDistributedEnabled
+## notificationManager.isDistributedEnabled
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
@@ -2727,6 +2812,8 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2739,18 +2826,18 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 ```javascript
 function isDistributedEnabledCallback(err, data) {
     if (err) {
-        console.info("isDistributedEnabled failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
 };
 
-Notification.isDistributedEnabled(isDistributedEnabledCallback);
+notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
 
 
-## Notification.isDistributedEnabled
+## notificationManager.isDistributedEnabled
 
 isDistributedEnabled(): Promise\<boolean>
 
@@ -2766,6 +2853,8 @@ isDistributedEnabled(): Promise\<boolean>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -2776,14 +2865,14 @@ isDistributedEnabled(): Promise\<boolean>
 **示例：**
 
 ```javascript
-Notification.isDistributedEnabled()
+notificationManager.isDistributedEnabled()
     .then((data) => {
         console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
     });
 ```
 
 
-## Notification.setDistributedEnableByBundle
+## notificationManager.setDistributedEnableByBundle
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -2799,11 +2888,13 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | 是   | 应用的包信息。                   |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
 | enable   | boolean                  | 是   | 是否支持。                       |
 | callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2818,24 +2909,24 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 ```javascript
 function setDistributedEnableByBundleCallback(err) {
     if (err) {
-        console.info("enableDistributedByBundle failed " + JSON.stringify(err));
+        console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("enableDistributedByBundle success");
     }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
+let enable = true
 
-Notification.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
+notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
 
 
-## Notification.setDistributedEnableByBundle
+## notificationManager.setDistributedEnableByBundle
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
@@ -2851,10 +2942,12 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | 是   | 应用的包。                |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 | enable   | boolean                  | 是   | 是否支持。                  |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2867,18 +2960,18 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 **示例：**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-var enable = true
+let enable = true
 
-Notification.setDistributedEnableByBundle(bundle, enable).then(() => {
-        console.info("setDistributedEnableByBundle success");
-    });
+notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
+    console.info("setDistributedEnableByBundle success");
+});
 ```
 
-## Notification.isDistributedEnabledByBundle
+## notificationManager.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
@@ -2894,10 +2987,12 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | 是   | 应用的包。                     |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                     |
 | callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2910,24 +3005,22 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 **示例：**
 
 ```javascript
-function isDistributedEnabledByBundleCallback(data) {
+function isDistributedEnabledByBundleCallback(err, data) {
     if (err) {
-        console.info("isDistributedEnabledByBundle failed " + JSON.stringify(err));
+        console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
 };
 
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
+notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
-
-
-## Notification.isDistributedEnabledByBundle
+## notificationManager.isDistributedEnabledByBundle
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
@@ -2943,7 +3036,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | 是   | 应用的包。                |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 
 **返回值：**
 
@@ -2952,6 +3045,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 | Promise\<boolean\> | Promise方式返回指定应用是否支持分布式通知的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -2964,17 +3059,17 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 **示例：**
 
 ```javascript
-var bundle = {
+let bundle = {
     bundle: "bundleName1",
-}
+};
 
-Notification.isDistributedEnabledByBundle(bundle).then((data) => {
+notificationManager.isDistributedEnabledByBundle(bundle).then((data) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.getDeviceRemindType
+## notificationManager.getDeviceRemindType
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
@@ -2994,6 +3089,8 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3005,18 +3102,16 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 ```javascript
 function getDeviceRemindTypeCallback(err, data) {
     if (err) {
-        console.info("getDeviceRemindType failed " + JSON.stringify(err));
+        console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getDeviceRemindType success");
     }
 };
 
-Notification.getDeviceRemindType(getDeviceRemindTypeCallback);
+notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
 
-
-
-## Notification.getDeviceRemindType
+## notificationManager.getDeviceRemindType
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
@@ -3036,6 +3131,8 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3045,13 +3142,13 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 **示例：**
 
 ```javascript
-Notification.getDeviceRemindType().then((data) => {
+notificationManager.getDeviceRemindType().then((data) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.publishAsBundle
+## notificationManager.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -3067,12 +3164,14 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
 | callback             | AsyncCallback                               | 是   | 发布代理通知的回调方法。                 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -3086,36 +3185,36 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **示例：**
 
-```js
+```ts
 //publishAsBundle回调
 function callback(err) {
     if (err) {
-        console.info("publishAsBundle failed " + JSON.stringify(err));
+        console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("publishAsBundle success");
     }
 }
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 // NotificationRequest对象
 let request = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-Notification.publishAsBundle(request, representativeBundle, userId, callback);
+notificationManager.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
-## Notification.publishAsBundle
+## notificationManager.publishAsBundle
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -3132,11 +3231,13 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
@@ -3150,30 +3251,30 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **示例：**
 
-```js
+```ts
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 // NotificationRequest对象
-var request = {
+let request = {
     id: 1,
     content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
             additionalText: "test_additionalText"
         }
     }
-}
+};
 
-Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
+notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 });
 ```
 
-## Notification.cancelAsBundle
+## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
@@ -3198,6 +3299,8 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3208,24 +3311,24 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **示例：**
 
-```js
+```ts
 // cancelAsBundle
 function cancelAsBundleCallback(err) {
     if (err) {
-        console.info("cancelAsBundle failed " + JSON.stringify(err));
+        console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancelAsBundle success");
     }
 }
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 
-Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
+notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
-## Notification.cancelAsBundle
+## notificationManager.cancelAsBundle
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
@@ -3249,6 +3352,8 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3259,18 +3364,18 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **示例：**
 
-```js
+```ts
 // 被代理应用的包名
-let representativeBundle = "com.example.demo"
+let representativeBundle = "com.example.demo";
 // 用户ID
-let userId = 100
+let userId = 100;
 
-Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
+notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 });
 ```
 
-## Notification.setNotificationEnableSlot 
+## notificationManager.setNotificationEnableSlot 
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -3286,12 +3391,14 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | 是   | 应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
 | enable   | boolean                       | 是   | 使能状态。             |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -3302,24 +3409,24 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **示例：**
 
-```js
+```ts
 // setNotificationEnableSlot
 function setNotificationEnableSlotCallback(err) {
     if (err) {
-        console.info("setNotificationEnableSlot failed " + JSON.stringify(err));
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setNotificationEnableSlot success");
     }
 };
 
-Notification.setNotificationEnableSlot(
+notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true,
     setNotificationEnableSlotCallback);
 ```
 
-## Notification.setNotificationEnableSlot
+## notificationManager.setNotificationEnableSlot
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
@@ -3335,11 +3442,13 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 应用的包信息。   |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
 | enable | boolean                       | 是   | 使能状态。     |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -3350,17 +3459,17 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 **示例：**
 
-```js
+```ts
 // setNotificationEnableSlot
-Notification.setNotificationEnableSlot(
+notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.info("setNotificationEnableSlot success");
     });
 ```
 
-## Notification.isNotificationSlotEnabled
+## notificationManager.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
@@ -3376,11 +3485,13 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 | 参数名   | 类型                          | 必填 | 说明                   |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | 是   | 应用的包信息。           |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
 | callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
@@ -3391,23 +3502,23 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **示例：**
 
-```js
+```ts
 // isNotificationSlotEnabled
 function getEnableSlotCallback(err, data) {
     if (err) {
-        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
+        console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("isNotificationSlotEnabled success");
     }
 };
 
-Notification.isNotificationSlotEnabled(
+notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
     getEnableSlotCallback);
 ```
 
-## Notification.isNotificationSlotEnabled
+## notificationManager.isNotificationSlotEnabled
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
@@ -3423,7 +3534,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 应用的包信息。   |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
 
 **返回值：**
@@ -3434,6 +3545,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
@@ -3443,16 +3556,16 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **示例：**
 
-```js
+```ts
 // isNotificationSlotEnabled
-Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
+notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
+    notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
 });
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp
+## notificationManager.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
@@ -3474,6 +3587,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3483,23 +3598,23 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 let enable = true;
 
 function callback(err) {
     if (err) {
-        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
+        console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
 
-## Notification.setSyncNotificationEnabledWithoutApp
+## notificationManager.setSyncNotificationEnabledWithoutApp
 
 setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
@@ -3526,6 +3641,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3535,19 +3652,19 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 let enable = true;
 
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
+    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp
+## notificationManager.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
@@ -3568,6 +3685,8 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3577,7 +3696,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
 
 function getSyncNotificationEnabledWithoutAppCallback(err, data) {
@@ -3588,11 +3707,11 @@ function getSyncNotificationEnabledWithoutAppCallback(err, data) {
     }
 }
 
-Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
+notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.getSyncNotificationEnabledWithoutApp
+## notificationManager.getSyncNotificationEnabledWithoutApp
 
 getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
@@ -3618,6 +3737,8 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **错误码：**
 
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
@@ -3627,19 +3748,14 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **示例：**
 
-```js
+```ts
 let userId = 100;
-Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
+notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
     console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err) => {
     console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
 });
-    .catch((err) => {
-        console.info('getSyncNotificationEnabledWithoutApp, err:', err);
-    });
 ```
-
-
 
 
 ## DoNotDisturbDate
@@ -3653,8 +3769,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
 | begin | Date                                  | 是   | 是   | 免打扰设置的起点时间。 |
 | end   | Date                                  | 是   | 是   | 免打扰设置的终点时间。 |
-
-
 
 ## DoNotDisturbType
 
@@ -3695,16 +3809,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | LEVEL_HIGH                        | 4           | 表示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
 
 
-## BundleOption
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称   | 类型   | 可读 | 可写 | 说明   |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | 是  | 是  | 应用的包信息。 |
-| uid    | number | 是  | 是  | 用户ID。 |
-
-
 ## SlotType
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -3718,227 +3822,6 @@ Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
-## NotificationActionButton
-
-描述通知中显示的操作按钮。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称      | 类型                                            | 可读 | 可写 | 说明                      |
-| --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
-| title     | string                                          | 是  | 是  | 按钮标题。                  |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
-| extras    | { [key: string]: any }                          | 是  | 是  | 按钮扩展信息。              |
-| userInput | [NotificationUserInput](#notificationuserinput) | 是  | 是  | 用户输入对象实例。          |
-
-
-## NotificationBasicContent
-
-描述普通文本通知。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称           | 类型   | 可读 | 可写 | 说明                               |
-| -------------- | ------ | ---- | ---- | ---------------------------------- |
-| title          | string | 是   | 是   | 通知标题。                         |
-| text           | string | 是   | 是   | 通知内容。                         |
-| additionalText | string | 是   | 是   | 通知附加内容，是对通知内容的补充。 |
-
-
-## NotificationLongTextContent
-
-描述长文本通知。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称           | 类型   | 可读 | 可写 | 说明                             |
-| -------------- | ------ | ---- | --- | -------------------------------- |
-| title          | string | 是  | 是  | 通知标题。                         |
-| text           | string | 是  | 是  | 通知内容。                         |
-| additionalText | string | 是  | 是  | 通知附加内容，是对通知内容的补充。 |
-| longText       | string | 是  | 是  | 通知的长文本。                     |
-| briefText      | string | 是  | 是  | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | string | 是  | 是  | 通知展开时的标题。                 |
-
-
-## NotificationMultiLineContent
-
-描述多行文本通知。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称           | 类型            | 可读 | 可写 | 说明                             |
-| -------------- | --------------- | --- | --- | -------------------------------- |
-| title          | string          | 是  | 是  | 通知标题。                         |
-| text           | string          | 是  | 是  | 通知内容。                         |
-| additionalText | string          | 是  | 是  | 通知附加内容，是对通知内容的补充。 |
-| briefText      | string          | 是  | 是  | 通知概要内容，是对通知内容的总结。 |
-| longTitle      | string          | 是  | 是  | 通知展开时的标题。                 |
-| lines          | Array\<string\> | 是  | 是  | 通知的多行文本。                   |
-
-
-## NotificationPictureContent
-
-描述附有图片的通知。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称           | 类型           | 可读 | 可写 | 说明                             |
-| -------------- | -------------- | ---- | --- | -------------------------------- |
-| title          | string         | 是  | 是  | 通知标题。                         |
-| text           | string         | 是  | 是  | 通知内容。                         |
-| additionalText | string         | 是  | 是  | 通知附加内容，是对通知内容的补充。 |
-| briefText      | string         | 是  | 是  | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | string         | 是  | 是  | 通知展开时的标题。                 |
-| picture        | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知的图片内容。                   |
-
-
-## NotificationContent
-
-描述通知类型。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称        | 类型                                                         | 可读 | 可写 | 说明               |
-| ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](#contenttype)                                  | 是  | 是  | 通知内容类型。       |
-| normal      | [NotificationBasicContent](#notificationbasiccontent)        | 是  | 是  | 基本类型通知内容。   |
-| longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | 是  | 是  | 长文本类型通知内容。 |
-| multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | 是  | 是  | 多行类型通知内容。   |
-| picture     | [NotificationPictureContent](#notificationpicturecontent)    | 是  | 是  | 图片类型通知内容。   |
-
-
-## NotificationFlagStatus
-
-描述通知标志状态。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-| 名称           | 值  | 说明                               |
-| -------------- | --- | --------------------------------- |
-| TYPE_NONE      | 0   | 默认标志。                         |
-| TYPE_OPEN      | 1   | 通知标志打开。                     |
-| TYPE_CLOSE     | 2   | 通知标志关闭。                     |
-
-
-## NotificationFlags
-
-描述通知标志的实例。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称             | 类型                    | 可读 | 可写 | 说明                               |
-| ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
-| soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | 是   | 否   | 是否启用声音提示。                  |
-| vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | 是   | 否   | 是否启用振动提醒功能。               |
-
-
-## NotificationRequest
-
-描述通知的请求。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称                  | 类型                                          | 可读 | 可写 | 说明                       |
-| --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
-| content               | [NotificationContent](#notificationcontent)   | 是  | 是  | 通知内容。                   |
-| id                    | number                                        | 是  | 是  | 通知ID。                     |
-| slotType              | [SlotType](#slottype)                         | 是  | 是  | 通道类型。                   |
-| isOngoing             | boolean                                       | 是  | 是  | 是否进行时通知。             |
-| isUnremovable         | boolean                                       | 是  | 是  | 是否可移除。                 |
-| deliveryTime          | number                                        | 是  | 是  | 通知发送时间。               |
-| tapDismissed          | boolean                                       | 是  | 是  | 通知是否自动清除。           |
-| autoDeletedTime       | number                                        | 是  | 是  | 自动清除的时间。             |
-| wantAgent             | [WantAgent](js-apis-app-ability-wantAgent.md) | 是  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。 |
-| extraInfo             | {[key: string]: any}                          | 是  | 是  | 扩展参数。                   |
-| color                 | number                                        | 是  | 是  | 通知背景颜色。预留能力，暂未支持。 |
-| colorEnabled          | boolean                                       | 是  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。 |
-| isAlertOnce           | boolean                                       | 是  | 是  | 设置是否仅有一次此通知提醒。 |
-| isStopwatch           | boolean                                       | 是  | 是  | 是否显示已用时间。           |
-| isCountDown           | boolean                                       | 是  | 是  | 是否显示倒计时时间。         |
-| isFloatingIcon        | boolean                                       | 是  | 是  | 是否显示状态栏图标。         |
-| label                 | string                                        | 是  | 是  | 通知标签。                   |
-| badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。               |
-| showDeliveryTime      | boolean                                       | 是  | 是  | 是否显示分发时间。           |
-| actionButtons         | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 是  | 是  | 通知按钮，最多两个按钮。     |
-| smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
-| largeIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知大图标。可选字段，大小不超过30KB。 |
-| creatorBundleName     | string                                        | 是  | 否  | 创建通知的包名。             |
-| creatorUid            | number                                        | 是  | 否  | 创建通知的UID。              |
-| creatorPid            | number                                        | 是  | 否  | 创建通知的PID。              |
-| creatorUserId| number                                    | 是  | 否  | 创建通知的UserId。           |
-| hashCode              | string                                        | 是  | 否  | 通知唯一标识。               |
-| classification        | string                                        | 是  | 是  | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| groupName| string                                        | 是  | 是  | 组通知名称。                 |
-| template | [NotificationTemplate](#notificationtemplate) | 是  | 是  | 通知模板。                   |
-| isRemoveAllowed | boolean                                | 是  | 否  | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| source   | number                                        | 是  | 否  | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| distributedOption   | [DistributedOptions](#distributedoptions)                 | 是  | 是  | 分布式通知的选项。          |
-| deviceId | string                                        | 是  | 否  | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
-| notificationFlags | [NotificationFlags](#notificationflags)                    | 是  | 否  | 获取NotificationFlags。          |
-| removalWantAgent | [WantAgent](js-apis-app-ability-wantAgent.md) | 是  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。          |
-| badgeNumber | number                    | 是  | 是  | 应用程序图标上显示的通知数。          |
-
-
-## DistributedOptions
-
-描述分布式选项。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称                   | 类型            | 可读 | 可写 | 说明                               |
-| ---------------------- | -------------- | ---- | ---- | ---------------------------------- |
-| isDistributed          | boolean        | 是   | 是   | 是否为分布式通知。                  |
-| supportDisplayDevices  | Array\<string> | 是   | 是   | 可以同步通知到的设备列表。         |
-| supportOperateDevices  | Array\<string> | 是   | 是   | 可以打开通知的设备列表。              |
-| remindType             | number         | 是   | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
-
-
-## NotificationSlot
-
-描述通知槽
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称                 | 类型                  | 可读 | 可写 | 说明                                       |
-| -------------------- | --------------------- | ---- | --- | ------------------------------------------ |
-| type                 | [SlotType](#slottype) | 是  | 是  | 通道类型。                                   |
-| level                | number                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
-| desc                 | string                | 是  | 是  | 通知渠道描述信息。                           |
-| badgeFlag            | boolean               | 是  | 是  | 是否显示角标。                               |
-| bypassDnd            | boolean               | 是  | 是  | 置是否在系统中绕过免打扰模式。               |
-| lockscreenVisibility | number                | 是  | 是  | 在锁定屏幕上显示通知的模式。                 |
-| vibrationEnabled     | boolean               | 是  | 是  | 是否可振动。                                 |
-| sound                | string                | 是  | 是  | 通知提示音。                                 |
-| lightEnabled         | boolean               | 是  | 是  | 是否闪灯。                                   |
-| lightColor           | number                | 是  | 是  | 通知灯颜色。                                 |
-| vibrationValues      | Array\<number\>       | 是  | 是  | 通知振动样式。                               |
-| enabled<sup>9+</sup> | boolean               | 是  | 否  | 此通知插槽中的启停状态。                      |
-
-
-## NotificationTemplate
-
-通知模板。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称 | 类型                    | 可读 | 可写 | 说明       |
-| ---- | ---------------------- | ---- | ---- | ---------- |
-| name | string                 | 是   | 是   | 模板名称。 |
-| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
-
-
-## NotificationUserInput
-
-保存用户输入的通知消息。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-| 名称     | 类型   | 可读 | 可写 | 说明                          |
-| -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | 是  | 是  | 用户输入时用于标识此输入的key。 |
 
 
 ## DeviceRemindType

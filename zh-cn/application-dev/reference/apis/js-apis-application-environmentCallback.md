@@ -1,6 +1,6 @@
 # @ohos.application.EnvironmentCallback (EnvironmentCallback)
 
-EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated方法。
+EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境变化监听回调的能力，包括onConfigurationUpdated、onMemoryLevel方法。
 
 > **说明：**
 > 
@@ -11,7 +11,7 @@ EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境�
 ## 导入模块
 
 ```ts
-import EnvironmentCallback from "@ohos.application.EnvironmentCallback";
+import EnvironmentCallback from '@ohos.application.EnvironmentCallback';
 ```
 
 
@@ -29,33 +29,53 @@ onConfigurationUpdated(config: Configuration): void;
   | -------- | -------- | -------- | -------- |
   | config | [Configuration](js-apis-application-configuration.md) | 是 | 变化后的Configuration对象。 |
 
+## EnvironmentCallback.onMemoryLevel
+
+onMemoryLevel(level: number): void;
+
+注册系统内存基线水平变化监听后，在系统内存基线水平变化时触发回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | level  | [MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 表示当前内存的基线水平。 |
+
 **示例：**
-    
 
   ```ts
-import Ability from "@ohos.application.Ability";
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-var callbackId;
+let callbackId;
 
-export default class MyAbility extends Ability {
+export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.log("MyAbility onCreate")
+        console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback  =  {
+        let environmentCallback  =  {
             onConfigurationUpdated(config){
-                console.log("onConfigurationUpdated config:" + JSON.stringify(config));
+                console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             },
-        }
+            onMemoryLevel(level){
+                console.log('onMemoryLevel level: ${level}');
+            }
+        };
         // 1.获取applicationContext
         let applicationContext = globalThis.applicationContext;
         // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
-        console.log("registerEnvironmentCallback number: " + JSON.stringify(callbackId));
+        callbackId = applicationContext.registerEnvironmentCallback(environmentCallback);
+        console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
     }
     onDestroy() {
         let applicationContext = globalThis.applicationContext;
         applicationContext.unregisterEnvironmentCallback(callbackId, (error, data) => {
-            console.log("unregisterEnvironmentCallback success, err: " + JSON.stringify(error));
+            if (error && error.code !== 0) {
+                console.error('unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}');
+            } else {
+                console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
+            }
         });
     }
 }

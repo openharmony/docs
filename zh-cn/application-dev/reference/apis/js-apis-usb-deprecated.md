@@ -5,8 +5,8 @@
 >  **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
-> 从API version 9开始，该接口不再维护，推荐使用新接口[`@ohos.usbV9`](js-apis-usb.md)。
+>
+> 从API version 9开始，该接口不再维护，推荐使用新接口[`@ohos.usbManager`](js-apis-usbManager.md)。
 
 ## 导入模块
 
@@ -32,7 +32,7 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 ```js
 let devicesList = usb.getDevices();
-console.log(`devicesList = ${JSON.stringify(devicesList)}`);
+console.log(`devicesList = ${devicesList}`);
 //devicesList  返回的数据结构
 //此处提供一个简单的示例，如下
 [
@@ -45,7 +45,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
     vendorId: 7531,
     productId: 2,
     clazz: 9,
-    subclass: 0,
+    subClass: 0,
     protocol: 1,
     devAddress: 1,
     busNum: 1,
@@ -62,7 +62,7 @@ console.log(`devicesList = ${JSON.stringify(devicesList)}`);
             id: 0,
             protocol: 0,
             clazz: 9,
-            subclass: 0,
+            subClass: 0,
             alternateSetting: 0,
             name: "1-1",
             endpoints: [
@@ -111,7 +111,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 ```js
 let devicepipe= usb.connectDevice(device);
-console.log(`devicepipe = ${JSON.stringify(devicepipe)}`);
+console.log(`devicepipe = ${devicepipe}`);
 ```
 
 ## usb.hasRight
@@ -167,13 +167,13 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 ```js
 let devicesName="1-1";
 usb.requestRight(devicesName).then((ret) => {
-  console.log(`requestRight = ${JSON.stringify(ret)}`);
+  console.log(`requestRight = ${ret}`);
 });
 ```
 
 ## usb.claimInterface
 
-claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number
+claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number
 
 注册通信接口。
 
@@ -350,7 +350,7 @@ let ret = usb.getFileDescriptor(devicepipe);
 
 ## usb.controlTransfer
 
-controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: number): Promise&lt;number&gt;
+controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt;
 
 控制传输。
 
@@ -375,14 +375,15 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout?: n
 **示例：**
 
 ```js
-usb.controlTransfer(devicepipe, USBControlParams).then((ret) => {
- console.log(`controlTransfer = ${JSON.stringify(ret)}`);
+let param = new usb.USBControlParams();
+usb.controlTransfer(devicepipe, param).then((ret) => {
+ console.log(`controlTransfer = ${ret}`);
 })
 ```
 
 ## usb.bulkTransfer
 
-bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt;
+bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;
 
 批量传输。
 
@@ -412,7 +413,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
+ console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -499,7 +500,7 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```js
-let funcs = ACM | ECM;
+let funcs = usb.ACM | usb.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -528,7 +529,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 **示例：**
 
 ```js
-let funcs = HDC;
+let funcs = usb.HDC;
 let ret = usb.setCurrentFunctions(funcs);
 ```
 
@@ -631,7 +632,12 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 **示例：**
 
 ```js
-let ret = usb.getSupportedModes(0);
+let portId = 1;
+usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+    console.info('usb setPortRoles successfully.');
+}).catch(err => {
+    console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
+});
 ```
 
 ## USBEndpoint
