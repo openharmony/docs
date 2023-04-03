@@ -336,7 +336,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 Registers an observer for HTTP Response Header events.
 
 >**NOTE**
->This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8) instead.
+>This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -363,7 +363,7 @@ Unregisters the observer for HTTP Response Header events.
 
 >**NOTE**
 >
->1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8) instead.
+>1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
