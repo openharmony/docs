@@ -300,8 +300,6 @@ import window from '@ohos.window';
 
 窗口生命周期。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 | 名称       | 值 | 说明       |
@@ -829,6 +827,148 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.on('gestureNavigationEnabledChange')<sup>10+</sup>
+
+on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
+
+添加手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                                          |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | 是   | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。    |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前手势导航的启用状态。true表示手势导航状态变化为启用；false表示手势导航状态变化为禁用。 |
+
+**示例：**
+
+```js
+try {
+    window.on('gestureNavigationEnabledChange', (data) => {
+        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('gestureNavigationEnabledChange')<sup>10+</sup>
+
+off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
+
+移除手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                        |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | 是 | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。参数传入时表示只移除该监听；参数未传入时表示移除所有手势导航启用状态变化的监听。 |
+
+**示例：**
+
+```js
+try {
+    window.off('gestureNavigationEnabledChange');
+} catch (exception) {
+    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置手势导航启用状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| enable   | boolean                  | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    window.setGestureNavigationEnabled(true, (err) => {
+        if(err.code) {
+            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting gesture navigation enabled.');
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
+
+设置手势导航启用状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填  | 说明                 |
+| ------ | ------- | ---- | -------------------- |
+| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    let promise = window.setGestureNavigationEnabled(true);
+    promise.then(()=> {
+        console.info('Succeeded in setting gesture navigation enabled.');
+    }).catch((err)=>{
+        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2361,7 +2501,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2407,7 +2547,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -6788,7 +6928,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -6843,7 +6983,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
