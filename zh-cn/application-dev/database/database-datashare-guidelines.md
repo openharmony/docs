@@ -264,6 +264,41 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
      console.log('dsHelper delete result: ' + data);
    });
    ```
+## 限制
+
+为了降低DataShareExtensionAbility能力被三方应用滥用的风险，在DataShareExtensionAbility中限制以下接口的调用
+- @ohos.app.ability.UIAbility.d.ts
+- @ohos.ability.featureAbility.d.ts
+- @ohos.ability.particleAbility.d.ts
+- @ohos.account.osAccount.d.ts
+- @ohos.backgroundTaskManager.d.ts
+- @ohos.bluetooth.d.ts
+- @ohos.bluetoothManager.d.ts
+- @ohos.connectedTag.d.ts
+- @ohos.continuation.continuationManage.d.ts
+- @ohos.mutilmedia.audio.d.ts
+- @ohos.multimedia.carema.d.ts
+- @ohos.nfc.cardEmulation.d.ts
+- @ohos.nfc.controller.d.ts
+- @ohos.nfc.tag.d.ts
+- @ohos.request.d.ts
+- @ohos.resourceschedule.backgroundTaskManager.d.ts
+- @ohos.telephony.call.d.ts
+- @ohos.telephony.data.d.ts
+- @ohos.telephony.observer.d.ts
+- @ohos.telephony.radio.d.ts
+- @ohos.telephony.sim.d.ts
+- @ohos.telephony.sms.d.ts
+- @ohos.multimedia.camera.d.ts
+- @ohos.multimedia.audio.d.ts
+- @ohos.multimedia.media.d.ts
+- @ohos.vibrator.d.ts
+- @ohos.wallpaper.d.ts
+- @ohos.wifi.d.ts
+- @ohos.wifiext.d.ts
+- @ohos.wifiManager.d.ts
+- @ohos.wifiManagerExt.d.ts
+- @ohos.window.d.ts
 
 ## 相关示例
 
