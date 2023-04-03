@@ -7,7 +7,7 @@ The host application of an inter-application HSP is a special form of applicatio
 1. The code of an inter-application HSP runs in the application process. When invoking the code, implement an exception capture and fault tolerance mechanism to avoid stability issues caused by malfunctioning of the inter-application HSP.
 2. An application can depend on multiple inter-application HSP files at the same time.
 3. The inter-application HSP may slow down the startup of the application that depends on it. To avoid significant increase in the startup delay, limit the number of inter-application HSP dependencies within 16.
-4. Third-party developers can only use the system-provided inter-application HSP files.
+4. Privilege verification is conducted during inter-application HSP installation. To develop an inter-application HSP, you must configure the **allowAppShareLibrary** application privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 ## Inter-Application HSP Usage
 An inter-application HSP works by combining the following parts:
@@ -23,7 +23,7 @@ src
 ├── main
 |    └── module.json5
 ├── index.d.ets
-└── package.json
+└── oh-package.json5
 ```
 Below is an example of the **index.d.ets** file content:
 ```ts
@@ -40,7 +40,7 @@ export declare function foo2(): string;
 
 export declare function nativeHello(): string;
 ```
-In the example, **UIComponent** is an ArkUI component, **hello()**, **foo1()**, and **foo2()** are TS methods, and **nativeHello()** is an native method. Specific implementation is as follows:
+In the example, **UIComponent** is an ArkUI component, **hello()**, **foo1()**, and **foo2()** are TS methods, and **nativeHello()** is a native method. Specific implementation is as follows:
 #### ArkUI Components
 The following is an implementation example of ArkUI components in the HSP:
 ```ts
@@ -117,7 +117,7 @@ extern "C" __attribute__((constructor)) void RegisterLibaModule(void) {
 }
 ```
 ### Using the Capabilities Exported from the HAR
-To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391) on the HAR. The dependency information will then be generated in the **module.json** file of the corresponding module, as shown in the following:
+To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391) on the HAR. The dependency information will then be generated in the **module.json5** file of the corresponding module, as shown in the following:
 ```json
 "dependencies": [
       {

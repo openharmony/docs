@@ -24,7 +24,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 | 名称       | 类型   | 可读 | 可写 | 说明                       |
 | ---------- | ------ | ---- | ---- | -------------------------- |
@@ -39,7 +39,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 **需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -72,7 +72,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 **需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

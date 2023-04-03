@@ -12,14 +12,14 @@ Not supported
 
 ## APIs
 
-Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
+Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; controller?: SearchController })
 
 **Parameters**
 
 | Name     | Type        | Mandatory| Description                                                    |
 | ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | No  | Text input in the search text box.                                                |
-| placeholder | string           | No  | Text displayed when there is no input.                                        |
+| value       | string           | No  | Text input in the search text box.                                |
+| placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
 | icon        | string           | No  | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
 | controller  | SearchController | No  | Controller of the **\<Search>** component.                                                    |
 
@@ -29,12 +29,46 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton            | string                                           | Text on the search button located next to the search text box. By default, there is no search button.        |
+| searchButton<sup>10+</sup> | value: string,<br>option?: [SearchButtonOption](#searchbuttonoption10)              | Text on the search button located next to the search text box. By default, there is no search button.              |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.                          |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text font.                          |
 | textFont                | [Font](ts-types.md#font)                         | Text font for the search text box.                              |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box.<br>Default value: **TextAlign.Start**   |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.                            |
+| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.                                      |
+| cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.                                      |
+| fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.                                   |
+| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.                                              |
+
+## IconOptions<sup>10+</sup>
+
+| Name| Type                                  | Mandatory| Description   |
+| ------ | ------------------------------------------ | ---- | ----------- |
+| size   | [Length](ts-types.md#length)               | No  | Icon size.   |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Icon color.   |
+| src    | [ResourceStr](ts-types.md#resourcestr)     | No  | Image source of the icon.|
+
+## CaretStyle<sup>10+</sup>
+
+| Name| Type                                  | Mandatory| Description|
+| ------ | ------------------------------------------ | ---- | -------- |
+| width  | [Length](ts-types.md#length)               | No  | Caret width.|
+| color  | [ResourceColor](ts-types.md#resourcecolor) | No  | Caret color.|
+
+## SearchButtonOption<sup>10+</sup>
+
+| Name   | Type                                  | Mandatory| Description        |
+| --------- | ------------------------------------------ | ---- | ---------------- |
+| fontSize  | [Length](ts-types.md#length)               | No  | Font size of the button.|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color of the button.|
+
+## CancelButtonStyle<sup>10+</sup>
+
+| Name                   | Description            |
+| ----------------------- | ---------------- |
+| CONSTANT<sup>10+</sup>  | The Cancel button is always displayed.|
+| INVISIBLE<sup>10+</sup> | The Cancel button is always hidden.|
+| INPUT<sup>10+</sup>     | The Cancel button is displayed when there is text input.|
 
 ## Events
 

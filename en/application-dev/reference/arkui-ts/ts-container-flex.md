@@ -5,7 +5,8 @@ The **\<Flex>** component allows for flexible layout of child components.
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[\<Column>](ts-container-column.md)** or **[\<Row>](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> - If the main axis of the **\<Flex>** component is not set, it follows the size of the parent container. On the contrary, if the main axis of the [\<Column>](ts-container-column.md) or [\<Row>](ts-container-row.md) component is not set, it follows the size of their child component.
 
 
 ## Child Components

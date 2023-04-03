@@ -27,6 +27,8 @@
 > ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
 >
 > List子组件visibility属性设置为Hidden或None依然会计算索引值。
+>
+> List子组件的visibility属性设置为None时不显示，但该子组件上下的space还会生效。
 
 
 ## 接口

@@ -124,8 +124,8 @@ The **ResourceColor** type is used to describe the color types of resources.
 | Type                                     | Description                                            |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | Color enums.                                      |
-| number                                   | Color in hexadecimal notation.                                     |
-| string                                   | Color in RGB or RGBA notation.                             |
+| number                                   | Color in hexadecimal notation. RGB is supported.                                     |
+| string                                   | Color in RGB or ARGB notation.                             |
 | [Resource](#resource)                    | Color referenced from system or application resources.|
 
 ## ColoringStrategy
@@ -134,7 +134,7 @@ The **ColoringStrategy** type is used to describe the foreground colors.
 
 | Name       | Description     |
 | ---------  | ------- |
-| Invert  | Inverse of the component background color.|
+| INVERT  | Inverse of the component background color.|
 
 ## LengthConstrain
 
@@ -225,3 +225,14 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
+
+## PixelStretchEffectOptions<sup>10+</sup>
+
+Describes the pixel stretch effect options.
+
+| Name         | Type    | Mandatory  | Description        |
+| ----------- | ------ | ---- | ---------- |
+| left     | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.|
+| right    | [Length](#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
+| top  | [Length](#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
+| bottom | [Length](#length) | No   | Length by which a pixel is stretched towards the bottom edge of the image.|

@@ -108,9 +108,3 @@ This permission is of the **system\_basic** level. Before applying for the permi
         console.log("call state change, data is:" + JSON.stringify(data));
     });
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the call service:
-
-- [Call](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/Call)

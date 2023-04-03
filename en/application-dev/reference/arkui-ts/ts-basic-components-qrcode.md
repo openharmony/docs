@@ -36,7 +36,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-Among all the universal events, only the [click event](ts-universal-events-click.md) is supported.
+Among the universal events, the [click event](ts-universal-events-click.md), [touch event](ts-universal-events-touch.md), and [show/hide event](ts-universal-events-show-hide.md) are supported.
 
 
 ## Example
