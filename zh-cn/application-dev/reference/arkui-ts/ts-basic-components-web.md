@@ -3110,8 +3110,8 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number,
 
 | 参数名                 |  参数类型  | 参数描述                            |
 | -----------------------| -------- | ----------------------------------- |
-| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示 |
-| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间。单位是以毫秒表示 |
+| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示。|
+| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。|
 
 **示例：**
 
