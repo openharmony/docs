@@ -23,7 +23,7 @@ want的Params操作的常量。
 | DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName  | 指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName | 指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | DLP_PARAMS_INDEX        | ohos.dlp.params.index       | 指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| ABILITY_RECOVERY_RESTART | ability.params.AbilityRecoveryRestart | 指示当前Ability是否发生了故障恢复重启。 |
+| ABILITY_RECOVERY_RESTART | ohos.ability.params.abilityRecoveryRestart | 指示当前Ability是否发生了故障恢复重启。 |
 
 
 ## wantConstant.Flags
