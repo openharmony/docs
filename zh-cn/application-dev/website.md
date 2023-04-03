@@ -12,7 +12,6 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-        - [HAR包结构](quick-start/har-structure.md)
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
@@ -21,6 +20,14 @@
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
       - [应用程序包更新流程](quick-start/application-package-update.md)
+      - 共享包
+        - [共享包概述](shared-guide.md)
+        - [HAR](har-package.md)
+        - HSP
+          - [应用内HSP开发指导](in-app-hsp.md)
+          - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
+      - 原子化服务
+        - [原子化服务开发指导](atomicService.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复调试指导](quick-start/quickfix-debug.md)
@@ -499,7 +506,7 @@
      - [anm工具](tools/anm-tool.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/OpenHarmony-3.2-Release/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
@@ -557,6 +564,7 @@
            - [SwipeGesture](reference/arkui-ts/ts-basic-gestures-swipegesture.md)
          - [组合手势](reference/arkui-ts/ts-combined-gestures.md)
      - 基础组件
+       - [AlphabetIndexer](ts-container-alphabet-indexer.md)
        - [Blank](reference/arkui-ts/ts-basic-components-blank.md)
        - [Button](reference/arkui-ts/ts-basic-components-button.md)
        - [Checkbox](reference/arkui-ts/ts-basic-components-checkbox.md)
@@ -603,7 +611,6 @@
        - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
      - 容器组件
        - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
-       - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
        - [Badge](reference/arkui-ts/ts-container-badge.md)
        - [Column](reference/arkui-ts/ts-container-column.md)
        - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
@@ -982,6 +989,7 @@
         - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
         - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
         - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
+        - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
       - 图形图像
         - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
         - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1019,7 +1027,6 @@
         - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
         - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
         - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
-        - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
         - security
           - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
       - 数据管理
@@ -1036,6 +1043,7 @@
         - [@ohos.file.environment (目录环境能力)](reference/apis/js-apis-file-environment.md)
         - [@ohos.file.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
         - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
+        - [@ohos.file.fileUri (文件URI)](js-apis-file-fileUri.md)
         - [@ohos.file.fs (文件管理)](reference/apis/js-apis-file-fs.md)
         - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
         - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
@@ -1044,6 +1052,7 @@
         - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
         - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
         - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
+        - [@ohos.fileShare (文件分享)](js-apis-fileShare.md)
       - 电话服务
         - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
         - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
@@ -1184,6 +1193,7 @@
         - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
         - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
         - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
+        - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
         - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
         - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
         - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
@@ -1195,12 +1205,12 @@
         - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
         - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
         - [@system.brightness (屏幕亮度)](reference/apis/js-apis-system-brightness.md)
+        - [@system.cipher (加密算法)](js-apis-system-cipher.md)
         - [@system.configuration (应用配置)](reference/apis/js-apis-system-configuration.md)
         - [@system.device (设备信息)](reference/apis/js-apis-system-device.md)
         - [@system.fetch (数据请求)](reference/apis/js-apis-system-fetch.md)
         - [@system.file (文件存储)](reference/apis/js-apis-system-file.md)
         - [@system.geolocation (地理位置)](reference/apis/js-apis-system-location.md)
-        - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
         - [@system.mediaquery (媒体查询)](reference/apis/js-apis-system-mediaquery.md)
         - [@system.network (网络状态)](reference/apis/js-apis-system-network.md)
         - [@system.notification (通知消息)](reference/apis/js-apis-system-notification.md)
