@@ -948,7 +948,7 @@ createImageSource(uri: string): ImageSource
 
 ```js
 let context = featureAbility.getContext();
-let path = context.getCacheDir() + "test.jpg";
+let path = context.cacheDir() + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
