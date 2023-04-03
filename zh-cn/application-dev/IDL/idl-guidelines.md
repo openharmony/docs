@@ -176,6 +176,8 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
   interface OHOS.IIdlTestService {
       int TestIntTransaction([in] int data);
       void TestStringTransaction([in] String data);
+      void TestMapTransaction([in] Map<int, int> data);
+      int TestArrayTransaction([in] String[] data);
   }
 ```
 
@@ -203,6 +205,8 @@ OpenHarmony IDL工具生成的Stub类是接口类的抽象实现，并且会声�
 ```ts
 import {testIntTransactionCallback} from "./i_idl_test_service";
 import {testStringTransactionCallback} from "./i_idl_test_service";
+import {testMapTransactionCallback} from "./i_idl_test_service";
+import {testArrayTransactionCallback} from "./i_idl_test_service";
 import IIdlTestService from "./i_idl_test_service";
 import rpc from "@ohos.rpc";
 
@@ -211,8 +215,8 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
         super(des);
     }
     
-    async onRemoteRequestEx(code: number, data, reply, option): Promise<boolean> {
-        console.log("onRemoteRequestEx called, code = " + code);
+    async onRemoteMessageRequest(code: number, data, reply, option): Promise<boolean> {
+        console.log("onRemoteMessageRequest called, code = " + code);
         switch(code) {
             case IdlTestServiceStub.COMMAND_TEST_INT_TRANSACTION: {
                 let _data = data.readInt();
@@ -231,6 +235,29 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
                 });
                 return true;
             }
+            case IdlTestServiceStub.COMMAND_TEST_MAP_TRANSACTION: {
+                let _data = new Map();
+                let _dataSize = data.readInt();
+                for (let i = 0; i < _dataSize; ++i) {
+                    let key = data.readInt();
+                    let value = data.readInt();
+                    _data.set(key, value);
+                }
+                this.testMapTransaction(_data, (errCode) => {
+                    reply.writeInt(errCode);
+                });
+                return true;
+            }
+            case IdlTestServiceStub.COMMAND_TEST_ARRAY_TRANSACTION: {
+                let _data = data.readStringArray();
+                this.testArrayTransaction(_data, (errCode, returnValue) => {
+                    reply.writeInt(errCode);
+                    if (errCode == 0) {
+                        reply.writeInt(returnValue);
+                    }
+                });
+                return true;
+            }
             default: {
                 console.log("invalid request code" + code);
                 break;
@@ -241,17 +268,23 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
     
     testIntTransaction(data: number, callback: testIntTransactionCallback): void{}
     testStringTransaction(data: string, callback: testStringTransactionCallback): void{}
+    testMapTransaction(data: Map<number, number>, callback: testMapTransactionCallback): void{}
+    testArrayTransaction(data: string[], callback: testArrayTransactionCallback): void{}
 
     static readonly COMMAND_TEST_INT_TRANSACTION = 1;
     static readonly COMMAND_TEST_STRING_TRANSACTION = 2;
+    static readonly COMMAND_TEST_MAP_TRANSACTION = 3;
+    static readonly COMMAND_TEST_ARRAY_TRANSACTION = 4;
 }
 ```
 
-开发者需要继承.idl文件中定义的接口类并实现其中的方法。在本示例中，我们继承了IdlTestServiceStub接口类并实现了其中的testIntTransaction和testStringTransaction方法。具体的示例代码如下：
+开发者需要继承.idl文件中定义的接口类并实现其中的方法。在本示例中，我们继承了IdlTestServiceStub接口类并实现了其中的testIntTransaction、testStringTransaction、testMapTransaction和testArrayTransaction方法。具体的示例代码如下：
 
 ```ts
 import {testIntTransactionCallback} from "./i_idl_test_service"
 import {testStringTransactionCallback} from "./i_idl_test_service"
+import {testMapTransactionCallback} from "./i_idl_test_service";
+import {testArrayTransactionCallback} from "./i_idl_test_service";
 import IdlTestServiceStub from "./idl_test_service_stub"
 
 
@@ -264,6 +297,14 @@ class IdlTestImp extends IdlTestServiceStub {
     testStringTransaction(data: string, callback: testStringTransactionCallback): void
     {
         callback(0);
+    }
+    testMapTransaction(data: Map<number, number>, callback: testMapTransactionCallback): void
+    {
+        callback(0);
+    }
+    testArrayTransaction(data: string[], callback: testArrayTransactionCallback): void
+    {
+        callback(0, 1);
     }
 }
 ```
@@ -320,11 +361,28 @@ function callbackTestStringTransaction(result: number): void {
   }
 }
 
+function callbackTestMapTransaction(result: number): void {
+  if (result == 0) {
+    console.log('case 3 success');
+  }
+}
+
+function callbackTestArrayTransaction(result: number, ret: number): void {
+  if (result == 0 && ret == 124) {
+    console.log('case 4 success');
+  }
+}
+
 var onAbilityConnectDone = {
   onConnect:function (elementName, proxy) {
     let testProxy = new IdlTestServiceProxy(proxy);
+    let testMap = new Map();
+    testMap.set(1, 1);
+    testMap.set(1, 2);
     testProxy.testIntTransaction(123, callbackTestIntTransaction);
     testProxy.testStringTransaction('hello', callbackTestStringTransaction);
+    testProxy.testMapTransaction(testMap, callbackTestMapTransaction);
+    testProxy.testArrayTransaction(['1','2'], callbackTestMapTransaction);
   },
   onDisconnect:function (elementName) {
     console.log('onDisconnectService onDisconnect');
