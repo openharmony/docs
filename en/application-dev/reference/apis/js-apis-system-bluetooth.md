@@ -22,7 +22,6 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
-
 **Table 1** StartBLEScanOptions
 
 | Name| Type| Mandatory| Description|
@@ -57,7 +56,6 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
-
 **Table 2** StopBLEScanOptions
 
 | Name| Type| Mandatory| Description|

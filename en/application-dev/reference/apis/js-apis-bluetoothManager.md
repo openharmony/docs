@@ -1,81 +1,85 @@
-# @ohos.bluetooth (Bluetooth)
+# @ohos.bluetoothManager (Bluetooth)
 
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 
 ## Modules to Import
 
 ```js
-import bluetooth from '@ohos.bluetooth';
+import bluetoothManager from '@ohos.bluetoothManager';
 ```
 
 
-## bluetooth.enableBluetooth<sup>8+</sup><sup>(deprecated)</sup><a name="enableBluetooth"></a>
+## bluetoothManager.enableBluetooth<a name="enableBluetooth"></a>
 
-enableBluetooth(): boolean
+enableBluetooth(): void
 
 Enables Bluetooth.
 
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.enableBluetooth](js-apis-bluetoothManager.md#bluetoothmanagerenablebluetooth).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                      |
-| ------- | ------------------------ |
-| boolean | Returns **true** if Bluetooth is enabled; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let enable = bluetooth.enableBluetooth();
+try {
+    bluetoothManager.enableBluetooth();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.disableBluetooth<sup>8+</sup><sup>(deprecated)</sup><a name="disableBluetooth"></a>
+## bluetoothManager.disableBluetooth<a name="disableBluetooth"></a>
 
-disableBluetooth(): boolean
+disableBluetooth(): void
 
 Disables Bluetooth.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.disableBluetooth](js-apis-bluetoothManager.md#bluetoothmanagerdisablebluetooth).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                      |
-| ------- | ------------------------ |
-| boolean | Returns **true** if Bluetooth is disabled; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let disable = bluetooth.disableBluetooth();
+try {
+    bluetoothManager.disableBluetooth();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getLocalName<sup>8+</sup><sup>(deprecated)</sup><a name="getLocalName"></a>
+## bluetoothManager.getLocalName<a name="getLocalName"></a>
 
 getLocalName(): string
 
 Obtains the name of the local Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getLocalName](js-apis-bluetoothManager.md#bluetoothmanagergetlocalname).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -87,21 +91,31 @@ Obtains the name of the local Bluetooth device.
 | ------ | --------- |
 | string | Name of the local Bluetooth device obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let localName = bluetooth.getLocalName();
+try {
+    let localName = bluetoothManager.getLocalName();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getState<sup>(deprecated)</sup><a name="getState"></a>
+## bluetoothManager.getState
 
 getState(): BluetoothState
 
 Obtains the Bluetooth state.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.getState](js-apis-bluetoothManager.md#bluetoothmanagergetstate).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -113,21 +127,31 @@ Obtains the Bluetooth state.
 | --------------------------------- | --------- |
 | [BluetoothState](#bluetoothstate) | Bluetooth state obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let state = bluetooth.getState();
+try {
+    let state = bluetoothManager.getState();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getBtConnectionState<sup>(deprecated)</sup><a name="getBtConnectionState"></a>
+## bluetoothManager.getBtConnectionState
 
 getBtConnectionState(): ProfileConnectionState
 
-Obtains the local profile connection state.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.getBtConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetbtconnectionstate).
+Obtains the local profile connection status.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -139,21 +163,32 @@ Obtains the local profile connection state.
 | ---------------------------------------- | ------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let connectionState = bluetooth.getBtConnectionState();
+try {
+    let connectionState = bluetoothManager.getBtConnectionState();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setLocalName<sup>8+</sup><sup>(deprecated)</sup><a name="setLocalName"></a>
+## bluetoothManager.setLocalName<a name="setLocalName"></a>
 
-setLocalName(name: string): boolean
+setLocalName(name: string): void
 
 Sets the name of the local Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.setLocalName](js-apis-bluetoothManager.md#bluetoothmanagersetlocalname).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -165,27 +200,32 @@ Sets the name of the local Bluetooth device.
 | ---- | ------ | ---- | --------------------- |
 | name | string | Yes   | Bluetooth device name to set. It cannot exceed 248 bytes.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                            |
-| ------- | ------------------------------ |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let ret = bluetooth.setLocalName('device_name');
+try {
+    bluetoothManager.setLocalName('device_name');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.pairDevice<sup>(deprecated)</sup><a name="pairDevice"></a>
+## bluetoothManager.pairDevice
 
-pairDevice(deviceId: string): boolean
+pairDevice(deviceId: string): void
 
 Initiates Bluetooth pairing.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.pairDevice](js-apis-bluetoothManager.md#bluetoothmanagerpairdevice).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -197,28 +237,33 @@ Initiates Bluetooth pairing.
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-// The address can be scanned.
-let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
+try {
+    // The address can be scanned.
+    bluetoothManager.pairDevice("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getProfileConnState<sup>8+</sup><sup>(deprecated)</sup><a name="getProfileConnState"></a>
+## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
-getProfileConnState(profileId: ProfileId): ProfileConnectionState
+getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection status of a specified profile.
-
-> **NOTE**
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getProfileConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetprofileconnectionstate).
+Obtains the connection status of the specified profile.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -236,21 +281,33 @@ Obtains the connection status of a specified profile.
 | ------------------------------------------------- | ------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+try {
+    let result = bluetoothManager.getProfileConnectionState(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.cancelPairedDevice<sup>8+</sup><sup>(deprecated)</sup><a name="cancelPairedDevice"></a>
+## bluetoothManager.cancelPairedDevice<a name="cancelPairedDevice"></a>
 
-cancelPairedDevice(deviceId: string): boolean
+cancelPairedDevice(deviceId: string): void
 
 Cancels a paired remote device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.cancelPairedDevice](js-apis-bluetoothManager.md#bluetoothmanagercancelpaireddevice).
 
 **System API**: This is a system API.
 
@@ -264,27 +321,32 @@ Cancels a paired remote device.
 | -------- | ------ | ---- | ------------------------------------- |
 | deviceId | string | Yes   | Address of the remote device to cancel, for example, XX:XX:XX:XX:XX:XX.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let result = bluetooth.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+try {
+    bluetoothManager.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getRemoteDeviceName<sup>8+</sup><sup>(deprecated)</sup><a name="getRemoteDeviceName"></a>
+## bluetoothManager.getRemoteDeviceName<a name="getRemoteDeviceName"></a>
 
 getRemoteDeviceName(deviceId: string): string
 
 Obtains the name of the remote Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getRemoteDeviceName](js-apis-bluetoothManager.md#bluetoothmanagergetremotedevicename).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -302,21 +364,32 @@ Obtains the name of the remote Bluetooth device.
 | ------ | ------------- |
 | string | Device name (a string) obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+try {
+    let remoteDeviceName = bluetoothManager.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getRemoteDeviceClass<sup>8+</sup><sup>(deprecated)</sup><a name="getRemoteDeviceClass"></a>
+## bluetoothManager.getRemoteDeviceClass<a name="getRemoteDeviceClass"></a>
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
 Obtains the class of the remote Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getRemoteDeviceClass](js-apis-bluetoothManager.md#bluetoothmanagergetremotedeviceclass).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -334,21 +407,32 @@ Obtains the class of the remote Bluetooth device.
 | --------------------------- | -------- |
 | [DeviceClass](#deviceclass) | Class of the remote device obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+try {
+    let remoteDeviceClass = bluetoothManager.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getPairedDevices<sup>8+</sup><sup>(deprecated)</sup><a name="getPairedDevices"></a>
+## bluetoothManager.getPairedDevices<a name="getPairedDevices"></a>
 
 getPairedDevices(): Array&lt;string&gt;
 
 Obtains the paired devices.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getPairedDevices](js-apis-bluetoothManager.md#bluetoothmanagergetpaireddevices).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -360,21 +444,32 @@ Obtains the paired devices.
 | ------------------- | ------------- |
 | Array&lt;string&gt; | Addresses of the paired Bluetooth devices.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let devices = bluetooth.getPairedDevices();
+try {
+    let devices = bluetoothManager.getPairedDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="setBluetoothScanMode"></a>
+## bluetoothManager.setBluetoothScanMode<a name="setBluetoothScanMode"></a>
 
-setBluetoothScanMode(mode: ScanMode, duration: number): boolean
+setBluetoothScanMode(mode: ScanMode, duration: number): void
 
 Sets the Bluetooth scan mode so that the device can be discovered by a remote device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.setBluetoothScanMode](js-apis-bluetoothManager.md#bluetoothmanagersetbluetoothscanmode).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -387,28 +482,33 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 | mode     | [ScanMode](#scanmode) | Yes   | Bluetooth scan mode to set.                     |
 | duration | number                | Yes   | Duration (in ms) in which the device can be discovered. The value **0** indicates unlimited time.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-// The device can be discovered and connected only when the discoverable and connectable mode is used.
-let result = bluetooth.setBluetoothScanMode(bluetooth.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+try {
+    // The device can be discovered and connected only when the discoverable and connectable mode is used.
+    bluetoothManager.setBluetoothScanMode(bluetoothManager.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.getBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="getBluetoothScanMode"></a>
+## bluetoothManager.getBluetoothScanMode<a name="getBluetoothScanMode"></a>
 
 getBluetoothScanMode(): ScanMode
 
 Obtains the Bluetooth scan mode.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getBluetoothScanMode](js-apis-bluetoothManager.md#bluetoothmanagergetbluetoothscanmode).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -418,33 +518,48 @@ Obtains the Bluetooth scan mode.
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| [ScanMode](#scanmode) | Bluetooth scan mode obtained.|
+| [ScanMode](#scanmode) | Bluetooth scan mode to set.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let scanMode = bluetooth.getBluetoothScanMode();
+try {
+    let scanMode = bluetoothManager.getBluetoothScanMode();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.startBluetoothDiscovery<sup>8+</sup><sup>(deprecated)</sup><a name="startBluetoothDiscovery"></a>
+## bluetoothManager.startBluetoothDiscovery<a name="startBluetoothDiscovery"></a>
 
-startBluetoothDiscovery(): boolean
+startBluetoothDiscovery(): void
 
 Starts Bluetooth scan to discover remote devices.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.startBluetoothDiscovery](js-apis-bluetoothManager.md#bluetoothmanagerstartbluetoothdiscovery).
-
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
+**Rquired permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -453,45 +568,51 @@ let deviceId;
 function onReceiveEvent(data) {
     deviceId = data;
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-let result = bluetooth.startBluetoothDiscovery();
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+    bluetoothManager.startBluetoothDiscovery();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.stopBluetoothDiscovery<sup>8+</sup><sup>(deprecated)</sup><a name="stopBluetoothDiscovery"></a>
+## bluetoothManager.stopBluetoothDiscovery<a name="stopBluetoothDiscovery"></a>
 
-stopBluetoothDiscovery(): boolean
+stopBluetoothDiscovery(): void
 
 Stops Bluetooth scan.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.stopBluetoothDiscovery](js-apis-bluetoothManager.md#bluetoothmanagerstopbluetoothdiscovery).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let result = bluetooth.stopBluetoothDiscovery();
+try {
+    bluetoothManager.stopBluetoothDiscovery();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.setDevicePairingConfirmation<sup>8+</sup><sup>(deprecated)</sup><a name="setDevicePairingConfirmation"></a>
+## bluetoothManager.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
 
-setDevicePairingConfirmation(device: string, accept: boolean): boolean
+setDevicePairingConfirmation(device: string, accept: boolean): void
 
 Sets the device pairing confirmation.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.setDevicePairingConfirmation](js-apis-bluetoothManager.md#bluetoothmanagersetdevicepairingconfirmation).
 
 **Required permissions**: ohos.permission.MANAGE_BLUETOOTH
 
@@ -504,32 +625,38 @@ Sets the device pairing confirmation.
 | device | string  | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | accept | boolean | Yes   | Whether to accept the pairing request. The value **true** means to accept the pairing request, and the value **false** means the opposite.       |
 
-**Return value**
+**Error codes**
 
-| Type     | Description                          |
-| ------- | ---------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-// Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
-function onReceivePinRequiredEvent(data) { // data is the input parameter for the pairing request.
-    console.info('pin required  = '+ JSON.stringify(data));
-    bluetooth.setDevicePairingConfirmation(data.deviceId, true);
+
+try {
+    // Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
+    function onReceivePinRequiredEvent(data) { // data is the input parameter for the pairing request.
+        console.info('pin required  = '+ JSON.stringify(data));
+        bluetoothManager.setDevicePairingConfirmation(data.deviceId, true);
+    }
+    bluetoothManager.on("pinRequired", onReceivePinRequiredEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
-bluetooth.on("pinRequired", onReceivePinRequiredEvent);
 ```
 
 
-## bluetooth.on('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup><a name="bluetoothDeviceFind"></a>
+## bluetoothManager.on('bluetoothDeviceFind')
 
 on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Subscribes to the Bluetooth device discovery events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('bluetoothDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanageronbluetoothdevicefind).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -542,9 +669,13 @@ Subscribes to the Bluetooth device discovery events.
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.|
 | callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.   |
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -552,18 +683,19 @@ No value is returned.
 function onReceiveEvent(data) { // data is a set of Bluetooth device addresses.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('bluetoothDeviceFind')
 
 off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Unsubscribes from the Bluetooth device discovery events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('bluetoothDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanageroffbluetoothdevicefind).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -576,9 +708,13 @@ Unsubscribes from the Bluetooth device discovery events.
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.  |
 | callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback for the **bluetoothDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -586,19 +722,20 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
-bluetooth.off('bluetoothDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.on('bluetoothDeviceFind', onReceiveEvent);
+    bluetoothManager.off('bluetoothDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('pinRequired')
 
 on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
 
 Subscribes to the pairing request events of the remote Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('pinRequired')](js-apis-bluetoothManager.md#bluetoothmanageronpinrequired).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -611,9 +748,13 @@ Subscribes to the pairing request events of the remote Bluetooth device.
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.    |
 | callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | Yes   | Callback invoked to return the pairing request. You need to implement this callback.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -621,18 +762,19 @@ No value is returned.
 function onReceiveEvent(data) { // data is the pairing request parameter.
     console.info('pin required = '+ JSON.stringify(data));
 }
-bluetooth.on('pinRequired', onReceiveEvent);
+try {
+    bluetoothManager.on('pinRequired', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('pinRequired')
 
 off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('pinRequired')](js-apis-bluetoothManager.md#bluetoothmanageroffpinrequired).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -645,9 +787,13 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
 | callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback for the Bluetooth pairing request event. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -655,19 +801,20 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('pin required = '+ JSON.stringify(data));
 }
-bluetooth.on('pinRequired', onReceiveEvent);
-bluetooth.off('pinRequired', onReceiveEvent);
+try {
+    bluetoothManager.on('pinRequired', onReceiveEvent);
+    bluetoothManager.off('pinRequired', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('bondStateChange')
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
 Subscribes to the Bluetooth pairing state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageronbondstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -680,9 +827,13 @@ Subscribes to the Bluetooth pairing state change events.
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
 | callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -690,18 +841,19 @@ No value is returned.
 function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
-bluetooth.on('bondStateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('bondStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('bondStateChange')
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
 Unsubscribes from the Bluetooth pairing state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('bondStateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffbondstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -714,9 +866,13 @@ Unsubscribes from the Bluetooth pairing state change events.
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
 | callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | No   | Callback for the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -724,19 +880,20 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bond state = '+ JSON.stringify(data));
 }
-bluetooth.on('bondStateChange', onReceiveEvent);
-bluetooth.off('bondStateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('bondStateChange', onReceiveEvent);
+    bluetoothManager.off('bondStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.on('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('stateChange')
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 Subscribes to the Bluetooth connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageronstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -749,9 +906,13 @@ Subscribes to the Bluetooth connection state change events.
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.  |
 | callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback invoked to return the Bluetooth connection state. You need to implement this callback.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -759,18 +920,19 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
-bluetooth.on('stateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('stateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('stateChange')
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from the Bluetooth connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('stateChange')](js-apis-bluetoothManager.md#bluetoothmanageroffstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -783,9 +945,13 @@ Unsubscribes from the Bluetooth connection state change events.
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.          |
 | callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback for the Bluetooth connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -793,19 +959,20 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
-bluetooth.on('stateChange', onReceiveEvent);
-bluetooth.off('stateChange', onReceiveEvent);
+try {
+    bluetoothManager.on('stateChange', onReceiveEvent);
+    bluetoothManager.off('stateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppListen<sup>8+</sup><sup>(deprecated)</sup><a name="sppListen"></a>
+## bluetoothManager.sppListen<a name="sppListen"></a>
 
 sppListen(name: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 Creates a server listening socket.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppListen](js-apis-bluetoothManager.md#bluetoothmanagerspplisten).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -818,6 +985,17 @@ Creates a server listening socket.
 | name     | string                      | Yes   | Name of the service.                 |
 | option   | [SppOption](#sppoption)     | Yes   | Serial port profile (SPP) listening configuration.             |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the server socket ID.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -832,18 +1010,19 @@ function serverSocket(code, number) {
 }
 
 let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
-bluetooth.sppListen('server1', sppOption, serverSocket);
+try {
+    bluetoothManager.sppListen('server1', sppOption, serverSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppAccept<sup>8+</sup><sup>(deprecated)</sup><a name="sppAccept"></a>
+## bluetoothManager.sppAccept<a name="sppAccept"></a>
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 Listens for a connection to be made to this socket from the client and accepts it.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppAccept](js-apis-bluetoothManager.md#bluetoothmanagersppaccept).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -853,6 +1032,17 @@ Listens for a connection to be made to this socket from the client and accepts i
 | ------------ | --------------------------- | ---- | ----------------------- |
 | serverSocket | number                      | Yes   | Server socket ID.          |
 | callback     | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -874,18 +1064,19 @@ function acceptClientSocket(code, number) {
     clientNumber = number;
   }
 }
-bluetooth.sppAccept(serverNumber, acceptClientSocket);
+try {
+    bluetoothManager.sppAccept(serverNumber, acceptClientSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppConnect<sup>8+</sup><sup>(deprecated)</sup><a name="sppConnect"></a>
+## bluetoothManager.sppConnect<a name="sppConnect"></a>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
 Initiates an SPP connection to a remote device from the client.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppConnect](js-apis-bluetoothManager.md#bluetoothmanagersppconnect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -898,6 +1089,17 @@ Initiates an SPP connection to a remote device from the client.
 | device   | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | option   | [SppOption](#sppoption)     | Yes   | Configuration for connecting to the SPP client.                 |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -913,18 +1115,19 @@ function clientSocket(code, number) {
   clientNumber = number;
 }
 let sppOption = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
-bluetooth.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
+try {
+    bluetoothManager.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppCloseServerSocket<sup>8+</sup><sup>(deprecated)</sup><a name="sppCloseServerSocket"></a>
+## bluetoothManager.sppCloseServerSocket<a name="sppCloseServerSocket"></a>
 
 sppCloseServerSocket(socket: number): void
 
 Closes the listening socket of the server.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppCloseServerSocket](js-apis-bluetoothManager.md#bluetoothmanagersppcloseserversocket).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -933,6 +1136,15 @@ Closes the listening socket of the server.
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
 | socket | number | Yes   | ID of the listening socket on the server. The ID is obtained by **sppListen**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -945,18 +1157,19 @@ function serverSocket(code, number) {
     serverNumber = number;
   }
 }
-bluetooth.sppCloseServerSocket(serverNumber);
+try {
+    bluetoothManager.sppCloseServerSocket(serverNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppCloseClientSocket<sup>8+</sup><sup>(deprecated)</sup><a name="sppCloseClientSocket"></a>
+## bluetoothManager.sppCloseClientSocket<a name="sppCloseClientSocket"></a>
 
 sppCloseClientSocket(socket: number): void
 
 Closes the client socket.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppCloseClientSocket](js-apis-bluetoothManager.md#bluetoothmanagersppcloseclientsocket).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -966,6 +1179,15 @@ Closes the client socket.
 | ------ | ------ | ---- | ------------- |
 | Name   | Type    | Mandatory  | Description           |
 | socket | number | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -979,18 +1201,19 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-bluetooth.sppCloseClientSocket(clientNumber);
+try {
+    bluetoothManager.sppCloseClientSocket(clientNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.sppWrite<sup>8+</sup><sup>(deprecated)</sup><a name="sppWrite"></a>
+## bluetoothManager.sppWrite<a name="sppWrite"></a>
 
-sppWrite(clientSocket: number, data: ArrayBuffer): boolean
+sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 Writes data to the remote device through the socket.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.sppWrite](js-apis-bluetoothManager.md#bluetoothmanagersppwrite).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1001,11 +1224,14 @@ Writes data to the remote device through the socket.
 | clientSocket | number      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
 | data         | ArrayBuffer | Yes   | Data to write.       |
 
-**Return value**
+**Error codes**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2901054 | IO error.                                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1022,21 +1248,17 @@ function clientSocket(code, number) {
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
-let ret = bluetooth.sppWrite(clientNumber, arrayBuffer);
-if (ret) {
-  console.log('spp write successfully');
-} else {
-  console.log('spp write failed');
+try {
+    bluetoothManager.sppWrite(clientNumber, arrayBuffer);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-## bluetooth.on('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.on('sppRead')
 
 on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.on('sppRead')](js-apis-bluetoothManager.md#bluetoothmanageronsppread).
 
 Subscribes to the SPP read request events.
 
@@ -1050,9 +1272,14 @@ Subscribes to the SPP read request events.
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.             |
 | callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2901054 | IO error.                                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1070,18 +1297,19 @@ function dataRead(dataBuffer) {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
-bluetooth.on('sppRead', clientNumber, dataRead);
+try {
+    bluetoothManager.on('sppRead', clientNumber, dataRead);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.off('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetoothManager.off('sppRead')
 
 off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 Unsubscribes from the SPP read request events.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.off('sppRead')](js-apis-bluetoothManager.md#bluetoothmanageroffsppread).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1092,10 +1320,6 @@ Unsubscribes from the SPP read request events.
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
 | callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback for the SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
-
-**Return value**
-
-No value is returned.
 
 **Example**
 
@@ -1109,18 +1333,18 @@ function clientSocket(code, number) {
   // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
   clientNumber = number;
 }
-bluetooth.off('sppRead', clientNumber);
+try {
+    bluetoothManager.off('sppRead', clientNumber);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
+## bluetoothManager.getProfileInstance<a name="getProfileInstance"></a>
 
-## bluetooth.getProfile<sup>8+</sup><sup>(deprecated)</sup><a name="bt-getProfile"></a>
+getProfileInstance(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
-
-Obtains a profile object.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getProfileInstance](js-apis-bluetoothManager.md#bluetoothmanagergetprofileinstance).
+Obtains a profile instance. API version 9 is added with **HidHostProfile** and **PanProfile**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1134,25 +1358,26 @@ Obtains a profile object.
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile) or [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile)| Profile object obtained. Only **A2dpSourceProfile** and **HandsFreeAudioGatewayProfile** are supported.|
+| [A2dpSourceProfile](#a2dpsourceprofile), [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile), [HidHostProfile](#hidhostprofile), or [PanProfile](#panprofile)| Profile instance obtained, which can be **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, **HidHostProfile**, or **PanProfile**.|
 
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+try {
+    let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-## bluetooth.BLE
+## bluetoothManager.BLE
 
-### bluetooth.BLE.createGattServer<sup>(deprecated)</sup>
+### bluetoothManager.BLE.createGattServer
 
 createGattServer(): GattServer
 
 Creates a **GattServer** instance.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.createGattServer](js-apis-bluetoothManager.md#bluetoothmanagerblecreategattserver).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1160,23 +1385,20 @@ Creates a **GattServer** instance.
 
 | Type                       | Description                                  |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserver) | **GattServer** instance created. Before using a method of the server, you must create a **GattSever** instance.|
+| [GattServer](#gattserver) | **GattServer** instance created. Before using an API of the server, you must create a **GattSever** instance.|
 
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 ```
 
 
-### bluetooth.BLE.createGattClientDevice<sup>(deprecated)</sup>
+### bluetoothManager.BLE.createGattClientDevice
 
 createGattClientDevice(deviceId: string): GattClientDevice
 
 Creates a **GattClientDevice** instance.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.createGattClientDevice](js-apis-bluetoothManager.md#bluetoothmanagerblecreategattclientdevice).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1190,23 +1412,24 @@ Creates a **GattClientDevice** instance.
 
 | Type                                   | Description                                  |
 | ------------------------------------- | ------------------------------------ |
-| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using a method of the client, you must create a **GattClientDevice** instance.|
+| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance.|
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.getConnectedBLEDevices<sup>(deprecated)</sup>
+### bluetoothManager.BLE.getConnectedBLEDevices
 
 getConnectedBLEDevices(): Array&lt;string&gt;
 
 Obtains the BLE devices connected to this device.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.getConnectedBLEDevices](js-apis-bluetoothManager.md#bluetoothmanagerblegetconnectedbledevices).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1218,23 +1441,34 @@ Obtains the BLE devices connected to this device.
 | ------------------- | ------------------- |
 | Array&lt;string&gt; | Addresses of the BLE devices connected to this device.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let result = bluetooth.BLE.getConnectedBLEDevices();
+try {
+    let result = bluetoothManager.BLE.getConnectedBLEDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.startBLEScan<sup>(deprecated)</sup>
+### bluetoothManager.BLE.startBLEScan
 
 startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 Starts a BLE scan.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.startBLEScan](js-apis-bluetoothManager.md#bluetoothmanagerblestartblescan).
-
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH, ohos.permission.MANAGE_BLUETOOTH, and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH, ohos.permission.MANAGE_BLUETOOTH, ohos.permission.LOCATION, and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1245,9 +1479,15 @@ Starts a BLE scan.
 | filters | Array&lt;[ScanFilter](#scanfilter)&gt; | Yes   | Criteria for filtering the scan result. Set this parameter to **null** if you do not want to filter the scan result.|
 | options | [ScanOptions](#scanoptions)            | No   | Scan options.                    |
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1255,54 +1495,62 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on("BLEDeviceFind", onReceiveEvent);
-bluetooth.BLE.startBLEScan(
-    [{
-        deviceId:"XX:XX:XX:XX:XX:XX",
-        name:"test",
-        serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
-    }],
-    {
-        interval: 500,
-        dutyMode: bluetooth.ScanDuty.SCAN_MODE_LOW_POWER,
-        matchMode: bluetooth.MatchMode.MATCH_MODE_AGGRESSIVE,
-    }
-);
+try {
+    bluetoothManager.BLE.on("BLEDeviceFind", onReceiveEvent);
+    bluetoothManager.BLE.startBLEScan(
+        [{
+            deviceId:"XX:XX:XX:XX:XX:XX",
+            name:"test",
+            serviceUuid:"00001888-0000-1000-8000-00805f9b34fb"
+        }],
+        {
+            interval: 500,
+            dutyMode: bluetoothManager.ScanDuty.SCAN_MODE_LOW_POWER,
+            matchMode: bluetoothManager.MatchMode.MATCH_MODE_AGGRESSIVE,
+        }
+    );
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.stopBLEScan<sup>(deprecated)</sup>
+### bluetoothManager.BLE.stopBLEScan
 
 stopBLEScan(): void
 
 Stops the BLE scan.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.stopBLEScan](js-apis-bluetoothManager.md#bluetoothmanagerblestopblescan).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-bluetooth.BLE.stopBLEScan();
+try {
+    bluetoothManager.BLE.stopBLEScan();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.on('BLEDeviceFind')<sup>(deprecated)</sup>
+### bluetoothManager.BLE.on('BLEDeviceFind')
 
 on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Subscribe to the BLE device discovery events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.on('BLEDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanagerbleonbledevicefind).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1315,9 +1563,13 @@ Subscribe to the BLE device discovery events.
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.  |
 | callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1325,18 +1577,19 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### bluetooth.BLE.off('BLEDeviceFind')<sup>(deprecated)</sup>
+### bluetoothManager.BLE.off('BLEDeviceFind')
 
 off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Unsubscribes from the BLE device discovery events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLE.off('BLEDeviceFind')](js-apis-bluetoothManager.md#bluetoothmanagerbleoffbledevicefind).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1349,9 +1602,13 @@ Unsubscribes from the BLE device discovery events.
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.       |
 | callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1359,8 +1616,12 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
-bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
-bluetooth.BLE.off('BLEDeviceFind', onReceiveEvent);
+try {
+    bluetoothManager.BLE.on('BLEDeviceFind', onReceiveEvent);
+    bluetoothManager.BLE.off('BLEDeviceFind', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
@@ -1369,14 +1630,11 @@ bluetooth.BLE.off('BLEDeviceFind', onReceiveEvent);
 Provides the profile base class.
 
 
-### getConnectionDevices<sup>8+</sup><sup>(deprecated)</sup><a name="getConnectionDevices"></a>
+### getConnectionDevices<a name="getConnectionDevices"></a>
 
 getConnectionDevices(): Array&lt;string&gt;
 
 Obtains the connected devices.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.BaseProfile.getConnectionDevices](js-apis-bluetoothManager.md#getconnectiondevices).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1388,21 +1646,33 @@ Obtains the connected devices.
 | ------------------- | ------------- |
 | Array&lt;string&gt; | Addresses of the connected devices.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let retArray = a2dpSrc.getConnectionDevices();
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let retArray = a2dpSrc.getConnectionDevices();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
-### getDeviceState<sup>8+</sup><sup>(deprecated)</sup><a name="getDeviceState"></a>
+### getDeviceState<a name="getDeviceState"></a>
 
 getDeviceState(device: string): ProfileConnectionState
 
 Obtains the connection state of the profile.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.BaseProfile.getDeviceState](js-apis-bluetoothManager.md#getdevicestate).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1420,27 +1690,39 @@ Obtains the connection state of the profile.
 | ------------------------------------------------- | ----------------------- |
 | [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 ## A2dpSourceProfile
 
-Before using a method of **A2dpSourceProfile**, you need to create an instance of this class by using the **getProfile()** method.
+Before using an API of **A2dpSourceProfile**, you need to create an instance of this class by using **getProfile()**.
 
 
-### connect<sup>8+</sup><sup>(deprecated)</sup><a name="a2dp-connect"></a>
+### connect<a name="a2dp-connect"></a>
 
-connect(device: string): boolean
+connect(device: string): void
 
 Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.connect](js-apis-bluetoothManager.md#connect).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -1451,29 +1733,35 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                 |
-| ------- | ------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>8+</sup><sup>(deprecated)</sup><a name="a2dp-disconnect"></a>
+### disconnect<a name="a2dp-disconnect"></a>
 
-disconnect(device: string): boolean
+disconnect(device: string): void
 
 Disconnects an A2DP connection.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.disconnect](js-apis-bluetoothManager.md#disconnect).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -1484,29 +1772,35 @@ Disconnects an A2DP connection.
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                 |
-| ------- | ------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### on('connectionStateChange')
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Subscribes to the A2DP connection state change events.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange).
-
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1514,7 +1808,7 @@ Subscribes to the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                       |
 
 **Return value**
 
@@ -1526,20 +1820,17 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### off('connectionStateChange')
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Unsubscribes from the A2DP connection state change events.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange).
-
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
@@ -1547,7 +1838,7 @@ Unsubscribes from the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                           |
 
 **Return value**
 
@@ -1559,20 +1850,17 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
+let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState<sup>8+</sup><sup>(deprecated)</sup>
+### getPlayingState
 
 getPlayingState(device: string): PlayingState
 
 Obtains the playing state of a device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.A2dpSourceProfile.getPlayingState](js-apis-bluetoothManager.md#getplayingstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1588,28 +1876,40 @@ Obtains the playing state of a device.
 | ----------------------------- | ---------- |
 | [PlayingState](#PlayingState) | Playing state of the remote device obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
-let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+try {
+    let a2dpSrc = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
+    let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
 ## HandsFreeAudioGatewayProfile
 
-Before using a method of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using the **getProfile()** method.
+Before using an API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **getProfile()**.
 
 
-### connect<sup>8+</sup><sup>(deprecated)</sup><a name="hfp-connect"></a>
+### connect<a name="hfp-connect"></a>
 
-connect(device: string): boolean
+connect(device: string): void
 
 Sets up a Hands-free Profile (HFP) connection of a device.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect-1).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -1620,30 +1920,35 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                 |
-| ------- | ------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
+try {
+    let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
+    hfpAg.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>8+</sup><sup>(deprecated)</sup><a name="hfp-disconnect"></a>
+### disconnect<a name="hfp-disconnect"></a>
 
-disconnect(device: string): boolean
+disconnect(device: string): void
 
 Disconnects the HFP connection of a device.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect-1).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -1654,42 +1959,43 @@ Disconnects the HFP connection of a device.
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                 |
-| ------- | ------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
-let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+try {
+    let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
+    hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### on('connectionStateChange')
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Subscribes to the HFP connection state change events.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1).
-
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
-
-**Return value**
-
-No value is returned.
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                 |
 
 **Example**
 
@@ -1697,33 +2003,26 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
 
-### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+### off('connectionStateChange')
 
 off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Unsubscribes from the HFP connection state change events.
 
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1).
-
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Parameters**
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                              |
-
-**Return value**
-
-No value is returned.
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                         |
 
 **Example**
 
@@ -1731,26 +2030,342 @@ No value is returned.
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
-  bluetooth.HandsFreeAudioGatewayProfile;
+let hfpAg = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
 
 
+## HidHostProfile
+
+Before using an API of **HidHostProfile**, you need to create an instance of this class by using **getProfile()**.
+
+
+### connect<a name="HidHost-connect"></a>
+
+connect(device: string): void
+
+Connects to the HidHost service of a device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the target device.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### disconnect<a name="HidHost-disconnect"></a>
+
+disconnect(device: string): void
+
+Disconnects from the HidHost service of a device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the target device.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### on('connectionStateChange')
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Subscribes to the HidHost connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change event.                |
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+hidHost.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Unsubscribes from the HidHost connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                     |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change event.                            |
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('hidHost state = '+ JSON.stringify(data));
+}
+let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+hidHost.on('connectionStateChange', onReceiveEvent);
+hidHost.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## PanProfile
+
+Before using an API of **PanProfile**, you need to create an instance of this class by using **getProfile()**.
+
+
+### disconnect<a name="PanP-disconnect"></a>
+
+disconnect(device: string): void
+
+Disconnects from the Personal Area Network (PAN) service of a device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.USE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the target device.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    panProfile.disconnect('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### on('connectionStateChange')
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Subscribes to the PAN connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the PAN connection state change event.                    |
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+panProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Unsubscribes from the PAN connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                     |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change event.                                |
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+panProfile.on('connectionStateChange', onReceiveEvent);
+panProfile.off('connectionStateChange', onReceiveEvent);
+```
+
+
+### setTethering<a name="setTethering"></a>
+
+setTethering(enable: boolean): void
+
+Sets tethering.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    panProfile.setTethering(true);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+### isTetheringOn<a name="isTetheringOn"></a>
+
+isTetheringOn(): boolean
+
+Obtains the network sharing status.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if tethering is available over a Bluetooth PAN; return **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let ret = panProfile.isTetheringOn();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## GattServer
 
-Implements the Generic Attribute Profile (GATT) server. Before using a method of this class, you need to create a **GattServer** instance using the **createGattServer()** method.
+Implements the Generic Attribute Profile (GATT) server. Before using an API of this class, you need to create a **GattServer** instance using **createGattServer()**.
 
 
-### startAdvertising<sup>(deprecated)</sup>
+### startAdvertising
 
 startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void
 
 Starts BLE advertising.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.startAdvertising](js-apis-bluetoothManager.md#startadvertising).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1764,9 +2379,15 @@ Starts BLE advertising.
 | advData     | [AdvertiseData](#advertisedata)       | Yes   | Content of the BLE advertisement packet.     |
 | advResponse | [AdvertiseData](#advertisedata)       | No   | Response to the BLE scan request.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1784,8 +2405,9 @@ serviceValueBuffer[2] = 7;
 serviceValueBuffer[3] = 8;
 console.info('manufactureValueBuffer = '+ JSON.stringify(manufactureValueBuffer));
 console.info('serviceValueBuffer = '+ JSON.stringify(serviceValueBuffer));
-let gattServer = bluetooth.BLE.createGattServer();
-gattServer.startAdvertising({
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.startAdvertising({
             interval:150,
             txPower:60,
             connectable:true,
@@ -1796,56 +2418,63 @@ gattServer.startAdvertising({
                  manufactureValue:manufactureValueBuffer.buffer
             }],
             serviceData:[{
-                 serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
+                serviceUuid:"00001888-0000-1000-8000-00805f9b34fb",
+                serviceValue:serviceValueBuffer.buffer
             }],
         },{
             serviceUuids:["00001889-0000-1000-8000-00805f9b34fb"],
             manufactureData:[{
-                 manufactureId:1789,
-                 manufactureValue:manufactureValueBuffer.buffer
+                manufactureId:1789,
+                manufactureValue:manufactureValueBuffer.buffer
             }],
             serviceData:[{
-                 serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
-                 serviceValue:serviceValueBuffer.buffer
+                serviceUuid:"00001889-0000-1000-8000-00805f9b34fb",
+                serviceValue:serviceValueBuffer.buffer
             }],
-});
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### stopAdvertising<sup>(deprecated)</sup>
+### stopAdvertising
 
 stopAdvertising(): void
 
 Stops BLE advertising.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.stopAdvertising](js-apis-bluetoothManager.md#stopadvertising).
-
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.stopAdvertising();
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.stopAdvertising();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### addService<sup>(deprecated)</sup>
+### addService
 
-addService(service: GattService): boolean
+addService(service: GattService): void
 
 Adds a service to this GATT server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.addService](js-apis-bluetoothManager.md#addservice).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1857,11 +2486,15 @@ Adds a service to this GATT server.
 | ------- | --------------------------- | ---- | ------------------------ |
 | service | [GattService](#gattservice) | Yes   | Service to add. Settings related to BLE advertising.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1890,24 +2523,20 @@ characteristics[0] = characteristic;
 // Create a gattService instance.
 let gattService = {serviceUuid:'00001810-0000-1000-8000-00805F9B34FB', isPrimary: true, characteristics:characteristics, includeServices:[]};
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.addService(gattService);
-if (ret) {
-   console.log("add service successfully");
-} else {
-   console.log("add service failed");
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.addService(gattService);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### removeService<sup>(deprecated)</sup>
+### removeService
 
-removeService(serviceUuid: string): boolean
+removeService(serviceUuid: string): void
 
 Removes a service from this GATT server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.removeService](js-apis-bluetoothManager.md#removeservice).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1919,49 +2548,66 @@ Removes a service from this GATT server.
 | ----------- | ------ | ---- | ---------------------------------------- |
 | serviceUuid | string | Yes   | Universally unique identifier (UUID) of the service to remove, for example, **00001810-0000-1000-8000-00805F9B34FB**.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900004 | Profile is not supported.                |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.removeService('00001810-0000-1000-8000-00805F9B34FB');
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.removeService('00001810-0000-1000-8000-00805F9B34FB');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### close<sup>(deprecated)</sup>
+### close
 
 close(): void
 
 Closes this GATT server to unregister it from the protocol stack. After this method is called, this [GattServer](#gattserver) cannot be used.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.close](js-apis-bluetoothManager.md#close).
-
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let server = bluetooth.BLE.createGattServer();
-server.close();
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.close();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### notifyCharacteristicChanged<sup>(deprecated)</sup>
+### notifyCharacteristicChanged
 
-notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean
+notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): void
 
 Notifies the connected client device when a characteristic value changes.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.notifyCharacteristicChanged](js-apis-bluetoothManager.md#notifycharacteristicchanged).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1974,11 +2620,15 @@ Notifies the connected client device when a characteristic value changes.
 | deviceId             | string                                   | Yes   | Address of the client that receives notifications, for example, XX:XX:XX:XX:XX:XX.|
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
 
-**Return value**
+**Error codes**
 
-| Type     | Description                      |
-| ------- | ------------------------ |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -1997,19 +2647,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 let notifyCharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: characteristic.characteristicValue, confirm: false};
-let server = bluetooth.BLE.createGattServer();
-server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
+let server = bluetoothManager.BLE.createGattServer();
+try {
+    server.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### sendResponse<sup>(deprecated)</sup>
+### sendResponse
 
-sendResponse(serverResponse: ServerResponse): boolean
+sendResponse(serverResponse: ServerResponse): void
 
 Sends a response to a read or write request from the GATT client.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.sendResponse](js-apis-bluetoothManager.md#sendresponse).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2021,11 +2672,15 @@ Sends a response to a read or write request from the GATT client.
 | -------------- | --------------------------------- | ---- | --------------- |
 | serverResponse | [ServerResponse](#serverresponse) | Yes   | Response returned by the GATT server.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -2042,24 +2697,20 @@ let serverResponse = {
     "value": arrayBufferCCC,
 };
 
-let gattServer = bluetooth.BLE.createGattServer();
-let ret = gattServer.sendResponse(serverResponse);
-if (ret) {
-  console.log('bluetooth sendResponse successfully');
-} else {
-  console.log('bluetooth sendResponse failed');
+let gattServer = bluetoothManager.BLE.createGattServer();
+try {
+    gattServer.sendResponse(serverResponse);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### on('characteristicRead')<sup>(deprecated)</sup>
+### on('characteristicRead')
 
-on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadReq&gt;): void
+on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Subscribes to the characteristic read request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('characteristicRead')](js-apis-bluetoothManager.md#oncharacteristicread).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2070,11 +2721,7 @@ Subscribes to the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.|
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.           |
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.           |
 
 **Example**
 
@@ -2082,35 +2729,31 @@ No value is returned.
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
-function ReadCharacteristicReq(CharacteristicReadReq) {
-  let deviceId = CharacteristicReadReq.deviceId;
-  let transId = CharacteristicReadReq.transId;
-  let offset = CharacteristicReadReq.offset;
-  let characteristicUuid = CharacteristicReadReq.characteristicUuid;
+function ReadCharacteristicReq(CharacteristicReadRequest) {
+    let deviceId = CharacteristicReadRequest.deviceId;
+    let transId = CharacteristicReadRequest.transId;
+    let offset = CharacteristicReadRequest.offset;
+    let characteristicUuid = CharacteristicReadRequest.characteristicUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("characteristicRead", ReadCharacteristicReq);
 ```
 
 
-### off('characteristicRead')<sup>(deprecated)</sup>
+### off('characteristicRead')
 
-off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadReq&gt;): void
+off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Unsubscribes from the characteristic read request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('characteristicRead')](js-apis-bluetoothManager.md#offcharacteristicread).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2121,28 +2764,21 @@ Unsubscribes from the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicRead");
 ```
 
 
-### on('characteristicWrite')<sup>(deprecated)</sup>
+### on('characteristicWrite')
 
-on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteReq&gt;): void
+on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Subscribes to the characteristic write request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('characteristicWrite')](js-apis-bluetoothManager.md#oncharacteristicwrite).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2153,50 +2789,42 @@ Subscribes to the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
 
 **Example**
 
 ```js
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-function WriteCharacteristicReq(CharacteristicWriteReq) {
-  let deviceId = CharacteristicWriteReq.deviceId;
-  let transId = CharacteristicWriteReq.transId;
-  let offset = CharacteristicWriteReq.offset;
-  let isPrep = CharacteristicWriteReq.isPrep;
-  let needRsp = CharacteristicWriteReq.needRsp;
-  let value =  new Uint8Array(CharacteristicWriteReq.value);
-  let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
+function WriteCharacteristicReq(CharacteristicWriteRequest) {
+    let deviceId = CharacteristicWriteRequest.deviceId;
+    let transId = CharacteristicWriteRequest.transId;
+    let offset = CharacteristicWriteRequest.offset;
+    let isPrep = CharacteristicWriteRequest.isPrep;
+    let needRsp = CharacteristicWriteRequest.needRsp;
+    let value =  new Uint8Array(CharacteristicWriteRequest.value);
+    let characteristicUuid = CharacteristicWriteRequest.characteristicUuid;
 
-  cccValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
+    cccValue[0] = value[0];
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("characteristicWrite", WriteCharacteristicReq);
 ```
 
 
-### off('characteristicWrite')<sup>(deprecated)</sup>
+### off('characteristicWrite')
 
-off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteReq&gt;): void
+off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Unsubscribes from the characteristic write request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('characteristicWrite')](js-apis-bluetoothManager.md#offcharacteristicwrite).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2207,28 +2835,21 @@ Unsubscribes from the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicWrite");
 ```
 
 
-### on('descriptorRead')<sup>(deprecated)</sup>
+### on('descriptorRead')
 
-on(type: "descriptorRead", callback: Callback&lt;DescriptorReadReq&gt;): void
+on(type: "descriptorRead", callback: Callback&lt;DescriptorReadRequest&gt;): void
 
 Subscribes to the descriptor read request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('descriptorRead')](js-apis-bluetoothManager.md#ondescriptorread).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2239,11 +2860,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client. |
 
 **Example**
 
@@ -2251,35 +2868,31 @@ No value is returned.
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
-function ReadDescriptorReq(DescriptorReadReq) {
-  let deviceId = DescriptorReadReq.deviceId;
-  let transId = DescriptorReadReq.transId;
-  let offset = DescriptorReadReq.offset;
-  let descriptorUuid = DescriptorReadReq.descriptorUuid;
+function ReadDescriptorReq(DescriptorReadRequest) {
+    let deviceId = DescriptorReadRequest.deviceId;
+    let transId = DescriptorReadRequest.transId;
+    let offset = DescriptorReadRequest.offset;
+    let descriptorUuid = DescriptorReadRequest.descriptorUuid;
 
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("descriptorRead", ReadDescriptorReq);
 ```
 
 
-### off('descriptorRead')<sup>(deprecated)</sup>
+### off('descriptorRead')
 
-off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadReq&gt;): void
+off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
 Unsubscribes from the descriptor read request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('descriptorRead')](js-apis-bluetoothManager.md#offdescriptorread).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2290,28 +2903,21 @@ Unsubscribes from the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorRead");
 ```
 
 
-### on('descriptorWrite')<sup>(deprecated)</sup>
+### on('descriptorWrite')
 
-on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteReq&gt;): void
+on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Subscribes to the descriptor write request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('descriptorWrite')](js-apis-bluetoothManager.md#ondescriptorwrite).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2322,50 +2928,42 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client.        |
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client. |
 
 **Example**
 
 ```js
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-function WriteDescriptorReq(DescriptorWriteReq) {
-  let deviceId = DescriptorWriteReq.deviceId;
-  let transId = DescriptorWriteReq.transId;
-  let offset = DescriptorWriteReq.offset;
-  let isPrep = DescriptorWriteReq.isPrep;
-  let needRsp = DescriptorWriteReq.needRsp;
-  let value = new Uint8Array(DescriptorWriteReq.value);
-  let descriptorUuid = DescriptorWriteReq.descriptorUuid;
+function WriteDescriptorReq(DescriptorWriteRequest) {
+    let deviceId = DescriptorWriteRequest.deviceId;
+    let transId = DescriptorWriteRequest.transId;
+    let offset = DescriptorWriteRequest.offset;
+    let isPrep = DescriptorWriteRequest.isPrep;
+    let needRsp = DescriptorWriteRequest.needRsp;
+    let value = new Uint8Array(DescriptorWriteRequest.value);
+    let descriptorUuid = DescriptorWriteRequest.descriptorUuid;
 
-  descValue[0] = value[0];
-  let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
+    descValue[0] = value[0];
+    let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
 
-  let ret = gattServer.sendResponse(serverResponse);
-  if (ret) {
-    console.log('bluetooth sendResponse successfully');
-  } else {
-    console.log('bluetooth sendResponse failed');
-  }
+    try {
+        gattServer.sendResponse(serverResponse);
+    } catch (err) {
+        console.error("errCode:" + err.code + ",errMessage:" + err.message);
+    }
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("descriptorRead", WriteDescriptorReq);
 ```
 
 
-### off('descriptorWrite')<sup>(deprecated)</sup>
+### off('descriptorWrite')
 
-off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteReq&gt;): void
+off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Unsubscribes from the descriptor write request events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('descriptorWrite')](js-apis-bluetoothManager.md#offdescriptorwrite).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2376,28 +2974,21 @@ Unsubscribes from the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
-
-**Return value**
-
-No value is returned.
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
 
-### on('connectStateChange')<sup>(deprecated)</sup>
+### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('connectStateChange')](js-apis-bluetoothManager.md#onconnectstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2410,10 +3001,6 @@ Subscribes to the BLE connection state change events.
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
@@ -2422,19 +3009,16 @@ function Connected(BLEConnectChangedState) {
   let status = BLEConnectChangedState.state;
 }
 
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
 ```
 
 
-### off('connectStateChange')<sup>(deprecated)</sup>
+### off('connectStateChange')
 
 off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.off('connectStateChange')](js-apis-bluetoothManager.md#offconnectstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2447,114 +3031,122 @@ Unsubscribes from the BLE connection state change events.
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
-let gattServer = bluetooth.BLE.createGattServer();
+let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("connectStateChange");
 ```
 
 
 ## GattClientDevice
 
-Implements the GATT client. Before using a method of this class, you must create a **GattClientDevice** instance using the **createGattClientDevice(deviceId: string)** method.
+Implements the GATT client. Before using an API of this class, you must create a **GattClientDevice** instance using **createGattClientDevice(deviceId: string)**.
 
 
-### connect<sup>(deprecated)</sup>
+### connect
 
-connect(): boolean
+connect(): void
 
 Initiates a connection to the remote BLE device.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.connect](js-apis-bluetoothManager.md#connect-3).
-
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
-| boolean | Returns **true** if the connection is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.connect();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### disconnect<sup>(deprecated)</sup>
+### disconnect
 
-disconnect(): boolean
+disconnect(): void
 
 Disconnects from the remote BLE device.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect-4).
-
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                          |
-| ------- | ---------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.disconnect();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.disconnect();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### close<sup>(deprecated)</sup>
+### close
 
-close(): boolean
+close(): void
 
 Closes this GATT client to unregister it from the protocol stack. After this method is called, this [GattClientDevice](#gattclientdevice) instance cannot be used.
 
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close-1).
-
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Return value**
+**Error codes**
 
-| Type     | Description                        |
-| ------- | -------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-let ret = device.close();
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.close();
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
 
 
-### getServices<sup>(deprecated)</sup>
+### getServices
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
 Obtains all services of the remote BLE device. This API uses an asynchronous callback to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2566,9 +3158,14 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Yes   | Callback invoked to return the services obtained.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -2586,20 +3183,21 @@ function getServices(code, gattServices) {
   }
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-device.getServices(getServices);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+    device.getServices(getServices);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getServices<sup>(deprecated)</sup>
+### getServices
 
 getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
 Obtains all services of the remote BLE device. This API uses a promise to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2611,26 +3209,36 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 | ---------------------------------------- | --------------------------- |
 | Promise&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Promise used to return the services obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
 // Promise
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-device.getServices().then(result => {
-    console.info("getServices successfully:" + JSON.stringify(result));
-});
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.connect();
+    device.getServices().then(result => {
+        console.info("getServices successfully:" + JSON.stringify(result));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readCharacteristicValue<sup>(deprecated)</sup>
+### readCharacteristicValue
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
 Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2643,9 +3251,15 @@ Reads the characteristic value of the specific service of the remote BLE device.
 | characteristic | [BLECharacteristic](#blecharacteristic)  | Yes   | Characteristic value to read.               |
 | callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value read.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden.                        |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -2659,7 +3273,6 @@ function readCcc(code, BLECharacteristic) {
   console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2676,18 +3289,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
-device.readCharacteristicValue(characteristic, readCcc);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readCharacteristicValue(characteristic, readCcc);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readCharacteristicValue<sup>(deprecated)</sup>
+### readCharacteristicValue
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue-1).
+Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2705,10 +3320,19 @@ Reads the characteristic value of the specific service of the remote BLE device.
 | ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden.                        |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2725,18 +3349,20 @@ let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
 characteristicValue: bufferCCC, descriptors:descriptors};
 
-device.readCharacteristicValue(characteristic);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readCharacteristicValue(characteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readDescriptorValue<sup>(deprecated)</sup>
+### readDescriptorValue
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
 Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2749,41 +3375,51 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
 | callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback invoked to return the descriptor read.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden.                        |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
 function readDesc(code, BLEDescriptor) {
-  if (code.code != 0) {
-      return;
-  }
-  console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
-  let value = new Uint8Array(BLEDescriptor.descriptorValue);
-  console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    if (code.code != 0) {
+        return;
+    }
+    console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
+    let value = new Uint8Array(BLEDescriptor.descriptorValue);
+    console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-device.readDescriptorValue(descriptor, readDesc);
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readDescriptorValue(descriptor, readDesc);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### readDescriptorValue<sup>(deprecated)</sup>
+### readDescriptorValue
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue-1).
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2801,28 +3437,42 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901000 | Read forbidden.                        |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-device.readDescriptorValue(descriptor);
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.readDescriptorValue(descriptor);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### writeCharacteristicValue<sup>(deprecated)</sup>
+### writeCharacteristicValue
 
-writeCharacteristicValue(characteristic: BLECharacteristic): boolean
+writeCharacteristicValue(characteristic: BLECharacteristic): void
 
 Writes a characteristic value to the remote BLE device.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.writeCharacteristicValue](js-apis-bluetoothManager.md#writecharacteristicvalue).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2834,16 +3484,19 @@ Writes a characteristic value to the remote BLE device.
 | -------------- | --------------------------------------- | ---- | ------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                         |
-| ------- | --------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901001 | Write forbidden.                       |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let descriptors = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2859,23 +3512,20 @@ cccV[0] = 1;
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
-let retWriteCcc = device.writeCharacteristicValue(characteristic);
-if (retWriteCcc) {
-  console.log('write characteristic successfully');
-} else {
-  console.log('write characteristic failed');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeCharacteristicValue(characteristic);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### writeDescriptorValue<sup>(deprecated)</sup>
+### writeDescriptorValue
 
-writeDescriptorValue(descriptor: BLEDescriptor): boolean
+writeDescriptorValue(descriptor: BLEDescriptor): void
 
 Writes binary data to the specific descriptor of the remote BLE device.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.writeDescriptorValue](js-apis-bluetoothManager.md#writedescriptorvalue).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2886,40 +3536,44 @@ Writes binary data to the specific descriptor of the remote BLE device.
 | Name       | Type                             | Mandatory  | Description                |
 | ---------- | ------------------------------- | ---- | ------------------ |
 | descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor.|
-
-**Return value**
-
-| Type     | Description                         |
-| ------- | --------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2901001 | Write forbidden.                       |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
-let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB', descriptorValue: bufferDesc};
-let retWriteDesc = device.writeDescriptorValue(descriptor);
-if (retWriteDesc) {
-  console.log('bluetooth write descriptor successfully');
-} else {
-  console.log('bluetooth write descriptor failed');
+let descriptor = {
+    serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+    descriptorUuid: '00002903-0000-1000-8000-00805F9B34FB',
+    descriptorValue: bufferDesc
+};
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.writeDescriptorValue(descriptor);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
 ```
 
 
-### setBLEMtuSize<sup>(deprecated)</sup>
+### setBLEMtuSize
 
-setBLEMtuSize(mtu: number): boolean
+setBLEMtuSize(mtu: number): void
 
 Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.setBLEMtuSize](js-apis-bluetoothManager.md#setblemtusize).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2931,28 +3585,32 @@ Sets the maximum transmission unit (MTU) that can be transmitted between the GAT
 | ---- | ------ | ---- | -------------- |
 | mtu  | number | Yes   | MTU to set, which ranges from 22 to 512 bytes.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                          |
-| ------- | ---------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setBLEMtuSize(128);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.setBLEMtuSize(128);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### setNotifyCharacteristicChanged<sup>(deprecated)</sup>
+### setNotifyCharacteristicChanged
 
-setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean
+setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): void
 
 Sets the function of notifying the GATT client when the characteristic value of the remote BLE device changes.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.setNotifyCharacteristicChanged](js-apis-bluetoothManager.md#setnotifycharacteristicchanged).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2965,11 +3623,14 @@ Sets the function of notifying the GATT client when the characteristic value of 
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
 | enable         | boolean                                 | Yes   | Whether to enable the notify function. The value **true** means to enable the notify function, and the value **false** means the opposite.|
 
-**Return value**
+**Error codes**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
@@ -2986,19 +3647,21 @@ descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.setNotifyCharacteristicChanged(characteristic, false);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.setNotifyCharacteristicChanged(characteristic, false);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+
 ```
 
 
-### on('BLECharacteristicChange')<sup>(deprecated)</sup>
+### on('BLECharacteristicChange')
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
 Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLECharacteristicChange')](js-apis-bluetoothManager.md#onblecharacteristicchange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3011,31 +3674,28 @@ Subscribes to the BLE characteristic change events. The client can receive a not
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value changes.                 |
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
 function CharacteristicChange(CharacteristicChangeReq) {
-  let serviceUuid = CharacteristicChangeReq.serviceUuid;
-  let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
-  let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
+    let serviceUuid = CharacteristicChangeReq.serviceUuid;
+    let characteristicUuid = CharacteristicChangeReq.characteristicUuid;
+    let value = new Uint8Array(CharacteristicChangeReq.characteristicValue);
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.on('BLECharacteristicChange', CharacteristicChange);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.on('BLECharacteristicChange', CharacteristicChange);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### off('BLECharacteristicChange')<sup>(deprecated)</sup>
+### off('BLECharacteristicChange')
 
 off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
 
 Unsubscribes from the BLE characteristic change events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLECharacteristicChange')](js-apis-bluetoothManager.md#offblecharacteristicchange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3048,26 +3708,23 @@ Unsubscribes from the BLE characteristic change events.
 | type     | string                                   | Yes   | Event type. The value **BLECharacteristicChange** indicates a characteristic value change event.|
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | No   | Callback for the characteristic value change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.off('BLECharacteristicChange');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.off('BLECharacteristicChange');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### on('BLEConnectionStateChange')<sup>(deprecated)</sup>
+### on('BLEConnectionStateChange')
 
 on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.on('BLEConnectionStateChange')](js-apis-bluetoothManager.md#onbleconnectionstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3080,10 +3737,6 @@ Subscribes to the BLE connection state change events.
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | Yes   | Callback invoked to return the BLE connection state.                          |
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
@@ -3091,19 +3744,20 @@ function ConnectStateChanged(state) {
   console.log('bluetooth connect state changed');
   let connectState = state.state;
 }
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.on('BLEConnectionStateChange', ConnectStateChanged);
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.on('BLEConnectionStateChange', ConnectStateChanged);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### off('BLEConnectionStateChange')<sup>(deprecated)</sup>
+### off('BLEConnectionStateChange')
 
 off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state change events.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.off('BLEConnectionStateChange')](js-apis-bluetoothManager.md#offbleconnectionstatechange).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3116,26 +3770,23 @@ Unsubscribes from the BLE connection state change events.
 | type     | string                                   | Yes   | Event type. The value **BLEConnectionStateChange** indicates a BLE connection state change event.|
 | callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
-**Return value**
-
-No value is returned.
-
 **Example**
 
 ```js
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.off('BLEConnectionStateChange');
+try {
+    let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+    device.off('BLEConnectionStateChange');
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getDeviceName<sup>(deprecated)</sup>
+### getDeviceName
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the name of the remote BLE device. This API uses an asynchronous callback to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3147,30 +3798,37 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 | -------- | --------------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the remote BLE device name obtained.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let deviceName = gattClient.getDeviceName((err, data)=> {
-    console.info('device name err ' + JSON.stringify(err));
-    console.info('device name' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let deviceName = gattClient.getDeviceName((err, data)=> {
+        console.info('device name err ' + JSON.stringify(err));
+        console.info('device name' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getDeviceName<sup>(deprecated)</sup>
+### getDeviceName
 
 getDeviceName(): Promise&lt;string&gt;
 
 Obtains the name of the remote BLE device. This API uses a promise to return the result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3182,26 +3840,36 @@ Obtains the name of the remote BLE device. This API uses a promise to return the
 | --------------------- | ---------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the remote BLE device name.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let deviceName = gattClient.getDeviceName().then((data) => {
-    console.info('device name' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let deviceName = gattClient.getDeviceName().then((data) => {
+        console.info('device name' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getRssiValue<sup>(deprecated)</sup>
+### getRssiValue
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the received signal strength indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3213,31 +3881,36 @@ Obtains the received signal strength indication (RSSI) of the remote BLE device.
 | -------- | --------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the RSSI, in dBm.|
 
-**Return value**
+**Error codes**
 
-No value is returned.
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
 
 **Example**
 
 ```js
 // callback
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let ret = device.connect();
-let rssi = gattClient.getRssiValue((err, data)=> {
-    console.info('rssi err ' + JSON.stringify(err));
-    console.info('rssi value' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    gattClient.connect();
+    let rssi = gattClient.getRssiValue((err, data)=> {
+        console.info('rssi err ' + JSON.stringify(err));
+        console.info('rssi value' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
 
-### getRssiValue<sup>(deprecated)</sup>
+### getRssiValue
 
 getRssiValue(): Promise&lt;number&gt;
 
 Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3249,22 +3922,31 @@ Obtains the RSSI of the remote BLE device. This API uses a promise to return the
 | --------------------- | --------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the RSSI, in dBm.|
 
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
 **Example**
 
 ```js
 // promise
-let gattClient = bluetooth.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
-let rssi = gattClient.getRssiValue().then((data) => {
-    console.info('rssi' + JSON.stringify(data));
-})
+try {
+    let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
+    let rssi = gattClient.getRssiValue().then((data) => {
+        console.info('rssi' + JSON.stringify(data));
+    })
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
 ```
 
-## ScanMode<sup>8+</sup><sup>(deprecated)</sup><a name="ScanMode"></a>
+## ScanMode<a name="ScanMode"></a>
 
 Enumerates the scan modes.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanMode](js-apis-bluetoothManager.md#scanmode).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3277,12 +3959,9 @@ Enumerates the scan modes.
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | General connectable and discoverable mode.|
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | Limited connectable and discoverable mode.|
 
-## BondState<sup>8+</sup><sup>(deprecated)</sup><a name="BondState"></a>
+## BondState<a name="BondState"></a>
 
 Enumerates the pairing states.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.BondState](js-apis-bluetoothManager.md#bondstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3293,12 +3972,9 @@ Enumerates the pairing states.
 | BOND_STATE_BONDED  | 2    | Paired.  |
 
 
-## SppOption<sup>8+</sup><sup>(deprecated)</sup><a name="SppOption"></a>
+## SppOption<a name="SppOption"></a>
 
 Defines the SPP configuration parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.SppOption](js-apis-bluetoothManager.md#sppoption).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3309,12 +3985,9 @@ Defines the SPP configuration parameters.
 | type   | [SppType](#spptype) | Yes   | Yes   | Type of the SPP link.   |
 
 
-## SppType<sup>8+</sup><sup>(deprecated)</sup><a name="SppType"></a>
+## SppType<a name="SppType"></a>
 
 Enumerates the SPP link types.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.SppType](js-apis-bluetoothManager.md#spptype).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3323,12 +3996,9 @@ Enumerates the SPP link types.
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
 
-## GattService<sup>(deprecated)</sup>
+## GattService
 
 Defines the GATT service API parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattService](js-apis-bluetoothManager.md#gattservice).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3340,12 +4010,9 @@ Defines the GATT service API parameters.
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | Yes   | Yes   | Services on which the service depends.                            |
 
 
-## BLECharacteristic<sup>(deprecated)</sup>
+## BLECharacteristic
 
 Defines the characteristic API parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLECharacteristic](js-apis-bluetoothManager.md#blecharacteristic).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3357,12 +4024,9 @@ Defines the characteristic API parameters.
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Yes   | List of descriptors of the characteristic.                             |
 
 
-## BLEDescriptor<sup>(deprecated)</sup>
+## BLEDescriptor
 
 Defines the descriptor API parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLEDescriptor](js-apis-bluetoothManager.md#bledescriptor).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3374,12 +4038,9 @@ Defines the descriptor API parameters.
 | descriptorValue    | ArrayBuffer | Yes   | Yes   | Binary value of the descriptor.                             |
 
 
-## NotifyCharacteristic<sup>(deprecated)</sup>
+## NotifyCharacteristic
 
 Defines the parameters in the notifications sent when the server characteristic value changes.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.NotifyCharacteristic](js-apis-bluetoothManager.md#notifycharacteristic).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3391,12 +4052,9 @@ Defines the parameters in the notifications sent when the server characteristic 
 | confirm             | boolean     | Yes   | Yes   | Whether the notification needs to be confirmed by the remote end. For a notification, set it to **true**. In this case, the remote end must confirm the receipt of the notification. For an indication, set it to **false**. In this case, the remote end does not need to confirm the receipt of the notification.|
 
 
-## CharacteristicReadReq<sup>(deprecated)</sup>
+## CharacteristicReadRequest
 
 Defines the parameters of the **CharacteristicReadReq** event received by the server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.CharacteristicReadRequest](js-apis-bluetoothManager.md#characteristicreadrequest).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3409,12 +4067,9 @@ Defines the parameters of the **CharacteristicReadReq** event received by the se
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
 
-## CharacteristicWriteReq<sup>(deprecated)</sup>
+## CharacteristicWriteRequest
 
 Defines the parameters of the **CharacteristicWriteReq** event received by the server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.CharacteristicWriteRequest](js-apis-bluetoothManager.md#characteristicwriterequest).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3428,12 +4083,9 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
 
-## DescriptorReadReq<sup>(deprecated)</sup>
+## DescriptorReadRequest
 
 Defines the parameters of the **DescriptorReadReq** event received by the server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.DescriptorReadRequest](js-apis-bluetoothManager.md#descriptorreadrequest).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3447,12 +4099,9 @@ Defines the parameters of the **DescriptorReadReq** event received by the server
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
 
-## DescriptorWriteReq<sup>(deprecated)</sup>
+## DescriptorWriteRequest
 
 Defines the parameters of the **DescriptorWriteReq** event received by the server.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.DescriptorWriteRequest](js-apis-bluetoothManager.md#descriptorwriterequest).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3469,12 +4118,9 @@ Defines the parameters of the **DescriptorWriteReq** event received by the serve
 | serviceUuid        | string      | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
 
-## ServerResponse<sup>(deprecated)</sup>
+## ServerResponse
 
 Defines the parameters of the server's response to the GATT client's read/write request.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ServerResponse](js-apis-bluetoothManager.md#serverresponse).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3487,12 +4133,9 @@ Defines the parameters of the server's response to the GATT client's read/write 
 | value    | ArrayBuffer | Yes   | No   | Binary data in the response.                         |
 
 
-## BLEConnectChangedState<sup>(deprecated)</sup>
+## BLEConnectChangedState
 
 Defines the parameters of **BLEConnectChangedState**.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BLEConnectChangedState](js-apis-bluetoothManager.md#bleconnectchangedstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3502,12 +4145,9 @@ Defines the parameters of **BLEConnectChangedState**.
 | state    | [ProfileConnectionState](#profileconnectionstate) | Yes  | Yes  | BLE connection state.                      |
 
 
-## ProfileConnectionState<sup>(deprecated)</sup>
+## ProfileConnectionState
 
 Enumerates the profile connection states.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ProfileConnectionState](js-apis-bluetoothManager.md#profileconnectionstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3519,12 +4159,9 @@ Enumerates the profile connection states.
 | STATE_DISCONNECTING | 3    | Disconnecting.|
 
 
-## ScanFilter<sup>(deprecated)</sup>
+## ScanFilter
 
 Defines the scan filter parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanFilter](js-apis-bluetoothManager.md#scanfilter).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3533,30 +4170,32 @@ Defines the scan filter parameters.
 | deviceId                                 | string      | Yes  | Yes  | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.          |
 | name                                     | string      | Yes  | Yes  | Name of the BLE device to filter.                                       |
 | serviceUuid                              | string      | Yes  | Yes  | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| serviceUuidMask             | string      | Yes  | Yes  | Service UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
+| serviceSolicitationUuid     | string      | Yes  | Yes  | Service solicitation UUID of the device to filter, for example, **00001888-0000-1000-8000-00805F9B34FB**.|
+| serviceSolicitationUuidMask | string      | Yes  | Yes  | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
+| serviceData                 | ArrayBuffer | Yes  | Yes  | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
+| serviceDataMask             | ArrayBuffer | Yes  | Yes  | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
+| manufactureId               | number      | Yes  | Yes  | Manufacturer ID of the device to filter, for example, **0x0006**.                |
+| manufactureData             | ArrayBuffer | Yes  | Yes  | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
+| manufactureDataMask         | ArrayBuffer | Yes  | Yes  | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
 
 
-## ScanOptions<sup>(deprecated)</sup>
+## ScanOptions
 
 Defines the scan configuration parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanOptions](js-apis-bluetoothManager.md#scanoptions).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name       | Type                   | Readable  | Writable  | Description                                    |
 | --------- | ----------------------- | ---- | ---- | -------------------------------------- |
 | interval  | number                  | Yes   | Yes   | Delay in reporting the scan result. The default value is **0**.                   |
-| dutyMode  | [ScanDuty](#scanduty)   | Yes   | Yes   | Scan duty. The default value is **SCAN_MODE_LOW_POWER**.       |
+| dutyMode  | [ScanDuty](#scanduty)   | Yes   | Yes   | Scan duty. The default value is SCAN_MODE_LOW_POWER.       |
 | matchMode | [MatchMode](#matchmode) | Yes   | Yes   | Hardware filtering match mode. The default value is **MATCH_MODE_AGGRESSIVE**.|
 
 
-## ScanDuty<sup>(deprecated)</sup>
+## ScanDuty
 
 Enumerates the scan duty options.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanDuty](js-apis-bluetoothManager.md#scanduty).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3567,12 +4206,9 @@ Enumerates the scan duty options.
 | SCAN_MODE_LOW_LATENCY | 2    | Low-latency mode.    |
 
 
-## MatchMode<sup>(deprecated)</sup>
+## MatchMode
 
 Enumerates the hardware match modes of BLE scan filters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.MatchMode](js-apis-bluetoothManager.md#matchmode).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3582,12 +4218,9 @@ Enumerates the hardware match modes of BLE scan filters.
 | MATCH_MODE_STICKY     | 2    | Hardware reports the scan result with a higher threshold of signal strength and sightings.      |
 
 
-## ScanResult<sup>(deprecated)</sup>
+## ScanResult
 
 Defines the scan result.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanResult](js-apis-bluetoothManager.md#scanresult).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3598,12 +4231,9 @@ Defines the scan result.
 | data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
 
 
-## BluetoothState<sup>(deprecated)</sup>
+## BluetoothState
 
 Enumerates the Bluetooth states.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.BluetoothState](js-apis-bluetoothManager.md#bluetoothstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3618,12 +4248,9 @@ Enumerates the Bluetooth states.
 | STATE_BLE_TURNING_OFF | 6    | The LE-only mode is being turned off for Bluetooth.|
 
 
-## AdvertiseSetting<sup>(deprecated)</sup>
+## AdvertiseSetting
 
 Defines the BLE advertising parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.AdvertiseSetting](js-apis-bluetoothManager.md#advertisesetting).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3634,12 +4261,9 @@ Defines the BLE advertising parameters.
 | connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The default value is **true**.                  |
 
 
-## AdvertiseData<sup>(deprecated)</sup>
+## AdvertiseData
 
 Defines the content of a BLE advertisement packet.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.AdvertiseData](js-apis-bluetoothManager.md#advertisedata).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3650,12 +4274,9 @@ Defines the content of a BLE advertisement packet.
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
 
 
-## ManufactureData<sup>(deprecated)</sup>
+## ManufactureData
 
 Defines the content of a BLE advertisement packet.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ManufactureData](js-apis-bluetoothManager.md#manufacturedata).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3665,12 +4286,9 @@ Defines the content of a BLE advertisement packet.
 | manufactureValue | ArrayBuffer         | Yes   | Yes   | Manufacturer data.    |
 
 
-## ServiceData<sup>(deprecated)</sup>
+## ServiceData
 
 Defines the service data contained in an advertisement packet.
-
-> **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ServiceData](js-apis-bluetoothManager.md#servicedata).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3680,12 +4298,9 @@ Defines the service data contained in an advertisement packet.
 | serviceValue | ArrayBuffer | Yes   | Yes   | Service data.   |
 
 
-## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup><a name="PinRequiredParam"></a>
+## PinRequiredParam<a name="PinRequiredParam"></a>
 
 Defines the pairing request parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.PinRequiredParam](js-apis-bluetoothManager.md#pinrequiredparam).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3695,12 +4310,9 @@ Defines the pairing request parameters.
 | pinCode  | string | Yes   | No   | Key for the device pairing.  |
 
 
-## BondStateParam<sup>8+</sup><sup>(deprecated)</sup><a name="BondStateParam"></a>
+## BondStateParam<a name="BondStateParam"></a>
 
 Defines the pairing state parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.BondStateParam](js-apis-bluetoothManager.md#bondstateparam).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3710,12 +4322,9 @@ Defines the pairing state parameters.
 | state    | BondState   | Yes   | No   | State of the device.|
 
 
-## StateChangeParam<sup>8+</sup><sup>(deprecated)</sup><a name="StateChangeParam"></a>
+## StateChangeParam<a name="StateChangeParam"></a>
 
 Defines the profile state change parameters.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.StateChangeParam](js-apis-bluetoothManager.md#statechangeparam).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3725,12 +4334,9 @@ Defines the profile state change parameters.
 | state    | [ProfileConnectionState](#profileconnectionstate) | Yes  | No  | Profile connection state of the device.|
 
 
-## DeviceClass<sup>8+</sup><sup>(deprecated)</sup><a name="DeviceClass"></a>
+## DeviceClass<a name="DeviceClass"></a>
 
 Defines the class of a Bluetooth device.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.DeviceClass](js-apis-bluetoothManager.md#deviceclass).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3742,12 +4348,9 @@ Defines the class of a Bluetooth device.
 
 
 
-## MajorClass<sup>8+</sup><sup>(deprecated)</sup><a name="MajorClass"></a>
+## MajorClass<a name="MajorClass"></a>
 
 Enumerates the major classes of Bluetooth devices.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.MajorClass](js-apis-bluetoothManager.md#majorclass).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3766,12 +4369,9 @@ Enumerates the major classes of Bluetooth devices.
 | MAJOR_UNCATEGORIZED | 0x1F00 | Unclassified device.  |
 
 
-## MajorMinorClass<sup>8+</sup><sup>(deprecated)</sup><a name="MajorMinorClass"></a>
+## MajorMinorClass<a name="MajorMinorClass"></a>
 
 Enumerates the major and minor classes of Bluetooth devices.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.MajorMinorClass](js-apis-bluetoothManager.md#majorminorclass).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3857,7 +4457,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_DATA_DISPLAY                      | 0x091C | Health data display.    |
 | HEALTH_STEP_COUNTER                      | 0x0920 | Step counter.   |
 | HEALTH_BODY_COMPOSITION_ANALYZER         | 0x0924 | Body composition analyzer. |
-| HEALTH_PEAK_FLOW_MOITOR                  | 0x0928 | Hygrometer.     |
+| HEALTH_PEAK_FLOW_MONITOR                  | 0x0928 | Hygrometer.     |
 | HEALTH_MEDICATION_MONITOR                | 0x092C | Medication monitor.   |
 | HEALTH_KNEE_PROSTHESIS                   | 0x0930 | Prosthetic knee.    |
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | Prosthetic ankle.    |
@@ -3865,12 +4465,9 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
 
 
-## PlayingState<sup>8+</sup><sup>(deprecated)</sup><a name="PlayingState"></a>
+## PlayingState<a name="PlayingState"></a>
 
 Enumerates the A2DP playing states.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.PlayingState](js-apis-bluetoothManager.md#playingstate).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3880,12 +4477,9 @@ Enumerates the A2DP playing states.
 | STATE_PLAYING     | 0x0001 | Playing.|
 
 
-## ProfileId<sup>8+</sup><sup>(deprecated)</sup><a name="ProfileId"></a>
+## ProfileId<a name="ProfileId"></a>
 
 Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST** and **PROFILE_PAN_NETWORK**.
-
-> **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.ProfileId](js-apis-bluetoothManager.md#profileid).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3893,3 +4487,5 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 | -------------------------------- | ------ | --------------- |
 | PROFILE_A2DP_SOURCE              | 1 | A2DP profile.|
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | HFP profile. |
+| PROFILE_HID_HOST | 6 | Human Interface Device (HID) profile. |
+| PROFILE_PAN_NETWORK | 7 | PAN profile. |
