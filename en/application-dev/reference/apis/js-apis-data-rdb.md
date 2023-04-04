@@ -1,4 +1,4 @@
-# @ohos.data.rdb
+# @ohos.data.rdb (RDB)
 
 The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
 
@@ -349,6 +349,10 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
 
+> **NOTE**
+>
+> The value of **devices** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -366,8 +370,24 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.inDevices(['12345678abcde'])
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices<sup>8+</sup>
@@ -1536,7 +1556,7 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data using the specified SQL statement. This API uses an asynchronous callback to return the result.
+Queries data in the RDB store using the specified SQL statement. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1565,7 +1585,7 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-Queries data using the specified SQL statement. This API uses a promise to return the result.
+Queries data in the RDB store using the specified SQL statement. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1619,7 +1639,7 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
         console.info("Failed to execute SQL, err: " + err)
         return
     }
-    console.info('Created table successfully.')
+    console.info('Create table done.')
 })
 ```
 
@@ -1650,7 +1670,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
 promise.then(() => {
-    console.info('Created table successfully.')
+    console.info('Create table done.')
 }).catch((err) => {
     console.info("Failed to execute SQL, err: " + err)
 })
@@ -1808,7 +1828,11 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses an asynchronous callback to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**<br/>
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1818,14 +1842,28 @@ Obtains the distributed table name for a remote device based on the local table 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Remote device.|
-| table | string | Yes| Local table name.|
+| device | string | Yes| ID of the remote device.|
+| table | string | Yes| Local table name of the remote device.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
 **Example**
 
 ```js
-rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+
+rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.info('Failed to obtain DistributedTableName, err: ' + err)
         return
@@ -1838,7 +1876,11 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses a promise to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name for a remote device based on the local table name. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**<br/>
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1848,8 +1890,8 @@ Obtains the distributed table name for a remote device based on the local table 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Remote device.|
-| table | string | Yes| Local table name.|
+| device | string | Yes| ID of the remote device.|
+| table | string | Yes| Local table name of the remote device.|
 
 **Return value**
 
@@ -1860,7 +1902,20 @@ Obtains the distributed table name for a remote device based on the local table 
 **Example**
 
 ```js
-let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceId = devices[0].deviceId;
+})
+
+let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
     console.info('Obtained distributed table name successfully, tableName= ' + tableName)
 }).catch((err) => {
@@ -1889,8 +1944,24 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('Sync failed, err: ' + err)
@@ -1924,13 +1995,29 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
 
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    let deviceIds = [];
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
 promise.then((result) =>{
     console.log('Sync done.')
@@ -1977,7 +2064,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the observer of the specified type from the RDB store. This API uses an asynchronous callback to return the result.
+Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
