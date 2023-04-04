@@ -11,7 +11,7 @@ You can set the text content and response callback for an alert dialog box.
 
 | Name   | Type | Description|
 | ---- | --------------- | -------- |
-| show | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons)  | Defines and displays the **<AlertDialog>** component.|
+| show | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons)  | Defines and displays the **\<AlertDialog>** component. |
 
 ## AlertDialogParamWithConfirm
 | Name      | Type    | Mandatory    | Description        |

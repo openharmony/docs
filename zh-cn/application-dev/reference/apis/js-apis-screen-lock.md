@@ -43,7 +43,7 @@ import screenlock from '@ohos.screenLock';
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**系统接口**：此接口为系统接口
 
 | 名称    | 类型   | 必填 |       说明        |
 | --------- | ------ | ---- | ------------- |
@@ -58,7 +58,7 @@ isLocked(): boolean
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**系统接口**：此接口为系统接口
 
 **返回值：** 
 
@@ -80,7 +80,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -116,7 +116,7 @@ unlock(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**系统接口**：此接口为系统接口
 
 **返回值：** 
 
@@ -150,7 +150,9 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -186,7 +188,9 @@ lock(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **返回值：** 
 
@@ -220,7 +224,9 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -262,7 +268,9 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -300,7 +308,9 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 

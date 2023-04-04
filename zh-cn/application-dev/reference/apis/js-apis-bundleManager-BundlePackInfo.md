@@ -1,5 +1,5 @@
 # BundlePackInfo
-
+此接口为系统
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -62,10 +62,10 @@
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | mainAbility | string | 是 | 否 | 应用主ability的名称。 |
 | apiVersion         | [ApiVersion](#apiversion)                         | 是   | 否   | module的api版本。                  |
-| deviceType         | Array\<string>                                    | 是   | 否   | module的设备类型。                 |
+| deviceTypes         | Array\<string>                                    | 是   | 否   | module的设备类型。                 |
 | distro             | [ModuleDistroInfo](#moduledistroinfo)             | 是   | 否   | module发行版信息。                 |
 | abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | 是   | 否   | module包含的ability组件信息。               |
-| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | 是   | 否   | 描述extensionAbilities的配置信息。 |
+| extensionAbilities | Array\<[ExtensionAbility](#extensionability)> | 是   | 否   | 描述extensionAbilities的配置信息。 |
 
 ## ModuleDistroInfo
 
@@ -122,7 +122,7 @@
 
 ## ApiVersion
 
-**系统接口：** 系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 

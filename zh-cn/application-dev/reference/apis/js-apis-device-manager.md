@@ -460,6 +460,83 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   });
   ```
 
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
+
+通过指定设备的网络标识获取该设备的信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型                                     | 必填   | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  try {
+    dmInstance.getDeviceInfo(networkId, (err, data) => {
+    if (err) {
+      console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+      return;
+    }
+      console.log('get device info: ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
+
+通过指定设备的网络标识获取该设备的信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名   | 类型                                     | 必填 | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
+  
+**返回值：**
+
+  | 类型                                       | 说明                    |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                        |
+| ------- | --------------------------------------------------------------- |
+| 11600101| Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  dmInstance.getDeviceInfo(networkId).then((data) => {
+    console.log('get device info: ' + JSON.stringify(data));
+  }).catch((err) => {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  });
+  ```
+
 ### startDeviceDiscovery<sup>8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void

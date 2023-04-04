@@ -27,6 +27,7 @@
         - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
     - 原子化服务
       - [原子化服务开发指导](atomicService.md)
+      - [原子化服务空间管理（仅对系统应用开放）](atomicService-aging.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复调试指导](quickfix-debug.md)

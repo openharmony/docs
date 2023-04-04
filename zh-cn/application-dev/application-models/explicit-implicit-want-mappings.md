@@ -88,10 +88,6 @@
 
 调用方传入的want参数中设置uri和type参数发起组件启动请求，系统会遍历当前系统已安装的组件列表，并逐个匹配待匹配Ability的skills配置中的uris数组，如果待匹配Ability的skills配置中的uris数组中只要有一个可以匹配调用方传入的want参数中设置的uri和type即为匹配成功。
 
-**图3** want参数中uri和type皆不为空时的匹配规则
-
-![want-uri-type1](figures/want-uri-type1.png)  
-
 实际应用中，uri和type共存在四种情况，下面将讲解四种情况的具体匹配规则：
 
 - 调用方传入的want参数的uri和type都为空。
@@ -111,6 +107,13 @@
   1. 如果待匹配Ability的skills配置中的uris数组为空，匹配失败。
   2. 如果待匹配Ability的skills配置中的uris数组存在一条数据[uri匹配](#uri匹配规则)和[type匹配](#type匹配规则)需要均匹配成功，则匹配成功，否则匹配失败。
 
+最左uri匹配：当配置文件待匹配Ability的skills配置中的uris数组中只配置scheme；或者只配置scheme和host；或者只配置scheme，host和port时。
+传入want参数的uri的最左边依次需要和scheme;或者scheme和host;或者scheme,host,port都匹配，才满足最左uri匹配。
+
+  **图3** want参数中uri和type皆不为空时的匹配规则
+
+  ![want-uri-type1](figures/want-uri-type1.png)  
+
 
 下图为了简化描述，称want中传入的uri为w_uri，称want中传入的type为w_type, 待匹配Ability的skills配置中uris为s_uris，其中每个元素为s_uri；按自上而下顺序匹配。
 
@@ -128,7 +131,9 @@
 
 - 如果s_uri的host为空，当w_uri和s_uri的scheme相同时匹配成功，否则匹配失败；
 
-- 如果s_uri的path、pathStartWith和pathRegex都为空，当w_uri和s_uri完全相同时匹配成功，否则匹配失败；
+- 如果s_uri的port为空，当w_uri和s_uri中的scheme和host相同时匹配成功，否则匹配失败；
+
+- 如果s_uri的path、pathStartWith和pathRegex都为空，当w_uri和s_uri中的scheme，host和port相同时匹配成功，否则匹配失败；
 
 - 如果s_uri的path不为空，当w_uri和s_uri**全路径表达式**相同时匹配成功，否则继续进行pathStartWith的匹配；
 
@@ -144,6 +149,11 @@
 > - **前缀表达式**：`scheme://host:port/pathStartWith`
 > 
 > - **正则表达式**：`scheme://host:port/pathRegex`
+>
+> - **前缀uri表达式**：当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri
+>     * `scheme://`
+>     * `scheme://host`
+>     * `scheme://host:port`
 
 
 ### type匹配规则

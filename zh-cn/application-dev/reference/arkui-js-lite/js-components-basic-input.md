@@ -1,7 +1,10 @@
 # input
 
-
 交互式组件，包括单选框，多选框，按钮。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -60,3 +63,119 @@
 | background-color | &lt;color&gt; | - | 否 | 设置背景颜色。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
+
+## 示例
+
+1. type为button
+
+   ```html
+   <!-- xxx.hml -->
+   <div class="div-button">
+     <input class="button" type="button" value="Input-Button"></input>
+   </div>
+   ```
+
+   ```css
+   /* xxx.css */
+   .div-button {
+     flex-direction: column;
+     align-items: center;
+     width: 100%;
+     height: 100%;
+   }
+   .button {
+     margin-top: 30px;
+     width: 280px;
+   }
+   ```
+
+   ![input-type-button](figures/input-type-button.png)
+
+   
+
+2. type为checkbox
+
+   ```html
+   <!-- xxx.hml -->
+   <div class="content">
+     <input onchange="checkboxOnChange" checked="true" type="checkbox"></input>
+     <text class="text">{{text}}</text>
+   </div>
+   ```
+
+   ```css
+   /* xxx.css */
+   .content{
+     width: 100%;
+     height: 100%;
+     flex-direction: column;
+     align-items: center; 
+     justify-content: center;   
+   }
+   .text{
+     font-size: 30px;
+     text-align: center;
+     width: 200px;
+     margin-top: 20px;
+     height: 100px;
+   }
+   ```
+
+   ```javascript
+   // xxx.js
+   export default {
+     data: {
+       text: "text"
+     },
+     checkboxOnChange(e) {
+       this.text = e.checked;
+     }
+   }
+   ```
+
+   ![input-type-checkbox](figures/input-type-checkbox.gif)
+
+3. type为radio
+
+   ```html
+   <!-- xxx.hml -->
+   <div class="container">
+     <div class="item">
+       <input type="radio" checked="true" name="radioSample" value="radio1" onchange="onRadioChange"></input>
+       <text class="text">radio1</text>
+     </div>
+     <div class="item">
+       <input type="radio" checked="false" name="radioSample" value="radio2" onchange="onRadioChange"></input>
+       <text class="text">radio2</text>
+     </div>
+     <div class="item">
+       <input type="radio" checked="false" name="radioSample" value="radio3" onchange="onRadioChange"></input>
+       <text class="text">radio3</text>
+     </div>
+   </div>
+   ```
+
+   ```css
+   /* xxx.css */
+   .container {
+     width: 100%;
+     height: 100%;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+   }
+   .item {
+     width: 50%;
+     height: 30%;
+     justify-content: center;
+   }
+   .text {
+     margin-top: 25%;
+     font-size: 30px;
+     text-align: center;
+     width: 200px;
+     height: 100px;
+   }
+   ```
+
+   ![input-type-radio](figures/input-type-radio.gif)

@@ -2674,4 +2674,4 @@ Defines the certificate raw data.
 
 | Type                                                                  | Description                  |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | Data and encoding format of the certificate.|
+|[cert.EncodingBlob](js-apis-cert.md#datablob) | Data and encoding format of the certificate.|

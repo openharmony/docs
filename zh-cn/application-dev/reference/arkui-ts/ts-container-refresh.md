@@ -25,9 +25,13 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 | friction | number&nbsp;\|&nbsp;string | 否 | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
 | builder | [CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup> | 否 | 下拉时，自定义刷新样式的组件。 |
 
+## 属性
 
+支持[通用属性](ts-universal-attributes-size.md)。
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 
 | 名称 | 描述 |

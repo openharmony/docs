@@ -50,10 +50,6 @@
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
   - [Sensor Usage Example](subsys-sensor-demo.md)
-- USB
-  - [USB Overview](subsys-usbservice-overview.md)
-  - [USB Usage Guidelines](subsys-usbservice-guide.md)
-  - [USB Usage Example](subsys-usbservice-demo.md)
 - Application Framework
   - [Application Framework Overview](subsys-application-framework-overview.md)
   - [Setting Up a Development Environment](subsys-application-framework-envbuild.md)
@@ -109,3 +105,6 @@
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
+- Power Management
+    - Display Management
+        - [System Brightness Customization](subsys-power-brightness-customization.md)

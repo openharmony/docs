@@ -417,14 +417,9 @@
        - [音视频播放开发指导](subsystems/subsys-multimedia-video-play-guide.md)
        - [音视频录制开发指导](subsystems/subsys-multimedia-video-record-guide.md)
   -  [公共基础库开发指导](subsystems/subsys-utils-guide.md)
-  -  [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
-  -  数据管理
-     - 关系型数据库
-       - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
-       - [关系型数据库开发指导](subsystems/subsys-data-relational-database-guide.md)
-     - 轻量级数据存储
-       - [轻量级数据存储概述](subsystems/subsys-data-storage-overview.md)
-       - [轻量级数据存储开发指导](subsystems/subsys-data-storage-guide.md)
+  -  AI服务
+     - [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
+     - [NNRt开发指导](subsystems/subsys-ai-nnrt-guide.md)
   -  Sensor服务
      - [Sensor服务概述](subsystems/subsys-sensor-overview.md)
      - [Sensor服务使用指导](subsystems/subsys-sensor-guide.md)

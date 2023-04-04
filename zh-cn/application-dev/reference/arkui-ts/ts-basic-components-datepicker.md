@@ -1,6 +1,6 @@
 # DatePicker
 
-选择日期的滑动选择器组件
+日期选择器组件，用于根据指定日期范围创建日期滑动选择器。
 
 >  **说明：**
 >
@@ -26,15 +26,27 @@ DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 | end      | Date | 否  |   指定选择器的结束日期。<br/>默认值：Date('2100-12-31') |
 | selected | Date | 否  | 设置选中项的日期。<br/>默认值：当前系统日期  |
 
-
 ## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称    | 参数类型        | 描述            |
 | ------| -------------- | -------- |
 | lunar | boolean  | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
+| textStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](#pickertextstyle10类型说明) | 设置选中项的文本颜色、字号、字体粗细。 |
 
+## PickerTextStyle<sup>10+</sup>类型说明
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述                                     |
+| ------ | ------------------------------------------ | ---- | -------------------------------------------- |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本颜色。                                   |
+| font   | [Font](ts-types.md#font)                   | 否   | 文本样式，picker只支持字号、字体粗细的设置。 |
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |

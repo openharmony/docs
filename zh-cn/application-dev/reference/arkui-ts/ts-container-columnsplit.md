@@ -29,6 +29,8 @@ ColumnSplit()
 > 与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
 >
 > 在真机中查看拖动效果，预览器中不支持拖动。
+>
+> 不支持clip、margin通用属性。
 
 ## 示例
 

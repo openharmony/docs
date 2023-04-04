@@ -237,8 +237,8 @@
 | 名称   | 描述                                               |
 | ------ | -------------------------------------------------- |
 | All    | 指定当前的Transition动效生效在组件的所有变化场景。 |
-| Insert | 指定当前的Transition动效生效在组件的插入场景。     |
-| Delete | 指定当前的Transition动效生效在组件的删除场景。     |
+| Insert | 指定当前的Transition动效生效在组件的插入显示场景。 |
+| Delete | 指定当前的Transition动效生效在组件的删除隐藏场景。 |
 
 ## RelateType
 
@@ -311,7 +311,7 @@
 | Start    | 元素在Flex容器中，交叉轴方向首部对齐。                       |
 | Center   | 元素在Flex容器中，交叉轴方向居中对齐。                       |
 | End      | 元素在Flex容器中，交叉轴方向底部对齐。                       |
-| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充，在未设置尺寸时，拉伸到容器尺寸。 |
+| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
 | Baseline | 元素在Flex容器中，交叉轴方向文本基线对齐。                   |
 
 ## FlexDirection
@@ -520,30 +520,30 @@
 
 该接口支持在ArkTS卡片中使用。
 
-  | 名称 | 描述 |
-  | ------- | ---------- |
-  | Thin   | 轻薄材质模糊。     |
-  | Regular | 普通厚度材质模糊。  |
-  | Thick   | 厚材质模糊。       |
-  | BackgroundThin | 近距景深模糊。 |
-  | BackgroundRegular | 中距景深模糊。 |
-  | BackgroundThick | 远距景深模糊。 |
-  | BackgroundUltraThick | 超远距景深模糊。 |
- 
+| 名称 | 描述 |
+| ------- | ---------- |
+| Thin   | 轻薄材质模糊。     |
+| Regular | 普通厚度材质模糊。  |
+| Thick   | 厚材质模糊。       |
+| BackgroundThin | 近距景深模糊。 |
+| BackgroundRegular | 中距景深模糊。 |
+| BackgroundThick | 远距景深模糊。 |
+| BackgroundUltraThick | 超远距景深模糊。 |
+
 ## ThemeColorMode<sup>10+</sup>
 
-  | 名称   | 描述      |
-  | ------- | ---------- |
-  | System | 跟随系统深浅色模式。 |
-  | Light | 固定使用浅色模式。 |
-  | Dark | 固定使用深色模式。 |
+| 名称   | 描述      |
+| ------- | ---------- |
+| System | 跟随系统深浅色模式。 |
+| Light | 固定使用浅色模式。 |
+| Dark | 固定使用深色模式。 |
 
 ## AdaptiveColor<sup>10+</sup>
 
-  | 名称   | 描述      |
-  | ------- | ----------- |
-  | Default | 不使用取色模糊。使用默认的颜色作为蒙版颜色。 |
-  | Average | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
+| 名称   | 描述      |
+| ------- | ----------- |
+| Default | 不使用取色模糊。使用默认的颜色作为蒙版颜色。 |
+| Average | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 

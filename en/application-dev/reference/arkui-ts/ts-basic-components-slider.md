@@ -50,9 +50,35 @@ Except touch target attributes, the universal attributes are supported.
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the bubble is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the bubble is displayed on the left of the slider.<br>The drawing area of the bubble is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the bubble will be clipped.|
 | trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.|
+| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.|
+| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Step color.|
+| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | Radius of the rounded corner of the slider track.|
+| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | Size of the slider in the block direction.|
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | Style of the slider in the block direction.|
+| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | Step size (diameter).|
 
+## SliderBlockStyle<sup>10+</sup>
+
+Desribes the style of the slider in the block direction.
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type  | [SliderBlockType](#sliderblocktype10)                        | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
+| image | [ResourceStr](ts-types.md#resourcestr)                       | No  | Image resource of the slider.<br>The area size for displaying the image is subject to the **blockSize** attribute. Be mindful of the image size when selecting an image.|
+| shape | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)  | No  | Custom shape of the slider.                                             |
+
+## SliderBlockType<sup>10+</sup>
+
+Enumerates the types of the slider in the block direction.
+
+| Name   | Description                  |
+| ------- | ---------------------- |
+| DEFAULT | Round slider.  |
+| IMAGE   | Slider with an image background.  |
+| SHAPE   | Slider in a custom shape.|
 
 ## Events
 
@@ -60,7 +86,7 @@ In addition to the **OnAppear** and **OnDisAppear** universal events, the follow
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider slides.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: dragging state.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
 
 ## SliderChangeMode
 
@@ -68,9 +94,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| Begin | 0 | The user starts to drag the slider.|
+| Begin | 0 | The user touches or presses the slider with a gesture or mouse.|
 | Moving | 1 | The user is dragging the slider.|
-| End | 2 | The user stops dragging the slider.|
+| End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse.|
 | Click    | 3    | The user moves the slider by touching the slider track.|
 
 

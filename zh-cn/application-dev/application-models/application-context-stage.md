@@ -19,10 +19,10 @@
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
      export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             let uiAbilityContext = this.context;
-             // ...
-         }
+       onCreate(want, launchParam) {
+         let uiAbilityContext = this.context;
+         // ...
+       }
      }
      ```
      
@@ -34,10 +34,10 @@
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
      export default class MyService extends ServiceExtensionAbility {
-         onCreate(want) {
-             let serviceExtensionContext = this.context;
-             // ...
-         }
+       onCreate(want) {
+         let serviceExtensionContext = this.context;
+         // ...
+       }
      }
      ```
   - 获取[AbilityStageContext](../reference/apis/js-apis-inner-application-abilityStageContext.md)。Module级别的Context，和基类Context相比，额外提供HapModuleInfo、Configuration等信息。
@@ -45,10 +45,10 @@
      ```ts
      import AbilityStage from "@ohos.app.ability.AbilityStage";
      export default class MyAbilityStage extends AbilityStage {
-         onCreate() {
-             let abilityStageContext = this.context;
-             // ...
-         }
+       onCreate() {
+         let abilityStageContext = this.context;
+         // ...
+       }
      }
      ```
   - 获取[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)。应用级别的Context。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化和订阅应用内系统环境的变化的能力，在UIAbility、ExtensionAbility、AbilityStage中均可以获取。
@@ -56,10 +56,10 @@
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
      export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             let applicationContext = this.context.getApplicationContext();
-             // ...
-         }
+       onCreate(want, launchParam) {
+         let applicationContext = this.context.getApplicationContext();
+         // ...
+       }
      }
      ```
 
@@ -127,16 +127,16 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let cacheDir = this.context.cacheDir;
-        let tempDir = this.context.tempDir;
-        let filesDir = this.context.filesDir;
-        let databaseDir = this.context.databaseDir;
-        let bundleCodeDir = this.context.bundleCodeDir;
-        let distributedFilesDir = this.context.distributedFilesDir;
-        let preferencesDir = this.context.preferencesDir;
-        // ...
-    }
+  onCreate(want, launchParam) {
+    let cacheDir = this.context.cacheDir;
+    let tempDir = this.context.tempDir;
+    let filesDir = this.context.filesDir;
+    let databaseDir = this.context.databaseDir;
+    let bundleCodeDir = this.context.bundleCodeDir;
+    let distributedFilesDir = this.context.distributedFilesDir;
+    let preferencesDir = this.context.preferencesDir;
+    // ...
+  }
 }
 ```
 
@@ -146,36 +146,42 @@ export default class EntryAbility extends UIAbility {
 
 ### 获取和修改加密分区
 
-上一个场景中，引入了加密等级的概念，通过对[Context的area属性](../reference/apis/js-apis-inner-application-context.md)的读写来实现获取和设置当前加密分区，支持如下两种加密等级：
+应用文件加密是一种保护数据安全的方法，可以使得文件在未经授权访问的情况下得到保护。在不同的场景下，应用需要不同程度的文件保护。对于私有文件，如闹铃、壁纸等，应用需要将这些文件放到设备级加密分区（EL1）中，以保证在用户输入密码前就可以被访问；对于更敏感的文件，如个人隐私信息等，应用需要将这些文件放到更高级别的加密分区（EL2）中，以保证更高的安全性。
 
-- AreaMode.EL1：设备级加密区，设备开机后可访问的数据区。
+在实际应用中，开发者需要根据不同场景的需求选择合适的加密分区，从而保护应用数据的安全。通过合理使用EL1和EL2加密分区，可以有效提高应用数据的安全性。
 
-- AreaMode.EL2：用户级加密区，设备开机，首次输入密码后才能够访问的数据区。
+> **说明：**
+>
+> - AreaMode.EL1：设备级加密区，设备开机后可访问的数据区。
+>
+> - AreaMode.EL2：用户级加密区，设备开机，首次输入密码后才能够访问的数据区。
+
+要实现获取和设置当前加密分区，可以通过读写[Context的area属性](../reference/apis/js-apis-inner-application-context.md)来实现。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // 存储普通信息前，切换到EL1设备机加密
-        if (this.context.area === 1) { // 获取area
-            this.context.area = 0;     // 修改area
-        }
-        // 存储普通信息
-
-        // 存储敏感信息前，切换到EL2用户级加密
-        if (this.context.area === 0) { // 获取area
-            this.context.area = 1;     // 修改area
-        }
-        // 存储敏感信息
+  onCreate(want, launchParam) {
+    // 存储普通信息前，切换到EL1设备机加密
+    if (this.context.area === 1) { // 获取area
+      this.context.area = 0; // 修改area
     }
+    // 存储普通信息
+
+    // 存储敏感信息前，切换到EL2用户级加密
+    if (this.context.area === 0) { // 获取area
+      this.context.area = 1; // 修改area
+    }
+    // 存储敏感信息
+  }
 }
 ```
 
 
 ### 创建其他应用或其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
+基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
 
 - 调用createBundleContext(bundleName:string)方法，创建其他应用的Context信息。
   > **说明：**
@@ -191,12 +197,12 @@ export default class EntryAbility extends UIAbility {
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let bundleName2 = "com.example.application";
-          let context2 = this.context.createBundleContext(bundleName2);
-          let label2 = context2.applicationInfo.label;
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let bundleName2 = "com.example.application";
+      let context2 = this.context.createBundleContext(bundleName2);
+      let label2 = context2.applicationInfo.label;
+      // ...
+    }
   }
   ```
 
@@ -212,12 +218,12 @@ export default class EntryAbility extends UIAbility {
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let bundleName2 = "com.example.application";
-          let moduleName2 = "module1";
-          let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let bundleName2 = "com.example.application";
+      let moduleName2 = "module1";
+      let context2 = this.context.createModuleContext(bundleName2, moduleName2);
+      // ...
+    }
   }
   ```
   
@@ -227,77 +233,90 @@ export default class EntryAbility extends UIAbility {
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let moduleName2 = "module1";
-          let context2 = this.context.createModuleContext(moduleName2);
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let moduleName2 = "module1";
+      let context2 = this.context.createModuleContext(moduleName2);
+      // ...
+    }
   }
   ```
 
 
 ### 订阅进程内UIAbility生命周期变化
 
-在应用内的DFX统计场景，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内UIAbility生命周期变化功能。
+在应用内的DFX统计场景中，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内UIAbility生命周期变化功能。
 
-[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext)提供了订阅进程内UIAbility生命周期变化的能力。在进程内UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发进入相应的回调，其中返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），以在[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中使用为例进行说明。
+通过[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext)提供的能力，可以订阅进程内UIAbility生命周期变化。当进程内的UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发相应的回调函数。每次注册回调函数时，都会返回一个监听生命周期的ID，此ID会自增+1。当超过监听上限数量2^63-1时，会返回-1。以[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
-const TAG: string = "[Example].[Entry].[EntryAbility]";
+const TAG: string = '[Example].[Entry].[EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
-    lifecycleId: number;
+  // 定义生命周期ID
+  lifecycleId: number;
 
-    onCreate(want, launchParam) {
-        let abilityLifecycleCallback = {
-            onAbilityCreate(uiability) {
-                console.info(TAG, "onAbilityCreate uiability:" + JSON.stringify(uiability));
-            },
-            onWindowStageCreate(uiability, windowStage) {
-                console.info(TAG, "onWindowStageCreate uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageActive(uiability, windowStage) {
-                console.info(TAG, "onWindowStageActive uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageActive windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageInactive(uiability, windowStage) {
-                console.info(TAG, "onWindowStageInactive uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageDestroy(uiability, windowStage) {
-                console.info(TAG, "onWindowStageDestroy uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
-            },
-            onAbilityDestroy(uiability) {
-                console.info(TAG, "onAbilityDestroy uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityForeground(uiability) {
-                console.info(TAG, "onAbilityForeground uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityBackground(uiability) {
-                console.info(TAG, "onAbilityBackground uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityContinue(uiability) {
-                console.info(TAG, "onAbilityContinue uiability:" + JSON.stringify(uiability));
-            }
-        }
-        // 1. 通过context属性获取applicationContext
-        let applicationContext = this.context.getApplicationContext();
-        // 2. 通过applicationContext注册监听应用内生命周期
-        this.lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
-        console.info(TAG, "register callback number: " + JSON.stringify(this.lifecycleId));
+  onCreate(want, launchParam) {
+    // 定义生命周期回调对象
+    let abilityLifecycleCallback = {
+      // 当UIAbility创建时被调用
+      onAbilityCreate(uiAbility) {
+        console.log(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // 当窗口创建时被调用
+      onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // 当窗口处于活动状态时被调用
+      onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // 当窗口处于非活动状态时被调用
+      onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // 当窗口被销毁时被调用
+      onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // 当UIAbility被销毁时被调用
+      onAbilityDestroy(uiAbility) {
+        console.log(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // 当UIAbility从后台转到前台时触发回调
+      onAbilityForeground(uiAbility) {
+        console.log(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // 当UIAbility从前台转到后台时触发回调
+      onAbilityBackground(uiAbility) {
+        console.log(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // 当UIAbility迁移时被调用
+      onAbilityContinue(uiAbility) {
+        console.log(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      }
     }
+    // 获取应用上下文
+    let applicationContext = this.context.getApplicationContext();
+    // 注册应用内生命周期回调
+    this.lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
+    console.log(TAG, `register callback number: ${this.lifecycleId}`);
+  }
 
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.off("abilityLifecycle", this.lifecycleId, (error, data) => {
-            console.info(TAG, "unregister callback success, err: " + JSON.stringify(error));
-        });
-    }
+  // ...
+
+  onDestroy() {
+    // 获取应用上下文
+    let applicationContext = this.context.getApplicationContext();
+    // 取消应用内生命周期回调
+    applicationContext.off("abilityLifecycle", this.lifecycleId);
+  }
 }
 ```

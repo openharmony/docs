@@ -1,7 +1,10 @@
 # marquee
 
-
 跑马灯组件，用于展示一段单行滚动的文字。
+
+> **说明：**
+>
+> 该组件从从API version 4 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -49,3 +52,67 @@
 | opacity<sup>5+</sup> | number | 1 | 否 | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 |
 | display | string | flex | 否 | 确定一个元素所产生的框的类型，可选值为：<br/>-&nbsp;flex：弹性布局。<br/>-&nbsp;none：不渲染此元素。 |
 | [left\|top] | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>6+</sup> | - | 否 | left\|top确定元素的偏移位置。<br/>-&nbsp;left属性规定元素的左边缘。该属性定义了定位元素左外边距边界与其包含块左边界之间的偏移。<br/>-&nbsp;top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。 |
+
+## 示例
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <marquee class="customMarquee" scrollamount="{{scrollAmount}}">{{marqueeCustomData}}</marquee>
+  <text class="text" onclick="addSpeed">speed+</text>
+  <text class="text" onclick="downSpeed">speed-</text>
+  <text class="text" onclick="changeData">changeData</text>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.customMarquee {
+  width: 50%;
+  height: 80px;
+  padding: 10px;
+  margin: 20px;
+  border-width: 4px;
+  border-color: #ffffff;
+  border-radius: 20px;
+  font-size: 38px;
+}
+.text {
+  font-size: 30px;
+  text-align: center;
+  width: 30%;
+  height: 10%;
+  margin-top: 5%;
+  background-color: #f2f2f2;
+  border-radius: 40px;
+  color: #0d81f2;
+}
+```
+
+```javascript
+// xxx.js
+export default {
+  data: {
+    scrollAmount: 30,
+    marqueeCustomData: 'Custom marquee Custom marquee Custom marquee'
+  },
+  addSpeed() {
+    this.scrollAmount++;
+  },
+  downSpeed() {
+    this.scrollAmount--;
+  },
+  changeData() {
+    this.marqueeCustomData = 'Change Data Change Data Change Data';
+  }
+}
+```
+
+![marquee](figures/marquee.gif)

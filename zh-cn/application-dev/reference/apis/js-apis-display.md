@@ -291,6 +291,63 @@ try {
 }
 ```
 
+## display.on('privateModeChange')<sup>10+</sup>
+
+on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
+
+开启屏幕隐私模式变化的监听。当屏幕前台有隐私窗口，则屏幕处于隐私模式，屏幕中的隐私窗口内容无法被截屏或录屏。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私窗口模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
+
+**示例：**
+
+```js
+let callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+    display.on("privateModeChange", callback);
+} catch (exception) {
+    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('privateModeChange')<sup>10+</sup>
+
+off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭屏幕隐私模式变化的监听。当屏幕前台有隐私窗口，则屏幕处于隐私模式，屏幕中的隐私窗口内容无法被截屏或录屏。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'privateModeChange'，表示屏幕隐私模式状态发生变化。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。表示屏幕隐私模式是否改变。true表示屏幕由非隐私模式变为隐私模式，false表示屏幕由隐私模式变为非隐私模式。 |
+
+**示例：**
+
+```js
+try {
+    display.off("privateModeChange");
+} catch (exception) {
+    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void

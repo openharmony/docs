@@ -1,6 +1,6 @@
-# Text Style
+# Universal Text Attributes
 
-The text style attributes set the style for text in a component.
+Universal text attributes include text style attributes applicable to text containers.
 
 >  **NOTE**
 >
@@ -18,6 +18,8 @@ The text style attributes set the style for text in a component.
 | fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | Font style.<br>Default value: **FontStyle.Normal**        |
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight. The string type supports only the string of the number type, for example, **400**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal** |
 | fontFamily | string \| [Resource](ts-types.md#resource)  | Font family.<br>Default value: **'HarmonyOS Sans'**<br>Currently, only the default font is supported. |
+| lineHeight | string \| number \| [Resource](ts-types.md#resource) | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} |
 
 
 ## Example

@@ -45,6 +45,8 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
-| --------- | -------------- | ---- | ---- | --------------------------- |
-|moduleName | string         | 是   | 否   | 依赖共享库的模块名称。       |
+| 名称        | 类型   | 可读 | 可写 | 说明                   |
+| ----------- | ------ | ---- | ---- | ---------------------- |
+| bundleName  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
+| moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
+| versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |

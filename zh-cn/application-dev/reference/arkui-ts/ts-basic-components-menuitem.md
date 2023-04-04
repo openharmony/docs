@@ -22,10 +22,10 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 ## MenuItemOptions类型说明
 
-| 名称      | 类型                                     | 必填 | 描述                                   |
-| --------- | ---------------------------------------- | ---- | -------------------------------------- |
+| 名称      | 类型                                        | 必填 | 描述                                   |
+| --------- | ------------------------------------------- | ---- | -------------------------------------- |
 | startIcon | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在左侧的图标信息路径。       |
-| content   | [ResourceStr](ts-types.md#resourcestr)      | 是   | item的内容信息。                       |
+| content   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item的内容信息。                       |
 | endIcon   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在右侧的图标信息路径。       |
 | labelInfo | [ResourceStr](ts-types.md#resourcestr)      | 否   | 定义结束标签信息，如快捷方式Ctrl+C等。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否   | 用于构建二级菜单。                     |
@@ -34,10 +34,14 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性:
 
-| 名称       | 参数类型 | 描述                                     |
-| ---------- | -------- | ---------------------------------------- |
-| selected   | boolean  | 设置菜单项是否选中。<br />默认值：false  |
-| selectIcon | boolean  | 当菜单项被选中时，是否显示被选中的图标。 |
+| 名称                           | 参数类型                                                     | 描述                                                         |
+| ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| selected                       | boolean                                                      | 设置菜单项是否选中。<br />默认值：false                      |
+| selectIcon                     | boolean \| [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 当菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标<br/>false: 即使菜单项被选中也不显示图标<br/>ResourceStr: 菜单项被选中时，显示指定的图标 |
+| contentFont<sup>10+</sup>      | [Font](ts-types.md#font)                                     | 设置菜单项中内容信息的字体样式。                             |
+| contentFontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 设置菜单项中内容信息的字体颜色。                             |
+| labelFont<sup>10+</sup>        | [Font](ts-types.md#font)                                     | 设置菜单项中标签信息的字体样式。                             |
+| labelFontColor<sup>10+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                   | 设置菜单项中标签信息的字体颜色。                             |
 
 ## 事件
 

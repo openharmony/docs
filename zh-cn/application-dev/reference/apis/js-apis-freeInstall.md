@@ -299,7 +299,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-基于bundleName和bundleFlag来获取bundlePackInfo。使用Promise异步回调。
+基于bundleName和BundlePackFlag来获取bundlePackInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 

@@ -240,10 +240,6 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // 页面中从globalThis中取出context并使用
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-          // ...
-       });
      }
      // 页面展示
      build() {
@@ -251,7 +247,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
    }
    ```
-
+   
 3. 在UIAbilityB文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，并且命名为相同的名称。
 
    ```ts
@@ -274,10 +270,6 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // Page中从globalThis中取出context并使用
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-         console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // 页面展示
      build() {
@@ -285,7 +277,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
    }
    ```
-
+   
 5. 在UIAbilityB实例切换至后台，将UIAbilityA实例从后台切换回到前台。此时UIAbilityA的onCreate生命周期不会再次进入。
 
    ```ts
@@ -307,10 +299,6 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // 这时候globalThis中的context是UIAbilityB的context
-       let permissions=['com.example.permission'];
-       ctx.requestPermissionsFromUser(permissions,(result) => { // 使用这个对象就会导致进程崩溃
-          console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // 页面展示
      build() {

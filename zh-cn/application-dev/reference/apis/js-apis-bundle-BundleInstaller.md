@@ -21,7 +21,7 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -71,7 +71,7 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -120,7 +120,7 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
-**系统API：** 此接口为系统接口，三方应用不支持调用
+**系统API：** 此接口为系统接口。
 
 **参数：**
 
@@ -161,7 +161,7 @@ bundle.getBundleInstaller().then(installer => {
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
- **系统API：**  此接口为系统接口，三方应用不支持调用
+ **系统API：**  此接口为系统接口。
 
 | 名称        | 类型    | 可读 | 可写 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
@@ -175,7 +175,7 @@ bundle.getBundleInstaller().then(installer => {
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
- **系统API：**  此接口为系统接口，三方应用不支持调用
+ **系统API：**  此接口为系统接口。
 
 | 名称          | 类型                                                         | 可读 | 可写 | 说明                           |
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------ |

@@ -28,7 +28,6 @@
     - [Transformation](ts-universal-attributes-transformation.md)
     - [Image Effect Configuration](ts-universal-attributes-image-effect.md)
     - [Shape Clipping](ts-universal-attributes-sharp-clipping.md)
-    - [Text Style](ts-universal-attributes-text-style.md)
     - [Grid](ts-universal-attributes-grid.md)
     - [Gradient Color](ts-universal-attributes-gradient-color.md)
     - [Popup Control](ts-universal-attributes-popup.md)
@@ -43,7 +42,8 @@
     - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
-  - Gesture Processing
+  - [Universal Text Attributes](ts-universal-attributes-text-style.md)
+  - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
       - [TapGesture](ts-basic-gestures-tapgesture.md)

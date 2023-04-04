@@ -689,21 +689,19 @@ async function createTonePlayerBefore(){
 | forceType | [InterruptForceType](#interruptforcetype9) | 是   | 操作是由系统执行或是由应用程序执行。 |
 | hintType  | [InterruptHint](#interrupthint)            | 是   | 中断提示。                           |
 
-## VolumeEvent<sup>8+</sup>
+## VolumeEvent<sup>9+</sup>
 
 音量改变时，应用接收的事件。
-
-**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 | 名称       | 类型                                | 必填   | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
-| volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
-| networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                               |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。     |
+| updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                        |
+| volumeGroupId | number                           | 是   | 音量组id。可用于getGroupManager入参。<br/>此接口为系统接口。  |
+| networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。                             |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -1110,7 +1108,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 设置指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1145,7 +1143,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 设置指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1364,7 +1362,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 设置指定音量流静音，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1395,7 +1393,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 设置指定音量流静音，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[mute](#mute9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[mute](#mute9)替代，替代接口能力仅对系统应用开放。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1550,7 +1548,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 设置铃声模式，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1584,7 +1582,8 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 设置铃声模式，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setRingerMode](#setringermode9)替代，替代接口能力仅对系统应用开放。
+
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1974,12 +1973,12 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>(deprecated)</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
+> 建议使用AudioVolumeManager中的[on('volumeChange')](#onvolumechange9)替代。
 
 监听系统音量变化事件。
 
@@ -1994,7 +1993,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **示例：**
 
@@ -2303,7 +2302,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
-| callback | Callback<[VolumeEvent](#volumeevent8)> | 是   | 回调方法。                                                   |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调方法。                                                   |
 
 **错误码：**
 
@@ -4036,6 +4035,7 @@ audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
 | rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
 
 **示例：**
 
@@ -4094,6 +4094,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口。|
+| deviceDescriptors  | [AudioDeviceDescriptors](#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
 
 **示例：**
 

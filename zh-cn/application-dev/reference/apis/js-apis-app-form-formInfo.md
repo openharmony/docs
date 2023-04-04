@@ -47,7 +47,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | JS      | 1    | 卡片类型为JS。   |
-| eTS     | 2    | 卡片类型为eTS。 |
+| eTS     | 2    | 卡片类型为ArkTS。 |
 
 ## ColorMode
 

@@ -25,7 +25,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -59,7 +59,7 @@ getBundleInstaller(): Promise\<BundleInstaller>;
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -89,7 +89,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 以异步方法安装应用，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INSTALL_BUNDLE
 
@@ -118,7 +118,9 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install because without allow app shared bundle permission. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install because enterprise device management disallow install. |
 
 **示例：**
 
@@ -148,13 +150,84 @@ try {
 }
 ```
 
+## BundleInstaller.install
+
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+
+以异步方法安装应用，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hapFilePaths | Array\<string\>               | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700004 | The specified user ID is not found.                          |
+| 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
+| 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
+| 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
+| 17700015 | Failed to install the HAPs because they have different configuration information. |
+| 17700016 | Failed to install the HAP because of insufficient system disk space. |
+| 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
+| 17700018 | Failed to install because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install because enterprise device management disallow install. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
+let installParam = {
+    userId: 100,
+    isKeepData: false,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.install(hapFilePaths, installParam)
+            .then((data) => {
+                console.info('install success: ' + JSON.stringify(data));
+        }).catch((error) => {
+            console.error('install failed:' + err.message);
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
 ## BundleInstaller.uninstall
 
 uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
 
 以异步方法卸载应用，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INSTALL_BUNDLE
 
@@ -176,6 +249,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
 **示例：**
 
@@ -211,7 +285,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 以异步方法卸载一个共享包，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INSTALL_BUNDLE
 
@@ -265,7 +339,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>;
 
 以异步方法卸载一个共享包，使用Promise形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INSTALL_BUNDLE
 
@@ -324,7 +398,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 以异步方法回滚应用，使用callback形式返回结果。
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INSTALL_BUNDLE
 
@@ -380,7 +454,7 @@ try {
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口，三方应用不支持调用
+ **系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -393,15 +467,15 @@ try {
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口，三方应用不支持调用
+ **系统接口：** 此接口为系统接口。
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 是                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
-| installFlag                    | number                         | 是                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
-| isKeepData                     | boolean                        | 是                       | 卸载时是否保留数据目录。 |
-| hashParams        | Array<[HashParam](#hashparam)> | 是 | 哈希值参数。         |
-| crowdtestDeadline| number                         | 是                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
+| userId                         | number                         | 否                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
+| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
+| isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
+| hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
+| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
 | sharedBundleDirPaths | Array\<String> | 否 |共享包文件所在路径。 |
 
 ## UninstallParam<sup>10+</sup>
@@ -410,7 +484,7 @@ try {
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口，三方应用不支持调用
+ **系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |

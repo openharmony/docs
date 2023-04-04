@@ -48,7 +48,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
- **系统接口：** 系统接口，不支持三方应用调用。
+ **系统接口：** 此接口为系统接口。
 
 | 名称                                 | 值         | 说明                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -63,7 +63,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
- **系统接口：** 系统接口，不支持三方应用调用。
+ **系统接口：** 此接口为系统接口。
 
 | 名称                              | 值         | 说明                                                         |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -80,7 +80,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
- **系统接口：** 系统接口，不支持三方应用调用。
+ **系统接口：** 此接口为系统接口。
 
 | 名称                                        | 值         | 说明                                                         |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -1109,7 +1109,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified extensionAbility is not found.    |
+| 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
