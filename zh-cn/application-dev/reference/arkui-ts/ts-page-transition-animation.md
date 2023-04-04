@@ -8,10 +8,10 @@
 >
 
 
-| 名称                | 参数                                                         | 参数描述                                                     |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay?: number<br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长<br/>单位：毫秒<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>默认值：0<br/>单位：毫秒 |
-| PageTransitionExit  | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay?: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>默认值：0<br/>单位：毫秒 |
+| 名称                | 参数                                                         | 必填 | 参数描述                                                     |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| PageTransitionEnter | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay?: number<br/>} | 否   | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长<br/>单位：毫秒<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>默认值：0<br/>单位：毫秒 |
+| PageTransitionExit  | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay?: number<br/>} | 否   | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：页面转场效果生效的路由类型。<br/>默认值：RouteType.None。<br/>**说明：** <br/>没有匹配时使用系统默认的页面转场效果(根据设备可能会有差异)，如需禁用系统默认页面转场效果，可以指定duration为0。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长。<br/>默认值：0<br/>单位：毫秒 |
 
 ## RouteType枚举说明
 
