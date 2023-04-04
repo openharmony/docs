@@ -132,7 +132,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
       .onAppear(() => {
    
         animateTo({
-         duration: 2000,
+         duration: 1000,
           curve: this.curve1, 
           delay: 100, 
           onFinish: () => {
@@ -196,7 +196,7 @@ The splash screen animation refers to the fade-in and fade-out of the logo. Afte
          .opacity(this.opacityValue)
          .onAppear(() => {
            animateTo({
-             duration: 2000,
+             duration: 1000,
              curve: this.curve1,
              delay: 100,
              onFinish: () => {
