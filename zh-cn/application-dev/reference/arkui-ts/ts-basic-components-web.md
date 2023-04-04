@@ -3101,8 +3101,7 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 ### onFirstContentfulPaint<sup>10+</sup>
 
-onFirstContentfulPaint(callback: (event?: { navigationStartTick: number,
-      firstContentfulPaintMs: number }) => void)
+onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
 
 设置网页首次内容绘制回调函数。
 
