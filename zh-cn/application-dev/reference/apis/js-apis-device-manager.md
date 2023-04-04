@@ -472,6 +472,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
 
 **错误码：**
@@ -506,6 +507,12 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
+**参数：**
+
+  | 参数名   | 类型                                     | 必填 | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
+  
 **返回值：**
 
   | 类型                                       | 说明                    |
