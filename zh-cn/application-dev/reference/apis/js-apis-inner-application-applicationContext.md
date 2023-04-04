@@ -243,45 +243,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-<<<<<<< HEAD
-## ApplicationContext.getProcessRunningInformation
-
-getProcessRunningInformation(): Promise<Array<ProcessRunningInformation>>;
-
-获取当前自身应用的运行信息
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let context = this.context.getApplicationContext();
-        context.getProcessRunningInformation().then((data) => {
-            console.log('Process Running Information is' + JSON.stringify(data));
-        })
-    }
-  }
-```
-
-## ApplicationContext.getProcessRunningInformation
-
-getProcessRunningInformation(callback: AsyncCallback<Array<ProcessRunningInformation>>): void;
-
-获取当前自身应用的运行信息
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名         | 类型     | 必填 | 说明                       |
-| ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | 是   | 回调方法。                  |
-
-=======
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
 off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
@@ -329,59 +290,10 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
->>>>>>> 8e0901e149ffe4f64af581aff3322448cc0bf2bf
 
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-import UIAbility from '@ohos.app.ability.UIAbility'
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let context = this.context.getApplicationContext();
-        context.getProcessRunningInformation((err, data) => {
-            console.log('Process Running Information is:' + JSON.stringify(data));
-        })
-    }
-  }
-```
-
-## ApplicationContext.killProcessesBySelf
-
-killProcessesBySelf(): Promise<void>;
-
-杀死当前自身应用的所有进程
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let context = this.context.getApplicationContext();
-        context.killProcessesBySelf();
-    }
-  }
-```
-
-## ApplicationContext.killProcessesBySelf
-
-killProcessesBySelf(callback: AsyncCallback<void>);
-
-杀死当前自身应用的所有进程
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名         | 类型     | 必填 | 说明                       |
-| ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | 是   | 回调方法。                  |
-=======
 let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
@@ -455,28 +367,14 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 | 类型 | 说明 |
 | -------- | -------- |
 |AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
->>>>>>> 8e0901e149ffe4f64af581aff3322448cc0bf2bf
 
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-import UIAbility from '@ohos.app.ability.UIAbility'
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let context = this.context.getApplicationContext();
-        context.killProcessesBySelf((err, data) => {
-            console.log('Error code is:' + JSON.stringify(err));
-        })
-    }
-  }
-=======
 let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
     if (error && error.code !== 0) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 });
->>>>>>> 8e0901e149ffe4f64af581aff3322448cc0bf2bf
 ```
