@@ -146,7 +146,9 @@ Some built-in communication mechanisms (such as ZIDL) of OpenHarmony already sup
 The following figure shows the process of transferring **traceid** in synchronous call. The process of transferring **traceid** in asynchronous call is similar.
 
   Extended communication mechanisms can also follow this implementation.
+
   **Figure 5** Call chain trace in synchronous communication
+
   ![](figures/call-chain-trace-in-synchronous-communication.png "call-chain-trace-in-synchronous-communication")
 
 The process is as follows:

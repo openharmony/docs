@@ -46,7 +46,7 @@ The following table describes the application scenarios.
 | Crash fault location| Crash log and addr2line tool| For details, see [Locating Faults Based on the Crash Log](#locating-faults-based-on-the-crash-log).|
 
 
-## Using DumpCatcher APIs to Obtain the Call Stack Information
+## Using DumpCatcher APIs to Obtain Call Stack Information
 
 
 ### Available APIs
