@@ -268,7 +268,8 @@
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
-  - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
+  - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (蓝牙)(推荐)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
