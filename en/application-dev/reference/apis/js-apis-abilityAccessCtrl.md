@@ -207,8 +207,8 @@ For details about the error codes, see [Application Access Control Error Codes](
 | ID| Error Message|
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -318,8 +318,8 @@ For details about the error codes, see [Application Access Control Error Codes](
 | ID| Error Message|
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -693,6 +693,44 @@ promise.then(data => {
 });
 ```
 
+### checkAccessTokenSync<sup>10+</sup>
+
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
+
+Checks whether a permission is granted to an application. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | Permission grant state.|
+
+**Error codes**
+
+For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+
+**Example**
+
+```js
+let atManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
+```
+
 ### GrantStatus
 
 Enumerates the permission grant states.
@@ -719,7 +757,7 @@ Enumerates the operations that trigger permission grant state changes.
 
 ### PermissionStateChangeInfo<sup>9+</sup>
 
-Defines detailed information about the permission grant state change.
+Defines information about the permission grant state change.
 
 **System API**: This is a system API.
 
@@ -730,4 +768,3 @@ Defines detailed information about the permission grant state change.
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
 | tokenID        | number                    | Yes  | No  | Token ID of the application. |
 | permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
-

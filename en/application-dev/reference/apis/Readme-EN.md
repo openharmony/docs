@@ -230,8 +230,6 @@
   - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
-  - data/rdb
-    - [resultSet (Result Set)](js-apis-data-resultset.md)
 
 - File Management
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
@@ -446,3 +444,5 @@
     - [PermissionDef](js-apis-bundle-PermissionDef.md)
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
+  - data/rdb
+    - [resultSet (Result Set)](js-apis-data-resultset.md)
