@@ -3,7 +3,7 @@
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs provided by this module are deprecated since API version 9. You are advised to use [cryptoFramework-Cipher](js-apis-cryptoFramework.md#Cipher).
+>- The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.security.cryptoFramework Cipher](js-apis-cryptoFramework.md#cipher).
 
 ## Modules to Import
 
