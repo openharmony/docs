@@ -5043,7 +5043,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
+与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -5051,8 +5051,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频播放被中断。） |
-| callback | Callback<[InterruptEvent](#interruptevent9)> | 是   | 被监听的中断事件的回调。                                     |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断。） |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 被监听的中断事件的回调。                                     |
 
 **错误码：**
 
@@ -5065,50 +5065,68 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 **示例：**
 
 ```js
-let isPlay;
-let started;
+let isPlaying; // 标识符，表示是否正在渲染
+let isDucked; // 标识符，表示是否被降低音量
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', async(interruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          console.info('Force paused. Stop writing');
-          isPlay = false;
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          console.info('Force paused. Update playing status and stop writing');
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          console.info('Force stopped. Stop writing');
-          isPlay = false;
+          // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发
+          console.info('Force stopped. Update playing status and stop writing');
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // 音频流已被降低音量渲染
+          console.info('Force ducked. Update volume status');
+          isDucked = true; // 简化处理，代表应用更新音量状态的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // 音频流已被恢复正常音量渲染
+          console.info('Force ducked. Update volume status');
+          isDucked = false; // 简化处理，代表应用更新音量状态的若干操作
+          break;
+        default:
+          console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // 由应用进行操作，应用可以自主选择打断或忽略
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
           console.info('Resume force paused renderer or ignore');
-          await audioRenderer.start().then(async function () {
-            console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-            started = true;
-          }).catch((err) => {
-            console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
-            started = false;
-          });
-          if (started) {
-            isPlay = true;
-            console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
-          } else {
-            console.error('AudioInterruptMusic Renderer start failed');
-          }
+          // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
           break;
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // 建议应用暂停渲染
           console.info('Choose to pause or ignore');
-          if (isPlay == true) {
-            isPlay == false;
-            console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-          } else {
-            isPlay = true;
-            console.info('AudioInterruptMusic: Media PLAY : TRUE');
-          }
+          // 若选择暂停渲染，需在此处主动执行暂停渲染的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // 建议应用停止渲染
+          console.info('Choose to stop or ignore');
+          // 若选择停止渲染，需在此处主动执行停止渲染的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // 建议应用降低音量渲染
+          console.info('Choose to duck or ignore');
+          // 若选择降低音量渲染，需在此处主动执行降低音量渲染的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // 建议应用恢复正常音量渲染
+          console.info('Choose to unduck or ignore');
+          // 若选择恢复正常音量渲染，需在此处主动执行恢复正常音量渲染的若干操作
+          break;
+        default:
           break;
       }
    }
@@ -5758,6 +5776,83 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
 ```
+
+### on('audioInterrupt')<sup>10+</sup>
+
+on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
+
+监听音频中断事件。使用callback获取中断事件。
+
+与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频采集被中断。） |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 被监听的中断事件的回调。                                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**示例：**
+
+```js
+let isCapturing; // 标识符，表示是否正在采集
+onAudioInterrupt();
+
+async function onAudioInterrupt(){
+  audioCapturer.on('audioInterrupt', async(interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // 由系统进行操作，强制打断音频采集，应用需更新自身状态及显示内容等
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          console.info('Force paused. Update capturing status and stop reading');
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // 音频流已被停止，永久失去焦点，若想恢复采集，需用户主动触发
+          console.info('Force stopped. Update capturing status and stop reading');
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          break;
+        default:
+          console.info('Invalid interruptEvent');
+          break;
+      }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // 由应用进行操作，应用可以自主选择打断或忽略
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）
+          console.info('Resume force paused renderer or ignore');
+          // 若选择继续采集，需在此处主动执行开始采集的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // 建议应用暂停采集
+          console.info('Choose to pause or ignore');
+          // 若选择暂停采集，需在此处主动执行暂停采集的若干操作
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // 建议应用停止采集
+          console.info('Choose to stop or ignore');
+          // 若选择停止采集，需在此处主动执行停止采集的若干操作
+          break;
+        default:
+          break;
+      }
+   }
+  });
+}
+```
+
 
 ### on('markReach')<sup>8+</sup>
 
