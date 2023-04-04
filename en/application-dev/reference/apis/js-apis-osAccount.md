@@ -326,9 +326,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId or constraint.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint.    |
+| 12300003 | Account not found. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -376,9 +376,9 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId or constraint.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint.    |
+| 12300003 | Account not found. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -487,7 +487,7 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **Example**
 
@@ -527,9 +527,9 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **Example**
 
@@ -575,9 +575,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **Example**
 
@@ -720,7 +720,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -774,7 +774,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -987,7 +987,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **Example**
 
@@ -1024,7 +1024,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **Example**
 
@@ -1060,8 +1060,8 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 | ID| Error Message        |
 | -------- | --------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid.    |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid.    |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1104,8 +1104,8 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
@@ -1144,8 +1144,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainInfo. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
 
 **Example**
 
@@ -1191,8 +1191,8 @@ Obtains the OS account ID based on the domain account information. This API uses
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainInfo. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
 
 **Example**
 
@@ -1470,7 +1470,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **Example**
 
@@ -1507,7 +1507,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
+| 12300001 | System service exception. |
 
 **Example**
 
@@ -1858,7 +1858,7 @@ Obtains information about the OS account of the given ID. This API uses a promis
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
 **Example**: Query information about OS account 100.
@@ -2229,9 +2229,9 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid serialNumber. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2272,9 +2272,9 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 
 | ID| Error Message              |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid serialNumber. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2311,9 +2311,9 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2354,9 +2354,9 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 
 | ID| Error Message            |
 | -------- | ------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId.    |
+| 12300003 | Account not found. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2400,7 +2400,6 @@ Subscribes to the OS account activation states, including the states of the acco
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300011 | Callback has been registered. |
 
 **Example**
 
@@ -2442,7 +2441,6 @@ Unsubscribes from the OS account activation states, including the states of the 
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300012 | Callback has not been registered. |
 
 **Example**
 
@@ -2479,8 +2477,8 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **Example**
 
@@ -2522,8 +2520,8 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid uid. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **Example**
 
@@ -2640,9 +2638,9 @@ Obtains the constraint source information of an OS account. This API uses an asy
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid name or constraint. |
+| 12300003 | Account not found. |
 
 **Example**
 
@@ -2687,9 +2685,9 @@ Obtains the constraint source information of an OS account. This API uses a prom
 
 | ID| Error Message      |
 | -------- | ------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid name or constraint. |
+| 12300003 | Account not found. |
 
 **Example**
 
@@ -4113,9 +4111,9 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **Example**
   ```js
@@ -4172,9 +4170,9 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **Example**
   ```js
@@ -4282,7 +4280,7 @@ Register a PIN inputer.
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid inputer. |
+| 12300002 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **Example**
@@ -4347,7 +4345,7 @@ Register a credential inputer.
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid authType or inputer. |
+| 12300002 | Invalid authType or inputer. |
 | 12300103 | The credential inputer has been registered. |
 | 12300106 | Unsupported authType. |
 
@@ -4716,7 +4714,7 @@ Registers a domain plug-in.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300201 | the domain plugin has been registered. |
+| 12300201 | The domain plugin has been registered. |
 
 **Example**
   ```js
@@ -4783,17 +4781,17 @@ Authenticates a domain account.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo or credential. |
-| 12300003 | domain account does not exist. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo or credential. |
+| 12300003 | Domain account does not exist. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **Example**
   ```js
@@ -4836,16 +4834,16 @@ Authenticates this domain account in a pop-up window.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300003 | no domain account is bound. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **Example**
   ```js
@@ -4884,17 +4882,17 @@ Authenticates a domain account in a pop-up window.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid localId. |
-| 12300003 | no domain account is bound. |
-| 12300013 | network exception. |
-| 12300101 | authentication failed. |
-| 12300109 | authentication is canceled. |
-| 12300110 | authentication is locked. |
-| 12300111 | authentication timeout. |
-| 12300112 | authentication service is busy. |
-| 12300113 | authentication service does not exist. |
-| 12300114 | authentication service exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
 
 **Example**
   ```js
@@ -4933,9 +4931,9 @@ Checks whether a domain account exists.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo. |
-| 12300013 | network exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
 
 **Example**
   ```js
@@ -4984,9 +4982,9 @@ Checks whether a domain account exists.
 
 | ID| Error Message                    |
 | -------- | --------------------------- |
-| 12300001 | system service exception. |
-| 12300002 | invalid domainAccountInfo. |
-| 12300013 | network exception. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
 
 **Example**
   ```js
@@ -5389,7 +5387,6 @@ Obtains authentication information. This API uses an asynchronous callback to re
 | ID| Error Message              |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -5429,7 +5426,6 @@ Obtains authentication information of the specified type. This API uses an async
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -5474,7 +5470,6 @@ Obtains authentication information of the specified type. This API uses a promis
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -5512,6 +5507,12 @@ Called to set data in a PIN operation.
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
 | authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ------------------- |
+| 12300002 | Invalid pinSubType. |
 
 **Example**
   ```js
@@ -5975,7 +5976,7 @@ Defines the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
-| accountId<sup>10+</sup> | string | No  | Domain account ID.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API.|
 
 ## Constraints
 

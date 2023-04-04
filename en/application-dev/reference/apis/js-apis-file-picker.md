@@ -1,10 +1,11 @@
 # @ohos.file.picker (File Picker)
 
+The File Picker encapsulates system applications, such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker**, and provides capabilities of selecting and saving photos, documents, and audio clips. The application can select the picker as required.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-The File Picker encapsulates system applications, such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker**, and provides capabilities of selecting and saving photos, documents, and audio clips. The application can select the picker as required.
 
 ## Modules to Import
 ```js
