@@ -233,6 +233,7 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
+  - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
