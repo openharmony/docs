@@ -300,6 +300,33 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
+## UIAbility.onShare<sup>10+</sup>
+
+onShare(wantParam:{ [key: string]: Object }): void;
+
+ability分享数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+
+**示例：**
+    
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+class MyUIAbility extends UIAbility {
+    onShare(wantParams) {
+        console.log('onShare');
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+    }
+}
+  ```
 
 
 ## Caller

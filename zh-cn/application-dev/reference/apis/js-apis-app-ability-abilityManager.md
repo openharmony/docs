@@ -383,3 +383,75 @@ abilityManager.getTopAbility().then((data) => {
     console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
 });
 ```
+
+## acquireShareData<sup>10+</sup>
+
+acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+
+获取目标设备的分享数据（callback形式）。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| missionId | number                                   | 是 | 目标设备的missionId，最大为2<sup>31</sup>-1。 |
+| callback  | AsyncCallback<{[key: string]: Object}>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+abilityManager.acquireShareData(1, (err, wantParam) => { 
+    if (err && err.code !== 0) {
+        console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
+    } else {
+        console.log('acquireShareData success, data: ${JSON.stringify(data)}');
+    }
+});
+
+```
+
+## acquireShareData<sup>10+</sup>
+
+acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+
+获取目标设备的分享数据（Promise形式）。
+ 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例**：
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log('acquireShareData success, data: ${JSON.stringify(data)}');
+}).catch((err) => {
+    console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
+});
+```
