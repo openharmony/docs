@@ -267,7 +267,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 ## 限制
 
 为了降低DataShareExtensionAbility能力被三方应用滥用的风险，在DataShareExtensionAbility中限制以下接口的调用
-- @ohos.app.ability.UIAbility.d.ts
+- UIAbilityContext.d.ts
 - @ohos.ability.featureAbility.d.ts
 - @ohos.ability.particleAbility.d.ts
 - @ohos.account.osAccount.d.ts
