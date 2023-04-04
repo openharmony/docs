@@ -464,7 +464,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
-获取指定设备信息。使用callback异步回调。
+获取指定设备的信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -502,7 +502,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
-获取指定设备信息。使用Promise异步回调。
+获取指定设备的信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
