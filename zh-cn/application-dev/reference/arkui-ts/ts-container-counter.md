@@ -24,8 +24,8 @@ Counter()
 
 | 名称                          | 参数类型                               | 描述                                       |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| enableInc<sup>10+</sup>              | boolean                            | 设置数值增加按钮是否可用。<br/>默认值：true   |
-| enableDec<sup>10+</sup>           | boolean                                  | 设置数值减少按钮是否可用。<br/>默认值：true |
+| enableInc<sup>10+</sup>              | boolean                            | 设置增加按钮禁用或使能。<br/>默认值：true   |
+| enableDec<sup>10+</sup>           | boolean                                  | 设置减少按钮禁用或使能。<br/>默认值：true |
 
 ## 事件
 
