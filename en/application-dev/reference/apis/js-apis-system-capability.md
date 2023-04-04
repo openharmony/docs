@@ -5,6 +5,7 @@ System capability (SysCap) refers to a relatively independent feature in the ope
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > - The APIs provided by this module are system APIs.
 
 
@@ -16,7 +17,7 @@ import systemcapability from '@ohos.systemCapability'
 
 ## systemcapability.querySystemCapabilities
 
-querySystemCapabilities(callback: AsyncCallback<string>): void;
+querySystemCapabilities(callback: AsyncCallback&lt;string&gt;): void;
 
 Queries system capabilities. This API uses an asynchronous callback to return the result.
 
@@ -51,7 +52,7 @@ querySystemCapabilities(): Promise&lt;string&gt;
 
 Queries system capabilities. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Startup.SystemInfo
+**System capability**: SystemCapability.Developtools.Syscap
 
 **Return value**
 
@@ -76,4 +77,5 @@ try {
 
 
 > **NOTE**
-> - The system capabilities returned by the preceding APIs are in the form of an encoded numeric string.
+>
+> The system capabilities returned by the preceding APIs are in the form of an encoded numeric string.
