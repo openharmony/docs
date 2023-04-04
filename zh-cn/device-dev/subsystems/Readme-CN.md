@@ -18,6 +18,10 @@
       - [加快本地编译的一些参数](subsys-build-reference.md)
       - [查看NinjaTrace](subsys-build-reference.md)
       - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
+      - Rust编译构建指导
+        - [Rust模块配置规则和指导](subsys-build-rust-compilation.md)
+        - [Bindgen、CXX工具使用指导](subsys-build-bindgen-cxx-guide.md)
+        - [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
