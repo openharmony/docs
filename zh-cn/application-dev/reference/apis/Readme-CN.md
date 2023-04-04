@@ -233,6 +233,7 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
+  - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
@@ -267,7 +268,8 @@
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
-  - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
+  - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (蓝牙)(推荐)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -352,6 +354,7 @@
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)

@@ -57,6 +57,7 @@
   - [网络共享错误码](errorcode-net-sharing.md)
   - [策略管理错误码](errorcode-net-policy.md)
 - 通信与连接
+  - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)

@@ -1281,6 +1281,14 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 | values   | [ValuesBucket](#valuesbucket) | 是   | 表示要插入到表中的数据行。                                 |
 | callback | AsyncCallback&lt;number&gt;   | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1315,6 +1323,14 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
 | conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                         |
 | callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1355,6 +1371,14 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1394,6 +1418,14 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1426,6 +1458,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 | table    | string                                     | 是   | 指定的目标表名。                                             |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。                                 |
 | callback | AsyncCallback&lt;number&gt;                | 是   | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1480,6 +1520,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1527,6 +1575,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1563,6 +1619,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1605,6 +1669,14 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1646,6 +1718,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1683,6 +1763,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1729,6 +1817,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1764,6 +1860,14 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1798,6 +1902,14 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1828,6 +1940,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | table      | string                                                       | 是   | 指定的目标表名。                              |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1866,6 +1986,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -2205,6 +2333,14 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。    |
 | callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -2239,6 +2375,14 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -2258,6 +2402,14 @@ beginTransaction():void
 在开始执行SQL语句之前，开始事务。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
