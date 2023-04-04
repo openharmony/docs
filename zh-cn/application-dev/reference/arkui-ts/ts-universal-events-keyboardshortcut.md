@@ -8,14 +8,14 @@
 
 ## 接口
 
-keyboardShortcut(value: string | [FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey), keys: Array<[CtrlKey](ts-universal-events-keyboardshortcut.md#CtrlKey)>)
+keyboardShortcut(value: string | [FunctionKey], keys: Array<[CtrlKey]>)
 
 **参数：**
 
-| 参数名 | 参数类型                                                     | 必填 | 参数描述                                                     |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | string \| [FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey) | 是   | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](ts-universal-events-keyboardshortcut.md#FunctionKey)。<br/>默认值：无 |
-| keys   | Array<[CtrlKey](ts-universal-events-keyboardshortcut.md#CtrlKey)> | 是   | 热键组合。<br/>默认值：无                                    |
+| 参数名 | 参数类型                              | 必填 | 参数描述                                                     |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string \| [FunctionKey](#FunctionKey) | 是   | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#FunctionKey)。<br/> |
+| keys   | Array<[CtrlKey](#CtrlKey)>            | 是   | 热键组合。<br/>                                              |
 
 ## CtrlKey枚举说明
 
@@ -58,7 +58,7 @@ keyboardShortcut(value: string | [FunctionKey](ts-universal-events-keyboardshort
 | 快捷键的响应                                                 | 所有快捷键down的状态下响应、且连续响应                   | 无                                                           |
 | 隐藏组件<br />                                               | 响应快捷键                                               | 无                                                           |
 | disable状态组件                                              | 不响应快捷键                                             | 无                                                           |
-| 1.组件的组合键(包括系统预定义快捷键)相同时;<br />2.接口参数value有多个字符时;<br />3.接口参数keys有重复的控制键时; | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效         | Button('button1').keyboardShortcut('c',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[CtrlKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[CtrlKey.CTRL,CtrlKey.CTRL]) |
+| 1. 组件的组合键(包括系统预定义快捷键)相同时。<br />2. 接口参数value有多个字符时。<br />3. 接口参数keys有重复的控制键时。 | 这几种情况不绑定组合键, 先前绑定的组合键仍然有效         | Button('button1').keyboardShortcut('c',[CtrlKey.CTRL])<br />Button('button2').keyboardShortcut('ab',[CtrlKey.CTRL])<br />Button('button3').keyboardShortcut('ab',[CtrlKey.CTRL,CtrlKey.CTRL]) |
 
 ## 系统已有组合键
 
@@ -76,6 +76,8 @@ keyboardShortcut(value: string | [FunctionKey](ts-universal-events-keyboardshort
 | TAB键          | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 
 ## 示例
+
+设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
 ```ts
 @Entry
