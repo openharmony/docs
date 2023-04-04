@@ -3099,6 +3099,42 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
   }
   ```
 
+### onFirstContentfulPaint<sup>10+</sup>
+
+onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+
+设置网页首次内容绘制回调函数。
+
+**参数：**
+
+| 参数名                 |  参数类型  | 参数描述                            |
+| -----------------------| -------- | ----------------------------------- |
+| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示。|
+| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onFirstContentfulPaint(event => {
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+              event.firstContentfulPaintMs)
+          })
+      }
+    }
+  }
+  ```
+
 ### onLoadIntercept<sup>10+</sup>
 
 onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
