@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.4 LTS
+# OpenHarmony 1.1.4 LTS (停止维护)
 
 ## 版本概述
 
