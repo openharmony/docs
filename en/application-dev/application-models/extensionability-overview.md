@@ -25,6 +25,12 @@ An [ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionab
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md): ExtensionAbility component of the enterprise_admin type, which provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.
 
+> **NOTE**<br>
+> 1. Third-party applications cannot implement ServiceExtensionAbility, DataShareExtensionAbility, StaticSubscriberExtensionAbility, or WindowExtensionAbility.
+>
+> 2. To implement transaction processing in the background for a third-party application, use background tasks rather than ServiceExtensionAbility. For details, see [Background Task](../task-management/background-task-overview.md).
+>
+> 3. Third-party applications can use other types of ExtensionAbility components that have been defined.
 
 ## Using ExtensionAbility of the Specified Type
 

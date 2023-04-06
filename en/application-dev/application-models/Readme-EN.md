@@ -17,7 +17,6 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility (for System Applications Only)](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
@@ -46,7 +45,7 @@
         - [Common Event Subscription Overview](common-event-subscription-overview.md)
         - [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md)
         - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
-      - [Unsubscribing from Common Events](common-event-unsubscription.md)
+        - [Unsubscribing from Common Events](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
     - [Background Services](background-services.md)
   - Inter-Thread Communication
