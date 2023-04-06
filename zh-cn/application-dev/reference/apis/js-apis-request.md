@@ -615,6 +615,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 ## UploadConfig
+上传任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -630,6 +631,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 ## TaskState<sup>9+</sup>
 
+上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
@@ -641,6 +644,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
+[UploadConfig](#uploadconfig)中的文件列表。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -655,6 +659,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 ## RequestData
+[UploadConfig](#uploadconfig)中的表单数据。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1655,6 +1660,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadConfig
+下载任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1674,6 +1680,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadInfo<sup>7+</sup>
+下载任务信息，[query<sup>(deprecated)</sup>](#querydeprecated-1)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
