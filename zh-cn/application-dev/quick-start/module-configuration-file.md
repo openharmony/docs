@@ -132,7 +132,21 @@ deviceTypes示例：
 }
 ```
 
-在开发视图的resources/base/profile下面定义配置文件**main_pages**.json，其中文件名(**main_pages**)可自定义，需要和前文中pages标签指定的信息对应，配置文件中列举了当前应用组件中的页面信息。
+在开发视图的resources/base/profile下面定义配置文件**main_pages**.json，其中文件名(**main_pages**)可自定义，需要和前文中pages标签指定的信息对应。配置文件中列举了当前应用组件中的页面信息，包含页面的路由信息和显示窗口相关的配置。
+
+  **表3** **pages配置文件标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| src | 描述有关JavaScript模块中所有页面的路由信息，包括页面路径和页面名称。该值是一个字符串数组，其中每个元素表示一个页面，第一个元素表示主页。 | 字符串数组 | 该标签不可缺省。 |
+| window | 用于定义与显示窗口相关的配置。	 | 对象 | 该标签可缺省，缺省值为空。 |
+
+  **表4** **pages配置文件中的window标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
+| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
 
 
 ```json
@@ -142,7 +156,11 @@ deviceTypes示例：
     "pages/second/payment",
     "pages/third/shopping_cart",
     "pages/four/owner"
-  ]
+  ],
+  "window": {
+    "designWidth": 720,
+    "autoDesignWidth": false
+  }
 }
 ```
 
@@ -151,7 +169,7 @@ deviceTypes示例：
 
 该标签标识HAP的自定义元信息，标签值为数组类型，包含name，value，resource三个子标签。
 
-  **表3** **metadata标签说明**
+  **表5** **metadata标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -203,7 +221,7 @@ deviceTypes示例：
 
 ablities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
 
-  **表4** **abilities标签说明**
+  **表6** **abilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -286,7 +304,7 @@ abilities示例：
 
 该标签标识UIAbility组件或者ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征。
 
-  **表5** **skills标签说明**
+  **表7** **skills标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -294,7 +312,7 @@ abilities示例：
 | entities | 标识能够接收Want的[Entity值的集合](../application-models/actions-entities.md)。 | 字符串数组 | 可缺省，缺省值为空。 |
 |uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 可缺省，缺省值为空。 |
 
-  **表6** **uris对象内部结构说明**
+  **表8** **uris对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -340,7 +358,7 @@ skills示例：
 
 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbilities生效。
 
-  **表7** **extensionAbilities标签说明**
+  **表9** **extensionAbilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -368,7 +386,7 @@ extensionAbilities示例：
       "icon": "$media:icon",
       "label" : "$string:extension_name",
       "description": "$string:form_description",
-      "type": "form", 
+      "type": "form",
       "permissions": ["ohos.abilitydemo.permission.PROVIDER"],
       "readPermission": "",
       "writePermission": "",
@@ -382,7 +400,7 @@ extensionAbilities示例：
       "metadata": [
         {
           "name": "ohos.extension.form",
-          "resource": "$profile:form_config", 
+          "resource": "$profile:form_config",
         }
       ]
     }
@@ -399,7 +417,7 @@ extensionAbilities示例：
 >
 > 在requestPermissions标签中配置的权限项将在应用级别生效，即该权限适用于整个应用程序。
 
-**表8** **requestPermissions标签说明**
+**表10** **requestPermissions标签说明**
 
 | 属性 | 含义 | 类型 | 取值范围 | 默认值 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -439,7 +457,9 @@ metadata中指定shortcut信息，其中：
 - name：指定shortcuts的名称。使用ohos.ability.shortcuts作为shortcuts信息的标识。
 
 - resource：指定shortcuts信息的资源位置。
-  
+
+**表11** **shortcuts标签说明**
+
 | 属性 | 含义 | 类型  | 默认值 |
 | -------- | -------- | -------- | -------- |
 | shortcutId | 标识快捷方式的ID。字符串的最大长度为63字节。 | 字符串 | 该标签不可缺省。 |
@@ -449,7 +469,7 @@ metadata中指定shortcut信息，其中：
 
 
 1. 在/resource/base/profile/目录下配置shortcuts_config.json配置文件。
-   
+
    ```json
    {
      "shortcuts": [
@@ -469,7 +489,7 @@ metadata中指定shortcut信息，其中：
    ```
 
 2. 在module.json5配置文件的abilities标签中，针对需要添加快捷方式的UIAbility进行配置metadata标签，使shortcut配置文件对该UIAbility生效。
-   
+
    ```json
    {
      "module": {
@@ -506,7 +526,7 @@ metadata中指定shortcut信息，其中：
 
 该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distroFilter用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
 
-  **表9** **distroFilter标签配置说明**
+  **表12** **distroFilter标签配置说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -516,35 +536,35 @@ metadata中指定shortcut信息，其中：
 | screenDensity | 标识屏幕的像素密度（dpi：Dot&nbsp;Per&nbsp;Inch）。该字段可选，如果配置了该字段，取值必须合法。该标签为字符串数组，字符串范围如下。<br/>-&nbsp;sdpi：表示小规模的屏幕密度（Small-scale&nbsp;Dots&nbsp;per&nbsp;Inch），适用于dpi取值为(0,120]的设备。<br/>-&nbsp;mdpi：表示中规模的屏幕密度（Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(120,160]的设备。<br/>-&nbsp;ldpi：表示大规模的屏幕密度（Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(160,240]的设备。<br/>-&nbsp;xldpi：表示大规模的屏幕密度（Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(240,320]的设备。<br/>-&nbsp;xxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(320，480]的设备。<br/>-&nbsp;xxxldpi：表示大规模的屏幕密度（Extra&nbsp;Extra&nbsp;Extra&nbsp;Large-scale&nbsp;Dots&nbsp;Per&nbsp;Inch），适用于dpi取值为(480,&nbsp;640]的设备。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | countryCode | 表示应用需要分发的国家地区码，具体值以ISO-3166-1标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
-  **表10** **apiVersion标签说明**
+  **表13** **apiVersion标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 支持的取值为API&nbsp;Version存在的整数值，例如4、5、6。场景示例：某应用，针对相同设备型号，同时在网的为使用API&nbsp;5和API&nbsp;6开发的两个软件版本，则允许上架2个entry类型的安装包，分别支持到对应设备侧软件版本的分发。 | 数组 | 该标签不可缺省。 |
 
-  **表11** **screenShape对象的内部结构**
+  **表14** **screenShape对象的内部结构**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 支持的取值为circle（圆形）、rect（矩形）。场景示例：针对智能穿戴设备，可为圆形表盘和矩形表盘分别提供不同的HAP。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表12** **screenWindow对象的内部结构说明**
+  **表15** **screenWindow对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示该字段取值不包含value枚举值匹配规则的匹配该属性。<br/>-&nbsp;include：表示该字段取值满足value枚举值匹配规则的匹配该属性。 | 字符串 | 该标签不可缺省。 |
 | value | 单个字符串的取值格式为“宽&nbsp;\*&nbsp;高”，取值为整数像素值，例如“454&nbsp;\*&nbsp;454”。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表13** **screenDensity对象的内部结构说明**
+  **表16** **screenDensity对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 该标签标识屏幕的像素密度（dpi&nbsp;:Dot&nbsp;Per&nbsp;Inch）。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表14** **countryCode对象的内部结构说明**
+  **表17** **countryCode对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -618,7 +638,7 @@ metadata中指定shortcut信息，其中：
 
 此标签用于支持对测试框架的配置。
 
-  **表15** **testRunner标签说明**
+  **表18** **testRunner标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
