@@ -299,7 +299,7 @@ try {
 
 getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\<BundlePackInfo>;
 
-Obtains **bundlePackInfo** based on **bundleName** and **bundleFlag**. This API uses a promise to return the result.
+Obtains **bundlePackInfo** based on **bundleName** and **BundlePackFlag**. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
