@@ -955,7 +955,7 @@ truncate(file: string|number, len?: number): Promise&lt;void&gt;
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len    | number | 否   | 文件截断后的长度，以字节为单位。 |
+| len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **返回值：**
 
@@ -989,7 +989,7 @@ truncate(file: string|number, len?: number, callback: AsyncCallback&lt;void&gt;)
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
 | file     | string\|number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len      | number                    | 否   | 文件截断后的长度，以字节为单位。 |
+| len      | number                    | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
 **示例：**
@@ -1020,7 +1020,7 @@ truncateSync(file: string|number, len?: number): void
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len    | number | 否   | 文件截断后的长度，以字节为单位。 |
+| len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **示例：**
 
@@ -1575,7 +1575,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 
@@ -1628,7 +1628,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
   | callback | AsyncCallback&lt;string[]&gt; | 是    | 异步列出文件名数组之后的回调。              |
 
 **options参数说明：**
@@ -1679,7 +1679,7 @@ listFileSync(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 

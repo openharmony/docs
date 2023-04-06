@@ -1,4 +1,4 @@
-# @ohos.file.fileUri (文件URI)
+# @ohos.file.fileuri (文件URI)
 
 该模块提供通过PATH获取文件统一资源标志符（Uniform Resource Identifier，URI），后续可通过使用[@ohos.file.fs](js-apis-file-fs.md)进行相关open、read、write等操作，实现文件分享。
 
@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import fileUri from "@ohos.file.fileUri";
+import fileuri from "@ohos.file.fileuri";
 ```
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
@@ -56,5 +56,5 @@ getUriFromPath(path: string): string
 
   ```js
 let filePath = pathDir + "test.txt";
-let uri = fileUri.getUriFromPath(filePath);
+let uri = fileuri.getUriFromPath(filePath);
   ```
