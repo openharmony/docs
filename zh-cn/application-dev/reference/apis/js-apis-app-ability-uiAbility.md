@@ -402,10 +402,10 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -483,10 +483,10 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
             data.readParcelable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -525,10 +525,10 @@ release(): void;
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
+          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -565,10 +565,10 @@ release(): void;
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -614,10 +614,10 @@ release(): void;
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -664,10 +664,10 @@ off(type: 'release', callback: OnReleaseCallback): void;
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -713,10 +713,10 @@ off(type: 'release'): void;
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {  
-            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -786,7 +786,7 @@ on(method: string, callback: CalleeCallback): void;
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -825,7 +825,7 @@ off(method: string): void;
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }

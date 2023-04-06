@@ -33,7 +33,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('size = ${missions.length}');

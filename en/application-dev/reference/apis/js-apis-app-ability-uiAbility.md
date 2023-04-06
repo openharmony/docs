@@ -375,10 +375,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -456,10 +456,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             data.readParcelable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -498,10 +498,10 @@ Releases the caller interface of the target ability.
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
+          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -538,10 +538,10 @@ Registers a callback that is invoked when the stub on the target ability is disc
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.onRelease catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -587,10 +587,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -637,10 +637,10 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -686,10 +686,10 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {  
-            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -759,7 +759,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -798,7 +798,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }

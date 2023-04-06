@@ -213,8 +213,8 @@ Caller相关接口使用RPC废弃的Sequenceable和MessageParcel对象，使用R
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
@@ -257,8 +257,8 @@ Caller相关接口使用RPC废弃的Sequenceable和MessageParcel对象，使用R
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }

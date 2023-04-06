@@ -170,7 +170,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
   let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
         if (error.code) {
-          console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
         }
 
@@ -247,7 +247,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -319,7 +319,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -328,7 +328,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.error('getMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('bundleName = ${snapshot.ability.bundleName}');
@@ -408,7 +408,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -492,7 +492,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -580,7 +580,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -716,7 +716,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -757,7 +757,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
