@@ -43,7 +43,7 @@
   - 获取[AbilityStageContext](../reference/apis/js-apis-inner-application-abilityStageContext.md)。Module级别的Context，和基类Context相比，额外提供HapModuleInfo、Configuration等信息。
     
      ```ts
-     import AbilityStage from "@ohos.app.ability.AbilityStage";
+     import AbilityStage from '@ohos.app.ability.AbilityStage';
      export default class MyAbilityStage extends AbilityStage {
        onCreate() {
          let abilityStageContext = this.context;
@@ -80,17 +80,17 @@
 
 从Context中获取的应用开发路径如下表所示。
 
-  **表1** 应用开发路径说明
+**表1** 应用开发路径说明
 
 | 属性名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。<br/>对应于"设置&nbsp;&gt;&nbsp;应用管理"，找到对应应用的"存储"中的缓存内容。 |
-| tempDir | string | 是 | 否 | 应用的临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
-| filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
-| databaseDir | string | 是 | 否 | 获取本地数据库存储路径。 |
-| bundleCodeDir | string | 是 | 否 | 应用在内部存储上的安装路径。 |
-| distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 |
-| preferencesDir | string | 是 | 是 | 指示应用程序首选项目录。 |
+| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。                   |
+| cacheDir | string | 是 | 否 | 应用缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
+| filesDir            | string   | 是   | 否   | 应用通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
+| preferencesDir      | string   | 是   | 是   | 应用首选项文件路径。指示应用程序首选项目录。                 |
+| tempDir             | string   | 是   | 否   | 应用临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
+| databaseDir         | string   | 是   | 否   | 数据库路径。获取本地数据库存储路径。                         |
+| distributedFilesDir | string | 是 | 否 | 应用分布式文件路径。 |
 
 获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
 
@@ -198,7 +198,7 @@ export default class EntryAbility extends UIAbility {
   
   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-      let bundleName2 = "com.example.application";
+      let bundleName2 = 'com.example.application';
       let context2 = this.context.createBundleContext(bundleName2);
       let label2 = context2.applicationInfo.label;
       // ...
@@ -208,19 +208,20 @@ export default class EntryAbility extends UIAbility {
 
 - 调用createModuleContext(bundleName:string, moduleName:string)方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
   > **说明：**
+  >
   > 当获取的是其他应用的指定Module的Context时：
-  > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
-  > 
+  >
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+  >
   > - 接口为系统接口，三方应用不支持调用。
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-      let bundleName2 = "com.example.application";
-      let moduleName2 = "module1";
+      let bundleName2 = 'com.example.application';
+      let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(bundleName2, moduleName2);
       // ...
     }
@@ -234,7 +235,7 @@ export default class EntryAbility extends UIAbility {
   
   export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-      let moduleName2 = "module1";
+      let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(moduleName2);
       // ...
     }
@@ -306,7 +307,7 @@ export default class EntryAbility extends UIAbility {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
     // 注册应用内生命周期回调
-    this.lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
+    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
     console.log(TAG, `register callback number: ${this.lifecycleId}`);
   }
 
@@ -316,7 +317,7 @@ export default class EntryAbility extends UIAbility {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
     // 取消应用内生命周期回调
-    applicationContext.off("abilityLifecycle", this.lifecycleId);
+    applicationContext.off('abilityLifecycle', this.lifecycleId);
   }
 }
 ```
