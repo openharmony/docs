@@ -617,6 +617,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 ## UploadConfig
+上传任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -631,6 +632,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
+上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -643,6 +645,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
+[UploadConfig](#uploadconfig)中的文件列表。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -657,6 +660,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 ## RequestData
+[UploadConfig](#uploadconfig)中的表单数据。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1657,6 +1661,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadConfig
+下载任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1676,6 +1681,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadInfo<sup>7+</sup>
+下载任务信息，[query<sup>(deprecated)</sup>](#querydeprecated-1)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1694,3 +1700,5 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | downloadTotalBytes | number | 是 | 下载的文件的总大小（int&nbsp;bytes）。 |
 | description | string | 是 | 待下载文件的描述信息。 |
 | downloadedBytes | number | 是 | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+
+<!--no_check-->
