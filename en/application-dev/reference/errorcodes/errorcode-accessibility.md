@@ -1,5 +1,9 @@
 # Accessibility Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 9300001 Invalid Bundle Name or Ability Name
 
 **Error Message**
