@@ -1,5 +1,9 @@
 # Account Management Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 The following includes the error codes for OS accounts, distributed accounts, and app accounts.
 
 ## 12300001 System Service Abnormal

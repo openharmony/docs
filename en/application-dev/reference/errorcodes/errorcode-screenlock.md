@@ -1,5 +1,9 @@
 # Screen Lock Management Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 13200002 Screen Lock Management Service Is Abnormal
 
 **Error Message**
