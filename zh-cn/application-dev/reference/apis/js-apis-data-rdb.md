@@ -1565,7 +1565,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。 |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为[]。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
@@ -1594,7 +1594,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。当sql参数语句完整时，该参数不填。 |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -1627,7 +1627,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。 |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为[]。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
@@ -1656,7 +1656,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sql | string | 是 | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。当sql参数语句完整时，该参数不填。 |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否 | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
