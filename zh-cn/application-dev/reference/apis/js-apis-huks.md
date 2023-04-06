@@ -1097,12 +1097,12 @@ let emptyOptions = {
 huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
     if (data) {
       promptAction.showToast({
-        message: "别名为: " + keyAlias +"的密钥是存在的！",
+        message: "keyAlias: " + keyAlias +"is existed！",
         duration: 2500,
       })
     } else {
       promptAction.showToast({
-        message: "密钥删除失败，错误码是： " + error.code + " 错误吗信息： " + error.message,
+        message: "find key failed，error code： " + error.code + " error msg： " + error.message,
         duration: 2500,
       })
     }
@@ -1140,12 +1140,12 @@ let emptyOptions = {
 };
 await huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     promptAction.showToast({
-      message: "别名为: " + keyAlias +"的密钥是存在的！",
+      message: "keyAlias: " + keyAlias +"is existed！",
       duration: 500,
     })
   }).catch((err)=>{
     promptAction.showToast({
-      message: "密钥删除失败，错误码是： " + err.code + " 错误吗信息： " + err.message,
+      message: "find key failed, error code： " + err.code + " error message： " + err.message,
       duration: 6500,
     })
   })
@@ -1198,7 +1198,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **参数：**
 
-| 参数名   | 类型                                                 ,| 必填 | 说明                                         |
+| 参数名   | 类型                                                 | 必填 | 说明                                         |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | updateSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession的参数集合。                           |
@@ -1920,10 +1920,10 @@ async function huksAbort() {
 | HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。                   |
 | HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。                     |
 | HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。                 |
-| HUKS_TAG_ACTIVE_DATETIME<sup>deprecated</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 预留给证书业务的字段，由于证书管理已独立，此字段不再预留。                                 |
-| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>deprecated</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 预留给证书业务的字段，由于证书管理已独立，此字段不再预留。                                 |
-| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>deprecated</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 预留给证书业务的字段，由于证书管理已独立，此字段不再预留。                                 |
-| HUKS_TAG_CREATION_DATETIME<sup>deprecated</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | 预留给证书业务的字段，由于证书管理已独立，此字段不再预留。                         |
+| HUKS_TAG_ACTIVE_DATETIME<sup>deprecated</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
+| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>deprecated</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
+| HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>deprecated</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
+| HUKS_TAG_CREATION_DATETIME<sup>deprecated</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                         |
 | HUKS_TAG_ALL_USERS                           | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301      | 预留                                 |
 | HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | 表示当前密钥属于哪个userID                                 |
 | HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | 预留。                                 |
