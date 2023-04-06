@@ -183,7 +183,7 @@ struct ListLanesExample {
       .lanes({ minLength: 40, maxLength: 40 })
       .alignListItem(this.alignListItem)
 
-      Button("Change alignListItem: "+ this.alignListItem).onClick(() => {
+      Button("Click to modify alignListItem: "+ this.alignListItem).onClick(() => {
         if (this.alignListItem == ListItemAlign.Start) {
           this.alignListItem = ListItemAlign.Center
         } else if (this.alignListItem == ListItemAlign.Center) {
