@@ -104,6 +104,8 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 Creates an **AVRecorder** instance. This API uses an asynchronous callback to return the result.
 Only one **AVRecorder** instance can be created per device.
 
+To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Parameters**
@@ -141,6 +143,8 @@ createAVRecorder(): Promise\<AVRecorder>
 
 Creates an **AVRecorder** instance. This API uses a promise to return the result.
 Only one **AVRecorder** instance can be created per device.
+
+To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1698,6 +1702,8 @@ A recording management class that provides APIs to record media assets. Before c
 
 For details about the AVRecorder demo, see [AVRecorder Development](../../media/avrecorder.md).
 
+To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
@@ -1715,8 +1721,6 @@ Sets audio and video recording parameters. This API uses an asynchronous callbac
 **Required permissions:** ohos.permission.MICROPHONE
 
 This permission is required only if audio recording is involved.
-
-To use the camera to record videos, the camera module is required. For details about how to obtain the permissions and use the APIs, see [Camera Management](js-apis-camera.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -1781,8 +1785,6 @@ Sets audio and video recording parameters. This API uses a promise to return the
 **Required permissions:** ohos.permission.MICROPHONE
 
 This permission is required only if audio recording is involved.
-
-To use the camera to record videos, the camera module is required. For details about how to obtain the permissions and use the APIs, see [Camera Management](js-apis-camera.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 

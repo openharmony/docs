@@ -20,15 +20,15 @@ The following figures show the AVRecorder state transition and the interaction w
 
 ## Constraints
 
-Before developing the recording feature, configure the permissions **ohos.permission.MICROPHONE** and **ohos.permission.CAMERA** for your application. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+Before developing audio recording, configure the permission **ohos.permission.MICROPHONE** for your application. For details about the configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md). 
+
+To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
 
 ## How to Develop
 
 For details about the AVRecorder APIs, see the [AVRecorder APIs in the Media Class](../reference/apis/js-apis-media.md#avrecorder9).
 
 For details about the processes related to the media library, see [Media Library Management](../reference/apis/js-apis-medialibrary.md).
-
-For details about the camera-related process, see [Camera Management](../reference/apis/js-apis-camera.md).
 
 ### Full-Process Scenario of Audio and Video Recording
 
