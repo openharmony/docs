@@ -6,7 +6,7 @@
 
 - [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
 - [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
-- [Resultset](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
