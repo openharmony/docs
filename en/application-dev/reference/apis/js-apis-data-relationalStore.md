@@ -6,7 +6,7 @@ The **relationalStore** module provides the following functions:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
-- [Resultset](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
+- [ResultSet](#resultset): provides APIs for accessing the result set obtained from the RDB store. 
 
 > **NOTE**
 > 
