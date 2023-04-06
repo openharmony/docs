@@ -68,7 +68,7 @@
 | [OH_MD_KEY_PIXEL_FORMAT](_codec_base.md#oh_md_key_pixel_format) | 视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 | 
 | [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | 音频采样格式的字符描述符，值类型为uint32_t。 | 
 | [OH_MD_KEY_FRAME_RATE](_codec_base.md#oh_md_key_frame_rate) | 视频帧率的字符描述符，值类型为double。| 
-| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | 视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_core.md#oh_videoencodebitratemode)。 | 
+| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | 视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 | 
 | [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile) | 音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](_codec_base.md#oh_avcprofile)或[OH_AACProfile](_codec_base.md#oh_aacprofile)。 | 
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](_codec_base.md#oh_md_key_aud_channel_count) | 音频声道数的字符描述符，值类型为uint32_t。 | 
 | [OH_MD_KEY_AUD_SAMPLE_RATE](_codec_base.md#oh_md_key_aud_sample_rate) | 音频采样率的字符描述符，值类型为uint32_t。 | 
