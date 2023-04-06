@@ -17,6 +17,7 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
   import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
   let context;
+  let commRemote; // Release the instance when the connection is disconnected.
   class EntryAbility extends ServiceExtensionAbility {
     onCreate() {
       context = this.context; // Obtain a ServiceExtensionContext instance.
@@ -55,6 +56,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -126,6 +128,7 @@ Starts an ability. This API uses a promise to return the result.
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -195,6 +198,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -271,6 +275,7 @@ Observe the following when using this API:
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -346,6 +351,7 @@ Observe the following when using this API:
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -430,6 +436,7 @@ Observe the following when using this API:
 | 16000009 | Can not start ability in wukong mode. |
 | 16000010 | Can not operation with continue flag.        |
 | 16000011 | Context does not exist.        |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000051 | Network error. The network is abnormal. |
 | 16000052 | Free install not support. The application does not support freeinstall |
 | 16000053 | Not top ability. The application is not top ability. |
@@ -1054,7 +1061,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-Connects this ability to a ServiceAbility.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1093,7 +1100,10 @@ Connects this ability to a ServiceAbility.
     abilityName: 'MyAbility'
   };
   let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------'); 
+    },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
     onFailed(code) { console.error('----------- onFailed -----------') }
   };
@@ -1154,7 +1164,10 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
   };
   let accountId = 100;
   let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------'); },
+    onConnect(elementName, remote) { 
+      commRemote = remote;
+      console.log('----------- onConnect -----------');
+    },
     onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
     onFailed(code) { console.log('----------- onFailed -----------'); }
   };
@@ -1172,7 +1185,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-Disconnects this ability from the ServiceAbility. This API uses an asynchronous callback to return the result.
+Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1204,6 +1217,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
+      commRemote = null;
       if (error.code) {
         // Process service logic errors.
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
@@ -1213,6 +1227,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
       console.log('disconnectServiceExtensionAbility succeed');
     });
   } catch (paramError) {
+    commRemote = null;
     // Process input parameter errors.
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
@@ -1222,7 +1237,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
-Disconnects this ability from the ServiceAbility. This API uses a promise to return the result.
+Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1260,14 +1275,17 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
   try {
     this.context.disconnectServiceExtensionAbility(connection)
       .then((data) => {
+        commRemote = null;
         // Carry out normal service processing.
         console.log('disconnectServiceExtensionAbility succeed');
       })
       .catch((error) => {
+        commRemote = null;
         // Process service logic errors.
         console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
       });
   } catch (paramError) {
+    commRemote = null;
     // Process input parameter errors.
     console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
   }
@@ -1312,6 +1330,7 @@ Observe the following when using this API:
 | 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
 | 16000008 | Crowdtest App Expiration. |
 | 16000009 | Can not start ability in wukong mode. |
+| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal Error. |
 
 **Example**
