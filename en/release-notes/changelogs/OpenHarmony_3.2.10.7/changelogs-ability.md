@@ -216,8 +216,8 @@ Code before the change:
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
@@ -260,8 +260,8 @@ Code after the change:
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }

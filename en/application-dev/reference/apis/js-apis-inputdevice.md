@@ -31,7 +31,7 @@ try {
   inputDevice.getDeviceIds((error, ids) => {
     if (error) {
       console.log(`Failed to get device list.
-         error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+         error code=${err.code} msg=${err.message}`);
       return;
     }
     this.data = ids;
@@ -91,7 +91,7 @@ try {
   inputDevice.getDeviceInfo(1, (error, inputDevice) => {
     if (error) {
       console.log(`Failed to get device information.
-          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+          error code=${err.code} msg=${err.message}`);
       return;
     }
     console.log("The device name is: " + inputDevice.name);
@@ -421,7 +421,7 @@ try {
   inputDevice.getKeyboardType(1, (error, number) => {
     if (error) {
       console.log(`Failed to get keyboardtype.
-          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+          error code=${err.code} msg=${err.message}`);
       return;
     }
     console.log("The keyboard type of the device is: " + number);

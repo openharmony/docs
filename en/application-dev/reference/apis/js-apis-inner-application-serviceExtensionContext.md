@@ -77,7 +77,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     this.context.startAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -85,7 +85,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -155,11 +155,11 @@ Starts an ability. This API uses a promise to return the result.
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -221,7 +221,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -229,7 +229,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -295,7 +295,7 @@ Observe the following when using this API:
     this.context.startAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -303,7 +303,7 @@ Observe the following when using this API:
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -373,7 +373,7 @@ Observe the following when using this API:
     this.context.startAbilityWithAccount(want, accountId, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -381,7 +381,7 @@ Observe the following when using this API:
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -461,11 +461,11 @@ Observe the following when using this API:
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('startAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -516,7 +516,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
     this.context.startServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -524,7 +524,7 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -584,11 +584,11 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('startServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -645,7 +645,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
     this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -653,7 +653,7 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -718,11 +718,11 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -770,7 +770,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
     this.context.stopServiceExtensionAbility(want, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -778,7 +778,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -835,11 +835,11 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('stopServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -892,7 +892,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
     this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code), error.message: ${JSON.stringify(error.message)}');
+        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -900,7 +900,7 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -962,11 +962,11 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1003,7 +1003,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
   this.context.terminateSelf((error) => {
     if (error.code) {
       // Process service logic errors.
-      console.error('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+      console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
       return;
     }
     // Carry out normal service processing.
@@ -1046,7 +1046,7 @@ Terminates this ability. This API uses a promise to return the result.
     console.log('terminateSelf succeed');
   }).catch((error) => {
     // Process service logic errors.
-    console.error('terminateSelf failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+    console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
   });
   ```
 
@@ -1103,7 +1103,7 @@ Connects this ability to a ServiceAbility.
     connection = this.context.connectServiceExtensionAbility(want, options);
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1164,7 +1164,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
     connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1206,7 +1206,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -1214,7 +1214,7 @@ Disconnects this ability from the ServiceAbility. This API uses an asynchronous 
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1265,11 +1265,11 @@ Disconnects this ability from the ServiceAbility. This API uses a promise to ret
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('disconnectServiceExtensionAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1337,11 +1337,11 @@ Observe the following when using this API:
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // Process service logic errors.
-        console.error('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -1369,10 +1369,10 @@ Observe the following when using this API:
         console.log('startAbilityByCall succeed');
       }).catch((error) => {
         // Process service logic errors.
-        console.error('startAbilityByCall failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
