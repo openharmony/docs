@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.5 LTS
+# OpenHarmony 1.1.5 LTS (EOL)
 
 
 ## Version Description

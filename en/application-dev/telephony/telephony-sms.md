@@ -110,9 +110,3 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
         }
     }
    ```
-
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the SMS service:
-- [SMS](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/Message)

@@ -41,12 +41,12 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 - 传递FD(文件描述符)数据(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   
   // ...
   let fd;
   try {
-      fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
+      fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
   } catch(e) {
       console.error('openSync fail: ${JSON.stringify(e)}');
   }

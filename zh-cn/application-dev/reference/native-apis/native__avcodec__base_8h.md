@@ -54,23 +54,23 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](_codec_base.md#oh_avcodec_mimetype_video_avc) | const char \*<br/>AVC视频编解码器的MIME类型。| 
-| [OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac) | const char \*<br/>AAC音频编解码器的MIME类型。| 
-| [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | const char \*<br/>提供统一的surface Buffer附属数据的字符描述符。| 
-| [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | const char \* | 
-| [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | const char \*<br/>为媒体播放框架提供统一的字符描述符。| 
-| [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | const char \* | 
-| [OH_MD_KEY_DURATION](_codec_base.md#oh_md_key_duration) | const char \* | 
-| [OH_MD_KEY_BITRATE](_codec_base.md#oh_md_key_bitrate) | const char \* | 
-| [OH_MD_KEY_MAX_INPUT_SIZE](_codec_base.md#oh_md_key_max_input_size) | const char \* | 
-| [OH_MD_KEY_WIDTH](_codec_base.md#oh_md_key_width) | const char \* | 
-| [OH_MD_KEY_HEIGHT](_codec_base.md#oh_md_key_height) | const char \* | 
-| [OH_MD_KEY_PIXEL_FORMAT](_codec_base.md#oh_md_key_pixel_format) | const char \* | 
-| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | const char \* | 
-| [OH_MD_KEY_FRAME_RATE](_codec_base.md#oh_md_key_frame_rate) | const char \* | 
-| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | const char \* | 
-| [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile) | const char \* | 
-| [OH_MD_KEY_AUD_CHANNEL_COUNT](_codec_base.md#oh_md_key_aud_channel_count) | const char \* | 
-| [OH_MD_KEY_AUD_SAMPLE_RATE](_codec_base.md#oh_md_key_aud_sample_rate) | const char \* | 
-| [OH_MD_KEY_I_FRAME_INTERVAL](_codec_base.md#oh_md_key_i_frame_interval) | const char \* | 
-| [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation) | const char \* | 
+| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](_codec_base.md#oh_avcodec_mimetype_video_avc) | AVC视频编解码器的MIME类型。| 
+| [OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。| 
+| [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 提供统一的surface Buffer附属数据的字符描述符。| 
+| [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | surface附属数据中结束流的字符描述符，值类型为bool。 | 
+| [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | 为媒体播放框架提供统一的字符描述符。| 
+| [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | MIME类型的字符描述符，值类型为string。 | 
+| [OH_MD_KEY_DURATION](_codec_base.md#oh_md_key_duration) |duration的字符描述符，值类型为int64_t。| 
+| [OH_MD_KEY_BITRATE](_codec_base.md#oh_md_key_bitrate) | 比特率的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_MAX_INPUT_SIZE](_codec_base.md#oh_md_key_max_input_size) | 最大输入尺寸的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_WIDTH](_codec_base.md#oh_md_key_width) | 视频宽度的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_HEIGHT](_codec_base.md#oh_md_key_height) | 视频高度的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_PIXEL_FORMAT](_codec_base.md#oh_md_key_pixel_format) | 视频像素格式的字符描述符，值类型为int32_t，具体见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 | 
+| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | 音频采样格式的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_FRAME_RATE](_codec_base.md#oh_md_key_frame_rate) | 视频帧率的字符描述符，值类型为double。| 
+| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | 视频编码比特率模式的字符描述符，值类型为int32_t，具体见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 | 
+| [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile) | 音视频编码能力的字符描述符，值类型为int32_t，具体见[OH_AVCProfile](_codec_base.md#oh_avcprofile)或[OH_AACProfile](_codec_base.md#oh_aacprofile)。 | 
+| [OH_MD_KEY_AUD_CHANNEL_COUNT](_codec_base.md#oh_md_key_aud_channel_count) | 音频声道数的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_AUD_SAMPLE_RATE](_codec_base.md#oh_md_key_aud_sample_rate) | 音频采样率的字符描述符，值类型为uint32_t。 | 
+| [OH_MD_KEY_I_FRAME_INTERVAL](_codec_base.md#oh_md_key_i_frame_interval) | I帧间隔时长的字符描述符，值类型为int32_t，单位是毫秒。| 
+| [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation) | surface旋转角度的字符描述符，值类型为int32_t，限于{0, 90, 180, 270}，默认值为0。 | 

@@ -25,10 +25,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | type        | ButtonType | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
 | stateEffect | boolean    | No   |  Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**|
 
-
 **API 2:** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
-  Creates a button component based on text content. In this case, the component cannot contain child components.
+Creates a button component based on text content. In this case, the component cannot contain child components.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -46,6 +45,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ----------- | ----------- | --------------------------------- |
 | type        | ButtonType  | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label style of the button.|
 
 ## ButtonType enums
 
@@ -58,11 +58,22 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Normal  | Normal button (without rounded corners by default).     |
 
 >  **NOTE**
->  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a button-wide rounded corner setting is supported.
->  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and its rounded corner is always half of the button height.
+>  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a rounded corner whose parameter is [Length](ts-types.md#length) is supported.
+>  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and the radius of its rounded corner is always half of the button height or width, whichever is smaller.
 >  - For a button of the **Circle** type, its radius is the value of **borderRadius** (if set) or the width or height (whichever is smaller).
 >  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md).
+>  - Before setting the [gradient color](ts-universal-attributes-gradient-color.md), you need to set [backgroundColor](ts-universal-attributes-background.md) to transparent.
 
+## LabelStyle<sup>10+</sup>
+
+| Name                | Type                                                    | Mandatory| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters.|
+| maxLines             | number                                                       | No  | Maximum number of lines in the label text. By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.|
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.|
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.|
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text.                             |
+| font                 | [Font](ts-types.md#Font)                                     | No  | Font of the label text.                                     |
 
 ## Example
 

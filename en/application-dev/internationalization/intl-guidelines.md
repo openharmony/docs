@@ -2,7 +2,7 @@
 
 The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402. For more details about APIs and their usage, see [intl](../reference/apis/js-apis-intl.md).
 
-The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
+The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
 ## Setting Locale Information
 
@@ -111,7 +111,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions).
+     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9).
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
@@ -150,7 +150,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
 
-## Number Formatting
+## Formatting Numbers
 
 [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) provides APIs to implement the number formatting specific to a locale.
 
@@ -181,7 +181,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions).
+     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9).
    
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
@@ -209,7 +209,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
-## String Sorting
+## Sorting Strings
 
 Users in different regions have different requirements for string sorting. [Collator](../reference/apis/js-apis-intl.md#collator8) provides APIs to sort character strings specific to a locale.
 
@@ -317,7 +317,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
 
-## Formatting Relative Time
+## Formatting the Relative Time
 
 [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) provides APIs to format the relative time for a specific locale.
 
@@ -385,9 +385,3 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (ArkTS) (API9) (Full SDK)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International)

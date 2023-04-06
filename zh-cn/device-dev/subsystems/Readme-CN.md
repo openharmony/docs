@@ -38,14 +38,9 @@
         - [音视频播放开发指导](subsys-multimedia-video-play-guide.md)
         - [音视频录制开发指导](subsys-multimedia-video-record-guide.md)
 - [公共基础库开发指导](subsys-utils-guide.md)
-- [AI框架开发指导](subsys-ai-aiframework-devguide.md)
-- 数据管理
-    - 关系型数据库
-      - [关系型数据库概述](subsys-data-relational-database-overview.md)
-      - [关系型数据库开发指导](subsys-data-relational-database-guide.md)
-    - 轻量级数据存储
-      - [轻量级数据存储概述](subsys-data-storage-overview.md)
-      - [轻量级数据存储开发指导](subsys-data-storage-guide.md)
+- AI服务
+    - [AI框架开发指导](subsys-ai-aiframework-devguide.md)
+    - [NNRt开发指导](subsys-ai-nnrt-guide.md)
 - Sensor服务
     - [Sensor服务概述](subsys-sensor-overview.md)
     - [Sensor服务使用指导](subsys-sensor-guide.md)
@@ -108,3 +103,10 @@
 - 电源管理
     - 显示管理
         - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)
+    - 电池管理
+        - [电量与LED灯颜色的定制开发指导](subsys-power-level-LED-color.md)
+        - [电池温度保护定制开发指导](subsys-power-temperature-protection.md)
+        - [电量等级定制开发指导](subsys-power-battery-level-customization.md)
+        - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
+        - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
+        - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)

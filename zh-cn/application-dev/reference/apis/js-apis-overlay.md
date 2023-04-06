@@ -114,7 +114,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -170,7 +170,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -238,7 +238,8 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
-| 17700002 | The specified module name is not found.  |
+| 17700002 | The specified module name is not found. |
+| 17700032 | he specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
@@ -278,6 +279,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
+| 17700032 | he specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
@@ -392,7 +394,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -444,7 +446,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -494,7 +496,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -542,7 +544,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -594,7 +596,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 
@@ -644,7 +646,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口。
 
 **参数：**
 

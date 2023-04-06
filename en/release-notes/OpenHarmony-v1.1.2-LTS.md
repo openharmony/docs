@@ -1,4 +1,4 @@
-# OpenHarmony v1.1.2 LTS
+# OpenHarmony v1.1.2 LTS (EOL)
 
 ## Overview
 

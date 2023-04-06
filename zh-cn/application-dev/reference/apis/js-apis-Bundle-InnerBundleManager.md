@@ -34,7 +34,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -62,7 +62,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -94,7 +94,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -121,7 +121,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -153,7 +153,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -179,7 +179,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -210,7 +210,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -236,7 +236,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -267,7 +267,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -293,7 +293,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 

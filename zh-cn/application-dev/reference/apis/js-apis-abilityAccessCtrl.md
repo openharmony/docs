@@ -206,8 +206,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -317,8 +317,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -503,7 +503,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID in list is all invalid, or the permissionName in list is all invalid. |
+| 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
 | 12100004 | The interface is not used together with "on". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -690,6 +690,44 @@ let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSIT
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
+```
+
+### checkAccessTokenSync<sup>10+</sup>
+
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
+
+校验应用是否被授予权限，同步返回结果。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | 枚举实例，返回授权状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+
+**示例：**
+
+```js
+let atManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
 ```
 
 ### GrantStatus

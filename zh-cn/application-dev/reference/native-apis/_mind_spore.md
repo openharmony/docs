@@ -19,13 +19,13 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [context.h](context_8h.md) | 提供了Context相关的接口，可以配置运行时信息。 |
-| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。 |
-| [format.h](format_8h.md) | 提供张量数据的排列格式。 |
-| [model.h](model_8h.md) | 提供了模型相关接口，可以用于模型创建、模型推理等。 |
-| [status.h](status_8h.md) | 提供了Mindspore Lite运行时的状态码。 |
-| [tensor.h](tensor_8h.md) | 提供了张量相关的接口，可用于创建和修改张量信息。 |
-| [types.h](types_8h.md) | 提供了MindSpore Lite支持的模型文件类型和设备类型。 |
+| [context.h](context_8h.md) | 提供了Context相关的接口，可以配置运行时信息。<br>引用文件：\<mindspore/context.h> |
+| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。<br>引用文件：\<mindspore/data_type.h> |
+| [format.h](format_8h.md) | 提供张量数据的排列格式。<br>引用文件：\<mindspore/format.h> |
+| [model.h](model_8h.md) | 提供了模型相关接口，可以用于模型创建、模型推理等。<br>引用文件：\<mindspore/model.h> |
+| [status.h](status_8h.md) | 提供了Mindspore Lite运行时的状态码。<br>引用文件：\<mindspore/status.h> |
+| [tensor.h](tensor_8h.md) | 提供了张量相关的接口，可用于创建和修改张量信息。<br>引用文件：\<mindspore/tensor.h> |
+| [types.h](types_8h.md) | 提供了MindSpore Lite支持的模型文件类型和设备类型。<br>引用文件：\<mindspore/types.h> |
 
 
 ### 结构体

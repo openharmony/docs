@@ -1232,7 +1232,7 @@ struct WebComponent {
 }
   ```
 
-### allowWindowOpenMethod<sup>9+</sup>
+### allowWindowOpenMethod<sup>10+</sup>
 
 allowWindowOpenMethod(flag: boolean)
 
@@ -2080,11 +2080,12 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
   }
   ```
 
-### onUrlLoadIntercept
+### onUrlLoadIntercept<sup>(deprecated)</sup>
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+从API version 10开始不在维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **参数：**
 
@@ -3098,9 +3099,45 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
   }
   ```
 
+### onFirstContentfulPaint<sup>10+</sup>
+
+onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+
+设置网页首次内容绘制回调函数。
+
+**参数：**
+
+| 参数名                 |  参数类型  | 参数描述                            |
+| -----------------------| -------- | ----------------------------------- |
+| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示。|
+| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onFirstContentfulPaint(event => {
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+              event.firstContentfulPaintMs)
+          })
+      }
+    }
+  }
+  ```
+
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event?: { request: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
@@ -3130,11 +3167,11 @@ onLoadIntercept(callback: (event?: { request: WebResourceRequest }) => boolean)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .onUrlLoadIntercept((event) => {
-            console.log('url:' + event.request.getRequestUrl())
-            console.log('isMainFrame:' + event.request.isMainFrame())
-            console.log('isRedirect:' + event.request.isRedirect())
-            console.log('isRequestGesture:' + event.request.isRequestGesture())
+          .onLoadIntercept((event) => {
+            console.log('url:' + event.data.getRequestUrl())
+            console.log('isMainFrame:' + event.data.isMainFrame())
+            console.log('isRedirect:' + event.data.isRedirect())
+            console.log('isRequestGesture:' + event.data.isRequestGesture())
             return true
           })
       }
@@ -3339,6 +3376,18 @@ isRequestGesture(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 返回资源请求是否与手势（如点击）相关联。 |
+
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+获取请求方法。
+
+**返回值：**
+
+| 类型      | 说明                   |
+| ------- | -------------------- |
+| string | 返回请求方法。 |
 
 ## Header
 

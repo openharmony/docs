@@ -230,8 +230,6 @@
   - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
-  - data/rdb
-    - [resultSet (Result Set)](js-apis-data-resultset.md)
 
 - File Management
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
@@ -240,7 +238,7 @@
   - [@ohos.file.fileUri (File URI)](js-apis-file-fileUri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
-  - [@ohos.file.picker (Picker)](js-apis-file-picker.md)
+  - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
@@ -268,7 +266,7 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -392,6 +390,7 @@
 
 - APIs No Longer Maintained
   - [@ohos.backgroundTaskManager (Background Task Management)](js-apis-backgroundTaskManager.md)
+  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
   - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (Device Usage Statistics)](js-apis-deviceUsageStatistics.md)
@@ -446,3 +445,5 @@
     - [PermissionDef](js-apis-bundle-PermissionDef.md)
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
+  - data/rdb
+    - [resultSet (Result Set)](js-apis-data-resultset.md)

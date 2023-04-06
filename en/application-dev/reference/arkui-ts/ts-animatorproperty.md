@@ -37,11 +37,11 @@ struct AttrAnimationExample {
 
   build() {
     Column() {
-      Button('change width and height')
+      Button('change size')
         .onClick(() => {
           if (this.flag) {
-            this.widthSize = 100
-            this.heightSize = 50
+            this.widthSize = 150
+            this.heightSize = 60
           } else {
             this.widthSize = 250
             this.heightSize = 100
@@ -67,8 +67,8 @@ struct AttrAnimationExample {
           duration: 1200,
           curve: Curve.Friction,
           delay: 500,
-          iterations: -1,   // The value -1 indicates that the animation is played for an unlimited number of times.
-          playMode: PlayMode.AlternateReverse
+          iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
+          playMode: PlayMode.Alternate
         })
     }.width('100%').margin({ top: 20 })
   }

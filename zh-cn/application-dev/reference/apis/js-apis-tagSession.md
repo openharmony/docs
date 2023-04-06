@@ -183,8 +183,6 @@ isTagConnected(): boolean
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tagSession.isConnected](#tagsessionisconnected9)替代。
 
-**需要权限：** ohos.permission.NFC_TAG
-
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
 **返回值：**
@@ -210,8 +208,6 @@ console.log("isTagConnected: " + isTagConnected);
 isConnected(): boolean
 
 检查是否已与标签建立连接。
-
-**需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
