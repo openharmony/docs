@@ -478,6 +478,186 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 });
 ```
 
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback<Panel>): void
+
+创建输入法应用窗口。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的窗口。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
+| info    | PanelInfo   | 是   | 输入法窗口信息。 |
+| callback | AsyncCallback<Panel> | 是   | 回调函数。当输入法窗口创建成功，返回当前创建的输入法窗口对象。  |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                       |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFTKEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + err);
+      return;
+    }
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + err);
+}
+```
+
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo): Promise<Panel>
+
+创建输入法应用窗口。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的窗口。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
+| info    | PanelInfo   | 是   | 输入法窗口信息。 |
+
+**返回值：**
+| 类型   | 说明                                                                 |
+| ------- | ------------------------------------------------------------------ |
+| Promise<Panel> | 回调函数。当输入法窗口创建成功，返回当前创建的输入法窗口对象。  |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                       |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFTKEYBOARD,
+  panelFlag: FLG_FIXED
+}
+inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
+  console.log('Succeed in creating panel.');
+}).catch((err) => {
+  console.log('Failed to create panel, err: ' + err);
+})
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel, callback: AsyncCallback<void>): void;
+
+销毁输入法应用窗口。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| panel     | Panel | 是   | 要销毁的panel对象。 |
+| callback | AsyncCallback<void> | 是   | 回调函数。当输入法窗口销毁成功，err为undefined，否则为错误对象。  |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFTKEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + err);
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + err);
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel((err) => {
+    if(err !== undefined) {
+      console.log('Failed to destroy panel, err: ' + err);
+      return;
+    }
+    console.log('Succeed in destroying panel.');
+  })
+} catch(err) {
+  console.log('Failed to destroy panel, err: ' + err);
+}
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel): Promise<void>;
+
+销毁输入法应用窗口。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ---------| ----------- | ---- | ------------------------ |
+| panel    | Panel       | 是   | 要销毁的panel对象。      |
+
+**返回值：**
+| 类型    | 说明                                                                 |
+| ------- | -------------------------------------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。|
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFTKEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + err);
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + err);
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel().then(() => {
+    console.log('Succeed in destroying panel.');
+  }).catch((err) => {
+    console.log('Failed to destroy panel, err: ' + err);
+  });
+} catch (err) {
+  console.log('Failed to destroy panel, err: ' + err);
+}
+```
+
 ## KeyboardDelegate
 
 下列API示例中都需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
@@ -682,6 +862,455 @@ off(type: 'textChange', callback?: (text: string) => void): void
 inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
     console.log('delete textChange notification. text:' + text);
 });
+```
+
+## Panel
+
+下列API示例中都需使用[createPanel]()回调获取到Panel实例，再通过此实例调用对应方法。
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, callback: AsyncCallback<void>): void
+
+为当前窗口加载具体页面内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.setUiContent('pages/page2/page2', (err) => {
+    if (err.code) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string): Promise<void>
+
+为当前窗口加载具体页面内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(()=> {
+    console.info('Succeeded in setting the content.');
+  }).catch((err)=>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback<void>): void
+
+为当前窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| storage | LocalStorage | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  panel.setUiContent('pages/page2/page2', storage, (err) => {
+    if (err.code) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage): Promise<void>
+
+为当前窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| storage | LocalStorage | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(()=> {
+    console.info('Succeeded in setting the content.');
+  }).catch((err)=>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number, callback: AsyncCallback<void>): void
+
+改变当前窗口大小，使用callback异步回调。
+窗口存在大小限制，窗口宽度不超出屏幕宽度，窗口高度不高于屏幕高度的二分之一。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | 是   | 目标窗口的宽度，单位为px。|
+| height | number | 是   | 目标窗口的高度，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口大小改变成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.resize(500, 1000, (err) => {
+    if (err.code) {
+      console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in changing the panel size.');
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. Cause:' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number): Promise<void>;
+
+改变当前窗口大小，使用Promise异步回调。
+窗口存在大小限制，窗口宽度不超出屏幕宽度，窗口高度不高于屏幕高度的二分之一。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | 是   | 目标窗口的宽度，单位为px。|
+| height | number | 是   | 目标窗口的高度，单位为px。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = panel.resize(500, 1000);
+  promise.then(()=> {
+    console.info('Succeeded in changing the panel size.');
+  }).catch((err)=>{
+    console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. err: ' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number, callback: AsyncCallback<void>): void
+
+移动窗口位置，使用callback异步回调。
+对FLG_FIXED状态的panel不产生实际移动效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口位置移动成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.moveTo(300, 300, (err)=>{
+    if (err.code) {
+      console.error('Failed to move the panel. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in moving the panel.');
+  });
+} catch (exception) {
+    console.error('Failed to move the panel. err:' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number): Promise<void>
+
+移动窗口位置，使用callback异步回调。
+对FLG_FIXED状态的panel不产生实际移动效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = windowClass.moveTo(300, 300);
+  promise.then(()=> {
+    console.info('Succeeded in moving the panel.');
+  }).catch((err)=>{
+    console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to move the panel. Cause:' + JSON.stringify(exception));
+}
+```
+
+### show<sup>10+</sup>
+
+show(callback: AsyncCallback<void>): void
+
+显示当前窗口，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口显示成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+panel.show((err) => {
+  if (err.code) {
+    console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the panel.');
+});
+```
+
+### show<sup>10+</sup>
+
+show(): Promise<void>
+
+显示当前窗口，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let promise = panel.show();
+promise.then(()=> {
+  console.info('Succeeded in showing the panel.');
+}).catch((err)=>{
+  console.error('Failed to show the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(callback: AsyncCallback<void>): void
+
+隐藏当前窗口，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口隐藏成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+panel.hide((err) => {
+  if (err.code) {
+    console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the panel.');
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(): Promise<void>
+
+隐藏当前窗口，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let promise = panel.hide();
+promise.then(()=> {
+  console.info('Succeeded in hiding the panel.');
+}).catch((err)=>{
+  console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### on<sup>10+</sup>
+
+on(type: 'show' | 'hide', callback: () => void): void
+
+监听当前窗口状态，可监听窗口类型为show或者hide， 使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'/'hide' | 是 | 监听当前窗口的状态类型，show表示显示状态，hide表示隐藏状态 |
+| callback | () => void | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.on('show', () => {
+  console.info('Panel is showing.');
+});
+```
+
+### off<sup>10+</sup>
+
+off(type: 'show' | 'hide', callback?: () => void): void
+
+取消监听当前窗口状态，可取消监听的窗口类型为show或者hide，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'/'hide' | 是 | 要取消监听的当前窗口状态类型，show表示显示状态，hide表示隐藏状态 |
+| callback | () => void | 否   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.off('show');
+```
+
+### changeFlag<sup>10+</sup>
+
+changeFlag(flag: PanelFlag): void
+
+改变窗口状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| flag | PanelFlag | 是 | 要切换到的窗口状态类型。 |
+
+**示例：**
+
+```js
+let panelFlag = inputMethodEngine.getInputMethodAbility().PanelFlag.FLG_FIXED;
+panel.changeFlag(panelFlag);
 ```
 
 ## KeyboardController
@@ -1751,6 +2380,37 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |
+
+## PanelFlag<sup>10</sup>
+
+输入法面板状态类型枚举。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| FLG_FIXED  | 0 | 固定态面板类型。 |
+| FLG_FLOATING | 1 | 悬浮态面板类型。 |
+
+## PanelType<sup>10</sup>
+
+输入法面板类型枚举。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| SOFT_KEYBOARD | 0 | 软键盘类型。 |
+| SOFT_KEYBOARD | 1 | 状态栏类型。 |
+
+## PanelInfo<sup>10</sup>
+
+输入法面板属性。
+
+| 名称      | 类型 | 可读 | 可写 | 说明         |
+| --------- | -------- | ---- | ---- | ------------ |
+| type   	| number   | 是   | 是   | 面板的类型。 |
+| flag	    | number   | 是   | 是   | 面板的状态类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
