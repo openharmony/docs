@@ -50,7 +50,7 @@
 | ECC/SHA1<br>ECC/SHA224   | 8+      | |否|
 | ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512      | 8+                | |是|
 | ECC/NoDigest     |  9+   |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
-| ED25519/NoDigest     |  8+       | NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
+| ED25519/NoDigest     |  8+       | NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |是|
 | SM2/SM3|9+      | |是|
 | SM2/NoDigest |9+      | |否|
 
