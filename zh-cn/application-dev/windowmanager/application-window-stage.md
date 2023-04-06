@@ -320,7 +320,6 @@ export default class EntryAbility extends UIAbility {
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
