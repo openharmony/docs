@@ -1,66 +1,107 @@
 # Grid
 
+The **\<Grid>** component consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Grid&gt;** component is a two-dimensional layout. The component is divided into rows and columns to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-This component contains the child component [<GridItem>](ts-container-griditem.md).
+This component contains the child component **[\<GridItem>](ts-container-griditem.md)**.
 
 
 ## APIs
 
-Grid()
+Grid(scroller?: Scroller)
 
+**Parameters**
+
+| Name      | Type                                    | Mandatory  | Description                   |
+| --------- | ---------------------------------------- | ---- | ----------------------- |
+| scroller  | [Scroller](ts-container-scroll.md#scroller) | No   | Scroller, which can be bound to scrollable components.|
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| columnsTemplate | string | '1fr' | Number of columns in the current grid layout. If this parameter is not set, one column is used by default. For example, '1fr 1fr 2fr' divides the component into three columns, with four equal parts. The first column occupies one part, the second column occupies one part, and the third column occupies two parts. |
-| rowsTemplate | string | '1fr' | Number of rows in the current grid layout. If this parameter is not set, one row is used by default. For example, '1fr 1fr 2fr' divides the component into three rows. The width allowed by the parent component is divided into four equal parts. The first row occupies one part, the second row occupies one part, and the third row occupies two parts. |
-| columnsGap | Length | 0 | Spacing between columns. |
-| rowsGap | Length | 0 | Spacing between rows. |
-| editMode<sup>8+</sup> | boolean | false | Whether to enter editing mode. In editing mode, you can drag the **&lt;[GridItem](ts-container-griditem.md)&gt;** in the **&lt;Gird&gt;** component. |
-| layoutDirection<sup>8+</sup> | [LayoutDirection](ts-appendix-enums.md#layoutdirection-enums) | LayoutDirection.Row | Main axis direction of the layout. The options are as follows:- **LayoutDirection.Row**: Horizontal layout, where the child components are arranged in the same direction as the main axis runs along the rows.- **LayoutDirection.Column**: Vertical layout, where the child components are arranged in the same direction as the main axis runs down the columns. |
-| maxCount<sup>8+</sup> | number | 1 | Maximum number of rows that can be displayed. |
-| minCount<sup>8+</sup> | number | 1 | Minimum number of rows that can be displayed. |
-| cellLength<sup>8+</sup> | number | 0 | Fixed height per row. |
-| multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br/>- **false**: The mouse frame selection is disabled.<br/>- **true**: The mouse frame selection is disabled. |
-| edgeEffection<sup>8+</sup> | EdgeEffect | EdgeEffect.Spring | Edge effect. For details, see **EdgeEffect**. |
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-- EdgeEffect enums
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| columnsTemplate | string | Number of columns in the current grid layout. If this attribute is not set, one column is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.|
+| rowsTemplate | string | Number of rows in the current grid layout. If this attribute is not set, one row is used by default.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.|
+| columnsGap | Length | Gap between columns.<br>Default value: **0**|
+| rowsGap | Length | Gap between rows.<br>Default value: **0**|
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**|
+| scrollBarColor | string \| number \| Color              | Color of the scrollbar.|
+| scrollBarWidth | string \| number    | Width of the scrollbar.|
+| cachedCount | number                                   | Number of grid items to be preloaded. For details, see [Minimizing White Blocks During Swiping](../../ui/ui-ts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**|
+| editMode <sup>8+</sup>                   | boolean | Whether to enter editing mode. In editing mode, the user can drag the **[\<GridItem>](ts-container-griditem.md)** in the **\<Grid>** component.<br>Default value: **false** |
+| layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8) | Main axis direction of the grid.<br>Default value: **GridDirection.Row**|
+| maxCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: maximum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **Infinity**|
+| minCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: minimum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **1**|
+| cellLength<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: fixed height per row.<br>When **layoutDirection** is **Column** or **ColumnReverse**: fixed width per column.<br>Default value: size of the first element|
+| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.|
+| supportAnimation<sup>8+</sup> | boolean | Whether to enable animation.<br>Default value: **false**|
 
-  | Name   | Description                                                  |
-  | ------ | ------------------------------------------------------------ |
-  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded. |
-  | None   | No effect after the scrollbar is moved to the edge.          |
+Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
+
+1. **rowsTemplate** and **columnsTemplate** are both set
+
+   The **\<Grid>** displays only elements in a fixed number of rows and columns and cannot be scrolled. For example, if both **rowsTemplate** and **columnsTemplate** are set to **"1fr 1fr"**, only four elements (two rows and two columns) are displayed.
+
+   In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, minCount, and **cellLength**.
+
+2. Either **rowsTemplate** or **columnsTemplate** is set
+
+   The **\<Grid>** arranges elements in the specified direction and allows for scrolling to display excess elements. For example, if the **\<Grid>** has 10 elements and **columnsTemplate** is set to **"1fr 1fr 1fr"**, it contains three columns. The elements are arranged in the same direction as the main axis runs down the columns. Elements outside the **\<Grid>** area can be viewed through scrolling.
+
+   In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
+
+3. Neither **rowsTemplate** nor **columnsTemplate** is set
+
+   The **\<Grid>** arranges elements in the direction specified by **layoutDirection **. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**. The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
+
+   In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
+
+## GridDirection<sup>8+</sup>
+
+| Name  | Description                                  |
+| ------ | -------------------------------------- |
+| Row  | Horizontal layout, where the child components are arranged from left to right as the main axis runs along the rows.|
+| Column | Vertical layout, where the child components are arranged from top to bottom as the main axis runs down the columns.|
+| RowReverse    | Reverse horizontal layout, where the child components are arranged from right to left as the main axis runs along the rows.|
+| ColumnReverse   | Reverse vertical layout, where the child components are arranged from bottom up as the main axis runs down the columns.|
 
 ## Events
 
-| Name | Description | 
-| -------- | -------- |
-| onScrollIndex(first: number) =&gt; void | Triggered when the start item of the grid changes. | 
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
+| Name| Description|
+| -------- | -------- |
+| onScrollIndex(event: (first: number) => void) | Triggered when the start item of the grid changes.<br>- **first**: index of the start item of the grid.|
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | Triggered when a grid item starts to be dragged.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged element.|
+| onItemDragEnter(event: (event: ItemDragInfo) => void) | Triggered when the dragged item enters the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).|
+| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | Triggered when the dragged item moves over the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.|
+| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | Triggered when the dragged item exits the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged item.|
+| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | Triggered when the dragged item is dropped on the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.<br>- **isSuccess**: whether the dragged item is successfully dropped.|
+
+## ItemDragInfo
+
+| Name        | Type        |   Description        |
+| ---------- | ---------- | ---------- |
+| x | number |  X-coordinate of the dragged item.   |
+| y   | number |  Y-coordinate of the dragged item.   |
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridExample {
   @State Number: String[] = ['0', '1', '2', '3', '4']
+  scroller: Scroller = new Scroller()
 
   build() {
     Column({ space: 5 }) {
@@ -87,7 +128,7 @@ struct GridExample {
       .height(300)
 
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Grid() {
+      Grid(this.scroller) {
         ForEach(this.Number, (day: string) => {
           ForEach(this.Number, (day: string) => {
             GridItem() {
@@ -110,10 +151,13 @@ struct GridExample {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
+      Button('next page')
+        .onClick(() => {// Click to go to the next page.
+          this.scroller.scrollPage({ next: true })
+        })
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
 
-![en-us_image_0000001212218434](figures/en-us_image_0000001212218434.gif)
-
+![en-us_image_0000001219744183](figures/en-us_image_0000001219744183.gif)

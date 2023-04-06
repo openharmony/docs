@@ -1,99 +1,154 @@
-# 应用事件开发指导
+# 应用事件打点开发指导
 
-## 场景介绍
+## 简介
 
-应用事件打点的主要工作是在应用运行过程中，帮助应用记录在运行过程中发生的各种信息。
+传统的日志系统里汇聚了整个设备上所有程序运行的过程流水日志，难以识别其中的关键信息。因此，应用开发者需要一种数据打点机制，用来评估如访问数、日活、用户操作习惯以及影响用户使用的关键因素等关键信息。
+
+HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制，用于帮助应用记录在运行过程中发生的故障信息、统计信息、安全信息、用户行为信息，以支撑开发者分析应用的运行情况。
+
+## 基本概念
+
+- **打点**
+
+  记录由用户操作引起的变化，提供业务数据信息，以供开发、产品、运维分析。
+
+## 事件设计规范
+
+- 事件领域：用于标识事件的领域，建议设置为业务模块名称，以便于区分不同的业务模块。
+- 事件名称：用于指定事件的名称，建议设置为具体的业务名称，以便于描述实际的业务意义。
+- 事件类型：用于指定事件的类型，支持以下四种类型事件：
+  - 行为事件：用于记录用户日常操作行为的事件，例如按钮点击、界面跳转等行为。
+  - 故障事件：用于定位和分析应用故障的事件，例如界面卡顿、掉网掉话等异常。
+  - 统计事件：用于统计和度量应用关键行为的事件，例如对使用时长、访问数等的统计。
+  - 安全事件：用于记录涉及应用安全行为的事件，例如密码修改、用户授权等行为。
+- 事件参数：用于指定事件的参数，每个事件可以包含一组参数，建议设置为事件属性或事件发生上下文信息，以便于描述事件的详细信息。
 
 ## 接口说明
 
-应用事件JS打点接口由hiAppEvent模块提供。
-
-以下仅提供简单的接口介绍，API接口的具体使用说明（参数使用限制、具体取值范围等），请参考[应用事件打点API文档](../reference/apis/js-apis-hiappevent.md)。
+应用事件打点接口由hiAppEvent模块提供，API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis/js-apis-hiviewdfx-hiappevent.md)。
 
 **打点接口功能介绍：**
 
-| 接口名                                                       | 返回值         | 描述                                                 |
-| ------------------------------------------------------------ | -------------- | ---------------------------------------------------- |
-| write(string eventName, EventType type, object keyValues, AsyncCallback\<void> callback): void | void           | 应用事件异步打点方法，使用callback方式作为异步回调。 |
-| write(string eventName, EventType type, object keyValues): Promise\<void> | Promise\<void> | 应用事件异步打点方法，使用promise方式作为异步回调。  |
+| 接口名                                                       | 描述                                                 |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
+| write(AppEventInfo info, AsyncCallback\<void> callback): void | 应用事件异步打点方法，使用callback方式作为异步回调。 |
+| write(AppEventInfo info): Promise\<void>                     | 应用事件异步打点方法，使用Promise方式作为异步回调。  |
 
-当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[事件校验结果码](#事件校验结果码)。
+**订阅接口功能介绍：**
 
-
-**打点配置接口功能介绍：**
-
-| 接口名                         | 返回值  | 描述                                                         |
-| ------------------------------ | ------- | ------------------------------------------------------------ |
-| configure(ConfigOption config) | boolean | 应用事件打点配置方法，可以对打点功能进行自定义配置。返回true表示配置成功，false表示配置失败。 |
-
-
-### 事件校验结果码
-
-| 错误码 | 原因                        | 校验规则                                                     | 处理结果                                              |
-| ------ | --------------------------- | ------------------------------------------------------------ | ----------------------------------------------------- |
-| 0      | 无                          | 事件校验成功                                                 | 事件正常打点。                                        |
-| -1     | 无效的事件名称              | 非空且长度在48个字符以内（含）。<br>只由以下字符组成：0-9、a-z、_。<br/>非数字以及下划线开头。 | 忽略该事件，不执行打点。                              |
-| -2     | 无效的事件基本参数类型      | 事件名称参数必须为string。<br/>事件类型参数必须为number类型。<br/>keyValues参数必须为object类型。 | 忽略该事件，不执行打点。                              |
-| -99    | 应用打点功能被关闭          | 应用打点功能被关闭。                                         | 忽略该事件，不执行打点。                              |
-| -100   | 未知错误                    | 无。                                                         | 忽略该事件，不执行打点。                              |
-| 1      | 无效的key参数名称           | 非空且长度在16个字符以内（含）。<br/>只由以下字符组成：0-9、a-z、_。<br/>非数字以及下划线开头。<br/>非下划线结尾。 | 忽略该键值对参数后，继续执行打点。                    |
-| 2      | 无效的key参数类型           | Key参数必须为字符串类型。                                    | 忽略该键值对参数后，继续执行打点。                    |
-| 3      | 无效的value参数类型         | value参数只支持以下类型：<br/>boolean、number、string、Array[基本类型]。<br/> | 忽略该键值对参数后，继续执行打点。                    |
-| 4      | value参数值过长             | 参数值长度必须在8*1024个字符以内（含）。                     | 忽略该键值对参数后，继续执行打点。                    |
-| 5      | key-value参数对数过多       | key-value参数对数必须在32对以内（含）。                      | 忽略后面多余的键值对参数后，继续执行打点。            |
-| 6      | List类型的value参数容量过大 | List类型的value参数容量必须在100个以内（含）。               | 对List进行截断（只保留前100个元素）后，继续执行打点。 |
-| 7      | 无效的List类型value参数     | List的泛型类型只能为基本类型。<br/>List内的参数必须为同一类型。 | 忽略该键值对参数后，继续执行打点。                    |
+| 接口名                                             | 描述                                         |
+| -------------------------------------------------- | -------------------------------------------- |
+| addWatcher(Watcher watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| removeWatcher(Watcher watcher): void               | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 
-在应用启动执行页面加载后，执行一个应用事件打点，用于记录应用的初始页面加载事件。
+以实现对用户点击按钮行为的事件打点及订阅为例，说明开发步骤。
 
-1. 新建一个JS应用工程，在“Project”窗口点击“entry > src > main > js > default > pages > index”，打开工程中的“index.js”文件，在页面执行加载后，执行一个应用事件打点，用于记录应用的初始页面加载事件，示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ts” 文件，在onCreate函数中添加对用户点击按钮事件的订阅，完整示例代码如下：
 
    ```js
-   import hiAppEvent from '@ohos.hiAppEvent'
+   import hilog from '@ohos.hilog';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Window from '@ohos.window'
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    
-   export default {
-       data: {
-           title: ""
-       },
-       onInit() {
-           this.title = this.$t('strings.world');
+   export default class EntryAbility extends UIAbility {
+       onCreate(want, launchParam) {
+           hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
+           hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
    
-           // 1.callback方式
-           hiAppEvent.write("start_event", hiAppEvent.EventType.BEHAVIOR, {"int_data":100, "str_data":"strValue"}, (err, value) => {
-               if (err) {
-                   console.error(`failed to write event because ${err.code}`);
-                   return;
+           hiAppEvent.addWatcher({
+               // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
+               name: "watcher1",
+               // 开发者可以订阅感兴趣的应用事件，此处是订阅了按钮事件
+               appEventFilters: [{ domain: "button" }],
+               // 开发者可以设置订阅回调触发的条件，此处是设置为事件打点数量满足1个
+               triggerCondition: { row: 1 },
+               // 开发者可以自行实现订阅回调函数，以便对订阅获取到的事件打点数据进行自定义处理
+               onTrigger: function (curRow, curSize, holder) {
+                   // 返回的holder对象为null，表示订阅过程发生异常，因此在记录错误日志后直接返回
+                   if (holder == null) {
+                       hilog.error(0x0000, 'testTag', "HiAppEvent holder is null")
+                       return
+                   }
+                   let eventPkg = null
+                   // 根据设置阈值大小（默认为512KB）去获取订阅事件包，直到将订阅数据全部取出
+                   // 返回的事件包对象为null，表示当前订阅数据已被全部取出，此次订阅回调触发结束
+                   while ((eventPkg = holder.takeNext()) != null) {
+                       // 开发者可以对事件包中的事件打点数据进行自定义处理，此处是将事件打点数据打印在日志中
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.packageId=%{public}d`, eventPkg.packageId)
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.row=%{public}d`, eventPkg.row)
+                       hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.size=%{public}d`, eventPkg.size)
+                       for (const eventInfo of eventPkg.data) {
+                           hilog.info(0x0000, 'testTag', `HiAppEvent eventPkg.info=%{public}s`, eventInfo)
+                       }
+                   }
                }
-               console.log(`success to write event: ${value}`);
-           });
-   
-           // 2.Promise方式
-           hiAppEvent.write("start_event", hiAppEvent.EventType.BEHAVIOR, {"int_data":100, "str_data":"strValue"})
-               .then((value) => {
-                   console.log(`success to write event: ${value}`);
-               }).catch((err) => {
-                   console.error(`failed to write event because ${err.code}`);
-               });
-   
-           // 3.配置应用打点开关
-           hiAppEvent.configure({
-               disable: true
-           });
-   
-           // 4.配置事件文件目录限额（默认为10M）
-           hiAppEvent.configure({
-               maxStorage: '100M'
-           });
+           })
        }
    }
-   ```
 
-2. 运行项目，点击应用界面上的运行按钮。
+2. 编辑工程中的“entry > src > main > ets  > pages > Index.ets” 文件，添加一个按钮并在其onClick函数中进行事件打点，以记录按钮点击事件，完整示例代码如下：
+
+   ```js
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
+   import hilog from '@ohos.hilog'
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World'
+   
+     build() {
+       Row() {
+         Column() {
+           Text(this.message)
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+   
+           Button("writeTest").onClick(()=>{
+             // 在按钮点击函数中进行事件打点，以记录按钮点击事件
+             hiAppEvent.write({
+               // 事件领域定义
+               domain: "button",
+               // 事件名称定义
+               name: "click",
+               // 事件类型定义
+               eventType: hiAppEvent.EventType.BEHAVIOR,
+               // 事件参数定义
+               params: { click_time: 100 }
+             }).then(() => {
+               hilog.info(0x0000, 'testTag', `HiAppEvent success to write event`)
+             }).catch((err) => {
+               hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+             })
+           })
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
+   
+3. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“writeTest”，触发一次按钮点击事件打点。
+
+4. 最终，可以在Log窗口看到按钮点击事件打点成功的日志，以及触发订阅回调后对打点事件数据的处理日志：
+
+   ```js
+   HiAppEvent success to write event
+   
+   HiAppEvent eventPkg.packageId=0
+   HiAppEvent eventPkg.row=1
+   HiAppEvent eventPkg.size=124
+   HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1670268234523,"tz_":"+0800","pid_":3295,"tid_":3309,"click_time":100}
+   ```
 
 ## 相关实例
 
 针对应用事件开发，有以下相关实例可供参考：
 
-- [`JsDotTest`：测试打点（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)
+- [`DotTest`：测试打点（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/DotTest)

@@ -76,7 +76,7 @@ Members in the Docs SIG or document contributors should cooperate with each serv
 To know feature and release plans of a release, you can attend the meeting [SIG Release](https://gitee.com/openharmony/release-management/blob/master/README.md) held on Friday every two weeks. Understand the release progress, requirement delivery progress, and document delivery progress.
 
 You can also view feature requirements of a release in [OpenHarmony Roadmap](https://gitee.com/openharmony/release-management/blob/master/OpenHarmony-RoadMap.md). You can select feature issues marked with SIG_Docs and associated document PRs.
- 
+
 
 ### Reviewing Chinese Documents Submitted in PRs
 
@@ -109,7 +109,7 @@ When reviewing a feature document, you are advised to provide review suggestions
 
 - When a Markdown page is deleted or a Markdown page name is changed, ensure that:
   - The page does not affect links in other documents in the community. You are advised to check the links locally.
-  - The contents in the **README** file is updated.
+  - The contents in the **README** file are updated.
 
 For more detailed specifications, see [Writing Instructions](writing-instructions.md).
 

@@ -301,7 +301,7 @@ LOSCFG_PLATFORM_EXC=y
  * Configuration item for using system defined vector base address and interrupt handlers.
  * If LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT is set to 0, vector base address will not be
  * modified by system. In arm, it should be noted that PendSV_Handler and SysTick_Handler should
- * be redefined to HalPendSV and OsTickHandler respectly in this case, because system depends on
+ * be redefined to HalPendSV and OsTickHandler respectably in this case, because system depends on
  * these interrupt handlers to run normally. What's more, LOS_HwiCreate will not register handler.
  */
 #ifndef LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT
@@ -388,13 +388,13 @@ int32_t hal_vfs_init(void)
 
     SetDefaultMountPath(0,"/data");
     if (LOS_FsMount(NULL, "/data", "littlefs", 0, VfsOps) != FS_SUCCESS) {
-        printf("+++ hal_vfs_init: Mount littlefs faild!\n");
+        printf("+++ hal_vfs_init: Mount littlefs failed!\n");
         free(VfsOps);
         return -1;
     }
 
     if (LOS_Mkdir("/data", 0777) != 0 ) {
-        printf("+++ hal_vfs_init: Make dir faild!\n");
+        printf("+++ hal_vfs_init: Make dir failed!\n");
     }
 
     flash_user_data_addr_length_set(LFS_DEFAULT_START_ADDR,
@@ -853,4 +853,5 @@ xts子系统的适配，以`//vendor/chipsea/xts_demo/config.json`为例，需�
      "-lmodule_ActsSamgrTest",
      "-lmodule_ActsWifiServiceTest",
      "-lmodule_ActsDsoftbusMgrTest",
+ ]
 ```

@@ -1,6 +1,8 @@
-# 弹窗
+# @system.prompt (弹窗)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+创建并显示文本提示框、对话框和操作菜单。
+
+> **说明：**
 >
 > - 从API Version 8 开始，该接口不再维护，推荐使用新接口[`@ohos.prompt`](js-apis-prompt.md)。
 >
@@ -36,7 +38,7 @@ export default {
   showToast() {        
     prompt.showToast({            
       message: 'Message Info',            
-      duration: 2000,        
+      duration: 2000
     });    
   }
 }
@@ -65,11 +67,11 @@ export default {
   showDialog() {       
     prompt.showDialog({           
       title: 'Title Info',            
-      message: 'Message Info',           
+      message: 'Message Info',          
       buttons: [                
         {                    
            text: 'button',                   
-           color: '#666666',                
+           color: '#666666'          
          },            
        ],            
        success: function(data) {                
@@ -108,12 +110,12 @@ export default {
       buttons: [                
         {                    
           text: 'item1',                    
-          color: '#666666',                
+          color: '#666666'            
         },                
         {                    
            text: 'item2',                    
-           color: '#000000',                
-        },            
+           color: '#000000'         
+        },           
       ],            
       success: function(tapIndex) {                
         console.log('dialog success callback，click button : ' + tapIndex);            
@@ -131,7 +133,7 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 参数类型           | 必填   | 说明                                       |
+| 名称                  | 类型           | 必填   | 说明                                       |
 | ------------------- | -------------- | ---- | ---------------------------------------- |
 | message             | string         | 是    | 显示的文本信息。                                 |
 | duration            | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms。若小于1500ms则取默认值，最大取值为10000ms。 |
@@ -143,7 +145,7 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 参数类型   | 必填   | 说明      |
+| 名称    | 类型   | 必填   | 说明      |
 | ----- | ------ | ---- | ------- |
 | text  | string | 是    | 定义按钮信息。 |
 | color | string | 是    | 定义按钮颜色。 |
@@ -154,7 +156,7 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 参数类型   | 必填   | 说明         |
+| 名称    | 类型   | 必填   | 说明         |
 | ----- | ------ | ---- | ---------- |
 | index | number | 是    | 定义数据的索引信息。 |
 
@@ -164,7 +166,7 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 参数类型                                     | 必填   | 说明                                       |
+| 名称       | 类型                                     | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | title    | string                                   | 否    | 标题文本。                                    |
 | message  | string                                   | 否    | 文本内容。                                    |
@@ -179,7 +181,7 @@ export default {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 参数类型                                     | 必填   | 说明                                       |
+| 名称       | 类型                                     | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | title    | string                                   | 否    | 标题文本。                                    |
 | buttons  | [[Button](#button), [Button](#button)?, [Button](#button)?, [Button](#button)?, [Button](#button)?, [Button](#button)?] | 是    | 对话框中按钮的数组，结构为：{text:'button', color: '\#666666'}，支持1-6个按钮。 |

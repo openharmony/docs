@@ -1,21 +1,24 @@
 # Virtual Dynamic Shared Object
 
-## Basic Concepts<a name="section174577181688"></a>
 
-Different from a common dynamic shared library, which stores its .so files in the file system, the virtual dynamic shared object \(VDSO\) has its .so files stored in the system image. The kernel determines the .so files needed and provides them to the application program. That is why the VDSO is called a virtual dynamic shared library.
+## Basic Concepts
 
-The VDSO mechanism allows OpenHarmony user-mode programs to quickly obtain kernel-related data. It can accelerate certain system calls and implement quick read of non-sensitive data \(hardware and software configuration\).
+Different from a common dynamic shared library, which stores its .so files in the file system, the virtual dynamic shared object (VDSO) has its .so files stored in the system image. The kernel determines the .so files needed and provides them to the application program. That is why the VDSO is called a virtual dynamic shared library.
 
-## Working Principles<a name="section546363114810"></a>
+The VDSO mechanism allows OpenHarmony user-mode programs to quickly obtain kernel-related data. It can accelerate certain system calls and implement quick read of non-sensitive data (hardware and software configuration).
 
-The VDSO can be regarded as a section of memory \(read-only\) maintained by the kernel and mapped to the address space of the user-mode applications. By linking  **vdso.so**, the applications can directly access this mapped memory instead of invoking system calls, accelerating application execution.
+
+## Working Principles
+
+The VDSO can be regarded as a section of memory (read-only) maintained by the kernel and mapped to the address space of the user-mode applications. By linking **vdso.so**, the applications can directly access this mapped memory instead of invoking system calls, accelerating application execution.
 
 VDSO can be divided into:
 
--   Data page: provides the kernel-time data mapped to the user process.
--   Code page: provides the logic for shielding system calls.
+- Data page: provides the kernel-time data mapped to the user process.
+- Code page: provides the logic for shielding system calls.
 
-**Figure  1**  VDSO system design<a name="fig1986131094711"></a>  
+**Figure 1** VDSO system design
+
 ![](figures/vdso-system-design.jpg "vdso-system-design")
 
 The VDSO mechanism involves the following steps:
@@ -30,7 +33,7 @@ The VDSO mechanism involves the following steps:
 
 5. Binds the VDSO symbols when the user program creates dynamic linking.
 
-6. The VDSO code page intercepts specific system calls \(for example,  **clock\_gettime\(CLOCK\_REALTIME\_COARSE, &ts\)**\).
+6. The VDSO code page intercepts specific system calls (for example, **clock_gettime(CLOCK_REALTIME_COARSE, &amp;ts)**).
 
 7. The VDSO code page allows direct read of the mapped VDSO data page rather than invoking a system call.
 
@@ -38,7 +41,10 @@ The VDSO mechanism involves the following steps:
 
 9. Returns the data obtained from the VDSO data page to the user program.
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
->-   The VDSO mechanism supports the  **CLOCK\_REALTIME\_COARSE**  and  **CLOCK\_MONOTONIC\_COARSE**  functions of the  **clock\_gettime**  API in the LibC library. For details about how to use the  **clock\_gettime**  API, see the POSIX standard. You can call  **clock\_gettime\(CLOCK\_REALTIME\_COARSE, &ts\)**  or  **clock\_gettime\(CLOCK\_MONOTONIC\_COARSE, &ts\)**  of the LibC library to use the VDSO.
->-   When VDSO is used, the time precision is the same as that of the tick interrupt of the system. The VDSO mechanism is applicable to the scenario where there is no demand for high time precision and  **clock\_gettime**  or  **gettimeofday**  is frequently triggered in a short period of time. The VDSO mechanism is not recommended for the system demanding high time precision.
-
+> **NOTE**<br>
+>
+>  - The VDSO mechanism supports the **CLOCK_REALTIME_COARSE** and **CLOCK_MONOTONIC_COARSE** functions of the **clock_gettime** API in the LibC library. For details about how to use the **clock_gettime** API, see the POSIX standard.
+>
+>  - You can call **clock_gettime(CLOCK_REALTIME_COARSE, &amp;ts)** or **clock_gettime(CLOCK_MONOTONIC_COARSE, &amp;ts)** of the Libc library to use the VDSO.
+>
+>  - When VDSO is used, the time precision is the same as that of the tick interrupt of the system. The VDSO mechanism is applicable to the scenario where there is no demand for high time precision and **clock_gettime** or **gettimeofday** is frequently triggered in a short period of time. The VDSO mechanism is not recommended for the system demanding high time precision.

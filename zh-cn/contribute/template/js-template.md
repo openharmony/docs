@@ -2,23 +2,24 @@
 
 ## 总体写作说明
 
+> **说明：** <br/>所有的写作说明，在完成写作后，都要删除。
+
 |      | 说明项                            | 细则                                                         |
 | ---- | --------------------------------- | ------------------------------------------------------------ |
 | 1    | 客户化写作基本要求                | **写作中，请变身开发者，对于开发者使用该API时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本API进行开发的目标。** |
-| 2    |                                   | **所有的写作说明，在完成写作后，都要删除。**                 |
-| 3    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
-| 4    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
-| 5    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。 |
-| 6    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
-| 7    | 接口版本说明                      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
-| 8    | 废弃接口说明                      | 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API Version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。 |
-| 9    | 权限说明                          | 与代码保持一致，下沉到各个方法、枚举、属性字段中。<br/>1. 如果仅系统应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| 10   | @syscap                           | 1. 每个方法都需要进行描述，格式：<br/>    **系统能力**：SystemCapability.xxx.xxx<br/>2. 每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：<br/>    1）每个表格下系统能力无差异的，同方法的写法：<br/>          **系统能力**：SystemCapability.xxx.xxx<br/>    2）有差异的：在每一个表格项里进行描述。 |
-| 11   | @system api                       | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    此接口为系统接口。 |
-| 12   | @FAModelOnly<br/>@StageModelOnly  | 1. 如果某个模块均只针对某模型实现，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口仅可在FA模型/Stage模型下使用。<br/>2. 如果某个接口只针对某模型实现，则需要在描述中增加：<br/>    此接口仅可在FA模型/Stage模型下使用。 |
-| 13   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象。无返回结果的Promise对象。 |
-| 14   | 示例代码语言                      | 所有的示例代码采用代码块的样式，并标记开发语言。<br/>JS和eTS通用的标注`js`；仅eTS可用的，标注`ts`。 |
-| 15   | 链接写法                          | 格式：[链接文字]\(链接内容)<br/>跨文件夹链接：[指南]\(\.\./../xxx/xxx.md)，一个`../`表示上移一层文件夹。<br/>页面内链接：[接口A<sup>7+</sup>]\(#xxxa7)，页面内链接和需要链接到的标题保持一致，全小写无特殊符号无标签。 |
+| 2    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
+| 3    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
+| 4    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。<br/>目录按字母顺序排列。 |
+| 5    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、常量、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
+| 6    | 接口版本说明                      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
+| 7    | 废弃接口说明                      | 废弃内容不能直接删去，上标标注(deprecated)，起始版本和废弃版本均使用引用语法“>”说明。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API version 4 开始支持，从API version 7 开始废弃，建议使用[newMethod]\(#newmethod)替代。|
+| 8    | 权限说明                          | 与代码保持一致，下沉到各个方法、枚举、属性字段中。<br/>1. 如果仅系统应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| 9   | @syscap                           | 1. 每个方法都需要进行描述，格式：<br/>    **系统能力**：SystemCapability.xxx.xxx<br/>2. 每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：<br/>    1）每个表格下系统能力无差异的，同方法的写法：<br/>          **系统能力**：SystemCapability.xxx.xxx<br/>    2）有差异的：在每一个表格项里进行描述。 |
+| 10   | @system api                       | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    **系统接口：** 此接口为系统接口。 |
+| 11   | @FAModelOnly<br/>@StageModelOnly  | 1. 如果某个模块均只针对某模型实现，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口仅可在FA模型/Stage模型下使用。<br/>2. 如果某个接口只针对某模型实现，则需要在描述中增加：<br/>    **模型约束：** 此接口仅可在FA模型/Stage模型下使用。 |
+| 12   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象。无返回结果的Promise对象。 |
+| 13   | 示例代码语言                      | 所有的示例代码采用代码块的样式，并标记开发语言。<br/>JS和eTS通用的标注`js`；仅eTS可用的，标注`ts`。 |
+| 14   | 链接写法                          | 格式：[链接文字]\(链接内容)<br/>跨文件夹链接：[指南]\(\.\./../xxx/xxx.md)，一个`../`表示上移一层文件夹。<br/>页面内链接：[接口A<sup>7+</sup>]\(#xxxa7)，页面内链接和需要链接到的标题保持一致，全小写无特殊符号无标签。 |
 
 下面进入具体每个API的写作。
 
@@ -34,11 +35,15 @@
 
 模块描述。此处对该模块的定义、功能、使用场景、使用建议进行描述，采用如下固定句式。
 
-*（模块介绍，可选）xxx是xxx。
+（模块介绍，可选）xxx是xxx。
+
 （功能描述，必选）xxx模块提供xxx能力，包括xxx、xxx等。——当模块名不够语义化时，推荐此句式。
+
 或 本模块提供xxx能力，包括xxx、xxx等。——当模块名已经表达了清晰的语义时，推荐此句式。
+
 （使用场景，可选）当需要xxx时，使用本模块接口xxx。
-（使用建议或注意事项，可选）本模块接口可与xxx联合使用，以提升开发效率……。*
+
+（使用建议或注意事项，可选）本模块接口可与xxx联合使用，以提升开发效率……。
 
 **举例1**：“后台任务管理模块”的模块描述示例
 
@@ -74,7 +79,7 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 > 1. 根据实际情况填写导入模块。采用代码段的样式，给出import语句。
 >
 > 2. 如果没有导入模块，将“导入模块”修改为“使用说明”。<br/>使用说明案例：<br/>
->    在使用AbilityContext的功能前，需要通过[getContext()](链接到对应的接口说明文件中.md)先获取Context对象。
+>    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
 >    import ability_featureAbility from '@ohos.ability.featureAbility';
@@ -99,10 +104,25 @@ import call from '@ohos.telephony.call';
 
 **系统能力：** SystemCapability.xxx.xxx。（必选）
 
-| 名称             | 类型                                      | 可读 | 可写 | 说明                                       |
+| 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | pluggedType      | [BatteryPluggedType](#batterypluggedtype) | 是   | 否   | 表示当前设备连接的充电器类型。             |
 | isBatteryPresent | boolean                                   | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
+
+## 常量
+
+> *写作说明*
+>
+> 1. 可选，如果没有常量可删除此二级标题，对应d.ts中的const。
+>
+> 2. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+
+**系统能力：** SystemCapability.xxx.xxx。（必选）
+
+| 名称             | 类型                                |  值      | 说明                                       |
+| ---------------- | -----------------------------------| -------- | ------------------------------------------ |
+| uid              | number                             | 1        | 进程的用户标识。                           |
+| pid              | number                             | 2        | 当前进程的pid。                            |
 
 ## 方法
 
@@ -129,9 +149,9 @@ import call from '@ohos.telephony.call';
 
 在此处给出方法描述。说明请参考上述写作说明第4、5点。
 
-此接口仅可在Stage模型下使用。（可选）
+**模型约束**：此接口仅可在FA模型下使用。（如不涉及可删除）
 
-此接口为系统接口。（可选）
+**系统接口**：此接口为系统接口。（如不涉及可删除）
 
 **需要权限**：ohos.permission.xxx（如不涉及可删除，如果是系统权限要说明）
 
@@ -141,15 +161,24 @@ import call from '@ohos.telephony.call';
 
 | 参数名       | 类型                                          | 必填 | 说明                                                         |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#customtype) | 是   | 参数描述。给出取值范围、建议值。如果有固定格式，需要给出格式样例，尤其是URI。<br/>自定义类型需要进行建链说明。 |
-| callback     | Callback\<Array<[CustomType](#customtype)>>   | 否   | 参数描述。可选参数需要说明不填写该参数的后果。<br/>如：不填该参数则取消该type对应的所有回调。<br/>callback写法参考总体写作说明第14项。 |
+| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述。给出取值范围、建议值。如果有固定格式，需要给出格式样例，尤其是URI。<br/>自定义类型需要进行建链说明。 |
+| callback     | Callback\<Array<[CustomType](#classinterface)>>   | 否   | 参数描述。可选参数需要说明不填写该参数的后果。<br/>如：不填该参数则取消该type对应的所有回调。<br/>callback写法参考总体写作说明第14项。 |
 
 **返回值**：（可选，如不涉及可删除）
 
 | 类型                                       | 说明                                            |
 | ------------------------------------------ | ----------------------------------------------- |
 | string                                     | 返回值描述。取到返回值之后，可以用来做什么。    |
-| Promise\<Array<[CustomType](#CustomType)>> | 返回值描述。Promise写法参考总体写作说明第14项。 |
+| Promise\<Array<[CustomType](#classinterface)>> | 返回值描述。Promise写法参考总体写作说明第14项。 |
+
+**错误码**：（可选，如不涉及可删除）
+
+以下错误码的详细介绍请参见[ohos.window(窗口)错误码]()。*（链接到对应模块的“错误码参考”文档）*
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| -------- | ---------------------------------------- |
+| 1300001  | This is repeat operation.                |
+| 1300002  | This window state is abnormally.         |
 
 **示例：**
 
@@ -185,9 +214,9 @@ import call from '@ohos.telephony.call';
 
 在此处给出方法描述。说明请参考上述写作说明第4、5点。
 
-此接口仅可在Stage模型下使用。（可选）
+**模型约束**：此接口仅可在FA模型下使用。（如不涉及可删除）
 
-此接口为系统接口。（可选）
+**系统接口**：此接口为系统接口。（如不涉及可删除）
 
 **需要权限**：ohos.permission.xxx（如不涉及可删除，如果是系统权限要说明）
 
@@ -198,7 +227,7 @@ import call from '@ohos.telephony.call';
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                               | 是   | 事件描述，需要说明触发时机。如一个方法涉及多个事件，需要分开说明。<br/>**示例1（单个）：**<br/>事件回调类型，支持的事件为`'play'`，当`play()`调用完成，音频开始播放，触发该事件。<br/>**示例2（多个）：**<br/>事件回调类型，支持的事件包括：`'play'` \| `'dataLoad' `\|`'finish'`。<br/>\- `'play'`：完成`play()`调用，音频开始播放，触发该事件。<br/>\- `'dataLoad'`：完成音频数据加载后触发该事件，即src属性设置完成后触发该事件。<br/>\- `'finish'`：完成音频播放后触发该事件。 |
-| callback | Callback\<[CustomType](#CustomType)> | 否   | 参数描述。与[方法](#方法)要求一致。                          |
+| callback | Callback\<[CustomType](#classinterface)> | 否   | 参数描述。与[方法](#方法)要求一致。                          |
 
 **返回值：**（可选，如不涉及可删除）
 
@@ -232,15 +261,15 @@ import call from '@ohos.telephony.call';
 > 2. 二级标题名为class、interface的名称。
 >
 > 3. 如果该API中，既有属性，又有方法，需要先进行属性的写作，并使用“###”三级标题。
->    如果该API中，只有属性，那么不需要新建三级标题，直接使用表格陈列属性，具体示例参考[CustomType](#CustomType)。
+>    如果该API中，只有属性，那么不需要新建三级标题，直接使用表格陈列属性。
 
-类描述/interface描述。如果有使用限制，需要在这个地方说明。比方说，是否有前提条件，是否需要通过什么方法先构造一个实例。 
+类描述/interface描述。如果有使用限制，需要在这个地方说明。比方说，是否有前提条件，是否需要通过什么方法先构造一个实例。
 
 ### 属性
 
 > *写作说明*
 >
-> 除标题使用三级标题外，其余要求同[属性](#属性)。
+> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除。
 
 ### Class/Interface中的方法
 
@@ -267,17 +296,31 @@ import call from '@ohos.telephony.call';
 | ---- | ---- | -------------------------- |
 | NONE | 1    | 表示连接的充电器类型未知。 |
 
-## CustomType
+## Type
 
-仅有k-v键值对的自定义类型示例。
+> *写作说明*
+>
+> 1. 可选，如果没有可删除此二级标题，对应d.ts中的type联合类型。
+>
+> 2. 如果为取值范围为具体取值，如固定的字符串、枚举值等，需要说明其数据类型和指定取值；如果取值范围为指定类型，需说明是否取类型下任意值，还是有取值范围。
+>
+> 3. 类型如果为自定义类型，需要建立链接到对应的interface或enum中。
+
+在此处给出该联合类型的简要描述。如：表示允许的数据字段类型。
+
 **系统能力：** SystemCapability.xxx.xxx（必选）
 
-| 名称         | 类型                | 可读 | 可写 | 说明                                                         |
-| ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持： <br/>1. 协议类型为“internal”的相对路径，示例如下： 临时目录：internal://cache/test.mp4 <br/>2. 文件的绝对路径，示例如下： file:///data/data/ohos.xxx.xxx/files/test.mp4 |
-| parameterOne | [CustomEnum](#枚举) | 是   | 是   | 属性描述，要求与参数说明类似。                               |
+| 取值范围    | 说明                          |
+| -----------| ---------------------------- |
+| number     | 表示值类型为数字，可取任意值。     |
+| string     | 表示值类型为字符，可取任意值。     |
 
 ## 变更日志
-| 变更说明 | 日期 |
-| -------- | ---- |
-| 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。 |2022/6/24|
+| 变更说明                                                                 | 日期         |
+| ----------------------------------------------------------------------- | ------------ |
+| 1. 修改属性的模板，将“可读”、“可写”、“必填”，统一为“只读”、“必填”。<br/>2. 修改Type的模板，模板修改为“取值范围/说明”，并增加相关说明。<br/>3. 删除自定义类型，合并进class和interface的模板中。 |  2023/02/01  |
+| 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。                                                                 |  2022/6/24  |
+| 增加错误码说明。                                                          | 2022/10/11  |
+| 1. 增加**常量const**、**类型type**的模板。<br/> 2. 修改自定义类型interface的表格，去除“可读、可写”，与d.ts保持一致，增加“必填”。<br/> 3. 针对同时存在起始版本和废弃版本的接口，增加废弃说明的模板。                          |2022/11/22   |
+
+<!--no_check-->

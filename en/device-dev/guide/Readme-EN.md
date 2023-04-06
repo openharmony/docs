@@ -1,25 +1,18 @@
 # Development Examples
 
-- [Mini- and Small-System Devices](device-lite.md)
-  - [WLAN-connected Products](device-wlan.md)
+- Mini- and Small-System Devices
+  - WLAN-connected Products
     - [LED Peripheral Control](device-wlan-led-control.md)
     - [Third-Party SDK Integration](device-wlan-sdk.md)
-  - [Cameras Without a Screen](device-iotcamera.md)
-    - [Camera Control](device-iotcamera-control.md)
-      - [Overview](device-iotcamera-control-overview.md)
-      - [Development Guidelines](device-iotcamera-control-demo.md)
-        - [Photographing](device-iotcamera-control-demo-photodevguide.md)
-        - [Video Recording](device-iotcamera-control-demo-videodevguide.md)
-      - [Use Case](device-iotcamera-control-example.md)
-  - [Cameras with a Screen](device-camera.md)
-    - [Screen and Camera Control](device-camera-control.md)
+  - Cameras with a Screen
+    - Screen and Camera Control
       - [Overview](device-camera-control-overview.md)
-      - [Development Guidelines](device-camera-control-demo.md)
+      - Development Guidelines
         - [Photographing](device-camera-control-demo-photoguide.md)
         - [Video Recording](device-camera-control-demo-videoguide.md)
         - [Previewing](device-camera-control-demo-previewguide.md)
       - [Use Case](device-camera-control-example.md)
-    - [Visual Application Development](device-camera-visual.md)
+    - Visual Application Development
       - [Overview](device-camera-visual-overview.md)
       - [Preparations](device-camera-visual-prepare.md)
       - [Adding Pages](device-camera-visual-addpage.md)
@@ -28,7 +21,7 @@
       - [Debugging and Packaging](device-camera-visual-debug.md)
       - [Running on the Device](device-camera-visual-run.md)
       - [FAQs](device-camera-visual-faqs.md)
-- [Standard-System Devices](device-standard.md)
+- Standard-System Devices
   - [Development Guidelines on Clock Apps](device-clock-guide.md)
   - [Development Example for Platform Drivers](device-driver-demo.md)
   - [Development Example for Peripheral Drivers](device-outerdriver-demo.md)

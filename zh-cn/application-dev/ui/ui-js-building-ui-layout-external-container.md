@@ -7,7 +7,7 @@
 
 当页面结构较为复杂时，如果使用div循环渲染，容易出现卡顿，因此推荐使用list组件代替div组件实现长列表布局，从而实现更加流畅的列表滚动体验。需要注意的是，list仅支持list-item作为子组件，具体的使用示例如下：
 
-```
+```html
 <!-- xxx.hml -->
 <list class="list">
   <list-item type="listItem" for="{{textList}}">
@@ -16,7 +16,7 @@
 </list>
 ```
 
-```
+```css
 /* xxx.css */
 .desc-text {
   width: 683.3px;
@@ -24,7 +24,7 @@
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -40,7 +40,7 @@ export default {
 
 当页面经常需要动态加载时，推荐使用tabs组件。tabs组件支持change事件，在页签切换后触发。tabs组件仅支持一个tab-bar和一个tab-content。具体的使用示例如下：
 
-```
+```html
 <!-- xxx.hml -->
 <tabs>
   <tab-bar>
@@ -56,7 +56,7 @@ export default {
 </tabs>
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

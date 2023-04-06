@@ -1,15 +1,10 @@
 # Counter
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 计数器组件，提供相应的增加或者减少的计数操作。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -21,15 +16,21 @@
 
 Counter()
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+## 属性
+
+支持[通用属性](ts-universal-attributes-size.md)。
+
 
 ## 事件
 
 不支持通用事件和手势， 仅支持如下事件：
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 | 
-| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 | 
+| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

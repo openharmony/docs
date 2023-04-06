@@ -1,21 +1,21 @@
-# Picker
+# picker开发指导
 
-Picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[Picker API](../reference/arkui-js/js-components-basic-picker.md)。
+picker是滑动选择器组件，类型支持普通选择器、日期选择器、时间选择器、时间日期选择器和多列文本选择器。具体用法请参考[picker API](../reference/arkui-js/js-components-basic-picker.md)。
 
 
-## 创建Picker组件
+## 创建picker组件
 
-在pages/index目录下的hml文件中创建一个Picker组件。
+在pages/index目录下的hml文件中创建一个picker组件。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <picker>    picker  </picker>
-<div>
+</div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%; 
@@ -29,20 +29,20 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 ![zh-cn_image_0000001210951541](figures/zh-cn_image_0000001210951541.gif)
 
 
-## 设置Picker类型
+## 设置picker类型
 
-通过设置Picker的type属性来选择滑动选择器类型，如定义Picker为日期选择器。
+通过设置picker的type属性来选择滑动选择器类型，如定义picker为日期选择器。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <picker id="picker_text" type="text" value="{{textvalue}}"range="{{rangetext}}" class="pickertext" ></picker>
   <picker id="picker_date" type="date" value="{{datevalue}}" lunarswitch="true" start="2002-2-5" end="2030-6-5" class="pickerdate"></picker>
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%;
@@ -56,7 +56,7 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -69,25 +69,25 @@ export default {
 
 ![zh-cn_image_0000001189098638](figures/zh-cn_image_0000001189098638.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > 普通选择器设置取值范围时，需要使用数据绑定的方式。
 
 
 ## 设置时间展现格式
 
-Picker的hours属性定义时间的展现格式，可选类型有12小时制和24小时制。
+picker的hours属性定义时间的展现格式，可选类型有12小时制和24小时制。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <picker id="picker_time" type="time" value="12-hour format" hours="12" onchange="timeonchange"  class="pickertime"></picker>
   <picker id="picker_time" type="time" value="24-hour format" hours="24" onchange="timeonchange"  class="pickertime"></picker>
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%;
@@ -105,7 +105,7 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 
 ![zh-cn_image_0000001234327855](figures/zh-cn_image_0000001234327855.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - hours属性为12：按照12小时制显示，用上午和下午进行区分；
 >
 > - hours属性为24：按照24小时制显示。
@@ -113,18 +113,18 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 
 ## 添加响应事件
 
-对Picker添加change和cancel事件，来对选择的内容进行确定和取消。
+对picker添加change和cancel事件，来对选择的内容进行确定和取消。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <picker id="picker_multi" type="multi-text" value="{{multitextvalue}}" columns="3" range="{{multitext}}" selected="
      {{multitextselect}}" onchange="multitextonchange" oncancel="multitextoncancel" class="pickermuitl"></picker>
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%;
@@ -142,9 +142,9 @@ Picker的hours属性定义时间的展现格式，可选类型有12小时制和2
 }
 ```
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     multitext:[["a", "b", "c"], ["e", "f", "g"], ["h", "i"]],
@@ -153,10 +153,10 @@ export default {
   },
   multitextonchange(e) {
     this.multitextvalue=e.newValue;
-    prompt.showToast({ message:"Multi-column text changed to:" + e.newValue })
+    promptAction.showToast({ message:"Multi-column text changed to:" + e.newValue })
   },
   multitextoncancel() {
-    prompt.showToast({ message:"multitextoncancel" })
+    promptAction.showToast({ message:"multitextoncancel" })
   },
 }
 ```
@@ -170,8 +170,8 @@ export default {
 在本场景中，开发者可以自定义填写当前的健康情况来进行打卡。
 
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="doc-page">
   <text class="title">Health check-in</text>
   <div class="out-container">
@@ -201,8 +201,8 @@ export default {
 ```
 
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .doc-page {
   flex-direction: column;
   background-color: #F1F3F5;
@@ -244,9 +244,9 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
-import pmt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   data: {
     yorn1:'No',
@@ -281,10 +281,10 @@ export default {
   dateonchange(e) {
     e.month=e.month+1;
     this.datevalue = e.year + "-" + e.month + "-" + e.day;
-    pmt.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
+    promptAction.showToast({ message:"date:"+e.year+"-"+e.month+"-"+e.day }) 
   },
   showtoast() {
-    pmt.showToast({
+    promptAction.showToast({
       message: 'Submitted.',
       duration: 2000,
       gravity: 'center'
@@ -299,6 +299,6 @@ export default {
 
 ## 相关实例
 
-针对Picker开发，有以下相关实例可供参考：
+针对picker开发，有以下相关实例可供参考：
 
-- [`Picker`：滑动选择器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Picker)
+- [`Picker`：滑动选择器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Picker)

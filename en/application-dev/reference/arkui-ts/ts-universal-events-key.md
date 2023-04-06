@@ -1,69 +1,38 @@
 # Key Event
 
+A key event is triggered when a focusable component, such as **\<Button>**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **\<Text>** and **\<Image>**, first set their **focusable** attribute to **true**.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
 
 
 ## Events
 
-| Name | Bubble Supported | Description |
-| -------- | -------- | -------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when a key event occurs. For details about the event parameters, see [KeyEvent Object](#KeyEvent Object). |
+| Name                                      | Bubbling Supported| Description                                    |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes   | Triggered when a key event occurs. For details about **event**, see [KeyEvent](#keyevent).|
 
 
-### KeyEvent Object
+## KeyEvent
 
-- Attributes
-    | Name | Type | Description | 
-  | -------- | -------- | -------- |
-  | type | KeyType | Type of a key. | 
-  | keyCode | number | Key code. | 
-  | keyText | string | Key value. | 
-  | keySource | KeySource | Type of the input device that triggers the key event. | 
-  | deviceId | number | ID of the input device that triggers the key event. | 
-  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. | 
-  | timestamp | number | Timestamp when the key is pressed. | 
-
-- APIs
-    | Name | Description | 
-  | -------- | -------- |
-  | stopPropagation(): void | Stops the event from bubbling upwards or downwards. | 
-
-- KeyType enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Down | The key is pressed. | 
-  | Up | The key is released. | 
-
-
-- KeySource enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Unknown | Unknown input device. | 
-  | Keyboard | The input device is a keyboard. | 
-
-- Common KeyCode description
-    | Value | Behavior | Physical Button | 
-  | -------- | -------- | -------- |
-  | 19 | Upward | Up button. | 
-  | 20 | Downward | Down button. | 
-  | 21 | Leftward | Left button. | 
-  | 22 | Rightward | Right button. | 
-  | 23 | OK | **OK** key on a remote control. | 
-  | 66 | OK | **Enter** key on a keyboard. | 
-  | 160 | OK | **Enter** button on the numeric keypad. | 
+| Name                                   | Type                                      | Description                        |
+| ------------------------------------- | ---------------------------------------- | -------------------------- |
+| type                                  | [KeyType](ts-appendix-enums.md#keytype)  | Key type.                    |
+| [keyCode](../apis/js-apis-keycode.md) | number                                   | Key code.                    |
+| keyText                               | string                                   | Key value.                    |
+| keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
+| deviceId                              | number                                   | ID of the input device that triggers the key event.            |
+| metaKey                               | number                                   | State of the metakey (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key is pressed. The value **1** indicates the pressed state, and **0** indicates the unpressed state.|
+| timestamp                             | number                                   | Timestamp when the key is pressed.                |
+| stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct KeyEventExample {
@@ -72,7 +41,7 @@ struct KeyEventExample {
 
   build() {
     Column() {
-      Button('KeyEvent').backgroundColor(0x2788D9)
+      Button('KeyEvent')
         .onKeyEvent((event: KeyEvent) => {
           if (event.type === KeyType.Down) {
             this.eventType = 'Down'
@@ -80,7 +49,7 @@ struct KeyEventExample {
           if (event.type === KeyType.Up) {
             this.eventType = 'Up'
           }
-          console.info(this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText)
+          this.text = 'KeyType:' + this.eventType + '\nkeyCode:' + event.keyCode + '\nkeyText:' + event.keyText
         })
       Text(this.text).padding(15)
     }.height(300).width('100%').padding(35)
@@ -88,4 +57,4 @@ struct KeyEventExample {
 }
 ```
 
-![en-us_image_0000001257058433](figures/en-us_image_0000001257058433.gif)
+ ![keyEvent](figures/keyEvent.png) 

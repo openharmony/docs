@@ -12,7 +12,7 @@
 
 ## 子组件
 
-支持除&lt;list&gt;之外的子组件。
+可以包含子组件。
 
 
 ## 属性
@@ -117,16 +117,19 @@
 }
 .swiperContent1{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #007dff;
 }
 .swiperContent2{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #ff7500;
 }
 .swiperContent3{
   height: 100%;
+  width: 100%;
   justify-content: center;
   background-color: #41ba41;
 }

@@ -130,9 +130,8 @@ Modem厂商库初始化接口。
 3. 执行hdc_std shell hilog，根据日志查看函数RilInitOps()是否正确执行完成。如下调测验证日志供参考：
      
    ```
-   01-01 05:13:23.071   136  2319 D 00000/RilAdapterInit: [RilAdapterDispatch-(hril_hdf.c:55)] sbuf IPC obtain test success!
-   01-01 05:13:23.071   136  2319 D 00000/RilAdapterInit: [LoadVendor-(hril_hdf.c:33)] RilInit rilInit start
-   01-01 05:13:23.071   136  2319 D 00000/RilAdapterInit: [LoadVendor -(hril_hdf.c:45)] RilInit rilInit completed
+   09-02 07:40:47.807   455   455 I 01f08/HrilHdf: [LoadVendor-(hril_hdf.c:148)] RilInit LoadVendor start with rilLibPath:libril_vendor.z.so
+   09-02 07:40:47.830   455   455 I 01f08/HrilHdf: [LoadVendor-(hril_hdf.c:163)] HRilRegOps completed
    ```
 
 
@@ -244,19 +243,12 @@ Modem业务请求及响应接口。
 4. 另开一个终端窗口，执行hdc_std shell hilog，通过日志查看函数ReqDial()是否正确执行完成。如下调测验证日志供参考：
      
    ```
-   01-01 05:27:27.419   136   408 D 02b01/Rilvendor: [SendCommandLock-(at_support.c:210)] SendCommandLock enter, cmd: ATD17620373527
-   01-01 05:27:27.419   136   408 D 02b01/Rilvendor: [SendCommandLock-(at_support.c:231)] SendCommandLock() command ATD17620373527
-   01-01 05:27:27.419   136   408 D 02b01/Rilvendor: [WriteATCommand-(channel.c:115)] WriteATCommand enter, cmd:ATD17620373527
-   01-01 05:27:27.421   136   187 D 02b01/Rilvendor: [ReadResponse-(channel.c:94)] g_bufferCur : 
-   01-01 05:27:27.421   136   187 D 02b01/Rilvendor: OK
-   01-01 05:27:27.422   136   187 D 02b01/Rilvendor: [ProcessResponse-(at_support.c:144)] processLine line = OK
-   01-01 05:27:27.422   136   187 D 02b01/Rilvendor: [ReadResponse-(channel.c:81)] ReadResponse enter
-   01-01 05:27:27.422   136   187 D 02b01/Rilvendor: [ProcessLastResponse-(channel.c:37)] last data more than one line , FindEndOfLine  g_bufferCur: 
-   01-01 05:27:27.422   136   187 E 02b01/Rilvendor: [ProcessLastResponse-(channel.c:39)] g_bufferCur endLine is null
-   01-01 05:27:27.422   136   187 E 02b01/Rilvendor:^ORIG:1,0
-   01-01 05:27:27.422   136   408 E 02b01/Rilvendor: [SendCommandLock-(at_support.c:234)] processLine line = ^ORIG:1,0
-   01-01 05:27:27.422   136   408 E 02b01/Rilvendor: [SendCommandLock-(vendor_report.c:234)] enter to [^ORIG:1,0]：（null）
-   01-01 05:27:27.422   136   408 E 02b01/Rilvendor: [SendCommandLock-(at_support.c:264)] err = 0, cmd:ADT17620373527
+   09-02 07:55:09.073   455  2059 I 01f08/RilVendor: [SendCommandLock-(at_support.c:226)] command ATD18675231804;, NeedATPause:0, atCmd:AT
+   09-02 07:55:09.099   455  2053 I 01f08/Rilvendor: [ProcessResponse-(at_support.c:159)] processLine line = OK
+   09-02 07:55:09.100   455  2053 E 01f08/RilVendor: [ReportStrWith-(vendor_util.c:63)] str or prefix parameter is null.
+   09-02 07:55:09.100   455  2053 E 01f08/RilVendor: [ProcessLastResponse-(vendor_channel.c:77)] g_bufferCur endLine is null
+   09-02 07:55:09.100   455  2059 I 01f08/RilVendor: [SendCommandLock-(at_support.c:243)] err = 0
+   09-02 07:55:09.100   455  2053 I 01f08/RilVendor: [ProcessResponse-(at_support.c:159)] processLine line = ^ORIG:1,0
    ```
 
 

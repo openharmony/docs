@@ -16,11 +16,11 @@ The Device Security Level Management (DSLM) module is introduced to manage the s
 
   The following figure shows the OpenHarmony security architecture.
 
-  ![OpenHarmony system security architecture](figure/ohos_system_security_architecture.png)
+  ![OpenHarmony system security architecture](figures/ohos_system_security_architecture.png)
 
-  The above figure shows the typical security architecture for a single device. The architecture may vary depending on the risk level as well as the software and hardware resources of the device. The security capabilities of OpenHarmony devices are classified into five levels from SL1 to SL5, based on an industry standard security classification model and actual OpenHarmony service scenarios and device types. In the OpenHarmony ecosystem, higher security levels include all the capabilities of lower security levels by default. The figure below shows the security levels of OpenHarmony devices.
+  The above figure shows the typical security architecture for a single device. The architecture may vary depending on the risk level as well as the software and hardware resources of the device. The security capabilities of OpenHarmony devices are classified into five levels from SL1 to SL5, based on the industry standard security classification model and actual OpenHarmony service scenarios and device types. In the OpenHarmony ecosystem, higher security levels include all the capabilities of lower security levels by default. The figure below shows the security levels of OpenHarmony devices.
 
-  ![OpenHarmony device security levels](figure/ohos_device_security_level.png)
+  ![OpenHarmony device security levels](figures/ohos_device_security_level.png)
 
   - SL1: SL1 is the lowest security level of OpenHarmony devices. Usually equipped with a lightweight operating system and low-end microprocessors, such devices implement simple services and do not need to process sensitive data. SL1 devices are required to support software integrity protection and eliminate common errors. Devices that cannot meet the requirements of SL1 can only be controlled by OpenHarmony devices. They cannot control OpenHarmony devices for more complex service collaboration.
 
@@ -44,6 +44,8 @@ The security level of each device in a Super Device provides the decision-making
 
 The default security level of OpenHarmony devices is SL1. Device manufacturers can customize a higher security level based on service requirements. For details, see [Customizing Device Security Levels](#customizing-device-security-levels).
 
+If data processing or hopping fails because the device security level is low during debugging of distributed services, you can temporarily increase the security level of related devices. For details, see [Tool](#tool).
+
 ## Development Guidelines
 
 ### When to Use
@@ -53,7 +55,7 @@ When processing or hopping various user data, a subsystem can invoke the APIs pr
 ### Available APIs
 
 All the APIs are native C interfaces for implementing underlying capabilities and are not open to apps. The APIs are described as follows:
-| API| Description|
+| API                                                      | Description                                        |
 | :----------------------------------------------------------- | :------------------------------------------- |
 | int32_t RequestDeviceSecurityInfo(const DeviceIdentify \*identify, const RequestOption \*option, DeviceSecurityInfo \*\*info); | Requests the security level information of a device synchronously.|
 | int32_t RequestDeviceSecurityInfoAsync(const DeviceIdentify \*identify, const RequestOption \*option, DeviceSecurityInfoCallback callback); | Requests the security level information of a device asynchronously.|
@@ -80,21 +82,21 @@ All the APIs are native C interfaces for implementing underlying capabilities an
     ```cpp
     // Obtain the unique device identifier (UDID) of the device of which the security level is to be queried.
     const DeviceIdentify *device = GetDestDeviceUdid();
-    
+
     // Obtain the RequestOption.
     const RequestOption *option = DEFAULT_OPTION;
-    
+
     // Define a pointer to the device security level obtained.
     DeviceSecurityInfo *info = NULL;
-    
+
     // Call RequestDeviceSecurityInfo to obtain the device security level information of the peer device.
     int32_t ret = RequestDeviceSecurityInfo(device, DEFAULT_OPTION, &info);
-    
+
     int32_t level = 0;
     // Obtain the device security level from the device security level information.
     ret = GetDeviceSecurityLevelValue(info, &level);
     if (ret == SUCCESS) {
-        //The level is successfully queried.
+        // The device security level is obtained.
         FreeDeviceSecurityInfo(info);
         return;
     }
@@ -241,18 +243,18 @@ eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4Iiwg
 
 The fields in the `payload` are described as follows:
 
-|     Field|      Description| Mandatory|       Value Range|
-| :-------------- | :----------------- | :----------- | :-------------------- |
-|      type       |    Credential type.|      Yes|    [debug release]    |
-|   manufacture   |   Device manufacturer information.|      Yes|    string [0..128]    |
-|      brand      |    Device brand.|      Yes|    string [0..128]    |
-|      model      |    Device model.|      Yes|    string [0..128]    |
-| softwareVersion | Device software version.|      Yes|    string [0..128]    |
-|  securityLevel  |  Device security level.|      Yes| [SL1 SL2 SL3 SL4 SL5] |
-|    signTime     |   Time when the credential was signed.|      Yes|    string [0..128]    |
-|     version     |    Credential version.|      Yes|    string [0..32]     |
-|       sn        |    Device SN.|      No|    string [0..128]    |
-|      udid       |   Device UDID.|      No|    string [0..128]    |
+|     Field     |      Description     | Mandatory|       Value Range       |
+| :-------------: | :----------------: | :----------: | :-------------------: |
+|      type       |    Credential type.   |      Yes     |    [debug release]    |
+|   manufacture   |   Device manufacturer information.  |      Yes     |    string [0..128]    |
+|      brand      |    Device brand.   |      Yes     |    string [0..128]    |
+|      model      |    Device model.   |      Yes     |    string [0..128]    |
+| softwareVersion | Device software version.|      Yes     |    string [0..128]    |
+|  securityLevel  |  Device security level. |      Yes     | [SL1 SL2 SL3 SL4 SL5] |
+|    signTime     |   Time when the credential was signed.  |      Yes     |    string [0..128]    |
+|     version     |    Credential version.   |      Yes     |    string [0..32]     |
+|       sn        |    Device SN.   |      No     |    string [0..128]    |
+|      udid       |   Device UDID.  |      No     |    string [0..128]    |
 
 #### 3. Construct the `signature`.
 
@@ -267,13 +269,13 @@ Example:
 eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJhbmQiOiAicmszNTY4IiwgIm1vZGVsIjogInJrMzU2OCIsICJzb2Z0d2FyZVZlcnNpb24iOiAiMy4yLjIiLCAic2VjdXJpdHlMZXZlbCI6ICJTTDEiLCAic2lnblRpbWUiOiAiMjAyMjAyMDkxNTAyNTkiLCAidmVyc2lvbiI6ICIxLjAuMSJ9
 ```
 
-##### 3.2 Generate a private key for signature.
+##### 3.2 Generate a private key for signing data.
 
 The Elliptic Curve Digital Signature algorithm (ECDSA) is used to sign the raw data in the credential file. Generate an ECDSA key pair `<ecc-l3-pk>` and `<ecc-l3-sk>` first.
 
 > ![notice](../public_sys-resources/icon-notice.gif)**NOTICE**
 >
-> This step must be performed in a secure and reliable environment, for example, a cryptographic machine that meets related security requirements, to ensure that the key used for signature is not disclosed.
+> This step must be performed in a secure and reliable environment, for example, a cryptographic machine that meets related security requirements, to ensure that the key generated is not disclosed.
 
 ##### 3.3 Sign the raw data.
 
@@ -385,8 +387,8 @@ The packet for requesting the credential is in the following format:
 
 The fields in the request message are described as follows:
 
-|  Field|               Description|
-| :-------- | :------------------------------------ |
+|  Field  |               Description               |
+| :-------: | :-----------------------------------: |
 |  message  | Message header. The value **1** indicates a request for the device security level credential.|
 |  payload  |      Message payload, which is the specific request information.|
 |  version  |           Version of the protocol used by the requester.|
@@ -408,8 +410,8 @@ After receiving the request, the peer device returns a response in the following
 ```
 
 The fields in the response message are described as follows:
-|  Field|                          Description|
-| :-------- | :--------------------------------------------------------- |
+|  Field  |                          Description                         |
+| :-------: | :--------------------------------------------------------: |
 |  message  |           Message header. The value **2** indicates a response to the request for the device security level credential.|
 |  payload  |                Message payload, which is the specific response information.|
 |  version  |                      Version of the protocol used by the responder. |
@@ -430,7 +432,7 @@ You can use the tool as follows:
 
 2. Generate a credential.
 
-   For example, to generate a credential file **cred.txt** with the device model of **rk3568**, device version of **3.0.0**, and device security level of **SL3**, run the following command:
+    For example, to generate a credential file **cred.txt** with the device model of **rk3568**, device version of **3.0.0**, and device security level of **SL3**, run the following command:
 
     ``` undefined
     ./dslm_cred_tool.py create --field-manufacture OHOS --field-brand rk3568  --field-model rk3568 --field-software-version 3.0.0 --field-security-level SL3 --cred-file cred.txt
@@ -470,6 +472,24 @@ You can use the tool as follows:
     verify success!
     ```
 
+4. Send the generated credential file to the target device and make it take effect.
+   
+   Temporarily disable write protection.
+   ``` undefined
+   hdc_std target mount
+   hdc_std shell "setenforce 0"
+   ```
+
+   Send the generated credential file to the device.
+   ``` undefined
+   hdc_std file send cred.txt  /system/etc/dslm_finger.cfg
+   ```
+
+   Restart the device to make the new credential file take effect.
+   ``` undefined
+   hdc_std reboot
+   ```
+
 ## FAQs
 
 - Q: How can I use the credential tool in a production environment?
@@ -480,6 +500,6 @@ You can use the tool as follows:
 
     A: You are advised to use a properly kept private key to sign the credential and use more severe signature verification process instead of the default verification process provided by the DSLM module. For example, allow only the credentials issued by trusted certification authorities (CAs), and bind the credential and device ID to enhance the security.
 
-## References
+- Q: The default security level of OpenHarmony devices is SL1. How do I do if the distributed service (distributed file system) fails to process sensitive data due to insufficient permission? 
 
-None
+    A: You can solve the problem by temporarily increasing the security level of the related devices. For details, see [Tool](#tool).

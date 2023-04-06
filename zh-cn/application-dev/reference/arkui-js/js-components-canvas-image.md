@@ -29,19 +29,20 @@
 ```js
 // xxx.js
 export default {
-  onShow(){
-    const el =this.$refs.canvas;
-    var ctx =el.getContext('2d');  
-    var img = new Image();
-    img.src = 'common/images/example.jpg';
-    img.onload = function() {
-    console.log('Image load success');
-    ctx.drawImage(img, 0, 0, 360, 250);
-   };
-    img.onerror = function() {
-    console.log('Image load fail');
-    };
-  }
+    onShow() {
+        const el = this.$refs.canvas;
+        var ctx = el.getContext('2d');
+        var img = new Image();
+        // 图片路径建议放在common目录下
+        img.src = 'common/images/example.jpg';
+        img.onload = function () {
+            console.log('Image load success');
+            ctx.drawImage(img, 0, 0, 360, 250);
+        };
+        img.onerror = function () {
+            console.log('Image load fail');
+        };
+    }
 }
 ```
 

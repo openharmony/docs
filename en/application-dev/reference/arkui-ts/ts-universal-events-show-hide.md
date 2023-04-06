@@ -1,51 +1,54 @@
 # Show/Hide Event
 
+The show/hide event is triggered when a component is mounted or unmounted from the component tree. A component appears when mounted to the component tree and disappears when unmounted from the component tree.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> **NOTE**
+>
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-  | Name | Bubble Supported | Description | 
-| -------- | -------- | -------- |
-| onAppear(callback: () =&gt; void) | No | Called when the component is displayed. | 
-| onDisappear(callback: () =&gt; void) | No | Called when the component disappears. | 
+| Name                                            | Bubbling Supported| Description                                                    |
+| ------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onAppear(event: () =&gt; void)    | No      | Triggered when the component is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onDisAppear(event: () =&gt; void) | No      | Triggered when the component is hidden.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
 
-
-```
-import prompt from '@system.prompt'
+```ts
+// xxx.ets
+import promptAction from '@ohos.promptAction'
 
 @Entry
 @Component
 struct AppearExample {
   @State isShow: boolean = true
+  @State changeAppear: string = 'Hide Text'
   private myText: string = 'Text for onAppear'
-  private changeAppear: string = 'Hide Text'
 
   build() {
     Column() {
       Button(this.changeAppear)
         .onClick(() => {
           this.isShow = !this.isShow
-        }).margin(3).backgroundColor(0x2788D9)
+        }).margin(15)
       if (this.isShow) {
-        Text(this.myText)
+        Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
-            this.changeAppear = 'Show Text'
-            prompt.showToast({ message: 'The text is shown', duration: 2000 })
+            this.changeAppear = 'Hide Text'
+            promptAction.showToast({
+              message: 'The text is shown',
+              duration: 2000
+            })
           })
           .onDisAppear(() => {
-            this.changeAppear = 'Hide Text'
-            prompt.showToast({ message: 'The text is hidden', duration: 2000 })
+            this.changeAppear = 'Show Text'
+            promptAction.showToast({
+              message: 'The text is hidden',
+              duration: 2000
+            })
           })
       }
     }.padding(30).width('100%')
@@ -53,4 +56,4 @@ struct AppearExample {
 }
 ```
 
-![en-us_image_0000001211898468](figures/en-us_image_0000001211898468.gif)
+![en-us_image_0000001219864151](figures/en-us_image_0000001219864151.gif)

@@ -2,11 +2,11 @@
 
 ## System Startup
 
-### System Startup Interrupted Due to "parse failed!" Error
+### Device Startup Interrupted Due to "parse failed!" Error
 
 **Symptom**
 
-During system startup, the error message "[Init] InitReadCfg, parse failed! please check file /etc/init.cfg format." is displayed, and the startup is interrupted, as shown in the following figure.
+During device startup, the error message "[Init] InitReadCfg, parse failed! please check file /etc/init.cfg format." is displayed, and the startup is interrupted, as shown in the following figure.
 
   **Figure 1** Error information
 
@@ -14,34 +14,32 @@ During system startup, the error message "[Init] InitReadCfg, parse failed! plea
 
 **Possible Cause**
 
-During modification of the **init.cfg** file, required commas (,) or parentheses are missing or unnecessary ones are added. As a result, the file's JSON format becomes invalid.
+The content of the **init.cfg** file does not comply with the JSON specifications.
 
 **Solution**
 
 Check the **init.cfg** file and ensure that its format meets the JSON specifications.
 
 
-### System Restarted Repeatedly
+### Device Restarted Repeatedly
 
 **Symptom**
 
-After the image burning is complete, the system restarts over and over again.
+The device restarts over and over again upon startup. 
 
 **Possible Cause**
 
-Each service started by the init process has the **importance** attribute, as described in Table 3 in [init Module](../subsystems/subsys-boot-init.md).
+Each service started by the init process has the **importance** attribute, as described in [Parameters](../subsystems/subsys-boot-init-service.md#parameters).
 
-- If the attribute value is **0**, the init process does not need to restart the development board when the current service process exits.
+- If the attribute value is **0**, the init process does not need to restart the device when the current service process exits.
 
-- If the attribute value is **1**, the init process needs to restart the development board when the current service process exits.
-
-During the startup of a service whose **importance** is **1**, if the service exits due to a process crash or an error, the init process automatically restarts the development board.
+- If the attribute value is **1**, the init process needs to restart the device when the current service process exits.
 
 **Solution**
 
 1. View logs to identify the service that encounters a process crash or exits due to an error, rectify the issue, and then burn the image again.
 
-2. Alternatively, change the value of **importance** to **0** for the service that exits due to a process crash or an error, and then burn the image again. In this way, the development board will not be restarted even if the service exits.
+2. Change the value of **importance** to **0** for the service that exits due to a process crash or an error, and then burn the image again.
 
 
 ### **SetParameter** or **GetParameter** Failed with Correct Parameters Passed
@@ -50,6 +48,10 @@ During the startup of a service whose **importance** is **1**, if the service ex
 
 Calling **SetParameter** or **GetParameter** fails when correct parameters are passed.
 
+**System Type**
+
+liteos-a
+
 **Possible Cause**
 
 Permission verification has been enabled for **SetParameter** and **GetParameter**. If the UID of the caller is greater than **1000**, that is, the caller does not have the API call permission, calling an API will fail even if correct parameters are passed.
@@ -57,7 +59,6 @@ Permission verification has been enabled for **SetParameter** and **GetParameter
 **Solution**
 
 No action is required.
-
 
 ### ueventd Service Failed to Obtain a Socket upon Startup
 
@@ -71,15 +72,14 @@ After the ueventd service is started, the error message "Failed to get uevent so
 
 **Possible Cause**
 
-The ueventd service is started on demand. Upon startup, it first needs to check the environment variables for **fd** of the socket created by the init process. The preceding error information will be displayed if the ueventd service fails to obtain environment variables. The possible causes are as follows:
+ The ueventd service is started on demand. Upon startup, it first needs to check the environment variables for **fd** of the socket created by the init process. The preceding error information will be displayed if the ueventd service fails to obtain environment variables. The possible causes are as follows:
 1. No socket has been configured for the ueventd service in the **.cfg** file. As a result, the init process does not create a socket for the ueventd service, and no socket ID is present in environment variables.
 2. If a socket has been configured for the ueventd service in the **.cfg** file, it is probable that the ueventd service is also configured in another **.cfg** file but no socket is designated for it.
 
 **Solution**
 
-For case 1, configure a socket for the ueventd service in the **.cfg** file. For details, see [Development Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-init.md#development-guidelines).
-
-For case 2, check all **.cfg** files for any duplicate ueventd service and delete it. Retain only one ueventd service with valid configuration.
+1. For case 1, configure a socket for the ueventd service in the **.cfg** file. For details, see [Socket Configuration for the ueventd Service](../subsystems/subsys-boot-init-service.md#parameters).
+2. For case 2, check all **.cfg** files for any duplicate ueventd service and delete it. Retain only one ueventd service with valid configuration.
 
 ### ueventd Service Exits Because of a Socket Polling Timeout
 
@@ -103,18 +103,18 @@ The service configuration in JSON format cannot be correctly parsed, and the err
 
 **Possible Cause**
 
-The service configuration is not in the JSON format. This can result in a **.cfg** file parsing error, leading to a service parsing failure. For a service configured with the **ondemand** attribute, the **critical** attribute is set to **1**, or the first value in the **critical** attribute array is set to **1**. When the **ondemand** attribute is configured, the service is started on demand by default. The service exits when it is idle. However, when the **critical** attribute is configured, the service is regarded as a critical system service and is not allowed to exit. Therefore, a conflict occurs if both attributes are configured the same service.
+When the **ondemand** attribute is configured, a service is started on demand by default. This attribute, however, is mutually exclusive with the **critical** attribute. If both of them are configured, a conflict will occur, resulting in a failure to resolve the service.
 
 **Solution**
 
-Check whether the service needs to be started on demand. If not, do not configure the **ondemand** attribute. If yes, do not configure the **critical** attribute along with the **ondemand** attribute. To limit the number of times that a critical service exits abnormally, set the first value in the **critical** attribute array to **0** and then add a limitation on the exit times. For example, **"critical": [0, 15, 5]** means that, if a service exits for more than 15 times within 5s, the service will not be started and the system will not be restarted.
-
+1. If a service does not need to be started on demand, leave the **ondemand** attribute unspecified.
+2. If a service needs to be started on demand, leave the **critical** attribute unspecified or disable the **critical** attribute after you configure the **ondemand** attribute.
 
 ### Parallel Startup Is Not Effective for Services Configured with the ondemand Attribute
 
 **Symptom**
 
-Services configured with the **ondemand** attribute are not started in the parallel startup phase, regardless of whether **start-mode** is set to **boot**, **normal**, or the default value.
+Services configured with the **ondemand** attribute are not started in the parallel startup phase, regardless of the **start-mode** settings.
 
 **Possible Cause**
 
@@ -132,84 +132,100 @@ When an SA service is configured with the **ondemand** attribute, the samgr proc
 
 **Possible Cause**
 
-At the initial implementation of on-demand startup, **SystemAbilityManager::CheckSystemAbility(int32_t systemAbilityId)** is used for all SA services. To distinguish SA services that are started on demand, **LoadSystemAbility(int32_t systemAbilityId, const sptr& callback)** provided by the samgr process is added. If an SA service is not started on demand, it is probable that the original API is used by mistake.
+At the initial implementation of on-demand startup for SA services, **SystemAbilityManager::CheckSystemAbility(int32_t systemAbilityId)** is used for all SA services. To distinguish SA services that are started on demand, **LoadSystemAbility(int32_t systemAbilityId, const sptr& callback)** provided by the samgr process is added. If an SA service is not started on demand, it is probable that the original API is used by mistake.
 
 **Solution**
 
 Use **LoadSystemAbility(int32_t systemAbilityId, const sptr& callback)** for any SA service that needs to be started on demand.
 
-### Improper DAC Configuration
+### Improper caps Configuration
 
 **Symptom**
 
-Improper DAC configuration leads to a configuration error. The error information is as follows:
+Improper caps configuration leads to a configuration error. The error information is as follows:
  ```
 4.619955] [pid=1 0][Init][ERROR][init_capability.c:119]service=multimodalinput not support caps = CAP_DC_OVERRIDE caps 41
 [ 4.620014] [pid=1 0][Init][ERROR][init_service_manager.c:818]GetServiceSecon secon section not found, skip
 [ 4.620216] [pid=1 0][Init][ERROR][init_service_manager.c:818]GetServiceSecon secon section not found, skip
 [ 4.620608] [pid=1 0][Init][ERROR][init_capability.c:119]service=mmi_uinput_service  not support caps = CAP_DC_OVERRIDE caps 41
+ ```
+**Possible Cause**
+
+1. The caps configuration is not supported by the kernel.
+2. The configuration in the **.cfg** file is incorrect.
+
+**System Version**
+
+OpenHarmony-3.0-LTS
+
+**Solution**
+
+1. For case 1, leave **caps** unspecified.
+2. For case 2, correctly configure **caps** by referring to the definition of the **capStrCapNum** data structure in **base/startup/init/services/init/init_capability.c**.
+
+### Sandbox Not Enabled
+
+**Symptom**
+
+After **hdc shell param get const.sandbox** is run, it is found that the value of **const.sandbox** is not **enable**.
+
+**Possible Cause**
+
+None.
+
+**Solution**
+
+Set **const.sandbox** to **enable** in **base/startup/init/services/etc/param/ohos.para**. For details, see [Sandbox Management](../subsystems/subsys-boot-init-sandbox.md).
+
+### How to Check the Sandbox Mounting Status
+
+**Symptom**
+
+None.
+
+**Possible Cause**
+
+None.
+
+**Solution**
+
+Enter the hdc shell mode on the device. Then, run the **sandbox -s service_name** command to move the current service to the sandbox, and run shell commands such as **ls** to view the sandbox directory. For details, see the [sandbox command description](../subsystems/subsys-boot-init-plugin.md).
+
+### Timestamp in the Ready Phase of Some Bootevent Events Is 0
+
+**Symptom**
+
+In manual bootevent mode, after device startup is completed and the **dump_service all bootevent** command is executed, the timestamps in the ready phase of some events are 0.
+
+**Possible Cause**
+
+1. The service does not send the bootevent event.
+2. The service sends the bootevent event, but does not have the related permission.
+
+**Solution**
+
+1. For case 1, make sure the related service sends the bootevent in the code.
+2. For case 2, make sure the service has the permission to set the bootevent parameter.
+
+### Failed to Boot from Partition A/B
+
+**Symptom**
+
+After the image is burnt, the system cannot be started, and information similar to the following can be found in the serial port log:
+
 ```
-**Possible Cause**
-
-1. Max attributes are present in the **caps** configuration.
-2. Parsing of attributes carrying CAP and non-CAP prefixes is not supported.
-3. The **const** attribute configuration is invalid.
-
-**Solution**
-
-1. Enable parsing of attributes carrying CAP and non-CAP prefixes.
-2. Remove max attributes from the **caps** configuration.
-3. Add a correct **const** attribute file.
-
-### Invalid critical Attribute Configuration
-
-**Symptom**
-
-The configuration of the **critical** attribute does not take effect.
+wait for file:/dev/block/platform/fe310000.sdhci/by-name/system_b failed after 5 second.
+Mount /dev/block/platform/fe310000.sdhci/by-name/system_b to /usr failed 2
+```
 
 **Possible Cause**
 
-1. The format of the **critical** attribute is valid.
-2. The services configured with the **critical** attribute are not started.
-3. The modified configuration file is not effective.
+As indicated by the log, partition B is used as the boot partition. However, it is not found during startup, resulting in the startup failure. This issue occurs because the active slot value in the misc partition is set to 2 (partition B), but partition B is not burnt.
 
 **Solution**
 
-1. Correct the format of the **critical** attribute.
-2. Start the services configured with the **critical** attribute.
-3. Modify the configuration file based on the device type. The configuration file is **init.cfg** for Hi3516 and **init.without_two_stages.cfg** for RK3568.
-
-### On-demand Startup Not Supported for Socket Processes
-
-**Symptom**
-
-On-demand startup is not supported for socket processes.
-
-**Possible Cause**
-
-The **DISABLE_INIT_TWO_STAGES** macro setting is invalid for on-demand startup of the ueventd process.
-
-**Solution**
-
-Enable **socket** in **startUeventd** so that socket validity check is added to the socket creation function.
-
-
-### Small System Compilation Alarm
-
-**Symptom**
-
-The alarm information is as follows:
-
-warning: implicit declaration of function 'usleep' is invalid in C99
-warning: implicit declaration of function 'setgroups' is invalid in C99
-
-**Possible Cause**
-
-The header file is incorrect or the *GNU***SOURCE** macro is disabled.
-
-**Solution**
-
-Check whether the corresponding header file is correct. If yes, check whether the *GNU***SOURCE** macro is enabled.
+1. Clear the misc partition by burning the corresponding partition with an empty misc image, erase the active slot value, and restart the system from the default partition.
+2. Burn the **system_b** and **vendor_b** images to the development board by using the partition table configured with partition B. Then, the development board can boot from partition B.
 
 ## Application Spawning
 
@@ -239,13 +255,17 @@ Applications fail to be started by running the cold start command.
 
 **Possible Cause**
 
-1. The cold start does not take effect.
-2. The cold start command is incorrect.
+1. Cold start is not enabled.
+2. The parameter of the cold start command is incorrect.
+3. The socket request times out.
+4. SELinux is enabled.
 
 **Solution**
 
-1. Enable cold start by setting **param set appspawn.cold.boot true**.
-2. Make sure that the cold start command is correct.
+1. For case 1, run **param get startup.appspawn.cold.boot** to check the cold start switch and run **param set startup.appspawn.cold.boot 1** to enable cold start.
+2. For case 2, correct the parameter of the cold start command.
+3. For case 3, run the **param set persist.appspawn.client.timeout 5** command to set the timeout period to 5.
+4. For case 4, run the **setenforce 0** command to disable SELinux.
 
 ### Failed to Create the Application Sandbox
 
@@ -266,3 +286,5 @@ The system UI freezes at the OpenHarmony startup animation, the calculator appli
 
 1. Check the error information in the hilog file, and correct the corresponding JSON files.
 2. Verify the PID of the application, the code logic of the sandbox creation process, and the JSON configuration.
+
+For details, see How to Develop in [Application Sandbox Development Procedure](../subsystems/subsys-boot-appspawn.md).

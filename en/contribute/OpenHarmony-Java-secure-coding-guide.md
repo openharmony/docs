@@ -1882,7 +1882,7 @@ BaseClass obj = (BaseClass) objClass.newInstance();
 obj.doSomething();
 ```
 
-This noncompliant code example uses an external class name to directly construct an object through reflection. An ill-intentioned user can construct a malicious `BaseClass` subclass object, take control over a `BaseClass` subclass, and execute arbitrary code in the `doSomething()` method of the subclass. An ill-intentioned user can further use the code to execute the default constructor of any class. Even if an `ClassCastException` is thrown in class conversion, the code in the constructor is executed as expected by the ill-intentioned user.
+This noncompliant code example uses an external class name to directly construct an object through reflection. An ill-intentioned user can construct a malicious `BaseClass` subclass object, take control over a `BaseClass` subclass, and execute arbitrary code in the `doSomething()` method of the subclass. An ill-intentioned user can further use the code to execute the default constructor of any class. Even if a `ClassCastException` is thrown in class conversion, the code in the constructor is executed as expected by the ill-intentioned user.
 
 **\[Compliant Code Example]**
 

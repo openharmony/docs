@@ -1,6 +1,6 @@
 # HTTP Data Request
 
-## Use Cases
+## When to Use
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
@@ -10,42 +10,53 @@ The HTTP request function is mainly implemented by the HTTP module.
 
 To use related APIs, you must declare the **ohos.permission.INTERNET** permission.
 
-The following table describes the related APIs.
+For details about how to apply for permissions, see [Access Control Development](../security/accesstoken-guidelines.md).
 
-| API                                       | Description                                               |
-| ----------------------------------------- | --------------------------------------------------------- |
-| createHttp()                              | Creates an HTTP request.                                  |
-| request()                                 | Initiates an HTTP request to a given URL.                 |
-| destroy()                                 | Destroys an HTTP request.                                 |
+The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
+
+| API                                   | Description                           |
+| ----------------------------------------- | ----------------------------------- |
+| createHttp()                              | Creates an HTTP request.                 |
+| request()                                 | Initiates an HTTP request to a given URL.    |
+| request2()<sup>10+</sup>                  | Initiates an HTTP network request based on the URL and returns a streaming response.|
+| destroy()                                 | Destroys an HTTP request.                     |
 | on(type: 'headersReceive')                | Registers an observer for HTTP Response Header events.    |
-| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events. |
+| off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
+| once\('headersReceive'\)<sup>8+</sup>     | Registers a one-time observer for HTTP Response Header events.|
+| on\('dataReceive'\)<sup>10+</sup>         | Registers an observer for events indicating receiving of HTTP streaming responses.     |
+| off\('dataReceive'\)<sup>10+</sup>        | Unregisters the observer for events indicating receiving of HTTP streaming responses. |
+| on\('dataEnd'\)<sup>10+</sup>             | Registers an observer for events indicating completion of receiving HTTP streaming responses. |
+| off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses.|
+| on\('dataProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
+| off\('dataProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
 
 ## How to Develop
 
-1. Import the required HTTP module.
-2. Create an **HttpRequest** object.
-3. (Optional) Listen for HTTP Response Header events.
-4. Initiate an HTTP request to a given URL.
-5. (Optional) Process the HTTP Response Header event and the return result of the HTTP request.
+1. Import the **http** namespace from **@ohos.net.http.d.ts**.
+2. Call **createHttp()** to create an **HttpRequest** object.
+3. Call **httpRequest.on()** to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
+4. Call **httpRequest.request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
+5. Parse the returned result based on service requirements.
+6. Call **off()** to unsubscribe from HTTP response header events.
+7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
 ```js
+// Import the http namespace.
 import http from '@ohos.net.http';
 
-// Each HttpRequest corresponds to an HttpRequestTask object and cannot be reused.
+// Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
-
-// Subscribe to the HTTP response header, which is returned earlier than HttpRequest. You can subscribe to HTTP Response Header events based on service requirements.
-// on('headerReceive', AsyncCallback) will be replaced by on('headersReceive', Callback) in API version 8. 8+
+// This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
+// on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
-
 httpRequest.request(
-    // Set the URL of the HTTP request. You need to define the URL. Set the parameters of the request in extraData.
+    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
     "EXAMPLE_URL",
     {
         method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-        // You can add the header field based on service requirements.
+        // You can add header fields based on service requirements.
         header: {
             'Content-Type': 'application/json'
         },
@@ -53,25 +64,28 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
-        connectTimeout: 60000, // Optional. The default value is 60000, in ms.
+        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+        usingCache: true, // Optional. The default value is true.
+        priority: 1, // Optional. The default value is 1.
+        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
         readTimeout: 60000, // Optional. The default value is 60000, in ms.
+        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
     }, (err, data) => {
         if (!err) {
-            // data.result contains the HTTP response. Parse the response based on service requirements.
-            console.info('Result:' + data.result);
-            console.info('code:' + data.responseCode);
-            // data.header contains the HTTP response header. Parse the content based on service requirements.
+            // data.result carries the HTTP response. Parse the response based on service requirements.
+            console.info('Result:' + JSON.stringify(data.result));
+            console.info('code:' + JSON.stringify(data.responseCode));
+            // data.header carries the HTTP response header. Parse the content based on service requirements.
             console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + data.cookies); // 8+
+            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
-            // Call the destroy() method to release resources after the call is complete.
+            // Unsubscribe from HTTP Response Header events.
+            httpRequest.off('headersReceive');
+            // Call the destroy() method to release resources after HttpRequest is complete.
             httpRequest.destroy();
         }
     }
 );
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop the HTTP data request feature:
-- [`Http`: HTTP Data Request (eTS) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Network/Http)

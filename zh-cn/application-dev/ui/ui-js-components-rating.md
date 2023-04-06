@@ -1,15 +1,15 @@
-# Rating开发指导
+# rating开发指导
 
 
-Rating为评分条组件，表示用户使用感受的衡量标准条。具体用法请参考[Rating](../reference/arkui-js/js-components-basic-rating.md)。
+rating为评分条组件，表示用户使用感受的衡量标准条。具体用法请参考[rating](../reference/arkui-js/js-components-basic-rating.md)。
 
 
-## 创建Rating组件
+## 创建rating组件
 
-在pages/index目录下的hml文件中创建一个Rating组件。
+在pages/index目录下的hml文件中创建一个rating组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating></rating>
@@ -17,7 +17,7 @@ Rating为评分条组件，表示用户使用感受的衡量标准条。具体�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -38,10 +38,10 @@ rating {
 
 ## 设置评分星级
 
-Rating组件通过设置numstars和rating属性设置评分条的星级总数和当前评星数。
+rating组件通过设置numstars和rating属性设置评分条的星级总数和当前评星数。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating numstars="6" rating="5">
@@ -50,7 +50,7 @@ Rating组件通过设置numstars和rating属性设置评分条的星级总数和
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -71,10 +71,10 @@ rating {
 
 ## 设置评分样式
 
-Rating组件通过star-background、star-foreground和star-secondary属性设置单个星级未选择、选中和选中的次级背景图片。
+rating组件通过star-background、star-foreground和star-secondary属性设置单个星级未选择、选中和选中的次级背景图片。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
@@ -86,7 +86,7 @@ Rating组件通过star-background、star-foreground和star-secondary属性设置
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -99,8 +99,8 @@ Rating组件通过star-background、star-foreground和star-secondary属性设置
 ```
 
 
-```
-/* index.js */
+```js
+// index.js
 export default {
   data: {
     backstar: 'common/love.png',
@@ -116,18 +116,18 @@ export default {
 
 ![zh-cn_image_0000001178685854](figures/zh-cn_image_0000001178685854.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - star-background、star-secondary、star-foreground属性的星级图源必须全部设置，否则默认的星级颜色为灰色，提示图源设置错误。
-> 
+>
 > - star-background、star-secondary、star-foreground属性只支持本地路径图片，图片格式为png和jpg。
 
 
 ## 绑定事件
 
-向Rating组件添加change事件，打印当前评分。
+向rating组件添加change事件，打印当前评分。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating numstars="5" rating="0" onchange="showrating"></rating>
@@ -135,7 +135,8 @@ export default {
 ```
 
 
-```
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%;
@@ -151,7 +152,8 @@ rating {
 ```
 
 
-```
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   showrating(e) {
@@ -170,7 +172,7 @@ export default {
 开发者可以通过改变开关状态切换星级背景图，通过改变滑动条的值调整星级总数。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div style="width: 100%;height:100%;flex-direction: column;align-items: center;background-color: #F1F3F5;">
   <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
@@ -197,7 +199,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .myrating:active {
   width: 500px;
@@ -209,9 +211,9 @@ switch{
 ```
 
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     backstar: '',
@@ -247,7 +249,7 @@ export default {
     this.rate = e.progress
   },
   showrating(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: '当前评分' + e.rating
     })
   }

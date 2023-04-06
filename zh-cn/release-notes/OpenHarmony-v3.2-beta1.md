@@ -144,7 +144,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | -------- | -------- | -------- |
 | 公共 | 新增支持Arm架构64位版本编译构建。 | 轻量、小型系统IPC接口归一。 |
 | 资源调度 | 新增卡片使用记录信息统计能力。<br/>主要涉及如下需求：<br/>I531ST&nbsp;支持卡片卸载时，删除对应的卡片使用记录<br/>I531SU&nbsp;支持查询获取卡片使用记录<br/>I531SV&nbsp;支持记录卡片的使用计数以及使用时间 | NA |
-| 多模输入 | 新增遥控器、鼠标、键盘输入设备热插拔监听能力。<br/>主要涉及如下需求：<br/>I530U7&nbsp;三方件json版本升级<br/>I530UH&nbsp;启动优化<br/>I530UU&nbsp;支持裁剪鼠标光标显示特<br/>I530UL&nbsp;支持不可触摸窗口<br/>I530W5&nbsp;支持通过JS&nbsp;API监听遥控器输入设备的热插拔<br/>I530W9&nbsp;支持通过JS&nbsp;API监听鼠标输入设备的热插拔<br/>I530WB&nbsp;支持通过JS&nbsp;API查看触摸板输入设备扩展信息<br/>I530WF&nbsp;支持通过JS&nbsp;API监听键盘输入设备的热插拔<br/>I530UW&nbsp;支持裁剪配置组合按键特性 | NA |
+| 多模输入 | 新增遥控器、鼠标、键盘输入设备热插拔监听能力。<br/>主要涉及如下需求：<br/>I530U7&nbsp;三方件json版本升级<br/>I530UH&nbsp;启动优化<br/>I530UU&nbsp;支持裁剪鼠标光标显示特性<br/>I530UL&nbsp;支持不可触摸窗口<br/>I530W5&nbsp;支持通过JS&nbsp;API监听遥控器输入设备的热插拔<br/>I530W9&nbsp;支持通过JS&nbsp;API监听鼠标输入设备的热插拔<br/>I530WB&nbsp;支持通过JS&nbsp;API查看触摸板输入设备扩展信息<br/>I530WF&nbsp;支持通过JS&nbsp;API监听键盘输入设备的热插拔<br/>I530UW&nbsp;支持裁剪配置组合按键特性 | NA |
 | 系统服务管理 | 新增群组校验机制。<br/>主要涉及如下需求：<br/>I59XYB&nbsp;添加群组校验机制<br/>I53NZQ&nbsp;处理远端应用安装情况和版本号<br/>I568AO&nbsp;DMS上报分布式组件关联关系<br/>I58ZSB&nbsp;采集OS类型信息 | NA |
 | 包管理 | -&nbsp;支持沙箱应用的安装、卸载、查询。<br/>-&nbsp;拆包工具支持Stage模型，打包工具能力增强。<br/>主要涉及如下需求：<br/>I524WG&nbsp;支持系统应用不允许清除的能力<br/>I524WP&nbsp;查询指定应用是否安装<br/>I524UF&nbsp;支持系统feature的升级（已安装entry的情况下）<br/>I524VP&nbsp;支持隐式查询的优先级<br/>I56W2U&nbsp;包管理支持BackupExtension类型<br/>I56W68&nbsp;将pack.info打到hap包中<br/>I56W6W&nbsp;支持将新旧hap包打包到同一个app包中<br/>I56W4O&nbsp;拆包工具将hap包中的rpcid文件提出<br/>I56W59&nbsp;拆包工具对stage模型包的解析<br/>I56W7H&nbsp;bms扫描完成后，发送扫描完成事件<br/>I56WIG&nbsp;包管理模块对外提供沙箱应用的安装能力<br/>I56WIS&nbsp;包管理模块提供对外沙箱应用的卸载能力<br/>I56WJ7&nbsp;包管理模块提供沙箱应用的包信息的查询能力 | NA |
 | 基础通信 | 蓝牙支持人机接口设备接入能力。<br/>主要涉及如下需求：<br/>I58ZUA&nbsp;支持人机接口设备接入能力，如蓝牙键盘、鼠标、游戏手柄等 | NA |
@@ -173,7 +173,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 ### API变更
 
 
-_[API差异报告](api-change/v3.2-beta/readme.md)_
+_[API差异报告](api-diff/v3.2-beta1/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
@@ -186,31 +186,29 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| ArkUI | MouseEvent | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | eTS |
-| ArkUI | Vibrator | 本示例模拟倒计时场景，展示振动接口的使用方法。 | eTS |
-| DFX | FaultLogger | 本示例展示了在eTS中如何获取应用故障相关信息。 | eTS |
-| ArkUI | Gallery | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | eTS |
-| 图形 | JsWebGL | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
-| ArkUI | Clock | 本示例使用eTS&nbsp;UI能力实现一个简单的时钟应用。 | eTS |
-| 网络管理 | Http | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | eTS |
-| ArkUI | FlishLight | 本示例通过屏幕的亮度变化来模拟手电筒功能，屏幕变亮模拟手电筒打开，屏幕变暗模拟手电筒关闭。 | eTS |
-| 网络管理 | Socket | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | eTS |
-| 分布式数据管理 | DistributedRdb | 本示例展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | eTS |
-| 元能力 | BackgroundTaskManager | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | eTS |
-| 元能力 | BringApp | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | eTS |
-| 媒体 | VideoPlayer | 本示例展示了在eTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
-| 元能力 | DistributeCalc | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | eTS |
-| 媒体 | JSRecorder | 本示例通过调用媒体相关接口来实现音频录制和播放的功能。 | eTS |
-| Web | Browser | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | eTS |
-| 元能力 | DeviceUsageStatistics | 本示例主要展示了设备使用信息情况。 | eTS |
-| ArkUI | AdaptiveCapabilities | 本示例展示在eTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | eTS |
-| ArkUI | Game2048 | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | eTS |
-| 窗口 | Window | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | eTS |
-| 分布式数据管理 | Preference | 本示例主要展示了首选项在主题切换方面的功能。 | eTS |
-| ArkUI | NativeAPI | 本示例展示了在eTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，eTS完成界面绘制和刷新。 | eTS/C++ |
-| 全球化 | International | 本示例展示了i18n，intl，resourceManager在eTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | eTS |
+| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent) | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | ArkTS |
+| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | ArkTS |
+| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger) | 本示例展示了在ArkTS中如何获取应用故障相关信息。 | ArkTS |
+| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery) | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | ArkTS |
+| 图形 | [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL) | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
+| ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock) | 本示例使用ArkTS&nbsp;UI能力实现一个简单的时钟应用。 | ArkTS |
+| 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | ArkTS |
+| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | ArkTS |
+| 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb) | 本示例展示了在ArkTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | ArkTS |
+| 元能力 | [WorkScheduler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例模拟下载更新包 、保存更新包、发送通知 、安装更新包实现升级，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | ArkTS |
+| 元能力 | [AbilityStartMode](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/AbilityStartMode) | 本示例展示了在一个Stage模型中，实现standard、singleton、specified多种模式场景。 | ArkTS |
+| 媒体 | [MediaCollections](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections) | 本示例展示了在ArkTS中媒体管理合集，包括网络流播放能力，音视频播控能力以及音量调节能力。 | ArkTS |
+| 元能力 | [ArkTSDistributedCalc](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | ArkTS |
+| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser) | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | ArkTS |
+| 元能力 | [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics) | 本示例主要展示了设备使用信息情况。 | ArkTS |
+| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities) | 本示例展示在ArkTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | ArkTS |
+| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | ArkTS |
+| 一多设置典型页面 | [Settings](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings) | 本示例展示了设置应用的典型页面，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTS |
+| 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | ArkTS |
+| ArkUI | [NativeAPI](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI) | 本示例展示了在ArkTS中如何调用C++的接口以及C++如何回调JS，完成了一个简单的五子棋游戏，在native层完成计算逻辑，ArkTS完成界面绘制和刷新。 | ArkTS/C++ |
+| 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International) | 本示例展示了i18n，intl，resourceManager在ArkTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | ArkTS |
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 ## 修复缺陷列表
 
@@ -229,4 +227,3 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------ |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 | 影响开发者体验                                               | 2022-06-15   |
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | 使用API 9的hdc_std连接设备小概率断连                       | 存在低概率断连（几率小于1/30）。可通过重启IDE或者hdc_std恢复。 | 2022-06-30   |
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | 【RK3568】相机连续多次录像出现黑屏                         | 影响开发者体验                                               | 2022-06-15   |

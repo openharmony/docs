@@ -1,6 +1,6 @@
-# 线性容器ArrayList
+# @ohos.util.ArrayList (线性容器ArrayList)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会根据实际需要动态调整容量，每次扩容增加50%。
@@ -10,6 +10,9 @@ ArrayList和[Vector](js-apis-vector.md)相似，都是基于数组实现。它�
 ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
 
 **推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
+
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
 
 ## 导入模块
 
@@ -23,7 +26,7 @@ import ArrayList from '@ohos.util.ArrayList';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | ArrayList的元素个数。 |
 
@@ -35,6 +38,14 @@ constructor()
 ArrayList的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The ArrayList's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -63,17 +74,26 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，失败返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
-  ```ts
-  let arrayList = new ArrayList();
-  let result = arrayList.add("a");
-  let result1 = arrayList.add(1);
-  let b = [1, 2, 3];
-  let result2 = arrayList.add(b);
-  let c = {name: "lala", age: "13"};
-  let result3 = arrayList.add(false);
-  ```
+```ts
+let arrayList = new ArrayList();
+let result = arrayList.add("a");
+let result1 = arrayList.add(1);
+let b = [1, 2, 3];
+let result2 = arrayList.add(b);
+let c = {name: "Dylon", age: "13"};
+let result3 = arrayList.add(c);
+let result4 = arrayList.add(false);
+```
 
 ### insert
 
@@ -89,6 +109,15 @@ insert(element: T, index: number): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 被插入的元素。 |
 | index | number | 是 | 被插入的位置索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The value of index is out of range. |
 
 **示例：**
 
@@ -119,13 +148,21 @@ has(element: T): boolean
 | -------- | -------- |
 | boolean | 返回true表示包含指定元素，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
 let arrayList = new ArrayList();
-let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = arrayList.has("squirrel");
+arrayList.add("squirrel");
+let result1 = arrayList.has("squirrel");
 ```
 
 ### getIndexOf
@@ -147,6 +184,14 @@ getIndexOf(element: T): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
 
 **示例：**
 
@@ -182,6 +227,14 @@ getLastIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回指定元素最后一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -216,6 +269,15 @@ removeByIndex(index: number): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **示例：**
 
 ```ts
@@ -248,6 +310,14 @@ remove(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，失败返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -274,6 +344,15 @@ removeByRange(fromIndex: number, toIndex: number): void
 | fromIndex | number | 是 | 起始下标。 |
 | toIndex | number | 是 | 终止下标。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeByRange method cannot be bound. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+
 **示例：**
 
 ```ts
@@ -283,13 +362,11 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.removeByRange(2, 4);
-arrayList.removeByRange(4, 3);
-arrayList.removeByRange(2, 6);
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => T,
 thisArg?: Object): void
 
 用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
@@ -300,7 +377,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -311,6 +388,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | arrlist | ArrayList&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The replaceAllElements method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -319,17 +404,15 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.replaceAllElements((value: number, index: number)=> {
-  return value = 2 * value;
-});
-arrayList.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+arrayList.replaceAllElements((value) => {
+    // 用户操作逻辑根据实际场景进行添加。
+    return value;
 });
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
 通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
@@ -340,7 +423,7 @@ thisArg?: Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -351,6 +434,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | arrlist | ArrayList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -360,7 +451,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log("value:" + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -384,6 +475,14 @@ comparator的参数说明：
 | -------- | -------- | -------- | -------- |
 | firstValue | T | 是 | 前一项元素。 |
 | secondValue | T | 是 | 后一项元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The sort method cannot be bound. |
 
 **示例：**
 
@@ -419,6 +518,15 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 | -------- | -------- |
 | ArrayList&lt;T&gt; | 返回ArrayList对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The subArrayList method cannot be bound. |
+| 10200001 | The value of fromIndex or toIndex is out of range. |
+
 **示例：**
 
 ```ts
@@ -439,6 +547,14 @@ clear(): void
 清除ArrayList中的所有元素，并把length置为0。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
 
 **示例：**
 
@@ -466,6 +582,14 @@ clone(): ArrayList&lt;T&gt;
 | -------- | -------- |
 | ArrayList&lt;T&gt; | 返回ArrayList对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -490,6 +614,14 @@ getCapacity(): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回arraylist的容量大小。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getCapacity method cannot be bound. |
 
 **示例：**
 
@@ -516,6 +648,14 @@ convertToArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回数组类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -540,6 +680,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -566,6 +714,14 @@ increaseCapacityTo(newCapacity: number): void
 | -------- | -------- | -------- | -------- |
 | newCapacity | number | 是 | 新容量。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -585,6 +741,14 @@ trimToCurrentLength(): void
 把容量限制为当前的length大小。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The trimToCurrentLength method cannot be bound. |
 
 **示例：**
 
@@ -611,6 +775,14 @@ arrayList.trimToCurrentLength();
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -622,14 +794,14 @@ arrayList.add(4);
 
 // 使用方法一：
 for (let item of arrayList) { 
-  console.log("value:" + item); 
+    console.log(`value:${item}`); 
 } 
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
-  temp = iter.next().value;
+    console.log(`value:${temp}`);
+    temp = iter.next().value;
 }
 ```

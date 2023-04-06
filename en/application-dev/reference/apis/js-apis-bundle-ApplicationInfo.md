@@ -1,42 +1,37 @@
 # ApplicationInfo
 
+The **ApplicationInfo** module provides application information. Unless otherwise specified, the information is obtained through [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).
 
-
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## ApplicationInfo<sup>(deprecated)<sup>
 
-
-Provides the application information.
-
-
+> This API is deprecated since API version 9. You are advised to use [bundleManager-ApplicationInfo](js-apis-bundleManager-applicationInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-
-
-| Name                      | Type                                                        | Readable| Writable| Description                                      |
-| -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------ |
-| name                       | string                                                       | Yes  | No  | Application name.                            |
-| description                | string                                                       | Yes  | No  | Application description.                            |
-| descriptionId              | number                                                       | Yes  | No  | Application description ID.                          |
-| systemApp                  | boolean                                                      | Yes  | No  | Whether the application is a system application. The default value is **false**.       |
-| enabled                    | boolean                                                      | Yes  | No  | Whether the application is enabled. The default value is **true**.      |
-| label                      | string                                                       | Yes  | No  | Application label.                            |
-| labelId                    | string                                                       | Yes  | No  | Application label ID.                          |
-| icon                       | string                                                       | Yes  | No  | Application icon.                            |
-| iconId                     | string                                                       | Yes  | No  | Application icon ID.                          |
-| process                    | string                                                       | Yes  | No  | Process in which the application runs. If this parameter is not set, the bundle name is used.|
-| supportedModes             | number                                                       | Yes  | No  | Running modes supported by the application.                    |
-| moduleSourceDirs           | Array\<string>                                               | Yes  | No  | Relative paths for storing application resources.              |
-| permissions                | Array\<string>                                               | Yes  | No  | Permissions required for accessing the application.                    |
-| moduleInfos                | Array\<[ModuleInfo](js-apis-bundle-ModuleInfo.md)>           | Yes  | No  | Application module information.                        |
-| entryDir                   | string                                                       | Yes  | No  | Path for storing application files.                    |
-| codePath<sup>8+</sup>      | string                                                       | Yes  | No  | Installation directory of the application.                        |
-| metaData<sup>8+</sup>      | Map\<string, Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>> | Yes  | No  | Custom metadata of the application.                    |
-| metaData<sup>9+</sup>      | Map\<string, Array\<[Metadata](js-apis-bundle-Metadata.md)>> | Yes  | No  | Metadata of the application.                          |
-| removable<sup>8+</sup>     | boolean                                                      | Yes  | No  | Whether the application is removable.                    |
-| accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                   |
-| uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                             |
-| entityType<sup>8+</sup>    | string                                                       | Yes  | No  | Entity type of the application.                        |
-| fingerprint<sup>9+</sup>   | string                                                       | Yes  | No  | Signing certificate fingerprint of the application, that is, the SHA-256 checksum of the signing certificate that you apply for for the application.   |
+| Name                        | Type                                                                    | Readable | Writable | Description                                                                                                                                                                  |
+|----------------------------|------------------------------------------------------------------------|-----|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name                       | string                                                                 | Yes  | No  | Application name.                                                                                                                                                            |
+| description                | string                                                                 | Yes  | No  | Application description.                                                                                                                                                            |
+| descriptionId              | number                                                                 | Yes  | No  | ID of the application description.                                                                                                                                                          |
+| systemApp                  | boolean                                                                | Yes  | No  | Whether the application is a system application. The default value is **false**.                                                                                                                                               |
+| enabled                    | boolean                                                                | Yes  | No  | Whether the application is enabled. The default value is **true**.                                                                                                                                               |
+| label                      | string                                                                 | Yes  | No  | Application label.                                                                                                                                                          |
+| labelId                    | string                                                                 | Yes  | No  | ID of the application label.                                                                                                                                                          |
+| icon                       | string                                                                 | Yes  | No  | Application icon.                                                                                                                                                            |
+| iconId                     | string                                                                 | Yes  | No  | ID of the application icon.                                                                                                                                                          |
+| process                    | string                                                                 | Yes  | No  | Process in which the application runs. If this parameter is not set, the bundle name is used.                                                                                                                                              |
+| supportedModes             | number                                                                 | Yes  | No  | Modes supported by the application. Currently, only the **drive** mode is defined. This attribute applies only to telematics devices.                                                                                                                            |
+| moduleSourceDirs           | Array\<string>                                                         | Yes  | No  | Relative paths for storing application resources.                                                                                                                                                     |
+| permissions                | Array\<string>                                                         | Yes  | No  | Permissions required for accessing the application.<br>The value is obtained by passing in GET_APPLICATION_INFO_WITH_PERMISSION to [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).                                                                                                        |
+| moduleInfos                | Array\<[ModuleInfo](js-apis-bundle-ModuleInfo.md)>                     | Yes  | No  | Application module information.                                                                                                                                                          |
+| entryDir                   | string                                                                 | Yes  | No  | Path for storing application files.                                                                                                                                                        |
+| codePath<sup>8+</sup>      | string                                                                 | Yes  | No  | Installation directory of the application.                                                                                                                                                          |
+| metaData<sup>8+</sup>      | Map\<string, Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>> | Yes  | No  | Custom metadata of the application.<br>The value is obtained by passing in GET_APPLICATION_INFO_WITH_METADATA to [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).                                                                                                          |
+| removable<sup>8+</sup>     | boolean                                                                | Yes  | No  | Whether the application is removable.                                                                                                                                                        |
+| accessTokenId<sup>8+</sup> | number                                                                 | Yes  | No  | Access token ID of the application.                                                                                                                                                 |
+| uid<sup>8+</sup>           | number                                                                 | Yes  | No  | UID of the application.                                                                                                                                                           |
+| entityType<sup>8+</sup>    | string                                                                 | Yes  | No  | Category of the application, which can be **game**, **media**, **communication**, **news**, **travel**, **utility**, **shopping**, **education**, **kids**, **business**, and **photography**.|

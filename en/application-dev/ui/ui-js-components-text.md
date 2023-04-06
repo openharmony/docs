@@ -8,14 +8,14 @@ The **&lt;text&gt;** component is used to display a piece of textual information
 
 Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container" style="text-align: center;justify-content: center; align-items: center;">
   <text>Hello World</text>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -34,10 +34,9 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
 - Adding a text style
   
-Set the color, font-size, allow-scale, word-spacing and text-align properties to add the color, size, zoom, text spacing, and vertical alignment of the text.
-  
-  
-  ```
+  Set the **color**, **font-size**, **allow-scale**, **word-spacing**, and **text-align** attributes to add the color, size, zoom, text spacing, and vertical alignment of the text.
+
+  ```html
   <!-- xxx.hml -->
   <div class="container" style="background-color:#F1F3F5;flex-direction: column;justify-content: center; align-items: center;">   
     <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
@@ -46,11 +45,10 @@ Set the color, font-size, allow-scale, word-spacing and text-align properties to
     <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
       This is a passage
     </text>
-  </div>
-```
-  
-  
+  </div> 
   ```
+
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -60,17 +58,17 @@ Set the color, font-size, allow-scale, word-spacing and text-align properties to
     justify-content: center;
     background-color: #F1F3F5;
   }
-```
-  
+  ```
+
     ![en-us_image_0000001222967764](figures/en-us_image_0000001222967764.png)
 
 
 - Adding a text modifier
   
-Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Style](../reference/arkui-js/js-components-basic-text.md).
-  
-  
-  ```
+  Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
+
+
+  ```html
   <!-- xxx.hml -->
   <div class="container" style="background-color:#F1F3F5;">
     <text style="text-decoration:underline">
@@ -78,12 +76,11 @@ Set the **text-decoration** and **text-decoration-color** attributes to add an u
     </text>
     <text style="text-decoration:line-through;text-decoration-color: red">
       This is a passage
-    </text>
+     </text>
   </div>
-```
-  
-  
   ```
+
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -95,27 +92,27 @@ Set the **text-decoration** and **text-decoration-color** attributes to add an u
   text{
     font-size: 50px;
   }
-```
-  
+  ```
+
   ![en-us_image_0000001223287688](figures/en-us_image_0000001223287688.png)
 
 
 - Hiding text content
   
+
 Set the **text-overflow** attribute to **ellipsis** so that overflowed text is displayed as an ellipsis.
-  
-  
-  ```
+
+
+  ```html
   <!-- xxx.hml -->
   <div class="container">
     <text class="text">
       This is a passage
     </text>
   </div>
-```
-  
-  
   ```
+
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -123,44 +120,43 @@ Set the **text-overflow** attribute to **ellipsis** so that overflowed text is d
     flex-direction: column;
     align-items: center;
     background-color: #F1F3F5;
-    justify-content: center;
+    justify-content: center; 
   }
   .text{
     width: 200px;
     max-lines: 1;
-   text-overflow:ellipsis;
+    text-overflow:ellipsis;
   }
-```
-  
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  ```
+
+  > **NOTE**
   > - **text-overflow** must be used together with **max-lines**.
-  > 
-> - **max-lines** indicates the maximum number of lines in the text.
-  
+  > - **max-lines** indicates the maximum number of lines in the text.
+
   ![en-us_image_0000001267647865](figures/en-us_image_0000001267647865.png)
 
 
 - Setting the text line breaking mode
   
+
 Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
-  
-  
-  ```
+
+
+  ```html
   <!-- xxx.hml -->
   <div class="container">
     <div class="content">
       <text class="text1">
         Welcome to the world
       </text>
-      <text class="text2">
-        Welcome to the world
-      </text>
+        <text class="text2">
+          Welcome to the world
+        </text>
     </div>
   </div>
-```
-  
-  
   ```
+
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -193,28 +189,23 @@ Set the **word-break** attribute to specify how to break lines of text. For valu
     word-break: break-all;
     font-size: 40px;
   }
-```
-  
+  ```
+
     ![en-us_image_0000001267767865](figures/en-us_image_0000001267767865.png)
 
 
 - Setting the [&lt;span&gt;](../reference/arkui-js/js-components-basic-span.md) child component
   
-  ```
+  ```html
   <!-- xxx.hml -->
-  <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5; width: 100%;height: 100%;">
+  <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5;  width: 100%;height: 100%;">
     <text style="font-size: 45px;">
       This is a passage
     </text>
     <text style="font-size: 45px;">
-      <span style="color: aqua;">This </span>
-      <span style="color: #F1F3F5;">
-        1
-      </span>
-      <span style="color: blue;"> is a </span>
-      <span style="color: #F1F3F5;">
-        1
-      </span>
+      <span style="color: aqua;">This </span><span style="color: #F1F3F5;">      1       
+      </span>   
+      <span style="color: blue;"> is a </span>    <span style="color: #F1F3F5;">      1    </span>    
       <span style="color: red;">  passage </span>
     </text>
   </div>
@@ -222,7 +213,7 @@ Set the **word-break** attribute to specify how to break lines of text. For valu
 
   ![en-us_image_0000001223127720](figures/en-us_image_0000001223127720.png)
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  > **NOTE**
   > - When the **&lt;span&gt;** child component is used to form a text paragraph, incorrect **&lt;span&gt;** attribute settings (for example, setting of **font-weight** to **1000**) will result in abnormal display of the text paragraph.
   > 
   > - When the **&lt;span&gt;** child component is being used, do not include any text you want to show in the **&lt;text&gt;** component, as such text will not be displayed if you do so.
@@ -232,8 +223,7 @@ Set the **word-break** attribute to specify how to break lines of text. For valu
 
 Use the **&lt;text&gt;** component to display text content through data binding. Use the **&lt;span&gt;** child component to hide or display text content by setting the **show** attribute.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="align-items: center;justify-content: center;">
@@ -252,8 +242,7 @@ Use the **&lt;text&gt;** component to display text content through data binding.
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -271,12 +260,11 @@ Use the **&lt;text&gt;** component to display text content through data binding.
 }
 ```
 
-
-```
+```js
 // xxx.js
 export default {   
   data: {    
-   isShow:true,    
+    isShow:true,    
     content: 'Hello World'
   },   
   onInit(){    },  
@@ -287,8 +275,3 @@ export default {
 ```
 
 ![en-us_image_0000001267887849](figures/en-us_image_0000001267887849.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;text&gt;** component:
-
-- [`JsTextComponents`:  JavaScript Basic Components (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsBasicComponents)

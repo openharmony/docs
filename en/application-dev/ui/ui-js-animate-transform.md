@@ -6,10 +6,9 @@ Set the transform attribute for component rotation, scaling, translation, and sk
 
 ## Designing Static Animation
 
-Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the translate attribute of the rectangle to the coordinate (150px, -150px) to form a door, use the position attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component (square), set the scale attribute to scale up the parent and child components together to determine the window size, and use the skewX attribute to skew the component and set the coordinate translate(200px,-830px) to form a chimney.
+Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the **translate** attribute of the rectangle to the coordinate (150px, -150px) to form a door, use the **position** attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component (square), set the **scale** attribute to scale up the parent and child components together to determine the window size, and use the **skewX** attribute to skew the component and set the coordinate translate(200px,-830px) to form a chimney.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="top"></div>
@@ -24,8 +23,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -41,8 +39,8 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   height: 428px;
   background-color: #860303;
   transform: rotate(45deg);
-  margin-top: 230px;
-  margin-left: 266px;
+  margin-top: 290px;
+  margin-left: 145px;
 }
 .content{
   margin-top: 500px;
@@ -55,7 +53,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   width: 100px;
   height: 150px;
   background-color: #1033d9;
-  transform: translate(150px,-150px);
+  transform: translate(150px,-152px);
 }
 .window{
   z-index: 1;
@@ -88,7 +86,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
   height: 100px;
   border-radius: 15px;
   background-color: #9a7404;
-  transform: translate(200px,-830px) skewX(-5deg);
+  transform: translate(200px,-700px) skewX(-5deg);
 }
 ```
 
@@ -99,8 +97,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 
 Decrease the y-coordinate over a time frame to make the ball bounce back. Gradually decrease the bounce height until it drops to 0. An animation where the ball falls is hereby created.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle"></div>
@@ -108,8 +105,7 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -178,10 +174,9 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 
 ## Designing Rotation Animation
 
-Set the rotation center around an element in different transform-origin positions. Of the rotate3d values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
+Set the rotation center around an element in different transform-origin positions. Of the **rotate3d** values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rotate">
@@ -200,8 +195,7 @@ Set the rotation center around an element in different transform-origin position
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -209,24 +203,26 @@ Set the rotation center around an element in different transform-origin position
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
-.rect{
+.rect {
   width: 100px;
   height: 100px;
   animation: rotate 3s infinite;
   margin-left: 100px;
 }
-.rect1{
+.rect1 {
   background-color: #f76160;
 }
-.rect2{
+.rect2 {
   background-color: #60f76f;
   /* Change the origin position.*/
   transform-origin: 10% 10px;
 }
-.rect3{
+.rect3 {
   background-color: #6081f7;
-  /* Change the origin position.*/
+  /*  Change the origin position.*/
   transform-origin: right bottom;
 }
 @keyframes rotate {
@@ -238,7 +234,7 @@ Set the rotation center around an element in different transform-origin position
   }
 }
 /* 3D sample style */
-.rotate3d{
+.rotate3d {
   margin-top: 150px;
   flex-direction: column;
   background-color:#F1F3F5;
@@ -249,36 +245,36 @@ Set the rotation center around an element in different transform-origin position
   border-radius: 300px;
   border: 1px solid #ec0808;
 }
-.content{
+.content {
   padding-top: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 /* Use react4 and react5 to shape eyes. */
-.rect4{
+.rect4 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
-.rect5{
+.rect5 {
   width: 100px;
   height: 100px;
-  animation: rotate3d1 17ms infinite;
+  animation: rotate3d1 1000ms infinite;
   margin-left: 100px;
   background: linear-gradient(#e6c4ec, #be15d9)
 }
-.mouse{
+.mouse {
   margin-top: 150px;
   width: 200px;
   height: 100px;
   border-radius: 50px;
   border: 1px solid #e70303;
-  animation: rotate3d2 17ms infinite;
+  animation: rotate3d2 1000ms infinite;
 }
 /* Eye animation */
-@keyframes rotate3d1{
+@keyframes rotate3d1 {
   0% {
     transform:rotate3d(0,0,0,0deg)
   }
@@ -290,7 +286,7 @@ Set the rotation center around an element in different transform-origin position
   }
 }
 /* Mouth animation */
-@keyframes rotate3d2{
+@keyframes rotate3d2 {
   0% {
     transform:rotate3d(0,0,0,0deg)
   }
@@ -308,18 +304,18 @@ Set the rotation center around an element in different transform-origin position
 
 ![en-us_image_0000001222807776](figures/en-us_image_0000001222807776.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> transform-origin specifies the origin of an element's transformation. If only one value is set, the other value is 50%. If both values are set, the first value indicates the position on the x-axis, and the second value indicates the position on the y-axis.
+> **NOTE**
+>
+> **transform-origin** specifies the origin of an element's transformation. If only one value is set, the other value is 50%. If both values are set, the first value indicates the position on the x-axis, and the second value indicates the position on the y-axis.
 
 
 ## Designing Scaling Animation
 
 This example implements a ripple animation with the scale attribute. Here is the overall procedure: First, use the positioning function to determine the coordinates of the element's position. Then, create multiple components to achieve the overlapping effect. After that, set the opacity attribute to hide or display the components. To scale and hide/display a component at the same time, set both the scale and opacity attributes. Finally, set different animation durations for different components to achieve the diffusion effect.
 
-Set the scaling values for the x-axis, y-axis, and z-axis in scale3d to implement the animation.
+Set the scaling values for the x-axis, y-axis, and z-axis in **scale3d** to implement the animation.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle">
@@ -334,8 +330,7 @@ Set the scaling values for the x-axis, y-axis, and z-axis in scale3d to implemen
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -423,29 +418,30 @@ text{
 
 ![en-us_image_0000001267887837](figures/en-us_image_0000001267887837.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> After the transform attributes are set, the child element changes with the parent element. Value changing of other attributes (such as height and width) of the parent element will not affect the child element.
+> **NOTE**
+>
+> After the **transform** attributes are set, the child element changes with the parent element. Value changing of other attributes (such as height and width) of the parent element will not affect the child element.
 
 
 ## Setting matrix
 
 The matrix attribute defines a transformation matrix with six input parameters: scaleX, skewY, skewX, scaleY, translateX, and translateY. In the following example, matrix is set to matrix(1,0,0,1,0,200) to skew and translate the component.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect"> </div>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container{
   background-color:#F1F3F5;
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .rect{
   width: 100px;
@@ -474,10 +470,9 @@ The matrix attribute defines a transformation matrix with six input parameters: 
 
 ## Integrating transform Attributes
 
-You can set multiple transform attributes at the same time to apply different transformations to a component. The following example applies the scale, translate, and rotate attributes simultaneously.
+You can set multiple **transform** attributes at the same time to apply different transformations to a component. The following example applies the **scale**, **translate**, and **rotate** attributes simultaneously.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect1"></div>
@@ -488,10 +483,11 @@ You can set multiple transform attributes at the same time to apply different tr
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   background-color:#F1F3F5;
   padding:50px;
@@ -581,21 +577,10 @@ You can set multiple transform attributes at the same time to apply different tr
 
 ![en-us_image_0000001223127712](figures/en-us_image_0000001223127712.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> - When multiple transform attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one transform, for example, transform: scale(1) rotate(0) translate(0,0).
-> 
-> - When using the shorthand notion, note that the animation effect varies according to the sequence of the style values.
-> 
-> - The style values in the transform attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.
-## Samples
-
-The following samples are provided to help you better understand how to develop animations with the **transform** attribute: 
-
-- [`JsAnimation`: Animation App (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
-- [`JsAnimationStyle`: JS Animation and Custom Font Styles (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
-
-- [`Clock`: Clock (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
-
-- [Animation Styles (JavaScaript)](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
-
-- [Common Image Operations](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)
+> **NOTE**
+>
+> - When multiple **transform** attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one transform, for example, transform: scale(1) rotate(0) translate(0,0).
+>
+> - When using the shorthand notation, note that the animation effect varies according to the sequence of the style values.
+>
+> - The style values in the **transform** attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.

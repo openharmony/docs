@@ -31,7 +31,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 1. 无应用签名证书场景：
    开发者使用该工具对Hap包签名时，需按照签名步骤从第一步生成应用签名证书密钥对依次完成应用签名证书生成、profile文件签名、应用签名流程。
 2. 有应用签名证书场景：
-   开发者可直接从签名步骤第三步对profile文件进行签名开始开发 ,使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
+   开发者可直接从签名步骤第三步对profile文件进行签名开始开发，使用应用签名证书和包含对应密钥的本地密钥库文件对应用进行签名。
 
 ### 命令说明
 
@@ -391,12 +391,12 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
 
    - **现象描述**
 
-     执行命令后提示：`NOT_SUPPORT_ERROR, code: 105. Details: SignAlg params is incorrect, signature algorithms include SHA256withECDSA,SHA384withECDSA`
+     执行命令后提示：`NOT_SUPPORT_ERROR, code: 105. Details: SignAlg params is incorrect, signature algorithms include SHA256withECDSA,SHA384withECDSA`。
 
    - **可能原因**
 
-     签名算法不支持，signAlg参数填写错误
+     签名算法不支持，signAlg参数填写错误。
 
    - **解决办法**
 
-     最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA
+     最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA。

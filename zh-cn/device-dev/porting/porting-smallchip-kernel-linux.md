@@ -13,7 +13,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ### Bootloader
 
-可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。比如为支持Hi3516DV300开发板，OpenHarmony引入的开源[Uboot](https://gitee.com/openharmony/device_hisilicon_third_party_uboot)。
+可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。比如为支持Hi3516DV300开发板，OpenHarmony引入的开源[Uboot](https://gitee.com/openharmony/third_party_u-boot)。
 
 
 ## 适配编译和烧录启动
@@ -45,7 +45,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 4. 烧录启动。
    由于不同芯片的开发板的烧录方式不一样，此处不表述具体的烧录方式。需要注意烧录的各镜像的大小及启动参数的配置，参考hi3516dv300采用uboot启动参数：
 
-     
+   
    ```
    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 ro rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),9M(kernel),50M(rootfs),50M(userfs)'
    ```
@@ -53,7 +53,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ## 验证
 
-调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony[小型系统](../quick-start/quickstart-lite-overview.md)的OS镜像结构以及linux用户态的启动流程如下图1所示：
+调试init进程、启动shell和运行简单的用户态程序，验证内核移植是否成功。OpenHarmony小型系统的OS镜像结构以及linux用户态的启动流程如下图1所示：
 
   **图1** 基于linux内核的OS镜像结构和用户态程序启动流程
   ![zh-cn_image_0000001154372318](figures/zh-cn_image_0000001154372318.png)
@@ -61,7 +61,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 基于上述流程，推荐按以下步骤完成验证：
 
 1. 制作根文件系统镜像。
-   请参考[新建芯片解决方案和产品解决方案](../subsystems/subsys-build-mini-lite.md)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
+   请参考[新建芯片解决方案和产品解决方案](../subsystems/subsys-build-all.md)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
 
    - 组件配置
       产品组件配置文件vendor/{company}/{product}/config.json需配置启动恢复子系统(startup)的init_lite组件和内核子系统的linux_4_1_9组件。

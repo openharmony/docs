@@ -1,18 +1,18 @@
-# Stepper
+# stepper开发指导
 
-当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[Stepper API](../reference/arkui-js/js-components-container-stepper.md)。
+当一个任务需要多个步骤时，可以使用stepper组件展示当前进展。具体用法请参考[stepper API](../reference/arkui-js/js-components-container-stepper.md)。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从API Version 5 开始支持。
 
 
-## 创建Stepper组件
+## 创建stepper组件
 
-在pages/index目录下的hml文件中创建一个Stepper组件。
+在pages/index目录下的hml文件中创建一个stepper组件。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper>    
    <stepper-item>     
@@ -25,7 +25,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -49,8 +49,8 @@ text{
 
 页面默认显示索引值为index的步骤。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper index="2">    
    <stepper-item>     
@@ -66,8 +66,8 @@ text{
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -85,8 +85,8 @@ text{
 
 通过设置label属性，自定义stepper-item的提示按钮。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper index="1">    
    <stepper-item label="{{label_1}}">     
@@ -105,8 +105,8 @@ text{
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {  
   width:100%;
   height:100%;
@@ -120,8 +120,8 @@ text{
 }
 ```
 
-```
-/* index.js */
+```js
+// xxx.js
 export default { 
   data: {
     label_1:{
@@ -147,9 +147,9 @@ export default {
 
 ## 设置样式
 
-Stepper组件默认填充父容器，通过border和background-color设置边框、背景色。
-```
-<!-- index.hml -->
+stepper组件默认填充父容器，通过border和background-color设置边框、背景色。
+```html
+<!-- xxx.hml -->
 <div class="container" > 
   <div class="stepperContent">
     <stepper class="stepperClass">    
@@ -161,8 +161,8 @@ Stepper组件默认填充父容器，通过border和background-color设置边框
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -191,14 +191,14 @@ text{
 
 ## 添加事件
 
-Stepper分别添加finish，change，next，back，skip事件。
+stepper分别添加finish，change，next，back，skip事件。
 
 - 当change与next或back同时存在时，会先执行next或back事件再去执行change事件。
 
 - 重新设置index属性值时要先清除index的值再重新设置，否则检测不到值的改变。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"  style="background-color:#F1F3F5;">
   <div >
     <stepper onfinish="stepperFinish" onchange="stepperChange" onnext="stepperNext" onback="stepperBack" onskip="stepperSkip" id="stepperId" index="{{index}}">
@@ -218,7 +218,7 @@ Stepper分别添加finish，change，next，back，skip事件。
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -246,9 +246,9 @@ button{
 }
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     index:0,
@@ -261,19 +261,21 @@ export default {
     this.$element('stepperId').setNextButtonStatus({status: 'skip', label: 'SKIP'});
   },
   stepperFinish(){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'All Finished'
     })
   },
   stepperChange(e){
     console.log("stepperChange"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // index表示当前步骤的序号
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // pendingIndex表示将要跳转的序号
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
     var index = {pendingIndex:e.pendingIndex }
@@ -294,9 +296,10 @@ export default {
 
 在本场景中，开发者可以在界面上点击选择并实时显示选择结果，点击下一步按钮后可动态修改页面的字体颜色和字体大小。
 
-用Stepper组件实现分步，再创建[Toggle](../reference/arkui-js/js-components-basic-toggle.md)组件实现选择显示功能，再使用[Select](../reference/arkui-js/js-components-basic-select.md)组件实现改变选中值动态修改字体颜色或大小。
+用stepper组件实现分步，再创建[Toggle](../reference/arkui-js/js-components-basic-toggle.md)组件实现选择显示功能，再使用[Select](../reference/arkui-js/js-components-basic-select.md)组件实现改变选中值动态修改字体颜色或大小。
 
-```
+```html
+<!-- xxx.hml -->
 <div class="container">
   <stepper id="mystep" index="0" onfinish="back" style="text-color: indigo;">
     <stepper-item label="{{label1}}">
@@ -337,7 +340,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -358,10 +361,10 @@ export default {
 }
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
-import router from '@system.router';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 let myset = new Set();
 export default {
   data: {
@@ -405,6 +408,6 @@ export default {
 
 ## 相关实例
 
-针对Stepper开发，有以下相关实例可供参考：
+针对stepper开发，有以下相关实例可供参考：
 
-- [`StepNavigator`：步骤导航器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/StepNavigator)
+- [`StepNavigator`：步骤导航器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/StepNavigator)

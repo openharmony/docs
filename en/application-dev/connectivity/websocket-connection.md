@@ -3,7 +3,7 @@
 
 ## Use Cases
 
-You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the **createWebSocket** API to create a **WebSocket** object and then use the **connect** API to connect to the server. If the connection is successful, the client will receive a callback of the **open** event. Then, the client can communicate with the server using the **send** API. When the server sends a message to the client, the client will receive a callback of the **message** event. If the client no longer needs this connection, it can call the **close** API to disconnect from the server. Then, the client will receive a callback of the **close** event.
+You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the **createWebSocket()** API to create a **WebSocket** object and then use the **connect()** API to connect to the server. If the connection is successful, the client will receive a callback of the **open** event. Then, the client can communicate with the server using the **send()** API. When the server sends a message to the client, the client will receive a callback of the **message** event. If the client no longer needs this connection, it can call the **close()** API to disconnect from the server. Then, the client will receive a callback of the **close** event.
 
 If an error occurs in any of the preceding processes, the client will receive a callback of the **error** event.
 
@@ -18,14 +18,14 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
 | connect() | Establishes a WebSocket connection to a given URL. |
 | send() | Sends data through the WebSocket connection. |
 | close() | Closes a WebSocket connection. |
-| on(type:&nbsp;'open') | Enables listening for **open** events of a WebSocket connection. |
-| off(type:&nbsp;'open') | Disables listening for **open** events of a WebSocket connection. |
-| on(type:&nbsp;'message') | Enables listening for **message** events of a WebSocket connection. |
-| off(type:&nbsp;'message') | Disables listening for **message** events of a WebSocket connection. |
-| on(type:&nbsp;'close') | Enables listening for **close** events of a WebSocket connection. |
-| off(type:&nbsp;'close') | Disables listening for **close** events of a WebSocket connection. |
-| on(type:&nbsp;'error') | Enables listening for **error** events of a WebSocket connection. |
-| off(type:&nbsp;'error') | Disables listening for **error** events of a WebSocket connection. |
+| on(type: 'open') | Enables listening for **open** events of a WebSocket connection. |
+| off(type: 'open') | Disables listening for **open** events of a WebSocket connection. |
+| on(type: 'message') | Enables listening for **message** events of a WebSocket connection. |
+| off(type: 'message') | Disables listening for **message** events of a WebSocket connection. |
+| on(type: 'close') | Enables listening for **close** events of a WebSocket connection. |
+| off(type: 'close') | Disables listening for **close** events of a WebSocket connection. |
+| on(type: 'error') | Enables listening for **error** events of a WebSocket connection. |
+| off(type: 'error') | Disables listening for **error** events of a WebSocket connection. |
 
 
 ## How to Develop
@@ -50,9 +50,9 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
        // When receiving the on('open') event, the client can use the send() API to communicate with the server.
        ws.send("Hello, server!", (err, value) => {
            if (!err) {
-               console.log("send success");
+               console.log("Message sent successfully");
            } else {
-               console.log("send fail, err:" + JSON.stringify(err));
+               console.log("Failed to send the message. Err:" + JSON.stringify(err));
            }
        });
    });
@@ -62,9 +62,9 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
        if (value === 'bye') {
            ws.close((err, value) => {
                if (!err) {
-                   console.log("close success");
+                   console.log("Connection closed successfully");
                } else {
-                   console.log("close fail, err is " + JSON.stringify(err));
+                   console.log("Failed to close the connection. Err: " + JSON.stringify(err));
                }
            });
        }
@@ -77,9 +77,9 @@ The WebSocket connection function is mainly implemented by the WebSocket module.
    });
    ws.connect(defaultIpAddress, (err, value) => {
        if (!err) {
-           console.log("connect success");
+           console.log("Connected successfully");
        } else {
-           console.log("connect fail, err:" + JSON.stringify(err));
+           console.log("Connection failed. Err:" + JSON.stringify(err));
        }
    });
    ```

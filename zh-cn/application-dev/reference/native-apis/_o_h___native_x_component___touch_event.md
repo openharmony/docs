@@ -1,29 +1,35 @@
 # OH_NativeXComponent_TouchEvent
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+触摸事件。
+
+**起始版本：**
+
+8
+
+**相关模块：**
 
 [Native XComponent](_o_h___native_x_component.md)
 
 
-## **Summary**
+## 汇总
 
 
-### Public Attributes
+### 成员变量
 
-  | Public&nbsp;Attribute&nbsp;Name | Description | 
+  | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [id](_o_h___native_x_component.md#gac986c10f386a0b55bd813caec06fe190)&nbsp;=&nbsp;0 |  | 
-| [screenX](_o_h___native_x_component.md#ga68fe9ff656e74ae14254523443d85bb1)&nbsp;=&nbsp;0.0 |  | 
-| [screenY](_o_h___native_x_component.md#ga7696e0e1a81787400e187058a1e332f2)&nbsp;=&nbsp;0.0 |  | 
-| [x](_o_h___native_x_component.md#ga9688a76d25bede284e36b7226ec8ad3a)&nbsp;=&nbsp;0.0 |  | 
-| [y](_o_h___native_x_component.md#ga0136d85dae638fbe9baaa69cf67a9833)&nbsp;=&nbsp;0.0 |  | 
-| [type](_o_h___native_x_component.md#ga22f67143e6acdefa5c7fd4ba23f7c2b6)&nbsp;=&nbsp;[OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182aff39d23c1412b3b110a19df4893651d3) |  | 
-| [size](_o_h___native_x_component.md#ga723601b60610b546fbdaf29e87575ca2)&nbsp;=&nbsp;0.0 |  | 
-| [force](_o_h___native_x_component.md#ga7c0a450a47231bd55994a970b3750d3f)&nbsp;=&nbsp;0.0 |  | 
-| [deviceId](_o_h___native_x_component.md#ga00660bb31b05cebe8964ba221c24f966)&nbsp;=&nbsp;0 |  | 
-| [timeStamp](_o_h___native_x_component.md#gadd872bda25d5af9327d12d06a70149fd)&nbsp;=&nbsp;0 |  | 
-| [touchPoints](_o_h___native_x_component.md#gab3514bf8d2fa3de8191d4898ee739053)&nbsp;[OH_MAX_TOUCH_POINTS_NUMBER] |  | 
-| [numPoints](_o_h___native_x_component.md#gad8c19c6c2bbb367fa18fffa813e21cc6)&nbsp;=&nbsp;0 |  | 
+| [id](_o_h___native_x_component.md#id-22) = 0 | 手指的唯一标识符。 | 
+| [screenX](_o_h___native_x_component.md#screenx-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 | 
+| [screenY](_o_h___native_x_component.md#screeny-23) = 0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 | 
+| [x](_o_h___native_x_component.md#x-23) = 0.0 | 触摸点相对于XComponent组件左边缘的x坐标。 | 
+| [y](_o_h___native_x_component.md#y-23) = 0.0 | 触摸点相对于XComponent组件上边缘的y坐标。 | 
+| [type](_o_h___native_x_component.md#type-22) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。 | 
+| [size](_o_h___native_x_component.md#size-22) = 0.0 | 指垫和屏幕之间的接触面积。 | 
+| [force](_o_h___native_x_component.md#force-22) = 0.0 | 当前触摸事件的压力。 | 
+| [deviceId](_o_h___native_x_component.md#deviceid) = 0 | 产生当前触摸事件的设备的ID。 | 
+| [timeStamp](_o_h___native_x_component.md#timestamp-22) = 0 | 当前触摸事件的时间戳。 | 
+| [touchPoints](_o_h___native_x_component.md#touchpoints) [OH_MAX_TOUCH_POINTS_NUMBER] | 当前触摸点的数组。 | 
+| [numPoints](_o_h___native_x_component.md#numpoints) = 0 | 当前接触点的数量。 | 

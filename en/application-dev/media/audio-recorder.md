@@ -1,8 +1,12 @@
 # Audio Recording Development
 
-## When to Use
+## Introduction
 
-During audio recording, audio signals are captured, encoded, and saved to files. You can specify parameters such as the sampling rate, number of audio channels, encoding format, encapsulation format, and file path for audio recording.
+During audio recording, audio signals are captured, encoded, and saved to files. You can specify parameters such as the sampling rate, number of audio channels, encoding format, encapsulation format, and output file path for audio recording.
+
+## Working Principles
+
+The following figures show the audio recording state transition and the interaction with external modules for audio recording.
 
 **Figure 1** Audio recording state transition
 
@@ -10,13 +14,19 @@ During audio recording, audio signals are captured, encoded, and saved to files.
 
 
 
-**Figure 2** Layer 0 diagram of audio recording
+**Figure 2** Interaction with external modules for audio recording
 
 ![en-us_image_audio_recorder_zero](figures/en-us_image_audio_recorder_zero.png)
 
+**NOTE**: When a third-party recording application or recorder calls the JS interface provided by the JS interface layer to implement a feature, the framework layer invokes the audio component through the media service of the native framework to obtain the audio data captured through the audio HDI. The framework layer then encodes the audio data through software and saves the encoded and encapsulated audio data to a file to implement audio recording.
+
+## Constraints
+
+Before developing audio recording, configure the **ohos.permission.MICROPHONE** permission for your application. For details about the configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+
 ## How to Develop
 
-For details about the APIs, see [AudioRecorder in the Media API](../reference/apis/js-apis-media.md).
+For details about the APIs, see [AudioRecorder in the Media API](../reference/apis/js-apis-media.md#audiorecorder).
 
 ### Full-Process Scenario
 
@@ -185,13 +195,3 @@ export class AudioRecorderDemo {
   }
 }
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop audio recording:
-
-- [`Recorder`: Recorder (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
-- [`JsRecorder`: Recorder (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JSRecorder)
-- [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
-

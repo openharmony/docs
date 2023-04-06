@@ -32,27 +32,27 @@ DeviceProfile主要代码目录结构如下：
 ```
 ├── interfaces
 │   └── innerkits
-│       └── distributeddeviceprofile            // 系统内部接口
+│       └── distributeddeviceprofile            // innerkits接口
 ├── ohos.build
 ├── sa_profile                                  // said声明文件
 │   ├── 6001.xml
 │   └── BUILD.gn
-├── services
-│   └── distributeddeviceprofile
-│       ├── BUILD.gn
-│       ├── include
-│       │   ├── contentsensor                   // CS数据采集头文件
-│       │   ├── dbstorage                       // 数据库操作头文件
-│       │   ├── devicemanager                   // 设备管理头文件
-│       │   └── subscribemanager                // 订阅管理头文件
-│       ├── src
-│       │   ├── contentsensor                   // CS数据采集实现
-│       │   ├── dbstorage                       // 数据库操作实现
-│       │   ├── devicemanager                   // 设备管理实现
-│       │   ├── subscribemanager                // 订阅管理实现
-│       └── test                                // 测试用例
-└── tools
-    └── dp                                      // 辅助测试工具
+└── services
+    └── distributeddeviceprofile
+        ├── BUILD.gn
+        ├── include
+        │   ├── authority                       // 权限校验
+        │   ├── contentsensor                   // CS数据采集头文件
+        │   ├── dbstorage                       // 数据库操作头文件
+        │   ├── devicemanager                   // 设备管理头文件
+        │   └── subscribemanager                // 订阅管理头文件
+        ├── src
+        │   ├── authority                       // 权限校验
+        │   ├── contentsensor                   // CS数据采集实现
+        │   ├── dbstorage                       // 数据库操作实现
+        │   ├── devicemanager                   // 设备管理实现
+        │   └── subscribemanager                // 订阅管理实现
+        └── test                                // 测试用例
 ```
 
 ## 约束<a name="section1718733212019"></a>
@@ -179,19 +179,17 @@ subscribeInfos.emplace_back(info2);
 
 std::list<ProfileEvent> failedEvents;
 // 执行订阅接口
-DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos,
-    callback, failedEvents);
+DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos, callback, failedEvents);
 sleep(SUBSCRIBE_SLEEP_TIME);
 std::list<ProfileEvent> profileEvents;
 profileEvents.emplace_back(ProfileEvent::EVENT_PROFILE_CHANGED);
 failedEvents.clear();
 // 解除订阅
-DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents,
-    callback, failedEvents);
+DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents, callback, failedEvents);
 ```
 
 ## 相关仓<a name="section176111311166"></a>
 
 **DeviceProfile子系统**
 
-[device\_profile\_core](https://gitee.com/openharmony/device_profile_core)
+[device\_info\_manager](https://gitee.com/openharmony/deviceprofile_device_info_manager)

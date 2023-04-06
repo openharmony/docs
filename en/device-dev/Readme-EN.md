@@ -6,53 +6,56 @@
   - [Glossary](../glossary.md) 
   - [Release Notes](../release-notes/Readme.md) 
 - Quick Start
-  - [Mini and Small Systems](quick-start/quickstart-lite.md)	
-  - [Standard System](quick-start/quickstart-standard.md)
+  - [Getting Started](quick-start/Readme-EN.md)
 - Compatibility and Security
   - [Privacy and Security](security/Readme-EN.md)
 - Porting
-  - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty.md)
-  - [Mini System SoC Porting Guide](porting/porting-minichip.md)
-  - [Mini System SoC Porting Cases](porting/porting-minichip-cases.md)
-  - [Small System SoC Porting Guide](porting/porting-smallchip.md)
-  - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)	 	
+  - Porting Guide
+      - [Third-Party Library Porting Guide for Mini and Small Systems](porting/porting-thirdparty-overview.md)
+      - [Mini System SoC Porting Guide](porting/porting-minichip-overview.md)
+      - [Small System SoC Porting Guide](porting/porting-smallchip-prepare-needs.md)
+      - [Standard System SoC Porting Guide](porting/standard-system-porting-guide.md)
+  - Porting Cases
+      - Mini System SoC Porting Cases
+          - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md) 
+          - [Combo Solution — ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)    
+
 - Subsystem Development
   - Kernel
-    - [Kernel for the Mini System](kernel/kernel-mini.md)
-    - [Kernel for the Small System](kernel/kernel-small.md)
-    - [Kernel for the Standard System](kernel/kernel-standard.md)
+    - [Kernel for the Mini System](kernel/kernel-mini-overview.md)
+    - [Kernel for the Small System](kernel/kernel-small-overview.md)
+    - [Kernel for the Standard System](kernel/kernel-standard-overview.md)
   - [Driver](driver/Readme-EN.md)	
-  - [Compilation and Building](subsystems/subsys-build.md)
+  - [Compilation and Building](subsystems/subsys-build-all.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
-  - [Graphics](subsystems/subsys-graphics.md)	
-  - [Multimedia](subsystems/subsys-multimedia.md)	
-  - [Utils](subsystems/subsys-utils.md)
-  - [AI Framework](subsystems/subsys-aiframework.md)	
-  - [Data Management](subsystems/subsys-data.md)
-  - [Sensor](subsystems/subsys-sensor.md)
-  - [USB](subsystems/subsys-usbservice.md)
-  - [Application Framework](subsystems/subsys-application-framework.md)
+  - [Graphics](subsystems/subsys-graphics-overview.md)	
+  - [Multimedia](subsystems/subsys-multimedia-camera-overview.md)	
+  - [Utils](subsystems/subsys-utils-guide.md)
+  - [AI Framework](subsystems/subsys-ai-aiframework-devguide.md)	
+  - [Data Management](subsystems/subsys-data-relational-database-overview.md)
+  - [Sensor](subsystems/subsys-sensor-overview.md)
+  - [USB](subsystems/subsys-usbservice-overview.md)
+  - [Application Framework](subsystems/subsys-application-framework-overview.md)
   - [OTA Update](subsystems/subsys-ota-guide.md)
-  - [Telephony](subsystems/subsys-tel.md)
-  - [Security](subsystems/subsys-security.md)
-  - [Startup](subsystems/subsys-boot.md)
-  - [DFX](subsystems/subsys-dfx.md)
+  - [Telephony](subsystems/subsys-tel-overview.md)
+  - [Security](subsystems/subsys-security-overview.md)
+  - [Startup](subsystems/subsys-boot-overview.md)
+  - [DFX](subsystems/subsys-dfx-overview.md)
 - Featured Topics
   - [HPM Part](hpm-part/Readme-EN.md) 	 	
   - Device Development Examples	 
-    - [Mini- and Small-System Devices](guide/device-lite.md)	
-    - [Standard-System Devices](guide/device-standard.md)
+    - [Mini- and Small-System Devices](guide/device-wlan-led-control.md)	
+    - [Standard-System Devices](guide/device-clock-guide.md)
 - Debugging
-  - [Test Case Development](subsystems/subsys-testguide-test.md)	
-  - [R&D Tools](subsystems/subsys-toolchain.md)
+  - [Test Case Development](device-test/developer_test.md)	
+  - [R&D Tools](subsystems/subsys-toolchain-hdc-guide.md)
 - XTS Certification	
-  - [XTS Test Case Development](subsystems/subsys-xts-guide.md)	
+  - [XTS Test Case Development](device-test/xts.md)	
 - Tools
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 - Hands-On Tutorials	
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md) 
-  - [Codelabs](https://gitee.com/openharmony/codelabs)  
+    - [Codelabs](https://gitee.com/openharmony/codelabs)
 - References
   - [FAQs](faqs/Readme-EN.md)
 - Contribution

@@ -5,7 +5,7 @@
 
 互斥锁又称互斥型信号量，是一种特殊的二值性信号量，用于实现对共享资源的独占式处理。
 
-任意时刻互斥锁的状态只有两种，开锁或闭锁。当有任务持有时，互斥锁处于闭锁状态，这个任务获得该互斥锁的所有权。当该任务释放它时，该互斥锁被开锁，任务失去该互斥锁的所有权。当一个任务持有互斥锁时，其他任务将不能再对该互斥锁进行开锁或持有。
+任意时刻互斥锁的状态只有两种，开锁或闭锁。当任务持有互斥锁时，该互斥锁处于闭锁状态，这个任务获得该互斥锁的所有权。当该任务释放互斥锁时，该互斥锁被开锁，任务失去该互斥锁的所有权。当一个任务持有互斥锁时，其他任务将不能再对该互斥锁进行开锁或持有。
 
 多任务环境下往往存在多个任务竞争同一共享资源的应用场景，互斥锁可被用于对共享资源的保护从而实现独占式访问。另外互斥锁可以解决信号量存在的优先级翻转问题。
 
@@ -24,10 +24,10 @@
 
   **表1** 互斥锁模块接口
 
-| 功能分类 | 接口描述 | 
+| 功能分类 | 接口描述 |
 | -------- | -------- |
-| 互斥锁的创建和删除 | LOS_MuxCreate：创建互斥锁<br/>LOS_MuxDelete：删除指定的互斥锁 | 
-| 互斥锁的申请和释放 | LOS_MuxPend：申请指定的互斥锁<br/>LOS_MuxPost：释放指定的互斥锁 | 
+| 互斥锁的创建和删除 | LOS_MuxCreate：创建互斥锁。<br/>LOS_MuxDelete：删除指定的互斥锁。 |
+| 互斥锁的申请和释放 | LOS_MuxPend：申请指定的互斥锁。<br/>LOS_MuxPost：释放指定的互斥锁。 |
 
 
 ## 开发流程
@@ -39,7 +39,7 @@
 2. 申请互斥锁LOS_MuxPend。
    申请模式有三种：无阻塞模式、永久阻塞模式、定时阻塞模式。
 
-   - 无阻塞模式：任务需要申请互斥锁，若该互斥锁当前没有任务持有，或者持有该互斥锁的任务和申请该互斥锁的任务为同一个任务，则申请成功。
+   - 无阻塞模式：任务需要申请互斥锁，若该互斥锁当前没有任务持有，或者持有该互斥锁的任务和申请该互斥锁的任务为同一个任务，则申请成功。否则直接返回并继续运行当前任务，不会产生阻塞。
    - 永久阻塞模式：任务需要申请互斥锁，若该互斥锁当前没有被占用，则申请成功。否则，该任务进入阻塞态，系统切换到就绪任务中优先级高者继续执行。任务进入阻塞态后，直到有其他任务释放该互斥锁，阻塞任务才会重新得以执行。
    - 定时阻塞模式：任务需要申请互斥锁，若该互斥锁当前没有被占用，则申请成功。否则该任务进入阻塞态，系统切换到就绪任务中优先级高者继续执行。任务进入阻塞态后，指定时间超时前有其他任务释放该互斥锁，或者用户指定时间超时后，阻塞任务才会重新得以执行。
 
@@ -50,7 +50,7 @@
 4. 删除互斥锁LOS_MuxDelete。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 两个任务不能对同一把互斥锁加锁。如果某任务对已被持有的互斥锁加锁，则该任务会被挂起，直到持有该锁的任务对互斥锁解锁，才能执行对这把互斥锁的加锁操作。
+> - 互斥锁支持嵌套，即申请该互斥锁的任务与已经持有该互斥锁的任务为同一个任务时会认为申请成功，按申请次数对应的去释放该锁即可。
 > 
 > - 互斥锁不能在中断服务程序中使用。
 > 
@@ -66,67 +66,66 @@
 
 本实例实现如下流程。
 
-1. 任务Example_TaskEntry创建一个互斥锁，锁任务调度，创建两个任务Example_MutexTask1、Example_MutexTask2。Example_MutexTask2优先级高于Example_MutexTask1，解锁任务调度。
+1. 任务ExampleMutex创建一个互斥锁，锁任务调度，创建两个任务ExampleMutexTask1、ExampleMutexTask2。ExampleMutexTask2优先级高于ExampleMutexTask1，解锁任务调度。
 
-2. Example_MutexTask2被调度，以永久阻塞模式申请互斥锁，并成功获取到该互斥锁，然后任务休眠100Tick，Example_MutexTask2挂起，Example_MutexTask1被唤醒。
+2. ExampleMutexTask2被调度，以永久阻塞模式申请互斥锁，并成功获取到该互斥锁，然后任务休眠100Tick，ExampleMutexTask2挂起，ExampleMutexTask1被唤醒。
 
-3. Example_MutexTask1以定时阻塞模式申请互斥锁，等待时间为10Tick，因互斥锁仍被Example_MutexTask2持有，Example_MutexTask1挂起。10Tick超时时间到达后，Example_MutexTask1被唤醒，以永久阻塞模式申请互斥锁，因互斥锁仍被Example_MutexTask2持有，Example_MutexTask1挂起。
+3. ExampleMutexTask1以定时阻塞模式申请互斥锁，等待时间为10Tick，因互斥锁仍被ExampleMutexTask2持有，ExampleMutexTask1挂起。10Tick超时时间到达后，ExampleMutexTask1被唤醒，以永久阻塞模式申请互斥锁，因互斥锁仍被ExampleMutexTask2持有，ExampleMutexTask1挂起。
 
-4. 100Tick休眠时间到达后，Example_MutexTask2被唤醒， 释放互斥锁，唤醒Example_MutexTask1。Example_MutexTask1成功获取到互斥锁后，释放，删除互斥锁。
+4. 100Tick休眠时间到达后，ExampleMutexTask2被唤醒， 释放互斥锁，唤醒ExampleMutexTask1。ExampleMutexTask1成功获取到互斥锁后，释放并删除互斥锁。
 
 
 ### 示例代码
 
 示例代码如下：
 
-  
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleMutex。
+
+
 ```
-#include <string.h>
 #include "los_mux.h"
 
-/* 互斥锁句柄id */
+/* 互斥锁句柄 */
 UINT32 g_testMux;
-/* 任务ID */
-UINT32 g_testTaskId01;
-UINT32 g_testTaskId02;
 
-VOID Example_MutexTask1(VOID)
+VOID ExampleMutexTask1(VOID)
 {
     UINT32 ret;
 
     printf("task1 try to get  mutex, wait 10 ticks.\n");
     /* 申请互斥锁 */
     ret = LOS_MuxPend(g_testMux, 10);
-
     if (ret == LOS_OK) {
         printf("task1 get mutex g_testMux.\n");
-        /* 释放互斥锁 */
+        /* 释放互斥锁，这个分支正常不应该进来 */
         LOS_MuxPost(g_testMux);
+        LOS_MuxDelete(g_testMux);
         return;
-    } 
-    if (ret == LOS_ERRNO_MUX_TIMEOUT ) {
-            printf("task1 timeout and try to get mutex, wait forever.\n");
-            /* 申请互斥锁 */
-            ret = LOS_MuxPend(g_testMux, LOS_WAIT_FOREVER);
-            if (ret == LOS_OK) {
-                printf("task1 wait forever, get mutex g_testMux.\n");
-                /* 释放互斥锁 */
-                LOS_MuxPost(g_testMux);
-                /* 删除互斥锁 */
-                LOS_MuxDelete(g_testMux);
-                printf("task1 post and delete mutex g_testMux.\n");
-                return;
-            }
     }
+    
+    if (ret == LOS_ERRNO_MUX_TIMEOUT ) {
+        printf("task1 timeout and try to get mutex, wait forever.\n");
+        /* 申请互斥锁 */
+        ret = LOS_MuxPend(g_testMux, LOS_WAIT_FOREVER);
+        if (ret == LOS_OK) {
+            printf("task1 wait forever, get mutex g_testMux.\n");
+            /* 释放互斥锁 */
+            LOS_MuxPost(g_testMux);
+            /* 删除互斥锁 */
+            LOS_MuxDelete(g_testMux);
+            printf("task1 post and delete mutex g_testMux.\n");
+            return;
+        }
+    }
+    
     return;
 }
 
-VOID Example_MutexTask2(VOID)
+VOID ExampleMutexTask2(VOID)
 {
     printf("task2 try to get  mutex, wait forever.\n");
     /* 申请互斥锁 */
     (VOID)LOS_MuxPend(g_testMux, LOS_WAIT_FOREVER);
-
     printf("task2 get mutex g_testMux and suspend 100 ticks.\n");
 
     /* 任务休眠100Ticks */
@@ -138,11 +137,13 @@ VOID Example_MutexTask2(VOID)
     return;
 }
 
-UINT32 Example_TaskEntry(VOID)
+UINT32 ExampleMutex(VOID)
 {
     UINT32 ret;
-    TSK_INIT_PARAM_S task1;
-    TSK_INIT_PARAM_S task2;
+    TSK_INIT_PARAM_S task1 = { 0 };
+    TSK_INIT_PARAM_S task2 = { 0 };
+    UINT32 taskId01;
+    UINT32 taskId02;
 
     /* 创建互斥锁 */
     LOS_MuxCreate(&g_testMux);
@@ -151,24 +152,22 @@ UINT32 Example_TaskEntry(VOID)
     LOS_TaskLock();
 
     /* 创建任务1 */
-    memset(&task1, 0, sizeof(TSK_INIT_PARAM_S));
-    task1.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_MutexTask1;
+    task1.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleMutexTask1;
     task1.pcName       = "MutexTsk1";
     task1.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
     task1.usTaskPrio   = 5;
-    ret = LOS_TaskCreate(&g_testTaskId01, &task1);
+    ret = LOS_TaskCreate(&taskId01, &task1);
     if (ret != LOS_OK) {
         printf("task1 create failed.\n");
         return LOS_NOK;
     }
 
     /* 创建任务2 */
-    memset(&task2, 0, sizeof(TSK_INIT_PARAM_S));
-    task2.pfnTaskEntry = (TSK_ENTRY_FUNC)Example_MutexTask2;
+    task2.pfnTaskEntry = (TSK_ENTRY_FUNC)ExampleMutexTask2;
     task2.pcName       = "MutexTsk2";
     task2.uwStackSize  = LOSCFG_BASE_CORE_TSK_DEFAULT_STACK_SIZE;
     task2.usTaskPrio   = 4;
-    ret = LOS_TaskCreate(&g_testTaskId02, &task2);
+    ret = LOS_TaskCreate(&taskId02, &task2);
     if (ret != LOS_OK) {
         printf("task2 create failed.\n");
         return LOS_NOK;
@@ -185,7 +184,7 @@ UINT32 Example_TaskEntry(VOID)
 ### 结果验证
 
   编译运行得到的结果为：
-  
+
 ```
 task2 try to get  mutex, wait forever.
 task2 get mutex g_testMux and suspend 100 ticks.

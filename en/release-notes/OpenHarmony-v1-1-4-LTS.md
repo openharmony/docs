@@ -77,7 +77,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | -------- | -------- |
 | [I4AJEN](https://gitee.com/openharmony/third_party_freetype/issues/I4AJEN) | Fixed the CVE-2020-15999 security vulnerability of the third_party_freetype component.|
 | [I4AJ6T](https://gitee.com/openharmony/third_party_mbedtls/issues/I4AJ6T) | Fixed the CVE-2020-36475 and CVE-2020-36478 security vulnerabilities of the third_party_mbedtls component.|
-| [I4AIYJ](https://gitee.com/openharmony/device_hisilicon_third_party_uboot/issues/I4AIYJ?from=project-issue) | Fixed the CVE-2021-27138 and CVE-2021-27097 security vulnerabilities of the third_party_uboot component.|
+| I4AIYJ | Fixed the CVE-2021-27138 and CVE-2021-27097 security vulnerabilities of the third_party_uboot component.|
 | [I4HUM6](https://gitee.com/openharmony/third_party_lwip/issues/I4HUM6?from=project-issue) | Fixed the CVE-2020-22284 security vulnerability of the third_party_lwip component.|
 | I4QTVZ | Fixed the CVE-2021-44732 and CVE-2021-45450 security vulnerabilities of the third_party_mbedtls component.|
 | [I46RRM](https://gitee.com/openharmony/third_party_wpa_supplicant/issues/I46RRM?from=project-issue) | Fixed copying of secondary device types for the P2P group client.|

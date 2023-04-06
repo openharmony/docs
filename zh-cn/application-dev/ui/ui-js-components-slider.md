@@ -1,23 +1,23 @@
-# Slider开发指导
+# slider开发指导
 
 
-Slider为滑动条组件，用来快速调节音量、亮度等。具体用法请参考[Slider](../reference/arkui-js/js-components-basic-slider.md)。
+slider为滑动条组件，用来快速调节音量、亮度等。具体用法请参考[slider](../reference/arkui-js/js-components-basic-slider.md)。
 
 
-## 创建Slider组件
+## 创建slider组件
 
-在pages/index目录下的hml文件中创建一个Slider组件。
+在pages/index目录下的hml文件中创建一个slider组件。
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <slider></slider>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -35,10 +35,10 @@ Slider为滑动条组件，用来快速调节音量、亮度等。具体用法�
 
 ## 设置样式和属性
 
-Slider组件通过color、selected-color、block-color样式分别为滑动条设置背景颜色、已选择颜色和滑块颜色。
+slider组件通过color、selected-color、block-color样式分别为滑动条设置背景颜色、已选择颜色和滑块颜色。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <slider class= "sli"></slider>
@@ -46,7 +46,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -68,7 +68,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 通过添加mix、max、value、step、mode属性分别为滑动条设置最小值、最大值、初始值、滑动步长和滑动条样式。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <slider min="0" max="100" value="1" step="2" mode="inset" showtips="true"></slider>
@@ -76,7 +76,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -90,7 +90,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 
 ![zh-cn_image_0000001179438692](figures/zh-cn_image_0000001179438692.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > mode属性为滑动条样式，可选值为：
 >
 > - outset：滑块在滑杆上；
@@ -103,7 +103,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 向Rating组件添加change事件，添加时需要传入ChangeEvent参数。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text>slider start value is {{startValue}}</text>
@@ -114,7 +114,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -127,7 +127,7 @@ Slider组件通过color、selected-color、block-color样式分别为滑动条�
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -159,7 +159,7 @@ export default {
 开发者可以通过调整滑动条的值来改变图片大小，并且动态打印当前图片的宽和高。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <image src="common/landscape3.jpg" style=" width: {{WidthVal}}px;height:{{HeightVal}}px;margin-top: -150px;"></image>
@@ -172,7 +172,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -195,7 +195,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 export default{
   data: {
@@ -215,8 +215,8 @@ export default{
 
 ## 相关实例
 
-针对Slider开发，有以下相关实例可供参考：
+针对slider开发，有以下相关实例可供参考：
 
-- [`Slider`：滑动条（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Slider)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [slider（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
+- [slider（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)

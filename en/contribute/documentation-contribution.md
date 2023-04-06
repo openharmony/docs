@@ -17,7 +17,7 @@ OpenHarmony has the right to modify the adopted content according to the communi
 
 [Creative Commons License version 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-## Contribution Methods<a name = contribution-methods></a>
+## Contribution Methods
 
 ### Submitting Issues for Existing Documents
 
@@ -26,14 +26,15 @@ Your feedback matters. Submit issues and leave as detailed information as possib
 1.  On the Gitee page, click the **Issues** tab. On the displayed page, click **New issue**. Then enter the issue title and issue details.
 2.  Click **New** to submit the issue. The Docs team will confirm the issue.
 
->![](public_sys-resources/icon-note.gif) **Note:**
->**How can I provide a high-quality issue?**  
+> **NOTE**
+> 
+> **How can I provide a high-quality issue?**  
 >
->-   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.
->-   Explain the impact of this issue on users.
->-   Limit the scope of the given issue to a specific task. If multiple fields are involved, break the issue down into smaller ones. For example, "Documents need to be optimized" is a broad issue, whereas "XX development guide lacks introduction to step XXX" is specific and operable.
->-   Search the list of existing issues to see if any related or similar issues have been submitted.
->-   If an issue is associated with another issue or a pull request (PR), you can use its full URL or the combination of the number sign (#) and PR number to reference it.
+> -   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.
+> -   Explain the impact of this issue on users.
+> -   Limit the scope of the given issue to a specific task. If multiple fields are involved, break the issue down into smaller ones. For example, "Documents need to be optimized" is a broad issue, whereas "XX development guide lacks introduction to step XXX" is specific and operable.
+> -   Search the list of existing issues to see if any related or similar issues have been submitted.
+> -   If an issue is associated with another issue or a pull request (PR), you can use its full URL or the combination of the number sign (#) and PR number to reference it.
 
 ### Editing Existing Documents
 
@@ -65,7 +66,7 @@ You are welcome to contribute documents to the release. For details, see [Writin
 
 You are welcome to share your experience and expertise with other developers to help them get started. For example, you can contribute tutorials and FAQs by using the following templates:
 
--   [Tutorial Template](template/tutorial-template.md). You can contribute tutorials in the `contribute/tutorial` folder.
--   [FAQ Template](template/faq-template.md). You can contribute FAQs in the `contribute/faqs` folder.
+-   [Tutorial Template](https://gitee.com/openharmony/docs/blob/master/en/contribute/template/tutorial-template.md). You can contribute tutorials in the `contribute/tutorial` folder.
+-   [FAQ Template](https://gitee.com/openharmony/docs/blob/master/en/contribute/template/faq-template.md). You can contribute FAQs in the `contribute/faqs` folder.
 
 More writing templates are available in the **contribute** folder in the **Docs** repository.

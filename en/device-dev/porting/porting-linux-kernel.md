@@ -1,12 +1,12 @@
-# A Method for Rapidly Porting the OpenHarmony Linux Kernel<a name="EN-US_TOPIC_0000001162545194"></a>
+# A Method for Rapidly Porting the OpenHarmony Linux Kernel
 
-## Overview<a name="section28051350151118"></a>
+## Overview
 
 This document describes how to quickly port OpenHarmony to a third-party chip platform by using the existing capabilities of the Linux kernel of the third-party chip platform.
 
-## Overall Porting Approach<a name="section994883124"></a>
+## Overall Porting Approach
 
-### Kernel Mode Layer and User Mode Layer<a name="section953481431217"></a>
+### Kernel Mode Layer and User Mode Layer
 
 For easy description, we divide the OpenHarmony architecture into two parts:
 
@@ -20,7 +20,7 @@ The user mode layer includes other parts except the OpenHarmony kernel layer. It
 
 The user mode layer of OpenHarmony is loosely coupled with the third-party chip platform and is easy to port. The kernel and HDF at the kernel mode layer are closely coupled with the third-party chip platform and are difficult to port. This document focus on the porting of the kernel mode layer. In addition, it describes only the quick porting of the Linux kernel. It does not include the porting of LiteOS.
 
-### Composition of the Kernel Mode Layer<a name="section81437528121"></a>
+### Composition of the Kernel Mode Layer
 
 The OpenHarmony kernel mode layer can be further divided as follows:
 
@@ -51,7 +51,7 @@ The standard LTS Linux kernel and third-party SoC chip platform code constitute 
 
 In the following, we elaborate how to port OpenHarmony that uses with the third-party Linux kernel.
 
-### Overall Porting Process<a name="section86060191"></a>
+### Overall Porting Process
 
 The porting process is as follows:
 
@@ -59,11 +59,11 @@ The porting process is as follows:
 2.  Port the OpenHarmony basic kernel-mode code.
 3.  Port OpenHarmony mandatory kernel-mode features \(such as HDF\).
 
-## Procedure<a name="section98871341171310"></a>
+## Procedure
 
 The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to port OpenHarmony to Raspberry Pi.
 
-### Setting Up the Environment<a name="section16584650181314"></a>
+### Setting Up the Environment
 
 1.  Copy the third-party kernel code to the OpenHarmony build environment.
 
@@ -84,7 +84,7 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     # Configure the build environment, and use clang provided by the project to build the Raspberry Pi kernel source code.
     export PATH=$PROJ_ROOT/prebuilts/clang/ohos/linux-x86_64/llvm/bin:$PROJ_ROOT/prebuilts/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/:$PATH
     export MAKE_OPTIONS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- CC=clang HOSTCC=clang"
-    export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_standard
+    export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
     ```
 
 3.  Comment out the flags that cannot be recognized by **clang**.
@@ -96,7 +96,7 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     ```
 
 
-### Porting Basic Kernel-Mode Code<a name="section95112081716"></a>
+### Porting Basic Kernel-Mode Code
 
 Currently, the basic kernel-mode code of OpenHarmony is related to the log service. The lightweight kernel log service code includes the following:
 
@@ -125,20 +125,20 @@ Enable the CONFIG macros **CONFIG\_HILOG** and **CONFIG\_HIEVENT** in the kernel
 
 For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README.md).
 
-### Porting the HDF Feature<a name="section12971205681710"></a>
+### Porting the HDF Feature
 
 1.  Install HDF patches.
 
     Run the shell script to apply HDF patches.
 
-    1.  Set the three variables in the **patch\_hdf.sh** script.
+    1.  Set the four variables in the **patch\_hdf.sh** script.
     2.  Obtain the **patch\_hdf.sh** script.
-    3.  Run the **patch\_hdf.sh** script to pass the three variables in sequence.
+    3.  Run the **patch\_hdf.sh** script to pass the four variables in sequence.
 
     Run the following command:
 
     ```
-    ./patch_hdf.sh [Project root directory path] [Kernel directory path] [HDF patch file]
+    ./patch_hdf.sh [Project root directory path] [Kernel directory path] [Kernel patch path] [Device name]
     ```
 
     The following uses Raspberry Pi 3b as an example:
@@ -148,7 +148,8 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
     PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
     PROJ_ROOT # Specify the path of the project root directory.\
     PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b # Specify the kernel directory for applying the patch.\
-    PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch # HDF patch file.
+    PROJ_ROOT/kernel/linux/patches/linux-4.19 # Kernel patch patch.\
+    hi3516dv300 # Device name.
     ```
 
 2.  Configure the **config** file.
@@ -185,14 +186,14 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
     ![](figures/menuconfig.png)
 
 
-### Building the Image<a name="section1681965561911"></a>
+### Building the Image
 
 ```
 # Run the following command:
 make ${MAKE_OPTIONS} -j33 zImage
 ```
 
-### \(Optional\) Building and Running HDF Test Cases<a name="section460792312204"></a>
+### \(Optional\) Building and Running HDF Test Cases
 
 **Overview**
 
@@ -205,10 +206,10 @@ The HDF test cases are used to verify basic functions of the HDF framework and p
 
 **Test Case Build and Test Method**
 
-Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md) tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
+Use the [hdc_std](../subsystems/subsys-toolchain-hdc-guide.md) tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
 
 1.  Build the HDF test cases.
-2.  Use the **hdc\_std** tool to push the test case execution file to the device.
+2.  Use the **hdc_std** tool to push the test case execution file to the device.
 3.  Go to the **data/test** directory of the device and execute the test file.
 
 The procedure is as follows:
@@ -225,7 +226,7 @@ The procedure is as follows:
 
 2.  Copy the test files to the target device \(Raspberry Pi in this example\).
 
-    Method 1: Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md) tool.
+    Method 1: Use the [hdc_std](../subsystems/subsys-toolchain-hdc-guide.md) tool.
 
     1.  Create the **data/test** directory in Raspberry Pi.
 

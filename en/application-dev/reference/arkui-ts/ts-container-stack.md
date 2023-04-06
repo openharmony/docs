@@ -1,37 +1,42 @@
 # Stack
 
+The **\<Stack>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<Stack\>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
- Supported
+Supported
 
 
 ## APIs
 
-Stack(value:{alignContent?: Alignment})
+Stack(value?: { alignContent?: Alignment })
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | alignContent | [Alignment](ts-appendix-enums.md#alignment-enums) | No | Center | Alignment of child components in the container. |
+Since API version 9, this API is supported in ArkTS widgets.
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory| Description                                                   |
+| ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | No  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
+
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name        | Type                                   | Description                          |
+| ------------ | ------------------------------------------- | ------------------------------ |
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | Alignment of child components in the container.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StackExample {
@@ -44,4 +49,4 @@ struct StackExample {
 }
 ```
 
-![en-us_image_0000001212378400](figures/en-us_image_0000001212378400.jpg)
+![en-us_image_0000001219982699](figures/en-us_image_0000001219982699.PNG)

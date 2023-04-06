@@ -10,7 +10,7 @@ The OpenHarmony security subsystem provides security capabilities that make your
 
 - Application permission management
 
-  Application permissions determine what system resources and capabilities an application can access. During application development, you need to declare the permissions that the application may require in the profile.json file. Static permissions need to be registered during application installation, while dynamic permissions usually involve sensitive information and need users' dynamic authorization.
+  Application permissions determine what system resources and capabilities an application can access. During application development, you need to declare the permissions required by the application in the application configuration file. Static permissions need to be registered during application installation, while dynamic permissions usually involve sensitive information and need users' dynamic authorization.
 
 - Inter-process communication (IPC) authentication
 
@@ -19,6 +19,10 @@ The OpenHarmony security subsystem provides security capabilities that make your
 - DSLM
 
   The Device Security Level Management (DSLM) module is introduced to manage the security levels of OpenHarmony devices. When different types of user data are hopped or processed in OpenHarmony distributed services, the DSLM APIs can be called to obtain the security levels of related devices for subsequent processing.
+
+- HUKS
+
+  The OpenHarmony Universal Keystore (HUKS) provides system-level key management capabilities, ensuring secure management and use of keys throughout their entire lifecycle (generation, storage, use, and destruction). Applications can call the APIs provided by the HUKS module to perform operations on keys. In addition, the keys in plaintext must be used in a trusted execution environment (TEE).
 
 
 ## Basic Concepts

@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-示例服务器解决了升级服务器实际应用场景中，缺乏相应搜包服务器提供查询升级包、获取升级包下载url等问题，支持测试升级服务和二次开发功能验证，为升级服务的应用场景提供尽可能完善的端到端环境搭建。
+示例服务器解决了升级服务器实际应用场景中的问题，例如，缺乏相应的搜包服务器来提供查询升级包、获取升级包下载链接等服务。示例服务器支持测试升级服务和二次开发功能验证，为升级服务的应用场景提供尽可能完善的端到端环境搭建。
 
 ## 开发步骤
 
@@ -33,12 +33,12 @@
 
 	```
 	mkdir server_sample                            // 建立示例服务器server_sample目录
-	touch server_sample/BUILD.gn                 // 创建BUILD.gn编译文件
-	mkdir server_sample/include                     // 建立示例服务器头文件include目录
-	touch server_process.h                        // 创建server_process.h头文件
+	touch server_sample/BUILD.gn                   // 创建BUILD.gn编译文件
+	mkdir server_sample/include                    // 建立示例服务器头文件include目录
+	touch server_process.h                         // 创建server_process.h头文件
 	mkdir server_sample/src                        // 建立示例服务器c/c++文件src目录
-	touch server_sample/src/server_process.c      // 创建server_process.c文件
-	touch server_sample/src/main.cpp             // 创建main.cpp文件
+	touch server_sample/src/server_process.c       // 创建server_process.c文件
+	touch server_sample/src/main.cpp               // 创建main.cpp文件
 	```
 
 4. 编写编译文件BUILD.gn
@@ -175,7 +175,7 @@
 			"\"descriptPackageId\": \"abcdefg1234567ABCDEFG\","
 		"}],"
 		"\"descriptInfo\": [{"
-			"\"descriptPackageId\": \"abcdefg1234567ABCDEFG\","
+			"\"descriptionType\": 0,"
 			"\"content\": \"This package message is used for sampleContent\""
 		"}]"
 	"}";

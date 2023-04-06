@@ -1,20 +1,19 @@
-# &lt;stepper&gt; Development
+# \<stepper> Development
+
+When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 
-When multiple steps are required to complete a task, you can use the **&lt;stepper&gt;** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > This component is supported since API version 5.
 
 
-## Creating a &lt;stepper&gt; Component
+## Creating a \<stepper> Component
 
-Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
+Create a **\<stepper>** component in the .hml file under **pages/index**.
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper>    
    <stepper-item>     
@@ -27,7 +26,7 @@ Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -44,16 +43,15 @@ text{
 }
 ```
 
-![en-us_image_0000001223287656](figures/en-us_image_0000001223287656.gif)
+![en-us_image_0000001234289455](figures/en-us_image_0000001234289455.gif)
 
 
 ## Setting the Index
 
 Set **index** to the index value of the step that you want to display by default.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper index="2">    
    <stepper-item>     
@@ -69,8 +67,8 @@ Set **index** to the index value of the step that you want to display by default
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -84,14 +82,13 @@ text{
 }
 ```
 
-![en-us_image_0000001267767837](figures/en-us_image_0000001267767837.gif)
+![en-us_image_0000001234011019](figures/en-us_image_0000001234011019.gif)
 
-Set the **label** attribute to customize the button text for the **&lt;stepper-item&gt;**.
+Set the **label** attribute to customize the label for the **\<stepper-item>**.
 
-
-```
-<!-- index.hml -->
-<div class="container" style="background-color:#F1F3F5;"> 
+```html
+<!-- xxx.hml -->
+<div class="container"> 
  <stepper index="1">    
    <stepper-item label="{{label_1}}">     
      <text>stepper-item1</text>
@@ -109,8 +106,8 @@ Set the **label** attribute to customize the button text for the **&lt;stepper-i
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {  
   width:100%;
   height:100%;
@@ -124,9 +121,8 @@ text{
 }
 ```
 
-
-```
-/* index.js */
+```js
+// xxx.js
 export default { 
   data: {
     label_1:{
@@ -147,15 +143,14 @@ export default {
 }
 ```
 
-![en-us_image_0000001267767841](figures/en-us_image_0000001267767841.gif)
+![en-us_image_0000001163531210](figures/en-us_image_0000001163531210.gif)
 
 
 ## Setting Styles
 
-By default, the **&lt;stepper&gt;** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
-
-```
-<!-- index.hml -->
+By default, the **\<stepper>** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
+```html
+<!-- xxx.hml -->
 <div class="container" > 
   <div class="stepperContent">
     <stepper class="stepperClass">    
@@ -167,8 +162,8 @@ By default, the **&lt;stepper&gt;** component fills entire space of its containe
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -192,20 +187,19 @@ text{
 }
 ```
 
-![en-us_image_0000001223287668](figures/en-us_image_0000001223287668.png)
+![en-us_image_0000001234130975](figures/en-us_image_0000001234130975.png)
 
 
 ## Adding Events
 
-The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**, **back**, and **skip** events.
+The **\<stepper>** component supports the **finish**, **change**, **next**, **back**, and **skip** events.
 
 - When the **change** and **next** or **back** events exist at the same time, the **next** or **back** event is executed before the **change** event.
 
 - Before resetting the **index** attribute, you must remove the current value. Otherwise, the value change cannot be detected.
 
-  
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"  style="background-color:#F1F3F5;">
   <div >
     <stepper onfinish="stepperFinish" onchange="stepperChange" onnext="stepperNext" onback="stepperBack" onskip="stepperSkip" id="stepperId" index="{{index}}">
@@ -225,8 +219,7 @@ The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**,
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -254,10 +247,9 @@ button{
 }
 ```
 
-
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     index:0,
@@ -270,19 +262,21 @@ export default {
     this.$element('stepperId').setNextButtonStatus({status: 'skip', label: 'SKIP'});
   },
   stepperFinish(){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'All Finished'
     })
   },
   stepperChange(e){
     console.log("stepperChange"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // index indicates the sequence number of the current step.
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
-    prompt.showToast({
+    promptAction.showToast({
+      // pendingIndex indicates the sequence number of the step to be redirected to.
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
     var index = {pendingIndex:e.pendingIndex }
@@ -296,17 +290,17 @@ export default {
 }
 ```
 
-![en-us_image_0000001267607869](figures/en-us_image_0000001267607869.gif)
+![en-us_image_0000001189089950](figures/en-us_image_0000001189089950.gif)
 
 
 ## Example Scenario
 
-Select the options displayed on the page. Your selection will be shown in real time. Click the next button to dynamically change the font color and font size on the page.
+In this example, you can select the options displayed on the page and see how your selection takes effect in real time. Clicking the next button will dynamically change the font color and font size of the selected option.
 
-Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;toggle&gt;](../reference/arkui-js/js-components-basic-toggle.md) component to implement the functions of selection and displaying the selection result. Then use the [&lt;select&gt;](../reference/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected options.
+Use a **\<stepper>** component to navigate through the steps. Create a **\<Toggle>**(../reference/arkui-js/js-components-basic-toggle.md) component to implement the functions of selecting an option and displaying the selection result. Then use the **\<Select>**(../reference/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected option.
 
-
-```
+```html
+<!-- xxx.hml -->
 <div class="container">
   <stepper id="mystep" index="0" onfinish="back" style="text-color: indigo;">
     <stepper-item label="{{label1}}">
@@ -347,7 +341,7 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -368,11 +362,10 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 }
 ```
 
-
-```
-/* index.js */
-import prompt from '@system.prompt';
-import router from '@system.router';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 let myset = new Set();
 export default {
   data: {
@@ -411,9 +404,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;stepper&gt;** component:
-
-[`StepNavigator`: StepNavigator (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/StepNavigator)
+![en-us_image_0000001189249862](figures/en-us_image_0000001189249862.gif)

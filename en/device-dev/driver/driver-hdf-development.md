@@ -3,45 +3,43 @@
 
 ## Driver Model
 
-The Hardware Driver Foundation (HDF) is designed upon a component-based driver model. This model enables refined driver management and streamlines driver development and deployment. In the HDF, the same type of device drivers are placed in a host. You can develop and deploy the drivers separately. One driver can have multiple nodes.
+The Hardware Driver Foundation (HDF) is designed based on a modular driver model to enable refined driver management and streamline driver development and deployment. The HDF allows the same type of device drivers to be placed in a host. The host manages the start and loading of a group of devices. You can deploy dependent drivers to the same host, and deploy independent drivers to different hosts.
 
-The figure below shows the HDF driver model.
+The figure below shows the HDF driver model. A device refers to a physical device. A DeviceNode is a component of a device. A device has at least one DeviceNode. Each DeviceNode can publish a device service. Each DevicdNode has a unique driver to interact with the hardware.
 
-**Figure 1** HDF driver model
+  **Figure 1** HDF driver model
 
   ![](figures/hdf-driver-model.png)
 
 
 ## How to Develop
 
-The HDF-based driver development involves driver implementation and configuration. The procedure is as follows:
+The HDF-based driver development involves driver implementation, write of the driver compilation script, and driver configuration. The procedure is as follows:
 
 1. Implement a driver.
-   
+
    Write the driver code and register the driver entry with the HDF.
-   
-   - Writing the driver service code 
-   
-     The following is an example:
+
+   - Write the driver service code. <br>The following is an example:
      
-      ```
-      #include "hdf_device_desc.h"  // Header file that defines the driver development APIs provided by the HDF.
-      #include "hdf_log.h"          // Header file that defines the log APIs provided by the HDF.
+      ```c
+      #include "hdf_device_desc.h"          // Header file that defines the driver development APIs provided by the HDF.
+      #include "hdf_log.h"                  // Header file that defines the log APIs provided by the HDF.
       
       #define HDF_LOG_TAG "sample_driver"   // Tag contained in logs. If no tag is not specified, the default HDF_TAG is used.
       
-      // Bind the service interface provided by the driver to the HDF.
+      // Bind the service APIs provided by the driver to the HDF.
       int32_t HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver bind success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // Initialize the driver service.
       int32_t HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver Init success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // Release the driver resources.
@@ -51,9 +49,9 @@ The HDF-based driver development involves driver implementation and configuratio
           return;
       }
       ```
-   - Registering the driver entry with the HDF
+   - Register the driver entry with the HDF.
      
-      ```
+      ```c
       // Define a driver entry object. It must be a global variable of the HdfDriverEntry type (defined in hdf_device_desc.h). 
       struct HdfDriverEntry g_sampleDriverEntry = {
           .moduleVersion = 1,
@@ -63,105 +61,104 @@ The HDF-based driver development involves driver implementation and configuratio
           .Release = HdfSampleDriverRelease,
       };
       
-      // Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls the Bind() function and then the Init() function. If the Init() function fails to be called, the HDF will call Release() to release driver resources and exit the driver model.
+      // Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls Bind() and then Init(). If Init() fails to be called, the HDF will call Release() to release driver resources and exit the driver model.
       HDF_INIT(g_sampleDriverEntry);
       ```
-   
-2. Build the driver.
-   
+
+2. Write the driver compilation script.
+
    - LiteOS
-   
-      Modify **makefile** and **BUILD.gn**.
-   
-      - **Makefile**:<br/>
-   
-        Use the **makefile** template provided by the HDF to compile the driver code.
-   
-      
-         ```
-         include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk # Import the content predefined by the HDF. This operation is mandatory.
-         MODULE_NAME :=    # File to be generated.
-         LOCAL_INCLUDE: =  # Directory of the driver header files.
-         LOCAL_SRCS : =     # Source code file of the driver.
-         LOCAL_CFLAGS : =  # Custom compilation options.
-         include $(HDF_DRIVER) # Import the Makefile template to complete the build.
-         ```
-   
-        Add the path of the generated file to **hdf_lite.mk** in the **drivers/adapter/khdf/liteos** directory to link the file to the kernel image. The following is an example:
-   
-      
-         ```
-         LITEOS_BASELIB += -lxxx # Static library generated by the link.
-         LIB_SUBDIRS    +=         # Directory in which Makefile is located.
-         ```
-   
-      - **BUILD.gn**:
-   
-        Add **BUILD.gn**. The content of **BUILD.gn** is as follows:
-   
-        
-         ```
-         import("//build/lite/config/component/lite_component.gni")
-         import("//drivers/adapter/khdf/liteos/hdf.gni")
-         module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
-         module_name = "xxx"
-         hdf_driver(module_name) {
-             sources = [
-                 "xxx/xxx/xxx.c", # Source code to compile.
-             ]
-             public_configs = [ ":public" ] # Head file configuration of the dependencies.
-         }
-         config("public") {# Define the head file configuration of the dependencies.
-             include_dirs = [
-             "xxx/xxx/xxx", # Directory of the dependency header files.
-             ]
-         }
-         ```
-   
-         Add the **BUILD.gn** directory to **/drivers/adapter/khdf/liteos/BUILD.gn**.
-   
-        
-         ```
-         group("liteos") {
-                public_deps = [ ":$module_name" ]
-                    deps = [
-                       "xxx/xxx", # Directory where the BUILD.gn of the driver is located. It is a relative path to /drivers/adapter/khdf/liteos.
-                   ]
-         }
-         ```
-      
+
+     Modify **makefile** and **BUILD.gn** files.
+
+     - **Makefile**:
+
+       Use the **makefile** template provided by the HDF to compile the driver code.
+
+       
+       ```c
+       include $(LITEOSTOPDIR)/../../drivers/hdf_core/adapter/khdf/liteos/lite.mk # (Mandatory) Import the HDF predefined content.
+       MODULE_NAME :=        # File to be generated.
+       LOCAL_INCLUDE: =      # Directory of the driver header files.
+       LOCAL_SRCS : =        # Source code files of the driver.
+       LOCAL_CFLAGS : =      # Custom build options.
+       include $(HDF_DRIVER) # Import the makefile template to complete the build.
+       ```
+
+       Add the path of the generated file to **hdf_lite.mk** in the **drivers/hdf_core/adapter/khdf/liteos** directory to link the file to the kernel image. <br>The following is an example:
+
+       
+       ```c
+       LITEOS_BASELIB += -lxxx # Static library generated by the link.
+       LIB_SUBDIRS    +=         # Directory in which makefile is located.
+       ```
+
+     - **BUILD.gn**:
+
+       Add **BUILD.gn**. The content of **BUILD.gn** is as follows:
+
+       
+       ```c
+       import("//build/lite/config/component/lite_component.gni")
+       import("//drivers/hdf_core/adapter/khdf/liteos/hdf.gni")
+       module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
+       module_name = "xxx"
+       hdf_driver(module_name) {
+           sources = [
+               "xxx/xxx/xxx.c",           # Source code to compile.
+           ]
+           public_configs = [ ":public" ] # Head file configuration of the dependencies.
+       }
+       config("public") {                 # Define the head file configuration of the dependencies.
+           include_dirs = [
+               "xxx/xxx/xxx",             # Directory of dependency header files.
+           ]
+       }
+       ```
+
+       Add the **BUILD.gn** directory to **/drivers/hdf_core/adapter/khdf/liteos/BUILD.gn**.
+
+       
+       ```c
+       group("liteos") {
+           public_deps = [ ":$module_name" ]
+               deps = [
+                   "xxx/xxx", # Directory where the BUILD.gn of the driver is located. It is a relative path to /drivers/hdf_core/adapter/khdf/liteos.
+               ]
+       }
+       ```
    - Linux
 
-      To define the driver control macro, add the **Kconfig** file to the driver directory **xxx** and add the path of the **Kconfig** file to **drivers/adapter/khdf/linux/Kconfig**.
-   
-      
-      ```
-      source "drivers/hdf/khdf/xxx/Kconfig" # Kernel directory to which the HDF module is soft linked.
-      ```
+     To define the driver control macro, add the **Kconfig** file to the driver directory **xxx** and add the path of the **Kconfig** file to **drivers/hdf_core/adapter/khdf/linux/Kconfig**.
 
-      Add the driver directory to **drivers/adapter/khdf/linux/Makefile**.
-   
-      
-      ```
-      obj-$(CONFIG_DRIVERS_HDF)  += xxx/
-      ```
+     
+     ```c
+     source "drivers/hdf/khdf/xxx/Kconfig" # Kernel directory to which the HDF module is soft linked.
+     ```
 
-      Add a **Makefile** to the driver directory **xxx** and add code compiling rules of the driver to the file.
-   
-      
-      ```
-      obj-y  += xxx.o
-      ```
-   
-3. Configure the driver.<br/>
+     Add the driver directory to **drivers/hdf_core/adapter/khdf/linux/Makefile**.
+
+     
+     ```c
+     obj-$(CONFIG_DRIVERS_HDF)  += xxx/
+     ```
+
+     Add a **Makefile** to the driver directory **xxx** and add code compiling rules of the driver to the **Makefile** file.
+
+     
+     ```c
+     obj-y  += xxx.o
+     ```
+
+3. Configure the driver.
 
    The HDF Configuration Source (HCS) contains the source code of HDF configuration. For details about the HCS, see [Configuration Management](../driver/driver-hdf-manage.md).
 
    The driver configuration consists of the driver device description defined by the HDF and the private driver configuration.
 
-   - (Mandatory) Setting the driver device description<br/>
+   - (Mandatory) Set driver device information.
 
-     The HDF loads a driver based on the driver device description defined by the HDF. Therefore, the driver device description must be added to the **device_info.hcs** file defined by the HDF. The following is an example:
+     The HDF loads a driver based on the driver device description defined by the HDF. Therefore, the driver device description must be added to the **device_info.hcs** file defined by the HDF. <br>The following is an example:
 
      
       ```
@@ -171,9 +168,9 @@ The HDF-based driver development involves driver implementation and configuratio
               template host {       // Host template. If a node (for example, sample_host) uses the default values in this template, the node fields can be omitted.
                   hostName = "";
                   priority = 100;
-                  uid = "";        // User ID (UID) of a user-mode process. It is left empty by default. If you do not set the value, this parameter will be set to the value of hostName, which indicates a common user.
-                  gid = "";        // Group ID (GID) of a user-mode process. It is left empty by default. If you do not set the value, this parameter will be set to the value of hostName, which indicates a common user group.
-                  caps = [""]];     // Linux capabilities of a user-mode process. It is left empty by default. Set this parameter based on service requirements.
+                  uid = "";         // User ID (UID) of the user-mode process. It is left empty by default. If you do not set the value, this parameter will be set to the value of hostName, which indicates a common user.
+                  gid = "";         // Group ID (GID) of the user-mode process. It is left empty by default. If you do not set the value, this parameter will be set to the value of hostName, which indicates a common user group.
+                  caps = [""]];     // Linux capabilities of the user-mode process. It is left empty by default. Set this parameter based on service requirements.
                   template device {
                       template deviceNode {
                           policy = 0;
@@ -189,14 +186,14 @@ The HDF-based driver development involves driver implementation and configuratio
               sample_host :: host{
                   hostName = "host0";    // Host name. The host node is used as a container to hold a type of drivers.
                   priority = 100;        // Host startup priority (0-200). A smaller value indicates a higher priority. The default value 100 is recommended. The hosts with the same priority start based on the time when the priority was configured. The host configured first starts first.
-                  caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"];   // Linux capabilities of the user-mode process.
+                  caps = ["DAC_OVERRIDE", "DAC_READ_SEARCH"];   // Linux capabilities of a user-mode process.
                   device_sample :: device {        // Sample device node.
                       device0 :: deviceNode {      // DeviceNode of the sample driver.
-                          policy = 1;             // Policy for publishing the driver service. For details, see Driver Service Management.
+                          policy = 1;              // Policy for publishing the driver service. For details, see Driver Service Management.
                           priority = 100;          // Driver startup priority (0-200). A smaller value indicates a higher priority. The default value 100 is recommended. The drivers with the same priority start based on the time when the priority was configured. The driver configured first starts first.
-                          preload = 0;            // The loading mode of the driver is on-demand loading. For details, see "NOTE" at the end of this document.
-                          permission = 0664;       // Permission for the driver to create a device node.
-                          moduleName = "sample_driver"; // Driver name. The value of this field must be the same as that of moduleName in the HdfDriverEntry structure.
+                          preload = 0;             // The value 0 means to load the driver by default during the startup of the system.
+                          permission = 0664;       // Permission for the DeviceNode created.
+                          moduleName = "sample_driver";      // Driver name. The value must be the same as that of moduleName in the HdfDriverEntry structure.
                           serviceName = "sample_service";    // Name of the service published by the driver. The service name must be unique.
                           deviceMatchAttr = "sample_config"; // Keyword for matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
                       }
@@ -205,24 +202,27 @@ The HDF-based driver development involves driver implementation and configuratio
           }
       }
       ```
-      ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
+     
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+      >
+      > - **uid**, **gid**, and **caps** are startup parameters for user-mode drivers only.
+      >
+      > - According to the principle of least privilege for processes, **uid** and **gid** do not need to be configured for service modules. In the preceding example, **uid** and **gid** are left empty (granted with the common user rights) for sample_host.
+      >
+      > - If you need to set **uid** and **gid** to **system** or **root** due to service requirements, contact security experts for review.
+      >
+      > - The process UIDs are configured in **base/startup/init/services/etc/passwd**, and the process GIDs are configured in **base/startup/init/services/etc/group**. For details, see [Adding a System Service User Group]( https://gitee.com/openharmony/startup_init_lite/wikis).
+      >
+      > - The **caps** value is in the caps = ["xxx"] format. To configure **CAP_DAC_OVERRIDE**, set this parameter to **caps = ["DAC_OVERRIDE"]**. Do not set it to **caps = ["CAP_DAC_OVERRIDE"]**.
+      >
+      > - **preload** specifies the driver loading policy. For details, see [Driver Loading](../driver/driver-hdf-load.md).
 
-      - **uid**, **gid**, and **caps** are startup parameters for user-mode drivers only.
 
-      - According to the principle of least privilege for processes, **uid** and **gid** do not need to be configured for service modules. In the preceding example, **uid** and **gid** are left empty (granted with the common user rights) for sample_host.
+   - (Optional) Set driver private information.
 
-      - If you need to set **uid** and **gid** to **system** or **root** due to service requirements, contact security experts for review.
+     If the driver has private configuration, add a driver configuration file to set default driver configuration. When loading the driver, the HDF obtains and saves the driver private information in **property** of **HdfDeviceObject**, and passes the information to the driver using **Bind()** and **Init()** (see step 1). <br>The following is an example of the driver configuration:
 
-      - The process UIDs are configured in **base/startup/init_lite/services/etc/passwd**, and the process GIDs are configured in **base/startup/init_lite/services/etc/group**. For details, see [Adding a System Service User Group]( https://gitee.com/openharmony/startup_init_lite/wikis).
-
-      - If CAP_DAC_OVERRIDE needs to be configured for a service module, enter **caps = ["DAC_OVERRIDE"]** instead of **caps = ["CAP_DAC_OVERRIDE"]**.
-
-   - (Optional) Setting driver private information<br/>
-
-      If the driver has private configuration, add a driver configuration file to set default driver configuration. When loading the driver, the HDF obtains and saves the driver private information in **property** of **HdfDeviceObject**, and passes the information to the driver using **Bind()** and **Init()** (see step 1). 
-
-      The following is an example of the driver private configuration:
-      
+     
       ```
       root {
           SampleDriverConfig {
@@ -233,35 +233,10 @@ The HDF-based driver development involves driver implementation and configuratio
       }
       ```
 
-      After the configuration, add the configuration file to the board-level configuration entry file **hdf.hcs**. (You can use DevEco to perform one-click configuration. For details, see the description about the driver development suite.) 
+      Add the configuration file to the **hdf.hcs** file. <br>The following is an example:
 
-      The following is an example:
-      
+     
       ```
       #include "device_info/device_info.hcs"
       #include "sample/sample_config.hcs"
       ```
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> Drivers can be loaded on demand or in sequence.
-> 
-> - On-demand loading
->     
->   ```
->   typedef enum {
->       DEVICE_PRELOAD_ENABLE = 0,
->       DEVICE_PRELOAD_ENABLE_STEP2,
->       DEVICE_PRELOAD_DISABLE,
->       DEVICE_PRELOAD_INVALID
->   } DevicePreload;
->   ```
-> 
->   If **preload** in the configuration file is set to **0 (DEVICE_PRELOAD_ENABLE)**, the driver is loaded by default during the system boot process. 
->
->   If **preload** is set to **1 (DEVICE_PRELOAD_ENABLE_STEP2)**, the driver is loaded after a quick start is complete. If the system does not support quick start, the value **1** has the same meaning as **DEVICE_PRELOAD_ENABLE**. 
->
->   If **preload** is set to **2 (DEVICE_PRELOAD_DISABLE)** , the driver is dynamically loaded instead of being loaded during the system boot process. When a user-mode process requests the driver service, the HDF attempts to dynamically load the driver if the driver service does not exist.  For more details, see [Driver Messaging Mechanism](driver-hdf-message-management.md).
-> 
-> - Sequential loading (**preload** set to **0 (DEVICE_PRELOAD_ENABLE)**)<br/>
->   In the configuration file, the **priority** field (value range: 0 to 200) determines the loading sequence of a host and a driver. For drivers in different hosts, a smaller host priority value indicates a higher driver loading priority; for drivers in the same host, a smaller driver priority value indicates a higher driver loading priority.

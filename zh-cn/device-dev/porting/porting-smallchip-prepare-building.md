@@ -2,7 +2,7 @@
 
 ## 编译环境搭建
 
-首先请搭建OpenHarmony基础环境，步骤请参考轻量和小型系统入门[安装Hi3861开发板环境](../quick-start/quickstart-lite-steps-hi3861-setting.md)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
+首先请搭建OpenHarmony基础环境，相关操作请参考[快速入门环境搭建章节](../quick-start/quickstart-overview.md)。用户态和LiteOS-A的内核态编译均使用llvm编译器编译，安装方法在搭建基础环境中已提供。若选择移植linux内核，请执行如下命令安装gcc-arm-linux-gnueabi交叉编译工具链，用于编译linux内核态镜像：
 
 
 ```
@@ -12,7 +12,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 ## 编译构建系统介绍
 
-编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](../subsystems/subsys-build-mini-lite.md)。
+编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](../subsystems/subsys-build-all.md)。
 
 
 ## 新建芯片解决方案
@@ -86,7 +86,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "mips-linux-gnu-gcc"
    
-   # The toolchain path instatlled, it's not mandatory if you have added toolchian path to your ~/.bashrc.
+   # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
    board_toolchain_path = 
        rebase_path("//prebuilts/gcc/linux-x86/arm/arm-linux-ohoseabi-gcc/bin",
                    root_build_dir)

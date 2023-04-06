@@ -1,414 +1,438 @@
-# ADC<a name="EN-US_TOPIC_0000001153677754"></a>
+# ADC
 
-## Overview<a name="section268031773165048"></a>
+## Overview
 
-The analog-to-digital converter \(ADC\) is a device that converts analog signals into digital signals. In the Hardware Driver Foundation \(HDF\), the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the ADC has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
+### Function
 
-**Figure  1** Unified service mode<a name="fig14423182615525"></a>  
-![](figures/unified-service-mode.png "ADC-unified-service-mode")
+An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
 
-## Available APIs<a name="section752964871810"></a>
+### Basic Concepts
 
-### AdcMethod<a name="section1618135285210"></a>
+- Resolution
 
-```
+  The number of binary bits that can be converted by an ADC. A greater number of bits indicates a higher resolution.
+
+- Conversion error
+
+  Difference between the actual and theoretical digital values output by an ADC. It is expressed by a multiple of the least significant bit. Generally, the maximum output error is used.
+
+- Transition time
+
+  Time required by an ADC to perform a complete conversion.
+
+
+### Working Principles
+
+In the Hardware Driver Foundation (HDF), the ADC module uses the unified service mode for API adaptation. In this mode, a device service is used as the ADC manager to handle access requests from the devices of the same type in a unified manner. The unified service mode applies to the scenario where there are many device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed. The following figure illustrates the unified service mode of the ADC module.
+
+The ADC module is divided into the following layers:
+
+- Interface layer: provides the capabilities of opening a device, writing data, and closing a device.
+- Core layer: binds services, initializes and releases the PlatformManager, and provides the capabilities of adding, deleting, and obtaining controllers.
+- Adaptation layer: implements hardware-related functions, such as controller initialization.
+
+In the unified service mode, the core layer manages all controllers in a unified manner and publishes a service for the interface layer. That is, the driver does not need to publish a service for each controller.
+
+**Figure 1** Unified service mode
+
+![](figures/unified-service-mode.png "ADC Unified Service Mode")
+
+## Usage Guidelines
+
+### When to Use
+
+ADC devices are used to convert analog voltage into digital parameters. For example, an ADC can be used with an NTC resistor to measure temperature, or can be used to convert the output of an analog sensor into a digital parameter. Before using ADC devices with OpenHarmony, you need to adapt the ADC driver to OpenHarmony. The following describes how to do it.
+
+### Available APIs
+
+To enable the upper layer to successfully operate the hardware by calling the ADC APIs, hook functions are defined in **//drivers/hdf_core/framework/support/platform/include/adc/adc_core.h** for the core layer. You need to implement these hook functions at the adaptation layer and hook them to implement the interaction between the interface layer and the core layer.
+
+Definitions of **AdcMethod** and **AdcLockMethod**:
+
+```c
 struct AdcMethod {
-  int32_t (*read)(struct AdcDevice *device, uint32_t channel, uint32_t *val);
-  int32_t (*start)(struct AdcDevice *device);
-  int32_t (*stop)(struct AdcDevice *device);
+    int32_t (*read)(struct AdcDevice *device, uint32_t channel, uint32_t *val);
+    int32_t (*start)(struct AdcDevice *device);
+    int32_t (*stop)(struct AdcDevice *device);
 };
+
+struct AdcLockMethod {
+    int32_t (*lock)(struct AdcDevice *device);
+    void (*unlock)(struct AdcDevice *device);
+};
+
 ```
 
-**Table  1** Callbacks for the members in the AdcMethod structure
+At the adaptation layer, **AdcMethod** must be implemented, and **AdcLockMethod** can be implemented based on service requirements. The core layer provides the default **AdcLockMethod**, in which a spinlock is used to protect the critical section.
 
-<a name="table1943202316536"></a>
-<table><thead align="left"><tr id="row2451223135315"><th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.1"><p id="p845123185313"><a name="p845123185313"></a><a name="p845123185313"></a>Callback</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.2"><p id="p345192315311"><a name="p345192315311"></a><a name="p345192315311"></a>Input Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.3"><p id="p74512313536"><a name="p74512313536"></a><a name="p74512313536"></a>Output Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.4"><p id="p174542313531"><a name="p174542313531"></a><a name="p174542313531"></a>Return Value</p>
-</th>
-<th class="cellrowborder" valign="top" width="20%" id="mcps1.2.6.1.5"><p id="p445112315535"><a name="p445112315535"></a><a name="p445112315535"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row545102316536"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p14562345312"><a name="p14562345312"></a><a name="p14562345312"></a>read</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p474720389561"><a name="p474720389561"></a><a name="p474720389561"></a><strong id="b167472038115611"><a name="b167472038115611"></a><a name="b167472038115611"></a>device</strong>: structure pointer to the ADC controller at the core layer.</p>
-<p id="p14459238536"><a name="p14459238536"></a><a name="p14459238536"></a><strong id="b179891252205514"><a name="b179891252205514"></a><a name="b179891252205514"></a>channel</strong>: channel ID of the uint32_t type.</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p746423195320"><a name="p746423195320"></a><a name="p746423195320"></a><strong id="b626111125816"><a name="b626111125816"></a><a name="b626111125816"></a>val</strong>: pointer to the signal data to be transmitted. It is of the uint32_t type.</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p1746192315311"><a name="p1746192315311"></a><a name="p1746192315311"></a>HDF_STATUS</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.5 "><p id="p146152311537"><a name="p146152311537"></a><a name="p146152311537"></a>Reads the signal data sampled by the ADC.</p>
-</td>
-</tr>
-<tr id="row6461236531"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p446182316538"><a name="p446182316538"></a><a name="p446182316538"></a>stop</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p1446112318536"><a name="p1446112318536"></a><a name="p1446112318536"></a><strong id="b345886135912"><a name="b345886135912"></a><a name="b345886135912"></a>device</strong>: structure pointer to the ADC controller at the core layer.</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p4461823125317"><a name="p4461823125317"></a><a name="p4461823125317"></a>–</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p1346122314530"><a name="p1346122314530"></a><a name="p1346122314530"></a>HDF_STATUS</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.5 "><p id="p1346223185318"><a name="p1346223185318"></a><a name="p1346223185318"></a>Stops the ADC device.</p>
-</td>
-</tr>
-<tr id="row194622375313"><td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.1 "><p id="p144642305313"><a name="p144642305313"></a><a name="p144642305313"></a>start</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.2 "><p id="p17461323185314"><a name="p17461323185314"></a><a name="p17461323185314"></a><strong id="b1988212105110"><a name="b1988212105110"></a><a name="b1988212105110"></a>device</strong>: structure pointer to the ADC controller at the core layer.</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.3 "><p id="p1146623105317"><a name="p1146623105317"></a><a name="p1146623105317"></a>–</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.4 "><p id="p546132311535"><a name="p546132311535"></a><a name="p546132311535"></a>HDF_STATUS</p>
-</td>
-<td class="cellrowborder" valign="top" width="20%" headers="mcps1.2.6.1.5 "><p id="p1471623195311"><a name="p1471623195311"></a><a name="p1471623195311"></a>Starts the ADC device.</p>
-</td>
-</tr>
-</tbody>
-</table>
+```c
+static int32_t AdcDeviceLockDefault(struct AdcDevice *device)
+{
+    if (device == NULL) {
+        return HDF_ERR_INVALID_OBJECT;
+    }
+    return OsalSpinLock(&device->spin);
+}
 
-## How to Develop<a name="section100579767165048"></a>
+static void AdcDeviceUnlockDefault(struct AdcDevice *device)
+{
+    if (device == NULL) {
+        return;
+    }
+    (void)OsalSpinUnlock(&device->spin);
+}
+
+static const struct AdcLockMethod g_adcLockOpsDefault = {
+    .lock = AdcDeviceLockDefault,
+    .unlock = AdcDeviceUnlockDefault,
+};
+
+```
+
+If spinlock cannot be used, you can use another type of lock to implement **AdcLockMethod**. The custom **AdcLockMethod** will replace the default **AdcLockMethod**.
+
+  **Table 1** Hook functions in **AdcMethod**
+
+| Function| Input Parameter| Output Parameter| Return Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| read | **device**: structure pointer to the ADC controller at the core layer.<br>**channel**: channel number, which is of the uint32_t type.| **val**: pointer to the signal data to be transmitted. It is of the uint32_t type.| HDF_STATUS| Reads the signal data sampled by the ADC.|
+| stop | **device**: structure pointer to the ADC controller at the core layer.| –| HDF_STATUS| Stops an ADC device.|
+| start | **device**: structure pointer to the ADC controller at the core layer.| –| HDF_STATUS| Starts an ADC device.|
+
+**Table 2** Functions in **AdcLockMethod**
+
+| Function| Input Parameter| Output Parameter| Return Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| lock | **device**: structure pointer to the ADC device object at the core layer.| –| HDF_STATUS| Acquires the critical section lock.|
+| unlock | **device**: structure pointer to the ADC device object at the core layer.| –| HDF_STATUS| Releases the critical section lock.|
+
+### How to Develop
 
 The ADC module adaptation involves the following steps:
 
-1.  Instantiate the driver entry.
-    -   Instantiate the **HdfDriverEntry** structure.
-    -   Call **HDF\_INIT** to register the **HdfDriverEntry** instance with the HDF.
+1. Instantiate the driver entry.
+   - Instantiate the **HdfDriverEntry** structure.
+   - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
 
-2.  Configure attribute files.
-    -   Add the **deviceNode** information to the **device\_info.hcs** file.
-    -   \(Optional\) Add the **adc\_config.hcs** file.
+2. Configure attribute files.
+   - Add the **deviceNode** information to the **device_info.hcs** file.
+   - (Optional) Add the **adc_config.hcs** file.
 
-3.  Instantiate the ADC controller object.
-    -   Initialize **AdcDevice**.
-    -   Instantiate **AdcMethod** in the **AdcDevice** object.
+3. Instantiate the core layer APIs.
+   - Initialize **AdcDevice**.
+   - Instantiate **AdcMethod** in the **AdcDevice** object.
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+      > For details about the functions in **AdcMethod**, see [Available APIs](#available-apis).
 
-        For details, see [Available APIs](#available-apis).
+### Example
 
-4.  \(Optional\) Debug the driver.
-    For new drivers, verify basic functions, for example, verify the information returned after the connect operation and whether the signal collection is successful.
+The following uses the Hi3516D V300 driver **//device/soc/hisilicon/common/platform/adc/adc_hi35xx.c** as an example to describe how to perform the ADC driver adaptation.
 
+1. Instantiate the driver entry.
 
-## Development Example<a name="section1745221471165048"></a>
+   The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
 
-The following uses **adc\_hi35xx.c** as an example to present the contents that need to be provided by the vendor to implement device functions.
+   Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
 
-1.  Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type \(defined in **hdf\_device\_desc.h**\), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+   ADC driver entry example:
 
-    Generally, HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, HDF calls **Release** to release driver resources and exits.
+   Multiple devices may connect to the ADC controller. In the HDF, a manager object needs to be created for this type of devices. When a device needs to be started, the manager object locates the target device based on the specified parameters.
 
-    -   ADC driver entry reference
+   You do not need to implement the driver of the ADC manager, which is implemented by the core layer. However, the **AdcDeviceAdd** function of the core layer must be invoked in the **Init** function to implement the related features.
 
-        Many devices may connect to the ADC. In the HDF, a manager object needs to be created for the ADC. When a device needs to be started, the manager object locates the device based on the specified parameters.
+    ```c
+    static struct HdfDriverEntry g_hi35xxAdcDriverEntry = {
+        .moduleVersion = 1,
+        .Init = Hi35xxAdcInit,
+        .Release = Hi35xxAdcRelease,
+        .moduleName = "hi35xx_adc_driver",        // (Mandatory) The value must be the same as the module name in the device_info.hcs file.
+    };
+    HDF_INIT(g_hi35xxAdcDriverEntry);             // Call HDF_INIT to register the driver entry with the HDF.
+    
+    /* Driver entry of the adc_core.c manager service at the core layer */
+    struct HdfDriverEntry g_adcManagerEntry = {
+        .moduleVersion = 1,
+        .Init     = AdcManagerInit,
+        .Release  = AdcManagerRelease,
+        .moduleName = "HDF_PLATFORM_ADC_MANAGER", // The value must be that of device0 in the device_info.hcs file.
+    };
+    HDF_INIT(g_adcManagerEntry);
+    ```
 
-        The driver of the ADC manager is implemented by the core layer. Vendors do not need to pay attention to the implementation of this part. However, when they implement the **Init** function, the **AdcDeviceAdd** function of the core layer must be called to implement the corresponding features.
+2. Add the **deviceNode** information to the **//vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs** file and configure the device attributes in **adc_config.hcs**.
 
-        ```
-        static struct HdfDriverEntry g_hi35xxAdcDriverEntry = {
-         .moduleVersion = 1,
-         .Init = Hi35xxAdcInit,
-         .Release = Hi35xxAdcRelease,
-         .moduleName = "hi35xx_adc_driver",// (Mandatory) This parameter must be the same as that in the .hcs file.
-        };
-        HDF_INIT(g_hi35xxAdcDriverEntry); // Call HDF_INIT to register the driver entry with the HDF.
-        
-        // Driver entry of the adc_core.c manager service at the core layer
-        struct HdfDriverEntry g_adcManagerEntry = {
-         .moduleVersion = 1,
-         .Init     = AdcManagerInit,
-         .Release  = AdcManagerRelease,
-         .moduleName = "HDF_PLATFORM_ADC_MANAGER",// This parameter corresponds to device0 in the device_info file.
-        };
-        HDF_INIT(g_adcManagerEntry);
-        ```
+    The **deviceNode** information is related to the driver entry registration. The device attribute values are closely related to the driver implementation and the default values or value ranges of the **AdcDevice** members at the core layer.
 
-2.  Add the **deviceNode** information to the **device\_info.hcs** file and configure the device attributes in the **adc\_config.hcs** file. The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the **AdcDevice** members at the core layer.
+    In the unified service mode, the first device node in the **device_info.hcs** file must be the ADC manager. The parameters must be set as follows:
 
-    In the unified service mode, the first device node in the **device\_info** file must be the ADC manager, and the parameters must be set as follows:
+    | Parameter| Value|
+    | -------- | -------- |
+    | moduleName | **HDF_PLATFORM_ADC_MANAGER**|
+    | serviceName | –|
+    | policy | **0**, which indicates that no service is published.|
+    | deviceMatchAttr | Reserved.|
 
-    <a name="table1344068233165048"></a>
-    <table><thead align="left"><tr id="row1551612465165048"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry1856185125165048p0"><a name="entry1856185125165048p0"></a><a name="entry1856185125165048p0"></a>Member</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="entry720672143165048p0"><a name="entry720672143165048p0"></a><a name="entry720672143165048p0"></a>Value</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="row583452627165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry747665129165048p0"><a name="entry747665129165048p0"></a><a name="entry747665129165048p0"></a>moduleName</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry912596825165048p0"><a name="entry912596825165048p0"></a><a name="entry912596825165048p0"></a>It has a fixed value of <strong id="b581184091716"><a name="b581184091716"></a><a name="b581184091716"></a>HDF_PLATFORM_ADC_MANAGER</strong>.</p>
-    </td>
-    </tr>
-    <tr id="row218211231165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry568759156165048p0"><a name="entry568759156165048p0"></a><a name="entry568759156165048p0"></a>serviceName</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1349637957165048p0"><a name="entry1349637957165048p0"></a><a name="entry1349637957165048p0"></a>–</p>
-    </td>
-    </tr>
-    <tr id="row1166331861165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry1142726988165048p0"><a name="entry1142726988165048p0"></a><a name="entry1142726988165048p0"></a>policy</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry781016408165048p0"><a name="entry781016408165048p0"></a><a name="entry781016408165048p0"></a>The value is <strong id="b229121291813"><a name="b229121291813"></a><a name="b229121291813"></a>0</strong>, which indicates that no service is published.</p>
-    </td>
-    </tr>
-    <tr id="row1822624516165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry982991296165048p0"><a name="entry982991296165048p0"></a><a name="entry982991296165048p0"></a>deviceMatchAttr</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry367170471165048p0"><a name="entry367170471165048p0"></a><a name="entry367170471165048p0"></a>This parameter is not used.</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+    Configure ADC controller information from the second node. This node specifies a type of ADC controllers rather than an ADC controller. In this example, there is only one ADC device. If there are multiple ADC devices, add the **deviceNode** information to the **device_info.hcs** file and add the corresponding device attributes to the **adc_config** file for each device.
 
-    Configure ADC controller information from the second node. This node specifies a type of ADC controllers rather than an ADC controller. In this example, there is only one ADC device. If there are multiple ADC devices, you need to add the **deviceNode** information to the **device\_info** file and add the corresponding device attributes to the **adc\_config** file.
+   - **device_info.hcs** example
 
-    -  **device\_info.hcs** configuration reference
-
-        ```
-        root {
-            device_info {
-            platform :: host {
-            device_adc :: device {
-            device0 :: deviceNode {
-                policy = 0;
-                priority = 50;
-                permission = 0644;
-                moduleName = "HDF_PLATFORM_ADC_MANAGER";
-                serviceName = "HDF_PLATFORM_ADC_MANAGER";
-            }
-            device1 :: deviceNode {
-         policy = 0; // The value 0 indicates that no service needs to be published.
-         priority = 55; // Driver startup priority
-         permission = 0644; // Permission to create device nodes for the driver
-                moduleName = "hi35xx_adc_driver"; // (Mandatory) Driver name, which must be the same as the moduleName in the driver entry.
-                serviceName = "HI35XX_ADC_DRIVER"; // (Mandatory) Unique name of the service published by the driver
-                deviceMatchAttr = "hisilicon_hi35xx_adc";// (Mandatory) Used to configure the private data of the controller. The value must be the same as the controller in adc_config.hcs.
-                } // The specific controller information is in adc_config.hcs.
+      ```c
+      root {
+          device_info {
+              platform :: host {
+                  device_adc :: device {
+                      device0 :: deviceNode {
+                          policy = 0;
+                          priority = 50;
+                          permission = 0644;
+                          moduleName = "HDF_PLATFORM_ADC_MANAGER";
+                          serviceName = "HDF_PLATFORM_ADC_MANAGER";
+                      }
+                      device1 :: deviceNode {
+                          policy = 0;                               // The value 0 indicates that no service is published.
+                          priority = 55;                            // Driver startup priority.
+                          permission = 0644;                        // Permission for the device node created.
+                          moduleName = "hi35xx_adc_driver";         // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
+                          serviceName = "HI35XX_ADC_DRIVER";        // (Mandatory) Unique name of the service published by the driver.
+                          deviceMatchAttr = "hisilicon_hi35xx_adc"; // (Mandatory) Private data of the controller. The value must be the same as that of the controller in adc_config.hcs.
+                                                                    // The specific controller information is in adc_config.hcs.
+                      }
+                  }
               }
-            }
           }
-        }
-        ```
+      }
+      ```
 
-    -   adc\_config.hcs configuration reference
+   - **adc_config.hcs** example
 
-        ```
-        root {
-        platform {
-            adc_config_hi35xx {
-            match_attr = "hisilicon_hi35xx_adc";
-            template adc_device {
-                regBasePhy = 0x120e0000;// Physical base address of the register
-                regSize = 0x34; // Bit width of the register
-                deviceNum = 0; // Device number
-                validChannel = 0x1; // Valid channel
-                dataWidth = 10; // Data bit width of received signals
-                scanMode = 1; // Scan mode
-                delta = 0; // Delta parameter
-                deglitch = 0;            
-                glitchSample = 5000;     
-                rate = 20000;            
-            }
-            device_0 :: adc_device {
-                deviceNum = 0;
-                validChannel = 0x2;
-            }
-            }
-        }
-        }
-        ```
+      The following uses Hi3516D V300 as an example. Some fields are unique to Hi3516D V300. You can delete or add fields as required.
 
-3.  Initialize the **AdcDevice** object at the core layer, including initializing the vendor custom structure \(transferring parameters and data\), instantiating **AdcMethod** \(used to call underlying functions of the driver\) in **AdcDevice**, and implementing the **HdfDriverEntry** member functions \(**Bind**, **Init**, and **Release**\).
-    -   Custom structure reference
+      ```c
+      root {
+          platform {
+              adc_config_hi35xx {
+                  match_attr = "hisilicon_hi35xx_adc";
+                  template adc_device {
+                      regBasePhy = 0x120e0000; // Physical base address of the register.
+                      regSize = 0x34;          // Bit width of the register.
+                      deviceNum = 0;           // Device number.
+                      validChannel = 0x1;      // Valid channel.
+                      dataWidth = 10;          // Data width after AD conversion, that is, the resolution.
+                      scanMode = 1;            // Scan mode.
+                      delta = 0;               // Error range of the conversion result.
+                      deglitch = 0;            // Setting of the deglitch.
+                      glitchSample = 5000;     // Deglitch time window.
+                      rate = 20000;            // Conversion rate.
+                  }
+                  device_0 :: adc_device {
+                      deviceNum = 0;
+                      validChannel = 0x2;
+                  }
+              }
+          }
+      }
+      ```
 
-        To the driver, the custom structure carries parameters and data. The values in the **adc\_config.hcs** file are read by HDF, and the structure members are initialized through **DeviceResourceIface**. Some important values, such as the device number and bus number, are also passed to the **AdcDevice** object at the core layer.
+      After the **adc_config.hcs** file is configured, include the file in the **hdf.hcs** file. Otherwise, the configuration file cannot take effect.
 
-        ```
-        struct Hi35xxAdcDevice {
-            struct AdcDevice device;// (Mandatory) Control object of the core layer. For details, see the description of AdcDevice.
-            volatile unsigned char *regBase;// (Mandatory) Base address of the register
-            volatile unsigned char *pinCtrlBase;
-            uint32_t regBasePhy; // (Mandatory) Physical base address of the register
-            uint32_t regSize; // (mandatory) Bit width of the register 
-            uint32_t deviceNum; // (Mandatory) Device number
-            uint32_t dataWidth; // (Mandatory) Data bit width of received signals
-            uint32_t validChannel; // (Mandatory) Valid channel
-            uint32_t scanMode; // (Mandatory) Scan mode
-            uint32_t delta;
-            uint32_t deglitch;
-            uint32_t glitchSample;
-            uint32_t rate; // (Mandatory) Sampling rate
-        };
-        
-        // AdcDevice is the core layer controller structure. Its members are assigned with values by using the Init function.
-        struct AdcDevice {
-            const struct AdcMethod *ops;
-            OsalSpinlock spin;
-            uint32_t devNum;
-            uint32_t chanNum;
-            const struct AdcLockMethod *lockOps;
-            void *priv;
-        };
-        ```
+      For example, if the **adc_config.hcs** file is in **//device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/adc/**, add the following statement to **hdf.hcs** of the product:
 
-    -   Instantiate the callback function structure **AdcMethod** in **AdcDevice**. The **AdcLockMethod** callback function structure is not implemented in this example. To instantiate the structure, refer to the I2C driver development. Other members are initialized in the **Init** function.
+      ```c
+      #include "../../../../device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/adc/adc_config.hcs" // Relative path of the configuration file
+      ```
 
-        ```
-        static const struct AdcMethod g_method = {
-            .read = Hi35xxAdcRead,
-            .stop = Hi35xxAdcStop,
-            .start = Hi35xxAdcStart,
-        };
-        ```
+      This example is based on the Hi3516D V300 development board that runs the LiteOS. The corresponding **hdf.hcs** file is in **vendor/hisilicon/hispark_taurus/hdf_config/hdf.hcs** and **//device/hisilicon/hispark_taurus/sdk_liteos/hdf_config/hdf.hcs**. You can modify the file as required.
 
-    -   Init function
+3. Initialize the **AdcDevice** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Bind**, **Init** and **Release**) to instantiate **AdcMethod** in **AdcDevice** (so that the underlying driver functions can be called).
 
-        Input parameters:
+   - Define a custom structure.
 
-       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+      To the driver, the custom structure holds parameters and data. The DeviceResourceIface() function provided by the HDF reads **adc_config.hcs** to initialize the custom structure and passes some important parameters, such as the device number and bus number, to the **AdcDevice** object at the core layer.
 
-        Return values:
+      ```c
+      struct Hi35xxAdcDevice {
+          struct AdcDevice device;         // (Mandatory) Control object at the core layer. It must be the first member of the custom structure. For details, see the following description.
+          volatile unsigned char *regBase; // (Mandatory) Register base address.
+          volatile unsigned char *pinCtrlBase;
+          uint32_t regBasePhy;             // (Mandatory) Physical base address of the register.
+          uint32_t regSize;                // (Mandatory) Register bit width.
+          uint32_t deviceNum;              // (Mandatory) Device number.
+          uint32_t dataWidth;              // (Mandatory) Data bit width of received signals.
+          uint32_t validChannel;           // (Mandatory) Valid channel.
+          uint32_t scanMode;               // (Mandatory) Scan mode.
+          uint32_t delta;
+          uint32_t deglitch;
+          uint32_t glitchSample;
+          uint32_t rate;                   // (Mandatory) Sampling rate.
+      };
+      
+      /* AdcDevice is the core layer controller structure. The **Init()** function assigns values to the members of AdcDevice. */
+      struct AdcDevice {
+          const struct AdcMethod *ops;
+          OsalSpinlock spin;
+          uint32_t devNum;
+          uint32_t chanNum;
+          const struct AdcLockMethod *lockOps;
+          void *priv;
+      };
+      ```
 
-        HDF\_STATUS \(The following table lists some status. For details about other status, see **HDF\_STATUS** in the **//drivers/framework/include/utils/hdf\_base.h** file.\)
+   - Instantiate the hook function structure **AdcMethod** of **AdcDevice**.
 
-        <a name="table127573104165048"></a>
-        <table><thead align="left"><tr id="row1932243367165048"><th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.1"><p id="entry405408385165048p0"><a name="entry405408385165048p0"></a><a name="entry405408385165048p0"></a>Status (Value)</p>
-        </th>
-        <th class="cellrowborder" valign="top" width="50%" id="mcps1.1.3.1.2"><p id="entry407875094165048p0"><a name="entry407875094165048p0"></a><a name="entry407875094165048p0"></a>Description</p>
-        </th>
-        </tr>
-        </thead>
-        <tbody><tr id="row1845195554165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry144793493165048p0"><a name="entry144793493165048p0"></a><a name="entry144793493165048p0"></a>HDF_ERR_INVALID_OBJECT</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1933449399165048p0"><a name="entry1933449399165048p0"></a><a name="entry1933449399165048p0"></a>Invalid controller object</p>
-        </td>
-        </tr>
-        <tr id="row1203086670165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry766973904165048p0"><a name="entry766973904165048p0"></a><a name="entry766973904165048p0"></a>HDF_ERR_INVALID_PARAM</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry999036326165048p0"><a name="entry999036326165048p0"></a><a name="entry999036326165048p0"></a>Invalid parameter</p>
-        </td>
-        </tr>
-        <tr id="row1147526196165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry271913224165048p0"><a name="entry271913224165048p0"></a><a name="entry271913224165048p0"></a>HDF_ERR_MALLOC_FAIL</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1349459344165048p0"><a name="entry1349459344165048p0"></a><a name="entry1349459344165048p0"></a>Failed to allocate memory</p>
-        </td>
-        </tr>
-        <tr id="row42206428165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry826579070165048p0"><a name="entry826579070165048p0"></a><a name="entry826579070165048p0"></a>HDF_ERR_IO</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry740637684165048p0"><a name="entry740637684165048p0"></a><a name="entry740637684165048p0"></a>I/O error</p>
-        </td>
-        </tr>
-        <tr id="row456623770165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry2126491887165048p0"><a name="entry2126491887165048p0"></a><a name="entry2126491887165048p0"></a>HDF_SUCCESS</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry1585614415165048p0"><a name="entry1585614415165048p0"></a><a name="entry1585614415165048p0"></a>Transmission successful</p>
-        </td>
-        </tr>
-        <tr id="row2048732992165048"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.1 "><p id="entry131232818165048p0"><a name="entry131232818165048p0"></a><a name="entry131232818165048p0"></a>HDF_FAILURE</p>
-        </td>
-        <td class="cellrowborder" valign="top" width="50%" headers="mcps1.1.3.1.2 "><p id="entry42178503165048p0"><a name="entry42178503165048p0"></a><a name="entry42178503165048p0"></a>Transmission failed</p>
-        </td>
-        </tr>
-        </tbody>
-        </table>
+      The **AdcLockMethod** is not implemented in this example. To instantiate the structure, refer to the I2C driver development. Other members are initialized in the **Init** function.
 
-        Function description:
+      ```c
+      static const struct AdcMethod g_method = {
+          .read = Hi35xxAdcRead,
+          .stop = Hi35xxAdcStop,
+          .start = Hi35xxAdcStart,
+      };
+      ```
 
-        Initializes the custom structure object and **AdcDevice**, and calls the **AdcDeviceAdd** function at the core layer.
+   - Implement the **Init** function.
 
-        ```
-        static int32_t Hi35xxAdcInit(struct HdfDeviceObject *device)
-        {
-            int32_t ret;
-            struct DeviceResourceNode *childNode = NULL;
-            ...
-        // Traverse and parse all nodes in adc_config.hcs and call the Hi35xxAdcParseInit function to initialize the devices separately.
-            DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
-                ret = Hi35xxAdcParseInit(device, childNode);// For details about the function definition, see the following description.
-                ...
-            }
-            return ret;
-        }
-        
-        static int32_t Hi35xxAdcParseInit(struct HdfDeviceObject *device, struct DeviceResourceNode *node)
-        {
-        int32_t ret;
-        struct Hi35xxAdcDevice *hi35xx = NULL; // (Mandatory) Custom structure object
-        (void)device;
-        
-        hi35xx = (struct Hi35xxAdcDevice *)OsalMemCalloc(sizeof(*hi35xx)); // (Mandatory) Memory allocation
-        ...
-        ret = Hi35xxAdcReadDrs(hi35xx, node); // (Mandatory) Fill the default values in the adc_config file to the structure.
-        ...
-        hi35xx->regBase = OsalIoRemap(hi35xx->regBasePhy, hi35xx->regSize);// (Mandatory) Address mapping
-        ...
-        hi35xx->pinCtrlBase = OsalIoRemap(HI35XX_ADC_IO_CONFIG_BASE, HI35XX_ADC_IO_CONFIG_SIZE);
-        ...
-        Hi35xxAdcDeviceInit(hi35xx); // (Mandatory) Initialize the ADC.
-        hi35xx->device.priv = (void *)node; // (Mandatory) Store device attributes.
-        hi35xx->device.devNum = hi35xx->deviceNum;// (Mandatory) Initialize the AdcDevice members.
-        hi35xx->device.ops = &g_method; // (Mandatory) Mount the AdcMethod instance object.
-        ret = AdcDeviceAdd(&hi35xx->device); // (Mandatory and important) Call this function to set the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
-        ...
-        return HDF_SUCCESS;
-        
-        __ERR__:
-        if (hi35xx != NULL) {                     // If the operation fails, you need to execute the initialization function reversely.
-            if (hi35xx->regBase != NULL) {
-            OsalIoUnmap((void *)hi35xx->regBase);
-            hi35xx->regBase = NULL;
-            }
-            AdcDeviceRemove(&hi35xx->device);
-            OsalMemFree(hi35xx);
-        }
-        return ret;
-        }
-        ```
+      Input parameter:
 
-    -   Release function
+      **HdfDeviceObject**, an interface parameter provided by the driver, contains the .hcs information.
 
-        Input parameters:
+      Return value:
 
-       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+      **HDF_STATUS**<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **//drivers/hdf_core/framework/include/utils/hdf_base.h** file.
 
-        Return values:
+      | Status| Description|
+      | -------- | -------- |
+      | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
+      | HDF_ERR_INVALID_PARAM | Invalid parameter.|
+      | HDF_ERR_MALLOC_FAIL | Failed to allocate memory.|
+      | HDF_ERR_IO | I/O error.|
+      | HDF_SUCCESS | Transmission successful.|
+      | HDF_FAILURE | Transmission failed.|
 
-        –
+      Function description:
 
-        Function description:
+      Initializes the custom structure object and **AdcDevice**, and calls the **AdcDeviceAdd** function at the core layer.
+      
+      ```c
+      static int32_t Hi35xxAdcInit(struct HdfDeviceObject *device)
+      {
+          int32_t ret;
+          struct DeviceResourceNode *childNode = NULL;
+          ...
+          /* Traverse and parse all nodes in adc_config.hcs and call the **Hi35xxAdcParseInit** function to initialize the devices separately. */
+          DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
+              ret = Hi35xxAdcParseInit(device, childNode); // The function definition is as follows:
+              ...
+          }
+          return ret;
+      }
+      
+      static int32_t Hi35xxAdcParseInit(struct HdfDeviceObject *device, struct DeviceResourceNode *node)
+      {
+          int32_t ret;
+          struct Hi35xxAdcDevice *hi35xx = NULL;     // (Mandatory) Custom structure object.
+          (void)device;
+          
+          hi35xx = (struct Hi35xxAdcDevice *)OsalMemCalloc(sizeof(*hi35xx));  // (Mandatory) Allocate memory.
+          ...
+          ret = Hi35xxAdcReadDrs(hi35xx, node);      // （Mandatory) Use the default values in the adc_config file to fill in the structure. The function definition is as follows.
+          ...
+          hi35xx->regBase = OsalIoRemap(hi35xx->regBasePhy, hi35xx->regSize); // (Mandatory) Address mapping.
+          ...
+          hi35xx->pinCtrlBase = OsalIoRemap(HI35XX_ADC_IO_CONFIG_BASE, HI35XX_ADC_IO_CONFIG_SIZE);
+          ...
+          Hi35xxAdcDeviceInit(hi35xx);              // (Mandatory) Initialize the ADC.
+          hi35xx->device.priv = (void *)node;       // (Mandatory) Save device attributes.
+          hi35xx->device.devNum = hi35xx->deviceNum;// (Mandatory) Initialize AdcDevice.
+          hi35xx->device.ops = &g_method;           // (Mandatory) Attach the AdcMethod instance object.
+          ret = AdcDeviceAdd(&hi35xx->device));      // (Mandatory) Call this function to set the structure at the core layer. The driver can access the platform core layer only after a success signal is returned.
+          ...
+          return HDF_SUCCESS;
+      
+      __ERR__:
+          if (hi35xx != NULL) {                      // If the operation fails, deinitialize related functions.
+              if (hi35xx->regBase != NULL) {
+              OsalIoUnmap((void *)hi35xx->regBase);
+              hi35xx->regBase = NULL;
+              }
+              AdcDeviceRemove(&hi35xx->device);
+              OsalMemFree(hi35xx);
+          }
+          return ret;
+      }
+      
+      static int32_t Hi35xxAdcReadDrs(struct Hi35xxAdcDevice *hi35xx, const struct DeviceResourceNode *node)
+      {
+          int32_t ret;
+          struct DeviceResourceIface *drsOps = NULL;
+      
+          /* Obtain the drsOps method. */
+          drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
+          if (drsOps == NULL || drsOps->GetUint32 == NULL) {
+              HDF_LOGE("%s: invalid drs ops", __func__);
+              return HDF_ERR_NOT_SUPPORT;
+          }
+          /* Read the configuration parameters in sequence and fill them in the structure. */
+          ret = drsOps->GetUint32(node, "regBasePhy", &hi35xx->regBasePhy, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read regBasePhy failed", __func__);
+              return ret;
+          }
+          ret = drsOps->GetUint32(node, "regSize", &hi35xx->regSize, 0);
+          if (ret != HDF_SUCCESS) {
+              HDF_LOGE("%s: read regSize failed", __func__);
+              return ret;
+          }
+          ···
+          return HDF_SUCCESS;
+      }
+      ```
 
-        Releases the memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. When the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
+   - Implement the **Release** function.
 
-        ```
-        static void Hi35xxAdcRelease(struct HdfDeviceObject *device)
-        {
-        const struct DeviceResourceNode *childNode = NULL;
-        ...
-        // Traverse and parse all nodes in adc_config.hcs and perform the release operation on each node.
-        DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
-            Hi35xxAdcRemoveByNode(childNode);// The function definition is as follows:
-        }
-        }
-        
-        static void Hi35xxAdcRemoveByNode(const struct DeviceResourceNode *node)
-        {
-        int32_t ret;
-        int32_t deviceNum;
-        struct AdcDevice *device = NULL;
-        struct Hi35xxAdcDevice *hi35xx = NULL;
-        struct DeviceResourceIface *drsOps = NULL;
-        
-        drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
-        ...
-        ret = drsOps->GetUint32(node, "deviceNum", (uint32_t *)&deviceNum, 0);
-        ...
-        // You can call the AdcDeviceGet function to obtain the AdcDevice object based on deviceNum and call the AdcDeviceRemove function to release the AdcDevice object.
-        device = AdcDeviceGet(deviceNum);
-        if (device != NULL && device->priv == node) {
-            AdcDevicePut(device);   
-            AdcDeviceRemove(device); // (Mandatory) Remove the AdcDevice object from the driver manager.
-            hi35xx = (struct Hi35xxAdcDevice *)device;// (Mandatory) Obtain the custom object through forced conversion and release the object.
-            OsalIoUnmap((void *)hi35xx->regBase);
-            OsalMemFree(hi35xx);
-        }
-        return
-        ```
+      Input parameter:
+
+      **HdfDeviceObject**, an interface parameter provided by the driver, contains the .hcs information.
+
+      Return value:
+
+      No value is returned.
+
+      Function description:
+
+      Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
+
+      ```c
+      static void Hi35xxAdcRelease(struct HdfDeviceObject *device)
+      {
+          const struct DeviceResourceNode *childNode = NULL;
+          ...
+          /* Traverse and parse all nodes in adc_config.hcs and perform the release operation on each node. */
+          DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
+              Hi35xxAdcRemoveByNode(childNode);// The function definition is as follows:
+          }
+      }
+      
+      static void Hi35xxAdcRemoveByNode(const struct DeviceResourceNode *node)
+      {
+          int32_t ret;
+          int32_t deviceNum;
+          struct AdcDevice *device = NULL;
+          struct Hi35xxAdcDevice *hi35xx = NULL;
+          struct DeviceResourceIface *drsOps = NULL;
+          
+          drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
+          ...
+          ret = drsOps->GetUint32(node, "deviceNum", (uint32_t *)&deviceNum, 0);
+          ...
+          /* You can use AdcDeviceGet() to obtain the AdcDevice object based on deviceNum and use AdcDeviceRemove() to release the AdcDevice object. */
+          device = AdcDeviceGet(deviceNum);
+          if (device != NULL && device->priv == node) {
+              AdcDevicePut(device);   
+              AdcDeviceRemove(device);                   // (Mandatory) Remove the AdcDevice object from the driver manager.
+              hi35xx = (struct Hi35xxAdcDevice *)device; // (Mandatory) Obtain the custom object through forcible conversion and perform the Release operation. To perform this operation, the device must be the first member of the custom structure.
+              OsalIoUnmap((void *)hi35xx->regBase);
+              OsalMemFree(hi35xx);
+          }
+          return;
+      }
+      ```

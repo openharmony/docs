@@ -1,6 +1,6 @@
-# FAQs<a name="EN-US_TOPIC_0000001053622377"></a>
+# FAQs
 
-## How Do I Create PRs at the Same Time If Multiple Code Repositories Have Compilation Dependencies?<a name="section169732563435"></a>
+## How Do I Create PRs at the Same Time If Multiple Code Repositories Have Compilation Dependencies?
 
 During the development of the operating system \(OS\), it is common that multiple code repositories have compilation dependencies. Therefore, the PRs need to be created and merged at the same time. For this reason, Gitee uses issues as the association identifiers for code repositories with dependency dependencies to commit the PRs. Follow the operations below:
 
@@ -8,11 +8,11 @@ During the development of the operating system \(OS\), it is common that multipl
 2. Associate PRs need to be built and merged at the same time with the issue. For details, visit  [https://gitee.com/help/articles/4142](https://gitee.com/help/articles/4142).
 3. After the build is triggered, the build center identifies the PRs associated with the same issue, downloads the build, and merges the PRs into the code library after the code is approved.
 
-## Sign-off-by Operations<a name="section-sign-off"></a>
+## Sign-off-by Operations
 
 #### How to Add signoff Records in Commits?
 
-Execute the **git commit -s **or **git commit –signo** command to submit signoff records.
+Execute the **git commit -s **or **git commit –sigoff** command to submit signoff records.
 
 #### How to Add a signoff record to the Previous Commit?
 
@@ -20,7 +20,7 @@ Execute the **git commit --amend --signoff** command.
 
 For more options about commit, see [https://](https://git-scm.com/docs/git-commit)[git-scm.com/docs/git-commit](https://git-scm.com/docs/git-commit).
 
-## Handling Exceptions of DCO Verification<a name="section-dco"></a>
+## Handling Exceptions of DCO Verification
 
 After developers submit Pull Request, commenting "**start build**" in the PR will trigger the gated commit. In this sense, you should consider:
 
@@ -61,11 +61,11 @@ The possible causes for a verification failure include:
 
    Enter **check dco** in the Pull Requests comment box and click **Comment**. The system will check the DCO signing status again.
 
-## Rollback<a name="section479422315253"></a>
+## Rollback
 
 Visit  [https://gitee.com/help/articles/4195](https://gitee.com/help/articles/4195).
 
-## Resolving Merge Conflicts<a name="section94417232274"></a>
+## Resolving Merge Conflicts
 
 Visit  [https://gitee.com/help/articles/4194](https://gitee.com/help/articles/4194).
 

@@ -12,16 +12,18 @@ addPath(path: Object): void
 
 将另一个路径添加到当前的路径对象中。
 
-**参数：**  
+**参数：**
+
 | 参数   | 类型     | 描述             |
 | ---- | ------ | -------------- |
 | path | Object | 需要添加到当前路径的路径对象 |
 
-**示例：**  
+**示例：** 
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -47,7 +49,8 @@ setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, trans
 
 设置路径变换矩阵。
 
-**参数：**  
+**参数：**
+
 | 参数         | 类型     | 描述      |
 | ---------- | ------ | ------- |
 | scaleX     | number | x轴的缩放比例 |
@@ -58,10 +61,11 @@ setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, trans
 | translateY | number | y轴的平移距离 |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -88,10 +92,11 @@ closePath(): void
 将路径的当前点移回到路径的起点，当前点到起点间画一条直线。如果形状已经闭合或只有一个点，则此功能不执行任何操作。
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -120,17 +125,19 @@ moveTo(x: number, y: number): void
 
 将路径的当前坐标点移动到目标点，移动过程中不绘制线条。
 
-**参数：**  
+**参数：**
+
 | 参数   | 类型     | 描述      |
 | ---- | ------ | ------- |
 | x    | number | 目标点X轴坐标 |
 | y    | number | 目标点Y轴坐标 |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -159,17 +166,19 @@ lineTo(x: number, y: number): void
 
 从当前点绘制一条直线到目标点。
 
-**参数：**  
+**参数：**
+
 | 参数   | 类型     | 描述      |
 | ---- | ------ | ------- |
 | x    | number | 目标点X轴坐标 |
 | y    | number | 目标点Y轴坐标 |
 
-**示例：**  
+**示例：**
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 400px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -199,7 +208,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 创建三次贝赛尔曲线的路径。
 
-**参数：**  
+**参数：** 
+
 | 参数   | 类型     | 描述             |
 | ---- | ------ | -------------- |
 | cp1x | number | 第一个贝塞尔参数的x坐标值。 |
@@ -210,10 +220,11 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 | y    | number | 路径结束时的y坐标值。    |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -241,6 +252,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 创建二次贝赛尔曲线的路径。
 
 **参数：**  
+
 | 参数   | 类型     | 描述          |
 | ---- | ------ | ----------- |
 | cpx  | number | 贝塞尔参数的x坐标值。 |
@@ -248,11 +260,12 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 | x    | number | 路径结束时的x坐标值。 |
 | y    | number | 路径结束时的y坐标值。 |
 
-**示例：**  
+**示例：** 
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -280,6 +293,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 绘制弧线路径。
 
 **参数：**  
+
 | 参数            | 类型      | 描述         |
 | ------------- | ------- | ---------- |
 | x             | number  | 弧线圆心的x坐标值。 |
@@ -290,10 +304,11 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 | anticlockwise | boolean | 是否逆时针绘制圆弧。 |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -319,7 +334,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
-**参数：**  
+**参数：** 
+
 | 参数     | 类型     | 描述              |
 | ------ | ------ | --------------- |
 | x1     | number | 圆弧经过的第一个点的x坐标值。 |
@@ -329,10 +345,11 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 | radius | number | 圆弧的圆半径值。        |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 300px; height: 250px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -358,7 +375,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 在规定的矩形区域绘制一个椭圆。
 
-**参数：**  
+**参数：** 
+
 | 参数            | 类型     | 描述                                   |
 | ------------- | ------ | ------------------------------------ |
 | x             | number | 椭圆圆心的x轴坐标。                           |
@@ -371,10 +389,11 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 | anticlockwise | number | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 
@@ -400,7 +419,8 @@ rect(x: number, y: number, width: number, height: number): void
 
 创建矩形路径。
 
-**参数：**  
+**参数：** 
+
 | 参数     | 类型     | 描述            |
 | ------ | ------ | ------------- |
 | x      | number | 指定矩形的左上角x坐标值。 |
@@ -409,10 +429,11 @@ rect(x: number, y: number, width: number, height: number): void
 | height | number | 指定矩形的高度。      |
 
 **示例：**  
+
   ```html
 <!-- xxx.hml -->
 <div>
-  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"</canvas>
+  <canvas ref="canvas" style="width: 500px; height: 450px; background-color: #ffff00;"></canvas>
 </div>
   ```
 

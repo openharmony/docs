@@ -1,19 +1,19 @@
-# Image
+# image开发指导
 
-Image是图片组件，用来渲染展示图片。具体用法请参考[Image API](../reference/arkui-js/js-components-basic-image.md)。
+image是图片组件，用来渲染展示图片。具体用法请参考[image API](../reference/arkui-js/js-components-basic-image.md)。
 
 
-## 创建Image组件
+## 创建image组件
 
-在pages/index目录下的hml文件中创建一个Image组件。
-```
+在pages/index目录下的hml文件中创建一个image组件。
+```html
 <!-- index.hml -->
 <div class="container">
   <image style="height: 30%;" src="common/images/bg-tv.jpg"> </image>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -28,12 +28,12 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
 ![zh-cn_image_0000001211227617](figures/zh-cn_image_0000001211227617.png)
 
 
-## 设置Image样式
+## 设置image样式
 
 通过设置width、height和object-fit属性定义图片的宽、高和缩放样式。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <image src="common/images/bg-tv.jpg"> </image>
@@ -41,7 +41,7 @@ Image是图片组件，用来渲染展示图片。具体用法请参考[Image AP
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -69,7 +69,7 @@ image{
 
 图片成功加载时触发complete事件，返回加载的图源尺寸。加载失败则触发error事件，打印图片加载失败。
 
-```
+```html
 <!-- index.hml -->
 <div class="container" >
   <div>
@@ -81,7 +81,7 @@ image{
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -99,19 +99,19 @@ image{
 }
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// index.js
+import promptAction from '@ohos.promptAction';
 export default {
   imageComplete(i,e){
-    prompt.showToast({
-      message: "Image "+i+"'s width"+ e.width+"----Image "+i+"'s height"+e.height,
+    promptAction.showToast({
+      message: "image "+i+"'s width"+ e.width+"----image "+i+"'s height"+e.height,
       duration: 3000,
     })
   },
   imageError(i,e){
     setTimeout(()=>{
-      prompt.showToast({
+      promptAction.showToast({
         message: "Failed to load image "+i+".",
         duration: 3000,
       })
@@ -127,12 +127,12 @@ export default {
 ## 场景示例
 
 在本场景中，开发者长按图片后将慢慢隐藏图片，当完全隐藏后再重新显示原始图片。定时器setInterval每隔一段时间改变图片透明度,实现慢慢隐藏的效果，当透明度为0时清除定时器，设置透明度为1。
-```
+```html
 <!-- index.hml -->
 <div class="page-container">
   <div class="content">
     <div class="image-container">
-      <image class="testimage" src="{{testuri}}" style="display:{{displaytype}};opacity:{{imageopacity}};" onclick="changedisplaytype" onlongpress="changeopacity"> </image>
+      <image class="testimage" src="{{testuri}}" style="opacity:{{imageopacity}};" onlongpress="changeopacity"> </image>
     </div>
     <div class="text-container">
       <text style="font-size: 37px;font-weight:bold;color:orange;text-align: center;width: 100%;">Touch and hold the image</text>
@@ -141,7 +141,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .page-container {
   width: 100%;
@@ -175,9 +175,9 @@ export default {
 }
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// index.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     testuri: 'common/images/bg-tv.jpg',
@@ -185,7 +185,7 @@ export default {
     timer: null
   },
   changeopacity: function () {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Touch and hold the image.'
     })
     var opval = this.imageopacity * 20
@@ -206,8 +206,8 @@ export default {
 
 ## 相关实例
 
-针对Image开发，有以下相关实例可供参考：
+针对image开发，有以下相关实例可供参考：
 
-- [image、image-animator（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)
+- [image、image-animator（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)
 
-- [图片编辑模板](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+- [图片编辑模板（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)

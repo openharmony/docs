@@ -78,7 +78,7 @@ The following provides an example of how the Samgr\_Lite module uses the HiLog\_
     HiLogRegisterModule(HILOG_MODULE_SAMGR, "SAMGR");
     ```
 
-3.  Add the header file dependencies to the  **foundation/distributedschedule/samgr\_lite/samgr/BUILD.gn**  file.
+3.  Add the header file dependencies to the  **foundation/systemabilitymgr/samgr\_lite/samgr/BUILD.gn**  file.
 
     ```
      include_dirs = [
@@ -86,7 +86,7 @@ The following provides an example of how the Samgr\_Lite module uses the HiLog\_
      ]
     ```
 
-4.  Reference the header file in the  **foundation/distributedschedule/samgr\_lite/samgr/source/message.c**  file and call the related APIs.
+4.  Reference the header file in the  **foundation/systemabilitymgr/samgr\_lite/samgr/source/message.c**  file and call the related APIs.
 
     ```
     #include <log.h>

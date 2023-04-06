@@ -1,7 +1,4 @@
-# 升级
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+# @ohos.update (升级)
 
 升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
 
@@ -10,135 +7,228 @@
 - SD卡升级依赖升级包和SD卡安装。
 - 在线升级依赖设备厂商部署的用于管理升级包的服务器。服务器由设备厂商部署，IP由调用者传入，请求的request接口是固定的，由设备厂商开发。
 
+> **说明：**
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
+
 ## 导入模块
 
 ```js
 import update from '@ohos.update'
 ```
 
-## 权限列表
+## update.getOnlineUpdater
 
-无
+getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
-## update.getUpdater
-
-getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
-
-获取本地升级Updater。
+获取在线升级对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
-| 参数名         | 类型                          | 必填   | 说明   |
-| ----------- | --------------------------- | ---- | ---- |
-| upgradeFile | string                      | 是    | 升级文件 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型 |
+| 参数名         | 类型                          | 必填   | 说明     |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | 是    | 升级信息对象。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| [Updater](#updater) | 升级对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
+```ts
 try {
-  let updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
+  const upgradeInfo = {
+    upgradeApp: "com.ohos.ota.updateclient",
+    businessType: {
+      vendor: update.BusinessVendor.PUBLIC,
+      subType: update.BusinessSubType.FIRMWARE
+    }
+  };
+  let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(`Fail to get updater error: ${error}`);
 }
 ```
 
-## update.getUpdaterForOther
+## update.getRestorer
 
-getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getRestorer(): Restorer
 
-获取升级对象给待升级设备。
+获取恢复出厂对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明    |
-| ----------- | --------------------------- | ---- | ----- |
-| upgradeFile | string                      | 是    | 升级文件  |
-| device      | string                      | 是    | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
 
 **返回值：**
 
-| 类型                  | 说明   |
-| ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| 类型                    | 说明     |
+| --------------------- | ------ |
+| [Restorer](#restorer) | 恢复出厂对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
+```ts
 try {
-  let updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let restorer = update.getRestorer();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(`Fail to get restorer: ${error}`);
 }
 ```
 
-## update.getUpdaterFromOther
+## update.getLocalUpdater
 
-getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getLocalUpdater(): LocalUpdater
 
-获取其它设备为本设备升级的Updater。
+获取本地升级对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明    |
-| ----------- | --------------------------- | ---- | ----- |
-| upgradeFile | string                      | 是    | 升级文件  |
-| device      | string                      | 是    | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
-
 **返回值：**
 
-| 类型                  | 说明   |
-| ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| 类型                            | 说明     |
+| ----------------------------- | ------ |
+| [LocalUpdater](#localupdater) | 本地升级对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
+```ts
 try {
-  let updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let localUpdater = update.getLocalUpdater();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
-}
+  console.error(`Fail to get localUpdater error: ${error}`);
+};
 ```
 
 ## Updater
+
+### checkNewVersion
+
+checkNewVersion(callback: AsyncCallback\<CheckResult>): void
+
+检查新版本信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明             |
+| -------- | ---------------------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<[CheckResult](#checkresult)> | 是    | 回调函数，返回搜包结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.checkNewVersion((err, result) => {
+  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+});
+```
+
+### checkNewVersion
+
+checkNewVersion(): Promise\<CheckResult>
+
+检查新版本信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**返回值:**
+
+| 类型                                    | 说明                  |
+| ------------------------------------- | ------------------- |
+| Promise\<[CheckResult](#checkresult)> | Promise对象，返回搜包结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例:**
+
+```ts
+updater.checkNewVersion().then(result => {
+  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+  // 版本摘要信息
+  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+}).catch(err => {
+  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+});
+```
 
 ###  getNewVersionInfo
 
 getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
-获取新版本信息，使用callback方式作为异步方法。
+获取新版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | 否    | 回调返回新版本信息 |
+| 参数名      | 类型                                       | 必填   | 说明              |
+| -------- | ---------------------------------------- | ---- | --------------- |
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 是    | 回调函数，返回新版本信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
+```ts
 updater.getNewVersionInfo((err, info) => {
-  console.log("getNewVersionInfo success  " + info.status);
-  console.log(`info versionName = ` + info.checkResults[0].versionName);
-  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -146,451 +236,1842 @@ updater.getNewVersionInfo((err, info) => {
 
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
-获取新版本信息，使用promise方式作为异步方法。
+获取新版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
-| 类型                                       | 说明               |
-| ---------------------------------------- | ---------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise，用于异步获取结果 |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise对象，返回新版本信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.getNewVersionInfo().then(value => {
-  console.log(`info versionName = ` + value.checkResults[0].versionName);
-  console.log(`info versionCode = ` + value.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResults[0].verifyInfo);
+```ts
+updater.getNewVersionInfo().then(info => {
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
 }).catch(err => {
-  console.log("getNewVersionInfo promise error: " + err.code);
+  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### checkNewVersion
+###  getNewVersionDescription
 
-checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
 
-检查新版本，使用callback方式作为异步方法。
+获取新版本描述文件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 否    | 回调返回新版本信息 |
+| 参数名                | 类型                                       | 必填   | 说明             |
+| ------------------ | ---------------------------------------- | ---- | -------------- |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。         |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。        |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | 是    | 回调函数，返回新版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.checkNewVersion((err, info) => {
-  console.log("checkNewVersion success  " + info.status);
-  console.log(`info versionName = ` + info.checkResults[0].versionName);
-  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 描述文件选项
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+};
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
+  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
 });
 ```
 
-### checkNewVersion
+### getNewVersionDescription
 
-checkNewVersion(): Promise\<NewVersionInfo>
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
 
-检查新版本，使用promise方式作为异步方法。
-
-**系统能力**：SystemCapability.Update.UpdateService
-
-**返回值:**
-
-| 类型                                       | 说明               |
-| ---------------------------------------- | ---------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise函数返回新版本信息 |
-
-**示例:**
-
-```
-updater.checkNewVersion().then(value => {
-  console.log(`info versionName = ` + value.checkResults[0].versionName);
-  console.log(`info versionCode = ` + value.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResults[0].verifyInfo);
-}).catch(err => {
-  console.log("checkNewVersion promise error: " + err.code);
-});
-```
-
-### verifyUpdatePackage
-
-verifyUpdatePackage(upgradeFile: string, certsFile: string): void
-
-升级前检查升级包是否有效。
+获取新版本描述文件。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
-| 参数名         | 类型     | 必填   | 说明        |
-| ----------- | ------ | ---- | --------- |
-| upgradeFile | string | 是    | 待校验的升级包路径 |
-| certsFile   | string | 是    | 证书路径      |
-
-**示例：**
-
-```
-updater.on("verifyProgress", callback => {
-  console.info('on verifyProgress ' + callback.percent);
-});
-update.verifyUpdatePackage("XXX", "XXX");
-```
-
-### rebootAndCleanUserData<sup>8+</sup>
-
-rebootAndCleanUserData(): Promise\<number>
-
-重启设备并清除用户分区数据。
-
-**系统能力**：SystemCapability.Update.UpdateService
+| 参数名                | 类型                                       | 必填   | 说明     |
+| ------------------ | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。 |
 
 **返回值：**
 
-| 类型               | 说明                  |
-| ---------------- | ------------------- |
-| Promise\<number> | Promise示例，用于异步获取结果。 |
+| 类型                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回新版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.rebootAndCleanUserData().then(result => {
-  console.log("rebootAndCleanUserData " + result);
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 描述文件选项
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+};
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch(err => {
-  console.info("rebootAndCleanUserData promise error: " + err.code);
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### rebootAndCleanUserData<sup>8+</sup>
+###  getCurrentVersionInfo
 
-rebootAndCleanUserData(callback: AsyncCallback\<number>): void
+getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
-重启设备并清除用户分区数据。
+获取当前版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
-| 参数名      | 类型       | 必填   | 说明                     |
-| -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是    | AsyncCallback\<number> |
+| 参数名      | 类型                                       | 必填   | 说明               |
+| -------- | ---------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | 是    | 回调函数，返回当前版本信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.rebootAndCleanUserData((err, result) => {
-  console.log("rebootAndCleanUserData ", result)
+```ts
+updater.getCurrentVersionInfo((err, info) => {
+  console.log(`info osVersion = ${info?.osVersion}`);
+  console.log(`info deviceName = ${info?.deviceName}`);
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
 });
 ```
 
-### applyNewVersion
+### getCurrentVersionInfo
 
-applyNewVersion(): Promise\<number>
+getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
-重启设备后安装升级包。
+获取当前版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
-| 类型               | 说明                  |
-| ---------------- | ------------------- |
-| Promise\<number> | Promise示例，用于异步获取结果。 |
+| 类型                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.applyNewVersion().then(result => {
-    console.log("appVewVersion ", result)
+```ts
+updater.getCurrentVersionInfo().then(info => {
+  console.log(`info osVersion = ${info.osVersion}`);
+  console.log(`info deviceName = ${info.deviceName}`);
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
 }).catch(err => {
-    console.info("applyNewVersion promise error: " + err.code);
+  console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### applyNewVersion
+###  getCurrentVersionDescription
 
-applyNewVersion(callback: AsyncCallback\<number>): void
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
 
-重启设备后安装升级包。
+获取当前版本描述文件。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
 **参数：**
 
-| 参数名      | 类型       | 必填   | 说明                     |
-| -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是    | AsyncCallback\<number> |
+| 参数名                | 类型                                       | 必填   | 说明              |
+| ------------------ | ---------------------------------------- | ---- | --------------- |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。          |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | 是    | 回调函数，返回当前版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
+```ts
+// 描述文件选项
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+};
+
+updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
+  console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getCurrentVersionDescription err ${JSON.stringify(err)}`);
+});
 ```
-updater.applyNewVersion((err, result) => {
-  console.log("applyNewVersion ", result)
+
+### getCurrentVersionDescription
+
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
+
+获取当前版本描述文件。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名                | 类型                                       | 必填   | 说明     |
+| ------------------ | ---------------------------------------- | ---- | ------ |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项。 |
+
+**返回值：**
+
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回当前版本描述文件。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 描述文件选项
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+};
+
+updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+  console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch(err => {
+  console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  getTaskInfo
+
+getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
+
+获取升级任务信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填   | 说明               |
+| -------- | ------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<[TaskInfo](#taskinfo)> | 是    | 回调函数，返回升级任务信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.getTaskInfo((err, info) => {
+  console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
+});
+```
+
+### getTaskInfo
+
+getTaskInfo(): Promise\<TaskInfo>
+
+获取升级任务信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**返回值：**
+
+| 类型                              | 说明                  |
+| ------------------------------- | ------------------- |
+| Promise\<[TaskInfo](#taskinfo)> | Promise对象，返回任务信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.getTaskInfo().then(info => {
+  console.log(`getTaskInfo isexistTask= ${info.existTask}`);
+}).catch(err => {
+  console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  download
+
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions, callback: AsyncCallback\<void>): void
+
+下载新版本。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名               | 类型                                      | 必填   | 说明                                 |
+| ----------------- | --------------------------------------- | ---- | ---------------------------------- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                             |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项。                               |
+| callback          | AsyncCallback\<void>                    | 是    | 回调函数。当下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 下载选项
+const downloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
+  order: update.Order.DOWNLOAD // 下载
+};
+updater.download(versionDigestInfo, downloadOptions, (err) => {
+  console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
 
 ### download
 
-download(): void
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions): Promise\<void>
 
-下载新版本，并监听下载进程。
+下载新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名               | 类型                                      | 必填   | 说明     |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | 是    | 下载选项。   |
+
+**返回值：**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **示例：**
 
-```
-updater.on("downloadProgress", progress => {
-  console.log("downloadProgress on" + progress);
-  console.log(`downloadProgress status: ` + progress.status);
-  console.log(`downloadProgress percent: ` + progress.percent);
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 下载选项
+const downloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
+  order: update.Order.DOWNLOAD // 下载
+};
+updater.download(versionDigestInfo, downloadOptions).then(() => {
+  console.log(`download start`);
+}).catch(err => {
+  console.log(`download error ${JSON.stringify(err)}`);
 });
-updater.download();
+```
+
+###  resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions, callback: AsyncCallback\<void>): void
+
+恢复下载新版本。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名                   | 类型                                       | 必填   | 说明                                   |
+| --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。                               |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项。                               |
+| callback              | AsyncCallback\<void>                     | 是    | 回调函数。当恢复下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 恢复下载选项
+const resumeDownloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
+};
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
+});
+```
+
+### resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions): Promise\<void>
+
+恢复下载新版本。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名                   | 类型                                       | 必填   | 说明     |
+| --------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项。 |
+
+**返回值：**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 恢复下载选项
+const resumeDownloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
+};
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+  console.log(`resumeDownload start`);
+}).catch(err => {
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
+});
+```
+
+###  pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions, callback: AsyncCallback\<void>): void
+
+暂停下载新版本。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名                  | 类型                                       | 必填   | 说明                                   |
+| -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。                               |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项。                               |
+| callback             | AsyncCallback\<void>                     | 是    | 回调函数。当暂停下载成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 暂停下载选项
+const pauseDownloadOptions = {
+  isAllowAutoResume: true // 允许自动恢复下载
+};
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
+});
+```
+
+### pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions): Promise\<void>
+
+恢复下载新版本。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名                  | 类型                                       | 必填   | 说明     |
+| -------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要信息。 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项。 |
+
+**返回值：**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 暂停下载选项
+const pauseDownloadOptions = {
+  isAllowAutoResume: true // 允许自动恢复下载
+};
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+  console.log(`pauseDownload`);
+}).catch(err => {
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
+});
+```
+
+###  upgrade
+
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, callback: AsyncCallback\<void>): void
+
+升级新版本。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名               | 类型                                      | 必填   | 说明                                   |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                               |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项。                                 |
+| callback          | AsyncCallback\<void>                    | 是    | 回调函数。当升级执行成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 安装选项
+const upgradeOptions = {
+  order: update.Order.INSTALL // 安装指令
+};
+updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+  console.log(`upgrade error ${JSON.stringify(err)}`);
+});
 ```
 
 ### upgrade
 
-upgrade():void
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): Promise\<void>
 
-启动升级。
-
-**系统能力**：SystemCapability.Update.UpdateService
-
-**示例：**
-
-```
-updater.on("upgradeProgress", progress => {
-  console.log("upgradeProgress on" + progress);
-  console.log(`upgradeProgress status: ` + progress.status);
-  console.log(`upgradeProgress percent: ` + progress.percent);
-});
-updater.upgrade();
-```
-
-### setUpdatePolicy
-
-setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
-
-设置升级策略，使用callback方式作为异步方法。
+升级新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
-| 参数名      | 类型                            | 必填   | 说明     |
-| -------- | ----------------------------- | ---- | ------ |
-| policy   | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
-| callback | AsyncCallback\<number>        | 是    | 回调返回结果 |
-
-**示例：**
-
-```
-// 设置策略
-let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
-  autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
-}
-updater.setUpdatePolicy(policy, (err, result) => {
-  console.log("setUpdatePolicy ", result)
-});
-```
-
-### setUpdatePolicy
-
-setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
-
-设置升级策略，使用promise方式作为异步方法。
-
-**系统能力**：SystemCapability.Update.UpdateService
-
-**参数：**
-
-| 参数名    | 类型                            | 必填   | 说明     |
-| ------ | ----------------------------- | ---- | ------ |
-| policy | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
+| 参数名               | 类型                                      | 必填   | 说明     |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | 是    | 更新选项。   |
 
 **返回值：**
 
-| 类型               | 说明              |
-| ---------------- | --------------- |
-| Promise\<number> | Promise函数返回设置结果 |
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
-  autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
-}
-updater.setUpdatePolicy(policy).then(result => 
-  console.log("setUpdatePolicy ", result)
-).catch(err => {
-  console.log("setUpdatePolicy promise error: " + err.code);
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 安装选项
+const upgradeOptions = {
+  order: update.Order.INSTALL // 安装指令
+};
+updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
+  console.log(`upgrade start`);
+}).catch(err => {
+  console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
 
-### getUpdatePolicy
+###  clearError
 
-getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, callback: AsyncCallback\<void>): void
 
-获取升级策略信息，使用callback方式作为异步方法。
+清除异常状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明         |
-| -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | 否    | 回调返回升级策略信息 |
+| 参数名               | 类型                                      | 必填   | 说明                                   |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。                               |
+| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 清除选项。                                 |
+| callback          | AsyncCallback\<void>                    | 是    | 回调函数。当清除异常成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.getUpdatePolicy((err, policy) => {
-  console.log("getUpdatePolicy success");
-  console.log(`policy autoDownload = ` + policy.autoDownload);
-  console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
-  console.log(`policy mode = ` + policy.mode);
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 清除选项
+const clearOptions = {
+  status: update.UpgradeStatus.UPGRADE_FAIL,
+};
+updater.clearError(versionDigestInfo, clearOptions, (err) => {
+  console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
 
-### getUpdatePolicy
+### clearError
 
-getUpdatePolicy(): Promise\<UpdatePolicy>
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Promise\<void>
+
+清除异常状态。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名               | 类型                                      | 必填   | 说明     |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息。 |
+| clearOptions      | [ClearOptions](#clearoptions)           | 是    | 更新选项。   |
+
+**返回值：**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+// 版本摘要信息
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+};
+
+// 清除选项
+const clearOptions = {
+  status: update.UpgradeStatus.UPGRADE_FAIL,
+};
+updater.clearError(versionDigestInfo, clearOptions).then(() => {
+  console.log(`clearError success`);
+}).catch(err => {
+  console.log(`clearError error ${JSON.stringify(err)}`);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
+
+获取升级策略信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明              |
+| -------- | ---------------------------------------- | ---- | --------------- |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调函数，返回升级策略信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.getUpgradePolicy((err, policy) => {
+  console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(): Promise\<UpgradePolicy>
 
 获取升级策略，通过promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
 **返回值：**
 
-| 类型                                      | 说明                |
-| --------------------------------------- | ----------------- |
-| Promise\<[UpdatePolicy](#updatepolicy)> | Promise函数返回升级策略信息 |
+| 类型                                       | 说明                    |
+| ---------------------------------------- | --------------------- |
+| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise对象，返回升级策略信息对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **示例：**
 
-```
-updater.getUpdatePolicy().then(value => {
-  console.log(`info autoDownload = ` + value.autoDownload);
-  console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
-  console.log(`info mode = ` + value.mode);
+```ts
+updater.getUpgradePolicy().then(policy => {
+  console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
 }).catch(err => {
-  console.log("getUpdatePolicy promise error: " + err.code);
+  console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
 
-## UpdateTypes
+### setUpgradePolicy
 
-升级类型。
+setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+设置升级策略。使用callback异步回调。
 
-| 参数名   | 说明    |
-| ----- | ----- |
-| OTA   | OTA升级 |
-| patch | 补丁升级  |
+**系统能力**：SystemCapability.Update.UpdateService
 
-## PackageTypes
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
-升级包类型。
+**参数：**
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+| 参数名      | 类型                              | 必填   | 说明            |
+| -------- | ------------------------------- | ---- | ------------- |
+| policy   | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略。          |
+| callback | AsyncCallback\<void>            | 是    | 回调函数，返回设置结果对象。 |
 
-| 参数名                  | 默认值  | 说明      |
-| -------------------- | ---- | ------- |
-| PACKAGE_TYPE_NORMAL  | 1    | 通用升级包   |
-| PACKAGE_TYPE_BASE    | 2    | 基础升级包   |
-| PACKAGE_TYPE_CUST    | 3    | 定制升级包   |
-| PACKAGE_TYPE_PRELOAD | 4    | 预装升级包   |
-| PACKAGE_TYPE_COTA    | 5    | 参数配置升级包 |
-| PACKAGE_TYPE_VERSION | 6    | 版本升级包   |
-| PACKAGE_TYPE_PATCH   | 7    | 补丁包     |
+**错误码**：
 
-## InstallMode
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-安装模式。
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**示例：**
 
-| 参数名                 | 默认值  | 说明   |
-| ------------------- | ---- | ---- |
-| INSTALL_MODE_NORMAL | 0    | 正常升级 |
-| INSTALL_MODE_NIGHT  | 1    | 夜间升级 |
-| INSTALL_MODE_AUTO   | 2    | 自动升级 |
+```ts
+const policy = {
+  downloadStrategy: false,
+  autoUpgradeStrategy: false,
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
+};
+updater.setUpgradePolicy(policy, (err) => {
+  console.log(`setUpgradePolicy result: ${err}`);
+});
+```
 
-## NewVersionStatus
+### setUpgradePolicy
 
-新版本检测状态。
+setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+设置升级策略。使用Promise异步回调。
 
-| 参数名                 | 默认值  | 说明       |
-| ------------------- | ---- | -------- |
-| VERSION_STATUS_ERR  | -1   | 检测版本时出错  |
-| VERSION_STATUS_NEW  | 0    | 检测到新版本   |
-| VERSION_STATUS_NONE | 1    | 没有检测到新版本 |
-| VERSION_STATUS_BUSY | 2    | 检测版本时忙   |
+**系统能力**：SystemCapability.Update.UpdateService
 
-## UpdatePolicy
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
-升级策略。
+**参数：**
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+| 参数名    | 类型                              | 必填   | 说明   |
+| ------ | ------------------------------- | ---- | ---- |
+| policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略。 |
 
-| 名称                  | 参数类型                        | 必填   | 说明      |
-| ------------------- | --------------------------- | ---- | ------- |
-| autoDownload        | bool                        | 是    | 自动升级开关  |
-| installMode         | [InstallMode](#installmode) | 是    | 安装模式    |
-| autoUpgradeInterval | Array\<number>              | 是    | 自动升级时间段 |
+**返回值：**
 
-## NewVersionInfo
+| 类型             | 说明                  |
+| -------------- | ------------------- |
+| Promise\<void> | Promise对象，返回设置结果对象。 |
 
-新版本信息。
+**错误码**：
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
 
-| 名称              | 参数类型                                     | 必填   | 说明   |
-| --------------- | ---------------------------------------- | ---- | ---- |
-| status          | [NewVersionStatus](#newversionstatus)    | 是    | 升级状态 |
-| errMsg          | string                                   | 是    | 错误信息 |
-| checkResults    | Array<[CheckResult](#checkresult)>       | 是    | 检测结果 |
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是    | 描述信息 |
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const policy = {
+  downloadStrategy: false,
+  autoUpgradeStrategy: false,
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
+};
+updater.setUpgradePolicy(policy).then(() => {
+  console.log(`setUpgradePolicy success`);
+}).catch(err => {
+  console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  terminateUpgrade
+
+terminateUpgrade(callback: AsyncCallback\<void>): void
+
+终止升级。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                   | 必填   | 说明                                     |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当清除升级缓存成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.terminateUpgrade((err) => {
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
+});
+```
+
+### terminateUpgrade
+
+terminateUpgrade(): Promise\<void>
+
+终止升级。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**返回值：**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+updater.terminateUpgrade().then(() => {
+  console.log(`terminateUpgrade success`);
+}).catch(err => {
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
+});
+```
+
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+注册事件监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名               | 类型                                       | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
+  extraInfo: ""
+};
+
+updater.on(eventClassifyInfo, (eventInfo) => {
+  console.log("updater on " + JSON.stringify(eventInfo));
+});
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+取消注册事件监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名               | 类型                                       | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
+  extraInfo: ""
+};
+
+updater.off(eventClassifyInfo, (eventInfo) => {
+  console.log("updater off " + JSON.stringify(eventInfo));
+});
+```
+
+## Restorer
+
+### factoryReset
+
+factoryReset(callback: AsyncCallback\<void>): void
+
+恢复出厂设置。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                   | 必填   | 说明                                     |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+restorer.factoryReset((err) => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+### factoryReset
+
+factoryReset(): Promise\<void>
+
+恢复出厂设置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
+
+**返回值:**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例:**
+
+```ts
+restorer.factoryReset().then(() => {
+  console.log(`factoryReset success`);
+}).catch(err => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+## LocalUpdater
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<void>): void
+
+校验升级包。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名         | 类型                          | 必填   | 说明               |
+| ----------- | --------------------------- | ---- | ---------------- |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件。             |
+| certsFile   | string                      | 是    | 证书文件路径。           |
+| callback    | AsyncCallback\<void>        | 是    | 回调函数，返回升级包校验结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const upgradeFile = {
+  fileType: update.ComponentType.OTA, // OTA包
+  filePath: "path" // 本地升级包路径
+};
+
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void>
+
+校验升级包。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名         | 类型                          | 必填   | 说明     |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件。   |
+| certsFile   | string                      | 是    | 证书文件路径。 |
+
+**返回值:**
+
+| 类型             | 说明                     |
+| -------------- | ---------------------- |
+| Promise\<void> | Promise对象，返回升级包校验结果对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例:**
+
+```ts
+const upgradeFile = {
+  fileType: update.ComponentType.OTA, // OTA包
+  filePath: "path" // 本地升级包路径
+};
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
+  console.log(`verifyUpgradePackage success`);
+}).catch(err => {
+  console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
+});
+```
+
+### applyNewVersion
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: AsyncCallback\<void>): void
+
+安装升级包。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名         | 类型                                 | 必填   | 说明                                      |
+| ----------- | ---------------------------------- | ---- | --------------------------------------- |
+| upgradeFile | Array<[UpgradeFile](#upgradefile)> | 是    | 升级文件。                                    |
+| callback    | AsyncCallback\<void>               | 是    | 回调函数。当安装升级包执行成功时，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const upgradeFiles = [{
+  fileType: update.ComponentType.OTA, // OTA包
+  filePath: "path" // 本地升级包路径
+}];
+
+localUpdater.applyNewVersion(upgradeFiles, (err) => {
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
+});
+```
+
+### applyNewVersion
+
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void>
+
+安装升级包。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**返回值:**
+
+| 类型             | 说明                         |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例:**
+
+```ts
+const upgradeFiles = [{
+  fileType: update.ComponentType.OTA, // OTA包
+  filePath: "path" // 本地升级包路径
+}];
+localUpdater.applyNewVersion(upgradeFiles).then(() => {
+  console.log(`applyNewVersion success`);
+}).catch(err => {
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
+});
+```
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+注册事件监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名               | 类型                                       | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
+  extraInfo: ""
+};
+
+function onTaskUpdate(eventInfo) {
+  console.log(`on eventInfo id `, eventInfo.eventId);
+}
+
+localUpdater.on(eventClassifyInfo, onTaskUpdate);
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+取消注册事件监听。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名               | 类型                                       | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | 是    | 事件信息。 |
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[升级错误码](../errorcodes/errorcode-update.md)
+
+| 错误码ID       | 错误信息                                                  |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**示例：**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
+  extraInfo: ""
+};
+
+function onTaskUpdate(eventInfo) {
+  console.log(`on eventInfo id `, eventInfo.eventId);
+}
+
+localUpdater.off(eventClassifyInfo, onTaskUpdate);
+```
+
+## UpgradeInfo
+
+升级信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称           | 类型                          | 必填   | 说明     |
+| ------------ | ----------------------------- | ---- | ------ |
+| upgradeApp   | string                        | 是    | 调用方包名。  |
+| businessType | [BusinessType](#businesstype) | 是    | 升级业务类型。 |
+
+## BusinessType
+
+升级业务类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称      | 类型                                | 必填   | 说明   |
+| ------- | ----------------------------------- | ---- | ---- |
+| vendor  | [BusinessVendor](#businessvendor)   | 是    | 供应商。  |
+| subType | [BusinessSubType](#businesssubtype) | 是    | 类型。   |
 
 ## CheckResult
 
-检测结果。
+搜包结果。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
-| 名称            | 参数类型                          | 必填   | 说明     |
-| ------------- | ----------------------------- | ---- | ------ |
-| versionName   | string                        | 是    | 版本名称   |
-| versionCode   | number                        | 是    | 版本编码   |
-| size          | number                        | 是    | 版本大小   |
-| verifyInfo    | string                        | 是    | 版本校验信息 |
-| packageType   | [PackageTypes](#packagetypes) | 是    | 版本类型   |
-| descriptionId | string                        | 是    | 版本描述信息 |
+| 名称                | 类型                              | 必填   | 说明     |
+| ----------------- | --------------------------------- | ---- | ------ |
+| isExistNewVersion | bool                              | 是    | 是否有新版本。 |
+| newVersionInfo    | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据。  |
+
+## NewVersionInfo
+
+新版本数据。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                | 类型                                     | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要。 |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件。 |
+
+## VersionDigestInfo
+
+版本摘要。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称            | 类型   | 必填   | 说明   |
+| ------------- | ------ | ---- | ---- |
+| versionDigest | string | 是    | 版本摘要。 |
+
+## VersionComponent
+
+版本组件。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称              | 类型                                | 必填   | 说明       |
+| --------------- | ----------------------------------- | ---- | -------- |
+| componentId     | string                              | 是    | 组件标识。     |
+| componentType   | [ComponentType](#componenttype)     | 是    | 组件类型。     |
+| upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式。     |
+| displayVersion  | string                              | 是    | 显示版本号。    |
+| innerVersion    | string                              | 是    | 版本号。      |
+| size            | number                              | 是    | 升级包大小。    |
+| effectiveMode   | [EffectiveMode](#effectivemode)     | 是    | 生效模式。     |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 版本描述文件信息。 |
+
+## DescriptionOptions
+
+描述文件选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称       | 类型                                    | 必填   | 说明     |
+| -------- | --------------------------------------- | ---- | ------ |
+| format   | [DescriptionFormat](#descriptionformat) | 是    | 描述文件格式。 |
+| language | string                                  | 是    | 描述文件语言。 |
+
+## ComponentDescription
+
+组件描述文件。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称              | 类型                                | 必填   | 说明     |
+| --------------- | ----------------------------------- | ---- | ------ |
+| componentId     | string                              | 是    | 组件标识。   |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | 是    | 描述文件信息。 |
 
 ## DescriptionInfo
 
-版本描述信息。
+版本描述文件信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
-| 名称            | 参数类型   | 必填   | 说明            |
-| ------------- | ------ | ---- | ------------- |
-| descriptionId | string | 是    | 版本versionId信息 |
-| content       | string | 是    | 版本changelog信息 |
+| 名称              | 类型                                | 必填   | 说明     |
+| --------------- | ----------------------------------- | ---- | ------ |
+| descriptionType | [DescriptionType](#descriptiontype) | 是    | 描述文件类型。 |
+| content         | string                              | 是    | 描述文件内容。 |
+
+## CurrentVersionInfo
+
+当前版本信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                | 类型                                     | 必填   | 说明    |
+| ----------------- | ---------------------------------------- | ---- | ----- |
+| osVersion         | string                                   | 是    | 系统版本号。 |
+| deviceName        | string                                   | 是    | 设备名。   |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 否    | 版本组件。  |
+
+## DownloadOptions
+
+下载选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称           | 类型                | 必填   | 说明   |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | 是    | 网络类型。 |
+| order        | [Order](#order)     | 是    | 升级指令。 |
+
+## ResumeDownloadOptions
+
+恢复下载选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称           | 类型                | 必填   | 说明   |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | 是    | 网络类型。 |
+
+## PauseDownloadOptions
+
+暂停下载选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                | 类型 | 必填   | 说明       |
+| ----------------- | ---- | ---- | -------- |
+| isAllowAutoResume | bool | 是    | 是否允许自动恢复。 |
+
+## UpgradeOptions
+
+升级选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称    | 类型            | 必填   | 说明   |
+| ----- | --------------- | ---- | ---- |
+| order | [Order](#order) | 是    | 升级指令。 |
+
+## ClearOptions
+
+清除异常选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称     | 类型                            | 必填   | 说明   |
+| ------ | ------------------------------- | ---- | ---- |
+| status | [UpgradeStatus](#upgradestatus) | 是    | 异常状态。 |
+
+## UpgradePolicy
+
+升级策略。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                  | 类型                                    | 必填   | 说明      |
+| ------------------- | --------------------------------------- | ---- | ------- |
+| downloadStrategy    | bool                                    | 是    | 自动下载策略。  |
+| autoUpgradeStrategy | bool                                    | 是    | 自动升级策略。  |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | 是    | 自动升级时间段。 |
+
+## UpgradePeriod
+
+升级时间段。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称    | 类型   | 必填   | 说明   |
+| ----- | ------ | ---- | ---- |
+| start | number | 是    | 开始时间。 |
+| end   | number | 是    | 结束时间。 |
+
+## TaskInfo
+
+任务信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称        | 类型                  | 必填   | 说明     |
+| --------- | --------------------- | ---- | ------ |
+| existTask | bool                  | 是    | 是否存在任务。 |
+| taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据。   |
+
+## EventInfo
+
+事件信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称       | 类型                  | 必填   | 说明   |
+| -------- | --------------------- | ---- | ---- |
+| eventId  | [EventId](#eventid)   | 是    | 事件ID。 |
+| taskBody | [TaskBody](#taskinfo) | 是    | 任务数据。 |
+
+## TaskBody
+
+任务数据。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                | 类型                                     | 必填   | 说明   |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | 是    | 版本摘要。 |
+| status            | [UpgradeStatus](#upgradestatus)          | 是    | 升级状态。 |
+| subStatus         | number                                   | 否    | 子状态。  |
+| progress          | number                                   | 是    | 进度。   |
+| installMode       | number                                   | 是    | 安装模式。 |
+| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | 否    | 错误信息。 |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件。 |
+
+## ErrorMessage
+
+错误信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称           | 类型   | 必填   | 说明   |
+| ------------ | ------ | ---- | ---- |
+| errorCode    | number | 是    | 错误码。  |
+| errorMessage | string | 是    | 错误描述。 |
+
+## EventClassifyInfo
+
+事件信息。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称            | 类型                            | 必填   | 说明   |
+| ------------- | ------------------------------- | ---- | ---- |
+| eventClassify | [EventClassify](#eventclassify) | 是    | 事件类型。 |
+| extraInfo     | string                          | 是    | 额外信息。 |
+
+## UpgradeFile
+
+升级文件。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称       | 类型                            | 必填   | 说明   |
+| -------- | ------------------------------- | ---- | ---- |
+| fileType | [ComponentType](#componenttype) | 是    | 文件类型。 |
+| filePath | string                          | 是    | 文件路径。 |
+
+## UpgradeTaskCallback
+
+(eventInfo: EventInfo): void
+
+事件回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称        | 类型                    | 必填   | 说明   |
+| --------- | ----------------------- | ---- | ---- |
+| eventInfo | [EventInfo](#eventinfo) | 是    | 事件信息。 |
+
+## BusinessVendor
+
+设备厂家。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称    | 值      | 说明   |
+| ------ | -------- | ---- |
+| PUBLIC | "public" | 开源。   |
+
+## BusinessSubType
+
+升级类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称      | 值  | 说明   |
+| -------- | ---- | ---- |
+| FIRMWARE | 1    | 固件。   |
+
+## ComponentType
+
+组件类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称  | 值  | 说明   |
+| ---- | ---- | ---- |
+| OTA  | 1    | 固件。   |
+
+## UpgradeAction
+
+升级方式。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称      | 值        | 说明   |
+| -------- | ---------- | ---- |
+| UPGRADE  | "upgrade"  | 差分包。  |
+| RECOVERY | "recovery" | 修复包。  |
+
+## EffectiveMode
+
+生效模式。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称           | 值  | 说明   |
+| ------------- | ---- | ---- |
+| COLD          | 1    | 冷升级。  |
+| LIVE          | 2    | 热升级。  |
+| LIVE_AND_COLD | 3    | 融合升级。 |
+
+## DescriptionType
+
+描述文件类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称     | 值  | 说明   |
+| ------- | ---- | ---- |
+| CONTENT | 0    | 内容。   |
+| URI     | 1    | 链接。   |
+
+## DescriptionFormat
+
+描述文件格式。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称        | 值  | 说明   |
+| ---------- | ---- | ---- |
+| STANDARD   | 0    | 标准格式。 |
+| SIMPLIFIED | 1    | 简易格式。 |
+
+## NetType
+
+网络类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称               | 值  | 说明        |
+| ----------------- | ---- | --------- |
+| CELLULAR          | 1    | 数据网络。      |
+| METERED_WIFI      | 2    | 热点WIFI。    |
+| NOT_METERED_WIFI  | 4    | 非热点WIFI。   |
+| WIFI              | 6    | WIFI。      |
+| CELLULAR_AND_WIFI | 7    | 数据网络和WIFI。 |
+
+## Order
+
+升级指令。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                  | 值  | 说明    |
+| -------------------- | ---- | ----- |
+| DOWNLOAD             | 1    | 下载。    |
+| INSTALL              | 2    | 安装。    |
+| DOWNLOAD_AND_INSTALL | 3    | 下载并安装。 |
+| APPLY                | 4    | 生效。    |
+| INSTALL_AND_APPLY    | 6    | 安装并生效。 |
+
+## UpgradeStatus
+
+升级状态。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称              | 值  | 说明   |
+| ---------------- | ---- | ---- |
+| WAITING_DOWNLOAD | 20   | 待下载。  |
+| DOWNLOADING      | 21   | 下载中。  |
+| DOWNLOAD_PAUSED  | 22   | 下载暂停。 |
+| DOWNLOAD_FAIL    | 23   | 下载失败。 |
+| WAITING_INSTALL  | 30   | 待安装。  |
+| UPDATING         | 31   | 更新中。  |
+| WAITING_APPLY    | 40   | 待生效。  |
+| APPLYING         | 41   | 生效中。  |
+| UPGRADE_SUCCESS  | 50   | 升级成功。 |
+| UPGRADE_FAIL     | 51   | 升级失败。 |
+
+## EventClassify
+
+事件类型。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称   | 值        | 说明   |
+| ---- | ---------- | ---- |
+| TASK | 0x01000000 | 任务事件。 |
+
+## EventId
+
+事件ID。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                     | 值        | 说明     |
+| ---------------------- | ---------- | ------ |
+| EVENT_TASK_BASE        | EventClassify.TASK | 任务事件。   |
+| EVENT_TASK_RECEIVE     | 0x01000001 | 收到任务。   |
+| EVENT_TASK_CANCEL      | 0x01000010 | 取消任务。   |
+| EVENT_DOWNLOAD_WAIT    | 0x01000011 | 待下载。    |
+| EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载。   |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | 下载进度更新。 |
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 下载暂停。   |
+| EVENT_DOWNLOAD_RESUME  | 0x01000111 | 恢复下载。   |
+| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | 下载成功。   |
+| EVENT_DOWNLOAD_FAIL    | 0x01001001 | 下载失败。   |
+| EVENT_UPGRADE_WAIT     | 0x01001010 | 待升级。    |
+| EVENT_UPGRADE_START    | 0x01001011 | 开始升级。   |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中。    |
+| EVENT_APPLY_WAIT       | 0x01001101 | 待生效。    |
+| EVENT_APPLY_START      | 0x01001110 | 开始生效。   |
+| EVENT_UPGRADE_SUCCESS  | 0x01001111 | 更新成功。   |
+| EVENT_UPGRADE_FAIL     | 0x01010000 | 更新失败。   |

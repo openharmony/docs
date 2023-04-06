@@ -5,7 +5,8 @@
 
 You can search for common development resources on [DevEco Marketplace](https://repo.harmonyos.com) and import required resources to your projects through dependencies. If you cannot find the desired resources there, develop the resources on your own and publish them in the form of an HPM Part. To develop HPM Parts, install the hpm-cli tool first.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > You are advised to perform the following operations on Ubuntu 18.04 or later.
 
 
@@ -180,36 +181,36 @@ The following uses the **bundle.json** file as an example. In this example, the 
 
 ```
 {
-"name": "@your/dist_name",
-"version": "2.2.0",
-"publishAs": "distribution",
-"description": "describe it",
-"scripts": {
-"config_hb": "hb set -root $DEP_BUNDLE_BASE",
-"dist": "PATH=/root/.local/bin:${DEP_OHOS_gn}:${DEP_OHOS_ninja}/ninja:${DEP_OHOS_llvm}/llvm/bin:${DEP_OHOS_hc_gen}/hc-gen:${PATH} && ./scripts/dist.sh"
-},
-"envs": {
-"debug": false
-},
-"dirs": {
-"scripts": "scripts/*"
-},
-"dependencies": {
-"@ohos/build_lite": "2.2.0",
-"@ohos/gn": "1.1.1",
-"@ohos/llvm": "1.1.1",
-"@ohos/hc_gen": "1.1.0",
-"@ohos/ninja": "1.1.0",
-......
-},
-"ohos": {
-"os": "2.2-Beta",
-"board": "hi3516",
-"kernel": "liteos-a"
-},
-"keywords": [ "hispark", "hi3516"   ],
-"repository": "https://gitee.com/openharmony/your-project",
-"license": "Apache V2"
+  "name": "@your/dist_name",
+  "version": "2.2.0",
+  "publishAs": "distribution",
+  "description": "describe it",
+  "scripts": {
+    "config_hb": "hb set -root $DEP_BUNDLE_BASE",
+    "dist": "PATH=/root/.local/bin:${DEP_OHOS_gn}:${DEP_OHOS_ninja}/ninja:${DEP_OHOS_llvm}/llvm/bin:${DEP_OHOS_hc_gen}/hc-gen:${PATH} && ./scripts/dist.sh"
+  },
+  "envs": {
+    "debug": false
+  },
+  "dirs": {
+    "scripts": "scripts/*"
+  },
+  "dependencies": {
+    "@ohos/build_lite": "2.2.0",
+    "@ohos/gn": "1.1.1",
+    "@ohos/llvm": "1.1.1",
+    "@ohos/hc_gen": "1.1.0",
+    "@ohos/ninja": "1.1.0",
+    ......
+  },
+  "ohos": {
+    "os": "2.2-Beta",
+    "board": "hi3516",
+    "kernel": "liteos-a"
+  },
+  "keywords": ["hispark", "hi3516"],
+  "repository": "https://gitee.com/openharmony/your-project",
+  "license": "Apache V2"
 }
 ```
 
@@ -258,9 +259,10 @@ executable("hello_world") {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > - **executable** is a built-in template of gn. You can run the **gn help executable** command to view how to use this template.
-> 
+>
 > - **sources** represents the source code path, and **include_dirs** represents the header file path.
 
 
@@ -320,11 +322,12 @@ In the directory where the HPM Part is located, run the following command to pac
 hpm publish
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > - To avoid HPM Part name conflicts, name an HPM Part in the format of **\@org_name/bundle_name**.
-> 
+>
 > - Your account must also be a member of **org_name** so that you can publish or update HPM Parts in the organization.
-> 
+>
 > - The published HPM Parts take effect only after security and content reviews.
 
 
@@ -371,7 +374,7 @@ Open the **bundle.json** file. You will see that the HPM Part has been introduce
 
 ```
 {
-"dependencies": {
+  "dependencies": {
     "@scope/the_bundle": "^1.0.0"
   }
 }
@@ -382,7 +385,7 @@ You can edit the dependencies of multiple HPM Parts in this file.
 
 ```
 {
-"dependencies": {
+  "dependencies": {
     "@scope/the_bundle1": "^1.0.0",
     "@scope/the_bundle2": "^2.0.0",
     "@scope/the_bundle3": "^3.0.0",
@@ -398,13 +401,13 @@ Run the **hpm install** command again to download and install all HPM Parts that
 
 If the referenced HPM Part is shared by multiple projects, for example, the compiler toolchain, you can install it globally.
 
-  Run the following command in your project. Make sure that the project directory contains the **bundle.json** file.
+Run the following command in your project. Make sure that the project directory contains the **bundle.json** file.
 
 ```
 $ hpm install -g @scope/the_tool
 ```
 
-  The referenced HPM Part will be installed in the directory specified by the **globalRepo** parameter of the **hpm config** command.
+The referenced HPM Part will be installed in the directory specified by the **globalRepo** parameter of the **hpm config** command.
 
 ```
 ~\.hpm\global\ohos_bundles            
@@ -412,31 +415,32 @@ $ hpm install -g @scope/the_tool
 │    └─ the_tool     # <--- Referenced HPM Part
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > - For an HPM Part installed in a project, you can reference it using the environment variable **DEP_SCOPE_bundle_name** when running the hpm build command.
->     For example, after you run **hpm i \@opensource/gn** to install an HPM Part, edit the build script in the **bundle.json** file as follows:
->    
->   ```
->   "scripts": {
->       "build": "${DEP_OPENSOURCE_gn}/gn  --version"
->     },
->   ```
-> 
->   Then, you can run the **hpm build** command to call gn functions.
-> 
+>  For example, after you run **hpm i \@opensource/gn** to install an HPM Part, edit the build script in the **bundle.json** file as follows:
+>
+> ```
+> "scripts": {
+>    "build": "${DEP_OPENSOURCE_gn}/gn  --version"
+>  },
+> ```
+>
+> Then, you can run the **hpm build** command to call gn functions.
+>
 > - For a globally installed HPM Part, you can directly call the HPM Part using an environment variable or reference the HPM Part using the **${key}/tool_name** parameter in the **hpm config set key value** command. Example:
->    
->   ```
->   hpm i -g @ohos/opensource/gn
->   hpm config BUILD_SYS_GN ~/.hpm/global/ohos_bundles/opensource/gn
->   ```
-> 
->     You can edit the build script in the **bundle.json** file as follows:
->    
->   ```
->   "scripts": {
->       "build": "${BUILD_SYS_GN}/gn  --version"
->     },
->   ```
-> 
->   Then, you can run the **hpm build** command to call gn functions.
+>
+> ```
+> hpm i -g @ohos/opensource/gn
+> hpm config BUILD_SYS_GN ~/.hpm/global/ohos_bundles/opensource/gn
+> ```
+>
+>  You can edit the build script in the **bundle.json** file as follows:
+>
+> ```
+> "scripts": {
+>    "build": "${BUILD_SYS_GN}/gn  --version"
+>  },
+> ```
+>
+> Then, you can run the **hpm build** command to call gn functions.

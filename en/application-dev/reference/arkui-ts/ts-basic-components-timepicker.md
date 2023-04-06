@@ -1,52 +1,49 @@
 # TimePicker
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<TimePicker>** component allows users to select a time from the given range.
 
-
-## Required Permissions
-
-No
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-No
+Not supported
 
 
 ## APIs
 
-TimePicker(options?: TimePickerOptions)
+TimePicker(options?: {selected?: Date})
 
-Creates a time picker whose default time range is from 00:00 to 23:59.
+Creates a time picker, which is in 24-hour format by default.
 
-- options parameters
-  | Name     | Type | Mandatory | Default Value       | Description                |
-  | -------- | ---- | --------- | ------------------- | -------------------------- |
-  | selected | Date | No        | Current system time | Time of the selected item. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| selected | Date | No| Time of the selected item.<br>Default value: current system time|
 
 
 ## Attributes
 
-| Name            | Type    | Default Value | Description                              |
-| --------------- | ------- | ------------- | ---------------------------------------- |
-| useMilitaryTime | boolean | false         | Whether to display time in 24-hour format. The value cannot be modified dynamically. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| useMilitaryTime | boolean | Whether to display time in 24-hour format. The value cannot be modified dynamically.<br>Default value: **false**|
 
 
 ## Events
 
-| Name                                     | Description                        |
-| ---------------------------------------- | ---------------------------------- |
-| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | Triggered when a time is selected. |
+| Name                                      | Description       |
+| ---------------------------------------- | ----------- |
+| onChange(callback: (value: TimePickerResult ) =&gt; void) | Triggered when a time is selected.|
 
-### TimePickerResult
-| Name   | Type   | Description                          |
-| ------ | ------ | ------------------------------------ |
-| hour   | number | Hour portion of the selected time.   |
-| minute | number | Minute portion of the selected time. |
+## TimePickerResult
+
+| Name    | Type  | Description     |
+| ------ | ------ | ------- |
+| hour   | number | Hour portion of the selected time.|
+| minute | number | Minute portion of the selected time.|
 
 
 ## Example
@@ -54,24 +51,32 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 
 ### Time Picker
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('08-00')
+  @State isMilitaryTime: boolean = false
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
 
   build() {
     Column() {
+      Button ('Switch Time Format')
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isMilitaryTime = !this.isMilitaryTime
+        })
       TimePicker({
         selected: this.selectedTime,
       })
-      .useMilitaryTime(true)
-      .onChange((date: TimePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
+        .useMilitaryTime(this.isMilitaryTime)
+        .onChange((value: TimePickerResult) => {
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
     }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001251292933](figures/en-us_image_0000001251292933.gif)
+![timePicker](figures/timePicker.gif)

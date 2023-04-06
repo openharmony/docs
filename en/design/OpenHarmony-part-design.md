@@ -4,7 +4,7 @@
 
 For easy software design and management, OpenHarmony decouples software from physical components, parts, and modules. A **component** can be independently deployed and reused at the binary level. A **part** can be independently developed, built, and tested. A **module** can be reused at the code level.
 
-OpenHarmony abstracts system capabilities as parts, so you can customize OSs for different devices by assembling and configuring these parts.
+OpenHarmony abstracts system capabilities as parts, so you can assemble and configure these parts to customize an OS for different devices.
 
 ## Part Definition
 
@@ -12,7 +12,7 @@ A part is the basic unit of system capabilities. Divided based on source code, e
 
 ## Part Division
 
-Follow the following rules for part classification:
+Observe the following rules for part classification:
 
 - A part must have an independent code directory for compiling libraries or executable files.
 
@@ -50,7 +50,7 @@ Comply with the following rules and recommendations during parts design and deve
 
 #### **Part Name**
 
-The name must reflect the key function of a part and must be globally unique in the system. The name can contain a maximum of 63 characters and must be in the unix\_like style, where only lowercase letters separated by underscores (\_) are used.
+The name must reflect the key function of a part and must be globally unique in the system. It can contain a maximum of 63 characters and must be in the unix\_like style, where only lowercase letters separated by underscores (\_) are used.
 
 #### **Repository Name**
 
@@ -78,7 +78,7 @@ The part name must be in the format of <Domain\>/<Subsystem\>/<Part\>, for examp
 │   └── inner_api       # Internal APIs of parts
 ├── frameworks          # Implementation of the part without independent processes (optional)
 │   ├── native          # C/C++ API implementation (optional)
-│   └── js              #  JS API implementation (optional)
+│   └── js              # JS API implementation (optional)
 │        ├── napi       # Native API implementation (optional)
 │        ├── builtin	# Specific to LiteOS-M (optional)
 │        └── plugin     # Specific to ArkUI (optional)
@@ -96,21 +96,23 @@ The addition, deletion, and modification of parts must be reviewed by the archit
 
 Table 1 Part attribute review form
 
-| Part Attribute| Description|
+| Part Attribute | Description |
 | ------------ | ------------------------------------------------------------ |
-| Part name| The name must reflect the key function of a part and must be globally unique in the system. The name can contain a maximum of 63 characters and must be in the unix\_like style, where only lowercase letters separated by underscores (\_) are used.|
-| Subsystem| Subsystem to which the part belongs.|
-| Function description| Brief description of the functions of the part in one or two sentences.|
-| Configurable features| Features that can be configured externally.|
-| Applicable systems| Mini system, small system, standard system, or their combinations.|
-| Source code directory| Root directory of the source code of the part.|
-| ROM          | ROM baseline value of the part.|
-| RAM          | RAM baseline value of the part.|
-| Dependencies| Parts and open source software on which the part depends.|
+| Part name | The name must reflect the key function of a part and must be globally unique in the system. The name can contain a maximum of 63 characters and must be in the unix\_like style, where only lowercase letters separated by underscores (\_) are used. |
+| Subsystem | Subsystem to which the part belongs. |
+| Function description | Brief description of the functions of the part in one or two sentences. |
+| Configurable features | Features that can be configured externally. |
+| Applicable systems | Mini system, small system, standard system, or their combinations. |
+| Source code directory | Root directory of the source code of the part. |
+| ROM          | ROM baseline value of the part. |
+| RAM          | RAM baseline value of the part. |
+| Dependencies | Parts and open source software on which the part depends. |
 
 
 2. Send an email to the architecture SIG (dev@openharmony.io) and the [related domain SIG leaders](https://gitee.com/openharmony/community/blob/master/sig/sigs_subsystem_list.md) for review. Use "Application for Adding/Deleting/Modifying OpenHarmony Parts" as the email subject, and include the filled-in **Table 1 Part Attribute Review Form** in the email body.
 
-> Note: For modified parts, provide a before and after comparison of the part attributes. For deleted parts, provide the plan for stopping part maintenance. Exercise caution when deleting or modifying parts and evaluate the impact on existing versions.
+> Note: 
+>
+> For modified parts, provide a before and after comparison of the part attributes. For deleted parts, provide the plan for stopping part maintenance. Exercise caution when deleting or modifying parts and evaluate the impact on existing versions.
 
 3. After the review is passed, create a part repository and modify the manifest according to [SIG Management Regulations](https://gitee.com/openharmony/community/blob/master/sig/README-EN.md). After the SIG is incubated, incorporate it into the main code library of OpenHarmony.

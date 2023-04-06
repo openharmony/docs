@@ -1,27 +1,26 @@
-# Switch开发指导
+# switch开发指导
 
 
-Switch为开关选择器，切换开启或关闭状态。具体用法请参考[Switch](../reference/arkui-js/js-components-basic-switch.md)。
+switch为开关选择器，切换开启或关闭状态。具体用法请参考[switch](../reference/arkui-js/js-components-basic-switch.md)。
 
 
-## 创建Switch组件
+## 创建switch组件
 
-在pages/index目录下的hml文件中创建一个Switch组件。
+在pages/index目录下的hml文件中创建一个switch组件。
 
 
-```
+```html
+<!-- xxx.hml -->
 <div class="container">
-    <switch></switch>
+    <switch checked="true"></switch>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
@@ -31,9 +30,9 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
 
 ## 添加属性和方法
 
-  witch组件通过textoff和showtext属性设置文本选中和未选中时的状态。设置checked属性值为true（组件为打开状态）。添加change事件，当组件状态改变时触发，触发后执行switchChange函数获取组件当前状态（关闭/打开）。
+  switch组件通过textoff和showtext属性设置文本选中和未选中时的状态。设置checked属性值为true（组件为打开状态）。添加change事件，当组件状态改变时触发，触发后执行switchChange函数获取组件当前状态（关闭/打开）。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <switch showtext="true" texton="open" textoff="close" checked="true" @change="switchChange"></switch>
@@ -41,7 +40,7 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -51,10 +50,8 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
   align-items: center;
   background-color: #F1F3F5;
 }
-switch{
-  // 选中时的字体颜色
+switch {
   texton-color: #002aff;
-  // 未选中时的字体颜色
   textoff-color: silver;
   text-padding: 20px; 
   font-size: 50px;
@@ -62,17 +59,17 @@ switch{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   switchChange(e){
     if(e.checked){
-      prompt.showToast({
+      promptAction.showToast({
         message: "open"
       });
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "close"
       });
     }
@@ -84,7 +81,7 @@ export default {
 ![zh-cn_image_0000001221030133](figures/zh-cn_image_0000001221030133.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当showtext属性值设置为true时，texton和textoff设置的文本才会生效。
 
 
@@ -92,9 +89,9 @@ export default {
 
 在下面示例中设置开关为打开状态（使用默认收货地址），关闭开关后页面显示选择地址按钮，点击按钮即可改变收货地址。
 
-  实现方法：创建Switch开关，设置checked属性为true，通过数据绑定改变收货地址。设置display属性（默认为none），当关闭开关改变display属性值为flex后显示地址模块，点击按钮改变颜色。
+  实现方法：创建switch开关，设置checked属性为true，通过数据绑定改变收货地址。设置display属性（默认为none），当关闭开关改变display属性值为flex后显示地址模块，点击按钮改变颜色。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="change">
@@ -113,7 +110,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -168,9 +165,8 @@ switch{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     address: '',

@@ -1,6 +1,6 @@
-# 非线性容器LightWeightSet  
+# @ohos.util.LightWeightSet (非线性容器LightWeightSet)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
@@ -13,13 +13,14 @@ LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合�
 
 **推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
 import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
-
-
 
 ## LightWeightSet
 
@@ -27,7 +28,7 @@ import LightWeightSet from '@ohos.util.LightWeightSet';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LightWeightSet的元素个数。 |
 
@@ -39,6 +40,14 @@ constructor()
 LightWeightSet的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
 
 **示例：**
 
@@ -60,6 +69,14 @@ isEmpty(): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **示例：**
 
@@ -88,11 +105,19 @@ add(obj: T): boolean
 | -------- | -------- |
 | boolean | 成功添加元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = lightWeightSet.add("squirrel");
 ```
 
 
@@ -110,14 +135,22 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | 是 | 提供添加元素的lightWeightSet。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The addAll method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sfage");
+set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
 
@@ -142,14 +175,22 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 | -------- | -------- |
 | boolean | 包含所有元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sdfs");
+set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
 ```
 
@@ -173,6 +214,14 @@ has(key: T): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 包含指定key返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
 
 **示例：**
 
@@ -204,13 +253,21 @@ equal(obj: Object): boolean
 | -------- | -------- |
 | boolean | 构成类型相同返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -228,6 +285,15 @@ increaseCapacityTo(minimumCapacity: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | minimumCapacity | number | 是 | 需要容纳数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 10200001 | The value of minimumCapacity is out of range. |
 
 **示例：**
 
@@ -257,13 +323,21 @@ getIndexOf(key: T): number
 | -------- | -------- |
 | number | 在lightWeightSet中指定数据的下标。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.getIndexOf("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.getIndexOf("sparrow");
 ```
 
 
@@ -287,13 +361,21 @@ remove(key: T): T
 | -------- | -------- |
 | T | 返回删除元素的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.remove("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.remove("sparrow");
 ```
 
 
@@ -317,12 +399,20 @@ removeAt(index: number): boolean
 | -------- | -------- |
 | boolean | 确认是否成功删除元素 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
 ```
 
@@ -347,12 +437,20 @@ getValueAt(index: number): T
 | -------- | -------- |
 | T | 返回指定下标对应的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+
 **参数：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
 ```
 
@@ -365,12 +463,20 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 lightWeightSet.clear();
 ```
 
@@ -393,8 +499,8 @@ toString(): String
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
 ```
 
@@ -413,12 +519,20 @@ toArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回对应数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The toArray method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
 ```
 
@@ -437,12 +551,20 @@ values(): IterableIterator&lt;T&gt;
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -454,7 +576,7 @@ while(index < lightWeightSet.length) {
 
 ### forEach
 
-forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
 
@@ -464,7 +586,7 @@ forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | 是 | 回调函数。 |
+| callbackFn | function | 是 | 回调函数。 |
 | thisArg | Object | 否 | callbackfn被调用时用作this值。 |
 
 callbackfn的参数说明：
@@ -474,14 +596,22 @@ callbackfn的参数说明：
 | key | T | 否 | 当前遍历到的元素（和value相同）。 |
 | set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("sdfs");
-lightWeightSet.add("dfsghsf");
+lightWeightSet.add("sparrow");
+lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -500,12 +630,20 @@ entries(): IterableIterator<[T, T]>
 | -------- | -------- |
 | IterableIterator<[T, T]> | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -529,12 +667,20 @@ while(index < lightWeightSet.length) {
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
 **示例：**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 
 // 使用方法一：
 for (let item of lightWeightSet) { 

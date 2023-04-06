@@ -1,7 +1,6 @@
-# Nonlinear Container LightWeightSet 
+# @ohos.util.LightWeightSet (Nonlinear Container LightWeightSet)
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **LightWeightSet** stores a set of values, each of which must be unique.
@@ -14,13 +13,14 @@ Compared with **[HashSet](js-apis-hashset.md)**, which can also store values, **
 
 **Recommended use case**: Use **LightWeightSet** when you need a set that has only unique elements or need to deduplicate a set.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
 import LightWeightSet from '@ohos.util.LightWeightSet';  
 ```
-
-
 
 ## LightWeightSet
 
@@ -40,6 +40,14 @@ constructor()
 A constructor used to create a **LightWeightSet** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -61,6 +69,14 @@ Checks whether this container is empty (contains no element).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -89,11 +105,19 @@ Adds an element to this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = lightWeightSet.add("squirrel");
 ```
 
 
@@ -111,14 +135,22 @@ Adds all elements in a **LightWeightSet** instance to this container.
 | -------- | -------- | -------- | -------- |
 | set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose elements are to be added to the current container.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The addAll method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sfage");
+set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
 
@@ -143,14 +175,22 @@ Checks whether this container contains all elements of the specified **LightWeig
 | -------- | -------- |
 | boolean | Returns **true** if all the elements in the specified **LightWeightSet** instance are contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sdfs");
+set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
 ```
 
@@ -175,6 +215,14 @@ Checks whether this container has the specified key.
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **Example**
 
 ```ts
@@ -197,7 +245,7 @@ Checks whether this container contains objects of the same type as the specified
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| obj | Object | Yes| Object to be used for comparison.|
+| obj | Object | Yes| **LightWeightSet** instance to be used for comparison.|
 
 **Return value**
 
@@ -205,13 +253,21 @@ Checks whether this container contains objects of the same type as the specified
 | -------- | -------- |
 | boolean | Returns **true** if the container contains objects of the same type as the specified **obj**; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -229,6 +285,15 @@ Increases the capacity of this container.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | minimumCapacity | number | Yes| Minimum number of elements to accommodate in the container.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 10200001 | The value of minimumCapacity is out of range. |
 
 **Example**
 
@@ -258,13 +323,21 @@ Obtains the position index of the element with the specified key in this contain
 | -------- | -------- |
 | number | Position index of the element.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.getIndexOf("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.getIndexOf("sparrow");
 ```
 
 
@@ -288,13 +361,21 @@ Removes an element of the specified key from this container.
 | -------- | -------- |
 | T | Value of the element removed.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.remove("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.remove("sparrow");
 ```
 
 
@@ -318,12 +399,20 @@ Removes the element at the specified position from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
 ```
 
@@ -348,12 +437,20 @@ Obtains the value of the element at the specified position in this container.
 | -------- | -------- |
 | T | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+
 **Parameters**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
 ```
 
@@ -366,12 +463,20 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 lightWeightSet.clear();
 ```
 
@@ -394,8 +499,8 @@ Obtains a string that contains all elements in this container.
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
 ```
 
@@ -414,12 +519,20 @@ Obtains an array that contains all objects in this container.
 | -------- | -------- |
 | Array&lt;T&gt; | Array obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The toArray method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
 ```
 
@@ -438,12 +551,20 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -455,7 +576,7 @@ while(index < lightWeightSet.length) {
 
 ### forEach
 
-forEach(callbackfn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -465,7 +586,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -475,14 +596,22 @@ callbackfn
 | key| T | No| Key of the element that is currently traversed (same as **value**).|
 | set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("sdfs");
-lightWeightSet.add("dfsghsf");
+lightWeightSet.add("sparrow");
+lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -501,12 +630,20 @@ Obtains an iterator that contains all the elements in this container.
 | -------- | -------- |
 | IterableIterator<[T, T]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -530,12 +667,20 @@ Obtains an iterator, each item of which is a JavaScript object.
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 
 // Method 1:
 for (let item of lightWeightSet) { 

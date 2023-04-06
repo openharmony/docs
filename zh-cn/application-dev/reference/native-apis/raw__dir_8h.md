@@ -1,37 +1,35 @@
 # raw_dir.h
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+提供rawfile目录相关功能。
+
+功能包括遍历和关闭rawfile目录。
+
+**起始版本：**
+
+8
+
+**相关模块：**
 
 [Rawfile](rawfile.md)
 
-**Description:**
 
-提供rawfile目录相关功能
-
-功能包括遍历和关闭rawfile目录
-
-**Since:**
-8
-**Version:**
-1.0
-
-## **Summary**
+## 汇总
 
 
-### Typedefs
+### 类型定义
 
-  | Typedef&nbsp;Name | Description | 
+| 类型定义名称 | 描述 |
 | -------- | -------- |
-| [RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3) | typedef&nbsp;struct&nbsp;[RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)<br/>提供对rawfile目录的访问 | 
+| [RawDir](rawfile.md#rawdir) | 提供对rawfile目录的访问 |
 
 
-### Functions
+### 函数
 
-  | Function | Description | 
+| 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_ResourceManager_GetRawFileName](rawfile.md#gaf522ad160d8ca2bd476b6ad45696e1af)&nbsp;([RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)&nbsp;\*rawDir,&nbsp;int&nbsp;index) | const&nbsp;char&nbsp;\*<br/>通过索引获取rawfile文件名称 | 
-| [OH_ResourceManager_GetRawFileCount](rawfile.md#ga604cd2ced1bf4a0d1ace7b0fc89cb884)&nbsp;([RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)&nbsp;\*rawDir) | int<br/>获取[RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)中的rawfile数量 | 
-| [OH_ResourceManager_CloseRawDir](rawfile.md#ga1db0825028507d355db4067f187223de)&nbsp;([RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)&nbsp;\*rawDir) | void<br/>关闭已打开的[RawDir](rawfile.md#ga654d75f2b4badf0dac10c4127a9938c3)并释放所有相关联资源 | 
+| [OH_ResourceManager_GetRawFileName](rawfile.md#oh_resourcemanager_getrawfilename) ([RawDir](rawfile.md#rawdir) \*rawDir, int index) | 通过索引获取rawfile文件名称 |
+| [OH_ResourceManager_GetRawFileCount](rawfile.md#oh_resourcemanager_getrawfilecount) ([RawDir](rawfile.md#rawdir) \*rawDir) | 获取[RawDir](rawfile.md#rawdir)中的rawfile数量 |
+| [OH_ResourceManager_CloseRawDir](rawfile.md#oh_resourcemanager_closerawdir) ([RawDir](rawfile.md#rawdir) \*rawDir) | 关闭已打开的[RawDir](rawfile.md#rawdir)并释放所有相关联资源 |

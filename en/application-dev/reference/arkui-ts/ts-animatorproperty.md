@@ -1,75 +1,78 @@
-# AnimatorProperty
+# Property Animator
 
+You can create a property animator to animate certain universal attributes of a component, including **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**.
 
-> **NOTE**<br>
-> This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
 
-When the universal attributes of a component change, you can create an **AnimatorProperty** for gradient to improve user experience.
+Since API version 9, this API is supported in ArkTS widgets.
 
+**Parameters**
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| duration | number | 1000 | Animation duration, in ms. The default duration is 1000 ms. |
-| curve | Curve | Curve.Linear | Animation curve. The default curve is linear. |
-| delay | number | 0 | Delay of animation playback, in ms. By default, the playback is not delayed. |
-| iterations | number | 1 | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
-| playMode | [PlayMode](ts-appendix-enums.md#playmode-enums) | PlayMode.Normal | Playback mode. By default, the animation is played from the beginning after the playback is complete. |
-
-
-- Curve enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Linear | The animation speed keeps unchanged. | 
-  | Ease | The animation starts at a low speed and then accelerates. It slows down before the animation ends. The cubic-bezier curve (0.25, 0.1, 0.25, 1.0) is used. | 
-  | EaseIn | The animation starts at a low speed. The cubic-bezier curve (0.42, 0.0, 1.0, 1.0) is used. | 
-  | EaseOut | The animation ends at a low speed. The cubic-bezier curve (0.0, 0.0, 0.58, 1.0) is used. | 
-  | EaseInOut | The animation starts and ends at a low speed. The cubic-bezier curve (0.42, 0.0, 0.58, 1.0) is used. | 
-  | FastOutSlowIn | The animation uses the standard cubic-bezier curve (0.4, 0.0, 0.2, 1.0). | 
-  | LinearOutSlowIn | The animation uses the deceleration cubic-bezier curve (0.0, 0.0, 0.2, 1.0). | 
-  | FastOutLinearIn | The animation uses the acceleration cubic-bezier curve (0.4, 0.0, 1.0, 1.0). | 
-  | ExtremeDeceleration | The animation uses the extreme deceleration cubic-bezier curve (0.0, 0.0, 0.0, 1.0). | 
-  | Sharp | The animation uses the sharp cubic-bezier curve (0.33, 0.0, 0.67, 1.0). | 
-  | Rhythm | The animation uses the rhythm cubic-bezier curve (0.7, 0.0, 0.2, 1.0). | 
-  | Smooth | The animation uses the smooth cubic-bezier curve (0.4, 0.0, 0.4, 1.0). | 
-  | Friction | Damping curve. The cubic-bezier curve (0.2, 0.0, 0.2, 1.0) is used. | 
+| Name        | Type                                      | Mandatory   | Description                                                        |
+| ---------- | ------------------------------------------| ---- | ------------------------------------------------------------ |
+| duration   | number                                    | No   | Animation duration, in ms.<br>Default value: **1000**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The maximum animation duration on an ArkTS widget is 1000 ms. If the set value exceeds the limit, the value **1000** will be used. |
+| tempo      | number                                    | No   | Animation playback speed. A greater value indicates a higher animation playback speed.<br>The value **0** indicates that no animation is applied.<br>Default value: **1**|
+| curve      | string \| [Curve](ts-appendix-enums.md#curve) \| ICurve<sup>9+</sup> | No  | Animation curve.<br>Default value: **Curve.Linear**<br>Since API version 9, this API is supported in ArkTS widgets. |
+| delay      | number                                    | No   | Delay of animation playback, in ms. The value **0** indicates that the playback is not delayed.<br>Default value: **0**  |
+| iterations | number                                    | No   | Number of times that the animation is played. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onFinish   | () => void                                | No   | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AttrAnimationExample {
-  @State widthSize: number = 200
+  @State widthSize: number = 250
   @State heightSize: number = 100
+  @State rotateAngle: number = 0
   @State flag: boolean = true
 
   build() {
     Column() {
-      Button('click me')
-        .onClick((event: ClickEvent) => {
+      Button('change size')
+        .onClick(() => {
           if (this.flag) {
-            this.widthSize = 100
-            this.heightSize = 50
+            this.widthSize = 150
+            this.heightSize = 60
           } else {
-            this.widthSize = 200
+            this.widthSize = 250
             this.heightSize = 100
           }
           this.flag = !this.flag
         })
-        .width(this.widthSize).height(this.heightSize).backgroundColor(0x317aff)
+        .margin(30)
+        .width(this.widthSize)
+        .height(this.heightSize)
         .animation({
-          duration: 2000, // Animation duration
-          curve: Curve.EaseOut, // Animation curve
-          delay: 500, // Animation delay
-          iterations: 1, // Number of playback times
-          playMode: PlayMode.Normal // Animation mode
-        }) // Animation configuration for the width and height attributes of the Button component
-    }.width('100%').margin({ top: 5 })
+          duration: 2000,
+          curve: Curve.EaseOut,
+          iterations: 3,
+          playMode: PlayMode.Normal
+        })
+      Button('change rotate angle')
+        .onClick(() => {
+          this.rotateAngle = 90
+        })
+        .margin(50)
+        .rotate({ angle: this.rotateAngle })
+        .animation({
+          duration: 1200,
+          curve: Curve.Friction,
+          delay: 500,
+          iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
+          playMode: PlayMode.Alternate
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
 
-![en-us_image_0000001212378444](figures/en-us_image_0000001212378444.gif)
+![animation](figures/animation.gif)

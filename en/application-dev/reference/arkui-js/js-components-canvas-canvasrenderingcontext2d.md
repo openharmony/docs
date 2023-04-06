@@ -1,7 +1,8 @@
 # CanvasRenderingContext2D
 
->  **NOTE**<br>
->  Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 **CanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on a canvas.
 
@@ -47,25 +48,25 @@
 
 ## Attributes
 
-| Name                                                         | Type                                                         | Default Value                                  | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                                      | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                                              | Style to fill an area.<br>- When the type is **\<color>**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineWidth](#linewidth)                                      | number                                                       | -                                              | Line width.                                                  |
-| [strokeStyle](#strokestyle)                                  | \<color> \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | -                                              | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method. |
-| [lineCap](#linecap)                                          | string                                                       | butt                                           | Style of the specified line endpoint. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness. |
-| [lineJoin](#linejoin)                                        | string                                                       | miter                                          | Style of the intersection point between line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
-| [miterLimit](#miterlimit)                                    | number                                                       | 10                                             | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
-| [font](#font)                                                | string                                                       | "normal normal 14px sans-serif" | Font style.<br>Syntax: ctx.font="font-style font-weight font-size font-family"<sup>5+</sup><br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. |
-| [textAlign](#textalign)                                      | string                                                       | left                                           | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
-| [textBaseline](#textbaseline)                                | string                                                       | alphabetic                                     | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
-| [globalAlpha](#globalalpha)                                  | number                                                       | -                                              | Opacity.<br> **0.0**: completely transparent.<br/>**1.0**: completely opaque. |
-| [lineDashOffset](#linedashoffset)                            | number                                                       | 0.0                                            | Offset of the dashed line. The precision is float.           |
-| [globalCompositeOperation](#globalcompositeoperation)        | string                                                       | source-over                                    | Composition operation type. Available values are as follows: **source-over**, **source-atop**, **source-in**, **source-out**, **destination-over**, **destination-atop**, **destination-in**, **destination-out**, **lighter**, copy, and **xor**. For details, see [Operation types](#globalcompositeoperation). |
-| [shadowBlur](#shadowblur)                                    | number                                                       | 0.0                                            | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float. |
-| [shadowColor](#shadowcolor)                                  | &lt;color&gt;                                                | -                                              | Shadow color.                                                |
-| [shadowOffsetX](#shadowoffsetx)                              | number                                                       | -                                              | X-axis shadow offset relative to the original object.        |
-| [shadowOffsetY](#shadowoffsety)                              | number                                                       | -                                              | Y-axis shadow offset relative to the original object.        |
-| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                                      | true                                           | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
+| Name                                      | Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle)                  | &lt;color&gt; \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | Style to fill an area.<br>- When the type is **\<color>**, this parameter indicates the color of the filling area.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method.|
+| [lineWidth](#linewidth)                  | number                                   | Line width.                              |
+| [strokeStyle](#strokestyle)              | &lt;color&gt; \| [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md) \| CanvasPattern | Stroke style.<br>- When the type is **\<color>**, this parameter indicates the stroke color.<br>- When the type is **CanvasGradient**, this parameter indicates a gradient object, which is created using the **createLinearGradient()** method.<br>- When the type is **CanvasPattern**, this parameter indicates a canvas pattern, which is created using the **createPattern()** method.|
+| [lineCap](#linecap)                      | string                                   | Style of the specified line endpoint. The options are as follows:<br>- **butt**: The endpoints of the line are squared off.<br>- **round**: The endpoints of the line are rounded.<br>- **square**: The endpoints of the line are squared off, and each endpoint has added a rectangle whose length is the same as the line thickness and whose width is half of the line thickness.<br>Default value: **butt**|
+| [lineJoin](#linejoin)                    | string                                   | Style of the intersection point between line segments. The options are as follows:<br>- **round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width.<br>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent.<br>- **miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **miter**|
+| [miterLimit](#miterlimit)                | number                                   | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**  |
+| [font](#font)                            | string                                   | Font style.<br>Syntax: ctx.font="font-style font-weight font-size font-family"<sup>5+</sup><br>- (Optional) **font-style**: font style. Available values are **normal** and **italic**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**.<br>Default value: **"normal normal 14px sans-serif"**|
+| [textAlign](#textalign)                  | string                                   | Text alignment mode. Available values are as follows:<br>- **left**: The text is left-aligned.<br>- **right**: The text is right-aligned.<br>- **center**: The text is center-aligned.<br>- **start**: The text is aligned with the start bound.<br>- **end**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**.<br>Default value: **left**|
+| [textBaseline](#textbaseline)            | string                                   | Horizontal alignment mode of text. Available values are as follows:<br>- **alphabetic**: The text baseline is the normal alphabetic baseline.<br>- **top**: The text baseline is on the top of the text bounding box.<br>- **hanging**: The text baseline is a hanging baseline over the text.<br>- **middle**: The text baseline is in the middle of the text bounding box.<br>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character.<br>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **alphabetic**|
+| [globalAlpha](#globalalpha)              | number                                   | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.               |
+| [lineDashOffset](#linedashoffset)        | number                                   | Offset of the dashed line. The precision is float.<br>Default value: **0.0**         |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                   | Composition operation type. Available values are as follows: **source-over**, **source-atop**, **source-in**, **source-out**, **destination-over**, **destination-atop**, **destination-in**, **destination-out**, **lighter**, copy, and **xor**. For details, see [Operation types](#globalcompositeoperation).<br>Default value: **ource-over**|
+| [shadowBlur](#shadowblur)                | number                                   | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**|
+| [shadowColor](#shadowcolor)              | &lt;color&gt;                            | Shadow color.                           |
+| [shadowOffsetX](#shadowoffsetx)          | number                                   | X-axis shadow offset relative to the original object.                     |
+| [shadowOffsetY](#shadowoffsety)          | number                                   | Y-axis shadow offset relative to the original object.                     |
+| [imageSmoothingEnabled](#imagesmoothingenabled6)<sup>6+</sup> | boolean                                  | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**|
 
 
 ### fillStyle
@@ -379,7 +380,8 @@ export default {
 
 ### globalCompositeOperation
 
-Operation types
+Enumerates the operation types.
+
 | Value               | Description                      |
 | ---------------- | ------------------------ |
 | source-over      | Displays the new drawing above the existing drawing. This attribute is used by default.  |
@@ -426,7 +428,7 @@ export default {
 
   ![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
 
-In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
+  In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
 
 ### shadowBlur
 
@@ -570,6 +572,7 @@ fillRect(x: number, y: number, width:number, height: number): void
 Fills a rectangle on the canvas.
 
 **Parameters**
+
 | Name    | Type    | Description           |
 | ------ | ------ | ------------- |
 | x      | number | X-coordinate of the upper left corner of the rectangle.|
@@ -582,7 +585,7 @@ Fills a rectangle on the canvas.
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
 ```
 
@@ -606,6 +609,7 @@ clearRect(x: number, y: number, width:number, height: number): void
 Clears the content in a rectangle on the canvas.
 
 **Parameters**
+
 | Name    | Type    | Description           |
 | ------ | ------ | ------------- |
 | x      | number | X-coordinate of the upper left corner of the rectangle.|
@@ -617,7 +621,7 @@ Clears the content in a rectangle on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -644,6 +648,7 @@ strokeRect(x: number, y: number, width:number, height: number): void
 Draws a rectangle stroke on the canvas.
 
 **Parameters**
+
 | Name    | Type    | Description          |
 | ------ | ------ | ------------ |
 | x      | number | X-coordinate of the upper left corner of the rectangle stroke.|
@@ -680,6 +685,7 @@ fillText(text: string, x: number, y: number): void
 Draws filled text on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description             |
 | ---- | ------ | --------------- |
 | text | string | Text to draw.     |
@@ -715,6 +721,7 @@ strokeText(text: string, x: number, y: number): void
 Draws a text stroke on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description             |
 | ---- | ------ | --------------- |
 | text | string | Text to draw.     |
@@ -750,11 +757,13 @@ measureText(text: string): TextMetrics
 Returns a **TextMetrics** object used to obtain the width of specified text.
 
 **Parameters**
+
 | Name  | Type    | Description        |
 | ---- | ------ | ---------- |
 | text | string | Text to be measured.|
 
 **Return value**
+
 | Type         | Description                                    |
 | ----------- | -------------------------------------- |
 | TextMetrics | Object that contains the text width. You can obtain the width by **TextMetrics.width**.|
@@ -853,6 +862,7 @@ moveTo(x: number, y: number): void
 Moves a drawing path to a target position on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description       |
 | ---- | ------ | --------- |
 | x    | number | X-coordinate of the target position.|
@@ -889,6 +899,7 @@ lineTo(x: number, y: number): void
 Connects the current point to a target position using a straight line.
 
 **Parameters**
+
 | Name  | Type    | Description       |
 | ---- | ------ | --------- |
 | x    | number | X-coordinate of the target position.|
@@ -957,12 +968,14 @@ createPattern(image: Image, repetition: string): Object
 Creates a pattern for image filling based on a specified source image and repetition mode.
 
 **Parameters**
+
 | Name        | Type    | Description                                      |
 | ---------- | ------ | ---------------------------------------- |
 | image      | Image  | Source image. For details, see [Image](../arkui-js/js-components-canvas-image.md).|
 | repetition | string | Repetition mode. The value can be **"repeat"**, **"repeat-x"**, **"repeat-y"**, or **"no-repeat"**.|
 
 **Return value**
+
 | Type    | Description               |
 | ------ | ----------------- |
 | Object | Pattern of image filling.|
@@ -971,7 +984,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
+    <canvas ref="canvas" style="width: 1000px; height: 1000px;"></canvas>
   </div>
   ```
 
@@ -985,7 +998,7 @@ Creates a pattern for image filling based on a specified source image and repeti
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
-      ctx.fillRect(0, 0, 20, 20);
+      ctx.fillRect(0, 0, 500, 500);
     }
   }
   ```
@@ -999,6 +1012,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 Draws a cubic bezier curve on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description            |
 | ---- | ------ | -------------- |
 | cp1x | number | X-coordinate of the first parameter of the bezier curve.|
@@ -1039,6 +1053,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 Draws a quadratic curve on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description         |
 | ---- | ------ | ----------- |
 | cpx  | number | X-coordinate of the bezier curve parameter.|
@@ -1077,6 +1092,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 Draws an arc on the canvas.
 
 **Parameters**
+
 | Name           | Type     | Description        |
 | ------------- | ------- | ---------- |
 | x             | number  | X-coordinate of the center point of the arc.|
@@ -1116,6 +1132,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 Draws an arc based on the radius and points on the arc.
 
 **Parameters**
+
 | Name    | Type    | Description             |
 | ------ | ------ | --------------- |
 | x1     | number | X-coordinate of the first point on the arc.|
@@ -1154,6 +1171,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 Draws an ellipse in the specified rectangular region on the canvas.
 
 **Parameters**
+
 | Name           | Type    | Description                                  |
 | ------------- | ------ | ------------------------------------ |
 | x             | number | X-coordinate of the ellipse center.                          |
@@ -1195,6 +1213,7 @@ rect(x: number, y: number, width: number, height: number): void
 Creates a rectangle on the canvas.
 
 **Parameters**
+
 | Name    | Type    | Description           |
 | ------ | ------ | ------------- |
 | x      | number | X-coordinate of the upper left corner of the rectangle.|
@@ -1291,6 +1310,7 @@ rotate(rotate: number): void
 Rotates a canvas clockwise around its coordinate axes.
 
 **Parameters**
+
 | Name    | Type    | Description                                      |
 | ------ | ------ | ---------------------------------------- |
 | rotate | number | Clockwise rotation angle. You can use **Math.PI / 180** to convert the angle to a radian.|
@@ -1324,6 +1344,7 @@ scale(x: number, y: number): void
 Scales the canvas based on scale factors.
 
 **Parameters**
+
 | Name  | Type    | Description         |
 | ---- | ------ | ----------- |
 | x    | number | Horizontal scale factor.|
@@ -1366,6 +1387,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 >  - y' = skewX \* x + scaleY \* y + translateY
 
 **Parameters**
+
 | Name        | Type    | Description      |
 | ---------- | ------ | -------- |
 | scaleX     | number | X-axis scale.|
@@ -1407,9 +1429,10 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 setTransform(scaleX: number, skewX: number, skewY: number, scale: number, translateX: number, translateY: number): void
 
-Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** function.
+Resets the existing transformation matrix and creates a new transformation matrix by using the same parameters as the **transform()** API.
 
 **Parameters**
+
 | Name        | Type    | Description      |
 | ---------- | ------ | -------- |
 | scaleX     | number | X-axis scale.|
@@ -1451,6 +1474,7 @@ translate(x: number, y: number): void
 Moves the origin of the coordinate system.
 
 **Parameters**
+
 | Name  | Type    | Description      |
 | ---- | ------ | -------- |
 | x    | number | X-axis translation.|
@@ -1486,6 +1510,7 @@ createPath2D(path: Path2D, cmds: string): Path2D
 Creates a **Path2D** object.
 
 **Parameters**
+
 | Name  | Type    | Description            |
 | ---- | ------ | -------------- |
 | path | Path2D | **Path2D** object.     |
@@ -1493,10 +1518,9 @@ Creates a **Path2D** object.
 
 **Return value**
 
-[Path2D object](../arkui-js/js-components-canvas-path2d.md)
+  [Path2D object](../arkui-js/js-components-canvas-path2d.md)
 
 **Example**
-
   ```html
   <!-- xxx.hml -->
   <div>
@@ -1533,6 +1557,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 Draws an image on the canvas.
 
 **Parameters**
+
 | Name     | Type                            | Description                                      |
 | ------- | ------------------------------ | ---------------------------------------- |
 | image   | Image \| PixelMap<sup>9+</sup> | Image resource. For details, see [Image](../arkui-js/js-components-canvas-image.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7).|
@@ -1549,7 +1574,7 @@ Draws an image on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1557,11 +1582,11 @@ Draws an image on the canvas.
   //xxx.js
   export default {
     onShow() {
-      var test = this.$element('drawImage');
+      var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
       img.src = 'common/image/test.jpg';
-      ctx.drawImage(img, 50, 80, 80, 80);
+      ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
   }
   ```
@@ -1625,6 +1650,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 Creates a linear gradient and returns a **CanvasGradient** object. For details, see [CanvasGradient](../arkui-js/js-components-canvas-canvasgradient.md).
 
 **Parameters**
+
 | Name  | Type    | Description      |
 | ---- | ------ | -------- |
 | x0   | number | X-coordinate of the start point.|
@@ -1633,6 +1659,7 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
 | y1   | number | Y-coordinate of the end point.|
 
 **Return value**
+
 | Type    | Description                    |
 | ------ | ---------------------- |
 | Object | Created **CanvasGradient** object.|
@@ -1655,9 +1682,9 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
       // Linear gradient: start(50,0) end(300,100)
       var gradient = ctx.createLinearGradient(50,0, 300,100);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);
@@ -1674,6 +1701,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 Creates a radial gradient and returns a **CanvasGradient** object.
 
 **Parameters**
+
 | Name  | Type    | Description               |
 | ---- | ------ | ----------------- |
 | x0   | number | X-coordinate of the center of the start circle.        |
@@ -1684,6 +1712,7 @@ Creates a radial gradient and returns a **CanvasGradient** object.
 | r1   | number | Radius of the end circle, which must be a non-negative finite number.|
 
 **Return value**
+
 | Type    | Description                    |
 | ------ | ---------------------- |
 | Object | Created **CanvasGradient** object.|
@@ -1706,9 +1735,9 @@ Creates a radial gradient and returns a **CanvasGradient** object.
       // Radial gradient: inner circle(200,200,r:50) outer circle(200,200,r:200)
       var gradient = ctx.createRadialGradient(200,200,50, 200,200,200);
       // Add three color stops
-      gradient.addColorStop(0.0, 'red');
-      gradient.addColorStop(0.5, 'white');
-      gradient.addColorStop(1.0, 'green');
+      gradient.addColorStop(0.0, '#ff0000');
+      gradient.addColorStop(0.5, '#ffffff');
+      gradient.addColorStop(1.0, '#00ff00');
       // Set the fill style and draw a rectangle
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 500, 500);
@@ -1725,6 +1754,7 @@ createImageData(width: number, height: number, imageData: Object): Object
 Creates an **ImageData** object. For details, see [ImageData](../arkui-js/js-components-canvas-imagedata.md).
 
 **Parameters**
+
 | Name       | Type    | Description               |
 | --------- | ------ | ----------------- |
 | width     | number | Width of the **ImageData** object.    |
@@ -1732,6 +1762,7 @@ Creates an **ImageData** object. For details, see [ImageData](../arkui-js/js-com
 | imagedata | Object | **ImageData** object with the same width and height copied from the original **ImageData** object.|
 
 **Return value**
+
 | Type    | Description               |
 | ------ | ----------------- |
 | Object | Created **ImageData** object.|
@@ -1763,6 +1794,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
 Obtains the **ImageData** object created with the pixels within the specified area on the canvas.
 
 **Parameters**
+
 | Name  | Type    | Description             |
 | ---- | ------ | --------------- |
 | sx   | number | X-coordinate of the upper left corner of the output area.|
@@ -1771,6 +1803,7 @@ Obtains the **ImageData** object created with the pixels within the specified ar
 | sh   | number | Height of the output area.    |
 
 **Return value**
+
 | Type    | Description                     |
 | ------ | ----------------------- |
 | Object | **ImageData** object that contains pixels in the specified area on the canvas.|
@@ -1779,7 +1812,7 @@ Obtains the **ImageData** object created with the pixels within the specified ar
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="getImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1801,6 +1834,7 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 Puts the **ImageData** onto a rectangular area on the canvas.
 
 **Parameters**
+
 | Name         | Type    | Description                           |
 | ----------- | ------ | ----------------------------- |
 | imagedata   | Object | **ImageData** object with pixels to put onto the canvas.           |
@@ -1815,7 +1849,7 @@ Puts the **ImageData** onto a rectangular area on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="getImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1887,6 +1921,7 @@ setLineDash(segments: Array): void
 Sets the dash line style.
 
 **Parameters**
+
 | Name      | Type   | Description                  |
 | -------- | ----- | -------------------- |
 | segments | Array | An array describing the interval of alternate line segments and length of spacing.|
@@ -1921,6 +1956,7 @@ getLineDash(): Array
 Obtains the dash line style.
 
 **Return value**
+
 | Type   | Description                      |
 | ----- | ------------------------ |
 | Array | An array describing the interval of alternate line segments and length of spacing.|
@@ -1951,6 +1987,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 Displays the specified **ImageBitmap** object.
 
 **Parameters**
+
 | Name    | Type         | Description                |
 | ------ | ----------- | ------------------ |
 | bitmap | ImageBitmap | **ImageBitmap** object to display.|

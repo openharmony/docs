@@ -1,24 +1,27 @@
-# Nonlinear Container LightWeightMap 
+# @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 **LightWeightMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
 
-**LightWeightMap** is based on generics and uses a lightweight structure. Keys in the map are searched using hash values, which are stored in an array.
+**LightWeightMap** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
+
+The keys in such a set are searched using hash values, which are stored in an array.
 
 Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, **LightWeightMap** occupies less memory.
 
 **Recommended use case**: Use LightWeightMap when you need to store and access **KV pairs**.
+
+This topic uses the following to identify the use of generics:
+- K: Key
+- V: Value
 
 ## Modules to Import
 
 ```ts
 import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
-
-
 
 ## LightWeightMap
 
@@ -38,6 +41,15 @@ constructor()
 A constructor used to create a **LightWeightMap** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200012 | The LightWeightMap's constructor cannot be directly invoked. |
 
 **Example**
 
@@ -59,6 +71,14 @@ Checks whether this container is empty (contains no element).
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
 
 **Example**
 
@@ -88,14 +108,22 @@ Checks whether this container contains all elements of the specified **LightWeig
 | -------- | -------- |
 | boolean | Returns **true** if all the elements in the specified **LightWeightMap** instance are contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasAll method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-map.set("sdfs", 356);
+map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
 ```
 
@@ -120,14 +148,20 @@ Checks whether this container contains the specified key.
 | -------- | -------- |
 | boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasKey method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+lightWeightMap.set("squirrel", 123);
+let result = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -151,12 +185,20 @@ Checks whether this container contains the specified value.
 | -------- | -------- |
 | boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The hasValue method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
 ```
 
@@ -168,6 +210,14 @@ increaseCapacityTo(minimumCapacity: number): void
 Increases the capacity of this container.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Parameters**
 
@@ -203,13 +253,21 @@ Obtains the value of the specified key in this container.
 | -------- | -------- |
 | V | Value of the key.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.get("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.get("sparrow");
 ```
 
 
@@ -233,13 +291,21 @@ Obtains the index of the first occurrence of an element with the specified key i
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfKey method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.getIndexOfKey("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.getIndexOfKey("sparrow");
 ```
 
 
@@ -263,12 +329,20 @@ Obtains the index of the first occurrence of an element with the specified value
 | -------- | -------- |
 | number | Returns the position index if obtained; returns **-1** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getIndexOfValue method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
 ```
 
@@ -293,12 +367,21 @@ Obtains the key of an element at the specified position in this container.
 | -------- | -------- |
 | K | Returns the key if obtained; returns **undefined** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
 ```
 
@@ -317,14 +400,22 @@ Adds all elements in a **LightWeightMap** instance to this container.
 | -------- | -------- | -------- | -------- |
 | map | LightWeightMap<K, V> | Yes| **LightWeightMap** instance whose elements are to be added to the current container.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setAll method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-lightWeightMap.setAll(map);
+map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 ```
 
 
@@ -348,11 +439,19 @@ Adds an element to this container.
 | -------- | -------- |
 | Object | Container that contains the new element.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+let result = lightWeightMap.set("squirrel", 123);
 ```
 
 
@@ -376,13 +475,21 @@ Removes an element with the specified key from this container.
 | -------- | -------- |
 | V | Value of the element removed.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-lightWeightMap.remove("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+lightWeightMap.remove("sparrow");
 ```
 
 
@@ -406,12 +513,20 @@ Removes an element at the specified position from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The removeAt method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
 ```
 
@@ -437,12 +552,21 @@ Sets a value for an element at the specified position in this container.
 | -------- | -------- |
 | boolean | Returns **true** if the value is set successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The setValueAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
 ```
 
@@ -467,12 +591,21 @@ Obtains the value of an element at the specified position in this container.
 | -------- | -------- |
 | V | Value obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The getValueAt method cannot be bound. |
+| 10200001 | The value of index is out of range. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
 ```
 
@@ -485,12 +618,20 @@ Clears this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
 ```
 
@@ -509,12 +650,20 @@ Obtains an iterator that contains all the keys in this container.
 | -------- | -------- |
 | IterableIterator&lt;K&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The keys method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -538,24 +687,32 @@ Obtains an iterator that contains all the values in this container.
 | -------- | -------- |
 | IterableIterator&lt;V&gt; | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The values method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
-} 
+}
 ```
 
 
 ### forEach
 
-forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
+forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
@@ -565,7 +722,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -575,14 +732,22 @@ callbackfn
 | key | K | No| Key of the element that is currently traversed.|
 | map | LightWeightMap<K, V> | No| Instance that invokes the **forEach** method.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("sdfs", 123);
-lightWeightMap.set("dfsghsf", 357);
+lightWeightMap.set("sparrow", 123);
+lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 
@@ -601,12 +766,20 @@ Obtains an iterator that contains all the elements in this container.
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The entries method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -626,18 +799,26 @@ Concatenates the elements in this container into a string and returns the string
 
 **Return value**
 
-| Type| Description|
+  | Type| Description|
+  | -------- | -------- |
+  | String | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
 | -------- | -------- |
-| String | String obtained.|
+| 10200011 | The toString method cannot be bound. |
 
 **Example**
 
-  ```ts
-  let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("A", 123);
-  lightWeightMap.set("sdfs", 356);
-  let iter = lightWeightMap.toString();
-  ```
+```ts
+let lightWeightMap = new LightWeightMap();
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.toString();
+```
 
 ### [Symbol.iterator]
 
@@ -653,12 +834,20 @@ Obtains an iterator, each item of which is a JavaScript object.
 | -------- | -------- |
 | IterableIterator<[K, V]> | Iterator obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](../errorcodes/errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
 **Example**
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 
 // Method 1:
 for (let item of lightWeightMap) { 

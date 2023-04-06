@@ -20,7 +20,7 @@ This document provides development guidelines related to the telephony subsystem
 **Figure  1**  RIL Adapter architecture<a name="fig196mcpsimp"></a>  
 
 
-![](figure/en-us_image_0000001210683929.png)
+![](figures/en-us_image_0000001210683929.png)
 
 As shown in the preceding figure, RIL Adapter is logically divided into three layers:  **hril\_hdf**,  **hril**, and  **vendorlib**.
 

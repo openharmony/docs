@@ -7,22 +7,19 @@ The Distributed Data Service (DDS) implements synchronization of application dat
 
 ## Available APIs
 
-The table below describes the APIs provided by the OpenHarmony DDS module.
+For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
 
 **Table 1** APIs provided by the DDS
 
-| Category | API | Description |
-| -------- | --- | ----------- |
-| Creating a distributed database | createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
-| Obtaining a distributed KV store | getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Obtains the KV store with the specified **Options** and **storeId**. |
-| Managing data in a distributed KV store | put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array \| string \| number \| boolean): Promise&lt;void> | Inserts and updates data. |
-| Managing data in a distributed KV store| delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data. |
-| Managing data in a distributed KV store | get(key: string, callback: AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;): void<br>get(key: string): Promise&lt;Uint8Array \| string \| boolean \| number> | Queries data. |
-| Subscribing to changes in the distributed data | on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void | Subscribes to data changes in the KV store. |
-| Synchronizing data across devices | sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | Triggers database synchronization in manual mode. |
-
-
-
+| API                                                    | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** object for database management.           |
+| getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Creates and obtains a KV store.|
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | Inserts and updates data.                                            |
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data.                                                  |
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | Obtains data.                                                  |
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string,number]&gt;&gt;): void | Subscribes to data changes in the KV store.                                    |
+| sync(deviceIdList: string[], mode: SyncMode, delayMs?: number): void | Triggers database synchronization in manual mode.                              |
 
 ## How to Develop
 
@@ -31,80 +28,154 @@ The following uses a single KV store as an example to describe the development p
 1. Import the distributed data module.
 
    ```js
-   import distributedData from '@ohos.data.distributedData';
+   import distributedKVStore from '@ohos.data.distributedKVStore';
    ```
 
-2. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
-   1. Create a **KvManagerConfig** object based on the application context.
+2. Apply for the required permission if data synchronization is required.
+
+   Add the permission required (FA model) in the **config.json** file. The sample code is as follows:
+
+    ```json
+    {
+      "module": {
+          "reqPermissions": [
+              {
+                 "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+              }
+          ]
+      }
+    }
+    ```
+
+   For the apps based on the stage model, see [Declaring Permissions](../security/accesstoken-guidelines.md#stage-model).
+
+   This permission must also be granted by the user when the application is started for the first time. The sample code is as follows:
+
+    ```js
+    // FA model
+    import featureAbility from '@ohos.ability.featureAbility';
+   
+    function grantPermission() {
+    console.info('grantPermission');
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666).then((data) => {
+        console.info('success: ${data}');
+    }).catch((error) => {
+        console.error('failed: ${error}');
+    })
+    }
+   
+    grantPermission();
+   
+    // Stage model
+    import UIAbility from '@ohos.app.ability.UIAbility';
+   
+    let context = null;
+
+    class EntryAbility  extends UIAbility  {
+      onWindowStageCreate(windowStage) {
+        let context = this.context;
+      }
+    }
+
+    function grantPermission() {
+      let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+      context.requestPermissionsFromUser(permissions).then((data) => {
+        console.log('success: ${data}');
+      }).catch((error) => {
+        console.error('failed: ${error}');
+      });
+    }
+
+    grantPermission();
+    ```
+
+3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
+
+   1. Create a **kvManagerConfig** object based on the application context.
    2. Create a **KvManager** instance.
 
    The sample code is as follows:
+
    ```js
+   // Obtain the context of the FA model.
+   import featureAbility from '@ohos.ability.featureAbility';
+   let context = featureAbility.getContext();
+   
+   // Obtain the context of the stage model.
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   let context = null;
+   class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage){
+        context = this.context;
+      }
+   }
+   
    let kvManager;
    try {
-       const kvManagerConfig = {
-           bundleName : 'com.example.datamanagertest',
-           userInfo : {
-               userId : '0',
-               userType : distributedData.UserType.SAME_USER_ID
-           }
-       }
-       distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-           if (err) {
-               console.log("createKVManager err: "  + JSON.stringify(err));
-               return;
-           }
-           console.log("createKVManager success");
-           kvManager = manager;
-       });
+     const kvManagerConfig = {
+       bundleName: 'com.example.datamanagertest',
+       context:context,
+     }
+     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+     console.log("Created KVManager successfully");
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+     console.error(`Failed to create KVManager. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
-3. Create and obtain a single KV store.
+4. Create and obtain a single KV store.
+
    1. Declare the ID of the single KV store to create.
-   2. Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** when a synchronization is required.
+   2. Create a single KV store. You are advised to disable automatic synchronization (`autoSync:false`) and call `sync` when a synchronization is required.
 
    The sample code is as follows:
+
    ```js
    let kvStore;
    try {
-       const options = {
-           createIfMissing : true,
-           encrypt : false,
-           backup : false,
-           autoSync : false,
-           kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-           securityLevel : distributedData.SecurityLevel.S0,
-       };
-       kvManager.getKVStore('storeId', options, function (err, store) {
-           if (err) {
-               console.log("getKVStore err: "  + JSON.stringify(err));
-               return;
-           }
-           console.log("getKVStore success");
-           kvStore = store;
-       });
+     const options = {
+       createIfMissing: true,
+       encrypt: false,
+       backup: false,
+       autoSync: false,
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+       securityLevel: distributedKVStore.SecurityLevel.S1
+     };
+     kvManager.getKVStore('storeId', options, function (err, store) {
+       if (err) {
+         console.error(`Failed to get KVStore: code is ${err.code}, message is ${err.message}`);
+         return;
+       }
+       console.log('Obtained KVStore successfully');
+       kvStore = store;
+     });
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+     console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
-   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
-   > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (**kvStore** in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
+   > **NOTE**<br>
+   >
+   > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (`kvStore` in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
 
-4.  Subscribe to changes in the distributed data.<br/>
+5. Subscribe to changes in the distributed data.
+
    The following is the sample code for subscribing to the data changes of a single KV store:
 
    ```js
-   kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
-       console.log("dataChange callback call data: " + JSON.stringify(data));
-   });
+   try{
+       kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
+           console.log(`dataChange callback call data: ${data}`);
+       });
+   }catch(e){
+       console.error(`An unexpected error occured. Code is ${e.code}, message is ${e.message}`);
+   }
    ```
 
-5. Write data to the single KV store.
-   1. Construct the key and value to be written into the single KV store.
+6. Write data to the single KV store.
+
+   1. Construct the `Key` and `Value` to be written into the single KV store.
    2. Write key-value pairs into the single KV store.
 
    The following is the sample code for writing key-value pairs of the string type into the single KV store:
@@ -115,18 +186,19 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.error(`Failed to put data. Code is ${err.code}, message is ${err.message}`);
                return;
            }
-           console.log("put success");
+           console.log("Put data successfully");
        });
    }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
-6. Query data in the single KV store.
-   1. Construct the key to be queried from the single KV store.
+7. Query data in the single KV store.
+
+   1. Construct the `Key` to be queried from the single KV store.
    2. Query data from the single KV store.
 
    The following is the sample code for querying data of the string type from the single KV store:
@@ -137,32 +209,42 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.error(`Failed to put data. Code is ${err.code}, message is ${err.message}`);
                return;
            }
-           console.log("put success");
+           console.log("Put data successfully");
            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
-               console.log("get success data: " + data);
+           if (err != undefined) {
+               console.error(`Failed to obtain data. Code is ${err.code}, message is ${err.message}`);
+               return;
+           }
+               console.log(`Obtained data successfully:${data}`);
            });
        });
    }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.error(`Failed to obtain data. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
-7. Synchronize data to other devices.<br/>
+8. Synchronize data to other devices.
+
    Select the devices in the same network and the synchronization mode to synchronize data.
 
-   The following is the sample code for data synchronization in a single KV store. **deviceIds** can be obtained by deviceManager by calling **getTrustedDeviceListSync()**, and **1000** indicates that the maximum delay time is 1000 ms.
+   > **NOTE**<br>
+   >
+   > The APIs of the `deviceManager` module are system interfaces.
+
+   The following is the example code for synchronizing data in a single KV store:
+
    ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
    let devManager;
    // Create deviceManager.
-   deviceManager.createDeviceManager("bundleName", (err, value) => {
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
        if (!err) {
            devManager = value;
-           // Obtain deviceIds.
+           // deviceIds is obtained by deviceManager by calling getTrustedDeviceListSync().
            let deviceIds = [];
            if (devManager != null) {
                var devices = devManager.getTrustedDeviceListSync();
@@ -171,9 +253,10 @@ The following uses a single KV store as an example to describe the development p
                }
            }
            try{
-               kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
-           }catch (e) {
-                console.log("An unexpected error occurred. Error:" + e);
+               // 1000 indicates that the maximum delay is 1000 ms.
+               kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
+           } catch (e) {
+                console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
            }
        }
    });

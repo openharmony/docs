@@ -1,14 +1,19 @@
-# Linear Container Vector
-
-> **NOTE**
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+# @ohos.util.Vector (Linear Container Vector)
 
 **Vector** is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. **Vector** can be used to efficiently access elements.
 
 Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. Both of them can dynamically adjust the capacity. **Vector** doubles the capacity each time, whereas **ArrayList** increases the capacity by 50%.
 
 **Recommended use case**: Use **Vector** when the data volume is large.
+
+This topic uses the following to identify the use of generics:
+- T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.util.ArrayList](js-apis-arraylist.md).
 
 ## Modules to Import
 
@@ -70,8 +75,8 @@ let vector = new Vector();
 let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
-vector.add(b);
-let c = {name : "lala", age : "13"};
+let result2 = vector.add(b);
+let c = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -123,9 +128,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let vector = new Vector();
-let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = vector.has("squirrel");
+vector.add("squirrel");
+let result1 = vector.has("squirrel");
 ```
 
 ### getIndexOf
@@ -248,7 +253,7 @@ Removes the first occurrence of the specified element from this container.
 | -------- | -------- |
 | boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -283,13 +288,11 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.removeByRange(2,4);
-vector.removeByRange(4,3);
-vector.removeByRange(2,6);
 ```
 
 ### replaceAllElements
 
-replaceAllElements(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
+replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
 Replaces all elements in this container with new elements, and returns the new ones.
@@ -300,7 +303,7 @@ Replaces all elements in this container with new elements, and returns the new o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
+| callbackFn | function | Yes| Callback invoked for replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -319,17 +322,15 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-vector.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+vector.replaceAllElements((value) => {
+    // Add the user operation logic based on the actual scenario.
+    return value;
 });
 ```
 
 ### forEach
 
-forEach(callbackfn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
+forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
@@ -340,7 +341,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked for replacement.|
+| callbackFn | function | Yes| Callback invoked for replacement.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
@@ -360,7 +361,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value, index) => {
-  console.log("value:" + value, index)
+    console.log("value:" + value, "index:" + index);
 });
 
 ```
@@ -420,7 +421,7 @@ Obtains elements within a range in this container, including the element at the 
 | -------- | -------- |
 | Vector&lt;T&gt; | New **Vector** instance obtained.|
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -428,9 +429,10 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-let result = vector.subVector(2,4);
-let result1 = vector.subVector(4,3);
-let result2 = vector.subVector(2,6);
+vector.add(6);
+vector.add(8);
+let result = vector.subVector(0,4);
+let result1 = vector.subVector(2,4);
 
 ```
 
@@ -442,7 +444,7 @@ Clears all elements in this container and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
-**Return value**
+**Example**
 
 ```ts
 let vector = new Vector();
@@ -637,18 +639,6 @@ Copies elements in this container into an array to overwrite elements of the sam
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | Yes| Array to which the elements in the container will be copied.|
 
-**Example**
-
-```ts
-let vector = new Vector();
-vector.add(2);
-vector.add(4);
-vector.add(5);
-vector.add(4);
-let array = ["a", "b", "c", "d", "e", "f"];
-let result = vector.copyToArray(array);
-```
-
 ### getFirstElement
 
 getFirstElement(): T
@@ -801,15 +791,15 @@ Obtains an element at the specified position in this container.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | index | number | Yes| Position index of the target element.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | Element obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | T | Element obtained.|
 
 **Example**
 
@@ -838,20 +828,9 @@ Replaces an element at the specified position in this container with a given ele
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| T | New element.|
-
-**Example**
-
-  ```ts
-  let vector = new Vector();
-  vector.add(2);
-  vector.add(4);
-  vector.add(5);
-  vector.add(4);
-  let result = vector.set(2, "A");
-  ```
+  | Type| Description|
+  | -------- | -------- |
+  | T | New element.|
 
 ### [Symbol.iterator]
 
@@ -862,7 +841,6 @@ Obtains an iterator. Each item of the iterator is a JavaScript object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
-
 | Type| Description|
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | Iterator obtained.|

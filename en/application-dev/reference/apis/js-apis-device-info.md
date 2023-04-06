@@ -1,6 +1,9 @@
-# Device Information
+# @ohos.deviceInfo (Device Information)
 
-> **NOTE**<br>
+The **deviceInfo** module provides product information.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -11,7 +14,7 @@ import deviceInfo from '@ohos.deviceInfo'
 
 ## Attributes
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -30,7 +33,7 @@ import deviceInfo from '@ohos.deviceInfo'
 | securityPatchTag | string | Yes| No| Security patch tag.|
 | displayVersion | string | Yes| No| Product version.|
 | incrementalVersion | string | Yes| No| Incremental version.|
-| osReleaseType | string | Yes| No| OS release type. The options are as follows:<br>-&nbsp;**Canary**: Preliminary release open only to specific developers. This release does not promise API stability and may require tolerance of instability.<br>-&nbsp;**Beta**: Release open to all developers. This release does not promise API stability and may require tolerance of instability.<br>-&nbsp;**Release**: Official release open to all developers. This release promises that all APIs are stable.|
+| osReleaseType | string | Yes| No| OS release type. The options are as follows:<br>- **Canary**: Preliminary release open only to specific developers. This release does not promise API stability and may require tolerance of instability.<br>- **Beta**: Release open to all developers. This release does not promise API stability and may require tolerance of instability.<br>- **Release**: Official release open to all developers. This release promises that all APIs are stable.|
 | osFullName | string | Yes| No| OS version.|
 | majorVersion | number | Yes| No| Major version, incrementing along with OS version updates.|
 | seniorVersion | number | Yes| No| Senior version, incrementing along with architecture and feature updates.|

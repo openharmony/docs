@@ -1,20 +1,22 @@
-# Input
+# input开发指导
 
-Input是交互式组件，用于接收用户数据。其类型可设置为日期、多选框和按钮等。具体用法请参考[Input API](../reference/arkui-js/js-components-basic-input.md)。
+input是交互式组件，用于接收用户数据。其类型可设置为日期、多选框和按钮等。具体用法请参考[input API](../reference/arkui-js/js-components-basic-input.md)。
 
 
-## 创建Input组件
+## 创建input组件
 
-在pages/index目录下的hml文件中创建一个Input组件。
+在pages/index目录下的hml文件中创建一个input组件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">       
-  <input type="text">             Please enter the content  </input>
+  <input type="text">             
+     Please enter the content  
+  </input>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -29,11 +31,11 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 ![zh-cn_image_0000001165344988](figures/zh-cn_image_0000001165344988.png)
 
 
-## 设置Input类型
+## 设置input类型
 
-通过设置type属性来定义Input类型，如将Input设置为button、date等。
+通过设置type属性来定义input类型，如将input设置为button、date等。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="div-button">
@@ -53,7 +55,7 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -87,7 +89,7 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   btnclick(){
@@ -100,15 +102,15 @@ export default {
 ![zh-cn_image_0000001163375178](figures/zh-cn_image_0000001163375178.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
-> 仅当Input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
+> 仅当input类型为checkbox和radio时，当前组件是否选中的属性checked才生效，默认值为false。
 
 
 ## 事件绑定
 
-向Input组件添加search和translate事件。
-```
+向input组件添加search和translate事件。
+```html
 <!-- xxx.hml -->
 <div class="content">
   <text style="margin-left: -7px;">
@@ -119,7 +121,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .content {
   width: 100%;
@@ -141,18 +143,18 @@ text{
 }
 ```
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
@@ -165,9 +167,9 @@ export default {
 
 ## 设置输入提示
 
-通过对Input组件添加showError方法来提示输入的错误原因。
+通过对input组件添加showError方法来提示输入的错误原因。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="content">
   <input id="input" class="input" type="text"  maxlength="20" placeholder="Please input text" onchange="change">
@@ -176,7 +178,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .content {
   width: 100%;
@@ -196,27 +198,31 @@ export default {
 }
 ```
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt' 
+import promptAction from '@ohos.promptAction' 
  export default { 
    data:{ 
      value:'', 
    }, 
    change(e){ 
      this.value = e.value; 
-     prompt.showToast({ 
+     promptAction.showToast({ 
      message: "value: " + this.value, 
        duration: 3000, 
       }); 
    }, 
    buttonClick(e){ 
      if(this.value.length > 6){ 
-       this.$element("input").showError({        error:  'Up to 6 characters are allowed.'       }); 
+       this.$element("input").showError({        
+         error:  'Up to 6 characters are allowed.'       
+       }); 
       }else if(this.value.length == 0){ 
-        this.$element("input").showError({         error:this.value + 'This field cannot be left empty.'       }); 
+        this.$element("input").showError({         
+          error:this.value + 'This field cannot be left empty.'       
+        }); 
       }else{ 
-        prompt.showToast({ 
+        promptAction.showToast({ 
           message: "success " 
         }); 
       } 
@@ -226,17 +232,17 @@ import prompt from '@system.prompt'
 
 ![zh-cn_image_0000001189248178](figures/zh-cn_image_0000001189248178.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该方法在Input类型为text、email、date、time、number和password时生效。
+> **说明：**
+> 该方法在input类型为text、email、date、time、number和password时生效。
 
 
 ## 场景示例
 
 
-根据场景选择不同类型的Input输入框，完成信息录入。
+根据场景选择不同类型的input输入框，完成信息录入。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">    
   <div class="label-item"> 
@@ -265,7 +271,7 @@ import prompt from '@system.prompt'
 ```
 
 
-```
+```css
 /* xxx.css */
 .container { 
   flex-direction: column;
@@ -294,16 +300,16 @@ label {
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {    
   data: {    
   },    
   onInit() { 
   },   
   btnclick(e) {        
-    prompt.showToast({            
+    promptAction.showToast({            
       message:'Saved successfully!'        
     })    
   }
@@ -316,6 +322,6 @@ export default {
 
 ## 相关实例
 
-针对Input开发，有以下相关实例可供参考：
+针对input开发，有以下相关实例可供参考：
 
-- [input、label（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)
+- [input、label（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)

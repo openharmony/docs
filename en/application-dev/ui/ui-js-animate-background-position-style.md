@@ -3,7 +3,8 @@
 
 By changing the **background-position** attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
 
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content"></div>
@@ -11,7 +12,8 @@ By changing the **background-position** attribute (where the first value is the 
 </div>
 ```
 
-```
+
+```css
 /* xxx.css */
 .container {
   height: 100%;
@@ -25,6 +27,7 @@ By changing the **background-position** attribute (where the first value is the 
 .content{
   width: 400px;
   height: 400px;
+  /* The aspect ratio 1:1 is not recommended. */
   background-image: url('common/images/bg-tv.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
@@ -77,15 +80,8 @@ By changing the **background-position** attribute (where the first value is the 
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > The **background-position** attribute can only be used to move background images, but not the background color (**background-color**).
 >
 > ![en-us_image_background_img.gif](figures/en-us_image_background_img.gif)
-
-
-## Samples
-
-The following sample is provided to help you better understand how to develop an animation with the background-position attribute:
-
-- [`JsImage`: Basic Animation (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsImage)

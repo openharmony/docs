@@ -5,7 +5,7 @@
 通过改变background-position属性（第一个值为X轴的位置，第二个值为Y轴的位置）移动背景图片位置，若背景图位置超出组件则超出部分的背景图不显示。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content"></div>
@@ -14,7 +14,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   height: 100%;
@@ -28,6 +28,7 @@
 .content{
   width: 400px;
   height: 400px;
+  /* 不建议图片长宽比为1:1 */
   background-image: url('common/images/bg-tv.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
@@ -80,7 +81,7 @@
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
 
 ![zh-cn_image_background_img.gif](figures/zh-cn_image_background_img.gif)
@@ -90,4 +91,4 @@
 
 针对background-position样式动画开发，有以下相关实例可供参考：
 
-- [`JsImage`：基本动画（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsImage)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)

@@ -4,7 +4,7 @@
 
 Native Drawing模块提供了一系列的接口用于基本图形和字体的绘制。常见的应用场景举例：
 * 2D图形绘制。
-* 文本绘制和显示。
+* 文本绘制。
 
 ## 接口说明
 
@@ -118,9 +118,9 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     // 在画布上画path的形状，五角星的边框样式为pen设置，颜色填充为Brush设置
     OH_Drawing_CanvasDrawPath(cCanvas, cPath);
     // 销毁创建的对象
-    OH_Drawing_BrushDestory(cBrush);
-    OH_Drawing_PenDestory(cPen);
-    OH_Drawing_PathDestory(cPath);
+    OH_Drawing_BrushDestroy(cBrush);
+    OH_Drawing_PenDestroy(cPen);
+    OH_Drawing_PathDestroy(cPath);
     ```
 
 6. **获取像素数据**。使用 **drawing_bitmap.h** 的 **OH_Drawing_BitmapGetPixels** 接口获取到画布绑定bitmap实例的像素地址，该地址指向的内存包含画布刚刚绘制的像素数据。
@@ -133,12 +133,12 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
         LOGI("memcpy_s failed");
     }
     // 销毁canvas对象
-    OH_Drawing_CanvasDestory(cCanvas);
+    OH_Drawing_CanvasDestroy(cCanvas);
     // 销毁bitmap对象
-    OH_Drawing_BitmapDestory(cBitmap);
+    OH_Drawing_BitmapDestroy(cBitmap);
     ```
 
-## 文本绘制显示开发步骤
+## 文本绘制开发步骤
 
 以下步骤描述了在OpenHarmony中，如何使用**Native Drawing**模块的文字显示功能：
 1. **创建画布和bitmap实例**。
@@ -182,22 +182,23 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     OH_Drawing_SetTextStyleLocale(txtStyle, "en");
     ```
 
-4. **生成最终文字显示效果**。
+4. **生成最终文本显示效果**。
 
     ```c++
     OH_Drawing_TypographyCreate* handler = OH_Drawing_CreateTypographyHandler(typoStyle,
         OH_Drawing_CreateFontCollection());
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
     // 设置文字内容
-    const char* text = "OpenHarmony\n";
+    const char* text = "Hello World\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
     // 设置页面最大宽度
     double maxWidth = 800.0;
     OH_Drawing_TypographyLayout(typography, maxWidth);
-    // 设置文字显示起始位置
+    // 设置文本在画布上绘制的起始位置
     double position[2] = {10.0, 15.0};
+    // 将文本绘制到画布上
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```
 
@@ -205,4 +206,4 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
 
 针对Drawing模块的使用，有以下相关实例可供参考：
 * [Drawing模块2D图形绘制](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/2d_graphics/drawing_c_sample.cpp)。
-* [Drawing模块文本绘制显示](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。
+* [Drawing模块文本绘制](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)。

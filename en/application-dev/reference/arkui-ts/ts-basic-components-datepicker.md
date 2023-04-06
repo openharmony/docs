@@ -1,107 +1,86 @@
 # DatePicker
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<DatePicker>** component allows users to select a date from the given range.
 
-
-## Required Permissions
-
-No
+>  **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-No
+Not supported
 
 
 ## APIs
 
-DatePicker(options?: DatePickerOptions)
+DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 
 Creates a date picker in the given date range.
 
-- options parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | start | Date | No| Date('1970-1-1') | Start date of the picker. |
-  | end | Date | No| Date('2100-12-31') | End date of the picker. |
-  | selected | Date | No| Current system date| Date of the selected item. |
+**Parameters**
+
+| Name| Type| Mandatory | Description|
+| -------- | -------- | ------------- | -------- |
+| start    | Date | No | Start date of the picker.<br>Default value: **Date('1970-1-1')**|
+| end      | Date | No |   End date of the picker.<br>Default value: **Date('2100-12-31')**|
+| selected | Date | No | Date of the selected item.<br>Default value: current system date |
 
 
 ## Attributes
 
-| Name| Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| lunar | boolean | false | Whether to display the lunar calendar.<br>-&nbsp;**true**: Display the lunar calendar.<br>-&nbsp;**false**: Do not display the lunar calendar. |
+| Name   | Type       | Description           |
+| ------| -------------- | -------- |
+| lunar | boolean  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;DatePickerResult)&nbsp;=&gt;&nbsp;void) | Invoked when a date is selected. |
+| onChange(callback: (value: DatePickerResult) =&gt; void) | Triggered when a date is selected.|
 
-### DatePickerResult
-| Name | Type | Description |
+## DatePickerResult
+
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| year | number | Year of the selected date. |
-| month | number | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and the value **11** indicates December. |
-| day | number | Day of the selected date. |
+| year | number | Year of the selected date.|
+| month | number | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and **11** indicates December.|
+| day | number | Day of the selected date.|
 
 
 ## Example
 
 
-### Date Picker Sample Code (With Lunar Calendar)
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
-struct DatePickerExample01 {
+struct DatePickerExample {
+  @State isLunar: boolean = false
   private selectedDate: Date = new Date('2021-08-08')
 
   build() {
     Column() {
+      Button('Switch Calendar')
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isLunar = !this.isLunar
+        })
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
-        selected: this.selectedDate,
+        selected: this.selectedDate
       })
-      .lunar(true)
-      .onChange((date: DatePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
+        .lunar(this.isLunar)
+        .onChange((value: DatePickerResult) => {
+          this.selectedDate.setFullYear(value.year, value.month, value.day)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
+
     }.width('100%')
   }
 }
 ```
 
-
-### Date Picker Sample Code (No Lunar Calendar)
-
-```
-@Entry
-@Component
-struct DatePickerExample02 {
-  private selectedDate: Date = new Date('2021-08-08')
-
-  build() {
-    Column() {
-      DatePicker({
-        start: new Date('1970-1-1'),
-        end: new Date('2100-1-1'),
-        selected: this.selectedDate,
-      })
-      .lunar(false)
-      .onChange((date: DatePickerResult) => {
-        console.info('select current date is: ' + JSON.stringify(date))
-      })
-    }.width('100%')
-  }
-}
-```
-
-
+![datePicker](figures/datePicker.gif)

@@ -1,7 +1,12 @@
-# 日志打印
+# console (日志打印)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.hilog`](js-apis-hilog.md)。
+本模块提供基础的日志打印能力，支持按照日志级别打印日志信息。
+
+如果需要使用更高级的日志打印服务，比如按照指定标识筛选日志内容，推荐使用[`@ohos.hilog`](js-apis-hilog.md)。
+
+> **说明：**
+>
+> 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## console.debug
 
@@ -9,10 +14,13 @@ debug(message: string): void
 
 打印debug级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.log
@@ -21,10 +29,13 @@ log(message: string): void
 
 打印debug级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.info
@@ -33,10 +44,13 @@ info(message: string): void
 
 打印info级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.warn
@@ -45,10 +59,13 @@ warn(message: string): void
 
 打印warn级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.error
@@ -57,10 +74,13 @@ error(message: string): void
 
 打印error级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## 示例

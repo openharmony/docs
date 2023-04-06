@@ -43,7 +43,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 * **语言限制**：C/C++语言
 
-* **操作系统限制**：OpenHarmony操作系统
+* **操作系统限制**：OpenHarmony轻量/小型系统
 
 * **AI服务启动的约束与限制**：SAMGR（System Ability Manager）启动且运行正常
 
@@ -84,7 +84,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
     ```
     #include "plugin/i_plugin.h
-    class KWSPlugin : public IPlugin {       # Keywords Spotting Plugin（KWSPlugin）继承IPlugin算法插件基类public:
+    class KWSPlugin : public IPlugin {       // Keywords Spotting Plugin（KWSPlugin）继承IPlugin算法插件基类public:
         KWSPlugin();
         ~KWSPlugin();
     
@@ -322,9 +322,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
     }
  ```
 
-4.  **sample开发** [（参考唤醒词识别demo）](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai)
-
-    位置：//applications/sample/camera/ai/asr/keyword\_spotting
+4.  **sample开发**
 
     **调用Create**
 
@@ -420,14 +418,14 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 [ai_engine](https://gitee.com/openharmony/ai_engine)
 
-依赖仓：
+## 依赖仓：
 
 [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README_zh.md)
 
-[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README_zh.md)
+[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README_zh.md)
 
 [startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README_zh.md)
 
 ## AI引擎开发导航<a name="section6808423133718"></a>
 
-[《AI插件开发指南》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-aiframework-guide.md)
+[《AI插件开发指南》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-ai-aiframework-devguide.md)

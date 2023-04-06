@@ -1,10 +1,6 @@
 # Native Standard Libraries Supported by OpenHarmony
 
-
-
 ## Overview
-
-
 
 **Table 1** Standard libraries supported by OpenHarmony
 
@@ -19,15 +15,14 @@
 
 ## C Standard Library
 
-
-
 The C standard library is a C11 standard library implemented by:
 
-libc: provides thread-related functions and a majority of standard functions.
+- libc: provides thread-related functions and a majority of standard functions.
 
-libm: provides basic mathematical functions.
+- libm: provides basic mathematical functions.
 
-libdl: provides functions related to dynamic linking, such as **dlopen**.
+- libdl: provides functions related to dynamic linking, such as **dlopen**.
+
 
 **Version**
 
@@ -41,9 +36,9 @@ C standard library includes a set of header files in accordance with standard C 
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
+[Native API Symbols That May Fail to Be Invoked Due to Permission Control](musl-permission-control-symbol.md)
+
 ## libc++
-
-
 
 [libc++](https://libcxx.llvm.org/) is an implementation of the C++ standard library.
 
@@ -57,23 +52,11 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 ## OpenSL ES
 
-
-
 [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded, cross-platform audio processing library.
-
-
 
 ## zlib
 
-
-
 [zlib](https://zlib.net/) is a general data compression library implemented in C/C++.
-
-
-
-
-
-
 
 ## EGL
 
@@ -82,8 +65,6 @@ EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG
 **Symbols Exported from the Standard Library**
 
 [EGL Symbols Exported from Native APIs](../third_party_opengl/egl-symbol.md)
-
-
 
 ## OpenGL ES
 

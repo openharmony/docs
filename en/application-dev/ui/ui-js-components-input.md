@@ -8,18 +8,16 @@ The **&lt;input&gt;** component provides an interactive way to receive user inpu
 
 Create an **&lt;input&gt;** component in the .hml file under **pages/index**.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">       
-<input type="text">         
-    Please enter the content
+  <input type="text">             
+     Please enter the content  
   </input>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -38,8 +36,7 @@ Create an **&lt;input&gt;** component in the .hml file under **pages/index**.
 
 Set the **type** attribute of the **&lt;input&gt;** component to **button**, **date**, or any of the supported values.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="div-button">
@@ -59,8 +56,7 @@ Set the **type** attribute of the **&lt;input&gt;** component to **button**, **d
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -94,8 +90,7 @@ Set the **type** attribute of the **&lt;input&gt;** component to **button**, **d
 }
 ```
 
-
-```
+```js
 // xxx.js
 export default {
   btnclick(){
@@ -108,9 +103,9 @@ export default {
 ![en-us_image_0000001223287672](figures/en-us_image_0000001223287672.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - For wearables, the input type can only be **button**, **radio**, or **checkbox**.
-> 
+>
 > - The settings of **checked** take effect only when the input type is set to **checkbox** or **radio**. The default value of **checked** is **false**.
 
 
@@ -118,7 +113,7 @@ export default {
 
   Add the **search** and **translate** events to the **&lt;input&gt;** component.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="content">
   <text style="margin-left: -7px;">
@@ -129,8 +124,7 @@ export default {
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .content {
   width: 100%;
@@ -152,19 +146,18 @@ text{
 }
 ```
 
-
-```
+```js
 // xxx.js
-import prompt from '@system.prompt'
+import promptAction from '@ohos.promptAction'
 export default {
   search(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
   },
   translate(e){
-    prompt.showToast({
+    promptAction.showToast({
       message:  e.value,
       duration: 3000,
     });
@@ -179,8 +172,7 @@ export default {
 
 Add the **showError** method to the **&lt;input&gt;** component to display an error message in the event of incorrect input.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="content">
   <input id="input" class="input" type="text"  maxlength="20" placeholder="Please input text" onchange="change">
@@ -189,8 +181,7 @@ Add the **showError** method to the **&lt;input&gt;** component to display an er
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .content {
   width: 100%;
@@ -210,32 +201,31 @@ Add the **showError** method to the **&lt;input&gt;** component to display an er
 }
 ```
 
-
-```
+```js
 // xxx.js
-import prompt from '@system.prompt' 
+import promptAction from '@ohos.promptAction' 
  export default { 
    data:{ 
      value:'', 
    }, 
    change(e){ 
      this.value = e.value; 
-     prompt.showToast({ 
+     promptAction.showToast({ 
      message: "value: " + this.value, 
        duration: 3000, 
       }); 
    }, 
    buttonClick(e){ 
      if(this.value.length > 6){ 
-       this.$element("input").showError({ 
-         error:  'Up to 6 characters are allowed.' 
-        }); 
+       this.$element("input").showError({        
+         error:  'Up to 6 characters are allowed.'       
+       }); 
       }else if(this.value.length == 0){ 
-       this.$element("input").showError({ 
-          error:this.value + 'This field cannot be left empty.' 
+        this.$element("input").showError({         
+          error:this.value + 'This field cannot be left empty.'       
         }); 
       }else{ 
-        prompt.showToast({ 
+        promptAction.showToast({ 
           message: "success " 
         }); 
       } 
@@ -245,8 +235,9 @@ import prompt from '@system.prompt'
 
 ![en-us_image_0000001223127708](figures/en-us_image_0000001223127708.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - This method is available when the input type is set to **text**, **email**, **date**, **time**, **number**, or **password**.
+> **NOTE**
+>
+> This method is available when the input type is set to **text**, **email**, **date**, **time**, **number**, or **password**.
 
 
 ## Example Scenario
@@ -255,8 +246,7 @@ import prompt from '@system.prompt'
 Enter information by using the **&lt;input&gt;** component of the type that suits your needs.
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">    
   <div class="label-item"> 
@@ -285,8 +275,7 @@ Enter information by using the **&lt;input&gt;** component of the type that suit
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .container { 
   flex-direction: column;
@@ -315,17 +304,16 @@ label {
 ```
 
 
-
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {    
   data: {    
   },    
   onInit() { 
   },   
   btnclick(e) {        
-    prompt.showToast({            
+    promptAction.showToast({            
       message:'Saved successfully!'        
     })    
   }

@@ -2,46 +2,44 @@
 
 ## Overview
 
-Generate Ninja (GN) a meta-build system that generates build files for Ninja, which allows you to build your OpenHarmony projects with Ninja.
+Generate Ninja (GN) is a meta-build system that generates build files for Ninja. It is the front end of Ninja. GN and Ninja together complete OpenHarmony build tasks.
 
-### Introduction to GN
+### GN
 
-- GN is currently used in several popular systems, including Chromium, Fuchsia, and OpenHarmony.
-- The GN syntax has limitations rooted in its design philosophy. For example, there is no way to get the length of a list and wildcards are not supported. To learn about the GN design philosophy, see https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy. Therefore, if you find that it is complex to implement something using GN, look it over and think about whether it is really necessary.
-- For details about GN, see the official GN document at https://gn.googlesource.com/gn/+/main/docs/.
+GN is used in large software systems such as Chromium, Fuchsia, and OpenHarmony. However, the GN syntax has limitations rooted in its design philosophy. For details, see https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy. For example, GN does not support wildcards and cannot get the length of a list. If you find it complex to implement something with GN, stop and consider whether it is necessary to do it. For more details about GN, see https://gn.googlesource.com/gn/+/main/docs/.
 
-### Intended Audience and Scope
+### Intended Audience and Purpose
 
-This document is intended for OpenHarmony developers. Its focus is on the GN coding style and issues that may occur during the use of GN. The GN syntax is not covered here. For details about the basics of GN, see the GN reference document at https://gn.googlesource.com/gn/+/main/docs/reference.md.
+This document is intended for OpenHarmony developers. It describes the GN coding style and practices, but does not cover the GN syntax. For details about the GN basics, see https://gn.googlesource.com/gn/+/main/docs/reference.md.
 
 ### General Principles
 
-On the premise that functions are available, scripts must be easy to read, easy to maintain, and exhibit good scalability and performance.
+Scripts must be easy to read and maintain, and have good scalability and performance while functioning well.
 
 ## Coding Style
 
 ### Naming
 
-In general cases, the naming follows the Linux kernel coding style, that is, **lowercase letters+underscore**.
+Follow the Linux kernel naming style, that is, lowercase letters + underscores (_).
 
 #### Local Variables
 
-For the purpose of this document, a local variable refers to a variable that is restricted to use in a certain scope and not passed down.
+A local variable is a variable restricted to use in a certain scope and cannot be passed down.
 
-To better distinguish local variables from global variables, local variables start with an underscore (**_**).
+Different from global variables, local variables start with an underscore (_).
 
-```
-# Example 1
+```shell
+# Example 1:
 action("some_action") {
   ...
-  # _output is a local variable. Hence, it starts with an underscore (_).
+  # _output is a local variable.
   _output = "${target_out_dir}/${target_name}.out"
   outputs = [ _output ]
   args = [
     ...
-  	"--output",
-  	rebase_path(_output, root_build_dir),
-  	...
+      "--output",
+      rebase_path(_output, root_build_dir),
+      ...
   ]
   ...
 }
@@ -49,32 +47,32 @@ action("some_action") {
 
 #### Global Variables
 
-A global variable starts with a **lowercase letter**.
+A global variable starts with a lowercase letter.
 
-If you want a variable value to be modified by **gn args**, use **declare\_args**. Otherwise, do not use **declare\_args**.
+Use **declare_args** to declare the variable value only if the variable value can be modified by **gn args**.
 
-```
+```shell
 # Example 2
 declare_args() {
-  # You can use gn args to change the value of some_feature.
+  # The value of some_feature can be changed by gn args.
   some_feature = false
 }
 ```
 
 #### Targets
 
-The target is named in the format of **lowercase letters+underscore**.
+Name the targets in the lowercase letters + underscores (_) format.
 
-A subtarget in the template is named in the ${*target\_name*}\__*suffix* format. This naming convention has the following advantages:
+Name the subtargets in templates in the ${target_name}+double underscores (__)+suffix format. This naming convention has the following advantages:
 
-- The ${*target\_name*} part can prevent duplicate subtarget names.
+- ${target_name} prevents duplicate subtarget names.
 
-- The double underscores (\__) can help identify the module to which the subtarget belongs, thereby facilitating fault locating.
-
-  ```
+- The double underscores (__) help locate the module to which a subtarget belongs.
+  
+  ```shell
   # Example 3
   template("ohos_shared_library") {
-    # "{target_name}" (primary target name) + "__" (double underscores) + "notice" (suffix)
+    # "{target_name}" (Target name) + "__" (double underscores) + "notice" (suffix)
     _notice_target = "${target_name}__notice"
     collect_notice(_notice_target) {
       ...
@@ -87,9 +85,9 @@ A subtarget in the template is named in the ${*target\_name*}\__*suffix* format.
 
 #### Custom Templates
 
-Whenever possible, **use verbs** for template names.
+Name templates in the verb+object format.
 
-```
+```shell
 # Example 4
 # Good
 template("compile_resources") {
@@ -99,58 +97,58 @@ template("compile_resources") {
 
 ### Formatting
 
-To maintain consistency in styles such as code alignment and line feed, a GN script needs to be formatted before being submitted. Use the format tool provided by GN to format your script. The command is as follows:
+GN scripts must be formatted before being submitted. Formatting ensures consistency in style, such as code alignment and line feed. Use the format tool provided by GN to format your scripts. The command is as follows: 
 
 ```shell
 $ gn format path-to-BUILD.gn
 ```
 
-**gn format** sorts imports in alphabetical order. To maintain the original sequence, you can add an empty comment line.
+**gn format** sorts the imported files in alphabetical order. To maintain the original sequence, add an empty comment line.
 
-Assume that the original import sequence is as follows:
+For example, the original import sequence is as follows:
 
-```
+```shell
 # Example 5
 import("//b.gni")
 import("//a.gni")
 ```
 
-After the format command is executed, the import sequence is changed as follows:
+**gn format** sorts the files as follows:
 
-```
+```shell
 import("//a.gni")
 import("//b.gni")
 ```
 
-To maintain the original import sequence, add an empty comment line.
+To maintain the original sequence, add an empty comment line.
 
-```
+```shell
 import("//b.gni")
-# Comment to maintain the original import sequence.
+# Comment to keep the original sequence
 import("//a.gni")
 ```
 
-## Coding Practice
+## Coding Practices
 
-### Principles of Practice
+### Guidelines
 
-The build script completes the following two tasks:
+The build script completes the following tasks:
 
-1. **Describe the dependency between modules (deps).**
+1. Describes the dependency (deps) between modules.
+   
+   In practice, the most common problem is lack of dependency.
 
-   In practice, the most frequent problem is **lack of dependency**.
+2. Defines the module build rules (rule).
+   
+   In practice, unclear input and output are common problems.
 
-2. **Describe the module compilation rules (rule).**
+Lack of dependency leads to the following problems:
 
-   In practice, common problems are **unclear input** and **unclear output**.
-
-Lack of dependency can result in the following:
-
-- **Possible compilation error**
-
-  ```
+- Unexpected compilation error
+  
+  ```shell
   # Example 6
-  # The compilation is prone to errors as a result of lack of dependency.
+  # Lack of dependency poses a possibility of compilation errors.
   shared_library("a") {
     ...
   }
@@ -164,35 +162,35 @@ Lack of dependency can result in the following:
     deps = [ ":b" ]
   }
   ```
+  
+  In this example, **libb.so** is linked to **liba.so**, which means that **b** depends on **a**. However, the dependency of **b** on **a** is not declared in the dependency list (**deps**) of **b**. Compilation is performed concurrently. An error occurs if **liba.so** is not available when **libb.so** attempts to create a link to it.
+  
+  If **liba.so** is available, the compilation is successful. Therefore, lack of dependency poses a possibility of compilation errors.
 
-  In the preceding example, **liba.so** is linked to **libb.so** when being linked. This means that **b** depends on **a**. However, the dependency list (**deps**) of **b** does not declare its dependency on **a**. As compilation is performed concurrently, a compilation error will occur if compilation of **liba.so** is not yet complete when **libb.so** is being linked.
+- Missing compilation of modules
+  
+  In example 6, images are the target to build. Since images depend only on **b**, **a** will not be compiled. However, as **b** depends on **a**, an error occurs when **b** is linked.
 
-  From this example we can see that lack of dependency does not necessarily lead to a compilation error. It poses a possibility of errors.
+Another problem is unnecessary dependencies. Unnecessary dependencies reduce concurrency and slow down compilation. The following is an example:
 
-- **Missing involvement of dependent modules**
+**_compile_js_target** does not necessarily depend on **_compile_resource_target**. If this dependency is added, **_compile_js_target** can be compiled only after **_compile_resource_target** is compiled.
 
-  In the preceding example, because **images** depends on **b** only, **a** does not participate in the compilation of **images** using Ninja. However, as **b** depends on **a**, an error occurs when **b** is linked.
-
-One less common problem is **too many dependencies**. **Too many dependencies can reduce concurrency and slow down compilation**.
-
-In the example below, adding the unwanted **_compile\_resource\_target** dependency to **_compile\_js_target** means that **_compile\_js_target** can be compiled only after compilation of **_compile\_resource\_target** is complete.
-
-```
-# Example 7
-# Too many dependencies slow down compilation.
+```shell
+# Example 7:
+# Unnecessary dependencies slow down compilation.
 template("too_much_deps") {
   ...
   _gen_resource_target = "${target_name}__res"
   action(_gen_resource_target) {
     ...
   }
-  
+
   _compile_resource_target = "${target_name}__compile_res"
   action(_compile_resource_target) {
     deps = [":$_gen_resource_target"]
     ...
   }
-  
+
   _compile_js_target = "${target_name}__js"
   action(_compile_js_target) {
     # This deps is not required.
@@ -201,38 +199,38 @@ template("too_much_deps") {
 }
 ```
 
-Unclear input can result in the following:
+Unclear input leads to the following problems:
 
-- **Modified code is not compiled during the incremental compilation.**
-- **After code changes, the cache being used is still hit.**
+- Modified code is not compiled during incremental compilation.
+- The cache being used is still hit after the code is changed.
 
-In the following example, **foo.py** references functions in **bar.py**. This means that **bar.py** is the input of **foo.py** and must be added to the **input** or **depfile** of **implict_input_action**. Otherwise, if **bar.py** is modified, the **implict_input_action** module will not be recompiled.
+In the following example, **foo.py** references the functions in **bar.py**. This means **bar.py** is the input of **foo.py**. You need to add **bar.py** to **input** or **depfile** of **implict_input_action**. Otherwise, if **bar.py** is modified, **implict_input_action** will not be recompiled.
 
-```
-# Example 8
+```shell
+# Example 8:
 action("implict_input_action") {
   script = "//path-to-foo.py"
   ...
 }
 ```
 
-```
+```shell
 #!/usr/bin/env
-# Contents of foo.py
+# Content of foo.py
 import bar
 ...
 bar.some_function()
 ...
 ```
 
-Unclear output can result in the following:
+Unclear output leads to the following problems:
 
-- **The output is implicit.**
-- **When the cache is used, implicit output cannot be obtained from the cache.**
+- Implicit output
+- A failure to obtain the implicit output from the cache
 
-In the following example, **foo.py** generates two files: **a.out** and **b.out**; the output of **implict_output_action** declares only **a.out**. In this case, **b.out** is an implicit output, and the cache stores **a.out** but not **b.out**. When the cache is hit, **b.out** cannot be compiled.
+In the following example, **foo.py** generates two files: **a.out** and **b.out**. However, the output of **implict_output_action** declares only **a.out**. In this case, **b.out** is an implicit output, and the cache stores only **a.out**. When the cache is hit, **b.out** cannot be compiled.
 
-```
+```shell
 # Example 9
 action("implict_output_action") {
   outputs = ["${target_out_dir}/a.out"]
@@ -241,9 +239,9 @@ action("implict_output_action") {
 }
 ```
 
-```
+```shell
 #!/usr/bin/env
-# Contents of foo.py
+# Content of foo.py
 ...
 write_file("b.out")
 write_file("a.out")
@@ -252,44 +250,41 @@ write_file("a.out")
 
 ### Templates
 
-**Do not use the GN native templates. Use the templates provided by the compilation system.**
+**Do not use GN native templates. Use the templates provided by the build system.**
 
-The GN native templates are **source_set**, **shared_library**, **static_library**, **action**, **executable**, and **group**.
+The GN native templates include **source_set**, **shared_library**, **static_library**, **action**, **executable** and **group**.
 
-These native templates are discouraged due to the following reasons:
+The native templates are not recommended due to the following reasons:
 
-- **The native templates only provide minimum functions**. They do not provide extra functions such as external_deps parsing, notice collection, and installation information generation. These extra functions are generated during module compilation. Therefore, the native templates must be extended.
+- The native templates provide only the minimal build configuration. They cannot provide functions, such as parsing **external_deps**, collecting notice, and generating installation information.
 
-- When the file on which the input file depends changes, the native template **action** cannot automatically detect the change and cannot be recompiled. See Example 8.
-  
-  
-  
-  Mapping between native templates and templates provided by the compilation system:
-  
-  | Template Provided by the Compilation System | Native Template |
-  | :------------------------------------------ | --------------- |
-  | ohos_shared_library                         | shared_library  |
-  | ohos_source_set                             | source_set      |
-  | ohos_executable                             | executable      |
-  | ohos_static_library                         | static_library  |
-  | action_with_pydeps                          | action          |
-  | ohos_group                                  | group           |
-  
+- The native **action** template cannot automatically detect the changes in the dependencies of the input file, and cannot start recompilation. See Example 8.
+
+  The table below lists the mapping between the GN native templates and templates provided by OpenHarmony Compilation and Build subsystem.
+
+| OpenHarmony Template  | GN Native Template      |
+| :------------------ | -------------- |
+| ohos_shared_library | shared_library |
+| ohos_source_set     | source_set     |
+| ohos_executable     | executable     |
+| ohos_static_library | static_library |
+| action_with_pydeps  | action         |
+| ohos_group          | group          |
 
 ### Using Python Scripts
 
-Prioritize the Python script over the shell script in **action**. The Python script has the following advantages over the shell script:
+You are advised to use Python scripts instead of shell scripts in **action**. Compared with shell scripts, Python scripts feature:
 
-- More user-friendly syntax: It will not generate strange errors just because a space is missing.
-- More readable.
-- Higher maintainability and debugability.
-- Faster compilation: thanks to Python task caching by OpenHarmony.
+- More user-friendly syntax, which eliminates errors caused by lack of a space
+- Easier to read
+- Easier to maintain and debug
+- Faster compilation due to caching of Python tasks
 
 ### rebase_path
 
-- Call **rebase_path** only in the **args** list of **action**.
-
-  ```
+- Call **rebase_path** only in **args** of **action**.
+  
+  ```shell
   # Example 10
   template("foo") {
     action(target_name) {
@@ -309,15 +304,15 @@ Prioritize the Python script over the shell script in **action**. The Python scr
   }
   ```
 
-- If **rebase_path** is executed twice for the same variable, unexpected results may occur.
-
-  ```
+- If rebase_path is called twice for the same variable, unexpected results occur.
+  
+  ```shell
   # Example 11
   template("foo") {
     action(target_name) {
       ...
       args = [
-        # rebase_path is executed twice for bar, and the passed bar value is incorrect.
+        # After rebase_path is called twice for bar, the bar value passed is incorrect.
         "--bar=" + rebase_path(invoker.bar, root_build_dir),
         ...
       ]
@@ -334,15 +329,15 @@ Prioritize the Python script over the shell script in **action**. The Python scr
 
 ### Sharing Data Between Modules
 
-Data sharing between modules is common. For example, a module may want to know the **outputs** and **deps** of another module.
+It is common to share data between modules. For example, module A wants to know the output and **deps** of module B.
 
-- Data sharing within the same **BUILD.gn** file
-
-  Data in the same **BUILD.gn** file can be shared by defining global variables.
-
-  In the following example, the output of module **a** is the input of module **b**. Module **a** shares data with module **b** by defining global variables.
-
-  ```
+- Data sharing within the same **BUILD.gn**
+  
+  Data in the same **BUILD.gn** can be shared by defining global variables.
+  
+  In the following example, the output of module **a** is the input of module **b**, and can be shared with module **b** via global variables.
+  
+  ```shell
   # Example 12
   _output_a = get_label_info(":a", "out_dir") + "/a.out"
   action("a") {
@@ -355,26 +350,26 @@ Data sharing between modules is common. For example, a module may want to know t
   }
   ```
 
-- Data sharing between different **BUILD.gn** files
-
-  The best way to share data between different **BUILD.gn** files is to save the data as files and then transfer the files between modules. This scenario is complex. For details, see **write_meta_data** in the OpenHarmony HAP compilation process.
+- Data sharing between different **BUILD.gn**s
+  
+  The best way to share data between different **BUILD.gn** is to save the data as files and transfer the files between modules. You can refer to **write_meta_data** in the OpenHarmony HAP build process.
 
 ### forward_variable_from
 
-- To customize a template, you need to forward **testonly** first, since the target of the template may be depended on by that of **testonly**.
-
-  ```
+- To customize a template, pass (**forward**) **testonly** first because the **testonly** target may depend on the template target.
+  
+  ```shell
   # Example 13
-  # Forward testonly for a custom template.
+  # For a customized template, pass testonly first.
   template("foo") {
     forward_variable_from(invoker, ["testonly"])
     ...
   }
   ```
 
-- Do not use asterisks (*) to forward variables. Required variables should be explicitly forwarded one by one.
-
-  ```
+- Do not use asterisks (*) to **forward** variables. Required variables must be explicitly forwarded one by one.
+  
+  ```shell
   # Example 14
   # Bad. The asterisk (*) is used to forward the variable.
   template("foo") {
@@ -382,25 +377,25 @@ Data sharing between modules is common. For example, a module may want to know t
     ...
   }
   
-  # Good. Variables are explicitly forward one by one.
+  # Good. Variables are explicitly forwarded one by one.
   template("bar") {
     # 
     forward_variable_from(invoker, [
-    								   "testonly",
-    								   "deps",
-    								   ...
-    								 ])
+                                       "testonly",
+                                       "deps",
+                                       ...
+                                     ])
     ...
   }
   ```
 
 ### target_name
 
-The value of **target_name** varies according to the scope.
+The value of **target_name** varies with the scope.
 
-```
+```shell
 # Example 15
-# The value of target_name varies according to the scope.
+# The value of target_name varies with the scope.
 template("foo") {
   # The displayed target_name is "${target_name}".
   print(target_name)
@@ -424,9 +419,9 @@ template("foo") {
 
 To export header files from a module, use **public_configs**.
 
-```
+```shell
 # Example 16
-# b depends on a and inherits the headers of a.
+# b depends on a and inherits from the headers of a.
 config("headers") {
   include_dirs = ["//path-to-headers"]
   ...
@@ -443,11 +438,11 @@ executable("b") {
 
 ### template
 
-A custom template must contain a subtarget named *target_name*. This subtarget is used as the main target of the template. It should depend on other subtargets so that the subtargets can be compiled.
+A custom template must contain a subtarget named **target_name**. This subtarget is used as the target of the template and depends on other subtargets. Otherwise, the subtargets will not be compiled.
 
-```
+```shell
 # Example 17
-# A custom template must contain a subtarget named target_name.
+# A custom template must have a subtarget named target_name.
 template("foo") {
   _code_gen_target = "${target_name}__gen"
   code_gen(_code_gen_target) {
@@ -462,7 +457,7 @@ template("foo") {
   ...
   group(target_name) {
     deps = [
-    # Since _compile_gen_target depends on _code_gen_target, the main target only needs to depend on _compile_gen_target.
+    # _compile_gen_target depends on _code_gen_target. Therefore, target_name only needs to depend on _compile_gen_target.
       ":$_compile_gen_target"
     ]
   }
@@ -471,11 +466,11 @@ template("foo") {
 
 ### set_source_assignment_filter
 
-In addition to filtering **sources**, **set_source_assignment_filter** can also be used to filter other variables. After the filtering is complete, clear the filter and **sources** list.
+In addition to **sources**, **set_source_assignment_filter** can be used to filter other variables. After the filtering is complete, clear the filter and **sources**.
 
-```
+```shell
 # Example 18
-# Use set_source_assignment_filter to filter dependencies and add the dependencies whose label matches *:*_res to the dependency list.
+# Use set_source_assignment_filter to filter dependencies and add the dependencies with labels matching *:*_res to the dependency list.
 _deps = []
 foreach(_possible_dep, invoker.deps) {
   set_source_assignment_filter(["*:*_res"])
@@ -492,31 +487,21 @@ set_source_assignment_filter([])
 
 In the latest version, **set_source_assignment_filter** is replaced by **filter_include** and **filter_exclude**.
 
-### Using **deps** for Intra-part Dependencies and **external_deps** for Cross-part Dependencies
+### Setting deps and external_deps
 
-- In OpenHarmony, a part is a group of modules that can provide a certain capability.
-- When defining a module, you can declare the **part_name** to signify the part to which the module belongs.
+An OpenHarmony component is a group of modules that can provide a capability. When defining a module, set **part_name** to specify the component to which the module belongs.
 
-- Each part declares its inner-kit for other parts to invoke. For details about the declaration of inner-kit, see **ohos.build** in the source code.
-- Inter-part dependencies can only be inner-kit modules.
+You must also declare **inner_kits** of a component for other components to call. For details, see **bundle.json** in the source code. **inner_kits** applies only to dependent modules in different components.
 
-- If the values of **part_name** of modules **a** and **b** are the same, the two modules belong to the same part. In this case, the dependency between the modules can be declared using **deps**.
+If modules **a** and **b** has the same **part_name**, modules **a** and **b** belong to the same component. In this case, declare the dependency between them using **deps**.
 
-- If the values of **part_name** of modules **a** and **b** are different, the two modules belong to different parts. In this case, the dependency between the modules must be declared using **external_deps** in the format of *componentName:moduleName*. See Example 19.
+If modules **a** and **b** have different **part_name**, modules **a** and **b** belong to different components. In this case, declare the dependency between them using **external_deps** in the *Component name:Module name* format. See Example 19.
 
-  ```
-  # Example 19
-  shared_library("a") {
-    ...
-    external_deps = ["part_name_of_b:b"]
-    ...
-  }
-  ```
-
-  
-
-  
-
-  
-
-  
+```shell
+# Example 19
+shared_library("a") {
+  ...
+  external_deps = ["part_name_of_b:b"]
+  ...
+}
+```

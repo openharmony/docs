@@ -17,7 +17,7 @@
 
 ## 子组件
 
-tspan。
+[tspan](js-components-svg-tspan.md)。
 
 
 ## 属性
@@ -26,19 +26,19 @@ tspan。
 支持以下表格中的属性。
 
 
-| 名称             | 类型                                 | 默认值   | 必填   | 描述                                       |
-| -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
-| id             | string                             | -     | 否    | 组件的唯一标识。                                 |
-| path           | string                             | 0     | 是    | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath |
-| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置文本沿path绘制的起始偏移。                        |
-| font-size      | &lt;length&gt;                     | 30px  | 否    | 设置文本的尺寸。                                 |
-| fill           | &lt;color&gt;                      | black | 否    | 字体填充颜色                                   |
-| by             | number                             | -     | 否    | 相对被指定动画的属性偏移值，from默认为原属性值。               |
-| opacity        | number                             | 1     | 否    | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
-| fill-opacity   | number                             | 1.0   | 否    | 字体填充透明度                                  |
-| stroke         | &lt;color&gt;                      | black | 否    | 绘制字体边框并指定颜色                              |
-| stroke-width   | number                             | 1px   | 否    | 字体边框宽度                                   |
-| stroke-opacity | number                             | 1.0   | 否    | 字体边框透明度                                  |
+| 名称           | 类型                               | 默认值 | 描述                                                         |
+| -------------- | ---------------------------------- | ------ | ------------------------------------------------------------ |
+| id             | string                             | -      | 组件的唯一标识。                                             |
+| path           | string                             | 0      | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath<br/>默认值：0 |
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0      | 设置文本沿path绘制的起始偏移。<br/>默认值：0                 |
+| font-size      | &lt;length&gt;                     | 30px   | 设置文本的尺寸。<br/>默认值：30px                            |
+| fill           | &lt;color&gt;                      | black  | 字体填充颜色。<br/>默认值：black                             |
+| by             | number                             | -      | 相对被指定动画的属性偏移值，from默认为原属性值。             |
+| opacity        | number                             | 1      | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。<br/>默认值：0 |
+| fill-opacity   | number                             | 1.0    | 字体填充透明度。<br/>默认值：1.0                             |
+| stroke         | &lt;color&gt;                      | black  | 绘制字体边框并指定颜色。<br/>默认值：black                   |
+| stroke-width   | number                             | 1px    | 字体边框宽度。<br/>默认值：1px                               |
+| stroke-opacity | number                             | 1.0    | 字体边框透明度。<br/>默认值：1.0                             |
 
 
 ## 示例
@@ -97,9 +97,9 @@ textpath与tspan组合示例与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600" stroke="red" fill="none"></path>
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none"></path>
     <text>
-      <textpath fill="#D2691E" path="M40,760 Q360,760 360,580 Q360,440 200,440 Q40,440 40,560 Q40,680 180,680 Q280,680 300,600"font-size="30px" stroke="black" stroke-width="1" >
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px" stroke="black" stroke-width="1" >
         This is TextPath.
         <tspan font-size="20px" fill="red">This is tspan onTextPath.</tspan>
         <tspan font-size="30px">Let's play.</tspan>
@@ -117,11 +117,11 @@ textpath与tspan组合示例与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <!--      数值百分比    -->
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">This is first tspan.</tspan>
         <tspan x="50%">This is second tspan.</tspan>
@@ -172,10 +172,10 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" stroke="red" fill="none">
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1160 Q360,1160 360,980 Q360,840 200,840 Q40,840 40,960 Q40,1080 180,1080 Q280,1080 300,1000" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan x="50" fill="blue">
           tspan attribute x|rotate
@@ -209,11 +209,11 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1560 Q360,1560 360,1380 Q360,1240 200,1240 Q40,1240 40,1360 Q40,1480 180,1480 Q280,1480 300,1400" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
         This is TextPath.
         <tspan dx="20" fill="blue">
           tspan attribute fill|fill-opacity
@@ -247,11 +247,11 @@ textpath与tspan组合属性动画与效果图
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
-    <path d="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" stroke="red" 
+    <path d="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" stroke="red" 
       fill="none">
     </path>
     <text>
-      <textpath fill="#D2691E" path="M40,1960 Q360,1960 360,1780 Q360,1640 200,1640 Q40,1640 40,1760 Q40,1880 180,1880 Q280,1880 300,1800" font-size="30px">
+      <textpath fill="#D2691E" path="M40,360 Q360,360 360,180 Q360,40 200,40 Q40,40 40,160 Q40,280 180,280 Q280,280 300,200" font-size="30px">
           This is TextPath.
           <tspan dx="20" fill="blue">
             tspan attribute stroke

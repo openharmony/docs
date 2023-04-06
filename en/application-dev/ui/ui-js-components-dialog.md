@@ -8,7 +8,7 @@ The **&lt;dialog&gt;** component is custom pop-up container for showing critical
 
 Create a **&lt;dialog&gt;** component in the .hml file under **pages/index** and add **&lt;button&gt;** components to trigger the **&lt;dialog&gt;**. The **&lt;dialog&gt;** component supports only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <dialog class="dialogClass" id="dialogId" dragable="true">
@@ -16,12 +16,11 @@ Create a **&lt;dialog&gt;** component in the .hml file under **pages/index** and
       <text>this is a dialog</text>
     </div>
   </dialog>
-  <button value="click me" onclick="openDialog"></button>
+  <button value="click me" onclick="opendialog"></button>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -54,12 +53,11 @@ button{
 }
 ```
 
-
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   //Touch to open the dialog box.
-  openDialog(){
+  opendialog(){
     this.$element('dialogId').show()
   },
 }
@@ -73,8 +71,7 @@ export default {
 Add a **cancel** event that is triggered when a user touches a non-dialog area to cancel the pop-up dialog box. Add the **show** and **close** methods to display and close the dialog box, respectively.
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <dialog class="dialogClass" id="dialogId" oncancel="canceldialog">
@@ -83,13 +80,12 @@ Add a **cancel** event that is triggered when a user touches a non-dialog area t
       <button value="confirm" onclick="confirmClick"></button>
     </div>
   </dialog>
-  <button value="click me" onclick="openDialog"></button>
+  <button value="click me" onclick="opendialog"></button>
 </div>
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -123,25 +119,24 @@ button{
 ```
 
 
-
-```
-/* xxx.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   canceldialog(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogCancel'
     })
   },
-  openDialog(){
+  opendialog(){
     this.$element('dialogId').show()
-     prompt.showToast({
+     promptAction.showToast({
       message: 'dialogShow'
     })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogClose'
     })
   },
@@ -152,11 +147,12 @@ export default {
 ![en-us_image_0000001223287720](figures/en-us_image_0000001223287720.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > - This component supports only one child component.
-> 
+>
 > - Attributes and styles of a **&lt;dialog&gt;** component cannot be dynamically updated.
-> 
+>
 > - The **&lt;dialog&gt;** component does not support the **focusable** and **click-effect** attributes.
 
 
@@ -166,8 +162,7 @@ export default {
 Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog box is open, use the [**&lt;textarea&gt;**](../reference/arkui-js/js-components-basic-textarea.md) component to add an event and touch the OK button to obtain the current time and save the input text. The events in the calendar are displayed in a list.
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <text style="margin-top: 60px;margin-left: 30px;">
@@ -202,8 +197,7 @@ Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog bo
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -272,9 +266,8 @@ Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog bo
 ```
 
 
-
-```
-/* xxx.js */
+```js
+// xxx.js
 var info = null;
 import prompt from '@system.prompt';
 import router from '@system.router';
@@ -329,8 +322,3 @@ export default {
 
 
 ![en-us_image_0000001223127756](figures/en-us_image_0000001223127756.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;dialog&gt;** component:
-
-[`JsDialog`: JS Dialog Box (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)

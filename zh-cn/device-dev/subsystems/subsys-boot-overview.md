@@ -23,7 +23,7 @@
 启动子系统内部涉及以下组件：
 
 - init启动引导组件：
-  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init-jobs.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
 
 - ueventd启动引导组件：
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
@@ -48,7 +48,7 @@
 | -------- | -------- |
 | base/startup/appspawn_lite | 小型系统设备（参考内存≥1MB），如Hi3516DV300&nbsp;、Hi3518EV300 |
 | base/startup/bootstrap_lite | 轻量系统设备（参考内存≥128KB），如Hi3861V100 |
-| base/startup/init_lite | 小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300 |
+| base/startup/init | 小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300 |
 | base/startup/syspara_lite | -&nbsp;轻量系统设备（参考内存≥128KB），如Hi3861V100<br/>-&nbsp;小型系统设备（参考内存≥1MB），如Hi3516DV300、Hi3518EV300 |
 
 - init启动引导组件：
@@ -57,8 +57,8 @@
 
 - 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+  > **说明：**
+>
   > 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
@@ -161,20 +161,20 @@
 
       - 准备工作
 
-      1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
-      2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
-      3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
+        1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
+        2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
+        3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
 
       - 触发事件
 
-      1. 通过ueventd触发内核上报uevent事件
-      2. 匹配uevent事件中的partitionName与required fstab中的device信息。
-      3. 匹配成功后将会进一步处理，格式化设备节点路径，准备开始创建设备节点。
+        1. 通过ueventd触发内核上报uevent事件
+        2. 匹配uevent事件中的partitionName与required fstab中的device信息。
+        3. 匹配成功后将会进一步处理，格式化设备节点路径，准备开始创建设备节点。
 
       - 创建节点
 
-      1. 为了便于用户态下对设备节点的访问以及提高设备节点的可读性，会对即将创建的required块设备节点同时创建软链接，这就需要先格式化软链接的路径。
-      2. 以上工作都完成后，将执行最后的创建设备节点的步骤，根据传入的uevent中的主次设备号、前置步骤中构建的设备节点路径和软链接路径等创建设备节点，并创建相应软链接。
+        1. 为了便于用户态下对设备节点的访问以及提高设备节点的可读性，会对即将创建的required块设备节点同时创建软链接，这就需要先格式化软链接的路径。
+        2. 以上工作都完成后，将执行最后的创建设备节点的步骤，根据传入的uevent中的主次设备号、前置步骤中构建的设备节点路径和软链接路径等创建设备节点，并创建相应软链接。
 
       至此，块设备节点创建完毕。
 
@@ -188,8 +188,8 @@
 
       下面以OpenHarmony系统在Hi3516DV300平台启动过程中必要的system分区为例，详细介绍init进程启动后，从读取required fstab信息到创建required分区块设备节点再到最后完成required分区挂载的全部流程。其中会包含一些关键代码段和关键的log信息供开发者调试参考。
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+      > **说明：**
+    >
       > 从此处开始出现的代码是按逻辑顺序展示的关键代码行，不代表其在源码当中真正的相邻关系。
 
       1. 获取required设备信息
@@ -305,7 +305,7 @@
 
          设备节点创建完成后，即可挂载对应分区，主要接口如下：
          ```
-          int MountRequriedPartitions(const Fstab *fstab)
+          int MountRequiredPartitions(const Fstab *fstab)
           {
               INIT_ERROR_CHECK(fstab != NULL, return -1, "Failed fstab is NULL");
               int rc;
@@ -317,28 +317,158 @@
          因此，当我们看到"Mount required partitions"打印的时候，表示required分区设备已经准备完成，即将执行挂载动作。分区挂载过程中，还有一些关键打印如下：
          ```
          BEGET_LOGE("Unsupported file system \" %s \"", item->fsType);
-         表示当前文件系统类型不支持
-
-         BEGET_LOGE("Cannot get stat of \" %s \", err = %d", target, errno);
-         表示无法获取挂载点目录信息
-
-         BEGET_LOGE("Failed to create dir \" %s \", err = %d", target, errno);
-         表示无法创建挂载点目录
-
-         BEGET_LOGI("Mount %s to %s successful", item->deviceName, item->mountPoint);
-         表示成功挂载设备，打印中还包含了挂载的设备名和挂载点信息
          ```
-
+         表示当前文件系统类型不支持。
+         ```
+         BEGET_LOGE("Cannot get stat of \" %s \", err = %d", target, errno);
+         ```
+         表示无法获取挂载点目录信息。
+         ```
+         BEGET_LOGE("Failed to create dir \" %s \", err = %d", target, errno);
+         ```
+         表示无法创建挂载点目录。
+         ```
+         BEGET_LOGI("Mount %s to %s successful", item->deviceName, item->mountPoint);
+         ```
+         表示成功挂载设备，打印中还包含了挂载的设备名和挂载点信息。
 
 - init执行system和vendor中的启动脚本，挂载vendor中更多的分区
 
-​	挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
+挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
 
 
 ### 无ramdisk的启动加载流程
 
 有些开发板没有采用ramdisk启动引导，直接通过内核挂载system.img。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
 
-此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下，并且执行/etc/init.cfg入口脚本文件；而没有ramdisk时，没有chroot过程，切init执行的入口启动脚本是init.without_two_stages.cfg文件。
+此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下；而没有ramdisk时，没有chroot过程，但是都会读取init.cfg文件从而执行脚本。
 
 对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如root=/dev/mmcblk0p5，rootfstype=ext4。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
+
+
+### A/B分区启动
+
+OpenHarmony现支持A/B双分区启动（主备系统分区），即在设备的存储介质上同时存放两套系统分区A和B，启动时根据当前的活动分区标记（我们称之为active partition slot）来决定加载哪一套系统分区。目前支持A/B启动的分区有system分区和chipset分区。
+
+- bootslots
+
+  bootslots是指当前支持的启动分区个数，当前bootslots的值被设置为2，表示支持A/B双系统分区启动，如果该值为1，则表示不支持A/B分区启动，仅可从默认系统分区启动。
+
+  init启动的第一阶段将会读取bootslots值，根据该值判断当前系统是否支持A/B分区，若不支持，则按照默认fstab挂载系统分区；若支持，则继续判断本次启动需要挂载哪一套系统分区。init获取bootslots的主要接口如下：
+  ```
+  int GetBootSlots(void)
+  {
+      int bootSlots = GetSlotInfoFromParameter("bootslots");
+      BEGET_CHECK_RETURN_VALUE(bootSlots <= 0, bootSlots);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+      return GetSlotInfoFromCmdLine("bootslots");
+  }
+  ```
+  在系统正常启动后，用户可以在控制台通过系统参数ohos.boot.bootslots来获取bootslots的值，以查看当前系统是否支持A/B分区启动。获取该系统参数的具体命令如下：
+  ```
+  param get ohos.boot.bootslots
+  ```
+
+- currentslot
+
+  currentslot是指当前启动的系统分区，比如A分区或B分区。currentslot的值使用数字表示，比如数字1表示当前启动A分区，数字2表示当前启动B分区。
+
+  init在启动的第一阶段通过bootslots判断系统是否支持A/B分区，若不支持，将不再获取currentslot值，直接启动默认系统分区；若支持，将会继续获取currentslot值，根据该值判断当前启动的系统分区为A分区或B分区。init获取currentslot的主要接口如下：
+  ```
+  int GetCurrentSlot(void)
+  {
+      // get current slot from parameter
+      int currentSlot = GetSlotInfoFromParameter("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from parameter, try to get it from cmdline");
+
+      // get current slot from cmdline
+      currentSlot = GetSlotInfoFromCmdLine("currentslot");
+      BEGET_CHECK_RETURN_VALUE(currentSlot <= 0, currentSlot);
+      BEGET_LOGI("No valid slot value found from cmdline, try to get it from misc");
+
+      // get current slot from misc
+      return GetSlotInfoFromMisc(MISC_PARTITION_ACTIVE_SLOT_OFFSET, MISC_PARTITION_ACTIVE_SLOT_SIZE);
+  }
+  ```
+
+- A/B分区启动流程
+
+  1. 获取当前启动的A/B分区信息，即currentslot信息。
+  2. 以原始fstab为基础构造新的分区挂载配置，为支持A/B启动的分区（目前支持的分区有system分区和chipset分区）添加对应的"_a"或"_b"后缀。
+  3. 按照构造后的分区挂载配置挂载带有相应后缀的分区并切换到启动的第二阶段，启动第二阶段将在具体的A分区或B分区中进行，涉及A/B分区启动部分至此结束。
+
+  调整分区挂载配置的主要接口如下：
+  ```
+  static void AdjustPartitionNameByPartitionSlot(FstabItem *item)
+  {
+      BEGET_CHECK_ONLY_RETURN(strstr(item->deviceName, "/system") != NULL ||
+          strstr(item->deviceName, "/chipset") != NULL);
+      char buffer[MAX_BUFFER_LEN] = {0};
+      int slot = GetCurrentSlot();
+      BEGET_ERROR_CHECK(slot > 0 && slot <= MAX_SLOT, slot = 1, "slot value %d is invalid, set default value", slot);
+      BEGET_INFO_CHECK(slot > 1, return, "default partition doesn't need to add suffix");
+      BEGET_ERROR_CHECK(sprintf_s(buffer, sizeof(buffer), "%s_%c", item->deviceName, 'a' + slot - 1) > 0,
+          return, "Failed to format partition name suffix, use default partition name");
+      free(item->deviceName);
+      item->deviceName = strdup(buffer);
+      BEGET_LOGI("partition name with slot suffix: %s", item->deviceName);
+  }
+  ```
+
+- A/B分区挂载与启动实例
+
+  下面以rk3568平台为例，演示系统从默认分区启动到支持A/B分区启动的过程。
+
+  1. 烧写原始镜像并查看各分区设备信息
+
+      ![原始分区](figures/ABStartup_1.png)
+
+      使用原始镜像构造A/B分区镜像，测试A/B分区启动功能
+      - 复制system、vendor镜像并添加_b后缀。
+      - 在分区表（parameter.txt）中添加system_b、vendor_b分区。
+
+  2. 烧写A/B分区镜像
+
+     - 在rk3568烧写工具中导入配置，选择带有system_b和vendor_b分区的parameter.txt。
+     - 按照新的分区表配置选择镜像（注意新增的system_b和vendor_b镜像），选择完成后烧写。
+
+  3. 启动完成后
+
+      1. 执行cat /proc/cmdline，能够找到bootslot=2，说明当前系统支持A/B分区启动。
+
+          ![cmdline](figures/ABStartup_2.png)
+      2. 执行param get ohos.boot.bootslot，得到的结果是2，说明bootslot信息被成功写到了parameter中。
+
+      3. 执行ls -l /dev/block/by-name，能够找到system_b、vendor_b，说明新增的B分区设备节点创建成功。
+
+          ![设备信息](figures/ABStartup_3.png)
+
+      4. 执行df -h 查看当前系统挂载分区。
+
+          ![分区信息](figures/ABStartup_4.png)
+
+          可以看到根文件系统（一个 ” / ” 表示）挂载的是mmcblk0p6，从上一张图中可以找到对应mmcblk0p6的是system；也可以看到/vendor中挂载的是mmcblk0p7，从上一张图中可以找到对应mmcblk0p7的是vendor。也就是说，现在挂载的是默认分区（就是原来的没有后缀的system和vendor分区，可以理解为默认分区就是A分区）。
+
+          接下来，我们将尝试B分区启动。
+
+          1）执行partitionslot setactive 2，将活动分区slot设置为2，也就是B分区的slot。
+
+          ![设置slot](figures/ABStartup_5.png)
+
+          2）执行partitionslot getslot，查看刚刚设置的slot值是否设置成功。
+
+          ![查看slot](figures/ABStartup_6.png)
+
+          current slot: 2表示活动分区slot被成功设置为2
+
+          3）重启设备后，执行df -h，查看当前系统挂载分区
+          发现当前根文件系统挂载的是mmcblk0p11，/vendor挂载的是mmcblk0p12。
+
+          ![挂载信息](figures/ABStartup_7.png)
+
+          4）再次执行ls -l /dev/block/by-name。
+
+          ![新增设备信息](figures/ABStartup_8.png)
+
+          找到mmcblk0p11对应的是system_b，mmcblk0p12对应的是vendor_b，也就是说，本次启动系统已经成功从B分区挂载启动。

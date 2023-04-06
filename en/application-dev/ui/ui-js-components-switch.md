@@ -9,19 +9,18 @@ The **&lt;switch&gt;** component is used to switch between the on and off states
 Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 
 
-```
+```html
+<!-- xxx.hml -->
 <div class="container">
-    <switch></switch>
+    <switch checked="true"></switch>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #F1F3F5;
 }
 ```
@@ -31,9 +30,9 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 
 ## Adding Attributes and Methods
 
-  Use the **textoff** and **showtext** attributes to set the status when text is selected and unselected. Set the **checked** attribute to **true** (indicating that the component is on). Add the **change** event that is triggered when the component status changes. After the event is triggered, the **switchChange** function is executed to obtain the current component status (on or off).
+Use the **textoff** and **showtext** attributes to set the status when text is selected and unselected. Set the **checked** attribute to **true** (indicating that the component is on). Add the **change** event that is triggered when the component status changes. After the event is triggered, the **switchChange** function is executed to obtain the current component status (on or off).
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <switch showtext="true" texton="open" textoff="close" checked="true" @change="switchChange"></switch>
@@ -41,38 +40,36 @@ Create a **&lt;switch&gt;** component in the .hml file under **pages/index**.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
 }
-switch{
-  // Color of the selected text
+switch {
   texton-color: #002aff;
-  // Color of the unselected text
-textoff-color: silver;
+  textoff-color: silver;
   text-padding: 20px; 
   font-size: 50px;
 }
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   switchChange(e){
     if(e.checked){
-      prompt.showToast({
+      promptAction.showToast({
         message: "open"
       });
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "close"
       });
     }
@@ -84,7 +81,8 @@ export default {
 ![en-us_image_0000001276003505](figures/en-us_image_0000001276003505.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > The text set by **texton** and **textoff** takes effect only when **showtext** is set to **true**.
 
 
@@ -94,7 +92,7 @@ Turn on the switch and the default delivery address is used. When the switch is 
 
   Implementation method: Create a **&lt;switch&gt;** component, set the **checked** attribute to **true**, and change the delivery address through data binding. Set the **display** attribute (the default value is **none**). When the switch is turned off and the **display** attribute is set to **flex**, the address module is displayed and clicking the button can change the color.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="change">
@@ -113,11 +111,11 @@ Turn on the switch and the default delivery address is used. When the switch is 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   background-color: #F1F3F5;
   flex-direction: column;
   padding: 50px;
@@ -168,7 +166,7 @@ switch{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {

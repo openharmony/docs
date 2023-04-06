@@ -3,7 +3,7 @@
 
   使用实例以sensorTypeId为0的传感器为例，其他类型的传感器使用方式类似。
   
-```
+```c
 #include "sensor_agent.h"
 #include "sensor_agent_type.h"
 #include "stdio.h"

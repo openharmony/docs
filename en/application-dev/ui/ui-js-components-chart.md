@@ -8,18 +8,14 @@ The **&lt;chart&gt;** component displays line charts, gauge charts, and bar char
 
 Create a **&lt;chart&gt;** component in the .hml file under **pages/index**.
 
-
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
- <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
+  <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -35,10 +31,8 @@ Create a **&lt;chart&gt;** component in the .hml file under **pages/index**.
 }
 ```
 
-
-
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     lineData: [
@@ -76,7 +70,7 @@ export default {
 Define the chart type using the **type** attribute, for example, setting a chart to a bar chart.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="container">
@@ -95,11 +89,11 @@ Define the chart type using the **type** attribute, for example, setting a chart
           </tab-bar>
           <tab-content>
             <div class="bar-block" style="margin-left: 30px;">
-              <chart class="chart-data"type="line" ref="linechart" options="{{ lineOps }}" datasets="{{ lineData }}">
+              <chart class="chart-data" type="line" ref="linechart" options="{{ lineOps }}" datasets="{{ lineData }}">
               </chart>
             </div>
             <div class="bar-block">
-              <chart class="data-bar"type="bar" id="bar-chart" options="{{ barOps }}" datasets="{{ barData }}">
+              <chart class="data-bar" type="bar" id="bar-chart" options="{{ barOps }}" datasets="{{ barData }}">
               </chart>
             </div>
             <div class="chart-block">
@@ -114,7 +108,7 @@ Define the chart type using the **type** attribute, for example, setting a chart
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -150,8 +144,8 @@ Define the chart type using the **type** attribute, for example, setting a chart
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     title:"Type display",
@@ -217,8 +211,9 @@ export default {
 
 ![en-us_image_0000001275803181](figures/en-us_image_0000001275803181.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>The **&lt;chart&gt;** component does not display the value of each point.
+> **NOTE**
 >
+> The **&lt;chart&gt;** component does not display the value of each point.
 
 
 ## Setting the Chart Attributes
@@ -226,7 +221,7 @@ export default {
 In the **options** attribute of the **&lt;chart&gt;** component, you can set the x-axis, y-axis, and data series parameters. In the **datasets** attribute, you can set the line color, fill color, gradient fill color, and drawing point set.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
@@ -234,7 +229,7 @@ In the **options** attribute of the **&lt;chart&gt;** component, you can set the
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -251,8 +246,8 @@ In the **options** attribute of the **&lt;chart&gt;** component, you can set the
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     // Line chart data
@@ -304,7 +299,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
 > - The **options** attribute supports the settings of bar charts and line charts but does not support those of gauge charts.
 > 
 > - The **datasets** attribute supports the datasets for bar charts and line charts but does not support those of gauge charts.
@@ -317,22 +312,20 @@ export default {
 Use the **append** method of the **&lt;chart&gt;** component to dynamically add data.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <stack class="chart-region">
     <chart class="chart-data" type="line" ref="linechart" options="{{lineOps}}" datasets="{{lineData}}"></chart>
   </stack>
-  <button value="Add data"onclick="addData"></button>
+  <button value="Add data" onclick="addData"></button>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -356,7 +349,7 @@ button {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -399,7 +392,12 @@ export default {
       }
     },
   },
-  addData() {    this.$refs.linechart.append({      serial: 0,        data: [Math.floor(Math.random() * 400) + 200]    })  }
+  addData() {    
+    this.$refs.linechart.append({      
+    serial: 0,        
+      data: [Math.floor(Math.random() * 400) + 200]    
+    })  
+  }
 }
 ```
 
@@ -411,7 +409,7 @@ export default {
 Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;** is set to **true**, the timer is used to dynamically display data.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="container">
@@ -460,7 +458,7 @@ Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;**
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   display:flex;
@@ -498,7 +496,7 @@ Select the data display status using **&lt;switch&gt;**. When **&lt;switch&gt;**
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -616,8 +614,3 @@ export default {
 ```
 
 ![en-us_image_0000001232162328](figures/en-us_image_0000001232162328.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
-
-[`Chart`: chart (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)

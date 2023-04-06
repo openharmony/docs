@@ -1,189 +1,372 @@
 # HiSysEvent打点
 
-
 ## 概述
-
 
 ### 功能简介
 
-HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系统在运行过程中的重要信息，辅助开发者定位问题，此外还支持开发者将数据上传到云进行大数据质量度量。
+HiSysEvent打点提供了事件打点功能，开发者可以通过在关键路径打点来记录系统在运行过程中的重要信息。同时，HiSysEvent打点也提供了以事件领域为单位的HiSysEvent打点屏蔽机制，方便开发者评估及调试HiSysEvent打点操作的影响。
 
+### 运作机制
 
-### 约束与限制
-
-在进行HiSysEvent事件打点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)。
-
+在进行HiSysEvent事件打点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[HiSysEvent打点配置指导](subsys-dfx-hisysevent-logging-config.md)。
 
 ## 开发指导
 
+### 场景介绍
+
+事件打点的主要工作是将打点数据进行落盘。
 
 ### 接口说明
 
-JAVA打点接口如下：
+#### C++接口说明
 
-HiSysEvent类，具体的API详见接口文档 。
+C++事件打点开发能力如下：HiSysEvent类，具体API详见接口目录（/base/hiviewdfx/hisysevent/interfaces/native/innerkits/hisysevent/include/）。
 
-  **表1** HiSysEvent接口介绍
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 
+> 从OpenHarmony-3.2-Beta3版本开始，为避免打点风暴事件引发性能问题，对HiSysEvent打点进行了管控。表1中的HiSysEvent::Write打点接口被表2中的HiSysEventWrite宏接口取代。HiSysEvent::Write接口已废弃，请使用HiSysEventWrite宏接口完成HiSysEvent事件打点。
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| public&nbsp;static&nbsp;int&nbsp;write(String&nbsp;domain,&nbsp;String&nbsp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Object...&nbsp;keyValues) | 接口功能：记录系统事件。<br/>输入参数：<br/>-&nbsp;domain：事件的相关领域，需要使用预置领域请参考Domain，可自定义领域。自定义领域长度在16个字符以内，有效的字符是0-9、A-Z，以字母开头。<br/>-&nbsp;eventName：事件名，长度在32个字符以内，有效的字符是0-9、a-z、A-Z、_，以字母开头，不能以_结尾。<br/>-&nbsp;type：事件类型，参考EventType。<br/>-&nbsp;keyValues：事件参数键值对，支持基本的数据类型、std::string，以及std::vector&lt;基本类型&gt;、std:vector&lt;std::string&gt;。参数名长度在48个字符以内，有效的字符是0-9、a-z、A-Z、_，以字母开头，不能以_结尾。参数名的个数在32个以内。<br/>返回值：成功返回0，错误返回小于0的值。 | 
-| public&nbsp;static&nbsp;int&nbsp;write(String&nbsp;domain,&nbsp;String&nbsp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Map&lt;String,&nbsp;Object&gt;&nbsp;keyValues) | 接口功能：记录系统事件。<br/>输入参数：<br/>-&nbsp;domain：事件的相关领域，需要使用预置领域请参考Domain，可自定义领域。自定义领域长度在16个字符以内，有效的字符是0-9、A-Z，以字母开头。<br/>-&nbsp;eventName：事件名，长度在32个字符以内，有效的字符是0-9、a-z、A-Z、_，以字母开头，不能以_结尾。<br/>-&nbsp;type：事件类型，参考EventType。<br/>-&nbsp;keyValues：事件参数键值对，支持基本的数据类型、std::string，以及std::vector&lt;基本类型&gt;、std:vector&lt;std::string&gt;。参数名长度在48个字符以内，有效的字符是0-9、a-z、A-Z、_，以字母开头，不能以_结尾。参数名的个数在32个以内。<br/>返回值：成功返回0，错误返回小于0的值。 | 
+**表1** 事件打点接口（已废弃）
 
-  **表2** HiSysEvent.Domain接口介绍
+| 接口名                                                       | 描述                   |
+| ------------------------------------------------------------ | --------------------- |
+| template&lt;typename...&nbsp;Types&gt;&nbsp;<br>static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | 将打点事件数据进行落盘。 |
 
-| 成员 | 描述 | 
-| -------- | -------- |
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;AAFWK&nbsp;=&nbsp;"AAFWK" | 元能力子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;APPEXECFWK&nbsp;=&nbsp;"APPEXECFWK" | 用户程序框架子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;ACCOUNT&nbsp;=&nbsp;"ACCOUNT" | 账号子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;AI&nbsp;=&nbsp;"AI" | AI子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;BARRIER_FREE&nbsp;=&nbsp;"BARRIERFREE" | 无障碍软件服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;BIOMETRICS&nbsp;=&nbsp;"BIOMETRICS" | 生物特征识别服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;CCRUNTIME&nbsp;=&nbsp;"CCRUNTIME" | C/C++运行环境子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;COMMUNICATION&nbsp;=&nbsp;"COMMUNICATION" | 公共通信子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;DEVELOPTOOLS&nbsp;=&nbsp;"DEVELOPTOOLS" | 研发工具链子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;DISTRIBUTED_DATAMGR&nbsp;=&nbsp;"DISTDATAMGR" | 分布式数据管理子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;DISTRIBUTED_SCHEDULE&nbsp;=&nbsp;"DISTSCHEDULE" | 分布式任务调度子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;GLOBAL&nbsp;=&nbsp;"GLOBAL" | 全球化子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;GRAPHIC&nbsp;=&nbsp;"GRAPHIC" | 图形子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;HIVIEWDFX&nbsp;=&nbsp;"HIVIEWDFX" | DFX子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;IAWARE&nbsp;=&nbsp;"IAWARE" | 本地资源调度管控子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;INTELLI_ACCESSORIES&nbsp;=&nbsp;"INTELLIACC" | 智能配件业务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;INTELLI_TV&nbsp;=&nbsp;"INTELLITV" | 智能电视业务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;IVI_HARDWARE&nbsp;=&nbsp;"IVIHARDWARE" | 车机专有硬件服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;LOCATION&nbsp;=&nbsp;"LOCATION" | 位置服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;MSDP&nbsp;=&nbsp;"MSDP" | 综合传感处理平台子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;MULTI_MEDIA&nbsp;=&nbsp;"MULTIMEDIA" | 媒体子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;MULTI_MODAL_INPUT&nbsp;=&nbsp;"MULTIMODALINPUT" | 多模输入子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;NOTIFICATION&nbsp;=&nbsp;"NOTIFICATION" | 事件通知子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;POWERMGR&nbsp;=&nbsp;"POWERMGR" | 电源服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;ROUTER&nbsp;=&nbsp;"ROUTER" | 路由器业务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;SECURITY&nbsp;=&nbsp;"SECURITY" | 安全子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;SENSORS&nbsp;=&nbsp;"SENSORS" | 泛Sensor服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;SOURCE_CODE_TRANSFORMER&nbsp;=&nbsp;"SRCTRANSFORMER" | 应用移植子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;STARTUP&nbsp;=&nbsp;"STARTUP" | 启动恢复子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;TELEPHONY&nbsp;=&nbsp;"TELEPHONY" | 电话服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;UPDATE&nbsp;=&nbsp;"UPDATE" | 升级服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;USB&nbsp;=&nbsp;"USB" | USB服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;WEARABLE_HARDWARE&nbsp;=&nbsp;"WEARABLEHW" | 穿戴专有硬件服务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;WEARABLE&nbsp;=&nbsp;"WEARABLE" | 穿戴业务子系统 | 
-| public&nbsp;static&nbsp;final&nbsp;String&nbsp;OTHERS&nbsp;=&nbsp;"OTHERS" | 其它 | 
+**表2** 事件打点宏接口
 
-  **表3** HiSysEvent.EventType接口介绍
+| 接口名                                                       | 描述                   |
+| ------------------------------------------------------------ | --------------------- |
+| HiSysEventWrite(domain, eventName, type, ...)                | 将打点事件数据进行落盘。 |
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| FAULT | 故障类型事件 | 
-| STATISTIC | 统计类型事件 | 
-| SECURITY | 安全类型事件 | 
-| BEHAVIOR | 系统行为事件 | 
+ **表3** EventType事件类型枚举
 
-C++打点接口如下：
+| 事件类型   | 描述        |
+| --------- | ----------- |
+| FAULT     | 故障类型事件。 |
+| STATISTIC | 统计类型事件。 |
+| SECURITY  | 安全类型事件。 |
+| BEHAVIOR  | 行为类型事件。 |
 
-HiSysEvent类，具体的API详见接口文档 。
+#### C接口说明
 
-  **表4** HiSysEvent接口介绍
+C事件打点开发能力如下：具体API详见接口目录（/base/hiviewdfx/hisysevent/interfaces/native/innerkits/hisysevent/include/）。
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| template&lt;typename...&nbsp;Types&gt;&nbsp;static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | 接口功能：记录系统事件。<br/>输入参数：<br/>-&nbsp;domain：事件的相关领域，需要使用预置领域请参考Domain，可自定义领域。自定义领域长度在16个字符以内，有效的字符是0-9、A-Z，以字母开头。<br/>-&nbsp;eventName：事件名，长度在32个字符以内，有效的字符是0-9、A-Z、下划线，以字母开头，不能以下划线结尾。<br/>-&nbsp;type：事件类型，参考EventType。<br/>-&nbsp;keyValues：事件参数键值对，支持基本的数据类型、std::string，以及std::vector&lt;基本类型&gt;、std:vector&lt;std::string&gt;。参数名长度在48个字符以内，有效的字符是0-9、A-Z、下划线，以字母开头，不能以下划线结尾。参数名的个数在32个以内。<br/>返回值：<br/>-&nbsp;0：系统事件记录成功。<br/>-&nbsp;负值：系统事件记录失败。 | 
+**表4** 事件打点接口
 
-  **表5** HiSysEvent::Domain接口介绍
+| 接口名                                                       | 描述                     |
+| ------------------------------------------------------------ | ------------------------ |
+| int OH_HiSysEvent_Write(const char\* domain, const char\* name, HiSysEventEventType type, HiSysEventParam params[], size_t size); | 将打点事件数据进行落盘。 |
 
-| 成员名称 | 描述 | 
-| -------- | -------- |
-| static&nbsp;const&nbsp;std::string&nbsp;AAFWK | 元能力子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;APPEXECFWK | 用户程序框架子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ACCOUNT | 账号子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ARKUI | ARKUI子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;AI | AI业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;BARRIER_FREE | 无障碍软件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;BIOMETRICS | 生物特征识别服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;CCRUNTIME | C/C++运行环境子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;COMMUNICATION | 公共通信子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DEVELOPTOOLS | 研发工具链子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DISTRIBUTED_DATAMGR | 分布式数据管理子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DISTRIBUTED_SCHEDULE | 分布式任务调度子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;GLOBAL | 全球化子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;GRAPHIC | 图形子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;HIVIEWDFX | DFX子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;IAWARE | 本地资源调度管控子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;INTELLI_ACCESSORIES | 智能配件业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;INTELLI_TV | 智能电视业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;IVI_HARDWARE | 车机专有硬件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;LOCATION | 位置服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MSDP | 综合传感处理平台子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MULTI_MEDIA | 媒体子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MULTI_MODAL_INPUT | 多模输入子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;NOTIFICATION | 事件通知子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;POWERMGR | 电源服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ROUTER | 路由器业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SECURITY | 安全子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SENSORS | 泛Sensor服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SOURCE_CODE_TRANSFORMER | 应用移植子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;STARTUP | 启动恢复子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;TELEPHONY | 电话服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;UPDATE | 升级服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;USB | USB服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;WEARABLE_HARDWARE | 穿戴专有硬件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;WEARABLE_HARDWARE | 穿戴业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;OTHERS | 其它 | 
+**表5** HiSysEventEventType事件类型枚举
 
-  **表6** HiSysEvent::EventType接口介绍
+| 事件类型             | 描述           |
+| -------------------- | -------------- |
+| HISYSEVENT_FAULT     | 故障类型事件。 |
+| HISYSEVENT_STATISTIC | 统计类型事件。 |
+| HISYSEVENT_SECURITY  | 安全类型事件。 |
+| HISYSEVENT_BEHAVIOR  | 行为类型事件。 |
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| FAULT | 故障类型事件 | 
-| STATISTIC | 统计类型事件 | 
-| SECURITY | 安全类型事件 | 
-| BEHAVIOR | 系统行为事件 | 
+**表6** HiSysEventParam事件参数结构体
 
+| 属性名称  | 属性类型             | 描述                               |
+| --------- | -------------------- | ---------------------------------- |
+| name      | char name[]          | 事件参数名称。                     |
+| t         | HiSysEventParamType  | 事件参数类型。                     |
+| v         | HiSysEventParamValue | 事件参数值。                       |
+| arraySize | size_t               | 事件参数值为数组类型时的数组长度。 |
 
-### 开发实例
+**表7** HiSysEventParamType事件参数类型枚举
 
-Java接口实例
+| 参数类型                | 描述                       |
+| ----------------------- | -------------------------- |
+| HISYSEVENT_INVALID      | 无效类型事件参数。         |
+| HISYSEVENT_BOOL         | bool类型事件参数。         |
+| HISYSEVENT_INT8         | int8_t类型事件参数。       |
+| HISYSEVENT_UINT8        | uint8_t类型事件参数。      |
+| HISYSEVENT_INT16        | int16_t类型事件参数。      |
+| HISYSEVENT_UINT16       | uint16_t类型事件参数。     |
+| HISYSEVENT_INT32        | int32_t类型事件参数。      |
+| HISYSEVENT_UINT32       | uint32_t类型事件参数。     |
+| HISYSEVENT_INT64        | int64_t类型事件参数。      |
+| HISYSEVENT_UINT64       | uint64_t类型事件参数。     |
+| HISYSEVENT_FLOAT        | float类型事件参数。        |
+| HISYSEVENT_DOUBLE       | double类型事件参数。       |
+| HISYSEVENT_STRING       | char*类型事件参数。        |
+| HISYSEVENT_BOOL_ARRAY   | bool数组类型事件参数。     |
+| HISYSEVENT_INT8_ARRAY   | int8_t数组类型事件参数。   |
+| HISYSEVENT_UINT8_ARRAY  | uint8_t数组类型事件参数。  |
+| HISYSEVENT_INT16_ARRAY  | int16_t数组类型事件参数。  |
+| HISYSEVENT_UINT16_ARRAY | uint16_t数组类型事件参数。 |
+| HISYSEVENT_INT32_ARRAY  | int32_t数组类型事件参数。  |
+| HISYSEVENT_UINT32_ARRAY | uint32_t数组类型事件参数。 |
+| HISYSEVENT_INT64_ARRAY  | int64_t数组类型事件参数。  |
+| HISYSEVENT_UINT64_ARRAY | uint64_t数组类型事件参数。 |
+| HISYSEVENT_FLOAT_ARRAY  | float数组类型事件参数。    |
+| HISYSEVENT_DOUBLE_ARRAY | double数组类型事件参数。   |
+| HISYSEVENT_STRING_ARRAY | char*数组类型事件参数。    |
 
-1. 源代码开发
-   引入类名：
+**表8** HiSysEventParamValue事件参数值联合体
 
-     
-   ```
-   import ohos.hiviewdfx.HiSysEvent;
-   ```
+| 属性名称 | 属性类型 | 描述                     |
+| -------- | -------- | ------------------------ |
+| b        | bool     | bool类型事件参数值。     |
+| i8       | int8_t   | int8_t类型事件参数值。   |
+| ui8      | uint8_t  | uint8_t类型事件参数值。  |
+| i16      | int16_t  | int16_t类型事件参数值。  |
+| ui16     | uint16_t | uint16_t类型事件参数值。 |
+| i32      | int32_t  | int32_t类型事件参数值。  |
+| ui32     | uint32_t | uint32_t类型事件参数值。 |
+| i64      | int64_t  | int64_t类型事件参数值。  |
+| ui64     | uint64_t | uint64_t类型事件参数值。 |
+| f        | float    | float类型事件参数值。    |
+| d        | double   | double类型事件参数值。   |
+| s        | char*    | char*类型事件参数值。    |
+| array    | void*    | 数组类型事件参数值。     |
 
-   假设业务关注应用启动时间start_app，在相关代码中使用（调用接口打点）：
+#### kernel接口说明
 
-     
-   ```
-   HiSysEvent.write(HiSysEvent.Domain.AAFWK, "start_app", HiSysEvent.EventType.FAULT, "app_name", "com.demo");
+kernel事件打点开发能力如下：具体API详见接口文件（/kernel/linux/linux-5.10/include/dfx/hiview_hisysevent.h）。
+
+**表9** 事件打点接口
+
+| 接口名                                                       | 描述                                 |
+| ------------------------------------------------------------ | ----------------------------------- |
+| struct hiview_hisysevent *hisysevent_create(const char *domain, const char *name, enum hisysevent_type type); | 创建一个事件对象。    |
+| void hisysevent_destroy(struct hiview_hisysevent *event);    | 销毁一个事件对象。                                                     |
+| int hisysevent_put_integer(struct hiview_hisysevent *event, const char *key, long long value); | 将整数类型的事件参数添加到事件对象。   |
+| int hisysevent_put_string(struct hiview_hisysevent *event, const char *key, const char *value); | 将字符串类型的事件参数添加到事件对象。 |
+| int hisysevent_write(struct hiview_hisysevent *event);       | 将事件对象数据进行落盘。                                                |
+
+**表10** hisysevent_type事件类型枚举
+
+| 事件类型   | 描述        |
+| --------- | ----------- |
+| FAULT     | 故障类型事件。 |
+| STATISTIC | 统计类型事件。 |
+| SECURITY  | 安全类型事件。 |
+| BEHAVIOR  | 行为类型事件。 |
+
+### 开发步骤
+
+#### C++打点开发步骤
+
+在需要打点的地方直接调用打点接口，并传入相应事件参数。
+
+   ```c++
+   HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
    ```
 
-2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
-     
-   ```
-   external_deps = [ "hisysevent:hisysevent_java" ]
+#### C打点开发步骤
+
+1. 如果需要在打点时传入自定义事件参数，先要根据事件参数类型创建对应的事件参数对象，再将其放入到事件参数数组中。
+
+   ```c
+   // 创建一个int32_t类型的事件参数
+   HiSysEventParam param1 = {
+       .name = "KEY_INT32",
+       .t = HISYSEVENT_INT32,
+       .v = { .i32 = 1 },
+       .arraySize = 0,
+   };
+
+   // 创建一个int32_t数组类型的事件参数
+   int32_t int32Arr[] = { 1, 2, 3 };
+   HiSysEventParam param2 = {
+       .name = "KEY_INT32_ARR",
+       .t = HISYSEVENT_INT32_ARRAY,
+       .v = { .array = int32Arr },
+       .arraySize = sizeof(int32Arr) / sizeof(int32Arr[0]),
+   };
+
+   // 将事件参数对象放入创建的事件参数数组中
+   HiSysEventParam params[] = { param1, param2 };
    ```
 
-C++接口实例
+2. 在需要打点的地方调用打点接口，并传入相应事件参数。
 
-1. 源代码开发
-   在类定义头文件或者类实现源文件中，包含HiSysEvent头文件：
-
-     
+   ```c
+   OH_HiSysEvent_Write("TEST_DOMAIN", "TEST_NAME", HISYSEVENT_BEHAVIOR, params, sizeof(params) / sizeof(params[0]));
    ```
+
+#### kernel打点开发步骤
+
+1. 根据事件领域、事件名称、事件类型参数，创建一个基础的事件对象。
+
+   ```c
+   struct hiview_hisysevent *event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+   ```
+
+2. 将自定义的事件参数，传入到事件对象里。
+
+   ```c
+   // 添加整数类型参数
+   hisysevent_put_integer(event, "BOOT_TIME", 100);
+
+   // 添加字符串类型参数
+   hisysevent_put_string(event, "MSG", "This is a test message");
+   ```
+
+3. 在事件对象构建完成后，将事件进行上报。
+
+   ```c
+   hisysevent_write(event);
+   ```
+
+4. 事件上报完成后，需要手动将对象销毁。
+
+   ```c
+   hisysevent_destroy(&event);
+   ```
+
+#### 事件领域屏蔽的步骤
+
+1. 在相应的文件中定义名称为“DOMAIN_MASKS”，内容形如“DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n”。共有三种屏蔽场景：
+
+- 只屏蔽当前源码文件中的相应事件领域的HiSysEvent打点，在该cpp文件引入hisysevent.h头文件之前定义宏DOMAIN_MASKS即可。
+   ```c++
+   #define DOMAIN_MASKS "DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n"
    #include "hisysevent.h"
    ```
 
-   假设在业务关注应用启动时间start_app，在业务类实现相关源文件中使用（调用接口打点）：
+- 屏蔽整个模块相应事件领域的HiSysEvent打点，在模块的BUILD.gn文件中定义宏DOMAIN_MASKS即可。
+   ```gn
+   config("module_a"){
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
+   }
+   ```
 
-     
-   ```
-   HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "start_app", HiSysEvent::EventType::FAULT, "app_name", "com.demo");
+- 全局屏蔽相应事件领域的HiSysEvent打点，则在/build/config/compiler/BUILD.gn中定义宏DOMAIN_MASKS即可。
+   ```gn
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
    ```
 
-2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
-     
+2. 通过HiSysEventWrite宏完成HiSysEvent打点操作：
+   ```c++
+   constexpr char DOMAIN[] = "DOMAIN_NAME_1";
+   const std::string eventName = "EVENT_NAME1";
+   OHOS:HiviewDFX::HiSysEvent::EventType eventType = OHOS:HiviewDFX::HiSysEvent::EventType::FAULT;
+   HiSysEventWrite(domain, eventName, eventType); //因为DOMAIN_NAME_1事件领域已经在DOMAIN_MASKS中定义，所以该HiSysEvent打点不会执行。
    ```
+
+### 开发实例
+
+#### C++打点开发实例
+
+假设业务模块需要在应用启动时进行打点来记录应用启动事件，且需要记录应用的包名信息，完整使用示例如下所示：
+
+1. 首先，需要在业务模块的在BUILD.gn里增加HiSysEvent部件依赖。
+
+   ```c++
    external_deps = [ "hisysevent_native:libhisysevent" ]
    ```
+
+2. 在业务模块的应用启动函数StartAbility()中，调用打点接口并传入对应事件参数。
+
+   ```c++
+   #include "hisysevent.h"
+
+   int StartAbility()
+   {
+       ... // 其他业务逻辑
+       int ret = HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+       ... // 其他业务逻辑
+   }
+   ```
+
+#### C打点开发实例
+
+假设业务模块需要在应用启动时进行打点来记录应用启动事件，且需要记录应用的包名信息，完整使用示例如下所示：
+
+1. 首先，需要在业务模块的在BUILD.gn里增加HiSysEvent部件依赖。
+
+   ```c++
+   external_deps = [ "hisysevent_native:libhisysevent" ]
+   ```
+
+2. 在业务模块的应用启动函数StartAbility()中，调用打点接口并传入对应事件参数。
+
+   ```c
+   #include "hisysevent_c.h"
+
+   int StartAbility()
+   {
+       ... // 其他业务逻辑
+       char packageName[] = "com.ohos.demo";
+       HiSysEventParam param = {
+           .name = "APP_NAME",
+           .t = HISYSEVENT_STRING,
+           .v = { .s = packageName },
+           .arraySize = 0,
+       };
+       HiSysEventParam params[] = { param };
+       int ret = OH_HiSysEvent_Write("AAFWK", "START_APP", HISYSEVENT_BEHAVIOR, params, sizeof(params) / sizeof(params[0]));
+       ... // 其他业务逻辑
+   }
+   ```
+
+#### kernel打点开发实例
+
+假设内核业务模块需要在设备启动时进行打点来记录设备启动事件，完整使用示例如下所示：
+
+1. 在设备启动函数device_boot()中，构建一个启动事件对象，然后将事件进行上报，最后销毁事件对象。
+
+    ```c
+    #include <dfx/hiview_hisysevent.h>
+
+    #include <linux/errno.h>
+    #include <linux/printk.h>
+
+    int device_boot()
+    {
+        ... // 其他业务逻辑
+        struct hiview_hisysevent *event = NULL;
+        int ret = 0;
+
+        event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+        if (!event) {
+            pr_err("failed to create event");
+            return -EINVAL;
+        }
+        ret = hisysevent_put_string(event, "MSG", "This is a test message");
+        if (ret != 0) {
+            pr_err("failed to put sting to event, ret=%d", ret);
+            goto hisysevent_end;
+        }
+        ret = hisysevent_write(event);
+
+    hisysevent_end:
+        hisysevent_destroy(&event);
+        ... // 其他业务逻辑
+    }
+    ```
+
+#### 事件领域屏蔽的开发实例
+
+- 假设业务模块中，需要在某个cpp文件中屏蔽名称分别为AAFWK和POWER的事件领域的打点，在该cpp文件引入hisysevent.h头文件之前，定义名称为DOMAIN_MASKS的宏：
+    ```c++
+    #define DOMAIN_MASKS "AAFWK|POWER"
+
+    #include "hisysevent.h"
+    ... // 其他业务逻辑
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::AAFWK, "JS_ERROR", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "MODULE", "com.ohos.module"); // 该HiSysEvent打点操作不会执行
+    ... // 其他业务逻辑
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::POWER, "POWER_RUNNINGLOCK", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "NAME", "com.ohos.module"); // 该HiSysEvent打点操作不会执行
+    ```
+
+- 假设需要在整个业务模块中屏蔽名称分别为AAFWK和POWER的事件领域的打点，在模块的BUILG.gn文件中定义名称为DOMAIN_MASKS的宏：
+    ```gn
+    config("module_a") {
+        ... // 其他配置项
+        cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    }
+    ```
+
+- 假设需要在整个系统中屏蔽名称分别为AAFWK和POWER的事件领域的打点，则直接在/build/config/compiler/BUILD.gn文件中定义名称为DOMAIN_MASKS的宏：
+    ```gn
+    ... // 其他配置项
+    cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    ```
+
+# 参考
+
+HiSysEvent模块会将打点数据写入到节点文件中，而打点数据的解析处理会在Hiview模块中统一进行，详细处理过程可参考[Hiview开发指导](subsys-dfx-hiview.md)。

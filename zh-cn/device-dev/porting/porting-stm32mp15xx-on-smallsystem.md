@@ -41,15 +41,15 @@ vendor
 
     ```
     {
-    "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
-    "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-    "type": "small",                      --- 构建系统的类型，mini/small/standard
-    "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
-    "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
-    "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
-    "kernel_type": "liteos_a",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-    "kernel_version": "",                 --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-    "subsystems": [ ]                     --- 选择所需要编译构建的子系统
+      "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
+      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
+      "type": "small",                      --- 构建系统的类型，mini/small/standard
+      "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
+      "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
+      "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
+      "kernel_type": "liteos_a",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+      "kernel_version": "",                 --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+      "subsystems": [ ]                     --- 选择所需要编译构建的子系统
     }
     ```
 
@@ -122,7 +122,7 @@ vendor
 
 内核移植需要完成`LiteOS-A Kconfig`适配、`gn`的编译构建和内核启动最小适配。
 
-详细移植步骤参考：[LiteOS-A内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-smallchip-kernel-a.md)
+详细移植步骤参考：[LiteOS-A内核移植](porting-smallchip-kernel-a.md)
 ### Kconfig适配
 1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/drivers/Kconfig中添加芯片、产品名称、厂商名称相关配置。
     ```
@@ -195,78 +195,78 @@ vendor
     cmd = "if [ -f $product_path/hdf_config/BUILD.gn ]; then echo true; else echo false; fi"
     HAVE_PRODUCT_CONFIG =
         exec_script("//build/lite/run_shell_cmd.py", [ cmd ], "value")
-
+    
     group("liteos_a") {
-    deps = [
+      deps = [
         "board",
         "drivers",
-    ]
-    if (HAVE_PRODUCT_CONFIG) {
+      ]
+      if (HAVE_PRODUCT_CONFIG) {
         deps += [ "$product_path/hdf_config" ]
-    } else {
+      } else {
         deps += [ "hdf_config" ]
+      }
     }
-    }
-
+    
     config("public") {
-    configs = [
+      configs = [
         "board:public",
         "drivers:public",
-    ]
+      ]
     }
     ```
 2. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board中新建BUILD.gn，添加代码如下。将os_adapt.c内核启动相关代码编译进系统。
     ```
     import("//kernel/liteos_a/liteos.gni")
-
+    
     module_name = "bsp_config"
-
+    
     kernel_module(module_name) {
-    sources = []
-    if (defined(LOSCFG_PLATFORM_ADAPT)) {
+      sources = []
+      if (defined(LOSCFG_PLATFORM_ADAPT)) {
         sources += [ "os_adapt/os_adapt.c" ]
+      }
     }
-    }
-
+    
     config("public") {
-    include_dirs = [ "." ]
-    include_dirs += [ "include" ]
-    include_dirs += [ "$LITEOSTOPDIR/drivers/block/disk/include" ]
-    include_dirs +=
-        [ "$LITEOSTOPDIR/../../drivers/adapter/khdf/liteos/osal/include" ]
+      include_dirs = [ "." ]
+      include_dirs += [ "include" ]
+      include_dirs += [ "$LITEOSTOPDIR/drivers/block/disk/include" ]
+      include_dirs +=
+          [ "$LITEOSTOPDIR/../../drivers/adapter/khdf/liteos/osal/include" ]
     }
     ```
 3. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/drivers中新建BUILD.gn，添加代码如下，将device/soc/st/common/platform路径下的HDF驱动编译进系统。
     ```
     import("//drivers/adapter/khdf/liteos/hdf.gni")
-
+    
     group("drivers") {
-    public_deps = [ "//device/soc/st/common/platform:drivers" ]
+      public_deps = [ "//device/soc/st/common/platform:drivers" ]
     }
-
+    
     config("public") {
-    configs = [ "//device/soc/st/common/platform:public" ]
+      configs = [ "//device/soc/st/common/platform:public" ]
     }
-
+    
     ```
 4. 在//vendor/bearpi/bearpi_hm_micro/hdf_config中新建BUILD.gn，添加代码如下，将HCS配置文件编译进系统。
     ```
     module_switch = defined(LOSCFG_DRIVERS_HDF) && !defined(LOSCFG_DRIVERS_HDF_TEST)
     module_name = "libhdf_config"
     hdf_driver(module_name) {
-    hcs_sources = [ "hdf.hcs" ]
+      hcs_sources = [ "hdf.hcs" ]
     }
-
+    
     group("hdf_config") {
-    public_deps = [ ":$module_name" ]
-    deps = [
+      public_deps = [ ":$module_name" ]
+      deps = [
         "hdf_test",
         "hdf_test/hcs_macro_test",
-    ]
+      ]
     }
     ```
 ### 内核启动适配
-1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt.c中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-smallchip-kernel-a.md)。
+1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt.c中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](porting-smallchip-kernel-a.md)。
     ```
     ...
     void SystemInit(void)
@@ -344,13 +344,11 @@ vendor
     module_name = get_path_info(rebase_path("."), "name")
 
     hdf_driver("hdf_gpio") {
-        sources = [
-        "stm32mp1_gpio.c",                                      ---gpio驱动源文件。
-    ]
-        include_dirs = [                                        ---依赖的.h路径。
-        "." ,
-        "../stm32mp1xx_hal/STM32MP1xx_HAL_Driver/Inc",
-    ]
+        sources = [ "stm32mp1_gpio.c" ]        ---gpio驱动源文件。
+        include_dirs = [                       ---依赖的.h路径。
+          "." ,
+          "../stm32mp1xx_hal/STM32MP1xx_HAL_Driver/Inc",
+        ]
     }
     ```
 
@@ -446,7 +444,7 @@ vendor
 
 #### 启动恢复子系统适配
 
-启动恢复子系统需要适配`bootstrap_lite`、`syspara_lite`、`appspawn_lite`、`init_lite`四个部件。请在`vendor/bearpi/bearpi_hm_micro/config.json`中新增对应的配置选项。
+启动恢复子系统需要适配`bootstrap_lite`、`syspara_lite`、`appspawn_lite`、`init`四个部件。请在`vendor/bearpi/bearpi_hm_micro/config.json`中新增对应的配置选项。
 
 ```
     {
@@ -455,7 +453,7 @@ vendor
         { "component": "syspara_lite", "features":[] },
         { "component": "bootstrap_lite", "features":[] },
         { "component": "appspawn_lite", "features":[] },
-        { "component": "init_lite", "features":[] }
+        { "component": "init", "features":[] }
      ]
     },
 ```

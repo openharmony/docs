@@ -1,36 +1,35 @@
 # Polymorphic Style
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 You can set state-specific styles for components.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| stateStyles | StateStyles | - | Styles of a component for different states. |
+| Style| Type| Description|
+| -------- | -------- | -------- |
+| stateStyles | StateStyles | Styles of the component for different states.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-- StateStyles<sup>8+</sup>
-    | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | normal | ()=&gt;void | No | - | Style of the component when stateless. |
-  | pressed | ()=&gt;void | No | - | Style of the component in the pressed state. |
-  | disabled | ()=&gt;void | No | - | Style of the component in disabled state. |
+## StateStyles
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| normal | ()=&gt;void | No| Style of the component when being stateless.|
+| pressed | ()=&gt;void | No| Style of the component in the pressed state.|
+| disabled | ()=&gt;void | No| Style of the component in disabled state.|
+| focused | ()=&gt;void | No| Style of the component in focused state.|
+| clicked | ()=&gt;void | No| Style of the component in clicked state.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StyleExample {

@@ -63,7 +63,7 @@ The appspawn module is used only for the standard system.
 - Support for cold start of applications by using the aa command
    
     ```
-    param set appspawn.cold.boot true // Enable cold start.
+    param set startup.appspawn.cold.boot 1 // Enable cold start.
     aa start -d 12345 -a $name -b $package -C
     Reference command:
     aa start -d 12345 -a ohos.acts.startup.sysparam.function.MainAbility -b ohos.acts.startup.sysparam.function -C
@@ -166,5 +166,5 @@ The following is the sample code for adding product-specific configuration for t
    <br>Applications fail to be started by running the cold start command.
 
    **Solution**
-    <br>1. Enable cold start by setting **param set appspawn.cold.boot true**.
+    <br>1. Enable cold start by setting **param set startup.appspawn.cold.boot 1**.
     <br>2. Make sure that the cold start command is correct.

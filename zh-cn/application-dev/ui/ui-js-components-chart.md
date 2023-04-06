@@ -1,21 +1,21 @@
-# Chart开发指导
+# chart开发指导
 
 
-Chart为图表组件，用于呈现线形图、柱状图和量规图界面。具体用法请参考[Chart](../reference/arkui-js/js-components-basic-chart.md)。
+chart为图表组件，用于呈现线形图、柱状图和量规图界面。具体用法请参考[chart](../reference/arkui-js/js-components-basic-chart.md)。
 
 
-## 创建Chart组件
+## 创建chart组件
 
-在pages/index目录下的hml文件中创建一个Chart组件。
+在pages/index目录下的hml文件中创建一个chart组件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -31,8 +31,8 @@ Chart为图表组件，用于呈现线形图、柱状图和量规图界面。具
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     lineData: [
@@ -67,10 +67,10 @@ export default {
 
 ## 设置图表类型
 
-Chart组件通过设置type属性定义图表t类型，如将图表设置为柱状图。
+chart组件通过设置type属性定义图表t类型，如将图表设置为柱状图。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="container">
@@ -108,7 +108,7 @@ Chart组件通过设置type属性定义图表t类型，如将图表设置为柱�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -144,8 +144,8 @@ Chart组件通过设置type属性定义图表t类型，如将图表设置为柱�
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     title: "类型展示",
@@ -211,16 +211,16 @@ export default {
 
 ![zh-cn_image_0000001227423251](figures/zh-cn_image_0000001227423251.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> Chart不支持显示每个点的值。
+> **说明：**
+> chart不支持显示每个点的值。
 
 
 ## 设置图表属性
 
-Chart组件在options属性中设置对x轴、y轴和数据序列参数的设置，在datasets属性里添加对线条颜色、填充颜色、填充渐变颜色和绘制点集的设置。
+chart组件在options属性中设置对x轴、y轴和数据序列参数的设置，在datasets属性里添加对线条颜色、填充颜色、填充渐变颜色和绘制点集的设置。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <chart class="chart-data" type="line" options="{{lineOps}}" datasets="{{lineData}}"></chart>
@@ -228,7 +228,7 @@ Chart组件在options属性中设置对x轴、y轴和数据序列参数的设置
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -245,8 +245,8 @@ Chart组件在options属性中设置对x轴、y轴和数据序列参数的设置
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     //线形图数据
@@ -298,20 +298,20 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - options只支持柱状图和线形图设置参数，量规图不生效。
-> 
+>
 > - datasets只支持柱状图和线形图设置数据集合，量规图不生效。
-> 
+>
 > - series只有线形图支持。
 
 
 ## 添加数据
 
-通过Chart组件的append方法，实现动态添加数据。
+通过chart组件的append方法，实现动态添加数据。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <stack class="chart-region">
@@ -322,7 +322,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -348,7 +348,7 @@ button {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -391,7 +391,12 @@ export default {
       }
     },
   },
-  addData() {    this.$refs.linechart.append({      serial: 0,        data: [Math.floor(Math.random() * 400) + 200]    })  }
+  addData() {    
+    this.$refs.linechart.append({      
+    serial: 0,        
+      data: [Math.floor(Math.random() * 400) + 200]    
+    })  
+  }
 }
 ```
 
@@ -403,7 +408,7 @@ export default {
 开发者可以根据开关Switch的状态来选择数据展示的状态，当Switch状态为true时，通过定时器来实现数据的动态展示。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="container">
@@ -452,7 +457,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   display:flex;
@@ -490,7 +495,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -617,8 +622,8 @@ export default {
 
 ## 相关实例
 
-针对Chart开发，有以下相关实例可供参考：
+针对chart开发，有以下相关实例可供参考：
 
-- [`Chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
+- [`chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/chart)
 
-- [chart（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)
+- [chart（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)

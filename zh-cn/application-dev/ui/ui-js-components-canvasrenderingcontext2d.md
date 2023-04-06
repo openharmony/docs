@@ -9,7 +9,7 @@
 使用moveTo和lineTo画出一条线段，当使用closePath方法时会结束当前路径形成一个封闭图形 。设置quadraticCurveTo（二次贝赛尔曲线）或bezierCurveTo（三次贝赛尔曲线）的值组成图形。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -24,9 +24,11 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -47,9 +49,8 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -209,7 +210,7 @@ export default {
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -224,9 +225,11 @@ export default {
 
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -248,9 +251,8 @@ select{
 
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -307,7 +309,7 @@ export default {
 添加createLinearGradient和createRadialGradient属性创建渐变容器，接着用addColorStop方法添加多个色块组成渐变色，再设置fillStyle为gradient将渐变色填充到矩形中，最后设置阴影的模糊级别（shadowBlur）、阴影颜色（shadowColor）及阴影偏移量（shadowOffset）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -321,9 +323,11 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -344,9 +348,8 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -432,7 +435,7 @@ export default {
 先创建文本，再用fillText方法把文字写在画布上。通过globalAlpha属性改变基线透明度，使基线不会挡住文字，再设置textAlign和textBaseline属性确定文字基于基线的位置。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1"></canvas>
@@ -445,9 +448,11 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -468,9 +473,8 @@ select{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     el: null,
@@ -557,7 +561,7 @@ export default {
 
 ![zh-cn_image_0000001223064401](figures/zh-cn_image_0000001223064401.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > ltr布局模式下start和left一致，rtl布局模式下start和right一致·。
 
 
@@ -566,7 +570,7 @@ export default {
 创建图片对象后使用drawImage属性画出图片，给图片设置一些动画样式如scale（缩放）、translate（平移）或rotate（旋转）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -588,9 +592,10 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -623,9 +628,9 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     compositeOperation: 'source-over'
@@ -638,7 +643,7 @@ export default {
     img.src = 'common/images/2.png';
     // 设置图片宽度
     img.width= 150;
-    // 设置图片告度
+    // 设置图片高度
     img.height=150;
     // 图片平铺容器
     var pat = ctx.createPattern(img, 'repeat');ctx.fillStyle = pat;
@@ -668,7 +673,7 @@ export default {
     };
     // 图片获取失败触发方法
     img1.onerror = function() {
-      prompt.showToast({message:"error",duration:2000})
+      promptAction.showToast({message:"error",duration:2000})
     };
   },
   rotate(){
@@ -728,12 +733,12 @@ export default {
 
 ![zh-cn_image_0000001218279600](figures/zh-cn_image_0000001218279600.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
-> 
+>
 > - 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >   x' = scaleX \* x + skewY \* y + translateX
-> 
+>
 >   y' = skewX \* x + scaleY \* y + translateY
 
 
@@ -742,7 +747,7 @@ export default {
 save方法可对画笔样式进行存储，restore可对存储的画笔进行恢复。如下面的示例，先设置画笔为红色，在保存画笔后对画布进行清除并改变画笔为蓝色，当我们直接使用画笔时会画出一个蓝色矩形，对存储的画笔进行恢复后就可画出红色矩形。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="content">
@@ -757,9 +762,11 @@ save方法可对画笔样式进行存储，restore可对存储的画笔进行恢
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -791,9 +798,9 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     ctx: '',
@@ -806,7 +813,7 @@ export default {
   save(){
     // 画笔储存
     this.ctx.save();
-    prompt.showToast({message:"save succeed"});
+    promptAction.showToast({message:"save succeed"});
   },
   clear(){ 
     this.ctx.clearRect(0,0,600,500);
@@ -816,7 +823,8 @@ export default {
   restore(){
     this.ctx.beginPath();
     // 画笔恢复
-    this.ctx.restore();    this.ctx.fillRect(200, 150, 200, 200);
+    this.ctx.restore();    
+    this.ctx.fillRect(200, 150, 200, 200);
   },
 }
 ```

@@ -32,8 +32,8 @@ Create a file named **config.json** in the **//vendor/MyProductVendor/*{product_
         "components": [
           { "component": "ace_engine_lite", "features":[""] }
         ]
-      },
-	    ...
+      }，
+	    …
     ]
 }
 
@@ -87,7 +87,7 @@ After the build is complete, you can view the built image file in **//out/{*devi
 Now, you need to port the Linux kernel to enable it to run successfully.
 
 
-### 1. Adding a Kernel-built Subsystem to the SoC
+### Adding a Kernel-built Subsystem to the SoC
 
 Add the following subsystem configuration to the **//build/subsystem_config.json** file:
 
@@ -104,7 +104,7 @@ Add the following subsystem configuration to the **//build/subsystem_config.json
 Then, open the configuration file **//vendor/MyProductVendor/MyProduct/config.json** and add the new subsystem to the product.
 
 
-### 2. Building the Kernel
+### Building the Kernel
 
 The OpenHarmony source code provides the Linux kernel 4.19, which is archived in **//kernel/linux-4.19**. This section uses this kernel version as an example to describe how to build the kernel.
 
@@ -132,7 +132,7 @@ The expected build result described in the table below.
 | $root_build_dir/packages/phone/images/uboot | Bootloader image.|
 
 
-### 3. Verifying the Porting
+### Verifying the Porting
 
 Now start build, and check whether the kernel image is generated as expected.
 
@@ -158,7 +158,7 @@ Now start build, and check whether the kernel image is generated as expected.
 
    When porting a new chip platform, you need to add the **/vendor/etc/init/init.{hardware}.cfg** file that contains the platform-level initialization configuration. This file is used to implement platform-level initialization, for example, installing the ko driver and configuring information on the related **/proc** nodes.
 
-   The code of the init process is stored in the **//base/startup/init_lite** directory. This process is the first process in the system and does not depend on other processes.
+   The code of the init process is stored in the **//base/startup/init** directory. This process is the first process in the system and does not depend on other processes.
 
    For details about how to develop the initialization configuration file, see [Startup](../subsystems/subsys-boot-overview.md).
 
@@ -166,7 +166,7 @@ Now start build, and check whether the kernel image is generated as expected.
 ## Porting the HDF Driver
 
 
-### 1. LCD
+### LCD
 
 This section describes how to port a Liquid Crystal Display (LCD) driver. The hardware driver framework (HDF) designs a driver model for the LCD. To support an LCD, you must compile a driver, generate a model instance in the driver, and register the instance.
 
@@ -201,17 +201,18 @@ HDF_INIT(g_xxxxDevEntry);
 
 - Configure and load the panel driver. All device information about the product is defined in the **//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs** file. Modify the file by adding configurations for the device named **device_lcd** to the host named **display**. Note: The value of **moduleName** must be the same as that in the panel driver.
 
+  
 ```
 root {
     ...
     display :: host {
         device_lcd :: device {
-                deviceN :: deviceNode {
-                    policy = 0;
-                    priority = 100;
-                    preload = 2;
-                    moduleName = "LCD_XXXX";
-                }
+            deviceN :: deviceNode {
+                policy = 0;
+                priority = 100;
+                preload = 2;
+                moduleName = "LCD_XXXX";
+            }
         }
     }
 }
@@ -220,7 +221,7 @@ root {
 For details about driver development, see [LCD](../driver/driver-peripherals-lcd-des.md).
 
 
-### 2. Touchscreen
+### Touchscreen
 
 This section describes how to port a touchscreen driver. The touchscreen driver is stored in the **//drivers/framework/model/input/driver/touchscreen** directory. To port a touchscreen driver, register a **ChipDevice** model instance.
 
@@ -280,7 +281,7 @@ Implement the following APIs in **ChipDevice**:
 For details about driver development, see [Touchscreen](../driver/driver-peripherals-touch-des.md).
 
 
-### 3. WLAN
+### WLAN
 
 The WLAN driver is divided into two parts. One of the parts manages WLAN devices, and the other part manages WLAN traffic. HDF WLAN provides abstraction for the two parts. Currently, only the WLAN with the SDIO interface is supported.
 

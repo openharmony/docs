@@ -48,14 +48,3 @@ STATE           COMM       PID  PRIO    CPU  // Thread information, including th
 ---------------------------------------------------------
     S            bash   436   120     1(0-3)
   ```
-
-## Available APIs
-
-The RTG provides the device node and ioctl APIs for querying and configuring group information. The device node is in `/dev/sched_rtg_ctrl`.
-
-| Device Node               | request             | Description                 |
-| ------------------- | ------------------- | ------------------- |
-| /dev/sched_rtg_ctrl | CMD_ID_SET_RTG      | Creates an RTG, and adds, updates, or deletes threads in the group. |
-|                     | CMD_ID_SET_CONFIG   | Configures global group attributes, for example, the maximum number of real-time RTGs.|
-|                     | CMD_ID_SET_RTG_ATTR | Configures specified group attributes, for example, the thread priority. |
-|                     | CMD_ID_SET_MIN_UTIL | Sets the minimum utilization of an RTG. |

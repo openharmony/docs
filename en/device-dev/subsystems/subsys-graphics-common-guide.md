@@ -3,7 +3,7 @@
 Common components inherit from the base class  **UIView**. Child components cannot be added to common components, such as buttons, images, and labels.
 
 **Figure  1**  Tree structure of common components<a name="fig3386518305"></a>  
-![](figure/tree-structure-of-common-components.png "tree-structure-of-common-components")
+![](figures/tree-structure-of-common-components.png "tree-structure-of-common-components")
 
 **UIView**  is a base class of the following components:  **UIAbstractProgress**,  **UIArcLabel**,  **UIButton**,  **UICanvas**,  **UILabel**, and  **UIImageView**.  **UIBoxProgress**  and  **UICircleProgress**  inherit from  **UIAbstractProgress**.  **UILabelButton**  and  **UIRepeatButton**  inherit from  **UIButton**.  **UIImageAnimatorView**  and  **UITextureMapper**  inherit from  **UIImageView**.
 
@@ -107,7 +107,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 4.  Verify that the button is clicked and its size increases gradually, as shown in the following figure.
 
     **Figure  2**  Effect of clicking a  **UIButton**<a name="fig1921134162020"></a>  
-    ![](figure/effect-of-clicking-a-uibutton.gif "effect-of-clicking-a-uibutton")
+    ![](figures/effect-of-clicking-a-uibutton.gif "effect-of-clicking-a-uibutton")
 
 
 ## UIImageView<a name="section19523161611259"></a>
@@ -193,7 +193,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 3.  Verify that the  **UIImageView**  component is adaptive to the image.
 
     **Figure  3**  Image auto-adaption effect<a name="fig64751933144118"></a>  
-    ![](figure/image-auto-adaption-effect.png "image-auto-adaption-effect")
+    ![](figures/image-auto-adaption-effect.png "image-auto-adaption-effect")
 
 
 ## How to Develop \(Tile Mode\)<a name="section97178160421"></a>
@@ -221,7 +221,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 4.  Verify that the tile mode has been enabled for the  **UIImageView**.
 
     **Figure  4**  Image tile effect<a name="fig1075461619424"></a>  
-    ![](figure/image-tile-effect.png "image-tile-effect")
+    ![](figures/image-tile-effect.png "image-tile-effect")
 
 
 ## UILabel<a name="section16588132012911"></a>
@@ -379,7 +379,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 
 4.  Verify the label size and display effect, as shown in the following figure.
 
-    ![](figure/en-us_image_0000001051782526.png)
+    ![](figures/en-us_image_0000001051782526.png)
 
 
 ## How to Develop \(Background Color and Opacity\)<a name="section933360204510"></a>
@@ -408,7 +408,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 
 4.  Verify that the background color of the label is  **Gray**, as shown in the following figure.
 
-    ![](figure/en-us_image_0000001052582522.png)
+    ![](figures/en-us_image_0000001052582522.png)
 
 
 ## How to Develop \(Letter Spacing\)<a name="section19447826124518"></a>
@@ -437,7 +437,7 @@ Common components inherit from the base class  **UIView**. Child components cann
 
 4.  Verify that the letter spacing is  **5**  pixels on the label, as shown in the following figure.
 
-    ![](figure/en-us_image_0000001052942531.png)
+    ![](figures/en-us_image_0000001052942531.png)
 
 
 ## How to Develop \(Size-Adaptive Mode\)<a name="section101711842154617"></a>
@@ -468,7 +468,7 @@ Regarding too long text, the size of a label can be automatically adjusted based
 
 4.  Verify that the label size adapts to the text, as shown in the following figure.
 
-    ![](figure/en-us_image_0000001052782555.png)
+    ![](figures/en-us_image_0000001052782555.png)
 
 
 ## How to Develop \(Ellipsis Mode\)<a name="section1249519410471"></a>
@@ -499,7 +499,7 @@ In  ellipsis  mode, an ellipsis \(...\) is displayed at the end of the label if 
 
 4.  Verify that the ellipsis mode has taken effect on the label, as shown in the following figure.
 
-    ![](figure/en-us_image_0000001052662559.png)
+    ![](figures/en-us_image_0000001052662559.png)
 
 
 ## How to Develop \(Scrolling Mode\)<a name="section15643122618478"></a>
@@ -531,6 +531,6 @@ In scrolling mode, long text is kept scrolling on a screen to bring the entire t
 
 4.  Verify that the text is scrolling on the label, as shown in the following figure.
 
-    ![](figure/20200721-223604(espace).gif)
+    ![](figures/20200721-223604(espace).gif)
 
 

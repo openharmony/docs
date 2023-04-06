@@ -1,20 +1,20 @@
-# Button
+# button开发指导
 
-Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[Button API](../reference/arkui-js/js-components-basic-button.md)。
+button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按钮、弧形按钮、下载按钮。具体用法请参考[button API](../reference/arkui-js/js-components-basic-button.md)。
 
 
-## 创建Button组件
+## 创建button组件
 
-在pages/index目录下的hml文件中创建一个Button组件。
+在pages/index目录下的hml文件中创建一个button组件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">       
   <button  type="capsule" value="Capsule button"></button>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -29,12 +29,12 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ![zh-cn_image_0000001211225091](figures/zh-cn_image_0000001211225091.png)
 
 
-## 设置Button类型
+## 设置button类型
 
-通过设置Button的type属性来选择按钮类型，如定义Button为圆形按钮、文本按钮等。
+通过设置button的type属性来选择按钮类型，如定义button为圆形按钮、文本按钮等。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">    
   <button class="circle" type="circle" >+</button>
@@ -43,7 +43,7 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {  
   width: 100%;
@@ -73,14 +73,9 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 ![zh-cn_image_0000001208771093](figures/zh-cn_image_0000001208771093.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 胶囊按钮（type=capsule）不支持border相关样式。
+> **说明：**
 > 
-> - 圆形按钮（type=circle）不支持文本相关样式。
-> 
-> - 文本按钮（type=text），自适应文本大小，不支持尺寸样式设置（radius，width，height），背景透明不支持background-color样式。
-> 
-> - Button组件使用的icon图标如果来自云端路径，需要添加网络访问权限 ohos.permission.INTERNET。
+>- button组件使用的icon图标如果来自云端路径，需要添加网络访问权限 ohos.permission.INTERNET。
 
 
 如果需要添加ohos.permission.INTERNET权限，则在resources文件夹下的config.json文件里进行权限配置。
@@ -98,16 +93,16 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 
 ## 显示下载进度
 
-为Button组件添加progress方法，来实时显示下载进度条的进度。
+为button组件添加progress方法，来实时显示下载进度条的进度。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="button download" type="download" id="download-btn" onclick="setProgress">{{downloadText}}</button>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container { 
   width: 100%;
@@ -124,9 +119,9 @@ Button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 }
 ```
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     percent: 0,
@@ -140,7 +135,7 @@ export default {
         this.percent += 1;
         this.downloadText = this.percent+ "%";
        } else{
-         prompt.showToast({
+         promptAction.showToast({
             message: "Download succeeded."
          })
          this.paused()
@@ -156,13 +151,13 @@ export default {
   },
  setProgress(e) {
     if(this.isPaused){
-      prompt.showToast({
+      promptAction.showToast({
         message: "Started Downloading"
       })
       this.start();
       this.isPaused = false;
     }else{
-      prompt.showToast({
+      promptAction.showToast({
         message: "Paused."
       })
       this.paused();
@@ -174,16 +169,16 @@ export default {
 
 ![zh-cn_image_0000001208393581](figures/zh-cn_image_0000001208393581.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > setProgress方法只支持button的类型为download。
 
 
 ## 场景示例
 
-在本场景中，开发者可根据输入的文本内容进行Button类型切换。
+在本场景中，开发者可根据输入的文本内容进行button类型切换。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="input-item">
@@ -201,7 +196,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -248,7 +243,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {

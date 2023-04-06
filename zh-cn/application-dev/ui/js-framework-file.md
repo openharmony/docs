@@ -32,15 +32,16 @@ JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如�
 
 - share目录用于配置多个实例共享的资源内容，比如：share中的图片和JSON文件可被default1和default2实例共享。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - i18n和resources是开发保留文件夹，不可重命名。
+> **说明：**
 >
-> 
+> - i18n和resources文件夹不可重命名。
+>
+>
 > - 如果share目录中的资源和实例(default)中的资源文件同名且目录一致时，实例中资源的优先级高于share中资源的优先级。
 >
-> 
+>
 > - share目录当前不支持i18n。
-> 
+>
 > - 在使用DevEco Studio进行应用开发时，目录结构中的可选文件夹需要开发者根据实际情况自行创建。
 
 
@@ -56,14 +57,14 @@ JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如�
 
 - CSS样式文件中通过url()函数创建&lt;url&gt;数据类型，如：url(/common/xxx.png)。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当代码文件A需要引用代码文件B时：
-> 
+>
 > - 如果代码文件A和文件B位于同一目录，则代码文件B引用资源文件时可使用相对路径，也可使用绝对路径。
-> 
+>
 > - 如果代码文件A和文件B位于不同目录，则代码文件B引用资源文件时必须使用绝对路径。因为Webpack打包时，代码文件B的目录会发生变化。
 >
-> 
+>
 > - 在js文件中通过数据绑定的方式指定资源文件路径时，必须使用绝对路径。
 
 
@@ -71,16 +72,16 @@ JS FA应用的JS模块(entry/src/main/js/module)的典型开发目录结构如�
 
 **表1** 支持的图片格式
 
-| 格式 | 支持的文件类型 |
-| -------- | -------- |
-| BMP | .bmp |
-| GIF | .gif |
-| JPEG | .jpg |
-| PNG | .png |
-| WebP | .webp |
+| 格式   | 支持的文件类型 |
+| ---- | ------- |
+| BMP  | .bmp    |
+| GIF  | .gif    |
+| JPEG | .jpg    |
+| PNG  | .png    |
+| WebP | .webp   |
 
 **表2** 支持的视频格式
 
-| 格式 | 支持的文件类型 |
-| -------- | -------- |
+| 格式                                       | 支持的文件类型       |
+| ---------------------------------------- | ------------- |
 | H.264&nbsp;AVC<br/>Baseline&nbsp;Profile&nbsp;(BP) | .3gp<br/>.mp4 |

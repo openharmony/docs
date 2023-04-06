@@ -1,15 +1,12 @@
 # GridContainer
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 纵向排布栅格布局容器，仅在栅格布局场景中使用。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  从API Version 9 开始，该组件不再维护，推荐使用新组件[GridCol](ts-container-gridcol.md)、[GridRow](ts-container-gridrow.md)。
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,24 +16,26 @@
 
 ## 接口
 
-GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
+GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: number&nbsp;|&nbsp;string, margin?: number&nbsp;|&nbsp;string})
 
-- 参数
-  | 参数名 | 类型 | 必填 | 默认值 | 说明 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | columns | number&nbsp;\|&nbsp;'auto' | 否 | 'auto' | 设置当前布局总列数。 |
-  | sizeType | SizeType | 否 | SizeType.Auto | 选用设备宽度类型。 |
-  | gutter | Length | 否 | - | 栅格布局列间距。 |
-  | margin | Length | 否 | - | 栅格布局两侧间距。 |
+**参数：**
 
-- SizeType枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | XS | 最小宽度类型设备。 | 
-  | SM | 小宽度类型设备。 | 
-  | MD | 中等宽度类型设备。 | 
-  | LG | 大宽度类型设备。 | 
-  | Auto | 根据设备类型进行选择。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| columns | number&nbsp;\|&nbsp;'auto' | 否 | 设置当前布局总列数。<br/>默认值：'auto' |
+| sizeType | SizeType | 否 | 选用设备宽度类型。<br/>默认值：SizeType.Auto |
+| gutter | number&nbsp;\|&nbsp;string | 否 | 栅格布局列间距，不支持百分比。 |
+| margin | number&nbsp;\|&nbsp;string | 否 | 栅格布局两侧间距，不支持百分比。 |
+
+## SizeType枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| XS | 最小宽度类型设备。 |
+| SM | 小宽度类型设备。 |
+| MD | 中等宽度类型设备。 |
+| LG | 大宽度类型设备。 |
+| Auto | 根据设备类型进行选择。 |
 
 
 ## 属性

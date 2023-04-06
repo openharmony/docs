@@ -1,14 +1,14 @@
-# List
+# list开发指导
 
-List是用来显示列表的组件，包含一系列相同宽度的列表项，适合连续、多行地呈现同类数据。具体用法请参考[List API](../reference/arkui-js/js-components-container-list.md)。
+list是用来显示列表的组件，包含一系列相同宽度的列表项，适合连续、多行地呈现同类数据。具体用法请参考[list API](../reference/arkui-js/js-components-container-list.md)。
 
 
-## 创建List组件
+## 创建list组件
 
-在pages/index目录下的hml文件中创建一个List组件。
+在pages/index目录下的hml文件中创建一个list组件。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <list>    
    <list-item class="listItem"></list-item>
@@ -19,7 +19,7 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -37,7 +37,7 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 ![zh-cn_image_0000001211071477](figures/zh-cn_image_0000001211071477.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - &lt;list-item-group&gt;是&lt;list&gt;的子组件，实现列表分组功能，不能再嵌套&lt;list&gt;，可以嵌套&lt;list-item&gt;。
 >
 > - &lt;list-item&gt;是&lt;list&gt;的子组件，展示列表的具体项。
@@ -47,8 +47,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 设置scrollbar属性为on即可在屏幕右侧生成滚动条，实现长列表或者屏幕滚动等效果。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <list class="listCss" scrollbar="on" >
     <list-item class="listItem"></list-item>
@@ -61,8 +61,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 </div> 
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   flex-direction: column;
   background-color: #F1F3F5;
@@ -86,8 +86,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 设置indexer属性为自定义索引时，索引栏会显示在列表右边界处，indexer属性设置为true,默认为字母索引表。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">   
   <list class="listCss"  indexer="{{['#','1','2','3','4','5','6','7','8']}}" >  
     <list-item class="listItem"  section="#" ></list-item>   
@@ -95,8 +95,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
@@ -110,7 +110,7 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 ![zh-cn_image_0000001166432552](figures/zh-cn_image_0000001166432552.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - indexer属性生效需要flex-direction属性配合设置为column，且columns属性设置为1。
 >
 > - indexer可以自定义索引表，自定义时"\#"必须要存在。
@@ -118,10 +118,10 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 
 ## 实现列表折叠和展开
 
-为List组件添加groupcollapse和groupexpand事件实现列表的折叠和展开。
+为list组件添加groupcollapse和groupexpand事件实现列表的折叠和展开。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="doc-page">
   <list style="width: 100%;" id="mylist">
     <list-item-group for="listgroup in list" id="{{listgroup.value}}" ongroupcollapse="collapse" ongroupexpand="expand">
@@ -140,8 +140,8 @@ List是用来显示列表的组件，包含一系列相同宽度的列表项，�
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .doc-page {
   flex-direction: column;
   background-color: #F1F3F5;
@@ -160,9 +160,9 @@ margin-top:30px;
 }
 ```
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     direction: 'column',
@@ -179,12 +179,12 @@ export default {
     }
   },
   collapse(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Close ' + e.groupid
     })
   },
   expand(e) {
-    prompt.showToast({
+    promptAction.showToast({
     message: 'Open ' + e.groupid
     })
   }
@@ -193,7 +193,7 @@ export default {
 
 ![zh-cn_image_0000001162911958](figures/zh-cn_image_0000001162911958.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > - groupcollapse和groupexpand事件仅支持list-item-group组件使用。
 
@@ -203,8 +203,8 @@ export default {
 在本场景中，开发者可以根据字母索引表查找对应联系人。
 
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="doc-page"> 
   <text style="font-size: 35px; font-weight: 500; text-align: center; margin-top: 20px; margin-bottom: 20px;"> 
       <span>Contacts</span> 
@@ -228,8 +228,8 @@ export default {
 ```
 
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .doc-page {
   width: 100%;
   height: 100%;
@@ -265,7 +265,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default { 
    data: { 
@@ -312,6 +312,6 @@ export default {
 
 ## 相关实例
 
-针对List开发，有以下相关实例可供参考：
+针对list开发，有以下相关实例可供参考：
 
-- [`JsList`：商品列表（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList)
+- [`JsList`：商品列表（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsList)

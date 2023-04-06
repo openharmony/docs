@@ -96,7 +96,7 @@ OH内核态层 = OH Linux内核 + OH内核态特性（可选特性或者必选�
    # 配置编译环境,使用工程项目自带的clang
    export PATH=$PROJ_ROOT/prebuilts/clang/ohos/linux-x86_64/llvm/bin:$PROJ_ROOT/prebuilts/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/:$PATH
    export MAKE_OPTIONS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- CC=clang HOSTCC=clang"
-   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_standard
+   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
    ```
 
 3. 注释掉clang不识别的flag。
@@ -144,15 +144,15 @@ obj-$(CONFIG_HIEVENT)           += hievent/
 1. 打HDF补丁。
    在Linux内核打HDF补丁时，执行补丁shell脚本合入HDF补丁。
 
-   1. 配置HDF补丁脚本的三个变量参数。
+   1. 配置HDF补丁脚本的四个变量参数。
    2. 获取patch_hdf.sh脚本。
-   3. 执行patch_hdf.sh脚本依次传入三个变量参数。
+   3. 执行patch_hdf.sh脚本依次传入四个变量参数。
 
-   patch_hdf.sh脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
+   patch_hdf.sh脚本四个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为内核版本路径，第四个参数是当前设备名。
 
      
    ```
-   ./patch_hdf.sh [工程根目录路径] [内核目录路径] [hdf补丁文件]
+   ./patch_hdf.sh [工程根目录路径] [内核目录路径] [内核补丁路径] [设备名]
    ```
 
    以树莓派3b为示例介绍：
@@ -163,7 +163,8 @@ obj-$(CONFIG_HIEVENT)           += hievent/
    PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
    PROJ_ROOT  # 指定工程根目录路径 \
    PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
-   PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch  # HDF补丁文件
+   PROJ_ROOT/kernel/linux/patches/linux-4.19 # 内核补丁路径.\
+   hi3516dv300 # 设备名.
    ```
 
 2. 配置config。
@@ -222,7 +223,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 **用例编译和测试方法**
 
-  通过[hdc_std工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
+  通过[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
 1. 编译hdf测试用例。
 
 2. 用hdc_std工具推送测试文件到设备中。
@@ -242,7 +243,8 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
    等待编译完成。
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）。
-   方法一：使用[hdc_std工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
+  
+   方法一：使用[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)。
 
    1. 先在树莓派里新建data/test目录。
          

@@ -85,7 +85,7 @@ repo forall -c 'git lfs pull'
 | [I4V2DN](https://gitee.com/openharmony/xts_acts/issues/I4V2DN?from=project-issue) | ActsLwipTest模块测试中存在两条用例执行超时的失败 |
 | [I4V3KC](https://gitee.com/openharmony/xts_acts/issues/I4V3KC?from=project-issue) | 分布式调度子系统testPublish0010测试用例执行失败 |
 | [I4URGA](https://gitee.com/openharmony/applications_sample_camera/issues/I4URGA?from=project-issue) | 设置界面搜WLAN信号时概率出现蓝屏 |
-| [I4SDCK](https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I4SDCK?from=project-issue) | 小型系统HI&nbsp;3516&nbsp;GetSrcPath&nbsp;/GetDataPath&nbsp;获取路径为空或者乱码 |
+| I4SDCK | 小型系统HI&nbsp;3516&nbsp;GetSrcPath&nbsp;/GetDataPath&nbsp;获取路径为空或者乱码 |
 | [I4T6KZ](https://gitee.com/openharmony/communication_dsoftbus/issues/I4T6KZ) | 测试传输相关用例时在&nbsp;SendMessage&nbsp;SendData4Data处失败 |
 | I4UOUS | Hi3516小型系统&nbsp;串口界面的回显日志打印了明文密码 |
 | [I4OWZO](https://gitee.com/openharmony/third_party_toybox/issues/I4OWZO) | toybox&nbsp;mv命令移动nfs路径下的文件出现异常提示 |
@@ -97,7 +97,7 @@ repo forall -c 'git lfs pull'
 | [I4R4D3](https://gitee.com/openharmony/kernel_liteos_m/issues/I4R4D3) | pthread_create创建的线程未设置detach属性，主动退出后，OsGetAllTskInfo调用后，相关的任务名为乱码 |
 | [I4R4A5](https://gitee.com/openharmony/kernel_liteos_m/issues/I4R4A5) | pthread_cond_timedwait接口实现存在计算溢出的问题 |
 | [I4QJT4](https://gitee.com/openharmony/drivers_adapter_khdf_linux/issues/I4QJT4) | 修复UartRead&nbsp;test&nbsp;case&nbsp;失败问题 |
-| [I4U1DM](https://gitee.com/openharmony/distributedschedule_samgr_lite/issues/I4U1DM) | samgr&nbsp;的&nbsp;QUEUE_Pop&nbsp;函数在调用&nbsp;LFQUE_Pop&nbsp;函数时未加锁，存在潜在的数据竞争 |
+| I4U1DM | samgr&nbsp;的&nbsp;QUEUE_Pop&nbsp;函数在调用&nbsp;LFQUE_Pop&nbsp;函数时未加锁，存在潜在的数据竞争 |
 
   **表4** 标准系统解决的缺陷ISSUE列表
 
@@ -106,7 +106,7 @@ repo forall -c 'git lfs pull'
 | [I4UJNU](https://gitee.com/openharmony/applications_settings/issues/I4UJNU) | 通过设置连接WLAN时，WLAN密码在hilog日志中明文打印 |
 | [I4MSWM](https://gitee.com/openharmony/xts_acts/issues/I4MSWM?from=project-issue) | XT测试执行测试ActsFaultLoggerTest模块faultloggertest用例时有1条失败项 |
 | [I4MSVV](https://gitee.com/openharmony/xts_acts/issues/I4MSVV?from=project-issue) | XTS测试执行测试ActsHiCollieCppTest模块HiCollieCppTest用例时有3条失败项 |
-| [I4PPXV](https://gitee.com/openharmony/appexecfwk_standard/issues/I4PPXV?from=project-issue) | 打开应用后再退出到桌面，桌面应用图标丢失 |
+| I4PPXV | 打开应用后再退出到桌面，桌面应用图标丢失 |
 | [I4OF9A](https://gitee.com/openharmony/distributeddatamgr_file/issues/I4OF9A?from=project-issue) | file.readText接口读取的text值不稳定 |
 | [I4OWWM](https://gitee.com/openharmony/xts_acts/issues/I4OWWM) | WeekPluralNumbertest模块对应json文件配置问题，执行用例时报"required&nbsp;device&nbsp;does&nbsp;not&nbsp;exist"导致此测试套无法执行 |
 | [I4OUVQ](https://gitee.com/openharmony/xts_tools/issues/I4OUVQ?from=project-issue) | XTS&nbsp;JS用例反复压力测试过程中系统卡死，无法进行测试 |

@@ -1,11 +1,10 @@
-# Key Injection
+# @ohos.multimodalInput.inputEventClient (Key Event Injection)
 
+The **inputEventClient** module implements injection of key events.
 
-> **NOTE**<br>
->
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs of this module are system APIs and cannot be called by third-party applications.
+> **NOTE**
+> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 
 ## Modules to Import
@@ -20,7 +19,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 injectEvent({KeyEvent: KeyEvent}): void
 
-Injects a key event.
+Injects a key event. Currently, key injection is supported only for the **Back** key (key value 2).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -33,27 +32,37 @@ Injects a key event.
 **Example**
 
 ```js
-let keyEvent = {
+try {
+  let backKeyDown = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
+  }
+  inputEventClient.injectEvent({ KeyEvent: backKeyDown });
+
+  let backKeyUp = {
+    isPressed: false,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  };
+  inputEventClient.injectEvent({ KeyEvent: backKeyUp });
+} catch (error) {
+  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
 ```
 
 
 ## KeyEvent
 
-Defines the information about the key event to inject.
+Represents information about the key event to inject.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
-**Parameters**
-
-| Name             | Type     | Mandatory  | Description       |
-| --------------- | ------- | ---- | --------- |
-| isPressed       | boolean | Yes   | Whether the key is pressed.   |
-| keyCode         | Number  | Yes   | Key code.     |
-| keyDownDuration | boolean | Yes   | Duration within which the key is pressed. |
-| isIntercepted   | Number  | Yes   | Whether the key can be intercepted.|
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| isPressed       | boolean | Yes   |  No| Whether the key is pressed.              |
+| keyCode         | number  | Yes   |  No| Key value. Currently, only the **Back** key is supported.|
+| keyDownDuration | number  | Yes   |  No| Duration within which the key is pressed.          |
+| isIntercepted   | boolean | Yes   |  No| Whether the key can be intercepted.        |

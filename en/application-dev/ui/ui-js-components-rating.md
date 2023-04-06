@@ -9,7 +9,7 @@ The **&lt;rating&gt;** component provides a rating bar used for reviews and rati
 Create a **&lt;rating&gt;** component in the .hml file under **pages/index**.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating></rating>
@@ -17,7 +17,7 @@ Create a **&lt;rating&gt;** component in the .hml file under **pages/index**.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -41,16 +41,16 @@ rating {
 Use the **&lt;rating&gt;** component to set the number of stars in a rating bar and the current rating using the **numstars** and **rating** attributes, respectively.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
-  <ratingnumstars="6" rating="5">
+  <rating numstars="6" rating="5">
   </rating>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -74,7 +74,7 @@ rating {
 Use the **&lt;rating&gt;** component to set the background images when a rating star is unselected, selected, and partially selected using the **star-background**, **star-foreground**, and **star-secondary** attributes, respectively.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
@@ -86,7 +86,7 @@ Use the **&lt;rating&gt;** component to set the background images when a rating 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -99,8 +99,8 @@ Use the **&lt;rating&gt;** component to set the background images when a rating 
 ```
 
 
-```
-/* index.js */
+```js
+// index.js
 export default {
   data: {
     backstar: 'common/love.png',
@@ -116,7 +116,7 @@ export default {
 
 ![en-us_image_0000001275803173](figures/en-us_image_0000001275803173.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - You must set **star-background**, **star-secondary**, and **star-foreground**. Otherwise, the grey rating star applies, indicating that the image source is incorrectly set.
 > 
 > - The **star-background**, **star-secondary**, and **star-foreground** attributes support only PNG and JPG images in the local path.
@@ -127,7 +127,7 @@ export default {
 Add the **change** event to the &lt;rating&gt; component to print the current rating.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <rating numstars="5" rating="0" onchange="showrating"></rating>
@@ -135,7 +135,8 @@ Add the **change** event to the &lt;rating&gt; component to print the current ra
 ```
 
 
-```
+```css
+/* xxx.css */
 .container {
   width: 100%;
   height: 100%;
@@ -151,7 +152,8 @@ rating {
 ```
 
 
-```
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   showrating(e) {
@@ -170,7 +172,7 @@ export default {
 Change the switch status to toggle between the star background images and drag the slider to adjust the rating values.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div style="width: 100%;height:100%;flex-direction: column;align-items: center;background-color: #F1F3F5;">
   <div style="width: 500px;height: 500px;align-items: center;justify-content: center;flex-direction: column;;">
@@ -197,7 +199,7 @@ Change the switch status to toggle between the star background images and drag t
 ```
 
 
-```
+```css
 /* xxx.css */
 .myrating:active {
   width: 500px;
@@ -209,9 +211,9 @@ switch{
 ```
 
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     backstar: '',
@@ -247,7 +249,7 @@ export default {
     this.rate = e.progress
   },
   showrating(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message:'Current Rating' + e.rating
     })
   }

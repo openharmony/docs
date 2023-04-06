@@ -24,7 +24,7 @@
 | -------- | -------- | -------- | -------- | -------- |
 | keyPoints | string | - | 是 | 一组关键帧的点位置，每帧的值为对象沿路径的距离比例。功能与animate属性中的values相同。 |
 | path | string | - | 是 | 定义运动的路径，使用与path组件d属性相同的语法。 |
-| rotate | [auto&nbsp;\|&nbsp;auto-reverse&nbsp;\|&nbsp;&lt;number&gt;] | auto | - | 设置动画对象的旋转方向 |
+| rotate | [auto&nbsp;\|&nbsp;auto-reverse&nbsp;\|&nbsp;&lt;number&gt;] | auto | 否 | 设置动画对象的旋转方向。 |
 
 
 ## 示例
@@ -37,7 +37,7 @@
     <path fill="none" stroke="blue" stroke-width="3" d="m40,130 c0,-100 160,100 160,0 c0,-100 -160,100 -160,0 z"></path>
     <path fill="none" stroke="blue" stroke-width="3" d="m40,200 c0,-100 160,100 160,0 c0,-100 -160,100 -160,0 z"></path>
     <path fill="red" d="M-5,-5 L10,0 L-5,5 L0,0 Z">
-      <animateMotion dur="2000" repeatCount="indefinite" rotate="auto" keyPoints="0;0.2;0.4;0.6;0.8;1" path="m40,60 c0,-100 160,160,100 160,0 c0,-100,-160,100 -160,0 z">
+      <animateMotion dur="2000" repeatCount="indefinite" rotate="auto" keyPoints="0;0.2;0.4;0.6;0.8;1" path="m40,60 c0,-100 160,100 160,0 c0,-100 -160,100 -160,0 z">
       </animateMotion>
     </path>
     <path fill="red" d="M-5,-5 L10,0 L-5,5 L0,0 Z">

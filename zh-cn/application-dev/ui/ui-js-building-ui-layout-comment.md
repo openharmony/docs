@@ -6,7 +6,7 @@
 留言区域由div、text、input关联click事件实现。开发者可以使用input组件实现输入留言的部分，使用text组件实现留言完成部分，使用commentText的状态标记此时显示的组件（通过if属性控制）。在包含文本完成和删除的text组件中关联click事件，更新commentText状态和inputValue的内容。具体的实现示例如下：
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="comment-title">Comment</text>
@@ -22,7 +22,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   margin-top: 24px;
@@ -64,7 +64,7 @@
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {

@@ -1,62 +1,68 @@
 # native_interface_xcomponent.h
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+声明用于访问Native XComponent的API。
+
+**起始版本：**
+
+8
+
+**相关模块：**
 
 [Native XComponent](_o_h___native_x_component.md)
 
-**Description:**
 
-Declares APIs for accessing a Native XComponent.
-
-**Since:**
-8
-**Version:**
-1.0
-
-## **Summary**
+## 汇总
 
 
-### Classes
+### 结构体
 
-  | Classe&nbsp;Name | Description | 
+| 结构体名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md) |  | 
-| [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) |  | 
-| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | Registers&nbsp;the&nbsp;surface&nbsp;lifecycle&nbsp;and&nbsp;touch&nbsp;event&nbsp;callbacks. | 
+| [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md) | 触摸事件中触摸点的信息。 |
+| [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) | 触摸事件。 |
+| [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) | 鼠标事件。 |
+| [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | 注册surface生命周期和触摸事件回调。 |
+| [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) | 注册鼠标事件的回调。 |
 
 
-### Macros
+### 类型定义
 
-  | Macro&nbsp;Name&nbsp;and&nbsp;Value | Description | 
+| 类型定义名称 | 描述 |
 | -------- | -------- |
-| **OH_NATIVE_XCOMPONENT_OBJ**&nbsp;&nbsp;&nbsp;("__NATIVE_XCOMPONENT_OBJ__") |  | 
+| [OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) | 提供封装的OH_NativeXComponent实例。 |
+| [OH_NativeXComponent_Callback](_o_h___native_x_component.md#oh_nativexcomponent_callback) | 注册surface生命周期和触摸事件回调。 |
+| [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component.md#oh_nativexcomponent_mouseevent_callback) | 注册鼠标事件的回调。 |
 
 
-### Typedefs
+### 枚举
 
-  | Typedef&nbsp;Name | Description | 
+| 枚举名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1) | typedef&nbsp;struct&nbsp;[OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)<br/>Provides&nbsp;an&nbsp;encapsulated&nbsp;**OH_NativeXComponent**&nbsp;instance. | 
-| [OH_NativeXComponent_Callback](_o_h___native_x_component.md#gaf629ecc5d06f0a69aea9da3511679ea5) | typedef&nbsp;struct&nbsp;[OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)<br/>Registers&nbsp;the&nbsp;surface&nbsp;lifecycle&nbsp;and&nbsp;touch&nbsp;event&nbsp;callbacks. | 
+| { OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, <br/>OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, <br/>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2} | [枚举](_o_h___native_x_component.md#anonymous-enum)API访问状态。 |
+| [OH_NativeXComponent_TouchEventType](_o_h___native_x_component.md#oh_nativexcomponent_toucheventtype) {  <br/>OH_NATIVEXCOMPONENT_DOWN = 0, <br/>OH_NATIVEXCOMPONENT_UP, <br/>OH_NATIVEXCOMPONENT_MOVE, <br/>OH_NATIVEXCOMPONENT_CANCEL,<br/>OH_NATIVEXCOMPONENT_UNKNOWN } | 触摸事件类型。 |
+| [OH_NativeXComponent_MouseEventAction](_o_h___native_x_component.md#oh_nativexcomponent_mouseeventaction) { <br/>OH_NATIVEXCOMPONENT_MOUSE_NONE = 0, <br/>OH_NATIVEXCOMPONENT_MOUSE_PRESS, <br/>OH_NATIVEXCOMPONENT_MOUSE_RELEASE, <br/>OH_NATIVEXCOMPONENT_MOUSE_MOVE } | 鼠标事件动作。 |
+| [OH_NativeXComponent_MouseEventButton](_o_h___native_x_component.md#oh_nativexcomponent_mouseeventbutton) {  <br/>OH_NATIVEXCOMPONENT_NONE_BUTTON = 0, <br/>OH_NATIVEXCOMPONENT_LEFT_BUTTON = 0x01, <br/>OH_NATIVEXCOMPONENT_RIGHT_BUTTON = 0x02, <br/>OH_NATIVEXCOMPONENT_MIDDLE_BUTTON = 0x04,   <br/>OH_NATIVEXCOMPONENT_BACK_BUTTON = 0x08, <br/>OH_NATIVEXCOMPONENT_FORWARD_BUTTON = 0x10 } | 鼠标事件按键。 |
 
 
-### Enumerations
+### 函数
 
-  | Enumeration&nbsp;Name | Description | 
+| 函数名称 | 描述 |
 | -------- | -------- |
-| {&nbsp;[OH_NATIVEXCOMPONENT_RESULT_SUCCESS](_o_h___native_x_component.md#gga06fc87d81c62e9abb8790b6e5713c55baf2a815b270113979adea7b9440e0b80e)&nbsp;=&nbsp;0,&nbsp;[OH_NATIVEXCOMPONENT_RESULT_FAILED](_o_h___native_x_component.md#gga06fc87d81c62e9abb8790b6e5713c55bad6e4a33f3c594e267b8101bbc8ba682f)&nbsp;=&nbsp;-1,&nbsp;[OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](_o_h___native_x_component.md#gga06fc87d81c62e9abb8790b6e5713c55baa12565a3677df7c8dc60e216ed40e580)&nbsp;=&nbsp;-2&nbsp;} | Enumerates&nbsp;the&nbsp;API&nbsp;access&nbsp;states. | 
-| [OH_NativeXComponent_TouchEventType](_o_h___native_x_component.md#ga0a8c68dd460d7e801e7c0ff771f09182)&nbsp;{&nbsp;&nbsp;&nbsp;[OH_NATIVEXCOMPONENT_DOWN](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182a87b4dfe82e5aafd40c202484fc10dfb4)&nbsp;=&nbsp;0,&nbsp;[OH_NATIVEXCOMPONENT_UP](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182ae2da3fbb127398f9a749070edf671597),&nbsp;[OH_NATIVEXCOMPONENT_MOVE](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182a0b97e9e7830d0363e3617e2a7d33b378),&nbsp;[OH_NATIVEXCOMPONENT_CANCEL](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182a8593a5e1053e9c9df74d6b0e8a9bbb0a),&nbsp;&nbsp;&nbsp;[OH_NATIVEXCOMPONENT_UNKNOWN](_o_h___native_x_component.md#gga0a8c68dd460d7e801e7c0ff771f09182aff39d23c1412b3b110a19df4893651d3)&nbsp;} |  | 
+| [OH_NativeXComponent_GetXComponentId](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentid) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, char \*id, uint64_t \*size) | 获取ArkUI XComponent的id。 |
+| [OH_NativeXComponent_GetXComponentSize](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentsize) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, uint64_t \*width, uint64_t \*height) | 获取ArkUI XComponent持有的surface的大小。 |
+| [OH_NativeXComponent_GetXComponentOffset](_o_h___native_x_component.md#oh_nativexcomponent_getxcomponentoffset) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, double \*x, double \*y) | 获取ArkUI XComponent组件相对屏幕左上顶点的偏移量。 |
+| [OH_NativeXComponent_GetTouchEvent](_o_h___native_x_component.md#oh_nativexcomponent_gettouchevent) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md) \*touchEvent) | 获取ArkUI XComponent调度的触摸事件。 |
+| [OH_NativeXComponent_GetMouseEvent](_o_h___native_x_component.md#oh_nativexcomponent_getmouseevent) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, const void \*window, [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) \*mouseEvent) | 获取ArkUI XComponent调度的鼠标事件 |
+| [OH_NativeXComponent_RegisterCallback](_o_h___native_x_component.md#oh_nativexcomponent_registercallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) \*callback) | 为此OH_NativeXComponent实例注册回调。 |
+| [OH_NativeXComponent_RegisterMouseEventCallback](_o_h___native_x_component.md#oh_nativexcomponent_registermouseeventcallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) \*callback) | 为此OH_NativeXComponent实例注册鼠标事件回调。 |
 
 
-### Functions
+### 变量
 
-  | Function | Description | 
+| 变量名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeXComponent_GetXComponentId](_o_h___native_x_component.md#ga1aa5d0ac3778b9caef35f93b54a6f677)&nbsp;([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;char&nbsp;\*id,&nbsp;uint64_t&nbsp;\*size) | int32_t<br/>Obtains&nbsp;the&nbsp;ID&nbsp;of&nbsp;the&nbsp;ArkUI&nbsp;XComponent. | 
-| [OH_NativeXComponent_GetXComponentSize](_o_h___native_x_component.md#ga8f60375298a5d9eae57d03d4c5cf5f3f)&nbsp;([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;uint64_t&nbsp;\*width,&nbsp;uint64_t&nbsp;\*height) | int32_t<br/>Obtains&nbsp;the&nbsp;size&nbsp;of&nbsp;the&nbsp;surface&nbsp;held&nbsp;by&nbsp;the&nbsp;ArkUI&nbsp;XComponent. | 
-| [OH_NativeXComponent_GetXComponentOffset](_o_h___native_x_component.md#ga3a594868e2d0f633026b7fea2f45812a)&nbsp;([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | int32_t<br/>Obtains&nbsp;the&nbsp;offset&nbsp;of&nbsp;the&nbsp;surface&nbsp;held&nbsp;by&nbsp;the&nbsp;ArkUI&nbsp;XComponent. | 
-| [OH_NativeXComponent_GetTouchEvent](_o_h___native_x_component.md#ga5b0e85c74dab846b5b61a5e244ee60ca)&nbsp;([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;[OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)&nbsp;\*touchEvent) | int32_t<br/>Obtains&nbsp;the&nbsp;touch&nbsp;event&nbsp;dispatched&nbsp;by&nbsp;the&nbsp;ArkUI&nbsp;XComponent. | 
-| [OH_NativeXComponent_RegisterCallback](_o_h___native_x_component.md#gaf9b8b470cd51ac0e339710926bca72e3)&nbsp;([OH_NativeXComponent](_o_h___native_x_component.md#ga0e676460ec145b81bdb07a97a368a5f1)&nbsp;\*component,&nbsp;[OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)&nbsp;\*callback) | int32_t<br/>Registers&nbsp;a&nbsp;callback&nbsp;for&nbsp;this&nbsp;**OH_NativeXComponent**&nbsp;instance. | 
+| **OH_XCOMPONENT_ID_LEN_MAX** = 128 | ArkUI XComponent的id的最大长度。 |
+| **OH_MAX_TOUCH_POINTS_NUMBER** = 10 | 触摸事件中的可识别的触摸点个数最大值。 |

@@ -1,15 +1,15 @@
-# Qrcode
+# qrcode开发指导
 
 
-生成并显示二维码，具体用法请参考[Qrcode](../reference/arkui-js/js-components-basic-qrcode.md)。
+生成并显示二维码，具体用法请参考[qrcode](../reference/arkui-js/js-components-basic-qrcode.md)。
 
 
-## 创建Qrcode组件
+## 创建qrcode组件
 
-在pages/index目录下的hml文件中创建一个Qrcode组件。
+在pages/index目录下的hml文件中创建一个qrcode组件。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <qrcode value="Hello"></qrcode>
@@ -17,7 +17,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -31,16 +31,16 @@
 
 ![zh-cn_image_0000001229155403](figures/zh-cn_image_0000001229155403.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> Qrcode组件在创建的时候value的值为必填项。
+> **说明：**
+> qrcode组件在创建的时候value的值为必填项。
 
 
 ## 设置组件类型
 
-通过设置Qrcode的type属性来选择按钮类型，如定义Qrcode为矩形二维码、圆形二维码。
+通过设置qrcode的type属性来选择按钮类型，如定义qrcode为矩形二维码、圆形二维码。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <select onchange="settype">
@@ -51,7 +51,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -68,7 +68,7 @@ select{
 ```
 
 
-```
+```js
 // index.js
 export default {
   data: {
@@ -89,7 +89,7 @@ export default {
 通过color和background-color样式为二维码设置显示颜色和背景颜色。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <qrcode value="Hello" type="rect"></qrcode>
@@ -97,7 +97,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -116,11 +116,11 @@ qrcode{
 
 ![zh-cn_image_0000001183595750](figures/zh-cn_image_0000001183595750.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - width和height不一致时，取二者较小值作为二维码的边长，且最终生成的二维码居中显示。
-> 
+>
 > - width和height只设置一个时，取设置的值作为二维码的边长。都不设置时，使用200px作为默认边长。
-> 
+>
 
 
 ## 场景示例
@@ -128,7 +128,7 @@ qrcode{
 在本场景中将二维码与输入框绑定，通过改变输入框的内容改变二维码。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <input style="margin-bottom: 100px;" onchange="change"></input>
@@ -137,7 +137,7 @@ qrcode{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -154,7 +154,7 @@ qrcode{
 ```
 
 
-```
+```js
 // index.js
 export default{
   data: {

@@ -1,13 +1,13 @@
-# FAQs<a name="EN-US_TOPIC_0000001063231870"></a>
+# FAQs
 
-## System startup interrupted due to "parse failed!" error<a name="section2041345718513"></a>
+## System startup interrupted due to "parse failed!" error
 
 **Problem**
 
 During system startup, the error message "\[Init\] InitReadCfg, parse failed! please check file /etc/init.cfg format." is displayed, and the startup is interrupted, as shown in the following figure.
 
 **Figure  1**  Error information<a name="fig15217111545118"></a>  
-![](figure/error-information.png "error-information")
+![](figures/error-information.png "error-information")
 
 **Cause**
 
@@ -17,7 +17,7 @@ During the modification of the  **init.cfg**  file, required commas \(,\) or par
 
 Check the  **init.cfg**  file and ensure that its format meets the JSON specifications.
 
-## System automatically restarted again and again<a name="section57381816168"></a>
+## System automatically restarted again and again
 
 **Problem**
 
@@ -25,7 +25,7 @@ After the image burning is complete, the system keeps restarting.
 
 **Cause**
 
-Each service started by the init process has the  **importance**  attribute, as described in Table 3 in  [init Module](subsys-boot-init.md).
+Each service started by the init process has the  **importance**  attribute, as described in Table 3 in [Job Management](../subsystems/subsys-boot-init-jobs.md).
 
 -   If the attribute value is  **0**, the init process does not need to restart the development board when the current service process exits.
 -   If the attribute value is  **1**, the init process needs to restart the development board when the current service process exits.
@@ -37,7 +37,7 @@ During the startup of a service whose  **importance**  is  **1**, if the service
 1.  View logs to identify the service that encounters a process crash or exits due to an error, rectify the issue, and then burn the image again.
 2.  Alternatively, change the value of  **importance**  to  **0**  for the service that exits due to a process crash or an error, and then burn the image again. In this way, the development board will not be restarted even if the service exits.
 
-## Failed to call the  **SetParameter**  or  **GetParameter**  API with correct parameter values<a name="section129991227141512"></a>
+## Failed to call the  **SetParameter**  or  **GetParameter**  API with correct parameter values
 
 **Problem**
 

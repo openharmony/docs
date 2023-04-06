@@ -1,15 +1,15 @@
-# Toolbar开发指导
+# toolbar开发指导
 
 
-Toolbar为页面工具栏组件，用于展示针对当前界面的操作选项，可作为页面的一级导航。具体用法请参考[Toolbar](../reference/arkui-js/js-components-basic-toolbar.md)。
+toolbar为页面工具栏组件，用于展示针对当前界面的操作选项，可作为页面的一级导航。具体用法请参考[toolbar](../reference/arkui-js/js-components-basic-toolbar.md)。
 
 
-## 创建Toolbar组件
+## 创建toolbar组件
 
-在pages/index目录下的hml文件中创建一个Toolbar组件。
+在pages/index目录下的hml文件中创建一个toolbar组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <toolbar style="background-color: #F1F3F5;">
@@ -20,7 +20,7 @@ Toolbar为页面工具栏组件，用于展示针对当前界面的操作选项�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -40,9 +40,9 @@ toolbar-item{
 
 ## 添加子组件
 
-  Toolbar组件仅支持toolbar-item为子组件，页面最多可以展示5个toolbar-item子组件，如果存在6个及以上toolbar-item，则保留前面4个，后续的将收纳到工具栏上的更多项中，通过点击更多项弹窗进行展示。并且更多项展示的组件样式采用系统默认样式，toolbar-item上设置的自定义样式不生效。
+  toolbar组件仅支持toolbar-item为子组件，页面最多可以展示5个toolbar-item子组件，如果存在6个及以上toolbar-item，则保留前面4个，后续的将收纳到工具栏上的更多项中，通过点击更多项弹窗进行展示。并且更多项展示的组件样式采用系统默认样式，toolbar-item上设置的自定义样式不生效。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <toolbar>
@@ -57,7 +57,7 @@ toolbar-item{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -77,11 +77,11 @@ toolbar-item{
 
 ## 设置样式
 
-设置position样式控制Toolbar组件的位置，并设置子组件toolbar-item的字体颜色、大小及背景色。
+设置position样式控制toolbar组件的位置，并设置子组件toolbar-item的字体颜色、大小及背景色。
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <toolbar style="position: fixed;bottom: 5%;width: 100%;background-color: #F1F3F5;">
@@ -95,7 +95,7 @@ toolbar-item{
 
 
 
-```
+```css
 /* xxx.css */
 .container {
   background-color: #F1F3F5;
@@ -123,7 +123,7 @@ toolbar-item{
 分别给toolbar-item绑定单击事件和长按事件，单击后文本变红，长按时文本变蓝。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <toolbar style="position: fixed;top: 50%;width: 100%;background-color: #F1F3F5;">
@@ -135,7 +135,7 @@ toolbar-item{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   background-color: #F1F3F5;   
@@ -151,19 +151,19 @@ toolbar-item{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     itemColor:'black'
   },
   itemClick(){
     this.itemColor= "red";
-    prompt.showToast({duration:2000,message:'item click'});
+    promptAction.showToast({duration:2000,message:'item click'});
   },
   itemLongPress(){
-    prompt.showToast({duration:2000,message:'item long press'});
+    promptAction.showToast({duration:2000,message:'item long press'});
     this.itemColor= "blue";
   },
 }
@@ -171,8 +171,8 @@ export default {
 
 ![zh-cn_image_0000001218439306](figures/zh-cn_image_0000001218439306.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> Toolbar组件不支持添加事件和方法，但其子组件toolbar-item支持。
+> **说明：**
+> toolbar组件不支持添加事件和方法，但其子组件toolbar-item支持。
 
 
 ## 场景示例
@@ -181,7 +181,7 @@ export default {
 
   使用for循环创建toolbar-item组件并添加点击事件，点击后获得索引值进行存储。设置文本颜色时，判断当前索引值是否为储存的值，若相同则设置为红色，不同则使用默认颜色。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <image src="{{imgList[active]}}"></image>
@@ -193,7 +193,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   background-color: #F1F3F5;   
@@ -208,9 +208,8 @@ toolbar-item{
 ```
 
 
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     active: 0,
@@ -233,6 +232,6 @@ export default {
 
 ## 相关实例
 
-针对Toolbar开发，有以下相关实例可供参考：
+针对toolbar开发，有以下相关实例可供参考：
 
-- [`Toolbar`：工具栏（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Toolbar)
+- [`Toolbar`：工具栏（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Toolbar)

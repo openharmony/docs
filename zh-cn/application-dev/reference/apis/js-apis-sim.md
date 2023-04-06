@@ -1,4 +1,4 @@
-# SIM卡管理
+# @ohos.telephony.sim (SIM卡管理)
 
 SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的名称、号码、ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活、锁状态，设置指定卡槽SIM卡显示的名称、号码、锁状态，激活、禁用指定卡槽SIM卡，更改Pin密码，以及解锁指定卡槽SIM卡密码、SIM卡密码的解锁密码等。
 
@@ -17,7 +17,7 @@ import sim from '@ohos.telephony.sim';
 
 isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡是否激活，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否激活。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -41,7 +41,7 @@ sim.isSimActive(0, (err, data) => {
 
 isSimActive\(slotId: number\): Promise<boolean\>
 
-获取指定卡槽SIM卡是否激活，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否激活。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -64,7 +64,7 @@ let promise = sim.isSimActive(0);
 promise.then(data => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`isSimActive fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -73,7 +73,7 @@ promise.then(data => {
 
 getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
-获取默认语音业务的卡槽ID，使用callback方式作为异步方法。
+获取默认语音业务的卡槽ID。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -96,7 +96,7 @@ sim.getDefaultVoiceSlotId((err, data) => {
 
 getDefaultVoiceSlotId\(\): Promise<number\>
 
-获取默认语音业务的卡槽ID，使用Promise方式作为异步方法。
+获取默认语音业务的卡槽ID。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -113,7 +113,7 @@ let promise = sim.getDefaultVoiceSlotId();
 promise.then(data => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -121,7 +121,7 @@ promise.then(data => {
 
 hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-检查应用（调用者）是否已被授予运营商权限，使用callback方式作为异步方法。
+检查应用（调用者）是否已被授予运营商权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -131,6 +131,18 @@ hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1<br />- 1：卡槽2 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -144,7 +156,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
-检查应用（调用者）是否已被授予运营商权限，使用Promise方式作为异步方法。
+检查应用（调用者）是否已被授予运营商权限。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -160,6 +172,18 @@ hasOperatorPrivileges(slotId: number): Promise<boolean\>
 | :----------------- | :---------------------------------------------------------- |
 | Promise\<boolean\> | 以Promise形式返回检查应用（调用者）是否已被授予运营商权限。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -167,7 +191,7 @@ let promise = sim.hasOperatorPrivileges(0);
 promise.then(data => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -175,7 +199,7 @@ promise.then(data => {
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的ISO国家码，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的ISO国家码。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -185,6 +209,19 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): voi
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2   |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -199,7 +236,7 @@ sim.getISOCountryCodeForSim(0, (err, data) => {
 
 getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的ISO国家码，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的ISO国家码。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -215,6 +252,19 @@ getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回获取指定卡槽SIM卡的ISO国家码，例如：CN（中国）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -222,7 +272,7 @@ let promise = sim.getISOCountryCodeForSim(0);
 promise.then(data => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -231,7 +281,7 @@ promise.then(data => {
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -241,6 +291,19 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -255,7 +318,7 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 
 getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -271,6 +334,19 @@ getSimOperatorNumeric\(slotId: number\): Promise<string\>
 | ----------------- | ------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回获取指定卡槽SIM卡的归属PLMN号。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -278,7 +354,7 @@ let promise = sim.getSimOperatorNumeric(0);
 promise.then(data => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimOperatorNumeric fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -287,7 +363,7 @@ promise.then(data => {
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用callback方式作为异步方法。
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -297,6 +373,19 @@ getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -311,7 +400,7 @@ sim.getSimSpn(0, (err, data) => {
 
 getSimSpn\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -327,6 +416,19 @@ getSimSpn\(slotId: number\): Promise<string\>
 | ----------------- | ----------------------------------------- |
 | Promise\<string\> | 以Promise形式返回获取指定卡槽SIM卡的SPN。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -334,7 +436,7 @@ let promise = sim.getSimSpn(0);
 promise.then(data => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimSpn fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -343,7 +445,7 @@ promise.then(data => {
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
-获取指定卡槽的SIM卡状态，使用callback方式作为异步方法。
+获取指定卡槽的SIM卡状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -353,6 +455,18 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 | -------- | -------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[SimState](#simstate)\> | 是   | 回调函数。参考[SimState](#simstate)。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -367,7 +481,7 @@ sim.getSimState(0, (err, data) => {
 
 getSimState\(slotId: number\): Promise<SimState\>
 
-获取指定卡槽的SIM卡状态，使用Promise方式作为异步方法。
+获取指定卡槽的SIM卡状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -383,6 +497,18 @@ getSimState\(slotId: number\): Promise<SimState\>
 | -------------------------------- | ------------------------------------------ |
 | Promise\<[SimState](#simstate)\> | 以Promise形式返回获取指定卡槽的SIM卡状态。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -390,7 +516,7 @@ let promise = sim.getSimState(0);
 promise.then(data => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -398,7 +524,7 @@ promise.then(data => {
 
 getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
-获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的卡类型。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -408,6 +534,19 @@ getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -422,7 +561,7 @@ sim.getCardType(0, (err, data) => {
 
 getCardType\(slotId: number\): Promise<CardType\>
 
-获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的卡类型。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -438,6 +577,19 @@ getCardType\(slotId: number\): Promise<CardType\>
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<[CardType](#cardtype7)\> | 以Promise形式返回指定卡槽SIM卡的卡类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -445,7 +597,7 @@ let promise = sim.getCardType(0);
 promise.then(data => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getCardType fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -454,7 +606,7 @@ promise.then(data => {
 
 hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡是否插卡，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否插卡。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -465,9 +617,21 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
-```jsjs
+```js
 sim.hasSimCard(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -478,7 +642,7 @@ sim.hasSimCard(0, (err, data) => {
 
 hasSimCard\(slotId: number\): Promise<boolean\>
 
-获取指定卡槽SIM卡是否插卡，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否插卡。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -494,6 +658,18 @@ hasSimCard\(slotId: number\): Promise<boolean\>
 | --------------------- | ---------------------------------- |
 | Promise&lt;boolean&gt; | 以Promise形式返回指定卡槽是否插卡，如果插卡返回true。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -501,7 +677,7 @@ let promise = sim.hasSimCard(0);
 promise.then(data => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasSimCard fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -509,9 +685,9 @@ promise.then(data => {
 
 getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): void
 
-获取SIM卡账户信息，使用callback方式作为异步方法。
+获取SIM卡账户信息。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -522,7 +698,22 @@ getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): voi
 | 参数名   | 类型                                                | 必填 | 说明                                   |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[IccAccountInfo](#IccAccountInfo7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -537,9 +728,9 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
-获取SIM卡账户信息，使用callback方式作为异步方法。
+获取SIM卡账户信息。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -555,7 +746,22 @@ getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#IccAccountInfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -564,7 +770,7 @@ let promise = sim.getSimAccountInfo(0);
 promise.then(data => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimAccountInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -572,9 +778,9 @@ promise.then(data => {
 
 getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): void
 
-获取活跃SIM卡账户信息列表，使用callback方式作为异步方法。
+获取活跃SIM卡账户信息列表。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -584,12 +790,26 @@ getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): vo
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
 ```js
-sim.getActiveSimAccountInfoList(0, (err, data) => {
+sim.getActiveSimAccountInfoList((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -599,9 +819,9 @@ sim.getActiveSimAccountInfoList(0, (err, data) => {
 
 getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
-获取活跃SIM卡账户信息列表，使用callback方式作为异步方法。
+获取活跃SIM卡账户信息列表。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -611,7 +831,21 @@ getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
@@ -620,7 +854,7 @@ let promise = sim.getActiveSimAccountInfoList();
 promise.then(data => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getActiveSimAccountInfoList fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -628,9 +862,9 @@ promise.then(data => {
 
 setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 
-设置默认语音业务的卡槽ID，使用callback方式作为异步方法。
+设置默认语音业务的卡槽ID。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -643,11 +877,26 @@ setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **示例：**
 
 ```js
-sim.setDefaultVoiceSlotId(0,(err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setDefaultVoiceSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -656,9 +905,9 @@ sim.setDefaultVoiceSlotId(0,(err, data) => {
 
 setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 
-设置默认语音业务的卡槽ID，使用Promise方式作为异步方法。
+设置默认语音业务的卡槽ID。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -676,24 +925,39 @@ setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
 **示例：**
 
 ```js
 let promise = sim.setDefaultVoiceSlotId(0);
-promise.then(data => {
-    console.log(`setDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`setDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+promise.then(() => {
+    console.log(`setDefaultVoiceSlotId success.`);
+}).catch((err) => {
+    console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
-setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
+setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
-设置指定卡槽SIM卡显示的名称，使用callback方式作为异步方法。
+设置指定卡槽SIM卡显示的名称。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -704,25 +968,39 @@ setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| name     | string                    | 是   | SIM卡名称                              |
+| name     | string                    | 是   | SIM卡名称。                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
 ```js
-const name='中国移动';
-sim.setShowName(0, name,(err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let name = "ShowName";
+sim.setShowName(0, name, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**setShowName**<sup>8+</sup>
+## sim.setShowName<sup>8+</sup>
 
 setShowName\(slotId: number, name: string\): Promise\<void\>
 
-设置指定卡槽SIM卡显示的名称，使用Promise方式作为异步方法。
+设置指定卡槽SIM卡显示的名称。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -733,7 +1011,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| name   | string | 是   | SIM卡名称                              |
+| name   | string | 是   | SIM卡名称。                              |
 
 **返回值：**
 
@@ -741,25 +1019,39 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-const name='中国移动';
-let promise = sim.setShowName(0,name);
-promise.then(data => {
-    console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`setShowName fail, promise: err->${JSON.stringify(err)}`);
+let name = "ShowName";
+let promise = sim.setShowName(0, name);
+promise.then(() => {
+    console.log(`setShowName success.`);
+}).catch((err) => {
+    console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽SIM卡的名称，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的名称。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -772,6 +1064,20 @@ getShowName(slotId: number, callback: AsyncCallback<string\>): void
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -781,13 +1087,13 @@ sim.getShowName(0, (err, data) => {
 ```
 
 
-## sim.**getShowName**<sup>8+</sup>
+## sim.getShowName<sup>8+</sup>
 
 getShowName(slotId: number): Promise<string\>
 
-获取指定卡槽SIM卡的名称，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的名称。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -805,6 +1111,20 @@ getShowName(slotId: number): Promise<string\>
 | --------------------- | -------------------------------------- |
 | Promise&lt;string&gt; | 以Promise形式返回指定卡槽SIM卡的名称。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -812,17 +1132,17 @@ let promise = sim.getShowName(0);
 promise.then(data => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
-setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
+setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
-设置指定卡槽SIM卡的号码，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -833,26 +1153,40 @@ setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| number   | string                    | 是   | SIM卡号码                              |
+| number   | string                    | 是   | SIM卡号码。                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
 ```js
-let number='+861xxxxxxxxxx';
-sim.setShowNumber(0, number,(err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let number = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## sim.**setShowNumber**<sup>8+</sup>
+## sim.setShowNumber<sup>8+</sup>
 
-setShowNumber\(slotId: number,number: string\): Promise\<void\>
+setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
-设置指定卡槽SIM卡的号码，使用Promise方式作为异步方法。
+设置指定卡槽SIM卡的号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -863,7 +1197,7 @@ setShowNumber\(slotId: number,number: string\): Promise\<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| number | string | 是   | SIM卡号码                              |
+| number | string | 是   | SIM卡号码。                              |
 
 **返回值：**
 
@@ -871,25 +1205,39 @@ setShowNumber\(slotId: number,number: string\): Promise\<void\>
 | -------------- | ------------------------------- |
 | Promise<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-let number='+861xxxxxxxxxx';
-let promise = sim.setShowNumber(0,number);
-promise.then(data => {
-    console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`setShowNumber fail, promise: err->${JSON.stringify(err)}`);
+let number = '+861xxxxxxxxxx';
+let promise = sim.setShowNumber(0, number);
+promise.then(() => {
+    console.log(`setShowNumber success.`);
+}).catch((err) => {
+    console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
-getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
+getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽SIM卡的号码，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的号码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -902,6 +1250,20 @@ getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
 | slotId   | number                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -911,13 +1273,13 @@ sim.getShowNumber(0, (err, data) => {
 ```
 
 
-## sim.**getShowNumber**<sup>8+</sup>
+## sim.getShowNumber<sup>8+</sup>
 
 getShowNumber(slotId: number): Promise<string\>
 
-获取指定卡槽SIM卡的号码，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的号码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -935,6 +1297,20 @@ getShowNumber(slotId: number): Promise<string\>
 | --------------------- | --------------------------------- |
 | Promise&lt;string&gt; | 以Promise形式返回指定卡槽的号码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
@@ -942,17 +1318,17 @@ let promise = sim.getShowNumber(0);
 promise.then(data => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-激活指定卡槽SIM卡，使用callback方式作为异步方法。
+激活指定卡槽SIM卡。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -965,22 +1341,36 @@ activateSim(slotId: number, callback: AsyncCallback<void\>): void
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-sim.activateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.activateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## sim.**activateSim**<sup>8+</sup>
+## sim.activateSim<sup>8+</sup>
 
 activateSim(slotId: number): Promise\<void\>
 
-激活指定卡槽SIM卡，使用Promise方式作为异步方法。
+激活指定卡槽SIM卡。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -997,25 +1387,39 @@ activateSim(slotId: number): Promise\<void\>
 | 类型            | 说明                            |
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
 
 **示例：**
 
 ```js
 let promise = sim.activateSim(0);
-promise.then(data => {
-    console.log(`activateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`activateSim fail, promise: err->${JSON.stringify(err)}`);
+promise.then(() => {
+    console.log(`activateSim success.`);
+}).catch((err) => {
+    console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-禁用指定卡槽SIM卡，使用callback方式作为异步方法。
+禁用指定卡槽SIM卡。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1028,22 +1432,36 @@ deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
-sim.deactivateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.deactivateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
 
-## sim.**deactivateSim**<sup>8+</sup>
+## sim.deactivateSim<sup>8+</sup>
 
 deactivateSim(slotId: number): Promise\<void\>
 
-禁用指定卡槽SIM卡，使用Promise方式作为异步方法。
+禁用指定卡槽SIM卡。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1061,14 +1479,28 @@ deactivateSim(slotId: number): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
 **示例：**
 
 ```js
 let promise = sim.deactivateSim(0);
-promise.then(data => {
-    console.log(`deactivateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`deactivateSim fail, promise: err->${JSON.stringify(err)}`);
+promise.then(() => {
+    console.log(`deactivateSim success.`);
+}).catch((err) => {
+    console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1076,9 +1508,9 @@ promise.then(data => {
 
 setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStatusResponse\>): void
 
-设置指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的锁状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1089,16 +1521,33 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                                                   |
-| options  | [LockInfo](#LockInfo8)                                      | 是   | 锁信息。<br/>lockType: [LockType](#LockType8)<br/>password: string<br/>state: [LockState](#LockState8) |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                                                   |
+| options  | [LockInfo](#lockinfo8)                                      | 是   | 锁信息。<br/>- lockType: [LockType](#locktype8)<br/>- password: string<br/>- state: [LockState](#lockstate8) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-sim.setLockState(0, LockInfo, (err, data) => {
+let lockInfo = {
+    lockType: sim.LockType.PIN_LOCK,
+    password: "1234",
+    state: sim.LockState.LOCK_OFF
+};
+sim.setLockState(0, lockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1108,9 +1557,9 @@ sim.setLockState(0, LockInfo, (err, data) => {
 
 setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
-设置指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1121,25 +1570,42 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 | 参数名  | 类型                   | 必填 | 说明                                                         |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| options | [LockInfo](#LockInfo8) | 是   | 锁信息。<br/>lockType: [LockType](#LockType8)<br/>password: string<br/>state: [LockState](#LockState8) |
+| options | [LockInfo](#lockinfo8) | 是   | 锁信息。<br/>- lockType: [LockType](#locktype8)<br/>- password: string<br/>- state: [LockState](#lockstate8) |
 
 **返回值：**
 
 | 类型                                                 | 说明                                         |
 | ---------------------------------------------------- | -------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-let promise = sim.setLockState(0, LockInfo);
+let lockInfo = {
+    lockType: sim.LockType.PIN_LOCK,
+    password: "1234",
+    state: sim.LockState.LOCK_OFF
+};
+let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1147,9 +1613,11 @@ promise.then(data => {
 
 getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockState\>): void
 
-获取指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的锁状态。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1158,8 +1626,23 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 | 参数名   | 类型                                      | 必填 | 说明                                    |
 | -------- | ----------------------------------------- | ---- | --------------------------------------- |
 | slotId   | number                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| callback | AsyncCallback\<[LockState](#LockState8)\> | 是   | 回调函数。                              |
-| options  | [LockType](#LockType8)                    | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
+| callback | AsyncCallback\<[LockState](#lockstate8)\> | 是   | 回调函数。                              |
+| options  | [LockType](#locktype8)                    | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -1174,9 +1657,11 @@ sim.getLockState(0, 1, (err, data) => {
 
 getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
-获取指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1185,13 +1670,28 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 | 参数名  | 类型                   | 必填 | 说明                                    |
 | ------- | ---------------------- | ---- | --------------------------------------- |
 | slotId  | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| options | [LockType](#LockType8) | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
+| options | [LockType](#locktype8) | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
 
 **返回值：**
 
 | 类型                               | 说明                                         |
 | ---------------------------------- | -------------------------------------------- |
-| Promise<[LockState](#LockState8)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+| Promise<[LockState](#lockstate8)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -1200,7 +1700,7 @@ let promise = sim.getLockState(0, 1);
 promise.then(data => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1208,9 +1708,9 @@ promise.then(data => {
 
 alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-更改Pin密码，使用callback方式作为异步方法。
+更改Pin密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1221,14 +1721,29 @@ alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback
 | 参数名   | 类型                                                        | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                             |
 | newPin   | string                                                      | 是   | 新密码。                               |
 | oldPin   | string                                                      | 是   | 旧密码。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-sim.alterPin(0, "1234", "0000"(err, data) => {
+sim.alterPin(0, "1234", "0000", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1238,9 +1753,9 @@ sim.alterPin(0, "1234", "0000"(err, data) => {
 
 alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse\>;
 
-更改Pin密码，使用callback方式作为异步方法。
+更改Pin密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1258,7 +1773,22 @@ alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResp
 
 | 类型                                                 | 说明                                          |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -1267,7 +1797,7 @@ let promise = sim.alterPin(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1275,9 +1805,9 @@ promise.then(data => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-更改Pin2密码，使用callback方式作为异步方法。
+更改Pin2密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1288,9 +1818,24 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallb
 | 参数名   | 类型                                                        | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                             |
 | newPin2  | string                                                      | 是   | 新密码。                               |
 | oldPin2  | string                                                      | 是   | 旧密码。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
@@ -1305,9 +1850,9 @@ sim.alterPin2(0, "1234", "0000", (err, data) => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse\>
 
-更改Pin2密码，使用callback方式作为异步方法。
+更改Pin2密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1325,26 +1870,41 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusR
 
 | 类型                                                 | 说明                                          |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let promise = sim.alterPin2(0, "1234","0000");
+let promise = sim.alterPin2(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1355,26 +1915,41 @@ unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin      | string                                                       | 是   | SIM卡的密码                            |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)> | 是   | 回调函数。                             |
+| pin      | string                                                       | 是   | SIM卡的密码。                            |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let pin='1234';
-sim.unlockPin(0, pin,(err, data) => {
+let pin = '1234';
+sim.unlockPin(0, pin, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.**unlockPin**<sup>7+</sup>
+## sim.unlockPin<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
+unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1385,33 +1960,48 @@ unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin    | string | 是   | SIM卡的密码                            |
+| pin    | string | 是   | SIM卡的密码。                            |
 
 **返回值：**
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let pin='1234';
-let promise = sim.unlockPin(0,pin);
+let pin = '1234';
+let promise = sim.unlockPin(0, pin);
 promise.then(data => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1422,28 +2012,43 @@ unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<Loc
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin   | string                                                       | 是   | 重置SIM卡的密码                        |
-| puk      | string                                                       | 是   | SIM卡密码的解锁密码                    |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| newPin   | string                                                       | 是   | 重置SIM卡的密码。                        |
+| puk      | string                                                       | 是   | SIM卡密码的解锁密码。                    |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-sim.unlockPuk(0, newPin,puk,(err, data) => {
+let puk = '1xxxxxxx';
+let newPin = '1235';
+sim.unlockPuk(0, newPin, puk, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.**unlockPuk**<sup>7+</sup>
+## sim.unlockPuk<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
+unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1454,35 +2059,50 @@ unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusRespo
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin | string | 是   | 重置SIM卡的密码                        |
-| puk    | string | 是   | SIM卡密码的解锁密码                    |
+| newPin | string | 是   | 重置SIM卡的密码。                        |
+| puk    | string | 是   | SIM卡密码的解锁密码。                    |
 
 **返回值：**
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-let promise = sim.unlockPuk(0,newPin,puk);
+let puk = '1xxxxxxx';
+let newPin = '1235';
+let promise = sim.unlockPuk(0, newPin, puk);
 promise.then(data => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
-****unlockPin2****(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1493,26 +2113,41 @@ promise.then(data => {
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin2     | string                                                       | 是   | SIM卡的密码                            |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| pin2     | string                                                       | 是   | SIM卡的密码。                            |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let pin2='1234';
-sim.unlockPin2(0, pin2,(err, data) => {
+let pin2 = '1234';
+sim.unlockPin2(0, pin2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.**unlockPin**2<sup>8+</sup>
+## sim.unlockPin2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
+unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1523,33 +2158,48 @@ unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin2   | string | 是   | SIM卡的密码                            |
+| pin2   | string | 是   | SIM卡的密码。                            |
 
 **返回值：**
 
 | 类型                                                  | 说明                                               |
 | ----------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
 let pin2='1234';
-let promise = sim.unlockPin2(0,pin2);
+let promise = sim.unlockPin2(0, pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## sim.**unlockPuk**2<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
-unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1560,28 +2210,43 @@ unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin2  | string                                                       | 是   | 重置SIM卡的密码                        |
-| puk2     | string                                                       | 是   | SIM卡密码的解锁密码                    |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| newPin2  | string                                                       | 是   | 重置SIM卡的密码。                        |
+| puk2     | string                                                       | 是   | SIM卡密码的解锁密码。                    |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-sim.unlockPuk2(0, newPin2,puk2,(err, data) => {
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 
-## sim.**unlockPuk2**<sup>8+</sup>
+## sim.unlockPuk2<sup>8+</sup>
 
-unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusResponse\>
+unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -1592,25 +2257,40 @@ unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusRes
 | 参数名  | 类型   | 必填 | 说明                                   |
 | ------- | ------ | ---- | -------------------------------------- |
 | slotId  | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin2 | string | 是   | 重置SIM卡的密码                        |
-| puk2    | string | 是   | SIM卡密码的解锁密码                    |
+| newPin2 | string | 是   | 重置SIM卡的密码。                        |
+| puk2    | string | 是   | SIM卡密码的解锁密码。                    |
 
 **返回值：**
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
 
 **示例：**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-let promise = sim.unlockPuk2(0,newPin2,puk2);
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+let promise = sim.unlockPuk2(0, newPin2, puk2);
 promise.then(data => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1634,12 +2314,1628 @@ getMaxSimCount\(\): number
 console.log("Result: "+ sim.getMaxSimCount())
 ```
 
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽SIM卡的ICCID。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getSimIccId(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number): Promise<string\>
+
+获取指定卡槽SIM卡的ICCID。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的ICCID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getSimIccId(0);
+promise.then(data => {
+    console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡语音信箱的alpha标识符。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getVoiceMailIdentifier(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡语音信箱的alpha标识符。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的alpha标识符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getVoiceMailIdentifier(0);
+promise.then(data => {
+    console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的语音信箱号。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getVoiceMailNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的语音信箱号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                             |
+| ---------------- | ------------------------------------------------ |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的语音信箱号。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getVoiceMailNumber(0);
+promise.then(data => {
+    console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void\>): void
+
+设置语音邮件信息。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                                   |
+| ---------- | -------------------- | ---- | -------------------------------------- |
+| slotId     | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| mailName   | string               | 是   | 邮件名字                               |
+| mailNumber | string               | 是   | 邮件号码                               |
+| callback   | AsyncCallback<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void\>
+
+设置语音邮件信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                   |
+| ---------- | ------ | ---- | -------------------------------------- |
+| slotId     | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| mailName   | string | 是   | 邮件名字。                               |
+| mailNumber | string | 是   | 邮件号码。                               |
+
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise<void\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
+promise.then(() => {
+    console.log(`setVoiceMailInfo success.`);
+}).catch((err) => {
+    console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的MSISDN。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getSimTelephoneNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的MSISDN。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                         |
+| ---------------- | -------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的MSISDN。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getSimTelephoneNumber(0);
+promise.then(data => {
+    console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getSimGid1(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的标识符级别1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getSimGid1(0);
+promise.then(data => {
+    console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getIMSI
+
+getIMSI(slotId: number, callback: AsyncCallback<string\>): void
+
+获取国际移动用户识别码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getIMSI(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getIMSI
+
+getIMSI(slotId: number): Promise<string\>
+
+获取国际移动用户识别码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取的国际移动用户识别码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getIMSI(0);
+promise.then(data => {
+    console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\>>): void
+
+获取运营商配置。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<Array<[OperatorConfig](#operatorconfig8)\>> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.getOperatorConfigs(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
+
+获取运营商配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                | 说明                          |
+| --------------------------------------------------- | ----------------------------- |
+| Promise<Array<[OperatorConfig](#operatorconfig8)\>> | 以Promise形式返回运营商配置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.getOperatorConfigs(0);
+promise.then(data => {
+    console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo\>>): void
+
+查询SIM卡联系人号码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                       |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type     | [ContactType](#contacttype8)                                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+sim.queryIccDiallingNumbers(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo\>>
+
+查询SIM卡联系人号码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                       |
+| ------ | ----------- | ---- | ---------------------------------------------------------- |
+| slotId | number      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type   | [ContactType](#contacttype8)  | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+
+**返回值：**
+
+| 类型                                                         | 说明                           |
+| ------------------------------------------------------------ | ------------------------------ |
+| Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 以Promise形式返回Icc拨号号码。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let promise = sim.queryIccDiallingNumbers(0, 1);
+promise.then(data => {
+    console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+添加SIM卡联系人号码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    pin2: "1234"
+};
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+添加SIM卡联系人号码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回添加结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
+};
+let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
+promise.then(() => {
+    console.log(`addIccDiallingNumbers success.`);
+}).catch((err) => {
+    console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+删除SIM卡联系人号码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
+};
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+删除SIM卡联系人号码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回删除结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx"
+};
+let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
+promise.then(() => {
+    console.log(`delIccDiallingNumbers success.`);
+}).catch((err) => {
+    console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+更新SIM卡联系人号码。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
+};
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+更新SIM卡联系人号码。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | 以Promise形式返回更新的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123
+};
+let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
+promise.then(() => {
+    console.log(`updateIccDiallingNumbers success.`);
+}).catch((err) => {
+    console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+发送信封命令。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd      | string               | 是   | 命令。                                   |
+| callback | AsyncCallback<void\> | 是   | 回调函数。                                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.sendEnvelopeCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
+
+发送信封命令。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd    | string | 是   | 命令。                                   |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回发送结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.sendEnvelopeCmd(0, "ls");
+promise.then(() => {
+    console.log(`sendEnvelopeCmd success.`);
+}).catch((err) => {
+    console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+发送终端响应命令。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd      | string               | 是   | 命令。                                   |
+| callback | AsyncCallback<void\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+sim.sendTerminalResponseCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
+
+发送终端响应命令。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd    | string | 是   | 命令。                                   |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回发送结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let promise = sim.sendTerminalResponseCmd(0, "ls");
+promise.then(() => {
+    console.log(`sendTerminalResponseCmd success.`);
+}).catch((err) => {
+    console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse\>): void
+
+解锁SIM卡锁。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                   |
+| -------- | ---------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| lockInfo | [PersoLockInfo](#persolockinfo8)                           | 是   | 定制锁类型信息。                         |
+| callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let persoLockInfo = {
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
+};
+sim.unlockSimLock(0, persoLockInfo, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse\>
+
+解锁SIM卡锁。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                   |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| lockInfo | [PersoLockInfo](#persolockinfo8) | 是   | 定制锁类型信息。                         |
+
+**返回值：**
+
+| 类型                                                 | 说明                      |
+| ---------------------------------------------------- | ------------------------- |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回锁状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301002  | SIM card operation error.                    |
+
+**示例：**
+
+```js
+let persoLockInfo = {
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
+};
+let promise = sim.unlockSimLock(0, persoLockInfo);
+promise.then(data => {
+    console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的opkey。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    sim.getOpKey(0, (err, data) => {
+    if (err) {
+      console.log("getOpKey failed, err: " + JSON.stringify(err));
+    } else {
+      console.log('getOpKey successfully, data: ' + JSON.stringify(data));
+    }
+  });
+} catch (err) {
+  console.log("getOpKey err: " + JSON.stringify(err));
+}
+```
+
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的opkey。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise<string\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    let data = sim.getOpKey(0);
+    console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的OpName。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                               |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    sim.getOpName(0, (err, data) => {
+    if (err) {
+      console.log("getOpName failed, err: " + JSON.stringify(err));
+    } else {
+      console.log('getOpName successfully, data: ' + JSON.stringify(data));
+    }
+  });
+} catch (err) {
+  console.log("getOpName err: " + JSON.stringify(err));
+}
+```
+
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的OpName。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                       |
+| ---------------- | ------------------------------------------ |
+| Promise<string\> | 以Promise形式返回指定卡槽中SIM卡的OpName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+try {
+    let data = sim.getOpName(0);
+    console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
+} catch (error) {
+    console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
+}
+```
 
 ## SimState
 
 SIM卡状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                  | 值   | 说明                                                       |
 | --------------------- | ---- | ---------------------------------------------------------- |
@@ -1654,123 +3950,194 @@ SIM卡状态。
 
 卡类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
-|UNKNOWN_CARD | -1 | 未知类型 |
-|SINGLE_MODE_SIM_CARD | 10 | 单SIM卡 |
-|SINGLE_MODE_USIM_CARD | 20 | 单USIM卡 |
-|SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡 |
-|DUAL_MODE_CG_CARD | 40 | 双卡模式C+G |
-|CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡 |
-|CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
-|DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
-|DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
-|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | 单一ISIM卡类型 |
+|UNKNOWN_CARD | -1 | 未知类型。 |
+|SINGLE_MODE_SIM_CARD | 10 | 单SIM卡。 |
+|SINGLE_MODE_USIM_CARD | 20 | 单USIM卡。 |
+|SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡。 |
+|DUAL_MODE_CG_CARD | 40 | 双卡模式C+G。 |
+|CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡。 |
+|CU_DUAL_MODE_CARD | 42 | 中国联通双模卡。 |
+|DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡。 |
+|DUAL_MODE_UG_CARD | 50 | 双模式UG卡。 |
+|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | 单一ISIM卡类型。 |
 
 ## LockType<sup>8+</sup>
 
 锁类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明        |
 | -------- | ---- | ----------- |
-| PIN_LOCK | 1    | SIM卡密码锁 |
-| FDN_LOCK | 2    | 固定拨号锁  |
+| PIN_LOCK | 1    | SIM卡密码锁。 |
+| FDN_LOCK | 2    | 固定拨号锁。  |
 
 ## LockState<sup>8+</sup>
 
 锁状态。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
 | LOCK_OFF | 0    | 锁关闭状态 |
 | LOCK_ON  | 1    | 锁开启状态 |
 
-## **PersoLockType**<sup>8+</sup>
+## PersoLockType<sup>8+</sup>
 
 定制锁类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称         | 值   | 说明                                            |
-| ------------ | ---- | ----------------------------------------------- |
-| PN_PIN_LOCK  | 0    | 定制网络PIN锁*(参照 3GPP TS 22.022 [33])*       |
-| PN_PUK_LOCK  | 1    | 定制网络PUk锁                                   |
-| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁*(参照 3GPP TS 22.022 [33])*   |
-| PU_PUK_LOCK  | 3    | 定制网络子集PUK锁                               |
-| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁*(参照 3GPP TS 22.022 [33])* |
-| PP_PUK_LOCK  | 5    | 定制服务提供者PUK锁                             |
-| PC_PIN_LOCK  | 6    | 定制企业PIN锁*(参照 3GPP TS 22.022 [33])*       |
-| PC_PUK_LOCK  | 7    | 定制企业Puk锁                                   |
-| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁*(参照 3GPP TS 22.022 [33])*      |
-| SIM_PUK_LOCK | 9    | 定制SIM的PUK锁                                  |
+| 名称         | 值   | 说明                                             |
+| ------------ | ---- | ------------------------------------------------ |
+| PN_PIN_LOCK  | 0    | 定制网络PIN锁(参照 3GPP TS 22.022 [33])。         |
+| PN_PUK_LOCK  | 1    | 定制网络PUk锁。                                   |
+| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁(参照 3GPP TS 22.022 [33])。     |
+| PU_PUK_LOCK  | 3    | 定制网络子集PUK锁。                               |
+| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁(参照 3GPP TS 22.022 [33])。   |
+| PP_PUK_LOCK  | 5    | 定制服务提供者PUK锁。                             |
+| PC_PIN_LOCK  | 6    | 定制企业PIN锁(参照 3GPP TS 22.022 [33])。         |
+| PC_PUK_LOCK  | 7    | 定制企业Puk锁。                                   |
+| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁(参照 3GPP TS 22.022 [33])。        |
+| SIM_PUK_LOCK | 9    | 定制SIM的PUK锁。                                  |
 
-## **LockStatusResponse**<sup>7+</sup>
-
-锁状态响应。
-
-此接口为系统接口。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
-
-| 名称            | 类型   | 说明               |
-| --------------- | ------ | ------------------ |
-| result          | number | 当前操作的结果     |
-| remain?: number | number | 剩余次数(可以为空) |
-
-## **LockInfo**<sup>8+</sup>
+## LockStatusResponse<sup>7+</sup>
 
 锁状态响应。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称     | 类型      | 说明   |
-| -------- | --------- | ------ |
-| lockType | LockType  | 锁类型 |
-| password | string    | 密码   |
-| state    | LockState | 锁状态 |
+| 名称            | 类型   | 必填 | 说明                  |
+| --------------- | ------ | ---- | --------------------- |
+| result          | number |  是  | 当前操作的结果。      |
+| remain?: number | number |  否  | 剩余次数（可以为空）。|
 
-## **PersoLockInfo**<sup>8+</sup>
+## LockInfo<sup>8+</sup>
 
 锁状态响应。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称     | 类型          | 说明         |
-| -------- | ------------- | ------------ |
-| lockType | PersoLockType | 定制锁的类型 |
-| password | string        | 密码         |
+| 名称     |           类型           | 必填 |   说明   |
+| -------- | ------------------------ | ---- | -------- |
+| lockType | [LockType](#locktype8)   |  是  | 锁类型。 |
+| password | string                   |  是  | 密码。   |
+| state    | [LockState](#lockstate8) |  是  | 锁状态。 |
 
-## **IccAccountInfo**<sup>7+</sup>
+## PersoLockInfo<sup>8+</sup>
+
+锁状态响应。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称     |               类型               | 必填 |      说明     |
+| -------- | -------------------------------- | ---- | ------------- |
+| lockType | [PersoLockType](#persolocktype8) |  是  | 定制锁的类型。|
+| password | string                           |  是  | 密码。        |
+
+## IccAccountInfo<sup>7+</sup>
 
 Icc账户信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称       | 类型    | 说明             |
-| ---------- | ------- | ---------------- |
-| simId      | number  | SIM卡ID          |
-| slotIndex  | number  | 卡槽ID           |
-| isEsim     | boolean | 标记卡是否是eSim |
-| isActive   | boolean | 卡是否被激活     |
-| iccId      | string  | ICCID号码        |
-| showName   | string  | SIM卡显示名称    |
-| showNumber | string  | SIM卡显示号码    |
+| 名称       | 类型    | 必填 | 说明             |
+| ---------- | ------- | ---- | ---------------- |
+| simId      | number  |  是  | SIM卡ID。          |
+| slotIndex  | number  |  是  | 卡槽ID。           |
+| isEsim     | boolean |  是  | 标记卡是否是eSim。 |
+| isActive   | boolean |  是  | 卡是否被激活。     |
+| iccId      | string  |  是  | ICCID号码。        |
+| showName   | string  |  是  | SIM卡显示名称。    |
+| showNumber | string  |  是  | SIM卡显示号码。    |
 
+## OperatorConfig<sup>8+</sup>
+
+运营商配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称  | 类型   | 必填 | 说明 |
+| ----- | ------ | ---- | ---- |
+| field | string |  是  | 字段 |
+| value | string |  是  | 值   |
+
+## DiallingNumbersInfo<sup>8+</sup>
+
+拨号号码信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称         | 类型   | 必填 |    说明    |
+| ------------ | ------ | ---- | ---------- |
+| alphaTag     | string |  是  | 标签。     |
+| number       | string |  是  | 号码。     |
+| recordNumber | number |  是  | 记录编号。 |
+| pin2         | string |  是  | pin2密码。 |
+
+## ContactType<sup>8+</sup>
+
+联系人类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称            | 值   | 说明       |
+| --------------- | ---- | ---------- |
+| GENERAL_CONTACT | 1    | 通用联系人。 |
+| FIXED_DIALING   | 2    | 固定拨号。   |
+
+## OperatorConfigKey<sup>9+</sup>
+
+运营商配置键。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+|                             名称                        |                             值                         |         说明         |
+| ------------------------------------------------------- | ------------------------------------------------------ | -------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | "voice_mail_number_string"                             | 语音邮件号码。       |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | "ims_switch_on_by_default_bool"                        | 固定拨号。           |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | "hide_ims_switch_bool"                                 | 是否隐藏ims开关。    |
+| KEY_VOLTE_SUPPORTED_BOOL                                | "volte_supported_bool"                                 | 是否支持volte模式。  |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | "nr_mode_supported_list_int_array"                     | nr模式支持的列表。   |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | "volte_provisioning_supported_bool"                    | 是否支持配置VOLTE。  |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | "ss_over_ut_supported_bool"                            | SS服务是否支持UT。   |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | "ims_gba_required_bool"                                | IMS是否需要GBA。     |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | "ut_provisioning_supported_bool"                       | 是否支持UT配置。     |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | "ims_prefer_for_emergency_bool"                        | IMS紧急首选项。      |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | "call_waiting_service_class_int"                       | 呼叫等待服务。       |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | "call_transfer_visibility_bool"                        | 呼叫转移可见性。     |
+| KEY_IMS_CALL_DISCONNECT_REASON_INFO_MAPPING_STRING_ARRAY| "ims_call_disconnect_reason_info_mapping_string_array" | IMS呼叫结束原因列表。|
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | "force_volte_switch_on_bool"                           | 强制VOLTE开关。      |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | "enable_operator_name_cust_bool"                       | 是否显示运营商名称。 |
+| KEY_OPERATOR_NAME_CUST_STRING                           | "operator_name_cust_string"                            | 运营商名称。         |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | "spn_display_condition_cust_int"                       | SPN显示规则。        |
+| KEY_PNN_CUST_STRING_ARRAY                               | "pnn_cust_string_array"                                | PLMN名称。           |
+| KEY_OPL_CUST_STRING_ARRAY                               | "opl_cust_string_array"                                | 运营商PLMN信息。     |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | "emergency_call_string_array"                          | 紧急呼叫列表。       |

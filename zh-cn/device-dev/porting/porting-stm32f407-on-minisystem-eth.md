@@ -92,7 +92,7 @@ vendor
     └── niobe407         			     --- 产品名字：niobe407
 ```
 
-获取[OpenHarmony源码](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)，根据上述目录规划，创建相应文件夹。
+获取[OpenHarmony源码](../get-code/sourcecode-acquire.md)，根据上述目录规划，创建相应文件夹。
 
 ### 预编译适配
 
@@ -158,7 +158,7 @@ orsource "../../device/soc/*/Kconfig.liteos_m.series"
 orsource "../../device/soc/*/Kconfig.liteos_m.soc"
 ```
 
-3. 在`//device/borad/talkweb`下参考如下目录结构创建相应的Kconfig文件：
+3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
 ```
 .
@@ -252,6 +252,7 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"
          default "st"
      rsource "*/Kconfig.liteos_m.soc"
      endif # SOC_COMPANY_STMICROELECTRONICS
+     ```
 
    - 在`//device/soc/st/stm32f4xx/Kconfig.liteos_m.defconfig.series`中添加：
 
@@ -636,7 +637,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    
        sources += [
            "Src/main.c",
-   +       "Src/dprintf.c",
+           "Src/dprintf.c",
            "Src/stm32f4xx_hal_msp.c",
            "Src/stm32f4xx_it.c",
            "Src/system_stm32f4xx.c",
@@ -714,7 +715,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 ### 内核基础功能适配
 
-内核基础功能适配项包括：**[中断管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-mini-basic-interrupt.md)**、**[任务管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-mini-basic-task.md)**、**[内存管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-mini-basic-memory.md)**、**[内核通信机制](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-mini-basic-ipc.md)**、**[时间管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-basic-mini-time.md)**、**[软件定时器](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/kernel/kernel-mini-basic-soft.md)**，可以参考对应链接中的编程实例进行内核基础功能验证。在验证的过程中发现问题，针对相应问题进行具体的适配。
+内核基础功能适配项包括：**[中断管理](../kernel/kernel-mini-basic-interrupt.md)**、**[任务管理](../kernel/kernel-mini-basic-task.md)**、**[内存管理](../kernel/kernel-mini-basic-memory.md)**、**[内核通信机制](../kernel/kernel-mini-basic-ipc-event.md)**、**[时间管理](../kernel/kernel-mini-basic-time.md)**、**[软件定时器](../kernel/kernel-mini-basic-soft.md)**，可以参考对应链接中的编程实例进行内核基础功能验证。在验证的过程中发现问题，针对相应问题进行具体的适配。
 
 从上一节中打印信息输出时间间隔可以看出，`LOS_TaskDelay`函数的延时时间不准确，我们可以在`target_config.h`中定义如下宏进行内核时钟适配：
 
@@ -1081,13 +1082,13 @@ bool HilogProc_Impl(const HiLogContent *hilogContent, uint32_t len)
 HiviewRegisterHilogProc(HilogProc_Impl);
 ```
 
-### 分布式调度子系统适配
+### 系统服务管理子系统适配
 
-进行分布式调度子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
+进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
 ```
 {
-      "subsystem": "distributedschedule",
+      "subsystem": "systemabilitymgr",
       "components": [
         {
           "component": "samgr_lite",
@@ -1097,10 +1098,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 }
 ```
 
-在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`2048`。在适配时可以在features中，通过`config_ohos_distributedschedule_samgr_lite_shared_task_size`重新设置共享任务栈大小。
+在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`2048`。在适配时可以在features中，通过`config_ohos_systemabilitymgr_samgr_lite_shared_task_size`重新设置共享任务栈大小。
 
 ```
-"config_ohos_distributedschedule_samgr_lite_shared_task_size = 4096"
+"config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
 ```
 
 ### 安全子系统适配
@@ -1184,7 +1185,7 @@ _hdf_drivers_end = .;
 
 #### 添加XTS子系统
 
-`XTS`测试参考资料见[xts参考资料](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-xts-guide.md)，进行`XTS`子系统适配需要添加`xts_acts`与`xts_tools`组件，直接在`config.json`配置即可，配置如下：
+`XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`与`xts_tools`组件，直接在`config.json`配置即可，配置如下：
 
     {
           "subsystem": "xts",

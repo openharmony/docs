@@ -11,7 +11,7 @@ You only need to perform operations in [Resource Files](#resource-files) and [Re
 
 Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions. Place the resource file of each locale in the i18n directory described in [File Organization](js-framework-file.md). 
 
-Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong Chinese in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
+Resource files should be named in _language-script-region_.json format. For example, the resource file for Hong Kong(China) in the traditional script is named zh-Hant-HK. You can omit the region, for example, zh-CN for simplified Chinese, or omit both the script and region, for example, zh for Chinese.
 
 
 ```
@@ -28,7 +28,7 @@ Table 1 Requirements for qualifier values
 | Script | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters, for example, Hans indicates simplified Chinese and Hant indicates traditional Chinese.<br/>For details about the value range, refer to ISO 15924 (codes for the representation of names of scripts). |
 | Country/Region | Indicates the country or region where a user is located. The value consists of two or three uppercase letters or three digits, for example, CN indicates China and GB indicates the United Kingdom.<br/>For details about the value range, refer to ISO 3166-1 (codes for the representation of names of countries and their subdivisions). |
 
-If there is no resource file of the locale that matches the system language, content in the en-US.json file will be used by default.
+If there is no resource file of the locale that matches the system language, content in the **en-US.json** file will be used by default.
 
 The format of the resource file content is as follows:
 
@@ -53,12 +53,11 @@ The format of the resource file content is as follows:
 Different languages have different matching rules for singular and plural forms. In the resource file, zero, one, two, few, many, and other are used to define the string content in different singular and plural forms. For example, there is only the other scenario in Chinese since the language does not have singular and plural forms. one and other scenarios are applicable to English. All six scenarios are needed for Arabic.
 
 
-The following example takes en-US.json and ar-AE.json as examples:
+The following example takes **en-US.json** and **ar-AE.json** as examples:
 
 **en-US.json**
 
-
-```
+```json
 {
     "strings": {
         "people": {
@@ -72,8 +71,7 @@ The following example takes en-US.json and ar-AE.json as examples:
 
 ar-AE.json
 
-
-```
+```json
 {
     "strings": {
         "people": {
@@ -113,7 +111,7 @@ Table 3 $t function parameters
 
 - Example code for simple formatting
   
-  ```
+  ```html
   <!-- xxx.hml -->
   <div>
     <!-- Display Hello world! without using a placeholder. -->
@@ -136,8 +134,7 @@ Table 3 $t function parameters
   </div>
   ```
 
-  
-  ```
+  ```js
   // xxx.js
   // The following example uses the $t function in the .js file.
   export default {
@@ -162,7 +159,7 @@ Table 3 $t function parameters
   
   | Attribute | Type | Parameter | Mandatory | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | $tc | Function | See Table 5. | Yes | Converts between the singular and plural forms based on the system language, for example, this.$tc('strings.people').<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> The resource content is distinguished by the following JSON keys: zero, one, two, few, many, and other. |
+  | $tc | Function | See Table 5. | Yes | Converts between the singular and plural forms based on the system language, for example, **this.$tc('strings.people')**.<br/>**NOTE**<br/>The resource content is distinguished by the following JSON keys: zero, one, two, few, many, and other. |
 
   Table 5 $tc function parameters
   
@@ -173,7 +170,7 @@ Table 3 $t function parameters
 
 - Sample code for singular-plural formatting
   
-  ```
+  ```html
   <!--xxx.hml-->
   <div>
     <!-- When the value 0 is passed, "0 people" matches the Arabic string whose key is zero. -->
@@ -194,4 +191,4 @@ Table 3 $t function parameters
 
 ## Language Acquisition
 
-For details about how to obtain the language, see the Application Configuration section.
+For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-application-configuration.md).

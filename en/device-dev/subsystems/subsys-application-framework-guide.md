@@ -534,7 +534,7 @@ When uninstalling an application, you can specify whether to retain application 
     ```
     sem_init(&g_sem, 0, 0);
     const uint32_t WAIT_TIMEOUT = 30;
-    std::string BUNDLE_NAME = "com.huawei.demo"; // Bundle name of the application to be uninstalled
+    std::string BUNDLE_NAME = "com.example.demo"; // Bundle name of the application to be uninstalled
     Uninstall(BUNDLE_NAME.c_str(), &installParam, UninstallCallback);
     struct timespec ts = {};
     clock_gettime(CLOCK_REALTIME, &ts);
@@ -557,7 +557,7 @@ You can use the  **GetBundleInfo**  function provided by  **BundleManager**  to 
 2.  Call  **GetBundleInfo**  to obtain bundle information about a specified application. The  **bundleName**  parameter indicates the pointer to the application bundle name, and the  **flags**  parameter specifies whether the obtained  **BundleInfo**  object can contain  **AbilityInfo**.
 
     ```
-    std::string BUNDLE_NAME = "com.huawei.demo";
+    std::string BUNDLE_NAME = "com.example.demo";
     uint8_t ret = GetBundleInfo(BUNDLE_NAME.c_str(), 1, &bundleInfo); // When flags is set to 1, the obtained BundleInfo object contains AbilityInfo.
     ```
 
@@ -683,15 +683,15 @@ The packing tool is generally integrated into the development tool or IDE, and y
 -   Example HAP File Structure
     -   Development view
 
-        ![](figure/en-us_image_0000001062942690.png)
+        ![](figures/en-us_image_0000001062942690.png)
 
     -   Compilation view
 
-        ![](figure/en-us_image_0000001062334618.png)
+        ![](figures/en-us_image_0000001062334618.png)
 
     -   Run the following commands to pack a HAP file using the packing tool.
 
-        ![](figure/en-us_image_0000001062476933.png)
+        ![](figures/en-us_image_0000001062476933.png)
 
         ```
         $ java -jar hmos_app_packing_tool.jar --mode hap --json-path ./config.json --assets-path ./assets/ --ability-so-path ./libentry.so --index-path ./resources.index --out-path out/entry.hap --force true

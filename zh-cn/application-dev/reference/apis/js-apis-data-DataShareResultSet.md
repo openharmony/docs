@@ -1,10 +1,12 @@
-# 数据共享结果集
+# @ohos.data.dataShareResultSet (数据共享结果集)
 
 **结果集(DataShareResultSet)** 可提供访问由查询数据库生成的结果集的相关方法，根据提供的行数，查询相应的值，也可查询指定数据类型的值。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
 
 
 ## 导入模块
@@ -44,18 +46,21 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 });
 ```
 
-## 属性
+## DataShareResultSet
+提供通过查询数据库生成的结果集的相关访问方法。
+
+### 属性
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称        | 参数类型      | 必填 | 说明                     |
+| 名称        | 类型      | 必填 | 说明                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | columnNames | Array&lt;string&gt; | 是   | 结果集中所有列的名称。   |
 | columnCount | number        | 是   | 结果集中的列数。         |
 | rowCount    | number        | 是   | 结果集中的行数。         |
 | isClosed    | boolean       | 是   | 标识当前结果集是否关闭。 |
 
-## goToFirstRow
+### goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -76,7 +81,7 @@ let isGoTOFirstRow = resultSet.goToFirstRow();
 console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 ```
 
-## goToLastRow
+### goToLastRow
 
 goToLastRow(): boolean
 
@@ -97,7 +102,7 @@ let isGoToLastRow = resultSet.goToLastRow();
 console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 ```
 
-## goToNextRow
+### goToNextRow
 
 goToNextRow(): boolean
 
@@ -118,7 +123,7 @@ let isGoToNextRow = resultSet.goToNextRow();
 console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 ```
 
-## goToPreviousRow
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -139,7 +144,7 @@ let isGoToPreviousRow = resultSet.goToPreviousRow();
 console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 ```
 
-## goTo
+### goTo
 
 goTo(offset:number): boolean
 
@@ -167,7 +172,7 @@ let isGoTo = resultSet.goTo(goToNum);
 console.info('resultSet.goTo: ' + isGoTo);
 ```
 
-## goToRow
+### goToRow
 
 goToRow(position: number): boolean
 
@@ -190,12 +195,12 @@ goToRow(position: number): boolean
 **示例：**
 
 ```ts
-let goToRowNum = 2
+let goToRowNum = 2;
 let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
 ```
 
-## getBlob
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -218,15 +223,15 @@ getBlob(columnIndex: number): Uint8Array
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getBlob = resultSet.getBlob(columnIndex);
 console.info('resultSet.getBlob: ' + getBlob);
 ```
 
-## getString
+### getString
 
-getString(columnIndex: number): *string*
+getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
@@ -247,13 +252,13 @@ getString(columnIndex: number): *string*
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getString = resultSet.getString(columnIndex);
 console.info('resultSet.getString: ' + getString);
 ```
 
-## getLong
+### getLong
 
 getLong(columnIndex: number): number
 
@@ -276,13 +281,13 @@ getLong(columnIndex: number): number
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getLong = resultSet.getLong(columnIndex);
 console.info('resultSet.getLong: ' + getLong);
 ```
 
-## getDouble
+### getDouble
 
 getDouble(columnIndex: number): number
 
@@ -305,13 +310,13 @@ getDouble(columnIndex: number): number
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getDouble = resultSet.getDouble(columnIndex);
 console.info('resultSet.getDouble: ' + getDouble);
 ```
 
-## close
+### close
 
 close(): void
 
@@ -325,7 +330,7 @@ close(): void
 resultSet.close();
 ```
 
-## getColumnIndex
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -348,14 +353,14 @@ getColumnIndex(columnName: string): number
 **示例：**
 
 ```ts
-let ColumnName = "name"
-let getColumnIndex = resultSet.getColumnIndex(ColumnName)
+let ColumnName = "name";
+let getColumnIndex = resultSet.getColumnIndex(ColumnName);
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 ```
 
-## getColumnName
+### getColumnName
 
-getColumnName(columnIndex: number): *string*
+getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
@@ -376,12 +381,12 @@ getColumnName(columnIndex: number): *string*
 **示例：**
 
 ```ts
-let columnIndex = 1
-let getColumnName = resultSet.getColumnName(columnIndex)
+let columnIndex = 1;
+let getColumnName = resultSet.getColumnName(columnIndex);
 console.info('resultSet.getColumnName: ' + getColumnName);
 ```
 
-## getDataType
+### getDataType
 
 getDataType(columnIndex: number): DataType
 

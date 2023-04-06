@@ -1,14 +1,17 @@
-# Update
+# @ohos.update (Update)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The Update module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
+The **update** module applies to updates throughout the entire system, including built-in resources and preset applications, but not third-party applications.
 
 There are two types of updates: SD card update and over the air (OTA) update.
 
 - The SD card update depends on the update packages and SD cards.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -16,129 +19,216 @@ There are two types of updates: SD card update and over the air (OTA) update.
 import update from '@ohos.update'
 ```
 
-## Required Permissions
+## update.getOnlineUpdater
 
-None
+getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
-## update.getUpdater
-
-getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
-
-Obtains the **Updater** object for local update.
+Obtains an **OnlineUpdater** object.
 
 **System capability**: SystemCapability.Update.UpdateService
 
 **Parameters**
 
-| Name        | Type                        | Mandatory | Description  |
-| ----------- | --------------------------- | --------- | ------------ |
-| upgradeFile | string                      | Yes       | Update file. |
-| updateType  | [UpdateTypes](#updatetypes) | Yes       | Update type. |
+| Name        | Type                         | Mandatory  | Description    |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **UpgradeInfo** object.|
 
 **Return value**
 
-| Type                | Description         |
-| ------------------- | ------------------- |
-| [Updater](#updater) | **Updater** object. |
+| Type                 | Description  |
+| ------------------- | ---- |
+| [Updater](#updater) | **OnlineUpdater** object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
+```ts
 try {
-  let updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
+  const upgradeInfo = {
+    upgradeApp: "com.ohos.ota.updateclient",
+    businessType: {
+      vendor: update.BusinessVendor.PUBLIC,
+      subType: update.BusinessSubType.FIRMWARE
+    }
+  };
+  let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(`Fail to get updater error: ${error}`);
 }
 ```
 
-## update.getUpdaterForOther
+## update.getRestorer
 
-getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getRestorer(): Restorer
 
-Obtains the **Updater** object for the device to be updated.
+Obtains a **Restorer** object for restoring factory settings.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Parameters**
-
-| Name        | Type                        | Mandatory | Description           |
-| ----------- | --------------------------- | --------- | --------------------- |
-| upgradeFile | string                      | Yes       | Update file.          |
-| device      | string                      | Yes       | Device to be updated. |
-| updateType  | [UpdateTypes](#updatetypes) | Yes       | Update type.          |
 
 **Return value**
 
-| Type                | Description         |
-| ------------------- | ------------------- |
-| [Updater](#updater) | **Updater** object. |
+| Type                   | Description    |
+| --------------------- | ------ |
+| [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
+```ts
 try {
-  let updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let restorer = update.getRestorer();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(`Fail to get restorer: ${error}`);
 }
 ```
 
-## update.getUpdaterFromOther
+## update.getLocalUpdater
 
-getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getLocalUpdater(): LocalUpdater
 
-Obtains the **Updater** object from another device for the device to be updated.
+Obtains a **LocalUpdater** object.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-**Parameters**
-
-| Name        | Type                        | Mandatory | Description           |
-| ----------- | --------------------------- | --------- | --------------------- |
-| upgradeFile | string                      | Yes       | Update file.          |
-| device      | string                      | Yes       | Device to be updated. |
-| updateType  | [UpdateTypes](#updatetypes) | Yes       | Update type.          |
-
 **Return value**
 
-| Type                | Description         |
-| ------------------- | ------------------- |
-| [Updater](#updater) | **Updater** object. |
+| Type                           | Description    |
+| ----------------------------- | ------ |
+| [LocalUpdater](#localupdater) | **LocalUpdater** object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
+```ts
 try {
-  let updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let localUpdater = update.getLocalUpdater();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
-}
+  console.error(`Fail to get localUpdater error: ${error}`);
+};
 ```
 
 ## Updater
+
+### checkNewVersion
+
+checkNewVersion(callback: AsyncCallback\<CheckResult>): void
+
+Checks whether a new version is available. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description            |
+| -------- | ---------------------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<[CheckResult](#checkresult)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.checkNewVersion((err, result) => {
+  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
+});
+```
+
+### checkNewVersion
+
+checkNewVersion(): Promise\<CheckResult>
+
+Checks whether a new version is available. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Return value**
+
+| Type                                   | Description                 |
+| ------------------------------------- | ------------------- |
+| Promise\<[CheckResult](#checkresult)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.checkNewVersion().then(result => {
+  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
+  // Version digest information
+  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
+}).catch(err => {
+  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+});
+```
 
 ###  getNewVersionInfo
 
 getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
-Obtains the new version information. This function uses an asynchronous callback to return the result.
+Obtains information about the new version. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                              |
-| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | No        | Callback used to return the new version information. |
+| Name     | Type                                      | Mandatory  | Description             |
+| -------- | ---------------------------------------- | ---- | --------------- |
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.getNewVersionInfo(info => {
-  console.log("getNewVersionInfo success  " + info.status);
-  console.log(`info versionName = ` + info.checkResult[0].versionName);
-  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
+```ts
+updater.getNewVersionInfo((err, info) => {
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -146,451 +236,1842 @@ updater.getNewVersionInfo(info => {
 
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
-Obtains the new version information. This function uses a promise to return the result.
+Obtains information about the new version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Return value**
 
-| Type                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the new version information. |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.getNewVersionInfo().then(value => {
-  console.log(`info versionName = ` + value.checkResult[0].versionName);
-  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
+```ts
+updater.getNewVersionInfo().then(info => {
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
 }).catch(err => {
-  console.log("getNewVersionInfo promise error: " + err.code);
+  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### checkNewVersion
+###  getNewVersionDescription
 
-checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
 
-Checks whether the current version is the latest. This function uses an asynchronous callback to return the result.
+Obtains the description file of the new version. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                              |
-| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | No        | Callback used to return the new version information. |
+| Name               | Type                                      | Mandatory  | Description            |
+| ------------------ | ---------------------------------------- | ---- | -------------- |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.        |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.       |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.checkNewVersion(info => {
-  console.log("checkNewVersion success  " + info.status);
-  console.log(`info versionName = ` + info.checkResult[0].versionName);
-  console.log(`info versionCode = ` + info.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResult[0].verifyInfo);
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options of the description file
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
+  language: "zh-cn" // Chinese
+};
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
+  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
 });
 ```
 
-### checkNewVersion
+### getNewVersionDescription
 
-checkNewVersion(): Promise\<NewVersionInfo>
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
 
-Checks whether the current version is the latest. This function uses a promise to return the result.
+Obtains the description file of the new version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name               | Type                                      | Mandatory  | Description    |
+| ------------------ | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
 
 **Return value**
 
-| Type                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the new version information. |
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.checkNewVersion().then(value => {
-  console.log(`info versionName = ` + value.checkResult[0].versionName);
-  console.log(`info versionCode = ` + value.checkResult[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResult[0].verifyInfo);
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options of the description file
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
+  language: "zh-cn" // Chinese
+};
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch(err => {
-  console.log("checkNewVersion promise error: " + err.code);
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### verifyUpdatePackage
+###  getCurrentVersionInfo
 
-verifyUpdatePackage(upgradeFile: string, certsFile: string): void
+getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
-Verifies whether the update package is valid.
+Obtains information about the current version. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Parameters**
 
-| Name        | Type   | Mandatory | Description                              |
-| ----------- | ------ | --------- | ---------------------------------------- |
-| upgradeFile | string | Yes       | Path of the update package to be verified. |
-| certsFile   | string | Yes       | Certificate path.                        |
+| Name     | Type                                      | Mandatory  | Description              |
+| -------- | ---------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.on("verifyProgress", callback => {
-  console.info('on verifyProgress ' + callback.percent);
+```ts
+updater.getCurrentVersionInfo((err, info) => {
+  console.log(`info osVersion = ${info?.osVersion}`);
+  console.log(`info deviceName = ${info?.deviceName}`);
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
 });
-update.verifyUpdatePackage("XXX", "XXX");
 ```
 
-### rebootAndCleanUserData<sup>8+</sup>
+### getCurrentVersionInfo
 
-rebootAndCleanUserData(): Promise\<number>
+getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
-Reboots the device and clears the user partition data. This function uses a promise to return the result.
+Obtains information about the current version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Return value**
 
-| Type             | Description                              |
-| ---------------- | ---------------------------------------- |
-| Promise\<number> | Promise used to return the execution result. |
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.rebootAndCleanUserData().then(result => {
-  console.log("rebootAndCleanUserData " + result);
+```ts
+updater.getCurrentVersionInfo().then(info => {
+  console.log(`info osVersion = ${info.osVersion}`);
+  console.log(`info deviceName = ${info.deviceName}`);
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
 }).catch(err => {
-  console.info("rebootAndCleanUserData promise error: " + err.code);
+  console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### rebootAndCleanUserData<sup>8+</sup>
+###  getCurrentVersionDescription
 
-rebootAndCleanUserData(callback: AsyncCallback\<number>): void
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
 
-Reboots the device and clears the user partition data. This function uses a promise to return the result.
+Obtains the description file of the current version. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| -------- | ---------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback\<number> | Yes       | Callback used to return the execution result. |
+| Name               | Type                                      | Mandatory  | Description             |
+| ------------------ | ---------------------------------------- | ---- | --------------- |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.         |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.rebootAndCleanUserData(result => {
-  console.log("rebootAndCleanUserData ", result)
+```ts
+// Options of the description file
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
+  language: "zh-cn" // Chinese
+};
+
+updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
+  console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getCurrentVersionDescription err ${JSON.stringify(err)}`);
 });
 ```
 
-### applyNewVersion
+### getCurrentVersionDescription
 
-applyNewVersion(): Promise\<number>
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
 
-Installs the update package. This function uses a promise to return the result.
+Obtains the description file of the current version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name               | Type                                      | Mandatory  | Description    |
+| ------------------ | ---------------------------------------- | ---- | ------ |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
 
 **Return value**
 
-| Type             | Description                              |
-| ---------------- | ---------------------------------------- |
-| Promise\<number> | Promise used to return the execution result. |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-updater.applyNewVersion().then(result => {
-    console.log("appVewVersion ", result)
+```ts
+// Options of the description file
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
+  language: "zh-cn" // Chinese
+};
+
+updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+  console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch(err => {
-    console.info("applyNewVersion promise error: " + err.code);
+  console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
-### applyNewVersion
+###  getTaskInfo
 
-applyNewVersion(callback: AsyncCallback\<number>): void
+getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
-Installs the update package. This function uses a promise to return the result.
+Obtains information about the update task. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                              |
-| -------- | ---------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback\<number> | Yes       | Callback used to return the execution result. |
+| Name     | Type                                   | Mandatory  | Description              |
+| -------- | ------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback\<[TaskInfo](#taskinfo)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
+```ts
+updater.getTaskInfo((err, info) => {
+  console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
+});
 ```
-updater.applyNewVersion(result => {
-  console.log("applyNewVersion ", result)
+
+### getTaskInfo
+
+getTaskInfo(): Promise\<TaskInfo>
+
+Obtains information about the update task. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Return value**
+
+| Type                             | Description                 |
+| ------------------------------- | ------------------- |
+| Promise\<[TaskInfo](#taskinfo)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.getTaskInfo().then(info => {
+  console.log(`getTaskInfo isexistTask= ${info.existTask}`);
+}).catch(err => {
+  console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  download
+
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions, callback: AsyncCallback\<void>): void
+
+Downloads the new version. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name              | Type                                     | Mandatory  | Description                                |
+| ----------------- | --------------------------------------- | ---- | ---------------------------------- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Download options
+const downloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
+  order: update.Order.DOWNLOAD // Download
+};
+updater.download(versionDigestInfo, downloadOptions, (err) => {
+  console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
 
 ### download
 
-download(): void
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions): Promise\<void>
 
-Downloads the new version and displays the download process.
+Downloads the new version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.  |
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
 **Example**
 
-```
-updater.on("downloadProgress", progress => {
-  console.log("downloadProgress on" + progress);
-  console.log(`downloadProgress status: ` + progress.status);
-  console.log(`downloadProgress percent: ` + progress.percent);
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Download options
+const downloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
+  order: update.Order.DOWNLOAD // Download
+};
+updater.download(versionDigestInfo, downloadOptions).then(() => {
+  console.log(`download start`);
+}).catch(err => {
+  console.log(`download error ${JSON.stringify(err)}`);
 });
-updater.download();
+```
+
+###  resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions, callback: AsyncCallback\<void>): void
+
+Resumes download of the new version. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name                  | Type                                      | Mandatory  | Description                                  |
+| --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options for resuming download
+const resumeDownloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
+};
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
+});
+```
+
+### resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions): Promise\<void>
+
+Resumes download of the new version. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name                  | Type                                      | Mandatory  | Description    |
+| --------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.|
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options for resuming download
+const resumeDownloadOptions = {
+  allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
+};
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+  console.log(`resumeDownload start`);
+}).catch(err => {
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
+});
+```
+
+###  pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions, callback: AsyncCallback\<void>): void
+
+Pauses download of the new version. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name                 | Type                                      | Mandatory  | Description                                  |
+| -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options for pausing download
+const pauseDownloadOptions = {
+  isAllowAutoResume: true // Whether to allow automatic resuming of download
+};
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
+});
+```
+
+### pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions): Promise\<void>
+
+Resumes download of the new version. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name                 | Type                                      | Mandatory  | Description    |
+| -------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.|
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options for pausing download
+const pauseDownloadOptions = {
+  isAllowAutoResume: true // Whether to allow automatic resuming of download
+};
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+  console.log(`pauseDownload`);
+}).catch(err => {
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
+});
+```
+
+###  upgrade
+
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, callback: AsyncCallback\<void>): void
+
+Updates the version. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name              | Type                                     | Mandatory  | Description                                  |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Installation options
+const upgradeOptions = {
+  order: update.Order.INSTALL // Installation command
+};
+updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+  console.log(`upgrade error ${JSON.stringify(err)}`);
+});
 ```
 
 ### upgrade
 
-upgrade():void
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): Promise\<void>
 
-Starts an update.
-
-**System capability**: SystemCapability.Update.UpdateService
-
-**Example**
-
-```
-updater.on("upgradeProgress", progress => {
-  console.log("upgradeProgress on" + progress);
-  console.log(`upgradeProgress status: ` + progress.status);
-  console.log(`upgradeProgress percent: ` + progress.percent);
-});
-updater.upgrade();
-```
-
-### setUpdatePolicy
-
-setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
-
-Sets the update policy. This function uses an asynchronous callback to return the result.
+Updates the version. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory | Description                              |
-| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
-| policy   | [UpdatePolicy](#updatepolicy)            | Yes       | Update policy to set.                    |
-| callback | Callback used to return the execution result. | Yes       | Callback used to return the execution result. |
-
-**Example**
-
-```
-// Set the update policy.
-let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
-  autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
-}
-updater.setUpdatePolicy(policy, result => {
-  console.log("setUpdatePolicy ", result)
-});
-```
-
-### setUpdatePolicy
-
-setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
-
-Sets the update policy. This function uses a promise to return the result.
-
-**System capability**: SystemCapability.Update.UpdateService
-
-**Parameters**
-
-| Name   | Type                          | Mandatory | Description           |
-| ------ | ----------------------------- | --------- | --------------------- |
-| policy | [UpdatePolicy](#updatepolicy) | Yes       | Update policy to set. |
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.  |
 
 **Return value**
 
-| Type             | Description                              |
-| ---------------- | ---------------------------------------- |
-| Promise\<number> | Promise used to return the execution result. |
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
 **Example**
 
-```
-let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
-  autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
-}
-updater.setUpdatePolicy(policy).then(result => 
-  console.log("setUpdatePolicy ", result)
-).catch(err => {
-  console.log("setUpdatePolicy promise error: " + err.code);
-});
-```
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
 
-### getUpdatePolicy
-
-getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
-
-Obtains the update policy. This function uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Update.UpdateService
-
-**Parameters**
-
-| Name     | Type                                     | Mandatory | Description                              |
-| -------- | ---------------------------------------- | --------- | ---------------------------------------- |
-| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | No        | Callback used to return the update policy. |
-
-**Example**
-
-```
-updater.getUpdatePolicy(policy => {
-  console.log("getUpdatePolicy success");
-  console.log(`policy autoDownload = ` + policy.autoDownload);
-  console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
-  console.log(`policy mode = ` + policy.mode);
-});
-```
-
-### getUpdatePolicy
-
-getUpdatePolicy(): Promise\<UpdatePolicy>
-
-Obtains the update policy. This function uses a promise to return the result.
-
-**System capability**: SystemCapability.Update.UpdateService
-
-**Return value**
-
-| Type                                    | Description                              |
-| --------------------------------------- | ---------------------------------------- |
-| Promise\<[UpdatePolicy](#updatepolicy)> | Promise used to return the update policy. |
-
-**Example**
-
-```
-updater.getUpdatePolicy().then(value => {
-  console.log(`info autoDownload = ` + value.autoDownload);
-  console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
-  console.log(`info mode = ` + value.mode);
+// Installation options
+const upgradeOptions = {
+  order: update.Order.INSTALL // Installation command
+};
+updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
+  console.log(`upgrade start`);
 }).catch(err => {
-  console.log("getUpdatePolicy promise error: " + err.code);
+  console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
 
-## UpdateTypes
+###  clearError
 
-Enumerates update types.
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, callback: AsyncCallback\<void>): void
 
-**System capability**: SystemCapability.Update.UpdateService
-
-| Name  | Description   |
-| ----- | ------------- |
-| OTA   | OTA update.   |
-| patch | Patch update. |
-
-## PackageTypes
-
-Enumerates update package types.
+Clears errors. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Default Value | Description                             |
-| -------------------- | ------------- | --------------------------------------- |
-| PACKAGE_TYPE_NORMAL  | 1             | Common update package.                  |
-| PACKAGE_TYPE_BASE    | 2             | Basic update package.                   |
-| PACKAGE_TYPE_CUST    | 3             | Custom update package.                  |
-| PACKAGE_TYPE_PRELOAD | 4             | Preinstalled update package.            |
-| PACKAGE_TYPE_COTA    | 5             | Parameter configuration update package. |
-| PACKAGE_TYPE_VERSION | 6             | Version update package.                 |
-| PACKAGE_TYPE_PATCH   | 7             | Patch package.                          |
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
 
-## InstallMode
+**Parameters**
 
-Enumerates update modes.
+| Name              | Type                                     | Mandatory  | Description                                  |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
+| clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
-**System capability**: SystemCapability.Update.UpdateService
+**Error codes**
 
-| Name                | Default Value | Description       |
-| ------------------- | ------------- | ----------------- |
-| INSTALL_MODE_NORMAL | 0             | Normal update.    |
-| INSTALL_MODE_NIGHT  | 1             | Update at night.  |
-| INSTALL_MODE_AUTO   | 2             | Automatic update. |
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
 
-## NewVersionStatus
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
 
-Enumerates new version check results.
+**Example**
 
-**System capability**: SystemCapability.Update.UpdateService
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
 
-| Name                | Default Value | Description                              |
-| ------------------- | ------------- | ---------------------------------------- |
-| VERSION_STATUS_ERR  | -1            | System error while checking for the new version. |
-| VERSION_STATUS_NEW  | 0             | New version detected.                    |
-| VERSION_STATUS_NONE | 1             | No new version detected.                 |
-| VERSION_STATUS_BUSY | 2             | System busy while checking for the new version. |
+// Options for clearing errors
+const clearOptions = {
+  status: update.UpgradeStatus.UPGRADE_FAIL,
+};
+updater.clearError(versionDigestInfo, clearOptions, (err) => {
+  console.log(`clearError error ${JSON.stringify(err)}`);
+});
+```
 
-## UpdatePolicy
+### clearError
 
-Defines the update policy.
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Promise\<void>
 
-**System capability**: SystemCapability.Update.UpdateService
-
-| Name                | Type                        | Mandatory | Description                          |
-| ------------------- | --------------------------- | --------- | ------------------------------------ |
-| autoDownload        | bool                        | Yes       | Automatic update switch.             |
-| installMode         | [InstallMode](#installmode) | Yes       | Update mode.                         |
-| autoUpgradeInterval | Array\<number>              | Yes       | Period of time for automatic update. |
-
-## NewVersionInfo
-
-Defines the new version information.
+Clears errors. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name            | Type                                     | Mandatory | Description                      |
-| --------------- | ---------------------------------------- | --------- | -------------------------------- |
-| status          | [NewVersionStatus](#newversionstatus)    | Yes       | Update status.                   |
-| errMsg          | string                                   | Yes       | Error message.                   |
-| checkResults    | Array<[CheckResult](#checkresult)>       | Yes       | Version check result.            |
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | Yes       | Version description information. |
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Update options.  |
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+// Version digest information
+const versionDigestInfo = {
+  versionDigest: "versionDigest" // Version digest information in the check result
+};
+
+// Options for clearing errors
+const clearOptions = {
+  status: update.UpgradeStatus.UPGRADE_FAIL,
+};
+updater.clearError(versionDigestInfo, clearOptions).then(() => {
+  console.log(`clearError success`);
+}).catch(err => {
+  console.log(`clearError error ${JSON.stringify(err)}`);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
+
+Obtains the update policy. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description             |
+| -------- | ---------------------------------------- | ---- | --------------- |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.getUpgradePolicy((err, policy) => {
+  console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(): Promise\<UpgradePolicy>
+
+Obtains the update policy. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Return value**
+
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
+| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.getUpgradePolicy().then(policy => {
+  console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
+}).catch(err => {
+  console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
+});
+```
+
+### setUpgradePolicy
+
+setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
+
+Sets the update policy. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description           |
+| -------- | ------------------------------- | ---- | ------------- |
+| policy   | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.         |
+| callback | AsyncCallback\<void>            | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const policy = {
+  downloadStrategy: false,
+  autoUpgradeStrategy: false,
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
+};
+updater.setUpgradePolicy(policy, (err) => {
+  console.log(`setUpgradePolicy result: ${err}`);
+});
+```
+
+### setUpgradePolicy
+
+setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
+
+Sets the update policy. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name   | Type                             | Mandatory  | Description  |
+| ------ | ------------------------------- | ---- | ---- |
+| policy | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.|
+
+**Return value**
+
+| Type            | Description                 |
+| -------------- | ------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const policy = {
+  downloadStrategy: false,
+  autoUpgradeStrategy: false,
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
+};
+updater.setUpgradePolicy(policy).then(() => {
+  console.log(`setUpgradePolicy success`);
+}).catch(err => {
+  console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  terminateUpgrade
+
+terminateUpgrade(callback: AsyncCallback\<void>): void
+
+Terminates the update. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name     | Type                  | Mandatory  | Description                                    |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.terminateUpgrade((err) => {
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
+});
+```
+
+### terminateUpgrade
+
+terminateUpgrade(): Promise\<void>
+
+Terminates the update. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+updater.terminateUpgrade().then(() => {
+  console.log(`terminateUpgrade success`);
+}).catch(err => {
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
+});
+```
+
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+Enables listening for update events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Parameters**
+
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // Listening for update events
+  extraInfo: ""
+};
+
+updater.on(eventClassifyInfo, (eventInfo) => {
+  console.log("updater on " + JSON.stringify(eventInfo));
+});
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+Disables listening for update events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Parameters**
+
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // Listening for update events
+  extraInfo: ""
+};
+
+updater.off(eventClassifyInfo, (eventInfo) => {
+  console.log("updater off " + JSON.stringify(eventInfo));
+});
+```
+
+## Restorer
+
+### factoryReset
+
+factoryReset(callback: AsyncCallback\<void>): void
+
+Restores the scale to its factory settings. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.FACTORY_RESET (a system permission)
+
+**Parameters**
+
+| Name     | Type                  | Mandatory  | Description                                    |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+restorer.factoryReset((err) => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+### factoryReset
+
+factoryReset(): Promise\<void>
+
+Restores the scale to its factory settings. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.FACTORY_RESET (a system permission)
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+restorer.factoryReset().then(() => {
+  console.log(`factoryReset success`);
+}).catch(err => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+## LocalUpdater
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<void>): void
+
+Verifies the update package. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name        | Type                         | Mandatory  | Description              |
+| ----------- | --------------------------- | ---- | ---------------- |
+| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.            |
+| certsFile   | string                      | Yes   | Path of the certificate file.          |
+| callback    | AsyncCallback\<void>        | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const upgradeFile = {
+  fileType: update.ComponentType.OTA, // OTA package
+  filePath: "path" // Path of the local update package
+};
+
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
+});
+```
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void>
+
+Verifies the update package. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name        | Type                         | Mandatory  | Description    |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.  |
+| certsFile   | string                      | Yes   | Path of the certificate file.|
+
+**Return value**
+
+| Type            | Description                    |
+| -------------- | ---------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const upgradeFile = {
+  fileType: update.ComponentType.OTA, // OTA package
+  filePath: "path" // Path of the local update package
+};
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
+  console.log(`verifyUpgradePackage success`);
+}).catch(err => {
+  console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
+});
+```
+
+### applyNewVersion
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: AsyncCallback\<void>): void
+
+Installs the update package. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Parameters**
+
+| Name        | Type                                | Mandatory  | Description                                     |
+| ----------- | ---------------------------------- | ---- | --------------------------------------- |
+| upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const upgradeFiles = [{
+  fileType: update.ComponentType.OTA, // OTA package
+  filePath: "path" // Path of the local update package
+}];
+
+localUpdater.applyNewVersion(upgradeFiles, (err) => {
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
+});
+```
+
+### applyNewVersion
+
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void>
+
+Installs the update package. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Required permission**: ohos.permission.UPDATE_SYSTEM (a system permission)
+
+**Return value**
+
+| Type            | Description                        |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const upgradeFiles = [{
+  fileType: update.ComponentType.OTA, // OTA package
+  filePath: "path" // Path of the local update package
+}];
+localUpdater.applyNewVersion(upgradeFiles).then(() => {
+  console.log(`applyNewVersion success`);
+}).catch(err => {
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
+});
+```
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+Enables listening for update events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Parameters**
+
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // Listening for update events
+  extraInfo: ""
+};
+
+function onTaskUpdate(eventInfo) {
+  console.log(`on eventInfo id `, eventInfo.eventId);
+}
+
+localUpdater.on(eventClassifyInfo, onTaskUpdate);
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+Disables listening for update events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+**Parameters**
+
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+
+**Error codes**
+
+For details about the error codes, see [Update Error Codes](../errorcodes/errorcode-update.md).
+
+| ID      | Error Message                                                 |
+| -------  | ---------------------------------------------------- |
+| 11500104 | BusinessError 11500104: IPC error.                   |
+
+**Example**
+
+```ts
+const eventClassifyInfo = {
+  eventClassify: update.EventClassify.TASK, // Listening for update events
+  extraInfo: ""
+};
+
+function onTaskUpdate(eventInfo) {
+  console.log(`on eventInfo id `, eventInfo.eventId);
+}
+
+localUpdater.off(eventClassifyInfo, onTaskUpdate);
+```
+
+## UpgradeInfo
+
+Represents update information.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name          | Type                         | Mandatory  | Description    |
+| ------------ | ----------------------------- | ---- | ------ |
+| upgradeApp   | string                        | Yes   | Application package name. |
+| businessType | [BusinessType](#businesstype) | Yes   | Update service type.|
+
+## BusinessType
+
+Enumerates update service types.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name     | Type                               | Mandatory  | Description  |
+| ------- | ----------------------------------- | ---- | ---- |
+| vendor  | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
+| subType | [BusinessSubType](#businesssubtype) | Yes   | Update service type.  |
 
 ## CheckResult
 
-Defines the version check result.
+Represents the package check result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name          | Type                          | Mandatory | Description                       |
-| ------------- | ----------------------------- | --------- | --------------------------------- |
-| versionName   | string                        | Yes       | Version name.                     |
-| versionCode   | number                        | Yes       | Version code.                     |
-| size          | number                        | Yes       | Version size.                     |
-| verifyInfo    | string                        | Yes       | Version verification information. |
-| packageType   | [PackageTypes](#packagetypes) | Yes       | Version type.                     |
-| descriptionId | string                        | Yes       | Version description information.  |
+| Name               | Type                             | Mandatory  | Description    |
+| ----------------- | --------------------------------- | ---- | ------ |
+| isExistNewVersion | bool                              | Yes   | Whether a new version is available.|
+| newVersionInfo    | [NewVersionInfo](#newversioninfo) | No   | Information about the new version. |
+
+## NewVersionInfo
+
+Represents information about the new version.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name               | Type                                    | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
+
+## VersionDigestInfo
+
+Represents version digest information.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name           | Type  | Mandatory  | Description  |
+| ------------- | ------ | ---- | ---- |
+| versionDigest | string | Yes   | Version digest information.|
+
+## VersionComponent
+
+Represents a version component.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name             | Type                               | Mandatory  | Description      |
+| --------------- | ----------------------------------- | ---- | -------- |
+| componentId     | string                              | Yes   | Component ID.    |
+| componentType   | [ComponentType](#componenttype)     | Yes   | Component type.    |
+| upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Update mode.    |
+| displayVersion  | string                              | Yes   | Display version number.   |
+| innerVersion    | string                              | Yes   | Internal version number.     |
+| size            | number                              | Yes   | Update package size.   |
+| effectiveMode   | [EffectiveMode](#effectivemode)     | Yes   | Effective mode.    |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the version description file.|
+
+## DescriptionOptions
+
+Represents options of the description file.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name      | Type                                   | Mandatory  | Description    |
+| -------- | --------------------------------------- | ---- | ------ |
+| format   | [DescriptionFormat](#descriptionformat) | Yes   | Format of the description file.|
+| language | string                                  | Yes   | Language of the description file.|
+
+## ComponentDescription
+
+Represents a component description file.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name             | Type                               | Mandatory  | Description    |
+| --------------- | ----------------------------------- | ---- | ------ |
+| componentId     | string                              | Yes   | Component ID.  |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the description file.|
 
 ## DescriptionInfo
 
-Defines the version description information.
+Represents information about the version description file.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name          | Type   | Mandatory | Description                    |
-| ------------- | ------ | --------- | ------------------------------ |
-| descriptionId | string | Yes       | Version ID information.        |
-| content       | string | Yes       | Version changelog information. |
+| Name             | Type                               | Mandatory  | Description    |
+| --------------- | ----------------------------------- | ---- | ------ |
+| descriptionType | [DescriptionType](#descriptiontype) | Yes   | Type of the description file.|
+| content         | string                              | Yes   | Content of the description file.|
+
+## CurrentVersionInfo
+
+Represents information about the current version.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name               | Type                                    | Mandatory  | Description   |
+| ----------------- | ---------------------------------------- | ---- | ----- |
+| osVersion         | string                                   | Yes   | System version number.|
+| deviceName        | string                                   | Yes   | Device name.  |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | No   | Version components. |
+
+## DownloadOptions
+
+Represents download options.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name          | Type               | Mandatory  | Description  |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
+| order        | [Order](#order)     | Yes   | Update command.|
+
+## ResumeDownloadOptions
+
+Represents options for resuming download.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name          | Type               | Mandatory  | Description  |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
+
+## PauseDownloadOptions
+
+Represents options for pausing download.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name               | Type| Mandatory  | Description      |
+| ----------------- | ---- | ---- | -------- |
+| isAllowAutoResume | bool | Yes   | Whether to allow automatic resuming of download.|
+
+## UpgradeOptions
+
+Represents update options.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name   | Type           | Mandatory  | Description  |
+| ----- | --------------- | ---- | ---- |
+| order | [Order](#order) | Yes   | Update command.|
+
+## ClearOptions
+
+Represents options for clearing errors.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name    | Type                           | Mandatory  | Description  |
+| ------ | ------------------------------- | ---- | ---- |
+| status | [UpgradeStatus](#upgradestatus) | Yes   | Error status.|
+
+## UpgradePolicy
+
+Represents an update policy.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name                 | Type                                   | Mandatory  | Description     |
+| ------------------- | --------------------------------------- | ---- | ------- |
+| downloadStrategy    | bool                                    | Yes   | Automatic download policy. |
+| autoUpgradeStrategy | bool                                    | Yes   | Automatic update policy. |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | Yes   | Automatic update period.|
+
+## UpgradePeriod
+
+Represents an automatic update period.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name   | Type  | Mandatory  | Description  |
+| ----- | ------ | ---- | ---- |
+| start | number | Yes   | Start time.|
+| end   | number | Yes   | End time.|
+
+## TaskInfo
+
+Task information.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name       | Type                 | Mandatory  | Description    |
+| --------- | --------------------- | ---- | ------ |
+| existTask | bool                  | Yes   | Whether a task exists.|
+| taskBody  | [TaskBody](#taskinfo) | Yes   | Task data.  |
+
+## EventInfo
+
+Represents event information.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name      | Type                 | Mandatory  | Description  |
+| -------- | --------------------- | ---- | ---- |
+| eventId  | [EventId](#eventid)   | Yes   | Event ID.|
+| taskBody | [TaskBody](#taskinfo) | Yes   | Task data.|
+
+## TaskBody
+
+Represents task data.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name               | Type                                    | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| status            | [UpgradeStatus](#upgradestatus)          | Yes   | Update status.|
+| subStatus         | number                                   | No   | Sub-status. |
+| progress          | number                                   | Yes   | Progress.  |
+| installMode       | number                                   | Yes   | Installation mode.|
+| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | No   | Error message.|
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
+
+## ErrorMessage
+
+Represents an error message.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name          | Type  | Mandatory  | Description  |
+| ------------ | ------ | ---- | ---- |
+| errorCode    | number | Yes   | Error code. |
+| errorMessage | string | Yes   | Error message.|
+
+## EventClassifyInfo
+
+Represents event type information.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name           | Type                           | Mandatory  | Description  |
+| ------------- | ------------------------------- | ---- | ---- |
+| eventClassify | [EventClassify](#eventclassify) | Yes   | Event type.|
+| extraInfo     | string                          | Yes   | Additional information.|
+
+## UpgradeFile
+
+Represents an update file.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name      | Type                           | Mandatory  | Description  |
+| -------- | ------------------------------- | ---- | ---- |
+| fileType | [ComponentType](#componenttype) | Yes   | File type.|
+| filePath | string                          | Yes   | File path.|
+
+## UpgradeTaskCallback
+
+(eventInfo: EventInfo): void
+
+Represents an event callback.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name       | Type                   | Mandatory  | Description  |
+| --------- | ----------------------- | ---- | ---- |
+| eventInfo | [EventInfo](#eventinfo) | Yes   | Event information.|
+
+## BusinessVendor
+
+Represents a device vendor.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name   | Value     | Description  |
+| ------ | -------- | ---- |
+| PUBLIC | "public" | Open source.  |
+
+## BusinessSubType
+
+Represents an update type.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name     | Value | Description  |
+| -------- | ---- | ---- |
+| FIRMWARE | 1    | Firmware.  |
+
+## ComponentType
+
+Represents a component type.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name | Value | Description  |
+| ---- | ---- | ---- |
+| OTA  | 1    | Firmware.  |
+
+## UpgradeAction
+
+Represents an update mode.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name     | Value       | Description  |
+| -------- | ---------- | ---- |
+| UPGRADE  | "upgrade"  | Differential package. |
+| RECOVERY | "recovery" | Recovery package. |
+
+## EffectiveMode
+
+Represents an effective mode.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name          | Value | Description  |
+| ------------- | ---- | ---- |
+| COLD          | 1    | Cold update. |
+| LIVE          | 2    | Live update. |
+| LIVE_AND_COLD | 3    | Hybrid live and cold update.|
+
+## DescriptionType
+
+Represents a description file type.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name    | Value | Description  |
+| ------- | ---- | ---- |
+| CONTENT | 0    | Content.  |
+| URI     | 1    | Link.  |
+
+## DescriptionFormat
+
+Represents a description file format.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name       | Value | Description  |
+| ---------- | ---- | ---- |
+| STANDARD   | 0    | Standard format.|
+| SIMPLIFIED | 1    | Simple format.|
+
+## NetType
+
+Represents a network type.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name              | Value | Description       |
+| ----------------- | ---- | --------- |
+| CELLULAR          | 1    | Data network.     |
+| METERED_WIFI      | 2    | Wi-Fi hotspot.   |
+| NOT_METERED_WIFI  | 4    | Non Wi-Fi hotspot.  |
+| WIFI              | 6    | Wi-Fi.     |
+| CELLULAR_AND_WIFI | 7    | Data network and Wi-Fi.|
+
+## Order
+
+Represents an update command.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name                 | Value | Description   |
+| -------------------- | ---- | ----- |
+| DOWNLOAD             | 1    | Download.   |
+| INSTALL              | 2    | Install.   |
+| DOWNLOAD_AND_INSTALL | 3    | Download and install.|
+| APPLY                | 4    | Apply.   |
+| INSTALL_AND_APPLY    | 6    | Install and apply.|
+
+## UpgradeStatus
+
+Enumerates update states.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name             | Value | Description  |
+| ---------------- | ---- | ---- |
+| WAITING_DOWNLOAD | 20   | Waiting for download. |
+| DOWNLOADING      | 21   | Downloading. |
+| DOWNLOAD_PAUSED  | 22   | Download paused.|
+| DOWNLOAD_FAIL    | 23   | Download failed.|
+| WAITING_INSTALL  | 30   | Waiting for installation. |
+| UPDATING         | 31   | Updating. |
+| WAITING_APPLY    | 40   | Waiting for applying the update. |
+| APPLYING         | 41   | Applying the update. |
+| UPGRADE_SUCCESS  | 50   | Update succeeded.|
+| UPGRADE_FAIL     | 51   | Update failed.|
+
+## EventClassify
+
+Represents an event type.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name  | Value       | Description  |
+| ---- | ---------- | ---- |
+| TASK | 0x01000000 | Task event.|
+
+## EventId
+
+Enumerates event IDs.
+
+**System capability**: SystemCapability.Update.UpdateService
+
+| Name                    | Value       | Description    |
+| ---------------------- | ---------- | ------ |
+| EVENT_TASK_BASE        | EventClassify.TASK | Task event.  |
+| EVENT_TASK_RECEIVE     | 0x01000001 | Task received.  |
+| EVENT_TASK_CANCEL      | 0x01000010 | Task cancelled.  |
+| EVENT_DOWNLOAD_WAIT    | 0x01000011 | Waiting for download.   |
+| EVENT_DOWNLOAD_START   | 0x01000100 | Download started.  |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | Download progress update.|
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Download paused.  |
+| EVENT_DOWNLOAD_RESUME  | 0x01000111 | Download resumed.  |
+| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | Download succeeded.  |
+| EVENT_DOWNLOAD_FAIL    | 0x01001001 | Download failed.  |
+| EVENT_UPGRADE_WAIT     | 0x01001010 | Waiting for update.   |
+| EVENT_UPGRADE_START    | 0x01001011 | Update started.  |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | Update in progress.   |
+| EVENT_APPLY_WAIT       | 0x01001101 | Waiting for applying the update.   |
+| EVENT_APPLY_START      | 0x01001110 | Applying the update.  |
+| EVENT_UPGRADE_SUCCESS  | 0x01001111 | Update succeeded.  |
+| EVENT_UPGRADE_FAIL     | 0x01010000 | Update failed.  |

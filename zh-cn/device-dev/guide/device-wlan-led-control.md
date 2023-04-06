@@ -1,8 +1,5 @@
 # LED外设控制<a name="ZH-CN_TOPIC_0000001054530966"></a>
 
--   [概述](#section14639174516337)
--   [开发](#section13857170163412)
--   [验证](#section1949121910344)
 
 ## 概述<a name="section14639174516337"></a>
 
@@ -10,7 +7,7 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
 
 ## 开发<a name="section13857170163412"></a>
 
-1.  请先完成[《Hi3861快速入门》](../quick-start/quickstart-lite-overview.md)。
+1.  请先完成[轻量系统快速入门](../quick-start/quickstart-overview.md)。
 
     LED控制参考示例存放于applications/sample/wifi-iot/app/iothardware/led\_example.c文件中。
 
@@ -100,7 +97,7 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
 
 ## 验证<a name="section1949121910344"></a>
 
-编译过程请参考《[Hi3861快速入门-源码编译](../quick-start/quickstart-lite-steps-hi3861-building.md)》，烧录过程请参考《[Hi3861快速入门-镜像烧录](../quick-start/quickstart-lite-steps-hi3861-burn.md)》。
+编译过程请参考[轻量系统快速入门的编译章节](../quick-start/quickstart-ide-3861-build.md)，烧录过程请参考[轻量系统快速入门的烧录章节](../quick-start/quickstart-ide-3861-burn.md)。
 
 完成以上两步后，按下RST键复位模组，可发现LED在周期性闪烁，与预期相符，验证完毕。
 

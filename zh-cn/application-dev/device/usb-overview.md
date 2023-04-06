@@ -9,7 +9,7 @@ USB服务是应用访问底层的一种设备抽象概念。开发者根据提�
 
 USB服务系统包含USB API、USB Service、USB HAL。
 
-**图2** USB服务运作机制
+**图1** USB服务运作机制
 
 ![zh-cn_image_0000001237821727](figures/zh-cn_image_0000001237821727.png)
 

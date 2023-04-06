@@ -1,16 +1,10 @@
 # TabContent
 
+The **\<TabContent>** component is used only in the **\<Tabs>** component. It corresponds to the content view of a switched tab page.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<TabContent\>** component is used only in the **<Tabs\>** component. It corresponds to the content view of a switched tab page.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -25,96 +19,309 @@ TabContent()
 
 ## Attributes
 
-Touch target configuration is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name | Type | Default Value | Description |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.|
+
+>  **NOTE**
+> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
+> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+> - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
+
+## SubTabBarStyle<sup>9+</sup>
+
+Implements the subtab style.
+
+### constructor<sup>9+</sup>
+
+constructor(content: string | Resource)
+
+A constructor used to create a **SubTabBarStyle** instance.
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 or later).<br/>**NOTE**<br/>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| content | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
 
-> **NOTE**
-> - The **<TabContent\>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **<Tabs\>** component.
-> 
-> - The **<TabContent\>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **<Tabs\>** component and the **<TabBar\>** component.
+## BottomTabBarStyle<sup>9+</sup>
 
+Implements the bottom and side tab style.
+
+### constructor<sup>9+</sup>
+
+constructor(icon: string | Resource, text: string | Resource)
+
+A constructor used to create a **BottomTabBarStyle** instance.
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| icon | string \| [Resource](ts-types.md#resource) | Yes| Image for the tab.|
+| text | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
 
 ## Example
 
+Example 1:
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
-struct TabContentExample  {
-  @State fontColor: string = 'rgba(0, 0, 0, 0.4)'
-  @State selectedFontColor: string = 'rgba(10, 30, 255, 1)'
+struct TabContentExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
+
   @Builder TabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/resources/ic_public_contacts_filled_selected.png' : '/resources/ic_public_contacts_filled.png')
-        .width(10)
-        .height(10)
-        .opacity(this.currentIndex === index ? 1 : 0.4)
+      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
-      Text(`Tab${(index > 2 ? (index - 1) : index) + 1}`)
+      Text(`Tab${index + 1}`)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
-        .margin({top: 2})
-    }
-  }
-
-  @Builder AddBuilder() {
-    Column() {
-      Image(this.currentIndex === 2 ? '/resources/ic_public_add_norm_filled_selected.png' : '/resources/ic_public_add_norm_filled.png')
-        .width(this.currentIndex === 2 ? 26 : 24)
-        .height(this.currentIndex === 2 ? 26 : 24)
-        .opacity(this.currentIndex === 2 ? 1 : 0.4)
-        .objectFit(ImageFit.Contain)
-        .animation({duration: 200})
-    }
+        .fontWeight(500)
+        .lineHeight(14)
+    }.width('100%')
   }
 
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab1').fontSize(32)
-          }
+          Column() {
+            Text('Tab1')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(0))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab2').fontSize(32)
-          }
+          Column() {
+            Text('Tab2')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(1))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Add').fontSize(32)
-          }
-        }.tabBar(this.AddBuilder())
+          Column() {
+            Text('Tab3')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
+        }.tabBar(this.TabBuilder(2))
 
         TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab3').fontSize(32)
-          }
+          Column() {
+            Text('Tab4')
+              .fontSize(36)
+              .fontColor('#182431')
+              .fontWeight(500)
+              .opacity(0.4)
+              .margin({ top: 30, bottom: 56.5 })
+            Divider()
+              .strokeWidth(0.5)
+              .color('#182431')
+              .opacity(0.05)
+          }.width('100%')
         }.tabBar(this.TabBuilder(3))
-
-        TabContent() {
-          Flex({justifyContent: FlexAlign.Center}) {
-            Text('Tab4').fontSize(32)
-          }
-        }.tabBar(this.TabBuilder(4))
       }
       .vertical(false)
-      .barWidth(300).barHeight(56)
+      .barHeight(56)
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width('90%').backgroundColor('rgba(241, 243, 245, 0.95)')
-    }.width('100%').height(200).margin({ top: 5 })
+      .width(360)
+      .height(190)
+      .backgroundColor('#F1F3F5')
+      .margin({ top: 38 })
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001256978331](figures/en-us_image_0000001256978331.gif)
+![tabContent](figures/tabContent1.gif)
+
+Example 2:
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabContentExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private controller: TabsController = new TabsController()
+
+  @Builder TabBuilder(index: number) {
+    Column() {
+      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+        .width(24)
+        .height(24)
+        .margin({ bottom: 4 })
+        .objectFit(ImageFit.Contain)
+      Text('Tab')
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(10)
+        .fontWeight(500)
+        .lineHeight(14)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+        TabContent()
+          .tabBar(this.TabBuilder(0))
+        TabContent()
+          .tabBar(this.TabBuilder(1))
+        TabContent()
+          .tabBar(this.TabBuilder(2))
+        TabContent()
+          .tabBar(this.TabBuilder(3))
+      }
+      .vertical(true)
+      .barWidth(96)
+      .barHeight(414)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(96)
+      .height(414)
+      .backgroundColor('#F1F3F5')
+      .margin({ top: 52 })
+    }.width('100%')
+  }
+}
+```
+
+![tabContent](figures/tabContent2.gif)
+
+Example 3:
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column({ space: 5 }) {
+      Text ("Subtab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new SubTabBarStyle('Pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new SubTabBarStyle('Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new SubTabBarStyle('Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new SubTabBarStyle('Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text ("Bottom Tab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+      Text ("Side Tab Style")
+      Column() {
+        Tabs({ barPosition: BarPosition.Start }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'pink'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Yellow'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(true).scrollable(true).barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(400)
+    }
+  }
+}
+```
+
+![tabbarStyle](figures/TabBarStyle.jpeg)

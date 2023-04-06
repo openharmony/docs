@@ -1,10 +1,10 @@
 # OpenSL ES音频播放开发指导 
 
-## 场景介绍
+## 简介
 
-开发者可以通过本文了解到在**OpenHarmony**如何使用**OpenSL ES**进行音频播放相关操作；当前仅实现了部分[**OpenSL ES**接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，未实现接口调用后会返回**SL_RESULT_FEATURE_UNSUPPORTED**
+开发者可以通过本文档了解在**OpenHarmony**中如何使用**OpenSL ES**进行音频播放相关操作；当前仅实现了部分[**OpenSL ES**接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，因此调用未实现接口后会返回**SL_RESULT_FEATURE_UNSUPPORTED**
  
-## 开发步骤
+## 开发指导
 
 以下步骤描述了在**OpenHarmony**如何使用**OpenSL ES**开发音频播放功能：
 
@@ -39,7 +39,7 @@
         0
     };
     
-    //具体参数需要根据音频文件格式进行适配
+    // 具体参数需要根据音频文件格式进行适配
     SLDataFormat_PCM pcmFormat = {
         SL_DATAFORMAT_PCM,
         2,
@@ -58,7 +58,7 @@
 
 5. 获取接口 **SL_IID_OH_BUFFERQUEUE** 的 **bufferQueueItf** 实例
 
-    ```
+    ```c++
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```
@@ -82,7 +82,7 @@
         return;
     }
     
-    //wavFile_ 需要设置为用户想要播放的文件描述符
+    // wavFile_ 需要设置为用户想要播放的文件描述符
     wavFile_ = fopen(path, "rb");
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```

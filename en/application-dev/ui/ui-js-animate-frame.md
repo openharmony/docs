@@ -3,12 +3,11 @@
 
 ## Requesting an Animation Frame
 
-Use the requestAnimationFrame method to request frames on a one-by-one basis. This method accepts a callback as an argument.
+Use the **requestAnimationFrame** method to request frames on a one-by-one basis. This method accepts a callback as an argument.
 
-When runframe calls requestAnimationFrame, the step callback with the timestamp parameter is passed, and this timestamp iss assigned to startTime. When the difference between the timestamp and startTime is less than the specified value, requestAnimationFrame is called again, and the animation stops.
+When **runframe** calls **requestAnimationFrame**, the **step** callback with the **timestamp** parameter is passed, and this timestamp iss assigned to **startTime**. When the difference between the **timestamp** and **startTime** is less than the specified value, **requestAnimationFrame** is called again, and the animation stops.
 
-  
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs onchange="changecontent">
@@ -27,8 +26,7 @@ When runframe calls requestAnimationFrame, the step callback with the timestamp 
 </div>
 ```
 
-  
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -42,9 +40,8 @@ button{
 }
 ```
 
-  
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     timer: null,
@@ -99,16 +96,16 @@ export default {
 
 ![en-us_image_0000001267767877](figures/en-us_image_0000001267767877.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> When invoking the callback, the requestAnimationFrame method passes the timestamp as the first parameter, which indicates the time when requestAnimationFrame starts to execute the callback.
+> **NOTE**
+>
+> When invoking the callback, the **requestAnimationFrame** method passes the **timestamp** as the first parameter, which indicates the time when **requestAnimationFrame** starts to execute the callback.
 
 
 ## Canceling an Animation Frame
 
-Use the cancelAnimationFrame method to cancel frames on a one-by-one basis. When this method is called, the animation frame request sent through requestAnimationFrame will be canceled.
+Use the **cancelAnimationFrame** method to cancel frames on a one-by-one basis. When this method is called, the animation frame request sent through **requestAnimationFrame** will be canceled.
 
-  
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs onchange="changecontent">
@@ -127,8 +124,7 @@ Use the cancelAnimationFrame method to cancel frames on a one-by-one basis. When
 </div>
 ```
 
-  
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -142,9 +138,8 @@ button{
 }
 ```
 
-  
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     timer: null,
@@ -191,5 +186,6 @@ export default {
 
 ![en-us_image_0000001223127740](figures/en-us_image_0000001223127740.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> When cancelAnimationFrame is called, a parameter that indicates an ID must be passed.
+> **NOTE**
+>
+> When **cancelAnimationFrame** is called, a parameter that indicates an ID must be passed.

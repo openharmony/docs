@@ -4,6 +4,10 @@
 
 WebGL helps you process graphics at the frontend, for example, drawing color graphics.
 
+> **NOTE**
+>
+> WebGL can be used only in the JavaScript-compatible web-like development paradigm.
+
 
 ## Available APIs
 
@@ -12,24 +16,25 @@ WebGL helps you process graphics at the frontend, for example, drawing color gra
 | API| Description|
 | -------- | -------- |
 | canvas.getContext | Obtains the canvas context.|
-| webgl.createBuffer():&nbsp;WebGLBuffer&nbsp;\|&nbsp;null | Creates and initializes a WebGL buffer.|
-| webgl.bindBuffer(target:&nbsp;GLenum,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | Binds the WebGL buffer to the target.|
-| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | Creates and initializes the WebGL buffer object's data store.|
-| webgl.getAttribLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string):&nbsp;GLint | Obtains the address of the **attribute** variable in the shader from the given WebGLProgram.|
-| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | Assigns a **Buffer** object to a variable.|
-| webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | Connects a variable to the **Buffer** object allocated to it.|
-| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | Clears the specified color on the **\<canvas>** component.|
-| webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | Clears the **\<canvas>** component.|
-| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei):&nbsp;void | Draws data.|
-| webgl.flush():&nbsp;void | Flushes data to the GPU and clears the buffer.|
-| webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | Creates a **WebGLProgram** object.|
+| webgl.createBuffer(): WebGLBuffer \| null | Creates and initializes a WebGL buffer.|
+| webgl.bindBuffer(target: GLenum, buffer: WebGLBuffer \| null): void | Binds the WebGL buffer to the target.|
+| webgl.bufferData(target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length?: GLuint): void | Creates and initializes the WebGL buffer object's data store.|
+| webgl.getAttribLocation(program: WebGLProgram, name: string): GLint | Obtains the address of the **attribute** variable in the shader from the given WebGLProgram.|
+| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | Assigns a **Buffer** object to a variable.|
+| webgl.enableVertexAttribArray(index: GLuint): void | Connects a variable to the **Buffer** object allocated to it.|
+| webgl.clearColor(red: GLclampf, green:GLclampf, blue: GLclampf, alpha: GLclampf): void | Clears the specified color on the **\<canvas>** component.|
+| webgl.clear(mask: GLbitfield): void | Clears the **\<canvas>** component.|
+| webgl.drawArrays(mode: GLenum, first:;GLint, count: GLsizei): void | Draws data.|
+| webgl.flush(): void | Flushes data to the GPU and clears the buffer.|
+| webgl.createProgram(): WebGLProgram \| null | Creates a **WebGLProgram** object.|
 
 
 ## How to Develop
 
 The following describes how to draw a 2D image without using shaders and how to draw a color triangle using shaders.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > When using WebGL for development, use a real device to ensure the GUI display effect.
 
 
@@ -64,7 +69,7 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
 
 3. Edit the **index.js** file to add the 2D drawing logic code. The following is an example of the file content:
    ```
-   //index.js
+   // index.js
    export default { // Native API interaction code
        data: {
            title: "DEMO BY TEAMOL",
@@ -135,7 +140,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
 
 3. Edit the JavaScript code file to add the logic code for drawing a color triangle. The following is an example of the file content:
    ```
-   //index.js
+   // index.js
    
    // WebGL-related predefinition
    var gl = {

@@ -1,37 +1,45 @@
-# utils<a name="EN-US_TOPIC_0000001092539399"></a>
+# Utils
 
+## Introduction
 
-## Introduction<a name="section11660541593"></a>
+Utils provides OpenHarmony basic components, which provide enhanced C, C++, and JS APIs for OpenHarmony service subsystems and upper-layer applications. Utils provides the following components in **/commonlibrary**:
+```
+/commonlibrary
+    ├── c_utils                  # c and c++ utils.
+    ├── ets_utils                # extended TypeScript (eTS) utils.
+    └── utils_lite               # Utils in c and JS for LiteOS.
+```
+The following lists the functions provided by each utils.
 
-The **utils** repository provides common enhanced APIs for development in C and C++.
-
-**C++**
+**c_utils**
 
 -   Enhanced APIs for operations related to files, paths, and strings
--   APIs related to the read-write lock, semaphore, timer, thread, and thread pool
--   APIs related to the security data container and data serialization
+-   APIs for read/write locks, semaphores, timers, threads, and thread pools
+-   APIs for security data containers and data serialization
 -   Error codes for each subsystem
--   Safe functions in C
 
-**C**
+**ets_utils**
 
--   Hardware Abstraction Layer (HAL) APIs for performing operations on standard files
+-   JS APIs for URI, URL, and XML operations
+-   JS APIs for string encoding and decoding
+-   JS APIs for process-related operations
+-   Multithreading capability in JS
+
+**utils_lite**
+
+-   Hardware Abstraction Layer (HAL) APIs for file operations
 -   APIs for internal functions, such as the timer
 
-## Directory Structure<a name="section17271017133915"></a>
+## Related Documents
+[Utils Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-utils-guide.md)
 
-```
-/utils
-    ├── native                  # Utility class implementation at the native layer
-    └── system                  # System-related predefined values and security policy configuration
-```
+## Repositories Involved
 
-## Repositories Involved<a name="section1249817110914"></a>
+**Utils**
 
-**utils subsystem**
 
-[utils](https://gitee.com/openharmony/utils)
+[commonlibrary\_c\_utils](https://gitee.com/openharmony/commonlibrary_c_utils)
 
-[utils\_native](https://gitee.com/openharmony/utils_native)
+[commonlibrary\_ets\_utils](https://gitee.com/openharmony/commonlibrary_ets_utils)
 
-[utils\_native\_lite](https://gitee.com/openharmony/utils_native_lite)
+[commonlibrary\_utils\_lite](https://gitee.com/openharmony/commonlibrary_utils_lite)

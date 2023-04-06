@@ -1,12 +1,12 @@
-# Dialog
+# dialog开发指导
 
-Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要或用户必须关注的信息或操作。具体用法请参考[Dialog API](../reference/arkui-js/js-components-container-dialog.md)。
+dialog组件用于创建自定义弹窗，通常用来展示用户当前需要或用户必须关注的信息或操作。具体用法请参考[dialog API](../reference/arkui-js/js-components-container-dialog.md)。
 
 
-## 创建Dialog组件
+## 创建dialog组件
 
-在pages/index目录下的hml文件中创建一个Dialog组件，并添加Button组件来触发Dialog。Dialog组件仅支持width、height、margin、margin-[left|top|right|bottom]、margin-[start|end]样式。
-```
+在pages/index目录下的hml文件中创建一个dialog组件，并添加Button组件来触发dialog。dialog组件仅支持width、height、margin、margin-[left|top|right|bottom]、margin-[start|end]样式。
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <dialog class="dialogClass" id="dialogId" dragable="true">
@@ -14,11 +14,11 @@ Dialog组件用于创建自定义弹窗，通常用来展示用户当前需要�
       <text>this is a dialog</text>
     </div>
   </dialog>
-  <button value="click me" onclick="openDialog"></button>
+  <button value="click me" onclick="opendialog"></button>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -51,11 +51,11 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   //Touch to open the dialog box.
-  openDialog(){
+  opendialog(){
     this.$element('dialogId').show()
   },
 }
@@ -66,10 +66,10 @@ export default {
 
 ## 设置弹窗响应
 
-开发者点击页面上非Dialog的区域时，将触发cancel事件而关闭弹窗。同时也可以通过对Dialog添加show和close方法来显示和关闭弹窗。
+开发者点击页面上非dialog的区域时，将触发cancel事件而关闭弹窗。同时也可以通过对dialog添加show和close方法来显示和关闭弹窗。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <dialog class="dialogClass" id="dialogId" oncancel="canceldialog">
@@ -78,12 +78,12 @@ export default {
       <button value="confirm" onclick="confirmClick"></button>
     </div>
   </dialog>
-  <button value="click me" onclick="openDialog"></button>
+  <button value="click me" onclick="opendialog"></button>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -117,24 +117,24 @@ button{
 ```
 
 
-```
-/* xxx.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   canceldialog(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogCancel'
     })
   },
-  openDialog(){
+  opendialog(){
     this.$element('dialogId').show()
-     prompt.showToast({
+     promptAction.showToast({
       message: 'dialogShow'
     })
   },
   confirmClick(e) {
     this.$element('dialogId').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'dialogClose'
     })
   },
@@ -145,21 +145,21 @@ export default {
 ![zh-cn_image_0000001163229150](figures/zh-cn_image_0000001163229150.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 仅支持单个子组件。
-> 
-> - Dialog属性、样式均不支持动态更新。
-> 
-> - Dialog组件不支持focusable、click-effect属性。
+>
+> - dialog属性、样式均不支持动态更新。
+>
+> - dialog组件不支持focusable、click-effect属性。
 
 
 ## 场景示例
 
 
-在本场景中，开发者可以通过Dialog组件实现一个日程表。弹窗在打开状态下，利用[Textarea组件](../reference/arkui-js/js-components-basic-textarea.md)输入当前日程，点击确认按钮后获取当前时间并保存输入文本。最后以列表形式将各日程进行展示。
+在本场景中，开发者可以通过dialog组件实现一个日程表。弹窗在打开状态下，利用[Textarea组件](../reference/arkui-js/js-components-basic-textarea.md)输入当前日程，点击确认按钮后获取当前时间并保存输入文本。最后以列表形式将各日程进行展示。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <text style="margin-top: 60px;margin-left: 30px;">
@@ -194,7 +194,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .doc-page {
   flex-direction: column;
@@ -263,8 +263,8 @@ export default {
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js
 var info = null;
 import prompt from '@system.prompt';
 import router from '@system.router';
@@ -323,8 +323,8 @@ export default {
 
 ## 相关实例
 
-针对Dialog开发，有以下相关实例可供参考：
+针对dialog开发，有以下相关实例可供参考：
 
-- [`JsDialog`：页面弹窗（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [dialog（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)
+- [Dialog（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)

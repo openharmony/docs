@@ -69,13 +69,18 @@ kernel/
 │	│	└── ohos.build					# Kernel build component file
 │	├── patches
 │	│	├── linux-4.19					# linux-4.19 patches
+│	│	│   ├── common_patch
+│	│	│   │		└── hdf.patch			# linux-4.19 HDF patches
 │	│	│   └── hi3516dv300_patch
-│	│	│   		├── hi3516dv300.patch	# linux-4.19 Hi3516D V300 SOC patches
-│	│	│   		└── hdf.patch			# linux-4.19 Hi3516D V300 HDF patches
+│	│	│   		└── hi3516dv300.patch		# linux-4.19 Hi3516D V300 SOC patches
 │	│	└── linux-5.10
+│	│	    ├── common_patch
+│	│	    │		└── hdf.patch			# linux-5.10 HDF patches
 │	│	    └── hi3516dv300_patch
-│	│	    		├── hi3516dv300.patch	# linux-5.10 Hi3516D V300 SOC patches
-│	│	    		└── hdf.patch			# linux-5.10 Hi3516D V300 HDF patches
+│	│	    │		└── hi3516dv300.patch		# linux-5.10 Hi3516D V300 SOC patches
+│	│	    └── rkrk3568_patch
+│	│	    		├── kernel.patch		# linux-5.10 rk3568 SOC patches
+│	│	    		└── hdf.patch			# linux-5.10 rk3568 customized HDF patches
 │	└── config
 │		├── linux-4.19
 │		│   └── arch
@@ -151,7 +156,7 @@ For details, see "Usage" in LiteOS-A Kernel [README](https://gitee.com/openharmo
 	Apply the HDF kernel patches matching your kernel version. For details, see the method in **kernel.mk** in the **kernel/linux/build** repository.
 	
 	```
-	$(OHOS_BUILD_HOME)/drivers/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(HDF_PATCH_FILE)
+	$(OHOS_BUILD_HOME)/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(KERNEL_PATCH_PATH) $(DEVICE_NAME)
 	```
 
 2. Apply the chip driver patches.
@@ -206,8 +211,6 @@ LiteOS:
 
 [device\_qemu](https://gitee.com/openharmony/device_qemu/blob/master/README.md)
 
-[prebuilts\_lite\_sysroot](https://gitee.com/openharmony/prebuilts_lite_sysroot/blob/master/README.md)
-
 Linux:
 
 [kernel\_linux\_patches](https://gitee.com/openharmony/kernel_linux_patches/blob/master/README.md)
@@ -215,7 +218,5 @@ Linux:
 [kernel\_linux\_config](https://gitee.com/openharmony/kernel_linux_config/blob/master/README.md)
 
 [kernel\_linux\_build](https://gitee.com/openharmony/kernel_linux_build/blob/master/README.md)
-
-[kernel\_linux\_4.19](https://gitee.com/openharmony/kernel_linux_4.19/blob/master/README)
 
 [kernel\_linux\_5.10](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/README)

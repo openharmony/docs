@@ -14,7 +14,7 @@
 | stroke-dasharray | &lt;string&gt; | - | 否 | 指定短划线和缺口的长度。格式为[length&nbsp;length&nbsp;length&nbsp;length]，短划线和缺口的长度中间空格隔开成对出现。 |
 | stroke-dashoffset | &lt;length&gt; | 0 | 否 | 设置关联虚线数组渲染时的偏移量。支持属性动画 |
 | stroke-linejoin | [bevel&nbsp;\|&nbsp;miter&nbsp;\|&nbsp;round] | miter | 否 | 进行描边时在路径的拐角处使用的形状。<br/>bevel：使用斜角连接路径段；<br/>miter：使用尖角连接路径段；<br/>round：使用圆角连接路径段。 |
-| stroke-linecap | [butt&nbsp;\|&nbsp;round&nbsp;\|&nbsp;square] | butt | 否 | 路径描边时在它们的结尾处使用的形状。<br/>butt：不在路径两端扩展；<br/>round：在路径的末端延伸半个圆，直径等于线度。<br/>square：在路径的末端延伸半个圆，宽度等于线宽的一半，高度等于线宽。 |
+| stroke-linecap | [butt&nbsp;\|&nbsp;round&nbsp;\|&nbsp;square] | butt | 否 | 路径描边时在它们的结尾处使用的形状。<br/>butt：不在路径两端扩展；<br/>round：在路径的末端延伸半个圆，直径等于线宽；<br/>square：在路径的末端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
 | stroke-miterlimit | number | 4 | 否 | 设置将锐角绘制成斜角的极限值。支持属性动画 |
 | stroke-opacity | number | 1 | 否 | 轮廓线条的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画 |
 | stroke-width | &lt;length&gt; | 1px | 否 | 设置轮廓线条的宽度。支持属性动画 |

@@ -10,23 +10,23 @@
 
   **表1** 源码目录结构
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| double-conversion/cmake/ | CMake组织编译使用到的模板 | 
-| double-conversion/double-conversion/ | 源文件目录 | 
-| double-conversion/msvc/ | - | 
-| double-conversion/test/ | 测试用例源文件 | 
-| double-conversion/.gitignore | - | 
-| double-conversion/AUTHORS | - | 
-| double-conversion/BUILD | - | 
-| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件 | 
-| double-conversion/COPYING | - | 
-| double-conversion/Changelog | - | 
-| double-conversion/LICENSE | - | 
-| double-conversion/Makefile | - | 
-| double-conversion/README.md | - | 
-| double-conversion/SConstruct | - | 
-| double-conversion/WORKSPACE | - | 
+| double-conversion/cmake/ | CMake组织编译使用到的模板 |
+| double-conversion/double-conversion/ | 源文件目录 |
+| double-conversion/msvc/ | - |
+| double-conversion/test/ | 测试用例源文件 |
+| double-conversion/.gitignore | - |
+| double-conversion/AUTHORS | - |
+| double-conversion/BUILD | - |
+| double-conversion/CMakeLists.txt | CMake方式顶层编译组织文件 |
+| double-conversion/COPYING | - |
+| double-conversion/Changelog | - |
+| double-conversion/LICENSE | - |
+| double-conversion/Makefile | - |
+| double-conversion/README.md | - |
+| double-conversion/SConstruct | - |
+| double-conversion/WORKSPACE | - |
 
 
 ## 移植思路
@@ -76,7 +76,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 2. 执行编译
    linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
 
-     
+   
    ```
    mkdir build && cd build
    cmake .. -DBUILD_TESTING=ON -DOHOS_SYSROOT_PATH="..."
@@ -90,24 +90,24 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      **表2** 编译生成文件目录结构
    
-   | 名称 | 描述 | 
+   | 名称 | 描述 |
    | -------- | -------- |
-   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件 | 
-   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件 | 
-   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件 | 
-   | double-conversion/build/CMakeFiles/ | - | 
-   | double-conversion/build/cmake_install.cmake | - | 
-   | double-conversion/build/CTestTestfile.cmake | - | 
-   | double-conversion/build/DartConfiguration.tcl | - | 
-   | double-conversion/build/generated/ | - | 
-   | double-conversion/build/Makefile | - | 
-   | double-conversion/build/Testing/ | - | 
+   | double-conversion/build/libdouble-conversion.a | 生成的静态库文件 |
+   | double-conversion/build/test/ | 目录下存放生成的测试用例和相关CMake缓存文件 |
+   | double-conversion/build/CMakeCache.txt | CMake构建过程中的缓存文件 |
+   | double-conversion/build/CMakeFiles/ | - |
+   | double-conversion/build/cmake_install.cmake | - |
+   | double-conversion/build/CTestTestfile.cmake | - |
+   | double-conversion/build/DartConfiguration.tcl | - |
+   | double-conversion/build/generated/ | - |
+   | double-conversion/build/Makefile | - |
+   | double-conversion/build/Testing/ | - |
 
 
 ## 测试
 
 1. 搭建OpenHarmony环境
-   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，参考[开发Hi3516第一个示例程序](../quick-start/quickstart-lite-steps-hi3516-running.md)。
+   以Hi3516DV300为例，编译出OpenHarmony镜像，烧写到开发板，相关操作可参考[快速入门小型系统部分](../quick-start/quickstart-overview.md)。
 
    进入系统如下所示：
 
@@ -123,52 +123,52 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    - 挂载成功后执行下列命令可列出用例所有条目：
 
      
-   ```
-   cd nfs
-   ./cctest --list
-   ```
+     ```
+     cd nfs
+     ./cctest --list
+     ```
 
-   上述命令执行结果部分展示：
+     上述命令执行结果部分展示：
 
      
-   ```
-   test-bignum/Assign<
-   test-bignum/ShiftLeft<
-   test-bignum/AddUInt64<
-   test-bignum/AddBignum<
-   test-bignum/SubtractBignum<
-   test-bignum/MultiplyUInt32<
-   test-bignum/MultiplyUInt64<
-   test-bignum/MultiplyPowerOfTen<
-   test-bignum/DivideModuloIntBignum<
-   test-bignum/Compare<
-   test-bignum/PlusCompare<
-   test-bignum/Square<
-   test-bignum/AssignPowerUInt16<
-   test-bignum-dtoa/BignumDtoaVariousDoubles<
-   test-bignum-dtoa/BignumDtoaShortestVariousFloats<
-   test-bignum-dtoa/BignumDtoaGayShortest<
-   test-bignum-dtoa/BignumDtoaGayShortestSingle<
-   test-bignum-dtoa/BignumDtoaGayFixed<
-   test-bignum-dtoa/BignumDtoaGayPrecision<
-   test-conversions/DoubleToShortest<
-   test-conversions/DoubleToShortestSingle<
-   ...
-   ```
+     ```
+     test-bignum/Assign<
+     test-bignum/ShiftLeft<
+     test-bignum/AddUInt64<
+     test-bignum/AddBignum<
+     test-bignum/SubtractBignum<
+     test-bignum/MultiplyUInt32<
+     test-bignum/MultiplyUInt64<
+     test-bignum/MultiplyPowerOfTen<
+     test-bignum/DivideModuloIntBignum<
+     test-bignum/Compare<
+     test-bignum/PlusCompare<
+     test-bignum/Square<
+     test-bignum/AssignPowerUInt16<
+     test-bignum-dtoa/BignumDtoaVariousDoubles<
+     test-bignum-dtoa/BignumDtoaShortestVariousFloats<
+     test-bignum-dtoa/BignumDtoaGayShortest<
+     test-bignum-dtoa/BignumDtoaGayShortestSingle<
+     test-bignum-dtoa/BignumDtoaGayFixed<
+     test-bignum-dtoa/BignumDtoaGayPrecision<
+     test-conversions/DoubleToShortest<
+     test-conversions/DoubleToShortestSingle<
+     ...
+     ```
 
    - 以test-bignum条目为例，执行下列命令开始测试：
 
      
-   ```
-   ./cctest test-bignum
-   ```
+     ```
+     ./cctest test-bignum
+     ```
 
-   测试结果如下则表示通过：
+     测试结果如下则表示通过：
 
      
-   ```
-   Ran 13 tests.
-   ```
+     ```
+     Ran 13 tests.
+     ```
 
 
 ## 将该库编译添加到OpenHarmony工程中
@@ -178,118 +178,118 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      **表3** 添加到工程后的目录结构
    
-   | 名称 | 描述 | 
+   | 名称 | 描述 |
    | -------- | -------- |
-   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件 | 
-   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake | 
-   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等 | 
-   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录 | 
+   | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件 |
+   | OpenHarmony/third_party/double-conversion/build_thirdparty.py | GN调用shell命令脚本文件，由上面GN文件将相关命令传入，实现GN转CMake |
+   | OpenHarmony/third_party/double-conversion/config.gni | 三方库编译配置文件，可修改该文件来配置用例是否参与构建等 |
+   | OpenHarmony/third_party/double-conversion/double-conversion/ | 要移植的三方库目录 |
 
 2. 添加gn到CMake适配文件
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
 
      
-   ```
-   import("config.gni")
-   group("double-conversion") {
-       if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-           deps = [":make"]
-       }
-   }
-   if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-       action("make") {
-           script = "//third_party/double-conversion/build_thirdparty.py"
-           outputs = ["$root_out_dir/log_dc.txt"]
-           exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
-           command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
-           args = [
-               "--path=$exec_path",
-               "--command=${command}"
-           ]
-       }
-   }
-   ```
+     ```
+     import("config.gni")
+     group("double-conversion") {
+         if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+             deps = [":make"]
+         }
+     }
+     if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+         action("make") {
+             script = "//third_party/double-conversion/build_thirdparty.py"
+             outputs = ["$root_out_dir/log_dc.txt"]
+             exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
+             command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
+             args = [
+                 "--path=$exec_path",
+                 "--command=${command}"
+             ]
+         }
+     }
+     ```
 
    - **新增的config.gni用于配置该库，实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时只需修改CMAKE_FLAG的配置即可。**
 
      
-   ```
-   #CMAKE_FLAG: config compile feature
-   CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
+     ```
+     #CMAKE_FLAG: config compile feature
+     CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
    
-   #toolchain：follow up-layer，depend on $ohos_build_compiler
-   if (ohos_build_compiler == "clang") {
-       CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
-   } else {
-       CMAKE_TOOLCHAIN_FLAG = ""
-   }
+     #toolchain：follow up-layer，depend on $ohos_build_compiler
+     if (ohos_build_compiler == "clang") {
+         CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${root_out_dir}sysroot"
+     } else {
+         CMAKE_TOOLCHAIN_FLAG = ""
+     }
    
-   #CMake tools path,no need setting if this path already joined to $PATH.
-   CMAKE_TOOLS_PATH = "setting CMake tools path..."
-   ```
+     #CMake tools path,no need setting if this path already joined to $PATH.
+     CMAKE_TOOLS_PATH = "setting CMake tools path..."
+     ```
 
    - **新增的build_thirdparty.py实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时无需修改即可使用。**
 
      
-   ```
-   import os
-   import sys
-   from subprocess import Popen
-   import argparse
-   import shlex
+     ```
+     import os
+     import sys
+     from subprocess import Popen
+     import argparse
+     import shlex
    
-   def cmd_exec(command):
-       cmd = shlex.split(command)
-       proc = Popen(cmd)
-       proc.wait()
-       ret_code = proc.returncode
-       if ret_code != 0:
-           raise Exception("{} failed, return code is {}".format(cmd, ret_code))
+     def cmd_exec(command):
+         cmd = shlex.split(command)
+         proc = Popen(cmd)
+         proc.wait()
+         ret_code = proc.returncode
+         if ret_code != 0:
+             raise Exception("{} failed, return code is {}".format(cmd, ret_code))
    
-   def main():
-       parser = argparse.ArgumentParser()
-       parser.add_argument('--path', help='Build path.')
-       parser.add_argument('--command', help='Build command.')
-       parser.add_argument('--enable', help='enable python.', nargs='*')
-       args = parser.parse_args()
+     def main():
+         parser = argparse.ArgumentParser()
+         parser.add_argument('--path', help='Build path.')
+         parser.add_argument('--command', help='Build command.')
+         parser.add_argument('--enable', help='enable python.', nargs='*')
+         args = parser.parse_args()
    
-       if args.enable:
-           if args.enable[0] == 'false':
+         if args.enable:
+             if args.enable[0] == 'false':
                return
    
-       if args.path:
-           curr_dir = os.getcwd()
-           os.chdir(args.path)
-           if args.command:
-               if '&&' in args.command:
-                   command = args.command.split('&&')
-                   for data in command:
+         if args.path:
+             curr_dir = os.getcwd()
+             os.chdir(args.path)
+             if args.command:
+                 if '&&' in args.command:
+                     command = args.command.split('&&')
+                     for data in command:
                        cmd_exec(data)
                else:
                    cmd_exec(args.command)
            os.chdir(curr_dir)
    
-   if __name__ == '__main__':
-       sys.exit(main())
-   ```
+      if __name__ == '__main__':
+         sys.exit(main())
+     ```
 
    - 在配置文件中添加开关控制该库编译，默认设为关闭
 
-   在//build/lite/ohos_var.gni文件中添加下列配置：
+     在//build/lite/ohos_var.gni文件中添加下列配置：
 
      
-   ```
-   declare_args() {
-       ohos_build_thirdparty_migrated_from_fuchisa = true
-   }
-   ```
+     ```
+     declare_args() {
+         ohos_build_thirdparty_migrated_from_fuchisa = true
+      }
+     ```
 
 3. 编译构建
-   - 手动单独构建：
+   手动单独构建：
 
    执行下列命令
 
-     
+   
    ```
    hb build -T //third_party/double-conversion:double-conversion
    ```

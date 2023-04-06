@@ -11,7 +11,7 @@ This document describes the audio driver architecture and functional modules and
 
 ## Audio Driver Architecture
 
-The audio driver architecture is implemented based on the [HDF](https://device.harmonyos.com/en/docs/documentation/guide/driver-hdf-overview-0000001051715456). The audio driver architecture is as follows:
+The audio driver architecture is implemented based on the [HDF](driver-hdf-overview.md). The audio driver architecture is as follows:
 
 ![](figures/Audio_architecture.png)
 
@@ -273,7 +273,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 
 #### Registering and Binding Codec to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](driver-hdf-overview.md).
 
 Fill in the **g_codecDriverEntry** structure. Ensure that the value of **moduleName** is the same as that in **device_info.hcs**. Implement the pointers to the **Bind**, **Init**, and **Release** functions.
 
@@ -331,7 +331,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 
 #### Configuring HCS<a name="section4115"></a>
 
-Configure the driver node, loading sequence, and service name in the .hcs file. For details about the HCS syntax, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md) in the HDF.
+Configure the driver node, loading sequence, and service name in the .hcs file. For details about the HCS syntax, see [Driver Configuration Management](driver-hdf-manage.md) in the HDF.
 
 Path of the standard-system configuration file:
 
@@ -779,7 +779,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 
 #### Registering and Binding Accessory to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](driver-hdf-overview.md).
 
 Fill in the **g_tfa9879DriverEntry** structure. Ensure that the value of **moduleName** is the same as that in **device_info.hcs**. Implement the pointers to the **Bind**, **Init**, and **Release** functions.
 
@@ -900,7 +900,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 #### Registering and Binding Platform to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](driver-hdf-overview.md).
 
 - Fill in the **g_platformDriverEntry** structure.
 - Ensure that the value of **moduleName** is the same as that in **device_info.hcs**.
@@ -1064,7 +1064,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 
 #### Registering and Binding DAI to HDF
 
-This process depends on the driver implementation mode of the HDF. For details, see [HDF](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/Readme-EN.md).
+This process depends on the driver implementation mode of the HDF. For details, see [HDF](driver-hdf-overview.md).
 
 - Fill in the **g_daiDriverEntry** structure.
 - Ensure that the value of **moduleName** is the same as that in **device_info.hcs**.

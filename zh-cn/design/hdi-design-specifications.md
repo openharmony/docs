@@ -14,16 +14,17 @@
 
 **用词约定：**
 
-规则：必须遵守的约定
+规则：必须遵守的约定。
 
-建议：需要加以考虑的约定
+建议：需要加以考虑的约定。
 
-说明：对此规则或建议进行相应的解释
+说明：对此规则或建议进行相应的解释。
 
 **文档变更说明：**
 | 版本  | 变更说明               |
 | ---  | --------------------- |
 | v1.0 Beta | 初始试行版本               |
+| v1.0  | 发布正式版本               |
 
 
 ## 范围与定义
@@ -60,7 +61,7 @@ interface IVibrator {
 当对原有接口进行不破坏向后兼容的修改时，如在最后追加新增接口、新增枚举定义、修改变量名称等，只需要增加`minor`版本号，新的包名为`ohos.hdi.vibrator.v1_1`。如：
 
 ```cpp
-package ohos.hdi.vibrator.v1_0;
+package ohos.hdi.vibrator.v1_1;
 interface IVibrator {
    ...
    SetModulationParameter([in] unsigned int vibrationPeriod, [in] int intensity, [in] int freq);
@@ -71,7 +72,7 @@ interface IVibrator {
 如果对原有接口进行更名、修改变量列表等不向后兼容修改时，需要增加`major`版本号，新的包名为`ohos.hdi.vibrator.v2_0`。如：
 
 ```cpp
-package ohos.hdi.vibrator.v1_0;
+package ohos.hdi.vibrator.v2_0;
 interface IVibrator {
    ...
    SetModulationParameter([in] unsigned int vibrationPeriod, [in] int intensity, [in] int frequency, [int] time);
@@ -85,13 +86,13 @@ interface IVibrator {
 
 Table 1 接口评审&管控角色
 
-| **涉及角色**    | **API治理中的职责**                                    |
+| **涉及角色**    | **HDI接口治理中的职责**                                    |
 | ----------- | ------------------------------------------------ |
-| Contributor | API的设计和交付主体，负责API相关的代码与设计文档提交。                   |
-| Committer   | API相关的代码评审，涉及API提交预审。                            |
-| 领域SIG       | 新增API相关的代码提交评审，领域SIG评审通过即可合入。<br>变更API相关的代码提交预审。 |
-| Driver SIG  | 变更API相关的代码提交评审。                                  |
-| PMC         | API Version计划发布、API治理章程修订评审发布等。                  |
+| Contributor | HDI的设计和交付主体，负责HDI相关的代码与设计文档提交。                   |
+| Committer   | HDI相关的代码评审，涉及HDI提交预审。                            |
+| 领域SIG     | 新增/变更HDI相关的代码提交，本领域SIG首先进行评审。 |
+| Driver SIG  | 新增/变更HDI相关的代码提交评审。                                  |
+| PMC         | HDI设计规范修订评审发布等。                  |
 
 #### 设备接口发布
 
@@ -101,8 +102,8 @@ Table 1 接口评审&管控角色
 
     主要过程说明：
 
-    1. HDI评审申请、代码提交（Owner：Contributor），所有涉及HDI新增或变更需同步提交相应的API评审文档，详细说明API的需求来源、场景与使用方法、权限设计、隐私保护澄清等，详见后面的API评审申请要素。为避免后续的返工，Contributor可以在正式的API评审申请、代码提交之前，先通过邮件方式将API设计文档提交Committer、领域SIG、API SIG等相关人员预审。
-    2. 代码评审（Owner：Committer），代码评审和API预审，涉及API提交Code Review通过后，还需要进一步领域SIG评审。
+    1. HDI评审申请、代码提交（Owner：Contributor），所有涉及HDI新增或变更需同步提交相应的HDI评审文档，详细说明HDI的需求来源、场景与使用方法、权限设计、隐私保护澄清等，详见后面的评审申请要素。为避免后续的返工，Contributor可以在正式的HDI评审申请、代码提交之前，先通过邮件方式将HDI相关设计文档提交Committer、领域SIG、Driver SIG等相关人员预审。
+    2. 代码评审（Owner：Committer），代码评审和接口预审，涉及HDI的提交Code Review通过后，还需要进一步领域SIG评审。
     3. 领域SIG评审（Owner：领域SIG），涉及新增/变更HDI相关接口的代码提交，领域SIG评审通过后，还需要进一步提交Driver SIG。
     4. HDI评审（Owner：Driver SIG），对新增/变更HDI相关的代码提交进行接口评审，评审通过即可合入代码。
     5. 评审完成。
@@ -131,7 +132,7 @@ Table 1 接口评审&管控角色
 
         - 对废弃接口增加标识废弃标记。
 
-        - 废弃API至少保留4个OpenHarmony API版本
+        - 废弃HDI至少保留4个OpenHarmony API版本。
 
 ## 接口设计约束
 
@@ -157,7 +158,7 @@ Table 1 接口评审&管控角色
 int (*OpenLayer)(uint32_t devId, const LayerInfo *layerInfo, uint32_t *layerId);
 ```
 
-在调用OpenLayer接口时，根据入参layerInfo创建图层数据内存，并返回layerId
+在调用OpenLayer接口时，根据入参layerInfo创建图层数据内存，并返回layerId；
 
 ```cpp
 int (*CloseLayer)(uint32_t devId, uint32_t layerId);
@@ -215,14 +216,14 @@ void WriteReady();
 #### 【规则】类、结构体、接口方法、参数等采用驼峰命名风格
 __驼峰风格(CamelCase)__
 大小写字母混用，单词连在一起，不同单词间通过单词首字母大写来分开。
-按连接后的首字母是否大写，又分: 大驼峰(UpperCamelCase)和小驼峰(lowerCamelCase)
+按连接后的首字母是否大写，又分: 大驼峰(UpperCamelCase)和小驼峰(lowerCamelCase)。
 
 
 | 类型                                       | 命名风格      |
 | ---------------------------------------- | --------- |
 | 接口类型，接口方法，结构体类型，枚举类型，联合体类型等类型定义       | 大驼峰       |
 | 函数参数，结构体和联合体中的成员变量 | 小驼峰       |
-| 常量，枚举值                  | 全大写，下划线分割 |
+| 常量，枚举值                  | 全大写，以下划线分割 |
 
 #### 【规则】接口文件应与接口类同名且使用'.idl'文件后缀
 - 每个接口类应定义在独立的接口文件中，并使文件命名与接口类保持一致（大驼峰命名），并以`.idl`后缀结尾。
@@ -474,7 +475,7 @@ GetExecutorInfo([out] struct ExecutorInfo executorInfo);
 
 #### 数组类型使用约束
 
-| IDL容器数据类型 | C++数据类型        | C数据类型       |
+| IDL数组数据类型 | C++数据类型        | C数据类型       |
 | --------- | -------------- | ----------- |
 | T[]       | std::vector<T> | T*,int size |
 
@@ -484,7 +485,3 @@ GetExecutorInfo([out] struct ExecutorInfo executorInfo);
 | ------- | ------- | ------ |
 | struct  | struct  | struct |
 | enum    | enum    | enum   |
-
-
-## 其他说明
-本文档Beta期为自发布日起1个月，用于接纳社区意见，欢迎积极参与讨论。

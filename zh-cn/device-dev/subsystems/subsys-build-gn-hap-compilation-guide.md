@@ -9,7 +9,7 @@
 | Ability        | 应用的重要组成部分，是应用所具备能力的抽象。Ability是系统调度应用的最小单元，是能够完成一个独立功能的组件，一个应用可以包含一个或多个Ability。 |
 | FA             | Feature Ability，是FA模型的Ability框架下具有UI界面的Ability类型，用于与用户进行交互。Feature Ability唯一对应一种模板，即Page模板（Page Ability）。 |
 | PA             | Particle Ability，是在FA模型的Ability框架下无界面的Ability，主要为Feature Ability提供服务与支持，例如作为后台服务提供计算能力，或作为数据仓库提供数据访问能力。Particle Ability有三种模板，分别为Service模板（Service Ability）、Data模板（Data Ability）、以及Form模板（Form Ability）。 |
-| FA模型         | 两种Ability框架模型结构的其中一种。是Ability框架在API 8及更早版本采用FA模型。FA模型将Ability分为FA（Feature Ability）和PA（Particle Ability）两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](../../application-dev/ability/fa-brief.md)。 |
+| FA模型         | 两种Ability框架模型结构的其中一种。是Ability框架在API 8及更早版本采用FA模型。FA模型将Ability分为FA（Feature Ability）和PA（Particle Ability）两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](../../application-dev/ability-deprecated/fa-brief.md)。 |
 | Stage模型 | 两种Ability框架模型结构的其中一种。从API 9开始支持。Stage模型将Ability分为Ability和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility。 |
 
 ### 功能简介
@@ -17,7 +17,7 @@
 
 ## 开发指导
 
-### 编译系统提供的模板
+### 编译子系统提供的模板
 #### ohos_hap
 
 声明一个HAP目标，该目标会生成一个HAP，最终将会打包到system镜像中。
@@ -38,7 +38,7 @@
 | js2abc | 是否需要将该HAP的js代码转换为ARK的字节码。|
 | ets2abc | 是否需要将该HAP的ets代码转换为ARK的字节码。|
 | certificate_profile | HAP对应的授权文件，用于签名。|
-| certificate_file | 证书文件，证书文件和授权文件，应用开发者需要去openharmony官网申请。|
+| certificate_file | 证书文件，证书文件和授权文件，应用开发者需要去OpenHarmony官网申请。|
 | keystore_path | keystore文件，用于签名。|
 | keystore_password | keystore的密码，用于签名。|
 | key_alias | key的别名。|

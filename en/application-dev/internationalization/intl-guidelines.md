@@ -1,36 +1,42 @@
-# Internationalization Development (intl)
+# intl Development
 
-This development guide describes how to use i18n APIs that are defined in ECMA 402.
+The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402. For more details about APIs and their usage, see [intl](../reference/apis/js-apis-intl.md).
 
-> **NOTE**<br>
-> In the code snippets in this document, **intl** refers to the name of the imported module.
+The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
 ## Setting Locale Information
 
-Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize locale information.
-
+[Locale](../reference/apis/js-apis-intl.md#locale) provides APIs to maximize or minimize the locale information.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Instantiates a **Locale** object. | 
-| ohos.intl | constructor(locale?: string, options?: options) | Instantiates a **Locale** object based on the locale parameter and options. | 
-| ohos.intl | toString(): string | Converts locale information into a string. | 
-| ohos.intl | maximize(): Locale | Maximizes locale information. | 
-| ohos.intl | minimize(): Locale | Minimizes locale information. | 
-
+| Locale | constructor()<sup>8+</sup> | Instantiates a **Locale** object.|
+| Locale | constructor(locale:string,options?:LocaleOptions) | Instantiates a **Locale** object based on the locale parameter and options.|
+| Locale | toString():string | Converts locale information into a string.|
+| Locale | maximize():Locale | Maximizes locale information.|
+| Locale | minimize():Locale | Minimizes locale information.|
 
 ### How to Develop
 
-1. Instantiate a **Locale** object.<br>
-   Create a **Locale** object by using the **Locale** constructor. This method receives a string representing the locale and an optional [Attributes](../reference/apis/js-apis-intl.md) list. 
+1. Import the **intl** module.
+
+   Importing an incorrect bundle can lead to unexpected API behavior.
+   
+   ```js
+   import Intl from '@ohos.intl';
+   ```
+
+2. Instantiates a **Locale** object.
+
+   Create a **Locale** object using the **Locale** constructor. This API receives a string representing the locale and an optional [attribute](../reference/apis/js-apis-intl.md#localeoptions) list. (Note that **intl** is the name of the imported module.)
 
    A **Locale** object consists of four parts: language, script, region, and extension, which are separated by using a hyphen (-).
    -  Language: mandatory. It is represented by a two-letter or three-letter code as defined in ISO-639. For example, **en** indicates English and **zh** indicates Chinese.
    -  Script: optional. It is represented by a four-letter code as defined in ISO-15924. The first letter is in uppercase, and the remaining three letters are in lowercase. For example, **Hant** represents the traditional Chinese, and **Hans** represents the simplified Chinese.
    -  Country or region: optional. It is represented by two-letter code as defined in ISO-3166. Both letters are in uppercase. For example, **CN** represents China, and **US** represents the United States.
-   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported (see BCP 47 Extensions). Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
+   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported (see BCP 47 Extensions). Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the latn digital system and chinese calendar system are used. Extensions can also be passed via the second parameter.
       | Extended Parameter ID| Description|
       | -------- | -------- |
       | ca | Calendar algorithm.|
@@ -38,289 +44,344 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
       | hc | Hour cycle.|
       | nu | Numbering system.|
       | kn | Whether numeric collation is used when sorting or comparing strings.|
-      | kf | Whether upper case or lower case is considered when sorting or comparing strings.|
+      | kf | Whether capitalization is considered when sorting or comparing strings.|
 
    
-   ```
-   var locale = "zh-CN";
-   var options = {caseFirst: false, calendar: "chinese", collation: pinyin};
-   var localeObj = new intl.Locale(locale, options);
+   ```js
+   let locale = "zh-CN";
+   let options = {caseFirst: "false", calendar: "chinese", collation: "pinyin"};
+   let localeObj = new Intl.Locale(locale, options);
    ```
 
-2. Obtain the string representing a **Locale** object.<br>
-   Call the **toString** method to obtain the string representing a **Locale** object, which includes the language, region, and other options.
+3. Obtain the string representing a **Locale** object.
+
+     Call **toString** to obtain the string representing a **Locale** object, including the language, region, and other options.
      
-   ```
-   var localeStr = localeObj.toString();
+   ```js
+   let localeStr = localeObj.toString(); // localeStr = "zh-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
-3. Maximize locale information.<br>
-   Call the **maximize** method to maximize locale information; that is, supplement the missing script and region information.
+4. Maximize locale information.
+
+     Call **maximize** to maximize locale information; that is, supplement the missing script and region information.
      
-   ```
-   var maximizedLocale = localeObj.maximize();
+   ```js
+   let maximizedLocale = localeObj.maximize();
+   let maximizedLocaleStr = maximizedLocale.toString(); // localeStr = "zh-Hans-CN-u-ca-chinese-co-pinyin-kf-false
    ```
 
-4. Minimize locale information.<br>
-   Call the **minimize** method to minimize locale information; that is, delete the unnecessary script and region information.
+5. Minimize locale information.
+
+     Call **minimize** to minimize locale information; that is, delete the unnecessary script and region information.
      
+   ```js
+   let minimizedLocale = localeObj.minimize();
+   let minimizedLocaleStr = minimizedLocale.toString(); // zh-u-ca-chinese-co-pinyin-kf-false
    ```
-   var minimizedLocale = localeObj.minimize();
-   ```
-
 
 ## Formatting the Date and Time
 
-Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date and time for a specific locale.
-
+[DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat) provides APIs to format the date and time for the specified locale.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **DateTimeFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: DateTimeOptions) | Creates a **DateTimeFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(date: Date): string | Calculates the date and time based on the locale and other formatting-related attributes of the **DateTimeFormat** object. | 
-| ohos.intl | formatRange(startDate: Date, endDate: Date): string | Calculates the period based on the locale and other formatting-related attributes of the **DateTimeFormat** object. | 
-| ohos.intl | resolvedOptions(): DateTimeOptions | Obtains the related attributes of the **DateTimeFormat** object. | 
-
+| DateTimeFormat | constructor()<sup>8+</sup> | Creates a **DateTimeFormat** object.|
+| DateTimeFormat | constructor(locale:string\|Array&lt;string&gt;,options?:DateTimeOptions) | Creates a **DateTimeFormat** object and sets the locale and other formatting-related attributes.|
+| DateTimeFormat | format(date:Date):string | Calculates the date and time based on the locale and other formatting-related attributes of the **DateTimeFormat** object.|
+| DateTimeFormat | formatRange(startDate:Date,endDate:Date):string | Calculates the period based on the locale and other formatting-related attributes of the **DateTimeFormat** object.|
+| DateTimeFormat | resolvedOptions():DateTimeOptions | Obtains the related attributes of the **DateTimeFormat** object.|
 
 ### How to Develop
 
-1. Instantiate a **DateTimeFormat** object.<br>
+1. Import the **intl** module.
+
+   Importing an incorrect bundle can lead to unexpected API behavior.
+   
+   ```js
+   import Intl from '@ohos.intl';
+   ```
+
+2. Instantiate a **DateTimeFormat** object.
+
    Use the default constructor of **DateTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **DateTimeFormat** object.
 
+   ```js
+   let dateTimeFormat = new Intl.DateTimeFormat();
+   ```
+
+     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9).
    
-   ```
-   var dateTimeFormat = new intl.DateTimeFormat();
-   ```
-
-   Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md).
-   
-   ```
-   var options = {dateStyle: "full", timeStyle: "full"};
-   var dateTimeFormat = new intl.DateTimeFormat("zh-CN", options);
+   ```js
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
    ```
 
-2. Format the date and time.<br>
-   Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
+3. Format the date and time.
+
+     Call **format** to format a **Date** object. A string is returned as the formatting result.
      
-   ```
-   Date date = new Date();
-   var formatResult = dateTimeFormat.format(date);
+   ```js
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
+   let date = new Date(2022, 12, 12, 12, 12, 12);
+   let formatResult = dateTimeFormat.format(date); // formatResult = "January 12, 2023, Thursday, 12:12:12 pm, China Standard Time"
    ```
 
-3. Format a period.<br>
-   Call the **formatRange** method to format the period in the **DateTimeFormat** object. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
+4. Format a period.
+
+     Call **formatRange** to format a period. This API requires the input of two **Date** objects, which respectively indicate the start date and end date of a period. A string is returned as the formatting result.
      
-   ```
-   Date startDate = new Date();
-   Date endDate = new Date();
-   var formatResult = dateTimeFormat.formatRange(startDate, endDate);
+   ```js
+   let startDate = new Date(2021, 11, 17, 3, 24, 0);
+   let endDate = new Date(2021, 11, 18, 3, 24, 0);
+   let datefmt = new Intl.DateTimeFormat("en-GB");
+   let formatRangeResult = datefmt.formatRange(startDate, endDate); // formatRangeResult = "17/12/2021-18/12/2021"
    ```
 
-4. Obtain attributes of the **DateTimeFormat** object.<br>
-   Call the **resolvedOptions** method to obtain attributes of the **DateTimeFormat** object. This method will return an array that contains all attributes and values of the object.
+5. Access the attributes of the **DateTimeFormat** object.
+
+     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **DateTimeFormat** object.
      
+   ```js
+   let options = {dateStyle: "full", timeStyle: "full"};
+   let dateTimeFormat = new Intl.DateTimeFormat("zh-CN", options);
+   let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
-   var options = dateTimeFormat.resolvedOptions();
-   ```
-
 
 ## Formatting Numbers
 
-Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format numbers for a specific locale.
-
+[NumberFormat](../reference/apis/js-apis-intl.md#numberformat) provides APIs to implement the number formatting specific to a locale.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **NumberFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: NumberOptions) | Creates a **NumberFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(number: number): string | Calculates the number based on the locale and other formatting-related attributes of the **NumberFormat** object. | 
-| ohos.intl | resolvedOptions(): NumberOptions | Obtains attributes of the **NumberFormat** object. | 
-
+| NumberFormat | constructor()<SUP>8+</SUP> | Creates a **NumberFormat** object for the specified locale.|
+| NumberFormat | constructor(locale:string\|Array&lt;string&gt;,options?:NumberOptions) | Creates a **NumberFormat** object and sets the locale and other formatting-related attributes.|
+| NumberFormat | format(number:number):string | Calculates the number based on the locale and other formatting-related attributes of the **NumberFormat** object.|
+| NumberFormat | resolvedOptions():NumberOptions | Obtains the attributes of the **NumberFormat** object.|
 
 ### How to Develop
 
-1. Instantiate a **NumberFormat** object.<br>
-   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **NumberFormat** object.
+1. Import the **intl** module.
 
+   Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```
-   var numberFormat = new intl.NumberFormat();
+   ```js
+   import Intl from '@ohos.intl';
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md).
+2. Instantiate a **NumberFormat** object.
+
+   Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **NumberFormat** object (**intl** is the name of the imported module).
+
+   ```js
+   let numberFormat = new Intl.NumberFormat();
+   ```
+
+     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9).
    
-   ```
-   var options = {compactDisplay: "short", notation: "compact"};
-   var numberFormat = new intl.NumberFormat("zh-CN", options);
+   ```js
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
    ```
 
-2. Format a number.<br>
-   Call the **format** method to format a number. A string is returned as the formatting result.
+3. Format a number.
+
+     Call **format** to format a number. A string is returned as the formatting result.
      
-   ```
-   var number = 1234.5678
-   var formatResult = numberFormat.format(number);
+   ```js
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
+   let number = 1234.5678;
+   let formatResult = numberFormat.format(number); // formatResult = "1235"
    ```
 
-3. Obtain attributes of the **NumberFormat** object.<br>
-   Call the **resolvedOptions** method to obtain attributes of the **NumberFormat** object. This method will return an array that contains all attributes and values of the object.
+4. Access the attributes of the **NumberFormat** object.
+
+     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **NumberFormat** object.
      
+   ```js
+   let options = {compactDisplay: "short", notation: "compact"};
+   let numberFormat = new Intl.NumberFormat("zh-CN", options);
+   let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
-   var options = numberFormat.resolvedOptions();
-   ```
-
 
 ## Sorting Strings
 
-Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on a specific locale. Users in different regions have different preferences for string sorting.
-
+Users in different regions have different requirements for string sorting. [Collator](../reference/apis/js-apis-intl.md#collator8) provides APIs to sort character strings specific to a locale.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **Collator** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: CollatorOptions)<sup>8+</sup> | Creates a **Collator** object and sets the locale and other related attributes. | 
-| ohos.intl | compare(first: string, second: string): number<sup>8+</sup> | Calculates the comparison result of two strings based on the locale and other attributes of the **Collator** object. | 
-| ohos.intl | resolvedOptions(): CollatorOptions<sup>8+</sup> | Obtains attributes of the **Collator** object. | 
-
+| Collator | constructor()<sup>8+</sup> | Creates a **Collator** object.|
+| Collator | constructor(locale:string\|Array&lt;string&gt;,options?:CollatorOptions)<sup>8+</sup> | Creates a **Collator** object and sets the locale and other related attributes.|
+| Collator | compare(first:string,second:string):number<sup>8+</sup> | Calculates the comparison result of two strings based on the locale and other attributes of the **Collator** object.|
+| Collator | resolvedOptions():CollatorOptions<sup>8+</sup> | Obtains the attributes of the **Collator** object.|
 
 ### How to Develop
 
-1. Instantiate a **Collator** object.<br>
-   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **Collator** object.
+1. Import the **intl** module.
 
+   Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```
-   var collator = new intl.Collator();
+   ```js
+   import Intl from '@ohos.intl';
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md).
+2. Instantiate a **Collator** object.
+
+   Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **Collator** object (**intl** is the name of the imported module).
+
+   ```js
+   let collator = new Intl.Collator();
+   ```
+
+     Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
+     The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
    
-   ```
-   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"};
+   ```js
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
    ```
 
-2. Compare two strings.<br>
-   Call the **compare** method to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths.
+3. Compare two strings.
+
+     Call **compare** to compare two input strings. This API returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths. This allows you to sort character strings based on the comparison result.
      
-   ```
-   var str1 = "first string";
-   var str2 = "second string";
-   var compareResult = collator.compare(str1, str2);
+   ```js
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort", sensitivity: "case"});
+   let str1 = "first string";
+   let str2 = "second string";
+   let compareResult = collator.compare(str1, str2); // compareResult = -1
+   str1 = "first";
+   str2 = "First";
+   compareResult = collator.compare(str1, str2); // compareResult = -1
    ```
 
-3. Obtain attributes of the **Collator** object.<br>
-   Call the **resolvedOptions** method to obtain attributes of the **Collator** object. This method will return an array that contains all attributes and values of the object.
+4. Access the attributes of the **Collator** object.
+
+     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **Collator** object.
      
+   ```js
+   let collator= new Intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
+   let options = collator.resolvedOptions(); // options = {"localeMatcher": "best fit", "locale": "zh-CN", "usage": "sort", "sensitivity": "variant", "ignorePunctuation": "false", "numeric": false, "caseFirst": "false", "collation": "default"}
    ```
-   var options = collator.resolvedOptions();
-   ```
-
 
 ## Determining the Singular-Plural Type
 
-Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singular-plural type for a specific locale. According to the grammar of certain languages, the singular or plural form of a noun depends on its preceding number.
-
+According to grammars in certain languages, the singular or plural form of a noun depends on the number prior to the noun. [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) provides APIs to determine the singular-plural type for a specific locale.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **PluralRules** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: PluralRulesOptions)<sup>8+</sup> | Creates a **PluralRules** object and sets the locale and other related attributes. | 
-| ohos.intl | select(n: number): string<sup>8+</sup> | Determines the singular-plural type based on the locale and other formatting-related attributes of the **PluralRules** object. | 
+| PluralRules | constructor()<sup>8+</sup> | Creates a **PluralRules** object.|
+| PluralRules | constructor(locale:string\|Array&lt;string&gt;,options?:PluralRulesOptions)<sup>8+</sup> | Creates a **PluralRules** object and sets the locale and other related attributes.|
+| PluralRules | select(n:number):string<sup>8+</sup> | Determines the singular-plural type based on the locale and other formatting-related attributes of the **PluralRules** object.|
 
 
 ### How to Develop
 
-1. Instantiate a **PluralRules** object.<br>
-   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **PluralRules** object.
+1. Import the **intl** module.
 
+   Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```
-   var pluralRules = new intl.PluralRules();
+   ```js
+   import Intl from '@ohos.intl';
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md).
+2. Instantiate a **PluralRules** object.
+
+   Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **PluralRules** object (**intl** is the name of the imported module).
+
+   ```js
+   let pluralRules = new Intl.PluralRules();
+   ```
+
+     Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
    
-   ```
-   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"};
+   ```js
+   let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
-2. Determine the singular-plural type.<br>
-   Call the **select** method to determine the singular-plural type of an input number. This method will return a string representing the singular-plural type, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
+3. Determine the singular-plural type.
+
+     Call **select** to determine the singular-plural type for an input number. This API returns a string as the category of the input number, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
      
+   ```js
+   let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
+   let number = 1234.5678;
+   let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
-   var number = 1234.5678
-   var categoryResult = plurals.select(number);
-   ```
-
 
 ## Formatting the Relative Time
 
-Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the relative time for a specific locale.
-
+[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) provides APIs to format the relative time for a specific locale.
 
 ### Available APIs
 
-| Module | API | Description | 
+| Class| API| Description|
 | -------- | -------- | -------- |
-| ohos.intl | constructor()<sup>8+</sup> | Creates a **RelativeTimeFormat** object. | 
-| ohos.intl | constructor(locale: string \| Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)<sup>8+</sup> | Creates a **RelativeTimeFormat** object and sets the locale and other formatting-related attributes. | 
-| ohos.intl | format(value: number, unit: string): string<sup>8+</sup> | Calculates the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
-| ohos.intl | formatToParts(value: number, unit: string): Array&lt;object&gt;<sup>8+</sup> | Returns each part of the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object. | 
-| ohos.intl | resolvedOptions(): RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains attributes of the **RelativeTimeFormat** object. | 
-
+| RelativeTimeFormat | constructor()<sup>8+</sup> | Creates a **RelativeTimeFormat** object.|
+| RelativeTimeFormat | constructor(locale:string\|Array&lt;string&gt;,options?:RelativeTimeFormatInputOptions)<sup>8+</sup> | Creates a **RelativeTimeFormat** object and sets the locale and other formatting-related attributes.|
+| RelativeTimeFormat | format(value:number,unit:string):string<sup>8+</sup> | Calculates the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object.|
+| RelativeTimeFormat | formatToParts(value:number,unit:string):Array&lt;object&gt;<sup>8+</sup> | Obtains each part of the relative time format based on the locale and other formatting-related attributes of the **RelativeTimeFormat** object.|
+| RelativeTimeFormat | resolvedOptions():RelativeTimeFormatResolvedOptions<sup>8+</sup> | Obtains the attributes of the **RelativeTimeFormat** object.|
 
 ### How to Develop
 
-1. Instantiate a **RelativeTimeFormat** object.<br>
-   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **RelativeTimeFormat** object.
+1. Import the **intl** module.
 
+   Importing an incorrect bundle can lead to unexpected API behavior.
    
-   ```
-   var relativeTimeFormat = new intl.RelativeTimeFormat();
+   ```js
+   import Intl from '@ohos.intl';
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md).
+2. Instantiate a **RelativeTimeFormat** object.
+
+   Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings and set it as the locale in the **RelativeTimeFormat** object (**intl** is the name of the imported module).
    
-   ```
-   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"};
+   ```js
+   let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-2. Format the relative time.<br>
-   Call the **format** method to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
+     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
+   
+   ```js
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   ```
+
+3. Format the relative time.
+
+     Call **format** to format the relative time. This API receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. A string is returned as the formatting result.
      
-   ```
-   var number = 2;
-   var unit = "year"
-   var formatResult = relativeTimeFormat.format(number, unit);
+   ```js
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let number = 2;
+   let unit = "year";
+   let formatResult = relativeTimeFormat.format(number, unit); // 2 years later
    ```
 
-3. Obtain each part of the relative time format.<br>
-   Upon obtaining each part of the relative time format, customize the relative time formatting result.
+4. Obtain each part of the relative time format.
+
+     On obtaining each part of the relative time format, customize the relative time formatting result.
      
-   ```
-   var number = 2;
-   var unit = "year"
-   var formatResult = relativeTimeFormat.formatToParts(number, unit);
+   ```js
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let number = 2;
+   let unit = "year";
+   let formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "years later"}]
    ```
 
-4. Obtain attributes of the **RelativeTimeFormat** object.<br>
-   Call the **resolvedOptions** method to obtain attributes of the **RelativeTimeFormat** object. This method will return an array that contains all attributes and values of the object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
+5. Access the attributes of the **RelativeTimeFormat** object.
+
+     Call **resolvedOptions** to obtain an object that contains all related attributes and values of the **RelativeTimeFormat** object. For a full list of attributes, see [RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md#relativetimeformatresolvedoptions8).
      
+   ```js
+   let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
+   let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-   var options = numberFormat.resolvedOptions();
-   ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/UI/International)

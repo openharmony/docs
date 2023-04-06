@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过createWebSocket方法创建WebSocket对象，然后通过connect方法连接到服务器。当连接成功后，客户端会收到open事件的回调，之后客户端就可以通过send方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到message事件的回调。当客户端不要此连接时，可以通过调用close方法主动断开连接，之后客户端会收到close事件的回调。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过createWebSocket()方法创建WebSocket对象，然后通过connect()方法连接到服务器。当连接成功后，客户端会收到open事件的回调，之后客户端就可以通过send()方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到message事件的回调。当客户端不要此连接时，可以通过调用close()方法主动断开连接，之后客户端会收到close事件的回调。
 
 若在上述任一过程中发生错误，客户端会收到error事件的回调。
 
@@ -18,23 +18,23 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
 | connect() | 根据URL地址，建立一个WebSocket连接。 |
 | send() | 通过WebSocket连接发送数据。 |
 | close() | 关闭WebSocket连接。 |
-| on(type:&nbsp;'open') | 订阅WebSocket的打开事件。 |
-| off(type:&nbsp;'open') | 取消订阅WebSocket的打开事件。 |
-| on(type:&nbsp;'message') | 订阅WebSocket的接收到服务器消息事件。 |
-| off(type:&nbsp;'message') | 取消订阅WebSocket的接收到服务器消息事件。 |
-| on(type:&nbsp;'close') | 订阅WebSocket的关闭事件。 |
-| off(type:&nbsp;'close') | 取消订阅WebSocket的关闭事件 |
-| on(type:&nbsp;'error') | 订阅WebSocket的Error事件。 |
-| off(type:&nbsp;'error') | 取消订阅WebSocket的Error事件。 |
+| on(type: 'open') | 订阅WebSocket的打开事件。 |
+| off(type: 'open') | 取消订阅WebSocket的打开事件。 |
+| on(type: 'message') | 订阅WebSocket的接收到服务器消息事件。 |
+| off(type: 'message') | 取消订阅WebSocket的接收到服务器消息事件。 |
+| on(type: 'close') | 订阅WebSocket的关闭事件。 |
+| off(type: 'close') | 取消订阅WebSocket的关闭事件 |
+| on(type: 'error') | 订阅WebSocket的Error事件。 |
+| off(type: 'error') | 取消订阅WebSocket的Error事件。 |
 
 
 ## 开发步骤
 
-1. import需要的webSocket模块。
+1. 导入需要的webSocket模块。
 
 2. 创建一个WebSocket连接，返回一个WebSocket对象。
 
-3. （可选）订阅WebSocket的打开、消息、关闭、Error事件。
+3. （可选）订阅WebSocket的打开、消息接收、关闭、Error事件。
 
 4. 根据URL地址，发起WebSocket连接。
 
@@ -50,9 +50,9 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
        // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
        ws.send("Hello, server!", (err, value) => {
            if (!err) {
-               console.log("send success");
+               console.log("Message sent successfully");
            } else {
-               console.log("send fail, err:" + JSON.stringify(err));
+               console.log("Failed to send the message. Err:" + JSON.stringify(err));
            }
        });
    });
@@ -62,9 +62,9 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
        if (value === 'bye') {
            ws.close((err, value) => {
                if (!err) {
-                   console.log("close success");
+                   console.log("Connection closed successfully");
                } else {
-                   console.log("close fail, err is " + JSON.stringify(err));
+                   console.log("Failed to close the connection. Err: " + JSON.stringify(err));
                }
            });
        }
@@ -77,9 +77,14 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
    });
    ws.connect(defaultIpAddress, (err, value) => {
        if (!err) {
-           console.log("connect success");
+           console.log("Connected successfully");
        } else {
-           console.log("connect fail, err:" + JSON.stringify(err));
+           console.log("Connection failed. Err:" + JSON.stringify(err));
        }
    });
    ```
+
+## 相关实例
+
+针对WebSocket连接的开发，有以下相关实例可供参考：
+- [`WebSocket`：WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/WebSocket)

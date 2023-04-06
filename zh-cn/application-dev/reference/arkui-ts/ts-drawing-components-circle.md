@@ -1,15 +1,10 @@
 # Circle
 
+ 用于绘制圆形的组件。 
+
 >  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-圆形绘制组件。
-
-
-## 权限列表
-
-无
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,26 +14,34 @@
 
 ## 接口
 
-Circle(options?: {width: Length, height: Length})
+Circle(options?: {width?: string | number, height?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | 否 | - | 见options参数说明。 |
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-- options参数说明
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | 是 | - | 宽度。 | 
-  | height | Length | 是 | - | 高度。 | 
+**参数：**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br>默认值：0 |
+| height | string \| number | 否 | 高度。<br>默认值：0 |
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
-| -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | 否 | 圆所在矩形的宽度。 | 
-| height | Length | 0 | 否 | 圆所在矩形的高度。 | 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 类型 | 描述 |
+| -------- | -------- | -------- |
+| fill | [ResourceColor](ts-types.md) | 设置填充区域颜色。<br>默认值：Color.Black<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 设置填充区域透明度。<br>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| stroke | [ResourceColor](ts-types.md) | 设置边框颜色，不设置时，默认没有边框。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeDashArray | Array&lt;Length&gt; | 设置边框间隙。<br>默认值：[]<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string  | 边框绘制起点的偏移量。<br>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | 设置边框端点绘制样式。<br>默认值：LineCapStyle.Butt<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | 设置边框拐角绘制样式。<br>默认值：LineJoinStyle.Miter<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Circle组件无法形成拐角，该属性设置无效。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 设置斜接长度与边框宽度比值的极限值。<br>默认值：4<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Circle组件无法设置尖角图形，该属性设置无效。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 设置边框透明度。<br>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 |
+| strokeWidth | Length | 设置边框宽度。<br>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。 |
+| antiAlias | boolean | 是否开启抗锯齿效果。<br>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例
@@ -49,12 +52,18 @@ Circle(options?: {width: Length, height: Length})
 @Component
 struct CircleExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+    Column({ space: 10 }) {
       // 绘制一个直径为150的圆
       Circle({ width: 150, height: 150 })
-      // 绘制一个直径为150的圆
-      Circle().width(150).height(150)
-    }.width('100%').margin({ top: 5 })
+      // 绘制一个直径为150、线条为红色虚线的圆环（宽高设置不一致时以短边为直径）
+      Circle()
+        .width(150)
+        .height(200)
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .stroke(Color.Red)
+        .strokeDashArray([1, 2])
+    }.width('100%')
   }
 }
 ```

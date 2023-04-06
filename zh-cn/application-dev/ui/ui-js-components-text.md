@@ -1,20 +1,20 @@
-# Text
+# text开发指导
 
-Text是文本组件，用于呈现一段文本信息。具体用法请参考[Text API](../reference/arkui-js/js-components-basic-text.md)。
+text是文本组件，用于呈现一段文本信息。具体用法请参考[text API](../reference/arkui-js/js-components-basic-text.md)。
 
 
-## 创建Text组件
+## 创建text组件
 
-在pages/index目录下的hml文件中创建一个Text组件。
+在pages/index目录下的hml文件中创建一个text组件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container" style="text-align: center;justify-content: center; align-items: center;">
   <text>Hello World</text>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -29,13 +29,13 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 ![zh-cn_image_0000001211383427](figures/zh-cn_image_0000001211383427.png)
 
 
-## 设置Text组件样式和属性
+## 设置text组件样式和属性
 
 - 添加文本样式
 
   设置color、font-size、allow-scale、word-spacing、text-valign属性分别为文本添加颜色、大小、缩放、文本之间的间距和文本在垂直方向的对齐方式。 
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container" style="background-color:#F1F3F5;flex-direction: column;justify-content: center; align-items: center;">   
     <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
@@ -47,7 +47,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   </div> 
   ```
 
-  ```
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -65,9 +65,9 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
 - 添加划线
 
-  设置text-decoration和text-decoration-colo属性为文本添加划线和划线颜色，text-decoration枚举值请参考    Text自有样式。
+  设置text-decoration和text-decoration-colo属性为文本添加划线和划线颜色，text-decoration枚举值请参考    text自有样式。
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container" style="background-color:#F1F3F5;">
     <text style="text-decoration:underline">
@@ -79,7 +79,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   </div>
   ```
 
-  ```
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -101,7 +101,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
   当文本内容过多而显示不全时，添加text-overflow属性将隐藏内容以省略号的形式展现。
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container">
     <text class="text">
@@ -110,7 +110,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   </div>
   ```
 
-  ```
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -136,9 +136,9 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
 - 设置文本折行
 
-  设置word-break属性对文本内容做断行处理，word-break枚举值请参考Text自有样式。
+  设置word-break属性对文本内容做断行处理，word-break枚举值请参考text自有样式。
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container">
     <div class="content">
@@ -152,7 +152,7 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   </div>
   ```
 
-  ```
+  ```css
   /* xxx.css */
   .container {
     width: 100%;
@@ -190,9 +190,9 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
 
   ​    ![zh-cn_image_0000001209033195](figures/zh-cn_image_0000001209033195.png)
 
-- Text组件支持[Span](../reference/arkui-js/js-components-basic-span.md)子组件
+- text组件支持[Span](../reference/arkui-js/js-components-basic-span.md)子组件
 
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container" style="justify-content: center; align-items: center;flex-direction: column;background-color: #F1F3F5;  width: 100%;height: 100%;">
     <text style="font-size: 45px;">
@@ -208,17 +208,17 @@ Text是文本组件，用于呈现一段文本信息。具体用法请参考[Tex
   ```
 
   ![zh-cn_image_0000001163372568](figures/zh-cn_image_0000001163372568.png)
-    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+    > **说明：**
     > - 当使用Span子组件组成文本段落时，如果Span属性样式异常（例如：font-weight设置为1000），将导致文本段落显示异常。
     >
-    > - 在使用Span子组件时，注意Text组件内不能存在文本内容，如果存在文本内容也只会显示子组件Span里的内容。
+    > - 在使用Span子组件时，注意text组件内不能存在文本内容，如果存在文本内容也只会显示子组件Span里的内容。
 
 
 ## 场景示例
 
-Text组件通过数据绑定展示文本内容，Span组件通过设置show属性来实现文本内容的隐藏和显示。
+text组件通过数据绑定展示文本内容，Span组件通过设置show属性来实现文本内容的隐藏和显示。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="align-items: center;justify-content: center;">
@@ -237,7 +237,7 @@ Text组件通过数据绑定展示文本内容，Span组件通过设置show属�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -255,7 +255,7 @@ Text组件通过数据绑定展示文本内容，Span组件通过设置show属�
 }
 ```
 
-```
+```js
 // xxx.js
 export default {   
   data: {    
@@ -274,6 +274,6 @@ export default {
 
 ## 相关实例
 
-针对Text开发，有以下相关实例可供参考：
+针对text开发，有以下相关实例可供参考：
 
-- [`JsTextComponents`：基础组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsBasicComponents)
+- [`JstextComponents`：基础组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsBasicComponents)

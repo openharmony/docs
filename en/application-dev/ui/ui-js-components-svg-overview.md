@@ -4,7 +4,7 @@
 The **&lt;svg&gt;** component is used as the root node of the SVG canvas and can be nested in the SVG. For details, see [svg](../reference/arkui-js/js-components-svg.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - The APIs of this component are supported since API version 7.
 > 
 > - The width and height must be defined for the **&lt;svg&gt;** parent component or **&lt;svg&gt;** component. Otherwise, the component is not drawn.
@@ -15,7 +15,7 @@ The **&lt;svg&gt;** component is used as the root node of the SVG canvas and can
 Create a **&lt;svg&gt;** component in the .hml file under **pages/index**.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="400" height="400">  </svg>
@@ -23,7 +23,7 @@ Create a **&lt;svg&gt;** component in the .hml file under **pages/index**.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -46,18 +46,18 @@ svg{
 Set the **width**, **height**, **x**, **y**, and **viewBox** attributes to define the width, height, X coordinate, Y coordinate, and SVG viewport of the **&lt;svg&gt;** component.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
- <svg width="400" height="400" viewBox="0 0 100 100">
-    <svg class="rect" width="100" height="100" x="20" y="10">
-    </svg>
+  <svg width="400" height="400" viewBox="0 0 100 100">    
+    <svg class="rect" width="100" height="100" x="20" y="10">    
+    </svg>  
   </svg>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -77,7 +77,8 @@ svg{
 
 ![en-us_image_0000001231683152](figures/en-us_image_0000001231683152.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > - If the **&lt;svg&gt;** component is the root node, the X-axis and Y-axis attributes are invalid.
-> 
+>
 > - If the width and height of **viewBox** are inconsistent with those of the **&lt;svg&gt;** component, the view box will be scaled in center-aligned mode.

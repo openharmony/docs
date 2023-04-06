@@ -26,11 +26,11 @@
 
 1. 获取源码
 
-   OpenHarmony版本发布的源码获取请参考：[源码获取教程](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)
+   OpenHarmony版本发布的源码获取请参考：[源码获取教程](../get-code/sourcecode-acquire.md)
 
 2. 环境准备
 
-   环境配置所需要的Kconfiglib已内置在OpenHarmony自带的hb工具中，如需安装hb工具，可参考：[hb安装教程](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md#%E5%AE%89%E8%A3%85hb)
+   环境配置所需要的Kconfiglib已内置在OpenHarmony自带的hb工具中，如需安装hb工具，可参考：[hb安装教程](../quick-start/quickstart-pkg-install-tool.md#安装hb)
 
 3. 开启可视化配置界面
 
@@ -44,7 +44,7 @@
 
 4. 参数填写
 
-   参数配置项可以参考：[productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json)
+   参数配置项可以参考：productdefine/common/base/base_product.json
 
    ![参数填写](figures/kconfig参数输入.gif)
 
@@ -99,16 +99,16 @@
 
 ### 菜单列表缺失最新部件信息
 
-由于产品不断的更新迭代，全量部件列表[productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json)也会随之不断更新，从而导致Kconfig菜单缺少最新部件。
+由于产品不断的更新迭代，全量部件列表productdefine/common/base/base_product.json也会随之不断更新，从而导致Kconfig菜单缺少最新部件。
 
 解决办法：
 
-- 更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)
+更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)
 
-  ```shell
-  cd build/tools/component_tools
-  python3 generate_kconfig.py
-  ```
+```shell
+cd build/tools/component_tools
+python3 generate_kconfig.py
+```
 
-  更多选项通过`python3 generate_kconfig.py -h`查看。
+更多选项通过`python3 generate_kconfig.py -h`查看。
 

@@ -1,4 +1,4 @@
-# Contribution Guide<a name="EN-US_TOPIC_0000001053389134"></a>
+# Contribution Guide
 
 -   **[How to Contribute](how-to-contribute.md)**
 -   **[Code of Conduct](code-of-conduct.md)**

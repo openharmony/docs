@@ -1,15 +1,12 @@
 # Flex
 
+以弹性方式布局子组件的容器组件。
+
 > **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-弹性布局组件。
-
-
-## 权限列表
-
-无
+>
+> - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
+> - Flex组件主轴默认不设置时撑满父容器，[Column](ts-container-column.md)、[Row](ts-container-row.md)组件主轴不设置时默认是跟随子节点大小。
 
 
 ## 子组件
@@ -19,43 +16,21 @@
 
 ## 接口
 
-Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
+Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
 
 标准Flex布局容器。
 
-- 参数
-  | 参数名            | 参数类型                                     | 必填   | 默认值               | 参数描述                                     |
-  | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-  | direction      | FlexDirection                            | 否    | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。                 |
-  | wrap           | FlexWrap                                 | 否    | FlexWrap.NoWrap   | Flex容器是单行/列还是多行/列排列。                     |
-  | justifyContent | FlexAlign                                | 否    | FlexAlign.Start   | 子组件在Flex容器主轴上的对齐格式。                      |
-  | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign枚举说明) | 否    | ItemAlign.Stretch | 子组件在Flex容器交叉轴上的对齐格式。                     |
-  | alignContent   | FlexAlign                                | 否    | FlexAlign.Start   | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-- FlexDirection枚举说明
-  | 名称            | 描述               |
-  | ------------- | ---------------- |
-  | Row           | 主轴与行方向一致作为布局模式。  |
-  | RowReverse    | 与Row方向相反方向进行布局。  |
-  | Column        | 主轴与列方向一致作为布局模式。  |
-  | ColumnReverse | 与Column相反方向进行布局。 |
+**参数:**
 
-- FlexWrap枚举说明
-  | 名称          | 描述                          |
-  | ----------- | --------------------------- |
-  | NoWrap      | Flex容器的元素单行/列布局，子项允许超出容器。   |
-  | Wrap        | Flex容器的元素多行/列排布，子项允许超出容器。   |
-  | WrapReverse | Flex容器的元素反向多行/列排布，子项允许超出容器。 |
-
-- FlexAlign枚举说明
-  | 名称           | 描述                                       |
-  | ------------ | ---------------------------------------- |
-  | Start        | 元素在主轴方向首端对齐,&nbsp;第一个元素与行首对齐，同时后续的元素与前一个对齐。 |
-  | Center       | 元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。   |
-  | End          | 元素在主轴方向尾部对齐,&nbsp;&nbsp;最后一个元素与行尾对齐，其他元素与后一个对齐。 |
-  | SpaceBetween | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。&nbsp;第一个元素与行首对齐，最后一个元素与行尾对齐。 |
-  | SpaceAround  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。&nbsp;第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。 |
-  | SpaceEvenly  | Flex主轴方向元素等间距布局，&nbsp;相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 |
+| 参数名            | 参数类型                                     | 必填   | 默认值               | 参数描述                                     |
+| -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | 否    | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。                |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | 否    | FlexWrap.NoWrap   | Flex容器是单行/列还是多行/列排列。<br/>**说明：** <br/>在多行布局时，通过交叉轴方向，确认新行堆叠方向。 |
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 所有子组件在Flex容器主轴上的对齐格式。                    |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否    | ItemAlign.Start | 所以子组件在Flex容器交叉轴上的对齐格式。                   |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
 
 
 ## 示例
@@ -121,7 +96,7 @@ struct FlexExample1 {
 }
 ```
 
-![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.gif)
+![zh-cn_image_0000001219744189](figures/zh-cn_image_0000001219744189.PNG)
 
 ```ts
 // xxx.ets
@@ -173,7 +148,7 @@ struct FlexExample2 {
 // xxx.ets
 @Component
 struct JustifyContentFlex {
-  @Prop justifyContent : number
+  justifyContent : number
 
   build() {
     Flex({ justifyContent: this.justifyContent }) {
@@ -216,13 +191,13 @@ struct FlexExample3 {
 }
 ```
 
-![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.gif)
+![zh-cn_image_0000001174582854](figures/zh-cn_image_0000001174582854.PNG)
 
 ```ts
 // xxx.ets
 @Component
 struct AlignItemsFlex {
-  @Prop alignItems : number
+  alignItems : number
 
   build() {
     Flex({ alignItems: this.alignItems }) {
@@ -267,13 +242,11 @@ struct FlexExample4 {
 
 ![zh-cn_image_0000001174422904](figures/zh-cn_image_0000001174422904.jpg)
 
-![zh-cn_image_0000001219662653](figures/zh-cn_image_0000001219662653.gif)
-
 ```ts
 // xxx.ets
 @Component
 struct AlignContentFlex {
-  @Prop alignContent: number
+  alignContent: number
 
   build() {
     Flex({ wrap: FlexWrap.Wrap, alignContent: this.alignContent }) {
@@ -316,4 +289,4 @@ struct FlexExample5 {
 }
 ```
 
-![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.gif)
+![zh-cn_image_0000001174422906](figures/zh-cn_image_0000001174422906.PNG)

@@ -14,9 +14,7 @@
 -   Sensor订阅/去订阅
 -   设置数据上报模式等
 
-泛Sensor服务框架如下图所示：
-
-**图1**  泛Sensor服务框架图
+ **泛Sensor服务框架图如下所示：** 
 
 ![](figures/zh-cn_image_0000001106694563.png)
 

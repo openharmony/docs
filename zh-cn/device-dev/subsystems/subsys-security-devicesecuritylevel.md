@@ -34,7 +34,7 @@ OpenHarmony设备安全等级管理（DSLM）模块，负责管理各种不同�
 
 - DSLM
 
-  DSLM(Device Security Level Managerment), 是OpenHarmony设备安全等级管理的管理模块。负责各OpenHarmony设备之间的设备安全等级信息的同步和验证。并对外提供查询各设备的安全等级的接口。
+  DSLM(Device Security Level Management), 是OpenHarmony设备安全等级管理的管理模块。负责各OpenHarmony设备之间的设备安全等级信息的同步和验证。并对外提供查询各设备的安全等级的接口。
 
 ### 运作机制
 
@@ -42,7 +42,9 @@ OpenHarmony设备安全等级管理（DSLM）模块，负责管理各种不同�
 
 ### 约束与限制
 
-OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备实际情况定制更高的安全等级。详细请参考章节[设备安全等级定制](#设备安全等级定制)。
+OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备实际情况定制更高的安全等级。详细请参考章节[定制设备安全等级](#定制设备安全等级)。
+
+应用开发者在调试分布式业务时，如遇到因设备安全等级过低而导致数据处理或流转失败的情况时，也可以参考章节[工具使用介绍](#工具使用介绍)临时提升相关设备的安全等级。
 
 ## 开发指导
 
@@ -109,7 +111,7 @@ OpenHarmony设备的默认安全等级为SL1，设备制造商可以根据设备
 - 当目标设备的设备安全等级大于或者等于SL3时，默认允许该文件的传递。
 - 当目标设备的设备安全等级小于SL3时，默认拒绝该文件的外传，同时弹框告知用户。
 
-1. 同步接口使用示例
+同步接口使用示例
 
 ```cpp
 void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *option)
@@ -142,7 +144,7 @@ void CheckDestDeviceSecurityLevel(const DeviceIdentify *device, RequestOption *o
 }
 ```
 
-1. 异步接口使用示例
+异步接口使用示例
 
 ```cpp
 // 回调函数
@@ -180,7 +182,7 @@ void CheckDestDeviceSecurityLevelAsync(const DeviceIdentify *device, RequestOpti
 }
 ```
 
-## 设备安全等级定制
+## 定制设备安全等级
 
 ### 设备安全等级凭据
 
@@ -192,7 +194,7 @@ OpenHarmony的设备安全等级管理模块提供了安全等级信息同步与
 
 设备制造商可以根据设备实际情况，参考[基本概念](#基本概念)章节的描述，修改默认的设备安全等级信息。与此同时，设备制造商还可以将OpenHarmony中的默认实现替换为更加严格的验证策略，包括但不限于采用更加精确的一机一凭据策略、从服务器定期下载更新的凭据并严格认证凭据的签发者和有效期、使用TEE(Trusted Execution Environment)甚至SE(Secure Element)对凭据文件进行进一步的签名等流程。
 
-### 凭据文件生成步骤
+### 生成凭据文件
 
 凭据文件为4段BASE64编码的字符串，中间用"."链接，示例如下：
 
@@ -427,7 +429,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
 2. 凭据文件的生成：
 
-   生成一个名为cred.txt的凭据文件，并指定设备型号为rk3568、设备版本号为3.0.0、设备安全等级为SL3等payload信息。
+    生成一个名为cred.txt的凭据文件，并指定设备型号为rk3568、设备版本号为3.0.0、设备安全等级为SL3等payload信息。
 
     ``` undefined
     ./dslm_cred_tool.py create --field-manufacture OHOS --field-brand rk3568  --field-model rk3568 --field-software-version 3.0.0 --field-security-level SL3 --cred-file cred.txt
@@ -467,6 +469,24 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
     verify success!
     ```
 
+4. 将生成的凭据文件推送到调试设备中并使之生效：
+   
+   临时关闭系统写保护：
+   ``` undefined
+   hdc_std target mount
+   hdc_std shell "setenforce 0"
+   ```
+
+   将刚刚生成的凭据文件推送到设备中：
+   ``` undefined
+   hdc_std file send cred.txt  /system/etc/dslm_finger.cfg
+   ```
+
+   重启设备使新的凭据文件生效：
+   ``` undefined
+   hdc_std reboot
+   ```
+
 ## 常见问题
 
 - Q：凭据工具如何在真实的生产环境中使用？
@@ -477,6 +497,6 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
     A：我们建议设备制造商使用妥善保管的私钥对凭据文件进行签名，同时替换OpenHarmony中对于凭据文件的默认校验流程，增加对凭据签名者的严格校验。例如仅认可信任机构签发的凭据文件、增加凭据和设备ID的一对一强绑定等校验。
 
-## 参考资料
+- Q：OpenHarmony设备的默认安全等级为SL1，此级别偏低。导致一些分布式业务（如分布式文件系统）在处理部分敏感数据时因权限不足而失败，该如何解决？
 
-无
+    A：请参考章节[工具使用介绍](#工具使用介绍)临时提升相关调试设备的安全等级。

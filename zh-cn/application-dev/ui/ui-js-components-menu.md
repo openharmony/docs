@@ -1,15 +1,15 @@
-# Menu
+# menu开发指导
 
 
-提供菜单组件，作为临时性弹出窗口，用于展示用户可执行的操作，具体用法请参考[Menu](../reference/arkui-js/js-components-basic-menu.md)。
+提供菜单组件，作为临时性弹出窗口，用于展示用户可执行的操作，具体用法请参考[menu](../reference/arkui-js/js-components-basic-menu.md)。
 
 
-## 创建Menu组件
+## 创建menu组件
 
-在pages/index目录下的hml文件中创建一个Menu组件，添加target、type、title属性。
+在pages/index目录下的hml文件中创建一个menu组件，添加target、type、title属性。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text class="title-text" id="textId">show menu</text>
@@ -22,7 +22,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -40,10 +40,10 @@
 
 ![zh-cn_image_0000001226815299](figures/zh-cn_image_0000001226815299.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - Menu仅支持[option](../reference/arkui-js/js-components-basic-option.md)子组件。
-> 
-> - Menu组件不支持focusable、disabled属性。
+> **说明：**
+> - menu仅支持[option](../reference/arkui-js/js-components-basic-option.md)子组件。
+>
+> - menu组件不支持focusable、disabled属性。
 
 
 ## 设置样式
@@ -51,7 +51,7 @@
 为menu组件设置样式，例如字体颜色、大小、字符间距等。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text class="title-text" id="textId">show menu</text>
@@ -64,7 +64,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -103,7 +103,7 @@ option{
 为menu组件绑定onselected事件（菜单中某个值被点击选中时触发）和oncancel事件（取消操作时触发），点击text组件调用show方法可设置menu组件的坐标。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text  class="title-text" id="textId" onclick="textClick">show menu</text>
@@ -116,7 +116,7 @@ option{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -148,17 +148,17 @@ option{
 ```
 
 
-```
-// index.js
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   select(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: e.value
     })
   },
   cancel(){
-    prompt.showToast({
+    promptAction.showToast({
       message: "cancel"
     })
   },
@@ -176,7 +176,7 @@ export default {
 本场景中开发者可点击toggle组件修改文字颜色，选择menu组件修改渐变色块大小。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <div class="contentToggle">
@@ -192,7 +192,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -240,9 +240,9 @@ option{
 ```
 
 
-```
-// index.js
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     fresh: false,
@@ -281,6 +281,6 @@ export default {
 
 ## 相关实例
 
-针对Menu开发，有以下相关实例可供参考：
+针对menu开发，有以下相关实例可供参考：
 
-- [`JSMenu`：菜单（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSMenu)
+- [`JSMenu`：菜单（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSMenu)

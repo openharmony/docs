@@ -18,7 +18,7 @@
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
+<div style="width: 500px; height: 500px;">
   <canvas ref="canvasId" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
 ```
@@ -94,10 +94,34 @@ isPointInPath(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In path:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
@@ -144,10 +168,34 @@ isPointInStroke(path?: Path2D, x: number, y: number): boolean
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In stroke:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
@@ -180,10 +228,34 @@ resetTransform(): void
 **示例：** 
 ```html
 <!-- xxx.hml -->
-<div style="width: 180px; height: 60px;">
-  <text>In path:{{textValue}}</text>
-  <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
+<div class="container" style="width: 500px; height: 500px;">
+    <text class="textsize">In path:{{textValue}}</text>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
 </div>
+```
+
+```css
+/* xxx.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #F1F3F5;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: #fdfdfd;
+    border: none;
+}
+
+.textsize {
+    font-size: 40px;
+}
 ```
 
 ```js
@@ -198,13 +270,13 @@ export default {
    var offscreenCanvasCtx = offscreen.getContext("2d");
 
    offscreenCanvasCtx.transform(1, 0, 1.7, 1, 0, 0);
-   offscreenCanvasCtx.fillStyle = 'gray';
+   offscreenCanvasCtx.fillStyle = '#a9a9a9';
    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
 
    // Non-skewed rectangles
    offscreenCanvasCtx.resetTransform();
-   offscreenCanvasCtx.fillStyle = 'red';
+   offscreenCanvasCtx.fillStyle = '#ff0000';
    offscreenCanvasCtx.fillRect(40, 40, 50, 20);
    offscreenCanvasCtx.fillRect(40, 90, 50, 20);
 

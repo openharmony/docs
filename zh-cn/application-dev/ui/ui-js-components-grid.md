@@ -9,12 +9,12 @@
 在pages/index目录下的hml文件中创建一个grid-container组件，并添加[Grid-row](../reference/arkui-js/js-components-grid-row.md)子组件。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
     <grid-row style="height:100px;justify-content:space-around;width: 80%;background-color: #f67002;margin-left: 
-      10%;"></grid-row>
+      10%; margin-right: 10%;"></grid-row>
     <grid-row style="height:300px;justify-content:space-around;background-color: #ffcf00;width: 100%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #032cf8;width: 100%;"></grid-row>
   </grid-container>
@@ -22,12 +22,13 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -35,7 +36,7 @@
 
 ![zh-cn_image_0000001226897009](figures/zh-cn_image_0000001226897009.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > grid-container仅支持grid-row为子组件。
 
 
@@ -44,38 +45,39 @@
 grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方法，返回栅格容器列数、column宽度及gutter宽度。长按调用getSizeType方法返回当前容器响应尺寸类型（xs|sm|md|lg）。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
     onclick="getColumns" onlongpress="getSizeType">
     <grid-row style="height:100px;justify-content:space-around;background-color: #4cedf3;width: 20%;margin-left: 
-      40%;"></grid-row>
+      40%; margin-right: 40%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #4cbff3;width: 50%;margin-left:
-      25%;"></grid-row>
+      25%; margin-right: 25%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #465ff6;width: 80%;margin-left: 
-      10%;"></grid-row>
+      10%; margin-right: 10%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #5011ec;width: 100%;"></grid-row>
   </grid-container>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 ```
 
 
-```
+```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     gutterWidth:'',
@@ -93,13 +95,13 @@ export default {
       this.columns= result;
     }) 
     setTimeout(()=>{              
-      prompt.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
+      promptAction.showToast({duration:5000,message:'columnWidth:'+this.columnWidth+',gutterWidth:'+
       this.gutterWidth+',getColumns:'+this.columns})
     })
   },
   getSizeType(){
       this.$element('mygrid').getSizeType((result)=>{
-      prompt.showToast({duration:2000,message:'get size type:'+result})
+      promptAction.showToast({duration:2000,message:'get size type:'+result})
     })
   },
 }
@@ -108,12 +110,12 @@ export default {
 ![zh-cn_image_0000001227135613](figures/zh-cn_image_0000001227135613.gif)
 
 
-## 添加grild-col
+## 添加grid-col
 
-创建grid-container组件并添加grid-row，在grid-row组件内添加grild-col组件形成布局。
+创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="4" gutter="0" style="background-color: pink;" onclick="getColumns" onlongpress="getSizeType">
@@ -148,12 +150,13 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -165,7 +168,7 @@ text{
 
 ![zh-cn_image_0000001227135731](figures/zh-cn_image_0000001227135731.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > grid-row仅支持grid-col为子组件，只能在grid-col组件中添加填充的内容。
 
 
@@ -174,7 +177,7 @@ text{
 本场景中循环输出list中的内容，创建出网格布局。进行下拉操时触发refresh（刷新页面）方法，这时会向list数组中添加一条数据并设置setTimeout（延迟触发），达到刷新请求数据的效果。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <refresh refreshing="{{fresh}}" onrefresh="refresh">
@@ -197,12 +200,13 @@ text{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
   width: 100%;
+  height: 100%;
 }
 text{
   color: #0a0aef;
@@ -211,7 +215,7 @@ text{
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {
@@ -248,4 +252,4 @@ export default {
 
 针对Grid开发，有以下相关实例可供参考：
 
-- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGrid)
+- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsGrid)

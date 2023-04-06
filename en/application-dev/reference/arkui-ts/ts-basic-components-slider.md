@@ -1,182 +1,258 @@
 # Slider
 
+The **\<Slider>** component is used to quickly adjust settings, such as the volume and brightness.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Slider&gt;** component is used to quickly adjust settings, such as the volume and brightness.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Slider(value:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis})
+Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
-- Parameters
-    | Name                   | Type                                    | Mandatory | Default Value      | Description                              |
-    | ---------------------- | --------------------------------------- | --------- | ------------------ | ---------------------------------------- |
-    | value                  | number                                  | No        | 0                  | Current progress.                        |
-    | min                    | number                                  | No        | 0                  | Minimum value.                           |
-    | max                    | number                                  | No        | 100                | Maximum value.                           |
-    | step                   | number                                  | No        | 1                  | Step of the slider. When the corresponding step is set, the slider slides intermittently. |
-    | style                  | SliderStyle                             | No        | SliderStyle.OutSet | Style of the slider.                     |
-    | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis-enums) | No        | Axis.Horizontal    | Whether the slider moves horizontally or vertically. |
-    | reverse<sup>8+</sup>   | boolean                                 | No        | false              | Whether the slider values are reversed.  |
+Since API version 9, this API is supported in ArkTS widgets.
 
-- SliderStyle enums
-    | Name   | Description                       |
-    | ------ | --------------------------------- |
-    | OutSet | The slider is on the slider rail. |
-    | InSet  | The slider is in the slider rail. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | No| Current progress.<br>Default value: **0**|
+| min | number | No| Minimum value.<br>Default value: **0**|
+| max | number | No| Maximum value.<br>Default value: **100**|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]|
+| style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
+| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
+| reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
+
+## SliderStyle
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name| Description|
+| -------- | -------- |
+| OutSet | The slider is on the slider track.|
+| InSet | The slider is in the slider track.|
 
 
 ## Attributes
 
-Touch target configuration is not supported.
+Except touch target attributes, the universal attributes are supported.
 
-| Name          | Type    | Default Value | Description                                                          |
-| ------------- | ------- | ------------- | -------------------------------------------------------------------- |
-| blockColor    | Color   | -             | Color of the slider.                                                 |
-| trackColor    | Color   | -             | Background color of the slider.                                      |
-| selectedColor | Color   | -             | Color of the slider rail that has been slid.                         |
-| showSteps     | boolean | false         | Whether to display the current step.                                 |
-| showTips      | boolean | false         | Whether to display a bubble to indicate the percentage when sliding. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the bubble is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the bubble is displayed on the left of the slider.<br>The drawing area of the bubble is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the bubble will be clipped.|
+| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.|
+| blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.|
+| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Step color.|
+| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | Radius of the rounded corner of the slider track.|
+| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | Size of the slider in the block direction.|
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | Style of the slider in the block direction.|
+| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | Step size (diameter).|
 
+## SliderBlockStyle<sup>10+</sup>
+
+Desribes the style of the slider in the block direction.
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type  | [SliderBlockType](#sliderblocktype10)                        | Yes  | Type of the slider in the block direction.<br>Default value: **SliderBlockType.DEFAULT**, indicating the round slider.|
+| image | [ResourceStr](ts-types.md#resourcestr)                       | No  | Image resource of the slider.<br>The area size for displaying the image is subject to the **blockSize** attribute. Be mindful of the image size when selecting an image.|
+| shape | [Circle](ts-drawing-components-circle.md) \| [Ellipse](ts-drawing-components-ellipse.md) \| [Path](ts-drawing-components-path.md) \| [Rect](ts-drawing-components-rect.md)  | No  | Custom shape of the slider.                                             |
+
+## SliderBlockType<sup>10+</sup>
+
+Enumerates the types of the slider in the block direction.
+
+| Name   | Description                  |
+| ------- | ---------------------- |
+| DEFAULT | Round slider.  |
+| IMAGE   | Slider with an image background.  |
+| SHAPE   | Slider in a custom shape.|
 
 ## Events
 
-Among all the universal events, only **OnAppear** and **OnDisAppear** are supported.
+In addition to the **OnAppear** and **OnDisAppear** universal events, the following events are supported.
 
-| Name                                     | Description                              |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Callback invoked when the slider slides.<br/>**value**: current progress.<br/>**mode**: dragging state. |
+| Name| Description|
+| -------- | -------- |
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
 
-- SliderChangeMode enums
-    | Name   | Description                         |
-    | ------ | ----------------------------------- |
-    | Begin  | The user starts to drag the slider. |
-    | Moving | The user is dragging the slider.    |
-    | End    | The user stops dragging the slider. |
+## SliderChangeMode
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| Begin | 0 | The user touches or presses the slider with a gesture or mouse.|
+| Moving | 1 | The user is dragging the slider.|
+| End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse.|
+| Click    | 3    | The user moves the slider by touching the slider track.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValue: number = 40
-  @State inSetValue: number = 40
-  @State outVerticalSetValue: number = 40
-  @State inVerticalSetValue: number = 40
+  @State outSetValueOne: number = 40
+  @State inSetValueOne: number = 40
+  @State outSetValueTwo: number = 40
+  @State inSetValueTwo: number = 40
+  @State vOutSetValueOne: number = 40
+  @State vInSetValueOne: number = 40
+  @State vOutSetValueTwo: number = 40
+  @State vInSetValueTwo: number = 40
 
   build() {
-    Column({ space: 5 }) {
-      Text('slider out set').fontSize(9).fontColor(0xCCCCCC).width('90%')
+    Column({ space: 8 }) {
+      Text('outset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
       Row() {
         Slider({
-          value: this.outSetValue,
+          value: this.outSetValueOne,
           min: 0,
           max: 100,
-          step: 1,
           style: SliderStyle.OutSet
         })
-        .blockColor(Color.Blue)
-        .trackColor(Color.Gray)
-        .selectedColor(Color.Blue)
-        .showSteps(true)
-        .showTips(true)
-        .onChange((value: number, mode: SliderChangeMode) => {
-          this.outSetValue = value
-          console.info('value:' + value + 'mode:' + mode.toString())
-        })
-        Text(this.outSetValue.toFixed(0)).fontSize(16)
-      }
-      .padding({ top: 50 })
-      .width('80%')
-
-      Text('slider in set').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Row() {
-        Slider({
-          value: this.inSetValue,
-          min: 0,
-          max: 100,
-          step: 1,
-          style: SliderStyle.InSet
-        })
-        .blockColor(0xCCCCCC)
-        .trackColor(Color.Black)
-        .selectedColor(0xCCCCCC)
-        .showSteps(false)
-        .showTips(false)
-        .onChange((value: number, mode: SliderChangeMode) => {
-          this.inSetValue = value
-          console.info('value:' + value + 'mode:' + mode.toString())
-        })
-        Text(this.inSetValue.toFixed(0)).fontSize(16)
-      }
-      .width('80%')
-
-      Row() {
-        Column() {
-          Text('slider out direction set').fontSize(9).fontColor(0xCCCCCC).width('50%')
-          Slider({
-            value: this.outVerticalSetValue,
-            min: 0,
-            max: 100,
-            step: 1,
-            style: SliderStyle.OutSet,
-            direction: Axis.Vertical
-          })
-          .blockColor(Color.Blue)
-          .trackColor(Color.Gray)
-          .selectedColor(Color.Blue)
-          .showSteps(true)
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outVerticalSetValue = value
+            this.outSetValueOne = value
             console.info('value:' + value + 'mode:' + mode.toString())
           })
-          Text(this.outVerticalSetValue.toFixed(0)).fontSize(16)
+        // toFixed(0) converts the return value of the slider to an integer.
+        Text(this.outSetValueOne.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+      Row() {
+        Slider({
+          value: this.outSetValueTwo,
+          step: 10,
+          style: SliderStyle.OutSet
+        })
+          .showSteps(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.outSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+        Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+
+      Text('inset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.inSetValueOne = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+        Text(this.inSetValueOne.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+      Row() {
+        Slider({
+          value: this.inSetValueTwo,
+          step: 10,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showSteps(true)
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.inSetValueTwo = value
+            console.info('value:' + value + 'mode:' + mode.toString())
+          })
+        Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
+      }
+      .width('80%')
+
+      Row() {
+        Column() {
+          Text('vertical outset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
+          Row() {
+            Slider({
+              value: this.vOutSetValueOne,
+              style: SliderStyle.OutSet,
+              direction: Axis.Vertical
+            })
+              .blockColor('#191970')
+              .trackColor('#ADD8E6')
+              .selectedColor('#4169E1')
+              .showTips(true)
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.vOutSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
+              })
+            Slider({
+              value: this.vOutSetValueTwo,
+              step: 10,
+              style: SliderStyle.OutSet,
+              direction: Axis.Vertical
+            })
+              .blockColor('#191970')
+              .trackColor('#ADD8E6')
+              .selectedColor('#4169E1')
+              .showSteps(true)
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.vOutSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
+              })
+          }
         }.width('50%').height(300)
 
         Column() {
-          Text('slider in direction set').fontSize(9).fontColor(0xCCCCCC).width('50%')
-          Slider({
-            value: this.inVerticalSetValue,
-            min: 0,
-            max: 100,
-            step: 1,
-            style: SliderStyle.InSet,
-            direction: Axis.Vertical
-          })
-          .blockColor(0xCCCCCC)
-          .trackColor(Color.Black)
-          .selectedColor(0xCCCCCC)
-          .showSteps(false)
-          .showTips(false)
-          .onChange((value: number, mode: SliderChangeMode) => {
-            this.inVerticalSetValue = value
-            console.info('value:' + value + 'mode:' + mode.toString())
-          })
-          Text(this.inVerticalSetValue.toFixed(0)).fontSize(16)
+          Text('vertical inset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
+          Row() {
+            Slider({
+              value: this.vInSetValueOne,
+              style: SliderStyle.InSet,
+              direction: Axis.Vertical,
+              reverse: true // By default, at the top of the vertical slider is the min value and at the bottom is the max value. Therefore, if you want to slide from bottom to top, set reverse to true.
+            })
+              .showTips(true)
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.vInSetValueOne = value
+                console.info('value:' + value + 'mode:' + mode.toString())
+              })
+            Slider({
+              value: this.vInSetValueTwo,
+              step: 10,
+              style: SliderStyle.InSet,
+              direction: Axis.Vertical,
+              reverse: true
+            })
+              .showSteps(true)
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.vInSetValueTwo = value
+                console.info('value:' + value + 'mode:' + mode.toString())
+              })
+          }
         }.width('50%').height(300)
       }
-
-    }.width('100%').margin({ top: 5 })
+    }.width('100%')
   }
 }
 ```
 
-![en-us_image_0000001211898492](figures/en-us_image_0000001211898492.gif)
+![en-us_image_0000001179613854](figures/en-us_image_0000001179613854.gif)

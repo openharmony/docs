@@ -1,6 +1,4 @@
-# Kernel Overview
-
-
+# LiteOS-A Overview
 
 ## Overview
 
@@ -33,7 +31,7 @@ To keep pace with the rapid development of the IoT industry, the OpenHarmony lig
 The lightweight kernel consists of the basic kernel, extended components, HDF, and POSIX APIs. Different from the microkernel which is running in the user mode, the extended functions, such as the file system and network protocols, of the lightweight kernel are running in the kernel address space. The direct function calling between components is much faster than inter-process communication \(IPC\) or remote procedure calls \(RPCs\).
 
 **Figure  1**  Architecture of the OpenHarmony LiteOS-A kernel<a name="fig10235830103519"></a>  
-![](figures/architecture-of-the-openharmony-liteos-a-kernel.png "architecture-of-the-openharmony-liteos-a-kernel")
+![](figures/Liteos-a-architecture.png "architecture-of-the-openharmony-liteos-a-kernel")
 
 -   The basic kernel implements basic kernel mechanisms, such as scheduling, memory management, and interrupts.
 -   Extended components include file systems, network protocols, permission management, and more.
@@ -94,4 +92,79 @@ Extended components provide optional but important mechanism for extending kerne
 -   IPC: supports LiteIPC and standard mechanisms such as Mqueue, Pipe, FIFO, and Signal.
 -   System calling: supports 170+ system calls and the virtual dynamic shared object \(vDSO\) mechanism.
 -   Permission management: supports process-based privilege division and control, and file user, group, and other \(UGO\) permission configuration.
+## Directory Structure<a name="section161941989596"></a>
+
+```text
+/kernel/liteos_a
+├── apps                   # User-space init and shell application programs
+├── arch                   # System architecture, such as ARM
+│   └── arm                # Code for ARM architecture
+├── bsd                    # Code of the driver and adaptation layer module related to the FreeBSD, such as the USB module
+├── compat                 # Kernel API compatibility
+│   └── posix              # POSIX APIs
+├── drivers                # Kernel drivers
+│   └── char               # Character device
+│       ├── mem            # Driver for accessing physical input/output (I/O) devices
+│       ├── quickstart     # APIs for quick start of the system
+│       ├── random         # Driver for random number generators
+│       └── video          # Framework of the framebuffer driver
+├── fs                     # File system module, which mainly derives from the NuttX open-source project
+│   ├── fat                # FAT file system
+│   ├── jffs2              # JFFS2 file system
+│   ├── include            # Header files exposed externally
+│   ├── nfs                # NFS file system
+│   ├── proc               # proc file system
+│   ├── ramfs              # RAMFS file system
+│   └── vfs                # VFS layer
+├── kernel                 # Kernel modules including the process, memory, and IPC modules
+│   ├── base               # Basic kernel modules including the scheduling and memory modules
+│   ├── common             # Common components used by the kernel
+│   ├── extended           # Extended kernel modules including the dynamic loading, vDSO, and LiteIPC modules
+│   ├── include            # Header files exposed externally
+│   └── user               # Init process loading
+├── lib                    # Kernel library
+├── net                    # Network module, which mainly derives from the lwIP open-source project
+├── platform               # Code for supporting different systems on a chip (SOCs), such as Hi3516D V300
+│   ├── hw                 # Logic code related to clocks and interrupts
+│   ├── include            # Header files exposed externally
+│   └── uart               # Logic code related to the serial port
+├── platform               # Code for supporting different systems on a chip (SOCs), such as Hi3516D V300
+├── security               # Code related to security features, including process permission management and virtual ID mapping management
+├── syscall                # System calling
+└── tools                  # Building tools as well as related configuration and code
+```
+
+## Constraints<a name="section119744591305"></a>
+
+-   Programming languages: C and C++
+-   Applicable development boards: Hi3516D V300
+-   Hi3516D V300 uses the FAT file system by default.
+
+## Usage<a name="section741617511812"></a>
+
+OpenHarmony LiteOS Cortex-A supports the  [Hi3516D V300](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-appendix-hi3516.md). You can develop and run your applications based on this development board.
+
+### Preparations<a name="section1579912573329"></a>
+
+You need to [set up the compilation environment](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-prepare.md) on Linux.
+
+
+### Source Code Acquisition<a name="section11443189655"></a>
+
+Download and decompress a set of source code on a Linux server to acquire the  [source code](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/sourcecode-acquire.md).
+
+### Compilation and Building<a name="section2081013992812"></a>
+
+For details about how to develop the first application, see:
+
+-   [Developing the First Example Program Running on Hi3516](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-pkg-3516-running.md)
+
+## Repositories Involved<a name="section1371113476307"></a>
+
+[Kernel subsystem](https://gitee.com/openharmony/docs/blob/master/en/readme/kernel.md)
+
+[drivers\_liteos](https://gitee.com/openharmony/drivers_liteos/blob/master/README.md)
+
+[kernel\_liteos\_a](https://gitee.com/openharmony/kernel_liteos_a/blob/master/README.md)
+
 

@@ -1,13 +1,13 @@
-# AI<a name="EN-US_TOPIC_0000001087226912"></a>
+# AI
 
-## Introduction<a name="section187321516154516"></a>
+## Introduction
 
 The AI subsystem is the part of OpenHarmony that provides native distributed AI capabilities. At the heart of the subsystem is a unified AI engine framework, which implements quick integration of AI algorithm plug-ins. The framework consists of the plug-in management, module management, and communication management modules, fulfilling lifecycle management and on-demand deployment of AI algorithms. Under this framework, AI algorithm APIs will be standardized to facilitate distributed calling of AI capabilities. In addition, unified inference APIs will be provided to adapt to different inference framework hierarchies.
 
 **Figure  1**  AI engine framework<a name="fig17296164711526"></a>  
 ![](figures/ai-engine-framework.png "ai-engine-framework")
 
-## Directory Structure<a name="section571610913453"></a>
+## Directory Structure
 
 ```
 /foundation/ai/engine                        # Home directory of the AI subsystem
@@ -32,15 +32,15 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 │  │  └── server_executor                    # Executor of the server module
 ```
 
-## Constraints<a name="section5748426453"></a>
+## Constraints
 
 * **Programming language**: C/C++
 
-* **Operating system**: OpenHarmony
+* **Operating system**: OpenHarmony mini- and small-system
 
 * **Others**: The System Ability Manager \(Samgr\) has been started and is running properly.
 
-## Usage<a name="section6370123616447"></a>
+## Usage
 
 1.  Compile the AI subsystem.
 
@@ -77,7 +77,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
     ```
     #include "plugin/i_plugin.h
-    class KWSPlugin : public IPlugin {       # Inherits the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
+    class KWSPlugin : public IPlugin {       // Inherits the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
         KWSPlugin();
         ~KWSPlugin();
     
@@ -314,9 +314,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     }
     ```
 
-4.  Develop a sample application. For details, see the [keyword spotting demo](https://gitee.com/openharmony/applications_sample_camera/tree/master/ai).
-
-    Directory: //applications/sample/camera/ai/asr/keyword\_spotting
+4.  Develop a sample application.
 
     Call the  **Create**  API.
 
@@ -406,22 +404,22 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
     ```
 
 
-## Repositories Involved<a name="section10492183517430"></a>
+## Repositories Involved
 
 [AI subsystem](https://gitee.com/openharmony/docs/blob/master/en/readme/ai.md)
 
 [ai_engine](https://gitee.com/openharmony/ai_engine)
 
-Dependency repositories:
+## Dependency Repositories
 
 [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README.md)
 
-[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README.md)
+[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README.md)
 
 [startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README.md)
 
-## Reference<a name="section6808423133718"></a>
+## Reference
 
-[AI Engine Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-aiframework-guide.md)
+[AI Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-ai-aiframework-devguide.md)
 
 

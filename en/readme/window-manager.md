@@ -8,6 +8,8 @@ The Window Manager subsystem provides basic capabilities of window and display m
 
 ![WindowManager-subsystem-architecture](./figures/WindowManager.png)
 
+Components of the Window Manager subsystem are described as follows:
+
 - **Window Manager Client**
 
     Provides window object abstraction and window management interfaces, and connects to the ability and UI framework.
@@ -27,28 +29,27 @@ The Window Manager subsystem provides basic capabilities of window and display m
 ## Directory Structure
 
 ```text
-foundation/windowmanager/
-├── dm                      # Stores Display Manager Client implementation code
-├── dmserver                # Stores Display Manager Server implementation code
-├── interfaces              # Stores external APIs
-│   ├── innerkits           # Stores native APIs
-│   └── kits                # Stores JS APIs and native APIs
-├── resources               # Stores resource files used by the framework
-├── sa_profile              # Stores system service configuration files
-├── snapshot                # Stores implementation code of the screenshot command line tool
-├── utils                   # Stores tools
-├── wm                      # Stores Window Manager Client implementation code
-├── wmserver                # Stores Window Manager Server implementation code
+foundation/window/window_manager/
+├── dm                      # Implementation code of Display Manager Client
+├── dmserver                # Implementation code of Display Manager Server
+├── interfaces              # External APIs
+│   ├── innerkits           # Native APIs
+│   └── kits                # JS APIs and native APIs
+├── resources               # Resource files used by the framework
+├── sa_profile              # System service configuration files
+├── snapshot                # Implementation code of the screenshot command line tool
+├── utils                   # Utilities
+├── wm                      # Implementation code of Window Manager Client
+├── wmserver                # Implementation code of Window Manager Server
 ```
 
 ## Constraints
 
-- Programming language version
-  - C++ 11 or later
+The Programming language version must be C++ 11 or later.
 
 ## Available APIs
 
-- [Window](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md) 
+- [Window](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-window.md)
 - [Display](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-display.md)
 
 ## Repositories Involved

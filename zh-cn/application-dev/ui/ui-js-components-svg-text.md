@@ -6,17 +6,17 @@ Svg组件还可以绘制文本。
 
 ## 文本
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 文本的展示内容需要写在元素标签text内，可嵌套tspan子元素标签分段。
-> 
+>
 > - 只支持被父元素标签svg嵌套。
-> 
+>
 > - 只支持默认字体sans-serif。
 
 通过设置x（x轴坐标）、y（y轴坐标）、dx（文本x轴偏移）、dy（文本y轴偏移）、fill（字体填充颜色）、stroke（文本边框颜色）、stroke-width（文本边框宽度）等属性实现文本的不同展示样式。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -36,7 +36,7 @@ Svg组件还可以绘制文本。
 textpath文本内容沿着属性path中的路径绘制文本。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="100" y="400">

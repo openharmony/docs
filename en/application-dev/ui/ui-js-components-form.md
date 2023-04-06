@@ -1,19 +1,17 @@
-# &lt;form&gt; Development
+# \<form> Development
+
+The **\<form>** component allows the content in [\<Input>](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
 
-The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
-
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
-> This component is supported since API version 6.
+> The APIs of this module are supported since API version 6.
 
 
-## Creating a &lt;form&gt; Component
+## Creating a \<form> Component
 
-Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
-
-```
+Create a **\<form>** component in the .hml file under **pages/index**.
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form style="width: 100%; height: 20%">  
@@ -22,8 +20,7 @@ Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -40,9 +37,8 @@ Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 
 ## Zooming In or Out on a Form
 
-To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **&lt;form&gt;** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
-
-```
+To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **\<form>** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form  id="formId" class="formClass" click-effect="spring-large">
@@ -52,14 +48,13 @@ To implement the zoom effect after a form is clicked, add the **click-effect** a
 ```
 
 
-## Setting Form Styles
+## Setting the Form Style
 
 
 Add the **background-color** and **border** attributes.
 
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -85,7 +80,7 @@ Add the **background-color** and **border** attributes.
 
 To submit or reset a form, add the **submit** and **reset** events.
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <form onsubmit='onSubmit' onreset='onReset' class="form">
@@ -100,12 +95,11 @@ To submit or reset a form, add the **submit** and **reset** events.
       </input>
       <input type="reset" value="Reset" style="width:120px;"></input>
     </div>
-    
   </form>
 </div>
 ```
 
-```
+```css
 /* index.css */
 .container{
   width: 100%;
@@ -125,17 +119,17 @@ To submit or reset a form, add the **submit** and **reset** events.
 }
 ```
 
-```
-/* xxx.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default{
   onSubmit(result) {
-    prompt.showToast({
+    promptAction.showToast({
       message: result.value.radioGroup
     })
   },
   onReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset All'
     })
   }
@@ -150,10 +144,9 @@ export default{
 
 Select an option and submit or reset the form data.
 
-Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **&lt;form&gt;** component to submit and reset the form data.
+Create two [\<Input>](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **\<form>** component to submit and reset the form data, respectively.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
    <form onsubmit="formSubmit" onreset="formReset">
@@ -188,10 +181,11 @@ Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) compo
 </div>
 ```
 
-
-```
+```css
 /* index.css */
 .container {
+  width: 100%;
+  height: 100%;
   flex-direction:column;
   align-items:center;
   background-color:#F1F3F5;
@@ -206,18 +200,17 @@ label{
 }
 ```
 
-
-```
-/* xxx.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   formSubmit() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Submitted.'
     })
   },
   formReset() {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Reset.'
     })
   }

@@ -1,15 +1,10 @@
 # Rect
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 矩形绘制组件。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,32 +14,42 @@
 
 ## 接口
 
-Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;Length&gt;} | {width: Length,height: Length,radiusWidth?: Length,radiusHeight?: Length}})
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
+  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | 否 | - | 见options参数说明。 |
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-- options参数说明
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | 是 | - | 宽度。 | 
-  | height | Length | 是 | - | 高度。 | 
-  | radius | Length&nbsp;\|&nbsp;Array&lt;Length&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 | 
-  | radiusWidth | Length | 否 | 0 | 圆角宽度。 | 
-  | radiusHeight | Length | 否 | 0 | 圆角高度。 | 
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 |
+| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 |
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 |
+| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 |
+| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 |
 
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
-| -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | 否 | 宽度。 | 
-| height | Length | 0 | 否 | 高度。 | 
-| radiusWidth | Length | 0 | 否 | 圆角的宽度，仅设置宽时宽高一致。 | 
-| radiusHeight | Length | 0 | 否 | 圆角的高度，仅设置高时宽高一致。 | 
-| radius | Length&nbsp;\|&nbsp;Array&lt;Length&gt; | 0 | 否 | 圆角大小。 | 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 类型 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置边框拐角绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。<br/>**说明：**<br/>该属性取值需大于等于1，且在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置边框透明度。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| strokeWidth | Length | 1 | 设置边框宽度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。|
+| antiAlias | boolean | true | 是否开启抗锯齿效果。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 
 ## 示例
@@ -55,18 +60,38 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 @Component
 struct RectExample {
   build() {
-    Column({ space: 5 }) {
-      Text('normal').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制90% * 50矩形
-      Rect({ width: '90%', height: 50 })
-      // 绘制90% * 50矩形
-      Rect().width('90%').height(50)
+    Column({ space: 10 }) {
+      Text('normal').fontSize(11).fontColor(0xCCCCCC).width('90%')
+      // 绘制90% * 50的矩形
+      Column({ space: 5 }) {
+        Text('normal').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        // 绘制90% * 50矩形
+        Rect({ width: '90%', height: 50 })
+          .fill(Color.Pink)
+        // 绘制90% * 50的矩形框
+        Rect()
+          .width('90%')
+          .height(50)
+          .fillOpacity(0)
+          .stroke(Color.Red)
+          .strokeWidth(3)
 
-      Text('with rounded corners').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制90% * 50矩形, 圆角宽高20
-      Rect({ width: '90%', height: 50 }).radiusHeight(20).radiusWidth(20)
-      // 绘制90% * 50矩形, 圆角宽高20
-      Rect({ width: '90%', height: 50 }).radius(20)
+        Text('with rounded corners').fontSize(11).fontColor(0xCCCCCC).width('90%')
+        // 绘制90% * 80的矩形, 圆角宽高分别为40、20
+        Rect({ width: '90%', height: 80 })
+          .radiusHeight(20)
+          .radiusWidth(40)
+          .fill(Color.Pink)
+        // 绘制90% * 80的矩形, 圆角宽高为20
+        Rect({ width: '90%', height: 80 })
+          .radius(20)
+          .fill(Color.Pink)
+          .stroke(Color.Transparent)
+      }.width('100%').margin({ top: 10 })
+      // 绘制90% * 50矩形, 左上圆角宽高40,右上圆角宽高20,右下圆角宽高40,左下圆角宽高20
+      Rect({ width: '90%', height: 80 })
+        .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
+        .fill(Color.Pink)
     }.width('100%').margin({ top: 5 })
   }
 }

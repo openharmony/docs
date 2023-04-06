@@ -25,22 +25,16 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsPanel)
+- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Popup)
+- [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsPanel)
 
-- [`RefreshContainer`：下拉刷新容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/RefreshContainer)
+- [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Popup)
 
-- [`JSComponments`：Js组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSComponments)
+- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsUserRegistration)
 
-- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsUserRegistration)
+- [`MediaCollections`：媒体管理合集（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
 
-- [`ECG`：心率检测（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/ECG)
+- [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
-- [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
-
-- [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo)
-
-- [rating（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
-
-- [简易视频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

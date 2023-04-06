@@ -1,15 +1,5 @@
 # OpenHarmony 3.0 LTS
 
-- [版本概述](#版本概述)
-- [配套关系](#配套关系)
-- [源码获取](#源码获取)
-- [更新说明](#更新说明)
-    - [特性变更](#特性变更)
-    - [API变更](#api变更)
-    - [芯片及开发板适配](#芯片及开发板适配)
-- [修复缺陷列表](#修复缺陷列表)
-- [遗留缺陷列表](#遗留缺陷列表)
-
 ## 版本概述
 
 当前版本在OpenHarmony 2.2 Beta2的基础上，针对标准系统、轻量系统和小型系统更新内容：
@@ -71,7 +61,7 @@
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```
+```shell
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -81,7 +71,7 @@ repo forall -c 'git lfs pull'
 
 通过repo + https 下载。
 
-```
+```shell
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -137,7 +127,7 @@ repo forall -c 'git lfs pull'
 
 ### API变更
 
-API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-lts.md)
+API变更请参考：[JS API 差异报告](api-diff/v3.0-LTS/js-apidiff-v3.0-lts.md)
 
 
 ### 芯片及开发板适配
@@ -152,12 +142,12 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
 | [I45AVP](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I45AVP) | 执行hilog落盘之后hilog命令执行失败 | 
-| [I47EPA](https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I47EPA?from=project-issue) | 入参为空或无效时，GetBundleSize接口返回错误 | 
+| I47EPA | 入参为空或无效时，GetBundleSize接口返回错误 | 
 | [I434AD](https://gitee.com/openharmony/multimedia_camera_lite/issues/I434AD) | Hi3516DV300轻量级系统常驻内存超基线 | 
 | [I434P1](https://gitee.com/openharmony/multimedia_camera_lite/issues/I434P1) | Hi3518EV300轻量级系统常驻内存超基线 | 
 | [I46I6K](https://gitee.com/openharmony/multimedia_media_lite/issues/I46I6K?from=project-issue) | 多媒体子系统相关代码存在安全编码问题 | 
 | [I46E6S](https://gitee.com/openharmony/kernel_liteos_m/issues/I46E6S?from=project-issue) | 轻量级内核模块编译添加-Werror编译选项 | 
-| [I47ETO](https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I47ETO?from=project-issue&nbsp;-) | 权限校验没有生效，使用测试&nbsp;bin&nbsp;直接调用无权限&nbsp;hap，期望查询失败返回&nbsp;0，结果查询成功 | 
+| I47ETO | 权限校验没有生效，使用测试&nbsp;bin&nbsp;直接调用无权限&nbsp;hap，期望查询失败返回&nbsp;0，结果查询成功 | 
 | [I48A2I](https://gitee.com/openharmony/drivers_peripheral/issues/I48A2I) | Hi3516DV300轻量级版本调用AllocMem接口测试，单板挂死 | 
 | [I42LCU](https://gitee.com/openharmony/kernel_liteos_m/issues/I42LCU) | 集成测试开发板移植指导中需增加线程不足的确认方法和配置线程个数的方法 | 
 | [I3IPD7](https://gitee.com/openharmony/kernel_liteos_m/issues/I3IPD7) | 不支持osThreadExit/join函数需要在头文件中说明 | 
@@ -171,8 +161,8 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
-| [I46A6H](https://gitee.com/openharmony/ace_ace_engine/issues/I46A6H) | XTS子系统压力测试过程中libace.z.so异常导致ohos.samples.flashlight出现cppcrash异常 | 
-| [I48HLN](https://gitee.com/openharmony/app_samples/issues/I48HLN) | Demo&amp;应用子系统-&nbsp;[&nbsp;JsCanvas]&nbsp;清除的button功能未生效 | 
+| I46A6H | XTS子系统压力测试过程中libace.z.so异常导致ohos.samples.flashlight出现cppcrash异常 | 
+| I48HLN | Demo&amp;应用子系统-&nbsp;[&nbsp;JsCanvas]&nbsp;清除的button功能未生效 | 
 | [I46HH7](https://gitee.com/openharmony/drivers_peripheral/issues/I46HH7) | 驱动子系统-标准系统单板WLAN测试用例失败 | 
 | [I4312A](https://gitee.com/openharmony/communication_dsoftbus/issues/I4312A) | 【2.2&nbsp;Beta2】【软总线】已组网，断1端网络后，自组网失败(GetAllNodeDeviceInfo返回null) | 
 | [I43WIJ](https://gitee.com/openharmony/communication_dsoftbus/issues/I43WIJ) | 【2.2&nbsp;Beta2】【软总线】已组网，一端切换网络再切回，过程中组网未下线(无上下线回调) | 
@@ -187,8 +177,8 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
 | [I48IM7](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I48IM7) | 运行hilog压力测试，hilogd异常重启，且hilog命令一直无法使用 | 压力测试下，低概率出现日志输出异常，调测场景可正常使用。 | 10月30日 | 
-| [I48YPH](https://gitee.com/openharmony/security_deviceauth/issues/I48YPH) | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次 | 低概率3/110，失败后重新发起组网即可。 | 10月30日 | 
+| I48YPH | 【软总线-组网】测试发现和组网性能(循环离网-发现-组网)110次组网失败3次 | 低概率3/110，失败后重新发起组网即可。 | 10月30日 | 
 | [I4BVVW](https://gitee.com/openharmony/communication_dsoftbus/issues/I4BVVW) | 【软总线-组网】标准系统与手机开关网络自组网成功率97%失败3次需分析失败原因 | 低概率出现组网失败。 | 10月30日 | 
-| [I4BXWY](https://gitee.com/openharmony/multimedia_media_standard/issues/I4BXWY) | Hi3516音频录制后播放有杂音 | 仅在使用此开发板时，影响录制音频的播放体验效果。 | 10月30日 | 
-| [I4BXY1](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4BXY1) | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音 | 仅在使用此开发板时，影响录制视频的播放体验效果。 | 10月30日 | 
+| I4BXWY | Hi3516音频录制后播放有杂音 | 仅在使用此开发板时，影响录制音频的播放体验效果。 | 10月30日 | 
+| I4BXY1 | 视频录制后前几秒没声音，播放声画不同步，在板子播放会卡顿，音源较远时，有杂音 | 仅在使用此开发板时，影响录制视频的播放体验效果。 | 10月30日 | 
 | [3ZJ1D](https://gitee.com/openharmony/kernel_liteos_a/issues/I3ZJ1D) | XTS权限用例压测用户态概率失败 | 仅在重复创建子进程的XTS压力测试场景，设置子进程uid失败，低概率问题。 | 10月30日 | 

@@ -9,7 +9,7 @@ The &lt;menu&gt; component serves as a temporary pop-up window to display operat
 Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and add the **target**, **type**, and **title** attributes.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text class="title-text" id="textId">show menu</text>
@@ -22,11 +22,11 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
-  height: 100%;
+  height: 100%; 
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -40,7 +40,7 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
 
 ![en-us_image_0000001232162284](figures/en-us_image_0000001232162284.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - The **&lt;menu&gt;** component supports only the [option](../reference/arkui-js/js-components-basic-option.md) child component.
 > 
 > - The **&lt;menu&gt;** component does not support the **focusable** and **disabled** attributes.
@@ -51,7 +51,7 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
 Set the style for the **&lt;menu&gt;** component, such as the font color, size, and character spacing.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text class="title-text" id="textId">show menu</text>
@@ -64,11 +64,11 @@ Set the style for the **&lt;menu&gt;** component, such as the font color, size, 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
-  height: 100%;
+  height: 100%; 
   flex-direction: column;
   background-color: #F1F3F5;
   align-items: center;
@@ -103,7 +103,7 @@ option{
 Bind the **&lt;menu&gt;** component with the **onselected** event (triggered when a value in the menu is selected) and the **oncancel** event (triggered when an operation is canceled). Click the **&lt;text&gt;** component to call the **show** method to set the coordinates of the **&lt;menu&gt;** component.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text  class="title-text" id="textId" onclick="textClick">show menu</text>
@@ -116,7 +116,7 @@ Bind the **&lt;menu&gt;** component with the **onselected** event (triggered whe
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -148,17 +148,17 @@ option{
 ```
 
 
-```
-// index.js
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   select(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: e.value
     })
   },
   cancel(){
-    prompt.showToast({
+    promptAction.showToast({
       message: "cancel"
     })
   },
@@ -176,7 +176,7 @@ export default {
 Click the **&lt;toggle&gt;** component to change the text color and select the **&lt;menu&gt;** component to change the size of the gradient color block.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <div class="contentToggle">
@@ -192,7 +192,7 @@ Click the **&lt;toggle&gt;** component to change the text color and select the *
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -240,9 +240,9 @@ option{
 ```
 
 
-```
-// index.js
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     fresh: false,
@@ -260,15 +260,15 @@ export default {
       {name: "black", checked:false},
     ],
   },
-  toggleClick(index){
-    for(let i=0;i<this.togglesList.length;i++){
-      if(i == index){
-        this.color = this.togglesList[index].name;
-        this.togglesList[i].checked = true;
-      }else{
-        this.togglesList[i].checked = false;
-      }
-    }
+  toggleClick(index) {   
+    for(let i=0;i<this.togglesList.length;i++) {     
+      if (i == index) {        
+      this.color = this.togglesList[index].name;        
+      this.togglesList[i].checked = true;      
+      }else {        
+        this.togglesList[i].checked = false;      
+      }    
+    }  
   },
   select(e) {
     this.width = e.value * 100;

@@ -19,7 +19,7 @@
 
 ## 子组件
 
-支持tspan、textpath、animate、animateTransform。
+支持[tspan](js-components-svg-tspan.md)、[textpath](js-components-svg-textpath.md)、[animate](js-components-svg-animate.md)、[animateTransform](js-components-svg-animatetransform.md)。
 
 
 ## 属性
@@ -94,10 +94,10 @@
 <div class="container">
   <svg>
     <text y="50" font-size="30" fill="blue">
+        text attribute x|opacity|rotate
       <animate attributeName="x" from="100" by="400" dur="3s" repeatCount="indefinite"></animate>
       <animate attributeName="opacity" from="0.01" to="0.99" dur="3s" repeatCount="indefinite"></animate>
       <animate attributeName="rotate" from="0" to="360" dur="3s" repeatCount="indefinite"></animate>
-      text attribute x|opacity|rotate
     </text>
   </svg>
 </div>

@@ -1,38 +1,43 @@
-# Tabs
+# tabs开发指导
 
-Tabs是一种常见的界面导航结构。通过页签容器，用户可以快捷地访问应用的不同模块。具体用法请参考[Tabs API](../reference/arkui-js/js-components-container-tabs.md)。
+tabs是一种常见的界面导航结构。通过页签容器，用户可以快捷地访问应用的不同模块。具体用法请参考[tabs API](../reference/arkui-js/js-components-container-tabs.md)。
 
 
-## 创建Tabs
+## 创建tabs
 
-在pages/index目录下的hml文件中创建一个Tabs组件。
+在pages/index目录下的hml文件中创建一个tabs组件。
 
-```
-<!-- index.hml -->
-<div class="container" >
-  <tabs> <tab-bar>
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content>
-      <div class="text">
-        <text>content1</text>
-      </div>
-      <div class="text">
-        <text>content2</text>
-      </div>
-    </tab-content>
-  </tabs>
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <tabs>
+        <tab-bar>
+            <text>item1</text>
+            <text>item2</text>
+        </tab-bar>
+        <tab-content class="tabContent">
+            <div class="text">
+                <text>content1</text>
+            </div>
+            <div class="text">
+                <text>content2</text>
+            </div>
+        </tab-content>
+    </tabs>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+}
+.tabContent{
+  width: 100%;
+  height: 100%;
 }
 .text{
   width: 100%;
@@ -45,12 +50,12 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 ![zh-cn_image_0000001165191390](figures/zh-cn_image_0000001165191390.gif)
 
 
-## 设置Tabs方向
+## 设置tabs方向
 
-Tabs默认展示索引为index的标签及内容。通过设置vertical属性使组件纵向展示。
+tabs默认展示索引为index的标签及内容。通过设置vertical属性使组件纵向展示。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs index="1"  vertical="true">
     <tab-bar >
@@ -73,8 +78,8 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 设置mode属性使tab-bar的子组件均分，设置scrollable属性使tab-content不可进行左右滑动切换内容。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs style="margin-top: 30px;">
     <tab-bar mode="fixed">
@@ -98,9 +103,9 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 ## 设置样式
 
-设置Tabs背景色及边框和tab-content布局。
-```
-<!-- index.hml -->
+设置tabs背景色及边框和tab-content布局。
+```html
+<!-- xxx.hml -->
 <div class="container">
   <tabs class="tabs">
     <tab-bar class="tabBar">
@@ -119,7 +124,7 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -152,10 +157,10 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 
 ## 显示页签索引
 
-开发者可以为Tabs添加change事件，实现页签切换后显示当前页签索引的功能。
+开发者可以为tabs添加change事件，实现页签切换后显示当前页签索引的功能。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container" style="background-color:#F1F3F5;">
   <tabs class="tabs" onchange="tabChange">
     <tab-bar class="tabBar">
@@ -174,12 +179,12 @@ Tabs默认展示索引为index的标签及内容。通过设置vertical属性使
 </div>
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   tabChange(e){
-    prompt.showToast({
+    promptAction.showToast({
       message: "Tab index: " + e.index
     })
   }
@@ -189,7 +194,7 @@ export default {
 ![zh-cn_image_0000001163228638](figures/zh-cn_image_0000001163228638.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > tabs子组件仅支持一个[\<tab-bar>](../reference/arkui-js/js-components-container-tab-bar.md)和一个[\<tab-content>](../reference/arkui-js/js-components-container-tab-content.md)。
 
@@ -200,8 +205,8 @@ export default {
 
 用tabs、tab-bar和tab-content实现点击切换功能，再定义数组，设置属性。使用change事件改变数组内的属性值实现变色及下划线的显示。
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
   <tabs onchange="changeTabactive">
     <tab-content>
@@ -228,7 +233,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
 width: 100%;
@@ -264,9 +269,9 @@ background-color:#F1F3F5;
 }
 ```
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data() {
     return {
@@ -312,6 +317,6 @@ export default {
 
 ## 相关实例
 
-针对Tabs开发，有以下相关实例可供参考：
+针对tabs开发，有以下相关实例可供参考：
 
-- [`Tabs`：页签容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)
+- [`Tabs`：页签容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Tabs)

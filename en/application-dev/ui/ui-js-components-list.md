@@ -8,9 +8,8 @@ The **&lt;list&gt;** component provides a list container that presents a series 
 
 Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <list>    
    <list-item class="listItem"></list-item>
@@ -21,7 +20,7 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -39,7 +38,7 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 
 ![en-us_image_0000001223287680](figures/en-us_image_0000001223287680.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - **&lt;list-item-group&gt;** is a child component of the **&lt;list&gt;** component and is used to group items in a list. It can have a **&lt;list-item&gt;** nested inside, but not **&lt;list&gt;**.
 > 
 > - **&lt;list-item&gt;** is a child component of the **&lt;list&gt;** component and is used to display items in a list.
@@ -49,11 +48,10 @@ Create a **&lt;list&gt;** component in the .hml file under **pages/index**.
 
 To display a scrollbar on the right side of the screen, set **scrollbar** to **on**. The side scrollbar can be used to scroll a long list or the screen up or down.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">
-  <list class="listCss" scrollbar="on">
+  <list class="listCss" scrollbar="on" >
     <list-item class="listItem"></list-item>
     <list-item class="listItem"></list-item>
     <list-item class="listItem"></list-item>
@@ -64,8 +62,8 @@ To display a scrollbar on the right side of the screen, set **scrollbar** to **o
 </div> 
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   flex-direction: column;
   background-color: #F1F3F5;
@@ -89,9 +87,8 @@ To display a scrollbar on the right side of the screen, set **scrollbar** to **o
 
 Set a custom **indexer** component to add an index bar at the right boundary of a list. By default, an alphabetical indexer is used.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container">   
   <list class="listCss"  indexer="{{['#','1','2','3','4','5','6','7','8']}}" >  
     <list-item class="listItem"  section="#" ></list-item>   
@@ -99,9 +96,8 @@ Set a custom **indexer** component to add an index bar at the right boundary of 
 </div>
 ```
 
-
-```
-/* index.css */
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
@@ -115,7 +111,7 @@ Set a custom **indexer** component to add an index bar at the right boundary of 
 
 ![en-us_image_0000001223127716](figures/en-us_image_0000001223127716.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - This **indexer** attribute is valid only when **flex-direction** is set to **column** and **columns** is set to **1**.
 > 
 > - You must include **"\#"** when using a customized indexer.
@@ -125,9 +121,8 @@ Set a custom **indexer** component to add an index bar at the right boundary of 
 
 To allow a **&lt;list&gt;** component to collapse and expand, add **groupcollapse** and **groupexpand** events.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="doc-page">
   <list style="width: 100%;" id="mylist">
     <list-item-group for="listgroup in list" id="{{listgroup.value}}" ongroupcollapse="collapse" ongroupexpand="expand">
@@ -146,9 +141,8 @@ To allow a **&lt;list&gt;** component to collapse and expand, add **groupcollaps
 </div>
 ```
 
-
-```
-/* index.css */
+```css
+/* xxx.css */
 .doc-page {
   flex-direction: column;
   background-color: #F1F3F5;
@@ -167,10 +161,9 @@ margin-top:30px;
 }
 ```
 
-
-```
+```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     direction: 'column',
@@ -187,12 +180,12 @@ export default {
     }
   },
   collapse(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Close ' + e.groupid
     })
   },
   expand(e) {
-    prompt.showToast({
+    promptAction.showToast({
     message: 'Open ' + e.groupid
     })
   }
@@ -201,7 +194,7 @@ export default {
 
 ![en-us_image_0000001267887845](figures/en-us_image_0000001267887845.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > The **groupcollapse** and **groupexpand** events can be used only by the **list-item-group** component.
 
@@ -211,9 +204,8 @@ export default {
 Search for contacts by using an alphabetical indexer.
 
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="doc-page"> 
   <text style="font-size: 35px; font-weight: 500; text-align: center; margin-top: 20px; margin-bottom: 20px;"> 
       <span>Contacts</span> 
@@ -237,9 +229,8 @@ Search for contacts by using an alphabetical indexer.
 ```
 
 
-
-```
-/* index.css */
+```css
+/* xxx.css */
 .doc-page {
   width: 100%;
   height: 100%;
@@ -275,8 +266,7 @@ Search for contacts by using an alphabetical indexer.
 ```
 
 
-
-```
+```js
 // xxx.js
 export default { 
    data: { 
@@ -319,8 +309,3 @@ export default {
 
 
 ![en-us_image_0000001267767861](figures/en-us_image_0000001267767861.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;list&gt;** component:
-
-[`JsList`: JSList Offerings (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList)

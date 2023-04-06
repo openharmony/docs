@@ -1,25 +1,25 @@
-# Update<a name="EN-US_TOPIC_0000001149909821"></a>
+# Update
 
-## Introduction<a name="section184mcpsimp"></a>
+## Introduction
 
 The Update subsystem helps you implement over the air \(OTA\) update of OpenHarmony devices. The update subsystem consists of the following:
 
-1.  Packaging tool
+-   Packaging tool
 
     The packaging tool is developed using Python and deployed on the PC to prepare update packages. It packages each update image, signs the update package, generates the update package execution script, and finally creates an update package. After the execution script is run on a OpenHarmony device, the device parses and executes the script to complete the update process.
 
-    The update package contains two files:  **build\_tools.zip**  and  **update.bin**.
+    The update package contains two files: **build\_tools.zip** and **update.bin**.
 
     -   **build\_tools.zip**: update assistance tools, including the executable files and scripts.
     -   **update.bin**: TLV-encoded file, in which update contents are serialized and stored in the TLV format.
 
     The packaging tool signs the  **update.bin**  file and the generated update package \(**.zip**  file\) independently.
 
-2.  Update service
+-   Update service
 
     The update service is used to search, download, and trigger updates.
 
-3.  Updater
+-   Updater
 
     The updater is the core module of the update subsystem. It provides the following functions:
 
@@ -29,7 +29,7 @@ The Update subsystem helps you implement over the air \(OTA\) update of OpenHarm
     4.  Installs the related component packages based on the update script.
     5.  Performs post-processing after the update is complete, for example, deleting the update package and recording the update status.
 
-4.  Update app
+-   Update app
 
     The upgrade app is used to trigger search and download of update packages.
 
@@ -53,14 +53,14 @@ Before you get started, familiarize yourself with the following concepts:
 
 ```
 base/update             # Update subsystem repository
-├── app         		# Update app code
+├── app         	# Update app code
 ├── packaging_tools     # Packaging tool code
-├── updater    			# Updater code
+├── updater    		# Updater code
 │   ├── interfaces  	# External APIs
-│   ├── resources 		# UI image resources of the update subsystem, such as animations and progress bar images
-│   ├── services  		# Updater logic code
-│   └── utils  			# Common code of the update subsystem, including the string processing functions and file processing functions
-└── updateservice 		# Update service code
+│   ├── resources 	# UI image resources of the update subsystem, such as animations and progress bar images
+│   ├── services  	# Updater logic code
+│   └── utils  		# Common code of the update subsystem, including the string processing functions and file processing functions
+└── updateservice 	# Update service code
 ```
 
 ## Repositories Involved<a name="section251mcpsimp"></a>

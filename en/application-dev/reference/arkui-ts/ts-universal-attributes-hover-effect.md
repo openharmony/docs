@@ -1,34 +1,23 @@
 # Hover Effect
 
+The hover effect is applied to a component in hover state.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| hoverEffect | HoverEffect | HoverEffect.Auto | Hover effect of the component in hover state. |
-
-- HoverEffect enums
-    | Name | Description |
-  | -------- | -------- |
-  | Auto | Default hover effect. |
-  | Scale | Scale effect. |
-  | Highlight | Fade-in and fade-out effect. |
-  | None | No effect. |
+| Name         | Type                                              | Description                                               |
+| ----------- | --------------------------------------------------| ------------------------------------------------ |
+| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8)  | Hover effect of the component in hover state.<br>Default value: **HoverEffect.Auto**|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct HoverExample {

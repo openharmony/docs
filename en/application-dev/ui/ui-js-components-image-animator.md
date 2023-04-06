@@ -9,7 +9,7 @@ The **&lt;image-animator&gt;** component applies an animation to images. For det
 In the **pages/index** directory, create an **&lt;image-animator&gt;** component in the .hml file, define the component style in the .css file, and reference an image in the .js file.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <image-animator class="animator" images="{{frames}}" duration="3s"/>
@@ -17,7 +17,7 @@ In the **pages/index** directory, create an **&lt;image-animator&gt;** component
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -34,8 +34,8 @@ In the **pages/index** directory, create an **&lt;image-animator&gt;** component
 ```
 
 
-```
-/* index.js */
+```js
+// index.js
 export default {
   data: {
     frames: [
@@ -58,15 +58,15 @@ export default {
 Add the **iteration** (number of times the animation is played), **reverse** (whether the animation plays backward), **fixedsize** (whether the image size is fixed to the component size), **duration** (duration of the animation), and **fillmode** (style of the target when the animation is not playing) attributes.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
-  <image-animator class="animator" fixedsize="false" iteration='2' reverse="false" ref="animator" fillmode="none" images="{{frames}}"duration="5s" />
+  <image-animator class="animator" fixedsize="false" iteration='2' reverse="false" ref="animator" fillmode="none" images="{{frames}}"   duration="5s" />
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -81,8 +81,8 @@ Add the **iteration** (number of times the animation is played), **reverse** (wh
 ```
 
 
-```
-/* index.js */
+```js
+// index.js
 export default {
   data: {
     frames: [
@@ -135,7 +135,7 @@ export default {
 
 ![en-us_image_0000001276003481](figures/en-us_image_0000001276003481.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - If the **duration** attribute is set in the **images** attribute, the **duration** attribute set in the **&lt;image-animator&gt;** component is invalid.
 > 
 > - If **fixedsize** is set to **true**, the **width**, **height**, **top**, and **left** settings in **images** will not take effect.
@@ -148,17 +148,16 @@ export default {
 Add the start, pause, stop, and resume events to the **&lt;image-animator&gt;** component. Specifically, the start event is triggered when the image animator starts playing; the pause event is triggered when the image animator is clicked; the resume event is triggered when the image animator is pressed and held; the stop event is triggered when the image animator stops playing.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
-  <image-animator class="img" id="img" images="{{imginfo}}" iteration="1" duration="10s" onstart="popstart" onpause="poppause" 
-  onstop="popstop" onresume="popresume" onlongpress="setresume" onclick="setpause">
+  <image-animator class="img" id="img" images="{{imginfo}}" iteration="1" duration="10s" onstart="popstart" onpause="poppause"   onstop="popstop" onresume="popresume" onlongpress="setresume" onclick="setpause">
   </image-animator>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .doc-page {
   width: 100%;
@@ -176,9 +175,9 @@ Add the start, pause, stop, and resume events to the **&lt;image-animator&gt;** 
 ```
 
 
-```
-/* index.js */
-import prompt from '@system.prompt';
+```js
+// index.js
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     imginfo: [
@@ -202,22 +201,22 @@ export default {
     this.$element('img').resume()
   },
   popstart(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Started.'
     })
   },
   poppause(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Paused.'
     })
   },
   popstop(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Stopped.'
     })
   },
   popresume(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Resumed.'
     })
   }
@@ -234,7 +233,7 @@ You can click the start or stop button to change the image animation status.
 Call the start, pause, stop, and resume methods to start, pause, stop, and resume the image animation, and call the **getState** method to check the image animation status.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="doc-page">
   <image-animator class="img" id="img" images="{{imginfo}}" iteration="2" reverse="{{rev}}" duration="10s">
@@ -257,7 +256,7 @@ Call the start, pause, stop, and resume methods to start, pause, stop, and resum
 ```
 
 
-```
+```css
 /* xxx.css */
 .doc-page {
   width: 100%;
@@ -284,8 +283,8 @@ button{
 ```
 
 
-```
-/* index.js */
+```js
+// index.js
 import prompt from '@system.prompt';
 export default {
   data: {

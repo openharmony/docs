@@ -1,51 +1,44 @@
-# Canvas
+#  Canvas
 
+The **\<Canvas>** component can be used to customize drawings.
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Canvas&gt;** component can be used to customize drawings.
-
-
-## Required Permissions
-
-None
-
+> **NOTE**
+> 
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
-None
-
+Not supported
 
 ## APIs
 
-Canvas(context: CanvasRenderingContext2D)
+Canvas(context?: CanvasRenderingContext2D)
 
-- Parameters
-    | Name    | Type                                     | Mandatory | Default Value | Description                              |
-    | ------- | ---------------------------------------- | --------- | ------------- | ---------------------------------------- |
-    | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | Yes     | -             | For details, see [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md). |
+Since API version 9, this API is supported in ArkTS widgets.
 
+**Parameters**
+
+| Name    | Type                                    | Mandatory  | Default Value | Description                        |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | No   | -    | For details, see **CanvasRenderingContext2D**.|
 
 ## Attributes
 
-Universal attributes are supported.
-
+The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## Events
 
-In addition to universal events, the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                             | Parameter | Description      |
-| -------------------------------- | --------- | ---------------- |
-| onReady(callback: () =&gt; void) | None      | Triggered when a canvas is ready. |
-
-
-## Example
+| Name                           | Parameter  | Description                  |
+| ----------------------------- | ---- | -------------------- |
+| onReady(event: () => void) | -   | Triggered when a canvas is ready. When this event is triggered, the width and height of the canvas can be obtained, and you can use the canvas APIs to draw images.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
-```
+**Example**
+
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {
@@ -58,8 +51,8 @@ struct CanvasExample {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0,30,100,100)
+        .onReady(() => {
+          this.context.fillRect(0, 30, 100, 100)
         })
     }
     .width('100%')
@@ -67,3 +60,4 @@ struct CanvasExample {
   }
 }
 ```
+  ![en-us_image_0000001194032666](figures/en-us_image_0000001194032666.png)

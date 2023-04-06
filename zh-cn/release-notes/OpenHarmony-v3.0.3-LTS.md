@@ -86,7 +86,7 @@ repo forall -c 'git lfs pull'
 | [I4SM0J](https://gitee.com/openharmony/third_party_harfbuzz/issues/I4SM0J) | third_party_harfbuzz仓内使用了&nbsp;CC&nbsp;BY-NC-SA-3.0&nbsp;许可证，该许可证限制了内容的商业使用。 | 
 | [I4WPQW](https://gitee.com/openharmony/device_hisilicon_hardware/issues/I4WPQW) | device_hisilicon_hardware仓同步更新libdisplay_layer.so二进制文件。 | 
 | [I4WIVF](https://gitee.com/openharmony/third_party_boost/issues/I4WIVF) | third_party_boost仓下一些文件存在开源协议不兼容的风险。 | 
-| [I4WRWM](https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I4WRWM) | aafwk_aafwk_lite仓新增TDD测试用例。 | 
+| I4WRWM | aafwk_aafwk_lite仓新增TDD测试用例。 | 
 | [I4VPVY](https://gitee.com/openharmony/applications_sample_camera/issues/I4VPVY) | 轻量系统Hi3516DV300从设置菜单搜索WLAN，然后点击2次返回键返回到桌面后，无法从桌面启动应用。 | 
 | [I4UTY0](https://gitee.com/openharmony/applications_photos/issues/I4UTY0) | demos&nbsp;路径下的&nbsp;1.jpg&nbsp;图片文件元数据中存在HP的版权声明。 | 
 | [I4TP6D](https://gitee.com/openharmony/xts_acts/issues/I4TP6D) | 标准系统Hi3516新增acts测试套ActsWorkerJSTest无法正常执行。 | 
@@ -107,6 +107,4 @@ repo forall -c 'git lfs pull'
 | [I4YBB0](https://gitee.com/openharmony/multimedia_camera_lite/issues/I4YBB0) | 小型系统3516DV300-Linux在系统相机拍照录像后，无图片生成，录制的视频无法播放 | 仅针对此开发板，影响相机录像功能 | 2022/4/1 | 
 | [I4YB87](https://gitee.com/openharmony/multimedia_camera_lite/issues/I4YB87) | 小型系统3516DV300-Linux在系统相机拍照录像后，图库中无显示 | 仅针对此开发板，影响相机拍照功能 | 2022/4/1 | 
 | [I4YAGS](https://gitee.com/openharmony/multimedia_camera_lite/issues/I4YAGS?from=project-issue) | 小型系统3516DV300-Linux进入系统相机，画面蓝屏 | 仅针对此开发板，影响相机预览功能 | 2022/4/1 | 
-| [I4WLBU](https://gitee.com/openharmony/developtools_hdc_standard/issues/I4WLBU?from=project-issue) | 标准系统3516DV300在acts测试过程中烧录后找不到设备，报Device&nbsp;not&nbsp;founded&nbsp;or&nbsp;connected | HDC工具导致acts测试概率报错，对实际功能无影响 | 2022/4/10 | 
-
-
+| I4WLBU | 标准系统3516DV300在acts测试过程中烧录后找不到设备，报Device&nbsp;not&nbsp;founded&nbsp;or&nbsp;connected | HDC工具导致acts测试概率报错，对实际功能无影响 | 2022/4/10 | 

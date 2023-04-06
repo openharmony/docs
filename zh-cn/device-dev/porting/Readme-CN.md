@@ -11,7 +11,7 @@
 
 ## 代码准备
 
-目前OpenHarmony已经为各厂家创建了仓库并在openharmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
+目前OpenHarmony已经为各厂家创建了仓库并在OpenHarmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
 
 ```shell
 repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboard.xml --no-repo-verify
@@ -22,21 +22,18 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
 ## 芯片移植指导
 
 - 轻量系统芯片移植指导
-  - 移植准备
-    - [移植须知](porting-chip-prepare-knows.md)
-    - [编译构建适配流程](porting-chip-prepare-process.md)
-  - 内核移植
-    - [移植概述](porting-chip-kernel-overview.md)
-    - [内核基础适配](porting-chip-kernel-adjustment.md)
-    - [内核移植验证](porting-chip-kernel-verify.md)
-  - 板级系统移植
-    - [移植概述](porting-chip-board-overview.md)
-    - [板级驱动适配](porting-chip-board-driver.md)
-    - [HAL层实现](porting-chip-board-hal.md)
-    - [系统组件调用](porting-chip-board-component.md)
-    - [lwIP组件适配](porting-chip-board-lwip.md)
-    - [三方组件适配](porting-chip-board-bundle.md)
-    - [XTS认证](porting-chip-board-xts.md)
+  - [概述](porting-minichip-overview.md)
+  - [移植准备](porting-minichip-prepare.md)
+  - [移植内核](porting-minichip-kernel.md)
+  - 移植子系统
+    - [移植子系统概述](porting-minichip-subsys-overview.md)
+    - [移植启动恢复子系统](porting-minichip-subsys-startup.md)
+    - [移植文件子系统](porting-minichip-subsys-filesystem.md)
+    - [移植安全子系统](porting-minichip-subsys-security.md)
+    - [移植通信子系统](porting-minichip-subsys-communication.md)
+    - [移植外设驱动子系统](porting-minichip-subsys-driver.md)
+    - [配置其他子系统](porting-minichip-subsys-others.md)
+  - [移植验证](porting-minichip-verification.md)
   - [常见问题](porting-chip-faqs.md)
 - 小型系统芯片移植指导
   - 移植准备
@@ -67,3 +64,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [Combo解决方案之W800芯片移植案例](porting-w800-combo-demo.md)
 - 小型系统芯片移植案例
     - [小型设备STM32MP1芯片移植案例](porting-stm32mp15xx-on-smallsystem.md)
+- 标准系统芯片移植案例
+    - [标准系统方案之瑞芯微RK3568移植案例](porting-dayu200-on_standard-demo.md)
+    - [标准系统方案之瑞芯微RK3566移植案例](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+    - [标准系统方案之扬帆移植案例](porting-yangfan-on_standard-demo.md)

@@ -1,15 +1,10 @@
 # ScrollBar
 
->  **说明：**
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 滚动条组件ScrollBar，用于配合可滚动组件使用，如List、Grid、Scroll。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,32 +14,28 @@
 
 ## 接口
 
-ScrollBar(value: ScrollBarOptions)
+ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: BarState })
 
-- ScrollBarOptions的参数描述
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
-  | direction | ScrollBarDirection | 否 | ScrollBarDirection.Vertical | 滚动条的方向，控制可滚动组件对应方向的滚动。 |
-  | state | BarState | 否 | BarState.Auto | 滚动条状态。 |
+**参数：**
 
-  >  **说明：**
-  > ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
-  > 
-  > 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+| direction | [ScrollBarDirection](#scrollbardirection枚举说明) | 否 | 滚动条的方向，控制可滚动组件对应方向的滚动。<br/>默认值：ScrollBarDirection.Vertical |
+| state | [BarState](ts-appendix-enums.md#barstate) | 否 | 滚动条状态。<br/>默认值：BarState.Auto |
 
-- ScrollBarDirection枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Vertical | 纵向滚动条。 | 
-  | Horizontal | 横向滚动条。 | 
+>  **说明：**
+>
+> ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
+> 
+> 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。
 
-- BarState枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | On | 常驻显示。 | 
-  | Off | 不显示。 | 
-  | Auto | 按需显示(触摸时显示，无操作2s后消失)。 | 
+## ScrollBarDirection枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| Vertical | 纵向滚动条。 |
+| Horizontal | 横向滚动条。 |
 
 
 ## 示例
@@ -74,7 +65,7 @@ struct ScrollBarExample {
                   .margin({ top: 5 })
               }
             }, item => item)
-          }.margin({ left: 52 })
+          }.margin({ right: 52 })
         }
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)

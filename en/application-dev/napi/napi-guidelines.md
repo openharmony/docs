@@ -1,12 +1,12 @@
 # Using Native APIs in Application Projects
 
-OpenHarmony applications use JavaScript (JS) when calling native APIs. The native APIs (NAPIs) provided by the **arkui_napi** repository are used to implement the interaction with JS. Currently, the **arkui_napi** repository supports some third-party **Node.js** interfaces. The names of the NAPIs are the same as those in the third-party **Node.js**. For details about the interfaces supported, see `libnapi.ndk.json` in this repository.
+OpenHarmony applications use JavaScript (JS) when calling native APIs. The native APIs (NAPIs) provided by the [ace_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository are used to implement interaction with JS. The names of the NAPIs are the same as those in the third-party **Node.js**. For details about the interfaces supported, see **libnapi.ndk.json** in the ace_napi repository.
 
 ## How to Develop
 
-The IDE has a default project that uses NAPIs. You can choose `File` > `New` > `Create Project` to create a `Native C++` project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **arkui_napi** repository for development.
+The DevEco Studio has a default project that uses NAPIs. You can choose **File** > **New** > **Create Project** to create a **Native C++** project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **ace_napi** repository for development.
 
-You can `import` the native .so that contains the JS processing logic. For example, `import hello from 'libhello.so'` to use the **libhello.so** capability. Then, the JS object created using the NAPI can be passed to the `hello` object of the application to call the native capability.
+You can import the native .so that contains the JS processing logic. For example, **import hello from 'libhello.so'** to use the **libhello.so** capability. Then, the JS object created using the NAPI can be passed to the **hello** object of the application to call the native capability.
 
 ## Development Guidelines
 
@@ -14,16 +14,24 @@ You can `import` the native .so that contains the JS processing logic. For examp
 
 * Add **static** to the **nm_register_func** function to prevent symbol conflicts with other .so files.
 * The name of the module registration entry, that is, the function decorated by **\_\_attribute\_\_((constructor))**, must be unique.
+
 ### .so Naming Rules
 
-Each module has a .so file. For example, if the module name is `hello`, name the .so file **libhello.so**. The `nm_modname` field in `napi_module` must be `hello`, which is the same as the module name. The sample code for importing the .so file is `import hello from 'libhello.so'`.
+The .so file names must comply with the following rules:
+
+* Each module has a .so file.
+* The **nm_modname** field in **napi_module** must be the same as the module name. For example, if the module name is **hello**, name the .so file **libhello.so**. The sample code for importing the .so file is **import hello from 'libhello.so'**.
 
 ### JS Objects and Threads
 
-The Ark engine prevents NAPIs from being called to operate JS objects in non-JS threads. Otherwise, the application will crash.
+The Ark engine prevents NAPIs from being called to operate JS objects in non-JS threads. Otherwise, the application will crash. Observe the following rules:
 
 * The NAPIs can be used only in JS threads.
 * **env** is bound to a thread and cannot be used across threads. The JS object created by a NAPI can be used only in the thread, in which the object is created, that is, the JS object is bound to the **env** of the thread.
+
+### Importing Header Files
+
+Before using NAPI objects and methods, include **napi/native_api.h**. Otherwise, if only the third-party library header file is included, an error will be reporting, indicating that the interface cannot be found.
 
 ### napi_create_async_work
 
@@ -45,11 +53,11 @@ napi_status napi_create_async_work(napi_env env,
 
 
 
-## Example 1: Encapsulating Synchronous and Asynchronous APIs for the Storage Module
+## Encapsulating Synchronous and Asynchronous APIs for the Storage Module
 
 ### Overview
 
-This example shows how to encapsulate the synchronous and asynchronous APIs of the storage module. The storage module implements the functions of storing, obtaining, deleting, and clearing data.
+This example shows how to encapsulate the synchronous and asynchronous APIs of the **Storage** module. The **Storage** module implements the functions of storing, obtaining, deleting, and clearing data.
 
 ### API Declaration
 
@@ -74,17 +82,17 @@ export default storage;
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_storage/` in the **arkui_napi** repository.
+You can obtain the complete code from sample/native_module_storage/ in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
-#### Registering the Module
+**1. Register the module.**
 
-Register four synchronous APIs (`getSync`, `setSync`, `removeSync`, and`clearSync`) and four asynchronous APIs (`get`, `set`, `remove`, and `clear`).
+Register four synchronous APIs (**getSync**, **setSync**, **removeSync**, and **clearSync**) and four asynchronous APIs (**get**, **set**, **remove**, and **clear**).
 
 ```c++
 /***********************************************
  * Module export and register
  ***********************************************/
-static napi_value StorgeExport(napi_env env, napi_value exports)
+static napi_value StorageExport(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("get", JSStorageGet),
@@ -105,7 +113,7 @@ static napi_value StorgeExport(napi_env env, napi_value exports)
 static napi_module storage_module = {.nm_version = 1,
                                      .nm_flags = 0,
                                      .nm_filename = nullptr,
-                                     .nm_register_func = StorgeExport,
+                                     .nm_register_func = StorageExport,
                                      .nm_modname = "storage",
                                      .nm_priv = ((void*)0),
                                      .reserved = {0}};
@@ -117,9 +125,9 @@ extern "C" __attribute__((constructor)) void StorageRegister()
 }
 ```
 
-#### Implementing getSync
+**2. Implement getSync.**
 
-The **getSync** function registered for the storage module is **JSStorageGetSync**. Obtain data from `gKeyValueStorage`, create a string object, and return it.
+The **getSync** function registered for the **Storage** module is **JSStorageGetSync**. Obtain data from **gKeyValueStorage**, create a string object, and return the object created.
 
 ```c
 static napi_value JSStorageGetSync(napi_env env, napi_callback_info info)
@@ -163,9 +171,9 @@ static napi_value JSStorageGetSync(napi_env env, napi_callback_info info)
 }
 ```
 
-#### Implementing get
+**3. Implement get().**
 
-The `get` function registered for the storage module is `JSStorageGet`.
+The **get** function registered for the **Storage** module is **JSStorageGet**.
 
 ```c
 static napi_value JSStorageGet(napi_env env, napi_callback_info info)
@@ -212,7 +220,7 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
 
     napi_create_async_work(
         env, nullptr, resource,
-        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the NAPI. Do not operate JS objects using theNAPI because the execution is asynchronous.
+        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the NAPI. Do not operate JS objects using the NAPI because the execution is asynchronous.
         [](napi_env env, void* data) {
             StorageAsyncContext* asyncContext = (StorageAsyncContext*)data;
             auto itr = gKeyValueStorage.find(asyncContext->key);
@@ -263,7 +271,7 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
 }
 ```
 
-### JS Sample Code
+**JS Sample Code**
 
 ```js
 import storage from 'libstorage.so';
@@ -287,11 +295,11 @@ export default {
 
 
 
-## Example 2: Binding Native and JS Objects for the NetServer Module
+## Binding Native and JS Objects for the NetServer Module
 
 ### Overview
 
-This example shows how to implement the `on/off/once` method and bind C++ and JS objects using the **wrap** API. The NetServer module implements the network service.
+This example shows how to implement the **on**, **off**, and **once** methods and bind C++ and JS objects using **wrap()**. The **NetServer** module implements the network service.
 
 ### API Declaration
 
@@ -307,9 +315,9 @@ export class NetServer {
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_netserver/` in the **arkui_napi** repository.
+You can obtain the complete code from **sample/native_module_netserver/** in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
-#### Registering the Module
+**1. Register the module.**
 
 ```c
 static napi_value NetServer::Export(napi_env env, napi_value exports)
@@ -333,7 +341,7 @@ static napi_value NetServer::Export(napi_env env, napi_value exports)
 }
 ```
 
-#### Binding C++ and JS Objects in a Constructor
+**2. Bind C++ and JS objects in a constructor.**
 
 ```c
 napi_value NetServer::JS_Constructor(napi_env env, napi_callback_info cbinfo)
@@ -360,7 +368,7 @@ napi_value NetServer::JS_Constructor(napi_env env, napi_callback_info cbinfo)
 }
 ```
 
-#### Obtaining the C++ Object from the JS Object
+**3. Obtain a C++ object from a JS object.**
 
 ```c
 napi_value NetServer::JS_Start(napi_env env, napi_callback_info cbinfo)
@@ -393,7 +401,7 @@ napi_value NetServer::JS_Start(napi_env env, napi_callback_info cbinfo)
 }
 ```
 
-After `netServer->Start` is executed, call back the `start` event registered by `on`.
+After **netServer->Start** is executed, call back the **start** event registered by **on()**.
 
 ```c
 int NetServer::Start(int port)
@@ -430,7 +438,7 @@ int NetServer::Start(int port)
 }
 ```
 
-#### Registering Events (on)
+**4. Call on() to register an event observer.**
 
 ```c
 napi_value NetServer::JS_On(napi_env env, napi_callback_info cbinfo)
@@ -470,7 +478,7 @@ napi_value NetServer::JS_On(napi_env env, napi_callback_info cbinfo)
 }
 ```
 
-### JS Sample Code
+**JS Sample Code**
 
 ```javascript
 import { NetServer } from 'libnetserver.so';
@@ -486,7 +494,7 @@ export default {
 
 
 
-## Example 3: Calling Back a JS API in a Non-JS Thread
+## Calling Back a JS API in a Non-JS Thread
 
 ### Overview
 
@@ -494,11 +502,11 @@ This example describes how to invoke a JS callback in a non-JS thread. For examp
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_callback/` in the **arkui_napi** repository.
+You can obtain the complete code from **sample/native_module_callback/** in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
-#### Registering the Module
+**1. Register the module.**
 
-Register the `test` API to pass in a parameter.
+Register the **test** API to pass in a parameter.
 
 ```c++
 /***********************************************
@@ -531,7 +539,7 @@ extern "C" __attribute__((constructor)) void CallbackTestRegister()
 }
 ```
 
-#### Obtaining the Loop in env and Throwing the Task to the JS Thread
+**2. Obtain the loop in env and throw the task to a JS thread.**
 
 ```c++
 #include <thread>
@@ -562,7 +570,7 @@ void callbackTest(CallbackContext* context)
     uv_queue_work(
         loop,
         work,
-        // This callback is executed in another common thread to process tasks asynchronously. After the callback is complete, execute the next callback. In this scenario, the callback does not need to execute any task.
+        // This callback is executed in another common thread to process tasks asynchronously. After the callback is complete, execute the next callback. In this scenario, this callback does not need to execute any task.
         [](uv_work_t* work) {},
         // This callback is executed in the JS thread bound to env.
         [](uv_work_t* work, int status) {
@@ -622,7 +630,7 @@ static napi_value JSTest(napi_env env, napi_callback_info info)
 }
 ```
 
-### JS Sample Code
+**JS Sample Code**
 
 ```js
 import callback from 'libcallback.so';

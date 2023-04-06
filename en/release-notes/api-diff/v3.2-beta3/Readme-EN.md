@@ -1,0 +1,33 @@
+# Readme
+
+This directory records the API changes in OpenHarmony 3.2 Beta3 over OpenHarmony 3.2 Beta2, including new, updated, deprecated, and deleted APIs. 
+
+- JS API Differences
+  - [Ability framework](js-apidiff-ability.md)
+  - [Accessibility subsystem](js-apidiff-accessibility.md)
+  - [Account subsystem](js-apidiff-account.md)
+  - [ArkUI development framework](js-apidiff-arkui.md)
+  - [Power management subsystem](js-apidiff-battery.md)
+  - [Bundle management framework](js-apidiff-bundle.md)
+  - [Communication subsystem](js-apidiff-communicate.md)
+  - [Compiler and runtime subsystem](js-apidiff-compiler-and-runtime.md)
+  - [DFX subsystem](js-apidiff-dfx.md)
+  - [Distributed data management subsystem](js-apidiff-distributed-data.md)
+  - [Distributed hardware subsystem](js-apidiff-distributed-hardware.md)
+  - [Common event and notification subsystem](js-apidiff-event-and-notification.md)
+  - [File management subsystem](js-apidiff-file-management.md)
+  - [Globalization subsystem](js-apidiff-global.md)
+  - [Graphics subsystem](js-apidiff-graphic.md)
+  - [Misc services subsystem](js-apidiff-misc.md)
+  - [Multimodal input subsystem](js-apidiff-multi-modal-input.md)
+  - [Multimedia subsystem](js-apidiff-multimedia.md)
+  - [Resource scheduler subsystem](js-apidiff-resource-scheduler.md)
+  - [Security subsystem](js-apidiff-security.md)
+  - [Pan-sensor subsystem](js-apidiff-sensor.md)
+  - [DSoftBus subsystem](js-apidiff-soft-bus.md)
+  - [Telephony subsystem](js-apidiff-telephony.md)
+  - [Test subsystem](js-apidiff-unitest.md)
+  - [Update subsystem](js-apidiff-update.md)
+  - [Web subsystem](js-apidiff-web.md)
+  - [Window manager subsystem](js-apidiff-window.md)
+- [Updates (OpenHarmony 3.2 Beta2 -> OpenHarmony 3.2 Beta3)](../../changelogs/v3.2-beta3/changelog-v3.2-beta3.md)

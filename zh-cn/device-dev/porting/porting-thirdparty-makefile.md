@@ -31,7 +31,7 @@
 设置Makefile的交叉编译工具链，修改并编译该库，生成OpenHarmony平台的可执行文件，步骤如下：
 
 1. 设置工具链
-   将下列clang工具链配置替换掉yxml库根目录的MakeFile（即表1中的文件）中的原有配置。
+   将下列clang工具链配置替换掉yxml库根目录的Makefile（即表1中的文件）中的原有配置。
 
      clang工具链配置：
      
@@ -173,9 +173,9 @@ if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
 TEST_ENABLE = "YES"
 
 if (TEST_ENABLE == "YES") {
-    MAKE_COMMAND = "make test OHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+    MAKE_COMMAND = "make test OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
 } else {
-    MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+    MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
 }
 ```
 

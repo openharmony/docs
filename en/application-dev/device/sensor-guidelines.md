@@ -3,128 +3,74 @@
 
 ## When to Use
 
-- Data provided by the compass sensor denotes the current orientation of the user device, which helps your application accurately navigate for the user.
+With the sensor module, a device can obtain sensor data. For example, the device can subscribe to data of the orientation sensor to detect its own orientation, and data of the pedometer sensor to learn the number of steps the user walks every day.
 
-- Data provided by the proximity sensor denotes the distance between the device and a visible object, which enables the device to automatically turn on or off its screen accordingly to prevent accidental touch on the screen.
-
-- Data provided by the barometer sensor helps your application accurately determine the altitude of the device.
-
-- Data provided by the ambient light sensor helps your device automatically adjust its backlight.
-
-- Data provided by the Hall effect sensor implements the smart cover mode of your device.
-
-- Data provided by the heart rate sensor helps your application track the heart health of a user.
-
-- Data provided by the pedometer sensor helps your application obtain the number of steps a user has walked.
-
-- Data provided by the wear detection sensor helps your application detect whether a user is wearing a wearable device.
+For details about the APIs, see [Sensor](../reference/apis/js-apis-sensor.md).
 
 
 ## Available APIs
 
 | Module| API| Description|
 | -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
-| ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
-| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
+| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
+| ohos.sensor | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
+| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
 
 
 ## How to Develop
 
-1. To obtain data from a type of sensor, configure the requested permissions in the **config.json** file.  
+1. Before obtaining data from a type of sensor, check whether the required permission has been configured.<br>
+     The system provides the following sensor-related permissions:
+   - ohos.permission.ACCELEROMETER
+
+   - ohos.permission.GYROSCOPE
+
+   - ohos.permission.ACTIVITY_MOTION
+
+   - ohos.permission.READ_HEALTH_DATA
+
+   For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
+   
+2. Subscribe to data changes of a type of sensor. The following uses the acceleration sensor as an example. 
   
-   ```
-   "reqPermissions":[
-     {
-        "name":"ohos.permission.ACCELEROMETER",
-        "reason"":"", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.GYROSCOPE",
-        "reason"":"", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.ACTIVITY_MOTION",
-        "reason"":"ACTIVITY_MOTION_TEST", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.READ_HEALTH_DATA",
-        "reason"":"HEALTH_DATA_TEST", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-   ]
+   ```js
+   import sensor from "@ohos.sensor";
+   sensor.on(sensor.SensorId.ACCELEROMETER, function(data){
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+   });
    ```
    
-2. Subscribe to data changes of a type of sensor.
-  
-   ```
-   import sensor from "@ohos.sensor"
-   sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = "+ data); // The call is successful, and the obtained sensor data is printed.
-     }
-   );
-   ```
-   
-   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-   
-   ![en-us_image_0000001241693881](figures/en-us_image_0000001241693881.png)
+   ![171e6f30-a8d9-414c-bafa-b430340305fb](figures/171e6f30-a8d9-414c-bafa-b430340305fb.png)
 
 3. Unsubscribe from sensor data changes.
   
-   ```
-   import sensor from "@ohos.sensor"
-   sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
-       console.info("Succeeded in unsubscribing from acceleration sensor data."); // The unsubscription is successful, and the result is printed.
-     }
-   );
+   ```js
+   import sensor from "@ohos.sensor";
+   sensor.off(sensor.SensorId.ACCELEROMETER);
    ```
    
-   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-   
-   ![en-us_image_0000001196654004](figures/en-us_image_0000001196654004.png)
+   ![65d69983-29f6-4381-80a3-f9ef2ec19e53](figures/65d69983-29f6-4381-80a3-f9ef2ec19e53.png)
 
 4. Subscribe to only one data change of a type of sensor.
   
-   ```
-   import sensor from "@ohos.sensor"
-   sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-           console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
-     }
-   );
+   ```js
+   import sensor from "@ohos.sensor";
+   sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+   });
    ```
    
-   The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
-   
-   ![en-us_image_0000001241733907](figures/en-us_image_0000001241733907.png)
+   ![db5d017d-6c1c-4a71-a2dd-f74b7f23239e](figures/db5d017d-6c1c-4a71-a2dd-f74b7f23239e.png)
 
    If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
 
-    ```
+    ```js
+   import sensor from "@ohos.sensor";
     try {
-      sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-          console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
+      sensor.once(sensor.SensorId.ACCELEROMETER, function(data) {
+          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
       });
     } catch (error) {
-      console.error(error);
+      console.error("Get sensor data error. data:" + error.data, " msg:", error.message);
     }
     ```
-## Samples
-
-The following sample is provided to help you better understand how to develop sensors:
-
-- [`Sensor`: sensor (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)

@@ -4,114 +4,95 @@
 在页面开发过程中，经常需要用到颜色、字体、间距、图片等资源，在不同的设备或配置中，这些资源的值可能不同。有两种方式处理：
 
 
-- [自定义资源](#自定义资源)：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
+- [应用资源](#应用资源)：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
 - [系统资源](#系统资源)：开发者直接使用系统预置的资源定义（即分层参数）。
 
 
-## 自定义资源
+## 应用资源
 
 
 ### 资源文件介绍
 
-开发者可以在项目工程的resources目录中创建指定类型的资源文件，通过”key-value”的形式定义资源，同时可以借助资源限定词能力，定义同一资源在不同设备（默认设备、智慧屏等）或同一设备不同配置（横竖屏、深浅色等）下的表现。工程内的resources目录按照两级目录的形式来组织：
-
-- 一级目录为base目录、限定词目录以及rawfile目录
-  - base目录是默认存在的目录。当应用的resources资源目录中没有与设备状态匹配的限定词目录时，会自动引用该目录中的资源文件。
-  - 限定词目录需要开发者自行创建，其可以由一个或多个表征应用场景或设备特征的限定词组合而成，包括移动国家码和移动网络码、语言、文字、国家或地区、横竖屏、设备类型、颜色模式和屏幕密度等维度，限定词之间通过下划线（_）或者中划线（-）连接。
-  - 在引用rawfile中的资源时，不会根据系统的状态去匹配，rawfile目录中可以直接存放资源文件。
-
-- 二级目录为资源目录
-  - 用于存放字符串、颜色、浮点数等基础元素，以及媒体等资源文件。
-  - 当前支持的文件和资源类型如下：
-       | 文件名 | 资源类型 |
-     | -------- | -------- |
-     | color.json | 颜色资源。 |
-     | float.json | 间距、圆角、字体等资源。 |
-     | string.json | 字符串资源。 |
-     | plural.json | 字符串资源。 |
-     | media目录 | 图片资源 |
+应用开发中使用的各类自定义资源文件，需要统一存放于应用的resources目录下，便于使用和维护。resources目录包括两大类目录，一类为base目录与限定词目录，另一类为rawfile目录，其基础目录结构如下所示。
 
 
-### 资源文件使用
+```
+resources
+|---base  // 默认存在的目录
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|---en_GB-vertical-car-mdpi // 限定词目录示例，需要开发者自行创建   
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|---rawfile  // rawfile目录
+```
 
-在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者定义资源时确定。
+base目录默认存在，而限定词目录需要开发者自行创建，其名称可以由一个或多个表征应用场景或设备特征的限定词组合而成。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，它不会根据设备状态去匹配不同的资源，故不在本文的讨论范文内。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 可以查看[声明式开发范式资源访问](../../ui/ts-application-resource-access.md)，了解资源访问的更多细节。
+> **说明：**
+> - 请访问[声明式开发范式资源文件分类](../../quick-start/resource-categories-and-access.md#资源分类)，了解限定词目录的命名规则、创建流程、匹配规则等，本文不展开介绍。
+> 
+> - 没有设备状态匹配的限定词目录，或者在限定词目录中找不到目标资源时，会继续在base目录中查找。**强烈建议对于所有应用自定义资源都在base目录中定义默认值**，防止出现找不到资源值的异常场景。
 > 
 > - 类Web开发范式的资源文件路径及资源限定词的使用与声明式范式不同，详情请参考[类Web开发范式资源限定与访问](../../ui/js-framework-resource-restriction.md)及[类Web开发范式文件组织](../../ui/js-framework-file.md)。
+
+base目录与限定词目录下面可以创建资源组目录（包括element、media等），用于存放特定类型的资源文件。
+
+  | 资源组目录 | 目录说明 | 资源文件 | 
+| -------- | -------- | -------- |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json | 
+| media | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。 | 文件名可自定义，例如：icon.png。 | 
+
+在element目录的各个资源文件中，以“name-value”的形式定义资源，如下所示。而在media目录中，直接以文件名作为name，故开发者将文件放入media目录即可，无需再额外定义name。
+
+
+```
+// color.json
+{
+    "color": [
+        {
+            "name": "color_red",
+            "value": "#ffff0000"
+        },
+        {
+            "name": "color_blue",
+            "value": "#ff0000ff"
+        }
+    ]
+}
+```
+
+
+### 访问应用资源
+
+在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者添加资源时确定。
+
+> **说明：**
+> 可以查看[声明式范式访问应用资源](../../quick-start/resource-categories-and-access.md#应用资源)，了解资源访问的更多细节。
 
 
 ### 示例
 
-按照如下说明，配置工程resources目录中的json资源文件（如文件不存在，需手工创建）。另外，准备两张不同的图片，分别放置于resources/base/media/my_image.jpg及resources/tablet/media/my_image.jpg路径下。
+在应用的resources目录下，创建名为tablet的限定词子目录，并按照下表所示，在base目录和tablet限定词目录中添加相应的资源。
+
+  | 资源名称 | 资源类型 | base目录中资源值 | 限定词目录（tablet）中资源值 | 
+| -------- | -------- | -------- | -------- |
+| my_string | string | default | tablet | 
+| my_color | color | \#ff0000 | \#0000ff | 
+| my_float | float | 60vp | 80vp | 
+| my_image | media | my_image.png（太阳图标） | my_image.png（月亮图标） | 
+
+在代码中通过 "$r('app.type.name')" 的形式使用应用资源，并分别在默认设备和平板上查看代码的运行效果，可以发现同一资源在不同设备上的取值不同。
+
+![zh-cn_image_0000001325731389](figures/zh-cn_image_0000001325731389.png)
 
 
-```ts
-//resources/base/element/string.json
- {
-   "string":[
-     {
-       "name":"my_string",
-       "value":"default"
-     }
-   ]
- }
- //resources/base/element/color.json
- {
-   "color":[
-     {
-       "name":"my_color",
-       "value":"#ff0000"
-     }
-   ]
- }
- //resources/base/element/float.json
- {
-   "float":[
-     {
-       "name":"my_float",
-       "value":"60vp"
-     }
-   ]
- }
-
- //resources/tablet/element/string.json
- {
-   "string":[
-     {
-       "name":"my_string",
-       "value":"tablet"
-     }
-   ]
- }
- //resources/tablet/element/color.json
- {
-   "color":[
-     {
-       "name":"my_color",
-       "value":"#0000ff"
-     }
-   ]
- }
- //resources/tablet/element/float.json
- {
-   "float":[
-     {
-       "name":"my_float",
-       "value":"80vp"
-     }
-   ]
- }
 ```
-
-![zh-cn_image_0000001267577314](figures/zh-cn_image_0000001267577314.png)
-
-页面源码如下：
-
-
-```ts
 @Entry
 @Component
 struct Index {
@@ -133,11 +114,15 @@ struct Index {
 
 ## 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源（即[分层参数](visual-style-basics.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+除了自定义资源，开发者也可以使用系统中预定义的资源（即[分层参数](visual-basics.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
 在开发过程中，分层参数的用法与资源限定词基本一致。开发者可以通过"$r('sys.type.resource_id')"的形式引用系统资源。sys代表是系统资源；type代表资源类型，值可以取color、float、string和media；resource_id代表资源id。
 
-可以访问本文"[资源](resource.md)"，获取OHOS上支持的系统资源ID及其在不同配置下的取值。也可以访问[OpenHarmony/resources代码仓](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources)，了解OpenHarmony系统中预置的分层参数资源，可以发现这里目录结构与工程中的resources目录类似，也是通过资源限定词匹配不同的设备或设备状态。
+可以查看本文[应用UX设计中关于资源的介绍](design-resources.md)，获取OpenHarmony支持的系统资源ID及其在不同配置下的取值。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 仅声明式开发范式支持使用分层参数，类Web开发范式不支持。
+> **说明：**
+> - 仅声明式开发范式支持使用分层参数，类Web开发范式不支持。
+> 
+> - 系统资源可以保证不同团队开发出的应用有较为一致的视觉风格。对于系统预置应用，强烈建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+> 
+> - 可以查看[OpenHarmony/resources代码仓](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources)了解系统预置资源的实现，这里的目录结构与工程中的resources目录类似，也是通过资源限定词匹配不同的设备或设备状态。
