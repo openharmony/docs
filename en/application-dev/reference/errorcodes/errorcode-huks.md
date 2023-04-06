@@ -1,5 +1,9 @@
 # HUKS Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 12000001 Feature Not Supported
 
 **Error Message**

@@ -1,5 +1,9 @@
 # DeviceUsageStatistics Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 10000001 Memory Operation Failure
 
 **Error Message**

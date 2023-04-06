@@ -1,5 +1,9 @@
 # NFC Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 3100101
 
 **Error Message**
@@ -32,7 +36,7 @@ An error occurs when the NFC service executes the tag service logic.
 
 **Possible Causes**
 1. The tag parameters do not match the API to invoke.
-2. NFC is disabled.
+2. The NFC is disabled.
 3. The tag is disconnected before the tag operation.
 4. The tag chip returns an error status or response timeout.
 5. Binding with the NFC service has not been established.
