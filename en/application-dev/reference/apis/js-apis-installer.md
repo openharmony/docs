@@ -3,6 +3,7 @@
 The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -163,7 +164,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -220,7 +221,7 @@ Recovers a bundle. This API uses an asynchronous callback to return the result.
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovering.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -282,8 +283,8 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | Yes                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
-| installFlag                    | number                         | Yes                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
-| isKeepData                     | boolean                        | Yes                      | Whether to retain the data directory during bundle uninstall.|
-| hashParams        | Array<[HashParam](#hashparam)> | Yes| Hash parameters.        |
-| crowdtestDeadline| number                         | Yes                       |End date of crowdtesting.|
+| userId                         | number                         | No                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
+| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
+| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall.|
+| hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters.        |
+| crowdtestDeadline| number                         | No                       |End date of crowdtesting.|
