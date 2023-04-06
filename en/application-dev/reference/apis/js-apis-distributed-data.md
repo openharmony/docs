@@ -3755,7 +3755,7 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
-> **NOTE**
+> **NOTE**<br/>
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
@@ -5177,7 +5177,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
-> **NOTE**
+> **NOTE**<br/>
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
