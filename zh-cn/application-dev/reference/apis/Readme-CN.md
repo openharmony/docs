@@ -413,7 +413,6 @@
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
-  - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
