@@ -43,25 +43,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -115,25 +110,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -195,25 +185,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -272,25 +257,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -348,25 +328,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -434,25 +409,20 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -507,26 +477,20 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -583,26 +547,20 @@ Starts an ability with the start options and account ID specified. This API uses
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -667,26 +625,20 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -740,18 +692,14 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -800,18 +748,14 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -864,15 +808,14 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -925,19 +868,14 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -987,15 +925,13 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1044,15 +980,13 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1105,16 +1039,13 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1167,16 +1098,13 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1224,12 +1152,12 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1265,12 +1193,12 @@ Terminates this ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1305,12 +1233,12 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1369,13 +1297,12 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
-
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1434,13 +1361,10 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1497,14 +1421,10 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1539,8 +1459,6 @@ Disconnects a connection. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -1557,12 +1475,10 @@ Disconnects a connection. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1596,8 +1512,6 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -1609,12 +1523,10 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -1653,6 +1565,8 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -1664,6 +1578,25 @@ Observe the following when using this API:
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1756,26 +1689,20 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1831,26 +1758,20 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -1908,26 +1829,20 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000017 | The previous ability is starting, wait start later.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
 
 **Example**
 
@@ -2063,6 +1978,13 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **Example**
 
   ```ts
@@ -2088,6 +2010,13 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 | -------- | -------- | -------- | -------- |
 | icon | image.PixelMap | Yes| Icon of the ability to set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -2136,6 +2065,13 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **Example**
 
   ```ts
@@ -2177,6 +2113,13 @@ Restores the window stage data for this ability.
 | -------- | -------- | -------- | -------- |
 | localStorage | image.LocalStorage | Yes| Storage used to store the restored window stage.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
 **Example**
 
   ```ts
@@ -2197,6 +2140,13 @@ Checks whether this ability is in the terminating state.
 | Type| Description|
 | -------- | -------- |
 | boolean| The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
 
 **Example**
 
