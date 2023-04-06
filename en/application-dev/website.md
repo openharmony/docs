@@ -21,6 +21,10 @@
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
       - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
+      - [Application Package Update Process](quick-start/application-package-update.md)
+      - Quick Fix
+        - [Quick Fix Overview](quick-start/quickfix-principles.md)
+        - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
@@ -63,6 +67,7 @@
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
           - [DataShareExtensionAbility (for System Applications Only)](application-models/datashareextensionability.md)
           - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
+          - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -81,9 +86,12 @@
         - [Process Model](application-models/process-model-stage.md)
         - Common Events
           - [Introduction to Common Events](application-models/common-event-overview.md)
-          - [Subscribing to Common Events](application-models/common-event-subscription.md)
+          - Common Event Subscription
+            - [Common Event Subscription Overview](application-models/common-event-subscription-overview.md)
+            - [Subscribing to Common Events in Dynamic Mode](application-models/common-event-subscription.md)
+            - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
+            - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
-          - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
         - [Background Services](application-models/background-services.md)
       - Inter-Thread Communication
         - [Thread Model](application-models/thread-model-stage.md)
