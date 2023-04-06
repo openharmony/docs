@@ -94,12 +94,12 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 #### 主动触发保存和恢复
 
-- 定义和注册[ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback
+- 定义和注册[ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback，具体可参考[errorManager](../reference/apis/js-apis-app-ability-errorManager.md)里的使用方法。
 
 ```ts
   var registerId = -1;
   var callback = {
-      onUnhandledException: function (errMsg) {
+      onUnhandledException(errMsg) {
           console.log(errMsg);
           appRecovery.saveAppState();
           appRecovery.restartApp();
@@ -111,7 +111,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant'
       console.log("[Demo] MainAbility onWindowStageCreate")
 
       globalThis.registerObserver = (() => {
-          registerId = errorManager.registerErrorObserver(callback);
+          registerId = errorManager.on('error', callback);
       })
 
       windowStage.loadContent("pages/index", null);
@@ -127,7 +127,7 @@ callback触发appRecovery.saveAppState()调用后，会触发MainAbility的onSav
       // Ability has called to save app data
       console.log("[Demo] MainAbility onSaveState")
       wantParams["myData"] = "my1234567";
-      return AbilityConstant.onSaveResult.ALL_AGREE;
+      return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
 ```
 
@@ -157,8 +157,8 @@ onWindowStageDestroy() {
     console.log("[Demo] MainAbility onWindowStageDestroy")
 
     globalThis.unRegisterObserver = (() => {
-        errorManager.unregisterErrorObserver(registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message)
+        errorManager.off('error', registerId, (err) => {
+            console.error("[Demo] err:", err);
         });
     })
 }
@@ -186,7 +186,7 @@ export default class MainAbility extends Ability {
         // Ability has called to save app data
         console.log("[Demo] MainAbility onSaveState")
         wantParams["myData"] = "my1234567";
-        return AbilityConstant.onSaveResult.ALL_AGREE;
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
 ```
