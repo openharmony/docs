@@ -80,7 +80,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = null;
 
   build() {
     Column() {
