@@ -10,7 +10,7 @@ The **radio** module provides basic network search management functions. You can
 ## Modules to Import
 
 ```
-import radio from '@ohos.telephony.radio'
+import radio from '@ohos.telephony.radio';
 ```
 
 ## radio.getRadioTech
@@ -31,6 +31,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -46,7 +47,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-radio.getRadioTech(slotId, (err, data) =>{ 
+radio.getRadioTech(slotId, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -75,6 +76,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -116,6 +118,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -130,7 +133,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-radio.getNetworkState((err, data) =>{
+radio.getNetworkState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -154,6 +157,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 | callback | AsyncCallback\<[NetworkState](#networkstate)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -198,6 +202,7 @@ Obtains the network status. This API uses a promise to return the result.
 | Promise\<[NetworkState](#networkstate)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -238,6 +243,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -279,6 +285,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 | Promise\<[NetworkSelectionMode](#networkselectionmode)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -318,6 +325,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -359,6 +367,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -397,6 +406,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -430,6 +440,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 | Promise\<number\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -467,6 +478,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -508,6 +520,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -656,6 +669,7 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -694,6 +708,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -738,6 +753,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 | Promise\<boolean\> | Promise used to return the result.<br>- **true**: The radio service is enabled.<br>- **false**: The radio service is disabled.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -778,6 +794,7 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is the carrier name, for example, China Mobile.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -819,6 +836,7 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 | Promise\<string\> | Promise used t return the result, which is the carrier name, for example, China Mobile.               |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -861,6 +879,7 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -877,8 +896,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-radio.setPrimarySlotId(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setPrimarySlotId(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -908,6 +927,7 @@ Sets the ID of the slot in which the primary card is located. This API uses a pr
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -925,9 +945,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let slotId = 0;
 let promise = radio.setPrimarySlotId(slotId);
-promise.then(data => {
-    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setPrimarySlotId success.`);
+}).catch((err) => {
     console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -951,6 +971,7 @@ Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous c
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -991,6 +1012,7 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses an as
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1037,6 +1059,7 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses a pro
 | Promise\<string\> | Promise used to return the result. If the IMEI does not exist, an empty string is returned.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1079,6 +1102,7 @@ Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous c
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1119,6 +1143,7 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses an as
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1165,6 +1190,7 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses a pro
 | Promise\<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1207,6 +1233,7 @@ Obtains the unique device ID of the SIM card in a card slot. This API uses an as
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1247,6 +1274,7 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1293,6 +1321,7 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 | Promise\<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1335,6 +1364,7 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1349,8 +1379,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-radio.sendUpdateCellLocationRequest((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1374,6 +1404,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1389,8 +1420,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.sendUpdateCellLocationRequest(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1419,6 +1450,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1434,10 +1466,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-let promise = radio.sendUpdateCellLocationRequest(slotId);
-promise.then(data => {
-    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.sendUpdateCellLocationRequest(slotId).then(() => {
+    console.log(`sendUpdateCellLocationRequest success.`);
+}).catch((err) => {
     console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1461,6 +1492,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1501,6 +1533,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1547,6 +1580,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 | Promise\<Array<[CellInformation](#cellinformation8)\>\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1590,6 +1624,7 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 | callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.        |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1616,8 +1651,8 @@ let networkSelectionModeOptions={
     networkInformation: networkInformation,
     resumeSelection: true
 }
-radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1646,6 +1681,7 @@ Sets the network selection mode. This API uses a promise to return the result.
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1673,9 +1709,9 @@ let networkSelectionModeOptions={
     resumeSelection: true
 }
 let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
-promise.then(data => {
-    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setNetworkSelectionMode success.`);
+}).catch((err) => {
     console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1700,6 +1736,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 | callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.          |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1744,6 +1781,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 | Promise\<[NetworkSearchResult](#networksearchresult)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1783,6 +1821,7 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1820,6 +1859,7 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1863,6 +1903,7 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 | Promise\<[NrOptionMode](#nroptionmode8)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1904,6 +1945,7 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1918,8 +1960,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-radio.turnOnRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1944,6 +1986,7 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1959,8 +2002,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-radio.turnOnRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOnRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1990,6 +2033,7 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2005,10 +2049,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-let promise = radio.turnOnRadio(slotId);
-promise.then(data => {
-    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOnRadio(slotId).then(() => {
+    console.log(`turnOnRadio success.`);
+}).catch((err) => {
     console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2032,6 +2075,7 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2046,8 +2090,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-radio.turnOffRadio((err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio((err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2072,6 +2116,7 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2087,8 +2132,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-radio.turnOffRadio(slotId, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.turnOffRadio(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2118,6 +2163,7 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2133,10 +2179,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let slotId = 0;
-let promise = radio.turnOffRadio(slotId);
-promise.then(data => {
-    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+radio.turnOffRadio(slotId).then(() => {
+    console.log(`turnOffRadio success.`);
+}).catch((err) => {
     console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2162,6 +2207,7 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2176,8 +2222,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-radio.setPreferredNetwork(0, 1, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2207,9 +2254,10 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
-| ID|                  Error Message                   |
+| ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
@@ -2221,10 +2269,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-let promise = radio.setPreferredNetwork(0, 1);
-promise.then(data => {
-    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+let slotId = 0;
+radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM).then(() => {
+    console.log(`setPreferredNetwork success.`);
+}).catch((err) => {
     console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2249,6 +2297,7 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 | callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2293,6 +2342,7 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2336,6 +2386,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2381,6 +2432,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 | Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2425,6 +2477,7 @@ Enables listening for **imsRegStateChange** events. This API uses an asynchronou
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -2466,6 +2519,7 @@ Disables listening for **imsRegStateChange** events. This API uses an asynchrono
 | callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |

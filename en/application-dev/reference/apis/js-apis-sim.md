@@ -133,6 +133,7 @@ Checks whether the application (caller) has been granted the operator permission
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -141,7 +142,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -173,6 +173,7 @@ Checks whether the application (caller) has been granted the operator permission
 | Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the application (caller) has been granted the carrier permission, and the value **false** indicates the opposite.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -181,7 +182,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -211,6 +211,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -252,6 +253,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 | Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -291,6 +293,7 @@ Obtains the public land mobile network \(PLMN\) ID of the SIM card in the specif
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -332,6 +335,7 @@ Obtains the PLMN ID of the SIM card in the specified slot. This API uses a promi
 | Promise\<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -371,6 +375,7 @@ Obtains the service provider name (SPN) of the SIM card in the specified slot. T
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -412,6 +417,7 @@ Obtains the SPN of the SIM card in the specified slot. This API uses a promise t
 | Promise\<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -451,6 +457,7 @@ Obtains the state of the SIM card in the specified slot. This API uses an asynch
 | callback | AsyncCallback\<[SimState](#simstate)\> | Yes  | Callback used to return the result. For details, see [SimState](#simstate). |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -459,7 +466,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -492,6 +498,7 @@ Obtains the state of the SIM card in the specified slot. This API uses a promise
 | Promise\<[SimState](#simstate)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -500,7 +507,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -530,6 +536,7 @@ Obtains the type of the SIM card in the specified slot. This API uses an asynchr
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -571,6 +578,7 @@ Obtains the type of the SIM card in the specified slot. This API uses a promise 
 | Promise\<[CardType](#cardtype7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -579,7 +587,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -610,6 +617,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -618,7 +626,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -651,6 +658,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses a 
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the SIM card in the specified slot is installed, and the value **false** indicates the opposite.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -693,6 +701,7 @@ Obtains SIM card account information. This API uses an asynchronous callback to 
 | callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -740,6 +749,7 @@ Obtains SIM card account information. This API uses a promise to return the resu
 | Promise<[IccAccountInfo](#iccaccountinfo7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -783,6 +793,7 @@ Obtains the account information list of the active SIM card. This API uses an as
 | callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -823,6 +834,7 @@ Obtains the account information list of the active SIM card. This API uses a pro
 | Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -866,6 +878,7 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -882,8 +895,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sim.setDefaultVoiceSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setDefaultVoiceSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -913,6 +926,7 @@ Sets the default slot ID of the SIM card that provides voice services. This API 
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -930,9 +944,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sim.setDefaultVoiceSlotId(0);
-promise.then(data => {
-    console.log(`setDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setDefaultVoiceSlotId success.`);
+}).catch((err) => {
     console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -958,6 +972,7 @@ Sets a display name for the SIM card in the specified slot. This API uses an asy
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -974,8 +989,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let name = "ShowName";
-sim.setShowName(0, name, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setShowName(0, name, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1005,6 +1020,7 @@ Sets a display name for the SIM card in the specified slot. This API uses a prom
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1022,9 +1038,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let name = "ShowName";
 let promise = sim.setShowName(0, name);
-promise.then(data => {
-    console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setShowName success.`);
+}).catch((err) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1049,6 +1065,7 @@ Obtains the name of the SIM card in the specified slot. This API uses an asynchr
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1095,6 +1112,7 @@ Obtains the name of the SIM card in the specified slot. This API uses a promise 
 | Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1139,6 +1157,7 @@ Sets a display number for the SIM card in the specified slot. This API uses an a
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1155,8 +1174,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let number = '+861xxxxxxxxxx';
-sim.setShowNumber(0, number, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setShowNumber(0, number, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1187,6 +1206,7 @@ Sets a display number for the SIM card in the specified slot. This API uses a pr
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1204,9 +1224,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let number = '+861xxxxxxxxxx';
 let promise = sim.setShowNumber(0, number);
-promise.then(data => {
-    console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setShowNumber success.`);
+}).catch((err) => {
     console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1231,6 +1251,7 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1277,6 +1298,7 @@ Obtains the display number of the SIM card in the specified slot. This API uses 
 | Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1320,6 +1342,7 @@ Activates a SIM card in a specified card slot. This API uses an asynchronous cal
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1335,8 +1358,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sim.activateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.activateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1366,6 +1389,7 @@ Activates the SIM card in the specified slot. This API uses a promise to return 
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1382,9 +1406,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sim.activateSim(0);
-promise.then(data => {
-    console.log(`activateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`activateSim success.`);
+}).catch((err) => {
     console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1409,6 +1433,7 @@ Disables the SIM card in the specified slot. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1424,8 +1449,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sim.deactivateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.deactivateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1455,6 +1480,7 @@ Disables the SIM card in the specified slot. This API uses a promise to return t
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1471,9 +1497,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sim.deactivateSim(0);
-promise.then(data => {
-    console.log(`deactivateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`deactivateSim success.`);
+}).catch((err) => {
     console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1499,6 +1525,7 @@ Sets the lock status of the SIM card in the specified slot. This API uses an asy
 | options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- lockType: [LockType](#locktype8)<br>- password: string<br>- state: [LockState](#lockstate8) |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1552,6 +1579,7 @@ Sets the lock status of the SIM card in the specified slot. This API uses a prom
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1602,6 +1630,7 @@ Obtains the lock status of the SIM card in the specified slot. This API uses an 
 | options  | [LockType](#locktype8)                    | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN 2 lock|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1650,6 +1679,7 @@ Obtains the lock status of the SIM card in the specified slot. This API uses a p
 | Promise<[LockState](#lockstate8)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1696,6 +1726,7 @@ Changes the PIN of the SIM card in the specified slot. This API uses an asynchro
 | oldPin   | string                                                      | Yes  | Old PIN.                              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1745,6 +1776,7 @@ Changes the PIN of the SIM card in the specified slot. This API uses a promise t
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1791,6 +1823,7 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses an asynchrono
 | oldPin2  | string                                                      | Yes  | Old PIN.                              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1840,6 +1873,7 @@ Changes PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1885,6 +1919,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses an asynchro
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1934,6 +1969,7 @@ Unlocks the PIN of the SIM card in the specified slot. This API uses a promise t
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1981,6 +2017,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses an asynchro
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2032,6 +2069,7 @@ Unlocks the PUK of the SIM card in the specified slot. This API uses a promise t
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2075,10 +2113,11 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses an asynchrono
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| pin2     | string                                                       | Yes  | PIN 2 of the SIM card.                           |
+| pin2     | string                                                       | Yes  | PIN of the SIM card.                           |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2119,7 +2158,7 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| pin2   | string | Yes  | PIN 2 of the SIM card.                           |
+| pin2   | string | Yes  | PIN of the SIM card.                           |
 
 **Return value**
 
@@ -2128,6 +2167,7 @@ Unlocks PIN 2 of the SIM card in the specified slot. This API uses a promise to 
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2171,10 +2211,11 @@ Unlocks PUK 2 of the SIM card in the specified slot. This API uses an asynchrono
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | newPin2  | string                                                       | Yes  | New PIN 2.                       |
-| puk2     | string                                                       | Yes  | PUK 2 of the SIM card.                   |
+| puk2     | string                                                       | Yes  | PUK of the SIM card.                   |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2217,7 +2258,7 @@ Unlocks PUK 2 of the SIM card in the specified slot. This API uses a promise to 
 | ------- | ------ | ---- | -------------------------------------- |
 | slotId  | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | newPin2 | string | Yes  | New PIN 2.                       |
-| puk2    | string | Yes  | PUK 2 of the SIM card.                   |
+| puk2    | string | Yes  | PUK of the SIM card.                   |
 
 **Return value**
 
@@ -2226,6 +2267,7 @@ Unlocks PUK 2 of the SIM card in the specified slot. This API uses a promise to 
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2292,6 +2334,7 @@ Obtains the ICCID of the SIM card in the specified slot. This API uses an asynch
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2338,6 +2381,7 @@ Obtains the ICCID of the SIM card in the specified slot. This API uses a promise
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2381,6 +2425,7 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2427,6 +2472,7 @@ Obtains the voice mailbox alpha identifier of the SIM card in the specified slot
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2470,6 +2516,7 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2516,6 +2563,7 @@ Obtains the voice mailbox number of the SIM card in the specified slot. This API
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2562,6 +2610,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 | callback   | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2578,8 +2627,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2611,6 +2660,7 @@ Sets voice mailbox information for the SIM card in the specified slot. This API 
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2628,9 +2678,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
-promise.then(data => {
-    console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setVoiceMailInfo success.`);
+}).catch((err) => {
     console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2655,6 +2705,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses an async
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2701,6 +2752,7 @@ Obtains the MSISDN of the SIM card in the specified slot. This API uses a promis
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2744,6 +2796,7 @@ Obtains the group identifier level 1 (GID1) of the SIM card in the specified slo
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2790,6 +2843,7 @@ Obtains the GID1 of the SIM card in the specified slot. This API uses a promise 
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2799,7 +2853,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -2833,6 +2886,7 @@ Obtains the international mobile subscriber identity (IMSI) of the SIM card in t
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2842,7 +2896,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -2879,6 +2932,7 @@ Obtains the IMSI of the SIM card in the specified slot. This API uses a promise 
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2922,6 +2976,7 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 | callback | AsyncCallback<Array<[OperatorConfig](#operatorconfig8)\>> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -2968,6 +3023,7 @@ Obtains the carrier configuration of the SIM card in the specified slot. This AP
 | Promise<Array<[OperatorConfig](#operatorconfig8)\>> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3012,6 +3068,7 @@ Queries contact numbers of the SIM card in the specified slot. This API uses an 
 | callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Yes  | Callback used to return the result.                                         |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3060,6 +3117,7 @@ Queries contact numbers of the SIM card in the specified slot. This API uses a p
 | Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3106,6 +3164,7 @@ Adds contact numbers for the SIM card in the specified slot. This API uses an as
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3127,8 +3186,8 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx",
     pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3160,6 +3219,7 @@ Adds contact numbers for the SIM card in the specified slot. This API uses a pro
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3181,9 +3241,9 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`addIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3205,11 +3265,12 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- 1 : GENERAL_CONTACT<br>- 2 : FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3232,8 +3293,8 @@ let diallingNumbersInof = {
     recordNumber: 123,
     pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3255,7 +3316,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- 1 : GENERAL_CONTACT<br>- 2 : FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -3265,6 +3326,7 @@ Deletes contact numbers from the SIM card in the specified slot. This API uses a
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3286,9 +3348,9 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`delIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3310,11 +3372,12 @@ Updates contact numbers for the SIM card in the specified slot. This API uses an
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3337,8 +3400,8 @@ let diallingNumbersInof = {
     recordNumber: 123,
     pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3360,7 +3423,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING|
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -3370,6 +3433,7 @@ Updates contact numbers for the SIM card in the specified slot. This API uses a 
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3392,9 +3456,9 @@ let diallingNumbersInof = {
     recordNumber: 123
 };
 let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`updateIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3420,6 +3484,7 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                    |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3435,8 +3500,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sim.sendEnvelopeCmd(0, "ls", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.sendEnvelopeCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3467,6 +3532,7 @@ Sends an envelope command to the SIM card in the specified slot. This API uses a
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3483,9 +3549,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sim.sendEnvelopeCmd(0, "ls");
-promise.then(data => {
-    console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`sendEnvelopeCmd success.`);
+}).catch((err) => {
     console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3507,10 +3573,11 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 | Name  | Type                | Mandatory| Description                                  |
 | -------- | -------------------- | ---- | -------------------------------------- |
 | slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| cmd      | string               | Yes  | Command.                                  |
+| cmd      | string               | Yes  | Envelope command.                                  |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3520,14 +3587,13 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
-sim.sendTerminalResponseCmd(0, "ls", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.sendTerminalResponseCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3549,7 +3615,7 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| cmd    | string | Yes  | Command.                                  |
+| cmd    | string | Yes  | Envelope command.                                  |
 
 **Return value**
 
@@ -3558,6 +3624,7 @@ Sends a terminal response command to the SIM card in the specified slot. This AP
 | Promise<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3567,16 +3634,15 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
 
 ```js
 let promise = sim.sendTerminalResponseCmd(0, "ls");
-promise.then(data => {
-    console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`sendTerminalResponseCmd success.`);
+}).catch((err) => {
     console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3603,6 +3669,7 @@ Unlocks the SIM card in the specified slot. This API uses an asynchronous callba
 | callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3655,6 +3722,7 @@ Unlocks the SIM card in the specified slot. This API uses a promise to return th
 | Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3699,6 +3767,7 @@ Obtains the opkey of the SIM card in the specified slot. This API uses an asynch
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3708,7 +3777,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -3749,6 +3817,7 @@ Obtains the opkey of the SIM card in the specified slot. This API uses a promise
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3758,7 +3827,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **Example**
@@ -3788,6 +3856,7 @@ Obtains the OpName of the SIM card in the specified slot. This API uses an async
 | callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                              |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3838,6 +3907,7 @@ Obtains the OpName of the SIM card in the specified slot. This API uses a promis
 | Promise<string\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -3929,17 +3999,17 @@ Enumerates personalized lock types.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name        | Value  | Description                                           |
-| ------------ | ---- | ----------------------------------------------- |
-| PN_PIN_LOCK  | 0    | Personalized network PIN lock. For details, see *3GPP TS 22.022 [33]*.      |
+| Name        | Value  | Description                                            |
+| ------------ | ---- | ------------------------------------------------ |
+| PN_PIN_LOCK  | 0    | Personalized network PIN lock. For details, see *3GPP TS 22.022 [33]*.        |
 | PN_PUK_LOCK  | 1    | Personalized network PUK lock.                                  |
-| PU_PIN_LOCK  | 2    | Personalized network subset PIN lock. For details, see *3GPP TS 22.022 [33]*.  |
+| PU_PIN_LOCK  | 2    | Personalized network subset PIN lock. For details, see *3GPP TS 22.022 [33]*.    |
 | PU_PUK_LOCK  | 3    | Personalized network subset PUK lock.                              |
-| PP_PIN_LOCK  | 4    | Personalized service provider PIN lock. For details, see *3GPP TS 22.022 [33]*.|
+| PP_PIN_LOCK  | 4    | Personalized service provider PIN lock. For details, see *3GPP TS 22.022 [33]*.  |
 | PP_PUK_LOCK  | 5    | Personalized service provider PUK lock.                             |
-| PC_PIN_LOCK  | 6    | Personalized corporate PIN lock. For details, see *3GPP TS 22.022 [33]*.      |
+| PC_PIN_LOCK  | 6    | Personalized corporate PIN lock. For details, see *3GPP TS 22.022 [33]*.        |
 | PC_PUK_LOCK  | 7    | Personalized corporate PUK lock.                                   |
-| SIM_PIN_LOCK | 8    | Personalized SIM card PIN lock. For details, see *3GPP TS 22.022 [33]*.     |
+| SIM_PIN_LOCK | 8    | Personalized SIM card PIN lock. For details, see *3GPP TS 22.022 [33]*.       |
 | SIM_PUK_LOCK | 9    | Personalized SIM card PUK lock.                                  |
 
 ## LockStatusResponse<sup>7+</sup>

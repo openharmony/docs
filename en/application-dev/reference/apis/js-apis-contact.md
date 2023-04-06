@@ -488,8 +488,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.READ_CONTACTS
-
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -516,8 +514,6 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
-
-**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 

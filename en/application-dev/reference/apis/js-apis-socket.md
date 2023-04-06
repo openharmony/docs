@@ -1,5 +1,7 @@
 # # @ohos.net.socket (Socket Connection) 
 
+The **socket** module implements data transfer over TCPSocket, UDPSocket, WebSocket, and TLSSocket connections.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.

@@ -91,6 +91,19 @@ Sends an SMS message.
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
 
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
 **Example**
 
 ```js
@@ -178,6 +191,7 @@ Sets the default slot ID of the SIM card used to send SMS messages. This API use
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -193,8 +207,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 **Example**
 
 ```js
-sms.setDefaultSmsSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.setDefaultSmsSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}.`);
 });
 ```
 
@@ -224,6 +238,7 @@ Sets the default slot ID of the SIM card used to send SMS messages. This API use
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -240,9 +255,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 ```js
 let promise = sms.setDefaultSmsSlotId(0);
-promise.then(data => {
-    console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setDefaultSmsSlotId success.`);
+}).catch((err) => {
     console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -268,6 +283,7 @@ Sets the short message service center (SMSC) address. This API uses an asynchron
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -284,8 +300,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
-sms.setSmscAddr(slotId, smscAddr, (err,data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.setSmscAddr(slotId, smscAddr, (err) => {
+      console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -316,6 +332,7 @@ Sets the SMSC address. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -333,9 +350,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 let promise = sms.setSmscAddr(slotId, smscAddr);
-promise.then(data => {
-    console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setSmscAddr success.`);
+}).catch((err) => {
     console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -361,6 +378,7 @@ Obtains the SMSC address. This API uses an asynchronous callback to return the r
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                               |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -407,6 +425,7 @@ Obtains the SMSC address. This API uses a promise to return the result.
 | Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -469,6 +488,7 @@ Splits an SMS message into multiple segments. This API uses an asynchronous call
 | callback | AsyncCallback<Array<string\>> | Yes  | Callback used to return the result.                   |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -515,6 +535,7 @@ Splits an SMS message into multiple segments. This API uses a promise to return 
 | Promise<Array<string\>> | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -558,6 +579,7 @@ Adds a SIM message. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.     |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -578,8 +600,8 @@ let simMessageOptions = {
     pdu: "xxxxxx",
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
-sms.addSimMessage(simMessageOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.addSimMessage(simMessageOptions, (err) => {
+      console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -609,6 +631,7 @@ Adds a SIM message. This API uses a promise to return the result.
 | Promise&lt;void&gt; |  Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -630,9 +653,9 @@ let simMessageOptions = {
     status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
 let promise = sms.addSimMessage(simMessageOptions);
-promise.then(data => {
-    console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`addSimMessage success.`);
+}).catch((err) => {
     console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -658,6 +681,7 @@ Deletes a SIM message. This API uses an asynchronous callback to return the resu
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -674,8 +698,8 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 ```js
 let slotId = 0;
 let msgIndex = 1;
-sms.delSimMessage(slotId, msgIndex, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.delSimMessage(slotId, msgIndex, (err) => {
+      console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -706,6 +730,7 @@ Deletes a SIM message. This API uses a promise to return the result.
 | Promise&lt;void&gt; |  Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -723,9 +748,9 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let slotId = 0;
 let msgIndex = 1;
 let promise = sms.delSimMessage(slotId, msgIndex);
-promise.then(data => {
-    console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`delSimMessage success.`);
+}).catch((err) => {
     console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -750,6 +775,7 @@ Updates a SIM message. This API uses an asynchronous callback to return the resu
 | callback | AsyncCallback&lt;void&gt;                            | Yes  | Callback used to return the result.         |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -771,8 +797,8 @@ let updateSimMessageOptions = {
     pdu: "xxxxxxx",
     smsc: "test"
 };
-sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.updateSimMessage(updateSimMessageOptions, (err) => {
+      console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -802,6 +828,7 @@ Updates a SIM message. This API uses a promise to return the result.
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -824,9 +851,9 @@ let updateSimMessageOptions = {
     smsc: "test"
 };
 let promise = sms.updateSimMessage(updateSimMessageOptions);
-promise.then(data => {
-    console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`updateSimMessage success.`);
+}).catch((err) => {
     console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -851,6 +878,7 @@ Obtains all SIM card messages. This API uses an asynchronous callback to return 
 | callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | Yes  | Callback used to return the result.                               |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -897,6 +925,7 @@ Obtains all SIM card messages. This API uses a promise to return the result.
 | PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -940,6 +969,7 @@ Sets the cell broadcast configuration. This API uses an asynchronous callback to
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.  |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -961,8 +991,8 @@ let cbConfigOptions = {
     endMessageId: 200,
     ranType: sms.RanType.TYPE_GSM
 };
-sms.setCBConfig(cbConfigOptions, (err, data) => {
-      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sms.setCBConfig(cbConfigOptions, (err) => {
+      console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -992,6 +1022,7 @@ Sets the cell broadcast configuration. This API uses a promise to return the res
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
@@ -1014,9 +1045,9 @@ let cbConfigOptions = {
     ranType: sms.RanType.TYPE_GSM
 };
 let promise = sms.setCBConfig(cbConfigOptions);
-promise.then(data => {
-    console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setCBConfig success.`);
+}).catch((err) => {
     console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1041,6 +1072,7 @@ Obtains SMS message segment information. This API uses an asynchronous callback 
 | callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.                                 |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1086,6 +1118,7 @@ Obtains SMS message segment information. This API uses a promise to return the r
 | Promise&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1126,6 +1159,7 @@ Checks whether SMS is supported on IMS. This API uses an asynchronous callback t
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1169,6 +1203,7 @@ This API uses an asynchronous callback to return the result. This API uses a pro
 | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1208,11 +1243,11 @@ Obtains the SMS format supported by the IMS. This API uses an asynchronous callb
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1245,11 +1280,11 @@ Obtains the SMS format supported by the IMS. This API uses a promise to return t
 | Promise&lt;string&gt; | Promise used to return the result. |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1285,6 +1320,7 @@ Decodes MMS messages. This API uses an asynchronous callback to return the resul
 | callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | Yes  | Callback used to return the result.    |
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1328,6 +1364,7 @@ Decodes MMS messages. This API uses a promise to return the result.
 | Promise&lt;&lt;[MmsInformation](#mmsinformation8)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1368,6 +1405,7 @@ MMS message code. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&lt;Array<number\>&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1419,6 +1457,7 @@ MMS message code. This API uses a promise to return the result.
 | Promise&lt;Array<number\>&gt; | Promise used to return the result.|
 
 **Error codes**
+
 For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
@@ -1955,7 +1994,7 @@ Defines an MMS response index.
 |     Name     | Type                              | Mandatory| Description    |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | Yes  | Event ID.  |
-| status        | number                             | Yes  | Status.    |
+| status        | number                             | Yes  | Status    |
 | version       | [MmsVersionType](#mmsversiontype8) | Yes  | Version.    |
 | reportAllowed | [ReportType](#reporttype8)         | No  | Report allowed.|
 
