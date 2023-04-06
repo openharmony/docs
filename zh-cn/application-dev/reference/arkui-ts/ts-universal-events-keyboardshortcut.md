@@ -14,10 +14,10 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[CtrlKey]>)
 
 | 参数名 | 参数类型                              | 必填 | 参数描述                                                     |
 | ------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string \| [FunctionKey](#FunctionKey) | 是   | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#FunctionKey)。<br/> |
-| keys   | Array<[CtrlKey](#CtrlKey)>            | 是   | 热键组合。<br/>                                              |
+| value  | string \| [FunctionKey](#functionkey) | 是   | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#functionkey)。<br/> |
+| keys   | Array<[CtrlKey](#ctrlkey)>            | 是   | 热键组合。<br/>                                              |
 
-## CtrlKey枚举说明
+## CtrlKey
 
 | 名称  | 描述                |
 | ----- | ------------------- |
@@ -25,7 +25,7 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[CtrlKey]>)
 | SHIFT | 表示键盘上Shift键。 |
 | ALT   | 表示键盘上Alt键。   |
 
-## FunctionKey枚举说明
+## FunctionKey
 
 | 名称 | 描述                  |
 | ---- | --------------------- |
@@ -80,6 +80,7 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[CtrlKey]>)
 设置组件的快捷键，同时按控制键+对应的字符可以触发组件响应快捷键，并触发onClick事件或自定义事件。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -92,15 +93,18 @@ struct Index {
         Button("Test short cut 1").onClick((event) => {
           this.message = "I clicked Button 1";
           console.log("I clicked 1");
-        }).keyboardShortcut('.', [CtrlKey.SHIFT, CtrlKey.CTRL, CtrlKey.ALT])
+        }).keyboardShortcut('.', [ModifierKey.SHIFT, ModifierKey.CTRL, ModifierKey.ALT])
+          .onKeyEvent((event)=>{
+            console.log("event.keyCode: " + JSON.stringify(event));
+          })
         Button("Test short cut 2").onClick((event) => {
           this.message = "I clicked Button 2";
           console.log("I clicked 2");
-        }).keyboardShortcut('1', [CtrlKey.CTRL])
+        }).keyboardShortcut('1', [ModifierKey.CTRL])
         Button("Test short cut 3").onClick((event) => {
           this.message = "I clicked Button 3";
           console.log("I clicked 3");
-        }).keyboardShortcut('A', [CtrlKey.CTRL])
+        }).keyboardShortcut('A', [ModifierKey.SHIFT])
         Button("Test short cut 4").onClick((event) => {
           this.message = "I clicked Button 4";
           console.log("I clicked 4");
