@@ -13,7 +13,7 @@ The **TaskPool** APIs return error codes in numeric format. For details about th
 
 ## Modules to Import
 
-```js
+```ts
 import taskpool from '@ohos.taskpool';
 ```
 
@@ -58,9 +58,9 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -110,9 +110,9 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -158,9 +158,9 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -199,9 +199,9 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -209,7 +209,11 @@ function func(args) {
 async function taskpoolTest() {
   let task = new taskpool.Task(func, 100);
   let value = await taskpool.execute(task);
-  taskpool.cancel(task);
+  try {
+    taskpool.cancel(task);
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
 }
 
 taskpoolTest();
@@ -221,12 +225,19 @@ taskpoolTest();
 The following sequenceable data types are supported: All Primitive Type (excluding symbol), Date, String, RegExp, Array, Map, Set, Object, ArrayBuffer, and TypedArray.
 
 ### Precautions
-A task in the task pool can reference only variables passed in by input parameters or imported variables. It does not support closure variables.
+- The task pool APIs can be used only in the module with **compileMode** set to **esmodule** in the stage model. To check the **compileMode** setting of a module, open the **build-profile.json5** file of the module and check for **"compileMode": "esmodule"** under **buildOption**.
+- A task in the task pool can reference only variables passed in by input parameters or imported variables, rather than closure variables. The decorator **@Concurrent** is used to intercept unsupported variables.
+- A task in the task pool supports only common functions or async functions, rather than class member functions or anonymous functions. The decorator **@Concurrent** is used to intercept unsupported functions.
+- The decorator **@Concurrent** can be used only in the .ets file. To create a task in the task pool in the .ts file, use the statement **use concurrent**.
 
-```js
-// 1. Reference a variable passed in by the input parameter.
+### Using the Task Pool in Simple Mode
+
+**Example 1**
+
+```ts
+// Common functions are supported, and variables passed in by input parameters are also supported.
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
@@ -245,17 +256,19 @@ async function taskpoolTest() {
 taskpoolTest();
 ```
 
-```js
-// 2. Reference an imported variable.
+**Example 2**
 
-// b.ts
+```ts
+// b.ets
 export var c = 2000;
+```
+```ts
+// Reference an imported variable.
+// a.ets (in the same directory as b.ets)
+import { c } from "./b";
 
-// a.ts (in the same directory as b.ts)
-import { c } from './b'
-
+@Concurrent
 function test(a) {
-    "use concurrent"
     console.log(a);
     console.log(c);
     return a;
@@ -273,4 +286,64 @@ async function taskpoolTest() {
 }
 
 taskpoolTest();
+```
+
+**Example 3**
+
+```ts
+// The async functions are supported.
+@Concurrent
+async function task() {
+  let ret = await Promise.all([
+    new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+  ]);
+  return ret;
+}
+
+async function taskpoolTest() {
+  taskpool.execute(task).then((result) => {
+    console.log("TaskPoolTest task result: " + result);
+  });
+}
+
+taskpoolTest();
+```
+
+**Example 4**
+
+```ts
+// Use use concurrent to create a task in the task pool in the .ts file.
+// c.ts
+function test1(n) {
+    "use concurrent"
+    return n;
+}
+export async function taskpoolTest1() {
+    console.log("taskpoolTest1 start");
+    var task = new taskpool.Task(test1, 100);
+    var result = await taskpool.execute(task);
+    console.log("taskpoolTest1 result:" + result);
+}
+
+async function test2() {
+    "use concurrent"
+    var ret = await Promise.all([
+        new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+    ]);
+    return ret;
+}
+export async function taskpoolTest2() {
+    console.log("taskpoolTest2 start");
+    taskpool.execute(test2).then((result) => {
+        console.log("TaskPoolTest2 result: " + result);
+    });
+}
+```
+
+```ts
+/ / a.ets (in the same directory as c.ts)
+import { taskpoolTest1, taskpoolTest2 } from "./c";
+
+taskpoolTest1();
+taskpoolTest2();
 ```
