@@ -15,7 +15,7 @@ import fs from '@ohos.file.fs';
 
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the file or directory in the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on files or folders, obtain the path of the file or directory in the application sandbox as follows:
 
 **Stage Model**
 
@@ -59,9 +59,9 @@ Obtains detailed file information. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                          | Description        |
-| ---------------------------- | ---------- |
-| Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
 
 **Example**
 
@@ -118,9 +118,9 @@ Obtains detailed file information synchronously.
 
 **Return value**
 
-| Type           | Description        |
-| ------------- | ---------- |
-| [Stat](#stat) | File information obtained.|
+  | Type           | Description        |
+  | ------------- | ---------- |
+  | [Stat](#stat) | File information obtained.|
 
 **Example**
 
@@ -145,9 +145,9 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return a Boolean value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;boolean&gt; | Promise used to return a Boolean value.|
 
 **Example**
 
@@ -232,15 +232,15 @@ Closes a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -265,10 +265,10 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory  | Description          |
-| -------- | ------------------------- | ---- | ------------ |
-| file       | [File](#file)\|number                  | Yes   | File object or FD of the file to close.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is closed asynchronously.|
+  | Name     | Type                       | Mandatory  | Description          |
+  | -------- | ------------------------- | ---- | ------------ |
+  | file       | [File](#file)\|number                  | Yes   | File object or FD of the file to close.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is closed asynchronously.|
 
 **Example**
 
@@ -294,9 +294,9 @@ Synchronously closes a file.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | file   | [File](#file)\|number | Yes   | File object or FD of the file to close.|
 
 **Example**
 
@@ -316,17 +316,17 @@ Copies a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                        | Mandatory  | Description                                      |
-| ---- | -------------------------- | ---- | ---------------------------------------- |
-| src  | string\|number | Yes   | Path or FD of the file to copy.                     |
-| dest | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
-| mode | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file of the same name.|
+  | Name | Type                        | Mandatory  | Description                                      |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | src  | string\|number | Yes   | Path or FD of the file to copy.                     |
+  | dest | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
+  | mode | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file of the same name.|
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -350,12 +350,12 @@ Copies a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                        | Mandatory  | Description                                      |
-| -------- | -------------------------- | ---- | ---------------------------------------- |
-| src      | string\|number | Yes   | Path or FD of the file to copy.                     |
-| dest     | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
-| mode     | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked when the file is copied asynchronously.                            |
+  | Name     | Type                        | Mandatory  | Description                                      |
+  | -------- | -------------------------- | ---- | ---------------------------------------- |
+  | src      | string\|number | Yes   | Path or FD of the file to copy.                     |
+  | dest     | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
+  | mode     | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
+  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked when the file is copied asynchronously.                            |
 
 **Example**
 
@@ -382,11 +382,11 @@ Synchronously copies a file.
 
 **Parameters**
 
-| Name | Type                        | Mandatory  | Description                                      |
-| ---- | -------------------------- | ---- | ---------------------------------------- |
-| src  | string\|number | Yes   | Path or FD of the file to copy.                     |
-| dest | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
-| mode | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
+  | Name | Type                        | Mandatory  | Description                                      |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | src  | string\|number | Yes   | Path or FD of the file to copy.                     |
+  | dest | string\|number | Yes   | Destination path of the file or FD of the file created.                         |
+  | mode | number                     | No   | Whether to overwrite the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Example**
 
@@ -413,9 +413,9 @@ Creates a directory. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -497,9 +497,9 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 
 **Return value**
 
-| Type                   | Description         |
-| --------------------- | ----------- |
-| Promise&lt;[File](#file)&gt; | Promise used to return the file object.|
+  | Type                   | Description         |
+  | --------------------- | ----------- |
+  | Promise&lt;[File](#file)&gt; | Promise used to return the file object.|
 
 **Example**
 
@@ -558,9 +558,9 @@ Synchronously opens a file. File URIs are supported.
 
 **Return value**
 
-| Type    | Description         |
-| ------ | ----------- |
-| [File](#file) | File object opened.|
+  | Type    | Description         |
+  | ------ | ----------- |
+  | [File](#file) | File object opened.|
 
 **Example**
 
@@ -589,9 +589,9 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                | Description    |
-| ---------------------------------- | ------ |
-| Promise&lt;number&gt; | Promise used to return the data read.|
+  | Type                                | Description    |
+  | ---------------------------------- | ------ |
+  | Promise&lt;number&gt; | Promise used to return the data read.|
 
 **Example**
 
@@ -601,7 +601,7 @@ Reads data from a file. This API uses a promise to return the result.
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf).then((readLen) => {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
   }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
@@ -618,12 +618,12 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fd       | number                                   | Yes   | FD of the file.                            |
-| buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-| options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
+  | Name     | Type                                      | Mandatory  | Description                                      |
+  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+  | fd       | number                                   | Yes   | FD of the file.                            |
+  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
 
 **Example**
 
@@ -636,7 +636,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
     }
   });
@@ -653,17 +653,17 @@ Synchronously reads data from a file.
 
 **Parameters**
 
-| Name    | Type         | Mandatory  | Description                                      |
-| ------- | ----------- | ---- | ---------------------------------------- |
-| fd      | number      | Yes   | FD of the file.                            |
-| buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
-| options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+  | Name    | Type         | Mandatory  | Description                                      |
+  | ------- | ----------- | ---- | ---------------------------------------- |
+  | fd      | number      | Yes   | FD of the file.                            |
+  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
+  | options | Object      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
-| Type    | Description      |
-| ------ | -------- |
-| number | Length of the data read.|
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data read.|
 
 **Example**
 
@@ -692,9 +692,9 @@ Deletes a directory. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -775,9 +775,9 @@ Deletes a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -852,17 +852,17 @@ Writes data into a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description                                      |
-| ------- | ------------------------------- | ---- | ---------------------------------------- |
-| fd      | number                          | Yes   | FD of the file.                            |
-| buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-| options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | fd      | number                          | Yes   | FD of the file.                            |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-| Type                   | Description      |
-| --------------------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the length of the data written.|
+  | Type                   | Description      |
+  | --------------------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Example**
 
@@ -888,12 +888,12 @@ Writes data into a file. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name     | Type                             | Mandatory  | Description                                      |
-| -------- | ------------------------------- | ---- | ---------------------------------------- |
-| fd       | number                          | Yes   | FD of the file.                            |
-| buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-| options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
-| callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
+  | Name     | Type                             | Mandatory  | Description                                      |
+  | -------- | ------------------------------- | ---- | ---------------------------------------- |
+  | fd       | number                          | Yes   | FD of the file.                            |
+  | buffer   | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Example**
 
@@ -921,17 +921,17 @@ Synchronously writes data into a file.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description                                      |
-| ------- | ------------------------------- | ---- | ---------------------------------------- |
-| fd      | number                          | Yes   | FD of the file.                            |
-| buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-| options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | fd      | number                          | Yes   | FD of the file.                            |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-| Type    | Description      |
-| ------ | -------- |
-| number | Length of the data written in the file.|
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data written in the file.|
 
 **Example**
 
@@ -960,9 +960,9 @@ Truncates a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1049,9 +1049,9 @@ Reads the text content of a file. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                   | Description        |
-| --------------------- | ---------- |
-| Promise&lt;string&gt; | Promise used to return the content read.|
+  | Type                   | Description        |
+  | --------------------- | ---------- |
+  | Promise&lt;string&gt; | Promise used to return the content read.|
 
 **Example**
 
@@ -1112,9 +1112,9 @@ Synchronously reads the text of a file.
 
 **Return value**
 
-| Type  | Description                |
-| ------ | -------------------- |
-| string | Promise used to return the content of the file read.|
+  | Type  | Description                |
+  | ------ | -------------------- |
+  | string | Promise used to return the content of the file read.|
 
 **Example**
 
@@ -1140,9 +1140,9 @@ Obtains information about a symbolic link. This API uses a promise to return the
 
 **Return value**
 
-| Type                          | Description        |
-| ---------------------------- | ---------- |
-| Promise&lt;[Stat](#stat)&gt; | Promise used to return the symbolic link information obtained. For details, see **stat**.|
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the symbolic link information obtained. For details, see **stat**.|
 
 **Example**
 
@@ -1200,9 +1200,9 @@ Obtains information about a symbolic link synchronously.
 
 **Return value**
 
-| Type           | Description        |
-| ------------- | ---------- |
-| [Stat](#stat) | File information obtained.|
+  | Type           | Description        |
+  | ------------- | ---------- |
+  | [Stat](#stat) | File information obtained.|
 
 **Example**
 
@@ -1215,7 +1215,7 @@ Obtains information about a symbolic link synchronously.
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file or directory. This API uses a promise to return the result.
+Renames a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1228,9 +1228,9 @@ Renames a file or directory. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1248,7 +1248,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file or directory. This API uses an asynchronous callback to return the result.
+Renames a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1278,7 +1278,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or directory synchronously.
+Renames a file or folder synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1308,15 +1308,15 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| fd   | number | Yes   | FD of the file.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | fd   | number | Yes   | FD of the file.|
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1341,10 +1341,10 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name     | Type                       | Mandatory  | Description             |
-| -------- | ------------------------- | ---- | --------------- |
-| fd       | number                    | Yes   | FD of the file.   |
-| Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file data is synchronized in asynchronous mode.|
+  | Name     | Type                       | Mandatory  | Description             |
+  | -------- | ------------------------- | ---- | --------------- |
+  | fd       | number                    | Yes   | FD of the file.   |
+  | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file data is synchronized in asynchronous mode.|
 
 **Example**
 
@@ -1372,9 +1372,9 @@ Flushes data of a file to disk synchronously.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| fd   | number | Yes   | FD of the file.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | fd   | number | Yes   | FD of the file.|
 
 **Example**
 
@@ -1396,15 +1396,15 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| fd   | number | Yes   | FD of the file.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | fd   | number | Yes   | FD of the file.|
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1430,10 +1430,10 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name     | Type                             | Mandatory  | Description               |
-| -------- | ------------------------------- | ---- | ----------------- |
-| fd       | number                          | Yes   | FD of the file.     |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file data is synchronized in asynchronous mode.|
+  | Name     | Type                             | Mandatory  | Description               |
+  | -------- | ------------------------------- | ---- | ----------------- |
+  | fd       | number                          | Yes   | FD of the file.     |
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file data is synchronized in asynchronous mode.|
 
 **Example**
 
@@ -1460,9 +1460,9 @@ Synchronizes data in a file synchronously.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description          |
-| ---- | ------ | ---- | ------------ |
-| fd   | number | Yes   | FD of the file.|
+  | Name | Type    | Mandatory  | Description          |
+  | ---- | ------ | ---- | ------------ |
+  | fd   | number | Yes   | FD of the file.|
 
 **Example**
 
@@ -1491,9 +1491,9 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
 **Return value**
 
-| Type                 | Description                          |
-| ------------------- | ---------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -1570,15 +1570,15 @@ Creates a temporary directory. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                         |
-| ------ | ------ | ---- | --------------------------- |
-| prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
 
 **Return value**
 
-| Type                  | Description        |
-| --------------------- | ---------- |
-| Promise&lt;string&gt; | Promise used to return the unique directory generated.|
+  | Type                  | Description        |
+  | --------------------- | ---------- |
+  | Promise&lt;string&gt; | Promise used to return the unique directory generated.|
 
 **Example**
 
@@ -1601,10 +1601,10 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                         |
-| -------- | --------------------------- | ---- | --------------------------- |
-| prefix   | string                      | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked when a temporary directory is created asynchronously.             |
+  | Name     | Type                         | Mandatory  | Description                         |
+  | -------- | --------------------------- | ---- | --------------------------- |
+  | prefix   | string                      | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
+  | callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked when a temporary directory is created asynchronously.             |
 
 **Example**
 
@@ -1628,21 +1628,21 @@ Synchronously creates a temporary directory.
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                         |
-| ------ | ------ | ---- | --------------------------- |
-| prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
+  | Name   | Type    | Mandatory  | Description                         |
+  | ------ | ------ | ---- | --------------------------- |
+  | prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
 
 **Return value**
 
-| Type   | Description        |
-| ------ | ---------- |
-| string | Unique path generated.|
+  | Type   | Description        |
+  | ------ | ---------- |
+  | string | Unique path generated.|
 
 **Example**
 
   ```js
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
-  ```
+  ```  
 
 ## fs.createStream
 
@@ -1661,9 +1661,9 @@ Opens a file stream based on the file path. This API uses a promise to return th
 
 **Return value**
 
-| Type                               | Description       |
-| --------------------------------- | --------- |
-| Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Type                               | Description       |
+  | --------------------------------- | --------- |
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1723,9 +1723,9 @@ Synchronously opens a stream based on the file path.
 
 **Return value**
 
-| Type               | Description       |
-| ------------------ | --------- |
-| [Stream](#stream) | Stream opened.|
+  | Type               | Description       |
+  | ------------------ | --------- |
+  | [Stream](#stream) | Stream opened.|
 
 **Example**
 
@@ -1745,16 +1745,16 @@ Opens a file stream based on the file descriptor. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description                                      |
-| ---- | ------ | ---- | ---------------------------------------- |
-| fd   | number | Yes   | FD of the file.                            |
-| mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | Name | Type    | Mandatory  | Description                                      |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | fd   | number | Yes   | FD of the file.                            |
+  | mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
 
-| Type                              | Description       |
-| --------------------------------- | --------- |
-| Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
+  | Type                              | Description       |
+  | --------------------------------- | --------- |
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1780,11 +1780,11 @@ Opens a file stream based on the file descriptor. This API uses an asynchronous 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fd       | number                                   | Yes   | FD of the file.                            |
-| mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
+  | Name     | Type                                      | Mandatory  | Description                                      |
+  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+  | fd       | number                                   | Yes   | FD of the file.                            |
+  | mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
 
 **Example**
 
@@ -1811,16 +1811,16 @@ Synchronously opens a stream based on the file descriptor.
 
 **Parameters**
 
-| Name | Type    | Mandatory  | Description                                      |
-| ---- | ------ | ---- | ---------------------------------------- |
-| fd   | number | Yes   | FD of the file.                            |
-| mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+  | Name | Type    | Mandatory  | Description                                      |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | fd   | number | Yes   | FD of the file.                            |
+  | mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
 
-| Type               | Description       |
-| ------------------ | --------- |
-| [Stream](#stream) | Stream opened.|
+  | Type               | Description       |
+  | ------------------ | --------- |
+  | [Stream](#stream) | Stream opened.|
 
 **Example**
 
@@ -1840,7 +1840,7 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 ### Attributes
 
 | Name    | Type  | Readable  | Writable  | Description                                      |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | number | Yes   | No   | File ID. Different files on the same device have different **ino**s.|                 |
 | mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>- **0o400**: The owner has the read permission on a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the read permission on a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.|
 | uid    | number | Yes   | No   | ID of the file owner.|
@@ -1861,9 +1861,9 @@ Checks whether this file is a block special file. A block special file supports 
 
 **Return value**
 
-| Type     | Description              |
-| ------- | ---------------- |
-| boolean | Whether the file is a block special file.|
+  | Type     | Description              |
+  | ------- | ---------------- |
+  | boolean | Whether the file is a block special file.|
 
 **Example**
 
@@ -1882,9 +1882,9 @@ Checks whether this file is a character special file. A character special file s
 
 **Return value**
 
-| Type     | Description               |
-| ------- | ----------------- |
-| boolean | Whether the file is a character special file.|
+  | Type     | Description               |
+  | ------- | ----------------- |
+  | boolean | Whether the file is a character special file.|
 
 **Example**
 
@@ -1904,9 +1904,9 @@ Checks whether this file is a directory.
 
 **Return value**
 
-| Type     | Description           |
-| ------- | ------------- |
-| boolean | Whether the file is a directory.|
+  | Type     | Description           |
+  | ------- | ------------- |
+  | boolean | Whether the file is a directory.|
 
 **Example**
 
@@ -1926,9 +1926,9 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
 **Return value**
 
-| Type     | Description                   |
-| ------- | --------------------- |
-| boolean | Whether the file is a FIFO.|
+  | Type     | Description                   |
+  | ------- | --------------------- |
+  | boolean | Whether the file is a FIFO.|
 
 **Example**
 
@@ -1948,9 +1948,9 @@ Checks whether this file is a regular file.
 
 **Return value**
 
-| Type     | Description             |
-| ------- | --------------- |
-| boolean | Whether the file is a regular file.|
+  | Type     | Description             |
+  | ------- | --------------- |
+  | boolean | Whether the file is a regular file.|
 
 **Example**
 
@@ -1970,9 +1970,9 @@ Checks whether this file is a socket.
 
 **Return value**
 
-| Type     | Description            |
-| ------- | -------------- |
-| boolean | Whether the file is a socket.|
+  | Type     | Description            |
+  | ------- | -------------- |
+  | boolean | Whether the file is a socket.|
 
 **Example**
 
@@ -1992,9 +1992,9 @@ Checks whether this file is a symbolic link.
 
 **Return value**
 
-| Type     | Description             |
-| ------- | --------------- |
-| boolean | Whether the file is a symbolic link.|
+  | Type     | Description             |
+  | ------- | --------------- |
+  | boolean | Whether the file is a symbolic link.|
 
 **Example**
 
@@ -2018,9 +2018,9 @@ Closes the stream. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description           |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the stream close result.|
+  | Type                 | Description           |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | Promise used to return the stream close result.|
 
 **Example**
 
@@ -2045,9 +2045,9 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory  | Description           |
-| -------- | ------------------------- | ---- | ------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is closed asynchronously.|
+  | Name     | Type                       | Mandatory  | Description           |
+  | -------- | ------------------------- | ---- | ------------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is closed asynchronously.|
 
 **Example**
 
@@ -2089,9 +2089,9 @@ Flushes the stream. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description           |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the stream flushing result.|
+  | Type                 | Description           |
+  | ------------------- | ------------- |
+  | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
 
 **Example**
 
@@ -2116,9 +2116,9 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                       | Mandatory  | Description            |
-| -------- | ------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is asynchronously flushed.|
+  | Name     | Type                       | Mandatory  | Description            |
+  | -------- | ------------------------- | ---- | -------------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is asynchronously flushed.|
 
 **Example**
 
@@ -2160,16 +2160,16 @@ Writes data into the stream. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description                                      |
-| ------- | ------------------------------- | ---- | ---------------------------------------- |
-| buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-| options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-| Type                   | Description      |
-| --------------------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the length of the data written.|
+  | Type                   | Description      |
+  | --------------------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Example**
 
@@ -2194,11 +2194,11 @@ Writes data into the stream. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                                                        |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
-| options  | Object                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
-| callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
+  | Name  | Type                           | Mandatory| Description                                                        |
+  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+  | buffer   | ArrayBuffer\|string | Yes  | Data to write. It can be a string or data from a buffer.                    |
+  | options  | Object                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
 
 **Example**
 
@@ -2226,16 +2226,16 @@ Synchronously writes data into the stream.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory  | Description                                      |
-| ------- | ------------------------------- | ---- | ---------------------------------------- |
-| buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-| options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+  | Name    | Type                             | Mandatory  | Description                                      |
+  | ------- | ------------------------------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer\|string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+  | options | Object                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-| Type    | Description      |
-| ------ | -------- |
-| number | Length of the data written in the file.|
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data written in the file.|
 
 **Example**
 
@@ -2255,16 +2255,16 @@ Reads data from the stream. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name    | Type         | Mandatory  | Description                                      |
-| ------- | ----------- | ---- | ---------------------------------------- |
-| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-| options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.|
+  | Name    | Type         | Mandatory  | Description                                      |
+  | ------- | ----------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+  | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. By default, data is read from the current position.|
 
 **Return value**
 
-| Type                                | Description    |
-| ---------------------------------- | ------ |
-| Promise&lt;number&gt; | Promise used to return the data read.|
+  | Type                                | Description    |
+  | ---------------------------------- | ------ |
+  | Promise&lt;number&gt; | Promise used to return the data read.|
 
 **Example**
 
@@ -2274,7 +2274,7 @@ Reads data from the stream. This API uses a promise to return the result.
   let buf = new ArrayBuffer(4096);
   ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("Read data successfully");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
   }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2291,11 +2291,11 @@ Reads data from the stream. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                                      |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-| options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
+  | Name     | Type                                      | Mandatory  | Description                                      |
+  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
+  | options  | Object                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.|
+  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
 
 **Example**
 
@@ -2308,7 +2308,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read data successfully");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
     }
   });
   ```
@@ -2323,16 +2323,16 @@ Synchronously reads data from the stream.
 
 **Parameters**
 
-| Name    | Type         | Mandatory  | Description                                      |
-| ------- | ----------- | ---- | ---------------------------------------- |
-| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+  | Name    | Type         | Mandatory  | Description                                      |
+  | ------- | ----------- | ---- | ---------------------------------------- |
+  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
 | options | Object      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br> |
 
 **Return value**
 
-| Type    | Description      |
-| ------ | -------- |
-| number | Length of the data read.|
+  | Type    | Description      |
+  | ------ | -------- |
+  | number | Length of the data read.|
 
 **Example**
 
