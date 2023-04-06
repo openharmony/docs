@@ -195,6 +195,16 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
   }
   ```
 
+## 限制
+
+为了降低WorkSchedulerExtensionAbility能力被三方应用滥用的风险，在WorkSchedulerExtensionAbility中限制以下接口的调用
+
+- @ohos.backgroundTaskManager.d.ts
+- @ohos.resourceschedule.backgroundTaskManager.d.ts
+- @ohos.multimedia.camera.d.ts
+- @ohos.multimedia.audio.d.ts
+- @ohos.multimedia.media.d.ts
+
 ## 相关实例
 
 针对WorkSchedulerExtensionAbility开发，有以下相关示例可供参考：
