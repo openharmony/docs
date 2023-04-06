@@ -480,9 +480,9 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 ### createPanel<sup>10+</sup>
 
-createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback<Panel>): void
+createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法应用窗口。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的窗口。使用callback异步回调。
+创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -491,8 +491,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback<Panel>): 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
-| info    | PanelInfo   | 是   | 输入法窗口信息。 |
-| callback | AsyncCallback<Panel> | 是   | 回调函数。当输入法窗口创建成功，返回当前创建的输入法窗口对象。  |
+| info    | PanelInfo   | 是   | 输入法面板信息。 |
+| callback | AsyncCallback\<Panel> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -522,9 +522,9 @@ try {
 
 ### createPanel<sup>10+</sup>
 
-createPanel(ctx: BaseContext, info: PanelInfo): Promise<Panel>
+createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法应用窗口。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的窗口。使用promise异步回调。
+创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -533,12 +533,12 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise<Panel>
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
-| info    | PanelInfo   | 是   | 输入法窗口信息。 |
+| info    | PanelInfo   | 是   | 输入法面板信息。 |
 
 **返回值：**
 | 类型   | 说明                                                                 |
 | ------- | ------------------------------------------------------------------ |
-| Promise<Panel> | 回调函数。当输入法窗口创建成功，返回当前创建的输入法窗口对象。  |
+| Promise\<Panel> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -562,9 +562,9 @@ inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).t
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel, callback: AsyncCallback<void>): void;
+destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
-销毁输入法应用窗口。使用callback异步回调。
+销毁输入法应用面板。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -573,7 +573,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback<void>): void;
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | panel     | Panel | 是   | 要销毁的panel对象。 |
-| callback | AsyncCallback<void> | 是   | 回调函数。当输入法窗口销毁成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -610,9 +610,9 @@ try {
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel): Promise<void>;
+destroyPanel(panel: Panel): Promise\<void>;
 
-销毁输入法应用窗口。使用promise异步回调。
+销毁输入法应用面板。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -870,9 +870,9 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, callback: AsyncCallback<void>): void
+setUiContent(path: string, callback: AsyncCallback\<void>): void
 
-为当前窗口加载具体页面内容，使用callback异步回调。
+为当前面板加载具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -881,7 +881,7 @@ setUiContent(path: string, callback: AsyncCallback<void>): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口页面内容加载成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -901,9 +901,9 @@ try {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string): Promise<void>
+setUiContent(path: string): Promise\<void>
 
-为当前窗口加载具体页面内容，使用Promise异步回调。
+为当前面板加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -917,7 +917,7 @@ setUiContent(path: string): Promise<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -936,9 +936,9 @@ try {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback<void>): void
+setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
 
-为当前窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+为当前面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -948,7 +948,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback<void>)
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
 | storage | LocalStorage | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口页面内容加载成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -970,9 +970,9 @@ try {
 
 ### setUiContent<sup>10+</sup>
 
-setUiContent(path: string, storage: LocalStorage): Promise<void>
+setUiContent(path: string, storage: LocalStorage): Promise\<void>
 
-为当前窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+为当前面板加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -987,7 +987,7 @@ setUiContent(path: string, storage: LocalStorage): Promise<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1008,10 +1008,10 @@ try {
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number, callback: AsyncCallback<void>): void
+resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
-改变当前窗口大小，使用callback异步回调。
-窗口存在大小限制，窗口宽度不超出屏幕宽度，窗口高度不高于屏幕高度的二分之一。
+改变当前面板大小，使用callback异步回调。
+面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1019,9 +1019,9 @@ resize(width: number, height: number, callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标窗口的宽度，单位为px。|
-| height | number | 是   | 目标窗口的高度，单位为px。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口大小改变成功，err为undefined，否则err为错误对象。 |
+| width | number | 是   | 目标面板的宽度，单位为px。|
+| height | number | 是   | 目标面板的高度，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1041,10 +1041,10 @@ try {
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number): Promise<void>;
+resize(width: number, height: number): Promise\<void>;
 
-改变当前窗口大小，使用Promise异步回调。
-窗口存在大小限制，窗口宽度不超出屏幕宽度，窗口高度不高于屏幕高度的二分之一。
+改变当前面板大小，使用Promise异步回调。
+面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1052,8 +1052,8 @@ resize(width: number, height: number): Promise<void>;
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | 是   | 目标窗口的宽度，单位为px。|
-| height | number | 是   | 目标窗口的高度，单位为px。|
+| width | number | 是   | 目标面板的宽度，单位为px。|
+| height | number | 是   | 目标面板的高度，单位为px。|
 
 **返回值：**
 
@@ -1078,9 +1078,9 @@ try {
 
 ### moveTo<sup>10+</sup>
 
-moveTo(x: number, y: number, callback: AsyncCallback<void>): void
+moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
-移动窗口位置，使用callback异步回调。
+移动面板位置，使用callback异步回调。
 对FLG_FIXED状态的panel不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1089,9 +1089,9 @@ moveTo(x: number, y: number, callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口位置移动成功，err为undefined，否则err为错误对象。 |
+| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1111,9 +1111,9 @@ try {
 
 ### moveTo<sup>10+</sup>
 
-moveTo(x: number, y: number): Promise<void>
+moveTo(x: number, y: number): Promise\<void>
 
-移动窗口位置，使用callback异步回调。
+移动面板位置，使用callback异步回调。
 对FLG_FIXED状态的panel不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1122,8 +1122,8 @@ moveTo(x: number, y: number): Promise<void>
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| x | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。|
-| y | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。|
+| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
 
 **返回值：**
 
@@ -1148,9 +1148,9 @@ try {
 
 ### show<sup>10+</sup>
 
-show(callback: AsyncCallback<void>): void
+show(callback: AsyncCallback\<void>): void
 
-显示当前窗口，使用callback异步回调。
+显示当前面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1158,7 +1158,7 @@ show(callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口显示成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板显示成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1174,9 +1174,9 @@ panel.show((err) => {
 
 ### show<sup>10+</sup>
 
-show(): Promise<void>
+show(): Promise\<void>
 
-显示当前窗口，使用callback异步回调。
+显示当前面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1184,7 +1184,7 @@ show(): Promise<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1199,9 +1199,9 @@ promise.then(()=> {
 
 ### hide<sup>10+</sup>
 
-hide(callback: AsyncCallback<void>): void
+hide(callback: AsyncCallback\<void>): void
 
-隐藏当前窗口，使用callback异步回调。
+隐藏当前面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1209,7 +1209,7 @@ hide(callback: AsyncCallback<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当窗口隐藏成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板隐藏成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
 
@@ -1225,9 +1225,9 @@ panel.hide((err) => {
 
 ### hide<sup>10+</sup>
 
-hide(): Promise<void>
+hide(): Promise\<void>
 
-隐藏当前窗口，使用callback异步回调。
+隐藏当前面板，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1235,7 +1235,7 @@ hide(): Promise<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1252,7 +1252,7 @@ promise.then(()=> {
 
 on(type: 'show' | 'hide', callback: () => void): void
 
-监听当前窗口状态，可监听窗口类型为show或者hide， 使用callback异步回调。
+监听当前面板状态，可监听面板类型为show或者hide， 使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1260,7 +1260,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | 是 | 监听当前窗口的状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | 'show'/'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1275,7 +1275,7 @@ panel.on('show', () => {
 
 off(type: 'show' | 'hide', callback?: () => void): void
 
-取消监听当前窗口状态，可取消监听的窗口类型为show或者hide，使用callback异步回调。
+取消监听当前面板状态，可取消监听的面板类型为show或者hide，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1283,7 +1283,7 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | 是 | 要取消监听的当前窗口状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | 'show'/'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
@@ -1296,7 +1296,7 @@ panel.off('show');
 
 changeFlag(flag: PanelFlag): void
 
-改变窗口状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
+改变面板状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1304,7 +1304,7 @@ changeFlag(flag: PanelFlag): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | PanelFlag | 是 | 要切换到的窗口状态类型。 |
+| flag | PanelFlag | 是 | 要切换到的面板状态类型。 |
 
 **示例：**
 
