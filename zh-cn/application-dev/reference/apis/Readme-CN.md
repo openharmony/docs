@@ -237,7 +237,7 @@
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
-  - [@ohos.file.fileUri (文件URI)](js-apis-file-fileUri.md)
+  - [@ohos.file.fileuri (文件URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
