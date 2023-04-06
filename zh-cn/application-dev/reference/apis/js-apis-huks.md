@@ -75,7 +75,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 别名。                                        |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
-| callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<void>        | 是   | 回调函数。未捕获error时代表用户指定别名的密钥生成成功，基于密钥不出TEE原则，此接口不会返回密钥材料内容，若捕获error，则为生成阶段出现异常。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ try {
 
 generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
-生成密钥，使用Promise方式异步返回结果。
+生成密钥，使用Promise方式异步返回结果,基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1084,7 +1084,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
-| callback | AsyncCallback\<boolean>     | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出不存在的error code |
 
 **示例：**
 
@@ -1094,17 +1094,19 @@ let keyAlias = 'keyAlias';
 let emptyOptions = {
     properties: []
 };
-try {
-    huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
-        if (error) {
-            console.error(`callback: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
-        } else {
-            console.info(`callback: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        }
-    });
-} catch (error) {
-    console.error(`promise: isKeyItemExist input arg invalid, code: ${error.code}, msg: ${error.message}`);
-}
+huks.isKeyItemExist(keyAlias, emptyOptions, function (error, data) {
+    if (data) {
+      promptAction.showToast({
+        message: "别名为: " + keyAlias +"的密钥是存在的！",
+        duration: 2500,
+      })
+    } else {
+      promptAction.showToast({
+        message: "密钥删除失败，错误码是： " + error.code + " 错误吗信息： " + error.message,
+        duration: 2500,
+      })
+    }
+});
 ```
 
 ## huks.isKeyItemExist<sup>9+</sup>
@@ -1126,7 +1128,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。密钥存在时，可通过then 进行密钥存在后的相关处理，若不存在，可通过error 处理密钥不存在后的相关业务操作 |
 
 **示例：**
 
@@ -1136,17 +1138,17 @@ let keyAlias = 'keyAlias';
 let emptyOptions = {
     properties: []
 };
-try {
-    huks.isKeyItemExist(keyAlias, emptyOptions)
-        .then ((data) => {
-            console.info(`promise: isKeyItemExist success, data = ${JSON.stringify(data)}`);
-        })
-        .catch(error => {
-            console.error(`promise: isKeyItemExist failed, code: ${error.code}, msg: ${error.message}`);
-        });
-} catch (error) {
-    console.error(`promise: isKeyItemExist input arg invalid, code: ${error.code}, msg: ${error.message}`);
-}
+await huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
+    promptAction.showToast({
+      message: "别名为: " + keyAlias +"的密钥是存在的！",
+      duration: 500,
+    })
+  }).catch((err)=>{
+    promptAction.showToast({
+      message: "密钥删除失败，错误码是： " + err.code + " 错误吗信息： " + err.message,
+      duration: 6500,
+    })
+  })
 ```
 
 ## huks.initSession<sup>9+</sup>
@@ -1196,7 +1198,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                         |
+| 参数名   | 类型                                                 ,| 必填 | 说明                                         |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | updateSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession的参数集合。                           |
@@ -2821,6 +2823,7 @@ function huksAbort() {
 huks Handle结构体。
 
 **系统能力**：SystemCapability.Security.Huks
+> **说明：** 从API Version 9开始废弃，建议使用[HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9)替代。
 
 | 名称     | 类型             | 必填 | 说明     |
 | ---------- | ---------------- | ---- | -------- |
@@ -2833,6 +2836,8 @@ huks Handle结构体。
 调用接口返回的result。
 
 **系统能力**：SystemCapability.Security.Huks
+
+> **说明：** 从API Version 9开始废弃，建议使用[HuksReturnResult<sup>9+</sup>](#huksreturnresult9)替代。
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
@@ -2847,6 +2852,7 @@ huks Handle结构体。
 表示错误码的枚举。
 
 **系统能力**：SystemCapability.Security.Huks
+> **说明：** 从API Version 9开始废弃，建议使用[HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9)替代。
 
 | 名称                       | 值    | 说明 |
 | -------------------------- | ----- | ---- |
