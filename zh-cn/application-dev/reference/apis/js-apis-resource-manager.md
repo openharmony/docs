@@ -1543,7 +1543,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
       
   ```
 
-### closeRawFd<sup>8+</sup>
+### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
