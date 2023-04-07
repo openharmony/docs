@@ -491,8 +491,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
-| info    | [PanelInfo](#panelinfo)   | 是   | 输入法面板信息。 |
-| callback | AsyncCallback\<[Panel](#panel)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
+| callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -533,12 +533,12 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
-| info    | [PanelInfo](#panelinfo)   | 是   | 输入法面板信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 
 **返回值：**
 | 类型   | 说明                                                                 |
 | ------- | ------------------------------------------------------------------ |
-| Promise\<[Panel](#panel)> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| Promise\<[Panel](#panel10)> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -572,7 +572,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| panel     | [Panel](#panel) | 是   | 要销毁的panel对象。 |
+| panel     | [Panel](#panel10) | 是   | 要销毁的panel对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **示例：**
@@ -620,7 +620,7 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ---------| ----------- | ---- | ------------------------ |
-| panel    | [Panel](#panel)       | 是   | 要销毁的panel对象。      |
+| panel    | [Panel](#panel10)       | 是   | 要销毁的panel对象。      |
 
 **返回值：**
 | 类型    | 说明                                                                 |
@@ -1304,7 +1304,7 @@ changeFlag(flag: PanelFlag): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag) | 是 | 要切换到的面板状态类型。 |
+| flag | [PanelFlag](#panelflag10) | 是 | 要切换到的面板状态类型。 |
 
 **示例：**
 
