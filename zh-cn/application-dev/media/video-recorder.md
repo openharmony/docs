@@ -84,7 +84,7 @@ export class VideoRecorderDemo {
       audioSampleRate : 48000,
       fileFormat : 'mp4',
       videoBitrate : 2000000,
-      videoCodec : 'video/mp4v-es',
+      videoCodec : 'video/avc',
       videoFrameWidth : 640,
       videoFrameHeight : 480,
       videoFrameRate : 30

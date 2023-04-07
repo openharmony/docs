@@ -77,7 +77,7 @@ export class AVRecorderDemo {
         audioSampleRate : 48000,
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
         videoBitrate : 2000000,
-        videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+        videoCodec : media.CodecMimeType.VIDEO_AVC,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
         videoFrameRate : 30
@@ -369,7 +369,7 @@ export class VideoRecorderDemo {
     let videoProfile = {
         fileFormat : media.ContainerFormatType.CFT_MPEG_4,
         videoBitrate : 2000000,
-        videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+        videoCodec : media.CodecMimeType.VIDEO_AVC,
         videoFrameWidth : 640,
         videoFrameHeight : 480,
         videoFrameRate : 30
