@@ -26,3 +26,26 @@ The **HapModuleInfo** module defines the HAP module information. A system applic
 | deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.  |
 | installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.      |
 | hashValue                         | string                                                       | Yes  | No  | Hash value of the module.             |
+| moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.     |
+| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.|
+| dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends. |
+
+## PreloadItem
+
+Describes the preloaded module information in the atomic service.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name     | Type          | Readable| Writable| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+|moduleName | string         | Yes  | No  | Name of the module automatically preloaded by the system.|
+
+## Dependency
+
+Describes the information about the dynamic shared library on which the module depends.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name       | Type  | Readable| Writable| Description                  |
+| ----------- | ------ | ---- | ---- | ---------------------- |
+| moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
