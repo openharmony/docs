@@ -574,6 +574,49 @@ release(): void;
   }
   ```
 
+  ## Caller.onRemoteStateChange
+
+ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+
+注册协同场景下跨设备组件状态变化监听通知。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 返回onRemoteStateChange回调结果。 |
+
+**示例：**
+    
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  let caller;
+  let dstDeviceId: string;
+  export default class MainAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+          this.context.startAbilityByCall({
+              bundleName: 'com.example.myservice',
+              abilityName: 'MainUIAbility',
+              deviceId: dstDeviceId
+          }).then((obj) => {
+              caller = obj;
+              try {
+                  caller.onRemoteStateChange((str) => {
+                      console.log('Remote state changed ' + str);
+                  });
+              } catch (error) {
+                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+              }
+          }).catch((err) => {
+              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+          })；
+      }
+  }
+  ```
+
 ## Caller.on
 
  on(type: 'release', callback: OnReleaseCallback): void;
@@ -840,6 +883,16 @@ off(method: string): void;
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
+
+## OnRemoteStateChangeCallback
+
+(msg: string): void;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称 | 可读 | 可写 | 类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | 是 | 否 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
 
 ## CalleeCallback
 
