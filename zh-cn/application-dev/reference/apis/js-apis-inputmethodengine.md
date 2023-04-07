@@ -490,9 +490,9 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
-| info    | PanelInfo   | 是   | 输入法面板信息。 |
-| callback | AsyncCallback\<Panel> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| info    | [PanelInfo](#panelinfo)   | 是   | 输入法面板信息。 |
+| callback | AsyncCallback\<[Panel](#panel)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -532,13 +532,13 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | BaseContext | 是   | 当前输入法应用上下文信息。 |
-| info    | PanelInfo   | 是   | 输入法面板信息。 |
+| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| info    | [PanelInfo](#panelinfo)   | 是   | 输入法面板信息。 |
 
 **返回值：**
 | 类型   | 说明                                                                 |
 | ------- | ------------------------------------------------------------------ |
-| Promise\<Panel> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| Promise\<[Panel](#panel)> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -572,7 +572,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| panel     | Panel | 是   | 要销毁的panel对象。 |
+| panel     | [Panel](#panel) | 是   | 要销毁的panel对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **示例：**
@@ -620,7 +620,7 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ---------| ----------- | ---- | ------------------------ |
-| panel    | Panel       | 是   | 要销毁的panel对象。      |
+| panel    | [Panel](#panel)       | 是   | 要销毁的panel对象。      |
 
 **返回值：**
 | 类型    | 说明                                                                 |
@@ -866,7 +866,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ## Panel
 
-下列API示例中都需使用[createPanel]()回调获取到Panel实例，再通过此实例调用对应方法。
+下列API示例中都需使用[createPanel](#createpanel)回调获取到Panel实例，再通过此实例调用对应方法。
 
 ### setUiContent<sup>10+</sup>
 
@@ -947,7 +947,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | LocalStorage | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -981,7 +981,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | LocalStorage | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1304,7 +1304,7 @@ changeFlag(flag: PanelFlag): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | PanelFlag | 是 | 要切换到的面板状态类型。 |
+| flag | [PanelFlag](#panelflag) | 是 | 要切换到的面板状态类型。 |
 
 **示例：**
 
