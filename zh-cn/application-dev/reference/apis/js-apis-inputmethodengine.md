@@ -504,7 +504,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFTKEYBOARD,
+  panelType: SOFT_KEYBOARD,
   panelFlag: FLG_FIXED
 }
 try {
@@ -550,7 +550,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFTKEYBOARD,
+  panelType: SOFT_KEYBOARD,
   panelFlag: FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
@@ -579,7 +579,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFTKEYBOARD,
+  panelType: SOFT_KEYBOARD,
   panelFlag: FLG_FIXED
 }
 try {
@@ -631,7 +631,7 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFTKEYBOARD,
+  panelType: SOFT_KEYBOARD,
   panelFlag: FLG_FIXED
 }
 try {
