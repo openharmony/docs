@@ -510,13 +510,13 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + err);
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
       return;
     }
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + err);
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
 }
 ```
 
@@ -556,7 +556,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
 }).catch((err) => {
-  console.log('Failed to create panel, err: ' + err);
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
 })
 ```
 
@@ -585,26 +585,26 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + err);
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + err);
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel((err) => {
     if(err !== undefined) {
-      console.log('Failed to destroy panel, err: ' + err);
+      console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
       return;
     }
     console.log('Succeed in destroying panel.');
   })
 } catch(err) {
-  console.log('Failed to destroy panel, err: ' + err);
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
 }
 ```
 
@@ -637,24 +637,24 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + err);
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + err);
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel().then(() => {
     console.log('Succeed in destroying panel.');
   }).catch((err) => {
-    console.log('Failed to destroy panel, err: ' + err);
+    console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
   });
 } catch (err) {
-  console.log('Failed to destroy panel, err: ' + err);
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
 }
 ```
 
