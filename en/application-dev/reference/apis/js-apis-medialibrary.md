@@ -1,11 +1,8 @@
 # @ohos.multimedia.medialibrary (Media Library Management)
 
 > **NOTE**
->
-> - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
-> - This API is deprecated since API version 9 and will be retained until API version 13.
-> - Certain functionalities are changed as system APIs and can be used only by system applications. To use these functionalities, call [@ohos.filemanagement.userFileManager](js-apis-userFileManager.md).
-> - The functionalities for selecting and storing media assets are still open to common applications. To use these functionalities, call [@ohos.file.picker](js-apis-file-picker.md).
+> 
+> The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 ```js
@@ -610,7 +607,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 media.release()
 ```
 
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;): void
 
@@ -647,8 +644,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (error, value) => {
 });
 ```
 
-
-### storeMediaAsset
+### storeMediaAsset<sup>(deprecated)</sup>
 
 storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 
@@ -689,7 +685,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -733,7 +729,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (error) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
@@ -775,7 +771,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (error) => {
 ```
 
 
-### startImagePreview
+### startImagePreview<sup>(deprecated)</sup>
 
 startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&gt;
 
@@ -822,7 +818,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
 ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -859,7 +855,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (error, value) => {
 ```
 
 
-### startMediaSelect
+### startMediaSelect<sup>(deprecated)</sup>
 
 startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -2634,12 +2630,15 @@ Describes the image size.
 | width  | number | Yes   | Yes   | Image width, in pixels.|
 | height | number | Yes   | Yes   | Image height, in pixels.|
 
-## MediaAssetOption
+## MediaAssetOption<sup>(deprecated)</sup>
 
 Implements the media asset option.
 
-**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+> **NOTE** 
+> 
+> This API is deprecated since API version 9.
 
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name        | Type  | Readable| Writable| Description                                                        |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -2647,12 +2646,15 @@ Implements the media asset option.
 | mimeType     | string | Yes  | Yes  | Multipurpose Internet Mail Extensions (MIME) type of the media.<br>The value can be 'image/\*', 'video/\*', 'audio/\*' or 'file\*'.|
 | relativePath | string | Yes  | Yes  | Custom path for storing media assets, for example, 'Pictures/'. If this parameter is unspecified, media assets are stored in the default path.<br> Default path of images: 'Pictures/'<br> Default path of videos: 'Videos/'<br> Default path of audios: 'Audios/'<br> Default path of files: 'Documents/'|
 
-## MediaSelectOption
+## MediaSelectOption<sup>(deprecated)</sup>
 
 Describes media selection option.
 
-**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+> **NOTE** 
+> 
+> This API is deprecated since API version 9.
 
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 | Name   | Type    | Readable| Writable| Description                  |
 | ----- | ------ | ---- | ---- | -------------------- |
 | type  | 'image' &#124; 'video' &#124; 'media' | Yes   | Yes | Media type, which can be **image**, **media**, or **video**. Currently, only **media** is supported.|

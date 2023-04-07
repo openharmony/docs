@@ -1,5 +1,9 @@
 # Application Development Overview
 
+> **NOTE**
+>
+> You are reading documents of OpenHarmony 3.2 Beta5. You can use the [compatible SDK](../release-notes/OpenHarmony-v3.2-beta5.md#version-mapping) for your application development.
+
 The application development documents provide reference for you to develop applications using the APIs provided by OpenHarmony. They walk you through how to use JavaScript APIs to develop applications on the standard system.
 
 The documents are carefully organized as follows:
