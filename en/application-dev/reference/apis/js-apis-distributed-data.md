@@ -11,7 +11,7 @@ This module provides the following functions:
 - [SingleKVStore](#singlekvstore): provides methods to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore), and data is not distinguished by device.
 - [DeviceKVStore<sup>8+</sup> ](#devicekvstore8): provides methods to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
 
->**NOTE**<br/>
+>**NOTE**
 >
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -35,7 +35,7 @@ Creates a **KVManager** instance to manage KV stores. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes | **KVManager** instance configuration, including the bundle name and user information of the caller.|
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
 
 **Example**
@@ -157,7 +157,7 @@ Creates and obtains a KV store. This API uses an asynchronous callback to return
 | ----- | ------ | ------ | ------ |
 | storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options | [Options](#options) | Yes | Configuration of the KV store.|
-| callback | AsyncCallback&lt;T&gt; , &lt;T extends [KVStore](#kvstore)&gt;| Yes | Callback invoked to return the KV store created.|
+| callback | AsyncCallback&lt;T&gt; , &lt;T extends [KVStore](#kvstore)&gt;| Yes | Callback invoked to return the KV store instance created.|
 
 **Example**
 
@@ -207,7 +207,7 @@ Creates and obtains a KV store. This API uses a promise to return the result.
 
 | Type                                   | Description       |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store created.|
+| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store instance created.|
 
 **Example**
 
@@ -444,7 +444,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the KV store IDs obtained. |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the IDs of all created KV stores.|
 
 **Example**
 
@@ -480,7 +480,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise&lt;string[]&gt;| Promise used to return the KV store IDs obtained.|
+| Promise&lt;string[]&gt;| Promise used to return the IDs of all created KV stores.|
 
 **Example**
 
@@ -574,7 +574,7 @@ Provides KV store configuration.
 | createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
 | backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
-| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| autoSync  | boolean | No|Whether to automatically synchronize database files. The value **false** (default) means to manually synchronize database files; the value **true** means to automatically synchronize database files.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 | schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
@@ -1014,7 +1014,7 @@ Checks whether the data read position is the first row.
 
 | Type   | Description              |
 | ------  | --------------    |
-| boolean |Returns **true** if the data read position is the first row; returns **false** otherwise.  |
+| boolean |Returns **true** if the first row is being read; returns **false** otherwise.  |
 
 **Example**
 
@@ -1048,7 +1048,7 @@ Checks whether the data read position is the last row.
 
 | Type   | Description              |
 | ------  | --------------    |
-| boolean |Returns **true** if the data read position is the last row; returns **false** otherwise.  |
+| boolean |Returns **true** if the last row is being read; returns **false** otherwise.  |
 
 **Example**
 
@@ -2290,7 +2290,7 @@ Unsubscribes from data changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the service status change event.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
 
 **Example**
 
@@ -3036,7 +3036,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
-| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs obtained. |
+| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified prefix. |
 
 **Example**
 
@@ -3087,7 +3087,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses a promis
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs that match the specified prefix.|
 
 **Example**
 
@@ -3140,7 +3140,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |Key prefix to match. |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs obtained. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified **Query** object. |
 
 **Example**
 
@@ -3196,7 +3196,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs that match the specified **Query** object.|
 
 **Example**
 
@@ -3249,7 +3249,7 @@ Obtains the result set with the specified prefix. This API uses an asynchronous 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | Yes   |Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the result set obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the result set with the specified prefix.|
 
 **Example**
 
@@ -3303,7 +3303,7 @@ Obtains the result set with the specified prefix. This API uses a promise to ret
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the result set obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise used to return the result set with the specified prefix.|
 
 **Example**
 
@@ -3761,7 +3761,7 @@ Unsubscribes from synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   | Callback for the synchronization complete event. |
 
 **Example**
 
@@ -3791,6 +3791,10 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
+> **NOTE**<br/>
+>
+> The value of **deviceIdList** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -3799,15 +3803,48 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes   |IDs of the devices in the same networking environment to be synchronized.|
+| deviceIdList  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
 | mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
 | allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devManager;
 let kvStore;
-kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+// create deviceManager
+deviceManager.createDeviceManager('bundleName', (err, value) => {
+  if (!err) {
+    devManager = value;
+    let deviceIds = [];
+    if (devManager != null) {
+      var devices = devManager.getTrustedDeviceListSync();
+      for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+      }
+    }
+    try {
+      kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+      });
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+        if (err != undefined) {
+          console.log("put err: " + JSON.stringify(err));
+          return;
+        }
+        console.log('Succeeded in putting data');
+        const mode = distributedData.SyncMode.PULL_ONLY;
+        kvStore.sync(deviceIds, mode, 1000);
+      });
+    } catch (e) {
+      console.log('Sync e' + e);
+    }
+  }
+});
 ```
 
 ### setSyncParam<sup>8+</sup> ###
@@ -3960,7 +3997,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   | Callback invoked to return the value obtained.   |
 
 **Example**
 
@@ -4000,7 +4037,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;boolean\|string\|number\|Uint8Array&gt; |Promise used to return the string value obtained.|
+|Promise&lt;boolean\|string\|number\|Uint8Array&gt; |Promise used to return the string value that matches the given condition.|
 
 **Example**
 
@@ -4039,7 +4076,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback invoked to return the KV pairs obtained.   |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes | Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4092,7 +4129,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return all the KV pairs that match the given condition.|
 
 **Example**
 
@@ -4145,7 +4182,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   | Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4202,7 +4239,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs that match the specified **Query** object.|
 
 **Example**
 
@@ -4256,7 +4293,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs that match the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4314,7 +4351,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs obtained.|
+|Promise&lt;[Entry](#entry)[]&gt; |Promise used to return the KV pairs that match the specified device ID and **Query** object.|
 
 **Example**
 
@@ -4369,7 +4406,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.   |
 
 **Example**
 
@@ -4409,7 +4446,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Example**
 
@@ -4504,7 +4541,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object that matches the specified **Query** object.|
 
 **Example**
 
@@ -4564,7 +4601,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4621,7 +4658,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object obtained.|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt; |Promise used to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Example**
 
@@ -4806,7 +4843,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;number&gt; |Promise used to return the number of results obtained.|
+|Promise&lt;number&gt; |Promise used to return the number of results that matches the specified **Query** object.|
 
 **Example**
 
@@ -4858,7 +4895,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device.   |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.    |
 
 **Example**
 
@@ -4910,7 +4947,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;number&gt; |Promise used to return the number of results obtained.|
+|Promise&lt;number&gt; |Promise used to return the number of results that matches the specified device ID and **Query** object.|
 
 **Example**
 
@@ -5044,6 +5081,10 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
+> **NOTE**<br/>
+>
+> The value of **deviceIdList** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications. 
+
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -5059,22 +5100,41 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let devManager;
 let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
+// create deviceManager
+deviceManager.createDeviceManager('bundleName', (err, value) => {
+  if (!err) {
+    devManager = value;
+    let deviceIds = [];
+    if (devManager != null) {
+      var devices = devManager.getTrustedDeviceListSync();
+      for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+      }
+    }
+    try {
+      kvStore.on('syncComplete', function (data) {
         console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
-        const devices = ['deviceList'];
+      });
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+        if (err != undefined) {
+          console.log("put err: " + JSON.stringify(err));
+          return;
+        }
+        console.log('Succeeded in putting data');
         const mode = distributedData.SyncMode.PULL_ONLY;
-        kvStore.sync(devices, mode);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
-}
+        kvStore.sync(deviceIds, mode, 1000);
+      });
+    } catch (e) {
+      console.log('Sync e' + e);
+    }
+  }
+});
 ```
 
 ### on('syncComplete')<sup>8+</sup> ###
@@ -5126,7 +5186,7 @@ Unsubscribes from synchronization complete events. This API returns the result s
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback for the synchronization complete event. |
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   | Callback for the synchronization complete event. |
 
 **Example**
 
