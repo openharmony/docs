@@ -487,4 +487,4 @@ export class VideoRecorderDemo {
 
 音视频录制APP案例包含：创建实例、设置录制参数、获取输入surface、开始录制、暂停录制、恢复录制、停止录制、释放资源等流程。
 
-详细代码可参考：[AVRecorderDemo]([multimedia_player_framework: Implementation of media playback and recording | 媒体播放和录制功能实现 - Gitee.com](https://gitee.com/openharmony/multimedia_player_framework/tree/master/test/appdemo/AVRecorderDemo))
+详细代码可参考：[AVRecorderDemo]([multimedia_player_framework: Implementation of media playback and recording | 媒体播放和录制功能实现 - Gitee.com](https://gitee.com/openharmony/multimedia_player_framework/tree/master/test/sample/AVRecorder))
