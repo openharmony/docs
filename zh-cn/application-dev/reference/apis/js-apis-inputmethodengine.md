@@ -864,7 +864,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 });
 ```
 
-## Panel
+## Panel<sup>10+</sup>
 
 下列API示例中都需使用[createPanel](#createpanel)回调获取到Panel实例，再通过此实例调用对应方法。
 
