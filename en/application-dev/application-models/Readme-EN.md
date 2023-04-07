@@ -17,7 +17,6 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility (for System Applications Only)](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
     - [AbilityStage Component Container](abilitystage.md)
