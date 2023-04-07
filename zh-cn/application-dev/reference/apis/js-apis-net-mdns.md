@@ -399,7 +399,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStart')
 
-on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 订阅开启监听mDNS服务的通知。
 
@@ -410,7 +410,7 @@ on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, er
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -428,7 +428,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStop')
 
-on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 订阅停止监听mDNS服务的通知。
 
@@ -439,7 +439,7 @@ on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, err
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -538,7 +538,7 @@ mDNS服务属性信息
 | key   | string                             |  是 |  mDNS服务属性键值，键值长度应该小于9个字符。  |
 | value | Array\<number>                             |  是 |  mDNS服务属性值。   |
 
-## MDNS_ERR
+## MdnsError
 
 mDNS错误信息。
 
