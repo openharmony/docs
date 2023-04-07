@@ -924,9 +924,9 @@ setUiContent(path: string): Promise\<void>
 ```js
 try {
   let promise = panel.setUiContent('pages/page2/page2');
-  promise.then(()=> {
+  promise.then(() => {
     console.info('Succeeded in setting the content.');
-  }).catch((err)=>{
+  }).catch((err) =>{
     console.error('Failed to set the content. err: ' + JSON.stringify(err));
   });
 } catch (exception) {
@@ -996,9 +996,9 @@ let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
   let promise = panel.setUiContent('pages/page2/page2');
-  promise.then(()=> {
+  promise.then(() => {
     console.info('Succeeded in setting the content.');
-  }).catch((err)=>{
+  }).catch((err) =>{
     console.error('Failed to set the content. err: ' + JSON.stringify(err));
   });
 } catch (exception) {
@@ -1066,9 +1066,9 @@ resize(width: number, height: number): Promise\<void>;
 ```js
 try {
   let promise = panel.resize(500, 1000);
-  promise.then(()=> {
+  promise.then(() => {
     console.info('Succeeded in changing the panel size.');
-  }).catch((err)=>{
+  }).catch((err) =>{
     console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
   });
 } catch (exception) {
@@ -1097,7 +1097,7 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```js
 try {
-  panel.moveTo(300, 300, (err)=>{
+  panel.moveTo(300, 300, (err) =>{
     if (err.code) {
       console.error('Failed to move the panel. err:' + JSON.stringify(err));
       return;
@@ -1136,9 +1136,9 @@ moveTo(x: number, y: number): Promise\<void>
 ```js
 try {
   let promise = windowClass.moveTo(300, 300);
-  promise.then(()=> {
+  promise.then(() => {
     console.info('Succeeded in moving the panel.');
-  }).catch((err)=>{
+  }).catch((err) =>{
     console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
   });
 } catch (exception) {
@@ -1190,9 +1190,9 @@ show(): Promise\<void>
 
 ```js
 let promise = panel.show();
-promise.then(()=> {
+promise.then(() => {
   console.info('Succeeded in showing the panel.');
-}).catch((err)=>{
+}).catch((err) =>{
   console.error('Failed to show the panel. err: ' + JSON.stringify(err));
 });
 ```
@@ -1241,9 +1241,9 @@ hide(): Promise\<void>
 
 ```js
 let promise = panel.hide();
-promise.then(()=> {
+promise.then(() => {
   console.info('Succeeded in hiding the panel.');
-}).catch((err)=>{
+}).catch((err) =>{
   console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
 });
 ```
