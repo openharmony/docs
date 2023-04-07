@@ -1,5 +1,9 @@
 # System Parameter Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 14700101 Failure to Query the System Parameter
 
 **Error Message**

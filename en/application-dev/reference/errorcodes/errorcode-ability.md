@@ -1,5 +1,9 @@
 # Ability Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 16000001 Ability Name Does Not Exist
 
 **Error Message**
