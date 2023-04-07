@@ -2,6 +2,12 @@
 
 定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
+## 导入模块
+
+```ts
+import appManager from '@ohos.application.appManager';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
