@@ -3,8 +3,9 @@
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
+>
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are no longer maintained since API version 9. You are advised to use [bluetoothManager](js-apis-bluetoothManager.md).
 
 
 
@@ -123,7 +124,7 @@ let state = bluetooth.getState();
 
 getBtConnectionState(): ProfileConnectionState
 
-Obtains the profile connection state of this Bluetooth device.
+Obtains the local profile connection state.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.getBtConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetbtconnectionstate).
@@ -214,9 +215,9 @@ let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 
 getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection state of a profile.
+Obtains the connection status of a specified profile.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.getProfileConnectionState](js-apis-bluetoothManager.md#bluetoothmanagergetprofileconnectionstate).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
@@ -1513,7 +1514,7 @@ Subscribes to the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1546,7 +1547,7 @@ Unsubscribes from the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -2141,8 +2142,7 @@ on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteReq&gt;
 Subscribes to the characteristic write request events.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and
-> deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('characteristicWrite')](js-apis-bluetoothManager.md#oncharacteristicwrite).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattServer.on('characteristicWrite')](js-apis-bluetoothManager.md#oncharacteristicwrite).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2239,7 +2239,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client. |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
 
 **Return value**
 
@@ -2322,7 +2322,7 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client. |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client.        |
 
 **Return value**
 
@@ -3198,7 +3198,7 @@ let deviceName = gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the RSSI of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the received signal strength indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue).
@@ -3553,7 +3553,7 @@ Defines the scan configuration parameters.
 
 ## ScanDuty<sup>(deprecated)</sup>
 
-Enumerates the scan modes.
+Enumerates the scan duty options.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.ScanDuty](js-apis-bluetoothManager.md#scanduty).
@@ -3882,7 +3882,7 @@ Enumerates the A2DP playing states.
 
 ## ProfileId<sup>8+</sup><sup>(deprecated)</sup><a name="ProfileId"></a>
 
-Enumerates Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST** and **PROFILE_PAN_NETWORK**.
+Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST** and **PROFILE_PAN_NETWORK**.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.ProfileId](js-apis-bluetoothManager.md#profileid).
