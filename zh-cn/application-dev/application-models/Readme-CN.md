@@ -17,11 +17,11 @@
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
+    - [服务卡片开发指导](widget-development-stage.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
