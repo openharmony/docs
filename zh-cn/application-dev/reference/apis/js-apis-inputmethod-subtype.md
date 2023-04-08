@@ -29,4 +29,4 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 | language | string | 是 | 否 | 是 | 输入法子类型的语言。 |
 | icon | string | 是 | 否 | 否 | 输入法子类型的图标。 |
 | iconId | number | 是 | 否 | 否 | 输入法子类型的图标id。 |
-| extra | object | 是 | 是 | 否 | 输入法子类型的其他信息。 |
+| extra | object | 是 | 是 | 否 | 输入法子类型的其他信息。<br/>**说明：** 从API version 10开始改为非必选参数。 |
