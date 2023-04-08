@@ -1138,7 +1138,7 @@ setBitrate(bitrate: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#availableBitrates_on)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。 |
+| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#availableBitrates_on)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates时间获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
 
 **示例：**
 
@@ -1203,7 +1203,7 @@ on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): voi
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | HLS协议可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
-| callback | function | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。 |
+| callback | function | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
 
 **示例：**
 
@@ -1762,7 +1762,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -1833,7 +1833,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -2535,7 +2535,7 @@ avRecorder.off('error');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。                             |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填。                         |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前仅支持VIDEO_AVC和VIDEO_MPEG4。 |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。需要查询设备支持的编码能力（包括编码格式，分辨率大小等）。 |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填。                             |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填。                             |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填。                               |
@@ -2644,7 +2644,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -2715,7 +2715,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
