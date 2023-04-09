@@ -503,7 +503,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Release | NA |
-| Public SDK | Ohos_sdk_public 3.2.9.5 (API Version 9 Beta4) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Public SDK | Ohos_sdk_public 3.2.11.9 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
 | HUAWEI DevEco Studio（可选） | 3.1 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br /> [Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/f3/v3/uJyuq3syQ2ak4hE1QZmAug/devecostudio-windows-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013335Z&HW-CC-Expire=315360000&HW-CC-Sign=96262721EDC9B34E6F62E66884AB7AE2A94C2A7B8C28D6F7FC891F46EB211A70) <br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/b7/v3/4z3mLQPCQR-g5KlC56SC1w/devecostudio-mac-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013430Z&HW-CC-Expire=315360000&HW-CC-Sign=93E83FD1F1CE504EF8F098E08955A938FDA4E4926A2555CF1E02DC8D57210D76) <br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/2e/v3/Fl9IY6PiQxqc3tnI2cftiw/devecostudio-mac-arm-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013540Z&HW-CC-Expire=315360000&HW-CC-Sign=0906243123734033AAD34A7A005ED7671F00CAA693B6E674F81A094A0159ECCE) |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
 
@@ -540,14 +540,14 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
    
 - 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2-Beta5 --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
@@ -558,14 +558,14 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
    
 - 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
    ```
-   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2-Beta5 --no-repo-verify
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
