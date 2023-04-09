@@ -14,7 +14,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 ### ArkUI
 
 
- **组件及动画能力增强** 
+ **组件能力增强** 
 
 - 支持XComponent控件，可用于EGL/OpenGL ES和媒体数据写入，并在XComponent组件显示；通过XComponent组件，配合NDK能力，构建C++/ArkTS混合开发能力，支持游戏、媒体应用开发
 - 支持AbilityComponent控件，支持嵌入其他应用作为控件（Component）显示。
