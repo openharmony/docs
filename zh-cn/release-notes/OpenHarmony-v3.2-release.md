@@ -495,3 +495,154 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
   - 支持注入滑动、鼠标、字符、系统按键、控件事件，模拟用户多样化随机操作，覆盖真实用户操作场景，挖掘更多稳定性问题。
   - 支持设置运行总时长、应用黑白名单，实现个性化测试。
   - 支持控件顺序遍历测试，测试过程中支持界面截图；支持休眠唤醒测试。
+
+## 配套关系
+
+  **表1** 版本软件和工具配套关系
+
+| 软件 | 版本 | 备注 |
+| -------- | -------- | -------- |
+| OpenHarmony | 3.2 Release | NA |
+| Public SDK | Ohos_sdk_public 3.2.9.5 (API Version 9 Beta4) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| HUAWEI DevEco Studio（可选） | 3.1 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br /> [Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/f3/v3/uJyuq3syQ2ak4hE1QZmAug/devecostudio-windows-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013335Z&HW-CC-Expire=315360000&HW-CC-Sign=96262721EDC9B34E6F62E66884AB7AE2A94C2A7B8C28D6F7FC891F46EB211A70) <br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/b7/v3/4z3mLQPCQR-g5KlC56SC1w/devecostudio-mac-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013430Z&HW-CC-Expire=315360000&HW-CC-Sign=93E83FD1F1CE504EF8F098E08955A938FDA4E4926A2555CF1E02DC8D57210D76) <br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/2e/v3/Fl9IY6PiQxqc3tnI2cftiw/devecostudio-mac-arm-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013540Z&HW-CC-Expire=315360000&HW-CC-Sign=0906243123734033AAD34A7A005ED7671F00CAA693B6E674F81A094A0159ECCE) |
+| HUAWEI DevEco Device Tool（可选） | 3.1 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
+
+## 源码获取
+
+
+### 前提条件
+
+1. 注册码云gitee帐号。
+
+2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
+
+3. 安装[git客户端](https://gitee.com/link?target=https%3A%2F%2Fgit-scm.com%2Fbook%2Fzh%2Fv2%2F%25E8%25B5%25B7%25E6%25AD%25A5-%25E5%25AE%2589%25E8%25A3%2585-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+  
+   ```
+   git config --global user.name "yourname"
+   git config --global user.email "your-email-address"
+   git config --global credential.helper store
+   ```
+
+4. 安装码云repo工具，可以执行如下命令。
+  
+   ```
+   curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中chmod a+x /usr/local/bin/repo
+   pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+
+### 通过repo获取
+
+**方式一（推荐）**
+
+通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2-Beta5 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
+**方式二**
+
+通过repo + https 下载。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2-Beta5 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
+
+### 从镜像站点获取
+
+  **表2** 获取源码路径
+
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz.sha256) |  |
+| Hi3861解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz.sha256) | |
+| Hi3516解决方案-LiteOS（二进制） | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256) |  |
+| Hi3516解决方案-Linux（二进制）  | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256) |  |
+| RK3568标准系统解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/dayu200_standard_arm32.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Mac）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-mac-public.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) |  |
+
+## 更新说明
+
+本版本在OpenHarmony 3.2 Beta5的基础上有如下变更:
+
+### API 
+
+API变更请参考[*API差异报告*](api-diff/Beta5%20to%20v3.2-Release)
+
+### 芯片及开发板适配
+
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+
+### Samples
+
+  **表3** 新增Samples
+
+| 子系统 | 名称 | 简介 | 开发语言 |
+| -------- | -------- | -------- | -------- |
+| 无障碍 | [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTS |
+| 企业管理 | [企业设备管理ExtensionAbility](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility) | 企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。 | ArkTS |
+| 任务管理 | [任务延时调度](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例使用\@ohos.WorkSchedulerExtensionAbility 、\@ohos.net.http 、\@ohos.notification 、\@ohos.bundle 、\@ohos.fileio 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。 | ArkTS |
+| 网络 | [上传](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload) | 本示例主要展示Request服务向三方应用提供系统上传服务能力，通过\@ohos.request，\@ohos.multimedia.mediaLibrary等接口去实现图片的选取与上传。 | ArkTS |
+| 任务管理 | [短时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask) | 本示例主要展示后台任务中的短时任务。通过\@ohos.resourceschedule.backgroundTaskManager，\@ohos.app.ability.quickFixManager等接口实现应用热更新的方式去展现短时任务机制。 | ArkTS |
+| 任务管理 | [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask) | 本示例展示后台任务的长时任务。通过使用\@ohos.resourceschedule.backgroundTaskManager实现后台播放音乐时避免进入挂起（Suspend）状态。 | ArkTS |
+| 元能力 | [ArkTS卡片计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSFormCalc) | 本示例展示了使用ArkTS卡片开发的计算器模型。 | ArkTS |
+| 元能力 | [ArkTS卡片Canvas小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame) | 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。<br/>- 使用Canvas绘制棋盘和黑白棋子的落子。<br/>- 通过卡片支持的点击事件进行交互，让用户在棋盘上进行黑白棋子的对局。<br/>- 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。 | ArkTS |
+| 元能力 | [ArkTs音乐卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/ArkTSCardMusicSample) | 本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片。 | ArkTS |
+
+请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+
+
+## 修复缺陷列表
+
+  **表4** 修复缺陷ISSUE列表
+
+| ISSUE单 | 问题描述 |
+| -------- | -------- |
+| I6ATXO | 【RK3568】XTS执行测试，OpenGL测试套执行结果存在失败项 |
+| I6BJ9Z<br/>I6BJ82 | alloc_file_pseudo 内存泄漏问题跟踪 |
+| I6BRTS | 调用rdb::executeSql接口会引起内存泄漏风险 |
+| I6AZ4T | 带textinput输入框组件的应用存在内存泄漏风险 |
+
+
+## 遗留缺陷列表
+
+  **表5** 遗留缺陷列表
+
+| ISSUE | 问题描述 | 影响 | 计划解决日期 |
+| -------- | -------- | -------- | -------- |
+| I6AB3T | 首次启动联系人：1270ms，实际值：1493.1ms，超基线223ms | 启动时延，联系人进程为非常驻，启动时需要拉启联系人数据库进程导致有时延 | 遗留挂起 |
+| I6SMQA | 浏览器加载微博滑动过程中出现抖动 | 通过浏览器加载微博web网页后，快速滑动时，内容会闪现未加载，然后很快能加载出来，影响滑动体验 | 2023年5月15号 |
+| I6TRE6 | 进程com.ohos.contacts下的com.ohos.contacts线程导致libdatashare_consumer.z.so低概率出现crash | 联系人应用快速启动和退出场景，且启动后600ms内退出，联系人进程低概率出现crash，出现crash后联系人进程会被重新拉起，影响可控 | 2023年4月30号 |
+| I6SXBI | 【低概率】【wukong】出现进程ohos.samples.distributedcalc下的libdistributeddata.z.so cppcrash | 计算器应用快速启动和退出场景，启动后1秒内退出，计算器应用低概率出现cppcrash，出现crash后计算器进程会被重新拉起，影响可控 | 2023年4月30号 |
+| I6U00Q | Rk3568使用3.5mm耳机播放音频文件，存在pop音 | RK3568使用3.5mm耳机播放音频文件，存在pop音 | 2023年5月30号 |
+| I6TNY9 | 通话记录处充满记录时，向上滑动时拨号键盘无法隐藏 | 影响拨号键盘的隐藏体验 | 2023年4月30号 |
+| I6TOTV | tabs组件中tabs_animation在反复切换过程中，两种颜色同时显示在界面 | tabs_animation在反复切换场景下，影响tabs组件的颜色显示 | 2023年4月30号 |
+| I6TOV2、I6TOYV、I6TOQO、I6TOK5 | wifi或ble组网引导p2p循环发送100次linktype为stream通路概率失败 | wifi组网引导p2p压测100次，成功率大于80%，出现概率p2p组网失败，失败后重新触发组网时高概率能成功 | 2023年5月30号 |
+| I6TMP3 | 长按应用进入图片预览，向后滑动150张卡片左右，点击添加卡片，桌面不显示卡片 | 图片较多的场景下，进入图形预览，添加卡片，桌面概率不显示卡片 | 2023年4月30号 |
+| I6B4U3 | 【RK3568】【压力测试】【ToC】【低概率1/10】【xts】出现进程com.ohos.launcher出现appfreeze | 安装应用加多，安装超过40个应用，且内存较小的设备场景下，低概率出现appfreeze，但桌面功能正常，不影响整体功能和使用 | 2023年5月30号 |
+| I64726、<br/>I641A2 | 蓝牙api函数bluetooth.pairDevice与其他设备配对时无配对提示，与其他设备静默配对后通过蓝牙键盘、鼠标完全控制设备 | 无配对弹窗提示，但能配对成功，不影响软总线的配对组网功能，社区已规划需求完成此功能的支持，计划6月30号支持 | 2023年6月30号 |
