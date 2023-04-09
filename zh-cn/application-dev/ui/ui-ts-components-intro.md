@@ -7,7 +7,7 @@
 |           组件类型           |                主要组件                                     |
 | ---------------------------- | ---------------------------------------------------------- |
 | [基础组件](../reference/arkui-ts/ts-basic-components-blank.md) |  Blank、Button、Checkbox、CheckboxGroup、DataPanel、DatePicker、Divider、Gauge、Image、ImageAnimator、LoadingProgress、Marquee、Navigation、PatternLock、PluginComponent、Progress、QRCode、Radio、Rating、RemoteWindow、RichText、ScrollBar、Search、Select、Slider、Span、Stepper、StepperItem、Text、TextArea、TextClock、TextInput、TextPicker、TextTimer、TimePicker、Toggle、Web、XComponent    |
-| [容器组件](../reference/arkui-ts/ts-container-ability-component.md) | AbilityComponent、AlphabetIndexer、Badge、Column、ColumnSplit、Counter、Flex、FlowItem、GridContainer、GridCol、GridRow、Grid、GridItem、List、ListItem、ListItemGroup、Navigator、Panel、Refresh、RelativeContainer、Row、RowSplit、Scroll、SideBarContainer、Stack、Swiper、Tabs、TabContent、WaterFlow   |
+| [容器组件](../reference/arkui-ts/ts-container-ability-component.md) | AbilityComponent、AlphabetIndexer、Badge、Column、ColumnSplit、Counter、Flex、FlowItem、GridContainer、GridCol、GridRow、Grid、GridItem、List、ListItem、ListItemGroup、Navigator、Panel、Refresh、RelativeContainer、Row、RowSplit、Scroll、SideBarContainer、Stack、Swiper、Tabs、TabContent  |
 | [媒体组件](../reference/arkui-ts/ts-media-components-video.md) |    Video    |
 | [绘制组件](../reference/arkui-ts/ts-drawing-components-circle.md) | Circle、Ellipse、Line、Polyline、Polygon、Path、Rect、Shape   |
 | [画布组件](../reference/arkui-ts/ts-components-canvas-canvas.md) |   Canvas     |
