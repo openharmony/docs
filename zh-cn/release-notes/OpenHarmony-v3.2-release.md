@@ -121,6 +121,12 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 新增FilePicker能力。FilePicker是系统向用户提供文件（媒体文件除外）选择的统一入口，避免用户向应用授权文件权限，确保文件使用权限最小化控制提升应用安全。
 
 
+ **浏览器**
+
+当前版本未内置浏览器应用。可手动安装[浏览器应用示例](https://gitee.com/openharmony/applications_app_samples/tree/samples_3.2_Release/code/BasicFeature/Web/Browser)后进行网络内容浏览等场景的体验。
+
+
+
 ### 分布式技术
 
 支持元服务和卡片跨设备流转，包括：跨设备查询、添加、刷新、删除等。
