@@ -4,7 +4,7 @@
 
 ## 接口说明
 
-API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-statvfs.md)、[ohos.file.storageStatistics](../reference/apis/js-apis-storage-statistics.md)。
+API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-statvfs.md)、[ohos.file.storageStatistics](../reference/apis/js-apis-file-storage-statistics.md)。
 
 **表1** 文件系统空间和应用空间统计
 
