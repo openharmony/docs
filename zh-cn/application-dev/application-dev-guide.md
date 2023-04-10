@@ -24,6 +24,8 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+
+- [Web](web/web-component-overview.md)
 - [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
