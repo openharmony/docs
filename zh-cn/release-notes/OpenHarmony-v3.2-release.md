@@ -30,7 +30,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 - 走焦能力增强，支持Tab键和方向键走焦，支持配置组件是否可获焦。
 - 支持增强分栏与侧边栏组件能力，支持拖拽自动隐藏等能力。
 
-详细内容请参考[ArkUI指南](../application-dev/ui/arkui-overview.md/)。
+详细内容请参考[ArkUI指南](../application-dev/ui/arkui-overview.md)。
 
 
 ### 应用框架
