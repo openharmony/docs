@@ -48,9 +48,9 @@ var options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    console.log("zipFile result：" + data);
+    console.log("zipFile result：" + JSON.stringify(data));
 }).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log("catch((err)=>" + JSON.stringify(err));
 });
 
 ```
@@ -69,9 +69,9 @@ var options = {
 };
 
 zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.log("zipFile result：" + data);
+    console.log("zipFile result：" + JSON.stringify(data));
 }).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log("catch((err)=>" + JSON.stringify(err));
 });
 ```
 
@@ -111,9 +111,9 @@ let options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    console.log("unzipFile result：" + data);
+    console.log("unzipFile result：" + JSON.stringify(data));
 }).catch((err)=>{
-    console.log("catch((err)=>" + err);
+    console.log("catch((err)=>" + JSON.stringify(err));
 })
 	
 ```
