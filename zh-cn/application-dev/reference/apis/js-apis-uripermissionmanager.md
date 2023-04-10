@@ -1,17 +1,17 @@
-# uriPermissionManager
+# @ohos.application.uriPermissionManager
 
 > **说明：**
 > 
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-Uri权限管理。
+Uri权限管理模块。用于应用A授权/撤销URI给应用B
 
 
 ## 导入模块
 
   
-```
+```js
 import UriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
@@ -20,18 +20,16 @@ import UriPermissionManager from '@ohos.application.uriPermissionManager';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
-授权uri给指定应用
+授权uri给指定应用，通过callback返回结果。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的uri，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | wantConstant.Flags | 是 | uri的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | 是 | uri的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权uri的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回检验结果，返回0表示有权限，返回-1表示无权限。 | 
 
@@ -51,18 +49,16 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
-授权uri给指定应用
+授权uri给指定应用，通过返回值返回结果。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的uri，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | wantConstant.Flags | 是 | uri的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-ability-wantConstant.md#wantconstantflags) | 是 | uri的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权uri的应用包名 |  
 
 **返回值：**
@@ -88,11 +84,9 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
-撤销授权指定应用的uri
+撤销授权指定应用的uri，通过callback返回结果。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -118,11 +112,9 @@ SystemCapability.Ability.AbilityRuntime.Core
 
 revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
-撤销授权指定应用的uri
+撤销授权指定应用的uri，通过返回值返回结果。
 
-**系统能力:**
-
-SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
