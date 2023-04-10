@@ -101,7 +101,7 @@
 3. 创建音频选择器实例。调用[select()](../reference/apis/js-apis-file-picker.md#select-6)接口拉起FilePicker界面进行文件选择。
    文件选择成功后，返回被选中音频的URI结果集。开发者可以根据结果集中URI做进一步的处理。
 
-     例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md#ohosfilefs-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86)根据URI拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio-playback-overview.md)。
+     例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据URI拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio-playback-overview.md)。
    > **说明：**
    >
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。

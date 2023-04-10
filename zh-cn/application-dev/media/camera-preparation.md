@@ -17,7 +17,7 @@
 以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
 
-具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md/)。
+具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
 
 
 > **说明：**
