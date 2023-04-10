@@ -285,7 +285,7 @@ button{
 
 ```js
 // index.js
-import promptAction from '@ohos.promptAction';
+import prompt from '@system.prompt';
 export default {
   data: {
     rev:false,
@@ -317,7 +317,7 @@ export default {
     this.$element('img').resume()
   },
   getimgstate(e) {
-    promptAction.showToast({
+    prompt.showToast({
       message: '当前状态：' + this.$element('img').getState()
     })
   },
