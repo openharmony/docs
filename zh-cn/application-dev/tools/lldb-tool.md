@@ -1,7 +1,8 @@
 # lldb使用命令行远程调试hap应用的过程
 ## DevEco编译生成的的hap包
- attach方式 native调试 （c++调试）
- attach方式 混合调试 （js+c++调试）
+ 
+
+### attach方式 native调试 （c++调试）
 > **说明：**
 >
 > 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
