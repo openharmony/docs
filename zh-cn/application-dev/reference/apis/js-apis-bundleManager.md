@@ -186,7 +186,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。|
 | LOCKED                             |12|表示锁定模式。|
 
-### CompatiblePolicy
+### CompatiblePolicy<sup>10+</sup>
 
 标识共享库的版本兼容类型。
 
