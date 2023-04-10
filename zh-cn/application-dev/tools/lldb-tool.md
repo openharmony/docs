@@ -1,5 +1,5 @@
 # lldb使用命令行远程调试hap应用的过程
-## DevEco编译生成hap包的调试
+## 使用DevEco Studio创建Native C++应用
 > **说明：**
 > 
 > 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
