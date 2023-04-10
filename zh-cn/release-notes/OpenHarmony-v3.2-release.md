@@ -575,14 +575,14 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz.sha256) |  |
-| Hi3861解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz.sha256) | |
-| Hi3516解决方案-LiteOS（二进制） | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256) |  |
-| Hi3516解决方案-Linux（二进制）  | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256) |  |
-| RK3568标准系统解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Windows\Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) |  |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz.sha256) | 21.8 GB |
+| Hi3861解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
+| Hi3516解决方案-LiteOS（二进制） | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 294.3 MB |
+| Hi3516解决方案-Linux（二进制）  | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MB |
+| RK3568标准系统解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GB |
+| 标准系统Public SDK包（Mac）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz.sha256) | 712.7 MB |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 671.1 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
 
 ## 更新说明
 
@@ -614,7 +614,7 @@ API变更请参考:
 | 元能力 | [ArkTS卡片Canvas小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame) | 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。<br/>- 使用Canvas绘制棋盘和黑白棋子的落子。<br/>- 通过卡片支持的点击事件进行交互，让用户在棋盘上进行黑白棋子的对局。<br/>- 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。 | ArkTS |
 | 元能力 | [ArkTs音乐卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/ArkTSCardMusicSample) | 本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片。 | ArkTS |
 
-请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
 
 ## 修复缺陷列表
