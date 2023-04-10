@@ -47,6 +47,7 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
+      - [移除粘性公共事件](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 线程间通信
     - [线程模型](thread-model-stage.md)
