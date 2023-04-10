@@ -361,7 +361,7 @@ onUpdate(formId) {
 ![widget-development-fa](figures/widget-development-fa.png)
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
+> FA模型当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。
   
