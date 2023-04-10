@@ -90,6 +90,7 @@
 - EntryFormAbility：将卡片的状态存储在本地数据库中，在刷新事件回调触发时，通过formId获取当前卡片的状态，然后根据卡片的状态选择不同的刷新内容。
   
   ```ts
+  import formInfo from '@ohos.app.form.formInfo'
   import formProvider from '@ohos.app.form.formProvider';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -97,6 +98,15 @@
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want) {
+      let formId = want.parameters[formInfo.FormParam.IDENTITY_KEY];
+      let isTempCard: boolean = want.parameters[formInfo.FormParam.TEMPORARY_KEY];
+      if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
+        console.info('Not temp card, init db for:' + formId);
+        let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
+        storeDB.putSync('A' + formId, 'false');
+        storeDB.putSync('B' + formId, 'false');
+        storeDB.flushSync();
+      }
       let formData = {};
       return formBindingData.createFormBindingData(formData);
     }
@@ -108,6 +118,7 @@
       storeDB.deleteSync('B' + formId);
     }
   
+    // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
       let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
@@ -156,4 +167,5 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 通过本地数据库进行卡片信息的持久化时，建议在卡片转为常态卡片(**[onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)**)时进行持久化，并在卡片销毁(**[onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)**)时删除当前卡片存储的持久化信息，避免反复添加删除卡片导致数据库文件持续变大。
+> 通过本地数据库进行卡片信息的持久化时，建议先在[**onAddForm**](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)生命周期中通过[**TEMPORARY_KEY**](../reference/apis/js-apis-app-form-formInfo.md#formparam)判断当前添加的卡片是否为常态卡片：如果是常态卡片，则直接进行卡片信息持久化；如果为临时卡片，则可以在卡片转为常态卡片(**[onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)**)时进行持久化；同时需要在卡片销毁(**[onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)**)时删除当前卡片存储的持久化信息，避免反复添加删除卡片导致数据库文件持续变大。
+
