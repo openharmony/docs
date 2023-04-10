@@ -34,7 +34,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项 |
+| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的最大值为50 |
 
 **返回值：**
 
@@ -144,7 +144,7 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSaveOptions](#photosaveoptions) | 否   | photoPicker保存图片或视频文件选项 |
+| option | [PhotoSaveOptions](#photosaveoptions) | 否   | photoPicker保存图片或视频文件选项，若无此参数，则拉起photoPicker界面后需用户自行输入保存的文件名 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [DocumentSelectOptions](#documentselectoptions) | 否   | documentPicker选择选项 |
+| option | [DocumentSelectOptions](#documentselectoptions) | 否   | documentPicker选择选项，若无此参数，则默认拉起documentPicker主界面 |
 
 **返回值：**
 
@@ -371,7 +371,7 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [DocumentSaveOptions](#documentsaveoptions) | 否   | documentPicker保存选项 |
+| option | [DocumentSaveOptions](#documentsaveoptions) | 否   | documentPicker保存选项，若无此参数，则拉起documentPicker界面后需用户自行输入保存的文件名 |
 
 **返回值：**
 
@@ -491,7 +491,7 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSelectOptions](#audioselectoptions) | 否   | audioPicker音频选择选项 |
+| option | [AudioSelectOptions](#audioselectoptions) | 否   | audioPicker音频选择选项，若无此参数，则默认拉起audioPicker主界面  |
 
 **返回值：**
 
@@ -597,7 +597,7 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSaveOptions](#audiosaveoptions) | 否   | audioPicker保存音频文件选项 |
+| option | [AudioSaveOptions](#audiosaveoptions) | 否   | audioPicker保存音频文件选项，若无此参数，则拉起audioPicker界面后需用户自行输入保存的文件名 |
 
 **返回值：**
 
@@ -713,7 +713,7 @@ async function example() {
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型 |
+| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 |
 | maxSelectNumber?       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
@@ -735,7 +735,7 @@ async function example() {
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名 |
+| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起photoPicker进行保存图片或视频资源的文件名，若无此参数，则默认需要用户自行输入 |
 
 ## DocumentSelectOptions
 
@@ -751,7 +751,7 @@ async function example() {
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名 |
+| newFileNames?            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 |
 
 ## AudioSelectOptions
 
@@ -767,4 +767,4 @@ async function example() {
 
 | 名称                    | 类型                | 必填 |  说明                           |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名 |
+| newFileNames?              | Array&lt;string&gt;    | 否  | 拉起audioPicker进行保存音频资源的文件名，若无此参数，则默认需要用户自行输入 |
