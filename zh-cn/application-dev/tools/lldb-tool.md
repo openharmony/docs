@@ -1,6 +1,10 @@
 # lldb使用命令行远程调试hap应用的过程
 ## DevEco编译生成的的hap包
- 
+> **说明：**
+> 
+> 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
+> 
+> 为确保运行效果，本文以使用**DevEco Studio V3.1.0.200**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio)获取下载链接。
 
 ### attach方式 native调试 （c++调试）
 > **说明：**
