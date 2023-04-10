@@ -2099,7 +2099,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
         appAccountManager.getAuthCallback(sessionId, (err, callback) => {
-          if (err.code != account_appAccount.ResultCode.SUCCESS) {
+          if (err != null) {
               console.log("getAuthCallback err: "  + JSON.stringify(err));
               return;
           }
@@ -2113,7 +2113,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
               authType: "getSocialData"
             }
           };
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(0, result);
         });
       } catch (err) {
           console.log("getAuthCallback exception: "  + JSON.stringify(err));
@@ -2170,7 +2170,7 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
             authType: "getSocialData"
           }
         };
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(0, result);
         }).catch((err) => {
           console.log("getAuthCallback err: "  + JSON.stringify(err));
         });
