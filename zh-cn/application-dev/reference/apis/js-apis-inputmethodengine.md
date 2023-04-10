@@ -2401,7 +2401,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | 名称         | 值 | 说明               |
 | ------------ | -- | ------------------ |
 | SOFT_KEYBOARD | 0 | 软键盘类型。 |
-| SOFT_KEYBOARD | 1 | 状态栏类型。 |
+| STATUS_BAR | 1 | 状态栏类型。 |
 
 ## PanelInfo<sup>10</sup>
 
