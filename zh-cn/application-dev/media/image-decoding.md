@@ -1,6 +1,6 @@
 # 图片解码
 
-图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-overview.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、RAW、WebP、BMP、SVG。
+图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、RAW、WebP、BMP、SVG。
 
 ## 开发步骤
 
@@ -108,7 +108,7 @@
    const pixelMap = await imageSource.createPixelMap(decodingOptions);
    ```
 
-   解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-processing.md)。
+   解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
 ## 开发示例-对资源文件中的图片进行解码
 

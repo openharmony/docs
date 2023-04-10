@@ -4,11 +4,11 @@
 
 ## 接口说明
 
-API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-statvfs.md)、[ohos.file.storageStatistics](../reference/apis/js-apis-storage-statistics.md)。
+API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-statvfs.md)、[ohos.file.storageStatistics](../reference/apis/js-apis-file-storage-statistics.md)。
 
 **表1** 文件系统空间和应用空间统计
 
-| 模块 | 接口名 | 功能 | 
+| 模块 | 接口名 | 功能 |
 | -------- | -------- | -------- |
 | \@ohos.file.storageStatistic | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 | 
 | \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 | 
