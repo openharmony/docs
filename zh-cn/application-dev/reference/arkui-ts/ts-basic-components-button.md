@@ -78,7 +78,13 @@ struct ButtonExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text('Normal button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('OK', { type: ButtonType.Normal, stateEffect: true }).borderRadius(8).backgroundColor(0x317aff).width(90)
+        Button('OK', { type: ButtonType.Normal, stateEffect: true })
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(90)
+          .onClick(() => {
+            console.log('ButtonType.Normal')
+          })
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
             LoadingProgress().width(20).height(20).margin({ left: 12 }).color(0xFFFFFF)
