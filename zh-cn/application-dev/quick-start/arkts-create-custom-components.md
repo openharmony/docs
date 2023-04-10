@@ -378,3 +378,5 @@ struct StyleExample {
 2. 在StyleExample父组件中持有controller实例，调用controller的changeText方法，即相当于通过controller持有的MyComponent子组件的this指针，改变MyComponent的状态变量value的值。
 
 通过controller的封装，MyComponent对外暴露了changeText的接口，所有持有controller的实例都可以通过调用changeText接口，改变MyComponent的状态变量value的值。
+
+<!--no_check-->
