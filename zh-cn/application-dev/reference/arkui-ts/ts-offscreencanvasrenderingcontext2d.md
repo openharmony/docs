@@ -66,7 +66,7 @@ struct FillStyleExample {
         .backgroundColor('#ffff00')
         .onReady(() =>{
           this.offContext.fillStyle = '#0000ff'
-          this.offContext.fillRect(20, 160, 150, 100)
+          this.offContext.fillRect(20, 20, 150, 100)
           var image = this.offContext.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
         })
@@ -1752,39 +1752,39 @@ clip(path:Path2D, fillRule?: CanvasFillRule): void
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct Clip {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  @Entry
+  @Component
+  struct Clip {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          let region = new Path2D()
-          region.moveTo(30, 90)
-          region.lineTo(110, 20)
-          region.lineTo(240, 130)
-          region.lineTo(60, 130)
-          region.lineTo(190, 20)
-          region.lineTo(270, 90)
-          region.closePath()
-          this.offContext.clip(region,"evenodd")
-          this.offContext.fillStyle = "rgb(0,255,0)"
-          this.offContext.fillRect(0, 0, 600, 600)
-          var image = this.offContext.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let region = new Path2D()
+            region.moveTo(30, 90)
+            region.lineTo(110, 20)
+            region.lineTo(240, 130)
+            region.lineTo(60, 130)
+            region.lineTo(190, 20)
+            region.lineTo(270, 90)
+            region.closePath()
+            this.offContext.clip(region,"evenodd")
+            this.offContext.fillStyle = "rgb(0,255,0)"
+            this.offContext.fillRect(0, 0, 600, 600)
+            var image = this.offContext.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
@@ -2189,6 +2189,27 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 | ---------------------------------------- | ------------ |
 | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
 
+### setPixelMap
+
+setPixelMap(value?: PixelMap): void
+
+将当前传入[PixelMap](../apis/js-apis-image.md#pixelmap7)对象绘制在画布上。
+
+ **参数：**
+
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
+| sh   | number | 是    | 0    | 需要输出的区域的高度。     |
+
+**返回值：**
+
+| 类型                                       | 说明           |
+| ---------------------------------------- | ------------ |
+| [PixelMap](../apis/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
+
 
 ### getImageData
 
@@ -2216,32 +2237,32 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct GetImageData {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+  @Entry
+  @Component
+  struct GetImageData {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.offContext.drawImage(this.img,0,0,130,130)
-          var imagedata = this.offContext.getImageData(50,50,130,130)
-          this.offContext.putImageData(imagedata,150,150)
-          var image = this.offContext.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.offContext.drawImage(this.img,0,0,130,130)
+            var imagedata = this.offContext.getImageData(50,50,130,130)
+            this.offContext.putImageData(imagedata,150,150)
+            var image = this.offContext.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
   ![zh-cn_image_000000127777780](figures/zh-cn_image_000000127777780.png)
@@ -2319,31 +2340,31 @@ setLineDash(segments: number[]): void
 **示例：** 
 
   ```ts
-@Entry
-@Component
-struct SetLineDash {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-  
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.offContext.arc(100, 75, 50, 0, 6.28)
-          this.offContext.setLineDash([10,20])
-          this.offContext.stroke()
-          var image = this.offContext.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
-      })
+  @Entry
+  @Component
+  struct SetLineDash {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.offContext.arc(100, 75, 50, 0, 6.28)
+            this.offContext.setLineDash([10,20])
+            this.offContext.stroke()
+            var image = this.offContext.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+        })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
   ![zh-cn_image_000000127777772](figures/zh-cn_image_000000127777772.png)
 
@@ -2364,42 +2385,42 @@ getLineDash(): number[]
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct OffscreenCanvasGetLineDash {
-  @State message: string = 'Hello World'
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
-            console.error('before getlinedash clicked')
-            let res = this.offContext.getLineDash()
-            console.error(JSON.stringify(res))
-          })
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() => {
-            this.offContext.arc(100, 75, 50, 0, 6.28)
-            this.offContext.setLineDash([10,20])
-            this.offContext.stroke()
-            let res = this.offContext.getLineDash()
-            var image = this.offContext.transferToImageBitmap()
-            this.context.transferFromImageBitmap(image)
-          })
+  @Entry
+  @Component
+  struct OffscreenCanvasGetLineDash {
+    @State message: string = 'Hello World'
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(()=>{
+              console.error('before getlinedash clicked')
+              let res = this.offContext.getLineDash()
+              console.error(JSON.stringify(res))
+            })
+          Canvas(this.context)
+            .width('100%')
+            .height('100%')
+            .backgroundColor('#ffff00')
+            .onReady(() => {
+              this.offContext.arc(100, 75, 50, 0, 6.28)
+              this.offContext.setLineDash([10,20])
+              this.offContext.stroke()
+              let res = this.offContext.getLineDash()
+              var image = this.offContext.transferToImageBitmap()
+              this.context.transferFromImageBitmap(image)
+            })
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
   ```
 ![zh-cn_image_000000127777778](figures/zh-cn_image_000000127777778.png) 
 
@@ -2429,28 +2450,28 @@ toDataURL(type?: string, quality?: number): string
 **示例：**
 
   ```ts
-// xxx.ets
-@Entry
-@Component
-struct ToDataURL {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+  // xxx.ets  
+  @Entry
+  @Component
+  struct ToDataURL {
+      private settings: RenderingContextSettings = new RenderingContextSettings(true)
+      private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+      private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var dataURL = this.offContext.toDataURL()
-        })
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            var dataURL = this.offContext.toDataURL()
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 
 
@@ -2527,33 +2548,33 @@ restore(): void
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-  
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.offContext.save() // save the default state
-          this.offContext.fillStyle = "#00ff00"
-          this.offContext.fillRect(20, 20, 100, 100)
-          this.offContext.restore() // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100)
-          var image = this.offContext.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
-        })
+  @Entry
+  @Component
+  struct CanvasExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.offContext.save() // save the default state
+            this.offContext.fillStyle = "#00ff00"
+            this.offContext.fillRect(20, 20, 100, 100)
+            this.offContext.restore() // restore to the default state
+            this.offContext.fillRect(150, 75, 100, 100)
+            var image = this.offContext.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 ![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
@@ -2568,33 +2589,33 @@ save(): void
 
   ```ts
   // xxx.ets
-@Entry
-@Component
-struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
-  
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.context)
-        .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.offContext.save() // save the default state
-          this.offContext.fillStyle = "#00ff00"
-          this.offContext.fillRect(20, 20, 100, 100)
-          this.offContext.restore() // restore to the default state
-          this.offContext.fillRect(150, 75, 100, 100)
-          var image = this.offContext.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
-        })
+  @Entry
+  @Component
+  struct CanvasExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            this.offContext.save() // save the default state
+            this.offContext.fillStyle = "#00ff00"
+            this.offContext.fillRect(20, 20, 100, 100)
+            this.offContext.restore() // restore to the default state
+            this.offContext.fillRect(150, 75, 100, 100)
+            var image = this.offContext.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
   ```
 ![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png) 
 
@@ -2637,7 +2658,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
-            this.offContext.fillRect(0, 0, 500, 500)
+            this.offContext.fillRect(0, 0, 400, 400)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -2691,7 +2712,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
             grad.addColorStop(0.5, '#ffffff')
             grad.addColorStop(1.0, '#00ff00')
             this.offContext.fillStyle = grad
-            this.offContext.fillRect(0, 0, 500, 500)
+            this.offContext.fillRect(0, 0, 440, 440)
             var image = this.offContext.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })

@@ -47,7 +47,7 @@ struct Page45 {
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')
           this.context.fillStyle = grad
-          this.context.fillRect(0, 0, 500, 500)
+          this.context.fillRect(0, 0, 400, 400)
         })
     }
     .width('100%')
