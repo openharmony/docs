@@ -38,8 +38,8 @@
   height: 428px;
   background-color: #860303;
   transform: rotate(45deg);
-  margin-top: 284px;
-  margin-left: 148px;
+  margin-top: 290px;
+  margin-left: 145px;
 }
 .content{
   margin-top: 500px;
@@ -52,7 +52,7 @@
   width: 100px;
   height: 150px;
   background-color: #1033d9;
-  transform: translate(150px,-137px);
+  transform: translate(150px,-152px);
 }
 .window{
   z-index: 1;
@@ -85,7 +85,7 @@
   height: 100px;
   border-radius: 15px;
   background-color: #9a7404;
-  transform: translate(200px,-710px) skewX(-5deg);
+  transform: translate(200px,-700px) skewX(-5deg);
 }
 ```
 

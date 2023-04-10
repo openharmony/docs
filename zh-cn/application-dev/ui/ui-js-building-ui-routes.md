@@ -48,6 +48,7 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
   justify-content: center;
   align-items: center;
 }
+
 .title {
   font-size: 50px;
   margin-bottom: 50px;

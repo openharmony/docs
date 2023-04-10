@@ -9,7 +9,7 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 在pages/index目录下的hml文件中创建一个Canvas组件。
 
 
-```html
+```
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -60,6 +60,8 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  width: 100%;
+  height: 100%;
 }
 canvas{
   width: 500px;

@@ -343,6 +343,7 @@ swiper{
 
 ```js
 // xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     index: 0,
@@ -369,4 +370,4 @@ export default {
 
 针对swiper开发，有以下相关实例可供参考：
 
-- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Swiper)
+- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Swiper)

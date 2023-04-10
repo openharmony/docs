@@ -271,6 +271,7 @@ background-color:#F1F3F5;
 
 ```js
 // xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data() {
     return {
