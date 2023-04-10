@@ -547,7 +547,7 @@ startBluetoothDiscovery(): void
 
 Starts Bluetooth scan to discover remote devices.
 
-**Rquired permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
