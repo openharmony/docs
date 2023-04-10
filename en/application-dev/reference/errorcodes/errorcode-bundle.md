@@ -1,4 +1,8 @@
-#  Bundle Error Codes
+# Bundle Error Codes
+
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
 ## 17700001 Bundle Name Does Not Exist
 
@@ -506,7 +510,7 @@ Check whether the application contains a module with the overlay feature.
 
 **Error Message**
 
-The specified module is not overlay module.
+The specified module is not an overlay module.
 
 **Description**
 
@@ -524,7 +528,7 @@ Check whether the module is configured with the overlay feature.
 
 **Error Message**
 
-The specified module is overlay module.
+The specified module is an overlay module.
 
 **Description**
 
@@ -542,7 +546,7 @@ Check whether the specified module is configured with the overlay feature.
 
 **Error Message**
 
-The specified bundle is overlay bundle.
+The specified bundle is an overlay bundle.
 
 **Description**
 
@@ -560,7 +564,7 @@ Check whether the application contains only modules with the overlay feature.
 
 **Error Message**
 
-Failed to install because without allow app shared bundle permission.
+Failed to install the HSP because lacks appropriate permissions.
 
 **Description**
 
@@ -609,3 +613,39 @@ The shared library to uninstall does not exist.
 **Solution**
 1. Check whether the shared library exists.
 2. Check whether the version of the shared library is the same as that installed.
+
+## 17700039 Failure in Installing an Inter-Application Shared Library
+
+**Error Message**
+
+Failed to install because disallow install a shared bundle by hapFilePaths.
+
+**Description**
+
+During application installation, the installation package passed in is of the inter-application shared library type.
+
+**Possible Causes**
+1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
+
+**Solution**
+1. Use the **-s** parameter to specify the installation package path of an inter-application shared library.
+2. Use the **sharedBundleDirPaths** parameter in **installParam** to specify the installation package path of an inter-application shared library.
+
+## 17700040 Failure in Uninstalling an Inter-Application Shared Library
+
+**Error Message**
+
+The specified bundle is a shared bundle which cannot be uninstalled.
+
+**Description**
+
+During application uninstall, the bundle name of an inter-application shared library is passed in.
+
+**Possible Causes**
+1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
+
+**Solution**
+1. Use the **-s** parameter to specify the application to be uninstalled as a shared library application.
+2. Use the **bundleName** and **versionCode** parameters in **UninstallParam** to specify the bundle name and version of the shared library to be uninstalled.

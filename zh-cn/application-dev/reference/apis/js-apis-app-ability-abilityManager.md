@@ -79,7 +79,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -135,7 +135,7 @@ try {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -177,7 +177,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -217,7 +217,7 @@ try {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -262,7 +262,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -310,7 +310,7 @@ try {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 

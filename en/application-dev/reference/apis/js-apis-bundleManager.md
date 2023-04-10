@@ -49,7 +49,7 @@ Enumerates the application flags, which indicate the type of application informa
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                                | Value        | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                             | Value        | Description                                                        |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -81,7 +81,7 @@ Enumerates the Extension ability flags, which indicate the type of Extension abi
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                                       | Value        | Description                                                        |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -186,6 +186,39 @@ Enumerates the display orientations of the ability. This attribute applies only 
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.|
 | LOCKED                             |12|Locked.|
+
+### CompatiblePolicy
+
+Defines the version compatibility type of the shared library.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name                  | Value  | Description                            |
+| ---------------------- | ---- | -------------------------------- |
+| BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
+
+### ModuleType
+
+Enumerates the module types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| ENTRY   | 1    | Main module of the application.  |
+| FEATURE | 2    | Dynamic feature module of the application.|
+| SHARED  | 3    | Dynamic shared library module of the application. |
+
+### BundleType
+
+Enumerates the bundle types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name          | Value  | Description           |
+| -------------- | ---- | --------------- |
+| APP            | 0    | The bundle is a common application.   |
+| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
 ## APIs
 
@@ -1077,7 +1110,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified extensionAbility is not found.    |
+| 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
@@ -3036,47 +3069,3 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
 }
 ```
-
-## CompatiblePolicy
-
-Defines the version compatibility type of the shared library.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name                  | Value  | Description                            |
-| ---------------------- | ---- | -------------------------------- |
-| BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
-
-## ModuleType
-
-Enumerates the module types.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name   | Value  | Description                |
-| ------- | ---- | -------------------- |
-| ENTRY   | 1    | Main module of the application.  |
-| FEATURE | 2    | Dynamic feature module of the application.|
-| SHARED  | 3    | Dynamic shared library module of the application. |
-
-## BundleType
-
-Enumerates the bundle types.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name          | Value  | Description           |
-| -------------- | ---- | --------------- |
-| APP            | 0    | The bundle is a common application.   |
-| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
-
-## AtomicServiceModuleType
-
-Enumerates the module types of an atomic service.
-
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-| Name  | Value  | Description                       |
-| ------ | ---- | --------------------------- |
-| NORMAL | 0    | Page package in the atomic service.    |
-| MAIN   | 1    | Landing page package in the atomic service.|
