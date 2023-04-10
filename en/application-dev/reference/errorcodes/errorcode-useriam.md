@@ -1,20 +1,8 @@
-#  User Authentication Error Codes
+# User Authentication Error Codes
 
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
-
-## 201 Permission Verification Failed
-
-For details, see [Universal Error Codes](./errorcode-universal.md).
-
-## 202 Invoker Is Not a System Application
-
-For details, see [Universal Error Codes](./errorcode-universal.md).
-
-## 401 Parameter Check Failed.
-
-For details, see [Universal Error Codes](./errorcode-universal.md).
 
 ## 12500001 Authentication Failed
 
