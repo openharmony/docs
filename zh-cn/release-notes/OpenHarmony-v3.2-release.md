@@ -577,14 +577,14 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz.sha256) |  |
-| Hi3861解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz.sha256) | |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/code-v3.2-Release.tar.gz.sha256) |  |
+| Hi3861解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_pegasus.tar.gz.sha256) | |
 | Hi3516解决方案-LiteOS（二进制） | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256) |  |
 | Hi3516解决方案-Linux（二进制）  | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256) |  |
-| RK3568标准系统解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/dayu200_standard_arm32.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-mac-public.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |  |
-| 标准系统Public SDK包（Windows\Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) |  |
+| RK3568标准系统解决方案（二进制）        | 3.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/dayu200_standard_arm32.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Mac）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-mac-public.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |  |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) |  |
 
 ## 更新说明
 
@@ -592,7 +592,9 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 ### API 
 
-API变更请参考[*API差异报告*](api-diff/Beta5%20to%20v3.2-Release)。
+API变更请参考:
+- [*OpenHarmony 3.2 Release相比3.2 Beta5的API差异报告*](api-diff/Beta5%20to%20v3.2-Release)
+- [*OpenHarmony 3.2 Release相比3.1 Release的API差异报告*](api-diff/v3.2-Release)
 
 ### 芯片及开发板适配
 
@@ -647,5 +649,3 @@ API变更请参考[*API差异报告*](api-diff/Beta5%20to%20v3.2-Release)。
 | I6B4U3 | 压力测试出现进程com.ohos.launcher出现appfreeze。 | 安装应用较多（测试场景安装超过40个应用），且内存较小的设备场景下，低概率出现appfreeze，但桌面功能正常，不影响整体功能和使用。 | 2023年5月30日 |
 | I64726 <br/>I641A2 | 蓝牙功能接口bluetooth.pairDevice在与其他设备配对时无配对提示，与其他设备静默配对后通过蓝牙键盘、鼠标完全可控制设备。 | 无配对弹窗提示，但能配对成功，不影响软总线的配对组网功能，已在新版本规划需求完成对此功能的支持。 | 2023年6月30日日 |
 | I6U1H9 | GridCol的属性 gridColOffset 在预览器未包含。 | 影响预览inspector的属性显示，不影响预览器整体效果。 | 2023年4月30日 |
-
-<!--no_check-->
