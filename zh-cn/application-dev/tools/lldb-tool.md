@@ -1,13 +1,15 @@
 # lldb使用命令行远程调试hap应用的过程
 ## 使用DevEco Studio创建Native C++应用
 
-### 创建OpenHarmony下的Native C++应用
+### 下载最新发布的OHOS-SDK、HDC工具和DevEco Studio
 > **说明：**
 > 请使用**DevEco Studio V3.0.0.900 Beta3**及更高版本。
 > 
 > 为确保运行效果，本文以使用**DevEco Studio V3.1.0.200**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio)获取下载链接。
 > 
 > 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
+> 
+> 从每日构建中获取最新的OHOS-SDK[SDK](http://ci.openharmony.cn/dailys/dailybuilds)
 1. 若首次打开DevEco Studio，请点击Create Project创建工程。如果已经打开了一个工程，请在菜单栏选择File > New > Create Project来创建一个新工程。选择OpenHarmony模板库，选择模板“Empty Ability”，点击Next进行下一步配置。
 ![输入图片说明](nativeC++.png)
 2. 进入配置工程界面参数保持默认设置即可。
