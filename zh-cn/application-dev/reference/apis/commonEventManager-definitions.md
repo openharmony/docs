@@ -793,6 +793,11 @@ Wi-Fi P2P群组信息已更改。
 - 值：usual.event.HTTP_PROXY_CHANGE
 - 订阅者所需权限：无
 
+## COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED<sup>10+<sup>
+表示域账号状态发生变化。
+- 值：usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED
+- 订阅者所需权限：无
+
 ## COMMON_EVENT_SIM_STATE_CHANGED<sup>10+<sup>
 提示SIM卡状态更新。
 - 值：usual.event.SIM_STATE_CHANGED
