@@ -461,10 +461,10 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -512,10 +512,10 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
