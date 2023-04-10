@@ -5,7 +5,7 @@
 - 版本说明
   - [OpenHarmony版本定义](release-notes/release-definitions/Release-version-definitions.md)
   - OpenHarmony 3.x Releases
-    - [OpenHarmony v3.2 Release (2023-04-10)](release-notes/OpenHarmony-v3.2-release.md)
+    - [OpenHarmony v3.2 Release (2023-04-09)](release-notes/OpenHarmony-v3.2-release.md)
     - [OpenHarmony v3.2 Beta5 (2023-01-31)](release-notes/OpenHarmony-v3.2-beta5.md)
     - [OpenHarmony v3.2 Beta4 (2022-11-30)](release-notes/OpenHarmony-v3.2-beta4.md)
     - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
