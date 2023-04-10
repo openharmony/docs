@@ -18,7 +18,7 @@
 
  - master：最新开发版本。  
 
- - OpenHarmony 3.2 Beta5版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-beta5.md)了解版本详情。
+ - OpenHarmony 3.2 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.2-release.md)了解版本详情。
 
  - OpenHarmony 3.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.1-release.md)了解版本详情。
 

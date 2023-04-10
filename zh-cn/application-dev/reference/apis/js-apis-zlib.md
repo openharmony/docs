@@ -25,7 +25,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile | string              | 是   | 指定压缩结果的文件路径（文件的扩展名zip）。                  |
 | options | [Options](#options) | 是   | 压缩的可选参数。                                             |
 
@@ -50,9 +50,9 @@ let options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.Stringify(data));
+    console.log('zipFile result is ' + JSON.stringify(data));
 }).catch((err) => {
-    console.log('error is ' + JSON.Stringify(err));
+    console.log('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -71,9 +71,9 @@ let options = {
 };
 
 zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.Stringify(data));
+    console.log('zipFile result is ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.Stringify(err));
+    console.log('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -91,7 +91,7 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                         |
 | options | [Options](#options) | 是   | 解压的可选参数。                                             |
 
@@ -116,9 +116,9 @@ let options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    console.log('unzipFile result is ' + JSON.Stringify(data));
+    console.log('unzipFile result is ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.Stringify(err));
+    console.log('error is ' + JSON.stringify(err));
 })
 ```
 
@@ -134,7 +134,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压文件路径。                                           |
 | options                 | [Options](#options) | 是   | 压缩的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数。                                             |
@@ -182,7 +182,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
@@ -232,7 +232,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 | 参数名                  | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的目录路径。                                       |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数。                                             |
@@ -281,7 +281,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 
 | 参数名  | 类型                | 必填 | 说明                                                         |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-application-context.md)。 |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile | string              | 是   | 指定的解压后的目录路径。                                       |
 | options | [Options](#options) | 是   | 解压时的配置参数。                                             |
 
