@@ -105,7 +105,6 @@
   - [ColumnSplit](ts-container-columnsplit.md)
   - [Counter](ts-container-counter.md)
   - [Flex](ts-container-flex.md)
-  - [FlowItem](ts-container-flowitem.md)
   - [GridCol](ts-container-gridcol.md)
   - [GridRow](ts-container-gridrow.md)
   - [Grid](ts-container-grid.md)
