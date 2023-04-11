@@ -1,4 +1,4 @@
-# Cross-Device Migration (for System Applications Only)]
+# Cross-Device Migration (for System Applications Only)
 
 
 ## When to Use
@@ -47,25 +47,16 @@ The table below describes the main APIs used for cross-device migration. For det
 
 ## How to Develop
 
-1. Configure the data synchronization permission in the **module.json5** file. The sample code is as follows:
+1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+
+2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+
+3. Configure the fields related to cross-device migration in the configuration file.
+
+   Configure the application to support migration.
+   Set the **continuable** field in the **module.json5** file to **true**. The default value is **false**. If this parameter is set to **false**, the application cannot be continued on the target device.
    
-   ```json
-   {
-     "module": {
-       "requestPermissions":[  
-         {  
-           "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
-         }
-       ]
-     }
-   }
-   ```
-
-2. Configure the fields related to cross-device migration in the configuration file.
-   - Configure the application to support migration.
-     
-
-     Set the **continuable** field in the **module.json5** file to **true**. The default value is **false**. If this parameter is set to **false**, the application cannot be continued on the target device.     
+   
       ```json
       {
         "module": {
@@ -80,47 +71,31 @@ The table below describes the main APIs used for cross-device migration. For det
       }
       ```
 
-   - Configure the application launch type. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
-
-3. Request the data synchronization permission. The sample code for displaying a dialog box to request the permission is as follows:
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
-   }
-   ```
+   Configure the application launch type. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
 4. Implement [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) in the UIAbility of the initiator.
-
    [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue) is called on the initiator. You can save the  data in this method to implement application compatibility check and migration decision.
-
    - Saving migrated data: You can save the data to be migrated in key-value pairs in **wantParam**.
 
    - Checking application compatibility: You can obtain the version number of the target application from **wantParam** and check the compatibility between the target application and the current application.
 
    - Making a migration decision: You can determine whether to support the migration based on the return value of **onContinue()**. For details about the return value, see [Available APIs](#available-apis).
 
-   The sample code is as follows:
-   
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   
-   onContinue(wantParam : {[key: string]: any}) {         
-       console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
-       let workInput = AppStorage.Get<string>('ContinueWork');         
-       // Set the user input data into wantParam.        
-       wantParam["work"] = workInput // set user input data into want params         
-       console.info(`onContinue input = ${wantParam["input"]}`);         
-       return AbilityConstant.OnContinueResult.AGREE     
-   }
-   ```
+     The sample code is as follows:
+     
+     ```ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     
+     onContinue(wantParam : {[key: string]: any}) {         
+         console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+         let workInput = AppStorage.Get<string>('ContinueWork');         
+         // Set the user input data into wantParam.        
+         wantParam["work"] = workInput // set user input data into want params         
+         console.info(`onContinue input = ${wantParam["input"]}`);         
+         return AbilityConstant.OnContinueResult.AGREE     
+     }
+     ```
 
 5. Implement **onCreate()** and **onNewWant()** in the UIAbility of the target application to implement data restoration.
    - Implementation example of **onCreate** in the multi-instance scenario

@@ -2,20 +2,20 @@
 
 Users often need to share data (such as a text or an image) from one application to another. The following uses PDF file sharing as an example to describe how to use Want to share data between applications.
 
-Data sharing requires two UIAbility components (one for the sharing party and the other for the shared party) and one system component (used as the application selector). When the sharing party initiates data sharing by calling **startAbility()**, the system implicitly matches and displays all applications that support the type of data to share. After the user selects an application, the system starts the application to complete data sharing.
+Data sharing requires two UIAbility components (one for the sharing party and the other for the shared party) and one system component (used as the application sharing box). When the sharing party initiates data sharing by calling **startAbility()**, the system implicitly matches and displays all applications that support the type of data to share. After the user selects an application, the system starts the application to complete data sharing.
 
 In this section, data sharing is triggered by touching a button. You can use other ways to trigger data sharing during application development. This section focuses on how to configure Want to implement data sharing.
 
 The following actions are involved for data sharing:
 
-- **ohos.want.action.select**: action of starting the application selector.
+- **ohos.want.action.select**: action of starting the application sharing box.
 - **ohos.want.action.sendData**: action of sending a single data record, that is, transferring data to the shared party.
 
 ## Sharing Party
 
-The sharing party starts an application selector and transfers the data to the shared party. Therefore, Want of the sharing party must be nested at two layers. In the first layer, implicit Want is used together with the **ohos.want.action.select** action to display the application selector. In the second layer, the data to share is declared
+The sharing party starts an application sharing box and transfers the data to the shared party. Therefore, Want of the sharing party must be nested at two layers. In the first layer, implicit Want is used together with the **ohos.want.action.select** action to display the application sharing box. In the second layer, the data to share is declared
 
-in the custom field **parameters**, and then the Want that includes the **ohos.want.action.sendData** action and the **parameters** field is transferred to the application selector. The shared party obtains the shared data from **parameters**.
+in the custom field **parameters**, and then the Want that includes the **ohos.want.action.sendData** action and the **parameters** field is transferred to the application sharing box. The shared party obtains the shared data from **parameters**.
 
 ```ts
 import common from '@ohos.app.ability.common';
@@ -28,21 +28,21 @@ let fileSize; // Obtain the size of the file to share.
 function implicitStartAbility() {
   let context = getContext(this) as common.UIAbilityContext;
   let wantInfo = {
-    / This action is used to implicitly match the application selector.
+    / This action is used to implicitly match the application sharing box.
     action: 'ohos.want.action.select',
     // This is the custom parameter in the first layer of Want,
-    / which is intended to add information to the application selector.
+    / which is intended to add information to the application sharing box.
     parameters: {
       // MIME type of PDF.
-      "ability.picker.type": fileType,
-      "ability.picker.fileNames": [fileName],
-      "ability.picker.fileSizes": [fileSize],
+      'ability.picker.type': fileType,
+      'ability.picker.fileNames': [fileName],
+      'ability.picker.fileSizes': [fileSize],
       // This is nested Want ,which will be directly sent to the selected application.
-      "ability.want.params.INTENT": {
-        "action": "ohos.want.action.sendData",
-        "type": "application/pdf",
-        "parameters": {
-          "keyFd": { "type": "FD", "value": fileFd }
+      'ability.want.params.INTENT': {
+        'action': 'ohos.want.action.sendData',
+        'type': 'application/pdf',
+        'parameters': {
+          'keyFd': { 'type': 'FD', 'value': fileFd }
         }
       }
     }
@@ -59,14 +59,15 @@ function implicitStartAbility() {
 >
 > Data sharing can be implemented only in FD format. For details about how to obtain the FD and file name, see [File Management](../reference/apis/js-apis-file-fs.md).
 
-In the preceding code, under the custom field **parameters**, the following **ability.picker.*** fields are used to pass the information to be displayed on the application selector:
+In the preceding code, under the custom field **parameters**, the following **ability.picker.*** fields are used to pass the information to be displayed on the application sharing box:
 
 - **ability.picker.type**: file type icon.
 - **ability.picker.fileNames**: file name.
 - **ability.picker.fileSizes**: file size, in bytes.
 - **ability.picker.fileNames** and **ability.picker.fileSizes** are arrays and have a one-to-one mapping.
 
-The following figure shows an example.  
+The following figure shows an example. 
+
 ![](figures/ability-startup-with-implicit-want2.png)
 
 ## Shared Party
