@@ -1,7 +1,6 @@
 # JS API差异报告
 
 - [元能力](js-apidiff-ability.md)
-- [无障碍](js-apidiff-accessibility.md)
 - [帐号](js-apidiff-account.md)
 - [应用](js-apidiff-application.md)
 - [ArkUI](js-apidiff-arkui.md)
@@ -12,13 +11,8 @@
 - [定制](js-apidiff-customization.md)
 - [DFX](js-apidiff-dfx.md)
 - [分布式数据](js-apidiff-distributed-data.md)
-- [分布式硬件](js-apidiff-distributed-hardware.md)
 - [文件管理](js-apidiff-file-management.md)
-- [位置服务](js-apidiff-geolocation.md)
-- [全球化](js-apidiff-global.md)
 - [Misc软件](js-apidiff-misc.md)
-- [MSDP](js-apidiff-msdp.md)
-- [多模输入](js-apidiff-multi-modal-input.md)
 - [媒体服务](js-apidiff-multimedia.md)
 - [事件与通知](js-apidiff-notification.md)
 - [资源调度](js-apidiff-resource-scheduler.md)
