@@ -37,6 +37,9 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 ```ts
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
+> **NOTE**
+> 
+> **CustomDialogController** is valid only when it is a member variable of the **@CustomDialog** and **@Component** decorated struct and is defined in the **@Component** decorated struct. For details, see the following example.
 
 ### open()
 open(): void
