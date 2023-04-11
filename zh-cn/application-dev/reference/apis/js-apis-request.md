@@ -16,9 +16,10 @@ import request from '@ohos.request';
 
 ## 限制与约束
 
+上传目前仅支持HTTP请求，不支持HTTPS。
+
 下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>)](#onfail7)查看失败原因。
 
-上传目前仅支持HTTP请求，不支持HTTPS。
 ## 常量
 
 **需要权限**：ohos.permission.INTERNET
@@ -78,7 +79,7 @@ import request from '@ohos.request';
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-上传，异步方法，使用promise形式返回结果。
+上传，异步方法，使用promise形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -132,7 +133,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-上传，异步方法，使用callback形式返回结果。
+上传，异步方法，使用callback形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -759,7 +760,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-下载，异步方法，使用promise形式返回结果。
+下载，异步方法，使用promise形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -807,7 +808,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-下载，异步方法，使用callback形式返回结果。
+下载，异步方法，使用callback形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
