@@ -47,7 +47,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label style of the button.|
 
-## ButtonType enums
+## ButtonType
 
 Since API version 9, this API is supported in ArkTS widgets.
 
