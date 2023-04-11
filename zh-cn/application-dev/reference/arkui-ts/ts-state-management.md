@@ -352,7 +352,7 @@ let res: boolean = AppStorage.IsMutable('simpleProp');
 
 static Size(): number
 
-返回LocalStorage中的属性数量。
+返回AppStorage中的属性数量。
 
 **返回值：**
 
@@ -487,7 +487,7 @@ let res1: boolean = storage.set('PropB', 47); // false
 
 ### setOrCreate<sup>9+</sup>
 
-setOrCreate&lt;T&gt;(propName: string, newValue?: T): boolean
+setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 propName如果已经在LocalStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，初始化为newValue。
 
@@ -496,7 +496,7 @@ propName如果已经在LocalStorage中存在，则设置propName对应是属性�
 | 参数名      | 类型     | 必填   | 参数描述                    |
 | -------- | ------ | ---- | ----------------------- |
 | propName | string | 是    | LocalStorage中的属性名。      |
-| newValue | T      | 否    | 属性值，不能为undefined或者null。 |
+| newValue | T      | 是    | 属性值，不能为undefined或者null。 |
 
 **返回值：**
 
@@ -573,7 +573,7 @@ var link2: SubscribedAbstractProperty<number> = storage.setAndLink('PropA', 50);
 
 ### prop<sup>9+</sup>
 
-prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
+prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 如果给定的propName在LocalStorage存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
 
@@ -587,7 +587,7 @@ prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 | 类型                                  | 描述                                       |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，如果AppStorage不存在对应的propName，在返回undefined。 |
+| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，如果AppStorage不存在对应的propName，在返回undefined。 |
 
 
 ```ts
@@ -600,7 +600,7 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 
 ### setAndProp<sup>9+</sup>
 
-setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
+setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
 propName在LocalStorage存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage创建和初始化propName对应的属性，返回其单向绑定数据。
 
@@ -609,13 +609,13 @@ propName在LocalStorage存在，则返回该propName对应的属性的单向绑�
 | 参数名          | 类型     | 必填   | 参数描述                                     |
 | ------------ | ------ | ---- | ---------------------------------------- |
 | propName     | string | 是    | LocalStorage中的属性名。                       |
-| defaultValue | T      | 是    | 当propName在AppStorage中不存在，使用default在AppStorage中初始化对应的propName。 |
+| defaultValue | S      | 是    | 当propName在AppStorage中不存在，使用default在AppStorage中初始化对应的propName。 |
 
 **返回值：**
 
 | 类型                                  | 描述                                       |
 | ----------------------------------- | ---------------------------------------- |
-| SubscribedAbstractProperty&lt;T&gt; | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的单向绑定的数据。 |
+| SubscribedAbstractProperty&lt;S&gt; | SubscribedAbstractProperty&lt;S&gt;的实例，和AppStorage中propName对应属性的单向绑定的数据。 |
 
 
 ```ts
