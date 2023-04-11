@@ -643,9 +643,9 @@ try {
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-notification.md#notificationRequest)。 |
-| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-notification.md#notificationRequest)。 |
+| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 
 
 ## ReminderRequestCalendar
