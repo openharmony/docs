@@ -1253,6 +1253,181 @@ try {
 };
 ```
 
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;CopyResult&gt;&gt;
+
+复制文件或目录，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| sourceUri | string  | 是   | 待拷贝的源文件(夹)的uri，例如：datashare:///media/file/102   |
+| destUri   | string  | 是   | 目标文件夹的uri，例如：datashare:///media/file/101           |
+| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件，force为true时强制覆盖文件，force为空或false时不强制覆盖文件 |
+
+**返回值：**
+
+| 类型                                                    | 说明                                                         |
+| :------------------------------------------------------ | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 返回copyresult数组，copyResult为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例 1：force为空**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
+  if (copyResult.length === 0) {
+    console.log("copy sucess");
+  } eles {
+    for (let i = 0; i < copyResult.length; i++) {
+      console.error("errCode" + copyResult[i].errCode);
+      console.error("errMsg" + copyResult[i].errMsg);
+      console.error("sourceUri" + copyResult[i].sourceUri);
+      console.error("destUri" + copyResult[i].destUri);
+    }
+  }
+} catch (error) {
+  console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例 2：force为true**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
+  if (copyResult.length === 0) {
+    console.log("copy sucess");
+  } eles {
+    for (let i = 0; i < copyResult.length; i++) {
+      console.error("errCode" + copyResult[i].errCode);
+      console.error("errMsg" + copyResult[i].errMsg);
+      console.error("sourceUri" + copyResult[i].sourceUri);
+      console.error("destUri" + copyResult[i].destUri);
+    }
+  }
+} catch (error) {
+  console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
+
+复制文件或目录，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                             | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的uri，例如：datashare:///media/file/102   |
+| destUri   | string                                           | 是   | 目标文件夹的uri，例如：datashare:///media/file/101           |
+| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回copyresult数组，copyResult为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
+    if (err) {
+      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
+      return;
+    }
+    if (copyResult.length === 0) {
+      console.log("copy sucess");
+    } eles {
+      for (let i = 0; i < copyResult.length; i++) {
+        console.error("errCode" + copyResult[i].errCode);
+        console.error("errMsg" + copyResult[i].errMsg);
+        console.error("sourceUri" + copyResult[i].sourceUri);
+        console.error("destUri" + copyResult[i].destUri);
+      }
+    }
+  })
+} catch (error) {
+  console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
+
+复制文件或目录，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                             | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的uri，例如：datashare:///media/file/102   |
+| destUri   | string                                           | 是   | 目标文件夹的uri，例如：datashare:///media/file/101           |
+| force     | boolean                                          | 是   | 含有同名文件时是否强制覆盖文件，force为true时强制覆盖文件，force为空或false时不强制覆盖文件 |
+| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回copyresult数组，copyResult为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {
+    if (err) {
+      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
+      return;
+    }
+    if (copyResult.length === 0) {
+      console.log("copy sucess");
+    } eles {
+      for (let i = 0; i < copyResult.length; i++) {
+        console.error("errCode" + copyResult[i].errCode);
+        console.error("errMsg" + copyResult[i].errMsg);
+        console.error("sourceUri" + copyResult[i].sourceUri);
+        console.error("destUri" + copyResult[i].destUri);
+      }
+    }
+  })
+} catch (error) {
+  console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
 ## RootIterator.next
 
 next( ) : { value: RootInfo, done: boolean }
@@ -1322,6 +1497,23 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | size | number | 是 | 否 |  文件(夹)的大小 |
 | mtime | number | 是 | 否 |  文件(夹)的修改时间 |
 | mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型 |
+
+## CopyResult<sup>10+</sup>
+
+表示复制操作失败时的返回信息，复制成功时则没有返回信息。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### 属性
+
+| 名称      | 类型   | 可读 | 可写 | 说明                                                   |
+| --------- | ------ | ---- | ---- | ------------------------------------------------------ |
+| sourceUri | string | 是   | 否   | 源文件(夹) uri                                         |
+| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空 |
+| errCode   | number | 是   | 否   | 错误码                                                 |
+| errMsg    | string | 是   | 否   | 错误信息                                               |
 
 ## OPENFLAGS
 
