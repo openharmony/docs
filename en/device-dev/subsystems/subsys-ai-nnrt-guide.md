@@ -34,7 +34,7 @@ During program running, the AI application, AI inference framework, and NNRt res
 
 ### Application Scenario
 Suppose you are connecting an AI acceleration chip, for example, RK3568, to NNRt. The following describes how to connect the RK3568 chip to NNRt through the HDI to implement AI model inference.
-> NOTE<br>In this application scenario, the connection of the RK3568 chip to NNRt is implemented by utilizing the CPU operator of MindSpore Lite, instead of writing the CPU driver. This is the reason why the following development procedure depends on the dynamic library and header file of MindSpore Lite. In practice, the development does not depend on any library or header file of MindSpore Lite.
+> **NOTE**<br>In this application scenario, the connection of the RK3568 chip to NNRt is implemented by utilizing the CPU operator of MindSpore Lite, instead of writing the CPU driver. This is the reason why the following development procedure depends on the dynamic library and header file of MindSpore Lite. In practice, the development does not depend on any library or header file of MindSpore Lite.
 
 ### Development Flowchart
 The following figure shows the process of connecting a dedicated acceleration chip to NNRt.
@@ -44,8 +44,11 @@ The following figure shows the process of connecting a dedicated acceleration ch
 ![NNRt development flowchart](./figures/nnrt_dev_flow.png)
 
 ### Development Procedure
-To connect the acceleration chip to NNRt, perform the following steps:
-#### Generate the HDI header file.
+
+To connect the acceleration chip to NNRt, perform the development procedure below.
+
+#### Generating the HDI Header File
+
 Download the OpenHarmony source code from the open source community, build the `drivers_interface` component, and generate the HDI header file.
 
 1. [Download the source code](../get-code/sourcecode-acquire.md).
@@ -54,7 +57,7 @@ Download the OpenHarmony source code from the open source community, build the `
     ```shell
     ./build.sh --product-name productname –ccache --build-target drivers_interface_nnrt
     ```
-    > **productname** indicates the product name. In this example, the product name is **RK3568**.
+    > **NOTE**<br>**productname** indicates the product name. In this example, the product name is **RK3568**.
 
     When the build is complete, the HDI header file is generated in `out/rk3568/gen/drivers/interface/nnrt`. The default programming language is C++. To generate a header file for the C programming language, run the following command to set the `language` field in the `drivers/interface/nnrt/v1_0/BUILD.gn` file before starting the build:
 
@@ -251,7 +254,7 @@ Download the OpenHarmony source code from the open source community, build the `
       }
   }
   ```
-> NOTE<BR>After modifying the `.hcs` file, you need to delete the `out` directory and build the file again for the modification to take effect.
+> **NOTE**<BR>After modifying the `.hcs` file, you need to delete the `out` directory and build the file again for the modification to take effect.
 
 #### Configuring the User ID and Group ID of the Host Process
   In the scenario of creating an nnrt_host process, you need to configure the user ID and group ID of the corresponding process. The user ID is configured in the `base/startup/init/services/etc/passwd` file, and the group ID is configured in the `base/startup/init/services/etc/group` file.
@@ -272,7 +275,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     # Add the security context configuration.
     type nnrt_host, hdfdomain, domain;
     ```
-    > In the preceding command, **nnrt_host** indicates the process name previously configured.
+    > **NOTE**<br>In the preceding command, **nnrt_host** indicates the process name previously configured.
 
 2. Configure access permissions because SELinux uses the trustlist access permission mechanism. Upon service startup, run the `dmesg` command to view the AVC alarm,
 which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux] (https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
@@ -377,12 +380,12 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
 
 3. Add the dependency files of MindSpore Lite because the demo depends on the CPU operator of MindSpore Lite.
     - Download the header file of [MindSpore Lite 1.5.0](https://ms-release.obs.cn-north-4.myhuaweicloud.com/1.5.0/MindSpore/lite/release/linux/mindspore-lite-1.5.0-linux-x64.tar.gz).
-    - Create the `mindspore` directory in `drivers/peripheral/nnrt`.
+    1. Create the `mindspore` directory in `drivers/peripheral/nnrt`.
       ```shell
       mkdir drivers/peripheral/nnrt/mindspore
       ```
-    - Decompress the `mindspore-lite-1.5.0-linux-x64.tar.gz` file, and copy the `runtime/include` directory to `drivers/peripheral/nnrt/mindspore`.
-    - The demo also depends on the `schema` file of MindSpore Lite.
+    2. Decompress the `mindspore-lite-1.5.0-linux-x64.tar.gz` file, and copy the `runtime/include` directory to `drivers/peripheral/nnrt/mindspore`.
+    3. Create and copy the `schema` file of MindSpore Lite.
       ```shell
       # Create the mindspore_schema directory.
       mkdir drivers/peripheral/nnrt/hdi_cpu_service/include/mindspore_schema
@@ -390,7 +393,7 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
       # Copy the schema file of MindSpore Lite.
       cp third_party/mindspore/mindspore/lite/schema/* drivers/peripheral/nnrt/hdi_cpu_service/include/mindspore_schema/
       ```
-    - Build the dynamic library of MindSpore Lite, and put the dynamic library in the `mindspore`directory.
+    4. Build the dynamic library of MindSpore Lite, and put the dynamic library in the `mindspore`directory.
       ```shell
       # Build the dynamic library of MindSpore Lite.
       ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
