@@ -54,14 +54,3 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 | 逻辑代码执行（不包含import能力） | 不支持 | 支持 |
 
 相比于JS卡片，ArkTS卡片在能力和场景方面更加丰富，因此无论开发何种用途的卡片，都推荐使用ArkTS卡片，因为它可以提高开发效率并实现动态化。但如果只需要做静态页面展示的卡片，可以考虑使用JS卡片。
-
-## 限制
-
-为了降低FormExtensionAbility能力被三方应用滥用的风险，在FormExtensionAbility中限制以下接口的调用
-
-- @ohos.ability.particleAbility.d.ts
-- @ohos.backgroundTaskManager.d.ts
-- @ohos.resourceschedule.backgroundTaskManager.d.ts
-- @ohos.multimedia.camera.d.ts
-- @ohos.multimedia.audio.d.ts
-- @ohos.multimedia.media.d.ts
