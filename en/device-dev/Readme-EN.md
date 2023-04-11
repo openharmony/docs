@@ -40,7 +40,6 @@
   - [AI Framework](subsystems/subsys-ai-aiframework-devguide.md)	
   - [Data Management](subsystems/subsys-data-relational-database-overview.md)
   - [Sensor](subsystems/subsys-sensor-overview.md)
-  - [USB](subsystems/subsys-usbservice-overview.md)
   - [Application Framework](subsystems/subsys-application-framework-overview.md)
   - [OTA Update](subsystems/subsys-ota-guide.md)
   - [Telephony](subsystems/subsys-tel-overview.md)
