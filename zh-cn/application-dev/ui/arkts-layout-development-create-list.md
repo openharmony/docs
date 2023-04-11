@@ -516,7 +516,7 @@ Stack({ alignContent: Alignment.BottomEnd }) {
 
 除了字母索引之外，滚动列表结合多级分类索引在应用开发过程中也很常见，例如购物应用的商品分类页面，多级分类也需要监听列表的滚动位置。
 
-  **图14** 字母索引响应联系人列表滚动  
+**图14** 字母索引响应联系人列表滚动  
 
 ![zh-cn_image_0000001563060769](figures/zh-cn_image_0000001563060769.gif)
 
@@ -566,9 +566,10 @@ struct ContactsList {
 
 侧滑菜单在许多应用中都很常见。例如，通讯类应用通常会给消息列表提供侧滑删除功能，即用户可以通过向左侧滑列表的某一项，再点击删除按钮删除消息，如下图所示。
 
-  **图15** 侧滑删除列表项  
+**图15** 侧滑删除列表项  
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
+
 ListItem的swipeAction属性可用于实现列表项的左右滑动功能。swipeAction属性方法初始化时有必填参数SwipeActionOptions，其中，start参数表示设置列表项右滑时起始端滑出的组件，end参数表示设置列表项左滑时尾端滑出的组件。
 
 在消息列表中，end参数表示设置ListItem左滑时尾端划出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据索引值来删除列表项对应的数据，从而实现侧滑删除功能。
@@ -838,5 +839,3 @@ List() {
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
 
 - [音乐专辑页](../key-features/multi-device-app-dev/music-album-page.md)
-
-[../reference/arkui-ts/ts-container-listitem.md]: 
