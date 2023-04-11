@@ -17,11 +17,11 @@
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
+    - [服务卡片开发指导](widget-development-stage.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
@@ -47,6 +47,7 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
+      - [移除粘性公共事件](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 线程间通信
     - [线程模型](thread-model-stage.md)
