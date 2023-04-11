@@ -65,7 +65,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   Example of loading local resource files in the sandbox:
-  1. Use[globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
      ```ts
      // xxx.ets
      import web_webview from '@ohos.web.webview'
@@ -524,6 +524,8 @@ multiWindowAccess(multiWindow: boolean)
 
 Sets whether to enable the multi-window permission.
 
+Enabling the multi-window permission requires implementation of the **onWindowNew** event. For details about the sample code, see [onWindowNew](#onwindownew9). 
+
 **Parameters**
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
@@ -541,7 +543,7 @@ Sets whether to enable the multi-window permission.
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
+        .multiWindowAccess(false)
       }
     }
   }
@@ -2524,7 +2526,9 @@ Called when the component exits full screen mode.
 
 onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
 
-Registers a callback for window creation.
+Called when a new window is created. This API takes effect when **multiWindowAccess** is enabled.
+If the **event.handler.setWebController** API is not called, the render process will be blocked.
+If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
 
 **Parameters**
 
@@ -2540,19 +2544,50 @@ Registers a callback for window creation.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  
+  // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController = null
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.log("onWindowNew...")
-          var popController: web_webview.WebviewController = new web_webview.WebviewController()
-          event.handler.setWebController(popController)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          // MultiWindowAccess needs to be enabled.
+          .multiWindowAccess(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
+            // If the event.handler.setWebController API is not called, the render process will be blocked.
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -2562,13 +2597,13 @@ Registers a callback for window creation.
 
 onWindowExit(callback: () => void)
 
-Registers a callback for window closure.
+Called when this window is closed.
 
 **Parameters**
 
 | Name     | Type      | Description        |
 | -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window closes.|
+| callback | () => void | Callback invoked when the window is closed.|
 
 **Example**
 
@@ -2693,7 +2728,7 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Called when the key event is intercepted and before it is consumed by the Webview.
+Called when the key event is intercepted and before it is consumed by the webview.
 
 **Parameters**
 
@@ -2705,7 +2740,7 @@ Called when the key event is intercepted and before it is consumed by the Webvie
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether to continue to transfer the key event to the Webview kernel.|
+| boolean | Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
 
@@ -2897,13 +2932,13 @@ Implements a **WebviewController** object for new **\<Web>** components. For the
 
 setWebController(controller: WebviewController): void
 
-Sets a **WebviewController** object.
+Sets a **WebviewController** object. If opening a new window is not needed, set the parameter to **null**.
 
 **Parameters**
 
 | Name       | Type         | Mandatory  | Default Value | Description                     |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component.|
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -2996,6 +3031,18 @@ Checks whether the resource request is associated with a gesture (for example, a
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Whether the resource request is associated with a gesture (for example, a tap).|
+
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+Obtains the request method.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| string | Request method.|
 
 ## Header
 
@@ -3191,7 +3238,7 @@ Implements the **FileSelectorParam** object. For the sample code, see [onShowFil
 
 getTitle(): string
 
-Obtains the title of the file selector.
+Obtains the title of this file selector.
 
 **Return value**
 
