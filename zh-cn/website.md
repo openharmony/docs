@@ -84,7 +84,6 @@
         - [包管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-bundle.md)
         - [网络及通信](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-communication.md)
         - [语言编译器运行时](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-compiler-and-runtime.md)
-        - [定制](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-customization.md)
         - [DFX](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-dfx.md)
         - [分布式数据](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-distributed-data.md)
         - [文件管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-file-management.md)
