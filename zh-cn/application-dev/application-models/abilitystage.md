@@ -30,7 +30,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
    }
    ```
    
-4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中`srcEntry`参数中配置Module所对应的代码路径。
+4. 在[module.json5 配置文件](../quick-start/module-configuration-file.md)中，通过配置 `srcEntry` 参数来指定模块对应的代码路径，以作为HAP加载的入口。
    ```json
    {
      "module": {
