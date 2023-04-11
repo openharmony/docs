@@ -767,7 +767,6 @@
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
-      - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
       - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
