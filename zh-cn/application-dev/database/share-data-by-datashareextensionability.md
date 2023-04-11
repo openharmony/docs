@@ -134,7 +134,7 @@
    | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 | 
    | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 | 
    | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 | 
-   | "metadata"   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json. | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#**abilities对象的内部结构说明**)；其他情况下选填。 | 
+   | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json. | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下选填。 | 
 
    **module.json5配置样例：**
      
@@ -157,11 +157,11 @@
 
    | 属性名称 | 备注说明                                                     | 必填 |
    | ------------ | ------------------------------------------------------------ | --- |
-   | "tableConfig"       | 配置标签。 | 是 |
-   | "uri"               | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是 |
-   | "crossUserMode"     | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。                | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#**abilities对象的内部结构说明**)；其他情况下不填。 |
-   | "writePermission"   | 静默访问需要的写权限。 | 否 |
-   | "readPermission"    | 静默访问需要的读权限。 | 否 |
+   | tableConfig       | 配置标签。 | 是 |
+   | uri               | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是 |
+   | crossUserMode     | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。                | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下不填。 |
+   | writePermission   | 静默访问需要的写权限。 | 否 |
+   | readPermission    | 静默访问需要的读权限。 | 否 |
 
    **data_share_config.json配置样例**
 
