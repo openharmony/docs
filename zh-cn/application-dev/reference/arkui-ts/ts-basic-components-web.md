@@ -1311,6 +1311,45 @@ allowWindowOpenMethod(flag: boolean)
   }
   ```
 
+### mediaOptions<sup>10+</sup>
+
+mediaOptions(options: WebMediaOptions)
+
+设置Web媒体播放的策略，其中包括：Web中的音频在重新获焦后能够自动续播的有效期、应用内多个Web实例的音频是否独占。
+
+> **说明：**
+>
+> - 同一Web实例中的多个音频均视为同一音频。
+> - 该媒体播放策略将同时管控有声视频。
+> - 属性参数更新后需重新播放音频方可生效。
+> - 建议为所有Web组件设置相同的audioExclusive值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
+
+**示例：**
+
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mediaOptions(this.options)
+      }
+    }
+  }
+  ```
+
 ## 事件
 
 不支持通用事件。
@@ -4096,6 +4135,15 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | Off     | Web深色模式关闭。                     |
 | On      | Web深色模式开启。                     |
 | Auto    | Web深色模式跟随系统。                 |
+
+## WebMediaOptions<sup>10+</sup>
+
+Web媒体策略的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒。 |
+| audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
