@@ -24,9 +24,19 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name           | Type  | Mandatory | Description|
 | ----------------- | -------- | ----- | -------- |
-| values            | number[]   | Yes   | Data value list. A maximum of nine values are supported. If more than nine values are set, only the first nine ones are used. If the value is less than 0, the value 0 is used.|
+| values            | number[]   | Yes   | Data value list. A maximum of nine values are supported. If more than nine values are set, only the first nine ones are used. A value less than 0 evaluates to the value **0**. |
 | max               | number     | No   |   - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion.<br>Default value: **100**|
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
+
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name       | Type   | Description                                        |
+| ----------- | ------- | -------------------------------------------- |
+| closeEffect | boolean | Whether to disable the rotation effect for the component.<br>Default value: **false**|
+
+
 
 ## DataPanelType
 

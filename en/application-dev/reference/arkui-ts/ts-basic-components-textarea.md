@@ -38,6 +38,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) => void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but not the copy or cut operation.|
 
+>  **NOTE**
+>
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: { top: 8 vp, right: 16 vp, bottom: 8 vp, left: 16 vp }
+
 
 ## Events
 
@@ -72,7 +76,6 @@ Sets the position of the caret.
 | ------ | -------- | ---- | -------------------------------------- |
 | value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 
-
 ## Example
 
 ```ts
@@ -86,6 +89,7 @@ struct TextAreaExample {
   build() {
     Column() {
       TextArea({
+        text: this.text,
         placeholder: 'The text area can hold an unlimited amount of text. input your word...',
         controller: this.controller
       })

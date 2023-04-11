@@ -10,32 +10,32 @@
 
 ## Usage
 
-Invoke the **mediaquery** API to set the media query condition and the callback, and change the page layout or implement service logic in the callback corresponding to the condition.
+Invoke the **mediaquery** API to set the media query condition and the callback, and change the page layout or implement service logic in the callback corresponding to the condition. The procedure is as follows:
 
-First, import the **mediaquery** module, as shown below:
+1. Import the **mediaquery** module, as shown below:
 
-```ts
-import mediaquery from '@ohos.mediaquery'
-```
+   ```ts
+   import mediaquery from '@ohos.mediaquery'
+   ```
 
-Then, use the **matchMediaSync** API to set the media query condition and save the returned listener, as shown below:
+2. Use the **matchMediaSync** API to set the media query condition and save the returned listener, as shown below:
 
-```ts
-listener = mediaquery.matchMediaSync('(orientation: landscape)')
-```
+   ```ts
+   listener = mediaquery.matchMediaSync('(orientation: landscape)')
+   ```
 
-Finally, register the **onPortrait** callback using the saved listener, and change the page layout or implement service logic in the callback. When the media query condition is matched, the callback is triggered. The sample code is as follows:
+3. Register the **onPortrait** callback using the saved listener, and change the page layout or implement service logic in the callback. When the media query condition is matched, the callback is triggered. The sample code is as follows:
 
-```ts
-onPortrait(mediaQueryResult) {
-    if (mediaQueryResult.matches) {
-        // do something here
-    } else {
-        // do something here
-    }
-}
-listener.on('change', onPortrait)
-```
+   ```ts
+   onPortrait(mediaQueryResult) {
+       if (mediaQueryResult.matches) {
+           // do something here
+       } else {
+           // do something here
+       }
+   }
+   listener.on('change', onPortrait)
+   ```
 
 ## Media Query Conditions
 
@@ -92,23 +92,23 @@ At MediaQuery Level 4, range query is imported so that you can use the operators
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| height            | Height of the display area on the application page.               |
-| min-height        | Minimum height of the display area on the application page.       |
-| max-height        | Maximum height of the display area on the application page.       |
-| width             | Width of the display area on the app page.                        |
-| min-width         | Minimum width of the display area on the application page.        |
-| max-width         | Maximum width of the display area on the application page.        |
-| resolution        | Resolution of the device. The unit can be dpi, dppx, or dpcm.<br>- **dpi** indicates the number of physical pixels per inch. 1 dpi ≈ 0.39 dpcm.<br>- **dpcm** indicates the number of physical pixels per centimeter. 1 dpcm ≈ 2.54 dpi.<br>- **dppx** indicates the number of physical pixels in each pixel. (This unit is calculated based on this formula: 96 px = 1 inch, which is different from the calculation method of the px unit on the page.) 1 dppx = 96 dpi.|
-| min-resolution    | Minimum device resolution.                                        |
-| max-resolution    | Maximum device resolution.                                        |
+| height            | Height of the display area on the application page.                                    |
+| min-height        | Minimum height of the display area on the application page.                                |
+| max-height        | Maximum height of the display area on the application page.                                |
+| width             | Width of the display area on the application page.                                    |
+| min-width         | Minimum width of the display area on the application page.                                |
+| max-width         | Maximum width of the display area on the application page.                                |
+| resolution        | Resolution of the device. The unit can be dpi, dppx, or dpcm.  <br>- **dpi** indicates the number of physical pixels per inch. 1 dpi ≈ 0.39 dpcm.<br>- **dpcm** indicates the number of physical pixels per centimeter. 1 dpcm ≈ 2.54 dpi.<br>- **dppx** indicates the number of physical pixels in each pixel. (This unit is calculated based on this formula: 96 px = 1 inch, which is different from the calculation method of the px unit on the page.) 1 dppx = 96 dpi.|
+| min-resolution    | Minimum device resolution.                                          |
+| max-resolution    | Maximum device resolution.                                          |
 | orientation       | Screen orientation.<br>Options are as follows:<br>- orientation: portrait<br>- orientation: landscape|
-| device-height     | Height of the device.                                             |
-| min-device-height | Minimum height of the device.                                     |
-| max-device-height | Maximum height of the device.                                     |
-| device-width      | Width of the device.                                              |
-| min-device-width  | Minimum width of the device.                                      |
-| max-device-width  | Maximum width of the device.                                      |
-| device-type       | Type of the device.<br/>Value range: **default** |
+| device-height     | Height of the device.                                                |
+| min-device-height | Minimum height of the device.                                            |
+| max-device-height | Maximum height of the device.                                            |
+| device-width      | Width of the device.                                                |
+| device-type       | Type of the device.<br>Options: **default** and tablet                    |
+| min-device-width  | Minimum width of the device.                                            |
+| max-device-width  | Maximum width of the device.                                            |
 | round-screen      | Screen type. The value **true** means that the screen is round, and **false** means the opposite. |
 | dark-mode         | Whether the device is in dark mode. The value **true** means that the device is in dark mode, and **false** means the opposite.                       |
 

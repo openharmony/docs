@@ -35,20 +35,22 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name      | Description                |
 | -------- | ---------------- |
-| Checkbox | Check box type.<br>**NOTE**<br>The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 14 vp,<br> right: 6 vp,<br> bottom: 14 vp,<br> left: 6 vp<br> } |
+| Checkbox | Check box type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 12 vp,<br> right: 12 vp,<br> bottom: 12 vp,<br> left: 12 vp<br> } |
 | Button   | Button type. The set string, if any, will be displayed inside the button.      |
-| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 12 vp,<br> right: 12 vp,<br> bottom: 12 vp,<br> left: 12 vp<br> } |
-
+| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 14 vp,<br> right:6 vp,<br> bottom: 6 vp,<br> left: 14 vp<br> } |
 
 ## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name               | Parameter                          | Description                 |
 | ---------------- | --------------------------- | ---------------------- |
 | selectedColor    | [ResourceColor](ts-types.md#resourcecolor)  | Background color of the component when it is turned on.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | switchPointColor | [ResourceColor](ts-types.md#resourcecolor)  | Color of the circular slider when the component is of the **Switch** type.<br>**NOTE**<br>This attribute is valid only when **type** is set to **ToggleType.Switch**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
