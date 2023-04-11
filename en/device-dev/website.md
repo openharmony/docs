@@ -178,6 +178,7 @@
          - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
          - [Trace](kernel/kernel-mini-memory-trace.md)
          - [LMS](kernel/kernel-mini-memory-lms.md)
+         - [Shell](kernel/kernel-mini-debug-shell.md)
        - Appendix
          - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
          - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
@@ -217,6 +218,7 @@
            - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
            - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
            - [File System Adaptation](kernel/kernel-small-bundles-fs-new.md)
+           - [plimits](kernel/kernel-small-plimits.md)
        - Debugging and Tools
          - Shell
            - [Introduction to the Shell](kernel/kernel-small-debug-shell-overview.md)
@@ -426,10 +428,6 @@
      - [Sensor Overview](subsystems/subsys-sensor-overview.md)
      - [Sensor Usage Guidelines](subsystems/subsys-sensor-guide.md)
      - [Sensor Usage Example](subsystems/subsys-sensor-demo.md)
-  -  USB
-     - [USB Overview](subsystems/subsys-usbservice-overview.md)
-     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
-     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   -  Application Framework
      - [Overview](subsystems/subsys-application-framework-overview.md)
      - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
@@ -530,7 +528,7 @@
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
 - Hands-On Tutorials
-   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
   - FAQs
     - [FAQs Overview](faqs/faqs-overview.md)
