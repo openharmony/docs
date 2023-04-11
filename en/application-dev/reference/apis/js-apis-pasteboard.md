@@ -380,7 +380,7 @@ Defines the properties of all data records on the pasteboard, including the time
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.                                                                    |
 | tag<sup>7+</sup> | string | Yes| Yes| Custom tag.                                                                                  |
 | timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).                                                                       |
-| localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is set for local access only. The default value is **true**.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
+| localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. This attribute is not supported currently. You are advised to use **shareOption** instead.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                             |
 
 ## PasteDataRecord<sup>7+</sup>
@@ -1192,10 +1192,10 @@ Unsubscribes from the system pasteboard content change event.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value **'update'** indicates changes in the pasteboard content.|
-| callback | function | No| Callback invoked when the pasteboard content changes.|
+| Name| Type| Mandatory| Description                                                     |
+| -------- | -------- | -------- |---------------------------------------------------------|
+| type | string | Yes| Event type. The value **'update'** indicates changes in the pasteboard content.                             |
+| callback | function | No| Callback invoked when the pasteboard content changes. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
 **Example**
 
