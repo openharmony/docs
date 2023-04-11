@@ -2121,17 +2121,13 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-### on('interrupt')<sup>(deprecated)</sup>
+### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
 
 Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2163,15 +2159,11 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-### off('interrupt')<sup>(deprecated)</sup>
+### off('interrupt')
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 Unsubscribes from audio interruption events.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -3953,21 +3945,20 @@ Obtains the output device with the highest priority based on the audio renderer 
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
     if (err) {
-      console.error(`Result ERROR: ${JSON.stringify(err)}`);
+      console.error(`Result ERROR: ${err}`);
     } else {
-      console.info('device descriptor: ' + JSON.stringify(desc));
+      console.info(`device descriptor: ${desc}`);
     }
   });
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>9+</sup>
-
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 Obtains the output device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
@@ -3986,19 +3977,27 @@ Obtains the output device with the highest priority based on the audio renderer 
 | --------------------- | --------------------------- |
 | Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise used to return the information about the output device with the highest priority.|
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
 **Example**
 
 ```js
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
-    console.info('device descriptor: ' + JSON.stringify(desc));
+    console.info(`device descriptor: ${desc}`);
   }).catch((err) => {
-    console.error(`Result ERROR: ${JSON.stringify(err)}`);
+    console.error(`Result ERROR: ${err}`);
   })
 }
 ```
@@ -4009,6 +4008,8 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 Subscribes to the change of the output device with the highest priority. This API uses an asynchronous callback to return the result.
 
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
 **Parameters**
 
 | Name  | Type                                                | Mandatory| Description                                      |
@@ -4017,16 +4018,24 @@ Subscribes to the change of the output device with the highest priority. This AP
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | Yes  | Audio renderer information.             |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes  | Callback used to return the information about the output device with the highest priority.                        |
 
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
 **Example**
 
 ```js
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
-  console.info('device descriptor: ' + JSON.stringify(desc));
+  console.info(`device descriptor: ${desc}`);
 });
 ```
 
@@ -4044,6 +4053,14 @@ Unsubscribes from the change of the output device with the highest priority.
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The value **'preferOutputDeviceChangeForRendererInfo'** means the event triggered when the output device with the highest priority changes.|
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No  | Callback used for unsubscription.                        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **Example**
 
@@ -5107,18 +5124,18 @@ audioRenderer.setVolume(0.5, (err, data)=>{
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interruption events. This API uses a callback to get interrupt events.
+Subscribes to audio interruption events. This API uses a callback to obtain interrupt events.
 
-Same as [on('interrupt')](#oninterruptdeprecated), this API has obtained the focus before **start**, **pause**, or **stop** of **AudioRenderer** is called. Therefore, you do not need to request the focus.
+Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioRenderer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
 **Parameters**
 
-| Name     | Type                                         | Mandatory | Description                                                  |
-| -------- | -------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                       | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio playback is interrupted. |
-| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes       | Callback used to return the audio interruption event.        |
+| Name     | Type                                           | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted. |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
 
 **Error codes**
 
@@ -5131,50 +5148,68 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-let isPlay;
-let started;
+let isPlaying; // An identifier specifying whether rendering is in progress.
+let isDucked; // An identifier specifying whether the audio volume is reduced.
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', async(interruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          console.info('Force paused. Stop writing');
-          isPlay = false;
+          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+          console.info('Force paused. Update playing status and stop writing');
+          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          console.info('Force stopped. Stop writing');
-          isPlay = false;
+          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
+          console.info('Force stopped. Update playing status and stop writing');
+          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // The audio stream is rendered at a reduced volume.
+          console.info('Force ducked. Update volume status');
+          isDucked = true; // A simplified processing indicating several operations for updating the volume status.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // The audio stream is rendered at the normal volume.
+          console.info('Force ducked. Update volume status');
+          isDucked = false; // A simplified processing indicating several operations for updating the volume status.
+          break;
+        default:
+          console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // The application can choose to take action or ignore.
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
           console.info('Resume force paused renderer or ignore');
-          await audioRenderer.start().then(async function () {
-            console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-            started = true;
-          }).catch((err) => {
-            console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
-            started = false;
-          });
-          if (started) {
-            isPlay = true;
-            console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
-          } else {
-            console.error('AudioInterruptMusic Renderer start failed');
-          }
+          // To continue rendering, the application must perform the required operations.
           break;
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // It is recommended that the application pause rendering.
           console.info('Choose to pause or ignore');
-          if (isPlay == true) {
-            isPlay == false;
-            console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-          } else {
-            isPlay = true;
-            console.info('AudioInterruptMusic: Media PLAY : TRUE');
-          }
+          // To pause rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // It is recommended that the application stop rendering.
+          console.info('Choose to stop or ignore');
+          // To stop rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // It is recommended that the application reduce the volume for rendering.
+          console.info('Choose to duck or ignore');
+          // To decrease the volume for rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // It is recommended that the application resume rendering at the normal volume.
+          console.info('Choose to unduck or ignore');
+          // To resume rendering at the normal volume, the application must perform the required operations.
+          break;
+        default:
           break;
       }
    }
@@ -5850,6 +5885,84 @@ audioCapturer.getBufferSize().then((data) => {
 
 ```
 
+### on('audioInterrupt')<sup>10+</sup>
+
+on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
+
+Subscribes to audio interruption events. This API uses a callback to get interrupt events.
+
+Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioCapturer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
+
+**System capability**: SystemCapability.Multimedia.Audio.Interrupt
+
+**Parameters**
+
+| Name     | Type                                           | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio capturing is interrupted. |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 6800101 | if input parameter value error |
+
+**Example**
+
+```js
+let isCapturing; // An identifier specifying whether capturing is in progress.
+onAudioInterrupt();
+
+async function onAudioInterrupt(){
+  audioCapturer.on('audioInterrupt', async(interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // The system forcibly interrupts audio capturing. The application must update the status and displayed content accordingly.
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+          console.info('Force paused. Update capturing status and stop reading');
+          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume capturing.
+          console.info('Force stopped. Update capturing status and stop reading');
+          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        default:
+          console.info('Invalid interruptEvent');
+          break;
+      }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // The application can choose to take action or ignore.
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // It is recommended that the application continue capturing. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume capturing now.)
+          console.info('Resume force paused renderer or ignore');
+          // To continue capturing, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // It is recommended that the application pause capturing.
+          console.info('Choose to pause or ignore');
+          // To pause capturing, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // It is recommended that the application stop capturing.
+          console.info('Choose to stop or ignore');
+          // To stop capturing, the application must perform the required operations.
+          break;
+        default:
+          break;
+      }
+   }
+  });
+}
+
+```
+
+
 ### on('markReach')<sup>8+</sup>
 
 on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
@@ -6306,7 +6419,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [InterruptEvent](#interruptevent9).
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
