@@ -26,7 +26,7 @@
           console.info(`createAVRecorder fail, error:${error}`);
       }
    });
-    // AVRecorderConfig可参考下一章节
+   // AVRecorderConfig可参考下一章节
    AVRecorder.prepare(AVRecorderConfig, (err) => {
       if (err == null) {
           console.log('prepare success');
