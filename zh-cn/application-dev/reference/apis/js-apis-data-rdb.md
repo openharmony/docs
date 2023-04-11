@@ -372,6 +372,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -380,7 +381,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -1851,6 +1851,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1859,7 +1860,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 
@@ -1904,6 +1905,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1912,7 +1914,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
@@ -1946,6 +1948,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1954,7 +1957,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2002,6 +2004,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2010,7 +2013,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
