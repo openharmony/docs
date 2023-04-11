@@ -501,7 +501,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Release | NA |
-| Public SDK | Ohos_sdk_public 3.2.11.9 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Public SDK | Ohos_sdk_public 3.2.11.9 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。<br />Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)。 |
 | HUAWEI DevEco Studio（可选） | 3.1 Beta2 | OpenHarmony应用开发推荐使用。获取方式：<br /> [Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/f3/v3/uJyuq3syQ2ak4hE1QZmAug/devecostudio-windows-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013335Z&HW-CC-Expire=315360000&HW-CC-Sign=96262721EDC9B34E6F62E66884AB7AE2A94C2A7B8C28D6F7FC891F46EB211A70) <br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/b7/v3/4z3mLQPCQR-g5KlC56SC1w/devecostudio-mac-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013430Z&HW-CC-Expire=315360000&HW-CC-Sign=93E83FD1F1CE504EF8F098E08955A938FDA4E4926A2555CF1E02DC8D57210D76) <br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/2e/v3/Fl9IY6PiQxqc3tnI2cftiw/devecostudio-mac-arm-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013540Z&HW-CC-Expire=315360000&HW-CC-Sign=0906243123734033AAD34A7A005ED7671F00CAA693B6E674F81A094A0159ECCE) |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
 
@@ -584,6 +584,9 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 | 标准系统Public SDK包（Mac-M1）             | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 671.1 MB |
 | 标准系统Public SDK包（Windows/Linux）   | 3.2.11.9      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
 
+> **说明**
+> Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)。
+
 ## 更新说明
 
 本版本在OpenHarmony 3.2 Beta5的基础上有如下变更:
@@ -591,8 +594,8 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 ### API 
 
 API变更请参考:
-- [*OpenHarmony 3.2 Release相比3.2 Beta5的API差异报告*](api-diff/Beta5%20to%20v3.2-Release)
-- [*OpenHarmony 3.2 Release相比3.1 Release的API差异报告*](api-diff/v3.2-Release)
+- [*OpenHarmony 3.2 Release相比3.2 Beta5的API差异报告*](api-change/Beta5%20to%20v3.2-Release/js-apidiff-ability.md)
+- [*OpenHarmony 3.2 Release相比3.1 Release的API差异报告*](api-change/v3.2-Release/js-apidiff-ability.md)
 
 ### 芯片及开发板适配
 
