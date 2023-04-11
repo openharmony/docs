@@ -25,7 +25,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | Name                | Type                                    | Mandatory  | Description                                    |
 | ------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src                 | string \| [Resource](ts-types.md)        | No   | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which indicates that the path is provided by a Data ability. For details about the path, see [Data Ability Development](../../application-models/dataability-overview.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
-| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No   | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| **PlaybackSpeed.Speed_Forward_1_00_X** |
+| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No   | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: 1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
 | previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md) | No   | Path of the preview image.                          |
 | controller          | [VideoController](#videocontroller)      | No   | Video controller.                                |
 
@@ -118,9 +118,9 @@ Requests full-screen mode.
 
 **Parameters**
 
-| Name  | Type   | Mandatory  | Description                 |
-| ----- | ------- | ---- | --------------------- |
-| value | boolean | Yes   | Whether the playback is in full-screen mode.<br>Default value: **false**|
+| Name| Type| Mandatory| Description                                          |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.<br>Default value: **false**|
 
 ### exitFullscreen
 
@@ -173,7 +173,7 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(800).height(600)
+      }).width('100%').height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -186,7 +186,7 @@ struct VideoCreateComponent {
           console.info('onFinish')
         })
         .onError(() => {
-          console.info('onFinish')
+          console.info('onError')
         })
         .onPrepared((e) => {
           console.info('onPrepared is ' + e.duration)

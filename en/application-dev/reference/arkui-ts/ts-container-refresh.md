@@ -32,7 +32,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number | string , friction?: n
 | onStateChange(callback: (state: [RefreshStatus](#refreshstatus)) => void)| Triggered when the refresh status changes.<br>- **state**: refresh status.|
 | onRefreshing(callback: () => void)| Triggered when the component enters the refresh state.|
 
-## RefreshStatus enums
+## RefreshStatus
 
 | Name| Description|
 | -------- | -------- |
