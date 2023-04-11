@@ -90,14 +90,13 @@
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiTraceMeter Development](subsys-dfx-hitracemeter.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
-  - HiSysEvent Development
+  - HiSysEvent
     - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
     - [HiSysEvent Query](subsys-dfx-hisysevent-query.md)
     - [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
-  - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
   - [FaultLogger Development](subsys-dfx-faultlogger.md)
   - [Hiview Development](subsys-dfx-hiview.md)
@@ -105,6 +104,7 @@
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
+  - [HiDumper](subsys-dfx-hidumper.md)
 - Power Management
     - Display Management
         - [System Brightness Customization](subsys-power-brightness-customization.md)
