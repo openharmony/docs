@@ -1,10 +1,15 @@
 # 定时刷新和定点刷新
 
+在使用定时和定点刷新功能之前，需要在form_config.json配置文件中设置`updateEnabled`字段为`true`，以启用周期性刷新功能。
 
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
 
-- 定时刷新：表示每隔一段时间刷新卡片内容，在form_config.json文件中配置，详见[updateDuration](arkts-ui-widget-configuration.md)字段。例如，每小时刷新一次卡片内容。注意：updateDuration（定时刷新）优先级比scheduledUpdateTime（定点刷新）高，配置定时刷新后，定点刷新将失效。
+- 定时刷新：表示每隔一段时间刷新卡片内容，在form_config.json文件中配置，详见[updateDuration](arkts-ui-widget-configuration.md)字段。例如，每小时刷新一次卡片内容。
+  
+  > **说明：**
+  >
+  > 当配置了updateDuration（定时刷新）后，该设置会优先于scheduledUpdateTime（定点刷新）生效，即使同时配置了两者，定点刷新也会被忽略。
   
   ```json
   {
@@ -29,11 +34,12 @@
     ]
   }
   ```
-
+  
 - 定点刷新：表示每天在某个时间点刷新，在form_config.json文件中配置，详见[scheduledUpdateTime](arkts-ui-widget-configuration.md)字段。例如，每天在10:30更新卡片内容。
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > 当同时配置了定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将updateDuration配置为0。
-
+  > **说明：**
+  >
+  > 当同时配置了定时刷新（updateDuration）和定点刷新（scheduledUpdateTime)时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将updateDuration配置为0。
+  
   
   ```json
   {
@@ -58,7 +64,7 @@
     ]
   }
   ```
-
+  
 - 下次刷新：通过[setFormNextRefreshTime](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口指定卡片的下一次刷新时间（最短时间5分钟），例如，在接口调用的5分钟后刷新卡片内容。
   
   ```ts
