@@ -83,7 +83,7 @@ struct bindPopupPage {
     }
     ```
 
-    ![datePicker](../../application-dev/reference/arkui-ts/figures/datePicker.gif)
+    ![datePicker](figures/restrictions-data-type-declarations.gif)
 
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
@@ -229,6 +229,29 @@ struct Child {
         .fontWeight(FontWeight.Bold)
     }
     .width('100%')
+  }
+}
+```
+
+## Restrictions on Naming Custom Components, Classes, and Functions
+
+The name of a custom component, class, or function cannot be the same as any system component name.
+
+Example:
+
+```
+// Rect.ets
+export class Rect {
+  constructor(){}
+}
+// Index.ets
+// ERROR: The module name 'Rect' can not be the same as the inner component name.
+import { Rect } from './Rect';
+@Entry
+@Component
+struct Index {
+  build() {
+    
   }
 }
 ```
