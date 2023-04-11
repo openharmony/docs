@@ -6,7 +6,7 @@ The **FormComponent** is used to display widgets.
 >
 > - This component is supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This component is intended for the widget host. For details about the widget provider, see [JS Service Widget UI Components](../js-service-widget-ui/Readme-EN.md).
+> - This component is intended for the widget host. For details about the widget provider, see [JS Service Widget UI Components](../js-service-widget-ui/js-service-widget-file.md).
 > 
 > - To use this component, you must have the system signature.
 
