@@ -38,7 +38,7 @@ foundation/bundlemanager/bundle_framework
 │       ├── js                         # JS APIs
 │       └── native                     # C/C++ APIs  					   
 ├── services                           # Framework code of the bundle management service
-├── test						       # Testing
+└── test						       # Testing
 ```
 
 
@@ -179,6 +179,7 @@ bm get -u
 
 Bundle Management Subsystem
 
-[**appexecfwk_standard**](https://gitee.com/openharmony/appexecfwk_standard)
+[**bundlemanager_bundle_framework**](https://gitee.com/openharmony/bundlemanager_bundle_framework)
 
+[**bundlemanager_bundle_framework_lite**](https://gitee.com/openharmony/bundlemanager_bundle_framework_lite)
 [developtools_packing_tool](https://gitee.com/openharmony/developtools_packing_tool)
