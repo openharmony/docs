@@ -16,9 +16,9 @@ import request from '@ohos.request';
 
 
 ## 限制与约束
-下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
 上传目前仅支持HTTP请求，不支持HTTPS。
+下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
 ## 常量
 
