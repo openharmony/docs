@@ -594,8 +594,8 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 ### API 
 
 API变更请参考:
-- [*OpenHarmony 3.2 Release相比3.2 Beta5的API差异报告*](api-change/Beta5%20to%20v3.2-Release/js-apidiff-ability.md)
-- [*OpenHarmony 3.2 Release相比3.1 Release的API差异报告*](api-change/v3.2-Release/js-apidiff-ability.md)
+- [*OpenHarmony 3.2 Release相比3.2 Beta5的API差异报告*](api-change/Beta5%20to%20v3.2-Release/Readme-CN.md)
+- [*OpenHarmony 3.2 Release相比3.1 Release的API差异报告*](api-change/v3.2-Release/Readme-CN.md)
 
 ### 芯片及开发板适配
 
