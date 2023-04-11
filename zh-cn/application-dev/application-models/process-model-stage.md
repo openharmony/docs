@@ -4,15 +4,19 @@
 OpenHarmony的进程模型如下图所示：
 
 
-- 应用中（同一包名）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，即图中绿色部分的“Main Process”。
+- 应用中（同一Bundle名称）的所有UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个独立进程中，即图中绿色部分的“Main Process”。
 
-- 应用中（同一包名）的同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）运行在一个独立进程中，即图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
+- 应用中（同一Bundle名称）的同一类型ExtensionAbility（除ServiceExtensionAbility和DataShareExtensionAbility外）运行在一个独立进程中，即图中蓝色部分的“FormExtensionAbility Process”、“InputMethodExtensionAbility Process”、其他ExtensionAbility Process。
 
 - WebView拥有独立的渲染进程，即图中黄色部分的“Render Process”。
 
   **图1** 进程模型示意图  
 ![process-model](figures/process-model.png)
 
+> 说明：
+>
+> - 仅系统应用支持构建ServiceExtensionAbility和DataShareExtensionAbility。
+> - 执行`hdc shell`命令，进入设备的shell命令行。在shell命令行中，执行`ps -ef`命令，可以查看所有正在运行的进程信息。
 
 在上述模型基础上，对于系统应用可以通过申请多进程权限（如下图所示），为指定HAP配置一个自定义进程名，该HAP中的UIAbility、DataShareExtensionAbility、ServiceExtensionAbility就会运行在自定义进程中。不同的HAP可以通过配置不同的进程名运行在不同进程中。
 
