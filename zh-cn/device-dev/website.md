@@ -475,6 +475,9 @@
      - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
      - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview开发指导](subsystems/subsys-dfx-hiview.md)
+  -  电源
+     - 耗电统计
+       - [耗电统计定制开发指导](subsystems/subsys-power-stats-power-average-customization.md)
 
 - 专题
   - HPM Part

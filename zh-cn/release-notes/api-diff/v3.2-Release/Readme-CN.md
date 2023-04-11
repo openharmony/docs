@@ -16,6 +16,7 @@
 - [文件管理](js-apidiff-file-management.md)
 - [位置服务](js-apidiff-geolocation.md)
 - [全球化](js-apidiff-global.md)
+- [图形图像](js-apidiff-graphic.md)
 - [Misc软件](js-apidiff-misc.md)
 - [MSDP](js-apidiff-msdp.md)
 - [多模输入](js-apidiff-multi-modal-input.md)

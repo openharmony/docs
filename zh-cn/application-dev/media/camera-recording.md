@@ -26,6 +26,14 @@
           console.info(`createAVRecorder fail, error:${error}`);
       }
    });
+   // AVRecorderConfig可参考下一章节
+   AVRecorder.prepare(AVRecorderConfig, (err) => {
+      if (err == null) {
+          console.log('prepare success');
+      } else {
+          console.log('prepare failed and error is ' + err.message);
+      }
+   })
    
    let videoSurfaceId = null; 
    AVRecorder.getInputSurface().then((surfaceId) => {
