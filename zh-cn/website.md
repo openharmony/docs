@@ -101,6 +101,17 @@
         - [用户IAM](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-user-iam.md)
         - [Web](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-web.md)
         - [窗口](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-window.md)
+      - 变更说明
+        - [元能力](release-notes/changelogs/v3.2-release/changelogs-ability.md)
+        - [ArkUI](release-notes/changelogs/v3.2-release/changelogs-arkui.md)
+        - [包管理](release-notes/changelogs/v3.2-release/changelogs-bundlemanager.md)
+        - [输入法框架](release-notes/changelogs/v3.2-release/changelogs-imf.md)
+        - [全局资源调度](release-notes/changelogs/v3.2-release/changelogs-resourceschedule.md)
+        - [主题框架-锁屏](release-notes/changelogs/v3.2-release/changelogs-screenlock.md)
+        - [电话服务](release-notes/changelogs/v3.2-release/changelogs-telephony.md)
+        - [util](release-notes/changelogs/v3.2-release/changelogs-util.md)
+        - [主题框架-壁纸](release-notes/changelogs/v3.2-release/changelogs-wallpaper.md)
+        - [web组件](release-notes/changelogs/v3.2-release/changelogs-web.md)
     - OpenHarmony 3.2 Beta5
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta5/js-apidiff-ability.md)
