@@ -74,7 +74,7 @@
         - [用户IAM](release-notes/api-change/v3.2-Release/js-apidiff-user-iam.md)
         - [Web](release-notes/api-change/v3.2-Release/js-apidiff-web.md)
         - [窗口](release-notes/api-change/v3.2-Release/js-apidiff-window.md)
-    - OpenHarmony 3.2 Release (相比3.1 Beta5)
+    - OpenHarmony 3.2 Release (相比3.2 Beta5)
       - JS API差异报告
         - [元能力](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-ability.md)
         - [帐号](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-account.md)
@@ -84,7 +84,6 @@
         - [包管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-bundle.md)
         - [网络及通信](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-communication.md)
         - [语言编译器运行时](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-compiler-and-runtime.md)
-        - [定制](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-customization.md)
         - [DFX](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-dfx.md)
         - [分布式数据](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-distributed-data.md)
         - [文件管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-file-management.md)

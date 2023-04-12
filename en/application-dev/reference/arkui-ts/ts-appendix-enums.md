@@ -237,8 +237,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Description                                              |
 | ------ | -------------------------------------------------- |
 | All    | The transition takes effect in all scenarios.|
-| Insert | The transition takes effect when a component is inserted.    |
-| Delete | The transition takes effect when a component is deleted.    |
+| Insert | The transition takes effect when a component is inserted or displayed.|
+| Delete | The transition takes effect when a component is deleted or hidden.|
 
 ## RelateType
 
@@ -307,12 +307,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration in the flex container is used.                                    |
-| Start    | The elements are in the flex container, top-aligned in the cross-axis direction.                      |
-| Center   | The elements are in the flex container, centered in the cross-axis direction.                      |
-| End      | The elements are in the flex container, bottom-aligned in the cross-axis direction.                      |
-| Stretch  | The elements are in the flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size.|
-| Baseline | The elements are in the flex container, text baseline aligned in the cross-axis direction.                  |
+| Auto     | The default configuration of the flex container is used.                                    |
+| Start    | The items in the flex container are aligned with the cross-start edge.                      |
+| Center   | The items in the flex container are centered along the cross axis.                      |
+| End      | The items in the flex container are aligned with the cross-end edge.                      |
+| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Baseline | The items in the flex container are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
 
 ## FlexDirection
 
@@ -417,21 +417,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name  | Description          |
-| ------ | -------------- |
-| Start  | Aligned with the start.|
-| Center | Horizontally centered.|
-| End    | Aligned with the end.|
+| Name                 | Description          |
+| --------------------- | -------------- |
+| Start                 | Aligned with the start.|
+| Center                | Horizontally centered.|
+| End                   | Aligned with the end.|
 
 ## TextOverflow
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name    | Description                                  |
-| -------- | -------------------------------------- |
-| Clip     | Extra-long text is clipped.              |
-| Ellipsis | An ellipsis (...) is used to represent clipped text.|
-| None     | No clipping or ellipsis is used for extra-long text.                |
+| Name                 | Description                                  |
+| --------------------- | -------------------------------------- |
+| Clip                  | Extra-long text is clipped.              |
+| Ellipsis              | An ellipsis (...) is used to represent text overflow.|
+| None | No clipping or ellipsis is used for text overflow. |
 
 ## TextDecorationType
 
