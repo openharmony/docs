@@ -1,34 +1,66 @@
 # UI开发
 
-- [方舟开发框架（ArkUI）概述](arkui-overview.md)
-- 基于ArkTS的声明式开发范式
-  - [概述](ui-ts-overview.md)
-  - [声明式UI开发指导](ui-ts-developing-intro.md)
-  - 声明式UI开发实例
-    - [创建简单视图](ui-ts-creating-simple-page.md)
-    - 构建完整实例
-      - [构建食物数据模型](ui-ts-building-data-model.md)
-      - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
-      - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
-      - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
-    - 添加闪屏动画
-      - [绘制图像](ui-ts-drawing-feature.md)
-      - [添加动画效果](ui-ts-animation-feature.md)
-  - [常用组件说明](ui-ts-components-intro.md)
-  - 常见布局开发指导
-    - 自适应布局
-      - [线性布局](ui-ts-layout-linear.md)
-      - [层叠布局](ui-ts-layout-stack.md)
-      - [弹性布局](ui-ts-layout-flex.md)
-      - [网格布局](ui-ts-layout-grid.md)
-    - 响应式布局
-      - [栅格布局](ui-ts-layout-grid-container-new.md)
-      - [媒体查询](ui-ts-layout-mediaquery.md)
-  - [自定义组件的生命周期](ui-ts-custom-component-lifecycle-callbacks.md)
-  - [Web组件开发指导](ui-ts-components-web.md)
-  - [性能提升的推荐方法](ui-ts-performance-improvement-recommendation.md)
-- 兼容JS的类Web开发范式
-  - [概述](ui-js-overview.md)
+- [方舟开发框架概述](arkui-overview.md)
+- UI开发（ArkTS声明式开发范式）
+  - [UI开发（ArkTS声明式开发范式）概述](arkts-ui-development-overview.md)
+  - 开发布局
+    - [布局概述](arkts-layout-development-overview.md)
+    - 构建布局
+      - [线性布局](arkts-layout-development-linear.md)
+      - [层叠布局](arkts-layout-development-stack-layout.md)
+      - [弹性布局](arkts-layout-development-flex-layout.md)
+      - [相对布局](arkts-layout-development-relative-layout.md)
+      - [栅格布局](arkts-layout-development-grid-layout.md)
+      - [媒体查询](arkts-layout-development-media-query.md)
+      - [创建列表](arkts-layout-development-create-list.md)
+      - [创建网格](arkts-layout-development-create-grid.md)
+      - [创建轮播](arkts-layout-development-create-looping.md)
+    - [改善布局性能](arkts-layout-development-performance-boost.md)
+  - 添加组件
+    - 添加常用组件
+      - [按钮](arkts-common-components-button.md)
+      - [单选框](arkts-common-components-radio-button.md)
+      - [切换按钮](arkts-common-components-switch.md)
+      - [进度条](arkts-common-components-progress-indicator.md)
+      - [文本显示](arkts-common-components-text-display.md)
+      - [文本输入](arkts-common-components-text-input.md)
+      - [自定义弹窗](arkts-common-components-custom-dialog.md)
+      - [视频播放](arkts-common-components-video-player.md)
+      - [XComponent](arkts-common-components-xcomponent.md)
+    - 添加气泡和菜单
+      - [气泡提示](arkts-popup-and-menu-components-popup.md)
+      - [菜单](arkts-popup-and-menu-components-menu.md)
+  - 设置页面路由和组件导航
+    - [页面路由](arkts-routing.md)
+    - 组件导航
+      - [Navigation](arkts-navigation-navigation.md)
+      - [Tabs](arkts-navigation-tabs.md)
+  - 显示图形
+    - [显示图片](arkts-graphics-display.md)
+    - [绘制几何图形](arkts-geometric-shape-drawing.md)
+    - [使用画布绘制自定义图形](arkts-drawing-customization-on-canvas.md)
+  - 使用动画
+    - [动画概述](arkts-animation-overview.md)
+    - 页面内的动画
+      - [布局更新动画](arkts-layout-update-animation.md)
+      - [组件内转场动画](arkts-transition-animation-within-component.md)
+      - [弹簧曲线动画](arkts-spring-animation.md)
+    - 页面间的动画
+      - [放大缩小视图](arkts-zoom-animation.md)
+      - [页面转场动画](arkts-page-transition-animation.md)
+  - 支持交互事件
+    - [交互事件概述](arkts-event-overview.md)
+    - 使用通用事件
+      - [触屏事件](arkts-common-events-touch-screen-event.md)
+      - [键鼠事件](arkts-common-events-device-input-event.md)
+      - [焦点事件](arkts-common-events-focus-event.md)
+    - 使用手势事件
+      - [绑定手势方法](arkts-gesture-events-binding.md)
+      - [单一手势](arkts-gesture-events-single-gesture.md)
+      - [组合手势](arkts-gesture-events-combined-gestures.md)
+  - [性能提升的推荐方法](arkts-performance-improvement-recommendation.md)
+- UI开发（兼容JS的类Web开发范式）
+  - [UI开发（兼容JS的类Web开发范式）概述](ui-js-overview.md)
   - 框架说明
     - [文件组织](js-framework-file.md)
     - [js标签配置](js-framework-js-tag.md)

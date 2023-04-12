@@ -22,7 +22,7 @@
 >
 > ForEach/LazyForEach语句中，会计算展开所有子节点索引值。
 >
-> [if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](../../quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](../../quick-start/arkts-rendering-control.md#数据懒加载)发生变化以后，会更新子节点索引值。
+> [if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。
 >
 > ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
 >
@@ -53,8 +53,8 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | -------- | -------- | -------- |
 | listDirection | [Axis](ts-appendix-enums.md#axis) | 设置List组件排列方向。<br/>默认值：Axis.Vertical<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | divider                      | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>}&nbsp;\|&nbsp;null | 设置ListItem分割线样式，不支持设置百分比，默认无分割线。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>endMargin +startMargin 不能超过列宽度。 <br/>startMargin和endMargin不支持设置百分比。<br/>List的分割线画在主轴方向两个子组件之间，第一个子组件上方和最后一个子组件下方不会绘制分割线。<br/>多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。 |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| cachedCount | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control.md#数据懒加载)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../ui/ui-ts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
+| cachedCount | number                                   | 设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../ui/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。<br/>多列模式下， 会在List显示的ListItem前后各缓存cachedCount*列数个ListItem。 |
 | editMode<sup>(deprecated)</sup> | boolean | 声明当前List组件是否处于可编辑模式。<br/>从API version9开始废弃。<br/>默认值：false |
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置组件的滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | chainAnimation | boolean | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -218,69 +218,3 @@ struct ListLanesExample {
 ```
 
 ![list](figures/list1.gif)
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct ListDividerTest {
-  private arr: number[] = [0, 1, 2, 3]
-
-  @Builder header() {
-    Text('header')
-      .width('100%')
-      .height(50)
-      .fontSize(16)
-      .textAlign(TextAlign.Center)
-      .backgroundColor(0xFFEECC)
-  }
-
-  @Builder footer() {
-    Text('footer')
-      .width('100%')
-      .height(40)
-      .fontSize(16)
-      .textAlign(TextAlign.Center)
-      .backgroundColor(0xFFEECC)
-  }
-
-  @Builder item(index: number) {
-    Text('item' + index)
-      .width('100%').height(80)
-      .fontSize(16)
-      .textAlign(TextAlign.Center)
-  }
-
-  build() {
-    Column() {
-      List() {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            this.item(item)
-          }
-        }, item => item)
-        ListItemGroup({ header: this.header, footer: this.footer }) {
-          ForEach(this.arr, (item) => {
-            ListItem() {
-              this.item(item)
-            }
-          }, item => item)
-        }
-        .divider({ strokeWidth: 2, color: Color.Red, startMargin: 20, endMargin: 10 })
-
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            this.item(item)
-          }
-        }, item => item)
-      }
-      .lanes(2)
-      .divider({ strokeWidth: 2, color: Color.Red, startMargin: 20, endMargin: 10 })
-      .margin(10).borderWidth(1)
-    }.width("100%")
-    .height("100%")
-  }
-}
-```
-
-![ListDivider](figures/ListDivider.png)

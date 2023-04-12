@@ -28,3 +28,8 @@ typedef enum {
 ### 按序加载（默认加载策略）
 
 配置文件中的priority（取值范围为整数0到200）是用来表示host（驱动容器）和驱动的优先级。不同的host内的驱动，host的priority值越小，驱动加载优先级越高；同一个host内驱动的priority值越小，加载优先级越高。
+
+### 异常恢复（用户态驱动）
+当驱动服务异常退出时，恢复策略如下：
+- preload字段配置为0（DEVICE_PRELOAD_ENABLE）或1（DEVICE_PRELOAD_ENABLE_STEP2）的驱动服务，由启动模块拉起host并重新加载服务。
+- preload字段配置为2（DEVICE_PRELOAD_DISABLE）的驱动服务，需业务模块注册HDF的服务状态监听器，当收到服务退出消息时，业务模块调用LoadDevice重新加载服务。

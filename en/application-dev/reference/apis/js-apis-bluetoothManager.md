@@ -547,7 +547,7 @@ startBluetoothDiscovery(): void
 
 Starts Bluetooth scan to discover remote devices.
 
-**Rquired permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -646,6 +646,98 @@ try {
         bluetoothManager.setDevicePairingConfirmation(data.deviceId, true);
     }
     bluetoothManager.on("pinRequired", onReceivePinRequiredEvent);
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+
+setDevicePinCode(device: string, code: string, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the PIN for the device when [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**.
+
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| device | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| code   | string  | Yes   | PIN to set.       |
+| callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+//callback
+try {
+    bluetoothManager.setDevicePinCode('11:22:33:44:55:66', '12345', (err, data) => {
+        console.info('setDevicePinCode,device name err:' + JSON.stringify(err) + ',device name:' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+
+setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
+
+Sets the PIN for the device when [PinType](#pintype10) is **PIN_TYPE_ENTER_PIN_CODE** or **PIN_TYPE_PIN_16_DIGITS**. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| device | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| code   | string  | Yes   | PIN to set.       |
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+//promise
+try {
+    bluetoothManager.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
+        console.info('setDevicePinCode');
+    }, error => {
+        console.info('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
 }
@@ -1385,7 +1477,7 @@ Creates a **GattServer** instance.
 
 | Type                       | Description                                  |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserver) | **GattServer** instance created. Before using an API of the server, you must create a **GattSever** instance.|
+| [GattServer](#gattserver) | **GattServer** instance created. Before using an API of this class, you must create a **GattSever** instance.|
 
 **Example**
 
@@ -2333,17 +2425,6 @@ Obtains the network sharing status.
 | --------------------- | --------------------------------- |
 | boolean | Returns **true** if tethering is available over a Bluetooth PAN; return **false** otherwise.|
 
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
-|2900099 | Operation failed.                        |
-
 **Example**
 
 ```js
@@ -3258,7 +3339,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3327,7 +3408,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3382,7 +3463,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3444,7 +3525,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3491,7 +3572,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                       |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3545,7 +3626,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                       |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -4016,17 +4097,18 @@ Defines the characteristic API parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                 | Type                                    | Readable  | Writable  | Description                                      |
+| Name                 | Type                                    | Readable  | Writable  | Description                                |
 | ------------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | serviceUuid         | string                                   | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid  | string                                   | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
-| characteristicValue | ArrayBuffer                              | Yes   | Yes   | Binary value of the characteristic.                              |
-| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Yes   | List of descriptors of the characteristic.                             |
+| characteristicValue | ArrayBuffer                              | Yes   | Yes   | Binary value of the characteristic.                     |
+| descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Yes   | List of descriptors of the characteristic.               |
+| properties<sup>10+</sup>  | [GattProperties](#gattproperties10) |   Yes  | Yes    | Properties of the characteristic.    |
 
 
 ## BLEDescriptor
 
-Defines the descriptor API parameters.
+Defines the BLE descriptor.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -4229,6 +4311,7 @@ Defines the scan result.
 | deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX.|
 | rssi     | number      | Yes   | No   | RSSI of the device.                   |
 | data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
+| deviceName<sup>10+</sup>  | string | Yes   | No   | Name of the device detected.                   |
 
 
 ## BluetoothState
@@ -4308,6 +4391,7 @@ Defines the pairing request parameters.
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | Yes   | No   | ID of the device to pair.|
 | pinCode  | string | Yes   | No   | Key for the device pairing.  |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | Yes   | No   | Type of the device to pair.  |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4334,6 +4418,21 @@ Defines the profile state change parameters.
 | state    | [ProfileConnectionState](#profileconnectionstate) | Yes  | No  | Profile connection state of the device.|
 
 
+## GattProperties<sup>10+</sup><a name="GattProperties"></a>
+
+Defines the properties of a GATT characteristic.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Read-only  | Mandatory  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| write<sup>10+</sup>    | boolean | Yes  | Yes   | Permits writes of the characteristic value (with a response).|
+| writeNoResponse<sup>10+</sup> | boolean | Yes   | Yes   | Permits writes of the characteristic value (without a response).|
+| read<sup>10+</sup> | boolean   | Yes   | Yes   | Permits reads of the characteristic value.|
+| notify<sup>10+</sup> | boolean   | Yes   | Yes   | Permits notifications of the characteristic value.|
+| indicate<sup>10+</sup> | boolean   | Yes   | Yes   | Permits notifications of the characteristic value without acknowledgement.|
+
+
 ## DeviceClass<a name="DeviceClass"></a>
 
 Defines the class of a Bluetooth device.
@@ -4345,7 +4444,6 @@ Defines the class of a Bluetooth device.
 | majorClass      | [MajorClass](#majorclass)           | Yes   | No   | Major classes of Bluetooth devices.  |
 | majorMinorClass | [MajorMinorClass](#majorminorclass) | Yes   | No   | Major and minor classes of Bluetooth devices.|
 | classOfDevice   | number                              | Yes   | No   | Class of the device.         |
-
 
 
 ## MajorClass<a name="MajorClass"></a>
@@ -4489,3 +4587,21 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | HFP profile. |
 | PROFILE_HID_HOST | 6 | Human Interface Device (HID) profile. |
 | PROFILE_PAN_NETWORK | 7 | PAN profile. |
+
+
+## PinType<sup>10+</sup><a name="PinType"></a>
+
+Enumerates the Bluetooth pairing types.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                              | Value   | Description             |
+| -------------------------------- | ------ | --------------- |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | The user needs to enter the PIN displayed on the peer device.|
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | The user needs to enter the PASSKEY displayed on the peer device. |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | The user needs to confirm the PASSKEY displayed on the local device. |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | There is no PASSKEY, and the user needs to accept or reject the pairing request. |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | The user needs to enter the PASSKEY displayed on the local device on the peer device. |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | The user needs to enter the PIN displayed on the peer device for Bluetooth 2.0 devices. |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | The user needs to accept or reject the out of band (OOB) pairing request. |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device. |

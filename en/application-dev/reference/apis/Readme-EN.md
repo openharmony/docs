@@ -173,6 +173,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.measure (Text Measurement)](js-apis-measure.md)
+  - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
 
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
@@ -227,7 +228,7 @@
   - [@ohos.data.dataShareResultSet (DataShare Result Set)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
-  - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
+  - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
@@ -266,6 +267,7 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
+  - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
   - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
@@ -274,8 +276,8 @@
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
   - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md)
-  - [@ohos.wifi (To Be Deprecated Soon)](js-apis-wifi.md)
-  - [@ohos.wifiext (To Be Deprecated Soon)](js-apis-wifiext.md)
+  - [@ohos.wifi (WLAN)(To Be Deprecated Soon)](js-apis-wifi.md)
+  - [@ohos.wifiext (WLAN Extension)(To Be Deprecated Soon)](js-apis-wifiext.md)
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
@@ -340,7 +342,7 @@
   - [@ohos.systemParameterEnhance (System Parameter)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
   - [@ohos.update (Update)](js-apis-update.md)
-  - [@ohos.usbManager (USB Management)](js-apis-usbManager.md)
+  - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
 
 - Account Management
@@ -390,7 +392,6 @@
 
 - APIs No Longer Maintained
   - [@ohos.backgroundTaskManager (Background Task Management)](js-apis-backgroundTaskManager.md)
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
   - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState (Device Usage Statistics)](js-apis-deviceUsageStatistics.md)

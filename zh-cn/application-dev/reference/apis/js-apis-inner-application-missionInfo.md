@@ -25,7 +25,7 @@ try {
   missionManager.getMissionInfo('', 1, (error, data) => {
     if (error) {
         // 处理业务逻辑错误
-        console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
 

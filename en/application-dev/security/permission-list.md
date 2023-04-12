@@ -964,6 +964,16 @@ Allows the device administrator to set account management policies.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+Allows the device administrator to set bundle installation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1717,3 +1727,33 @@ Allows a system application to disable the application with the overlay feature 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: TRUE
+
+## ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
+
+Allows a system ability (SA) to access the cellular call SA.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.CONNECT_IMS_SERVICE
+
+Allows an SA to access the IMS SA.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
+
+Allows an application to use ultrasonic sensing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE

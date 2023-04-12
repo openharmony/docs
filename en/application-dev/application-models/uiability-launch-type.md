@@ -17,10 +17,13 @@ The launch type of the UIAbility component refers to the state of the UIAbility 
 
 Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, if a UIAbility instance of this type already exists in the application process, the instance is reused. Therefore, only one UIAbility instance of this type exists in the system, that is, displayed in **Recents**.
 
-**Figure 1** Demonstration effect in singleton mode  
+**Figure 1** Demonstration effect in singleton mode 
+
 ![uiability-launch-type1](figures/uiability-launch-type1.png)  
 
-> **NOTE**<br>Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to **singleton**. If [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called again to start the UIAbility instance, the original UIAbility instance is started, and no new UIAbility instance is created. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not.
+> **NOTE**
+>
+> Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to **singleton**. If [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called again to start the UIAbility instance, the original UIAbility instance is started, and no new UIAbility instance is created. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not.
 
 To use the singleton mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **singleton**.
 
@@ -44,7 +47,8 @@ To use the singleton mode, set **launchType** in the [module.json5 configuration
 
 In standard mode, each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a new UIAbility instance of this type is created in the application process. Multiple UIAbility instances of this type are displayed in **Recents**.  
 
-**Figure 2** Demonstration effect in standard mode  
+**Figure 2** Demonstration effect in standard mode
+
 ![standard-mode](figures/standard-mode.png)  
 
 To use the standard mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **standard**.
@@ -69,7 +73,8 @@ To use the standard mode, set **launchType** in the [module.json5 configuration 
 
 The **specified** mode is used in some special scenarios. For example, in a document application, you want a document instance to be created each time you create a document, but you want to use the same document instance when you repeatedly open an existing document.
 
-**Figure 3** Demonstration effect in specified mode   
+**Figure 3** Demonstration effect in specified mode 
+
 ![uiability-launch-type2](figures/uiability-launch-type2.png)  
 
 For example, there are two UIAbility components: EntryAbility and SpecifiedAbility (with the launch type **specified**). You are required to start SpecifiedAbility from EntryAbility.
@@ -108,7 +113,7 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
            instanceKey: getInstance(),
        },
    }
-   // context is the ability-level context of the initiator UIAbility.
+   // context is the UIAbilityContext of the initiator UIAbility.
    this.context.startAbility(want).then(() => {
        // ...
    }).catch((err) => {
@@ -137,7 +142,7 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
    }
    ```
 
-   > **NOTE**<br>
+   > **NOTE**
    >
    > 1. Assume that the application already has a UIAbility instance created, and the launch type of the UIAbility instance is set to **specified**. If [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called again to start the UIAbility instance, and the [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant) callback of [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) matches a created UIAbility instance, the original UIAbility instance is started, and no new UIAbility instance is created. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback is invoked, but the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callbacks are not.
    > 2. AbilityStage is not automatically generated in the default project of DevEco Studio. For details about how to create an AbilityStage file, see [AbilityStage Component Container](abilitystage.md).

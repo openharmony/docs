@@ -496,7 +496,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用。
+允许应用安装、卸载其他应用（除了企业InHouse应用）。
 
 **权限级别**：system_core
 
@@ -1751,6 +1751,26 @@
 ## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
 
 允许应用使用超声波感知。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+允许应用安装、卸载其他企业InHouse应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+允许应用代理授权URI。
 
 **权限级别**：system_basic
 
