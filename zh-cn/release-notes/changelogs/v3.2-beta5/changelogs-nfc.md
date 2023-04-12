@@ -1,7 +1,5 @@
 # 公共通信子系统NFC JS API变更Changelog
 
-OpenHarmony 3.2.10.2(Mr)版本相较于OpenHarmony 3.2.beta4版本，分布式数据管理子系统的API变更如下
-
 ## cl.nfc.1 接口变更
 NFC部分API6到API8部分JS接口不支持抛出错误码，需要删除废弃，然后使用新的API9替换。
 
