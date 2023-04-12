@@ -40,7 +40,7 @@ Column() {
 
 - Text组件的非必选参数content。
 
-- ```ts
+  ```ts
   // string类型的参数
   Text('test')
   // $r形式引入应用资源，可应用于多语言场景
