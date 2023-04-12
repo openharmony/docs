@@ -151,3 +151,59 @@ struct Index {
   }
 }
 ```
+
+### 跨包页面路由跳转
+
+若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/MainAbility/Index.ets`）里这样使用：
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index {
+    @State message: string = 'Hello World'
+
+    build() {
+    Row() {
+        Column() {
+        Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+        // 添加按钮，以响应用户点击
+        Button() {
+            Text('click to menu')
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({
+            top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('40%')
+        .height('5%')
+        // 绑定点击事件
+        .onClick(() => {
+            router.pushUrl({
+              url: '@bundle:com.example.hmservice/library/ets/pages/menu'
+            }).then(() => {
+              console.log("push page success");
+            }).catch(err => {
+              console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            })
+        })
+      .width('100%')
+    }
+    .height('100%')
+    }
+  }
+}
+```
+其中`router.pushUrl`方法的入参中`url`的内容为：
+```ets
+'@bundle:com.example.hmservice/library/ets/pages/menu'
+```
+`url`内容的模板为：
+```ets
+'@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
+```
