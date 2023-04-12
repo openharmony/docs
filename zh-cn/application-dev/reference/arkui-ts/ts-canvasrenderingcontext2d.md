@@ -2574,7 +2574,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032419.png)
 
-### createConicGradient
+### createConicGradient<sup>10+</sup>
 
 createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
@@ -2585,8 +2585,8 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 | 参数       | 类型   | 必填 | 默认值 | 描述                                                         |
 | ---------- | ------ | ---- | ------ | ------------------------------------------------------------ |
 | startAngle | number | 是   | 0      | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。 |
-| x          | number | 是   | 0      | 圆锥渐变的中心x轴坐标。                                      |
-| y          | number | 是   | 0      | 圆锥渐变的中心y轴坐标。                                      |
+| x          | number | 是   | 0      | 圆锥渐变的中心x轴坐标。单位：vp                              |
+| y          | number | 是   | 0      | 圆锥渐变的中心y轴坐标。单位：vp                              |
 
 **示例：**
 
@@ -2603,7 +2603,7 @@ struct CanvasExample {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#696969')
+        .backgroundColor('#ffffff')
         .onReady(() => {
           var grad = this.context.createConicGradient(0, 50, 80)
           grad.addColorStop(0.0, '#ff0000')
