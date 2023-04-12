@@ -476,7 +476,7 @@ try {
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
 | crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
-| sharedBundleDirPaths | Array\<String> | 否 |共享包文件所在路径。 |
+| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径。 |
 
 ## UninstallParam<sup>10+</sup>
 

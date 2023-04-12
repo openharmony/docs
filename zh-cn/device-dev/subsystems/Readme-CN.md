@@ -110,3 +110,5 @@
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
+    - 耗电统计
+        - [耗电统计定制开发指导](subsys-power-stats-power-average-customization.md)
