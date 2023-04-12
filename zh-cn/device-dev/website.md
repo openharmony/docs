@@ -478,6 +478,21 @@
   -  电源
      - 耗电统计
        - [耗电统计定制开发指导](subsystems/subsys-power-stats-power-average-customization.md)
+     - 电池管理
+       - [电量与LED灯颜色的定制开发指导](subsystems/subsys-power-level-LED-color.md)
+       - [电池温度保护定制开发指导](subsystems/subsys-power-temperature-protection.md)
+       - [电量等级定制开发指导](subsystems/subsys-power-battery-level-customization.md)
+       - [充电限流限压定制开发指导](subsystems/subsys-power-charge-current-voltage-limit.md)
+       - [充电类型定制开发指导](subsystems/subsys-power-charge-type-customization.md)
+       - [关机充电动画开发指导](subsystems/subsys-power-poweroff-charge-animation.md)
+     - 热管理
+       - [充电空闲状态定制开发指导](subsystems/subsys-thermal_charging_idle_state.md)
+       - [热管控定制开发指导](subsystems/subsys-thermal_control.md)
+       - [热检测定制开发指导](subsystems/subsys-thermal_detection.md)
+       - [热等级定制开发指导](subsystems/subsys-thermal_level.md)
+       - [热日志定制开发指导](subsystems/subsys-thermal_log.md)
+       - [热策略定制开发指导](subsystems/subsys-thermal_policy.md)
+       - [热场景定制开发指导](subsystems/subsys-thermal_scene.md)
 
 - 专题
   - HPM Part
