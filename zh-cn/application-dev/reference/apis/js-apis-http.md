@@ -518,7 +518,7 @@ request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```js
-let promise = httpRequest.request("EXAMPLE_URL", {
+let promise = httpRequest.request2("EXAMPLE_URL", {
     method: http.RequestMethod.GET,
     connectTimeout: 60000,
     readTimeout: 60000,
@@ -720,8 +720,8 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-httpRequest.on('dataReceive', () => {
-    console.info('Receive dataEnd！');
+httpRequest.on('dataEnd', () => {
+    console.info('Receive dataEnd !');
 });
 ```
 
@@ -751,7 +751,7 @@ httpRequest.off('dataEnd');
 
 ### on('dataProgress')<sup>10+</sup>
 
- on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+ on(type: 'dataProgress', callback: AsyncCallback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -886,7 +886,7 @@ request方法回调函数的返回值类型。
 | result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
-| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
+| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |
 | cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
 ## http.createHttpResponseCache<sup>9+</sup>
@@ -938,11 +938,11 @@ flush(callback: AsyncCallback\<void\>): void
 
 ```js
 httpResponseCache.flush(err => {
-  if (err) {
-    console.info('flush fail');
-    return;
-  }
-  console.info('flush success');
+    if (err) {
+        console.info('flush fail');
+        return;
+    }
+    console.info('flush success');
 });
 ```
 
@@ -964,9 +964,9 @@ flush(): Promise\<void\>
 
 ```js
 httpResponseCache.flush().then(() => {
-  console.info('flush success');
+    console.info('flush success');
 }).catch(err => {
-  console.info('flush fail');
+    console.info('flush fail');
 });
 ```
 
@@ -988,11 +988,11 @@ delete(callback: AsyncCallback\<void\>): void
 
 ```js
 httpResponseCache.delete(err => {
-  if (err) {
-    console.info('delete fail');
-    return;
-  }
-  console.info('delete success');
+    if (err) {
+        console.info('delete fail');
+        return;
+    }
+    console.info('delete success');
 });
 ```
 ### delete<sup>9+</sup>
@@ -1013,9 +1013,9 @@ delete(): Promise\<void\>
 
 ```js
 httpResponseCache.delete().then(() => {
-  console.info('delete success');
+    console.info('delete success');
 }).catch(err => {
-  console.info('delete fail');
+    console.info('delete fail');
 });
 ```
 

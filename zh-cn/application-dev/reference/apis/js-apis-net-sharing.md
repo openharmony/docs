@@ -194,7 +194,7 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
@@ -243,7 +243,7 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI).then(() => {
     console.log("start wifi sharing successful");
 }).catch(error => {
@@ -287,7 +287,7 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error) => {
     console.log(JSON.stringify(error));
 });
@@ -334,7 +334,7 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI).then(() => {
     console.log("stop wifi sharing successful");
 }).catch(error => {
@@ -588,7 +588,7 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -633,7 +633,7 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
@@ -674,7 +674,7 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -719,7 +719,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
@@ -760,7 +760,7 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
     console.log(JSON.stringify(error));
     console.log(JSON.stringify(data));
@@ -805,7 +805,7 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI).then(data => {
     console.log(JSON.stringify(data));
 }).catch(error => {
@@ -842,8 +842,8 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 **示例：**
 
 ```js
-   sharing.on('sharingStateChange', (data) => {
-    console.log('on sharingStateChange：' + JSON.stringify(data));
+sharing.on('sharingStateChange', (data) => {
+    console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
@@ -910,8 +910,8 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIface
 **示例：**
 
 ```js
- sharing.on('interfaceSharingStateChange', (data) => {
-    console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+sharing.on('interfaceSharingStateChange', (data) => {
+    console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
@@ -978,8 +978,8 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-  sharing.on('sharingUpstreamChange', (data) => {
-    console.log('on sharingUpstreamChange：' + JSON.stringify(data));
+sharing.on('sharingUpstreamChange', (data) => {
+    console.log('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 

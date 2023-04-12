@@ -358,7 +358,7 @@ let localServiceInfo = {
     }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo).then(function (data){
+mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
     console.log(JSON.stringify(data));
 })
 ```

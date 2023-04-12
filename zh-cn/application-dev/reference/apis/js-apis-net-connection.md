@@ -34,10 +34,10 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 **示例：**
 
 ```js
-// 关注默认网络
+// 关注默认网络, 不需要传参
 let netConnection = connection.createNetConnection()
 
-// 关注蜂窝网络
+// 关注蜂窝网络，需要传入相关网络特征，timeout参数未传入说明未使用超时时间，此时timeout为0
 let netConnectionCellular = connection.createNetConnection({
     netCapabilities: {
         bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
@@ -166,7 +166,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```js
-connection.getGlobalHttpProxy((error,data) => {
+connection.getGlobalHttpProxy((error, data) => {
     console.info(JSON.stringify(error));
     console.info(JSON.stringify(data));
 })
@@ -199,9 +199,9 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 ```js
 connection.getGlobalHttpProxy().then((data) => {
-   console.info(JSON.stringify(data));
+    console.info(JSON.stringify(data));
 }).catch(error => {
-   console.info(JSON.stringify(error));
+    console.info(JSON.stringify(error));
 })
 ```
 
@@ -237,16 +237,15 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let exclusionStr="192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
     host: "192.168.xx.xxx",
     port: 8080,
     exclusionList: exclusionArray
 }
-connection.setGlobalHttpProxy(httpProxy, (error, data) => {
-   console.info(JSON.stringify(error));
-   console.info(JSON.stringify(data));
+connection.setGlobalHttpProxy(httpProxy, (error) => {
+    console.info(JSON.stringify(error));
 });
 ```
 
@@ -287,7 +286,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```js
-let exclusionStr="192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
     host: "192.168.xx.xxx",
@@ -295,9 +294,9 @@ let httpProxy = {
     exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy).then(() => {
-   console.info("success");
-}).catch(error=>{
-   console.info(JSON.stringify(error));
+    console.info("success");
+}).catch(error => {
+    console.info(JSON.stringify(error));
 })
 ```
 
@@ -325,9 +324,9 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getAppNet(function(error, data) {
-   console.log(JSON.stringify(error))
-   console.log(JSON.stringify(data))
+connection.getAppNet(function (error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
 })
 ```
 
@@ -356,9 +355,9 @@ getAppNet(): Promise\<NetHandle>;
 
 ```js
 connection.getAppNet().then((data) => {
-   console.info(JSON.stringify(data));
+    console.info(JSON.stringify(data));
 }).catch(error => {
-   console.info(JSON.stringify(error));
+    console.info(JSON.stringify(error));
 })
 ```
 
@@ -393,10 +392,10 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
 ```js
 connection.getDefaultNet(function (error, netHandle) {
-   connection.setAppNet(netHandle, (error, data) => {
-       console.log(JSON.stringify(error))
-       console.log(JSON.stringify(data))
-   });
+    connection.setAppNet(netHandle, (error, data) => {
+        console.log(JSON.stringify(error))
+        console.log(JSON.stringify(data))
+    });
 })
 ```
 
@@ -436,11 +435,11 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-   connection.setAppNet(netHandle).then(() => {
+    connection.setAppNet(netHandle).then(() => {
         console.log("success")
-   }).catch(error => {
+    }).catch(error => {
         console.log(JSON.stringify(error))
-   })
+    })
 })
 ```
 
@@ -935,8 +934,7 @@ connection.disableAirplaneMode().then(function (error) {
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用callback方式作为异步方法。
+向网络管理报告网络处于可用状态，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -973,8 +971,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用Promise方式作为异步方法。
+向网络管理报告网络处于可用状态，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -1524,6 +1521,7 @@ connection.getDefaultNet().then((netHandle) => {
         }, error => {
             if (error) {
                 console.log('bind fail');
+                return;
             }
             netHandle.bindSocket(tcp, (error, data) => {
                 if (error) {
@@ -1543,6 +1541,7 @@ connection.getDefaultNet().then((netHandle) => {
         }, error => {
             if (error) {
                 console.log('bind fail');
+                return;
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data))
@@ -1602,6 +1601,7 @@ connection.getDefaultNet().then((netHandle) => {
         }, error => {
             if (error) {
                 console.log('bind fail');
+                return;
             }
             netHandle.bindSocket(tcp).then((data) => {
                 console.log(JSON.stringify(data));
@@ -1619,6 +1619,7 @@ connection.getDefaultNet().then((netHandle) => {
         }, error => {
             if (error) {
                 console.log('bind fail');
+                return;
             }
             udp.on('message', (data) => {
                 console.log(JSON.stringify(data));
