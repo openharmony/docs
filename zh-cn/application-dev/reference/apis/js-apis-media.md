@@ -478,7 +478,7 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 | 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
 | 5400103  | IO Error:             | 播放中发现码流异常，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态，需要调用release后创新创建实例。 |
+| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态，需要调用release后重新创建实例。 |
 | 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 
 **示例：**
