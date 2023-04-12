@@ -1760,7 +1760,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
-允许应用安装，卸载其他企业InHouse应用。
+允许应用安装、卸载其他企业InHouse应用。
 
 **权限级别**：system_core
 
