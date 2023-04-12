@@ -1172,7 +1172,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 | 参数       | 类型                                               | 必填 | 描述                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是   | 图源对象，具体参考ImageBitmap对象。                          |
-| repetition | string                                             | 是   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'。<br/>默认值：'' |
+| repetition | string                                             | 是   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
 
 **返回值：**：
 
@@ -2574,6 +2574,52 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032419.png)
 
+### createConicGradient
+
+createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
+
+创建一个圆锥渐变色。
+
+**参数：**
+
+| 参数       | 类型   | 必填 | 默认值 | 描述                                                         |
+| ---------- | ------ | ---- | ------ | ------------------------------------------------------------ |
+| startAngle | number | 是   | 0      | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。 |
+| x          | number | 是   | 0      | 圆锥渐变的中心x轴坐标。                                      |
+| y          | number | 是   | 0      | 圆锥渐变的中心y轴坐标。                                      |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#696969')
+        .onReady(() => {
+          var grad = this.context.createConicGradient(0, 50, 80)
+          grad.addColorStop(0.0, '#ff0000')
+          grad.addColorStop(0.5, '#ffffff')
+          grad.addColorStop(1.0, '#00ff00')
+          this.context.fillStyle = grad
+          this.context.fillRect(0, 30, 100, 100)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+  ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
 
 ## CanvasPattern
 
