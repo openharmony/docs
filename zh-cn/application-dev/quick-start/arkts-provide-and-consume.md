@@ -52,7 +52,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>-&nbsp;\@Consume装饰的变量，在其父节点或者祖先节点上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。嵌套类型的场景请参考[观察变化](#观察变化)。<br/>不支持any，不允许使用undefined和null。<br/>必须指定类型。\@Provide变量的\@Consume变量的类型必须相同。<br/>**说明：**<br/>\@Consume装饰的变量，在其父节点或者祖先节点上，必须有对应的属性和别名的\@Provide装饰的变量。 |
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -112,7 +112,8 @@
    2. 通知\@Consume更新后，子组件所有依赖\@Consume的系统组件（elementId）都会被通知更新。以此实现\@Provide对\@Consume状态数据同步。
 
 3. 当\@Consume装饰的数据变化时：
-   1. 通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
+
+   通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
 
 
 ## 使用场景
