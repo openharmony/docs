@@ -120,3 +120,5 @@
         - [热日志定制开发指导](subsys-thermal_log.md)
         - [热策略定制开发指导](subsys-thermal_policy.md)
         - [热场景定制开发指导](subsys-thermal_scene.md)
+    - 电源管理
+        - [电源模式定制开发指导](subsys-power-mode-customization.md)

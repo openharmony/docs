@@ -476,8 +476,8 @@
      - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview开发指导](subsystems/subsys-dfx-hiview.md)
   -  电源
-     - 耗电统计
-       - [耗电统计定制开发指导](subsystems/subsys-power-stats-power-average-customization.md)
+     - 显示管理
+       - [系统亮度范围定制开发指导](subsystems/subsys-power-brightness-customization.md)
      - 电池管理
        - [电量与LED灯颜色的定制开发指导](subsystems/subsys-power-level-LED-color.md)
        - [电池温度保护定制开发指导](subsystems/subsys-power-temperature-protection.md)
@@ -485,6 +485,8 @@
        - [充电限流限压定制开发指导](subsystems/subsys-power-charge-current-voltage-limit.md)
        - [充电类型定制开发指导](subsystems/subsys-power-charge-type-customization.md)
        - [关机充电动画开发指导](subsystems/subsys-power-poweroff-charge-animation.md)
+     - 耗电统计
+       - [耗电统计定制开发指导](subsystems/subsys-power-stats-power-average-customization.md)
      - 热管理
        - [充电空闲状态定制开发指导](subsystems/subsys-thermal_charging_idle_state.md)
        - [热管控定制开发指导](subsystems/subsys-thermal_control.md)
@@ -493,6 +495,8 @@
        - [热日志定制开发指导](subsystems/subsys-thermal_log.md)
        - [热策略定制开发指导](subsystems/subsys-thermal_policy.md)
        - [热场景定制开发指导](subsystems/subsys-thermal_scene.md)
+     - 电源管理
+       - [电源模式定制开发指导](subsystems/subsys-power-mode-customization.md)
 
 - 专题
   - HPM Part
@@ -844,5 +848,3 @@
         - [osThreadAttr_t](reference/kernel/cmsis/os_thread_attr__t.md)
         - [osTimerAttr_t](reference/kernel/cmsis/os_timer_attr__t.md)
         - [osVersion_t](reference/kernel/cmsis/os_version__t.md)
-
-   
