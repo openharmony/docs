@@ -1486,7 +1486,7 @@ Sets the priority of the location request.
 Enumerates error codes of the location service.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager](../errorcodes/errorcode-geoLocationManager.md).
 
 **Required permissions**: ohos.permission.LOCATION
 

@@ -182,12 +182,12 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - | - |
 | **Source Code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
-| Full code base (for mini, small, and standard systems)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/code-v3.2-Beta4.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/code-v3.2-Beta4.tar.gz.sha256) | 19.0 GB |
-| RK3568 standard system solution (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/dayu200_standard_arm32.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/dayu200_standard_arm32.tar.gz.sha256) | 3.2 GB |
-| Hi3861 solution (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_pegasus.tar.gz.sha256) | 22.6 MB |
-| Hi3516 solution-LiteOS (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_taurus_LiteOS.tar.gz.sha256)| 293.9 MB |
-| Hi3516 solution-Linux (binary)| 3.2 Beta4 | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta4/hispark_taurus_Linux.tar.gz.sha256)| 173.2 MB |
-| RELEASE-NOTES | 3.2 Beta4 | [Download](../../release-notes/OpenHarmony-v3.2-beta4.md)| - | - |
+| Full code base (for mini, small, and standard systems)| 3.2 Release    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz.sha256)| 21.8 GB |
+| Hi3861 solution (binary)       | 3.2 Release| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz.sha256)| 22.9 MB |
+| Hi3516 solution-LiteOS (binary)| 3.2 Release| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256)| 294.3 MB |
+| Hi3516 solution-Linux (binary) | 3.2 Release| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256)| 174.3 MB |
+| RK3568 standard system solution (binary)       | 3.2 Release| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release//dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release//dayu200_standard_arm32.tar.gz.sha256)| 3.9 GB |
+| RELEASE-NOTES | 3.2 Release| [Download](../../release-notes/OpenHarmony-v3.2-release.md)| - | - |
 | **Compiler Toolchain**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
 | Compiler toolchain| - | [Download](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/)| - | - |
 
