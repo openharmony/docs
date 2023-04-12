@@ -72,7 +72,7 @@ const config = {
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('updateConfiguration success.');
@@ -170,7 +170,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(err)}');
         } else {
             console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
@@ -254,8 +254,8 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err && err.code !== 0) {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
+        if (err) {
             console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
@@ -342,7 +342,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('getTopAbility success, data: ${JSON.stringify(data)}');
@@ -413,7 +413,7 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.acquireShareData(1, (err, wantParam) => { 
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('acquireShareData success, data: ${JSON.stringify(data)}');

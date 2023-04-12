@@ -26,7 +26,7 @@
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
+      if (error) {
           console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
@@ -35,7 +35,7 @@
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err.code) {
+        if (err) {
           console.error('getMissionInfos failed, err.code: ${err.code}, err.message: ${err.message}');
           return;
         }
