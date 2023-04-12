@@ -31,7 +31,7 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义�
 import abilitymanager from '@ohos.app.ability.abilityManager';
 
 abilitymanager.getAbilityRunningInfos((error, data) => { 
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');

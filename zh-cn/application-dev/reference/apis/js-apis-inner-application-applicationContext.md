@@ -116,7 +116,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
             } else {
                 console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
@@ -233,7 +233,7 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
             } else {
                 console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
@@ -325,7 +325,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
-    if (err.code !== 0) {
+    if (err) {
         console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
@@ -373,7 +373,7 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 });
