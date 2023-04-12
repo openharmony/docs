@@ -18,7 +18,6 @@
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility (for System Applications Only)](datashareextensionability.md)
-      - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
