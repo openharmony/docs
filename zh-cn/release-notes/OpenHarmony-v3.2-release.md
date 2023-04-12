@@ -607,12 +607,7 @@ API变更请参考:
 | 无障碍 | [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTS |
 | 企业管理 | [企业设备管理ExtensionAbility](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility) | 企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。 | ArkTS |
 | 任务管理 | [任务延时调度](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例使用\@ohos.WorkSchedulerExtensionAbility 、\@ohos.net.http 、\@ohos.notification 、\@ohos.bundle 、\@ohos.fileio 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。 | ArkTS |
-| 网络 | [上传](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload) | 本示例主要展示Request服务向三方应用提供系统上传服务能力，通过\@ohos.request，\@ohos.multimedia.mediaLibrary等接口去实现图片的选取与上传。 | ArkTS |
-| 任务管理 | [短时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask) | 本示例主要展示后台任务中的短时任务。通过\@ohos.resourceschedule.backgroundTaskManager，\@ohos.app.ability.quickFixManager等接口实现应用热更新的方式去展现短时任务机制。 | ArkTS |
-| 任务管理 | [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask) | 本示例展示后台任务的长时任务。通过使用\@ohos.resourceschedule.backgroundTaskManager实现后台播放音乐时避免进入挂起（Suspend）状态。 | ArkTS |
-| 元能力 | [ArkTS卡片计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSFormCalc) | 本示例展示了使用ArkTS卡片开发的计算器模型。 | ArkTS |
-| 元能力 | [ArkTS卡片Canvas小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame) | 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。<br/>- 使用Canvas绘制棋盘和黑白棋子的落子。<br/>- 通过卡片支持的点击事件进行交互，让用户在棋盘上进行黑白棋子的对局。<br/>- 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。 | ArkTS |
-| 元能力 | [ArkTs音乐卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/ArkTSCardMusicSample) | 本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片。 | ArkTS |
+
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
