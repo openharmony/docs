@@ -23,15 +23,15 @@
 
 ## 选举与退出
 
-合规SIG成员，整体遵从社区[SIG管理章程](https://gitee.com/openharmony/community/tree/master/sig#sig%E7%AE%A1%E7%90%86%E7%AB%A0%E7%A8%8B),并为进一步保证SIG成员的多样性和贡献优先导向，细化补充以下规则
+合规SIG成员，整体遵从社区[SIG管理章程](https://gitee.com/openharmony/community/tree/master/sig#sig%E7%AE%A1%E7%90%86%E7%AB%A0%E7%A8%8B),和[OpenHarmony社区角色定义及晋升机制](https://gitee.com/openharmony/community/blob/master/zh/guidelines_role_growth.md),并为进一步保证SIG成员的多样性和贡献优先导向，细化补充以下规则
 
-- SIG Leader： 每次任期为1年，最多连任1次，选举时，存在多名候选人时，以获得票数最多者担任，仅一名候选人，需获得committer总数 2/3以上同意票。
+- SIG Leader： 作为社区标准角色，合规SIG内部进行提名和投票，推举最终候选人后，报送PMC项目管理委员会后批准后，可担任对应角色。合规SIG内部共识：SIG Leader 每次任期为1年，最多连任1次，SIG内选举时，存在多名提名候选人时，以获得票数最多者作为最终候选人； 若SIG内选举时，仅一名候选人，需获得committer总数 2/3以上同意票, 若未达到 2/3 同意票，则需在合规SIG例会澄清，并最终经PMC审核是否可以担任SIG Leader。
 
-- SIG Committer： 由其他Committer提名，原则上Committer候选人需有6个月以上在合规SIG贡献的记录，并获得committer总数 2/3以上同意票，在SIG成熟后，单一公司committer数量不超过SIG committer总数的一半
+- SIG Committer： 作为社区标准角色，合规SIG内部进行提名和投票，满足要求后，报送PMC项目管理委员会后批准后，可担任对应角色。合规SIG内部共识：合规SIG 候选committer由现Committer提名，由于合规SIG非业务部件，无独立代码仓，且交付件具有多样性，在贡献衡量中不仅包括代码和文档贡献，因此对[OpenHarmony社区角色定义及晋升机制](https://gitee.com/openharmony/community/blob/master/zh/guidelines_role_growth.md)中Committer晋升标准中的贡献要求进行适配，并不再区分Approver和Reviewer，合规SIG成员均可进行Review，贡献要求以**合规SIG贡献衡量指标**中的贡献行为均可认定为合规SIG有效贡献，原则上Committer候选人需有至少3个月以上在合规SIG贡献的记录，有效贡献次数不少于10次。
 
-- SIG 能力组Leader： 每次任期为1年，为保持能力建设的延续性，可连任，可基于SIG共识直接推选，如有多人竞选则，参考SIG Leader竞选规则。
+- SIG 能力组Leader： 作为合规SIG扩展角色，由合规SIG自行管理，每次任期为1年，为保持能力建设的延续性，可连任，可基于SIG共识直接推选，如有多人竞选则，参考SIG Leader竞选规则。
 
-- Co-Chair： 当前开放报名担任，可基于SIG共识直接推选，如有多人竞选则，参考SIG Leader竞选规则。待SIG成熟后，由commiter中推选，。
+- Co-Chair： 作为合规SIG扩展角色，由合规SIG自行管理，当前开放报名担任，可基于SIG共识直接推选，如有多人竞选则，参考SIG Leader竞选规则。待SIG成熟后，由commiter中推选，。
 
 
 Compliance-SIG 选举周期初步设置时间为每年的6月份和12月份（SIG Leader和 能力组 Leader 任期为一年，按任期选举）。
@@ -50,6 +50,7 @@ Compliance-SIG 选举周期初步设置时间为每年的6月份和12月份（SI
 赋能培训及布道推广类：
 1、输出培训教材数（包括拟定、翻译等）
 2、提供培训次数
+3、外部布道活动
 
 工程工具类：
 1、提交PR数（包括制定、翻译、修复问题等）
@@ -66,8 +67,10 @@ Compliance-SIG 选举周期初步设置时间为每年的6月份和12月份（SI
 5、回答社区问题数
 
 SIG运作类：
-1、分享次数
+1、议题分享次数
 2、引入新成员数
+3、会议主持次数
+4、担任导师
 
 成员都可能在上述不同维度有贡献，每个单项项目的贡献不限制次数门槛，以整体的贡献来衡量。
 
@@ -98,19 +101,12 @@ contributer定义是长期活跃在社区的参与者。其社区行为符合上
 
 ## SIG committer
 
-### 成为committer
-
-- 符合上述定义的贡献指标两条及以上
-- 获得当前committer提名
-- 获得当前2/3的选举票
-
 ### Committer 权利
 
 - OpenHarmony社区合规SIG Committer身份席位
 - 合规SIG Leader的选举和被选举权、合规SIG Committer的提名和投票权
 - 例行开源合规评审的评审和投票权
 - 合规SIG 所有关键决策的投票权，一人一票，决策投票按照半数以上原则
-
 
 ### Committer 义务
 
@@ -124,11 +120,6 @@ contributer定义是长期活跃在社区的参与者。其社区行为符合上
 
 合规SIG按照[Co-Chari成员列表]() 的顺序进行轮值，轮值周期为一个自然月，在轮值期间，主要负责这一段时间合规SIG的例会主持、运营工作等，并做好交接工作。
 
-## SIG 专项Owner
-
-### SIG专项Owner的权利与义务
-
-专项Owner作为开源合规重点的工作的负责人，主导确定本专项工作的目标、工作内容、计划，及时在合规SIG例会进行专项进展通报。
 
 ## 能力组 Leader
 
