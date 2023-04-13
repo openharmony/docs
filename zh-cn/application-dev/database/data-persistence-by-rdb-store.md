@@ -48,7 +48,7 @@
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | 删除数据库。 | 
 
 
-## 开发指导
+## 开发步骤
 
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore。示例代码如下所示：
 
