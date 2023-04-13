@@ -59,7 +59,9 @@
         }
       }
     ]
-  }
+  },
+  "targetModuleName": "feature",
+  "targetPriority": 50
 }
 ```
 
@@ -89,7 +91,8 @@ module.json5配置文件包含以下标签。
 | [testRunner](#testrunner标签) | 标识当前Module用于支持对测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
-
+| targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
+| targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
 
 ## deviceTypes标签
 

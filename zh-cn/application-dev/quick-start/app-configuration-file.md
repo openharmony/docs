@@ -19,7 +19,9 @@
     "debug": false,
     "car": {
       "minAPIVersion": 8,
-    }
+    },
+    "targetBundleName": "com.application.test",
+    "targetPriority": 50
   },
 }
 ```
@@ -52,3 +54,5 @@ app.json5配置文件包含以下标签。
 | wearable | 标识对wearable设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion、distributedNotificationEnabled。<br/>如果使用该属性对wearable设备做了特殊配置，则应用在wearable设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时wearable设备使用app.json5公共区域配置的属性值。 |
 | car | 标识对car设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion、distributedNotificationEnabled。<br/>如果使用该属性对car设备做了特殊配置，则应用在car设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时car设备使用app.json5公共区域配置的属性值。 |
 | default | 标识对default设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion、distributedNotificationEnabled。<br/>如果使用该属性对default设备做了特殊配置，则应用在default设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时default设备使用app.json5公共区域配置的属性值。 |
+|targetBundleName|标识当前包所指定的目标应用, 标签值的取值规则和范围与bundleName标签一致。|字符串|该标签可缺省，缺省时当前包为非overlay特性的应用。|
+|targetPriority|标识当前应用的优先级, 当targetBundleName字段配置之后，当前应用为overlay特征的应用, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
