@@ -476,9 +476,9 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 | 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
 | 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | 播放中发现码流异常。                                         |
+| 5400103  | IO Error:             | 播放中发现码流异常，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态，需要调用release后重新创建实例。 |
 | 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 
 **示例：**
@@ -3775,7 +3775,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs';
 
 let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
@@ -3819,15 +3819,15 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
 let fdPath = 'fd://';
 // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fileio.open(path).then((fdValue) => {
-   fdPath = fdPath + '' + fdValue;
+fs.open(path).then((file) => {
+   fdPath = fdPath + '' + file.fd;
    console.info('open fd success fd is' + fdPath);
+   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 }, (err) => {
    console.info('open fd failed err is' + err);
 }).catch((err) => {
    console.info('open fd failed err is' + err);
 });
-audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')

@@ -74,7 +74,7 @@
         - [用户IAM](release-notes/api-change/v3.2-Release/js-apidiff-user-iam.md)
         - [Web](release-notes/api-change/v3.2-Release/js-apidiff-web.md)
         - [窗口](release-notes/api-change/v3.2-Release/js-apidiff-window.md)
-    - OpenHarmony 3.2 Release (相比3.1 Beta5)
+    - OpenHarmony 3.2 Release (相比3.2 Beta5)
       - JS API差异报告
         - [元能力](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-ability.md)
         - [帐号](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-account.md)
@@ -84,7 +84,6 @@
         - [包管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-bundle.md)
         - [网络及通信](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-communication.md)
         - [语言编译器运行时](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-compiler-and-runtime.md)
-        - [定制](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-customization.md)
         - [DFX](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-dfx.md)
         - [分布式数据](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-distributed-data.md)
         - [文件管理](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-file-management.md)
@@ -102,6 +101,17 @@
         - [用户IAM](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-user-iam.md)
         - [Web](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-web.md)
         - [窗口](release-notes/api-change/Beta5%20to%20v3.2-Release/js-apidiff-window.md)
+      - 变更说明
+        - [元能力](release-notes/changelogs/v3.2-release/changelogs-ability.md)
+        - [ArkUI](release-notes/changelogs/v3.2-release/changelogs-arkui.md)
+        - [包管理](release-notes/changelogs/v3.2-release/changelogs-bundlemanager.md)
+        - [输入法框架](release-notes/changelogs/v3.2-release/changelogs-imf.md)
+        - [全局资源调度](release-notes/changelogs/v3.2-release/changelogs-resourceschedule.md)
+        - [主题框架-锁屏](release-notes/changelogs/v3.2-release/changelogs-screenlock.md)
+        - [电话服务](release-notes/changelogs/v3.2-release/changelogs-telephony.md)
+        - [util](release-notes/changelogs/v3.2-release/changelogs-util.md)
+        - [主题框架-壁纸](release-notes/changelogs/v3.2-release/changelogs-wallpaper.md)
+        - [web组件](release-notes/changelogs/v3.2-release/changelogs-web.md)
     - OpenHarmony 3.2 Beta5
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta5/js-apidiff-ability.md)
@@ -352,7 +362,7 @@
   
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
-  - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)
+  - [OpenHarmony JS/TS三方组件使用指导](third-party-components/ohpm-third-party-guide.md)
 
 - 贡献
   - [参与贡献](contribute/参与贡献.md)

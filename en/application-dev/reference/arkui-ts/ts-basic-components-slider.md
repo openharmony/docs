@@ -50,7 +50,7 @@ Except touch target attributes, the universal attributes are supported.
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the bubble is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the bubble is displayed on the left of the slider.<br>The drawing area of the bubble is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the bubble will be clipped.|
 | trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
@@ -60,7 +60,7 @@ In addition to the **OnAppear** and **OnDisAppear** universal events, the follow
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider slides.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: dragging state.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
 
 ## SliderChangeMode
 
@@ -68,9 +68,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| Begin | 0 | The user starts to drag the slider.|
+| Begin | 0 | The user touches or presses the slider with a gesture or mouse.|
 | Moving | 1 | The user is dragging the slider.|
-| End | 2 | The user stops dragging the slider.|
+| End | 2 | The user stops dragging the slider by lifting their finger or releasing the mouse.|
 | Click    | 3    | The user moves the slider by touching the slider track.|
 
 

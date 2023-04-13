@@ -8,7 +8,6 @@
 - [包管理](js-apidiff-bundle.md)
 - [网络及通信](js-apidiff-communication.md)
 - [语言编译器运行时](js-apidiff-compiler-and-runtime.md)
-- [定制](js-apidiff-customization.md)
 - [DFX](js-apidiff-dfx.md)
 - [分布式数据](js-apidiff-distributed-data.md)
 - [文件管理](js-apidiff-file-management.md)
