@@ -20,7 +20,7 @@ import appManager from '@ohos.app.ability.appManager';
 function getForegroundAppInfos() {
     appManager.getForegroundApplications((error, data) => {
         if (error) {
-            console.log('getForegroundApplications failed, error.code: ${error.code}, error.message: ${error.message}');
+            console.log('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }
         for (let i = 0; i < data.length; i++) {

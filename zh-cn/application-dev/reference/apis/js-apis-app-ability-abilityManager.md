@@ -414,9 +414,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.acquireShareData(1, (err, wantParam) => { 
     if (err) {
-        console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
+        console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     } else {
-        console.log('acquireShareData success, data: ${JSON.stringify(data)}');
+        console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
     }
 });
 
@@ -448,10 +448,13 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
-
-abilityManager.acquireShareData(1).then((wantParam) => {
-    console.log('acquireShareData success, data: ${JSON.stringify(data)}');
-}).catch((err) => {
-    console.error('acquireShareData fail, err: ${JSON.stringify(err)}');
-});
+try {
+    abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
+    }).catch((err) => {
+    console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 ```
