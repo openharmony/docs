@@ -34,7 +34,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
 | Name           | Description                              |
 | -------------- | ---------------------------------------- |
 | Normal         | The gestures of child components are not ignored and are recognized based on the default gesture recognition sequence. |
-| IgnoreInternal | The gestures of child components are ignored. Only the gestures of the current component are recognized.<br>However, the built-in gestures of the child components are not ignored. For example, when the child component is a **\<List>** component, the built-in sliding gestures can still be triggered. |
+| IgnoreInternal | The gestures of child components are ignored, including the built-in gestures. For example, if the child component is **\<List>**, its built-in swipe gesture is also ignored.|
 
 ## Gesture Response Event
 
