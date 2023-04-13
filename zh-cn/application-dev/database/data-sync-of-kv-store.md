@@ -185,7 +185,7 @@
        console.info(`dataChange callback call data: ${data}`);
      });
    } catch (e) {
-     console.error(`An unexpected error occured. code:${e.code},message:${e.message}`);
+     console.error(`An unexpected error occurred. code:${e.code},message:${e.message}`);
    }
    ```
 
