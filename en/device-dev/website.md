@@ -194,6 +194,7 @@
            - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
            - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
            - [File System Adaptation](kernel/kernel-small-bundles-fs-new.md)
+           - [plimits](kernel/kernel-small-plimits.md)
        - Debugging and Tools
          - Shell
            - [Introduction to the Shell](kernel/kernel-small-debug-shell-overview.md)
@@ -295,6 +296,7 @@
      - HDF
        - [HDF Overview](driver/driver-hdf-overview.md)
        - [Driver Development](driver/driver-hdf-development.md)
+       - [Driver Loading](driver/driver-hdf-load.md)
        - [Driver Service Management](driver/driver-hdf-servicemanage.md)
        - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
        - [Driver Configuration Management](driver/driver-hdf-manage.md)
@@ -359,6 +361,7 @@
        - [Building a Product](subsystems/subsys-build-product.md)
        - [Building a Subsystem](subsystems/subsys-build-subsystem.md)
        - [Building a Component](subsystems/subsys-build-component.md)
+       - [Component Building Specifications](subsystems/subsys-build-component-building-rules.md)
        - [Building a Module](subsystems/subsys-build-module.md)
        - [Building a Chipset Solution](subsystems/subsys-build-chip_solution.md)
        - [Configuring Features](subsystems/subsys-build-feature.md)
@@ -369,6 +372,7 @@
        - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md)
        - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
        - [FAQs](subsystems/subsys-build-FAQ.md)
+  -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
   -  [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
@@ -399,10 +403,6 @@
      - [Sensor Overview](subsystems/subsys-sensor-overview.md)
      - [Sensor Usage Guidelines](subsystems/subsys-sensor-guide.md)
      - [Sensor Usage Example](subsystems/subsys-sensor-demo.md)
-  -  USB
-     - [USB Overview](subsystems/subsys-usbservice-overview.md)
-     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
-     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   -  Application Framework
      - [Overview](subsystems/subsys-application-framework-overview.md)
      - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)
@@ -430,6 +430,8 @@
        - [Parameter Management](subsystems/subsys-boot-init-sysparam.md)
        - [Sandbox Management](subsystems/subsys-boot-init-sandbox.md)
        - [Plug-in Management](subsystems/subsys-boot-init-plugin.md)
+       - [omponent-based Startup](subsystems/subsys-boot-init-sub-unit.md)
+       - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
      - [FAQs](subsystems/subsys-boot-faqs.md)
@@ -491,12 +493,14 @@
 
 
 - Debugging
+  - [Development Self-Test Framework User Guide](device-test/developer_test.md)
+  - [xDevice User Guide](device-test/xdevice.md)
   - R&D Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
     - [hdc](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf](subsystems/subsys-toolchain-hiperf.md)
+- [XTS Test Case Development Guide](device-test/xts.md)
 - Tools
-
   - [Tool Overview](get-code/gettools-overview.md)
   - [Docker Environment](get-code/gettools-acquire.md)
   - [IDE](get-code/gettools-ide.md)
