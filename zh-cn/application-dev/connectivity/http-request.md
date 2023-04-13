@@ -52,8 +52,7 @@ httpRequest.on('headersReceive', (header) => {
   console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-  "EXAMPLE_URL",
+  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定"EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
     // 开发者根据自身业务需要添加header字段
