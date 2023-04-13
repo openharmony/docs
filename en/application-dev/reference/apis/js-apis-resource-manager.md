@@ -1543,7 +1543,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       
   ```
 
-### closeRawFd<sup>8+</sup>
+### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
