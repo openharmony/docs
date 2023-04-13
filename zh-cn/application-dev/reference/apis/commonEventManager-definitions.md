@@ -574,12 +574,12 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_UPDATE
-表示系统待机空闲模式豁免信息已更改的公共事件的动作。
+表示系统待机空闲模式下豁免应用程序列表已更新的公共事件的动作。仅限系统应用使用。
 - 值： usual.event.DEVICE_IDLE_EXEMPTION_UPDATE
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DEVICE_IDLE_CTRL_NETWORK
-表示系统待机空闲模式灭屏30分钟后系统限网断网的公共事件的动作。
+表示系统待机空闲模式下灭屏30分钟后系统限网断网的公共事件的动作。仅限系统应用使用。
 - 值： usual.event.DEVICE_IDLE_CTRL_NETWORK
 - 订阅者所需权限： 无
 
