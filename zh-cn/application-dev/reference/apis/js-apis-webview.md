@@ -2848,6 +2848,8 @@ backOrForward(step: number): void
 
 按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
 
+前进或者后退页面时，直接使用已加载过的网页，无需重新加载网页。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
