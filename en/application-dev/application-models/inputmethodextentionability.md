@@ -33,7 +33,7 @@ In the **ets** directory of the target module, right-click and choose **New** > 
 
 > **NOTE**
 > 
-> When compiling the input method application, use the signature at the system_core level. Otherwise, the application will not be able to start the keyboard.
+> When compiling the input method application, use the signature at the system_basic level. Otherwise, the application will not be able to start the keyboard.
 
 The minimum template implements an input method application with the most basic features, such as starting the keyboard, entering text, and deleting input. You can diversify the feature set of the application by, for example, adding the feature to hide the keyboard.
 
