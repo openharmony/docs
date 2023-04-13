@@ -35,6 +35,9 @@ SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 1.应用采集配置。
 
 启动SmartPerf-Device进入首页，选择测试应用、测试指标项，点击”开始测试“，拉起测试应用。
+
+
+
 ![图片说明](figures/SmartPerfConfig1.png)
 ![图片说明](figures/SmartPerfConfig2.png)
 ![图片说明](figures/SmartPerfConfig3.png)
