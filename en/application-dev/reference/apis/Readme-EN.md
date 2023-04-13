@@ -265,6 +265,7 @@
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
+  - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
 
 - Connectivity
   - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
