@@ -44,7 +44,6 @@
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-    "distributedNotificationEnabled": true,
     "targetAPIVersion": 9
   }
 }
