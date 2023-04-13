@@ -666,10 +666,19 @@ Indicates that the system charging type has changed. This event is available onl
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-(Reserved, not supported yet) Indicates that the system idle mode has changed.
+Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
 
+## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_UPDATE
+Indicates that the list of exempt applications has been updated in the idle mode. This event is available only for system applications.
+- Value: **usual.event.DEVICE_IDLE_EXEMPTION_UPDATE**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_DEVICE_IDLE_CTRL_NETWORK
+Indicates that the network access is restricted or restored, when screen is off for about 30 minutes. This event is available only for system applications.
+- Value: **usual.event.DEVICE_IDLE_CTRL_NETWORK**
+- Required subscriber permissions: none
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
 Indicates that the system power saving mode has changed.
