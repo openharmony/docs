@@ -334,7 +334,7 @@ httpRequest.destroy();
 
 request2(url: string, callback: AsyncCallback\<number\>): void
 
-根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
+根据URL地址，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 

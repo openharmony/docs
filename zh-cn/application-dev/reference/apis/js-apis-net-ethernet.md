@@ -386,6 +386,74 @@ ethernet.getAllActiveIfaces().then((data) => {
 });
 ```
 
+## sharing.on('interfaceStateChange')<sup>10+</sup>
+
+on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
+
+注册网卡热插拔事件，使用callback方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
+| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.      |
+| 401     | Parameter error.                             |
+
+**示例：**
+
+```js
+ ethernet.on('interfaceStateChange', (data) => {
+    console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+});
+```
+
+## ethernet.off('interfaceStateChange')<sup>10+</sup>
+
+off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
+
+注销网卡热插拔事件，使用callback方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
+| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.                           |
+| 401     | Parameter error.                             |
+
+**示例：**
+
+```js
+ethernet.off('interfaceStateChange');
+```
+
 ## InterfaceConfiguration
 
 以太网连接配置网络信息。

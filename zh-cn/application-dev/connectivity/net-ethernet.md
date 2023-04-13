@@ -28,6 +28,8 @@
 | ohos.net.ethernet | function getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | 获取指定以太网的网络属性，iface为网口名称，调用callback |
 | ohos.net.ethernet | function isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | 判断指定网口是否已激活，iface为网卡名称（无参为是否有激活网口），调用callback |
 | ohos.net.ethernet | function getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | 获取所有活动的网络接口，调用callback |
+| ohos.net.ethernet | function on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | 注册网络接口监听函数 |
+| ohos.net.ethernet | function off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | 解除注册网络接口监听函数 |
 
 ## 以太网连接-DHCP模式
 
@@ -137,4 +139,26 @@
            console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
        }
    });
+```
+
+## 监听网络设备接口状态变化
+
+### 开发步骤
+
+1. 从@ohos.net.ethernet中导入ethernet命名空间。
+2. 调用该对象的on()方法，订阅interfaceStateChange事件。可以根据业务需要订阅此消息。
+3. 订阅interfaceStateChange事件后，回调函数会在网卡设备的接口状态发生变化时触发。
+4. 调用该对象的off()方法，取消订阅interfaceStateChange事件。
+
+```js
+   // 从@ohos.net.ethernet中导入ethernet命名空间
+   import ethernet from '@ohos.net.ethernet'
+
+   // 订阅interfaceStateChange事件
+   ethernet.on('interfaceStateChange', ((data) => {
+      console.log(JSON.stringify(data));
+   }));
+
+   // 取消事件订阅
+   ethernet.off('interfaceStateChange');
 ```

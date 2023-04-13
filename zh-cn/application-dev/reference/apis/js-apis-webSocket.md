@@ -95,6 +95,9 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -132,6 +135,9 @@ ws.connect(url, (err, value) => {
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
 根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
+
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -176,6 +182,9 @@ ws.connect(url, {
 connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
+
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -587,7 +596,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                      |
+| callback | ErrorCallback | 是   | 回调函数。<br>常见错误码：200 |
 
 **示例：**
 
