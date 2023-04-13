@@ -456,7 +456,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -527,7 +527,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getColumnNumber();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -574,7 +574,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -624,7 +624,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getLineNumber();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -671,7 +671,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getName();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -717,7 +717,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getNamespace();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -763,7 +763,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getPrefix();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -810,7 +810,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getText();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -856,7 +856,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.isEmptyElementTag();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -902,7 +902,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.isWhitespace();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -947,7 +947,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getAttributeCount();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
