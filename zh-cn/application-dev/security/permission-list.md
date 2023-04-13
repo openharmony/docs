@@ -1777,3 +1777,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
