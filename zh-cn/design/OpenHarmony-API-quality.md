@@ -23,7 +23,7 @@ OpenHarmony API主要包含了对应用开放的外部API，以及系统实现�
 * OpenHarmony Public API
 * OpenHarmony System API
 
-关于OpenHarmony API的分类，请参见[《 OpenHarmony API治理章程》](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/OpenHarmony-API-governance.md)。
+关于OpenHarmony API的分类，请参见[《OpenHarmony API治理章程》](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/OpenHarmony-API-governance.md)。
 
 ## 接口设计目标
 
@@ -500,7 +500,7 @@ OpenHarmony是为多种不同类型设备设计的统一操作系统。
 * 健康类传感器只在穿戴设备上有
 * 车控类接口只在车机设备上有
 
-这种情况，请参考[《 SysCap使用指南》](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/syscap.md)，来标定API的适用范围。
+这种情况，请参考[《SysCap使用指南》](../application-dev/reference/syscap.md)，来标定API的适用范围。
 
 ### 一致性
 
