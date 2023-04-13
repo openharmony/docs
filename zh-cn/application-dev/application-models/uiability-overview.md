@@ -36,7 +36,7 @@ UIAbility组件是系统调度的基本单元，为应用提供绘制界面的�
     "abilities": [
       {
         "name": "EntryAbility", // UIAbility组件的名称
-        "srcEntrance": "./ets/entryability/EntryAbility.ts", // UIAbility组件的代码路径
+        "srcEnty": "./ets/entryability/EntryAbility.ts", // UIAbility组件的代码路径
         "description": "$string:EntryAbility_desc", // UIAbility组件的描述信息
         "icon": "$media:icon", // UIAbility组件的图标
         "label": "$string:EntryAbility_label", // UIAbility组件的标签

@@ -34,7 +34,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         "description": "service",
         "type": "service",
         "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "srcEnty": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 
@@ -44,7 +44,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
     ```js
     import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
     import rpc from '@ohos.rpc'
-
+    
     class StubTest extends rpc.RemoteObject {
         constructor(des) {
             super(des);
@@ -52,7 +52,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         onRemoteRequest(code, data, reply, option) {
         }
     }
-
+    
     class ServiceExtAbility extends ServiceExtensionAbility {
         onCreate(want) {
             console.log('onCreate, want:' + want.abilityName);

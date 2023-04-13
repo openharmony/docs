@@ -498,7 +498,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    ```json
    "abilities":[{
      "name": ".CalleeAbility",
-     "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+     "srcEnty": "./ets/CalleeAbility/CalleeAbility.ts",
      "launchType": "singleton",
      "description": "$string:CalleeAbility_desc",
      "icon": "$media:icon",

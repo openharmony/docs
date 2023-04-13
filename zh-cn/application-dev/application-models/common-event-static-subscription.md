@@ -37,7 +37,7 @@
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
-           "srcEntrance": "./ets/StaticSubscriber/StaticSubscriber.ts",
+           "srcEnty": "./ets/StaticSubscriber/StaticSubscriber.ts",
            "description": "$string:StaticSubscriber_desc",
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
@@ -58,7 +58,7 @@
 
    上述json文件主要关注以下字段：
 
-   - srcEntrance : 表示ExtensionAbility的入口文件路径，即步骤2中声明的静态订阅者所在的文件路径
+   - srcEnty : 表示ExtensionAbility的入口文件路径，即步骤2中声明的静态订阅者所在的文件路径
 
    - type: 表示ExtensionAbility的类型，对于静态订阅者需要声明为“staticSubscriber”
 
