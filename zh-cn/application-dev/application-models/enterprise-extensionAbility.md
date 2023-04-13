@@ -68,7 +68,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
       {
         "name": "ohos.samples.enterprise_admin_ext_ability",
         "type": "enterpriseAdmin",
-        "visible": true,
+        "exported": true,
         "srcEnty": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
       }
     ]

@@ -66,7 +66,7 @@ Ability配置标签示例如下：
     "description": "$string:CalleeAbility_desc",
     "icon": "$media:icon",
     "label": "$string:CalleeAbility_label",
-    "visible": true
+    "exported": true
 }]
 ```
 **2. 导入Ability模块**

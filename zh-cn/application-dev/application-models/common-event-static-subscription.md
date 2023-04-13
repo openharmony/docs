@@ -42,7 +42,7 @@
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
-           "visible": true,
+           "exported": true,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",

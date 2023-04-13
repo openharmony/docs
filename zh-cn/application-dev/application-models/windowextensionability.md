@@ -72,7 +72,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
                 "icon": "$media:icon",
                 "description": "WindowExtension",
                 "type": "window",
-                "visible": true,
+                "exported": true,
             }
         ],
      }

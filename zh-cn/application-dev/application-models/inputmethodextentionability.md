@@ -352,7 +352,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
            "name": "InputMethodExtAbility",
            "srcEnty": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }

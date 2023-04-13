@@ -503,7 +503,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
      "description": "$string:CalleeAbility_desc",
      "icon": "$media:icon",
      "label": "$string:CalleeAbility_label",
-     "visible": true
+     "exported": true
    }]
    ```
 

@@ -104,7 +104,7 @@
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
