@@ -683,7 +683,7 @@ ohos_js_unittest("GetAppInfoJsTest") {
         "description": "$string:mainability_description",
         "label": "MyApplication",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "js": [

@@ -165,7 +165,7 @@
        "name": "ServiceAbility",
        "icon": "res/drawable/phone.png",
        "label": "test app 2", 
-       "launchType": "standard",
+       "launchType": "multiton",
        "type": "service",
        "exported": true
    }
