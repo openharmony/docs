@@ -5583,7 +5583,7 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation succeed. Data obtained: " + data);
+    console.info("Operation succeeded. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
@@ -5617,7 +5617,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 ```js
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
-        console.info("Operation succeed.");
+        console.info("Operation succeeded.");
         for (var i=0; i < data.length; i++) {
             console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
         }
@@ -5717,7 +5717,7 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
   "Operation failed. Error code: " + err.code + ", message: " + err.message);
           return;
       }
-          console.info("Succeed to get getAltitude interface get data: " + data);
+          console.info("Succeeded to get getAltitude interface get data: " + data);
   });
   ```
 
@@ -5782,7 +5782,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-          console.info("Succeed to get getGeomagneticDip interface get data: " + data);
+          console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
   })
   ```
 
@@ -5813,7 +5813,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('getGeomagneticDip_promise succeed', data);
+          console.info('getGeomagneticDip_promise succeeded', data);
       }).catch((err) => {
            console.error("Operation failed");
   })
@@ -6021,7 +6021,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
   ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info('createQuaternion_promise succeed');
+          console.info('createQuaternion_promise succeeded');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
@@ -6057,7 +6057,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Succeed to get getDirection interface get data: " + data);
+      console.info("SensorJsAPI--->Succeeded to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
