@@ -48,96 +48,90 @@
      }
      ```
      
-
-
-
-   - 配置应用启动类型
-
-     多实例应用在module.json5中将launchType字段配置为standard，目标端将会拉起一个新的应用，并恢复页面；单实例将该字段配置为singleton，如果目标端应用已经打开，迁移将会将已有页面栈清空，并根据迁移数据恢复页面。关于单实例与多实例的更多信息详见[ability开发指导](./stage-ability.md)启动模式。
-     
-     多实例：
-     
-     ```javascript
-     {
-       "module": {
-         "abilities": [
-           {
-             "launchType": "standard"
-           }
-         ]
-       }
-     }
-     ```
-     
-     缺省或如下配置为单实例：
-     
-     ```javascript
-     {
-       "module": {
-         "abilities": [
-           {
-             "launchType": "singleton"
-           }
-         ]
-       }
-     }
-     ```
-     
-     
-     
-   - 申请分布式权限
-
-     支持跨端迁移的应用需要在module.json5申请分布式权限 DISTRIBUTED_DATASYNC。
-
-     ```javascript
-     "requestPermissions": [
-            {
-                "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-            },
-     ```
-
-     
-
-     这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
-
-     ```javascript
-        requestPermissions = async () => {
-            let permissions: Array<string> = [
-                "ohos.permission.DISTRIBUTED_DATASYNC"
-            ];
-            let needGrantPermission = false
-            let accessManger = accessControl.createAtManager()
-            Logger.info("app permission get bundle info")
-            let bundleInfo = await bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
-            Logger.info(`app permission query permission ${bundleInfo.accessTokenId.toString()}`)
-            for (const permission of permissions) {
-                Logger.info(`app permission query grant status ${permission}`)
-                try {
-                    let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
-                    if (grantStatus === PERMISSION_REJECT) {
-                        needGrantPermission = true
-                        break;
-                    }
-                } catch (err) {
-                    Logger.error(`app permission query grant status error ${permission} ${JSON.stringify(err)}`)
-                    needGrantPermission = true
-                    break;
-                }
-            }
-            if (needGrantPermission) {
-                Logger.info("app permission needGrantPermission")
-                try {
-                    await accessManger.requestPermissionsFromUser(this.context, permissions)
-                } catch (err) {
-                    Logger.error(`app permission ${JSON.stringify(err)}`)
-                }
-            } else {
-                Logger.info("app permission already granted")
-            }
+   
+      - 配置应用启动类型
+   
+        多实例应用在module.json5中将launchType字段配置为multiton，目标端将会拉起一个新的应用，并恢复页面；单实例将该字段配置为singleton，如果目标端应用已经打开，迁移将会将已有页面栈清空，并根据迁移数据恢复页面。关于单实例与多实例的更多信息详见[ability开发指导](./stage-ability.md)启动模式。
+        
+        多实例：
+        
+        ```javascript
+        {
+          "module": {
+            "abilities": [
+              {
+                "launchType": "multiton"
+              }
+            ]
+          }
         }
-     ```
-
-
+        ```
+        
+        缺省或如下配置为单实例：
+        
+        ```javascript
+        {
+          "module": {
+            "abilities": [
+              {
+                "launchType": "singleton"
+              }
+            ]
+          }
+        }
+        ```
+        
+   
+      - 申请分布式权限
+   
+        支持跨端迁移的应用需要在module.json5申请分布式权限 DISTRIBUTED_DATASYNC。
+   
+        ```javascript
+        "requestPermissions": [
+               {
+                   "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+               },
+        ```
+   
+        这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
+   
+        ```javascript
+           requestPermissions = async () => {
+               let permissions: Array<string> = [
+                   "ohos.permission.DISTRIBUTED_DATASYNC"
+               ];
+               let needGrantPermission = false
+               let accessManger = accessControl.createAtManager()
+               Logger.info("app permission get bundle info")
+               let bundleInfo = await bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
+               Logger.info(`app permission query permission ${bundleInfo.accessTokenId.toString()}`)
+               for (const permission of permissions) {
+                   Logger.info(`app permission query grant status ${permission}`)
+                   try {
+                       let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
+                       if (grantStatus === PERMISSION_REJECT) {
+                           needGrantPermission = true
+                           break;
+                       }
+                   } catch (err) {
+                       Logger.error(`app permission query grant status error ${permission} ${JSON.stringify(err)}`)
+                       needGrantPermission = true
+                       break;
+                   }
+               }
+               if (needGrantPermission) {
+                   Logger.info("app permission needGrantPermission")
+                   try {
+                       await accessManger.requestPermissionsFromUser(this.context, permissions)
+                   } catch (err) {
+                       Logger.error(`app permission ${JSON.stringify(err)}`)
+                   }
+               } else {
+                   Logger.info("app permission already granted")
+               }
+           }
+        ```
+   
 
 
 2. 实现onContinue接口
@@ -168,8 +162,6 @@
         }
    ```
 
-   
-
 3. 在onCreate/onNewWant接口中实现迁移逻辑
 
    onCreate()接口在迁移目标端被调用，在目标端ability被拉起时，通知开发者同步已保存的内存数据和控件状态，完成后触发页面的恢复。如果不实现该接口中迁移相关逻辑，ability将会作为普通的启动方式拉起，无法恢复页面。
@@ -178,10 +170,8 @@
    
    完成数据恢复后，开发者需要调用restoreWindowStage来触发页面恢复。
    
-   
-
    在入参want中也可以通过want.parameters.version来获取发起端的应用版本号。
-   
+
    示例
    
    ```javascript
@@ -190,7 +180,7 @@
     
     export default class EntryAbility extends UIAbility {
         storage : LocalStorag;
-
+   
         onCreate(want, launchParam) {
             Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
@@ -205,7 +195,7 @@
         }
     }
    ```
-如果是单实例应用，则同样的代码实现onNewWant接口即可。
+   如果是单实例应用，则同样的代码实现onNewWant接口即可。
 
 ### 迁移数据
 
@@ -249,8 +239,6 @@
         });
   ```
 
-  
-
 - 目标设备在onCreate()中，取出发起端传过来的session id，建立分布式对象并关联该session id，这样就能实现分布式对象的同步。需要注意的是，在调用restoreWindowStage之前，迁移需要的分布式对象必须全部关联完，保证能够获取到正确的数据。
 
   ```javascript
@@ -283,8 +271,6 @@
   }
   ```
   
-   
-  
 ### 其他说明
 
 1. 超时机制：
@@ -294,14 +280,10 @@
 
 2. 当前系统默认支持页面栈信息的迁移，即发起端页面栈会被自动迁移到目标端，无需开发者适配。
 
-
-
 ### 约束
 
 1.   迁移要求在同ability之间进行，也就是需要相同的bundleName、moduleName和abilityName，具体含义[应用包配置文件说明](../quick-start/module-configuration-file.md)。
 2.    当前应用只能实现迁移能力，但迁移的动作只能由系统发起。
-
-
 
 ### 最佳实践
 
