@@ -9,7 +9,7 @@
 
 ## 子组件
 
-可以包含[Span](ts-basic-components-span.md)子组件。
+可以包含[Span](ts-basic-components-span.md)和[ImageSpan](ts-basic-components-imagespan.md)子组件。
 
 
 ## 接口
@@ -43,10 +43,11 @@ Text(content?: string | Resource)
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本是否可复制粘贴。<br />默认值：CopyOptions.None <br/>该接口支持在ArkTS卡片中使用。 |
 | textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) | 设置文字阴影效果。 |
 | heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#TextHeightAdaptivePolicy10) | 设置文本自适应高度的方式。 |
+| textIndent<sup>10+</sup> | number&nbsp;\|&nbsp;string | 设置首行文本缩进，默认值0。 |
 
 >  **说明：**
 >
->  不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
+>  不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。
 
 ## 事件
 
