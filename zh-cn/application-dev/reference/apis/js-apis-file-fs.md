@@ -1564,7 +1564,7 @@ listFile(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}): Promise<string[]>;
+}): Promise<string[]>
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Promise异步回调。
 
@@ -1619,7 +1619,7 @@ listFile(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}, callback: AsyncCallback<string[]>): void;
+}, callback: AsyncCallback<string[]>): void
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Callback异步回调。
 
@@ -1670,7 +1670,7 @@ listFileSync(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}): string[];
+}): string[]
 
 以同步方式列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤。
 
@@ -1714,9 +1714,89 @@ listFileSync(path: string, options?: {
     console.info("filename: %s", filenames[i]);
   }
   ```
+
+## fs.moveDir<sup>10+</sup>
+
+moveDir(src: string, dest: string, mode?: number): Promise\<void>
+
+移动源文件夹至目标路径下，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | 是    | 源文件夹的应用沙箱路径。 |
+  | dest | string | 是    | 目标应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**示例：**
+
+  ```js
+  // move directory from srcPath to destPath/srcPath
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  fs.moveDir(srcPath, destPath, 1).then(() => {
+      console.info("move directory succeed");
+  }).catch((err) => {
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
+          " " + err.data[i].destFile);
+      }
+    } else {
+      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
+  });
+  ```
+
+## fs.moveDir<sup>10+</sup>
+
+moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+
+移动源文件夹至目标路径下，使用Callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | 是    | 源文件夹的应用沙箱路径。 |
+  | dest | string | 是    | 目标应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件夹之后的回调。              |
+
+**示例：**
+
+  ```js
+  // move directory from srcPath to destPath/srcPath
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  fs.moveDir(srcPath, destPath, 1, (err) => {
+    if (err && err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
+          " " + err.data[i].destFile);
+      }
+    } else if (err) {
+      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("move directory succeed");
+    }  
+  });
+  ```
+
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number): Promise\<void>;
+moveFile(src: string, dest: string, mode?: number): Promise\<void>
 
 移动文件，使用Promise异步回调。
 
@@ -1729,6 +1809,12 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>;
   | src | string | 是    | 源文件的应用沙箱路径。 |
   | dest | string | 是    | 目的文件的应用沙箱路径。 |
   | mode | number | 否    | 移动模式。若mode为0，移动位置存在同名文件时，强制移动覆盖。若mode为1，移动位置存在同名文件时，抛出异常。默认为0。 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
 
@@ -1744,7 +1830,7 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>;
 
 ## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void;
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
 
 移动文件，使用Callback异步回调。
 
@@ -1775,7 +1861,7 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void
 
 ## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void;
+moveFile(src: string, dest: string, mode?: number): void
 
 以同步方式移动文件。
 
@@ -2666,7 +2752,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 
 ### lock
 
-lock(exclusive?: boolean): Promise\<void>;
+lock(exclusive?: boolean): Promise\<void>
 
 文件阻塞式施加共享锁或独占锁，使用Promise异步回调。
 
@@ -2697,7 +2783,7 @@ lock(exclusive?: boolean): Promise\<void>;
 
 ### lock
 
-lock(exclusive?: boolean, callback: AsyncCallback\<void>): void;
+lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
 
 文件阻塞式施加共享锁或独占锁，使Callback异步回调。
 
@@ -2725,7 +2811,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void;
 
 ### tryLock
 
-tryLock(exclusive?: boolean): void;
+tryLock(exclusive?: boolean): void
 
 文件非阻塞式施加共享锁或独占锁。
 
@@ -2747,7 +2833,7 @@ tryLock(exclusive?: boolean): void;
 
 ### unlock
 
-unlock(): void;
+unlock(): void
 
 以同步方式给文件解锁。
 
