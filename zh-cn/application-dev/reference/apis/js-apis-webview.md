@@ -3588,10 +3588,11 @@ serializeWebState(): Uint8Array
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3604,11 +3605,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从MainAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
-            fileio.writeSync(fd, state.buffer);
-            fileio.closeSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, state.buffer);
+            fs.closeSync(file.fd);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3616,6 +3619,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改MainAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3643,10 +3661,11 @@ restoreWebState(state: Uint8Array): void
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3658,17 +3677,22 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从MainAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o002, 0o666);
-            let stat = fileio.fstatSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+            let stat = fs.statSync(path);
             let size = stat.size;
             let buf = new ArrayBuffer(size);
-            fileio.read(fd, buf, (err, data) => {
-              if (data) {
-                this.controller.restoreWebState(new Uint8Array(data.buffer));
+            fs.read(file.fd, buf, (err, readLen) => {
+              if (err) {
+                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              } else {
+                console.info("read file data succeed");
+                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                fs.closeSync(file);
               }
-              fileio.closeSync(fd);
             });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3677,6 +3701,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改MainAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
