@@ -19,7 +19,9 @@ This document gives an overview of the **app.json5** configuration file. To star
     "debug": false,
     "car": {
       "minAPIVersion": 8,
-    }
+    },
+    "targetBundleName": "com.application.test",
+    "targetPriority": 50
   },
 }
 ```
@@ -28,11 +30,12 @@ This document gives an overview of the **app.json5** configuration file. To star
 As shown above, the **app.json5** file contains several tags.
 
 
-**Table 1** Tags in the app.json5 file
+  **Table 1** Tags in the app.json5 file
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | bundleName | Bundle name, which uniquely identifies an application.  The value must comply with the following rules:<br>- Consists of letters, digits, underscores (_), and periods (.).<br>- Starts with a letter.<br>- Contains 7 to 127 bytes.<br>You are advised to use the reverse domain name notation, for example, *com.example.demo*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.<br>If an application is built with the system source code, you are advised to name it in *com.ohos.demo* notation, where **ohos** signifies that the application is an OpenHarmony system application.| String| No|
+| bundleType| Bundle type, which is used to distinguish applications and atomic services.<br>- **app**: The bundle is a common application.<br>- **atomicService**: The bundle is an atomic service.<br>- **shared**: The bundle is a shared object application. | String| Yes (initial value: **"app"**)|
 | debug | Whether the application can be debugged. This tag is generated during compilation and building in DevEco Studio.<br>- **true**: The application can be debugged.<br>- **false**: The application cannot be debugged.| Boolean| Yes (initial value: **false**)|
 | icon | [Icon of the application](../application-models/application-component-configuration-stage.md). The value is an icon resource index.| String| No|
 | label | [Name of the application](../application-models/application-component-configuration-stage.md). The value is a string resource index.| String| No|
@@ -51,3 +54,5 @@ As shown above, the **app.json5** file contains several tags.
 | wearable | Wearable-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on wearables, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | car | Head unit–specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on head units, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | default | Default device–specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on default devices, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
+|targetBundleName|Target application name of the bundle. The value rule and range are the same as those of **bundleName**.|String|Yes (if the initial value is used, the target application is not an application with the overlay feature)|
+|targetPriority|Priority of the application. When **targetBundleName** is set, the application is an application with the overlay feature. The value ranges from 1 to 100.|Number|Yes (initial value: **1**)|
