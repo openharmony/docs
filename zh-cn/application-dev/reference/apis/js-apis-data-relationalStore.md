@@ -1250,7 +1250,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database)。
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
 ### 属性<sup>10+</sup>
 
