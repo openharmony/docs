@@ -110,12 +110,12 @@ listener.on('change', onPortrait);
 
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
-| height            | 应用页面显示区域的高度。                             |
-| min-height        | 应用页面显示区域的最小高度。                           |
-| max-height        | 应用页面显示区域的最大高度。                           |
-| width             | 应用页面显示区域的宽度。                             |
-| min-width         | 应用页面显示区域的最小宽度。                           |
-| max-width         | 应用页面显示区域的最大宽度。                           |
+| height            | 应用页面可绘制区域的高度。                             |
+| min-height        | 应用页面可绘制区域的最小高度。                           |
+| max-height        | 应用页面可绘制区域的最大高度。                           |
+| width             | 应用页面可绘制区域的宽度。                             |
+| min-width         | 应用页面可绘制区域的最小宽度。                           |
+| max-width         | 应用页面可绘制区域的最大宽度。                           |
 | resolution        | 设备的分辨率，支持dpi，dppx和dpcm单位。其中：<br/>-&nbsp;dpi表示每英寸中物理像素个数，1dpi&nbsp;≈&nbsp;0.39dpcm；<br/>-&nbsp;dpcm表示每厘米上的物理像素个数，1dpcm&nbsp;≈&nbsp;2.54dpi；<br/>-&nbsp;dppx表示每个px中的物理像素数（此单位按96px&nbsp;=&nbsp;1英寸为基准，与页面中的px单位计算方式不同），1dppx&nbsp;=&nbsp;96dpi。 |
 | min-resolution    | 设备的最小分辨率。                                |
 | max-resolution    | 设备的最大分辨率。                                |
