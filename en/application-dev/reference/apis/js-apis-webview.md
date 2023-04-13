@@ -343,6 +343,8 @@ struct WebComponent {
 }
 ```
 
+There are two methods for loading local resource files:
+1. Using $rawfile
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -368,6 +370,8 @@ struct WebComponent {
   }
 }
 ```
+
+2. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
 ```html
 <!-- xxx.html -->
