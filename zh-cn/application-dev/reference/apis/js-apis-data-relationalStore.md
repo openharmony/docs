@@ -319,7 +319,7 @@ class EntryAbility extends UIAbility {
 
 > **说明：**
 >
-> 若需要进行同步操作，数据库安全等级应低于等于对端设备安全等级，具体可见[跨设备同步访问控制机制](../database/sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)
+> 若需要进行同步操作，数据库安全等级应低于等于对端设备安全等级，具体可见[跨设备同步访问控制机制](../../database/sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
