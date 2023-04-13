@@ -195,7 +195,7 @@ struct NavigationExample {
           .width(336)
           .height(40)
           .backgroundColor('#FFFFFF')
-          .margin({ top: 8, left: 12 })
+          .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.arr, (item) => {
@@ -212,8 +212,8 @@ struct NavigationExample {
           }, item => item)
         }
         .height(324)
-        .width('100%')
-        .margin({ top: 12, left: 12 })
+        .width(336)
+        .margin({ top: 12 })
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
