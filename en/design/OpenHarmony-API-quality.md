@@ -497,7 +497,7 @@ Certain APIs are available only for specific devices. Example:
 * Health sensor APIs are available only for wearables.
 * Vehicle control APIs are available only for telematics devices.
 
-You can calibrate the API application scenarios by referring to [SysCap](../application-dev/quick-start/syscap.md).
+You can calibrate the API application scenarios by referring to [SysCap](../application-dev/reference/syscap.md).
 
 ### Consistency
 
