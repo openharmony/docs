@@ -311,7 +311,7 @@
          ```json
          "abilities":[{
              "name": ".CalleeAbility",
-             "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+             "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
              "launchType": "singleton",
              "description": "$string:CalleeAbility_desc",
              "icon": "$media:icon",
