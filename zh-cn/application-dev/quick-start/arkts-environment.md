@@ -29,6 +29,7 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 设备环境到Component的更新链：Environment --&gt; AppStorage --&gt;Component。
 
 > **说明：**
+>
 > \@StorageProp关联的环境参数可以在本地更改，但不能同步回AppStorage中，因为应用对环境变量参数是不可写的，只能在Environment中查询。
 
 

@@ -15,6 +15,7 @@ NavRouter是和Navigation搭配使用的特殊子组件，默认提供点击响�
 Navigation组件通过mode属性设置页面的显示模式。
 
 - 自适应模式
+
   Navigation组件默认为自适应模式，此时mode属性为NavigationMode.Auto。自适应模式下，当设备宽度大于520vp时，Navigation组件采用分栏模式，反之采用单页面模式。
 
 
