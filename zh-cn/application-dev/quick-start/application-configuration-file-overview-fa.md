@@ -74,7 +74,7 @@ config.json示例：
           }
         ],
         "orientation": "unspecified",
-        "visible": true,
+        "exported": true,
         "srcPath": "MainAbility_entry",
         "name": ".MainAbility_entry",
         "srcLanguage": "ets",

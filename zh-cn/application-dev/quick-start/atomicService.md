@@ -104,7 +104,7 @@
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -170,7 +170,7 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
     Row() {
@@ -210,10 +210,10 @@ struct Index {
 ```
 
 其中`router.pushUrl`方法的入参中`url`的内容为：
-```ets
+```ts
 '@bundle:com.example.hmservice/library/ets/pages/menu'
 ```
 `url`内容的模板为：
-```ets
+```ts
 '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
 ```

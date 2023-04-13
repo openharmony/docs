@@ -149,7 +149,7 @@
            "icon": "$media:icon",
            "description": "service",
            "type": "service",
-           "visible": true,
+           "exported": true,
            "srcEntry": "./ets/serviceextability/ServiceExtAbility.ts"
          }
        ]
