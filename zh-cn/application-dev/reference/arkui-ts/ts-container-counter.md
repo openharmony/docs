@@ -20,8 +20,12 @@ Counter()
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
 
+| 名称                          | 参数类型                               | 描述                                       |
+| --------------------------- | ---------------------------------------- | ---------------------------------------- |
+| enableInc<sup>10+</sup>              | boolean                            | 设置增加按钮禁用或使能。<br/>默认值：true   |
+| enableDec<sup>10+</sup>           | boolean                                  | 设置减少按钮禁用或使能。<br/>默认值：true |
 
 ## 事件
 
