@@ -569,8 +569,18 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件，暂未支持）表示系统空闲模式已更改的公共事件的动作。
+表示系统待机空闲模式已更改的公共事件的动作。
 - 值： usual.event.DEVICE_IDLE_MODE_CHANGED
+- 订阅者所需权限： 无
+
+## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_UPDATE
+表示系统待机空闲模式豁免信息已更改的公共事件的动作。
+- 值： usual.event.DEVICE_IDLE_EXEMPTION_UPDATE
+- 订阅者所需权限： 无
+
+## COMMON_EVENT_DEVICE_IDLE_CTRL_NETWORK
+表示系统待机空闲模式灭屏30分钟后系统限网断网的公共事件的动作。
+- 值： usual.event.DEVICE_IDLE_CTRL_NETWORK
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
