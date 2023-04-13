@@ -65,11 +65,11 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 })
 ```
 
@@ -108,9 +108,9 @@ bind(address: NetAddress): Promise\<void\>
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
 promise.then(() => {
-    console.log('bind success');
+  console.log('bind success');
 }).catch(err => {
-    console.log('bind fail');
+  console.log('bind fail');
 });
 ```
 
@@ -145,18 +145,18 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.send({
-    data: 'Hello, server!',
-    address: {
-        address: '192.168.xx.xxx',
-        port: xxxx,
-        family: 1
-    }
+  data: 'Hello, server!',
+  address: {
+    address: '192.168.xx.xxx',
+    port: xxxx,
+    family: 1
+  }
 }, err => {
-    if (err) {
-        console.log('send fail');
-        return;
-    }
-    console.log('send success');
+  if (err) {
+    console.log('send fail');
+    return;
+  }
+  console.log('send success');
 })
 ```
 
@@ -196,17 +196,17 @@ send(options: UDPSendOptions): Promise\<void\>
 ```js
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.send({
-    data: 'Hello, server!',
-    address: {
-        address: '192.168.xx.xxx',
-        port: xxxx,
-        family: 1
-    }
+  data: 'Hello, server!',
+  address: {
+    address: '192.168.xx.xxx',
+    port: xxxx,
+    family: 1
+  }
 });
 promise.then(() => {
-    console.log('send success');
+  console.log('send success');
 }).catch(err => {
-    console.log('send fail');
+  console.log('send fail');
 });
 ```
 
@@ -231,11 +231,11 @@ close(callback: AsyncCallback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.close(err => {
-    if (err) {
-        console.log('close fail');
-        return;
-    }
-    console.log('close success');
+  if (err) {
+    console.log('close fail');
+    return;
+  }
+  console.log('close success');
 })
 ```
 
@@ -261,9 +261,9 @@ close(): Promise\<void\>
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.close();
 promise.then(() => {
-    console.log('close success');
+  console.log('close success');
 }).catch(err => {
-    console.log('close fail');
+  console.log('close fail');
 });
 ```
 
@@ -297,18 +297,18 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  udp.getState((err, data) => {
     if (err) {
-        console.log('bind fail');
-        return;
+      console.log('getState fail');
+      return;
     }
-    console.log('bind success');
-    udp.getState((err, data) => {
-        if (err) {
-            console.log('getState fail');
-            return;
-        }
-        console.log('getState success:' + JSON.stringify(data));
-    })
+    console.log('getState success:' + JSON.stringify(data));
+  })
 })
 ```
 
@@ -337,17 +337,17 @@ getState(): Promise\<SocketStateBase\>
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
-    let promise = udp.getState();
-    promise.then(data => {
-        console.log('getState success:' + JSON.stringify(data));
-    }).catch(err => {
-        console.log('getState fail');
-    });
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  let promise = udp.getState();
+  promise.then(data => {
+    console.log('getState success:' + JSON.stringify(data));
+  }).catch(err => {
+    console.log('getState fail');
+  });
 });
 ```
 
@@ -383,24 +383,24 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  udp.setExtraOptions({
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
+  }, err => {
     if (err) {
-        console.log('bind fail');
-        return;
+      console.log('setExtraOptions fail');
+      return;
     }
-    console.log('bind success');
-    udp.setExtraOptions({
-        receiveBufferSize: 1000,
-        sendBufferSize: 1000,
-        reuseAddress: false,
-        socketTimeout: 6000,
-        broadcast: true
-    }, err => {
-        if (err) {
-            console.log('setExtraOptions fail');
-            return;
-        }
-        console.log('setExtraOptions success');
-    })
+    console.log('setExtraOptions success');
+  })
 })
 ```
 
@@ -442,21 +442,21 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 let udp = socket.constructUDPSocketInstance();
 let promise = udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
-    console.log('bind success');
-    let promise1 = udp.setExtraOptions({
-        receiveBufferSize: 1000,
-        sendBufferSize: 1000,
-        reuseAddress: false,
-        socketTimeout: 6000,
-        broadcast: true
-    });
-    promise1.then(() => {
-        console.log('setExtraOptions success');
-    }).catch(err => {
-        console.log('setExtraOptions fail');
-    });
+  console.log('bind success');
+  let promise1 = udp.setExtraOptions({
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: false,
+    socketTimeout: 6000,
+    broadcast: true
+  });
+  promise1.then(() => {
+    console.log('setExtraOptions success');
+  }).catch(err => {
+    console.log('setExtraOptions fail');
+  });
 }).catch(err => {
-    console.log('bind fail');
+  console.log('bind fail');
 });
 ```
 
@@ -480,7 +480,7 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('message', value => {
-    console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 });
 ```
 
@@ -507,7 +507,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 ```js
 let udp = socket.constructUDPSocketInstance();
 let callback = value => {
-    console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 udp.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -535,10 +535,10 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
-    console.log("on listening success");
+  console.log("on listening success");
 });
 udp.on('close', () => {
-    console.log("on close success");
+  console.log("on close success");
 });
 ```
 
@@ -565,14 +565,14 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 let callback1 = () => {
-    console.log("on listening, success");
+  console.log("on listening, success");
 }
 udp.on('listening', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 udp.off('listening', callback1);
 udp.off('listening');
 let callback2 = () => {
-    console.log("on close, success");
+  console.log("on close, success");
 }
 udp.on('close', callback2);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -600,7 +600,7 @@ on(type: 'error', callback: ErrorCallback): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('error', err => {
-    console.log("on error, err:" + JSON.stringify(err))
+  console.log("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -627,7 +627,7 @@ off(type: 'error', callback?: ErrorCallback): void
 ```js
 let udp = socket.constructUDPSocketInstance();
 let callback = err => {
-    console.log("on error, err:" + JSON.stringify(err));
+  console.log("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -756,11 +756,11 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 })
 ```
 
@@ -799,9 +799,9 @@ bind(address: NetAddress): Promise\<void\>
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
-    console.log('bind success');
+  console.log('bind success');
 }).catch(err => {
-    console.log('bind fail');
+  console.log('bind fail');
 });
 ```
 
@@ -837,11 +837,11 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, err => {
-    if (err) {
-        console.log('connect fail');
-        return;
-    }
-    console.log('connect success');
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
 })
 ```
 
@@ -880,9 +880,9 @@ connect(options: TCPConnectOptions): Promise\<void\>
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
 promise.then(() => {
-    console.log('connect success')
+  console.log('connect success')
 }).catch(err => {
-    console.log('connect fail');
+  console.log('connect fail');
 });
 ```
 
@@ -918,17 +918,17 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
-    console.log('connect success');
-    tcp.send({
-        data: 'Hello, server!'
-        //此处省略encoding， 默认为utf-8编码格式
-    }, err => {
-        if (err) {
-            console.log('send fail');
-            return;
-        }
-        console.log('send success');
-    })
+  console.log('connect success');
+  tcp.send({
+    data: 'Hello, server!'
+    //此处省略encoding， 默认为utf-8编码格式
+  }, err => {
+    if (err) {
+      console.log('send fail');
+      return;
+    }
+    console.log('send success');
+  })
 })
 ```
 
@@ -970,17 +970,17 @@ send(options: TCPSendOptions): Promise\<void\>
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
 promise1.then(() => {
-    console.log('connect success');
-    let promise2 = tcp.send({
-        data: 'Hello, server!'
-    });
-    promise2.then(() => {
-        console.log('send success');
-    }).catch(err => {
-        console.log('send fail');
-    });
+  console.log('connect success');
+  let promise2 = tcp.send({
+    data: 'Hello, server!'
+  });
+  promise2.then(() => {
+    console.log('send success');
+  }).catch(err => {
+    console.log('send fail');
+  });
 }).catch(err => {
-    console.log('connect fail');
+  console.log('connect fail');
 });
 ```
 
@@ -1011,11 +1011,11 @@ close(callback: AsyncCallback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.close(err => {
-    if (err) {
-        console.log('close fail');
-        return;
-    }
-    console.log('close success');
+  if (err) {
+    console.log('close fail');
+    return;
+  }
+  console.log('close success');
 })
 ```
 
@@ -1047,9 +1047,9 @@ close(): Promise\<void\>
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.close();
 promise.then(() => {
-    console.log('close success');
+  console.log('close success');
 }).catch(err => {
-    console.log('close fail');
+  console.log('close fail');
 });
 ```
 
@@ -1083,14 +1083,14 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
-    console.log('connect success');
-    tcp.getRemoteAddress((err, data) => {
-        if (err) {
-            console.log('getRemoteAddressfail');
-            return;
-        }
-        console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
-    })
+  console.log('connect success');
+  tcp.getRemoteAddress((err, data) => {
+    if (err) {
+      console.log('getRemoteAddressfail');
+      return;
+    }
+    console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
+  })
 });
 ```
 
@@ -1125,15 +1125,15 @@ getRemoteAddress(): Promise\<NetAddress\>
 let tcp = socket.constructTCPSocketInstance();
 let promise1 = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
 promise1.then(() => {
-    console.log('connect success');
-    let promise2 = tcp.getRemoteAddress();
-    promise2.then(() => {
-        console.log('getRemoteAddress success');
-    }).catch(err => {
-        console.log('getRemoteAddressfail');
-    });
+  console.log('connect success');
+  let promise2 = tcp.getRemoteAddress();
+  promise2.then(() => {
+    console.log('getRemoteAddress success');
+  }).catch(err => {
+    console.log('getRemoteAddressfail');
+  });
 }).catch(err => {
-    console.log('connect fail');
+  console.log('connect fail');
 });
 ```
 
@@ -1167,14 +1167,14 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
-    console.log('connect success');
-    tcp.getState((err, data) => {
-        if (err) {
-            console.log('getState fail');
-            return;
-        }
-        console.log('getState success:' + JSON.stringify(data));
-    });
+  console.log('connect success');
+  tcp.getState((err, data) => {
+    if (err) {
+      console.log('getState fail');
+      return;
+    }
+    console.log('getState success:' + JSON.stringify(data));
+  });
 });
 ```
 
@@ -1209,15 +1209,15 @@ getState(): Promise\<SocketStateBase\>
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
 promise.then(() => {
-    console.log('connect success');
-    let promise1 = tcp.getState();
-    promise1.then(() => {
-        console.log('getState success');
-    }).catch(err => {
-        console.log('getState fail');
-    });
+  console.log('connect success');
+  let promise1 = tcp.getState();
+  promise1.then(() => {
+    console.log('getState success');
+  }).catch(err => {
+    console.log('getState fail');
+  });
 }).catch(err => {
-    console.log('connect fail');
+  console.log('connect fail');
 });
 ```
 
@@ -1253,23 +1253,23 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
-    console.log('connect success');
-    tcp.setExtraOptions({
-        keepAlive: true,
-        OOBInline: true,
-        TCPNoDelay: true,
-        socketLinger: {on: true, linger: 10},
-        receiveBufferSize: 1000,
-        sendBufferSize: 1000,
-        reuseAddress: true,
-        socketTimeout: 3000,
-    }, err => {
-        if (err) {
-            console.log('setExtraOptions fail');
-            return;
-        }
-        console.log('setExtraOptions success');
-    });
+  console.log('connect success');
+  tcp.setExtraOptions({
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: {on: true, linger: 10},
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000,
+  }, err => {
+    if (err) {
+      console.log('setExtraOptions fail');
+      return;
+    }
+    console.log('setExtraOptions success');
+  });
 });
 ```
 
@@ -1311,24 +1311,24 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 let tcp = socket.constructTCPSocketInstance();
 let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
 promise.then(() => {
-    console.log('connect success');
-    let promise1 = tcp.setExtraOptions({
-        keepAlive: true,
-        OOBInline: true,
-        TCPNoDelay: true,
-        socketLinger: {on: true, linger: 10},
-        receiveBufferSize: 1000,
-        sendBufferSize: 1000,
-        reuseAddress: true,
-        socketTimeout: 3000,
-    });
-    promise1.then(() => {
-        console.log('setExtraOptions success');
-    }).catch(err => {
-        console.log('setExtraOptions fail');
-    });
+  console.log('connect success');
+  let promise1 = tcp.setExtraOptions({
+    keepAlive: true,
+    OOBInline: true,
+    TCPNoDelay: true,
+    socketLinger: {on: true, linger: 10},
+    receiveBufferSize: 1000,
+    sendBufferSize: 1000,
+    reuseAddress: true,
+    socketTimeout: 3000,
+  });
+  promise1.then(() => {
+    console.log('setExtraOptions success');
+  }).catch(err => {
+    console.log('setExtraOptions fail');
+  });
 }).catch(err => {
-    console.log('connect fail');
+  console.log('connect fail');
 });
 ```
 
@@ -1352,7 +1352,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('message', value => {
-    console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
+  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
 });
 ```
 
@@ -1379,7 +1379,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = value => {
-    console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
 }
 tcp.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -1407,10 +1407,10 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
-    console.log("on connect success")
+  console.log("on connect success")
 });
 tcp.on('close', data => {
-    console.log("on close success")
+  console.log("on close success")
 });
 ```
 
@@ -1437,14 +1437,14 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let callback1 = () => {
-    console.log("on connect success");
+  console.log("on connect success");
 }
 tcp.on('connect', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tcp.off('connect', callback1);
 tcp.off('connect');
 let callback2 = () => {
-    console.log("on close success");
+  console.log("on close success");
 }
 tcp.on('close', callback2);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -1472,7 +1472,7 @@ on(type: 'error', callback: ErrorCallback): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('error', err => {
-    console.log("on error, err:" + JSON.stringify(err))
+  console.log("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -1499,7 +1499,7 @@ off(type: 'error', callback?: ErrorCallback): void
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = err => {
-    console.log("on error, err:" + JSON.stringify(err));
+  console.log("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -1606,11 +1606,11 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 ```js
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 ```
 
@@ -1650,9 +1650,9 @@ bind(address: NetAddress): Promise\<void\>
 ```js
 let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promise.then(() => {
-    console.log('bind success');
+  console.log('bind success');
 }).catch(err => {
-    console.log('bind fail');
+  console.log('bind fail');
 });
 ```
 
@@ -1681,18 +1681,18 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 ```js
 let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 tls.getState((err, data) => {
-    if (err) {
-        console.log('getState fail');
-        return;
-    }
-    console.log('getState success:' + JSON.stringify(data));
+  if (err) {
+    console.log('getState fail');
+    return;
+  }
+  console.log('getState success:' + JSON.stringify(data));
 });
 ```
 
@@ -1722,15 +1722,15 @@ getState(): Promise\<SocketStateBase\>
 ```js
 let promiseBind = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
 promiseBind.then(() => {
-    console.log('bind success');
+  console.log('bind success');
 }).catch((err) => {
-    console.log('bind fail');
+  console.log('bind fail');
 });
 let promise = tls.getState();
 promise.then(() => {
-    console.log('getState success');
+  console.log('getState success');
 }).catch(err => {
-    console.log('getState fail');
+  console.log('getState fail');
 });
 ```
 
@@ -1761,28 +1761,28 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 
 tls.setExtraOptions({
-    keepAlive: true,
-    OOBInline: true,
-    TCPNoDelay: true,
-    socketLinger: {on: true, linger: 10},
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: true,
-    socketTimeout: 3000,
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: {on: true, linger: 10},
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
 }, err => {
-    if (err) {
-        console.log('setExtraOptions fail');
-        return;
-    }
-    console.log('setExtraOptions success');
+  if (err) {
+    console.log('setExtraOptions fail');
+    return;
+  }
+  console.log('setExtraOptions success');
 });
 
 ```
@@ -1819,26 +1819,26 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 ```js
 tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 let promise = tls.setExtraOptions({
-    keepAlive: true,
-    OOBInline: true,
-    TCPNoDelay: true,
-    socketLinger: {on: true, linger: 10},
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
-    reuseAddress: true,
-    socketTimeout: 3000,
+  keepAlive: true,
+  OOBInline: true,
+  TCPNoDelay: true,
+  socketLinger: {on: true, linger: 10},
+  receiveBufferSize: 1000,
+  sendBufferSize: 1000,
+  reuseAddress: true,
+  socketTimeout: 3000,
 });
 promise.then(() => {
-    console.log('setExtraOptions success');
+  console.log('setExtraOptions success');
 }).catch(err => {
-    console.log('setExtraOptions fail');
+  console.log('setExtraOptions fail');
 });
 ```
 
@@ -1882,57 +1882,57 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
 tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 let options = {
-    ALPNProtocols: ["spdy/1", "http/1.1"],
-    address: {
-        address: "192.168.xx.xxx",
-        port: 8080,
-        family: 1,
-    },
-    secureOptions: {
-        key: "xxxx",
-        cert: "xxxx",
-        ca: ["xxxx"],
-        password: "xxxx",
-        protocols: [socket.Protocol.TLSv12],
-        useRemoteCipherPrefer: true,
-        signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-        cipherSuite: "AES256-SHA256",
-    },
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "192.168.xx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
 };
 tlsTwoWay.connect(options, (err, data) => {
-    console.error("connect callback error" + err);
-    console.log(JSON.stringify(data));
+  console.error("connect callback error" + err);
+  console.log(JSON.stringify(data));
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 let oneWayOptions = {
-    address: {
-        address: "192.168.xxx.xxx",
-        port: 8080,
-        family: 1,
-    },
-    secureOptions: {
-        ca: ["xxxx", "xxxx"],
-        cipherSuite: "AES256-SHA256",
-    },
+  address: {
+    address: "192.168.xxx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx", "xxxx"],
+    cipherSuite: "AES256-SHA256",
+  },
 };
 tlsOneWay.connect(oneWayOptions, (err, data) => {
-    console.error("connect callback error" + err);
-    console.log(JSON.stringify(data));
+  console.error("connect callback error" + err);
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -1981,59 +1981,59 @@ connect(options: TLSConnectOptions): Promise\<void\>
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
 tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 let options = {
-    ALPNProtocols: ["spdy/1", "http/1.1"],
-    address: {
-        address: "xxxx",
-        port: 8080,
-        family: 1,
-    },
-    secureOptions: {
-        key: "xxxx",
-        cert: "xxxx",
-        ca: ["xxxx"],
-        password: "xxxx",
-        protocols: [socket.Protocol.TLSv12],
-        useRemoteCipherPrefer: true,
-        signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-        cipherSuite: "AES256-SHA256",
-    },
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  address: {
+    address: "xxxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: [socket.Protocol.TLSv12],
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256",
+  },
 };
 tlsTwoWay.connect(options).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
-    if (err) {
-        console.log('bind fail');
-        return;
-    }
-    console.log('bind success');
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 });
 let oneWayOptions = {
-    address: {
-        address: "192.168.xxx.xxx",
-        port: 8080,
-        family: 1,
-    },
-    secureOptions: {
-        ca: ["xxxx", "xxxx"],
-        cipherSuite: "AES256-SHA256",
-    },
+  address: {
+    address: "192.168.xxx.xxx",
+    port: 8080,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx", "xxxx"],
+    cipherSuite: "AES256-SHA256",
+  },
 };
 tlsOneWay.connect(oneWayOptions).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2062,11 +2062,11 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 ```js
 tls.getRemoteAddress((err, data) => {
-    if (err) {
-        console.log('getRemoteAddress fail');
-        return;
-    }
-    console.log('getRemoteAddress success:' + JSON.stringify(data));
+  if (err) {
+    console.log('getRemoteAddress fail');
+    return;
+  }
+  console.log('getRemoteAddress success:' + JSON.stringify(data));
 });
 ```
 
@@ -2096,9 +2096,9 @@ getRemoteAddress(): Promise\<NetAddress\>
 ```js
 let promise = tls.getRemoteAddress();
 promise.then(() => {
-    console.log('getRemoteAddress success');
+  console.log('getRemoteAddress success');
 }).catch(err => {
-    console.log('getRemoteAddress fail');
+  console.log('getRemoteAddress fail');
 });
 ```
 
@@ -2128,11 +2128,11 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 
 ```js
 tls.getCertificate((err, data) => {
-    if (err) {
-        console.log("getCertificate callback error = " + err);
-    } else {
-        console.log("getCertificate callback = " + data);
-    }
+  if (err) {
+    console.log("getCertificate callback error = " + err);
+  } else {
+    console.log("getCertificate callback = " + data);
+  }
 });
 ```
 
@@ -2162,9 +2162,9 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 ```js
 tls.getCertificate().then(data => {
-    console.log(data);
+  console.log(data);
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2193,11 +2193,11 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 
 ```js
 tls.getRemoteCertificate((err, data) => {
-    if (err) {
-        console.log("getRemoteCertificate callback error = " + err);
-    } else {
-        console.log("getRemoteCertificate callback = " + data);
-    }
+  if (err) {
+    console.log("getRemoteCertificate callback error = " + err);
+  } else {
+    console.log("getRemoteCertificate callback = " + data);
+  }
 });
 ```
 
@@ -2226,9 +2226,9 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 
 ```js
 tls.getRemoteCertificate().then(data => {
-    console.log(data);
+  console.log(data);
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2258,11 +2258,11 @@ getProtocol(callback: AsyncCallback\<string\>): void
 
 ```js
 tls.getProtocol((err, data) => {
-    if (err) {
-        console.log("getProtocol callback error = " + err);
-    } else {
-        console.log("getProtocol callback = " + data);
-    }
+  if (err) {
+    console.log("getProtocol callback error = " + err);
+  } else {
+    console.log("getProtocol callback = " + data);
+  }
 });
 ```
 
@@ -2292,9 +2292,9 @@ getProtocol():Promise\<string\>
 
 ```js
 tls.getProtocol().then(data => {
-    console.log(data);
+  console.log(data);
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2325,11 +2325,11 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 
 ```js
 tls.getCipherSuite((err, data) => {
-    if (err) {
-        console.log("getCipherSuite callback error = " + err);
-    } else {
-        console.log("getCipherSuite callback = " + data);
-    }
+  if (err) {
+    console.log("getCipherSuite callback error = " + err);
+  } else {
+    console.log("getCipherSuite callback = " + data);
+  }
 });
 ```
 
@@ -2360,9 +2360,9 @@ getCipherSuite(): Promise\<Array\<string\>\>
 
 ```js
 tls.getCipherSuite().then(data => {
-    console.log('getCipherSuite success:' + JSON.stringify(data));
+  console.log('getCipherSuite success:' + JSON.stringify(data));
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2391,11 +2391,11 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 
 ```js
 tls.getSignatureAlgorithms((err, data) => {
-    if (err) {
-        console.log("getSignatureAlgorithms callback error = " + err);
-    } else {
-        console.log("getSignatureAlgorithms callback = " + data);
-    }
+  if (err) {
+    console.log("getSignatureAlgorithms callback error = " + err);
+  } else {
+    console.log("getSignatureAlgorithms callback = " + data);
+  }
 });
 ```
 
@@ -2424,9 +2424,9 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 
 ```js
 tls.getSignatureAlgorithms().then(data => {
-    console.log("getSignatureAlgorithms success" + data);
+  console.log("getSignatureAlgorithms success" + data);
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2460,11 +2460,11 @@ send(data: string, callback: AsyncCallback\<void\>): void
 
 ```js
 tls.send("xxxx", (err) => {
-    if (err) {
-        console.log("send callback error = " + err);
-    } else {
-        console.log("send success");
-    }
+  if (err) {
+    console.log("send callback error = " + err);
+  } else {
+    console.log("send success");
+  }
 });
 ```
 
@@ -2503,9 +2503,9 @@ send(data: string): Promise\<void\>
 
 ```js
 tls.send("xxxx").then(() => {
-    console.log("send success");
+  console.log("send success");
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 
@@ -2536,11 +2536,11 @@ close(callback: AsyncCallback\<void\>): void
 
 ```js
 tls.close((err) => {
-    if (err) {
-        console.log("close callback error = " + err);
-    } else {
-        console.log("close success");
-    }
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
 });
 ```
 
@@ -2571,9 +2571,9 @@ close(): Promise\<void\>
 
 ```js
 tls.close().then(() => {
-    console.log("close success");
+  console.log("close success");
 }).catch(err => {
-    console.error(err);
+  console.error(err);
 });
 ```
 

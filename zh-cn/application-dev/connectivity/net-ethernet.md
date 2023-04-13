@@ -1,25 +1,29 @@
 # 以太网连接
 
 ## 简介
-以太网连接的功能是提供支持设备通过硬件接口，以插入网线的形式访问互联网的能力。
-设备接入网线后，可以获取动态分配的IP地址，子网掩码，Gateway，DNS等一系列网络属性；通过静态模式，手动配置与获取设备的网络属性。
+
+以太网连接的功能是提供支持设备通过硬件接口，以插入网线的形式访问互联网的能力。 设备接入网线后，可以获取动态分配的IP地址，子网掩码，Gateway，DNS等一系列网络属性；通过静态模式，手动配置与获取设备的网络属性。
 
 > **说明：**
 > 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-ethernet.md)。
 
 ## 约束
--   开发语言：C++ JS
--   系统：linux内核
--   本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+- 开发语言：C++ JS
+- 系统：linux内核
+- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
+
 以太网连接的典型场景有：
--   DHCP模式，通过动态分配IP地址，子网掩码，Gateway，DNS等一系列网络属性，使能访问网络。
--   静态模式，通过静态配置IP地址，子网掩码，Gateway，DNS等一系列网络属性，使能访问网络。
+
+- DHCP模式，通过动态分配IP地址，子网掩码，Gateway，DNS等一系列网络属性，使能访问网络。
+- 静态模式，通过静态配置IP地址，子网掩码，Gateway，DNS等一系列网络属性，使能访问网络。
 
 以下分别介绍具体开发方式。
 
 ## 接口说明
+
 完整的JS API说明以及实例代码请参考：[以太网连接](../reference/apis/js-apis-net-ethernet.md)。
 
 | 类型 | 接口 | 功能说明 |
@@ -41,44 +45,45 @@
 
 ```js
    // 从@ohos.net.ethernet中导入ethernet命名空间
-   import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet'
 
-   // getAllActiveIfaces获取所有活动的网络设备名称
-   ethernet.getAllActiveIfaces((error, data) => {
-       if (error) {
-           console.log("getAllActiveIfaces callback error = " + error);
-       } else {
-           console.log("getAllActiveIfaces callback data.length = " + data.length);
-           for (let i = 0; i < data.length; i++) {
-               console.log("getAllActiveIfaces callback = " + data[i]);
-           }
-       }
-   });
+// getAllActiveIfaces获取所有活动的网络设备名称
+ethernet.getAllActiveIfaces((error, data) => {
+  if (error) {
+    console.log("getAllActiveIfaces callback error = " + error);
+  } else {
+    console.log("getAllActiveIfaces callback data.length = " + data.length);
+    for (let i = 0; i < data.length; i++) {
+      console.log("getAllActiveIfaces callback = " + data[i]);
+    }
+  }
+});
 
-   // isIfaceActive判断指定网口是否已激活
-   ethernet.isIfaceActive("eth0", (error, data) => {
-       if (error) {
-           console.log("isIfaceActive callback error = " + error);
-       } else {
-           console.log("isIfaceActive callback = " + data);
-       }
-   });
+// isIfaceActive判断指定网口是否已激活
+ethernet.isIfaceActive("eth0", (error, data) => {
+  if (error) {
+    console.log("isIfaceActive callback error = " + error);
+  } else {
+    console.log("isIfaceActive callback = " + data);
+  }
+});
 
-   // getIfaceConfig获取指定以太网的网络属性
-   ethernet.getIfaceConfig("eth0", (error, data) => {
-       if (error) {
-           console.log("getIfaceConfig  callback error = " + error);
-       } else {
-           console.log("getIfaceConfig callback mode = " + data.mode);
-           console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-           console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-           console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-           console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-           console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-           console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
-       }
-   });
+// getIfaceConfig获取指定以太网的网络属性
+ethernet.getIfaceConfig("eth0", (error, data) => {
+  if (error) {
+    console.log("getIfaceConfig  callback error = " + error);
+  } else {
+    console.log("getIfaceConfig callback mode = " + data.mode);
+    console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
+    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
+    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
+    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+  }
+});
 ```
+
 ## 以太网连接-静态模式
 
 ### 开发步骤
@@ -92,53 +97,55 @@
 
 ```js
    // 从@ohos.net.ethernet中导入ethernet命名空间
-   import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet'
 
-   // getAllActiveIfaces获取所有活动的网络设备名称
-   ethernet.getAllActiveIfaces((error, data) => {
-       if (error) {
-           console.log("getAllActiveIfaces callback error = " + error);
-       } else {
-           console.log("getAllActiveIfaces callback data.length = " + data.length);
-           for (let i = 0; i < data.length; i++) {
-               console.log("getAllActiveIfaces callback = " + data[i]);
-           }
-       }
-   });
+// getAllActiveIfaces获取所有活动的网络设备名称
+ethernet.getAllActiveIfaces((error, data) => {
+  if (error) {
+    console.log("getAllActiveIfaces callback error = " + error);
+  } else {
+    console.log("getAllActiveIfaces callback data.length = " + data.length);
+    for (let i = 0; i < data.length; i++) {
+      console.log("getAllActiveIfaces callback = " + data[i]);
+    }
+  }
+});
 
-   // isIfaceActive判断指定网口是否已激活
-   ethernet.isIfaceActive("eth0", (error, data) => {
-       if (error) {
-           console.log("isIfaceActive callback error = " + error);
-       } else {
-           console.log("isIfaceActive callback = " + data);
-       }
-   });
+// isIfaceActive判断指定网口是否已激活
+ethernet.isIfaceActive("eth0", (error, data) => {
+  if (error) {
+    console.log("isIfaceActive callback error = " + error);
+  } else {
+    console.log("isIfaceActive callback = " + data);
+  }
+});
 
-   // setIfaceConfig配置指定以太网的网络属性
-   ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.xx.xx", routeAddr:"192.168.xx.xx",
-       gateAddr:"192.168.xx.xx", maskAddr:"255.255.xx.xx", dnsAddr0:"1.1.xx.xx", dnsAddr1:"2.2.xx.xx"},(error) => {
-       if (error) {
-           console.log("setIfaceConfig callback error = " + error);
-       } else {
-           console.log("setIfaceConfig callback ok ");
-       }
-   });
+// setIfaceConfig配置指定以太网的网络属性
+ethernet.setIfaceConfig("eth0", {
+  mode: ethernet.STATIC, ipAddr: "192.168.xx.xx", routeAddr: "192.168.xx.xx",
+  gateAddr: "192.168.xx.xx", maskAddr: "255.255.xx.xx", dnsAddr0: "1.1.xx.xx", dnsAddr1: "2.2.xx.xx"
+}, (error) => {
+  if (error) {
+    console.log("setIfaceConfig callback error = " + error);
+  } else {
+    console.log("setIfaceConfig callback ok ");
+  }
+});
 
-   // getIfaceConfig获取指定以太网的网络属性
-   ethernet.getIfaceConfig("eth0", (error, data) => {
-       if (error) {
-           console.log("getIfaceConfig  callback error = " + error);
-       } else {
-           console.log("getIfaceConfig callback mode = " + data.mode);
-           console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-           console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-           console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-           console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-           console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-           console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
-       }
-   });
+// getIfaceConfig获取指定以太网的网络属性
+ethernet.getIfaceConfig("eth0", (error, data) => {
+  if (error) {
+    console.log("getIfaceConfig  callback error = " + error);
+  } else {
+    console.log("getIfaceConfig callback mode = " + data.mode);
+    console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
+    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
+    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
+    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+  }
+});
 ```
 
 ## 监听网络设备接口状态变化
@@ -152,13 +159,13 @@
 
 ```js
    // 从@ohos.net.ethernet中导入ethernet命名空间
-   import ethernet from '@ohos.net.ethernet'
+import ethernet from '@ohos.net.ethernet'
 
-   // 订阅interfaceStateChange事件
-   ethernet.on('interfaceStateChange', ((data) => {
-      console.log(JSON.stringify(data));
-   }));
+// 订阅interfaceStateChange事件
+ethernet.on('interfaceStateChange', ((data) => {
+  console.log(JSON.stringify(data));
+}));
 
-   // 取消事件订阅
-   ethernet.off('interfaceStateChange');
+// 取消事件订阅
+ethernet.off('interfaceStateChange');
 ```
