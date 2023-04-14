@@ -53,7 +53,7 @@
 
    - 配置应用启动类型
 
-     多实例应用在module.json5中将launchType字段配置为standard，目标端将会拉起一个新的应用，并恢复页面；单实例将该字段配置为singleton，如果目标端应用已经打开，迁移将会将已有页面栈清空，并根据迁移数据恢复页面。关于单实例与多实例的更多信息详见[ability开发指导](./stage-ability.md)启动模式。
+     多实例应用在module.json5中将launchType字段配置为multiton，目标端将会拉起一个新的应用，并恢复页面；单实例将该字段配置为singleton，如果目标端应用已经打开，迁移将会将已有页面栈清空，并根据迁移数据恢复页面。关于单实例与多实例的更多信息详见[ability开发指导](./stage-ability.md)启动模式。
      
      多实例：
      
@@ -62,7 +62,7 @@
        "module": {
          "abilities": [
            {
-             "launchType": "standard"
+             "launchType": "multiton"
            }
          ]
        }

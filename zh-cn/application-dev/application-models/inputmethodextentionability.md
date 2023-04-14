@@ -339,7 +339,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntrance标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEnty标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
    {
@@ -350,9 +350,9 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEnty": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }

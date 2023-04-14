@@ -70,7 +70,7 @@
 
 
 1. 在my_service_ability.h中创建Ability的子类MyServiceAbility。
-     
+   
    ```
    class MyServiceAbility: public Ability {
    protected:
@@ -81,7 +81,7 @@
    ```
 
 2. 调用REGISTER_AA宏将ServiceAbility注册到应用框架中，以便应用框架实例化MyServiceAbility。
-     
+   
    ```
    #include "my_service_ability.h"
    
@@ -115,8 +115,8 @@
    - OnStart()
       该方法在创建Service的时候调用，用于做一些Service初始化且耗时较短的工作，在Service的整个生命周期只会调用一次。
 
-        
-      ```
+      
+      ```ts
       void MyServiceAbility::OnStart(const Want& want)
       {
           printf("ServiceAbility::OnStart\n");
@@ -126,8 +126,8 @@
    - OnConnect​()
       在组件和服务连接时调用，该方法返回SvcIdentity，组件可以通过它与服务交互。
 
-        
-      ```
+      
+      ```ts
       const SvcIdentity *MyServiceAbility::OnConnect(const Want &want)
       {
           printf("ServiceAbility::OnConnect\n");
@@ -142,8 +142,8 @@
 4. 重写消息处理方法。
    MsgHandle是Service用来处理客户端消息的方法。其中funcId是客户端传过来的消息类型，request是客户端传过来的序列化请求参数。如果用户在处理完成之后想要把结果传回去，需要把结果序列化后写入reply中。
 
-     
-   ```
+   
+   ```ts
    void ServiceAbility::MsgHandle(uint32_t funcId, IpcIo *request, IpcIo *reply)
    {
        printf("ServiceAbility::MsgHandle, funcId is %d\n", funcId);
@@ -159,15 +159,15 @@
 5. 注册Service。
    Service也需要在应用清单文件config.json中进行注册，注册类型type需要设置为service。
 
-     
-   ```
+   
+   ```ts
    "abilities": [{
        "name": "ServiceAbility",
        "icon": "res/drawable/phone.png",
        "label": "test app 2", 
-       "launchType": "standard",
+       "launchType": "multiton",
        "type": "service",
-       "visible": true
+       "exported": true
    }
    ]
    ```
@@ -176,7 +176,7 @@
    - Ability为用户提供了StartAbility()方法来启动另外一个Ability，因为Service也是Ability的一种，开发者同样可以通过将Want传递给该方法来启动Service。
         开发者可以通过Want的SetWantElement ()来设置目标服务信息。ElementName结构体的两个主要参数：第一个参数为包名称；第二个参数为目标Ability。
         
-      ```
+      ```ts
       {
           Want want = { nullptr };
           ElementName element = { nullptr };
@@ -195,8 +195,8 @@
 
 7. 连接Service。
    - 如果Service需要与Page Ability或其他应用组件中的Service进行交互，则应创建用于连接的Service。Service支持其他Ability通过ConnectAbility()与其进行连接，ConnectAbility()需要传入目标Service的Want，以及IAbilityConnection的实例来处理回调。IAbilityConnection提供了两个方法供用户实现，OnAbilityConnectDone()用来处理连接的回调，OnAbilityDisconnectDone()用来处理断开连接的回调。
-        
-      ```
+     
+      ```ts
       {
           // ability创建IAbilityConnection对象和定义IAbilityConnection的两个方法实现
           IAbilityConnection abilityConnection = new IAbilityConnection();
@@ -240,8 +240,8 @@
       }
       ```
    - 发起connect和disconnect。
-        
-      ```
+     
+      ```ts
       {
           // ability发起connect
           Want want = { nullptr };
@@ -276,8 +276,8 @@
 1. 将经过安全签名的应用放置于指定的目录下。
 
 2. 创建InstallParam实例和信号量。
-     
-   ```
+   
+   ```ts
    InstallParam installParam = { 
    .installLocation = INSTALL_LOCATION_INTERNAL_ONLY, // 安装到系统目录
    .keepData = false
@@ -286,8 +286,8 @@
    ```
 
 3. 定义回调函数。
-     
-   ```
+   
+   ```ts
    static void InstallCallback(const uint8_t resultCode, const void *resultMessage)
    {
         std::string strMessage = reinterpret_cast<const char *>(resultMessage);
@@ -299,8 +299,8 @@
    ```
 
 4. 调用Install接口。
-     
-   ```
+   
+   ```ts
    const uint32_t WAIT_TIMEOUT = 30;
    sem_init(&g_sem, 0, 0);
    std::string installPath = “/storage/bundle/demo.hap”; // Hap包的存储路径
@@ -317,8 +317,8 @@
 
   卸载应用的时候可以选择是否保留应用的数据，开发者可以通过创建的InstallParam实例的成员变量keepData来确定。当keepData为true, 卸载应用之后将保留应用的数据，当keepData为false时，卸载应用之后将不会保留应用的数据。
 1. 创建InstallParam实例和信号量。
-     
-   ```
+   
+   ```ts
    static sem_t g_sem;
    InstallParam installParam = {
    .installLocation = 1,
@@ -327,8 +327,8 @@
    ```
 
 2. 定义回调函数。
-     
-   ```
+   
+   ```ts
    static void UninstallCallback(const uint8_t resultCode, const void *resultMessage)
    {
        std::string strMessage = reinterpret_cast<const char *>(resultMessage);
@@ -342,8 +342,8 @@
    ```
 
 3. 调用Uninstall接口。
-     
-   ```
+   
+   ```ts
    sem_init(&g_sem, 0, 0);
    const uint32_t WAIT_TIMEOUT = 30;
    std::string BUNDLE_NAME = “com.example.demo”; // 卸载应用的包名
@@ -360,22 +360,22 @@
 
   开发者可以利用BundleManager提供的接口GetBundleInfo来查询系统内已安装应用的包信息。
 1. 创建以及初始化BundleInfo。
-     
-   ```
+   
+   ```ts
    BundleInfo bundleInfo;
    (void) memset_s(&bundleInfo, sizeof(BundleInfo), 0, sizeof(BundleInfo));
    ```
 
 2. 调用GetBundleInfo接口，指定查询应用的包名，同时指定flag来确定获取的BundleInfo中是否含有元能力信息（实例代码以含有元能力信息为例）。
-     
-   ```
+   
+   ```ts
    std::string BUNDLE_NAME = "com.example.demo";
    uint8_t ret = GetBundleInfo(BUNDLE_NAME.c_str(), 1, &bundleInfo); // flags = 1，获取包信息中含有元能力信息
    ```
 
 3. 使用完获取的BundleInfo之后，要及时清理掉其内部所占用的内存空间避免内存泄漏。
-     
-   ```
+   
+   ```ts
    ClearBundleInfo(&bundleInfo);
    ```
 
@@ -401,7 +401,7 @@
   | --force | - | 是否覆盖原有同名文件，默认为false | 是 | 
 
 - 打包示例
-    
+  
     **图1** 开发视图
 
     ![zh-cn_image_0000001154005784](figures/zh-cn_image_0000001154005784.png)

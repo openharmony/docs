@@ -219,7 +219,7 @@ ACTION_APP_ACCOUNT_AUTH = "ohos.appAccount.action.auth"
 "abilities": [
     {
         "name": "ServiceAbility",
-        "srcEntrance": "./ets/ServiceAbility/ServiceAbility.ts",
+        "srcEnty": "./ets/ServiceAbility/ServiceAbility.ts",
         ...
         "visible": true,
         "skills": {
