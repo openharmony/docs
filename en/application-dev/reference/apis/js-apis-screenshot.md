@@ -92,7 +92,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
           console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
           return;
       }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
       pixelMap.release(); // Release the memory in time after the PixelMap is used.
     });
   } catch (exception) {
@@ -125,7 +125,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
           console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
           return;
       }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
       pixelMap.release(); // Release the memory in time after the PixelMap is used.
     });
   } catch (exception) {
@@ -173,7 +173,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses a promis
   try {
     let promise = screenshot.save(screenshotOptions);
     promise.then((pixelMap) => {
-        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+        console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
         pixelMap.release(); // Release the memory in time after the PixelMap is used.
     }).catch((err) => {
         console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
