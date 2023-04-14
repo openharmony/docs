@@ -888,7 +888,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 ```js
 try {
   panel.setUiContent('pages/page2/page2', (err) => {
-    if (err.code) {
+    if (err) {
       console.error('Failed to set the content. err:' + JSON.stringify(err));
       return;
     }
@@ -947,7 +947,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](./quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -957,7 +957,7 @@ let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
   panel.setUiContent('pages/page2/page2', storage, (err) => {
-    if (err.code) {
+    if (err) {
       console.error('Failed to set the content. err:' + JSON.stringify(err));
       return;
     }
@@ -981,7 +981,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](./quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1028,7 +1028,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 ```js
 try {
   panel.resize(500, 1000, (err) => {
-    if (err.code) {
+    if (err) {
       console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
       return;
     }
@@ -1098,7 +1098,7 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 ```js
 try {
   panel.moveTo(300, 300, (err) =>{
-    if (err.code) {
+    if (err) {
       console.error('Failed to move the panel. err:' + JSON.stringify(err));
       return;
     }
@@ -1164,7 +1164,7 @@ show(callback: AsyncCallback\<void>): void
 
 ```js
 panel.show((err) => {
-  if (err.code) {
+  if (err) {
     console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
     return;
   }
@@ -1215,7 +1215,7 @@ hide(callback: AsyncCallback\<void>): void
 
 ```js
 panel.hide((err) => {
-  if (err.code) {
+  if (err) {
     console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
     return;
   }
