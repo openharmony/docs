@@ -1260,7 +1260,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | 'show'\|'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -2249,7 +2249,7 @@ try {
 
 ### selectByMovement<sup>10+</sup>
 
-selectByMovement(range: Range): Promise&lt;void&gt;
+selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 根据索引范围选中文本。使用promise异步回调。
 
@@ -2401,9 +2401,11 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | 名称         | 值 | 说明               |
 | ------------ | -- | ------------------ |
 | SOFT_KEYBOARD | 0 | 软键盘类型。 |
-| STATUS_BAR | 1 | 状态栏类型。 |
+| STATUS_BAR   | 1 | 状态栏类型。 |
 
 ## PanelInfo<sup>10</sup>
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 输入法面板属性。
 
