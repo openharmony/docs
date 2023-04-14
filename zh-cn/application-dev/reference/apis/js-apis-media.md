@@ -354,7 +354,7 @@ Codec MIME类型枚举。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-playback.md)。
+Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
 
 ### 属性<a name=avplayer_属性></a>
 
@@ -1699,9 +1699,11 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过createAVRecorder()构建一个AVRecorder实例。
 
-音视频录制demo可参考：[音视频录制开发指导](../../media/avrecorder.md)
+音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
 
-*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+> **说明：**
+>
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 ### 属性
 
@@ -2578,8 +2580,6 @@ avRecorder.off('error');
 > AVRecorder<sup>9+</sup>发布后停止维护，建议使用[AVRecorder](#avrecorder9)替代。
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
-
-视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
 ### 属性
 
@@ -3906,8 +3906,6 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
 
-视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
-
 ### 属性<a name=videoplayer_属性></a>
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
@@ -4725,8 +4723,6 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
 
 音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个AudioRecorder实例。
-
-音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
 ### prepare<a name=audiorecorder_prepare></a>
 
