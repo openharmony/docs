@@ -10,6 +10,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 ```js
 import mdns from '@ohos.net.mdns'
 ```
+
 ## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
@@ -37,28 +38,28 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.addLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -94,27 +95,27 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.addLocalService(context, localServiceInfo).then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -145,28 +146,28 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.removeLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -202,27 +203,27 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.removeLocalService(context, localServiceInfo).then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -282,28 +283,28 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 2204006 | Request timeout.                |
 | 2204010 | Send packet failed.                          |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -339,27 +340,27 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 2204006 | Request timeout.                |
 | 2204010 | Send packet failed.                          |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
 ```js
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo).then(function (data){
-    console.log(JSON.stringify(data));
+mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
 })
 ```
 
@@ -420,7 +421,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('discoveryStart', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -449,7 +450,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('discoveryStop', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -478,7 +479,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -507,7 +508,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceLost', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();

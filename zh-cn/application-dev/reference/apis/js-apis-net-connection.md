@@ -10,6 +10,7 @@
 ```js
 import connection from '@ohos.net.connection'
 ```
+
 ## connection.createNetConnection
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
@@ -34,14 +35,14 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 **示例：**
 
 ```js
-// 关注默认网络
+// 关注默认网络, 不需要传参
 let netConnection = connection.createNetConnection()
 
-// 关注蜂窝网络
+// 关注蜂窝网络，需要传入相关网络特征，timeout参数未传入说明未使用超时时间，此时timeout为0
 let netConnectionCellular = connection.createNetConnection({
-    netCapabilities: {
-        bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
-    }
+  netCapabilities: {
+    bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
+  }
 })
 ```
 
@@ -73,8 +74,8 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 ```js
 connection.getDefaultNet(function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -106,7 +107,7 @@ getDefaultNet(): Promise\<NetHandle>
 
 ```js
 connection.getDefaultNet().then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -166,9 +167,9 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 **示例：**
 
 ```js
-connection.getGlobalHttpProxy((error,data) => {
-    console.info(JSON.stringify(error));
-    console.info(JSON.stringify(data));
+connection.getGlobalHttpProxy((error, data) => {
+  console.info(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 })
 ```
 
@@ -199,9 +200,9 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 ```js
 connection.getGlobalHttpProxy().then((data) => {
-   console.info(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 }).catch(error => {
-   console.info(JSON.stringify(error));
+  console.info(JSON.stringify(error));
 })
 ```
 
@@ -237,16 +238,15 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let exclusionStr="192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-    host: "192.168.xx.xxx",
-    port: 8080,
-    exclusionList: exclusionArray
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
 }
-connection.setGlobalHttpProxy(httpProxy, (error, data) => {
-   console.info(JSON.stringify(error));
-   console.info(JSON.stringify(data));
+connection.setGlobalHttpProxy(httpProxy, (error) => {
+  console.info(JSON.stringify(error));
 });
 ```
 
@@ -287,17 +287,17 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 **示例：**
 
 ```js
-let exclusionStr="192.168,baidu.com"
+let exclusionStr = "192.168,baidu.com"
 let exclusionArray = exclusionStr.split(',');
 let httpProxy = {
-    host: "192.168.xx.xxx",
-    port: 8080,
-    exclusionList: exclusionArray
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
 }
 connection.setGlobalHttpProxy(httpProxy).then(() => {
-   console.info("success");
-}).catch(error=>{
-   console.info(JSON.stringify(error));
+  console.info("success");
+}).catch(error => {
+  console.info(JSON.stringify(error));
 })
 ```
 
@@ -325,9 +325,9 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 **示例：**
 
 ```js
-connection.getAppNet(function(error, data) {
-   console.log(JSON.stringify(error))
-   console.log(JSON.stringify(data))
+connection.getAppNet(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -356,9 +356,9 @@ getAppNet(): Promise\<NetHandle>;
 
 ```js
 connection.getAppNet().then((data) => {
-   console.info(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 }).catch(error => {
-   console.info(JSON.stringify(error));
+  console.info(JSON.stringify(error));
 })
 ```
 
@@ -393,10 +393,10 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 
 ```js
 connection.getDefaultNet(function (error, netHandle) {
-   connection.setAppNet(netHandle, (error, data) => {
-       console.log(JSON.stringify(error))
-       console.log(JSON.stringify(data))
-   });
+  connection.setAppNet(netHandle, (error, data) => {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+  });
 })
 ```
 
@@ -436,11 +436,11 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-   connection.setAppNet(netHandle).then(() => {
-        console.log("success")
-   }).catch(error => {
-        console.log(JSON.stringify(error))
-   })
+  connection.setAppNet(netHandle).then(() => {
+    console.log("success")
+  }).catch(error => {
+    console.log(JSON.stringify(error))
+  })
 })
 ```
 
@@ -472,8 +472,8 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 ```js
 connection.getAllNets(function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -505,7 +505,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
 ```js
 connection.getAllNets().then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -540,10 +540,10 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getConnectionProperties(netHandle, function (error, data) {
-        console.log(JSON.stringify(error))
-        console.log(JSON.stringify(data))
-    })
+  connection.getConnectionProperties(netHandle, function (error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -583,9 +583,9 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getConnectionProperties(netHandle).then(function (data) {
-        console.log(JSON.stringify(data))
-    })
+  connection.getConnectionProperties(netHandle).then(function (data) {
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -620,10 +620,10 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getNetCapabilities(netHandle, function (error, data) {
-        console.log(JSON.stringify(error))
-        console.log(JSON.stringify(data))
-    })
+  connection.getNetCapabilities(netHandle, function (error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -663,9 +663,9 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.getNetCapabilities(netHandle).then(function (data) {
-        console.log(JSON.stringify(data))
-    })
+  connection.getNetCapabilities(netHandle).then(function (data) {
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -697,8 +697,8 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 
 ```js
 connection.isDefaultNetMetered(function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log('data: ' + data)
+  console.log(JSON.stringify(error))
+  console.log('data: ' + data)
 })
 ```
 
@@ -730,7 +730,7 @@ isDefaultNetMetered(): Promise\<boolean>
 
 ```js
 connection.isDefaultNetMetered().then(function (data) {
-    console.log('data: ' + data)
+  console.log('data: ' + data)
 })
 ```
 
@@ -762,8 +762,8 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 ```js
 connection.hasDefaultNet(function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log('data: ' + data)
+  console.log(JSON.stringify(error))
+  console.log('data: ' + data)
 })
 ```
 
@@ -795,7 +795,7 @@ hasDefaultNet(): Promise\<boolean>
 
 ```js
 connection.hasDefaultNet().then(function (data) {
-    console.log('data: ' + data)
+  console.log('data: ' + data)
 })
 ```
 
@@ -828,7 +828,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 ```js
 connection.enableAirplaneMode(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -861,7 +861,7 @@ enableAirplaneMode(): Promise\<void>
 
 ```js
 connection.enableAirplaneMode().then(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -894,7 +894,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 ```js
 connection.disableAirplaneMode(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -927,7 +927,7 @@ disableAirplaneMode(): Promise\<void>
 
 ```js
 connection.disableAirplaneMode().then(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -935,8 +935,7 @@ connection.disableAirplaneMode().then(function (error) {
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用callback方式作为异步方法。
+向网络管理报告网络处于可用状态，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -963,9 +962,9 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.reportNetConnected(netHandle, function (error) {
-        console.log(JSON.stringify(error))
-    });
+  connection.reportNetConnected(netHandle, function (error) {
+    console.log(JSON.stringify(error))
+  });
 });
 ```
 
@@ -973,8 +972,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用Promise方式作为异步方法。
+向网络管理报告网络处于可用状态，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -987,9 +985,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
 
 **返回值：**
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回值的Promise对象。 |
+| 类型 | 说明 | | -------- | -------- | | Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1005,9 +1001,9 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.reportNetConnected(netHandle).then(function () {
-        console.log(`report success`)
-    });
+  connection.reportNetConnected(netHandle).then(function () {
+    console.log(`report success`)
+  });
 });
 ```
 
@@ -1015,8 +1011,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用callback方式作为异步方法。
+向网络管理报告网络处于不可用状态，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -1043,9 +1038,9 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.reportNetDisconnected(netHandle, function (error) {
-        console.log(JSON.stringify(error))
-    });
+  connection.reportNetDisconnected(netHandle, function (error) {
+    console.log(JSON.stringify(error))
+  });
 });
 ```
 
@@ -1053,8 +1048,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用Promise方式作为异步方法。
+向网络管理报告网络处于不可用状态，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -1067,9 +1061,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
 
 **返回值：**
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;void&gt; | 无返回值的Promise对象。 |
+| 类型 | 说明 | | -------- | -------- | | Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1085,9 +1077,9 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    connection.reportNetDisconnected(netHandle).then(function () {
-        console.log(`report success`)
-    });
+  connection.reportNetDisconnected(netHandle).then(function () {
+    console.log(`report success`)
+  });
 });
 ```
 
@@ -1123,8 +1115,8 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 ```js
 let host = "xxxx";
 connection.getAddressesByName(host, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -1165,7 +1157,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 ```js
 let host = "xxxx";
 connection.getAddressesByName(host).then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -1199,12 +1191,11 @@ register(callback: AsyncCallback\<void>): void
 | 2101008 | The callback is not exists.      |
 | 2101022 | The number of requests exceeded the maximum. |
 
-
 **示例：**
 
 ```js
 netConnection.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1234,7 +1225,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 ```js
 netConnection.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1263,17 +1254,17 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
 netCon.on('netAvailable', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1302,17 +1293,17 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
 netCon.on('netBlockStatusChange', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1341,23 +1332,24 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
 netCon.on('netCapabilitiesChange', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
 ### on('netConnectionPropertiesChange')
 
-on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void
+on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
+ConnectionProperties }>): void
 
 订阅网络连接信息变化事件。
 
@@ -1380,17 +1372,17 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
 netCon.on('netConnectionPropertiesChange', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1419,17 +1411,17 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络丢失事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1458,17 +1450,17 @@ let netCon = connection.createNetConnection()
 
 // 先使用register接口注册订阅事件
 netCon.register(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
 netCon.on('netUnavailable', function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data))
 })
 
 // 使用unregister接口取消订阅
 netCon.unregister(function (error) {
-    console.log(JSON.stringify(error))
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -1514,48 +1506,51 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 ```js
 import socket from "@ohos.net.socket";
+
 connection.getDefaultNet().then((netHandle) => {
-    var tcp = socket.constructTCPSocketInstance();
-    var udp = socket.constructUDPSocketInstance();
-    let socketType = "TCPSocket";
-    if (socketType == "TCPSocket") {
-        tcp.bind({
-            address: '192.168.xx.xxx', port: 8080, family: 1
-        }, error => {
-            if (error) {
-                console.log('bind fail');
-            }
-            netHandle.bindSocket(tcp, (error, data) => {
-                if (error) {
-                    console.log(JSON.stringify(error));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
-            })
-        })
-    } else {
-        let callback = value => {
-            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  var tcp = socket.constructTCPSocketInstance();
+  var udp = socket.constructUDPSocketInstance();
+  let socketType = "TCPSocket";
+  if (socketType == "TCPSocket") {
+    tcp.bind({
+      address: '192.168.xx.xxx', port: 8080, family: 1
+    }, error => {
+      if (error) {
+        console.log('bind fail');
+        return;
+      }
+      netHandle.bindSocket(tcp, (error, data) => {
+        if (error) {
+          console.log(JSON.stringify(error));
+        } else {
+          console.log(JSON.stringify(data));
         }
-        udp.on('message', callback);
-        udp.bind({
-            address: '192.168.xx.xxx', port: 8080, family: 1
-        }, error => {
-            if (error) {
-                console.log('bind fail');
-            }
-            udp.on('message', (data) => {
-                console.log(JSON.stringify(data))
-            });
-            netHandle.bindSocket(udp, (error, data) => {
-                if (error) {
-                    console.log(JSON.stringify(error));
-                } else {
-                    console.log(JSON.stringify(data));
-                }
-            })
-        })
+      })
+    })
+  } else {
+    let callback = value => {
+      console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
+    udp.on('message', callback);
+    udp.bind({
+      address: '192.168.xx.xxx', port: 8080, family: 1
+    }, error => {
+      if (error) {
+        console.log('bind fail');
+        return;
+      }
+      udp.on('message', (data) => {
+        console.log(JSON.stringify(data))
+      });
+      netHandle.bindSocket(udp, (error, data) => {
+        if (error) {
+          console.log(JSON.stringify(error));
+        } else {
+          console.log(JSON.stringify(data));
+        }
+      })
+    })
+  }
 })
 ```
 
@@ -1592,44 +1587,47 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 ```js
 import socket from "@ohos.net.socket";
+
 connection.getDefaultNet().then((netHandle) => {
-    var tcp = socket.constructTCPSocketInstance();
-    var udp = socket.constructUDPSocketInstance();
-    let socketType = "TCPSocket";
-    if (socketType == "TCPSocket") {
-        tcp.bind({
-            address: '192.168.xx.xxx', port: 8080, family: 1
-        }, error => {
-            if (error) {
-                console.log('bind fail');
-            }
-            netHandle.bindSocket(tcp).then((data) => {
-                console.log(JSON.stringify(data));
-            }).catch(error => {
-                console.log(JSON.stringify(error));
-            })
-        })
-    } else {
-        let callback = value => {
-            console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
-        }
-        udp.on('message', callback);
-        udp.bind({
-            address: '192.168.xx.xxx', port: 8080, family: 1
-        }, error => {
-            if (error) {
-                console.log('bind fail');
-            }
-            udp.on('message', (data) => {
-                console.log(JSON.stringify(data));
-            })
-            netHandle.bindSocket(udp).then((data) => {
-                console.log(JSON.stringify(data));
-            }).catch(error => {
-                console.log(JSON.stringify(error));
-            })
-        })
+  var tcp = socket.constructTCPSocketInstance();
+  var udp = socket.constructUDPSocketInstance();
+  let socketType = "TCPSocket";
+  if (socketType == "TCPSocket") {
+    tcp.bind({
+      address: '192.168.xx.xxx', port: 8080, family: 1
+    }, error => {
+      if (error) {
+        console.log('bind fail');
+        return;
+      }
+      netHandle.bindSocket(tcp).then((data) => {
+        console.log(JSON.stringify(data));
+      }).catch(error => {
+        console.log(JSON.stringify(error));
+      })
+    })
+  } else {
+    let callback = value => {
+      console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
     }
+    udp.on('message', callback);
+    udp.bind({
+      address: '192.168.xx.xxx', port: 8080, family: 1
+    }, error => {
+      if (error) {
+        console.log('bind fail');
+        return;
+      }
+      udp.on('message', (data) => {
+        console.log(JSON.stringify(data));
+      })
+      netHandle.bindSocket(udp).then((data) => {
+        console.log(JSON.stringify(data));
+      }).catch(error => {
+        console.log(JSON.stringify(error));
+      })
+    })
+  }
 })
 ```
 
@@ -1664,11 +1662,11 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    let host = "xxxx";
-    netHandle.getAddressesByName(host, function (error, data) {
-        console.log(JSON.stringify(error))
-        console.log(JSON.stringify(data))
-    })
+  let host = "xxxx";
+  netHandle.getAddressesByName(host, function (error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -1708,10 +1706,10 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    let host = "xxxx";
-    netHandle.getAddressesByName(host).then(function (data) {
-        console.log(JSON.stringify(data))
-    })
+  let host = "xxxx";
+  netHandle.getAddressesByName(host).then(function (data) {
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -1746,11 +1744,11 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    let host = "xxxx";
-    netHandle.getAddressByName(host, function (error, data) {
-        console.log(JSON.stringify(error))
-        console.log(JSON.stringify(data))
-    })
+  let host = "xxxx";
+  netHandle.getAddressByName(host, function (error, data) {
+    console.log(JSON.stringify(error))
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -1790,10 +1788,10 @@ getAddressByName(host: string): Promise\<NetAddress>
 
 ```js
 connection.getDefaultNet().then(function (netHandle) {
-    let host = "xxxx";
-    netHandle.getAddressByName(host).then(function (data) {
-        console.log(JSON.stringify(data))
-    })
+  let host = "xxxx";
+  netHandle.getAddressByName(host).then(function (data) {
+    console.log(JSON.stringify(data))
+  })
 })
 ```
 
@@ -1905,8 +1903,5 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称    | 类型   | 必填 | 说明                           |
-| ------- | ------ | -- |------------------------------ |
-| address | string | 是 |地址。                         |
-| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 否 |端口，取值范围\[0, 65535]。    |
+| 名称 | 类型 | 必填 | 说明 | | ------- | ------ | -- |------------------------------ | | address | string | 是 |地址。 | | family |
+number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 | | port | number | 否 |端口，取值范围\[0, 65535]。 |
