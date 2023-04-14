@@ -29,12 +29,12 @@ Call调用流程示意图如下：
 > 当前仅支持系统应用使用Call调用。
 
 ## 接口说明
-Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md#caller)。
+Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis/js-apis-app-ability-uiAbility.md#caller)。
 
 **表2** Call API接口功能介绍
 |接口名|描述|
 |:------|:------|
-|startAbilityByCall(want: Want): Promise\<Caller>|启动指定Ability并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-ability-context.md#abilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。|
+|startAbilityByCall(want: Want): Promise\<Caller>|启动指定Ability并获取其Caller通信接口，默认为后台启动，通过配置want可实现前台启动，详见[接口文档](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)。AbilityContext与ServiceExtensionContext均支持该接口。|
 |on(method: string, callback: CalleeCallBack): void|通用组件Callee注册method对应的callback方法。|
 |off(method: string): void|通用组件Callee解注册method的callback方法。|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|向通用组件Callee发送约定序列化数据。|

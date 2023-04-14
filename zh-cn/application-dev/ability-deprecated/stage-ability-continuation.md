@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-迁移提供的能力如下，具体的API详见[接口文档](../reference/apis/js-apis-application-ability.md)。
+迁移提供的能力如下，具体的API详见[接口文档](../reference/apis/js-apis-app-ability-uiAbility.md)。
 
 **表1** 应用迁移API接口功能介绍
 
@@ -81,20 +81,19 @@
         }
         ```
         
-   
       - 申请分布式权限
-   
+     
         支持跨端迁移的应用需要在module.json5申请分布式权限 DISTRIBUTED_DATASYNC。
-   
+     
         ```javascript
         "requestPermissions": [
                {
                    "name": "ohos.permission.DISTRIBUTED_DATASYNC"
                },
         ```
-   
+     
         这个权限需要在应用首次启动的时候弹窗让用户授予，可以通过在ability的onWindowStageCreate中添加如下代码实现：
-   
+     
         ```javascript
            requestPermissions = async () => {
                let permissions: Array<string> = [
@@ -201,7 +200,7 @@
 
 使用分布式对象
 
-分布式数据对象提供了与本地变量类似的操作，实现两个设备的数据同步，当设备1的应用A的分布式数据对象增、删、改数据后，设备2的应用A也可以获取到对应的数据变化，同时还能监听数据变更以及对端数据对象的上下线。用法详见[分布式对象指导文档](../database/database-distributedobject-guidelines.md)。
+分布式数据对象提供了与本地变量类似的操作，实现两个设备的数据同步，当设备1的应用A的分布式数据对象增、删、改数据后，设备2的应用A也可以获取到对应的数据变化，同时还能监听数据变更以及对端数据对象的上下线。用法详见[分布式数据对象跨设备数据同步](../database/data-sync-of-distributed-data-object.md)。
 
 迁移场景中，分布式对象（distributedDataObject）主要用于将本机内存数据同步到目标设备。
 

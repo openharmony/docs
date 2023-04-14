@@ -19,8 +19,6 @@ PageAbility作为可见Ability，可以通过startAbility启动有界面的且�
 
 如果需设置当前Ability可由任何应用访问，对应config.json文件的示例代码如下所示：
 
-
-
 ```ts
 {
   "module": {
@@ -36,4 +34,4 @@ PageAbility作为可见Ability，可以通过startAbility启动有界面的且�
 ```
 
 
-如果应用中的Ability包含skills过滤器，建议此属性设置为"true"，以允许其他应用通过[隐式调用](explicit-implicit-want-mappings.md#隐式want匹配原理详解)启动该Ability。如果此属性设为"false"，其他应用尝试启动该Ability时系统会返回PERMISSION_DENIED。这种情况下系统应用可以通过申请[START_INVISIBLE_ABILITY](../security/permission-list.md)权限启动exported为false的组件，例如系统桌面、语音助手、搜索助手等。
+如果应用中的Ability包含skills过滤器，建议此属性设置为"true"，以允许其他应用通过[隐式调用](explicit-implicit-want-mappings.md)启动该Ability。如果此属性设为"false"，其他应用尝试启动该Ability时系统会返回PERMISSION_DENIED。这种情况下系统应用可以通过申请[START_INVISIBLE_ABILITY](../security/permission-list.md)权限启动exported为false的组件，例如系统桌面、语音助手、搜索助手等。

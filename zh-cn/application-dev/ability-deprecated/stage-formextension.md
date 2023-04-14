@@ -241,7 +241,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
        }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[应用数据持久化概述](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
