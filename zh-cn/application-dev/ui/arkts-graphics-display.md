@@ -131,7 +131,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 ### 多媒体像素图
 
-PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
+PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上，
 
 1. 创建PixelMap状态变量。
 
