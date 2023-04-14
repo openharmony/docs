@@ -92,7 +92,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
           console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
           return;
       }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
       pixelMap.release(); // PixelMap使用完后及时释放内存
     });
   } catch (exception) {
@@ -125,7 +125,7 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
           console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
           return;
       }
-      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
       pixelMap.release(); // PixelMap使用完后及时释放内存
     });
   } catch (exception) {
@@ -173,7 +173,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
   try {
     let promise = screenshot.save(screenshotOptions);
     promise.then((pixelMap) => {
-        console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+        console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
         pixelMap.release(); // PixelMap使用完后及时释放内存
     }).catch((err) => {
         console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
