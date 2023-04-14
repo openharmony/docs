@@ -317,6 +317,10 @@ class EntryAbility extends UIAbility {
 
 数据库的安全级别枚举。
 
+> **说明：**
+>
+> 若需要进行同步操作，数据库安全等级应不高于对端设备安全等级，具体可见[跨设备同步访问控制机制](../../database/sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称 | 值   | 说明                                                         |
@@ -439,6 +443,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -447,7 +452,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -1246,7 +1250,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
 ### 属性<sup>10+</sup>
 
@@ -2176,6 +2180,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2184,7 +2189,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -2233,6 +2238,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2241,12 +2247,12 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2716,6 +2722,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2724,7 +2731,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
@@ -2768,6 +2775,7 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2776,7 +2784,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
@@ -2810,6 +2818,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2818,7 +2827,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2866,6 +2874,7 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2874,7 +2883,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
