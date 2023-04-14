@@ -24,7 +24,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
 
 
 - start
-  用于启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的visible标签不能配置为false。
+  用于启动一个应用组件，目标组件可以是FA模型的PageAbility和ServiceAbility组件，也可以是Stage模型的UIAbility和ServiceExtensionAbility组件，且目标组件相应配置文件中的exported标签不能配置为false。
 
   | 参数 | 参数说明 |
   | -------- | -------- |

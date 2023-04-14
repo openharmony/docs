@@ -12,7 +12,7 @@ Ability支持单实例、多实例和指定实例3种启动模式，在module.js
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| standard    | 标准模式   | 每次startAbility都会启动一个新的实例。 |
+| multiton    | 标准模式   | 每次startAbility都会启动一个新的实例。 |
 | singleton   | 单实例模式   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例。 |
 | specified   | 指定实例 | 运行时由Ability内部业务决定是否创建多实例。 |
 
