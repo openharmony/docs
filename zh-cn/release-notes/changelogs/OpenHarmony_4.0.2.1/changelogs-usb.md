@@ -25,4 +25,4 @@ USB系统API运行时鉴权，异步接口以Promise reject形式抛出错误码
 
 **适配指导**
 
-请参考各接口的[API参考](../../../application-dev/reference/errorcodes/errorcode-universal.md)
+请参考各接口的[API文档](../../../application-dev/reference/apis/js-apis-usbManager.md)
