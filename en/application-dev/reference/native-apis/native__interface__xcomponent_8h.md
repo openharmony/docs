@@ -3,7 +3,7 @@
 
 ## Overview
 
-声明用于访问Native XComponent的API。
+Declares the APIs used to access the native XComponent.
 
 **Since:**
 
