@@ -2381,7 +2381,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |
 
-## PanelFlag<sup>10</sup>
+## PanelFlag<sup>10+</sup>
 
 输入法面板状态类型枚举。
 
@@ -2392,7 +2392,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | FLG_FIXED  | 0 | 固定态面板类型。 |
 | FLG_FLOATING | 1 | 悬浮态面板类型。 |
 
-## PanelType<sup>10</sup>
+## PanelType<sup>10+</sup>
 
 输入法面板类型枚举。
 
@@ -2403,7 +2403,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | SOFT_KEYBOARD | 0 | 软键盘类型。 |
 | STATUS_BAR   | 1 | 状态栏类型。 |
 
-## PanelInfo<sup>10</sup>
+## PanelInfo<sup>10+</sup>
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
