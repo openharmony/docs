@@ -68,8 +68,7 @@ httpRequest.request(
 
 createHttp(): HttpRequest
 
-创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response
-Header事件。每一个HttpRequest对象对应一个HTTP请求。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。
+创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。每一个HttpRequest对象对应一个HTTP请求。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
