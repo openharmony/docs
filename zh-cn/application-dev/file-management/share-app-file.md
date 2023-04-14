@@ -44,7 +44,7 @@
    ```
 
 2. 设置获取文件的权限以及选择要分享的应用。
-   分享文件给其他应用需要使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为wantConstant.Action.ACTION_SEND_DATA表示进行应用文件分享，开发示例如下。
+   分享文件给其他应用需要使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为"ohos.want.action.sendData"表示进行应用文件分享，开发示例如下。
 
    > **说明：**
    >
