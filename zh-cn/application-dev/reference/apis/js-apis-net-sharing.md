@@ -893,8 +893,7 @@ sharing.off('sharingStateChange', (data) => {
 
 ## sharing.on('interfaceSharingStateChange')
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 注册网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
@@ -928,8 +927,7 @@ sharing.on('interfaceSharingStateChange', (data) => {
 
 ## sharing.off('interfaceSharingStateChange')
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
-SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
 
 注销网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
