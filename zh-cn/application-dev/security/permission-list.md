@@ -974,6 +974,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
