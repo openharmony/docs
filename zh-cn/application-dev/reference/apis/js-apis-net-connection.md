@@ -985,7 +985,9 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
 
 **返回值：**
-| 类型 | 说明 | | -------- | -------- | | Promise&lt;void&gt; | 无返回值的Promise对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1061,7 +1063,9 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
 
 **返回值：**
-| 类型 | 说明 | | -------- | -------- | | Promise&lt;void&gt; | 无返回值的Promise对象。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **错误码：**
 
@@ -1903,5 +1907,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 | | ------- | ------ | -- |------------------------------ | | address | string | 是 |地址。 | | family |
-number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 | | port | number | 否 |端口，取值范围\[0, 65535]。 |
+| 名称 | 类型 | 必填 | 说明 |
+| ------- | ------ | -- |------------------------------ |
+| address | string | 是 |地址。 |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
+| port    | number | 否 |端口，取值范围\[0, 65535]。 |

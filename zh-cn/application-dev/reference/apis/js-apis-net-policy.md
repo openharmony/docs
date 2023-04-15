@@ -1562,8 +1562,10 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 参数名 | 值 | 说明 | | ---------------------- | - | ------- | | REMIND_TYPE_WARNING | 1 | 警告提醒 | | REMIND_TYPE_LIMIT | 2 |
-限制提醒 |
+| 参数名 | 值 | 说明 |
+| ---------------------- | - | ------- |
+| REMIND_TYPE_WARNING | 1 | 警告提醒 |
+| REMIND_TYPE_LIMIT   | 2 | 限制提醒 |
 
 ## NetUidPolicy
 
