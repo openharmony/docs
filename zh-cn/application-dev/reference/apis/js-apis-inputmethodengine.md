@@ -2912,3 +2912,4 @@ textInputClient.getEditorAttribute().then((editorAttribute) => {
     console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```
+<!--no_check-->
