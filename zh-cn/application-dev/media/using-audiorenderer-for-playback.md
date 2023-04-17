@@ -18,7 +18,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 - prepared状态： 通过调用createAudioRenderer()方法进入到该状态。
 
-- running状态： 正在进行音频数据播放，可以在prepared状态通过调用start()方法进入此状态，也可以在pause状态和stopped状态通过调用start()方法进入此状态。
+- running状态： 正在进行音频数据播放，可以在prepared状态通过调用start()方法进入此状态，也可以在paused状态和stopped状态通过调用start()方法进入此状态。
 
 - paused状态： 在running状态可以通过调用pause()方法暂停音频数据的播放并进入paused状态，暂停播放之后可以通过调用start()方法继续音频数据播放。
 
