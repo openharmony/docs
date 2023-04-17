@@ -152,6 +152,7 @@
   - bundleManager
     - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
     - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
+    - [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)
     - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
     - [BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)
     - [dispatchInfo](js-apis-bundleManager-dispatchInfo.md)
