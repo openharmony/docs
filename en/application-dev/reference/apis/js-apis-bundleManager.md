@@ -49,7 +49,7 @@ Enumerates the application flags, which indicate the type of application informa
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                                | Value        | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                             | Value        | Description                                                        |
 | --------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -81,7 +81,7 @@ Enumerates the Extension ability flags, which indicate the type of Extension abi
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                                       | Value        | Description                                                        |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -112,6 +112,7 @@ Enumerates the types of Extension abilities.
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
+| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of Extension abilities.|
 
 
@@ -185,6 +186,39 @@ Enumerates the display orientations of the ability. This attribute applies only 
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.|
 | LOCKED                             |12|Locked.|
+
+### CompatiblePolicy
+
+Defines the version compatibility type of the shared library.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name                  | Value  | Description                            |
+| ---------------------- | ---- | -------------------------------- |
+| BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
+
+### ModuleType
+
+Enumerates the module types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| ENTRY   | 1    | Main module of the application.  |
+| FEATURE | 2    | Dynamic feature module of the application.|
+| SHARED  | 3    | Dynamic shared library module of the application. |
+
+### BundleType
+
+Enumerates the bundle types.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name          | Value  | Description           |
+| -------------- | ---- | --------------- |
+| APP            | 0    | The bundle is a common application.   |
+| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
 ## APIs
 
@@ -1076,7 +1110,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700003 | The specified extensionAbility is not found.    |
+| 17700003 | The specified ability is not found.    |
 | 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
@@ -2861,36 +2895,177 @@ try {
 }
 ```
 
-## ModuleType
+### bundleManager.getSharedBundleInfo<sup>10+</sup>
 
-Enumerates the module types.
+getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void;
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+Obtains the shared bundle information based on the given bundle name. This API uses an asynchronous callback to return the result.
 
-| Name   | Value  | Description                |
-| ------- | ---- | -------------------- |
-| ENTRY   | 1    | Main module of the application.  |
-| FEATURE | 2    | Dynamic feature module of the application.|
-| SHARED  | 3    | Dynamic shared library module of the application. |
+**System API**: This is a system API.
 
-## BundleType
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-Enumerates the bundle types.
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**Parameters**
 
-| Name          | Value  | Description           |
-| -------------- | ---- | --------------- |
-| APP            | 0    | The bundle is a common application.   |
-| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string                                                       | Yes  | Bundle name.                                  |
+| moduleName | string                                                       | Yes  | Module name.                                  |
+| callback   | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the shared bundle information obtained.|
 
-## AtomicServiceModuleType
+**Error codes**
 
-Enumerates the module types of an atomic service.
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified moduleName is not found. |
 
-| Name  | Value  | Description                       |
-| ------ | ---- | --------------------------- |
-| NORMAL | 0    | Page package in the atomic service.    |
-| MAIN   | 1    | Landing page package in the atomic service.|
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let moduleName = 'library';
+
+try {
+    bundleManager.getSharedBundleInfo(bundleName, moduleName, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getSharedBundleInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getSharedBundleInfo<sup>10+</sup>
+
+function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
+
+Obtains the shared bundle information based on the given bundle name. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ---------- | ------ | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name.|
+| moduleName | string | Yes  | Module name.|
+
+**Return value**
+
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Promise used to return the shared bundle information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified moduleName is not found. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = 'com.example.myapplication';
+let moduleName = 'library';
+
+try {
+    bundleManager.getSharedBundleInfo(bundleName, moduleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getSharedBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getSharedBundleInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+
+getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void;
+
+Obtains the information about all shared bundles. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of the shared bundle information obtained.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getAllSharedBundleInfo((err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAllSharedBundleInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+
+function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
+
+Obtains the information about all shared bundles. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<Array\<[SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)\>\> | Promise used to return an array of the shared bundle information obtained.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+
+try {
+    bundleManager.getAllSharedBundleInfo().then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllSharedBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
+}
+```

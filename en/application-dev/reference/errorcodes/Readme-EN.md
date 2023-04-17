@@ -20,14 +20,14 @@
   - [colorSpaceManager Error Codes](errorcode-colorspace-manager.md)
   - [Display Error Codes](errorcode-display.md)
   - [Window Error Codes](errorcode-window.md)
-- Media
+- Multimedia
   - [Audio Error Codes](errorcode-audio.md)
   - [Media Error Codes](errorcode-media.md)
   - [AVSession Management Error Codes](errorcode-avsession.md)
-- Resource Management
+- Resource Manager
   - [I18N Error Codes](errorcode-i18n.md)
   - [Resource Manager Error Codes](errorcode-resource-manager.md)
-- Resource Scheduling
+- Background Task
   - [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md)
@@ -43,7 +43,7 @@
   - [DataShare Error Codes](errorcode-datashare.md)
   - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
-  - [Preferences Error Codes](errorcode-preferences.md)
+  - [User Preference Error Codes](errorcode-preferences.md)
 - File Management
   - [File Management Error Codes](errorcode-filemanagement.md)
 - Telephony Service
@@ -56,11 +56,13 @@
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
   - [Policy Management Error Codes](errorcode-net-policy.md)
+  - [mDNS Error Codes](errorcode-net-mdns.md)
 - Connectivity
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
+  - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
+  - [Wi-Fi Error Codes](errorcode-wifi.md)  
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-- Basic Features
+ - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [Application Event Logging Error Codes](errorcode-hiappevent.md)
@@ -87,9 +89,9 @@
   - [System Parameter Error Codes](errorcode-system-parameterV9.md)
   - [USB Error Codes](errorcode-usb.md)
   - [Update Error Codes](errorcode-update.md)
-- Customization Management
+- Customization
   - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
-- Utils
+- Language Base Class Library
   - [Utils Error Codes](errorcode-utils.md)
 - Test
   - [UiTest Error Codes](errorcode-uitest.md)

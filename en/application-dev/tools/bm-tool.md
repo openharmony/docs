@@ -15,7 +15,7 @@ The Bundle Manager enables you to install, uninstall, update, and query a bundle
 | help | Displays the commands supported by the Bundle Manager tool.|
 | install | Installs a bundle.|
 | uninstall | Uninstalls a bundle.|
-| dump | Queries bundle information.|
+| dump | Displays bundle information.|
 | clean | Clears the cache and data of a bundle.|
 | enable | Enables a bundle. A bundle can be used after being enabled.|
 | disable | Disables a bundle. A bundle cannot be used after being disabled.|
@@ -56,6 +56,7 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 | -u | No| User whose HAP is to be installed. By default, the current user's HAP is installed.|
 | -r | No| Whether to install the HAP in overwrite mode. By default, the HAP is installed in overwrite mode.|
 | -w | No| Time that the Bundle Manager tool waits before installing the HAP. The minimum waiting time is 5s, and the maximum waiting time is 600s. The default waiting time is 5s.|
+| -s | No| Installation path of an inter-application shared library (.hsp file). Multiple paths can be specified for simultaneous installation.|
 
 
 Example
@@ -64,6 +65,12 @@ Example
 bm install -p /data/app/ohosapp.hap -u 100 -w 5s -r
 // The execution result is as follows:
 install bundle successfully.
+# Install an inter-application shared library.
+bm install -s xxx.hsp
+# Install multiple inter-application shared libraries simultaneously.
+bm install -s xxx.hsp yyy.hsp
+# Install an application and the dependent inter-application shared library.
+bm install -p aaa.hap -s xxx.hsp yyy.hsp
 ```
 
 
@@ -83,6 +90,8 @@ bm uninstall [-h help] [-n bundleName] [-m moduleName] [-u userId] [-k]
 | -m | No| Module of the bundle to uninstall. By default, all modules are uninstalled.|
 | -u | No| User whose bundle is to be uninstalled. By default, the current user's bundle is uninstalled.|
 | -k | No| Whether the application data is retained when the bundle is uninstalled. By default, the application data is deleted along the uninstall.|
+| -s | No| Installation path of an inter-application shared library (.hsp file). Multiple paths can be specified for simultaneous installation.|
+| -v | No| Version number of the shared bundle. By default, all shared bundles with the specified bundle name are uninstalled.|
 
 
 Example
@@ -91,6 +100,10 @@ Example
 bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 -k
 // The execution result is as follows:
 uninstall bundle successfully.
+# Uninstall a shared bundle.
+bm uninstall -s -n com.ohos.example
+# Uninstall a shared bundle of the specified version.
+bm uninstall -s -n com.ohos.example -v 100001
 ```
 
 
@@ -285,4 +298,31 @@ bm quickfix -q -b com.ohos.app
 bm quickfix -a -f /data/app/
 // The execution result is as follows:
 apply quickfix succeed.
+```
+
+## Commands for Querying the Shared Library
+
+```bash
+bm dump-shared [-h help] [-a] [-n bundleName] [-m moudleName]
+```
+
+  **Table 11** Commands for querying the shared library
+
+| Name                                            | Description                                  |
+| ------------------------------------------------ | -------------------------------------- |
+| bm dump-shared -h                                | Displays the parameters supported by the **dump-shared** command.         |
+| bm dump-shared -a                                | Displays all shared libraries installed in the system.            |
+| bm dump-shared -n                                | Displays details about a shared library.          |
+| bm dump-dependencies -h                          | Displays the parameters supported by the **bm dump-dependencies** command.|
+| bm dump-dependencies -n bundleName -m moudleName | Displays information about the shared library on which a specified module of an application depends.  |
+
+Example
+
+```bash
+# Display the bundle names of all shared libraries installed in the system.
+bm dump-shared -a
+# Display the details about the specified shared library.
+bm dump-shared -n com.ohos.lib
+# Display information about the shared library on which a specified module of an application depends.
+bm dump-dependencies -n com.ohos.app -m entry
 ```

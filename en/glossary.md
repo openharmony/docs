@@ -73,7 +73,7 @@
     
 - ### FA model
 
-    A development model provided by the ability framework. It is the only application development model supported by API version 8 and earlier. The FA model provides [FAs](#fa) and [Particle abilities (PAs)](#pa). The FA supports the Page ability template, and the PA supports the Service, Data, and Form ability templates. For details, see [FA Model Overview](application-dev/ability/fa-brief.md).
+    A development model provided by the ability framework. It is the only application development model supported by API version 8 and earlier. The FA model provides [FAs](#fa) and [Particle abilities (PAs)](#pa). The FA supports the Page ability template, and the PA supports the Service, Data, and Form ability templates. For details, see [FA Model Overview](application-dev/ability-deprecated/fa-brief.md).
 
 ## H
 

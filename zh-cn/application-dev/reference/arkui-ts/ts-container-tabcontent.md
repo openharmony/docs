@@ -11,6 +11,10 @@
 
 支持单个子组件。
 
+>  **说明：**
+>
+>  可内置系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+
 
 ## 接口
 
@@ -23,19 +27,21 @@ TabContent()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。 |
+| tabBar | string&nbsp;\|&nbsp;Resource&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;Resource,<br/>text?:&nbsp;string&nbsp;\|&nbsp;Resource<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。<br>设置的内容超出tabbar页签时进行裁切。 |
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | 设置TabBar上显示内容。<br/>SubTabBarStyle:&nbsp;子页签样式，参数为文字。<br/>BottomTabBarStyle:&nbsp;底部页签和侧边页签样式，参数为文字和图片。<br/>**说明：** <br/>底部样式没有下划线效果。<br/>icon异常时显示灰色图块。 |
 
 >  **说明：**
-> - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
-> - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
-> - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
+>
+>  - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
+>  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
+>  - vertical属性为false值，交换上述2个限制。
+>  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
 
 ## SubTabBarStyle<sup>9+</sup>
 
 子页签样式。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor(content: string | Resource)
 
@@ -45,15 +51,71 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
+| content | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。 |
+
+### of<sup>10+</sup>
+
+static of(content: ResourceStr)
+
+SubTabBarStyle的静态构造函数。
+
+**参数：**
+
+| 参数名  | 参数类型                                   | 必填 | 参数描述           |
+| ------- | ------------------------------------------ | ---- | ------------------ |
+| content | [ResourceStr](ts-types.md#resourcestr) | 是   | 页签内的文字内容。 |
+
+### 属性
+
+支持以下属性：
+
+| 名称         | 参数类型                                                     | 描述                                                         |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br />                |
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
+| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。 |
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置选中子页签的label文本和字体的样式。 |
+
+## IndicatorStyle<sup>10+</sup>对象说明
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------------------------------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下划线的颜色和背板颜色。<br/>默认值:#FF007DFF |
+| height | [Length](ts-types.md#length) | 否 | 下划线的高度。<br/>默认值:2.0<br/>单位：vp |
+| width | [Length](ts-types.md#length) | 否 | 下划线的宽度。<br/>默认值：0.0<br/>单位：vp |
+| borderRadius | [Length](ts-types.md#length) | 否 | 下划线的圆角半径。<br/>默认值：0.0<br/>单位：vp |
+| marginTop | [Length](ts-types.md#length) | 否 | 下划线与文字的间距。<br/>默认值：8.0<br/>单位：vp |
+
+## SelectedMode<sup>10+</sup>枚举说明
+| 名称       | 描述                     |
+| ---------- | ------------------------ |
+| INDICATOR | 使用下划线模式。     |
+| BOARD   | 使用背板模式。     |
+
+## BoardStyle<sup>10+</sup>对象说明
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| -------- | -------- | -------- | ------------------------------------ |
+| borderRadius | [Length](ts-types.md#length) | 否 | 下划线的圆角半径。<br/>默认值：8.0<br/>单位：vp |
+
+## LabelStyle<sup>10+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。文本截断默认是省略号截断。 |
+| maxLines             | number                                                       | 否   | 设置Label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过 textOverflow来指定截断方式。 |
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最小显示字号。需配合maxFontSize以及maxLines或布局大小限制使用。 |
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
+| font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。                                      |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
 底部页签和侧边页签样式。
 
-### constructor<sup>9+</sup>
+### constructor
 
-constructor(icon: string | Resource, text: string | Resource)
+constructor(icon: string | Resource, content: string | Resource)
 
 BottomTabBarStyle的构造函数。
 
@@ -61,8 +123,20 @@ BottomTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。 |
-| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。 |
+| icon | string \| [Resource](ts-types.md#resource) | 是 | 页签内的图片内容。从API version 10开始，icon类型为ResourceStr。 |
+| text | string \| [Resource](ts-types.md#resource) | 是 | 页签内的文字内容。从API version 10开始，text类型为ResourceStr。 |
+
+### of<sup>10+</sup>
+
+static of(icon: ResourceStr, text: ResourceStr)
+BottomTabBarStyle的静态构造函数。
+
+**参数：**
+
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
+| text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ## 示例
 

@@ -363,7 +363,12 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (result) => {
+g_object.save("local", (err, result) => {
+    if (err) {
+        console.info("save failed, error code = " + err.code);
+        console.info("save failed, error message: " + err.message);
+        return;
+    }
     console.info("save callback");
     console.info("save sessionId: " + result.sessionId);
     console.info("save version: " + result.version);
@@ -408,8 +413,9 @@ g_object.save("local").then((result) => {
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
+}).catch((err) => {
+    console.info("save failed, error code = " + err.code);
+    console.info("save failed, error message: " + err.message);
 });
 ```
 
@@ -435,16 +441,26 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 ```js
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local", (result) => {
+g_object.save("local", (err, result) => {
+    if (err) {
+        console.info("save failed, error code = " + err.code);
+        console.info("save failed, error message: " + err.message);
+        return;
+    }
     console.info("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId: " + result.sessionId);
+    console.info("save version: " + result.version);
+    console.info("save deviceId:  " + result.deviceId);
 });
 // 删除持久化保存的数据
-g_object.revokeSave((result) => {
-  console.info("revokeSave callback");
-  console.info("revokeSave sessionId " + result.sessionId);
+g_object.revokeSave((err, result) => {
+    if (err) {
+      console.info("revokeSave failed, error code = " + err.code);
+      console.info("revokeSave failed, error message: " + err.message);
+      return;
+    }
+    console.info("revokeSave callback");
+    console.info("revokeSave sessionId " + result.sessionId);
 });
 ```
 
@@ -475,15 +491,17 @@ g_object.save("local").then((result) => {
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}, () => {
-    console.error("save failed");
+}).catch((err) => {
+    console.info("save failed, error code = " + err.code);
+    console.info("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
 g_object.revokeSave().then((result) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
-}, () => {
-    console.error("revokeSave failed");
+}).catch((err)=> {
+    console.info("revokeSave failed, error code = " + err.code);
+    console.info("revokeSave failed, error message = " + err.message);
 });
 ```
 
@@ -583,7 +601,7 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';  
+import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
@@ -619,7 +637,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject';  
+import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // 删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
@@ -680,7 +698,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 **示例：**
 
 ```js
-import distributedObject from '@ohos.data.distributedDataObject'; 
+import distributedObject from '@ohos.data.distributedDataObject';
 let g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;

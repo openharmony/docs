@@ -196,7 +196,7 @@ let monitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');

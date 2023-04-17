@@ -16,7 +16,7 @@ import http from '@ohos.net.http';
 ## Examples
 
 ```js
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -67,9 +67,9 @@ httpRequest.request(
 
 ## http.createHttp
 
-createHttp\(\): HttpRequest
+createHttp(): HttpRequest
 
-Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An **HttpRequest** object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -77,7 +77,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 
 | Type       | Description                                                        |
 | :---------- | :----------------------------------------------------------- |
-| HttpRequest | An **HttpRequest** object, which contains the **request**, **destroy**, **on**, or **off** method.|
+| HttpRequest | An **HttpRequest** object, which contains the **request**, **request2**, **destroy**, **on**, or **off** method.|
 
 **Example**
 
@@ -88,13 +88,16 @@ let httpRequest = http.createHttp();
 
 ## HttpRequest
 
-Defines an HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp\(\)](#httpcreatehttp) to create an **HttpRequestTask** object.
+Defines an HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp()](#httpcreatehttp) to create an **HttpRequestTask** object.
 
 ### request
 
-request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
+request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result. 
+
+>**NOTE**
+>This API supports only transfer of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -109,7 +112,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -140,9 +143,12 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 
 ### request
 
-request\(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>\):void
+request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
+
+>**NOTE**
+>This API supports only transfer of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -158,7 +164,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -223,9 +229,12 @@ httpRequest.request("EXAMPLE_URL",
 
 ### request
 
-request\(url: string, options? : HttpRequestOptions\): Promise\<HttpResponse\>
+request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
+
+>**NOTE**
+>This API supports only transfer of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -246,7 +255,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -309,7 +318,7 @@ promise.then((data) => {
 
 ### destroy
 
-destroy\(\): void
+destroy(): void
 
 Destroys an HTTP request.
 
@@ -323,7 +332,7 @@ httpRequest.destroy();
 
 ### request2<sup>10+</sup>
 
-request2(url: string, callback: AsyncCallback<void>): void
+request2(url: string, callback: AsyncCallback\<number\>): void
 
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
@@ -336,11 +345,11 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | Name  | Type                                          | Mandatory| Description                                           |
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
-| callback | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                                     |
+| callback | AsyncCallback\<[number](#responsecode)\>       | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -357,9 +366,9 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```js
-httpRequest.request2("EXAMPLE_URL", (err) => {
+httpRequest.request2("EXAMPLE_URL", (err, data) => {
     if (!err) {
-        console.info(request2 OK!);
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -368,9 +377,9 @@ httpRequest.request2("EXAMPLE_URL", (err) => {
 
 ### request2<sup>10+</sup>
 
-request2(url: string, options: HttpRequestOptions, callback: AsyncCallback<void>): void
+request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -382,11 +391,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
 | url      | string                                         | Yes  | URL for initiating an HTTP request.                        |
 | options  | HttpRequestOptions                             | Yes  | Request options. For details, see [HttpRequestOptions](#httprequestoptions).|
-| callback | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                                     |
+| callback | AsyncCallback\<[number](#responsecode)\>       | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -435,9 +444,9 @@ httpRequest.request2("EXAMPLE_URL",
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err) => {
+}, (err, data) => {
     if (!err) {
-        console.info(request2 OK!);
+        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
         console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
@@ -445,7 +454,7 @@ httpRequest.request2("EXAMPLE_URL",
 ```
 ### request2<sup>10+</sup>
 
-request2\(url: string, options? : HttpRequestOptions\): Promise\<void\>
+request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result, which is a streaming response.
 
@@ -464,11 +473,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 | Type                                  | Description                             |
 | :------------------------------------- | :-------------------------------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<[number](#responsecode)\> | Promise used to return the result.|
 
 **Error codes**
 
-| ID  | Error Message                                                 |
+| Code  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -504,7 +513,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 >**NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
-> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see:
+> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
 
@@ -517,21 +526,21 @@ let promise = httpRequest.request("EXAMPLE_URL", {
         'Content-Type': 'application/json'
     }
 });
-promise.then(() => {
-    console.info(request2 OK!);
+promise.then((data) => {
+    console.info("request2 OK!" + JSON.stringify(data));
 }).catch((err) => {
     console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
 ```
 
-### on\('headerReceive'\)
+### on('headerReceive')
 
-on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
+on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 Registers an observer for HTTP Response Header events.
 
 >**NOTE**
->This API has been deprecated. You are advised to use [on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8) instead.
+>This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -545,24 +554,20 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```js
-httpRequest.on('headerReceive', (err, data) => {
-    if (!err) {
-        console.info('header: ' + JSON.stringify(data));
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+httpRequest.on('headerReceive', (data) => {
+    console.info('error:' + JSON.stringify(data));
 });
 ```
 
-### off\('headerReceive'\)
+### off('headerReceive')
 
-off\(type: 'headerReceive', callback?: AsyncCallback<Object\>\): void
+off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 Unregisters the observer for HTTP Response Header events.
 
 >**NOTE**
 >
->1. This API has been deprecated. You are advised to use [off\('headersReceive'\)<sup>8+</sup>](#offheadersreceive8) instead.
+>1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -581,9 +586,9 @@ Unregisters the observer for HTTP Response Header events.
 httpRequest.off('headerReceive');
 ```
 
-### on\('headersReceive'\)<sup>8+</sup>
+### on('headersReceive')<sup>8+</sup>
 
-on\(type: 'headersReceive', callback: Callback<Object\>\): void
+on(type: 'headersReceive', callback: Callback\<Object\>): void
 
 Registers an observer for HTTP Response Header events.
 
@@ -604,9 +609,9 @@ httpRequest.on('headersReceive', (header) => {
 });
 ```
 
-### off\('headersReceive'\)<sup>8+</sup>
+### off('headersReceive')<sup>8+</sup>
 
-off\(type: 'headersReceive', callback?: Callback<Object\>\): void
+off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 Unregisters the observer for HTTP Response Header events.
 
@@ -628,9 +633,9 @@ Unregisters the observer for HTTP Response Header events.
 httpRequest.off('headersReceive');
 ```
 
-### once\('headersReceive'\)<sup>8+</sup>
+### once('headersReceive')<sup>8+</sup>
 
-once\(type: 'headersReceive', callback: Callback<Object\>\): void
+once(type: 'headersReceive', callback: Callback\<Object\>): void
 
 Registers a one-time observer for HTTP Response Header events. Once triggered, the observer will be removed. This API uses an asynchronous callback to return the result.
 
@@ -650,9 +655,9 @@ httpRequest.once('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
 ```
-### on\('dataReceive'\)<sup>10+</sup>
+### on('dataReceive')<sup>10+</sup>
 
-on\(type: 'dataReceive', callback: Callback\<ArrayBuffer\>\): void
+on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
 
@@ -673,9 +678,9 @@ httpRequest.on('dataReceive', (data) => {
 });
 ```
 
-### off\('dataReceive'\)<sup>10+</sup>
+### off('dataReceive')<sup>10+</sup>
 
-off\(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>\): void
+off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 Unregisters the observer for events indicating receiving of HTTP streaming responses.
 
@@ -697,9 +702,9 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 httpRequest.off('dataReceive');
 ```
 
-### on\('dataEnd'\)<sup>10+</sup>
+### on('dataEnd')<sup>10+</sup>
 
-on\(type: 'dataEnd', callback: Callback\<void\>\): void
+on(type: 'dataEnd', callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
@@ -720,7 +725,7 @@ httpRequest.on('dataReceive', () => {
 });
 ```
 
-### off\('dataEnd'\)<sup>10+</sup>
+### off('dataEnd')<sup>10+</sup>
 
 off(type: 'dataEnd', callback?: Callback\<void\>): void
 
@@ -744,9 +749,9 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 httpRequest.off('dataEnd');
 ```
 
-### on\('dataProgress'\)<sup>10+</sup>
+### on('dataProgress')<sup>10+</sup>
 
- on\(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>\): void
+ on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -757,19 +762,17 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataProgress**.|
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.                       |
+| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>**receiveSize**: number of received bytes.<br>**totalSize**: total number of bytes to be received.|
 
 **Example**
 
 ```js
 httpRequest.on('dataProgress', (data) => {
-    if (!err) {
-        console.info('dataProgress:' + JSON.stringify(data));
-    }
+    console.info('dataProgress:' + JSON.stringify(data));
 });
 ```
 
-### off\('dataProgress'\)<sup>10+</sup>
+### off('dataProgress')<sup>10+</sup>
 
 off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
@@ -836,7 +839,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | "OK." The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |
@@ -915,11 +918,11 @@ let httpResponseCache = http.createHttpResponseCache();
 
 ## HttpResponseCache<sup>9+</sup>
 
-Defines an object that stores the response to an HTTP request.
+Defines an object that stores the response to an HTTP request. Before invoking APIs provided by **HttpResponseCache**, you must call [createHttpResponseCache()](#httpcreatehttpresponsecache9) to create an **HttpRequestTask** object.
 
 ### flush<sup>9+</sup>
 
-flush(callback: AsyncCallback\<void>): void
+flush(callback: AsyncCallback\<void\>): void
 
 Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses an asynchronous callback to return the result.
 
@@ -929,7 +932,7 @@ Flushes data in the cache to the file system so that the cached data can be acce
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -945,7 +948,7 @@ httpResponseCache.flush(err => {
 
 ### flush<sup>9+</sup>
 
-flush(): Promise\<void>
+flush(): Promise\<void\>
 
 Flushes data in the cache to the file system so that the cached data can be accessed in the next HTTP request. This API uses a promise to return the result.
 
@@ -955,7 +958,7 @@ Flushes data in the cache to the file system so that the cached data can be acce
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void>> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -969,7 +972,7 @@ httpResponseCache.flush().then(() => {
 
 ### delete<sup>9+</sup>
 
-delete(callback: AsyncCallback\<void>): void
+delete(callback: AsyncCallback\<void\>): void
 
 Disables the cache and deletes the data in it. This API uses an asynchronous callback to return the result.
 
@@ -979,7 +982,7 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -994,7 +997,7 @@ httpResponseCache.delete(err => {
 ```
 ### delete<sup>9+</sup>
 
-delete(): Promise\<void>
+delete(): Promise\<void\>
 
 Disables the cache and deletes the data in it. This API uses a promise to return the result.
 
@@ -1004,7 +1007,7 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 
 | Type                             | Description                                 |
 | --------------------------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -1023,7 +1026,7 @@ Enumerates HTTP data types.
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name| Value| Description    |
-| ------------------ | -- | ----------- |
+| ------------------  | -- | ----------- |
 | STRING              | 0 | String type.|
 | OBJECT              | 1 | Object type.   |
 | ARRAY_BUFFER        | 2 | Binary array type.|

@@ -273,7 +273,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onShareForm
 
-onShareForm?(formId: string): { [key: string]: any }
+onShareForm?(formId: string): { [key: string]: Object }
 
 Called by the widget provider to receive shared widget data.
 

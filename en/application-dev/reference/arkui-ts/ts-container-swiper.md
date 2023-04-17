@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                         | Type                              | Description                                      |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
 | index                       | number                                   | Index of the child component currently displayed in the container.<br>Default value: **0**                    |
-| autoPlay                    | boolean                                  | Whether to enable automatic playback for child component switching. If this attribute is **true**, the navigation dots indicator does not take effect.<br>Default value: **false**   |
+| autoPlay                    | boolean                                  | Whether to enable automatic playback for child component switching.<br>Default value: **false**   |
 | interval                    | number                                   | Interval for automatic playback, in ms.<br>Default value: **3000**                   |
 | indicator                   | boolean                                  | Whether to enable the navigation dots indicator.<br>Default value: **true**                             |
 | loop                        | boolean                                  | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When LazyForEach is used, it is recommended that the number of the components to load exceed 5.<br>Default value: **true**|

@@ -1,5 +1,7 @@
 # # @ohos.net.socket (Socket Connection) 
 
+The **socket** module implements data transfer over TCPSocket, UDPSocket, WebSocket, and TLSSocket connections.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -2672,4 +2674,4 @@ Defines the certificate raw data.
 
 | Type                                                                  | Description                  |
 | --------------------------------------------------------------------- | --------------------- |
-|[cryptoFramework.EncodingBlob](js-apis-cryptoFramework.md#datablob) | Data and encoding format of the certificate.|
+|[cert.EncodingBlob](js-apis-cert.md#datablob) | Data and encoding format of the certificate.|

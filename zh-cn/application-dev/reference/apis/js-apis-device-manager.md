@@ -96,7 +96,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | CAR          | 0x83 | 车    |
 | UNKNOWN_TYPE | 0    | 未知设备 |
 
-## AuthForm
+## AuthForm<sup>10+</sup>
 
 表示设备认证类型的枚举类。
 
@@ -262,8 +262,6 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 同步获取所有可信设备列表。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **返回值：**
@@ -295,8 +293,6 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
 
 获取所有可信设备列表。使用callback异步回调。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -336,8 +332,6 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 获取所有可信设备列表。使用Promise异步回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **返回值：**
@@ -370,8 +364,6 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 同步获取本地设备信息。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **返回值：**
@@ -403,8 +395,6 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 获取本地设备信息。使用callback异步回调。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -444,8 +434,6 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 获取本地设备信息。使用Promise异步回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **返回值：**
@@ -472,13 +460,88 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   });
   ```
 
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
+
+通过指定设备的网络标识获取该设备的信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型                                     | 必填   | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  try {
+    dmInstance.getDeviceInfo(networkId, (err, data) => {
+    if (err) {
+      console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+      return;
+    }
+      console.log('get device info: ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### getDeviceInfo<sup>10+</sup>
+
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
+
+通过指定设备的网络标识获取该设备的信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名   | 类型                                     | 必填 | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | 是   | 设备的网络标识。 |
+  
+**返回值：**
+
+  | 类型                                       | 说明                    |
+  | ---------------------------------------- | --------------------- |
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                        |
+| ------- | --------------------------------------------------------------- |
+| 11600101| Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  dmInstance.getDeviceInfo(networkId).then((data) => {
+    console.log('get device info: ' + JSON.stringify(data));
+  }).catch((err) => {
+    console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+  });
+  ```
+
 ### startDeviceDiscovery<sup>8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 发现周边设备。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -523,8 +586,6 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 发现周边设备。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -580,8 +641,6 @@ stopDeviceDiscovery(subscribeId: number): void
 
 停止发现周边设备。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -615,8 +674,6 @@ stopDeviceDiscovery(subscribeId: number): void
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 发布设备发现。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -659,8 +716,6 @@ unPublishDeviceDiscovery(publishId: number): void
 
 停止发布设备发现。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -694,8 +749,6 @@ unPublishDeviceDiscovery(publishId: number): void
 authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
 
 认证设备。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -757,8 +810,6 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 解除认证设备。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -797,8 +848,6 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
 验证认证信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -844,8 +893,6 @@ setUserOperation(operateAction: number, params: string): void;
 
 设置用户ui操作行为。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -879,8 +926,6 @@ setUserOperation(operateAction: number, params: string): void;
 requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
 获取凭据的注册信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -916,8 +961,6 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
 导入凭据信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -970,8 +1013,6 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 删除凭据信息。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1008,8 +1049,6 @@ on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
 ui状态变更回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1040,8 +1079,6 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 取消ui状态变更回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1066,8 +1103,6 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
 注册设备状态回调。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1096,8 +1131,6 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 取消注册设备状态回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1124,8 +1157,6 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
 
 注册发现设备回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1154,8 +1185,6 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 取消注册设备发现回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1182,8 +1211,6 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
 注册设备发现失败回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1212,8 +1239,6 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 取消注册设备发现失败回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1240,8 +1265,6 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
 注册发布设备发现回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1271,8 +1294,6 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 取消注册设备发布成功回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1299,8 +1320,6 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
 注册设备发布失败回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1329,8 +1348,6 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 取消注册设备发布失败回调。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1358,8 +1375,6 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 注册设备管理服务死亡监听。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
@@ -1386,8 +1401,6 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
 取消注册设备管理服务死亡监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 

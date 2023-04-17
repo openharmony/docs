@@ -4,15 +4,15 @@
 应用间`HSP`的宿主应用是一种特殊状态的应用，只能由一个`HSP`组成，不会独立运行在设备上，而是被普通应用模块的依赖项引用。当普通应用运行时，通过动态调用的方式使用应用间`HSP`提供的能力，从而实现应用自身所需要的功能。
 
 ## 注意事项
-1. 应用间`HSP`的代码会运行再开发者应用的进程中，调用相关代码时，需要做好异常捕获与容错处理，防止由于应用间`HSP`功能异常导致的稳定性问题。
+1. 应用间`HSP`的代码会运行在开发者应用的进程中，调用相关代码时，需要做好异常捕获与容错处理，防止由于应用间`HSP`功能异常导致的稳定性问题。
 2. 一个应用可以同时依赖多个应用间`HSP`。
 3. 应用间`HSP`会影响开发者应用自身的启动时间，依赖过多的应用间`HSP`可能会导致启动时延发生明显的劣化，建议将依赖的数目控制在16个以内。
-4. 当前三方开发者开发者只能使用系统提供的应用间`HSP`，不支持开发并发布自己的应用间`HSP`。
+4. 应用间`HSP`安装时需要对特权权限进行校验，如果想要开发应用间`HSP`，需要配置allowAppShareLibrary应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
 ## 应用间HSP的使用
 应用间HSP会分为两部分对外发布：
 
-一部分为[HAR](har-package.md)，这部分`HAR`中不会包含具体的功能实现代码，而仅仅包含导出的对象与方法，所以体积很小。应用开发者将`HAR`集成到自身的工程中，然后就可以通过调用`HAR`中提供的对象与方法完成自身的应用功能。
+一部分为[HAR](har-package.md)，`HAR`包中不会包含具体的功能实现代码，而仅仅包含导出的对象与方法，所以体积很小。应用开发者将`HAR`包集成到自身的工程中，然后就可以通过调用`HAR`包中提供的对象与方法完成自身的应用功能。
 
 另外一部分为HSP，这部分为应用间`HSP`的具体实现，里面包含js/ts代码、C++库、资源和配置文件。这部分会上架到应用市场或者集成到系统版本中。
 
@@ -23,7 +23,7 @@ src
 ├── main
 |    └── module.json5
 ├── index.d.ets
-└── package.json
+└── oh-package.json5
 ```
 `index.d.ets`内容样例如下：
 ```ts
@@ -117,7 +117,7 @@ extern "C" __attribute__((constructor)) void RegisterLibaModule(void) {
 }
 ```
 ### 使用HAR导出的能力
-引用`HAR`前，需要先配置对`HAR`的依赖，配置方式可参考[文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。`HAR`配置成功后，在配置模块的`module.json`中会生成相关依赖项信息，如下所示：
+引用`HAR`前，需要先配置对`HAR`的依赖，配置方式可参考[文档](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391)。`HAR`配置成功后，在配置模块的`module.json5`中会生成相关依赖项信息，如下所示：
 ```json
 "dependencies": [
       {

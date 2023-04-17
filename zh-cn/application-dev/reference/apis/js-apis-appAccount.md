@@ -148,7 +148,6 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
 | 12300007 | The number of accounts reaches the upper limit. |
-| 12400003 | The number of custom data reaches the upper limit. |
 
 **示例：**
 
@@ -248,7 +247,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or options. |
+| 12300002 | Invalid owner or options. |
 | 12300007 | The number of accounts reaches the upper limit. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -481,7 +480,6 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -527,7 +525,6 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -903,7 +900,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -950,7 +947,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -1267,7 +1264,6 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 | ------- | ------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12300011 | Callback has been registered. |
 | 12400001 | Application not found. |
 
 **示例：**
@@ -1304,7 +1300,6 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 | ------- | -------|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
-| 12300012 | Callback has not been registered. |
 
 **示例：**
 
@@ -1347,7 +1342,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -1410,8 +1405,8 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
-| 12300003 | Account not exist. |
+| 12300002 | Invalid name, owner, authType or options. |
+| 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
 | 12300114 | Authenticator service exception. |
@@ -1522,7 +1517,7 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1562,7 +1557,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
@@ -1609,7 +1604,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
@@ -1650,7 +1645,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1698,7 +1693,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1739,7 +1734,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1789,7 +1784,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1831,10 +1826,9 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -1879,10 +1873,9 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -2092,31 +2085,34 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    try {
-      appAccountManager.getAuthCallback(sessionId, (err, callback) => {
-        if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log("getAuthCallback err: "  + JSON.stringify(err));
-            return;
-        }
-        var result = {
-          accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
-          },
-          tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      try {
+        appAccountManager.getAuthCallback(sessionId, (err, callback) => {
+          if (err != null) {
+              console.log("getAuthCallback err: "  + JSON.stringify(err));
+              return;
           }
-        }; 
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      });
-    } catch (err) {
-        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+          var result = {
+            accountInfo: {
+              name: "Lisi",
+              owner: "com.example.accountjsdemo",
+            },
+            tokenInfo: {
+              token: "xxxxxx",
+              authType: "getSocialData"
+            }
+          }; 
+          callback.onResult(0, result);
+        });
+      } catch (err) {
+          console.log("getAuthCallback exception: "  + JSON.stringify(err));
+      }
     }
-  });
+  }
   ```
 
 ### getAuthCallback<sup>9+</sup>
@@ -2150,9 +2146,10 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
 
-  featureAbility.getWant().then((want) => {
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
         appAccountManager.getAuthCallback(sessionId).then((callback) => {
@@ -2166,16 +2163,15 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
             authType: "getSocialData"
           }
         };
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(0, result);
         }).catch((err) => {
-            console.log("getAuthCallback err: "  + JSON.stringify(err));
+          console.log("getAuthCallback err: "  + JSON.stringify(err));
         });
       } catch (err) {
         console.log("getAuthCallback exception: "  + JSON.stringify(err));
       }
-  }).catch((err) => {
-      console.log("getWant err: "  + JSON.stringify(err));
-  });
+    }
+  }
   ```
 
 ### queryAuthenticatorInfo<sup>9+</sup>
@@ -2281,7 +2277,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2331,7 +2327,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 | 错误码ID | 错误信息 |
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2594,7 +2590,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 | 错误码ID | 错误信息|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or options. |
+| 12300002 | Invalid name, owner or options. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -4287,10 +4283,12 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
         if (err.code != account_appAccount.ResultCode.SUCCESS) {
             console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
             return;
@@ -4300,8 +4298,9 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
                       [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                       [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-    });
-  });
+      });
+    }
+  }
   ```
 
 ### getAuthenticatorCallback<sup>(deprecated)</sup>
@@ -4331,22 +4330,22 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 **示例：**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
 
-  featureAbility.getWant().then((want) => {
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-          var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                        [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
-          console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+        console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
-  }).catch((err) => {
-      console.log("getWant err: "  + JSON.stringify(err));
-  });
+    }
+  }
   ```
 
 ### getAuthenticatorInfo<sup>(deprecated)</sup>

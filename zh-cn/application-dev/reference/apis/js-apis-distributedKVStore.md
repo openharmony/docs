@@ -152,7 +152,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | backup          | boolean                         | 否   | 设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步。默认为false，即手动同步；设置为ture时，表示自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| autoSync        | boolean                         | 否   | 设置数据库文件是否自动同步。默认为false，即手动同步；设置为true时，表示自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
 | kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | securityLevel   | [SecurityLevel](#securitylevel) | 是   |设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
@@ -2086,10 +2086,16 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2134,10 +2140,16 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2174,10 +2186,16 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2240,10 +2258,16 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2299,10 +2323,16 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2355,10 +2385,16 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2406,6 +2442,12 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2456,10 +2498,16 @@ delete(key: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2507,6 +2555,12 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 | ------------ | -------------------------------------- |
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2561,10 +2615,16 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2609,10 +2669,16 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2676,10 +2742,16 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100003     | Database corrupted.                      |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -2711,7 +2783,7 @@ try {
         console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -2763,7 +2835,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`)
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
 }
 ```
 
@@ -2822,7 +2894,7 @@ try {
         console.error(`Fail to get data.code is ${err.code},message is ${err.message} `);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`)
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
 }
 ```
 
@@ -3198,8 +3270,10 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
+
 
 **示例：**
 
@@ -3241,7 +3315,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -3271,6 +3345,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3308,7 +3383,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3333,6 +3408,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3370,7 +3446,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -3400,6 +3476,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3434,7 +3511,7 @@ try {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }    
 ```
 
@@ -3461,6 +3538,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3489,7 +3567,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3521,6 +3599,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3545,7 +3624,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3577,7 +3656,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3612,7 +3691,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3669,7 +3748,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3731,7 +3810,7 @@ try {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3986,9 +4065,15 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -4053,9 +4138,15 @@ startTransaction(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[分布式键值数据库错误码](../errorcodes/errorcode-distributedKVStore.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 15100005     | Database or result set already closed. |
+| **错误码ID** | **错误信息**                             |
+| ------------ | ---------------------------------------- |
+| 15100005     | Database or result set already closed.   |
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
 
 **示例：**
 
@@ -4110,7 +4201,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4146,7 +4237,7 @@ try {
         console.error(`Fail to commit.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.ode is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.ode is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4184,7 +4275,7 @@ try {
         }
     });
 }catch(e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4220,7 +4311,7 @@ try {
         console.error(`Fail to rollback.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4251,7 +4342,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4285,7 +4376,7 @@ try {
         console.error(`Fail to enable sync.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4319,7 +4410,7 @@ try {
         console.info('Succeeded in setting syncRange');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4356,7 +4447,7 @@ try {
         console.error(`Fail to set syncRange.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4388,7 +4479,7 @@ try {
         console.info('Succeeded in setting syncParam');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4423,7 +4514,7 @@ try {
         console.error(`Fail to set syncParam.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4431,7 +4522,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
 > 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
@@ -4500,7 +4591,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
 > 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
@@ -4591,7 +4682,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
-| 15100001     | Over max subscribe limits.             |
+| 15100001     | Over max  limits.                      |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -4602,7 +4693,7 @@ try {
         console.info(`dataChange callback call data: ${data}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4772,7 +4863,7 @@ try {
         console.info('Succeeded in getting securityLevel');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4808,7 +4899,7 @@ try {
         console.error(`Fail to get SecurityLevel.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -5585,6 +5676,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5628,7 +5720,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -5658,6 +5750,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5695,7 +5788,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -5725,6 +5818,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5784,6 +5878,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5834,6 +5929,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5914,6 +6010,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -5986,6 +6083,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6020,7 +6118,7 @@ try {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }    
 ```
 
@@ -6050,6 +6148,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6122,6 +6221,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6150,7 +6250,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6182,6 +6282,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6206,7 +6307,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6238,6 +6339,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6266,7 +6368,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6303,6 +6405,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
+| 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6327,7 +6430,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6384,7 +6487,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6446,7 +6549,7 @@ try {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 

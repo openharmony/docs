@@ -27,8 +27,7 @@
                 "host": "www.test.com",
                 "port": "8080",
                 // prefix matching
-                "pathStartWith": "query",
-                "type": "text/*"
+                "pathStartWith": "query"
               },
               {
                 "scheme": "http",
@@ -53,12 +52,11 @@ function implicitStartAbility() {
   let context = getContext(this) as common.UIAbilityContext;
   let wantInfo = {
     // uncomment line below if wish to implicitly query only in the specific bundle.
-    // bundleName: "com.example.myapplication",
-    "action": "ohos.want.action.viewData",
+    // bundleName: 'com.example.myapplication',
+    'action': 'ohos.want.action.viewData',
     // entities can be omitted.
-    "entities": ["entity.system.browsable"],
-    "uri": "https://www.test.com:8080/query/student",
-    "type": "text/plain"
+    'entities': ['entity.system.browsable'],
+    'uri': 'https://www.test.com:8080/query/student'
   }
   context.startAbility(wantInfo).then(() => {
     // ...
@@ -75,5 +73,5 @@ function implicitStartAbility() {
 3. 待匹配Ability的skills配置中内uris拼接为`https://www.test.com:8080/query*` （其中*表示通配符），包含调用方传入的want参数的uri，uri匹配成功。
 4. 调用方传入的want参数的type不为空，待匹配Ability的skills配置中的type不为空且包含调用方传入的want参数的type，type匹配成功。
 
-当有多个匹配应用时，会被应用选择器展示给用户进行选择。 示意效果如下图所示。  
+当存在多个匹配的应用时，系统将弹出应用选择框供用户选择。示意效果如下图所示。  
 ![](figures/ability-startup-with-implicit-want1.png)

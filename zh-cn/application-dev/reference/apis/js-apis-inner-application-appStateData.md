@@ -1,4 +1,4 @@
-# AppStateData
+ # AppStateData
 
 定义应用状态信息，可以通过[getForegroundApplications](js-apis-app-ability-appManager.md#appmanagergetforegroundapplications)获取当前应用的相关信息。
 
@@ -19,7 +19,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundAppInfos() {
     appManager.getForegroundApplications((error, data) => {
-        if (error && error.code) {
+        if (error) {
             console.log('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }

@@ -1,4 +1,8 @@
-#  Bundle Error Codes
+# Bundle Error Codes
+
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
 ## 17700001 Bundle Name Does Not Exist
 
@@ -16,7 +20,6 @@ When a query API is called, the bundle name passed in does not exist.
 2. The corresponding bundle is not installed.
 
 **Solution**
-
 1. Check whether the spelling of the bundle name is correct.
 2. Check whether the corresponding bundle is installed.
 
@@ -125,7 +128,6 @@ When an API of the **distributedBundle** module is called, the device ID passed 
 2. The device ID does not exist.
 
 **Solution**
-
 1. Check whether the device ID is correct.
 2. Check whether the device ID exists.
 
@@ -140,13 +142,11 @@ Failed to install the HAP because the HAP fails to be parsed.
 When the **install** API of the **installer** module is called, the HAP passed in fails to be parsed.
 
 **Possible Causes**
-
 1. The HAP is not in ZIP format.
 2. The configuration file in the HAP is not in JSON format.
 3. Necessary fields are missing in the configuration file.
 
 **Solution**
-
 1. Check whether the HAP is in ZIP format.
 2. Check whether the configuration file is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
 3. Check whether an error message is displayed when DevEco Studio compiles the HAP. If necessary fields are missing, an error message will be displayed.
@@ -170,7 +170,7 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 **Solution**
 1. Check whether the HAP is signed.
-2. Ensure that the signature certificate of the HAP is applied for from the application market.
+2. Ensure that the signing certificate of the HAP is applied for from the application market.
 3. Check whether the same certificate is used for signing multiple HAPs.
 4. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
 
@@ -248,6 +248,24 @@ The version number is earlier than the version in use.
 
 Ensure that the version of the bundle to install is not earlier than the version in use.
 
+## 17700018 Bundle Installation Failure Because the Dependent Module Does Not Exist
+
+**Error Message**
+
+Failed to install because the dependent module does not exist.
+
+**Description**
+
+The dependent module does not exist during the HAP or HPS installation.
+
+**Possible Causes**
+
+The dependent module is not installed.
+
+**Solution**
+
+Install the dependent modules first.
+
 ## 17700020 Failure to Uninstall Preinstalled Applications
 
 **Error Message**
@@ -259,6 +277,7 @@ The preinstalled app cannot be uninstalled.
 Calling the **uninstall** API of the **installer** module to uninstall a preinstalled application fails.
 
 **Possible Causes**
+
 1. You might want to uninstall a non-preinstalled application but passed the bundle name of a preinstalled app.
 2. The preinstalled application cannot be uninstalled.
 
@@ -331,6 +350,7 @@ Failed to get the profile because there is no profile in the HAP.
 When an API for querying the profile is called, the configuration file does not exist 
 
 **Possible Causes**
+
 1. The metadata name passed in the API does not exist in the configuration file.
 2. The content of the configuration file is not in JSON format.
 
@@ -444,7 +464,7 @@ The application is a system application and the **AllowAppDataNotCleared** field
 
 **Solution**
 1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared field** is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
 
 ## 17700031 HAP Installation Fails Due to Overlay Feature Verification Failure
 
@@ -468,4 +488,164 @@ The target application and the to-be-installed application with the overlay feat
 3. Ensure that the target application is not an application with the overlay feature.
 4. Ensure that the target module is not a module with the overlay feature.
 
+## 17700032 Application Does Not Contain a Module with the Overlay Feature
 
+**Error Message**
+
+The specified bundle does not contain any overlay module.
+
+**Description**
+
+An API is called to obtain the **overlayModuleInfo** object of another application, but that application does not contain a module with the overlay feature.
+
+**Possible Causes**
+
+The specified application does not contain a module with the overlay feature.
+
+**Solution**
+
+Check whether the application contains a module with the overlay feature.
+
+## 17700033 Module Is Not Configured with the Overlay Feature
+
+**Error Message**
+
+The specified module is not an overlay module.
+
+**Description**
+
+An API is called to obtain the **overlayModuleInfo** object of a module, but the module is not configured with the overlay feature.
+
+**Possible Causes**
+
+The specified module is not a module with the overlay feature.
+
+**Solution**
+
+Check whether the module is configured with the overlay feature.
+
+## 17700034 Module Is Configured with the Overlay Feature
+
+**Error Message**
+
+The specified module is an overlay module.
+
+**Description**
+
+An API is called to obtain the **overlayModuleInfo** object based on the target module name, but that module is configured with the overlay feature.
+
+**Possible Causes**
+
+The specified module is configured with the overlay feature.
+
+**Solution**
+
+Check whether the specified module is configured with the overlay feature.
+
+## 17700035 Application Contains Only Modules with the Overlay Feature
+
+**Error Message**
+
+The specified bundle is an overlay bundle.
+
+**Description**
+
+An API is called to obtain the **overlayModuleInfo** object based on the target module name of another application, but that application contains only modules with the overlay feature.
+
+**Possible Causes**
+
+The specified application contains only modules with the overlay feature.
+
+**Solution**
+
+Check whether the application contains only modules with the overlay feature.
+
+## 17700036 Failure in Installing the Shared Library Because of No AllowAppShareLibrary Privilege
+
+**Error Message**
+
+Failed to install the HSP because lacks appropriate permissions.
+
+**Description**
+
+The shared library is not configured with the **AllowAppShareLibrary** privilege, resulting in security and privacy risks. As a result, the installation fails.
+
+**Possible Causes**
+
+The shared library does not request the **AllowAppShareLibrary** privilege before being released.
+
+**Solution**
+
+Configure the **AllowAppShareLibrary** privilege for the shared library, re-sign the library, and release it.
+
+## 17700037 Failure in Uninstalling the Shared Library Due to Dependency
+
+**Error Message**
+
+The version of shared bundle is dependent on other applications.
+
+**Description**
+
+Other applications depend on the shared library, causing the uninstallation to fail.
+
+**Possible Causes**
+1. The version specified during the uninstallation is the latest version of the shared library, and the shared library is depended on by other applications.
+2. No version is not specified during the uninstallation, meaning that all versions of the shared library will be uninstalled, and the shared library is depended on by other applications.
+
+**Solution**
+1. Check whether the shared library to uninstall is depended on by other applications.
+2. Check whether the version of the shared library to uninstall is the latest version of the shared library.
+
+## 17700038 Shared Library to Uninstall Does Not Exist
+
+**Error Message**
+
+The specified shared bundle does not exist.
+
+**Description**
+
+The shared library to uninstall does not exist.
+
+**Possible Causes**
+1. The version specified during the uninstallation is different from the version of the shared library installed.
+2. The shared library to uninstall is not installed.
+
+**Solution**
+1. Check whether the shared library exists.
+2. Check whether the version of the shared library is the same as that installed.
+
+## 17700039 Failure in Installing an Inter-Application Shared Library
+
+**Error Message**
+
+Failed to install because disallow install a shared bundle by hapFilePaths.
+
+**Description**
+
+During application installation, the installation package passed in is of the inter-application shared library type.
+
+**Possible Causes**
+1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
+
+**Solution**
+1. Use the **-s** parameter to specify the installation package path of an inter-application shared library.
+2. Use the **sharedBundleDirPaths** parameter in **installParam** to specify the installation package path of an inter-application shared library.
+
+## 17700040 Failure in Uninstalling an Inter-Application Shared Library
+
+**Error Message**
+
+The specified bundle is a shared bundle which cannot be uninstalled.
+
+**Description**
+
+During application uninstall, the bundle name of an inter-application shared library is passed in.
+
+**Possible Causes**
+1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
+
+**Solution**
+1. Use the **-s** parameter to specify the application to be uninstalled as a shared library application.
+2. Use the **bundleName** and **versionCode** parameters in **UninstallParam** to specify the bundle name and version of the shared library to be uninstalled.

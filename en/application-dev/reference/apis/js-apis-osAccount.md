@@ -327,7 +327,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
@@ -377,7 +377,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
@@ -475,23 +475,19 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this OS account has been verified. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
 **System capability**: SystemCapability.Account.OsAccount
 
 **Parameters**
 
 | Name  | Type                        | Mandatory| Description                                                           |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the OS account has been verified; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
 
 **Error codes**
 
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not found. |
 
 **Example**
 
@@ -555,7 +551,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 ### checkOsAccountVerified<sup>9+</sup>
 
-checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
+checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 Checks whether an OS account has been verified. This API uses a promise to return the result.
 
@@ -567,7 +563,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 
 | Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | No  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
+| localId | number | Yes  | ID of the target OS account. If this parameter is not specified, this API checks whether the current OS account has been verified.|
 
 **Return value**
 
@@ -724,7 +720,7 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -778,7 +774,7 @@ Sets or removes constraints for an OS account. This API uses a promise to return
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -1862,7 +1858,7 @@ Obtains information about the OS account of the given ID. This API uses a promis
 | ID| Error Message            |
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId.    |
+| 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
 **Example**: Query information about OS account 100.
@@ -2235,7 +2231,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2278,7 +2274,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
-| 12300003 | Account not found. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2404,7 +2400,6 @@ Subscribes to the OS account activation states, including the states of the acco
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300011 | Callback has been registered. |
 
 **Example**
 
@@ -2446,7 +2441,6 @@ Unsubscribes from the OS account activation states, including the states of the 
 | -------- | ------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
-| 12300012 | Callback has not been registered. |
 
 **Example**
 
@@ -2645,7 +2639,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 | ID| Error Message      |
 | -------- | ------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
+| 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **Example**
@@ -2692,7 +2686,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 | ID| Error Message      |
 | -------- | ------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid localId or constraint. |
+| 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **Example**
@@ -4117,9 +4111,9 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **Example**
   ```js
@@ -4176,9 +4170,9 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | 12300101 | Credential is incorrect. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
-| 12300110 | Authentication locked. |
+| 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
-| 12300112 | Authentication service busy. |
+| 12300112 | Authentication service is busy. |
 
 **Example**
   ```js
@@ -4286,7 +4280,7 @@ Register a PIN inputer.
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid inputer. |
+| 12300002 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
 
 **Example**
@@ -4351,7 +4345,7 @@ Register a credential inputer.
 | ID| Error Message                    |
 | -------- | --------------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Invalid authType or inputer. |
+| 12300002 | Invalid authType or inputer. |
 | 12300103 | The credential inputer has been registered. |
 | 12300106 | Unsupported authType. |
 
@@ -4433,15 +4427,26 @@ Authenticates a domain account.
 **Example**
   ```js
   let plugin = {
-    auth: (domainInfo, credential, callback) => {
+    auth: (domainAccountInfo, credential, callback) => {
       // mock authentication
-      callback.onResult(0, {});
-    }
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
   let challenge = new Uint8Array([0]);
-  let authType = account_osAccount.AuthType.PIN;
+  let authType = account_osAccount.AuthType.DOMAIN;
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
@@ -4453,6 +4458,235 @@ Authenticates a domain account.
   } catch (err) {
     console.log('auth exception = ' + JSON.stringify(err));
   }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback): void
+
+Authenticates a domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### authWithToken<sup>10+</sup>
+
+authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account by the authorization token.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| token   | Uint8Array  | Yes  | Authorization token generated when the PIN or biometric authentication is successful.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {
+      // mock authentication
+      // notify authentication result
+      callback.onResult(0, {
+        token: new Uint8Array([0]),
+        remainTimes: 5,
+        freezingTime: 0
+      });
+    },
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAccountInfo<sup>10+</sup>
+
+getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
+
+Obtains information about a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domain   | string  | Yes  | Domain to which the account belongs.|
+| accountName   | string  | Yes  | Name of the account.|
+| callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {
+      // mock getting account information
+      // notify result
+      callback({
+        code: 0
+      }, {
+        domain: domain,
+        accountName: accountName,
+        accountId: "xxxx"
+      })
+    },
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAuthStatusInfo<sup>10+</sup>
+
+getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;AuthStatusInfo&gt;): void
+
+Obtains the authentication status of a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {
+      callback({
+        code: 0
+      }, {
+        remainTimes: 5,
+        freezingTime: 0
+      })
+    },
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### bindAccount<sup>10+</sup>
+
+bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: AsyncCallback&lt;void&gt;): void
+
+Binds a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {
+      // mock unbinding operation
+      // notify binding result
+      callback({code: 0})
+    },
+    unbindAccount: (domainAccountInfo, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### unbindAccount<sup>10+</sup>
+
+unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;void&gt;): void
+
+Unbinds a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {
+      // mock unbinding operation
+      // notify unbinding result
+      callback({code: 0})
+    }
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ## DomainAccountManager <sup>9+</sup>
@@ -4485,10 +4719,13 @@ Registers a domain plug-in.
 **Example**
   ```js
   let plugin = {
-    auth: (domainInfo, credential, callback) => {
-      // mock authentication
-      callback.onResult(0, {});
-    }
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {}
   }
   try {
     account_osAccount.DomainAccountManager.registerPlugin(plugin);
@@ -4517,6 +4754,252 @@ Unregisters this domain plug-in.
     console.log('unregisterPlugin success.');
   } catch(err) {
     console.log("unregisterPlugin err:" + JSON.stringify(err));
+  }
+  ```
+
+### auth<sup>10+</sup>
+
+auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
+
+Authenticates a domain account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| credential   | Uint8Array  | Yes  | Credentials of the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo or credential. |
+| 12300003 | Domain account does not exist. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  let credential = new Uint8Array([0])
+  try {
+    account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    });
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(callback: IUserAuthCallback): void
+
+Authenticates this domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup({
+      onResult: (resultCode, authResult) => {
+        console.log('auth resultCode = ' + resultCode);
+        console.log('auth authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('auth exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### authWithPopup<sup>10+</sup>
+
+authWithPopup(localId: number, callback: IUserAuthCallback): void
+
+Authenticates a domain account in a pop-up window.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| localId   | number  | Yes  | Local ID of the OS account bound to the domain account.|
+| callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback invoked to return the authentication result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId. |
+| 12300003 | No domain account is bound. |
+| 12300013 | Network exception. |
+| 12300101 | Authentication failed. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300113 | Authentication service does not exist. |
+| 12300114 | Authentication service exception. |
+
+**Example**
+  ```js
+  try {
+    account_osAccount.DomainAccountManager.authWithPopup(100, {
+      onResult: (resultCode, authResult) => {
+        console.log('authWithPopup resultCode = ' + resultCode);
+        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
+      }
+    })
+  } catch (err) {
+    console.log('authWithPopup exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a domain account exists.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback invoked to return the result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err, result) => {
+      if (err) {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+      } else {
+        console.log("hasAccount result: " + result);
+      }
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### hasAccount<sup>10+</sup>
+
+hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
+
+Checks whether a domain account exists.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainAccountInfo. |
+| 12300013 | Network exception. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan"
+  }
+  try {
+    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result) => {
+      console.log("hasAccount result: " + result);
+    }).catch((err) => {
+        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4904,7 +5387,6 @@ Obtains authentication information. This API uses an asynchronous callback to re
 | ID| Error Message              |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -4944,7 +5426,6 @@ Obtains authentication information of the specified type. This API uses an async
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -4989,7 +5470,6 @@ Obtains authentication information of the specified type. This API uses a promis
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not found. |
 
 **Example**
   ```js
@@ -5027,6 +5507,12 @@ Called to set data in a PIN operation.
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
 | authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
+
+**Error codes**
+
+| ID| Error Message              |
+| -------- | ------------------- |
+| 12300002 | Invalid pinSubType. |
 
 **Example**
   ```js
@@ -5254,7 +5740,7 @@ Defines the executor property.
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | Yes   | Result.        |
 | authSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.|
-| remainTimes  | number                                   | No   | Remaining time.    |
+| remainTimes  | number                                   | No   | Number of remaining authentication times.    |
 | freezingTime | number                                   | No   | Freezing time.    |
 
 ## AuthResult<sup>8+</sup>
@@ -5268,7 +5754,7 @@ Defines the authentication result information.
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
 | token        | Uint8Array  | No   | Authentication token.    |
-| remainTimes  | number      | No   | Remaining time.    |
+| remainTimes  | number      | No   | Number of remaining authentication times.    |
 | freezingTime | number      | No   | Freezing time.    |
 
 ## CredentialInfo<sup>8+</sup>
@@ -5351,7 +5837,7 @@ Enumerates the authentication credential types.
 | PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
 | FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
-| DOMAIN<sup>10+</sup>  | 1024     | Domain authentication.|
+| DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
 
@@ -5368,7 +5854,7 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
-| DOMAIN_MIXED<sup>10+</sup>    | 10240001 | Mixed domain authentication credentials.  |
+| DOMAIN_MIXED<sup>9+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -5490,6 +5976,7 @@ Defines the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API.|
 
 ## Constraints
 
@@ -5586,3 +6073,16 @@ Enumerates the constraint sources.
 | CONSTRAINT_TYPE_BASE | 1      | Constraint from system settings.  |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | Constraint from the device owners' settings.  |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | Constraint from the profile owners' settings.  |
+
+## AuthStatusInfo<sup>10+</sup>
+
+Presents the authentication status information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| remainTimes  | number | Yes  | Number of remaining authentication times.  |
+| freezingTime | number | Yes  | Freezing time.|

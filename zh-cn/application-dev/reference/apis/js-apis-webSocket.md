@@ -1,14 +1,15 @@
 # @ohos.net.webSocket (WebSocket连接)
 
-> **说明：** 
+> **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket)方法创建[WebSocket](#websocket)对象，然后通过[connect](#connect)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen)事件的回调，之后客户端就可以通过[send](#send)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage)事件的回调。当客户端不要此连接时，可以通过调用[close](#close)方法主动断开连接，之后客户端会收到[close](#onclose)事件的回调。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket)方法创建[WebSocket](#websocket)对象，然后通过[connect](#connect)方法连接到服务器。
+当连接成功后，客户端会收到[open](#onopen)事件的回调，之后客户端就可以通过[send](#send)方法与服务器进行通信。
+当服务器发信息给客户端时，客户端会收到[message](#onmessage)事件的回调。当客户端不要此连接时，可以通过调用[close](#close)方法主动断开连接，之后客户端会收到[close](#onclose)事件的回调。
 
 若在上述任一过程中发生错误，客户端会收到[error](#onerror)事件的回调。
-
 
 ## 导入模块
 
@@ -21,44 +22,48 @@ import webSocket from '@ohos.net.webSocket';
 ```js
 import webSocket from '@ohos.net.webSocket';
 
-var defaultIpAddress = "ws://";
+let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-    console.log("on open, status:" + value['status'] + ", message:" + value['message']);
-    // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
-    ws.send("Hello, server!", (err, value) => {
-        if (!err) {
-            console.log("send success");
-        } else {
-            console.log("send fail, err:" + JSON.stringify(err));
-        }
-    });
+  if (err != undefined) {
+    console.log(JSON.stringify(err))
+    return
+  }
+  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
+  ws.send("Hello, server!", (err, value) => {
+    if (!err) {
+      console.log("send success");
+    } else {
+      console.log("send fail, err:" + JSON.stringify(err));
+    }
+  });
 });
 ws.on('message', (err, value) => {
-    console.log("on message, message:" + value);
-    // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
-    if (value === 'bye') {
-        ws.close((err, value) => {
-            if (!err) {
-                console.log("close success");
-            } else {
-                console.log("close fail, err is " + JSON.stringify(err));
-            }
-        });
-    }
+  console.log("on message, message:" + value);
+  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
+  if (value === 'bye') {
+    ws.close((err, value) => {
+      if (!err) {
+        console.log("close success");
+      } else {
+        console.log("close fail, err is " + JSON.stringify(err));
+      }
+    });
+  }
 });
 ws.on('close', (err, value) => {
-    console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err) => {
-    console.log("on error, error:" + JSON.stringify(err));
+  console.log("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, (err, value) => {
-    if (!err) {
-        console.log("connect success");
-    } else {
-        console.log("connect fail, err:" + JSON.stringify(err));
-    }
+  if (!err) {
+    console.log("connect success");
+  } else {
+    console.log("connect fail, err:" + JSON.stringify(err));
+  }
 });
 ```
 
@@ -82,7 +87,6 @@ createWebSocket(): WebSocket
 let ws = webSocket.createWebSocket();
 ```
 
-
 ## WebSocket
 
 在调用WebSocket的方法前，需要先通过[webSocket.createWebSocket](#websocketcreatewebsocket)创建一个WebSocket。
@@ -93,13 +97,16 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                         |
+| 参数名   | 类型                     | 必填 | 说明                         |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                   |
@@ -117,14 +124,13 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
-	if (!err) {
-		console.log("connect success");
-	} else {
-		console.log("connect fail, err:" + JSON.stringify(err))
-	}
+  if (!err) {
+    console.log("connect success");
+  } else {
+    console.log("connect fail, err:" + JSON.stringify(err))
+  }
 });
 ```
-
 
 ### connect
 
@@ -132,13 +138,16 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
 
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                                                    |
+| 参数名   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | 是   | 建立WebSocket连接的URL地址。                            |
 | options  | WebSocketRequestOptions  | 是   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -157,19 +166,18 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, {
-	header: {
-		"key": "value",
-		"key2": "value2"
-	}
+  header: {
+    "key": "value",
+    "key2": "value2"
+  }
 }, (err, value) => {
-	if (!err) {
-		console.log("connect success");
-	} else {
-		console.log("connect fail, err:" + JSON.stringify(err))
-	}
+  if (!err) {
+    console.log("connect success");
+  } else {
+    console.log("connect fail, err:" + JSON.stringify(err))
+  }
 });
 ```
-
 
 ### connect
 
@@ -177,13 +185,16 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
 
+> **说明：**
+> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称  | 类型                    | 必填 | 说明                                                    |
+| 参数名  | 类型                    | 必填 | 说明                                                    |
 | ------- | ----------------------- | ---- | ------------------------------------------------------- |
 | url     | string                  | 是   | 建立WebSocket连接的URL地址。                            |
 | options | WebSocketRequestOptions | 否   | 参考[WebSocketRequestOptions](#websocketrequestoptions)。 |
@@ -208,12 +219,11 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value) => {
-	console.log("connect success")
+  console.log("connect success")
 }).catch((err) => {
-	console.log("connect fail, error:" + JSON.stringify(err))
+  console.log("connect fail, error:" + JSON.stringify(err))
 });
 ```
-
 
 ### send
 
@@ -227,7 +237,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明         |
+| 参数名   | 类型                     | 必填 | 说明         |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。   |
@@ -245,16 +255,15 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
-	ws.send("Hello, server!", (err, value) => {
-		if (!err) {
-			console.log("send success");
-		} else {
-			console.log("send fail, err:" + JSON.stringify(err))
-		}
-	});
+  ws.send("Hello, server!", (err, value) => {
+    if (!err) {
+      console.log("send success");
+    } else {
+      console.log("send fail, err:" + JSON.stringify(err))
+    }
+  });
 });
 ```
-
 
 ### send
 
@@ -268,7 +277,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 说明         |
+| 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | 是   | 发送的数据。<br>API 6及更早版本仅支持string类型。API 8起同时支持string和ArrayBuffer类型。 |
 
@@ -291,15 +300,14 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err, value) => {
-	let promise = ws.send("Hello, server!");
-	promise.then((value) => {
-		console.log("send success")
-	}).catch((err) => {
-		console.log("send fail, error:" + JSON.stringify(err))
-	});
+  let promise = ws.send("Hello, server!");
+  promise.then((value) => {
+    console.log("send success")
+  }).catch((err) => {
+    console.log("send fail, error:" + JSON.stringify(err))
+  });
 });
 ```
-
 
 ### close
 
@@ -313,7 +321,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明       |
+| 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。 |
 
@@ -328,16 +336,14 @@ close(callback: AsyncCallback\<boolean\>): void
 
 ```js
 let ws = webSocket.createWebSocket();
-let url = "ws://"
 ws.close((err, value) => {
-	if (!err) {
-		console.log("close success")
-	} else {
-		console.log("close fail, err is " + JSON.stringify(err))
-	}
+  if (!err) {
+    console.log("close success")
+  } else {
+    console.log("close fail, err is " + JSON.stringify(err))
+  }
 });
 ```
-
 
 ### close
 
@@ -351,7 +357,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称   | 类型                     | 必填 | 说明                                                  |
+| 参数名   | 类型                     | 必填 | 说明                                                  |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | 是   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。                                            |
@@ -367,19 +373,17 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 ```js
 let ws = webSocket.createWebSocket();
-let url = "ws://"
 ws.close({
-	code: 1000,
-	reason: "your reason"
+  code: 1000,
+  reason: "your reason"
 }, (err, value) => {
-	if (!err) {
-		console.log("close success")
-	} else {
-		console.log("close fail, err is " + JSON.stringify(err))
-	}
+  if (!err) {
+    console.log("close success")
+  } else {
+    console.log("close fail, err is " + JSON.stringify(err))
+  }
 });
 ```
-
 
 ### close
 
@@ -393,7 +397,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **参数：**
 
-| 名称  | 类型                  | 必填 | 说明                                                  |
+| 参数名  | 类型                  | 必填 | 说明                                                  |
 | ------- | --------------------- | ---- | ----------------------------------------------------- |
 | options | WebSocketCloseOptions | 否   | 参考[WebSocketCloseOptions](#websocketcloseoptions)。 |
 
@@ -414,18 +418,16 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 ```js
 let ws = webSocket.createWebSocket();
-let url = "ws://"
 let promise = ws.close({
-	code: 1000,
-	reason: "your reason"
+  code: 1000,
+  reason: "your reason"
 });
 promise.then((value) => {
-	console.log("close success")
+  console.log("close success")
 }).catch((err) => {
-	console.log("close fail, err is " + JSON.stringify(err))
+  console.log("close fail, err is " + JSON.stringify(err))
 });
 ```
-
 
 ### on('open')
 
@@ -437,21 +439,19 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                          |
+| 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
-
 
 **示例：**
 
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 });
 ```
-
 
 ### off('open')
 
@@ -459,14 +459,14 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
->**说明：** 
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                          |
+| 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
 | type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
@@ -476,13 +476,12 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 ```js
 let ws = webSocket.createWebSocket();
 let callback1 = (err, value) => {
-	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
+  console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 }
 ws.on('open', callback1);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
 ws.off('open', callback1);
 ```
-
 
 ### on('message')
 
@@ -490,14 +489,14 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
->**说明：** 
->AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
+> **说明：**
+> AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                    | 必填 | 说明                                         |
+| 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
@@ -507,10 +506,9 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('message', (err, value) => {
-	console.log("on message, message:" + value);
+  console.log("on message, message:" + value);
 });
 ```
-
 
 ### off('message')
 
@@ -518,15 +516,15 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
->**说明：** 
->AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                                                | 必填 | 说明                                         |
+| 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
 | type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
@@ -538,7 +536,6 @@ let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
-
 ### on('close')
 
 on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
@@ -549,7 +546,7 @@ on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): 
 
 **参数：**
 
-| 名称   | 类型                                            | 必填 | 说明                           |
+| 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<{ code: number, reason: string }\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
@@ -559,10 +556,9 @@ on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): 
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
-	console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ```
-
 
 ### off('close')
 
@@ -570,14 +566,14 @@ off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>)
 
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
->**说明：** 
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型                                            | 必填 | 说明                           |
+| 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<{ code: number, reason: string }\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
@@ -589,7 +585,6 @@ let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
-
 ### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
@@ -600,20 +595,19 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 名称   | 类型          | 必填 | 说明                            |
+| 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                      |
+| callback | ErrorCallback | 是   | 回调函数。<br>常见错误码：200 |
 
 **示例：**
 
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('error', (err) => {
-	console.log("on error, error:" + JSON.stringify(err))
+  console.log("on error, error:" + JSON.stringify(err))
 });
 ```
-
 
 ### off('error')
 
@@ -621,14 +615,14 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
->**说明：** 
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
 
-| 名称   | 类型          | 必填 | 说明                            |
+| 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
 | type     | string        | 是   | 'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                      |
@@ -640,23 +634,21 @@ let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
 
-
 ## WebSocketRequestOptions
 
 建立WebSocket连接时，可选参数的类型和说明。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
 
-
 ## WebSocketCloseOptions
 
 关闭WebSocket连接时，可选参数的类型和说明。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -667,7 +659,7 @@ ws.off('error');
 
 发送给服务端的错误码可以自行定义，下面的列表仅供参考。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 值        | 说明               |
 | :-------- | :----------------- |

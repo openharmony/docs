@@ -1,8 +1,10 @@
 # web
-The **\<web>** component displays web page content.
+
 >**NOTE**
 >
 >This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<web>** component displays web page content.
 
 ## Required Permissions
 ohos.permission.INTERNET, required only for accessing online web pages.

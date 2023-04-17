@@ -1,0 +1,32 @@
+# SharedBundleInfo
+
+> **说明：**
+> 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+共享包信息，通过接口[bundleManager.getSharedBundleInfo](js-apis-bundleManager.md)获取。
+
+## SharedBundleInfo
+
+ 共享包信息。
+
+**系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称             | 类型                           | 可读 | 可写 | 说明                   |
+| ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
+| name             | string                         | 是   | 否   | 应用共享包名称。       |
+| compatiblePolicy | bundleManager.CompatiblePolicy | 是   | 否   | 共享包兼容策略的类型。 |
+| sharedModuleInfo | Array\<SharedModuleInfo>       | 是   | 否   | 应用共享模块信息。     |
+
+## SharedModuleInfo
+
+共享模块信息。
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称          | 类型   | 可读 | 可写 | 说明                       |
+| ------------- | ------ | ---- | ---- | -------------------------- |
+| name          | string | 是   | 否   | 共享包模块名称。           |
+| versionCode   | number | 是   | 否   | 共享包的版本号。           |
+| versionName   | string | 是   | 否   | 共享包的版本文本描述信息。 |
+| description   | string | 是   | 否   | 共享包的模块描述信息。     |
+| descriptionId | number | 是   | 否   | 共享包描述的资源id值。     |

@@ -31,6 +31,15 @@ getCameraManager(context: Context): CameraManager
 | ----------------------------------------------- | ---------------------------- |
 | [CameraManager](#cameramanager)           | 相机管理器。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+| 7400201                |  Camera service fatal error.                                  |
+
 **示例：**
 
 ```js
@@ -90,10 +99,10 @@ let cameraManager = camera.getCameraManager(context);
 
 | 名称                           | 类型                                               | 必填 | 说明                |
 | ----------------------------- | -------------------------------------------------- | --- |------------------- |
-| previewProfiles               | Array<[Profile](#profile)\>                        | 是  | 支持的预览配置信息。    |
-| photoProfiles                 | Array<[Profile](#profile)\>                        | 是  | 支持的拍照配置信息。    |
-| videoProfiles                 | Array<[VideoProfile](#videoprofile)\>              | 是  | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流类型信息。|
+| previewProfiles               | Array\<[Profile](#profile)\>                        | 是  | 支持的预览配置信息。    |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        | 是  | 支持的拍照配置信息。    |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | 是  | 支持的录像配置信息。    |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流类型信息。|
 
 ## CameraErrorCode
 
@@ -119,7 +128,7 @@ let cameraManager = camera.getCameraManager(context);
 
 ### getSupportedCameras
 
-getSupportedCameras(): Array<CameraDevice\>
+getSupportedCameras(): Array\<CameraDevice\>
 
 获取支持指定的相机设备对象，同步返回结果。
 
@@ -129,7 +138,7 @@ getSupportedCameras(): Array<CameraDevice\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Array<[CameraDevice](#cameradevice)>            | 相机设备列表。                   |
+|  Array\<[CameraDevice](#cameradevice)>            | 相机设备列表。                   |
 
 **示例：**
 
@@ -140,7 +149,7 @@ let cameras = cameraManager.getSupportedCameras();
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(cameraDevice:CameraDevice): CameraOutputCapability
+getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
 
 查询相机设备在模式下支持的输出能力，同步返回结果。
 
@@ -255,6 +264,14 @@ createCameraInput(camera: CameraDevice): CameraInput
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -290,6 +307,14 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CameraInput](#camerainput)    | CameraInput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **示例：**
 
@@ -327,6 +352,14 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | ---------- | ----------------------------- |
 | [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -360,6 +393,14 @@ createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [PhotoOutput](#photooutput)   | PhotoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **示例：**
 
@@ -395,6 +436,14 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | ---------- | ----------------------------- |
 | [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
+
 **示例：**
 
 ```js
@@ -410,7 +459,7 @@ try {
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOutput
+createMetadataOutput(metadataObjectTypes:Array\<MetadataObjectType\>): MetadataOutput
 
 创建metadata流输出对象，同步返回结果。
 
@@ -420,13 +469,21 @@ createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOu
 
 | 参数名                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [MetadataOutput](#metadataoutput)   | MetadataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect               |
 
 **示例：**
 
@@ -455,6 +512,14 @@ createCaptureSession(): CaptureSession
 | ---------- | ----------------------------- |
 | [CaptureSession](#capturesession)   | CaptureSession实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.               |
+
 **示例：**
 
 ```js
@@ -469,7 +534,7 @@ try {
 
 ### on('cameraStatus')
 
-on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
+on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态回调，通过注册回调函数获取相机的状态变化。
 
@@ -480,7 +545,7 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 | 参数名     | 类型            | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
 | type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。目前只支持对设备打开或者关闭会触发该事件并返回对应信息 |
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取镜头状态变化信息。 |                 |
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 是   | 回调函数，用于获取镜头状态变化信息。 |                 |
 
 **示例：**
 
@@ -493,7 +558,7 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 
 ### on('cameraMute')
 
-on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
+on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 禁用回调，通过注册回调函数获取相机禁用状态变化。
 
@@ -618,7 +683,7 @@ cameraManager.on('cameraMute', (curMuetd) => {
 
 ### open
 
-open\(callback: AsyncCallback<void\>\): void
+open\(callback: AsyncCallback\<void\>\): void
 
 打开相机，通过注册回调函数获取状态。
 
@@ -628,7 +693,17 @@ open\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                  | 必填 | 说明                  |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -644,7 +719,7 @@ cameraInput.open((err) => {
 
 ### open
 
-open(): Promise<void\>
+open(): Promise\<void\>
 
 打开相机，通过Promise获取相机的状态。
 
@@ -654,7 +729,17 @@ open(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400107                |  Can not use camera cause of conflict.               |
+| 7400108                |  Camera disabled cause of security reason.                                  |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -668,7 +753,7 @@ cameraInput.open().then(() => {
 
 ### close
 
-close\(callback: AsyncCallback<void\>\): void
+close\(callback: AsyncCallback\<void\>\): void
 
 关闭相机，通过注册回调函数获取状态。
 
@@ -678,7 +763,15 @@ close\(callback: AsyncCallback<void\>\): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -694,7 +787,7 @@ cameraInput.close((err) => {
 
 ### close
 
-close(): Promise<void\>
+close(): Promise\<void\>
 
 关闭相机，通过Promise获取状态。
 
@@ -704,7 +797,15 @@ close(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise\<void\> | 使用Promise的方式获取结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                                  |
 
 **示例：**
 
@@ -718,7 +819,7 @@ cameraInput.close().then(() => {
 
 ### on('error')
 
-on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', camera:CameraDevice, callback: ErrorCallback\<BusinessError\>): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。
 
@@ -730,7 +831,7 @@ on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessErr
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如（设备不可用或者冲突等返回对应错误信息） |
 | cameraDevice   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)   |
+| callback | ErrorCallback\<BusinessError\> | 是   | 回调函数，用于获取结果。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)   |
 
 **示例：**
 
@@ -823,6 +924,14 @@ beginConfig(): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400105                |  Session config locked.               |
+
 **示例：**
 
 ```js
@@ -836,7 +945,7 @@ try {
 
 ### commitConfig
 
-commitConfig(callback: AsyncCallback<void\>): void
+commitConfig(callback: AsyncCallback\<void\>): void
 
 提交配置信息，通过注册回调函数获取结果。
 
@@ -846,7 +955,16 @@ commitConfig(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                   | 必填 | 说明                  |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -862,7 +980,7 @@ captureSession.commitConfig((err) => {
 
 ### commitConfig
 
-commitConfig(): Promise<void\>
+commitConfig(): Promise\<void\>
 
 提交配置信息，通过Promise获取结果。
 
@@ -872,7 +990,16 @@ commitConfig(): Promise<void\>
 
 | 类型            | 说明                      |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102                |  Operation not allow.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -905,6 +1032,15 @@ addInput(cameraInput: CameraInput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
@@ -936,6 +1072,15 @@ removeInput(cameraInput: CameraInput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
@@ -949,7 +1094,7 @@ try {
 
 ### addOutput
 
-addOutput(previewOutput: CameraOutput): void
+addOutput(cameraOutput: CameraOutput): void
 
 把[CameraOutput](#cameraoutput)加入到会话。
 
@@ -959,7 +1104,7 @@ addOutput(previewOutput: CameraOutput): void
 
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要添加的previewoutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 **返回值：**
 
@@ -967,11 +1112,20 @@ addOutput(previewOutput: CameraOutput): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
+
 **示例：**
 
 ```js
 try {
-    captureSession.addOutput(previewOutput);
+    captureSession.addOutput(cameraOutput);
 } catch (error) {
     // 失败返回错误码error.code并处理
     console.log(error.code);
@@ -980,7 +1134,7 @@ try {
 
 ### removeOutput
 
-removeOutput(previewOutput: CameraOutput): void
+removeOutput(cameraOutput: CameraOutput): void
 
 从会话中移除[CameraOutput](#cameraoutput)。
 
@@ -990,13 +1144,22 @@ removeOutput(previewOutput: CameraOutput): void
 
 | 参数名           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要移除的previewoutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400102                |  Operation not allow.                                  |
 
 **示例：**
 
@@ -1011,7 +1174,7 @@ try {
 
 ### start
 
-start\(callback: AsyncCallback<void\>\): void
+start\(callback: AsyncCallback\<void\>\): void
 
 开始会话工作，通过注册回调函数获取结果。
 
@@ -1021,7 +1184,16 @@ start\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1037,7 +1209,7 @@ captureSession.start((err) => {
 
 ### start
 
-start\(\): Promise<void\>
+start\(\): Promise\<void\>
 
 开始会话工作，通过Promise获取结果。
 
@@ -1047,7 +1219,16 @@ start\(\): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise\<void\> | 使用Promise的方式获取结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1061,7 +1242,7 @@ captureSession.start().then(() => {
 
 ### stop
 
-stop\(callback: AsyncCallback<void\>\): void
+stop\(callback: AsyncCallback\<void\>\): void
 
 停止会话工作，通过注册回调函数获取结果。
 
@@ -1071,7 +1252,15 @@ stop\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1087,7 +1276,7 @@ captureSession.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 停止会话工作，通过Promise获取结果。
 
@@ -1097,7 +1286,15 @@ stop(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1111,7 +1308,7 @@ captureSession.stop().then(() => {
 
 ### release
 
-release\(callback: AsyncCallback<void\>\): void
+release\(callback: AsyncCallback\<void\>\): void
 
 释放会话资源，通过注册回调函数获取结果。
 
@@ -1121,7 +1318,15 @@ release\(callback: AsyncCallback<void\>\): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1137,7 +1342,7 @@ captureSession.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 释放会话资源，通过Promise获取结果。
 
@@ -1147,7 +1352,15 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -1172,6 +1385,14 @@ hasFlash(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示设备支持闪光灯。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1203,6 +1424,14 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示支持该闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1240,6 +1469,14 @@ setFlashMode(flashMode: FlashMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1264,6 +1501,14 @@ getFlashMode(): FlashMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [FlashMode](#flashmode)    | 获取当前设备的闪光灯模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1296,6 +1541,14 @@ isExposureModeSupported(aeMode: ExposureMode): boolean;
 | ---------- | ----------------------------- |
 | boolean    | 获取是否支持曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1320,6 +1573,14 @@ getExposureMode(): ExposureMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [ExposureMode](#exposuremode)    | 获取当前曝光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1352,6 +1613,14 @@ setExposureMode(aeMode: ExposureMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1376,6 +1645,14 @@ getMeteringPoint(): Point
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [Point](#point)    | 获取当前曝光点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1411,6 +1688,14 @@ setMeteringPoint(point: Point): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1425,7 +1710,7 @@ try {
 
 ### getExposureBiasRange
 
-getExposureBiasRange(): Array<number\>
+getExposureBiasRange(): Array\<number\>
 
 查询曝光补偿范围。
 
@@ -1435,7 +1720,15 @@ getExposureBiasRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Array\<number\>   | 获取补偿范围的数组。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1464,6 +1757,14 @@ setExposureBias(exposureBias: number): void
 | -------- | -------------------------------| ---- | ------------------- |
 | exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1489,6 +1790,14 @@ getExposureValue(): number
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | number    | 获取曝光值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1520,6 +1829,14 @@ isFocusModeSupported(afMode: FocusMode): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示支持该焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1554,6 +1871,14 @@ setFocusMode(afMode: FocusMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1578,6 +1903,14 @@ getFocusMode(): FocusMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | [FocusMode](#focusmode)   | 获取当前设备的焦距模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1613,6 +1946,14 @@ setFocusPoint(point: Point): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1639,6 +1980,14 @@ getFocusPoint(): Point
 | ---------- | ----------------------------- |
 | [Point](#point)    | 用于获取当前焦点。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1664,6 +2013,14 @@ getFocalLength(): number
 | ---------- | ----------------------------- |
 | number    | 用于获取当前焦距。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1677,7 +2034,7 @@ try {
 
 ### getZoomRatioRange
 
-getZoomRatioRange(): Array<number\>
+getZoomRatioRange(): Array\<number\>
 
 获取支持的变焦范围。
 
@@ -1687,7 +2044,15 @@ getZoomRatioRange(): Array<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Array\<number\>   | 用于获取可变焦距比范围，返回的数组包括其最小值和最大值。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1720,6 +2085,14 @@ setZoomRatio(zoomRatio: number): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1745,6 +2118,14 @@ getZoomRatio(): number
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | number    | 获取当前的变焦比结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1777,6 +2158,14 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 | ---------- | ----------------------------- |
 | boolean    | 返回视频防抖模式是否支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1801,6 +2190,14 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1833,6 +2230,14 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 | ---------- | ----------------------------- |
 | [CameraErrorCode](#cameraerrorcode)    | 接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
 **示例：**
 
 ```js
@@ -1846,7 +2251,7 @@ try {
 
 ### on('focusStateChange')
 
-on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。
 
@@ -1857,7 +2262,7 @@ on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。仅当自动对焦模式时,且相机对焦状态发生改变时可触发该事件 |
-| callback | AsyncCallback<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -1869,7 +2274,7 @@ captureSession.on('focusStateChange', (focusState) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 监听拍照会话的错误事件，通过注册回调函数获取结果。
 
@@ -1880,7 +2285,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用（beginConfig()，commitConfig()，addInput）等接口发生错误时返回错误信息。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)        |
+| callback | ErrorCallback\<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)        |
 
 **示例：**
 
@@ -1900,7 +2305,7 @@ captureSession.on('error', (error) => {
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 开始输出预览流，通过注册回调函数获取结果。
 
@@ -1910,7 +2315,15 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1926,7 +2339,7 @@ previewOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 开始输出预览流，通过Promise获取结果。
 
@@ -1936,7 +2349,15 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)|
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)|
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
 
 **示例：**
 
@@ -1950,7 +2371,7 @@ previewOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 停止输出预览流，通过注册回调函数获取结果。
 
@@ -1960,7 +2381,7 @@ stop(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -1976,7 +2397,7 @@ previewOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 停止输出预览流，通过Promise获取结果。
 
@@ -1986,7 +2407,7 @@ stop(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise\<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2000,7 +2421,7 @@ previewOutput.stop().then(() => {
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 释放输出资源，通过注册回调函数获取结果。
 
@@ -2010,7 +2431,15 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2026,7 +2455,7 @@ previewOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 释放输出资源，通过Promise获取结果。
 
@@ -2036,7 +2465,15 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2050,7 +2487,7 @@ previewOutput.release().then(() => {
 
 ### on('frameStart')
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听预览帧启动，通过注册回调函数获取结果。
 
@@ -2061,7 +2498,7 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                     |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。底层第一次开始曝光时触发该事件并返回 |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览开始                     |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览开始                     |
 
 **示例：**
 
@@ -2073,7 +2510,7 @@ previewOutput.on('frameStart', () => {
 
 ### on('frameEnd')
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 监听预览帧结束，通过注册回调函数获取结果。
 
@@ -2084,7 +2521,7 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。预览完全结束最后一帧时触发该事件并返回， |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览结束                 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明预览结束                 |
 
 **示例：**
 
@@ -2096,7 +2533,7 @@ previewOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 监听预览输出的错误事件，通过注册回调函数获取结果。
 
@@ -2107,7 +2544,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。预览接口使用错误时触发该事件，比如调用（start（），release（））等接口发生错误时返回对应错误信息。|
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
+| callback | ErrorCallback\<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
 
 **示例：**
 
@@ -2174,7 +2611,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 ### capture
 
-capture(callback: AsyncCallback<void\>): void
+capture(callback: AsyncCallback\<void\>): void
 
 以默认设置触发一次拍照，通过注册回调函数获取结果。
 
@@ -2184,7 +2621,16 @@ capture(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2200,7 +2646,7 @@ photoOutput.capture((err) => {
 
 ### capture
 
-capture(): Promise<void\>
+capture(): Promise\<void\>
 
 以默认设置触发一次拍照，通过Promise获取结果。
 
@@ -2210,7 +2656,16 @@ capture(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2224,7 +2679,7 @@ photoOutput.capture().then(() => {
 
 ### capture
 
-capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
+capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
 以指定参数触发一次拍照，通过注册回调函数获取结果。
 
@@ -2235,7 +2690,17 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 | 参数名      | 类型                                         | 必填 | 说明                  |
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置。             |
-| callback | AsyncCallback<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
+| callback | AsyncCallback\<void\>                        | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2262,7 +2727,7 @@ photoOutput.capture(settings, (err) => {
 
 ### capture
 
-capture(setting?: PhotoCaptureSetting): Promise<void\>
+capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
 以指定参数触发一次拍照，通过Promise获取结果。
 
@@ -2278,8 +2743,17 @@ capture(setting?: PhotoCaptureSetting): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ------------------------ |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect        |
+| 7400104                |  Session not running.                                  |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2313,7 +2787,7 @@ let isSupported = photoOutput.isMirrorSupported();
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 释放输出资源，通过注册回调函数获取结果。
 
@@ -2323,7 +2797,15 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2339,7 +2821,7 @@ photoOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 释放输出资源，通过Promise获取结果。
 
@@ -2349,7 +2831,15 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2363,7 +2853,7 @@ photoOutput.release().then(() => {
 
 ### on('captureStart')
 
-on(type: 'captureStart', callback: AsyncCallback<number\>): void
+on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 
 监听拍照开始，通过注册回调函数获取Capture ID。
 
@@ -2374,7 +2864,7 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。每次拍照，底层开始曝光时触发该事件并返回。 |
-| callback | AsyncCallback<number\> | 是   | 使用callback的方式获取Capture ID。            |
+| callback | AsyncCallback\<number\> | 是   | 使用callback的方式获取Capture ID。            |
 
 **示例：**
 
@@ -2386,7 +2876,7 @@ photoOutput.on('captureStart', (captureId) => {
 
 ### on('frameShutter')
 
-on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
+on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 
 监听拍照帧输出捕获，通过注册回调函数获取结果。
 
@@ -2397,7 +2887,7 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着可以再次下发拍照请求。             |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 是   | 回调函数，用于获取相关信息。该回调返回意味着可以再次下发拍照请求。             |
 
 **示例：**
 
@@ -2410,7 +2900,7 @@ photoOutput.on('frameShutter', (frameShutterInfo) => {
 
 ### on('captureEnd')
 
-on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
+on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 
 监听拍照结束，通过注册回调函数获取结果。
 
@@ -2421,7 +2911,7 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 | 参数名     | 类型           | 必填 | 说明                                       |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
-| callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | 是   | 回调函数，用于获取相关信息。                  |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 是   | 回调函数，用于获取相关信息。                  |
 
 **示例：**
 
@@ -2434,7 +2924,7 @@ photoOutput.on('captureEnd', (captureEndInfo) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 监听拍照输出发生错误，通过注册回调函数获取结果。
 
@@ -2445,7 +2935,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。拍照接口调用时出现错误触发该事件并返回错误信息。 |
-| callback | ErrorCallback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)             |
+| callback | ErrorCallback\<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)             |
 
 **示例：**
 
@@ -2483,7 +2973,7 @@ photoOutput.on('error', (error) => {
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 启动录制，通过注册回调函数获取结果。
 
@@ -2493,7 +2983,16 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2509,7 +3008,7 @@ videoOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 启动录制，通过Promise获取结果。
 
@@ -2519,8 +3018,16 @@ start(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2534,7 +3041,7 @@ videoOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 结束录制，通过注册回调函数获取结果。
 
@@ -2544,7 +3051,7 @@ stop(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2560,7 +3067,7 @@ videoOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 结束录制，通过Promise获取结果。
 
@@ -2570,7 +3077,7 @@ stop(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。 |
+| Promise\<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2584,7 +3091,7 @@ videoOutput.stop().then(() => {
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 释放输出资源，通过注册回调函数获取结果。
 
@@ -2594,7 +3101,15 @@ release(callback: AsyncCallback<void\>): void
 
 | 参数名      | 类型                  | 必填 | 说明                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2610,7 +3125,7 @@ videoOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 释放输出资源，通过Promise获取结果。
 
@@ -2620,7 +3135,15 @@ release(): Promise<void\>
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2634,7 +3157,7 @@ videoOutput.release().then(() => {
 
 ### on('frameStart')
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听录像开始，通过注册回调函数获取结果。
 
@@ -2645,7 +3168,7 @@ on(type: 'frameStart', callback: AsyncCallback<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。底层第一次曝光时触发该事件并返回。 |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。  只要有该事件返回就证明录像开始                     |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。  只要有该事件返回就证明录像开始                     |
 
 **示例：**
 
@@ -2657,7 +3180,7 @@ videoOutput.on('frameStart', () => {
 
 ### on('frameEnd')
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 监听录像结束，通过注册回调函数获取结果。
 
@@ -2668,7 +3191,7 @@ on(type: 'frameEnd', callback: AsyncCallback<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听。录像完全结束最后一帧时触发该事件并返回  。 |
-| callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 只要有该事件返回就证明录像结束                      |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。 只要有该事件返回就证明录像结束                      |
 
 **示例：**
 
@@ -2680,7 +3203,7 @@ videoOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 监听录像输出发生错误，通过注册回调函数获取结果。
 
@@ -2691,7 +3214,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型       | 必填 | 说明                                    |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | 是   | 监听事件，固定为'error'，videoOutput创建成功后可监听。录像接口调用出现错误时触发该事件并返回对应错误码,比如调用（start(),release()）接口时出现错误返回对应错误信息。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)                 |
+| callback | Callback\<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)                 |
 
 **示例：**
 
@@ -2707,7 +3230,7 @@ metadata流。继承[CameraOutput](#cameraoutput)
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 开始输出metadata，通过注册回调函数获取结果。
 
@@ -2717,7 +3240,16 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| callback | AsyncCallback\<void\>       | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2733,7 +3265,7 @@ metadataOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 开始输出metadata，通过Promise获取结果。
 
@@ -2743,7 +3275,16 @@ start(): Promise<void\>
 
 | 类型                     | 说明                     |
 | ----------------------  | ------------------------ |
-| Promise<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| Promise\<void\>          | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见相机错误码
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -2757,7 +3298,7 @@ metadataOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 停止输出metadata，通过注册回调函数获取结果。
 
@@ -2767,7 +3308,7 @@ stop(callback: AsyncCallback<void\>): void
 
 | 参数名     | 类型                         | 必填 | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback\<void\>       | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2783,7 +3324,7 @@ metadataOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 停止输出metadata，通过Promise获取结果。
 
@@ -2793,7 +3334,7 @@ stop(): Promise<void\>
 
 | 类型                    | 说明                        |
 | ----------------------  | --------------------------- |
-| Promise<void\>         | 使用Promise的方式获取结果。 |
+| Promise\<void\>         | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -2807,7 +3348,7 @@ metadataOutput.stop().then(() => {
 
 ### on('metadataObjectsAvailable')
 
-on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObject\>\>): void
+on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObject\>\>): void
 
 监听检测到的metadata对象，通过注册回调函数获取结果。
 
@@ -2818,7 +3359,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 | 参数名      | 类型         | 必填 | 说明                                  |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | 是   | 监听事件，固定为'metadataObjectsAvailable'，metadataOutput创建成功后可监听。检测到有效的metadata数据时触发该事件发生并返回相应的metadata数据 |
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取metadata数据。 |
+| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取metadata数据。 |
 
 **示例：**
 
@@ -2830,7 +3371,7 @@ metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 监听metadata流的错误，通过注册回调函数获取结果。
 
@@ -2841,7 +3382,7 @@ on(type: 'error', callback: ErrorCallback<BusinessError\>): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。metadata接口使用错误时触发该事件并返回对应错误码，比如调用（start（），release（））接口时发生错误返回对应错误信息。 |
-| callback | Callback<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)            |
+| callback | Callback\<BusinessError\> | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](#cameraerrorcode)            |
 
 **示例：**
 
@@ -2877,6 +3418,8 @@ metadataOutput.on('error', (metadataOutputError) => {
 ## MetadataObject
 
 相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称      | 类型                            | 必填  | 说明              |
 | -------- | ------------------------------- | ---- | -----------------|

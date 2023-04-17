@@ -12,10 +12,10 @@
   - [Audio Routing and Device Management Development](audio-routing-manager.md)
   - [AVPlayer Development (Recommended)](avplayer-playback.md)
   - [AVRecorder Development (Recommended)](avrecorder.md)
-  - [Audio Playback Development (To Be Deprecated)](audio-playback.md) 
-  - [Audio Recording Development (To Be Deprecated)](audio-recorder.md) 
-  - [Video Playback Development (To Be Deprecated)](video-playback.md)
-  - [Video Recording Development (To Be Deprecated)](video-recorder.md)
+  - [Audio Playback Development (To Be Deprecated Soon)](audio-playback.md) 
+  - [Audio Recording Development (To Be Deprecated Soon)](audio-recorder.md) 
+  - [Video Playback Development (To Be Deprecated Soon)](video-playback.md)
+  - [Video Recording Development (To Be Deprecated Soon)](video-recorder.md)
 
 - AVSession
   - [AVSession Overview](avsession-overview.md)

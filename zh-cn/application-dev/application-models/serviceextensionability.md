@@ -137,7 +137,7 @@
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册ServiceExtensionAbility，type标签需要设置为“service”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册ServiceExtensionAbility，type标签需要设置为“service”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
    
    ```json
    {
@@ -149,8 +149,8 @@
            "icon": "$media:icon",
            "description": "service",
            "type": "service",
-           "visible": true,
-           "srcEntrance": "./ets/serviceextability/ServiceExtAbility.ts"
+           "exported": true,
+           "srcEntry": "./ets/serviceextability/ServiceExtAbility.ts"
          }
        ]
      }

@@ -6,6 +6,7 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
+> - Flex组件主轴默认不设置时撑满父容器，[Column](ts-container-column.md)、[Row](ts-container-row.md)组件主轴不设置时默认是跟随子节点大小。
 
 
 ## 子组件
@@ -26,9 +27,9 @@ Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: Fle
 | 参数名            | 参数类型                                     | 必填   | 默认值               | 参数描述                                     |
 | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
 | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | 否    | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。                |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | 否    | FlexWrap.NoWrap   | Flex容器是单行/列还是多行/列排列。                     |
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 子组件在Flex容器主轴上的对齐格式。                      |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否    | ItemAlign.Start | 子组件在Flex容器交叉轴上的对齐格式。                     |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | 否    | FlexWrap.NoWrap   | Flex容器是单行/列还是多行/列排列。<br/>**说明：** <br/>在多行布局时，通过交叉轴方向，确认新行堆叠方向。 |
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 所有子组件在Flex容器主轴上的对齐格式。                    |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否    | ItemAlign.Start | 所有子组件在Flex容器交叉轴上的对齐格式。                 |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
 
 
@@ -141,7 +142,7 @@ struct FlexExample2 {
 }
 ```
 
-![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.PNG)
+![zh-cn_image_0000001174264366](figures/zh-cn_image_0000001174264366.png)
 
 ```ts
 // xxx.ets

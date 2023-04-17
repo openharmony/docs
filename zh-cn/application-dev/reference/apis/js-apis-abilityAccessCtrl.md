@@ -206,8 +206,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -317,8 +317,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -461,10 +461,10 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -503,7 +503,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID in list is all invalid, or the permissionName in list is all invalid. |
+| 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
 | 12100004 | The interface is not used together with "on". |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
@@ -512,10 +512,10 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -531,7 +531,9 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：**
+>
+> 建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -565,7 +567,10 @@ promise.then(data => {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
-用于拉起弹框请求用户授权。使用callback异步回调。
+用于UIAbility拉起弹框请求用户授权。使用callback异步回调。
+> **说明：**
+>
+> 非UIAbility不支持调用本函数。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -575,7 +580,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
@@ -607,7 +612,11 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-用于拉起弹框请求用户授权。使用promise异步回调。
+用于UIAbility拉起弹框请求用户授权。使用promise异步回调。
+
+> **说明：**
+>
+> 非UIAbility不支持调用本函数。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -617,7 +626,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**
@@ -658,7 +667,9 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 校验应用是否授予权限。使用Promise异步回调。
 
-> **说明：** 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
+> **说明：**
+>
+> 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -686,6 +697,44 @@ let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSIT
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
+```
+
+### checkAccessTokenSync<sup>10+</sup>
+
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
+
+校验应用是否被授予权限，同步返回结果。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | 枚举实例，返回授权状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+
+**示例：**
+
+```js
+let atManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
 ```
 
 ### GrantStatus

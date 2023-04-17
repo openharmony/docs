@@ -1,6 +1,6 @@
 # Style Inheritance
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 

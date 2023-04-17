@@ -133,7 +133,7 @@ Adaptive scaling means that child components scale according to the preset ratio
 ## Positioning
 - Relative layout
 
-  You can use the **[offset](../reference/arkui-ts/ts-universal-attributes-location.md)** attribute to set the offset of a component relative to itself, thereby implmenting relative layout. Setting this attribute does not affect the layout of the parent container. It only adjusts the component position during drawing. The linear layout and offset can work together to meet most layout development requirements.
+  You can use the **[offset](../reference/arkui-ts/ts-universal-attributes-location.md)** attribute to set the offset of a component relative to itself, thereby implementing relative layout. Setting this attribute does not affect the layout of the parent container. It only adjusts the component position during drawing. The linear layout and offset can work together to meet most layout development requirements.
 
   ```ts
   @Entry

@@ -58,6 +58,8 @@ Checks whether the screen is locked.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type   | Description                                             |
@@ -70,26 +72,6 @@ Checks whether the screen is locked.
 let isLocked = screenlock.isLocked();
 ```
 
-## screenlock.isSecure<sup>9+</sup>
-
-isSecure(): boolean
-
-Checks whether the device is in secure mode. When the device is in secure mode, its screen requires a password, unlock pattern, or other user credentials to unlock.
-
-**System capability**: SystemCapability.MiscServices.ScreenLock
-
-**Return value**
-
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the device is in secure mode; returns **false** otherwise.|
-
-**Example**
-
-```js
-let isSecure = screenlock.isSecure();
-```
-
 ## screenlock.unlock<sup>9+</sup>
 
 unlock(callback: AsyncCallback&lt;boolean&gt;): void
@@ -97,6 +79,8 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -132,6 +116,8 @@ Unlocks the screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API.
+
 **Return value**
 
 | Type               | Description                                                        |
@@ -163,6 +149,8 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 Locks the screen. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -200,6 +188,8 @@ Locks the screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Return value**
@@ -233,6 +223,8 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -276,6 +268,8 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -314,6 +308,8 @@ Sends an event to the screen lock service. This API uses a promise to return the
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -347,7 +343,7 @@ Checks whether the screen is locked. This API uses an asynchronous callback to r
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.isLocked<sup>9+</sup>](#screenlockislocked9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -377,7 +373,7 @@ Checks whether the screen is locked. This API uses a promise to return the resul
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.isLocked<sup>9+</sup>](#screenlockislocked9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -405,7 +401,7 @@ Checks whether the device is in secure mode. When the device is in secure mode, 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.isSecure<sup>9+</sup>](#screenlockissecure9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -435,7 +431,7 @@ Checks whether the device is in secure mode. When the device is in secure mode, 
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.isSecure<sup>9+</sup>](#screenlockissecure9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -462,7 +458,7 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.unlock<sup>9+</sup>](#screenlockunlock9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -492,7 +488,7 @@ Unlocks the screen. This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [screenlock.unlock<sup>9+</sup>](#screenlockunlock9) instead.
+> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 

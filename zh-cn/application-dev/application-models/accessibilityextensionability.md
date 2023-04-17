@@ -19,7 +19,7 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 - [相关示例](#相关示例)
 
 ## 如何创建一个无障碍扩展服务
- 
+
 开发者在创建一个无障碍扩展服务时，如工程满足环境要求，开发者可自主选择是否跳过创建工程步骤，在已有工程中新增无障碍扩展服务。
 
 ### 创建工程
@@ -80,13 +80,13 @@ onAccessibilityEvent(accessibilityEvent) {
 
 ## 如何声明无障碍扩展服务具备的能力
 
-在完成自定义无障碍扩展服务的逻辑开发后，还需要在工程中Module对应的module.json5文件中加入新增扩展服务的配置信息，其中`srcEntrance`标签为`extensionAbility`对应的路径。需要注意的一点是配置信息中的type标签要按照与无障碍子系统的约定进行配置，固定为`accessibility`，否则将无法正常连接。
+在完成自定义无障碍扩展服务的逻辑开发后，还需要在工程中Module对应的module.json5文件中加入新增扩展服务的配置信息，其中`srcEntry`标签为`extensionAbility`对应的路径。需要注意的一点是配置信息中的type标签要按照与无障碍子系统的约定进行配置，固定为`accessibility`，否则将无法正常连接。
 
 ```json
 "extensionAbilities": [
   {
     "name": "AccessibilityExtAbility",
-    "srcEntrance": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ts",
+    "srcEntry": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ts",
     "label": "$string:MainAbility_label",
     "description": "$string:MainAbility_desc",
     "type": "accessibility",

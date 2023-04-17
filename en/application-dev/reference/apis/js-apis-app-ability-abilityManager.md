@@ -59,12 +59,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
-  colorMode: COLOR_MODE_LIGHT,         // Light theme.
-  direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
+  colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // Light theme.
+  direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // Vertical direction.
+  screenDensity: ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -78,7 +79,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -116,12 +117,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const config = {
   language: 'Zh-Hans',                 // Simplified Chinese.
-  colorMode: COLOR_MODE_LIGHT,         // Light theme.
-  direction: DIRECTION_VERTICAL,       // Vertical direction.
-  screenDensity: SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
+  colorMode: ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT,         // Light theme.
+  direction: ConfigurationConstant.Direction.DIRECTION_VERTICAL,       // Vertical direction.
+  screenDensity: ConfigurationConstant.ScreenDensity.SCREEN_DENSITY_SDPI,  // The screen pixel density is 'sdpi'.
   displayId: 1,                        // The application is displayed on the display with ID 1.
   hasPointerDevice: true,              // A pointer device is connected.
 };
@@ -133,7 +135,7 @@ try {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -175,7 +177,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -215,7 +217,7 @@ try {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -260,7 +262,7 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -308,7 +310,7 @@ try {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 

@@ -29,7 +29,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > InputMethod”，即可创建出InputMethodExtensionAbility的最小化模板。
 
 > **说明：**
-> 在编译输入法应用时，要使用system_core级别的签名，否则无法拉起输入法键盘。
+> 在编译输入法应用时，要使用system_basic级别的签名，否则无法拉起输入法键盘。
 > [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)
 
 最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
@@ -230,7 +230,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
    同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
-   ```ets
+   ```ts
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
    
    @Component
@@ -339,7 +339,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntrance标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
    {
@@ -350,9 +350,9 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }
@@ -366,4 +366,4 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
 
-[Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/KikaInput)
+- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/KikaInput)

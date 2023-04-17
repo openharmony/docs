@@ -21,11 +21,12 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 | 名称 | 类型 | 可读 | 可写 | 必选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | label | string | 是 | 否 | 否 | 输入法子类型的标签。 |
-| name | string | 是 | 否 | 是 | 输入法子类型的名字。 |
+| labelId<sup>10+</sup> | string | 是 | 否 | 否 | 输入法子类型的标签资源号。 |
+| name | string | 是 | 否 | 是 | 输入法应用的包名。 |
 | id | string | 是 | 否 | 是 | 输入法子类型的id。 |
 | mode | string | 是 | 否 | 否 | 输入法子类型的模式，包括upper（大写）和lower（小写）。 |
 | locale | string | 是 | 否 | 是 | 输入法子类型的方言版本。 |
 | language | string | 是 | 否 | 是 | 输入法子类型的语言。 |
 | icon | string | 是 | 否 | 否 | 输入法子类型的图标。 |
 | iconId | number | 是 | 否 | 否 | 输入法子类型的图标id。 |
-| extra | object | 是 | 是 | 是 | 输入法子类型的其他信息。 |
+| extra | object | 是 | 是 | 否 | 输入法子类型的其他信息。<br/>**说明：** 从API version 10开始改为非必选参数。 |

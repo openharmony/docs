@@ -1,6 +1,6 @@
 # ColumnSplit
 
-The **\<ColumnSplit>** component lays out child components vertically and inserts a horizontal divider between every two child components.
+The **\<ColumnSplit>** component lays out child components vertically and inserts a horizontal divider between components.
 
 >  **NOTE**
 >
@@ -22,13 +22,15 @@ ColumnSplit()
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**.|
+| resizeable | boolean | Whether the divider can be dragged.<br/>Default value: **false** |
 
 >  **NOTE**
 >
 > Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can be dragged to a position that just fully holds a component.
 >
 > Dragging is not supported in the Previewer. Check the drag effect on a real device.
+>
+> The universal attributes **clip** and **margin** are not supported.
 
 ## Example
 

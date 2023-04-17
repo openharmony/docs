@@ -35,7 +35,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 Called when the system memory level changes.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
@@ -55,7 +55,7 @@ export default class MyAbility extends UIAbility {
     onCreate() {
         console.log('MyAbility onCreate');
         globalThis.applicationContext = this.context.getApplicationContext();
-        let EnvironmentCallback  =  {
+        let environmentCallback  =  {
             onConfigurationUpdated(config){
                 console.log('onConfigurationUpdated config: ${JSON.stringify(config)}');
             }
@@ -67,7 +67,7 @@ export default class MyAbility extends UIAbility {
         // 1. Obtain an applicationContext object.
         let applicationContext = globalThis.applicationContext;
         // 2. Register a listener for the environment changes through the applicationContext object.
-        callbackId = applicationContext.registerEnvironmentCallback(EnvironmentCallback);
+        callbackId = applicationContext.registerEnvironmentCallback(environmentCallback);
         console.log('registerEnvironmentCallback number: ${JSON.stringify(callbackId)}');
     }
     onDestroy() {

@@ -441,8 +441,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
@@ -493,8 +494,9 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
@@ -3643,7 +3645,7 @@ controller.on('sessionEvent', (sessionEvent, args) => {
 
 on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
 
-媒体控制器设置会话自定义事件变化的监听器。
+媒体控制器设置会话自定义播放列表变化的监听器。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3654,7 +3656,7 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem1
 | 参数名   | 类型                                                   | 必填 | 说明                                                                         |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
 | type     | string                                                | 是   | 事件回调类型，支持事件`'queueItemsChange'`：当session修改播放列表时，触发该事件。 |
-| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | 是   | 回调函数，items为变化的会话事件名，args为事件的参数。                            |
+| callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void  | 是   | 回调函数，items为变化的播放列表。                            |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -3676,7 +3678,7 @@ controller.on('queueItemsChange', (items) => {
 
 on(type: 'queueTitleChange', callback: (title: string) => void): void
 
-媒体控制器设置会话自定义事件变化的监听器。
+媒体控制器设置会话自定义播放列表的名称变化的监听器。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3687,7 +3689,7 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 | 参数名   | 类型                     | 必填 | 说明                                                                             |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持事件`'queueTitleChange'`：当session修改播放列表名称时，触发该事件。 |
-| callback | (title: string) => void | 是   | 回调函数，items为变化的会话事件名，args为事件的参数。                                |
+| callback | (title: string) => void | 是   | 回调函数，title为变化的播放列表名称。                                |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -3902,7 +3904,7 @@ controller.off('playbackStateChange');
 
 off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Obejct}) => void): void
 
-控制器取消监听播放状态变化的事件。
+控制器取消监听会话事件的变化通知。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3942,7 +3944,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 
 | 参数名    | 类型                                                 | 必填 | 说明                                                                                                |
 | -------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------- |
-| type     | string                                               | 是   | 取消对应的监听事件，支持事件`'queueTitleChange'`。                                                     |
+| type     | string                                               | 是   | 取消对应的监听事件，支持事件`'queueItemsChange'`。                                                     |
 | callback | (items: Array<[AVQueueItem](#avqueueitem10)\>) => void | 否   | 回调函数，参数items是变化的播放列表。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**

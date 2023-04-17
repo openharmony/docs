@@ -20,7 +20,7 @@ module对象包含HAP的配置信息。
 | shortcuts | 标识应用的快捷方式信息。采用对象数组格式，其中的每个元素表示一个快捷方式对象。 | 对象数组 | 可缺省，缺省值为空。 |
 | reqPermissions | 标识应用运行时向系统申请的权限。 | 对象数组 | 可缺省，缺省值为空。 |
 | colorMode | 标识应用自身的颜色模式，目前支持如下三种模式：<br/>-&nbsp;dark：表示按照深色模式选取资源。<br/>-&nbsp;light：表示按照浅色模式选取资源。<br/>-&nbsp;auto：表示跟随系统的颜色模式值选取资源。 | 字符串 | 可缺省，缺省值为"auto"。 |
-| distroFilter | 标识应用的分发规则。该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API&nbsp;Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
+| distributionFilter | 标识应用的分发规则。该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API&nbsp;Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
 |commonEvents | 定义了公共事件静态订阅者的信息，该字段中需要声明静态订阅者的名称、权限要求及订阅事件列表信息，当订阅的公共事件发送时，该公共事件静态订阅者将被拉起。这里的静态订阅者区分于常用的动态订阅者，前者无需在业务代码中主动调用订阅事件的接口，在公共事件发布时可能未被拉起，而动态订阅者则在业务代码中主动调用公共事件订阅的相关API，因此需要应用处于活动状态。 | 对象数组 | 可缺省，缺省为空。 |
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
@@ -48,7 +48,7 @@ module示例：
           }
         ],
         "orientation": "unspecified",
-        "visible": true,
+        "exported": true,
         "srcPath": "EntryAbility",
         "name": ".EntryAbility",
         "srcLanguage": "ets",
@@ -57,7 +57,7 @@ module示例：
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {
@@ -190,14 +190,15 @@ metadata对象示例：
 
 ## abilities对象的内部结构
 
-**OpenHarmony中不允许应用隐藏启动图标**
+**OpenHarmony中不允许应用隐藏入口图标**
 
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
-用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面中。<br>
-如果应用想要隐藏启动图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
+OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
+用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面（图1）中。<br>
+如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
+**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
 
-**启动图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
+**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
 ```
 {
   "module":{
@@ -220,34 +221,36 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 }
 ```
 
-**启动图标的查询**
-* HAP中包含Page类型的Ability
-  * 配置文件（config.json）中abilities配置中设置了启动图标
+**入口图标及入口标签的显示规则**
+* HAP中包含Page类型的PageAbility
+  * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权
-      * 返回的桌面图标为该Ability配置的图标
-      * 返回的桌面Label为该Ability配置的Label（如果没有配置Label，返回包名）
-      * 返回的组件名为该Ability的组件名
-      * 用户点击该桌面图标，页面跳转到该Ability首页
+      * 显示桌面图标为该PageAbility配置的图标
+      * 显示桌面Label为该PageAbility配置的Label（如果没有配置Label，返回包名）
+      * 显示组件名为该PageAbility的组件名
+      * 用户点击该桌面图标，页面跳转到该PageAbility首页
     * 该应用具有隐藏图标的特权
       * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（config.json）中abilities配置中未设置启动图标
+  * 配置文件（config.json）中abilities配置中未设置入口图标
     * 该应用没有隐藏图标的特权
-      * 返回的桌面图标为系统默认图标
-      * 返回的桌面Label为该应用的包名
-      * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面
+      * 显示桌面图标为系统默认图标
+      * 显示桌面Label为该应用的包名
+      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
     * 该应用具有隐藏图标的特权
       * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含Page类型的Ability
+* HAP中不包含Page类型的PageAbility
   * 该应用没有隐藏图标的特权
-    * 返回的桌面图标为系统默认图标
-    * 返回的桌面Label为该应用的包名
-    * 返回的组件名为应用详情页面的组件名（该组件为系统内置）
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面
+    * 显示桌面图标为系统默认图标
+    * 显示桌面Label为该应用的包名
+    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
   * 该应用具有隐藏图标的特权
     * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
 
-注：应用详情页面中显示的图标与label,可能与桌面上显示的不同。如果非Page类型的ability配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+注：应用详情页面（图1）中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
+
+图1
+
+![应用的详情页例图](figures/application_details.jpg)
 
 
 **表8** **abilities对象的内部结构说明**
@@ -260,8 +263,8 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
-| launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
-| visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
+| launchType | 标识Ability的启动模式，支持"multiton"和"singleton"两种模式：<br/>multiton：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
+| exported | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
 | permissions | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
 |skills | 标识Ability能够接收的want的特征。 | 对象数组 | 可缺省，缺省值为空。 |
 | deviceCapability | 标识Ability运行时要求设备具有的能力，采用字符串数组的格式表示。该标签为数组，支持最多配置512个元素，单个元素最大字节长度为64。 | 字符串数组 | 可缺省，缺省值为空。 |
@@ -274,7 +277,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置启动
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
 | configChanges | 标识Ability关注的系统配置集合。当已关注的配置发生变更后，Ability会收到onConfigurationUpdated回调。取值范围：<br/>mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br/>mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br/>locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br/>layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br/>fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br/>orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br/>density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br/>size：显示窗口大小发生变更。<br/>smallestSize：显示窗口较短边的边长发生变更。<br/>colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。 |
 | mission | 标识Ability指定的任务栈。该标签仅适用于page类型的Ability。默认情况下应用中所有Ability同属一个任务栈。 | 字符串 | 可缺省，缺省为应用的包名。 |
-| targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
+| targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、exported、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br/>true：支持卡片能力。<br/>false：不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效。 | 对象数组 | 可缺省，缺省值为空。 |
 | srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。 | 字符串 | 可缺省，缺省值为“js”。 |
@@ -305,10 +308,10 @@ abilities示例：
     "icon": "$media:ic_launcher",
     // $string:example 为字符串类资源
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "permissions": [], 
-    "visible": true,
+    "exported": true,
     "skills": [
       {
         "actions": [
@@ -335,9 +338,9 @@ abilities示例：
     "description": "example play ability",
     "icon": "$media:ic_launcher",
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
-    "visible": false,
+    "exported": false,
     "skills": [
       {
         "actions": [
@@ -358,7 +361,7 @@ abilities示例：
     "name": ".UserADataAbility",
     "type": "data",
     "uri": "dataability://com.example.world.test.UserADataAbility",
-    "visible": true
+    "exported": true
   }
 ]
 ```
@@ -410,40 +413,6 @@ skills示例：
   }
 ]
 ```
-
-**增强隐式查询功能**
-
-支持Uri级别的前缀匹配。
-当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri，配置成功。
-
-  *  查询功能增强涉及以下接口<br>
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array<AbilityInfo>>;
-  *  配置要求<br>
-    abilities  -> skills -> uris对象 <br>
-    配置1： 只配置 scheme = 'http' <br>
-    配置2： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) <br>
-    配置3： 只配置 ( scheme = 'http' ) + ( host = 'www.example.com' ) + ( port = '8080' )
-  *  前缀匹配<br>
-    [want](../application-models/want-overview.md)下uri，调用queryAbilityInfo查询接口<br>
-    1. uri = 'https://' 无匹配<br>
-    2. uri = 'http://' 可以匹配 配置1<br>
-    3. uri = 'https://www.example.com' 无匹配<br>
-    4. uri = 'https://www.exa.com' 无匹配<br>
-    5. uri = 'http://www.exa.com' 可以匹配 配置1<br>
-    6. uri = 'http://www.example.com' 可以匹配 配置1 配置2<br>
-    7. uri = 'https://www.example.com:8080' 无匹配<br>
-    8. uri = 'http://www.exampleaa.com:8080' 可以匹配 配置1<br>
-    9. uri = 'http://www.example.com:9180' 可以匹配 配置1 配置2<br>
-    10. uri = 'http://www.example.com:8080' 可以匹配 配置1 配置2 配置3<br>
-    11. uri = 'https://www.example.com:9180/query/student/name' 无匹配<br>
-    12. uri = 'http://www.exampleap.com:8080/query/student/name' 可以匹配 配置1<br>
-    13. uri = 'http://www.example.com:9180/query/student/name' 可以匹配 配置1 配置2<br>
-    14. uri = 'http://www.example.com:8080/query/student/name' 可以匹配 配置1 配置2 配置3<br>
-
-
 
 ## reqPermissions权限申请
 
@@ -638,9 +607,9 @@ forms示例：
 ]
 ```
 
-## distroFilter对象的内部结构
+## distributionFilter对象的内部结构
 
-**表21** **distroFilter对象的内部结构说明**
+**表21** **distributionFilter对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -696,10 +665,10 @@ forms示例：
 | value | 该标签标识应用需要分发的国家码，标签为字符串数组，子串表示支持的国家或地区，由两个大写字母表示。 | 字符串数组 | 不可缺省。 |
 
 
-distroFilter示例：
+distributionFilter示例：
 
 ```json
-"distroFilter":  {
+"distributionFilter":  {
   "apiVersion": {
     "policy": "include",
     "value": [4,5]

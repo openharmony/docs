@@ -134,13 +134,14 @@ hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -173,13 +174,14 @@ hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -209,6 +211,8 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): voi
 | callback | AsyncCallback\<string\> | 是   | 回调函数。返回国家码，例如：CN（中国）。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -250,6 +254,8 @@ getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -287,6 +293,8 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -328,6 +336,8 @@ getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -365,6 +375,8 @@ getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -406,6 +418,8 @@ getSimSpn\(slotId: number\): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -444,13 +458,14 @@ getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -484,13 +499,14 @@ getSimState\(slotId: number\): Promise<SimState\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -520,6 +536,8 @@ getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 | callback | AsyncCallback\<[CardType](#cardtype7)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -561,6 +579,8 @@ getCardType\(slotId: number\): Promise<CardType\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -599,13 +619,14 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -639,13 +660,14 @@ hasSimCard\(slotId: number\): Promise<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -679,6 +701,8 @@ getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): voi
 | callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -726,6 +750,8 @@ getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -768,6 +794,8 @@ getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -806,6 +834,8 @@ getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 | Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -849,6 +879,8 @@ setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -863,8 +895,8 @@ setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-sim.setDefaultVoiceSlotId(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setDefaultVoiceSlotId(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -895,6 +927,8 @@ setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -910,9 +944,9 @@ setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 
 ```js
 let promise = sim.setDefaultVoiceSlotId(0);
-promise.then(data => {
-    console.log(`setDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setDefaultVoiceSlotId success.`);
+}).catch((err) => {
     console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -939,6 +973,8 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -953,8 +989,8 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): voi
 
 ```js
 let name = "ShowName";
-sim.setShowName(0, name, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setShowName(0, name, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -985,6 +1021,8 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1000,9 +1038,9 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 ```js
 let name = "ShowName";
 let promise = sim.setShowName(0, name);
-promise.then(data => {
-    console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setShowName success.`);
+}).catch((err) => {
     console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1027,6 +1065,8 @@ getShowName(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1073,6 +1113,8 @@ getShowName(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1116,6 +1158,8 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\):
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1130,8 +1174,8 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\):
 
 ```js
 let number = '+861xxxxxxxxxx';
-sim.setShowNumber(0, number, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setShowNumber(0, number, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1163,6 +1207,8 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1178,9 +1224,9 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 ```js
 let number = '+861xxxxxxxxxx';
 let promise = sim.setShowNumber(0, number);
-promise.then(data => {
-    console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setShowNumber success.`);
+}).catch((err) => {
     console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1205,6 +1251,8 @@ getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1251,6 +1299,8 @@ getShowNumber(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1293,6 +1343,8 @@ activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1306,8 +1358,8 @@ activateSim(slotId: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-sim.activateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.activateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1338,6 +1390,8 @@ activateSim(slotId: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1352,9 +1406,9 @@ activateSim(slotId: number): Promise\<void\>
 
 ```js
 let promise = sim.activateSim(0);
-promise.then(data => {
-    console.log(`activateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`activateSim success.`);
+}).catch((err) => {
     console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1380,6 +1434,8 @@ deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1393,8 +1449,8 @@ deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-sim.deactivateSim(0, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.deactivateSim(0, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1425,6 +1481,8 @@ deactivateSim(slotId: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1439,9 +1497,9 @@ deactivateSim(slotId: number): Promise\<void\>
 
 ```js
 let promise = sim.deactivateSim(0);
-promise.then(data => {
-    console.log(`deactivateSim success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`deactivateSim success.`);
+}).catch((err) => {
     console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -1467,6 +1525,8 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 | options  | [LockInfo](#lockinfo8)                                      | 是   | 锁信息。<br/>- lockType: [LockType](#locktype8)<br/>- password: string<br/>- state: [LockState](#lockstate8) |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1520,6 +1580,8 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1569,6 +1631,8 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1616,6 +1680,8 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1660,6 +1726,8 @@ alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback
 | oldPin   | string                                                      | 是   | 旧密码。                               |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1709,6 +1777,8 @@ alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResp
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1753,6 +1823,8 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallb
 | oldPin2  | string                                                      | 是   | 旧密码。                               |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1802,6 +1874,8 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusR
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1845,6 +1919,8 @@ unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusRespons
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1894,6 +1970,8 @@ unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -1939,6 +2017,8 @@ unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<L
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -1990,6 +2070,8 @@ unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusRes
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2035,6 +2117,8 @@ unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusRespo
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2084,6 +2168,8 @@ unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2129,6 +2215,8 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallbac
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2179,6 +2267,8 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatus
 | Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2245,6 +2335,8 @@ getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2290,6 +2382,8 @@ getSimIccId(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2331,6 +2425,8 @@ getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2377,6 +2473,8 @@ getVoiceMailIdentifier(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2418,6 +2516,8 @@ getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2464,6 +2564,8 @@ getVoiceMailNumber(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2509,6 +2611,8 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback:
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2523,8 +2627,8 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback:
 **示例：**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2557,6 +2661,8 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2572,9 +2678,9 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<
 
 ```js
 let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
-promise.then(data => {
-    console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`setVoiceMailInfo success.`);
+}).catch((err) => {
     console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -2599,6 +2705,8 @@ getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2645,6 +2753,8 @@ getSimTelephoneNumber(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2686,6 +2796,8 @@ getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2732,6 +2844,8 @@ getSimGid1(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2773,6 +2887,8 @@ getIMSI(slotId: number, callback: AsyncCallback<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2819,6 +2935,8 @@ getIMSI(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2861,6 +2979,8 @@ getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2868,7 +2988,6 @@ getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2906,6 +3025,8 @@ getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -2913,7 +3034,6 @@ getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -2948,6 +3068,8 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 | callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                          |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -2996,6 +3118,8 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3041,6 +3165,8 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3060,8 +3186,8 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx",
     pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3094,6 +3220,8 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3113,9 +3241,9 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx"
 };
 let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`addIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3143,6 +3271,8 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3163,8 +3293,8 @@ let diallingNumbersInof = {
     recordNumber: 123,
     pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3197,6 +3327,8 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3216,9 +3348,9 @@ let diallingNumbersInof = {
     number: "138xxxxxxxx"
 };
 let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`delIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3246,6 +3378,8 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3266,8 +3400,8 @@ let diallingNumbersInof = {
     recordNumber: 123,
     pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3300,6 +3434,8 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3320,9 +3456,9 @@ let diallingNumbersInof = {
     recordNumber: 123
 };
 let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
-promise.then(data => {
-    console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`updateIccDiallingNumbers success.`);
+}).catch((err) => {
     console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3349,6 +3485,8 @@ sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3362,8 +3500,8 @@ sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): vo
 **示例：**
 
 ```js
-sim.sendEnvelopeCmd(0, "ls", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.sendEnvelopeCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3395,6 +3533,8 @@ sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3409,9 +3549,9 @@ sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
 
 ```js
 let promise = sim.sendEnvelopeCmd(0, "ls");
-promise.then(data => {
-    console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`sendEnvelopeCmd success.`);
+}).catch((err) => {
     console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3438,6 +3578,8 @@ sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<voi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3451,8 +3593,8 @@ sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<voi
 **示例：**
 
 ```js
-sim.sendTerminalResponseCmd(0, "ls", (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+sim.sendTerminalResponseCmd(0, "ls", (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3484,6 +3626,8 @@ sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3498,9 +3642,9 @@ sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 
 ```js
 let promise = sim.sendTerminalResponseCmd(0, "ls");
-promise.then(data => {
-    console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
+promise.then(() => {
+    console.log(`sendTerminalResponseCmd success.`);
+}).catch((err) => {
     console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3527,6 +3671,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 | callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                               |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -3579,6 +3725,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
@@ -3622,6 +3770,8 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -3629,7 +3779,6 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3671,6 +3820,8 @@ getOpKey(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -3678,7 +3829,6 @@ getOpKey(slotId: number): Promise<string\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3709,6 +3859,8 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -3716,7 +3868,6 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3758,6 +3909,8 @@ getOpName(slotId: number): Promise<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error.                             |
@@ -3765,7 +3918,6 @@ getOpName(slotId: number): Promise<string\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -3783,7 +3935,7 @@ try {
 
 SIM卡状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称                  | 值   | 说明                                                       |
 | --------------------- | ---- | ---------------------------------------------------------- |
@@ -3798,7 +3950,7 @@ SIM卡状态。
 
 卡类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
@@ -3819,7 +3971,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明        |
 | -------- | ---- | ----------- |
@@ -3832,7 +3984,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
@@ -3845,19 +3997,19 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
-| 名称         | 值   | 说明                                            |
-| ------------ | ---- | ----------------------------------------------- |
-| PN_PIN_LOCK  | 0    | 定制网络PIN锁*(参照 3GPP TS 22.022 [33])*。       |
+| 名称         | 值   | 说明                                             |
+| ------------ | ---- | ------------------------------------------------ |
+| PN_PIN_LOCK  | 0    | 定制网络PIN锁(参照 3GPP TS 22.022 [33])。         |
 | PN_PUK_LOCK  | 1    | 定制网络PUk锁。                                   |
-| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁*(参照 3GPP TS 22.022 [33])*。   |
+| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁(参照 3GPP TS 22.022 [33])。     |
 | PU_PUK_LOCK  | 3    | 定制网络子集PUK锁。                               |
-| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁*(参照 3GPP TS 22.022 [33])*。 |
+| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁(参照 3GPP TS 22.022 [33])。   |
 | PP_PUK_LOCK  | 5    | 定制服务提供者PUK锁。                             |
-| PC_PIN_LOCK  | 6    | 定制企业PIN锁*(参照 3GPP TS 22.022 [33])*。       |
+| PC_PIN_LOCK  | 6    | 定制企业PIN锁(参照 3GPP TS 22.022 [33])。         |
 | PC_PUK_LOCK  | 7    | 定制企业Puk锁。                                   |
-| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁*(参照 3GPP TS 22.022 [33])*。      |
+| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁(参照 3GPP TS 22.022 [33])。        |
 | SIM_PUK_LOCK | 9    | 定制SIM的PUK锁。                                  |
 
 ## LockStatusResponse<sup>7+</sup>
@@ -3866,7 +4018,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            | 类型   | 必填 | 说明                  |
 | --------------- | ------ | ---- | --------------------- |
@@ -3879,7 +4031,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     |           类型           | 必填 |   说明   |
 | -------- | ------------------------ | ---- | -------- |
@@ -3893,7 +4045,7 @@ SIM卡状态。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称     |               类型               | 必填 |      说明     |
 | -------- | -------------------------------- | ---- | ------------- |
@@ -3906,7 +4058,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称       | 类型    | 必填 | 说明             |
 | ---------- | ------- | ---- | ---------------- |
@@ -3924,7 +4076,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称  | 类型   | 必填 | 说明 |
 | ----- | ------ | ---- | ---- |
@@ -3937,7 +4089,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称         | 类型   | 必填 |    说明    |
 | ------------ | ------ | ---- | ---------- |
@@ -3952,7 +4104,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 | 名称            | 值   | 说明       |
 | --------------- | ---- | ---------- |
@@ -3965,7 +4117,7 @@ Icc账户信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+**系统能力**：SystemCapability.Telephony.CoreService
 
 |                             名称                        |                             值                         |         说明         |
 | ------------------------------------------------------- | ------------------------------------------------------ | -------------------- |

@@ -3,6 +3,7 @@
 The **bundle.installer** module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 > **NOTE**
+
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -25,7 +26,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -59,7 +60,7 @@ getBundleInstaller(): Promise\<BundleInstaller>;
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -89,7 +90,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 Installs a bundle. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -118,6 +119,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install because enterprise device management disallow install. |
 
 **Example**
 
@@ -147,13 +151,84 @@ try {
 }
 ```
 
+## BundleInstaller.install
+
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+
+Installs a bundle. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name      | Type                         | Mandatory| Description                                                        |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hapFilePaths | Array\<string\>               | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the installation.                                    |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700004 | The specified user ID is not found.                          |
+| 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
+| 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
+| 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
+| 17700015 | Failed to install the HAPs because they have different configuration information. |
+| 17700016 | Failed to install the HAP because of insufficient system disk space. |
+| 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
+| 17700018 | Failed to install because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install because enterprise device management disallow install. |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
+let installParam = {
+    userId: 100,
+    isKeepData: false,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.install(hapFilePaths, installParam)
+            .then((data) => {
+                console.info('install success: ' + JSON.stringify(data));
+        }).catch((error) => {
+            console.error('install failed:' + err.message);
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
 ## BundleInstaller.uninstall
 
 uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
 
 Uninstalls a bundle. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -164,7 +239,7 @@ Uninstalls a bundle. This API uses an asynchronous callback to return the result
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the uninstall.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -175,6 +250,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | -------- | ------------------------------------------------------------ |
 | 17700004 | The specified user ID is not found.                          |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
 **Example**
 
@@ -204,13 +280,126 @@ try {
 }
 ```
 
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+
+Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                                                    |
+| -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.                            |
+| callback       | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.uninstall<sup>10+</sup>
+
+uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+
+Uninstalls a shared bundle. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| uninstallParam | [UninstallParam](#uninstallparam10) | Yes  | Parameters required for the uninstall.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700038 | The specified shared bundle does not exist.                  |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let uninstallParam = {
+    bundleName : "com.ohos.demo",
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(uninstallParam, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
 ## BundleInstaller.recover
 
 recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
 
 Recovers a bundle. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.INSTALL_BUNDLE
 
@@ -221,7 +410,7 @@ Recovers a bundle. This API uses an asynchronous callback to return the result.
 | Name     | Type                                                | Mandatory| Description                                          |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | Yes  | Name of the target bundle.                                          |
-| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation.                      |
+| installParam      | [InstallParam](#installparam)                        | Yes  | Parameters required for the recovering.                      |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is undefined; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -266,7 +455,7 @@ Defines the hash parameters for bundle installation and uninstall.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name    | Type  | Mandatory| Description            |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -279,12 +468,26 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
- **System API**: This is a system API and cannot be called by third-party applications.
+ **System API**: This is a system API.
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | Yes                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
-| installFlag                    | number                         | Yes                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
-| isKeepData                     | boolean                        | Yes                      | Whether to retain the data directory during bundle uninstall.|
-| hashParams        | Array<[HashParam](#hashparam)> | Yes| Hash parameters.        |
-| crowdtestDeadline| number                         | Yes                       |End date of crowdtesting.|
+| userId                         | number                         | No                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
+| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
+| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall.|
+| hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters.        |
+| crowdtestDeadline| number                         | No                       |End date of crowdtesting.|
+| sharedBundleDirPaths | Array\<String> | No|Paths of the shared bundle files.|
+
+## UninstallParam<sup>10+</sup>
+
+Defines the parameters required for the uninstallation of a shared bundle.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+ **System API**: This is a system API.
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Name of the shared bundle.                                                |
+| versionCode | number | No  | Version number of the shared bundle. If this parameter is not set, all shared bundles of the specified name are uninstalled.|

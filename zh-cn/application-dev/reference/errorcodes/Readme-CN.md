@@ -43,7 +43,7 @@
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
-  - [首选项错误码](errorcode-preferences.md)
+  - [用户首选项错误码](errorcode-preferences.md)
 - 文件管理
   - [文件管理子系统错误码](errorcode-filemanagement.md)
 - 电话服务
@@ -57,6 +57,7 @@
   - [网络共享错误码](errorcode-net-sharing.md)
   - [策略管理错误码](errorcode-net-policy.md)
 - 通信与连接
+  - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
   - [RPC错误码](errorcode-rpc.md)

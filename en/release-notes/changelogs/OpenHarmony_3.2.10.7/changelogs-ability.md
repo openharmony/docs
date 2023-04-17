@@ -1,4 +1,4 @@
-# Ability Subsystem Changelog
+# Ability Framework Changelog
 
 ## cl.ability.1 AreaMode APIs Changed
 Duplicate **AreaMode** APIs are deleted.
@@ -105,4 +105,164 @@ Code after the change:
 let context: common.UIAbilityContext = globalThis.abilityContext;
 let appContext = context.getApplicationContext();
 appContext.getRunningProcessInformation()
+```
+
+
+
+## cl.ability.4 WantConstant.Flags API Change
+
+**WantConstant.Flags** has multiple invalid flag definitions. These invalid flags are deleted.
+
+**Change Impact**
+
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
+
+**Key API/Component Changes**
+
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_FORWARD_RESULT | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_CONTINUATION | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_NOT_OHOS_COMPONENT | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_FORM_ENABLED | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_AUTH_PREFIX_URI_PERMISSION | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITYSLICE_MULTI_DEVICE | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_START_FOREGROUND_ABILITY | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_CONTINUATION_REVERSIBLE | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_INSTALL_WITH_BACKGROUND_MODE | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_CLEAR_MISSION | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_NEW_MISSION | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_MISSION_TOP | Deleted    |
+
+
+
+## cl.ability.5 WantConstant.Action API Change
+
+**WantConstant.Action** has multiple invalid action definitions. These invalid actions are deleted.
+
+**Change Impact**
+
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
+
+**Key API/Component Changes**
+
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | ACTION_APP_ACCOUNT_AUTH | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | ACTION_MARKET_DOWNLOAD | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | ACTION_MARKET_CROWDTEST | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_SANDBOX | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_BUNDLE_NAME | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_MODULE_NAME | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_ABILITY_NAME | Deleted    |
+
+
+
+## cl.ability.6 Caller APIs Changed
+
+Caller APIs use the **Parcelable** and **MessageSequence** objects provided by RPC in API version 9 to replace the deprecated **Sequenceable** and **MessageParcel** object.
+
+**Change Impact**
+
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
+
+**Key API/Component Changes**
+
+| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
+| api/@ohos.app.ability.UIAbility.d.ts | CalleeCallback | (indata: rpc.MessageParcel): rpc.Sequenceable; | Changed to **(indata: rpc.MessageSequence): rpc.Parcelable;**.    |
+| api/@ohos.app.ability.UIAbility.d.ts | Caller | call(method: string, data: rpc.Sequenceable): Promise<void>; | Changed to **call(method: string, data: rpc.Parcelable): Promise<void>;**.    |
+| api/@ohos.app.ability.UIAbility.d.ts | Caller | callWithResult(method: string, data: rpc.Sequenceable): Promise<rpc.MessageParcel>; | Changed to **callWithResult(method: string, data: rpc.Parcelable): Promise<rpc.MessageSequence>;**.    |
+
+**Adaptation Guide**
+
+The following illustrates how to call the caller APIs in your application.
+
+Code before the change:
+
+```ts
+  class MyMessageAble{
+      name:""
+      str:""
+      num: 1
+      constructor(name, str) {
+        this.name = name;
+        this.str = str;
+      }
+      marshalling(messageParcel) {
+          messageParcel.writeInt(this.num);
+          messageParcel.writeString(this.str);
+          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+          return true;
+      }
+      unmarshalling(messageParcel) {
+          this.num = messageParcel.readInt();
+          this.str = messageParcel.readString();
+          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+          return true;
+      }
+  };
+  let method = 'call_Function';
+  function funcCallBack(pdata) {
+      console.log('Callee funcCallBack is called ' + pdata);
+      let msg = new MyMessageAble("test", "");
+      pdata.readSequenceable(msg);
+      return new MyMessageAble("test1", "Callee test");
+  }
+  export default class MainUIAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.on(method, funcCallBack);
+      } catch (error) {
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
+      }
+    }
+  }
+```
+
+Code after the change:
+
+```ts
+  class MyMessageAble{
+      name:""
+      str:""
+      num: 1
+      constructor(name, str) {
+        this.name = name;
+        this.str = str;
+      }
+      marshalling(messageSequence) {
+          messageSequence.writeInt(this.num);
+          messageSequence.writeString(this.str);
+          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+          return true;
+      }
+      unmarshalling(messageSequence) {
+          this.num = messageSequence.readInt();
+          this.str = messageSequence.readString();
+          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+          return true;
+      }
+  };
+  let method = 'call_Function';
+  function funcCallBack(pdata) {
+      console.log('Callee funcCallBack is called ' + pdata);
+      let msg = new MyMessageAble("test", "");
+      pdata.readParcelable(msg);
+      return new MyMessageAble("test1", "Callee test");
+  }
+  export default class MainUIAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.on(method, funcCallBack);
+      } catch (error) {
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
+      }
+    }
+  }
 ```

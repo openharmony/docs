@@ -25,6 +25,13 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)：ENTERPRISE_ADMIN类型的ExtensionAbility组件，用于提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。
 
+> **说明：**
+> 1. OpenHarmony不支持三方应用实现ServiceExtensionAbility、DataShareExtensionAbility、StaticSubscriberExtensionAbility和WindowExtensionAbility。
+>
+> 2. 如果三方开发者想要实现后台处理相关事务的功能，无法使用ServiceExtensionAbility，可以使用后台任务，具体请参见[后台任务](../task-management/background-task-overview.md)。
+>
+> 3. 三方应用只能使用当前系统已定义的上述类型的ExtensionAbility。
+
 
 ## 使用指定类型的ExtensionAbility组件
 
@@ -39,7 +46,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 ## 实现指定类型的ExtensionAbility组件
 
-以实现卡片[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)为例进行说明。卡片框架提供了[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)基类，开发者通过派生此基类（如MyFormExtensionAbility），实现回调（如创建卡片的onCreate()回调、更新卡片的onUpdateForm()回调等）来实现具体卡片功能，具体见开发指导见[服务卡片FormExtensionAbility](widget-development-stage.md)。
+以实现卡片[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)为例进行说明。卡片框架提供了[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)基类，开发者通过派生此基类（如MyFormExtensionAbility），实现回调（如创建卡片的onCreate()回调、更新卡片的onUpdateForm()回调等）来实现具体卡片功能，具体见开发指导见[服务卡片FormExtensionAbility](service-widget-overview.md)。
 
 卡片FormExtensionAbility实现方不用关心使用方何时去请求添加、删除卡片，FormExtensionAbility实例及其所在的ExtensionAbility进程的整个生命周期，都是由卡片管理系统服务FormManagerService进行调度管理。
 
@@ -48,11 +55,11 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 > **说明：**
 > 同一应用内的所有同类型的ExtensionAbility运行在同一独立进程（除ServiceExtensionAbility、DataShareExtensionAbility外），跟UIAbility组件不在同一进程，Stage模型的进程模型请参见[进程模型](process-model-stage.md)。
-> 
+>
 > 例如一个应用有1个UIAbility组件、1个ServiceExtensionAbility、1个DataShareExtensionAbility、2个FormExtensionAbility、1个ImeExtensionAbility。则该应用在运行时，有三个进程：
-> 
+>
 > - UIAbility、ServiceExtensionAbility、DataShareExtensionAbility运行在同一个进程。
-> 
+>
 > - FormExtensionAbility运行在一个独立进程。
-> 
+>
 > - ImeExtensionAbility运行在一个独立进程。

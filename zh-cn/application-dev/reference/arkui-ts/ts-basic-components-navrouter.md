@@ -10,6 +10,14 @@
 
 必须包含两个子组件，其中第二个子组件必须为[NavDestination](ts-basic-components-navdestination.md)。
 
+> **说明：**
+>
+> 子组件个数异常时：
+> 1. 有且仅有1个时，触发路由到NavDestination的能力失效。
+> 2. 有且仅有1个时，且使用NavDestination场景下，不进行路由。
+> 3. 大于2个时，后续的子组件不显示。
+> 4. 第二个子组件不为NavDestination时，触发路由功能失效。
+
 ## 接口
 
 NavRouter()
@@ -17,9 +25,9 @@ NavRouter()
 
 ## 事件
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onStateChange(callback: (isActivated: boolean) => void) | 组件激活状态切换时触发该回调。返回值isActivated为true时表示激活，为false时表示未激活。</br> **说明：** 用户点击NavRouter，激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)；NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。  |
+| 名称                                                    | 功能描述                                                     |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| onStateChange(callback: (isActivated: boolean) => void) | 组件激活状态切换时触发该回调。返回值isActivated为true时表示激活，为false时表示未激活。<br/> **说明：** <br/>开发者点击激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)。NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。 |
 
 ## 示例
 

@@ -21,7 +21,7 @@
 | shortcuts | 标识应用的快捷方式信息 | shortcut_config.json文件 | 在开发视图的resources/base/profile下面定义配置文件shortcut_config.json。 |
 | reqPermissions | 标识应用运行时向系统申请的权限 | requestPermissions | 标签名称变更。 |
 | colorMode | 标识应用自身的颜色模式 | / | Stage模型不支持。 |
-| distroFilter | 标识应用的分发规则 | distroFilter_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件distroFilter_config.json。 |
+| distributionFilter | 标识应用的分发规则 | distroFilter_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件distroFilter_config.json。 |
 | reqCapabilities | 标识运行应用程序所需的设备能力 | / | Stage模型不支持。 |
 | commonEvents | 公共事件 | common_event_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件common_event_config.json。 |
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字 | / | Stage模型不支持。 |
@@ -71,5 +71,5 @@
 | formsEnabled | 标识Ability是否支持卡片（forms）功能 | / | Stage模型不支持 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效 | form_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件form_config.json |
 | srcLanguage | Ability开发语言的类型 | / | Stage模型不支持 |
-| srcPath | 该标签标识Ability对应的JS组件代码路径 | srcEntrance | 该标签标识ability所对应的js代码路径。 |
+| srcPath | 该标签标识Ability对应的JS组件代码路径 | srcEntry | 该标签标识ability所对应的js代码路径。 |
 | uriPermission | 标识该Ability有权访问的应用程序数据 | / | Stage模型不支持 |

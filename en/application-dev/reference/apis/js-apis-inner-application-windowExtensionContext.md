@@ -58,7 +58,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     this.context.startAbility(want, options, (error) => {
       if (error.code) {
         // Process service logic errors.
-        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
       }
       // Carry out normal service processing.
@@ -66,7 +66,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
     });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```
 
@@ -110,10 +110,10 @@ Starts an ability. This API uses a promise to return the result.
       })
       .catch((error) => {
         // Process service logic errors.
-        console.error('startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
       });
   } catch (paramError) {
     // Process input parameter errors.
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
   ```

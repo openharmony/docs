@@ -86,8 +86,8 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 
 | ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | The application is not an administrator application of the device.                       |
-| 9200002 | The administrator application does not have permission to manage the device.|
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
 
 **Example**
 

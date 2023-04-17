@@ -7,7 +7,7 @@
 ## 约束与限制
 
   仅支持设备管理员应用使用。（功能限制）
-  
+
 
 ## 场景：监听设备管理器激活、去激活、应用安装、卸载事件
 
@@ -17,17 +17,17 @@ onAdminEnabled：由企业管理员或者员工部署MDM应用，激活设备管
 
 onAdminDisabled：由系统或者员工去激活设备管理器，通知去激活DeviceAdmin权限，应用可以通知企业管理员设备已脱管。
 
-onBundleAdded:  企业应用管理场景下，企业管理员订阅应用安装卸载事件，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。
+onBundleAdded:  企业应用管理场景下，企业管理员订阅应用安装事件，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。
 
-onBundleRemoved: 企业应用管理场景下，企业管理员取消订阅应用安装卸载事件。
+onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载事件，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。
 
 ### 接口说明
 
 | 类名                            | 接口名称                                  | 描述                         |
 | :------------------------------ | ----------------------------------------- | ---------------------------- |
+| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | 设备管理器应用激活回调方法   |
 | EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | 设备管理器应用去激活回调方法 |
 | EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | 应用安装回调方法             |
-| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | 设备管理器应用激活回调方法   |
 | EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | 应用卸载回调方法             |
 
 ### 开发步骤
@@ -61,25 +61,24 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
 ```ts
 "extensionAbilities": [
       {
         "name": "ohos.samples.enterprise_admin_ext_ability",
         "type": "enterpriseAdmin",
-        "visible": true,
-        "srcEntrance": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+        "exported": true,
+        "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
       }
     ]
 ```
 
 ## 使用示例
 
-通过@ohos.enterprise.adminManager模块中的subscribeManagedEvent接口和unsubscribeManagedEvent接口进行企业设备管理事件的订阅，订阅应用安装、卸载事件。当订阅成功后，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。
+通过@ohos.enterprise.adminManager模块中的subscribeManagedEvent接口进行企业设备管理事件的订阅，订阅应用安装、卸载事件。当订阅成功后，端侧应用安装和卸载事件通知MDM应用，MDM应用可以在回调函数中进行事件上报，通知企业管理员。并可以通过unsubscribeManagedEvent接口进行企业设备管理事件的去订阅。
 
 ```ts
-  @State managedEvents: Array<adminManager.ManagedEvent> = [0,1]
   @State subscribeManagedEventMsg: string = ""
   @State unsubscribeManagedEventMsg: string = ""
 

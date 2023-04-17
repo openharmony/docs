@@ -1980,6 +1980,8 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 Draws an image on the canvas.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name   | Type                                      | Mandatory  | Default Value | Description                                      |
@@ -2355,6 +2357,8 @@ Displays the specified **ImageBitmap** object.
 toDataURL(type?: string, quality?: number): string
 
 Generates a URL containing image display information.
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 

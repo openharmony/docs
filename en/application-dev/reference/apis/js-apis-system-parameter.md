@@ -5,7 +5,7 @@ For details about the system parameter design principles and definitions, see
 [Service Management](../../../device-dev/subsystems/subsys-boot-init-sysparam.md).
 
 > **NOTE**
-> - The APIs of this module are no longer maintained since API version 9. It is recommended that you use [@ohos.systemParameterV9](js-apis-system-parameterV9.md) instead.
+> - The APIs of this module are no longer maintained since API version 9. It is recommended that you use [@ohos.systemParameterEnhance](js-apis-system-parameterEnhance.md) instead.
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are system APIs.
 > - Third-party applications cannot use the APIs provided by this module, because system parameters each require specific discretionary access control (DAC) and MAC permissions.

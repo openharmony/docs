@@ -1,9 +1,9 @@
-# Unsubscribing from Common Events
+# Unsubscribing from Common Events in Dynamic Mode
 
 
 ## When to Use
 
-You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required.
+You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe) to unsubscribe from a common event that is no longer required in dynamic mode.
 
 
 ## Available APIs
@@ -21,12 +21,12 @@ You can call [unsubscribe()](../reference/apis/js-apis-commonEventManager.md#com
    import commonEventManager from '@ohos.commonEventManager';
    ```
 
-2. Subscribe to an event by following the procedure described in [Subscribing to Common Events](common-event-subscription.md).
+2. Subscribe to an event by following the procedure described in [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md).
 
 3. Call **unsubscribe** in **CommonEvent** to unsubscribe from the common event.
    
    ```ts
-   // The subscriber object iscreated during event subscription.
+   // The subscriber object is created during event subscription.
    if (subscriber !== null) {
        commonEventManager.unsubscribe(subscriber, (err) => {
            if (err) {

@@ -7,7 +7,7 @@ The pan-sensor service subsystem provides a lightweight sensor service framework
 
   **Figure 1** Sensor service framework
 
-  ![](figure/en-us_image_0000001077724150.png)
+  ![](figures/en-us_image_0000001077724150.png)
 
 - Sensor API: provides APIs for performing basic operations on sensors, including querying the sensor list, subscribing to or unsubscribing from sensor data, and executing control commands. This module makes application development simpler.
 

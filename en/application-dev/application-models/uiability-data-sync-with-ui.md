@@ -80,7 +80,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 4. After **event1** is used, you can call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
-   // context is the ability-level context of the UIAbility instance.
+   // context is the AbilityContext of the UIAbility instance.
    this.context.eventHub.off('event1');
    ```
 
@@ -240,10 +240,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-          // ...
-       });
      }
      // Page display.
      build() {
@@ -251,7 +247,7 @@ The following provides an example to describe the object overwritten problem in 
      }
    }
    ```
-
+   
 3. In the UIAbilityB file, [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) is stored in **globalThis** and has the same name as that in the UIAbilityA file.
 
    ```ts
@@ -274,10 +270,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-         console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // Page display.
      build() {
@@ -285,7 +277,7 @@ The following provides an example to describe the object overwritten problem in 
      }
    }
    ```
-
+   
 5. Switch the UIAbilityB instance to the background and switch the UIAbilityA instance to the foreground. In this case, UIAbilityA will not enter the **onCreate()** lifecycle again.
 
    ```ts
@@ -307,10 +299,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // The context in globalThis is the context of UIAbilityB.
-       let permissions=['com.example.permission'];
-       ctx.requestPermissionsFromUser(permissions,(result) => { // Using this object causes a process breakdown.
-          console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // Page display.
      build() {

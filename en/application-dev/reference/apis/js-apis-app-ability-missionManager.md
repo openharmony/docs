@@ -290,7 +290,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
   | -------- | -------- | -------- | -------- |
   | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
   | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md))&gt; | Yes| Callback used to return the mission information obtained.|
+  | callback | AsyncCallback&lt;[MissionInfo](./js-apis-inner-application-missionInfo.md)&gt; | Yes| Callback used to return the mission information obtained.|
 
 **Example**
 
@@ -306,7 +306,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
     missionManager.getMissionInfo('', testMissionId, (error, mission) => {
         if (error) {
-            console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
         } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
@@ -392,7 +392,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
       } else {
         console.log('size = ${missions.length}');
         console.log('missions = ${JSON.stringify(missions)}');

@@ -24,8 +24,8 @@
   | 断点名称 | 取值范围（vp） | 
 | -------- | -------- |
 | xs | [0,&nbsp;320） | 
-| sm | [320,&nbsp;520) | 
-| md | [520,&nbsp;840) | 
+| sm | [320,&nbsp;600) | 
+| md | [600,&nbsp;840) | 
 | lg | [840,&nbsp;+∞) | 
 
 > **说明：**
@@ -66,7 +66,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
        let newBp: string = ''
        if (windowWidthVp < 320) {
          newBp = 'xs'
-       } else if (windowWidthVp < 520) {
+       } else if (windowWidthVp < 600) {
          newBp = 'sm'
        } else if (windowWidthVp < 840) {
          newBp = 'md'
@@ -209,9 +209,9 @@ export class BreakpointSystem {
   }
 
   public register() {
-    this.smListener = mediaquery.matchMediaSync("(320vp<width<520vp)")
+    this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
     this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync("(520vp<width<840vp)")
+    this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
     this.mdListener.on("change", this.isBreakpointMD)
     this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
     this.lgListener.on("change", this.isBreakpointLG)

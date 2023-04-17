@@ -99,7 +99,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
-        return AbilityConstant.OnConinueResult.AGREE;
+        return AbilityConstant.OnContinueResult.AGREE;
     }
 }
 ```
@@ -132,7 +132,7 @@ let option = {
 };
 
 // Ensure that the context is obtained.
-this.context.startAbility(want, option).then(()={
+this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
 }).catch((error)=>{
     console.error('Failed to start ability with error: ${JSON.stringify(error)}');

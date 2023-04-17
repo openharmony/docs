@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol.|
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -85,15 +85,53 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+  Example of loading local resource files in the sandbox:
+
+  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+     ```ts
+     // xxx.ets
+     import web_webview from '@ohos.web.webview'
+     let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: web_webview.WebviewController = new web_webview.WebviewController()
+       build() {
+         Column() {
+           // Load the files in the sandbox.
+           Web({ src: url, controller: this.controller })
+         }
+       }
+     }
+     ```
+
+  2. Modify the **MainAbility.ts** file.
+  
+     The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining the Application Development Path](../../application-models/application-context-stage.md#obtaining-the-application-development-path).
+     ```ts
+     // xxx.ts
+     import UIAbility from '@ohos.app.ability.UIAbility';
+     import web_webview from '@ohos.web.webview';
+
+     export default class EntryAbility extends UIAbility {
+         onCreate(want, launchParam) {
+             // Bind filesDir to the globalThis object to implement data synchronization between the UIAbility component and the UI.
+             globalThis.filesDir = this.context.filesDir
+             console.log("Sandbox path is " + globalThis.filesDir)
+         }
+     }
+     ```
+
+     ```html
+     <!-- index.html -->
+     <!DOCTYPE html>
+     <html>
+         <body>
+             <p>Hello World</p>
+         </body>
+     </html>
+     ```
 
 ## Attributes
 
@@ -499,6 +537,8 @@ multiWindowAccess(multiWindow: boolean)
 
 Sets whether to enable the multi-window permission.
 
+Enabling the multi-window permission requires implementation of the **onWindowNew** event. For details about the sample code, see [onWindowNew](#onwindownew9).
+
 **Parameters**
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
@@ -518,7 +558,7 @@ Sets whether to enable the multi-window permission.
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
+        .multiWindowAccess(false)
       }
     }
   }
@@ -1195,7 +1235,7 @@ struct WebComponent {
 }
   ```
 
-### allowWindowOpenMethod<sup>9+</sup>
+### allowWindowOpenMethod<sup>10+</sup>
 
 allowWindowOpenMethod(flag: boolean)
 
@@ -1225,19 +1265,89 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
-    @State multiWindow: boolean = true
-    @State flag: boolean = true
+    dialogController: CustomDialogController = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(this.access)
-          .multiWindowAccess(this.multiWindow)
-          .allowWindowOpenMethod(this.flag)
+          .javaScriptAccess(true)
+          // MultiWindowAccess needs to be enabled.
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
+            // If the event.handler.setWebController API is not called, the render process will be blocked.
+            event.handler.setWebController(popController)
+          })
+      }
+    }
+  }
+  ```
+
+### mediaOptions<sup>10+</sup>
+
+mediaOptions(options: WebMediaOptions)
+
+Sets the web-based media playback policy, including the validity period for automatically resuming a paused web audio, and whether the audio of multiple **\<Web>** instances in an application is exclusive.
+
+> **NOTE**
+>
+> - Audios in the same **\<Web>** instance are considered as the same audio.
+> - The media playback policy controls videos with an audio track.
+> - After the parameter settings are updated, the playback must be started again for the settings to take effect.
+> - It is recommended that you set the same **audioExclusive** value for all **\<Web>** components.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value | Description                      |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| options | [WebMediaOptions](#webmediaoptions10) | Yes  | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
+
+**Example**
+
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mediaOptions(this.options)
       }
     }
   }
@@ -2012,11 +2122,12 @@ Called when the display ratio of this page changes.
   }
   ```
 
-### onUrlLoadIntercept
+### onUrlLoadIntercept<sup>(deprecated)</sup>
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+This API is deprecated since API version 10. You are advised to use [onLoadIntercept<sup>10+</sup>](#onloadintercept10) instead.
 
 **Parameters**
 
@@ -2452,7 +2563,7 @@ Called when a permission request is received.
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-Shows a context menu after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
+Called when a context menu is displayed after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
 
 **Parameters**
 
@@ -2529,7 +2640,7 @@ Called when the scrollbar of the page scrolls.
 
 onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
 
-Registers a callback for receiving a request to obtain the geolocation information.
+Called when a request to obtain the geolocation information is received.
 
 **Parameters**
 
@@ -2683,7 +2794,9 @@ Called when the component exits full screen mode.
 
 onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
 
-Registers a callback for window creation.
+Called when a new window is created. This API takes effect when **multiWindowAccess** is enabled.
+If the **event.handler.setWebController** API is not called, the render process will be blocked.
+If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
 
 **Parameters**
 
@@ -2699,19 +2812,51 @@ Registers a callback for window creation.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  
+  // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController = null
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.log("onWindowNew...")
-          var popController: web_webview.WebviewController = new web_webview.WebviewController()
-          event.handler.setWebController(popController)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          // MultiWindowAccess needs to be enabled.
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
+            // If the event.handler.setWebController API is not called, the render process will be blocked.
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -2721,13 +2866,13 @@ Registers a callback for window creation.
 
 onWindowExit(callback: () => void)
 
-Registers a callback for window closure.
+Called when this window is closed.
 
 **Parameters**
 
 | Name     | Type      | Description        |
 | -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window closes.|
+| callback | () => void | Callback invoked when the window is closed.|
 
 **Example**
 
@@ -2856,7 +3001,7 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Called when the key event is intercepted and before it is consumed by the Webview.
+Called when the key event is intercepted and before it is consumed by the webview.
 
 **Parameters**
 
@@ -2868,7 +3013,7 @@ Called when the key event is intercepted and before it is consumed by the Webvie
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether to continue to transfer the key event to the Webview kernel.|
+| boolean | Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
 
@@ -2966,7 +3111,7 @@ Called when this web page receives a new favicon.
 
 onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
-Registers a callback for audio playback status changes on the web page.
+Called when the audio playback status changes on the web page.
 
 **Parameters**
 
@@ -2990,6 +3135,86 @@ Registers a callback for audio playback status changes on the web page.
           .onAudioStateChanged(event => {
             this.playing = event.playing
             console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
+      }
+    }
+  }
+  ```
+
+### onFirstContentfulPaint<sup>10+</sup>
+
+onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+
+Called when the web page content is first rendered.
+
+**Parameters**
+
+| Name                |  Type | Description                           |
+| -----------------------| -------- | ----------------------------------- |
+| navigationStartTick    | number   | Navigation start time, in microseconds.|
+| firstContentfulPaintMs | number   | Time between navigation and when the content is first rendered, in milliseconds.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onFirstContentfulPaint(event => {
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+              event.firstContentfulPaintMs)
+          })
+      }
+    }
+  }
+  ```
+
+### onLoadIntercept<sup>10+</sup>
+
+onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+
+Called when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
+
+**Parameters**
+
+| Name | Type                                    | Description     |
+| ------- | ---------------------------------------- | --------- |
+| request | [Webresourcerequest](#webresourcerequest) | Information about the URL request.|
+
+**Return value**
+
+| Type     | Description                      |
+| ------- | ------------------------ |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onLoadIntercept((event) => {
+            console.log('url:' + event.data.getRequestUrl())
+            console.log('isMainFrame:' + event.data.isMainFrame())
+            console.log('isRedirect:' + event.data.isRedirect())
+            console.log('isRequestGesture:' + event.data.isRequestGesture())
+            return true
           })
       }
     }
@@ -3050,7 +3275,7 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert](#onalert).
 
 ### handleCancel
 
@@ -3094,13 +3319,13 @@ Implements a **WebviewController** object for new **\<Web>** components. For the
 
 setWebController(controller: WebviewController): void
 
-Sets a **WebviewController** object.
+Sets a **WebviewController** object. If opening a new window is not needed, set the parameter to **null**.
 
 **Parameters**
 
 | Name       | Type         | Mandatory  | Default Value | Description                     |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component.|
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -3193,6 +3418,18 @@ Checks whether the resource request is associated with a gesture (for example, a
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Whether the resource request is associated with a gesture (for example, a tap).|
+
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+Obtains the request method.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| string | Request method.|
 
 ## Header
 
@@ -3509,6 +3746,8 @@ Uses the specified private key and client certificate chain.
 ### confirm<sup>10+</sup>
 
 confirm(authUri : string): void
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
 Instructs the **\<Web>** component to use the specified credentials (obtained from the certificate management module).
 
@@ -3899,6 +4138,15 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Off     | The web dark mode is disabled.                    |
 | On      | The web dark mode is enabled.                    |
 | Auto    | The web dark mode setting follows the system settings.                |
+
+## WebMediaOptions<sup>10+</sup>
+
+Describes the web-based media playback policy.
+
+| Name          | Type      | Readable| Writable| Mandatory| Description                        |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds.|
+| audioExclusive |  boolean  |  Yes | Yes  |  No | Whether the audio of multiple **\<Web>** instances in an application is exclusive.   |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4687,7 +4935,7 @@ This API is deprecated since API version 9. You are advised to use [setCookie<su
 
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | Yes   | -    | URL of the cookie to set.|
+| url   | string | Yes   | -    | URL of the cookie to set. A complete URL is recommended.|
 | value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**

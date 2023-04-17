@@ -23,8 +23,8 @@
 
 
 - **跨应用启动组件，需校验目标组件Visible**
-  - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
-  - [组件visible配置参考](../quick-start/module-configuration-file.md#abilities标签)
+  - 若目标组件exported字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
+  - [组件exported配置参考](../quick-start/module-configuration-file.md#abilities标签)
 
 - **位于后台的应用，启动组件需校验BACKGROUND权限**
   - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
