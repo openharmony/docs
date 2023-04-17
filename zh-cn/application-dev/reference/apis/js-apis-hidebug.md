@@ -173,7 +173,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 **示例：**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import featureAbility from '@ohos.ability.featureAbility'
 
@@ -181,7 +181,7 @@ let context = featureAbility.getContext();
 context.getFilesDir().then((data) => {
   var path = data + "/serviceInfo.txt"
   console.info("output path: " + path)
-  let fd = fileio.openSync(path, 0o102, 0o666)
+  let fd = fs.openSync(path, 0o102, 0o666)
   var serviceId = 10
   var args = new Array("allInfo")
   try {
@@ -190,7 +190,7 @@ context.getFilesDir().then((data) => {
     console.info(error.code)
     console.info(error.message)
   }
-  fileio.closeSync(fd);
+  fs.closeSync(fd);
 })
 ```
 
