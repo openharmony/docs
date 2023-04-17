@@ -659,7 +659,7 @@ import router from '@ohos.router'
 struct Second {
   private content: string = "这是第二页"
   @State text: string = router.getParams()['text']
-  @State data: any = router.getParams()['data']
+  @State data: object = router.getParams()['data']
   @State secondData : string = ''
   
   build() {
@@ -670,7 +670,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(()=>{
-          this.secondData = (this.data.array[1]).toString()
+          this.secondData = (this.data.['array'][1]).toString()
         })
       .margin({top:20})
       Text(`第一页传来的数值:${this.secondData}`)
