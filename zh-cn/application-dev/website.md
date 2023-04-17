@@ -328,7 +328,7 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
-    - Web
+  - Web
     - [Web组件概述](web/web-component-overview.md)
     - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
     - 设置基本属性和事件
