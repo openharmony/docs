@@ -32,15 +32,40 @@
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
-    - ArkTS语法（声明式UI）
-      - [基本UI描述](quick-start/arkts-basic-ui-description.md)
-      - 状态管理
-        - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
-        - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
-        - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
-      - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
-      - [渲染控制](quick-start/arkts-rendering-control.md)
-      - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
+    - 基本语法
+      - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
+      - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
+      - 自定义组件
+        - [创建自定义组件](quick-start/arkts-create-custom-components.md)
+        - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+      - [\@Builder：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@BuilderParam：引用\@Builder函数](quick-start/arkts-builderparam.md)
+      - [\@Styles：定义组件重用样式](quick-start/arkts-style.md)
+      - [\@Extend：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
+    - 状态管理
+      - [状态管理概述](quick-start/arkts-state-management-overview.md)
+      - 管理组件拥有的状态
+        - [\@State：组件内状态](quick-start/arkts-state.md)
+        - [\@Prop：父子单向同步](quick-start/arkts-prop.md)
+        - [\@Link：父子双向同步](quick-start/arkts-link.md)
+        - [\@Provide和\@Consume：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed和\@ObjectLink：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
+      - 管理应用拥有的状态
+        - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
+        - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
+        - [AppStorage：应用全局的UI状态存储](quick-start/arkts-appstorage.md)
+        - [PersistentStorage：持久化存储UI状态](quick-start/arkts-persiststorage.md)
+        - [Environment：设备环境查询](quick-start/arkts-environment.md)
+      - 其他状态管理
+        - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch：状态变量更改通知](quick-start/arkts-watch.md)
+        - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+    - 渲染控制
+      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -172,33 +197,65 @@
         - [window接口切换](application-models/window-switch.md)
         - [Storage接口切换](application-models/storage-switch.md)
   - UI开发
-    - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于ArkTS的声明式开发范式
-      - [概述](ui/ui-ts-overview.md)
-      - [声明式UI开发指导](ui/ui-ts-developing-intro.md)
-      - 声明式UI开发实例
-        - [创建简单视图](ui/ui-ts-creating-simple-page.md)
-        - 构建完整实例
-          - [构建食物数据模型](ui/ui-ts-building-data-model.md)
-          - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
-          - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
-          - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
-        - 添加闪屏动画
-          - [绘制图像](ui/ui-ts-drawing-feature.md)
-          - [添加动画效果](ui/ui-ts-animation-feature.md)
-      - [常用组件说明](ui/ui-ts-components-intro.md)
-      - 常见布局开发指导
-        - 自适应布局
-          - [线性布局](ui/ui-ts-layout-linear.md)
-          - [层叠布局](ui/ui-ts-layout-stack.md)
-          - [弹性布局](ui/ui-ts-layout-flex.md)
-          - [网格布局](ui/ui-ts-layout-grid.md)
-        - 响应式布局
-          - [栅格布局](ui/ui-ts-layout-grid-container-new.md)
-          - [媒体查询](ui/ui-ts-layout-mediaquery.md)
-      - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
-      - [Web组件开发指导](ui/ui-ts-components-web.md)
-      - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
+    - [方舟开发框架概述](ui/arkui-overview.md)
+    - UI开发（ArkTS声明式开发范式）
+      - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
+      - 开发布局
+        - [布局概述](ui/arkts-layout-development-overview.md)
+        - 构建布局
+          - [线性布局](ui/arkts-layout-development-linear.md)
+          - [层叠布局](ui/arkts-layout-development-stack-layout.md)
+          - [弹性布局](ui/arkts-layout-development-flex-layout.md)
+          - [相对布局](ui/arkts-layout-development-relative-layout.md)
+          - [栅格布局](ui/arkts-layout-development-grid-layout.md)
+          - [媒体查询](ui/arkts-layout-development-media-query.md)
+          - [创建列表](ui/arkts-layout-development-create-list.md)
+          - [创建网格](ui/arkts-layout-development-create-grid.md)
+          - [创建轮播](ui/arkts-layout-development-create-looping.md)
+        - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
+      - 添加组件
+        - 添加常用组件
+          - [按钮](ui/arkts-common-components-button.md)
+          - [单选框](ui/arkts-common-components-radio-button.md)
+          - [切换按钮](ui/arkts-common-components-switch.md)
+          - [进度条](ui/arkts-common-components-progress-indicator.md)
+          - [文本显示](ui/arkts-common-components-text-display.md)
+          - [文本输入](ui/arkts-common-components-text-input.md)
+          - [自定义弹窗](ui/arkts-common-components-custom-dialog.md)
+          - [视频播放](ui/arkts-common-components-video-player.md)
+          - [XComponent](ui/arkts-common-components-xcomponent.md)
+        - 添加气泡和菜单
+          - [气泡提示](ui/arkts-popup-and-menu-components-popup.md)
+          - [菜单](ui/arkts-popup-and-menu-components-menu.md)
+      - 设置页面路由和组件导航
+        - [页面路由](ui/arkts-routing.md)
+        - 组件导航
+          - [Navigation](ui/arkts-navigation-navigation.md)
+          - [Tabs](ui/arkts-navigation-tabs.md)
+      - 显示图形
+        - [显示图片](ui/arkts-graphics-display.md)
+        - [绘制几何图形](ui/arkts-geometric-shape-drawing.md)
+        - [使用画布绘制自定义图形](ui/arkts-drawing-customization-on-canvas.md)
+      - 使用动画
+        - [动画概述](ui/arkts-animation-overview.md)
+        - 页面内的动画
+          - [布局更新动画](ui/arkts-layout-update-animation.md)
+          - [组件内转场动画](ui/arkts-transition-animation-within-component.md)
+          - [弹簧曲线动画](ui/arkts-spring-animation.md)
+        - 页面间的动画
+          - [放大缩小视图](ui/arkts-zoom-animation.md)
+          - [页面转场动画](ui/arkts-page-transition-animation.md)
+      - 支持交互事件
+        - [交互事件概述](ui/arkts-event-overview.md)
+        - 使用通用事件
+          - [触屏事件](ui/arkts-common-events-touch-screen-event.md)
+          - [键鼠事件](ui/arkts-common-events-device-input-event.md)
+          - [焦点事件](ui/arkts-common-events-focus-event.md)
+        - 使用手势事件
+          - [绑定手势方法](ui/arkts-gesture-events-binding.md)
+          - [单一手势](ui/arkts-gesture-events-single-gesture.md)
+          - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
+      - [性能提升的推荐方法](ui/arkts-performance-improvement-recommendation.md)
     - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
@@ -271,6 +328,22 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+    - Web
+    - [Web组件概述](web/web-component-overview.md)
+    - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
+    - 设置基本属性和事件
+      - [设置深色模式](web/web-set-dark-mode.md)
+      - [上传文件](web/web-file-upload.md)
+      - [在新窗口中打开页面](web/web-open-in-new-window.md)
+      - [管理位置权限](web/web-geolocation-permission.md)
+    - 在应用中使用前端页面JavaScript
+      - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
+      - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
+      - [建立应用侧与前端页面数据通道](web/web-app-page-data-channel.md)
+    - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
+    - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
+    - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
+    - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
   - 通知
     - [通知概述](notification/notification-overview.md)
     - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
@@ -288,30 +361,64 @@
     - [WebGL开发概述](webgl/webgl-overview.md)
     - [WebGL开发指导](webgl/webgl-guidelines.md)
   - 媒体
+    - [媒体应用开发概述](media/media-application-overview.md)
     - 音视频
-      - [音频开发概述](media/audio-overview.md)
-      - [音频渲染开发指导](media/audio-renderer.md)
-      - [音频流管理开发指导](media/audio-stream-manager.md)
-      - [音频采集开发指导](media/audio-capturer.md)
-      - [OpenSL ES播放开发指导](media/opensles-playback.md)
-      - [OpenSL ES录音开发指导](media/opensles-capture.md)
-      - [音频焦点模式开发指导](media/audio-interruptmode.md)
-      - [音量管理开发指导](media/audio-volume-manager.md)
-      - [路由、设备管理开发指导](media/audio-routing-manager.md)
-      - [音视频播放器开发指导(推荐使用)](media/avplayer-playback.md)
-      - [音视频录制开发指导(推荐使用)](media/avrecorder.md)
-      - [音频播放开发指导(待停用)](media/audio-playback.md)
-      - [音频录制开发指导(待停用)](media/audio-recorder.md)
-      - [视频播放开发指导(待停用)](media/video-playback.md)
-      - [视频录制开发指导(待停用)](media/video-recorder.md)
-    - 媒体会话
-      - [AVSession开发概述](media/avsession-overview.md)
-      - [AVSession开发指导](media/avsession-guidelines.md)
+      - [音视频概述](media/av-overview.md)
+      - [AVPlayer和AVRecorder](media/avplayer-avrecorder-overview.md)
+      - 音频播放
+        - [音频播放开发概述](media/audio-playback-overview.md)
+        - [使用AVPlayer开发音频播放功能](media/using-avplayer-for-playback.md)
+        - [使用AudioRenderer开发音频播放功能](media/using-audiorenderer-for-playback.md)
+        - [使用OpenSL ES开发音频播放功能](media/using-opensl-es-for-playback.md)
+        - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](media/using-toneplayer-for-playback.md)
+        - [多音频播放的并发策略](media/audio-playback-concurrency.md)
+        - [播放音量管理](media/volume-management.md)
+        - [音频播放流管理](media/audio-playback-stream-management.md)
+        - [音频输出设备管理](media/audio-output-device-management.md)
+        - [分布式音频播放（仅对系统应用开放）](media/distributed-audio-playback.md)
+      - 音频录制
+        - [音频录制开发概述](media/audio-recording-overview.md)
+        - [使用AVRecorder开发音频录制功能](media/using-avrecorder-for-recording.md)
+        - [使用AudioCapturer开发音频录制功能](media/using-audiocapturer-for-recording.md)
+        - [使用OpenSLES开发音频录制功能](media/using-opensl-es-for-recording.md)
+        - [管理麦克风](media/mic-management.md)
+        - [音频录制流管理](media/audio-recording-stream-management.md)
+        - [音频输入设备管理](media/audio-input-device-management.md)
+      - 音频通话
+        - [音频通话开发概述](media/audio-call-overview.md)
+        - [开发音频通话功能](media/audio-call-development.md)
+      - [视频播放](media/video-playback.md)
+      - [视频录制](media/video-recording.md)
+    - 媒体会话（仅对系统应用开放）
+      - [媒体会话概述](media/avsession-overview.md)
+      - 本地媒体会话
+        - [本地媒体会话概述](media/local-avsession-overview.md)
+        - [媒体会话提供方](media/using-avsession-developer.md)
+        - [媒体会话控制方](media/using-avsession-controller.md)
+      - 分布式媒体会话
+        - [分布式媒体会话概述](media/distributed-avsession-overview.md)
+        - [使用分布式媒体会话](media/using-distributed-avsession.md)
+    - 相机（仅对系统应用开放）
+      - [相机开发概述](media/camera-overview.md)
+      - 相机开发指导
+        - [开发准备](media/camera-preparation.md)
+        - [设备输入](media/camera-device-input.md)
+        - [会话管理](media/camera-session-management.md)
+        - [预览](media/camera-preview.md)
+        - [拍照](media/camera-shooting.md)
+        - [录像](media/camera-recording.md)
+        - [元数据](media/camera-metadata.md)
+      - 相机最佳实践
+        - [拍照实现方案](media/camera-shooting-case.md)
+        - [录像实现方案](media/camera-recording-case.md)
     - 图片
-      - [图片开发指导](media/image.md)
-    - 相机
-      - [相机开发指导](media/camera.md)
-      - [分布式相机开发指导](media/remote-camera.md)
+      - [图片开发概述](media/image-overview.md)
+      - [图片解码](media/image-decoding.md)
+      - 图片处理
+        - [图像变换](media/image-transformation.md)
+        - [位图操作](media/image-pixelmap-operation.md)
+      - [图片编码](media/image-encoding.md)
+      - [图片工具](media/image-tool.md)
   - 安全
     - 访问控制  
       - [访问控制（权限）开发概述](security/accesstoken-overview.md)
@@ -374,14 +481,27 @@
       - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
       - [通过静默数据访问实现数据共享](database/share-data-by-silent-access.md)
   - 文件管理
-    - 媒体库管理
-      - [媒体库开发概述](file-management/medialibrary-overview.md)
-      - [媒体资源使用指导](file-management/medialibrary-resource-guidelines.md)
-      - [文件路径使用指导](file-management/medialibrary-filepath-guidelines.md)
-      - [相册资源使用指导](file-management/medialibrary-album-guidelines.md)
-    - 文件访问框架
-      - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
-    - [文件选择器使用指导](file-management/filepicker-guidelines.md)
+    - [文件管理概述](file-management/file-management-overview.md)
+    - 应用文件
+      - [应用文件概述](file-management/app-file-overview.md)
+      - [应用沙箱目录](file-management/app-sandbox-directory.md)
+      - 应用文件访问与管理
+        - [应用文件访问](file-management/app-file-access.md)
+        - [应用文件上传下载](file-management/app-file-upload-download.md)
+        - [应用及文件系统空间统计](file-management/app-fs-space-statistics.md)
+      - [向应用沙箱推送文件](file-management/send-file-to-app-sandbox.md)
+      - [应用文件分享](file-management/share-app-file.md)
+    - 用户文件
+      - [用户文件概述](file-management/user-file-overview.md)
+      - 选择与保存用户文件（FilePicker）
+        - [选择用户文件](file-management/select-user-file.md)
+        - [保存用户文件](file-management/save-user-file.md)
+      - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
+      - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
+    - 分布式文件系统
+      - [分布式文件系统概述](file-management/distributed-fs-overview.md)
+      - [设置分布式文件数据等级](file-management/set-security-label.md)
+      - [跨设备文件访问](file-management/file-access-across-devices.md)
   - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
