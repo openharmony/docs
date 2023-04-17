@@ -26,7 +26,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-          - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
       - 原子化服务
         - [原子化服务开发指导](quick-start/atomicService.md)
       - 应用程序包快速修复
