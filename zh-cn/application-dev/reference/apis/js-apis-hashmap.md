@@ -119,9 +119,8 @@ hasKey(key: K): boolean
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.hasKey("squirrel");
 hashMap.set("squirrel", 123);
-let result1 = hashMap.hasKey("squirrel");
+let result = hashMap.hasKey("squirrel");
 ```
 
 
@@ -157,9 +156,8 @@ hasValue(value: V): boolean
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.hasValue(123);
 hashMap.set("squirrel", 123);
-let result1 = hashMap.hasValue(123);
+let result = hashMap.hasValue(123);
 ```
 
 
@@ -230,6 +228,7 @@ let hashMap = new HashMap();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
+newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
 ```
 
