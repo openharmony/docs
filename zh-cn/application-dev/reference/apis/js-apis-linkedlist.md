@@ -9,7 +9,7 @@ LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedL
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
-- T：Type，类
+- T： Type，类
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
@@ -198,7 +198,6 @@ has(element: T): boolean
 
 ```ts
 let linkedList = new LinkedList();
-let result1 = linkedList.has("squirrel");
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
 ```
@@ -802,7 +801,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.getLast();
+let result = linkedList.getLast();
 ```
 
 ### [Symbol.iterator]
