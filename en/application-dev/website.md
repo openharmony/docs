@@ -12,7 +12,6 @@
       - Application Package Structure
         - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
-        - [HAR File Structure](quick-start/har-structure.md)
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
         - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
@@ -21,6 +20,11 @@
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
       - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
       - [Application Package Update Process](quick-start/application-package-update.md)
+      - Shared Package
+        - [Shared Package Overview](quick-start/shared-guide.md)
+        - [HAR](quick-start/har-package.md)
+        - HSP
+          - [In-Application HSP Development](quick-start/in-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -510,6 +514,7 @@
           - [SwipeGesture](reference/arkui-ts/ts-basic-gestures-swipegesture.md)
         - [Combined Gestures](reference/arkui-ts/ts-combined-gestures.md)
     - Basic Components
+      - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](reference/arkui-ts/ts-basic-components-blank.md)
       - [Button](reference/arkui-ts/ts-basic-components-button.md)
       - [Checkbox](reference/arkui-ts/ts-basic-components-checkbox.md)
@@ -556,13 +561,11 @@
       - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
     - Container Components
       - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
-      - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
       - [Badge](reference/arkui-ts/ts-container-badge.md)
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
-      - [FlowItem](reference/arkui-ts/ts-container-flowitem.md)
       - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
       - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
@@ -934,6 +937,7 @@
       - [@ohos.promptAction (Prompt)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (Page Routing)](reference/apis/js-apis-router.md)
       - [@ohos.measure (Text Measurement)](reference/apis/js-apis-measure.md)
+      - [@ohos.uiAppearance (UI Appearance)](reference/apis/js-apis-uiappearance.md)
     - Graphics
       - [@ohos.animation.windowAnimationManager (Window Animation Management)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -971,7 +975,6 @@
       - [@ohos.security.huks (HUKS)](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.faceAuth (Facial Authentication)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (User Authentication)](reference/apis/js-apis-useriam-userauth.md)
-      - [@system.cipher (Cipher Algorithm)](reference/apis/js-apis-system-cipher.md)
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - Data Management
@@ -984,20 +987,20 @@
       - [@ohos.data.preferences (Preferences)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (RDB Store)](reference/apis/js-apis-data-relationalStore.md)
       - [@ohos.data.ValuesBucket](reference/apis/js-apis-data-valuesBucket.md)
-      - data/rdb
-      - [resultSet (Result Set)](reference/apis/js-apis-data-resultset.md)
     - File Management
       - [@ohos.file.environment (Directory Environment Capability)](reference/apis/js-apis-file-environment.md)
       - [@ohos.file.fileAccess (User File Access and Management)](reference/apis/js-apis-fileAccess.md)
       - [@ohos.file.fileExtensionInfo (User File Extension Information)](reference/apis/js-apis-fileExtensionInfo.md)
+      - [@ohos.file.fileuri (File URI)](reference/apis/js-apis-file-fileuri.md)
       - [@ohos.file.fs (File Management)](reference/apis/js-apis-file-fs.md)
       - [@ohos.file.hash (File Hash Processing)](reference/apis/js-apis-file-hash.md)
       - [@ohos.file.picker (Picker)](reference/apis/js-apis-file-picker.md)
       - [@ohos.file.securityLabel (Data Label)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (File System Space Statistics)](reference/apis/js-apis-file-statvfs.md)
-      - [@ohos.storageStatistics (Application Storage Statistics)](reference/apis/js-apis-file-storage-statistics.md)
-      - [@ohos.volumeManager (Volume Management)](reference/apis/js-apis-file-volumemanager.md)
+      - [@ohos.file.storageStatistics (Application Storage Statistics)](reference/apis/js-apis-file-storage-statistics.md)
+      - [@ohos.file.volumeManager (Volume Management)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (User Data Management)](reference/apis/js-apis-userFileManager.md)
+      - [@ohos.fileShare (File Sharing)](reference/apis/js-apis-fileShare.md)
     - Telephony Service
       - [@ohos.contact (Contacts)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (Call)](reference/apis/js-apis-call.md)
@@ -1138,23 +1141,23 @@
       - [@ohos.fileio (File Management)](reference/apis/js-apis-fileio.md)
       - [@ohos.geolocation (Geolocation)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (Application Event Logging)](reference/apis/js-apis-hiappevent.md)
+      - [@ohos.multimedia.medialibrary (Media Library Management)](reference/apis/js-apis-medialibrary.md)
       - [@ohos.prompt (Prompt)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (Reminder Agent)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.systemParameter (System Parameter)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.systemTime (System Time and Time Zone)](reference/apis/js-apis-system-time.md)
       - [@ohos.usb (USB Management)](reference/apis/js-apis-usb-deprecated.md)
-      - [@ohos.usbV9 (USB Management)](reference/apis/js-apis-usb.md)
       - [@system.app (Application Context)](reference/apis/js-apis-system-app.md)
       - [@system.battery (Battery Information)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (Bluetooth)](reference/apis/js-apis-system-bluetooth.md)
       - [@system.brightness (Screen Brightness)](reference/apis/js-apis-system-brightness.md)
+      - [@system.cipher (Cipher Algorithm)](reference/apis/js-apis-system-cipher.md)
       - [@system.configuration (Application Configuration)](reference/apis/js-apis-system-configuration.md)
       - [@system.device (Device Information)](reference/apis/js-apis-system-device.md)
       - [@system.fetch (Data Request)](reference/apis/js-apis-system-fetch.md)
       - [@system.file (File Storage)](reference/apis/js-apis-system-file.md)
       - [@system.geolocation (Geographic Location)](reference/apis/js-apis-system-location.md)
-      - [@ohos.multimedia.medialibrary (Media Library Management)](reference/apis/js-apis-medialibrary.md)
       - [@system.mediaquery (Media Query)](reference/apis/js-apis-system-mediaquery.md)
       - [@system.network (Network State)](reference/apis/js-apis-system-network.md)
       - [@system.notification (Notification)](reference/apis/js-apis-system-notification.md)
@@ -1179,6 +1182,8 @@
         - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
         - [remoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
         - [shortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
+      - data/rdb
+        - [resultSet](reference/apis/js-apis-data-resultset.md)
   - Error Codes
     - [Universal Error Codes](reference/errorcodes/errorcode-universal.md)
     - Ability Framework
