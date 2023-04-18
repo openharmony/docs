@@ -45,8 +45,9 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
 
-
 ## 示例
+
+轻量图文混排使用示例。
 
 ```ts
 // xxx.ets
