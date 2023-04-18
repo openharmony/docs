@@ -258,21 +258,33 @@ WorkingDir: /data/local/tmp
     Kernel: #1 SMP Thu Apr 13 16:10:02 CST 2023
 (lldb)
 ```
-
 - 在lldb中设置hap运行所需库路径
-  `(lldb) settings append target.exec-search-paths "MyApp/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a"`
+
+```
+  (lldb) settings append target.exec-search-paths "MyApp/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a"
+```
 - 安装hap包，在windows命令行窗口中执行一下命令(需要在hap文件的路径下执行或者安装命令带上hap文件的路径）：
-
-`hdc install -r entry-default-signed.hap`
-
+```
+  hdc install -r entry-default-signed.hap
+```
 - 启动hap应用，在windows命令行窗口中执行如下命令
-  `hdc shell aa start -a EntryAbility -b com.example.myapplication`
+```
+  hdc shell aa start -a EntryAbility -b com.example.myapplication
+```
 - 获取hap应用进程pid，在windows命令行窗口中执行如下命令
-  ` hdc shell ps -elf | grep com.example.myapplication`
+```
+  hdc shell ps -elf | grep com.example.myapplication
+```
 - 对C++代码打断点
-    `(lldb) breakpoint set --file hello.cpp --line 154`
+```
+    (lldb) breakpoint set --file hello.cpp --line 154
+```
 - attach应用的进程pid
-    `(lldb) attach -p pid`
+```
+    (lldb) attach -p pid`
+```
 - 执行continue命令，调试停在断点hello.cpp154行
-   ` (lldb) continue`
+```
+   (lldb) continue
+```
 - 进行后续调试流程,可参考上述文档中调试功能部分
