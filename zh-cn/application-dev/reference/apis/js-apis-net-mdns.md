@@ -23,7 +23,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的mdns服务信息。      |
 
@@ -112,7 +112,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -204,7 +204,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的mdns服务信息。      |
 
@@ -293,7 +293,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -385,7 +385,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|---------|-----------| ------------------------------------------------------------ |
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceType | string  | 是       | 需要发现的mDNS服务类型。|
 
 **返回值：**
@@ -435,7 +435,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的mdns服务信息。      |
 
@@ -524,7 +524,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -830,6 +830,6 @@ mDNS错误信息。
 
 | 名称         | 值   | 说明        |
 | --------------- | ---- | ----------- |
-| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。  |
-| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。 |
+| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。（暂不支持）  |
+| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。（暂不支持） |
 | MAX_LIMIT  | 2 | 请求超过最大限制导致操作失败。（暂不支持） |
