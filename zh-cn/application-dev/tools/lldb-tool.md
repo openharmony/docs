@@ -228,18 +228,18 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 
 ```
 
-- 1.首先推送lldb-server到远程设备
+- 首先推送lldb-server到远程设备
 
 ```
 hdc.exe file send E:\ohos-sdk\windows\native\llvm\lib\clang\12.0.1\bin\arm-linux-ohos\lldb-server /data/local/tmp
 ```
-  2.命令行窗口一使用hdc shell方式进入设备，执行命令启动server
+  命令行窗口一使用hdc shell方式进入设备，执行命令启动server
 
 ```
 ./data/local/tmp/lldb-server p --server --listen "*:8080"
 ```
 
-- 3.命令行窗口二启动本地lldb，并选择远程平台remote-ohos，建立连接：
+- 命令行窗口二启动本地lldb，并选择远程平台remote-ohos，建立连接：
 在windows平台运行lldb.exe，进行连接
 
 ```
@@ -259,20 +259,20 @@ WorkingDir: /data/local/tmp
 (lldb)
 ```
 
-- 4.在lldb中设置hap运行所需库路径
+- 在lldb中设置hap运行所需库路径
   `(lldb) settings append target.exec-search-paths "MyApp/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a"`
-- 5. 安装hap包，在windows命令行窗口中执行一下命令(需要在hap文件的路径下执行或者安装命令带上hap文件的路径）：
+- 安装hap包，在windows命令行窗口中执行一下命令(需要在hap文件的路径下执行或者安装命令带上hap文件的路径）：
 
 `hdc install -r entry-default-signed.hap`
 
-6.启动hap应用，在windows命令行窗口中执行如下命令
+- 启动hap应用，在windows命令行窗口中执行如下命令
   `hdc shell aa start -a EntryAbility -b com.example.myapplication`
-- 7. 获取hap应用进程pid，在windows命令行窗口中执行如下命令
+- 获取hap应用进程pid，在windows命令行窗口中执行如下命令
   ` hdc shell ps -elf | grep com.example.myapplication`
-- 8.对C++代码打断点
+- 对C++代码打断点
     `(lldb) breakpoint set --file hello.cpp --line 154`
-- 9.attach 应用的进程
+- attach应用的进程pid
     `(lldb) attach -p pid`
-- 10.执行continue命令
+- 执行continue命令
    ` (lldb) continue`
-- 11.进行后续调试流程,可参考上述文档中调试功能
+- 进行后续调试流程,可参考上述文档中调试功能
