@@ -93,5 +93,5 @@ struct SpanExample {
 }
 ```
 
-![imagespan](/figures/imagespan.png)
+![imagespan](figures/imagespan.png)
 
