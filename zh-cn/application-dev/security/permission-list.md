@@ -1636,7 +1636,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.CLOUDFILE_SYNC
 
