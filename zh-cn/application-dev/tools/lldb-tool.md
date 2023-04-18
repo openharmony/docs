@@ -277,14 +277,14 @@ WorkingDir: /data/local/tmp
 ```
 - 对C++代码打断点
 ```
-    (lldb) breakpoint set --file hello.cpp --line 154
+  (lldb) breakpoint set --file hello.cpp --line 154
 ```
 - attach应用的进程pid
 ```
-    (lldb) attach -p pid`
+  (lldb) attach -p pid`
 ```
 - 执行continue命令，调试停在断点hello.cpp154行
 ```
-   (lldb) continue
+  (lldb) continue
 ```
 - 进行后续调试流程,可参考上述文档中调试功能部分
