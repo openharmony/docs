@@ -17,7 +17,6 @@
       - Application Package Structure
         - [Application Package Structure in Stage Model)](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
-        - [HAR File Structure](quick-start/har-structure.md)
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
         - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
@@ -25,6 +24,11 @@
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
       - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
+      - Shared Package
+        - [Shared Package Overview](quick-start/shared-guide.md)
+        - [HAR](quick-start/har-package.md)
+        - HSP
+          - [In-Application HSP Development](quick-start/in-app-hsp.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
