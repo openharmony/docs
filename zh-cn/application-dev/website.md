@@ -656,7 +656,7 @@
     - [anm工具](tools/anm-tool.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/OpenHarmony-3.2-Release/README.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
