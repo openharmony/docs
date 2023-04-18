@@ -1,4 +1,4 @@
-# OpenHarmony应用模型解读
+# 应用模型解读
 
 
 ## OpenHarmony应用模型概况
