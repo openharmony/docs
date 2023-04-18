@@ -233,7 +233,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 hdc.exe file send E:\ohos-sdk\windows\native\llvm\lib\clang\12.0.1\bin\arm-linux-ohos\lldb-server /data/local/tmp
 ```
-  命令行窗口一使用hdc shell方式进入设备，执行命令启动server
+- 命令行窗口一使用hdc shell方式进入设备，执行命令启动server
 
 ```
 ./data/local/tmp/lldb-server p --server --listen "*:8080"
