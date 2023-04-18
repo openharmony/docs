@@ -430,4 +430,4 @@ During development, you can refer to the [default power-off animation configurat
     }
 ``` 
 
-Packing path: /system/etc/charger/resource
+Packing path: `/system/etc/charger/resource`

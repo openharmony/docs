@@ -151,4 +151,4 @@ During development, you can refer to the [default charging type configuration](h
     }
     ``` 
 
-Packing path: /system/etc/battery
+Packing path: `/system/etc/battery`

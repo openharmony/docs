@@ -306,4 +306,4 @@ During development, you can refer to the [default battery level configuration](h
 }
 ``` 
 
-Packing path: /system/etc/battery
+Packing path: `/system/etc/battery`

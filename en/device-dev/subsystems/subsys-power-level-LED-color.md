@@ -226,4 +226,4 @@ During development, you can refer to the [default battery level and LED color ma
 }
 ``` 
 
-Packing path: /system/etc/battery
+Packing path: `/system/etc/battery`

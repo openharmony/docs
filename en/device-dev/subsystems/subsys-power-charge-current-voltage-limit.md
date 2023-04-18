@@ -118,4 +118,4 @@ During development, you can refer to the [default charging current and voltage c
 }
 ```
 
-Packing path: /system/etc/battery
+Packing path: `/system/etc/battery`
