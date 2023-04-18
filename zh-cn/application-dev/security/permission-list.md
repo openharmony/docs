@@ -1630,7 +1630,7 @@
 
 ## ohos.permission.CLOUDFILE_SYNC_MANAGER
 
-允许系统应用获取端云同步管理能力。
+允许应用获取端云同步管理能力。
 
 **权限级别**：system_basic
 
