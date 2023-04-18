@@ -87,6 +87,8 @@ As shown above, the **module.json5** file contains several tags.
 | [extensionAbilities](#extensionabilities) | ExtensionAbility configuration of the module, which is valid only for the current ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | [requestPermissions](#requestpermissions) | A set of permissions that the application needs to request from the system for running correctly.| Object| Yes (initial value: left empty)|
 | [testRunner](#testrunner) | Test runner configuration of the module.| Object| Yes (initial value: left empty)|
+| [atomicService](#atomicservice)| Atomic service configuration.| Object| Yes (initial value: left empty) |
+| [dependencies](#dependencies)| List of shared libraries on which the current module depends during running.| Object array| Yes (initial value: left empty) |
 
 
 ## deviceTypes
@@ -206,10 +208,13 @@ UIAbility configuration of the module, which is valid only for the current UIAbi
 
 The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system uses the icon specified in the **app.json** file as the application icon and displays it on the home screen.
 
-Touching this icon will direct the user to the application details screen in **Settings**.
+Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
 
 To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
+**Objectives**:
+
+This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
 
 **Setting the application icon to be displayed on the home screen**:
 
@@ -231,37 +236,39 @@ Set **icon**, **label**, and **skills** under **abilities** in the **module.json
       }]
     }],
     ...
-    
+
   }
 }
 ```
 
-**Querying an application icon:**
-* The HAP file contains ability configuration.
-  * The application icon is set under **abilities** in the **module.json5** file.
+**Display rules of application icons and labels on the home screen:**
+* The HAP file contains UIAbility configuration.
+  * The application icon on the home screen is set under **abilities** in the **module.json5** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the icon configured for the ability.
-      * The returned home screen label is the label configured for the ability. If no label is configured, the bundle name is returned.
-      * The returned component name is the component name of the ability.
-      * When the user touches the home screen icon, the home screen of the ability is displayed.
+      * The application icon displayed on the home screen is the icon configured for the UIAbility.
+      * The application label displayed on the home screen is the label configured for the UIAbility. If no label is configured, the bundle name is returned.
+      * The name of the UIAbility is displayed.
+      * When the user touches the home screen icon, the home screen of the UIAbility is displayed.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon is not set under **abilities** in the **module.json5** file.
+  * The application icon on the home screen is not set under **abilities** in the **module.json5** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the icon configured under **app**. (The **icon** parameter in the **app.json** file is mandatory.)
-      * The returned home screen label is the label configured under **app**. (The **label** parameter in the **app.json** file is mandatory.)
-      * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-      * Touching the home screen icon will direct the user to the application details screen.
+      * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
+      * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
+      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-* The HAP file does not contain ability configuration.
+* The HAP file does not contain UIAbility configuration.
   * The application does not have the privilege to hide its icon from the home screen.
-    * The returned home screen icon is the icon configured under **app**. (The **icon** parameter in the **app.json** file is mandatory.)
-    * The returned home screen label is the label configured under **app**. (The **label** parameter in the **app.json** file is mandatory.)
-    * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-    * Touching the home screen icon will direct the user to the application details screen.
+    * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
+    * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
+    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
   * The application has the privilege to hide its icon from the home screen.
-    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
+    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.<br><br>
+
+**Figure 1** Application details screen
+
+![Application details screen](figures/application_details.jpg)
 
 
   **Table 4** abilities
@@ -396,38 +403,6 @@ Example of the **skills** structure:
 }
 ```
 
-**Enhanced implicit query**
-
-URI-level prefix matching is supported.
-When only **scheme** or a combination of **scheme** and **host** or **scheme**, **host**, and **port** are configured in the configuration file, the configuration is successful if a URI prefixed with the configuration file is passed in.
-
-
-  * The query enhancement involves the following APIs:
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>;
-  * Configuration requirements<br>
-    abilities -> skills -> uris object<br>
-    Configuration 1: only **scheme = 'http'**<br>
-    Configuration 2: only **(scheme = 'http') + (host = 'example.com')**<br>
-    Configuration 3: only **(scheme = 'http') + (host = 'example.com') + (port = '8080')**
-  * Prefix match<br>
-    If the value of **uri** under [want](../application-models/want-overview.md) is obtained by calling the **queryAbilityInfo** API:
-    1. uri = 'https://': No matches<br>
-    2. uri = 'http://': Matches configuration 1<br>
-    3. uri = 'https://example.com': No matches<br>
-    4. uri = 'https://exa.com': No matches<br>
-    5. uri = 'http://exa.com': Matches configuration 1<br>
-    6. uri = 'http://example.com': Matches configuration 1 and configuration 2<br>
-    7. uri = 'https://example.com:8080': No matches<br>
-    8. uri = 'http://exampleaa.com:8080': Matches configuration 1<br>
-    9. uri = 'http://example.com:9180': Matches configuration 1 and configuration 2<br>
-    10. uri = 'http://example.com:8080': Matches configuration 1, configuration 2, and configuration 3<br>
-    11. uri = 'https://example.com:9180/path': No matches<br>
-    12. uri = 'http://exampleap.com:8080/path': Matches configuration 1<br>
-    13. uri = 'http://example.com:9180/path': Matches configuration 1 and configuration 2<br>
-    14. uri = 'http://example.com:8080/path': Matches configuration 1, configuration 2, and configuration 3<br>
 
 ## extensionAbilities
 
@@ -461,7 +436,7 @@ Example of the **extensionAbilities** structure:
       "icon": "$media:icon",
       "label" : "$string:extension_name",
       "description": "$string:form_description",
-      "type": "form", 
+      "type": "form",
       "permissions": ["ohos.abilitydemo.permission.PROVIDER"],
       "readPermission": "",
       "writePermission": "",
@@ -475,7 +450,7 @@ Example of the **extensionAbilities** structure:
       "metadata": [
         {
           "name": "ohos.extension.form",
-          "resource": "$profile:form_config", 
+          "resource": "$profile:form_config",
         }
       ]
     }
@@ -534,7 +509,7 @@ The **shortcut** information is identified in **metadata**, where:
 
 - **resource** indicates where the resources of the shortcut are stored.
   
-| Attribute| Description| Data Type | Default Value|
+| Name| Description| Data Type | Default Value|
 | -------- | -------- | -------- | -------- |
 | shortcutId | ID of the shortcut. The value is a string with a maximum of 63 bytes.| String| No|
 | label | Label of the shortcut, that is, the text description displayed for the shortcut. The value can be a string or a resource index to the label, with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
@@ -705,7 +680,7 @@ The **testRunner** tag represents the supported test runner.
 | name | Name of the test runner object. The value is a string with a maximum of 255 bytes.| String| No|
 | srcPath | Code path of the test runner. The value is a string with a maximum of 255 bytes.| String| No|
 
-Example of the / structure:
+Example of the **testRunner** structure:
 
 
 ```json
@@ -716,6 +691,83 @@ Example of the / structure:
       "name": "myTestRunnerName",
       "srcPath": "etc/test/TestRunner.ts"
     }
+  }
+}
+```
+
+## atomicService
+
+The **atomicService** tag represents the atomic service configuration. It is available only when **bundleType** is set to **atomicService** in the **app.json** file.
+
+**Table 18** Internal structure of the atomicService tag
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| preloads | List of modules to pre-load.| Object array| Yes (initial value: left empty)|
+
+Example of the **atomicService** structure:
+
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## preloads
+
+The **preloads** tag represents a list of modules to pre-load in an atomic service.
+
+**Table 19** Internal structure of the preloads tag
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| moduleName | Name of the module to be preloaded when the current module is loaded in the atomic service.| String| No|
+
+Example of the **preloads** structure:
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## dependencies
+
+The **dependencies** tag identifies the list of shared libraries that the module depends on when it is running.
+
+**Table 20** Internal structure of the dependencies tag
+
+| Name   | Description                          | Data Type| Initial Value Allowed|
+| ----------- | ------------------------------ | -------- | ---------- |
+| moduleName  | Module name of the shared bundle on which the current module depends.| String  | No|
+
+Example of the **dependencies** structure:
+
+```json
+{
+  "module": {
+    "dependencies": [
+      {
+        "moduleName": "library"
+      }
+    ]
   }
 }
 ```
