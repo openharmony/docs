@@ -399,7 +399,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStart')
 
-on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 Enables listening for **discoveryStart** events.
 
@@ -410,7 +410,7 @@ Enables listening for **discoveryStart** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                  | Yes       |   Callback used to return the mDNS service and error information.     |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | Yes       |   Callback used to return the mDNS service and error information.     |
 
 **Example**
 
@@ -428,7 +428,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStop')
 
-on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 Enables listening for **discoveryStop** events.
 
@@ -439,7 +439,7 @@ Enables listening for **discoveryStop** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                 | Yes       |   Callback used to return the mDNS service and error information.     |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | Yes       |   Callback used to return the mDNS service and error information.     |
 
 **Example**
 
@@ -538,7 +538,7 @@ Defines the mDNS service attribute information.
 | key   | string                             |  Yes|  mDNS service attribute key. The value contains a maximum of 9 characters. |
 | value | Array\<number>                             |  Yes|  mDNS service attribute value.  |
 
-## MDNS_ERR
+## MdnsError
 
 Defines the mDNS error information.
 

@@ -387,7 +387,9 @@
        - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
        - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
   -  [Utils Development](subsystems/subsys-utils-guide.md)  
-  -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+  - AI
+     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsys-ai-nnrt-guide.md)
   -  Data Management
      - RDB
        - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
@@ -452,7 +454,24 @@
      - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
      - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview Development](subsystems/subsys-dfx-hiview.md)
-  
+  -  Power
+     - Power Consumption Statistics
+       - [Power Consumption Statistics Customization](subsys-power-stats-power-average-customization.md)
+     - Battery Management
+       - [Battery Level and LED Color Mapping Customization](subsys-power-level-LED-color.md)
+       - [Battery Temperature Protection Customization](subsys-power-temperature-protection.md)
+       - [Battery Level Customization](subsys-power-battery-level-customization.md)
+       - [Charging Current and Voltage Limit Customization](subsys-power-charge-current-voltage-limit.md)
+       - [Charging Type Customization](subsys-power-charge-type-customization.md)
+       - [Power-off Charging Animation Customization](subsys-power-poweroff-charge-animation.md)
+     - Thermal Management
+       - [Charging Idle State Customization](subsys-thermal_charging_idle_state.md)
+       - [Thermal Control Customization](subsys-thermal_control.md)
+       - [Thermal Detection Customization](subsys-thermal_detection.md)
+       - [Thermal Level Customization](subsys-thermal_level.md)
+       - [Thermal Log Customization](subsys-thermal_log.md)
+       - [Thermal Policy Customization](subsys-thermal_policy.md)
+       - [Thermal Scene Customization](subsys-thermal_scene.md)  
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
