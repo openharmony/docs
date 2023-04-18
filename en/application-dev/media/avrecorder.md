@@ -22,7 +22,7 @@ The following figures show the AVRecorder state transition and the interaction w
 
 Before developing audio recording, configure the permission **ohos.permission.MICROPHONE** for your application. For details about the configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md). 
 
-To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](../reference/apis/js-apis-camera.md). 
 
 ## How to Develop
 
