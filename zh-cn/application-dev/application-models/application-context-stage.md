@@ -247,7 +247,7 @@ export default class EntryAbility extends UIAbility {
 
 在应用内的DFX统计场景中，如需要统计对应页面停留时间和访问频率等信息，可以使用订阅进程内UIAbility生命周期变化功能。
 
-通过[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext)提供的能力，可以订阅进程内UIAbility生命周期变化。当进程内的UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发相应的回调函数。每次注册回调函数时，都会返回一个监听生命周期的ID，此ID会自增+1。当超过监听上限数量2^63-1时，会返回-1。以[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
+通过[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)提供的能力，可以订阅进程内UIAbility生命周期变化。当进程内的UIAbility生命周期变化时，如创建、可见/不可见、获焦/失焦、销毁等，会触发相应的回调函数。每次注册回调函数时，都会返回一个监听生命周期的ID，此ID会自增+1。当超过监听上限数量2^63-1时，会返回-1。以[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)中的使用为例进行说明。
 
 
 ```ts
