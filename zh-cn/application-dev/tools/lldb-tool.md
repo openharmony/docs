@@ -229,12 +229,41 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 
 - 1.首先推送lldb-server到远程设备
-- 2.启动本地lldb，并选择远程平台remote-ohos，建立连接
-- 3.设置hap运行所需库路径
--   `settings append target.exec-search-paths "MyApp2/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a"`
-- 4. dc install 安装hap包，然后启动hap应用
--    `hdc shell aa start -a EntryAbility -b com.example.myapplication`
-- 5. 获取hap应用进程pid
+
+```
+hdc.exe file send E:\ohos-sdk\windows\native\llvm\lib\clang\12.0.1\bin\arm-linux-ohos\lldb-server /data/local/tmp
+```
+  2.命令行窗口一使用hdc shell方式进入设备，执行命令启动server
+
+```
+./data/local/tmp/lldb-server p --server --listen "*:8080"
+```
+
+- 3.命令行窗口二启动本地lldb，并选择远程平台remote-ohos，建立连接：
+在windows平台运行lldb.exe，进行连接
+
+```
+E:\ohos-sdk\windows\native\llvm\bin>lldb.exe
+(lldb) platform select remote-ohos
+  Platform: remote-ohos
+ Connected: no
+ Container: no
+(lldb) platform connect connect://localhost:8080
+  Platform: remote-ohos
+    Triple: aarch64-unknown-linux-unknown
+  Hostname: localhost
+ Connected: yes
+ Container: no
+WorkingDir: /data/local/tmp
+    Kernel: #1 SMP Thu Apr 13 16:10:02 CST 2023
+(lldb)
+```
+
+- 4.设置hap运行所需库路径
+  `settings append target.exec-search-paths "MyApp2/entry/build/default/intermediates/cmake/default/obj/armeabi-v7a"`
+- 5. dc install 安装hap包，然后启动hap应用
+  `hdc shell aa start -a EntryAbility -b com.example.myapplication`
+- 6. 获取hap应用进程pid
 - 6.对C++代码打断点
     `breakpoint set --file hello.cpp --line 154`
 - 7.attach 应用的进程
