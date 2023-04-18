@@ -43,7 +43,13 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -58,8 +64,39 @@ let localServiceInfo = {
 }
 
 mdns.addLocalService(context, localServiceInfo, function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.addLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -100,7 +137,13 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -115,7 +158,37 @@ let localServiceInfo = {
 }
 
 mdns.addLocalService(context, localServiceInfo).then(function (data) {
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.addLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -151,7 +224,13 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -166,8 +245,39 @@ let localServiceInfo = {
 }
 
 mdns.removeLocalService(context, localServiceInfo, function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -208,7 +318,13 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -223,7 +339,37 @@ let localServiceInfo = {
 }
 
 mdns.removeLocalService(context, localServiceInfo).then(function (data) {
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.removeLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -248,11 +394,32 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定serviceType和Context的发现服务对象。 |
 
-**Example**
+**示例**
+
+FA模型示例：
 
 ```js
-let serviceType = "_print._tcp";
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
 
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 ```
 
@@ -288,7 +455,13 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -303,8 +476,39 @@ let localServiceInfo = {
 }
 
 mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
-  console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -345,7 +549,13 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
   serviceType: "_print._tcp",
   serviceName: "servicename",
@@ -361,9 +571,38 @@ let localServiceInfo = {
 
 mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
   console.log(JSON.stringify(data));
-})
+});
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
+});
+```
 ## DiscoveryService
 
 指定服务类型的发现服务对象。
@@ -378,7 +617,29 @@ startSearchingMDNS(): void
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -393,7 +654,29 @@ stopSearchingMDNS(): void
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.stopSearchingMDNS();
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
@@ -458,7 +741,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceFound')
 
-on(type: 'serviceFound', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void
+on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 订阅发现mDNS服务的通知。
 
@@ -487,7 +770,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceLost')
 
-on(type: 'serviceLost', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void
+on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 订阅移除mDNS服务的通知。
 
