@@ -84,7 +84,7 @@
 
 1. 在删除组件之前，将调用其aboutToDisappear生命周期函数，标记着该节点将要被销毁。ArkUI的节点删除机制是：后端节点直接从组件树上摘下，后端节点被销毁，对前端节点解引用，当前端节点已经没有引用时，将被JS虚拟机垃圾回收。
 
-2. 自定义组件和它的变量将被删除，如果其有同步的变量，比如[@Link](arkts-link.md)、[@Prop](zh-cn_topic_0000001524296665.xml)、[@StorageLink](arkts-appstorage.md#storagelink)，将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
+2. 自定义组件和它的变量将被删除，如果其有同步的变量，比如[@Link](arkts-link.md)、[@Prop](arkts-prop.md)、[@StorageLink](arkts-appstorage.md#storagelink)，将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
 
 
 不建议在生命周期aboutToDisappear内使用async await，如果在生命周期的aboutToDisappear使用异步操作（Promise或者回调方法），自定义组件将被保留在Promise的闭包中，直到回调方法被执行完，这个行为阻止了自定义组件的垃圾回收。

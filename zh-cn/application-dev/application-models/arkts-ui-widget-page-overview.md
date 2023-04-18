@@ -7,7 +7,7 @@
 ![WidgetPreviewPage](figures/WidgetPreviewPage.png)
 
 
-ArkTS卡片具备JS卡片的全量能力，并且新增了动效能力和自定义绘制的能力，支持[声明式范式](../reference/arkui-ts/Readme-CN.md)的部分组件、事件、动效、数据管理、状态管理能力，详见“[ArkTS卡片支持的页面能力](#arkts卡片支持的页面能力)”。
+ArkTS卡片具备JS卡片的全量能力，并且新增了动效能力和自定义绘制的能力，支持[声明式范式](../reference/arkui-ts/ts-components-summary.md)的部分组件、事件、动效、数据管理、状态管理能力，详见“[ArkTS卡片支持的页面能力](#arkts卡片支持的页面能力)”。
 
 
 ## ArkTS卡片支持的页面能力
