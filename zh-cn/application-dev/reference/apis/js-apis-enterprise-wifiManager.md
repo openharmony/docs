@@ -16,7 +16,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-查询wifi开启状态，使用callback形式返回wifi开启状态。
+指定设备管理员应用查询wifi开启状态，使用callback形式返回wifi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -28,8 +28,8 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;boolean&gt;            | 是    | callback方式返回wifi开启状态       |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示wifi开启，false表示wifi关闭，否则err为错误对象。       |
 
 **错误码**：
 
@@ -60,7 +60,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-获取wifi开启状态，使用promise形式返回wifi开启状态。
+获取wifi开启状态，使用Promise形式返回wifi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -72,13 +72,13 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise方式返回wifi开启状态  |
+| Promise&lt;boolean&gt; | Promise结果，返回wifi开启状态，true表示wifi开启，false表示wifi关闭。  |
 
 **错误码**：
 
@@ -107,7 +107,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-配置wifi连接到指定网络，使用callback异步回调。
+配置wifi，使连接到指定网络，使用callback返回配置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -119,9 +119,9 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息                  |
-| callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功err为null，否则为错误对象。      |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
+| callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
 
@@ -157,7 +157,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (error) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-配置wifi连接到指定网络，使用promise异步回调。
+配置wifi，使连接到指定网络，使用Promise返回配置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -169,14 +169,14 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
-| profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息                  |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| profile    | [WifiProfile](#wifiprofile)     | 是    | WLAN配置信息。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当配置wifi连接到指定网络失败时会抛出错误对象。 |
 
 **错误码**：
 
