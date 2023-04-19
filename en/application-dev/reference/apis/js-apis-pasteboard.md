@@ -278,11 +278,11 @@ Defines the properties of all data records on the pasteboard, including the time
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| additions | {[key:string]:object} | Yes| Yes| Additional data.|
+| additions | {[key:string]:object} | Yes| Yes| Additional data. This attribute is not supported currently. |
 | mimeTypes | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.|
-| tag | string | Yes| Yes| Custom tag.|
+| tag | string | Yes| Yes| Custom tag. This attribute is not supported currently. |
 | timestamp | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).|
-| localOnly | boolean | Yes| Yes| Whether the pasteboard content is set for local access only. The default value is **true**.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
+| localOnly | boolean | Yes| Yes| Whether the pasteboard content is set for local access only. The default value is **true**. This attribute is not supported currently.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices. |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -980,7 +980,7 @@ Unsubscribes from the system pasteboard content change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value **'update'** indicates changes in the pasteboard content.|
-| callback | function | No| Callback invoked when the pasteboard content changes.|
+| callback | function | No| Callback invoked when the pasteboard content changes. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application. |
 
 **Example**
 
