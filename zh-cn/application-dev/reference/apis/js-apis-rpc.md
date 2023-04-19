@@ -2394,8 +2394,8 @@ readException(): void
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -2415,8 +2415,8 @@ readException(): void
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -2735,11 +2735,11 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      rpc.MessageSequence.closeFileDescriptor(fd);
+      rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc close file descriptor fail, errorCode " + error.code);
       console.info("rpc close file descriptor fail, errorMessage" + error.message);
@@ -2777,11 +2777,11 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      let newFd = rpc.MessageSequence.dupFileDescriptor(fd);
+      let newFd = rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc dup file descriptor fail, errorCode " + error.code);
       console.info("rpc dup file descriptor fail, errorMessage" + error.message);
@@ -2806,13 +2806,13 @@ containFileDescriptors(): boolean
 
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
   let r1 = sequence.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2851,12 +2851,12 @@ writeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2888,12 +2888,12 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -4856,8 +4856,8 @@ readException(): void
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.;featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.;featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -4877,8 +4877,8 @@ readException(): void
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -5170,10 +5170,10 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  rpc.MessageParcel.closeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5199,10 +5199,10 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let newFd = rpc.MessageParcel.dupFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let newFd = rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -5222,12 +5222,12 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let r1 = parcel.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   let containFD = parcel.containFileDescriptors();
   console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
@@ -5256,11 +5256,11 @@ writeFileDescriptor(fd: number): boolean
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   ```
 
@@ -5281,11 +5281,11 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
@@ -5669,8 +5669,8 @@ asObject(): IRemoteObject
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -5690,8 +5690,8 @@ asObject(): IRemoteObject
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6113,8 +6113,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6134,8 +6134,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6189,8 +6189,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6210,8 +6210,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6273,8 +6273,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6294,8 +6294,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6350,8 +6350,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6384,8 +6384,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       result.reply.reclaim();
   }
   
-  //FA模型使用此方法链接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6431,8 +6431,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6465,8 +6465,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       result.reply.reclaim();
   }
   
-  //FA模型使用此方法链接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6515,8 +6515,8 @@ getLocalInterface(interface: string): IRemoteBroker
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6536,8 +6536,8 @@ getLocalInterface(interface: string): IRemoteBroker
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6581,8 +6581,8 @@ queryLocalInterface(interface: string): IRemoteBroker
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6602,8 +6602,8 @@ queryLocalInterface(interface: string): IRemoteBroker
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6643,8 +6643,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6664,8 +6664,8 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6715,8 +6715,8 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6736,8 +6736,8 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6782,8 +6782,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6803,8 +6803,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6855,8 +6855,8 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6876,8 +6876,8 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6923,8 +6923,8 @@ getDescriptor(): string
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -6944,8 +6944,8 @@ getDescriptor(): string
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -6982,8 +6982,8 @@ getInterfaceDescriptor(): string
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -7003,8 +7003,8 @@ getInterfaceDescriptor(): string
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
@@ -7035,8 +7035,8 @@ isObjectDead(): boolean
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  //仅FA模型需要导入@ohos.ability.featureAbility
-  //import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
   
   let proxy;
   let connect = {
@@ -7056,8 +7056,8 @@ isObjectDead(): boolean
       "abilityName": "com.ohos.server.EntryAbility",
   };
   
-  //FA模型使用此方法连接服务
-  //FA.connectAbility(want,connect);
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
   
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
