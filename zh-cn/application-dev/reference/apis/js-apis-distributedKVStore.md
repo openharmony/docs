@@ -29,7 +29,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。<br>从API version10开始，context的参数类型为BaseContext。 |
+| context    | Context               | 是   |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。<br>从API version 10开始，context的参数类型为[BaseContext](js-apis-inner-application-BaseContext.md)。 |
 | bundleName | string                | 是   | 调用方的包名。                                               |
 
 ## Constants
