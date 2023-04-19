@@ -64,7 +64,7 @@
    
    | 目录名 | Context属性名称 | 类型 | 说明 | 
    | -------- | -------- | -------- | -------- |
-   | bundle | bundleCodeDir | 安装文件路径 | 应用安装后的app的hap资源包所在目录；随应用卸载而清理。 | 
+   | bundle | bundleCodeDir | 安装文件路径 | 应用安装后的app的hap资源包所在目录；随应用卸载而清理。不能拼接路径访问资源文件，请使用[资源管理接口](../reference/apis/js-apis-resource-manager.md)访问资源。 | 
    | base | NA | 本设备文件路径 | 应用在本设备上存放持久化数据的目录，子目录包含files/、cache/、temp/和haps/；随应用卸载而清理。 | 
    | database | databaseDir | 数据库路径 | 应用在el1加密条件下存放通过分布式数据库服务操作的文件目录；随应用卸载而清理。 | 
    | distributedfiles | distributedFilesDir | 分布式文件路径 | 应用在el2加密条件下存放分布式文件的目录，应用将文件放入该目录可分布式跨设备直接访问；随应用卸载而清理。 | 
