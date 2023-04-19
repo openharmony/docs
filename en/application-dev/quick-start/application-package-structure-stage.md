@@ -22,7 +22,7 @@ To develop an application based on the [stage model](application-configuration-f
 - The HAP file includes folders such as **ets**, **libs**, and **resources** and files such as **resources.index**, **module.json**, and **pack.info**.
   - The **ets** folder stores bytecode files generated after application code build.
   - The **libs** folder stores library files, which are .so binary files that contain third-party code on which the OpenHarmony application depends.
-  - The **resources** folder stores resource files (such as strings and images) of the application.
+  - The **resources** folder stores resource files (such as strings and images) of the application. For details, see [Resource Categories and Access](resource-categories-and-access.md).
   - The **resources.index** file provides a resource index table, which is generated when the application project is built in DevEco Studio.
   - The **module.json** file is the configuration file indispensable in a HAP file. It consists of **module.json5** and **app.json5** in the project configuration. While DevEco Studio provides default configuration, you must modify the configuration as needed. For details about the configuration fields, see [Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md).
   - The **pack.info** file describes the HAP attributes in the bundle, for example, **bundleName** and **versionCode** in **app** and **name**, **type**, and **abilities** in **module**. The file is automatically generated when DevEco Studio generates the bundle.
