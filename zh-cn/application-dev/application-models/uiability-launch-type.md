@@ -6,7 +6,7 @@ UIAbility的启动模式是指UIAbility实例在启动时的不同呈现状态�
 
 - [singleton（单实例模式）](#singleton启动模式)
 
-- [multiton（标准实例模式）](#multiton启动模式)
+- [multiton（多实例模式）](#multiton启动模式)
 
 - [specified（指定实例模式）](#specified启动模式)
 
@@ -44,9 +44,9 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 
 ## multiton启动模式
 
-multiton启动模式为标准实例模式，每次调用startAbility()方法时，都会在应用进程中创建一个新的该类型UIAbility实例。即在最近任务列表中可以看到有多个该类型的UIAbility实例。这种情况下可以将UIAbility配置为multiton（标准实例模式）。
+multiton启动模式为多实例模式，每次调用startAbility()方法时，都会在应用进程中创建一个新的该类型UIAbility实例。即在最近任务列表中可以看到有多个该类型的UIAbility实例。这种情况下可以将UIAbility配置为multiton（多实例模式）。
 
-  **图2** 标准实例模式演示效果
+  **图2** 多实例模式演示效果
 
   ![multiton-mode](figures/standard-mode.png)  
 
