@@ -3096,7 +3096,7 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onFaviconReceived((event) => {
-          console.log('onFaviconReceived:' + JSON.stringify(event))
+          console.log('onFaviconReceived');
           this.icon = event.favicon;
         })
       }
