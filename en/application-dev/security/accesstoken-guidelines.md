@@ -110,7 +110,7 @@ For example, if an application needs to access audio clips of a user and capture
 	"acls":{
 		"allowed-acls":[
 			"ohos.permission.WRITE_AUDIO",
-            "ohos.permission.CAPTURE_SCREEN"
+      "ohos.permission.CAPTURE_SCREEN"
 		]
 	}
 }
@@ -131,7 +131,7 @@ User authorization is required when an application needs to access user privacy 
 
 Example: Apply for the permission for an application to access the Calendar.
 
-1. Declare the **ohos.permission.READ_CALENDAR** permission in the configuration file.<br>For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
+1. Declare the **ohos.permission.READ_CALENDAR** permission in the configuration file. For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
 
 2. Check whether the user has granted the permission.
 
