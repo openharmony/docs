@@ -48,7 +48,7 @@ MDNS管理的典型场景有：
 1. 设备连接WiFi。
 2. 从@ohos.net.mdns里导入mdns的命名空间。
 3. 调用addLocalService方法，添加本地服务。
-4. 通过resolveLocalService方法，解析本地网络的IP地址。
+4. 通过resolveLocalService方法，解析本地网络的IP地址（非必要，根据需求使用）。
 5. 通过removeLocalService方法，移除本地服务。
 
 ```js
@@ -88,7 +88,7 @@ mdns.addLocalService(context, localServiceInfo, function (error, data) {
   console.log(JSON.stringify(data));
 });
 
-// resolveLocalService解析本地服务对象
+// resolveLocalService解析本地服务对象（非必要，根据需求使用）
 mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -105,10 +105,10 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 
 1. 设备连接WiFi。
 2. 从@ohos.net.mdns里导入mdns的命名空间。
-3. 创建DiscoveryService对象，用来监听本地服务。
-4. 订阅指定状态变化。
-5. 开启监听本地服务。
-6. 停止监听本地服务。
+3. 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务。
+4. 订阅mDNS服务发现相关状态变化。
+5. 启动搜索局域网内的mDNS服务。
+6. 停止搜索局域网内的mDNS服务。
 
 ```js
 // 从@ohos.net.mdns中导入mdns命名空间
@@ -141,11 +141,11 @@ let localServiceInfo = {
   }]
 }
 
-// 创建指定类型的DiscoveryService对象
+// 创建DiscoveryService对象，用于发现指定服务类型的mDNS服务
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
-// 订阅指定状态变化
+// 订阅mDNS服务发现相关状态变化
 discoveryService.on('discoveryStart', (data) => {
   console.log(JSON.stringify(data));
 });
@@ -159,9 +159,9 @@ discoveryService.on('serviceLost', (data) => {
   console.log(JSON.stringify(data));
 });
 
-// 开启监听本地服务
-discoveryService.stopSearchingMDNS();
+// 启动搜索局域网内的mDNS服务
+discoveryService.startSearchingMDNS();
 
-// 停止监听本地服务
+// 停止搜索局域网内的mDNS服务
 discoveryService.stopSearchingMDNS();
 ```
