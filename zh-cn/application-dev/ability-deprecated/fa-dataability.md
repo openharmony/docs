@@ -116,7 +116,7 @@ URI示例：
    | "name"       | Ability名称，对应Ability派生的Data类名。                     |
    | "type"       | Ability类型，Data对应的Ability类型为”data“。                 |
    | "uri"        | 通信使用的URI。                                              |
-   | "exported"   | 对其他应用是否可见，设置为true时，Data才能与其他应用进行通信传输数据。 |
+   | "visible"    | 对其他应用是否可见，设置为true时，Data才能与其他应用进行通信传输数据。 |
 
    **config.json配置样例**
 
@@ -128,7 +128,7 @@ URI示例：
        "srcLanguage": "ets",
        "description": "$string:description_dataability",
        "type": "data",
-       "exported": true,
+       "visible": true,
        "uri": "dataability://ohos.samples.etsdataability.DataAbility"
     }]
    ```
