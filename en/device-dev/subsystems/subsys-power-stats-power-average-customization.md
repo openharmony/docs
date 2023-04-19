@@ -191,11 +191,11 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 6. Check whether the power consumption statistics are calculated according to the custom power consumption benchmark in the `power_average_config` file.
 
-7. You can use the [JS APIs](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.batteryStatistics.d.ts) or [Inner APIs](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/interfaces/innerkits/include/battery_stats_client.h) provided by the **batterystatistics** module to obtain detailed power consumption information and verify the custom power consumption benchmark.
+7. You can use the [JS APIs](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.batteryStatistics.d.ts) or [Inner APIs](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/interfaces/inner_api/include/battery_stats_client.h) provided by the **batterystatistics** module to obtain detailed power consumption information and verify the custom power consumption benchmark.
 
 ## Reference
 
-During development, you can refer to the [default power consumption statistics configuration](https://gitee.com/openharmony/powermgr_battery_statistics/tree/master/services/profile/power_average.json).
+During development, you can refer to the [default power consumption statistics configuration](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/services/profile/power_average.json).
 
 Default packing path: `/system/etc/profile`
 
