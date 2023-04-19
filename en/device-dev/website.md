@@ -388,8 +388,8 @@
        - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
   -  [Utils Development](subsystems/subsys-utils-guide.md)  
   - AI
-     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
-     - [NNRt Development](subsys-ai-nnrt-guide.md)
+     - [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsystems/subsys-ai-nnrt-guide.md)
   -  Data Management
      - RDB
        - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
