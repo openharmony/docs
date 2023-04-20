@@ -69,10 +69,6 @@ Provides APIs for obtaining pixel map data and information.
 | [OH_PixelMap_Rotate](#oh_pixelmap_rotate) (const [NativePixelMap](#nativepixelmap) \*native, float angle) | Rotates a **PixelMap** object.  | 
 | [OH_PixelMap_Flip](#oh_pixelmap_flip) (const [NativePixelMap](#nativepixelmap) \*native, int32_t x, int32_t y) | Flips a **PixelMap** object.  | 
 | [OH_PixelMap_Crop](#oh_pixelmap_crop) (const [NativePixelMap](#nativepixelmap) \*native, int32_t x, int32_t y, int32_t [width](image__pixel__map__napi_8h.md#width), int32_t [height](image__pixel__map__napi_8h.md#height)) | Crops a **PixelMap** object.  | 
-| [OH_PixelMap_GetImageInfo](#oh_pixelmap_getimageinfo) (const [NativePixelMap](#nativepixelmap) \*native, [OhosPixelMapInfo](_ohos_pixel_map_info.md) \*info) | Obtains the image information of a **PixelMap** object.  | 
-| [OH_PixelMap_AccessPixels](#oh_pixelmap_accesspixels) (const [NativePixelMap](#nativepixelmap) \*native, void \*\*addr) | Obtains the memory address of a **NativePixelMap** object and locks the memory.  | 
-| [OH_PixelMap_UnAccessPixels](#oh_pixelmap_unaccesspixels) (const [NativePixelMap](#nativepixelmap) \*native) | Unlocks the memory of the **NativePixelMap** object data. This function is used with [OH_PixelMap_AccessPixels](#oh_pixelmap_accesspixels) in pairs.  | 
-
 
 ## Type Description
 
