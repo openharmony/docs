@@ -17,7 +17,7 @@ Both explicit Want and implicit Want can be used to match an ability to start ba
 | flags | number | No| No| This field is not used for matching and is directly transferred to the system for processing. It is generally used to set runtime information, such as URI data authorization.|
 | parameters | {[key:&nbsp;string]:&nbsp;any} | No| No| This field is not used for matching. It is passed to the target ability as a parameter.|
 
-## Matching Rules for Implicit Want
+## Matching Rules of Implicit Want
 
 | Name       | Type                          | Matching Item| Mandatory| Rule Description                                                        |
 | ----------- | ------------------------------ | ------ | ---- | ------------------------------------------------------------ |

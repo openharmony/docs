@@ -540,7 +540,7 @@
       - [分布式文件系统概述](file-management/distributed-fs-overview.md)
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
-  - 任务管理
+  - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
@@ -656,7 +656,7 @@
     - [anm工具](tools/anm-tool.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/OpenHarmony-3.2-Release/README.md)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)

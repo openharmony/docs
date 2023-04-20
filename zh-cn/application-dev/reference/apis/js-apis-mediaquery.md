@@ -26,7 +26,7 @@ matchMediaSync(condition: string): MediaQueryListener
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/ui-ts-layout-mediaquery.md#语法规则)。 |
+| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：** 
 
