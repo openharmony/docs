@@ -43,3 +43,5 @@ struct Rect Region::*rects
 
 **Description**<br>
 If **rects** is a null pointer, the buffer size is the same as the size of the dirty region by default.
+
+<!--no_check-->

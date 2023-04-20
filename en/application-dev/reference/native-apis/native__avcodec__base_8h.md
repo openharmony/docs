@@ -50,7 +50,7 @@ Declares the common structs, character constants, and enums for running **OH_AVC
 | [OH_AACProfile](_codec_base.md#oh_aacprofile) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.  | 
 
 
-### 变量
+### Variables
 
 | Name | Description | 
 | -------- | -------- |

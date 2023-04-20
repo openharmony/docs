@@ -761,7 +761,17 @@ Obtains the type information of the specified device.
 - **OH_NN_ACCELERATOR**: machine learning dedicated accelerator.
 
 - **OH_NN_OTHERS**: other hardware types.
-参数返回Execution result of the function. If the operation is successful, **OH_NN_SUCCESS** is returned. If the operation fails, an error code is returned. For details about the error codes, see [OH_NN_ReturnCode](#oh_nn_returncode). since 9 版本1.0 
+
+**Parameters**
+
+| Name | Description | 
+| -------- | -------- |
+| deviceID | Device ID. |
+| deviceType | Pointer to the [OH_NN_DeviceType](#oh_nn_devicetype) instance. The device type information is returned. |
+ 
+**Returns**
+
+Execution result of the function. If the operation is successful, **OH_NN_SUCCESS** is returned. If the operation fails, an error code is returned. For details about the error codes, see [OH_NN_ReturnCode](#oh_nn_returncode). since 9 版本1.0 
 
 
 ### OH_NNExecutor_AllocateInputMemory()

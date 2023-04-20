@@ -55,7 +55,7 @@ Provides the common structs, character constants, and enums for running **OH_AVC
 | [OH_AACProfile](#oh_aacprofile) { **AAC_PROFILE_LC** = 0 } | Enumerates the AAC profiles.  | 
 
 
-### 变量
+### Variables
 
 | Name | Description | 
 | -------- | -------- |
@@ -316,7 +316,7 @@ Enumerates the media types.
 | MEDIA_TYPE_VID  | Video track. | 
 
 
-## 变量说明
+## Variable Description
 
 
 ### flags
