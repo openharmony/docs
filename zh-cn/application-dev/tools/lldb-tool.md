@@ -6,8 +6,8 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。当前Openharmony�
 
 lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 > **说明：system可选windows/linux/darwin**
+**具体使用方法：**
 >
-**具体获取路径：**
 以windows平台为例
 
 - 解压sdk，直接在lldb工具所在路径\**\ohos-sdk\windows\native\llvm\bin运行lldb.exe即可。
