@@ -65,9 +65,9 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/hpm-part-a
 ### How to Use<a name="section429012478331"></a>
 
 
-> **NOTE**
-> 
-> Download the release code, which is more stable, if you want to develop commercial functionalities. Download the master code if you want to get quick access to the latest features for your development. 
+>![](../public_sys-resources/icon-note.gif) **NOTE**
+>
+>Download the release code, which is more stable, if you want to develop commercial functionalities. Download the master code if you want to get quick access to the latest features for your development. 
 
 -   **Obtaining OpenHarmony release code**
 
@@ -168,7 +168,7 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes](../../release-notes/Readme.md). 
+The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes](../../release-notes/Readme.md).
 
 **Table 1**  Sites for acquiring source code 
 
@@ -182,19 +182,19 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) | 418.1 MB |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - | - |
 | **Source Code of the Latest Release**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
-| Full code base (for mini, small, and standard systems)| 3.2 Beta5    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/code-v3.2-Beta5.tar.gz.sha256) | 21.3 GB |
-| Hi3861 solution (binary)       | 3.2 Beta5    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
-| Hi3516 solution-LiteOS (binary)| 3.2 Beta5    | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_LiteOS.tar.gz.sha256) | 293.6 MB |
-| Hi3516 solution-Linux (binary) | 3.2 Beta5    | [Download](hispark_taurus_Linux.tar.gz) | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta5/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MB |
-| RK3568 standard system solution (binary)       | 3.2 Beta5    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32_20230201.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta5/dayu200_standard_arm32_20230201.tar.gz.sha256) | 3.9 GB |
-| RELEASE-NOTES | 3.2 Beta5 | [Download](../../release-notes/OpenHarmony-v3.2-beta5.md)| - | - |
+| Full code base (for mini, small, and standard systems)| 3.2 Release    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/code-v3.2-Release.tar.gz.sha256)| 21.8 GB |
+| Hi3861 solution (binary)       | 3.2 Release| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release/hispark_pegasus.tar.gz.sha256)| 22.9 MB |
+| Hi3516 solution-LiteOS (binary)| 3.2 Release| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_LiteOS.tar.gz.sha256)| 294.3 MB |
+| Hi3516 solution-Linux (binary) | 3.2 Release| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Release/hispark_taurus_Linux.tar.gz.sha256)| 174.3 MB |
+| RK3568 standard system solution (binary)       | 3.2 Release| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release//dayu200_standard_arm32.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Release//dayu200_standard_arm32.tar.gz.sha256)| 3.9 GB |
+| RELEASE-NOTES | 3.2 Release| [Download](../../release-notes/OpenHarmony-v3.2-release.md)| - | - |
 | **Compiler Toolchain**| **Version**| **Site**| **SHA-256 Checksum**| **Software Package Size**|
 | Compiler toolchain| - | [Download](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/)| - | - |
 
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
-> **NOTE**
-> 
+>![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
@@ -219,82 +219,21 @@ The following table describes the OpenHarmony source code directories.
 
 **Table 2**  Source code directories
 
-<a name="table3815144702820"></a>
-<table><thead align="left"><tr id="row198162047192810"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p690319291299"><a name="p690319291299"></a><a name="p690319291299"></a>Name</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p5903122962918"><a name="p5903122962918"></a><a name="p5903122962918"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1981674719280"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p69031429162912"><a name="p69031429162912"></a><a name="p69031429162912"></a>applications</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p090352912914"><a name="p090352912914"></a><a name="p090352912914"></a>Application samples, for example, <strong id="b689814231158"><a name="b689814231158"></a><a name="b689814231158"></a>camera</strong></p>
-</td>
-</tr>
-<tr id="row5816747132817"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p99031129112918"><a name="p99031129112918"></a><a name="p99031129112918"></a>base</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p790472962914"><a name="p790472962914"></a><a name="p790472962914"></a>Basic software service subsystem set and hardware service subsystem set</p>
-</td>
-</tr>
-<tr id="row1134218692910"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p4904112910295"><a name="p4904112910295"></a><a name="p4904112910295"></a>build</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1090482942911"><a name="p1090482942911"></a><a name="p1090482942911"></a>Bundle-based compilation, build, and configuration scripts</p>
-</td>
-</tr>
-<tr id="row8166154261316"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1216719425130"><a name="p1216719425130"></a><a name="p1216719425130"></a>docs</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p17167134217134"><a name="p17167134217134"></a><a name="p17167134217134"></a>Reference documents</p>
-</td>
-</tr>
-<tr id="row1841618902919"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390462902910"><a name="p1390462902910"></a><a name="p1390462902910"></a>domains</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1390432914296"><a name="p1390432914296"></a><a name="p1390432914296"></a>Enhanced software service subsystem set</p>
-</td>
-</tr>
-<tr id="row841620912298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p119041629182919"><a name="p119041629182919"></a><a name="p119041629182919"></a>drivers</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p9904629132911"><a name="p9904629132911"></a><a name="p9904629132911"></a>Driver subsystem</p>
-</td>
-</tr>
-<tr id="row164164992915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p79042298298"><a name="p79042298298"></a><a name="p79042298298"></a>foundation</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p18904132922915"><a name="p18904132922915"></a><a name="p18904132922915"></a>Basic system capability subsystem set</p>
-</td>
-</tr>
-<tr id="row1441610922915"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p490402916299"><a name="p490402916299"></a><a name="p490402916299"></a>kernel</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1904112932912"><a name="p1904112932912"></a><a name="p1904112932912"></a>Kernel subsystem</p>
-</td>
-</tr>
-<tr id="row194175972917"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1904132912910"><a name="p1904132912910"></a><a name="p1904132912910"></a>prebuilts</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p390492919296"><a name="p390492919296"></a><a name="p390492919296"></a>Compiler and toolchain subsystem</p>
-</td>
-</tr>
-<tr id="row841718942913"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p12904929202919"><a name="p12904929202919"></a><a name="p12904929202919"></a>test</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p4904152912297"><a name="p4904152912297"></a><a name="p4904152912297"></a>Testing subsystem</p>
-</td>
-</tr>
-<tr id="row24175915294"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p13904162992916"><a name="p13904162992916"></a><a name="p13904162992916"></a>third_party</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p6904829112917"><a name="p6904829112917"></a><a name="p6904829112917"></a>Open-source third-party software</p>
-</td>
-</tr>
-<tr id="row334210652914"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1390442918299"><a name="p1390442918299"></a><a name="p1390442918299"></a>utils</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p690412296297"><a name="p690412296297"></a><a name="p690412296297"></a>Commonly used development tools</p>
-</td>
-</tr>
-<tr id="row73421664298"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p7905172920292"><a name="p7905172920292"></a><a name="p7905172920292"></a>vendor</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p290510290293"><a name="p290510290293"></a><a name="p290510290293"></a>Vendor-provided software</p>
-</td>
-</tr>
-<tr id="row734319617292"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p09056291290"><a name="p09056291290"></a><a name="p09056291290"></a>build.py</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p1790542912290"><a name="p1790542912290"></a><a name="p1790542912290"></a>Compilation script file</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Directory| Description|
+| -------- | -------- |
+| applications | Application samples, for example, **camera**.|
+| base | Basic software service subsystem set and hardware service subsystem set.|
+| build | Bundle-based compilation, building, and configuration scripts.|
+| docs | Reference documents.|
+| domains | Enhanced software service subsystem set.|
+| drivers | Driver subsystem.|
+| foundation | Basic system capability subsystem set.|
+| kernel | Kernel subsystem.|
+| prebuilts | Compiler and tool chain subsystem.|
+| test | Test subsystem.|
+| third_party | Open-source third-party software.|
+| utils | Commonly used development utilities.|
+| vendor | Vendor-provided software.|
+| build.py | Build script file.|
+
+<!--no_check-->
