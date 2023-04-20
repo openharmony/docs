@@ -1,11 +1,10 @@
 # 常见问题
 
 - [开发语言常见问题](faqs-language.md)
-- [Ability框架开发常见问题](faqs-ability.md)
-- [ArkUI组件（ArkTS）开发常见问题](faqs-ui-arkts.md)
+- [应用程序包管理开发常见问题](faqs-bundle.md)
+- [ArkUI组件（ArkTS）开发常见问题](faqs-ui-ets.md)
 - [ArkUI Web组件（ArkTS）开发常见问题](faqs-web-arkts.md)
 - [UI框架（JS）开发常见问题](faqs-ui-js.md)
-- [应用程序包管理开发常见问题](faqs-bundle.md)
 - [公共事件与通知开发常见问题](faqs-event-notification.md)
 - [图形图像开发常见问题](faqs-graphics.md)
 - [文件管理开发常见问题](faqs-file-management.md)
