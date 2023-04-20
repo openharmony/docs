@@ -14,7 +14,7 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 远程调试时需要lldb-server和lldb配合使用。
 ### 常见使用使用场景：linux-x84/64场景下调试程序
 >
-### 具体支持架构/平台表
+### 具体支持平台/架构
 
 - windows平台RK3568调试(arm架构调试)
 - windows平台原型机调试(aarch64架构调试)
