@@ -6,7 +6,7 @@
 
 - [基于Stage模型的JS卡片（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
 
-- [基于Stage模型的JS卡片（成语接龙小游戏）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormGame)
+- [基于Stage模型的JS卡片（成语接龙小游戏）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
 
 - [基于Stage模型的ArkTS卡片（Canvas绘制实现的五子棋游戏卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame)
 

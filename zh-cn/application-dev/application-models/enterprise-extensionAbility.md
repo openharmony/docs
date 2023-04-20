@@ -111,5 +111,5 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 针对EnterpriseAdminExtensionAbility开发，有以下相关示例可供参考：
 
-[EnterpriseAdminExtensionAbility：EnterpriseAdminExtensionAbility的创建与使用(ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/customization/EnterpriseAdminExtensionAbility)
+[EnterpriseAdminExtensionAbility：EnterpriseAdminExtensionAbility的创建与使用(ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
 

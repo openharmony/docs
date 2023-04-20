@@ -115,4 +115,4 @@
 ## 相关实例
 
 针对短信的使用，有以下相关实例可供参考：
-- [短信服务](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/Message)
+- [短信服务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Message)

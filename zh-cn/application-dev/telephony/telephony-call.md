@@ -113,4 +113,4 @@ ohos.permission.PLACE_CALL权限级别为system_basic，在申请权限前，请
 
 拨打电话有以下相关实例可供参考：
 
-- [拨打电话](https://gitee.com/openharmony/applications_app_samples/tree/master/Telephony/Call)
+- [拨打电话](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Call)

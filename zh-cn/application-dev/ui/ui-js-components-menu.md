@@ -283,4 +283,4 @@ export default {
 
 针对menu开发，有以下相关实例可供参考：
 
-- [`JSMenu`：菜单（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSMenu)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
