@@ -21,17 +21,9 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 | **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\arm-linux-ohos\lldb-server | 当调试的设备为ohos平台，arm架构时使用。     |
 | **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\x86_64-linux-ohos\lldb-server | 当调试的设备为ohos平台，x86_64架构时使用。  |
 
-> **说明**
->
-> 表2 system参数取值说明
->
-> | system参数取值 | 说明                    |
-> | -------------- | ----------------------- |
-> | windows        | 适用于windows平台的工具 |
-> | linux          | 适用于linux平台的工具   |
-> | darwin         | 适用于Mac平台的工具     |
->
-> Mac平台的工具有arm64架构和x86_64架构区分。可根据”组件形态“进行区分，其中mac-sdk-full和mac-sdk-public的适用于x86_64架构。mac-sdk-m1-full和mac-sdk-m1-public的适用于arm64架构。
+> **说明：system可选windows/linux/darwin**
+
+> 其中Mac平台的工具有arm64架构和x86_64架构区分。可根据”组件形态“进行区分，其中mac-sdk-full和mac-sdk-public的适用于x86_64架构。mac-sdk-m1-full和mac-sdk-m1-public的适用于arm64架构。
 >
 ## 调试器提供功能
 - 将程序加载到LLDB
