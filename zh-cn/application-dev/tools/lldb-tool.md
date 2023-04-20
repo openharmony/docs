@@ -12,8 +12,8 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 - 解压sdk，直接在lldb工具所在路径\**\ohos-sdk\windows\native\llvm\bin运行lldb.exe即可。
 ## 支持平台与架构
 远程调试时需要lldb-server和lldb配合使用。
-### todo list
-1.经典使用场景：linux-x84/64场景下调试程序
+### 常见使用使用场景：linux-x84/64场景下调试程序
+>
 ### 具体支持架构/平台表
 
 - windows平台RK3568调试(arm架构调试)
