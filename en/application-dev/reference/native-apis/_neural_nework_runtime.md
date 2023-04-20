@@ -771,7 +771,7 @@ Obtains the type information of the specified device.
  
 **Returns**
 
-Execution result of the function. If the operation is successful, **OH_NN_SUCCESS** is returned. If the operation fails, an error code is returned. For details about the error codes, see [OH_NN_ReturnCode](#oh_nn_returncode). since 9 版本1.0 
+Execution result of the function. If the operation is successful, **OH_NN_SUCCESS** is returned. If the operation fails, an error code is returned. For details about the error codes, see [OH_NN_ReturnCode](#oh_nn_returncode).
 
 
 ### OH_NNExecutor_AllocateInputMemory()
