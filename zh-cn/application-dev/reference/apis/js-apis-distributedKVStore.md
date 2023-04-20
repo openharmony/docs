@@ -42,7 +42,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 | --------------------- | ------- | --------------------------------------- |
 | MAX_KEY_LENGTH        | 1024    | 数据库中Key允许的最大长度，单位字节。   |
 | MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
-| MAX_KEY_LENGTH_DEVICE | 896     | 最大设备密钥长度，单位字节。            |
+| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中key允许的最大长度，单位字节。 |
 | MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
 | MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
 | MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
@@ -138,10 +138,10 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 | 名称        | 说明                                                         |
 | -------:   | ------------------------------------------------------------ |
-| S1         | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2         | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3         |  表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4         |  表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
+| S1         | 表示数据库的安全级别为低级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致有限的不利影响。<br>例如，性别、国籍，用户申请记录等。 |
+| S2         | 表示数据库的安全级别为中级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严重的不利影响。<br>例如，个人详细通信地址，姓名昵称等。 |
+| S3         | 表示数据库的安全级别为高级别，数据的泄露、篡改、破坏、销毁可能会给个人或组织导致严峻的不利影响。<br>例如，个人实时精确定位信息、运动轨迹等。 |
+| S4         | 表示数据库的安全级别为关键级别，业界法律法规中定义的特殊数据类型，涉及个人的最私密领域的信息或者一旦泄露、篡改、破坏、销毁可能会给个人或组织造成重大的不利影响数据。<br>例如，政治观点、宗教、和哲学信仰、工会成员资格、基因数据、生物信息、健康和性生活状况、性取向等或设备认证鉴权、个人的信用卡等财务信息。 |
 
 ## Options
 
@@ -227,13 +227,12 @@ appendChild(child: FieldNode): boolean
 **示例：**
 
 ```js
-import ddm from '@ohos.data.distributedKVStore';
 
 try {
-    let node = new ddm.FieldNode("root");
-    let child1 = new ddm.FieldNode("child1");
-    let child2 = new ddm.FieldNode("child2");
-    let child3 = new ddm.FieldNode("child3");
+    let node = new distributedKVStore.FieldNode("root");
+    let child1 = new distributedKVStore.FieldNode("child1");
+    let child2 = new distributedKVStore.FieldNode("child2");
+    let child3 = new distributedKVStore.FieldNode("child3");
     node.appendChild(child1);
     node.appendChild(child2);
     node.appendChild(child3);
@@ -456,6 +455,8 @@ try {
         }
         console.info('Succeeded in getting KVStore');
         kvStore = store;
+        kvStore = null;
+        store = null;
         kvManager.closeKVStore('appId', 'storeId', function (err, data) {
             if (err != undefined) {
                 console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
@@ -506,6 +507,8 @@ try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
         console.info('Succeeded in getting KVStore');
         kvStore = store;
+        kvStore = null;
+        store = null;
         kvManager.closeKVStore('appId', 'storeId').then(() => {
             console.info('Succeeded in closing KVStore');
         }).catch((err) => {
@@ -563,6 +566,8 @@ try {
         }
         console.info('Succeeded in getting KVStore');
         kvStore = store;
+        kvStore = null;
+        store = null;
         kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
             if (err != undefined) {
                 console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
@@ -621,6 +626,8 @@ try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
         console.info('Succeeded in getting KVStore');
         kvStore = store;
+        kvStore = null;
+        store = null;
         kvManager.deleteKVStore('appId', 'storeId').then(() => {
             console.info('Succeeded in deleting KVStore');
         }).catch((err) => {
@@ -706,7 +713,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知。
+订阅服务状态变更通知。如果服务终止，需要重新注册数据变更通知和同步完成事件回调通知，并且同步操作会返回失败。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -735,7 +742,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-取消订阅服务状态变更通知。
+取消订阅服务状态变更通知。参数中的deathCallback必须是已经订阅过的deathCallback，否则会取消订阅失败，如果deathCallback没有入参，那么会将之前订阅过的所有的deathCallback取消订阅。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -785,14 +792,15 @@ getCount(): number
 ```js
 try {
     let resultSet;
+    let count;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        count = resultSet.getCount();
+        console.info("getCount succeed:" + count);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const count = resultSet.getCount();
-    console.info("getCount succeed:" + count);
 } catch (e) {
     console.error("getCount failed: " + e);
 }
@@ -802,7 +810,7 @@ try {
 
 getPosition(): number
 
-获取结果集中当前的读取位置。
+获取结果集中当前的读取位置。读取位置会因[moveToFirst](#moveToFirst)、[moveToLast](#moveToLast)等操作而发生变化。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -810,21 +818,22 @@ getPosition(): number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回当前读取位置。 |
+| number | 返回当前读取位置。取值范围>= -1，值为 -1 时表示还未开始读取，值为 0 时表示第一行。 |
 
 **示例：**
 
 ```js
 try {
     let resultSet;
+    let position;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeeded.');
         resultSet = result;
+        position = resultSet.getPosition();
+        console.info("getPosition succeed:" + position);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const position = resultSet.getPosition();
-    console.info("getPosition succeed:" + position);
 } catch (e) {
     console.error("getPosition failed: " + e);
 }
@@ -849,14 +858,15 @@ moveToFirst(): boolean
 ```js
 try {
     let resultSet;
+    let moved;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        moved = resultSet.moveToFirst();
+        console.info("moveToFirst succeed: " + moved);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const moved1 = resultSet.moveToFirst();
-    console.info("moveToFirst succeed: " + moved1);
 } catch (e) {
     console.error("moveToFirst failed " + e);
 }
@@ -881,14 +891,15 @@ moveToLast(): boolean
 ```js
 try {
     let resultSet;
+    let moved;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        moved = resultSet.moveToLast();
+        console.info("moveToLast succeed:" + moved);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const moved2 = resultSet.moveToLast();
-    console.info("moveToLast succeed:" + moved2);
 } catch (e) {
     console.error("moveToLast failed: " + e);
 }
@@ -898,7 +909,7 @@ try {
 
 moveToNext(): boolean
 
-将读取位置移动到下一行。如果结果集为空，则返回false。
+将读取位置移动到下一行。如果结果集为空，则返回false。适用于全量获取数据库结果集的场景。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -913,14 +924,17 @@ moveToNext(): boolean
 ```js
 try {
     let resultSet;
+    let moved;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        do {
+          moved = resultSet.moveToNext();
+          console.info("moveToNext succeed: " + moved);
+        } while (moved)
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const moved3 = resultSet.moveToNext();
-    console.info("moveToNext succeed: " + moved3);
 } catch (e) {
     console.error("moveToNext failed: " + e);
 }
@@ -930,7 +944,7 @@ try {
 
 moveToPrevious(): boolean
 
-将读取位置移动到上一行。如果结果集为空，则返回false。
+将读取位置移动到上一行。如果结果集为空，则返回false。适用于全量获取数据库结果集的场景。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -945,14 +959,16 @@ moveToPrevious(): boolean
 ```js
 try {
     let resultSet;
+    let moved;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        moved = resultSet.moveToLast();
+        moved = resultSet.moveToPrevious();
+        console.info("moveToPrevious succeed:" + moved);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const moved4 = resultSet.moveToPrevious();
-    console.info("moveToPrevious succeed:" + moved4);
 } catch (e) {
     console.error("moveToPrevious failed: " + e);
 }
@@ -962,7 +978,7 @@ try {
 
 move(offset: number): boolean
 
-将读取位置移动到当前位置的相对偏移量。
+将读取位置移动到当前位置的相对偏移量。即当前游标位置向下偏移 offset 行。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -983,14 +999,20 @@ move(offset: number): boolean
 ```js
 try {
     let resultSet;
+    let moved;
+    let position = -1;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
+        while (position != 3) {
+            moved = resultSet.moveToNext();
+            position = resultSet.getPosition();
+        }
+        moved = resultSet.move(2); //将读取位置从绝对位置为3的位置移动2行，即移动到绝对位置为5，行数为6的位置
+        console.info(`Succeeded in moving.moved = ${moved}`);
     }).catch((err) => {
         console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
     });
-    const moved5 = resultSet.move(1);
-    console.info(`Succeeded in moving.moved5 = ${moved5}`);
 } catch (e) {
     console.error(`Failed to move.code is ${e.code},message is ${e.message}`);
 }
@@ -1021,14 +1043,15 @@ moveToPosition(position: number): boolean
 ```js
 try {
     let resultSet;
+    let moved;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
+        moved = resultSet.moveToPosition(1);
+        console.info(`Succeeded in moving to position.moved=${moved}`);
     }).catch((err) => {
         console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
     });
-    const moved6 = resultSet.moveToPosition(1);
-    console.info(`Succeeded in moving to position.moved6=${moved6}`);
 } catch (e) {
     console.error(`Failed to move to position.code is ${e.code},message is ${e.message}`);
 }
@@ -1053,14 +1076,15 @@ isFirst(): boolean
 ```js
 try {
     let resultSet;
+    let isfirst;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        isfirst = resultSet.isFirst();
+        console.info("Check isFirst succeed:" + isfirst);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const isfirst = resultSet.isFirst();
-    console.info("Check isFirst succeed:" + isfirst);
 } catch (e) {
     console.error("Check isFirst failed: " + e);
 }
@@ -1085,14 +1109,15 @@ isLast(): boolean
 ```js
 try {
     let resultSet;
+    let islast;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        islast = resultSet.isLast();
+        console.info("Check isLast succeed: " + islast);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const islast = resultSet.isLast();
-    console.info("Check isLast succeed: " + islast);
 } catch (e) {
     console.error("Check isLast failed: " + e);
 }
@@ -1120,11 +1145,11 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        const isbeforefirst = resultSet.isBeforeFirst();
+        console.info("Check isBeforeFirst succeed: " + isbeforefirst);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const isbeforefirst = resultSet.isBeforeFirst();
-    console.info("Check isBeforeFirst succeed: " + isbeforefirst);
 } catch (e) {
     console.error("Check isBeforeFirst failed: " + e);
 }
@@ -1152,11 +1177,11 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        const isafterlast = resultSet.isAfterLast();
+        console.info("Check isAfterLast succeed:" + isafterlast);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const isafterlast = resultSet.isAfterLast();
-    console.info("Check isAfterLast succeed:" + isafterlast);
 } catch (e) {
     console.error("Check isAfterLast failed: " + e);
 }
@@ -1184,11 +1209,11 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
+        const entry  = resultSet.getEntry();
+        console.info("getEntry succeed:" + JSON.stringify(entry));
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
     });
-    const entry  = resultSet.getEntry();
-    console.info("getEntry succeed:" + JSON.stringify(entry));
 } catch (e) {
     console.error("getEntry failed: " + e);
 }
@@ -1810,7 +1835,7 @@ try {
 
 limit(total: number, offset: number): Query
 
-构造一个Query对象来指定结果的数量和开始位置。
+构造一个Query对象来指定结果的数量和开始位置。该接口必须要在Query对象查询和升降序等操作之后调用，调用limit接口后，不可再对Query对象进行查询和升降序等操作。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
