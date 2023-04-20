@@ -37,7 +37,7 @@ import window from '@ohos.window';
 
 | 名称        | 值   | 说明               |
 | ----------- | ---- | ------------------ |
-| TYPE_SYSTEM | 0    | 表示系统默认区域。 |
+| TYPE_SYSTEM | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
 | TYPE_CUTOUT | 1    | 表示刘海屏区域。   |
 
 ## WindowMode<sup>7+</sup>
