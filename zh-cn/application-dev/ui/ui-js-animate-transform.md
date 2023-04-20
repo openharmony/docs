@@ -580,17 +580,14 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 >
 > - transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
 
-
 ## 相关实例
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
+- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimation)
 
-- [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
+- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimationStyle)
 
-- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
+- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/common/Clock)
 
-- [动画样式（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
-
-- [图片常见操作（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)
+- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimation)
