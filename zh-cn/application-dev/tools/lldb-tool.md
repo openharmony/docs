@@ -10,7 +10,7 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 具体使用方法：以windows平台为例
 
 - 解压sdk，直接在lldb工具所在路径\**\ohos-sdk\windows\native\llvm\bin运行lldb.exe即可。
-## 支持平台
+## 支持平台与架构
 远程调试时需要lldb-server和lldb配合使用。
 
 ### lldb-server架构说明
