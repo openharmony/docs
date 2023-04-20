@@ -75,8 +75,7 @@
 支持[通用方法](../arkui-js/js-components-common-methods.md)。
 
 
-## 示例
-1. 
+## 示例​
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -137,5 +136,5 @@
 ```
 
 
-![zh-cn_image_0000001167823076](figures/text.png)
+![zh-cn_image_0000001167823076](figures/js-text.png)
 
