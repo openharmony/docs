@@ -3,9 +3,37 @@
 LLDB（Low Lever Debugger）是新一代高性能调试器。当前Openharmony中的LLDB工具是在[llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)基础上适配演进出来的工具。LLDB支持在桌面和Openharmony设备或模拟器上调试。
 ## 工具获取
 通过OpenHarmony的SDK获取，[获取路径](http://ci.openharmony.cn/dailys/dailybuilds)
-## 适用平台与架构
-host:windows  linux darwin  
-server:aarch64 arm x86_64
+lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
+>  
+>
+**使用举例：**
+
+下面以windows平台使用方式举例
+
+- 解压sdk，直接在lldb工具所在路径\**\ohos-sdk\windows\native\llvm\bin运行lldb.exe即可。
+## 支持平台
+远程调试时需要lldb-server和lldb配合使用。
+
+**表1** lldb-server架构说明 
+
+| lldb-server所在路径                                          | 说明                                        |
+| ------------------------------------------------------------ | ------------------------------------------- |
+| **\ohos-sdk\\[system]\native\llvm\lib\clang\\\[version]\bin\aarch64-linux-ohos\lldb-server | 当调试的设备为ohos平台，aarch64架构时使用。 |
+| **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\arm-linux-ohos\lldb-server | 当调试的设备为ohos平台，arm架构时使用。     |
+| **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\x86_64-linux-ohos\lldb-server | 当调试的设备为ohos平台，x86_64架构时使用。  |
+
+> **说明**
+>
+> 表2 system参数取值说明
+>
+> | system参数取值 | 说明                    |
+> | -------------- | ----------------------- |
+> | windows        | 适用于windows平台的工具 |
+> | linux          | 适用于linux平台的工具   |
+> | darwin         | 适用于Mac平台的工具     |
+>
+> Mac平台的工具有arm64架构和x86_64架构区分。可根据”组件形态“进行区分，其中mac-sdk-full和mac-sdk-public的适用于x86_64架构。mac-sdk-m1-full和mac-sdk-m1-public的适用于arm64架构。
+>
 ## 调试器提供功能
 - 将程序加载到LLDB
 - 设置断点
