@@ -4,11 +4,8 @@ LLDB（Low Lever Debugger）是新一代高性能调试器。当前Openharmony�
 ## 工具获取
 通过OpenHarmony的SDK获取，[获取路径](http://ci.openharmony.cn/dailys/dailybuilds)
 ## 适用平台与架构
-| host  | windows  |  linux |darwin  |
-
-|server|aarch64|arm|x86_64|
-
-
+host:windows  linux darwin  
+server:aarch64 arm x86_64
 ## 调试器提供功能
 - 将程序加载到LLDB
 - 设置断点
