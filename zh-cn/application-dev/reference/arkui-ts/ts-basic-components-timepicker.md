@@ -53,9 +53,6 @@ TimePicker(options?: {selected?: Date})
 
 ## 示例
 
-
-### 时间选择器
-
 ```ts
 // xxx.ets
 @Entry
