@@ -1,6 +1,7 @@
 # 常见问题
 
 - [开发语言常见问题](faqs-language.md)
+- [Ability框架开发常见问题](faqs-ability.md)
 - [应用程序包管理开发常见问题](faqs-bundle.md)
 - [ArkUI组件（ArkTS）开发常见问题](faqs-ui-ets.md)
 - [ArkUI Web组件（ArkTS）开发常见问题](faqs-web-arkts.md)
