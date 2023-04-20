@@ -677,6 +677,31 @@ Returns OHOS_IMAGE_RESULT_SUCCESS if the operation is successful; returns an err
 AccessPixels
 
 
+### OH_PixelMap_AccessPixels()
+
+  
+```
+int32_t OH_PixelMap_AccessPixels(const NativePixelMap* native, void** addr)
+```
+**Description:**<br/>
+Obtains the memory address of a **NativePixelMap** object and locks the memory.
+
+ **Parameters**
+
+| Name | Description | 
+| -------- | -------- |
+| native | Indicates the pointer to a **NativePixelMap** object.  | 
+| addr | Indicates the double pointer to the memory address.  |
+
+**Returns**
+
+Returns OHOS_IMAGE_RESULT_SUCCESS if the operation is successful; returns an error code otherwise.
+
+ **See**
+
+UnAccessPixels
+
+
 ### OH_UnAccessPixels()
 
   
