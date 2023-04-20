@@ -15,12 +15,14 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 ### todo list
 1.经典使用场景：linux-x84/64场景下调试程序
 ### 具体支持架构/平台表
-windows平台RK3568调试(arm架构调试)
-windows平台原型机调试(aarch64架构调试)
-mac(M1)平台RK3568调试(arm架构调试)
-mac(M1)平台原型机调试(aarch64架构调试)
-mac(x86)平台RK3568调试(arm架构调试)
-mac(x86)平台原型机调试(aarch64架构调试)
+
+- windows平台RK3568调试(arm架构调试)
+- windows平台原型机调试(aarch64架构调试)
+- mac(M1)平台RK3568调试(arm架构调试)
+- mac(M1)平台原型机调试(aarch64架构调试)
+- mac(x86)平台RK3568调试(arm架构调试)
+- mac(x86)平台原型机调试(aarch64架构调试)
+
 ### lldb-server架构说明
 
 | lldb-server所在路径                                          | 说明                                        |
