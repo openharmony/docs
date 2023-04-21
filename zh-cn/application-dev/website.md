@@ -1465,3 +1465,4 @@
   - [IDE使用常见问题](faqs/faqs-ide.md)
   - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
   - [开发板使用常见问题](faqs/faqs-development-board.md)
+<!--no_check-->
