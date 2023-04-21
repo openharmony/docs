@@ -139,7 +139,7 @@ _[Changelog](api-diff/v3.1-beta/changelog-v3.1-beta.md)_
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples &amp; Codelabs
@@ -151,17 +151,17 @@ _[Changelog](api-diff/v3.1-beta/changelog-v3.1-beta.md)_
 
 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- |
-| [Ets公共事件](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent) | 本示例展示了在eTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。 | eTS |
+| [Ets公共事件](https://gitee.com/openharmony/app_samples/tree/master/Notification/CommonEvent) | 本示例展示了在ArkTS中如何使用CommonEvent的接口完成创建订阅者、订阅公共事件、发布公共事件、取消订阅的功能。 | ArkTS |
 | [空气质量](https://gitee.com/openharmony/app_samples/tree/master/common/AirQuality) | 本示例使用JS实现了一个简单空气质量应用，使用折行显示能力显示空气质量信息，使用柱形图展示历史记录。 | JS |
 | [分布式计算器](https://gitee.com/openharmony/app_samples/tree/master/common/DistributeCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | JS |
-| [EtsNotification](https://gitee.com/openharmony/app_samples/tree/master/common/Notification) | 本示例展示了在eTS中如何创建和删除Slot通道，如何发布和取消通知。 | eTS |
-| [Ets资源管理](https://gitee.com/openharmony/app_samples/tree/master/common/ResourceManager) | 本示例展示了在eTS中如何调用资源管理的API接口实现字符串和图片资源信息的获取。 | eTS |
+| [EtsNotification](https://gitee.com/openharmony/app_samples/tree/master/common/Notification) | 本示例展示了在ArkTS中如何创建和删除Slot通道，如何发布和取消通知。 | ArkTS |
+| [Ets资源管理](https://gitee.com/openharmony/app_samples/tree/master/common/ResourceManager) | 本示例展示了在ArkTS中如何调用资源管理的API接口实现字符串和图片资源信息的获取。 | ArkTS |
 | [kikainput](https://gitee.com/openharmony/app_samples/tree/master/CompleteApps/KikaInput) | kikainput是一个轻量级的输入法应用，支持在运行OpenHarmony&nbsp;OS的智能终端上。 | JS |
-| [eTS分布式数据管理](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore) | 本示例展示了在eTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。 | eTS |
-| [轻量级数据存储](https://gitee.com/openharmony/app_samples/tree/master/data/LiteStorage) | 轻量级数据存储主要提供轻量级Key-Value操作，支持本地应用存储少量数据。本示例通过对购物车商品的添加和删除并保存退出的操作，使得再次打开应用时依然可以保留退出前的购物车信息，体现了轻量级存储在保存轻量级数据时的作用。 | eTS |
-| [Ets进程信息](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Process) | 本示例展示了在eTS中如何获取进程信息和启动一个子进程运行一段shell，包括当前系统运行时间、获取进程当前工作目录、更改进程当前工作目录、发送signal到指定的进程、启动一个子进程、关闭子进程、退出当前系统的功能。 | eTS |
-| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/common/Runninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | eTS |
-| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/Util/UtilStringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | eTS |
+| [ArkTS分布式数据管理](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore) | 本示例展示了在ArkTS中分布式数据管理的使用，包括KVManager对象实例的创建和KVStore数据流转的使用。 | ArkTS |
+| [轻量级数据存储](https://gitee.com/openharmony/app_samples/tree/master/data/LiteStorage) | 轻量级数据存储主要提供轻量级Key-Value操作，支持本地应用存储少量数据。本示例通过对购物车商品的添加和删除并保存退出的操作，使得再次打开应用时依然可以保留退出前的购物车信息，体现了轻量级存储在保存轻量级数据时的作用。 | ArkTS |
+| [Ets进程信息](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Process) | 本示例展示了在ArkTS中如何获取进程信息和启动一个子进程运行一段shell，包括当前系统运行时间、获取进程当前工作目录、更改进程当前工作目录、发送signal到指定的进程、启动一个子进程、关闭子进程、退出当前系统的功能。 | ArkTS |
+| [Ets运行锁](https://gitee.com/openharmony/app_samples/tree/master/common/Runninglock) | 本示例展示了阻止系统休眠的运行锁功能，通过黑白色壁纸模拟息屏、亮屏状态，来展示系统的休眠状态，从而对运行锁的功能进行测试，使得该运行锁在打开后可以阻止系统休眠。 | ArkTS |
+| [字符串编解码](https://gitee.com/openharmony/app_samples/tree/master/Util/UtilStringCodec) | 本示例对字符串进行了特定格式的输出，对错误码的内容进行了文本输出，对字符串的编码和解码做了演示结果。 | ArkTS |
 | [Js音频播放和管理](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer) | 本示例展示了JS音频播放的使用方法，以及音频的音量大小设置。 | JS |
 | [JsVideo](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo) | 本示例使用JS&nbsp;UI中的&lt;video/&gt;组件，实现视频播放。可以通过video自带的控制栏进行播放、暂停等操作。 | JS |
 | [测试打点](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest) | 本示例展示了测试打点功能，包括应用打点与性能打点两部分。 | JS |
@@ -180,17 +180,16 @@ _[Changelog](api-diff/v3.1-beta/changelog-v3.1-beta.md)_
 
 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- |
-| [分布式手写板（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts) | 基于分布式能力，实现多设备同步书写互动。 | eTS |
+| [分布式手写板（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts) | 基于分布式能力，实现多设备同步书写互动。 | ArkTS |
 | [分布式数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData) | 基于分布式数据接口，实现多种设备上一致的数据访问体验。 | JS |
 | [关系型数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData) | 基于关系型数据库和数据管理能力，实现数据库相关应用服务的快速开发。 | JS |
-| [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现一个图库应用。 | eTS |
-| [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现一次布局，多端部署。 | eTS |
-| [购物应用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI丰富的组件实现购物商城应用。 | eTS |
-| [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility) | 入门教程，学习如何完成Page内和Page间的页面导航跳转。 | eTS |
-| [转场动画的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | eTS |
-| [基础组件Slider的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，使用slider组件，实现可调节风车大小和转速的动画效果。 | eTS |
-| [流式布局（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现流式布局效果。 | eTS |
-| [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现警告弹窗和自定义弹窗。 | eTS |
+| [极简声明式UI范式（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts) | 基于OpenHarmony ArkUI，实现一个图库应用。 | ArkTS |
+| [一次开发多端部署（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Multi_device) | 基于OpenHarmony ArkUI，实现一次布局，多端部署。 | ArkTS |
+| [购物应用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | 基于OpenHarmony ArkUI丰富的组件实现购物商城应用。 | ArkTS |
+| [转场动画的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation) | 基于OpenHarmony ArkUI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | ArkTS |
+| [基础组件Slider的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，使用slider组件，实现可调节风车大小和转速的动画效果。 | ArkTS |
+| [流式布局（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts) | 基于OpenHarmony ArkUI，实现流式布局效果。 | ArkTS |
+| [弹窗（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | 基于OpenHarmony ArkUI，实现警告弹窗和自定义弹窗。 | ArkTS |
 
 
 ## 修复缺陷列表
