@@ -42,6 +42,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -78,6 +81,9 @@ udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -747,6 +753,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -783,6 +792,9 @@ tcp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1871,7 +1883,7 @@ promise.then(() => {
 
 ### on('message')
 
-    on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -1882,7 +1894,7 @@ promise.then(() => {
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。   
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
 
 **示例：**
 
@@ -1916,7 +1928,7 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
 
 **示例：**
 
