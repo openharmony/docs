@@ -12,9 +12,9 @@
 ```html
 <!-- index.hml -->
 <div class="container">
-  <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
+  <grid-container id="mygrid" gutter="20px" style="background-color: pink;">
     <grid-row style="height:100px;justify-content:space-around;width: 80%;background-color: #f67002;margin-left: 
-      10%; margin-right: 10%;"></grid-row>
+      10%;"></grid-row>
     <grid-row style="height:300px;justify-content:space-around;background-color: #ffcf00;width: 100%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #032cf8;width: 100%;"></grid-row>
   </grid-container>
@@ -27,8 +27,7 @@
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
-  width: 100%;
-  height: 100%;
+  margin-top: 500px;
   justify-content: center;
   align-items: center;
 }
@@ -48,14 +47,14 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 ```html
 <!-- index.hml -->
 <div class="container">
-  <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
+  <grid-container id="mygrid" gutter="20px" style="background-color: pink;padding-top: 100px;" 
     onclick="getColumns" onlongpress="getSizeType">
     <grid-row style="height:100px;justify-content:space-around;background-color: #4cedf3;width: 20%;margin-left: 
-      40%; margin-right: 40%;"></grid-row>
+      40%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #4cbff3;width: 50%;margin-left:
-      25%; margin-right: 25%;"></grid-row>
+      25%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #465ff6;width: 80%;margin-left: 
-      10%; margin-right: 10%;"></grid-row>
+      10%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #5011ec;width: 100%;"></grid-row>
   </grid-container>
 </div>
@@ -67,8 +66,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
-  width: 100%;
-  height: 100%;
+  margin-top: 400px;
   justify-content: center;
   align-items: center;
 }
@@ -163,7 +161,7 @@ export default {
 text{
   color: white;
   font-size: 40px;
-
+}
 ```
 
 ![zh-cn_image_0000001227135731](figures/zh-cn_image_0000001227135731.png)
@@ -246,7 +244,6 @@ export default {
 
 
 ![zh-cn_image_0000001263160403](figures/zh-cn_image_0000001263160403.gif)
-
 
 ## 相关实例
 
