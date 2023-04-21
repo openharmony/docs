@@ -130,7 +130,7 @@ export default class AudioRendererDemo {
   private renderModel = undefined;
   private audioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-    channels: audio.AudioChannel.CHANNEL_2, // 通道数
+    channels: audio.AudioChannel.CHANNEL_2, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
   }
