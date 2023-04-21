@@ -33,7 +33,9 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 - mac(x86)平台原型机调试(aarch64架构调试)
 - mac(x86)平台模拟器调试
 >
-## 常见使用使用场景：linux平台调试程序
+## 常见使用使用场景：
+>
+linux平台调试程序
 ## 调试器提供功能
 - 将程序加载到LLDB
 - 设置断点
