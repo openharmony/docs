@@ -382,7 +382,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 ## tag.getMifareClassic<sup>9+</sup>
 
-getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)
+getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
 
 获取MIFARE Classic类型Tag对象，通过该对象访问支持MIFARE Classic技术类型的Tag。
 
