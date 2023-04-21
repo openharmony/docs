@@ -158,7 +158,6 @@ httpRequest.request2(
     httpRequest.destroy();
   }
 );
-
 ```
 
 ## 相关实例

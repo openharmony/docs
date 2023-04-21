@@ -81,7 +81,7 @@
 6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 let netCap = {
@@ -128,7 +128,7 @@ conn.unregister((err, data) => {
 2. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 // 获取所有处于连接状态的网络列表
@@ -154,7 +154,7 @@ connection.getAllNets((err, data) => {
 4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)

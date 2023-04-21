@@ -87,81 +87,81 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 7. Socket连接使用完毕后，主动关闭。
 
-   ```js
-   import socket from '@ohos.net.socket'
+```js
+import socket from '@ohos.net.socket'
 
-   // 创建一个TCPSocket连接，返回一个TCPSocket对象。
-   let tcp = socket.constructTCPSocketInstance();
+// 创建一个TCPSocket连接，返回一个TCPSocket对象。
+let tcp = socket.constructTCPSocketInstance();
 
-   // 订阅TCPSocket相关的订阅事件
-   tcp.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tcp.on('connect', () => {
-       console.log("on connect")
-   });
-   tcp.on('close', () => {
-       console.log("on close")
-   });
+// 订阅TCPSocket相关的订阅事件
+tcp.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tcp.on('connect', () => {
+  console.log("on connect")
+});
+tcp.on('close', () => {
+  console.log("on close")
+});
 
-   // 绑定本地IP地址和端口。
-   let bindAddress = {
-       address: '192.168.xx.xx',
-       port: 1234, // 绑定端口，如1234
-       family: 1
-   };
-   tcp.bind(bindAddress, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
+// 绑定本地IP地址和端口。
+let bindAddress = {
+  address: '192.168.xx.xx',
+  port: 1234, // 绑定端口，如1234
+  family: 1
+};
+tcp.bind(bindAddress, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
 
-       // 连接到指定的IP地址和端口。
-       let connectAddress = {
-           address: '192.168.xx.xx',
-           port: 5678, // 连接端口，如5678
-           family: 1
-       };
-       tcp.connect({
-           address: connectAddress, timeout: 6000
-       }, err => {
-           if (err) {
-               console.log('connect fail');
-               return;
-           }
-           console.log('connect success');
+  // 连接到指定的IP地址和端口。
+  let connectAddress = {
+    address: '192.168.xx.xx',
+    port: 5678, // 连接端口，如5678
+    family: 1
+  };
+  tcp.connect({
+    address: connectAddress, timeout: 6000
+  }, err => {
+    if (err) {
+      console.log('connect fail');
+      return;
+    }
+    console.log('connect success');
 
-           // 发送数据
-           tcp.send({
-               data: 'Hello, server!'
-           }, err => {
-               if (err) {
-                   console.log('send fail');
-                   return;
-               }
-               console.log('send success');
-           })
-       });
-   });
+    // 发送数据
+    tcp.send({
+      data: 'Hello, server!'
+    }, err => {
+      if (err) {
+        console.log('send fail');
+        return;
+      }
+      console.log('send success');
+    })
+  });
+});
 
-   // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-   setTimeout(() => {
-       tcp.close((err) => {
-           console.log('close socket.')
-       });
-       tcp.off('message');
-       tcp.off('connect');
-       tcp.off('close');
-   }, 30 * 1000);
-   ```
+// 连接使用完毕后，主动关闭。取消相关事件的订阅。
+setTimeout(() => {
+  tcp.close((err) => {
+    console.log('close socket.')
+  });
+  tcp.off('message');
+  tcp.off('connect');
+  tcp.off('close');
+}, 30 * 1000);
+```
 
 ## 应用通过TLS Socket进行加密数据传输
 
@@ -184,7 +184,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
 7. TLSSocket连接使用完毕后，主动关闭。
 
 ```js
-   import socket from '@ohos.net.socket'
+import socket from '@ohos.net.socket'
 
 // 创建一个（双向认证）TLS Socket连接，返回一个TLS Socket对象。
 let tlsTwoWay = socket.constructTLSSocketInstance();
@@ -208,7 +208,7 @@ tlsTwoWay.on('close', () => {
 });
 
 // 绑定本地IP地址和端口。
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -280,7 +280,7 @@ tlsTwoWay.on('close', () => {
 });
 
 // 绑定本地IP地址和端口。
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
