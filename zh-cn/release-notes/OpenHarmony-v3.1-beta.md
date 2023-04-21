@@ -186,7 +186,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [极简声明式UI范式（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts) | 基于OpenHarmony ArkUI，实现一个图库应用。 | ArkTS |
 | [一次开发多端部署（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Multi_device) | 基于OpenHarmony ArkUI，实现一次布局，多端部署。 | ArkTS |
 | [购物应用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | 基于OpenHarmony ArkTS UI丰富的组件实现购物商城应用。 | ArkTS |
-| [转场动画的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionExample) | 基于OpenHarmony ArkUI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | ArkTS |
+| [转场动画的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation) | 基于OpenHarmony ArkUI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | ArkTS |
 | [基础组件Slider的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample) | 基于OpenHarmony ArkUI，使用slider组件，实现可调节风车大小和转速的动画效果。 | ArkTS |
 | [流式布局（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts) | 基于OpenHarmony ArkUI，实现流式布局效果。 | ArkTS |
 | [弹窗（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | 基于OpenHarmony ArkUI，实现警告弹窗和自定义弹窗。 | ArkTS |
