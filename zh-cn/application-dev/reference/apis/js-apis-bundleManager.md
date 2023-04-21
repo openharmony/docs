@@ -2946,7 +2946,7 @@ try {
 
 ### bundleManager.getSharedBundleInfo<sup>10+</sup>
 
-function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
+getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取指定的共享包信息，使用Promise形式返回结果。
 
@@ -3036,7 +3036,7 @@ try {
 
 ### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
-function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
+getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取所有的共享包信息，使用Promise形式返回结果。
 
