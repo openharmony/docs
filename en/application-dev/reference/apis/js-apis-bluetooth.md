@@ -1608,7 +1608,7 @@ connect(device: string): boolean
 Sets up a Hands-free Profile (HFP) connection of a device.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect-1).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1642,7 +1642,7 @@ disconnect(device: string): boolean
 Disconnects the HFP connection of a device.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect-1).
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1676,7 +1676,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 Subscribes to the HFP connection state change events.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1710,7 +1710,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 Unsubscribes from the HFP connection state change events.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2498,7 +2498,7 @@ disconnect(): boolean
 Disconnects from the remote BLE device.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect4).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect-4).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2525,7 +2525,7 @@ close(): boolean
 Closes this GATT client to unregister it from the protocol stack. After this method is called, this [GattClientDevice](#gattclientdevice) instance cannot be used.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2599,7 +2599,7 @@ getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 Obtains all services of the remote BLE device. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2687,7 +2687,7 @@ readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharac
 Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2783,7 +2783,7 @@ readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3170,7 +3170,7 @@ getDeviceName(): Promise&lt;string&gt;
 Obtains the name of the remote BLE device. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3237,7 +3237,7 @@ getRssiValue(): Promise&lt;number&gt;
 Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue1).
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue-1).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
