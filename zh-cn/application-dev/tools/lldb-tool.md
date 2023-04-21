@@ -32,18 +32,6 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 - mac(x86)平台RK3568调试(arm架构调试)
 - mac(x86)平台原型机调试(aarch64架构调试)
 - mac(x86)平台模拟器调试
-
-### lldb-server架构说明
-
-| lldb-server所在路径                                          | 说明                                        |
-| ------------------------------------------------------------ | ------------------------------------------- |
-| **\ohos-sdk\\[system]\native\llvm\lib\clang\\\[version]\bin\aarch64-linux-ohos\lldb-server | 当调试的设备为ohos平台，aarch64架构时使用。 |
-| **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\arm-linux-ohos\lldb-server | 当调试的设备为ohos平台，arm架构时使用。     |
-| **\ohos-sdk\\\[system]\native\llvm\lib\clang\\\[version]\bin\x86_64-linux-ohos\lldb-server | 当调试的设备为ohos平台，x86_64架构时使用。  |
-
-
-
-> 其中Mac平台的工具有arm64架构和x86_64架构区分。可根据”组件形态“进行区分，其中mac-sdk-full和mac-sdk-public的适用于x86_64架构。mac-sdk-m1-full和mac-sdk-m1-public的适用于arm64架构。
 >
 ## 常见使用使用场景：linux平台调试程序
 ## 调试器提供功能
