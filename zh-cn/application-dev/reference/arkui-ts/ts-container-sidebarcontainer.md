@@ -104,14 +104,13 @@ SideBarContainer( type?: SideBarContainerType )
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon : Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon")
   selectedIcon: Resource = $r("app.media.icon")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -136,6 +135,13 @@ struct SideBarContainerExample {
       }
       .margin({ top: 50, left: 20, right: 30 })
     }
+    .controlButton({
+      icons: {
+        hidden: $r('app.media.drawer'),
+        shown: $r('app.media.drawer'),
+        switching: $r('app.media.drawer')
+      }
+    })
     .sideBarWidth(150)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)
