@@ -676,7 +676,7 @@ Indicates that the list of exempt applications has been updated in the idle mode
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DEVICE_IDLE_CTRL_NETWORK
-Indicates that the network access is restricted or restored, when screen is off for about 30 minutes. This event is available only for system applications.
+Indicates that the app's network access is restricted, when screen is off for about 30 minutes. This event is available only for system applications.
 - Value: **usual.event.DEVICE_IDLE_CTRL_NETWORK**
 - Required subscriber permissions: none
 
