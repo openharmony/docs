@@ -1,7 +1,7 @@
 # 平台驱动移植
 
 
-在这一步，我们会在源码目录//device/vendor_name/soc_name/drivers 目录下创建平台驱动，如果你要移植的SOC的厂商还没有创建仓库的话，请联系[sig-devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)创建。
+在这一步，我们会在源码目录//device/vendor_name/soc_name/drivers 目录下创建平台驱动，如果你要移植的SOC的厂商还没有创建仓库的话，请联系[sig_devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)创建。
 
 
 建议的目录结构：
