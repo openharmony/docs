@@ -16,6 +16,16 @@
 
 Counter()
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
+
+| 名称                          | 参数类型                               | 描述                                       |
+| --------------------------- | ---------------------------------------- | ---------------------------------------- |
+| enableInc<sup>10+</sup>              | boolean                            | 设置增加按钮禁用或使能。<br/>默认值：true   |
+| enableDec<sup>10+</sup>           | boolean                                  | 设置减少按钮禁用或使能。<br/>默认值：true |
 
 ## 事件
 
@@ -23,8 +33,8 @@ Counter()
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。 |
-| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。 |
+| onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值增加事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 监听数值减少事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

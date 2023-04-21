@@ -40,7 +40,7 @@ import window from '@ohos.window';
 | TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 | TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 
@@ -66,7 +66,7 @@ import window from '@ohos.window';
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏和Dock栏，各设备系统定义可能不同。 |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
 | TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度。 |
-| height | number   | 是   | 是   | 窗口高度。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px。 |
 
 ## WindowProperties
 
@@ -300,16 +300,14 @@ import window from '@ohos.window';
 
 窗口生命周期。
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
-| ACTIVE     | 2      | 获焦状态。 |
-| INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
+| WINDOW_SHOWN      | 1      | 切到前台。 |
+| WINDOW_ACTIVE     | 2      | 获焦状态。 |
+| WINDOW_INACTIVE   | 3      | 失焦状态。 |
+| WINDOW_HIDDEN     | 4      | 切到后台。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -829,6 +827,148 @@ try {
     window.off('systemBarTintChange');
 } catch (exception) {
     console.error('Failed to disable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.on('gestureNavigationEnabledChange')<sup>10+</sup>
+
+on(type: 'gestureNavigationEnabledChange', callback: Callback&lt;boolean&gt;): void
+
+添加手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                                          |
+| -------- | ----------------------- | ---- | ----------------------------------------------------------------------------- |
+| type     | string                  | 是   | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。    |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前手势导航的启用状态。true表示手势导航状态变化为启用；false表示手势导航状态变化为禁用。 |
+
+**示例：**
+
+```js
+try {
+    window.on('gestureNavigationEnabledChange', (data) => {
+        console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.off('gestureNavigationEnabledChange')<sup>10+</sup>
+
+off(type: 'gestureNavigationEnabledChange', callback?: Callback&lt;boolean&gt;): void
+
+移除手势导航启用状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                                        |
+| -------- | ----------------------- | -- | ------------------------------------------------------------ |
+| type     | string                  | 是 | 监听事件，固定为'gestureNavigationEnabledChange'，即手势导航启用状态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 否 | 已注册的回调函数。参数传入时表示只移除该监听；参数未传入时表示移除所有手势导航启用状态变化的监听。 |
+
+**示例：**
+
+```js
+try {
+    window.off('gestureNavigationEnabledChange');
+} catch (exception) {
+    console.error('Failed to disable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置手势导航启用状态。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| enable   | boolean                  | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    window.setGestureNavigationEnabled(true, (err) => {
+        if(err.code) {
+            console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting gesture navigation enabled.');
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
+}
+```
+
+## window.setGestureNavigationEnabled<sup>10+</sup>
+setGestureNavigationEnabled(enable: boolean): Promise&lt;void&gt;
+
+设置手势导航启用状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填  | 说明                 |
+| ------ | ------- | ---- | -------------------- |
+| enable | boolean | 是   | 设置手势导航启用状态。true表示启用手势导航；false表示禁用手势导航。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```js
+try {
+    let promise = window.setGestureNavigationEnabled(true);
+    promise.then(()=> {
+        console.info('Succeeded in setting gesture navigation enabled.');
+    }).catch((err)=>{
+        console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set gesture navigation enabled. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -2361,7 +2501,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2407,7 +2547,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -2750,7 +2890,7 @@ try {
 }
 ```
 
-### on('dialogTargetTouch')<sup>9+</sup>
+### on('dialogTargetTouch')<sup>10+</sup>
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
@@ -2777,7 +2917,7 @@ try {
 }
 ```
 
-### off('dialogTargetTouch')<sup>9+</sup>
+### off('dialogTargetTouch')<sup>10+</sup>
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
@@ -3335,7 +3475,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **错误码：**
 
@@ -4019,7 +4159,7 @@ promise.then((pixelMap)=> {
 
 opacity(opacity: number): void
 
-设置窗口透明度。
+设置窗口不透明度。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4027,9 +4167,9 @@ opacity(opacity: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                  |
-| ------- | ------ | ---- | --------------------- |
-| opacity | number | 是   | 透明度，范围0.0~1.0。 |
+| 参数名  | 类型   | 必填 | 说明                                                        |
+| ------- | ------ | ---- | ----------------------------------------------------------- |
+| opacity | number | 是   | 不透明度，范围0.0~1.0。0.0表示完全透明，1.0表示完全不透明。 |
 
 **错误码：**
 
@@ -4054,7 +4194,7 @@ try {
 
 scale(scaleOptions: ScaleOptions): void
 
-设置窗口缩放参数。
+设置窗口缩放参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4095,7 +4235,7 @@ try {
 
 rotate(rotateOptions: RotateOptions): void
 
-设置窗口旋转参数。
+设置窗口旋转参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4137,7 +4277,7 @@ try {
 
 translate(translateOptions: TranslateOptions): void
 
-设置窗口平移参数。
+设置窗口平移参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4145,9 +4285,9 @@ translate(translateOptions: TranslateOptions): void
 
 **参数：**
 
-| 参数名           | 类型                                   | 必填 | 说明       |
-| ---------------- | -------------------------------------- | ---- | ---------- |
-| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数。 |
+| 参数名           | 类型                                   | 必填 | 说明                 |
+| ---------------- | -------------------------------------- | ---- | -------------------- |
+| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数，单位为px。 |
 
 **错误码：**
 
@@ -4355,7 +4495,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
-| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
 | offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
 
@@ -4657,6 +4797,98 @@ try {
     });
 } catch (exception) {
     console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    let promise = windowClass.setWaterMarkFlag(enable);
+    promise.then(()=> {
+        console.info('Succeeded in setting water mark flag of window.');
+    }).catch((err)=>{
+        console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### setWaterMarkFlag<sup>10+</sup>
+
+setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+为当前窗口添加或删除安全水印标志，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                              |
+| -------- | ------------------------- | ---  | ----------------------------------------------- |
+| enable   | boolean                   | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display.           |
+
+**示例：**
+
+```js
+try {
+    let enable = true;
+    windowClass.setWaterMarkFlag(enable, (err) => {
+        if (err.code) {
+            console.error('Failed to set water mark flag of window. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting water mark flag of window.');
+    });
+} catch (exception) {
+    console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
 
@@ -5796,7 +6028,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5828,7 +6060,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **返回值：**
 
@@ -6339,7 +6571,7 @@ WindowStage生命周期。
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
 
-下列API示例中都需在[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
+下列API示例中都需在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
 
 ### getMainWindow<sup>9+</sup>
 
@@ -6696,7 +6928,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -6751,7 +6983,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 

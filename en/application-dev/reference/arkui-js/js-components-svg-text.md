@@ -1,7 +1,5 @@
 # text
 
-The **\<text>** component is used to display a piece of textual information.
-
 
 >  **NOTE**
 >
@@ -12,6 +10,8 @@ The **\<text>** component is used to display a piece of textual information.
 >  - **\<text>** can be nested only by the parent element label **svg**.
 >
 >  - Only the default font **sans-serif** is supported.
+
+The **\<text>** component is used to display a piece of textual information.
 
 ## Required Permissions
 

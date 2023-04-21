@@ -17,8 +17,11 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility](datashareextensionability.md)
       - [FormExtensionAbility (Widget)](widget-development-stage.md)
+      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
+      - [InputMethodExtensionAbility](inputmethodextentionability.md)
+      - [WindowExtensionAbility](windowextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
@@ -31,15 +34,19 @@
     - [Component Startup Rules](component-startup-rules.md)
     - Inter-Device Application Component Interaction (Continuation) 
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
-      - [Cross-Device Migration](hop-cross-device-migration.md)
-      - [Multi-device Collaboration](hop-multi-device-collaboration.md)
+      - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
+      - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
+    - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - IPC
     - [Process Model](process-model-stage.md)
     - Common Events
       - [Introduction to Common Events](common-event-overview.md)
-      - [Subscribing to Common Events](common-event-subscription.md)
+      - Common Event Subscription
+        - [Common Event Subscription Overview](common-event-subscription-overview.md)
+        - [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md)
+        - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
+        - [Unsubscribing from Common Events](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
-      - [Unsubscribing from Common Events](common-event-unsubscription.md)
     - [Background Services](background-services.md)
   - Inter-Thread Communication
     - [Thread Model](thread-model-stage.md)
@@ -49,6 +56,7 @@
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission Management and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
+    - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
@@ -62,7 +70,7 @@
       - [Creating a PageAbility](create-pageability.md)
       - [Starting a Local PageAbility](start-local-pageability.md)
       - [Stopping a PageAbility](stop-pageability.md)
-      - [Starting a Remote PageAbility](start-remote-pageability.md)
+      - [Starting a Remote PageAbility (for System Applications Only)](start-remote-pageability.md)
       - [Starting a Specified Page](start-page.md)
       - [Window Properties](window-properties.md)
       - [Requesting Permissions](request-permissions.md)

@@ -93,11 +93,11 @@ import formInfo from '@ohos.application.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统接口**: 此接口为系统接口。   |
-| DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | 卡片规格样式。   |
-| NAME_KEY       | "ohos.extra.param.key.form_name"   | 卡片名称。   |
-| MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | 卡片所属模块名称。   |
-| WIDTH_KEY        | "ohos.extra.param.key.form_width"   | 卡片宽度。   |
-| HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | 卡片高度。   |
-| TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**系统接口**: 此接口为系统接口。   |
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。   |
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。   |
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。   |
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。   |
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
 

@@ -1,6 +1,6 @@
 # @ohos.inputMethodEngine (输入法服务)
 
-本模块的作用是拉通输入法应用和其他三方应用（联系人、微信等），功能包括：将三方应用与输入法应用的服务进行绑定、三方应用通过输入法应用进行文本输入、三方应用对输入法应用进行显示键盘请求和隐藏键盘请求、三方应用对输入法应用当前状态进行监听等。
+本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，功能包括：创建软键盘窗口、插入/删除字符、选中文本、物理键盘按键事件监听等。
 
 > **说明：**
 >
@@ -478,6 +478,186 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 });
 ```
 
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
+
+创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
+| callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                       |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+```
+
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
+
+创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
+
+**返回值：**
+| 类型   | 说明                                                                 |
+| ------- | ------------------------------------------------------------------ |
+| Promise\<[Panel](#panel10)> | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+
+**错误码：**
+
+| 错误码ID   | 错误信息                       |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
+  console.log('Succeed in creating panel.');
+}).catch((err) => {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+})
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
+
+销毁输入法应用面板。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ------- | ----------- | ---- | ------------------------ |
+| panel     | [Panel](#panel10) | 是   | 要销毁的panel对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel((err) => {
+    if(err !== undefined) {
+      console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeed in destroying panel.');
+  })
+} catch(err) {
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+}
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel): Promise\<void>;
+
+销毁输入法应用面板。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                     |
+| ---------| ----------- | ---- | ------------------------ |
+| panel    | [Panel](#panel10)       | 是   | 要销毁的panel对象。      |
+
+**返回值：**
+| 类型    | 说明                                                                 |
+| ------- | -------------------------------------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。|
+
+**示例：**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel().then(() => {
+    console.log('Succeed in destroying panel.');
+  }).catch((err) => {
+    console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+}
+```
+
 ## KeyboardDelegate
 
 下列API示例中都需使用[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
@@ -684,6 +864,455 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 });
 ```
 
+## Panel<sup>10+</sup>
+
+下列API示例中都需使用[createPanel](#createpanel10)回调获取到Panel实例，再通过此实例调用对应方法。
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, callback: AsyncCallback\<void>): void
+
+为当前面板加载具体页面内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.setUiContent('pages/page2/page2', (err) => {
+    if (err) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string): Promise\<void>
+
+为当前面板加载具体页面内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in setting the content.');
+  }).catch((err) =>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
+
+为当前面板加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  panel.setUiContent('pages/page2/page2', storage, (err) => {
+    if (err) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage): Promise\<void>
+
+为当前面板加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | 是   | 设置加载页面的路径。 |
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in setting the content.');
+  }).catch((err) =>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number, callback: AsyncCallback\<void>): void
+
+改变当前面板大小，使用callback异步回调。
+面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | 是   | 目标面板的宽度，单位为px。|
+| height | number | 是   | 目标面板的高度，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.resize(500, 1000, (err) => {
+    if (err) {
+      console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in changing the panel size.');
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. Cause:' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number): Promise\<void>;
+
+改变当前面板大小，使用Promise异步回调。
+面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | 是   | 目标面板的宽度，单位为px。|
+| height | number | 是   | 目标面板的高度，单位为px。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = panel.resize(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the panel size.');
+  }).catch((err) =>{
+    console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. err: ' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
+
+移动面板位置，使用callback异步回调。
+对FLG_FIXED状态的panel不产生实际移动效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+try {
+  panel.moveTo(300, 300, (err) =>{
+    if (err) {
+      console.error('Failed to move the panel. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in moving the panel.');
+  });
+} catch (exception) {
+    console.error('Failed to move the panel. err:' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number): Promise\<void>
+
+移动面板位置，使用callback异步回调。
+对FLG_FIXED状态的panel不产生实际移动效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | 是   | 面板在x轴方向移动的值，值为正表示右移，单位为px。|
+| y | number | 是   | 面板在y轴方向移动的值，值为正表示下移，单位为px。|
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+try {
+  let promise = windowClass.moveTo(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the panel.');
+  }).catch((err) =>{
+    console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to move the panel. Cause:' + JSON.stringify(exception));
+}
+```
+
+### show<sup>10+</sup>
+
+show(callback: AsyncCallback\<void>): void
+
+显示当前面板，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板显示成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+panel.show((err) => {
+  if (err) {
+    console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the panel.');
+});
+```
+
+### show<sup>10+</sup>
+
+show(): Promise\<void>
+
+显示当前面板，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let promise = panel.show();
+promise.then(() => {
+  console.info('Succeeded in showing the panel.');
+}).catch((err) =>{
+  console.error('Failed to show the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(callback: AsyncCallback\<void>): void
+
+隐藏当前面板，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板隐藏成功，err为undefined，否则err为错误对象。 |
+
+**示例：**
+
+```js
+panel.hide((err) => {
+  if (err) {
+    console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the panel.');
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(): Promise\<void>
+
+隐藏当前面板，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+| Promise\<void> | 无返回结果的Promise对象。  |
+
+**示例：**
+
+```js
+let promise = panel.hide();
+promise.then(() => {
+  console.info('Succeeded in hiding the panel.');
+}).catch((err) =>{
+  console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### on<sup>10+</sup>
+
+on(type: 'show' | 'hide', callback: () => void): void
+
+监听当前面板状态，可监听面板类型为show或者hide， 使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'\|'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
+| callback | () => void | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.on('show', () => {
+  console.info('Panel is showing.');
+});
+```
+
+### off<sup>10+</sup>
+
+off(type: 'show' | 'hide', callback?: () => void): void
+
+取消监听当前面板状态，可取消监听的面板类型为show或者hide，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'/'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| callback | () => void | 否   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.off('show');
+```
+
+### changeFlag<sup>10+</sup>
+
+changeFlag(flag: PanelFlag): void
+
+改变面板状态为固定态或者悬浮态。仅对SOFT_KEYBOARD类型生效。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| flag | [PanelFlag](#panelflag10) | 是 | 要切换到的面板状态类型。 |
+
+**示例：**
+
+```js
+let panelFlag = inputMethodEngine.getInputMethodAbility().PanelFlag.FLG_FIXED;
+panel.changeFlag(panelFlag);
+```
+
 ## KeyboardController
 
 下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
@@ -708,7 +1337,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -742,7 +1371,7 @@ hide(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -837,7 +1466,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
  **示例：**
 
@@ -886,7 +1515,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -928,7 +1557,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -974,7 +1603,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1013,7 +1642,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1059,7 +1688,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1099,7 +1728,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1149,7 +1778,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1192,7 +1821,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1242,7 +1871,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1281,7 +1910,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1326,7 +1955,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
 | 12800002 | Input method engine error. |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1366,7 +1995,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1401,7 +2030,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1435,7 +2064,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1479,7 +2108,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1517,7 +2146,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error.           |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1562,7 +2191,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error.           |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1600,7 +2229,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error.           |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1620,7 +2249,7 @@ try {
 
 ### selectByMovement<sup>10+</sup>
 
-selectByMovement(range: Range): Promise&lt;void&gt;
+selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 根据索引范围选中文本。使用promise异步回调。
 
@@ -1645,7 +2274,7 @@ selectByMovement(range: Range): Promise&lt;void&gt;
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
 | 401      | parameter error.           |
-| 12800003 | Input method client error. |
+| 12800003 | input method client error. |
 
 **示例：**
 
@@ -1682,7 +2311,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 401      | parameter error.               |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1717,7 +2346,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -1751,6 +2380,39 @@ inputClient.getTextIndexAtCursor().then((index) => {
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。 |
 | keyAction | number   | 是   | 否   | 按键的状态。 |
+
+## PanelFlag<sup>10+</sup>
+
+输入法面板状态类型枚举。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| FLG_FIXED  | 0 | 固定态面板类型。 |
+| FLG_FLOATING | 1 | 悬浮态面板类型。 |
+
+## PanelType<sup>10+</sup>
+
+输入法面板类型枚举。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| SOFT_KEYBOARD | 0 | 软键盘类型。 |
+| STATUS_BAR   | 1 | 状态栏类型。 |
+
+## PanelInfo<sup>10+</sup>
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+输入法面板属性。
+
+| 名称      | 类型 | 可读 | 可写 | 说明         |
+| --------- | -------- | ---- | ---- | ------------ |
+| type   	| number   | 是   | 是   | 面板的类型。 |
+| flag	    | number   | 是   | 是   | 面板的状态类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
@@ -2250,3 +2912,4 @@ textInputClient.getEditorAttribute().then((editorAttribute) => {
     console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```
+<!--no_check-->

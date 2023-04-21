@@ -1,4 +1,4 @@
-# Notification Subscription (Open Only to System Applications)
+# Notification Subscription (for System Applications Only)
 
 
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.
@@ -74,7 +74,7 @@ The major APIs for notification subscription are described as follows. For detai
    ```ts
    notificationSubscribe.subscribe(subscriber, (err, data) => { // This API uses an asynchronous callback to return the result.
      if (err) {
-       console.error(`[ANS] failed to subscribe, error[${err}]`);
+       console.error(`[ANS] subscribe failed, code is ${err.code}, message is ${err.message}`);
        return;
      }
      console.info(`[ANS] subscribeTest success : + ${data}`);

@@ -16,7 +16,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | Permission                                | Permission Level   | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | Permission to listen for bundle installation, uninstall, and updates.|
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
@@ -33,7 +33,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 ## bundleMonitor.on
 
-on(type: BundleChangedEvent, callback: callback\<BundleChangedInfo>): void;
+on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 Subscribes to bundle installation, uninstall, and update events.
 
@@ -66,7 +66,7 @@ try {
 
 ## bundleMonitor.off
 
-off(type: BundleChangedEvent, callback?: callback\<BundleChangedInfo>): void;
+off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 Unsubscribes from bundle installation, uninstall, and update events.
 

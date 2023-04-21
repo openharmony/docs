@@ -47,24 +47,12 @@
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
-2. 申请数据同步权限，弹框示例代码。
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context;
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-       context.requestPermissionsFromUser(permissions).then((data) => {
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
-       }).catch((error) => {
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
-       })
-   }
-   ```
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
 3. 获取目标设备的设备ID。
-   
+
    ```ts
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
@@ -94,7 +82,7 @@
    ```
 
 4. 设置目标组件参数，调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
-   
+
    ```ts
    let want = {
        deviceId: getRemoteDeviceId(), 
@@ -129,24 +117,12 @@
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
-2. 申请数据同步权限，弹框示例代码。
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context;
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-       context.requestPermissionsFromUser(permissions).then((data) => {
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
-       }).catch((error) => {
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
-       })
-   }
-   ```
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
 3. 在发起端设置目标组件参数，调用startAbilityForResult()接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
-   
+
    ```ts
    let want = {
        deviceId: getRemoteDeviceId(), 
@@ -163,7 +139,7 @@
    ```
 
 4. 在目标端UIAbility任务完成后，调用terminateSelfWithResult()方法，将数据返回给发起端的UIAbility。
-   
+
    ```ts
    const RESULT_CODE: number = 1001;
    let abilityResult = {
@@ -181,7 +157,7 @@
    ```
 
 5. 发起端UIAbility接收到目标端UIAbility返回的信息，对其进行处理。
-   
+
    ```ts
    const RESULT_CODE: number = 1001;
    
@@ -218,21 +194,9 @@
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
-   
-2. 申请数据同步权限，弹框示例代码。
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context;
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-       context.requestPermissionsFromUser(permissions).then((data) => {
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
-       }).catch((error) => {
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
-       })
-   }
-   ```
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
 3. 如果已有后台服务，请直接进入下一步；如果没有，则[实现一个后台服务](serviceextensionability.md#实现一个后台服务仅对系统应用开放)。
 
@@ -292,7 +256,7 @@
       getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
 5. 断开连接。调用disconnectServiceExtensionAbility()断开与后台服务的连接。
-   
+
    ```ts
    let connectionId = 1 // 在通过connectServiceExtensionAbility绑定服务时返回的Id
    this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
@@ -319,124 +283,112 @@
 | startAbilityByCall(want:&nbsp;Want):&nbsp;Promise&lt;Caller&gt;; | 启动指定UIAbility至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。 |
 | on(method:&nbsp;string,&nbsp;callback:&nbsp;CalleeCallBack):&nbsp;void | 通用组件Callee注册method对应的callback方法。 |
 | off(method:&nbsp;string):&nbsp;void | 通用组件Callee解注册method的callback方法。 |
-| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
-| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Sequenceable):&nbsp;Promise&lt;rpc.MessageParcel&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
+| call(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;void&gt; | 向通用组件Callee发送约定序列化数据。 |
+| callWithResult(method:&nbsp;string,&nbsp;data:&nbsp;rpc.Parcelable):&nbsp;Promise&lt;rpc.MessageSequence&gt; | 向通用组件Callee发送约定序列化数据,&nbsp;并将Callee返回的约定序列化数据带回。 |
 | release():&nbsp;void | 释放通用组件的Caller通信接口。 |
 | on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | 注册通用组件通信断开监听通知。 |
 
 
 ### 开发步骤
 
-1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
-   
-2. 申请数据同步权限，弹框示例代码。
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context;
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-       context.requestPermissionsFromUser(permissions).then((data) => {
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data));
-       }).catch((error) => {
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error));
-       })
-   }
-   ```
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
 3. 创建被调用端UIAbility。
-   被调用端UIAbility需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
+     被调用端UIAbility需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 
-   1. 配置UIAbility的启动模式。
-       配置module.json5，将CalleeAbility配置为单实例"singleton"。
+     1. 配置UIAbility的启动模式。
+         配置module.json5，将CalleeAbility配置为单实例"singleton"。
 
-       | Json字段 | 字段说明 |
-       | -------- | -------- |
-       | “launchType” | Ability的启动模式，设置为"singleton"类型。 |
+         | Json字段 | 字段说明 |
+         | -------- | -------- |
+         | “launchType” | Ability的启动模式，设置为"singleton"类型。 |
 
-       UIAbility配置标签示例如下：
+         UIAbility配置标签示例如下：
 
-       
-       ```json
-       "abilities":[{
-           "name": ".CalleeAbility",
-           "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
-           "launchType": "singleton",
-           "description": "$string:CalleeAbility_desc",
-           "icon": "$media:icon",
-           "label": "$string:CalleeAbility_label",
-           "visible": true
-       }]
-       ```
-   2. 导入UIAbility模块。
-      
-       ```ts
-       import Ability from '@ohos.app.ability.UIAbility';
-       ```
-   3. 定义约定的序列化数据。
-       调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。
-
-       
-       ```ts
-       export default class MySequenceable {
-           num: number = 0;
-           str: string = "";
-       
-           constructor(num, string) {
-               this.num = num;
-               this.str = string;
-           }
-       
-           marshalling(messageParcel) {
-               messageParcel.writeInt(this.num);
-               messageParcel.writeString(this.str);
-               return true;
-           }
-       
-           unmarshalling(messageParcel) {
-               this.num = messageParcel.readInt();
-               this.str = messageParcel.readString();
-               return true;
-           }
-       }
-       ```
-   4. 实现Callee.on监听及Callee.off解除监听。
-         如下示例在Ability的onCreate注册MSG_SEND_METHOD监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
          
-       ```ts
-       const TAG: string = '[CalleeAbility]';
-       const MSG_SEND_METHOD: string = 'CallSendMsg';
-       
-       function sendMsgCallback(data) {
-           console.info('CalleeSortFunc called');
-       
-           // 获取Caller发送的序列化数据
-           let receivedData = new MySequenceable(0, '');
-           data.readSequenceable(receivedData);
-           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-       
-           // 作相应处理
-           // 返回序列化数据result给Caller
-           return new MySequenceable(receivedData.num + 1, `send ${receivedData.str} succeed`);
-       }
-       
-       export default class CalleeAbility extends Ability {
-           onCreate(want, launchParam) {
-               try {
-                   this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-               } catch (error) {
-                   console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-               }
-           }
-       
-           onDestroy() {
-               try {
-                   this.callee.off(MSG_SEND_METHOD);
-               } catch (error) {
-                   console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
-               }
-           }
-       }
-       ```
+         ```json
+         "abilities":[{
+             "name": ".CalleeAbility",
+             "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
+             "launchType": "singleton",
+             "description": "$string:CalleeAbility_desc",
+             "icon": "$media:icon",
+             "label": "$string:CalleeAbility_label",
+             "exported": true
+         }]
+         ```
+     2. 导入UIAbility模块。
+        
+         ```ts
+         import Ability from '@ohos.app.ability.UIAbility';
+         ```
+     3. 定义约定的序列化数据。
+         调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。
+
+         
+         ```ts
+         export default class MyParcelable {
+             num: number = 0;
+             str: string = "";
+         
+             constructor(num, string) {
+                 this.num = num;
+                 this.str = string;
+             }
+         
+             marshalling(messageSequence) {
+                 messageSequence.writeInt(this.num);
+                 messageSequence.writeString(this.str);
+                 return true;
+             }
+         
+             unmarshalling(messageSequence) {
+                 this.num = messageSequence.readInt();
+                 this.str = messageSequence.readString();
+                 return true;
+             }
+         }
+         ```
+     4. 实现Callee.on监听及Callee.off解除监听。
+           如下示例在Ability的onCreate注册MSG_SEND_METHOD监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
+           
+         ```ts
+         const TAG: string = '[CalleeAbility]';
+         const MSG_SEND_METHOD: string = 'CallSendMsg';
+         
+         function sendMsgCallback(data) {
+             console.info('CalleeSortFunc called');
+         
+             // 获取Caller发送的序列化数据
+             let receivedData = new MyParcelable(0, '');
+             data.readParcelable(receivedData);
+             console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+         
+             // 作相应处理
+             // 返回序列化数据result给Caller
+             return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+         }
+         
+         export default class CalleeAbility extends Ability {
+             onCreate(want, launchParam) {
+                 try {
+                     this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+                 } catch (error) {
+                     console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
+                 }
+             }
+         
+             onDestroy() {
+                 try {
+                     this.callee.off(MSG_SEND_METHOD);
+                 } catch (error) {
+                     console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
+                 }
+             }
+         }
+         ```
 
 4. 获取Caller接口，访问被调用端UIAbility。
    1. 导入UIAbility模块。
@@ -445,7 +397,7 @@
        import Ability from '@ohos.app.ability.UIAbility';
        ```
    2. 获取Caller通信接口。
-       Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际业务需要做相应处理。
+       Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease和onRemoteStateChange监听。应用开发者根据实际业务需要做相应处理。
 
        
        ```ts
@@ -466,6 +418,14 @@
                        console.info(`remote caller onRelease is called ${msg}`);
                    })
                    console.info('remote caller register OnRelease succeed');
+                   // 注册caller的协同场景下跨设备组件状态变化监听通知
+                   try {
+                        caller.onRemoteStateChange((str) => {
+                            console.log('Remote state changed ' + str);
+                        });
+                    } catch (error) {
+                        console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                    }
                }
            }).catch((error) => {
                console.error(`get remote caller failed with ${error}`);
@@ -476,13 +436,13 @@
        getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
 5. 向被调用端UIAbility发送约定序列化数据。
-   1. 向被调用端发送Sequenceable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
+   1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
       
        ```ts
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        async onButtonCall() {
            try {
-               let msg = new MySequenceable(1, 'origin_Msg');
+               let msg = new MyParcelable(1, 'origin_Msg');
                await this.caller.call(MSG_SEND_METHOD, msg);
            } catch (error) {
                console.info(`caller call failed with ${error}`);
@@ -497,12 +457,12 @@
        backMsg: string = '';
        async onButtonCallWithResult(originMsg, backMsg) {
            try {
-               let msg = new MySequenceable(1, originMsg);
+               let msg = new MyParcelable(1, originMsg);
                const data = await this.caller.callWithResult(MSG_SEND_METHOD, msg);
                console.info('caller callWithResult succeed');
        
-               let result = new MySequenceable(0, '');
-               data.readSequenceable(result);
+               let result = new MyParcelable(0, '');
+               data.readParcelable(result);
                backMsg(result.str);
                console.info(`caller result is [${result.num}, ${result.str}]`);
            } catch (error) {
@@ -512,8 +472,8 @@
        ```
 
 6. 释放Caller通信接口。
-     Caller不再使用后，应用开发者可以通过release接口释放Caller。
-     
+   Caller不再使用后，应用开发者可以通过release接口释放Caller。
+
    ```ts
    releaseCall() {
        try {

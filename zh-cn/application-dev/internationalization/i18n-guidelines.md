@@ -6,7 +6,7 @@
 
 ## 获取和设置系统国际化相关信息
 
-调用接口访问和设置系统语言、偏好语言、地区、24小时制、本地数字开关等国际化信息。
+调用接口访问和设置系统语言、偏好语言、地区、24小时制、本地数字等国际化信息。
 
 ### 接口说明
 
@@ -30,15 +30,15 @@
 | System | getPreferredLanguageList()<sup>9+</sup>     | 获取系统偏好语言列表。    |
 | System | getFirstPreferredLanguage()<sup>9+</sup>     | 获取系统偏好语言列表中的第一个偏好语言。    |
 | System | getAppPreferredLanguage()<sup>9+</sup>     | 获取应用偏好语言。    |
-| System | setUsingLocalDigit(flag: boolean)<sup>9+</sup>     | 设置是否打开本地数字开关。    |
-| System | getUsingLocalDigit()<sup>9+</sup>     | 获取系统当前是否打开本地数字开关。    |
+| System | setUsingLocalDigit(flag: boolean)<sup>9+</sup>     | 设置系统是否使用本地数字。    |
+| System | getUsingLocalDigit()<sup>9+</sup>     | 判断系统是否使用本地数字。    |
 |  | isRTL(locale:string):boolean<sup>9+</sup> | locale对应的语言是否为从右到左语言。 |
 
 ### 开发步骤
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 获取和设置系统语言。
@@ -51,7 +51,7 @@
       I18n.System.setSystemLanguage("en"); // 将系统语言设置为 "en"
       let language = I18n.System.getSystemLanguage(); // language = "en"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -65,7 +65,7 @@
       I18n.System.setSystemRegion("CN"); // 将系统国家设置为 "CN"
       let region = I18n.System.getSystemRegion(); // region = "CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -79,7 +79,7 @@
       I18n.System.setSystemLocale("zh-Hans-CN"); // 将系统Locale设置为 "zh-Hans-CN"
       let locale = I18n.System.getSystemLocale(); // locale = "zh-Hans-CN"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -92,7 +92,7 @@
       let rtl = I18n.isRTL("zh-CN"); // rtl = false
       rtl = I18n.isRTL("ar"); // rtl = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -106,7 +106,7 @@
       I18n.System.set24HourClock(true);
       let hourClock = I18n.System.is24HourClock(); // hourClock = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -121,7 +121,7 @@
       let sentenceCase = false;
       let localizedLanguage = I18n.System.getDisplayLanguage(language, locale, sentenceCase); // localizedLanguage = "英语"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -136,7 +136,7 @@
       let sentenceCase = false;
       let localizedCountry = I18n.System.getDisplayCountry(country, locale, sentenceCase); // localizedCountry = "美国"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -150,7 +150,7 @@
       let languageList = I18n.System.getSystemLanguages();  // languageList = ["en-Latn-US", "zh-Hans"]
       let countryList = I18n.System.getSystemCountries("zh"); // countryList = ["ZW", "YT", ..., "CN", "DE"], 共240个国家和地区
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -162,7 +162,7 @@
    try {
       let isSuggest = I18n.System.isSuggested("zh", "CN"); // isSuggest = true
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -182,7 +182,7 @@
       let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage(); // firstPreferredLanguage = "en-GB"
       let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 当应用中包含 "en-GB"资源时，应用偏好语言为"en-GB"
    } catch(error) {
-      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+      console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -190,14 +190,14 @@
 
    调用setUsingLocalDigit接口打开本地化数字开关。（此接口为系统接口，只有具有UPDATE_CONFIGURATION权限的系统应用可以调用。）
    调用getUsingLocalDigit接口访问本地化数字开关状态。
-   当前只有 "ar", "as", "bn", "fa", "mr", "my", "ne", "ur" 8个语言支持打开本地数字开关。
+   当前只有 "ar", "as", "bn", "fa", "mr", "my", "ne", "ur" 8个语言支持使用本地数字。
 
 ```js
 try {
    I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
    let status = I18n.System.getUsingLocalDigit(); // status = true
 } catch(error) {
-   console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`)
+   console.error(`call i18n.System interface failed, error code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -220,14 +220,14 @@ try {
 | Calendar | getMinimalDaysInFirstWeek():number<sup>8+</sup> | 获取一年中第一周的最小天数。        |
 | Calendar | setMinimalDaysInFirstWeek(value:number): void<sup>8+</sup> | 设置一年中第一周的最小天数。        |
 | Calendar | getDisplayName(locale:string):string<sup>8+</sup> | 获取日历对象的本地化表示。         |
-| Calendar | isWeekend(date?:Date):boolean<sup>8+</sup> | 判断给定的日期是否在日历中是周末。     |
+| Calendar | isWeekend(date?:Date):boolean<sup>8+</sup> | 判断给定的日期在日历中是否是周末。     |
 
 ### 开发步骤
 
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 实例化日历对象。
@@ -254,7 +254,7 @@ try {
      调用set接口设置日历对象的年、月、日、时、分、秒。
 
    ```js
-   calendar.set(2021, 12, 21, 6, 0, 0)
+   calendar.set(2021, 12, 21, 6, 0, 0);
    ```
 
 5. 设置、获取日历对象的时区。
@@ -317,7 +317,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 实例化电话号码格式化对象。
@@ -359,7 +359,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 度量衡单位转换。
@@ -393,7 +393,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 实例化字母表索引对象。
@@ -418,7 +418,7 @@ try {
      调用addLocale接口，将新的Locale对应的字母表索引添加到当前字母表索引列表中。
 
    ```js
-   indexUtil.addLocale("ar")
+   indexUtil.addLocale("ar");
    ```
 
 5. 获取字符串对应的索引。
@@ -454,7 +454,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 实例化断行对象。
@@ -462,7 +462,7 @@ try {
    调用getLineInstance接口来实例化断行对象。
 
    ```js
-   let locale = "en-US"
+   let locale = "en-US";
    let breakIterator = I18n.getLineInstance(locale);
    ```
 
@@ -531,7 +531,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 实例化时区对象，并获取相关时区信息。
@@ -592,7 +592,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 获取支持音译的ID列表。
@@ -637,7 +637,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 判断字符是否具有某种性质。
@@ -719,7 +719,7 @@ try {
 1. 导入I18n模块。
 
    ```js
-   import I18n from '@ohos.i18n'
+   import I18n from '@ohos.i18n';
    ```
 
 2. 判断日期的年月日的排序顺序。

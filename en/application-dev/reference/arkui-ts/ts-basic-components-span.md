@@ -16,12 +16,13 @@ Not supported
 
 Span(value: string | Resource)
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string \| [Resource](ts-types.md#resource) | Yes| Plain text.|
-
 
 
 ## Attributes
@@ -30,14 +31,14 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} |
-| letterSpacing       | number \| string  | Letter spacing.                                |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
+| letterSpacing       | number \| string  | Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Events
 
-Among all the [universal events](ts-universal-attributes-click.md), only the click event is supported.
+Among all the universal events, only the [click event](ts-universal-attributes-click.md) is supported.
 
 >  **NOTE**
 >
@@ -59,29 +60,59 @@ struct SpanExample {
           .decoration({ type: TextDecorationType.None, color: Color.Red })
       }
 
+      // Add a line under the text.
       Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
       Text() {
         Span('I am Underline-span').decoration({ type: TextDecorationType.Underline, color: Color.Red }).fontSize(12)
       }
+
       Text() {
-        Span('I am LineThrough-span').decoration({ type: TextDecorationType.LineThrough, color: Color.Red }).fontSize(12)
+        Span('I am LineThrough-span')
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+          .fontSize(12)
       }
+
       Text() {
         Span('I am Overline-span').decoration({ type: TextDecorationType.Overline, color: Color.Red }).fontSize(12)
       }
 
+      // Set the letter spacing.
+      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)
+      Text() {
+        Span('span letter spacing')
+          .letterSpacing(0)
+          .fontSize(12)
+      }
+
+      Text() {
+        Span('span letter spacing')
+          .letterSpacing(-2)
+          .fontSize(12)
+      }
+
+      Text() {
+        Span('span letter spacing')
+          .letterSpacing(3)
+          .fontSize(12)
+      }
+
+
+      // Set the text case.
       Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
       Text() {
-        Span('I am Lower-span').textCase(TextCase.LowerCase).fontSize(12)
-          .decoration({ type: TextDecorationType.None, color: Color.Red })
+        Span('I am Lower-span').fontSize(12)
+          .textCase(TextCase.LowerCase)
+          .decoration({ type: TextDecorationType.None })
       }
+
       Text() {
-        Span('I am Upper-span').textCase(TextCase.UpperCase).fontSize(12)
-          .decoration({ type: TextDecorationType.None, color: Color.Red })
+        Span('I am Upper-span').fontSize(12)
+          .textCase(TextCase.UpperCase)
+          .decoration({ type: TextDecorationType.None })
       }
     }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![en-us_image_0000001257138363](figures/en-us_image_0000001257138363.gif)
+![span](figures/span.png)

@@ -129,12 +129,14 @@ function convertAsyKey() {
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
 function convertEccAsyKey() {
     let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
@@ -1287,41 +1289,51 @@ function LoopMdPromise(algName, loopSize) {
 
 **开发步骤**
 
-1. 生成ECC密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成ECC非对称密钥。
-2. 基于ECC密钥的私钥及公钥执行ECDH操作。
+1. 通过createKeyAgreement接口创建KeyAgreement对象，用于后续的密钥协商操作。
+2. 调用KeyAgreement对象提供的generateSecret方法，传入对端的ECC公钥对象，以及本地生成的ECC私钥对象。
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let globalKeyPair;
+let globalSelfPriKey;
+let globalPeerPubKey;
 
 function ecdhPromise() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
-    globalKeyPair = keyPair;
-    return eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  eccGenerator.convertKey(peerPubKeyBlob, null).then((peerKeyPair) => {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    return eccGenerator.generateKeyPair();
+  }).then((keyPair) => {
+    globalSelfPriKey = keyPair.priKey;
+    return eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey);
   }).then((secret) => {
-    console.info("ecdh output is " + secret.data);
+    console.info("ecdh promise output is " + secret.data);
   }).catch((error) => {
     console.error("ecdh error.");
   });
 }
 
 function ecdhCallback() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  eccGenerator.generateKeyPair(function (err, keyPair) {
-    globalKeyPair = keyPair;
-    eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey, function (err, secret) {
-      if (err) {
-        console.error("ecdh error.");
-        return;
-      }
-      console.info("ecdh output is " + secret.data);
+  eccGenerator.convertKey(peerPubKeyBlob, null, function (err, peerKeyPair) {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    eccGenerator.generateKeyPair(function (err, keyPair) {
+      globalSelfPriKey = keyPair.priKey;
+      eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey, function (err, secret) {
+        if (err) {
+          console.error("ecdh error.");
+          return;
+        }
+        console.info("ecdh callback output is " + secret.data);
+      });
     });
-  });
+  })
 }
 ```
 

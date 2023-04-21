@@ -18,6 +18,12 @@ This component supports only one child component.
 
 Scroll(scroller?: Scroller)
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| scroller | [Scroller](#scroller) | No| Scroller, which can be bound to scrollable components.|
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -36,24 +42,26 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Horizontal | Only horizontal scrolling is supported.    |
 | Vertical   | Only vertical scrolling is supported.    |
 | None       | Scrolling is disabled.              |
-| Free<sup>(deprecated) </sup> | Vertical or horizontal scrolling is supported.<br> This API is deprecated since API version 9.|
+| Free<sup>(deprecated)</sup> | Vertical or horizontal scrolling is supported.<br>This API is deprecated since API version 9. |
 
 ## Events
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollBegin<sup>9+</sup>(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | Invoked when scrolling starts.<br>Parameters:<br>- **dx**: amount to scroll by in the horizontal direction.<br>- **dy**: amount to scroll by in the vertical direction.<br>Return value:<br>- **dxRemain**: remaining amount to scroll by in the horizontal direction.<br>- **dyRemain**: remaining amount to scroll by in the vertical direction.|
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.         |
-| onScrollEdge(event: (side: Edge) => void)                    | Invoked when scrolling reaches the edge.                                        |
-| onScrollEnd(event: () => void)                               | Invoked when scrolling stops.                                          |
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.|
+| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.         |
+| onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.                                        |
+| onScrollEnd<sup>(deprecated) </sup>(event: () => void)                               | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.    |
+| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.|
+| onScrollStop<sup>9+</sup>(event: () => void) | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.|
 
 >  **NOTE**
 >
->  If the **onScrollBegin** event and **scrollBy** API are used to implement nested scrolling, you must set **edgeEffect** of the scrolling child node to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, the **edgeEffect** attribute of the **\<List>** must be set to **EdgeEffect.None**.
+>  If the **onScrollFrameBegin** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.
 
 ## Scroller
 
-Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. Currently, this controller can be bound to the **\<List>**, **\<Scroll>** and **\<ScrollBar>** components. One controller can control only one container component.
+Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **\<List>**, **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<WaterFlow>**.
 
 
 ### Objects to Import
@@ -74,9 +82,9 @@ Scrolls to the specified position.
 
 | Name   | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | Length                                                       | Yes  | Horizontal scrolling offset.                                              |
-| yOffset   | Length                                                       | Yes  | Vertical scrolling offset.                                              |
-| animation | {<br>duration: number,<br>curve: [Curve](ts-animatorproperty.md)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
+| xOffset   | number | string                                              | Yes  | Horizontal scrolling offset.                                              |
+| yOffset   | number | string                                              | Yes  | Vertical scrolling offset.                                              |
+| animation | {<br>duration: number,<br>curve: [Curve](ts-appendix-enums.md#curve)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
 
 
 ### scrollEdge
@@ -84,7 +92,7 @@ Scrolls to the specified position.
 scrollEdge(value: Edge): void
 
 
-Scrolls to the edge of the container.
+Scrolls to the edge of the container, regardless of the scroll axis direction. **Edge.Top** and **Edge.Start** produce the same effect, and **Edge.Bottom** and **Edge.End** produce the same effect.
 
 **Parameters**
 
@@ -104,12 +112,12 @@ Scrolls to the next or previous page.
 | Name      | Type   | Mandatory  | Description                          |
 | --------- | ------- | ---- | ------------------------------ |
 | next      | boolean | Yes   | Whether to turn to the next page. The value **true** means to scroll to the next page, and **false** means to scroll to the previous page.|
-| direction<sup>(deprecated) </sup> | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br> This API is deprecated since API version 9.               |
+| direction<sup>(deprecated)</sup> | [Axis](ts-appendix-enums.md#axis)    | No   | Scrolling direction: horizontal or vertical.<br>This API is deprecated since API version 9.               |
 
 
 ### currentOffset
 
-currentOffset()
+currentOffset(): { xOffset: number, yOffset: number }
 
 
 Obtains the scrolling offset.
@@ -131,7 +139,7 @@ Scrolls to the item with the specified index.
 
 >  **NOTE**
 >
->  Only the **\<Grid>**, **\<List>**, and **\<WaterFlow>** components are supported.
+>  Only the **\<Grid>** and **\<List>** components are supported.
 
 **Parameters**
 
@@ -150,7 +158,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  Only the **\<Scroll>** component is supported.
+>  Only the **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<List>** components are supported.
 
 **Parameters**
 
@@ -268,13 +276,13 @@ struct NestedScroll {
           .onReachEnd(() => {
             this.listPosition = 2
           })
-          .onScrollBegin((dx: number, dy: number) => {
-            if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
-              this.scrollerForScroll.scrollBy(0, -dy)
-              return { dxRemain: dx, dyRemain: 0 }
+          .onScrollFrameBegin((offset: number) => {
+            if ((this.listPosition == 0 && offset <= 0) || (this.listPosition == 2 && offset >= 0)) {
+              this.scrollerForScroll.scrollBy(0, offset)
+              return { offsetRemain: 0 }
             }
             this.listPosition = 1
-            return { dxRemain: dx, dyRemain: dy };
+            return { offsetRemain: offset };
           })
 
           Text("Scroll Area")

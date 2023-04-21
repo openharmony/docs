@@ -1,4 +1,4 @@
-# OpenHarmony 1.0 \(2020-09-10)
+# OpenHarmony 1.0 \(2020-09-10) (EOL)
 
 ## Overview
 

@@ -20,8 +20,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [certs](#certs) | struct [OH_Huks_Blob](_o_h___huks___blob.md) \*<br/>指向证书数据的指针。  | 
-| [certsCount](#certscount) | uint32_t<br/>证书本数。  | 
+| [certs](#certs) | >指向证书数据的指针。  | 
+| [certsCount](#certscount) | 证书本数。  | 
 
 
 ## 结构体成员变量说明

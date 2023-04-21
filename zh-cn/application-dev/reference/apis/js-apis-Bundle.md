@@ -157,7 +157,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo\>\>
 
 以异步方法获取指定用户所有的BundleInfo，使用Promise形式异步回调，
 
@@ -201,7 +201,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 以异步方法获取当前用户所有的BundleInfo，使用callback形式返回结果。
 
@@ -238,7 +238,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo)替代。
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 以异步方法获取系统中指定用户下所有的BundleInfo，使用callback形式返回结果。
 
@@ -426,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **返回值：**
 
@@ -462,7 +462,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -499,7 +499,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -540,7 +540,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -584,7 +584,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -626,7 +626,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -671,7 +671,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -699,7 +699,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -754,7 +754,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -794,7 +794,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **系统API：**
 
-此接口为系统接口，三方应用不支持调用
+此接口为系统接口。
 
 **参数：**
 
@@ -823,7 +823,7 @@ bundle.getPermissionDef(permissionName).then((data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo)替代。
 
-getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
+getAllApplicationInfo(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
 获取指定用户下所有已安装的应用信息，使用promise异步回调。
 
@@ -865,7 +865,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo)替代。
 
-getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
+getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
 获取指定用户下所有已安装的应用信息，使用callback异步回调。
 
@@ -1320,7 +1320,7 @@ bundle.isApplicationEnabled(bundleName, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
+queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise\<Array\<AbilityInfo\>\>
 
 以异步方法根据给定的意图获取Ability组件信息，使用Promise形式返回结果。
 
@@ -1371,7 +1371,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
 以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
@@ -1416,7 +1416,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)替代。
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 

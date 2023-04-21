@@ -15,6 +15,8 @@
 ## 接口
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名 |类型|必填|说明|
@@ -26,6 +28,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## GutterOption
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | Length \| GridRowSizeOption | 否   | 水平gutter option。    |
@@ -34,6 +38,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ## GridRowColumnOption
 
 栅格在不同宽度设备类型下，栅格列数。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -48,6 +54,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 栅格在不同宽度设备类型下，gutter的大小。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | 否    | 最小宽度类型设备。    |
@@ -59,26 +67,34 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## BreakPoints
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"]    |
 | reference  | BreakpointsReference | 否    | 断点切换参照物。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
   // 启用xs、sm、md、lg共4个断点，断点范围值必须单调递增
-  breakpoints: {value: ["320vp", "520vp", "840vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp"]}
   // 启用xs、sm、md、lg、xl共5个断点，断点范围数量不可超过断点可取值数量-1
-  breakpoints: {value: ["320vp", "520vp", "840vp", "1080vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
 ```
 
 ## BreakpointsReference枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
 | ComponentSize | 以容器为参照。 |
 
 ## GridRowDirection枚举类型
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 枚举名 | 描述 |
 | -------- | -------- |
 | Row | 栅格元素按照行方向排列。 |
@@ -110,7 +126,11 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称                       | 参数类型                            | 描述                                               |
+| ----------------------- | ----------------------------------- | ------------------------------------------- |
+| alignItems<sup>10+</sup>             | [ItemAlign](ts-appendix-enums.md#itemalign) | 设置GridRow中的GridCol垂直主轴方向对齐方式，默认值：ItemAlign.Start<br/>说明：<br/>在ItemAlign中，实际支持的参数枚举值仅为Start、Center、End、Stretch。<br/>GridCol本身也可通过alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
@@ -118,6 +138,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 ### onBreakpointChange
 
 onBreakpointChange(callback: (breakpoints: string) => void)
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 

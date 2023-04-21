@@ -16,9 +16,9 @@ CheckboxGroup(options?: { group?: string })
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
-
-
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -30,8 +30,10 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的Checkbox显式设置select，则Checkbox的优先级高。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。 |
+| selectAll | boolean | 设置是否全选。<br/>默认值：false，若同组的[Checkbox](ts-basic-components-checkbox.md)设置了select属性，则Checkbox的优先级高。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置非选中状态边框颜色。 |
+| mark<sup>10+</sup> | [MarkStyle](#markstyle10对象说明) | 多选框内部图标样式。 |
 
 ## 事件
 
@@ -39,9 +41,12 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。（只有手动触发且Checkbox或CheckboxGroup状态改变时才会触发onChange回调）|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。（只有手动触发且Checkbox或CheckboxGroup状态改变时才会触发onChange回调）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## CheckboxGroupResult对象说明
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称     | 类型   | 描述      |
 | ------ | ------ | ------- |
 | name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
@@ -49,12 +54,21 @@ CheckboxGroup(options?: { group?: string })
 
 ## SelectStatus枚举说明
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 名称  | 描述 |
 | ----- | -------------------- |
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |
 | None  | 群组多选择框全部没有选择。 |
 
+## MarkStyle<sup>10+</sup>对象说明
+
+| 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
+| ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| strokeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 内部图标颜色。                                               |
+| size        | number&nbsp;\|&nbsp;string                 | 否   | -           | 内部图标大小，单位vp。默认大小与多选框群组组件宽度设置值一致。<br />不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
+| strokeWidth | number&nbsp;\|&nbsp;string                 | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## 示例
 

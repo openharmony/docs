@@ -22,7 +22,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- | -------- | -------- |
 | type | SideBarContainerType | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
 
-## SideBarContainerType enums
+## SideBarContainerType
 
 | Name| Description|
 | -------- | -------- |
@@ -41,6 +41,7 @@ SideBarContainer( type?: SideBarContainerType )
 | maxSideBarWidth | number \| Length<sup>9+</sup> | Maximum width of the sidebar.<br>Default value: **280**, in vp|
 | autoHide<sup>9+</sup> | boolean | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.<br>Default value: **true**|
 | sideBarPosition<sup>9+</sup> | SideBarPosition | Position of the sidebar.<br>Default value: **SideBarPosition.Start**|
+| divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10) \| null | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.|
 
 ## ButtonStyle
 
@@ -58,6 +59,15 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Start | The sidebar is on the left side of the container.|
 | End | The sidebar is on the right side of the container.|
+
+## DividerStyle<sup>10+</sup>
+
+| Name       | Type     | Mandatory| Description                                    |
+| ----------- | ------------- | ---- | ---------------------------------------- |
+| strokeWidth | [Length](ts-types.md#length)        | Yes  | Stroke width of the divider.<br>Default value: **1**, in vp    |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the divider.<br>Default value: **#000000, 3%**  |
+| startMargin | [Length](ts-types.md#length)        | No  | Distance between the divider and the top of the sidebar.<br>Default value: **0**|
+| endMargin   | [Length](ts-types.md#length)        | No  | Distance between the divider and the bottom of the sidebar.<br>Default value: **0**|
 
 ## Events
 

@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-提供web控制能力。
+@ohos.web.webview提供web控制能力，[web](../arkui-ts/ts-basic-components-web.md)组件提供具有网页显示能力。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@
 import web_webview from '@ohos.web.webview';
 ```
 
-### once
+## once
 
 once(type: string, callback: Callback\<void\>): void
 
@@ -43,7 +43,7 @@ import web_webview from '@ohos.web.webview'
 
 web_webview.once("webInited", () => {
   console.log("setCookie")
-  web_webview.WebCookieManager.setCookie("www.example.com", "a=b")
+  web_webview.WebCookieManager.setCookie("https://www.example.com", "a=b")
 })
 
 @Entry
@@ -81,7 +81,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = null;
 
   build() {
     Column() {
@@ -103,7 +103,7 @@ struct WebComponent {
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)
+发送消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -155,7 +155,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)
+注册回调函数，接收HTML5侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -214,6 +214,240 @@ struct WebComponent {
 }
 ```
 
+### isExtentionType<sup>10+</sup>
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+
+### postMessageEventExt<sup>10+</sup>
+
+postMessageEventExt(message: WebMessageExt): void
+
+发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| message | [WebMessageExt](#webmessageext) | 是   | 要发送的消息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100010 | Can not post message using this port. |
+
+
+### onMessageEventExt<sup>10+</sup>
+
+onMessageEventExt(callback: (result: WebMessageExt) => void): void
+
+注册回调函数，接收HTML5侧发送过来的消息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | :------------------- |
+| result | [WebMessageExt](#webmessageext10) | 是   | 接收到的消息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                        |
+| -------- | ----------------------------------------------- |
+| 17100006 | Can not register message event using this port. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+// 应用与网页互发消息的示例：使用"init_web_messageport"的通道，通过端口0在应用侧接受网页发送的消息，通过端口1在网页侧接受应用发送的消息。
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  ports: web_webview.WebMessagePort[] = null;
+  nativePort: web_webview.WebMessagePort = null;
+  @State msg1:string = "";
+  @State msg2:string = "";
+  message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(16)
+      Text(this.msg2).fontSize(16)
+      Button('SendToH5')
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+              console.log("In eTS side send true start");
+              if (this.nativePort) {
+                  this.message.setString("helloFromEts");
+                  this.nativePort.postMessageEventExt(this.message);
+              }
+          }
+          catch (error) {
+              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+          }
+        })
+
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+      .onPageEnd((e)=>{
+        console.log("In eTS side message onPageEnd init mesaage channel");
+        // 1. 创建消息端口
+        this.ports = this.controller.createWebMessagePorts(true);
+        // 2. 发送端口1到HTML5
+        this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
+        // 3. 保存端口0到本地
+        this.nativePort = this.ports[0];
+        // 4. 设置回调函数
+        this.nativePort.onMessageEventExt((result) => {
+            console.log("In eTS side got message");
+            try {
+                var type = result.getType();
+                console.log("In eTS side getType:" + type);
+                switch (type) {
+                    case web_webview.WebMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                    }
+                    case web_webview.WebMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                    }
+                    case web_webview.WebMessageType.ERROR: {
+                        this.msg1 = "result type:" + typeof (result.getError());
+                        this.msg2 = "result getError:" + result.getError();
+                        break;
+                    }
+                    default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                    }
+                }
+            }
+            catch (resError) {
+                console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+            }
+        });
+      })
+    }
+  }
+}
+```
+
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <title>WebView MessagePort Demo</title>
+</head>
+
+<body>
+<h1>Html5 Send and Receive Message</h1>
+<h3 id="msg">Receive string:</h3>
+<h3 id="msg2">Receive arraybuffer:</h3>
+<div style="font-size: 10pt; text-align: center;">
+    <input type="button" value="Send String" onclick="postStringToApp();" /><br/>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
+```
+
+```js
+//index.js
+var h5Port;
+window.addEventListener('message', function(event) {
+    if (event.data == 'init_web_messageport') {
+        if(event.ports[0] != null) {
+            h5Port = event.ports[0]; // 1. 保存从ets侧发送过来的端口
+            h5Port.onmessage = function(event) {
+                console.log("hwd In html got message");
+                // 2. 接收ets侧发送过来的消息.
+                var result = event.data;
+                console.log("In html got message, typeof: ", typeof(result));
+                console.log("In html got message, result: ", (result));
+                if (typeof(result) == "string") {
+                    console.log("In html got message, String: ", result);
+                    document.getElementById("msg").innerHTML  =  "String:" + result;
+                } else if (typeof(result) == "number") {
+                  console.log("In html side got message, number: ", result);
+                    document.getElementById("msg").innerHTML = "Number:" + result;
+                } else if (typeof(result) == "boolean") {
+                    console.log("In html side got message, boolean: ", result);
+                    document.getElementById("msg").innerHTML = "Boolean:" + result;
+                } else if (typeof(result) == "object") {
+                    if (result instanceof ArrayBuffer) {
+                        document.getElementById("msg2").innerHTML  =  "ArrayBuffer:" + result.byteLength;
+                        console.log("In html got message, byteLength: ", result.byteLength);
+                    } else if (result instanceof Error) {
+                        console.log("In html error message, err:" + (result));
+                        console.log("In html error message, typeof err:" + typeof(result));
+                        document.getElementById("msg2").innerHTML  =  "Error:" + result.name + ", msg:" + result.message;
+                    } else if (result instanceof Array) {
+                        console.log("In html got message, Array");
+                        console.log("In html got message, Array length:" + result.length);
+                        console.log("In html got message, Array[0]:" + (result[0]));
+                        console.log("In html got message, typeof Array[0]:" + typeof(result[0]));
+                        document.getElementById("msg2").innerHTML  =  "Array len:" + result.length + ", value:" + result;
+                    } else {
+                        console.log("In html got message, not any instance of support type");
+                        document.getElementById("msg").innerHTML  = "not any instance of support type";
+                    }
+                } else {
+                    console.log("In html got message, not support type");
+                    document.getElementById("msg").innerHTML  = "not support type";
+                }
+            }
+            h5Port.onmessageerror = (event) => {
+                console.error(`hwd In html Error receiving message: ${event}`);
+            };
+        }
+    }
+})
+
+// 使用h5Port往ets侧发送String类型的消息.
+function postStringToApp() {
+    if (h5Port) {
+        console.log("In html send string message");
+        h5Port.postMessage("hello");
+        console.log("In html send string message end");
+    } else {
+        console.error("In html h5port is null, please init first");
+    }
+}
+```
+
 ## WebviewController
 
 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
@@ -239,6 +473,44 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
+        globalThis.abilityWant = want
+        console.log("EntryAbility onCreate done")
+    }
+}
+```
+
+### setHttpDns<sup>10+</sup>
+
+static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
+
+设置Web组件是否使用HTTPDNS解析dns。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | 是   | 使用HTTPDNS的模式。|
+| secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        console.log("EntryAbility onCreate")
+        web_webview.WebviewController.initializeWebEngine()
+        try {
+            web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
+        } catch(error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        }
+
         globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
@@ -379,12 +651,13 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
-      .webDebuggingAccess(true)
     }
   }
 }
 ```
 
+加载本地网页，加载本地资源文件有三种方式。
+1.$rawfile方式。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -399,7 +672,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //需要加载的URL是Resource类型
+            //通过$rawfile加载本地资源文件
             this.controller.loadUrl($rawfile('xxx.html'));
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -410,6 +683,34 @@ struct WebComponent {
   }
 }
 ```
+2.resources协议。
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadUrl')
+        .onClick(() => {
+          try {
+            //通过resource协议加载本地资源文件
+            this.controller.loadUrl("resource://rawfile/xxx.html");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+3.通过沙箱路径加载本地文件，可以参考[web](../arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
 ```html
 <!-- xxx.html -->
@@ -429,7 +730,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
@@ -448,7 +749,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
 
-**示例：** 
+**示例：**
 
 ```ts
 // xxx.ets
@@ -479,7 +780,34 @@ struct WebComponent {
 }
 ```
 
-### accessforward
+加载本地资源
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### accessForward
 
 accessForward(): boolean
 
@@ -487,7 +815,7 @@ accessForward(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                              |
 | ------- | --------------------------------- |
@@ -501,7 +829,7 @@ accessForward(): boolean
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
 ```ts
 // xxx.ets
@@ -545,7 +873,7 @@ forward(): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
 ```ts
 // xxx.ets
@@ -638,7 +966,7 @@ backward(): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
 ```ts
 // xxx.ets
@@ -1088,7 +1416,7 @@ runJavaScript(script: string): Promise\<string>
 | ------ | -------- | ---- | ---------------- |
 | script | string   | 是   | JavaScript脚本。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型            | 说明                                                |
 | --------------- | --------------------------------------------------- |
@@ -1136,6 +1464,232 @@ struct WebComponent {
     }
   }
 }
+```
+
+
+### runJavaScriptExt<sup>10+</sup>
+
+runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
+
+异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                         |
+| -------- | -------------------- | ---- | ---------------------------- |
+| script   | string                   | 是   | JavaScript脚本。                                             |
+| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**示例：**
+
+```ts
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd(e => {
+          try {
+            this.controller.runJavaScriptExt(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  try {
+                      var type = result.getType();
+                      switch (type) {
+                          case web_webview.JsMessageType.STRING: {
+                              this.msg1 = "result type:" + typeof (result.getString());
+                              this.msg2 = "result getString:" + ((result.getString()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.NUMBER: {
+                              this.msg1 = "result type:" + typeof (result.getNumber());
+                              this.msg2 = "result getNumber:" + ((result.getNumber()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.BOOLEAN: {
+                              this.msg1 = "result type:" + typeof (result.getBoolean());
+                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY_BUFFER: {
+                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY: {
+                              this.msg1 = "result type:" + typeof (result.getArray());
+                              this.msg2 = "result getArray:" + result.getArray();
+                              break;
+                          }
+                          default: {
+                              this.msg1 = "default break, type:" + type;
+                              break;
+                          }
+                      }
+                  }
+                  catch (resError) {
+                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  }
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+    }
+  }
+}
+
+//index.html
+<!DOCTYPE html>
+<html lang="en-gb">
+<body>
+<h1>run JavaScript Ext demo</h1>
+</body>
+<script type="text/javascript">
+function test() {
+  return "hello, world";
+}
+</script>
+</html>
+```
+
+### runJavaScriptExt<sup>10+</sup>
+
+runJavaScriptExt(script: string): Promise\<JsMessageExt>
+
+异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScriptExt需要在loadUrl完成后，比如onPageEnd中调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明         |
+| ------ | -------- | ---- | ---------------- |
+| script | string   | 是   | JavaScript脚本。 |
+
+**返回值：**
+
+| 类型            | 说明                                                |
+| --------------- | --------------------------------------------------- |
+| Promise\<[JsMessageExt](#jsmessageext10)> | Promise实例，返回脚本执行的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State webResult: string = '';
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.webResult).fontSize(20)
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd(e => {
+            this.controller.runJavaScriptExt('test()')
+              .then((result) => {
+                  try {
+                      var type = result.getType();
+                      switch (type) {
+                          case web_webview.JsMessageType.STRING: {
+                              this.msg1 = "result type:" + typeof (result.getString());
+                              this.msg2 = "result getString:" + ((result.getString()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.NUMBER: {
+                              this.msg1 = "result type:" + typeof (result.getNumber());
+                              this.msg2 = "result getNumber:" + ((result.getNumber()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.BOOLEAN: {
+                              this.msg1 = "result type:" + typeof (result.getBoolean());
+                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY_BUFFER: {
+                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY: {
+                              this.msg1 = "result type:" + typeof (result.getArray());
+                              this.msg2 = "result getArray:" + result.getArray();
+                              break;
+                          }
+                          default: {
+                              this.msg1 = "default break, type:" + type;
+                              break;
+                          }
+                      }
+                  }
+                  catch (resError) {
+                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  }
+              })
+              .catch(function (error) {
+                console.error("error: " + error);
+              })
+        })
+    }
+  }
+}
+
+//index.html
+<!DOCTYPE html>
+<html lang="en-gb">
+<body>
+<h1>run JavaScript Ext demo</h1>
+</body>
+<script type="text/javascript">
+function test() {
+  return "hello, world";
+}
+</script>
+</html>
 ```
 
 ### deleteJavaScriptRegister
@@ -1474,13 +2028,19 @@ struct WebComponent {
 
 ### createWebMessagePorts
 
- createWebMessagePorts(): Array\<WebMessagePort>
+createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-创建Web消息端口。
+创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                             |
+| ------ | ---------------------- | ---- | :------------------------------|
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
+
+**返回值：**
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
@@ -1494,7 +2054,7 @@ struct WebComponent {
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
-**示例：** 
+**示例：**
 
   ```ts
 // xxx.ets
@@ -1535,8 +2095,8 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
-| name   | string                 | 是   | 要发送的消息，包含数据和消息端口。 |
-| ports  | Array\<WebMessagePort> | 是   | 接收该消息的URI。                |
+| name   | string                 | 是   | 要发送的消息名称。            |
+| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -1578,7 +2138,7 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                var msg = 'Got msg from HTML:';    
+                let msg = 'Got msg from HTML:';
                 if (typeof(result) == "string") {
                   console.log("received string message from html5, string is:" + result);
                   msg = msg + result;
@@ -1606,7 +2166,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             if (this.ports && this.ports[1]) {
-              this.ports[1].postMessageEvent("this.sendFromEts");
+              this.ports[1].postMessageEvent(this.sendFromEts);
             } else {
               console.error(`ports is null, Please initialize first`);
             }
@@ -2288,6 +2848,8 @@ backOrForward(step: number): void
 
 按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
 
+前进或者后退页面时，直接使用已加载过的网页，无需重新加载网页。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2760,7 +3322,7 @@ hasImage(): Promise\<boolean>
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
@@ -3026,10 +3588,11 @@ serializeWebState(): Uint8Array
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3042,11 +3605,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从MainAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
-            fileio.writeSync(fd, state.buffer);
-            fileio.closeSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, state.buffer);
+            fs.closeSync(file.fd);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3054,6 +3619,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改MainAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3081,10 +3661,11 @@ restoreWebState(state: Uint8Array): void
 
 **示例：**
 
+1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](./js-apis-file-fs.md)。
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3096,17 +3677,22 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path = globalThis.AbilityContext.cacheDir;
+            // globalThis.cacheDir从MainAbility.ts中获取。
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o002, 0o666);
-            let stat = fileio.fstatSync(fd);
+            // 以同步方法打开文件。
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+            let stat = fs.statSync(path);
             let size = stat.size;
             let buf = new ArrayBuffer(size);
-            fileio.read(fd, buf, (err, data) => {
-              if (data) {
-                this.controller.restoreWebState(new Uint8Array(data.buffer));
+            fs.read(file.fd, buf, (err, readLen) => {
+              if (err) {
+                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              } else {
+                console.info("read file data succeed");
+                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                fs.closeSync(file);
               }
-              fileio.closeSync(fd);
             });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3115,6 +3701,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2.修改MainAbility.ts。
+获取应用缓存文件路径。
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3167,6 +3768,366 @@ struct WebComponent {
 }
 ```
 
+### getCertificate<sup>10+</sup>
+
+getCertificate(): Promise<Array<cert.X509Cert>>
+
+获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型       | 说明                                          |
+| ---------- | --------------------------------------------- |
+| Promise<Array<cert.X509Cert>> | Promise实例，用于获取当前加载的https网站的X509格式证书数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+function Uint8ArrayToString(dataArray) {
+  var dataString = ''
+  for (var i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i])
+  }
+  return dataString
+}
+
+function ParseX509CertInfo(x509CertArray) {
+  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
+  for (let i = 0; i < x509CertArray.length; i++) {
+    res += ', index = ' + i + ', issuer name = '
+    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+    + x509CertArray[i].getNotBeforeTime()
+    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+  }
+  return res
+}
+
+@Entry
+@Component
+struct Index {
+  // outputStr在UI界面显示调试信息
+  @State outputStr: string = ''
+  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Row() {
+      Column() {
+        List({space: 20, initialIndex: 0}) {
+          ListItem() {
+            Button() {
+              Text('load bad ssl')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // 加载一个过期的证书网站，查看获取到的证书信息
+              this.webviewCtl.loadUrl('https://expired.badssl.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('load example')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // 加载一个https网站，查看网站的证书信息
+              this.webviewCtl.loadUrl('https://www.example.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate Promise')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate().then(x509CertArray => {
+                  this.outputStr = ParseX509CertInfo(x509CertArray);
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate AsyncCallback')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                  if (error) {
+                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                  } else {
+                    this.outputStr = ParseX509CertInfo(x509CertArray);
+                  }
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+        }
+        .listDirection(Axis.Horizontal)
+        .height('10%')
+
+        Text(this.outputStr)
+          .width('100%')
+          .fontSize(10)
+
+        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
+          .fileAccess(true)
+          .javaScriptAccess(true)
+          .domStorageAccess(true)
+          .onlineImageAccess(true)
+          .onPageEnd((e) => {
+            this.outputStr = 'onPageEnd : url = ' + e.url
+          })
+          .onSslErrorEventReceive((e) => {
+            // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
+            e.handler.handleConfirm()
+          })
+          .width('100%')
+          .height('70%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+### getCertificate<sup>10+</sup>
+
+getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
+
+获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](./js-apis-cert.md)），便于开发者展示网站证书信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                     |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback<Array<cert.X509Cert>> | 是   | 通过AsyncCallback异步返回当前网站的X509格式证书。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+function Uint8ArrayToString(dataArray) {
+  var dataString = ''
+  for (var i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i])
+  }
+  return dataString
+}
+
+function ParseX509CertInfo(x509CertArray) {
+  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
+  for (let i = 0; i < x509CertArray.length; i++) {
+    res += ', index = ' + i + ', issuer name = '
+    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+    + x509CertArray[i].getNotBeforeTime()
+    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+  }
+  return res
+}
+
+@Entry
+@Component
+struct Index {
+  // outputStr在UI界面显示调试信息
+  @State outputStr: string = ''
+  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Row() {
+      Column() {
+        List({space: 20, initialIndex: 0}) {
+          ListItem() {
+            Button() {
+              Text('load bad ssl')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // 加载一个过期的证书网站，查看获取到的证书信息
+              this.webviewCtl.loadUrl('https://expired.badssl.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('load example')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              // 加载一个https网站，查看网站的证书信息
+              this.webviewCtl.loadUrl('https://www.example.com')
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate Promise')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate().then(x509CertArray => {
+                  this.outputStr = ParseX509CertInfo(x509CertArray);
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+
+          ListItem() {
+            Button() {
+              Text('getCertificate AsyncCallback')
+                .fontSize(10)
+                .fontWeight(FontWeight.Bold)
+            }
+            .type(ButtonType.Capsule)
+            .onClick(() => {
+              try {
+                this.webviewCtl.getCertificate((error, x509CertArray) => {
+                  if (error) {
+                    this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+                  } else {
+                    this.outputStr = ParseX509CertInfo(x509CertArray);
+                  }
+                })
+              } catch (error) {
+                this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
+              }
+            })
+            .height(50)
+          }
+        }
+        .listDirection(Axis.Horizontal)
+        .height('10%')
+
+        Text(this.outputStr)
+          .width('100%')
+          .fontSize(10)
+
+        Web({ src: 'https://www.example.com', controller: this.webviewCtl })
+          .fileAccess(true)
+          .javaScriptAccess(true)
+          .domStorageAccess(true)
+          .onlineImageAccess(true)
+          .onPageEnd((e) => {
+            this.outputStr = 'onPageEnd : url = ' + e.url
+          })
+          .onSslErrorEventReceive((e) => {
+            // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
+            e.handler.handleConfirm()
+          })
+          .width('100%')
+          .height('70%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+### setAudioMuted<sup>10+</sup>
+
+setAudioMuted(mute: boolean): void
+
+设置网页静音。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | -------------------------------------- |
+| mute | boolean | 是   | 表示是否将网页设置为静音状态，true表示设置为静音状态，false表示取消静音状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  @State muted: boolean = false
+  build() {
+    Column() {
+      Button("Toggle Mute")
+        .onClick(event => {
+          this.muted = !this.muted
+          this.controller.setAudioMuted(this.muted)
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
@@ -3183,9 +4144,9 @@ static getCookie(url: string): string
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要获取的cookie所属的url。 |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
@@ -3215,7 +4176,7 @@ struct WebComponent {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('www.example.com');
+            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3239,7 +4200,7 @@ static setCookie(url: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | 是   | 要设置的cookie所属的url。 |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
 | value  | string | 是   | 要设置的cookie的值。      |
 
 **错误码：**
@@ -3267,7 +4228,7 @@ struct WebComponent {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3332,7 +4293,7 @@ static saveCookieAsync(): Promise\<void>
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
@@ -3420,7 +4381,7 @@ static isCookieAllowed(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
@@ -3499,7 +4460,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
@@ -3537,7 +4498,7 @@ static existCookie(): boolean
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**返回值：** 
+**返回值：**
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
@@ -4135,9 +5096,6 @@ struct WebComponent {
           try {
             this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
-            ForEach(this.username_password, (item) => {
-              console.log('username_password: ' + item);
-            }, item => item)
           } catch (error) {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
@@ -4269,133 +5227,6 @@ struct WebComponent {
   }
 }
 ```
-
-## WebAsyncController
-
-通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
-
-### 创建对象
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    webAsyncController: web_webview.WebAsyncController = new web_webview.WebAsyncController(this.controller)
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### constructor<sup>9+</sup>
-
-constructor(controller: WebController)
-
-WebAsyncController的创建需要与一个[WebController](../arkui-ts/ts-basic-components-web.md#webcontroller)进行绑定。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名| 类型 | 必填 | 说明 |
-| ----- | ---- | ---- | --- |
-| controller | [WebController](../arkui-ts/ts-basic-components-web.md#webcontroller) | 是 | 所绑定的WebviewController。|
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
-
-以回调方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-| callback | AsyncCallback\<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller)
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
-              if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
-              }
-            })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
-
-### storeWebArchive<sup>9+</sup>
-
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
-
-以Promise方式异步保存当前页面。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名      | 类型                                     | 必填   | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | 是 | 文件存储路径，该值不能为空。
-| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController();
-    build() {
-      Column() {
-        Button('saveWebArchive')
-          .onClick(() => {
-            let webAsyncController = new web_webview.WebAsyncController(this.controller);
-            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
-              .then(filename => {
-                if (filename != null) {
-                  console.info(`save web archive success: ${filename}`)
-                }
-              })
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 
 ## GeolocationPermissions
 
@@ -4799,6 +5630,463 @@ Web组件返回的请求/响应头对象。
 | string   | 字符串类型数据。 |
 | ArrayBuffer   | 二进制类型数据。 |
 
+## JsMessageType<sup>10+</sup>
+
+[runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| NOT_SUPPORT  | 0 |不支持的数据类型。|
+| STRING       | 1 |字符串类型。|
+| NUMBER       | 2 |数值类型。|
+| BOOLEAN      | 3 |布尔类型。|
+| ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
+| ARRAY        | 5 |数组类型|
+
+
+## WebMessageType<sup>10+</sup>
+
+[webMessagePort](#webmessageport)接口所支持的数据类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                            |
+| ------------ | -- |------------------------------- |
+| NOT_SUPPORT  | 0 |不支持的数据类型。|
+| STRING       | 1 |字符串类型。|
+| NUMBER       | 2 |数值类型。|
+| BOOLEAN      | 3 |布尔类型。|
+| ARRAY_BUFFER | 4 |原始二进制数据缓冲区。|
+| ARRAY        | 5 |数组类型。|
+| ERROR        | 6 |错误类型。|
+
+## JsMessageExt<sup>10+</sup>
+
+[runJavaScirptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
+
+### getType<sup>10+</sup>
+
+getType(): JsMessageType
+
+获取数据对象的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明                                                      |
+| --------------| --------------------------------------------------------- |
+| [JsMessageType](#jsmessagetype10) | [runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
+
+### getString<sup>10+</sup>
+
+getString(): string
+
+获取数据对象的字符串类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| string | 返回字符串类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+### getNumber<sup>10+</sup>
+
+getNumber(): number
+
+获取数据对象的数值类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| number | 返回数值类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+### getBoolean<sup>10+</sup>
+
+getBoolean(): boolean
+
+获取数据对象的布尔类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| boolean | 返回布尔类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+### getArrayBuffer<sup>10+</sup>
+
+getArrayBuffer(): ArrayBuffer
+
+获取数据对象的原始二进制数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| ArrayBuffer | 返回原始二进制数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+### getArray<sup>10+</sup>
+
+getArray(): Array\<string | number | boolean\>
+
+获取数据对象的数组类型数据。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+## WebMessageExt<sup>10+</sup>
+
+[webMessagePort](#webmessageport)接口接收、发送的的数据对象。
+
+### getType<sup>10+</sup>
+
+getType(): WebMessageType
+
+获取数据对象的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明                                                      |
+| --------------| --------------------------------------------------------- |
+| [WebMessageType](#webmessagetype10) | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
+
+
+### getString<sup>10+</sup>
+
+getString(): string
+
+获取数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| string | 返回字符串类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getNumber<sup>10+</sup>
+
+getNumber(): number
+
+获取数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| number | 返回数值类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getBoolean<sup>10+</sup>
+
+getBoolean(): boolean
+
+获取数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| boolean | 返回布尔类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getArrayBuffer<sup>10+</sup>
+
+getArrayBuffer(): ArrayBuffer
+
+获取数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| ArrayBuffer | 返回原始二进制数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### getArray<sup>10+</sup>
+
+getArray(): Array\<string | number | boolean\>
+
+获取数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### getError<sup>10+</sup>
+
+getError(): Error
+
+获取数据对象的错误类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型           | 说明          |
+| --------------| ------------- |
+| Error | 返回错误对象类型的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### setType<sup>10+</sup>
+
+setType(type: WebMessageType): void
+
+设置数据对象的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| type  | [WebMessageType](#webmessagetype10) | 是   | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setString<sup>10+</sup>
+
+setString(message: string): void
+
+设置数据对象的字符串类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | string | 是   | 字符串类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setNumber<sup>10+</sup>
+
+setNumber(message: number): void
+
+设置数据对象的数值类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | number | 是   | 数值类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setBoolean<sup>10+</sup>
+
+setBoolean(message: boolean): void
+
+设置数据对象的布尔类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | boolean | 是   | 布尔类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setArrayBuffer<sup>10+</sup>
+
+setArrayBuffer(message: ArrayBuffer): void
+
+设置数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | ArrayBuffer | 是   | 原始二进制类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setArray<sup>10+</sup>
+
+setArray(message: Array\<string | number | boolean\>): void
+
+设置数据对象的数组类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | Array\<string \| number \| boolean\> | 是   | 数组类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setError<sup>10+</sup>
+
+setError(message: Error): void
+
+设置数据对象的错误对象类型数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | -------------------- |
+| message  | Error | 是   | 错误对象类型数据。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
 ## WebStorageOrigin
 
 提供Web SQL数据库的使用信息。
@@ -4836,7 +6124,7 @@ getItemAtIndex(index: number): HistoryItem
 | ------ | ------ | ---- | ---------------------- |
 | index  | number | 是   | 指定历史列表中的索引。 |
 
-**返回值：** 
+**返回值：**
 
 | 类型                        | 说明         |
 | --------------------------- | ------------ |
@@ -4854,7 +6142,7 @@ import image from "@ohos.multimedia.image"
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State icon: image.PixelMap = undefined;
-    
+
   build() {
     Column() {
       Button('getBackForwardEntries')
@@ -4862,8 +6150,8 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-			console.log("HistoryItem: " + JSON.stringify(historyItem));
-  			this.icon = historyItem.icon;
+            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -4898,3 +6186,15 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
+
+## SecureDnsMode<sup>10+</sup>
+
+Web組件使用HTTPDNS的模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
+| Auto          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
+| SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|

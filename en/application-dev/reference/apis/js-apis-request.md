@@ -16,24 +16,6 @@ import request from '@ohos.request';
 
 
 ## Constraints
-
-HTTPS is supported by default in the FA model. To support HTTP, add **network** to the **config.json** file and set the **cleartextTraffic** attribute to **true**.
-
-```js
-var config = {
-  "deviceConfig": {
-    "default": {
-      "network": {
-        "cleartextTraffic": true
-      }
-      //...
-    }
-  }
-}
-```
-
-The **cleartextTraffic** attribute is not involved during application development in the stage model.
-
 The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
 Only HTTP requests are supported. HTTPS requests are not supported.
@@ -105,24 +87,24 @@ Uploads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400002 | Bad file path. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400002 | Bad file path. |
 
 **Example**
 
@@ -159,18 +141,18 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400002 | Bad file path. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400002 | Bad file path. |
 
 **Example**
 
@@ -214,15 +196,15 @@ Uploads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
 
 **Example**
 
@@ -261,10 +243,10 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
 
 **Example**
 
@@ -278,95 +260,6 @@ Uploads files. This API uses an asynchronous callback to return the result.
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
-  });
-  ```
-
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
-
-Uploads files. This API uses a promise to return the result.
-
->  **NOTE**
->
->  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[UploadTask](#uploadtask)&gt; | Promise used to return the **UploadTask** object.|
-
-**Example**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
-      uploadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  });
-  ```
-
-
-## request.upload<sup>(deprecated)</sup>
-
-upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-Uploads files. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
->  This API is deprecated since API version 9. You are advised to use [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [UploadConfig](#uploadconfig) | Yes| Upload configurations.|
-| callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | Yes| Callback used to return the **UploadTask** object.|
-
-**Example**
-
-  ```js
-  let uploadTask;
-  let uploadConfig = {
-    url: 'http://patch',
-    header: { key1: "value1", key2: "value2" },
-    method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
-    data: [{ name: "name123", value: "123" }],
-  };
-  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
@@ -393,12 +286,12 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
-| callback | function | Yes| Callback for the upload progress event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
+  | callback | function | Yes| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -427,12 +320,12 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
-| callback | function | Yes| Callback for the HTTP Response Header event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
+  | callback | function | Yes| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -460,12 +353,12 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -502,12 +395,12 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-| callback | function | No| Callback for the upload progress event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
+  | callback | function | No| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -536,12 +429,12 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-| callback | function | No| Callback for the HTTP Response Header event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
+  | callback | function | No| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -568,12 +461,12 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -608,9 +501,9 @@ Deletes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -639,9 +532,9 @@ Deletes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -676,9 +569,9 @@ Removes this upload task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the task removal result. It returns **true** if the operation is successful and returns **false** otherwise.|
 
 **Example**
 
@@ -711,9 +604,9 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -794,25 +687,25 @@ Downloads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | File operation error. |
-| 13400002 | Bad file path. |
-| 13400003 | Task manager service error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | File operation error. |
+  | 13400002 | Bad file path. |
+  | 13400003 | Task manager service error. |
 
 **Example**
 
@@ -842,20 +735,20 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
 
-| ID| Error Message|
-| -------- | -------- |
-| 13400001 | File operation error. |
-| 13400002 | Bad file path. |
-| 13400003 | Task manager service error. |
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400001 | File operation error. |
+  | 13400002 | Bad file path. |
+  | 13400003 | Task manager service error. |
 
 **Example**
 
@@ -893,15 +786,15 @@ Downloads files. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -933,10 +826,10 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -951,82 +844,6 @@ Downloads files. This API uses an asynchronous callback to return the result.
       downloadTask = data;
   });
   ```
-
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
-
-Downloads files. This API uses a promise to return the result.
-
->  **NOTE**
->
->  This API is supported since API version 9 and is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadTask](#downloadtask)&gt; | Promise used to return the result.|
-
-**Example**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
-  }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-  })
-  ```
-
-
-## request.download<sup>(deprecated)</sup>
-
-download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
-
-Downloads files. This API uses an asynchronous callback to return the result.
-
->  **NOTE**
->
->  This API is deprecated since API version 9. You are advised to use [request.downloadFile<sup>9+</sup>](#requestdownloadfile9-1).
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Download
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
-| config | [DownloadConfig](#downloadconfig) | Yes| Download configurations.|
-| callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | Yes| Callback used to return the result.|
-
-**Example**
-
-  ```js
-  let downloadTask;
-  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
-  });
-  ```
-
 
 ## DownloadTask
 
@@ -1045,12 +862,12 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
-| callback | function | Yes| Callback for the download progress event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
+  | callback | function | Yes| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1079,12 +896,12 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-| callback | function | No| Callback for the download progress event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
+  | callback | function | No| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1113,10 +930,10 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-| callback | function | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+  | callback | function | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1140,10 +957,10 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-| callback | function | No| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
+  | callback | function | No| Callback used to return the result.|
 
 **Example**
 
@@ -1167,12 +984,12 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
-| callback | function | Yes| Callback for the download task failure event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
+  | callback | function | Yes| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1200,12 +1017,12 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-| callback | function | No| Callback for the download task failure event.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
+  | callback | function | No| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1232,9 +1049,9 @@ Removes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the task removal result.|
 
 **Example**
 
@@ -1263,9 +1080,9 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result.|
 
 **Example**
 
@@ -1296,9 +1113,9 @@ Obtains the information about this download task. This API uses a promise to ret
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
 **Example**
 
@@ -1323,9 +1140,9 @@ Obtains the information about this download task. This API uses an asynchronous 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
 
 **Example**
 
@@ -1352,9 +1169,9 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1379,9 +1196,9 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1408,9 +1225,9 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the download task pause result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the download task pause result.|
 
 **Example**
 
@@ -1439,9 +1256,9 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1472,9 +1289,9 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1504,9 +1321,9 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1542,9 +1359,9 @@ Removes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the task removal result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the task removal result.|
 
 **Example**
 
@@ -1577,9 +1394,9 @@ Removes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task removal result.|
 
 **Example**
 
@@ -1614,9 +1431,9 @@ Queries this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
 **Example**
 
@@ -1645,9 +1462,9 @@ Queries this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | Yes| Callback used to return the download task information.|
 
 **Example**
 
@@ -1678,9 +1495,9 @@ Queries the **MimeType** of this download task. This API uses a promise to retur
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;string&gt; | Promise used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1709,9 +1526,9 @@ Queries the **MimeType** of this download task. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the **MimeType** of the download task.|
 
 **Example**
 
@@ -1742,9 +1559,9 @@ Pauses this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the download task pause result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the download task pause result.|
 
 **Example**
 
@@ -1777,9 +1594,9 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1814,9 +1631,9 @@ Resumes this download task. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1850,9 +1667,9 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 

@@ -18,6 +18,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
@@ -29,14 +31,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
   import missionManager from '@ohos.app.ability.missionManager';
 
   try {
-    missionManager.getMissionInfos("", 10, (error, missions) => {
-      if (error.code) {
-          console.log("getMissionInfos failed, error.code:" + JSON.stringify(error.code) +
-            "error.message:" + JSON.stringify(error.message));
+    missionManager.getMissionInfos('', 10, (error, missions) => {
+      if (error) {
+          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
           return;
       }
-      console.log("size = " + missions.length);
-      console.log("missions = " + JSON.stringify(missions));
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
       let startOptions = {
@@ -44,10 +45,10 @@ import StartOptions from '@ohos.app.ability.StartOptions';
           displayId: 0
       };
       missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log("moveMissionToFront is called ");
+  	    console.log('moveMissionToFront is called');
       });
     });
   } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```

@@ -123,7 +123,7 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-- [**graphic_graphic_2d**](https://gitee.com/abbuu_openharmony/graphic_graphic_2d)
+- [**graphic_graphic_2d**](https://gitee.com/openharmony/graphic_graphic_2d)
 - [arkui_ace_engine](https://gitee.com/openharmony/arkui_ace_engine)
 - [ability_ability_runtime](https://gitee.com/openharmony/ability_ability_runtime)
 - [multimedia_player_framework](https://gitee.com/openharmony/multimedia_player_framework)

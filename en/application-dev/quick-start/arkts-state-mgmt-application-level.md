@@ -123,7 +123,7 @@ export default class EntryAbility extends UIAbility {
 
     onWindowStageCreate(windowStage) {
         // storage is passed to the loadContent API as a parameter.
-        windowStage.loadContent('pages/index', this.storage)
+        windowStage.loadContent('pages/Index', this.storage)
     }
 
     onWindowStageDestroy() {
@@ -143,7 +143,7 @@ export default class EntryAbility extends UIAbility {
 The **@Component** decorated component obtains data.
 
 ```ts
-// index.ets
+// Index.ets
 let storage = LocalStorage.GetShared()
 
 @Entry(storage)

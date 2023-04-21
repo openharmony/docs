@@ -42,6 +42,8 @@ ForEach(
 )
 ```
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name       | Type                             | Mandatory| Description                                                    |
@@ -254,7 +256,7 @@ struct MyComponent {
           this.data.pushData('/path/image' + this.data.totalCount() + '.png')
         })
       }, item => item)
-    }
+    }.height('100%').width('100%')
   }
 }
 ```

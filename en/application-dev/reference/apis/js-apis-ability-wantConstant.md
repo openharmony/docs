@@ -44,15 +44,8 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 |  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | Action of displaying selection options with an action selector.                            |
 |  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | Title of the character sequence dialog box used with the action selector.               |
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | Action of selecting a file.                                         |
-|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent.                         |
+|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | URI of the data stream associated with the target when the data is sent. The value must be an array of the string type. |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
-|  ACTION_APP_ACCOUNT_AUTH <sup>9+</sup>     | account.appAccount.action.auth     | Action of providing the authentication service.                                     |
-|  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | Action of downloading an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-|  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | Action of crowdtesting an application from the application market.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-|   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | Action of obtaining the sandbox flag.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |Action of obtaining the DLP bundle name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-|   DLP_PARAMS_MODULE_NAME<sup>9+</sup>    |ohos.dlp.params.moduleName      |Action of obtaining the DLP module name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-|   DLP_PARAMS_ABILITY_NAME<sup>9+</sup>    |ohos.dlp.params.abilityName      |Action of obtaining the DLP ability name.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 |   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications. |
 
 ## wantConstant.Entity
@@ -72,7 +65,7 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 
 ## wantConstant.Flags
 
-Enumerates the flags that specify how the Want will be handled.
+ Enumerates the flags that specify how the Want will be handled.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -91,6 +84,6 @@ Enumerates the flags that specify how the Want will be handled.
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that ability continuation is reversible.<br>**System API**: This is a system API and cannot be called by third-party applications.     |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                             |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for **Want** in the [startAbility](js-apis-ability-featureAbility.md#startability) API passed to the FeatureAbility module. It must be used together with **flag_ABILITY_NEW_MISSION**. |
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on the history mission stack.                              |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

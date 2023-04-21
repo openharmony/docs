@@ -1,17 +1,22 @@
 # 数据管理
 
-- 分布式数据服务
-  - [分布式数据服务概述](database-mdds-overview.md)
-  - [分布式数据服务开发指导](database-mdds-guidelines.md)
-- 关系型数据库
-  - [关系型数据库概述](database-relational-overview.md)
-  - [关系型数据库开发指导](database-relational-guidelines.md)
-- 首选项
-  - [首选项概述](database-preference-overview.md)
-  - [首选项开发指导](database-preference-guidelines.md)
-- 分布式数据对象
-  - [分布式数据对象概述](database-distributedobject-overview.md)
-  - [分布式数据对象开发指导](database-distributedobject-guidelines.md)
-- 数据共享
-  - [数据共享概述](database-datashare-overview.md)
-  - [数据共享开发指导](database-datashare-guidelines.md)
+- [数据管理概述](data-mgmt-overview.md)
+- 应用数据持久化
+  - [应用数据持久化概述](app-data-persistence-overview.md)
+  - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)
+  - [通过键值型数据库实现数据持久化](data-persistence-by-kv-store.md)
+  - [通过关系型数据库实现数据持久化](data-persistence-by-rdb-store.md)
+- 同应用跨设备数据同步（分布式）
+  - [同应用跨设备数据同步概述](sync-app-data-across-devices-overview.md)
+  - [键值型数据库跨设备数据同步](data-sync-of-kv-store.md)
+  - [关系型数据库跨设备数据同步](data-sync-of-rdb-store.md)
+  - [分布式数据对象跨设备数据同步](data-sync-of-distributed-data-object.md)
+- 数据可靠性与安全性
+  - [数据可靠性与安全性概述](data-reliability-security-overview.md)
+  - [数据库备份与恢复](data-backup-and-restore.md)
+  - [数据库加密](data-encryption.md)
+  - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
+- 同设备跨应用数据共享（仅对系统应用开放）
+  - [同设备跨应用数据共享概述](share-device-data-across-apps-overview.md)
+  - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
+  - [通过静默数据访问实现数据共享](share-data-by-silent-access.md)

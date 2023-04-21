@@ -7,8 +7,7 @@
 
 **起始版本：**
 9
-**Version:**
-1.0
+
 **相关模块:**
 
 [Core](_core.md)
@@ -21,7 +20,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVErrCode](_core.md#oh_averrcode) | typedef enum [OH_AVErrCode](_core.md#oh_averrcode)<br/>音视频错误码。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) | 音视频错误码。  | 
 
 
 ### 枚举

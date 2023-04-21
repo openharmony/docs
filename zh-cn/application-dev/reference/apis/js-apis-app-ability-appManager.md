@@ -40,12 +40,12 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err && err.code !== 0) {
-        console.log("isRunningInStabilityTest fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('isRunningInStabilityTest fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
+        console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
     }
-})  
+});  
 ```
 
 
@@ -77,9 +77,9 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest().then((flag) => {
-    console.log("The result of isRunningInStabilityTest is:" + JSON.stringify(flag));
+    console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
 }).catch((error) => {
-    console.log("error:" + JSON.stringify(error));
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -112,9 +112,9 @@ isRamConstrainedDevice(): Promise\<boolean>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice().then((data) => {
-    console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
+    console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log("error:" + JSON.stringify(error));
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -146,12 +146,12 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err && err.code !== 0) {
-        console.log("isRamConstrainedDevice fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('isRamConstrainedDevice fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("The result of isRamConstrainedDevice is:" + JSON.stringify(data));
+        console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.getAppMemorySize
@@ -182,9 +182,9 @@ getAppMemorySize(): Promise\<number>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize().then((data) => {
-    console.log("The size of app memory is:" + JSON.stringify(data));
+    console.log('The size of app memory is: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log("error:" + JSON.stringify(error));
+    console.error('error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -216,55 +216,17 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err && err.code !== 0) {
-        console.log("getAppMemorySize fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('getAppMemorySize fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("The size of app memory is:" + JSON.stringify(data));
+        console.log('The size of app memory is: ${JSON.stringify(data)}');
     }
-})
-```
-
-## appManager.getProcessRunningInformation
-
-getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
-
-获取有关运行进程的信息。
-
-**需要权限**：ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-
-appManager.getProcessRunningInformation().then((data) => {
-    console.log("The process running information is:" + JSON.stringify(data));
-}).catch((error) => {
-    console.log("error:" + JSON.stringify(error));
 });
 ```
 
-## appManager.getProcessRunningInformation<sup>9+</sup>
+## appManager.getRunningProcessInformation
 
-getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
 获取有关运行进程的信息。
 
@@ -272,13 +234,11 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-|AsyncCallback\<Array\<[ProcessRunningInformation](js-apis-inner-application-processRunningInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -293,18 +253,54 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-appManager.getProcessRunningInformation((err, data) => {
-    if (err && err.code !== 0) {
-        console.log("getProcessRunningInformation fail, err: " + JSON.stringify(err));
+appManager.getRunningProcessInformation().then((data) => {
+    console.log('The running process information is: ${JSON.stringify(data)}');
+}).catch((error) => {
+    console.error('error: ${JSON.stringify(error)}');
+});
+```
+
+## appManager.getRunningProcessInformation<sup>9+</sup>
+
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
+
+获取有关运行进程的信息。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getRunningProcessInformation((err, data) => {
+    if (err) {
+        console.error('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("The process running information is:" + JSON.stringify(data));
+        console.log('The process running information is: ${JSON.stringify(data)}');
     }
-})
+});
 ```
 
 ## appManager.on
 
-on(type: "applicationState", observer: ApplicationStateObserver): number;
+on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
 注册全部应用程序的状态观测器。
 
@@ -318,7 +314,7 @@ on(type: "applicationState", observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
 
 **返回值：**
@@ -356,18 +352,18 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 try {
     const observerId = appManager.on('applicationState', applicationStateObserver);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 ```
 
 ## appManager.on
 
-on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序的状态观测器。
 
@@ -381,7 +377,7 @@ on(type: "applicationState", observer: ApplicationStateObserver, bundleNameList:
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | 是 | 应用状态观测器，用于观测应用的生命周期变化。 |
 | bundleNameList | `Array<string>` | 是 | 表示需要注册监听的bundleName数组。最大值128。 |
 
@@ -420,19 +416,19 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
-    const observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 ```
 
 ## appManager.off
 
-off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void>): void;
+off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
 
 取消注册应用程序状态观测器。
 
@@ -446,7 +442,7 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observerId | number | 是 | 表示观测器的编号代码。 |
 | callback | AsyncCallback\<void> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
@@ -463,7 +459,7 @@ off(type: "applicationState", observerId: number,  callback: AsyncCallback\<void
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {
@@ -482,33 +478,33 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
-    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
 
 // 2.注销应用状态监听器
 function unregisterApplicationStateObserverCallback(err) {
-    if (err && err.code !== 0) {
-        console.log("unregisterApplicationStateObserverCallback fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("unregisterApplicationStateObserverCallback success.");
+        console.log('unregisterApplicationStateObserverCallback success.');
     }
 }
 try {
-    appManager.off("applicationState", observerId, unregisterApplicationStateObserverCallback);
+    appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
 ## appManager.off
 
-off(type: "applicationState", observerId: number): Promise\<void>;
+off(type: 'applicationState', observerId: number): Promise\<void>;
 
 取消注册应用程序状态观测器。
 
@@ -522,7 +518,7 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 调用接口类型，固定填"applicationState"字符串。 |
+| type | string | 是 | 调用接口类型，固定填'applicationState'字符串。 |
 | observerId | number | 是 | 表示观测器的编号代码。 |
 
 **返回值：**
@@ -544,7 +540,7 @@ off(type: "applicationState", observerId: number): Promise\<void>;
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
-let observeId = 0;
+let observerId = 0;
 
 // 1.注册应用状态监听器
 let applicationStateObserver = {
@@ -563,24 +559,24 @@ let applicationStateObserver = {
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
     }
-}
+};
 let bundleNameList = ['bundleName1', 'bundleName2'];
 try {
-    observerId = appManager.on("applicationState", applicationStateObserver, bundleNameList);
+    observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
     console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    console.log(`[appManager] error: ${paramError.code}, ${paramError.message} `);
+    console.error(`[appManager] error: ${paramError.code}, ${paramError.message} `);
 }
     
 // 2.注销应用状态监听器
 try {
-    appManager.off("applicationState", observerId).then((data) => {
-        console.log("unregisterApplicationStateObserver success, data: " + JSON.stringify(data));
+    appManager.off('applicationState', observerId).then((data) => {
+        console.log('unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}');
     }).catch((err) => {
-        console.log("unregisterApplicationStateObserver fail, err: " + JSON.stringify(err));
-    })
+        console.error('unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -608,7 +604,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以Promise方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **示例：**
 
@@ -616,16 +612,16 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundApplicationsCallback(err, data) {
-    if (err && err.code !== 0) {
-        console.log("getForegroundApplicationsCallback fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("getForegroundApplicationsCallback success, data: " + JSON.stringify(data));
+        console.log('getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}');
     }
 }
 try {
     appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -661,10 +657,10 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getForegroundApplications().then((data) => {
-    console.log("getForegroundApplications success, data: " + JSON.stringify(data));
+    console.log('getForegroundApplications success, data: ${JSON.stringify(data)}');
 }).catch((err) => {
-    console.log("getForegroundApplications fail, err: " + JSON.stringify(err));
-})
+    console.error('getForegroundApplications fail, err: ${JSON.stringify(err)}');
+});
 ```
 
 ## appManager.killProcessWithAccount
@@ -703,12 +699,12 @@ let bundleName = 'bundleName';
 let accountId = 0;
 try {
     appManager.killProcessWithAccount(bundleName, accountId).then(() => {
-        console.log("killProcessWithAccount success");
+        console.log('killProcessWithAccount success');
     }).catch((err) => {
-        console.log("killProcessWithAccount fail, err: " + JSON.stringify(err));
-    })
+        console.error('killProcessWithAccount fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -749,10 +745,10 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-    if (err && err.code !== 0) {
-        console.log("killProcessWithAccountCallback fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("killProcessWithAccountCallback success.");
+        console.log('killProcessWithAccountCallback success.');
     }
 }
 appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
@@ -792,16 +788,16 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
-    if (err && err.code !== 0) {
-        console.log("killProcessesByBundleNameCallback fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("killProcessesByBundleNameCallback success.");
+        console.log('killProcessesByBundleNameCallback success.');
     }
 }
 try {
     appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -845,12 +841,12 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 try {
     appManager.killProcessesByBundleName(bundleName).then((data) => {
-        console.log("killProcessesByBundleName success.");
+        console.log('killProcessesByBundleName success.');
     }).catch((err) => {
-        console.log("killProcessesByBundleName fail, err: " + JSON.stringify(err));
-    })
+        console.error('killProcessesByBundleName fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -888,16 +884,16 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
-    if (err && err.code !== 0) {
-        console.log("clearUpApplicationDataCallback fail, err: " + JSON.stringify(err));
+    if (err) {
+        console.error('clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}');
     } else {
-        console.log("clearUpApplicationDataCallback success.");
+        console.log('clearUpApplicationDataCallback success.');
     }
 }
 try {
     appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 
@@ -941,12 +937,12 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 try {
     appManager.clearUpApplicationData(bundleName).then((data) => {
-        console.log("clearUpApplicationData success.");
+        console.log('clearUpApplicationData success.');
     }).catch((err) => {
-        console.log("clearUpApplicationData fail, err: " + JSON.stringify(err));
-    })
+        console.error('clearUpApplicationData fail, err: ${JSON.stringify(err)}');
+    });
 } catch (paramError) {
-    console.log("error: " + paramError.code + ", " + paramError.message);
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 

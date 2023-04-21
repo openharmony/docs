@@ -16,6 +16,8 @@
 
 Radio(options: {value: string, group: string})
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -29,7 +31,8 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| checked | boolean | 设置单选框的选中状态。<br/>默认值：false |
+| checked | boolean | 设置单选框的选中状态。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| radioStyle<sup>10+</sup> | [RadioStyle](#radiostyle对象说明) | 设置单选框选中状态和非选中状态的样式。 <br/>从API version 10开始，该接口支持在ArkTS组件中使用。|
 
 ## 事件
 
@@ -37,8 +40,15 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 |
+| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -&nbsp;isChecked为true时，表示从未选中变为选中。<br> -&nbsp;isChecked为false时，表示从选中变为未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
+## RadioStyle对象说明
+
+| 名称                   | 类型                                       | 必填 | 默认值  | 描述                   |
+| ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |
+| checkedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | #007DFF | 开启状态底板颜色。     |
+| uncheckedBorderColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | #182431 | 关闭状态描边颜色。     |
+| indicatorColor         | [ResourceColor](ts-types.md#resourcecolor) | 否   | #FFFFFF | 开启状态内部圆饼颜色。 |
 
 ## 示例
 

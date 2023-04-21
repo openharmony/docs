@@ -17,26 +17,26 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [native_huks_api.h](native__huks__api_8h.md) | 声明用于访问HUKS的API。  | 
+| [native_huks_api.h](native__huks__api_8h.md) | 声明用于访问HUKS的API。<br>引用文件：<huks/native_huks/api.h>  | 
 
 
 ### 函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Huks_GetSdkVersion](#oh_huks_getsdkversion) (struct [OH_Huks_Blob](_o_h___huks___blob.md) \*sdkVersion) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>获取当前Huks sdk版本号。  | 
-| [OH_Huks_GenerateKeyItem](#oh_huks_generatekeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetOut) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>生成密钥。  | 
-| [OH_Huks_ImportKeyItem](#oh_huks_importkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*key) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>导入明文密钥。  | 
-| [OH_Huks_ImportWrappedKeyItem](#oh_huks_importwrappedkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappingKeyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappedKeyData) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>导入密文密钥。  | 
-| [OH_Huks_ExportPublicKeyItem](#oh_huks_exportpublickeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*key) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>导出公钥。  | 
-| [OH_Huks_DeleteKeyItem](#oh_huks_deletekeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>删除密钥。  | 
-| [OH_Huks_GetKeyItemParamSet](#oh_huks_getkeyitemparamset) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetOut) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>获取密钥的属性集。  | 
-| [OH_Huks_IsKeyItemExist](#oh_huks_iskeyitemexist) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>判断密钥是否存在。  | 
-| [OH_Huks_AttestKeyItem](#oh_huks_attestkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_CertChain](_o_h___huks___cert_chain.md) \*certChain) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>获取密钥证书链。  | 
-| [OH_Huks_InitSession](#oh_huks_initsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*challenge) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）。  | 
-| [OH_Huks_UpdateSession](#oh_huks_updatesession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据。  | 
-| [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>结束密钥会话并进行相应的密钥操作，输出处理数据。  | 
-| [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | struct [OH_Huks_Result](_o_h___huks___result.md)<br/>取消密钥会话。  | 
+| [OH_Huks_GetSdkVersion](#oh_huks_getsdkversion) (struct [OH_Huks_Blob](_o_h___huks___blob.md) \*sdkVersion) | 获取当前Huks sdk版本号。  | 
+| [OH_Huks_GenerateKeyItem](#oh_huks_generatekeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetOut) | 生成密钥。  | 
+| [OH_Huks_ImportKeyItem](#oh_huks_importkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*key) | 导入明文密钥。  | 
+| [OH_Huks_ImportWrappedKeyItem](#oh_huks_importwrappedkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappingKeyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*wrappedKeyData) | 导入密文密钥。  | 
+| [OH_Huks_ExportPublicKeyItem](#oh_huks_exportpublickeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*key) | 导出公钥。  | 
+| [OH_Huks_DeleteKeyItem](#oh_huks_deletekeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 删除密钥。  | 
+| [OH_Huks_GetKeyItemParamSet](#oh_huks_getkeyitemparamset) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetIn, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSetOut) | 获取密钥的属性集。  | 
+| [OH_Huks_IsKeyItemExist](#oh_huks_iskeyitemexist) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 判断密钥是否存在。  | 
+| [OH_Huks_AttestKeyItem](#oh_huks_attestkeyitem) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_CertChain](_o_h___huks___cert_chain.md) \*certChain) | 获取密钥证书链。  | 
+| [OH_Huks_InitSession](#oh_huks_initsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*keyAlias, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*token) | 初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）。  | 
+| [OH_Huks_UpdateSession](#oh_huks_updatesession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据。  | 
+| [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 结束密钥会话并进行相应的密钥操作，输出处理数据。  | 
+| [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 取消密钥会话。  | 
 
 
 ## 函数说明
@@ -280,7 +280,7 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * 
 
   
 ```
-struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * handle, struct OH_Huks_Blob * challenge )
+struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * handle, struct OH_Huks_Blob * token )
 ```
 **描述:**
 初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）。
@@ -292,7 +292,7 @@ struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias,
 | keyAlias | 操作的密钥的别名。  | 
 | paramSet | 初始化操作的密钥参数集合。  | 
 | handle | 密钥会话的句柄，后续其他操作时传入该句柄，包括[OH_Huks_UpdateSession](#oh_huks_updatesession), [OH_Huks_FinishSession](#oh_huks_finishsession), [OH_Huks_AbortSession](#oh_huks_abortsession)。  | 
-| challenge | 存放安全访问控制时传回的challenge  | 
+| token | 存放安全访问控制时传回的token  | 
 
 **返回:**
 

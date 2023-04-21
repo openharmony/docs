@@ -35,6 +35,14 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 | -------- | -------- | -------- |
 | divider | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
 
+> **说明：** 
+>
+> ListItemGroup组件不支持设置[通用属性aspectRatio](ts-universal-attributes-layout-constraints.md)。
+>
+> ListItemGroup组件如果主轴方向是垂直方向时，设置[通用属性height](ts-universal-attributes-size.md)属性不生效。
+>
+> ListItemGroup组件如果主轴方向是水平方向时，设置[通用属性width](ts-universal-attributes-size.md)属性不生效。
+
 
 ## 示例
 

@@ -226,9 +226,9 @@ Checks whether this URI is an absolute URI (whether the scheme component is defi
 
 ```js
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-console.log(uriInstance.checkIsAbsolute()); // true
+console.log(`${uriInstance.checkIsAbsolute()}`); // true
 const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
-console.log(uriInstance1.checkIsAbsolute()); // false
+console.log(`${uriInstance1.checkIsAbsolute()}`); // false
 ```
 
 

@@ -5,7 +5,7 @@
 >
 >  To use ArkTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 >
->  For best possible results, use [DevEco Studio V3.1.0.100](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
+>  For best possible results, use [DevEco Studio 3.1 Beta1](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
 
 
 ## Creating an ArkTS Project
@@ -20,7 +20,7 @@
 
    > **NOTE**
    > 
-   > If you are using DevEco Studio V3.0 Beta3 or later, you can use the [low-code development](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652) mode apart from the traditional coding approach.
+   > If you are using DevEco Studio V3.0 Beta3 or later, you can use the low-code development mode apart from the traditional coding approach.
    > 
    > On the low-code development pages, you can design your application UI in an efficient, intuitive manner, with a wide array of UI editing features.
    > 
@@ -34,7 +34,7 @@
 ![en-us_image_0000001384652328](figures/en-us_image_0000001384652328.png)
 
 - **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
-  - **src > main > ets**: a collection of eTS source code.
+  - **src > main > ets**: a collection of ArkTS source code.
   - **src > main > ets > MainAbility**: entry to your application/service.
   - **src > main > ets > MainAbility > pages**: pages contained in **MainAbility**.
   - **src > main > ets > MainAbility > pages > index.ets**: the first page in the **pages** list, also referred to as the entry to the application.

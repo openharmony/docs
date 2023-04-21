@@ -31,7 +31,14 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -39,17 +46,17 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider setFormNextRefreshTime success`);
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -78,7 +85,14 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -86,15 +100,15 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 ```ts
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log(`formProvider setFormNextRefreshTime success`);
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -118,7 +132,13 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -127,18 +147,18 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
+let formId = '12400633174999288';
 try {
-  let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
+  let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
   formProvider.updateForm(formId, obj, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       console.log(`formProvider updateForm success`);
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -167,7 +187,13 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -176,16 +202,16 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
-let formId = "12400633174999288";
-let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
+let formId = '12400633174999288';
+let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -204,10 +230,12 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 | callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
-
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 
@@ -219,13 +247,13 @@ import formProvider from '@ohos.app.form.formProvider';
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 ## getFormsInfo
@@ -247,7 +275,10 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -258,18 +289,18 @@ import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
-  moduleName: "entry"
+  moduleName: 'entry'
 };
 try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider getFormsInfo, data: ' + JSON.stringify(data));
+      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -297,7 +328,10 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -308,16 +342,16 @@ import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
-  moduleName: "entry"
+  moduleName: 'entry'
 };
 try {
   formProvider.getFormsInfo(filter).then((data) => {
-    console.log('formProvider getFormsInfo, data:' + JSON.stringify(data));
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -335,7 +369,7 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 参数名 | 类型                                                                    | 必填 | 说明             |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want | [Want](js-apis-application-want.md)                           | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 是   | 创建卡片的数据。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回卡片标识。 |
 
@@ -343,7 +377,11 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -353,24 +391,24 @@ import formBindingData from '@ohos.app.form.formBindingData';
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
-  let obj = formBindingData.createFormBindingData({ temperature: "22c", time: "22:00" });
+  let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -388,14 +426,18 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want     | [Want](js-apis-application-want.md) | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | callback | AsyncCallback&lt;string&gt;         | 是   |  回调函数。返回卡片标识。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -404,23 +446,23 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
-      console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -438,7 +480,7 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>"ohos.extra.param.key.form_dimension"<br>"ohos.extra.param.key.form_name"<br>"ohos.extra.param.key.module_name" |
+| want            | [Want](js-apis-application-want.md)                          | 是   | 发布请求。需包含以下字段。<br>abilityName: 目标卡片ability<br>parameters:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
 | formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | 否   | 创建卡片的数据。                                           |
 
 **返回值：**
@@ -451,7 +493,11 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | 调用接口入参错误。 |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
@@ -460,21 +506,21 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
-  abilityName: "FormAbility",
+  abilityName: 'FormAbility',
   parameters: {
-    "ohos.extra.param.key.form_dimension": 2,
-    "ohos.extra.param.key.form_name": "widget",
-    "ohos.extra.param.key.module_name": "entry"
+    'ohos.extra.param.key.form_dimension': 2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry'
   }
 };
 try {
   formProvider.requestPublishForm(want).then((data) => {
-    console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+    console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -494,6 +540,16 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回是否支持发布一张卡片到使用方。|
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
 **示例：**
 
 ```ts
@@ -502,33 +558,33 @@ import formProvider from '@ohos.app.form.formProvider';
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
     if (error) {
-      console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+      console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
       if (isSupported) {
         var want = {
-          abilityName: "FormAbility",
+          abilityName: 'FormAbility',
           parameters: {
-            "ohos.extra.param.key.form_dimension": 2,
-            "ohos.extra.param.key.form_name": "widget",
-            "ohos.extra.param.key.module_name": "entry"
+            'ohos.extra.param.key.form_dimension': 2,
+            'ohos.extra.param.key.form_name': 'widget',
+            'ohos.extra.param.key.module_name': 'entry'
           }
         };
         try {
           formProvider.requestPublishForm(want, (error, data) => {
             if (error) {
-              console.log(`callback error, code: ${error.code}, message: ${error.message})`);
+              console.error(`callback error, code: ${error.code}, message: ${error.message})`);
             } else {
-              console.log('formProvider requestPublishForm, form ID is: ' + JSON.stringify(data));
+              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
             }
           });
         } catch (error) {
-          console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+          console.error(`catch error, code: ${error.code}, message: ${error.message})`);
         }
       }
     }
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```
 
@@ -548,6 +604,15 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 | :------------ | :---------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回是否支持发布一张卡片到使用方。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
 **示例：**
 
 ```ts
@@ -557,27 +622,27 @@ try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {
       var want = {
-        abilityName: "FormAbility",
+        abilityName: 'FormAbility',
         parameters: {
-          "ohos.extra.param.key.form_dimension": 2,
-          "ohos.extra.param.key.form_name": "widget",
-          "ohos.extra.param.key.module_name": "entry"
+          'ohos.extra.param.key.form_dimension': 2,
+          'ohos.extra.param.key.form_name': 'widget',
+          'ohos.extra.param.key.module_name': 'entry'
         }
       };
       try {
         formProvider.requestPublishForm(want).then((data) => {
-          console.log('formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
+          console.log('formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}');
         }).catch((error) => {
-          console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+          console.error(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
-        console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+        console.error(`catch error, code: ${error.code}, message: ${error.message})`);
       }
     }
   }).catch((error) => {
-    console.log(`promise error, code: ${error.code}, message: ${error.message})`);
+    console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.log(`catch error, code: ${error.code}, message: ${error.message})`);
+  console.error(`catch error, code: ${error.code}, message: ${error.message})`);
 }
 ```

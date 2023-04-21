@@ -118,7 +118,7 @@ struct bindPopupPage {
 
     ![hello](figures/hello.PNG)
 
-## Initialization and Restrictions of Custom Components' Member Variables
+## Initialization Rules and Restrictions of Custom Components' Member Variables
 
 The member variables of a component can be initialized in either of the following ways:
 
@@ -133,7 +133,7 @@ The member variables of a component can be initialized in either of the followin
   MyComponent({counter: $myCounter})
   ```
 
-The allowed method depends on the decorator of the state variable, as shown in the following table.
+The allowed method depends on the decorator of the state variable, as described in the following table.
 
 | Decorator       | Local Initialization| Initialization Using Constructor Parameters|
 | ------------ | ----- | ----------- |
@@ -229,6 +229,29 @@ struct Child {
         .fontWeight(FontWeight.Bold)
     }
     .width('100%')
+  }
+}
+```
+
+## Restrictions on Naming Custom Components, Classes, and Functions
+
+The name of a custom component, class, or function cannot be the same as any system component name.
+
+Example:
+
+```
+// Rect.ets
+export class Rect {
+  constructor(){}
+}
+// Index.ets
+// ERROR: The module name 'Rect' can not be the same as the inner component name.
+import { Rect } from './Rect';
+@Entry
+@Component
+struct Index {
+  build() {
+    
   }
 }
 ```

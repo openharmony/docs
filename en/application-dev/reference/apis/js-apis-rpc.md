@@ -40,7 +40,9 @@ The APIs of this module return exceptions since API version 9. The following tab
 
 ## MessageSequence<sup>9+</sup>
 
-  Provides APIs for reading and writing data in specific format. During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format. 
+
+During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
@@ -641,12 +643,12 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       console.info("rpc write short fail, errorMessage" + error.message);
   }
   try {
-      let ret = data.readShort(8);
+      let ret = data.readShort();
+      console.log("RpcClient: readByte is: " + ret);
   } catch(error) {
       console.info("rpc read short fail, errorCode " + error.code);
       console.info("rpc read short fail, errorMessage" + error.message);
   }
-  console.log("RpcClient: readByte is: " + ret);
   ```
 
 ### writeInt
@@ -884,9 +886,9 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ------ | ------ | ---- | ------ |
-  | val  number | Yes| Double-precision floating-point number to write.|
+  | Name| Type  | Mandatory| Description                  |
+  | ------ | ------ | ---- | ---------------------- |
+  | val    | number | Yes  | Double-precision floating-point number to write.|
 
 **Error codes**
 
@@ -2391,6 +2393,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 **Example**
 
+  Obtain the service.
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -2411,6 +2415,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -3093,7 +3102,9 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 >This class is no longer maintained since API version 9. You are advised to use [MessageSequence](#messagesequence9).
 
-Provides APIs for reading and writing data in specific format. During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
+Provides APIs for reading and writing data in specific format. 
+
+During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
@@ -4839,6 +4850,8 @@ Reads the exception information from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Example**
+ 
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -4860,6 +4873,11 @@ Reads the exception information from this **MessageParcel** object.
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -5183,7 +5201,7 @@ Duplicates a file descriptor. This API is a static method.
 
 containFileDescriptors(): boolean
 
-Checks whether this **MessageParcel** object contains a file descriptor.
+Checks whether this **MessageParcel** object contains file descriptors.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5191,7 +5209,7 @@ Checks whether this **MessageParcel** object contains a file descriptor.
 
   | Type   | Description                                                              |
   | ------- | ------------------------------------------------------------------ |
-  | boolean |Returns **true** if the **MessageSequence** object contains a file descriptor; returns **false** otherwise.|
+  | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
@@ -5635,10 +5653,12 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
           return this;
       }
   }
-  let remoteObject = new TestAbility().asObject();
+  let remoteObject = new TestAbility("testObject").asObject();
   ```
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -5660,7 +5680,11 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
-
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
+  
+  ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
       constructor(remote) {
@@ -5704,7 +5728,7 @@ Defines the response to the request.
 
   | Name   | Type           | Readable| Writable| Description                                 |
   | ------- | --------------- | ---- | ---- |-------------------------------------- |
-  | errCode | number          | Yes  | No  | Error Code                             |
+  | errCode | number          | Yes  | No  | Error code.                             |
   | code    | number          | Yes  | No  | Message code.                           |
   | data    | MessageSequence | Yes  | No  | **MessageSequence** object sent to the remote process.|
   | reply   | MessageSequence | Yes  | No  | **MessageSequence** object returned by the remote process.  |
@@ -5719,7 +5743,7 @@ Defines the response to the request.
 
   | Name   | Type         | Readable| Writable| Description                               |
   | ------- | ------------- | ---- | ---- | ----------------------------------- |
-  | errCode | number        | Yes  | No  | Error Code                           |
+  | errCode | number        | Yes  | No  | Error code.                           |
   | code    | number        | Yes  | No  | Message code.                         |
   | data    | MessageParcel | Yes  | No  | **MessageParcel** object sent to the remote process.|
   | reply   | MessageParcel | Yes  | No  | **MessageParcel** object returned by the remote process.  |
@@ -5776,7 +5800,7 @@ Queries the interface descriptor.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message does not contain any content. If synchronous mode is set in **options** , a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5802,7 +5826,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5826,7 +5850,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5850,7 +5874,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5870,7 +5894,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5888,7 +5912,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. The callback will be called if the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5899,7 +5923,7 @@ Registers a callback for receiving death notifications of the remote object. Thi
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -5928,7 +5952,7 @@ Adds a callback for receiving death notifications of the remote object. This met
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the callback is added successfully; return **false** otherwise.|
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 
 ### unregisterDeathRecipient<sup>9+</sup>
@@ -5946,7 +5970,7 @@ Unregisters the callback used to receive death notifications of the remote objec
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -5981,7 +6005,7 @@ Removes the callback used to receive death notifications of the remote object.
 
 getDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -5991,7 +6015,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6006,7 +6030,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 
 getInterfaceDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6052,7 +6076,7 @@ Provides APIs to implement **IRemoteObject**.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6072,6 +6096,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6093,6 +6119,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+  
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6115,7 +6146,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6135,6 +6166,8 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   | Promise&lt;RequestResult&gt; | Promise used to return the **requestResult** object.|
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6156,6 +6189,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6186,7 +6224,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6206,6 +6244,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | Promise&lt;SendRequestResult&gt; | Promise used to return the **sendRequestResult** object.|
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6227,6 +6267,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6255,7 +6300,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked at certain time after the response to **sendMessageRequest** is returned, and the reply contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6270,6 +6315,8 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
+  
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6304,6 +6351,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
   let reply = rpc.MessageSequence.create();
@@ -6323,7 +6375,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6338,6 +6390,8 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6372,6 +6426,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       result.reply.reclaim();
   }
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
+
+  ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
   let reply = rpc.MessageParcel.create();
@@ -6400,7 +6459,7 @@ Obtains the **LocalInterface** object of an interface token.
   | ------------- | ------------------------------------------ |
   | IRemoteBroker | Returns **Null** by default, which indicates a proxy interface.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6409,6 +6468,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   | 1900006 | only remote object permitted |
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6430,6 +6491,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName":"com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+
+  ```ts
   try {
       let broker = proxy.getLocalInterface("testObject");
       console.log("RpcClient: getLocalInterface is " + broker);
@@ -6463,6 +6529,8 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
+  Obtain the service.
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6483,6 +6551,11 @@ Obtains the **LocalInterface** object of an interface token.
       "abilityName":"com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
+
+  ```ts
   let broker = proxy.queryLocalInterface("testObject");
   console.log("RpcClient: queryLocalInterface is " + broker);
   ```
@@ -6491,7 +6564,7 @@ Obtains the **LocalInterface** object of an interface token.
 
 registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
-Registers a callback for receiving death notifications of the remote object. This method is called if the remote object process matching the **RemoteProxy** object is killed.
+Registers a callback for receiving death notifications of the remote object. The callback will be invoked when the remote object process matching the **RemoteProxy** object is killed.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6502,7 +6575,7 @@ Registers a callback for receiving death notifications of the remote object. Thi
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to register.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6511,6 +6584,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   | 1900008 | proxy or remote object is invalid |
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6532,6 +6607,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
+  
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6539,7 +6619,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6567,9 +6647,11 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
   | Type   | Description                                         |
   | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the callback is added successfully; return **false** otherwise.|
+  | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6591,18 +6673,23 @@ Adds a callback for receiving the death notifications of the remote object, incl
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   ```
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 Unregisters the callback used to receive death notifications of the remote object.
 
@@ -6615,7 +6702,7 @@ Unregisters the callback used to receive death notifications of the remote objec
   | recipient | [DeathRecipient](#deathrecipient) | Yes  | Callback to unregister.|
   | flags     | number                            | Yes  | Flag of the death notification.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6624,6 +6711,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   | 1900008 | proxy or remote object is invalid |
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6645,6 +6734,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6685,6 +6779,8 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Example**
 
+  Obtain the service.
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6705,6 +6801,11 @@ Removes the callback used to receive death notifications of the remote object.
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
+
+  ```ts
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -6719,7 +6820,7 @@ Removes the callback used to receive death notifications of the remote object.
 
 getDescriptor(): string
 
-Obtains the interface descriptor of this object. The interface descriptor is a string.
+Obtains the interface descriptor (which is a string) of this proxy object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -6729,7 +6830,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -6739,6 +6840,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   | 1900007 | communication failed              |
 
 **Example**
+
+  Obtain the service.
 
   ```ts
   import FA from "@ohos.ability.featureAbility";
@@ -6760,6 +6863,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
+
+  ```ts
   try {
       let descriptor = proxy.getDescriptor();
       console.log("RpcClient: descriptor is " + descriptor);
@@ -6787,6 +6894,8 @@ Obtains the interface descriptor of this proxy object.
 
 **Example**
 
+  Obtain the service.
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6807,6 +6916,11 @@ Obtains the interface descriptor of this proxy object.
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+  
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
+
+  ```ts
   let descriptor = proxy.getInterfaceDescriptor();
   console.log("RpcClient: descriptor is " + descriptor);
   ```
@@ -6827,6 +6941,8 @@ Checks whether the **RemoteObject** is dead.
 
 **Example**
 
+  Obtain the service.
+
   ```ts
   import FA from "@ohos.ability.featureAbility";
   let proxy;
@@ -6847,6 +6963,11 @@ Checks whether the **RemoteObject** is dead.
       "abilityName": "com.ohos.server.EntryAbility",
   };
   FA.connectAbility(want, connect);
+  ```
+
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
+
+  ```ts
   let isDead = proxy.isObjectDead();
   console.log("RpcClient: isObjectDead is " + isDead);
   ```
@@ -7174,7 +7295,7 @@ Obtains the caller's token ID, which is used to verify the caller identity.
 
 static getCallingDeviceID(): string
 
-Obtains the ID of the device hosting the caller's process.
+Obtains the ID of the device hosting the caller's process. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7393,7 +7514,7 @@ Changes the UID and PID of the remote user to the UID and PID of the local user.
 
 static setCallingIdentity(identity: string): boolean
 
-Restores the UID and PID of the remote user. This API is a static method. It is usually called when the UID and PID of the remote user are required. The UID and PID of the remote user are returned by **resetCallingIdentity**.
+Sets the UID and PID of the remote user. This API is a static method. It is usually called when the UID and PID of the remote user are required. The UID and PID of the remote user are returned by **resetCallingIdentity**.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7452,7 +7573,7 @@ A constructor used to create a **RemoteObject** object.
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7518,7 +7639,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7588,7 +7709,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption): Promise&lt;RequestResult&gt;
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a promise will be fulfilled immediately and the reply message does not contain any content. If **options** is the synchronous mode, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a promise will be fulfilled immediately and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a promise will be fulfilled when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7644,7 +7765,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, options: MessageOption, callback: AsyncCallback&lt;RequestResult&gt;): void
 
-Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
+Sends a **MessageSequence** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to **sendMessageRequest** is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -7694,7 +7815,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
-Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If **options** is the asynchronous mode, a callback will be invoked immediately and the reply message does not contain any content. If **options** is the synchronous mode, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
+Sends a **MessageParcel** message to the remote process in synchronous or asynchronous mode. If asynchronous mode is set in **options**, a callback will be called immediately, and the reply message is empty. The specific reply needs to be obtained from the callback on the service side. If synchronous mode is set in **options**, a callback will be invoked when the response to sendRequest is returned, and the reply message contains the returned information.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -8030,8 +8151,12 @@ Obtains the interface descriptor.
       constructor(descriptor) {
           super(descriptor);
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8040,8 +8165,8 @@ Obtains the interface descriptor.
   try {
       let broker = testRemoteObject.getLocalInterface("testObject");
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
   ```
 
@@ -8107,7 +8232,7 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
   | ------ | ---------------- |
   | string | Interface descriptor obtained.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8127,20 +8252,24 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
+  console.log("RpcServer: descriptor is: " + descriptor);
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
-      console.info(rpc get local interface fail, errorCode " + error.code);
-      console.info(rpc get local interface fail, errorMessage " + error.message);
+      console.info("rpc get local interface fail, errorCode " + error.code);
+      console.info("rpc get local interface fail, errorMessage " + error.message);
   }
-  console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -8215,12 +8344,16 @@ Binds an interface descriptor to an **IRemoteBroker** object.
           try {
               this.modifyLocalInterface(this, descriptor);
           } catch(error) {
-              console.info(rpc attach local interface fail, errorCode " + error.code);
-              console.info(rpc attach local interface fail, errorMessage " + error.message);
+              console.info(" rpc attach local interface fail, errorCode " + error.code);
+              console.info(" rpc attach local interface fail, errorMessage " + error.message);
           }
       }
-      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number) {
+          // Implement the method logic based on service requirements.
+      }
       isObjectDead(): boolean {
           return false;
       }
@@ -8491,7 +8624,7 @@ Creates the shared file mapping on the virtual address space of this process. Th
   | ------- | ------ | ---- | ------------------------------ |
   | mapType | number | Yes  | Protection level of the memory region to which the shared file is mapped.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8549,7 +8682,7 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8601,7 +8734,7 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8659,7 +8792,7 @@ Sets the protection level of the memory region to which the shared file is mappe
   | -------------- | ------ | ---- | ------------------ |
   | protectionType | number | Yes  | Protection type to set.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8725,7 +8858,7 @@ Writes data to the shared file associated with this **Ashmem** object.
   | size   | number   | Yes  | Size of the data to write.                                |
   | offset | number   | Yes  | Start position of the data to write in the memory region associated with this **Ashmem** object.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8803,7 +8936,7 @@ Reads data from the shared file associated with this **Ashmem** object.
   | -------- | ---------------- |
   | number[] | Data read.|
 
-**Error Code**
+**Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
@@ -8862,4 +8995,3 @@ Reads data from the shared file associated with this **Ashmem** object.
   let readResult = ashmem.readFromAshmem(5, 0);
   console.log("RpcTest: read to Ashmem result is  : " + readResult);
  ```
-

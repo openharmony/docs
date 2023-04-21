@@ -10,7 +10,7 @@ The following describes how the mission list manager manages the UIAbility insta
   **Figure 1** Missions and singleton mode
   ![mission-and-singleton](figures/mission-and-singleton.png)
   
-- **standard**: Each time **startAbility()** is called, a UIAbility instance is created in the application process.
+- **standard**: Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a **UIAbility** instance is created in the application process.
   
   **Figure 2** Missions and standard mode
   ![mission-and-standard](figures/mission-and-standard.png)
@@ -30,4 +30,3 @@ Every mission retains a snapshot of the UIAbility instance. After the UIAbility 
 > **NOTE**
 >
 > The **specified** mode is supported in the stage model only.
-

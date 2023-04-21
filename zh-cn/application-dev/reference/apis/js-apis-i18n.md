@@ -53,7 +53,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
   try {
     let displayCountry = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch(error) {
-    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -92,7 +92,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   try {
     let displayLanguage = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
-    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -123,7 +123,7 @@ static getSystemLanguages(): Array&lt;string&gt;
   try {
     let systemLanguages = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
   } catch(error) {
-    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -160,7 +160,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
   try {
     let systemCountries = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
-    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -198,7 +198,7 @@ static isSuggested(language: string, region?: string): boolean
   try {
     let res = I18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
-    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -229,7 +229,7 @@ static getSystemLanguage(): string
   try {
     let systemLanguage = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
-    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -264,7 +264,7 @@ static setSystemLanguage(language: string): void
   try {
     I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
-    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -295,7 +295,7 @@ static getSystemRegion(): string
   try {
     let systemRegion = I18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
-    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -330,7 +330,7 @@ static setSystemRegion(region: string): void
   try {
     I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
-    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -361,7 +361,7 @@ static getSystemLocale(): string
   try {
     let systemLocale = I18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
-    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -396,7 +396,7 @@ static setSystemLocale(locale: string): void
   try {
     I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
-    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -427,7 +427,7 @@ static is24HourClock(): boolean
   try {
     let is24HourClock = I18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
-    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -463,7 +463,7 @@ static set24HourClock(option: boolean): void
   try {
     I18n.System.set24HourClock(true);
   } catch(error) {
-    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -502,7 +502,7 @@ static addPreferredLanguage(language: string, index?: number): void
   try {
     I18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
   } catch(error) {
-    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -539,7 +539,7 @@ static removePreferredLanguage(index: number): void
   try {
     I18n.System.removePreferredLanguage(index);
   } catch(error) {
-    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -570,7 +570,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
   try {
     let preferredLanguageList = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
-    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -601,7 +601,7 @@ static getFirstPreferredLanguage(): string
   try {
     let firstPreferredLanguage = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -632,7 +632,7 @@ static getAppPreferredLanguage(): string
   try {
     let appPreferredLanguage = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -640,7 +640,7 @@ static getAppPreferredLanguage(): string
 
 static setUsingLocalDigit(flag: boolean): void
 
-设置是否打开本地数字开关。
+设置系统是否使用本地数字。
 
 此接口为系统接口。
 
@@ -667,7 +667,7 @@ static setUsingLocalDigit(flag: boolean): void
   try {
     I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
-    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -675,7 +675,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static getUsingLocalDigit(): boolean
 
-获取系统当前是否打开本地数字开关。
+判断系统是否使用本地数字。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -698,7 +698,7 @@ static getUsingLocalDigit(): boolean
   try {
     let status = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
-    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -1025,7 +1025,7 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 判断日期在日历中是否是周末。如果date没有给出，判断calendar当前日期是否为周末。 |
+| date | Date | 否    | 判断日期在日历中是否是周末。如果不传日期参数，则判断当前日期是否为周末。 |
 
 **返回值：** 
 
@@ -1059,7 +1059,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | 否    | 电话号码格式化对象的相关选项。  |
 
 **示例：** 
   ```js
@@ -1149,7 +1149,7 @@ getLocationName(number: string, locale: string): string
   ```
 
 
-## PhoneNumberFormatOptions<sup>8+</sup>
+## PhoneNumberFormatOptions<sup>9+</sup>
 
 表示电话号码格式化对象可设置的属性。
 
@@ -1194,7 +1194,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   ```
 
 
@@ -1267,7 +1267,7 @@ getIndex(text: string): string
 
 **示例：** 
   ```js
-  let indexUtil= I18n.getInstance("zh-CN");
+  let indexUtil = I18n.getInstance("zh-CN");
   let index = indexUtil.getIndex("hi");  // index = "H"
   ```
 
@@ -1382,7 +1382,7 @@ first(): number
 
 **示例：** 
   ```js
-  let iterator = i18n.getLineInstance("en");
+  let iterator = I18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let firstPos = iterator.first(); // firstPos = 0
   ```
@@ -2110,6 +2110,75 @@ static getDateOrder(locale: string): string
   ```js
   let order = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
   ```
+
+
+## Normalizer<sup>10+</sup>
+
+### getInstance<sup>10+</sup>
+
+static getInstance(mode: NormalizerMode): Normalizer
+
+获取文本正则化对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| mode | [NormalizerMode](#normalizermode10) | 是    | 文本正则化范式。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| [Normalizer](#normalizer10) | 返回指定范式的文本正则化对象。 |
+
+**示例：**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  ```
+
+
+### normalize<sup>10+</sup>
+
+normalize(text: string): string
+
+对字符串进行正则化。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| text | string | 是    | 待正则化的字符串。 |
+
+**返回值：**
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 正则化后的字符串。 |
+
+**示例：**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  ```
+
+
+## NormalizerMode<sup>10+</sup>
+
+表示文本正则化范式的枚举。
+
+**系统能力：** ：SystemCapability.Global.I18n
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NFC | 1 | NFC范式。 |
+| NFD | 2 | NFD范式。 |
+| NFKC | 3 | NFKC范式。 |
+| NFKD | 4 | NFKD范式。 |
 
 
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>

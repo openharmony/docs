@@ -20,7 +20,7 @@ You can use the **\<slot>** tag to create a slot inside a custom component to fi
 The following references the custom component:
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style">Content defined in the parent component</text>
@@ -31,7 +31,7 @@ The following references the custom component:
 
 ## Named Slot
 
-When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the **<name>** attribute.
+When multiple slots are need inside a custom component, you can name them, so that you can specify the slot in which you want to fill content by setting the **\<name>** attribute.
 
 ```html
 <!-- comp.hml -->
@@ -45,7 +45,7 @@ When multiple slots are need inside a custom component, you can name them, so th
 The following references the custom component:
 ```html
 <!-- xxx.hml --> 
- <element name='comp' src='../../common/component/comp.hml'></element>  
+ <element name='comp' src='../common/component/comp.hml'></element>  
  <div class="container">  
    <comp>
      <text class="text-style" slot="second">Fill in the second slot.</text> 

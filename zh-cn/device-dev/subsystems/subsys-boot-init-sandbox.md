@@ -64,7 +64,7 @@ typedef struct {
 2.  修改沙盒JSON文件配置
     - 查看系统组件沙盒配置文件、芯片组件沙盒配置文件，进入/system/etc/sandbox/ 目录下，cat system-sandbox.json ，cat chipset-sandbox.json; 直接修改对应沙盒配置文件， 重新启动。
      对于64位系统，cat system-sandbox64.json ，cat chipset-sandbox64.json。
-    - 代码路径下：base/startup/init_lite/interfaces/innerkits/sandbox 修改对应沙盒配置文件。
+    - 代码路径下：base/startup/init/interfaces/innerkits/sandbox 修改对应沙盒配置文件。
 
 ### 开发实例
 沙盒JSON文件配置<a name = "sandbox"></a>

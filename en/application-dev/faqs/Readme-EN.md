@@ -18,5 +18,4 @@
 - [Native API Usage](faqs-native.md)
 - [Usage of Third- and Fourth-Party Libraries](faqs-third-party-library.md)
 - [IDE Usage](faqs-ide.md)
-- [hdc_std Command Usage](faqs-hdc-std.md)
 - [Development Board](faqs-development-board.md)

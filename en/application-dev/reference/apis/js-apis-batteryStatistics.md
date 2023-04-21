@@ -18,7 +18,7 @@ import batteryStats from '@ohos.batteryStatistics';
 
 getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
-Obtains the power consumption information list, using a promise to return the result.
+Obtains the power consumption information list. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -34,9 +34,9 @@ Obtains the power consumption information list, using a promise to return the re
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
@@ -46,7 +46,7 @@ batteryStats.getBatteryStats()
     console.info('battery statistics info: ' + data);
 })
 .catch(err => {
-    console.error('get battery statisitics failed, err: ' + err);
+    console.error('get battery statistics failed, err: ' + err);
 });
 ```
 
@@ -64,15 +64,15 @@ Obtains the power consumption information list. This API uses an asynchronous ca
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained. If the operation failed, **err** is an error object.|
+| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained (that is, **Array<[BatteryStatsInfo](#batterystatsinfo)>>**). If the operation failed, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
@@ -81,7 +81,7 @@ batteryStats.getBatteryStats((err, data) => {
     if (typeof err === 'undefined') {
         console.info('battery statistics info: ' + data);
     } else {
-        console.error('get battery statisitics failed, err: ' + err);
+        console.error('get battery statistics failed, err: ' + err);
     }
 });
 ```
@@ -112,9 +112,9 @@ Obtains the power consumption of an application.
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
@@ -123,7 +123,7 @@ try {
     var value = batteryStats.getAppPowerValue(10021);
     console.info('battery statistics value of app is: ' + value);
 } catch(err) {
-    console.error('get battery statisitics value of app failed, err: ' + err);
+    console.error('get battery statistics value of app failed, err: ' + err);
 }
 ```
 
@@ -153,9 +153,9 @@ Obtains the proportion of the power consumption of an application.
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
@@ -164,7 +164,7 @@ try {
     var percent = batteryStats.getAppPowerPercent(10021);
     console.info('battery statistics percent of app is: ' + percent);
 } catch(err) {
-    console.error('get battery statisitics percent of app failed, err: ' + err);
+    console.error('get battery statistics percent of app failed, err: ' + err);
 }
 ```
 
@@ -194,18 +194,18 @@ Obtains the power consumption of a hardware unit according to the consumption ty
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
 ```js
 try {
     var value = batteryStats.getHardwareUnitPowerValue(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
-    console.info('battery statistics percent of hardware is: ' + percent);
+    console.info('battery statistics value of hardware is: ' + value);
 } catch(err) {
-    console.error('get battery statisitics percent of hardware failed, err: ' + err);
+    console.error('get battery statistics percent of hardware failed, err: ' + err);
 }
 ```
 
@@ -235,18 +235,18 @@ Obtains the proportion of the power consumption of a hardware unit according to 
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | Operation failed. Cannot connect to service.|
 
 **Example**
 
 ```js
 try {
-    var value = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var percent = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
 } catch(err) {
-    console.error('get battery statisitics percent of hardware failed, err: ' + err);
+    console.error('get battery statistics percent of hardware failed, err: ' + err);
 }
 ```
 

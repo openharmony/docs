@@ -29,6 +29,8 @@ ColumnSplit()
 > 与RowSplit相同，ColumnSplit的分割线最小能拖动到刚好包含子组件。
 >
 > 在真机中查看拖动效果，预览器中不支持拖动。
+>
+> 不支持clip、margin通用属性。
 
 ## 示例
 
@@ -47,6 +49,7 @@ struct ColumnSplitExample {
         Text('4').width('100%').height(50).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
         Text('5').width('100%').height(50).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
       }
+      .borderWidth(1)
       .resizeable(true) // 可拖动
       .width('90%').height('60%')
     }.width('100%')
@@ -54,4 +57,4 @@ struct ColumnSplitExample {
 }
 ```
 
-![zh-cn_image_0000001219982707](figures/zh-cn_image_0000001219982707.gif)
+![zh-cn_image_0000001219982708](figures/zh-cn_image_0000001219982708.gif)

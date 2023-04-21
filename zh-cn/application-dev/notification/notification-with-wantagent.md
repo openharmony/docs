@@ -12,9 +12,8 @@
 
 具体接口描述，详见[WantAgent接口文档](../reference/apis/js-apis-app-ability-wantAgent.md)。
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
+| -------- | -------- |
 | getWantAgent(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | 创建WantAgent。 |
 | trigger(agent:&nbsp;WantAgent,&nbsp;triggerInfo:&nbsp;TriggerInfo,&nbsp;callback?:&nbsp;Callback&lt;CompleteData&gt;):&nbsp;void | 触发WantAgent意图。 |
 | cancel(agent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消WantAgent。 |
@@ -96,7 +95,7 @@
 
    ```typescript
    // 构造NotificationRequest对象
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
        content: {
            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
            normal: {

@@ -16,6 +16,8 @@ Not supported
 
 Rating(options?: { rating: number, indicator?: boolean })
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -28,19 +30,20 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| stars | number | Total number of stars.<br>Default value: **5**|
-| stepSize | number | Step of an operation.<br>Default value: **0.5**|
-| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | **backgroundUri**: image link of the unselected star. You can use the default image or a custom local image.<br>**foregroundUri**: image path of the selected star. You can use the default image or a custom local image.<br>**secondaryUir**: image path of the partially selected star. You can use the default image or a custom local image.|
+| stars | number | Total number of stars.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| stepSize | number | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUir**: image path for the partially selected star. You can use the default system image or a custom image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>For details about the image types supported by the **startStyle** attribute, see [Image](ts-basic-components-image.md).<br>Local and online images are supported, but not **PixelMap** and **Resource** objects.<br>By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.|
-
+| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -95,3 +98,37 @@ struct RatingExample {
 ```
 
 ![rating](figures/rating.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RatingExample {
+  @State rating: number = 3.5
+
+  build() {
+    Column() {
+      Rating({ rating: this.rating, indicator: false })
+        .stars(5)
+        .stepSize(0.5)
+        .starStyle({
+          backgroundUri: '/common/imag1.png', // The common folder is at the same level as pages.
+          foregroundUri: '/common/imag2.png',
+          secondaryUri: '/common/imag3.png'
+        })
+        .margin({ top: 24 })
+        .onChange((value: number) => {
+          this.rating = value
+        })
+      Text('current score is ' + this.rating)
+        .fontSize(16)
+        .fontColor('rgba(24,36,49,0.60)')
+        .margin({ top: 16 })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![rating1](figures/rating1.gif)

@@ -1,4 +1,4 @@
-| Change Type | New Version | Old Version | d.ts File |
+| Change Type | Old Version | New Version | d.ts File |
 | ---- | ------ | ------ | -------- |
 |Permission deleted|Method or attribute name: getDefaultCellularDataSlotId<br>Permission: ohos.permission.GET_NETWORK_INFO|Method or attribute name: getDefaultCellularDataSlotId<br>Permission: N/A|@ohos.telephony.data.d.ts|
 |Permission deleted|Method or attribute name: getDefaultCellularDataSlotId<br>Permission: ohos.permission.GET_NETWORK_INFO|Method or attribute name: getDefaultCellularDataSlotId<br>Permission: N/A|@ohos.telephony.data.d.ts|

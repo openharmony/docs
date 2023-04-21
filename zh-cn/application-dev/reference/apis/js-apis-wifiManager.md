@@ -408,6 +408,8 @@ IP配置信息。
 | caCertAliases | string | 是 | 否 | CA 证书别名。 |
 | caPath | string | 是 | 否 | CA 证书路径。 |
 | clientCertAliases | string | 是 | 否 | 客户端证书别名。 |
+| certEntry | Uint8Array | 是 | 是 | CA 证书内容。 |
+| certPassword | string | 是 | 是 | CA证书密码。 |
 | altSubjectMatch | string | 是 | 否 | 替代主题匹配。 |
 | domainSuffixMatch | string | 是 | 否 | 域后缀匹配。 |
 | realm | string | 是 | 否 | 通行证凭证的领域。 |

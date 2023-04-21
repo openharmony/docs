@@ -3,7 +3,7 @@
 本模块提供对进程运行信息进行查询的能力。
 
 > **说明：** 
-> - 本模块接口从API version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-inner-application-processRunningInformation.md)替代。
+> - 本模块接口从API version 9 开始废弃，建议使用[ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md)替代。
 > - 本模块首批接口从API version 8 开始支持。
 
 ## 属性
@@ -26,8 +26,8 @@
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getProcessRunningInfos().then((data) => {
-    console.log('success:' + JSON.stringify(data));
+    console.log('success: ${JSON.stringify(data)}');
 }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+    console.error('failed: ${JSON.stringify(error)}');
 });
 ```

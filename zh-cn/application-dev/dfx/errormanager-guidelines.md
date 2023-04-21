@@ -12,9 +12,9 @@
 
 | 接口名称                                                       | 说明                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| registerErrorObserver(observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
-| unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
-| unregisterErrorObserver(observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
+| on(type: "error", observer: ErrorObserver): number       | 注册错误监听接口，当系统监测到应用异常时会回调该监听。该接口为同步接口，返回值为注册的监听对象对应的序号。 |
+| off(type: "error", observerId: number,  callback: AsyncCallback\<void\>): void | 以callback的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
+| off(type: "error", observerId: number): Promise\<void\> | 以Promise的形式解除注册监听，传入的number为之前注册监听时返回的序号。  |
 
 当采用callback作为异步回调时，可以在callback中进行下一步处理。当采用Promise对象返回时，可以在Promise对象中类似地处理接口返回值。具体结果码说明见[解除注册结果码](#解除注册结果码)。
 
@@ -24,6 +24,7 @@
 | 接口名称                         | 说明                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
 | onUnhandledException(errMsg: string): void | 系统回调接口，应用注册后，当应用产生未捕获的异常时的回调。 |
+| onException?(errObject: Error): void | 系统回调接口，应用注册后，当应用产生异常上报js层时的回调。 |
 
 
 ### 解除注册结果码
@@ -43,6 +44,13 @@ let registerId = -1;
 let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
+    },
+    onException: function (errorObj) {
+        console.log('onException, name: ', errorObj.name);
+        console.log('onException, message: ', errorObj.message);
+        if (typeof(errorObj.stack) === 'string') {
+            console.log('onException, stack: ', errorObj.stack);
+        }
     }
 }
 

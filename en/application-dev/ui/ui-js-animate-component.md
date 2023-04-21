@@ -34,28 +34,28 @@ Call the **animate** method to obtain an animation object, which supports animat
 ```js
 /* xxx.js */
 export default {
-  data: {
-    animation: '',
-  },
-  onInit() {
-  },
-  onShow() {
-    var options = {
-      duration: 1500,
-    };
-    var frames = [
-      {
-        width:200,height:200,
-      },
-      {
-        width:300,height:300,
-      }
-    ];
-    this.animation = this.$element('content').animate(frames, options);  // Obtain the animation object.
-  },
-  Show() {   
-    this.animation.play();
-  }
+    data: {
+        animation: '',
+        options: {},
+        frames: {}
+    },
+    onInit() {
+        this.options = {
+            duration: 1500,
+        };
+        this.frames = [
+            {
+                width: 200, height: 200,
+            },
+            {
+                width: 300, height: 300,
+            }
+        ];
+    },
+    Show() {
+        this.animation = this.$element('content').animate(this.frames, this.options); // Obtain the animation object.
+        this.animation.play();
+    }
 }
 ```
 
@@ -173,36 +173,36 @@ Set the animation attributes by using the **options** parameter.
 ```js
 /* xxx.js */
 export default {
-  data: {
-    animation: '',
-  },
-  onInit() {
-  },
-  onShow() {
-    var options = {      
-        duration: 1500,      
-        easing: 'ease-in',      
-        delay: 5,      
-        iterations: 2,      
-        direction: 'normal',    
-    };
-    var frames = [
-      {
-        transform: {
-          translate: '-150px -0px'
-        }
-      },
-      {
-        transform: {
-          translate: '150px 0px'
-        }
-      }
-    ];
-    this.animation = this.$element('content').animate(frames, options);
-  },
-  Show() {
-    this.animation.play();
-  }
+    data: {
+        animation: '',
+        options: {},
+        frames: {}
+    },
+    onInit() {
+        this.options = {
+            duration: 1500,
+            easing: 'ease-in',
+            delay: 5,
+            iterations: 2,
+            direction: 'normal',
+        };
+        this.frames = [
+            {
+                transform: {
+                    translate: '-150px -0px'
+                }
+            },
+            {
+                transform: {
+                    translate: '150px 0px'
+                }
+            }
+        ];
+    },
+    Show() {
+        this.animation = this.$element('content').animate(this.frames, this.options);
+        this.animation.play();
+    }
 }
 ```
 

@@ -2,9 +2,9 @@
 
 ## cl.location.1 Deletion of the geoLocationManager.requestEnableLocation API in API Version 9
 
-When the location function is disabled, your application can call the **geoLocationManager.requestEnableLocation** API to request the user to enable the location function. However, this API is seldom used, and user experience for this API is not very good because the user is not notified of the scenario in which your application uses the location information.
+When the location function is disabled, your application can call the **geoLocationManager.requestEnableLocation** API to request the user to enable the location function. However, this API is seldom used because the user is not notified of the scenario in which your application uses the location information.
 
-Therefore, your app shows a popup, asking the user to go to the settings page and enable the location function. In addition, the popup clearly states the scenarios in which the location information will be used, improving user experience.
+Therefore, your application shows a popup, asking the user to go to the settings page and enable the location function. In addition, the popup clearly states the scenarios in which the location information will be used, improving user experience.
 
 **Change Impacts**
 

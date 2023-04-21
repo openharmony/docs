@@ -4,13 +4,16 @@
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
 ```js
 import fs from '@ohos.file.fs';
 ```
+
+## 错误码说明
+
+本模块支持对错误码进行处理，错误码及其适配方式请参考文档：[文件管理错误码](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 使用说明
 
@@ -65,7 +68,7 @@ stat(file: string|number): Promise&lt;Stat&gt;
 **示例：**
 
   ```js
-  let filePath = pathDir + "test.txt";
+  let filePath = pathDir + "/test.txt";
   fs.stat(filePath).then((stat) => {
       console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err) => {
@@ -146,7 +149,7 @@ access(path: string): Promise&lt;boolean&gt;
 
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise对象。返回boolean。 |
+  | Promise&lt;boolean&gt; | Promise对象。返回boolean，表示文件是否存在。 |
 
 **示例：**
 
@@ -205,6 +208,12 @@ accessSync(path: string): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | boolean | 返回boolean，表示文件是否存在。 |
 
 **示例：**
 
@@ -330,8 +339,8 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath).then(() => {
       console.info("copy file succeed");
   }).catch((err) => {
@@ -359,8 +368,8 @@ copyFile(src: string|number, dest: string|number, mode?: number, callback: Async
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err) => {
     if (err) {
       console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
@@ -390,8 +399,8 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
 **示例：**
 
   ```js
-  let srcPath = pathDir + "srcDir/test.txt";
-  let dstPath = pathDir + "dstDir/test.txt";
+  let srcPath = pathDir + "/srcDir/test.txt";
+  let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
   ```
 
@@ -419,7 +428,7 @@ mkdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
       console.info("mkdir succeed");
   }).catch((err) => {
@@ -446,7 +455,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err) => {
     if (err) {
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -474,7 +483,7 @@ mkdirSync(path: string): void
 **示例：**
 
   ```js
-  let dirPath = path + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
 
@@ -600,7 +609,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let buf = new ArrayBuffer(4096);
   fs.read(file.fd, buf).then((readLen) => {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
   }).catch((err) => {
       console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
@@ -635,7 +644,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
-      console.info(String.fromCharCode.apply(null, new Uint8Array(readLen)));
+      console.info(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
       fs.closeSync(file);
     }
   });
@@ -698,7 +707,7 @@ rmdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
       console.info("rmdir succeed");
   }).catch((err) => {
@@ -725,7 +734,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err) => {
     if (err) {
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
@@ -753,7 +762,7 @@ rmdirSync(path: string): void
 **示例：**
 
   ```js
-  let dirPath = pathDir + '/testDir';
+  let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
 
@@ -955,7 +964,7 @@ truncate(file: string|number, len?: number): Promise&lt;void&gt;
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len    | number | 否   | 文件截断后的长度，以字节为单位。 |
+| len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **返回值：**
 
@@ -989,7 +998,7 @@ truncate(file: string|number, len?: number, callback: AsyncCallback&lt;void&gt;)
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
 | file     | string\|number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len      | number                    | 否   | 文件截断后的长度，以字节为单位。 |
+| len      | number                    | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
 **示例：**
@@ -1020,7 +1029,7 @@ truncateSync(file: string|number, len?: number): void
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
-| len    | number | 否   | 文件截断后的长度，以字节为单位。 |
+| len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **示例：**
 
@@ -1214,7 +1223,7 @@ lstatSync(path: string): Stat
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-重命名文件，使用Promise异步回调。
+重命名文件或文件夹，使用Promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1235,7 +1244,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
       console.info("rename succeed");
   }).catch((err) => {
@@ -1247,7 +1256,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-重命名文件，使用callback异步回调。
+重命名文件或文件夹，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1263,7 +1272,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err) => {
     if (err) {
       console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
@@ -1277,7 +1286,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 renameSync(oldPath: string, newPath: string): void
 
-以同步方法重命名文件。
+以同步方法重命名文件或文件夹。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1292,7 +1301,7 @@ renameSync(oldPath: string, newPath: string): void
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/new.txt';
+  let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
   ```
 
@@ -1498,7 +1507,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
       console.info("symlink succeed");
   }).catch((err) => {
@@ -1526,7 +1535,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err) => {
     if (err) {
       console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
@@ -1555,7 +1564,7 @@ symlinkSync(target: string, srcPath: string): void
 
   ```js
   let srcFile = pathDir + "/test.txt";
-  let dstFile = pathDir + '/test';
+  let dstFile = pathDir + "/test";
   fs.symlinkSync(srcFile, dstFile);
   ```
 
@@ -1564,7 +1573,7 @@ listFile(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}): Promise<string[]>;
+}): Promise<string[]>
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Promise异步回调。
 
@@ -1575,7 +1584,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 
@@ -1606,7 +1615,7 @@ listFile(path: string, options?: {
   };
   fs.listFile(pathDir, options).then((filenames) => {
     console.info("listFile succeed");
-    for (let i = 0; i < filenames.size; i++) {
+    for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err) => {
@@ -1619,7 +1628,7 @@ listFile(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}, callback: AsyncCallback<string[]>): void;
+}, callback: AsyncCallback<string[]>): void
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Callback异步回调。
 
@@ -1628,7 +1637,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
   | callback | AsyncCallback&lt;string[]&gt; | 是    | 异步列出文件名数组之后的回调。              |
 
 **options参数说明：**
@@ -1657,20 +1666,20 @@ listFile(path: string, options?: {
       console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
-      for (let i = 0; i < filenames.size; i++) {
+      for (let i = 0; i < filenames.length; i++) {
         console.info("filename: %s", filenames[i]);
       }
     }
   });
   ```
 
-## listFileSync
+## fs.listFileSync
 
 listFileSync(path: string, options?: {
     recursion?: boolean;
     listNum?: number;
     filter?: Filter;
-}): string[];
+}): string[]
 
 以同步方式列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤。
 
@@ -1679,7 +1688,7 @@ listFileSync(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。 |
+  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 
@@ -1710,13 +1719,93 @@ listFileSync(path: string, options?: {
   };
   let filenames = fs.listFileSync(pathDir, options);
   console.info("listFile succeed");
-  for (let i = 0; i < filenames.size; i++) {
+  for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
   }
   ```
-## moveFile
 
-moveFile(src: string, dest: string, mode?: number): Promise<void>;
+## fs.moveDir<sup>10+</sup>
+
+moveDir(src: string, dest: string, mode?: number): Promise\<void>
+
+移动源文件夹至目标路径下，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | 是    | 源文件夹的应用沙箱路径。 |
+  | dest | string | 是    | 目标应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**示例：**
+
+  ```js
+  // move directory from srcPath to destPath/srcPath
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  fs.moveDir(srcPath, destPath, 1).then(() => {
+      console.info("move directory succeed");
+  }).catch((err) => {
+    if (err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
+          " " + err.data[i].destFile);
+      }
+    } else {
+      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    }
+  });
+  ```
+
+## fs.moveDir<sup>10+</sup>
+
+moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
+
+移动源文件夹至目标路径下，使用Callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名    | 类型     | 必填   | 说明                          |
+  | ------ | ------ | ---- | --------------------------- |
+  | src | string | 是    | 源文件夹的应用沙箱路径。 |
+  | dest | string | 是    | 目标应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件夹之后的回调。              |
+
+**示例：**
+
+  ```js
+  // move directory from srcPath to destPath/srcPath
+  let srcPath = pathDir + "/srcDir/";
+  let destPath = pathDir + "/destDir/";
+  fs.moveDir(srcPath, destPath, 1, (err) => {
+    if (err && err.code == 13900015) {
+      for (let i = 0; i < err.data.length; i++) {
+        console.info("move directory failed with conflicting files: " + err.data[i].srcFile +
+          " " + err.data[i].destFile);
+      }
+    } else if (err) {
+      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("move directory succeed");
+    }  
+  });
+  ```
+
+## fs.moveFile
+
+moveFile(src: string, dest: string, mode?: number): Promise\<void>
 
 移动文件，使用Promise异步回调。
 
@@ -1730,9 +1819,17 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
   | dest | string | 是    | 目的文件的应用沙箱路径。 |
   | mode | number | 否    | 移动模式。若mode为0，移动位置存在同名文件时，强制移动覆盖。若mode为1，移动位置存在同名文件时，抛出异常。默认为0。 |
 
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
       console.info("move file succeed");
   }).catch((err) => {
@@ -1740,9 +1837,9 @@ moveFile(src: string, dest: string, mode?: number): Promise<void>;
   });
   ```
 
-## moveFile
+## fs.moveFile
 
-moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>): void;
+moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>): void
 
 移动文件，使用Callback异步回调。
 
@@ -1760,6 +1857,8 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err) => {
     if (err) {
       console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
@@ -1769,9 +1868,9 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback<void>
   });
   ```
 
-## moveFileSync
+## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void;
+moveFile(src: string, dest: string, mode?: number): void
 
 以同步方式移动文件。
 
@@ -1788,6 +1887,8 @@ moveFile(src: string, dest: string, mode?: number): void;
 **示例：**
 
   ```js
+  let srcPath = pathDir + "/source.txt";
+  let destPath = pathDir + "/dest.txt";
   fs.moveFileSync(srcPath, destPath, 0);
   console.info("move file succeed");
   ```
@@ -2063,11 +2164,83 @@ fdopenStreamSync(fd: number, mode: string): Stream
   fs.closeSync(file);
   ```
 
+## fs.createWatcher<sup>10+</sup>
+
+createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
+
+创建Watcher对象，用来监听文件或目录变动。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | path   | string | 是    | 监听文件或目录的沙箱路径。                             |
+  | events | number | 是    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，打开进行写操作的文件被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，打开未进行写操作的文件或目录被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。|
+  | listener   | WatchEventListener | 是    | 监听事件发生后的回调。监听事件每发生一次，回调一次。                             |
+
+**返回值：**
+
+  | 类型                | 说明        |
+  | ------------------ | --------- |
+  | [Watcher](#watcher10) | 返回Watcher对象。 |
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent) => {
+    if (watchEvent.event == 0x2) {
+      console.info(watchEvent.fileName + 'was modified');
+    } else if (watchEvent.event == 0x10) {
+      console.info(watchEvent.fileName + 'was closed');
+    }
+  });
+  watcher.start();
+  fs.writeSync(file.fd, 'test');
+  fs.closeSync(file);
+  watcher.stop();
+  ```
+
+## WatchEventListener<sup>10+</sup>
+
+(event: WatchEvent): void
+
+事件监听类。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | event   | WatchEvent | 是    | 回调的事件类。                             |
+ 
+## WatchEvent<sup>10+</sup>
+
+事件类
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| fileName | string | 是    | 否    | 发生监听事件的文件名。 |
+| event | number | 是    | 否    | 发生的监听事件。与[createWatcher](#fscreatewatcher10)中events事件集一致。 |
+| cookie | number | 是    | 否    | 绑定相关事件的cookie。当前仅支持事件IN_MOVED_FROM与IN_MOVED_TO，同一个文件的移动事件IN_MOVED_FROM和IN_MOVED_TO具有相同的cookie值。 |
+
 ## Stat
 
 文件具体信息，在调用Stat的方法前，需要先通过[stat()](#fsstat)方法（同步或异步）来构建一个Stat实例。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 ### 属性
 
@@ -2506,7 +2679,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   let buf = new ArrayBuffer(4096);
   ss.read(buf, {offset: 5, length: 5}).then((readLen) => {
     console.info("read data succeed");
-    console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+    console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
   }).catch((err) => {
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -2540,7 +2713,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
       console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read data succeed");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(buf)));
+      console.log(String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen))));
     }
   });
   ```
@@ -2588,7 +2761,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
 
 ### lock
 
-lock(exclusive?: boolean): Promise<void>;
+lock(exclusive?: boolean): Promise\<void>
 
 文件阻塞式施加共享锁或独占锁，使用Promise异步回调。
 
@@ -2619,7 +2792,7 @@ lock(exclusive?: boolean): Promise<void>;
 
 ### lock
 
-lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
+lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
 
 文件阻塞式施加共享锁或独占锁，使Callback异步回调。
 
@@ -2647,7 +2820,7 @@ lock(exclusive?: boolean, callback: AsyncCallback<void>): void;
 
 ### tryLock
 
-tryLock(exclusive?: boolean): void;
+tryLock(exclusive?: boolean): void
 
 文件非阻塞式施加共享锁或独占锁。
 
@@ -2669,7 +2842,7 @@ tryLock(exclusive?: boolean): void;
 
 ### unlock
 
-unlock(): void;
+unlock(): void
 
 以同步方式给文件解锁。
 
@@ -2682,6 +2855,48 @@ unlock(): void;
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
+  ```
+
+## Watcher<sup>10+</sup>
+
+文件目录变化监听对象。由createWatcher接口获得。
+
+### start<sup>10+</sup>
+
+start(): void
+
+开启监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
+  ```
+
+### stop<sup>10+</sup>
+
+stop(): void
+
+停止监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**示例：**
+
+  ```js
+  let filePath = pathDir + "/test.txt";
+  let watcher = fs.createWatcher(filePath, 0xfff, () => {});
+  watcher.start();
+  watcher.stop();
   ```
 
 ## OpenMode

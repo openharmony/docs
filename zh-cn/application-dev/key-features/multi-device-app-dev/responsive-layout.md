@@ -24,8 +24,8 @@
   | 断点名称 | 取值范围（vp） | 
 | -------- | -------- |
 | xs | [0,&nbsp;320） | 
-| sm | [320,&nbsp;520) | 
-| md | [520,&nbsp;840) | 
+| sm | [320,&nbsp;600) | 
+| md | [600,&nbsp;840) | 
 | lg | [840,&nbsp;+∞) | 
 
 > **说明：**
@@ -48,7 +48,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state-mgmt-application-level.md)记录当前的断点值方便后续使用。
+1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
@@ -66,7 +66,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
        let newBp: string = ''
        if (windowWidthVp < 320) {
          newBp = 'xs'
-       } else if (windowWidthVp < 520) {
+       } else if (windowWidthVp < 600) {
          newBp = 'sm'
        } else if (windowWidthVp < 840) {
          newBp = 'md'
@@ -133,7 +133,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/ui-ts-layout-mediaquery.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
 
 
 > **说明：**
@@ -209,9 +209,9 @@ export class BreakpointSystem {
   }
 
   public register() {
-    this.smListener = mediaquery.matchMediaSync("(320vp<width<520vp)")
+    this.smListener = mediaquery.matchMediaSync("(320vp<width<600vp)")
     this.smListener.on("change", this.isBreakpointSM)
-    this.mdListener = mediaquery.matchMediaSync("(520vp<width<840vp)")
+    this.mdListener = mediaquery.matchMediaSync("(600vp<width<840vp)")
     this.mdListener.on("change", this.isBreakpointMD)
     this.lgListener = mediaquery.matchMediaSync("(840vp<width)")
     this.lgListener.on("change", this.isBreakpointLG)
@@ -317,7 +317,7 @@ struct GridRowSample1 {
   @State private currentBreakpoint: string = 'unknown'
   build() {
     // 修改断点的取值范围同时启用更多断点，注意，修改的断点值后面必须加上vp单位。
-    GridRow(breakpoints: {value: ['600vp', '700vp', '800vp', '900vp', '1000vp'],
+    GridRow({breakpoints: {value: ['600vp', '700vp', '800vp', '900vp', '1000vp'],
       reference: BreakpointsReference.WindowSize}}) {
       GridCol({span:{xs: 12, sm: 12, md: 12, lg:12, xl: 12, xxl:12}}) {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -597,7 +597,7 @@ struct GridRowSample6 {
 **示例7：**
 
 
-通过order属性，控制GridCol的顺序。在sm和md断点下，按照至6的顺序排列显示；在lg断点下，按照6至1的顺序排列显示。
+通过order属性，控制GridCol的顺序。在sm和md断点下，按照1至6的顺序排列显示；在lg断点下，按照6至1的顺序排列显示。
 
 
   | sm | md | lg | 

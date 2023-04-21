@@ -1,6 +1,10 @@
 # Advanced Notification Manager
 
-The Advanced Notification Manager provides the notification debugging and testing capabilities that enable you to print notifications and set notification parameters. With this tool, you can send commands (started with **anm**) in the hdc shell to perform various system operations, such as printing notification details, setting the number of cached notifications, and enabling the notification capability.
+The Advanced Notification Manager enables you to print notifications and set notification parameters. It provides the notification debugging and testing capabilities, for example, printing published notification details, setting the number of notification caches, and enabling the notification functionality.
+
+> **NOTE**
+>
+> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
 
 ### help
 

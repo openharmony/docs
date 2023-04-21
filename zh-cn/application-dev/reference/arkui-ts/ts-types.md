@@ -122,9 +122,17 @@
 | 类型                                      | 说明                                             |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | 颜色枚举值。                                       |
-| number                                   | HEX格式颜色。                                      |
-| string                                   | rgb或者rgba格式颜色。                              |
+| number                                   | HEX格式颜色，支持rgb。                                      |
+| string                                   | rgb或者argb格式颜色。                              |
 | [Resource](#resource)                    | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
+
+## ColoringStrategy
+
+智能取色枚举类型，用于设置前景色。
+
+| 名称        | 描述      |
+| ---------  | ------- |
+| INVERT  | 设置前景色为控件背景色的反色。|
 
 ## LengthConstrain
 
@@ -216,3 +224,13 @@
 | ------------- | ---------------------- | ---------------------------------------- |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder)。 |
 
+## PixelStretchEffectOptions<sup>10+</sup>
+
+像素扩展属性集合,用于描述像素扩展的信息。
+
+| 名称          | 类型     | 必填   | 说明         |
+| ----------- | ------ | ---- | ---------- |
+| left     | [Length](#length) | 否    | 组件图像左边沿扩展距离。 |
+| right    | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
+| top  | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
+| bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |

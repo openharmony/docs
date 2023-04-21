@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | muted     | boolean                                  | Whether to mute the video.<br>Default value: **false**         |
 | autoPlay  | boolean                                  | Whether to enable auto play.<br>Default value: **false**       |
 | controls  | boolean                                  | Whether to display the video playback control bar.<br>Default value: **true**|
-| objectFit | [ImageFit](ts-basic-components-image.md) | Video scale type.<br>Default value: **Cover**     |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | Video scale type.<br>Default value: **Cover**     |
 | loop      | boolean                                  | Whether to repeat the video.<br>Default value: **false**   |
 
 ## Events
@@ -118,9 +118,9 @@ Requests full-screen mode.
 
 **Parameters**
 
-| Name  | Type   | Mandatory  | Description                 |
-| ----- | ------- | ---- | --------------------- |
-| value | boolean | Yes   | Whether the playback is in full-screen mode.<br>Default value: **false**|
+| Name| Type| Mandatory| Description                                          |
+| ------ | -------- | ---- | -------------------------------------------------- |
+| value  | boolean  | Yes  | Whether to play the video in full screen mode within the application window.<br>Default value: **false**|
 
 ### exitFullscreen
 
@@ -173,7 +173,7 @@ struct VideoCreateComponent {
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
         controller: this.controller
-      }).width(800).height(600)
+      }).width('100%').height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
         .onStart(() => {
@@ -186,7 +186,7 @@ struct VideoCreateComponent {
           console.info('onFinish')
         })
         .onError(() => {
-          console.info('onFinish')
+          console.info('onError')
         })
         .onPrepared((e) => {
           console.info('onPrepared is ' + e.duration)
@@ -243,5 +243,3 @@ struct VideoCreateComponent {
   }
 }
 ```
-
-<!--no_check-->

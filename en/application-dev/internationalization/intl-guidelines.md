@@ -2,7 +2,7 @@
 
 The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402. For more details about APIs and their usage, see [intl](../reference/apis/js-apis-intl.md).
 
-The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
+The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
 ## Setting Locale Information
 
@@ -25,7 +25,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiates a **Locale** object.
@@ -100,7 +100,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **DateTimeFormat** object.
@@ -111,7 +111,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions).
+     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9).
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
@@ -150,7 +150,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let resolvedOptions = dateTimeFormat.resolvedOptions(); // resolvedOptions = {"locale": "zh-CN", "calendar": "gregorian", "dateStyle":"full", "timeStyle":"full", "timeZone": "CST"}
    ```
 
-## Number Formatting
+## Formatting Numbers
 
 [NumberFormat](../reference/apis/js-apis-intl.md#numberformat) provides APIs to implement the number formatting specific to a locale.
 
@@ -170,7 +170,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **NumberFormat** object.
@@ -181,7 +181,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions).
+     Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9).
    
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
@@ -195,7 +195,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
    let numberFormat = new Intl.NumberFormat("zh-CN", options);
-   let number = 1234.5678
+   let number = 1234.5678;
    let formatResult = numberFormat.format(number); // formatResult = "1235"
    ```
 
@@ -209,7 +209,7 @@ The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities throug
    let resolvedOptions = numberFormat.resolvedOptions();  // resolvedOptions = {"locale": "zh-CN", "compactDisplay": "short", "notation": "compact", "numberingSystem": "Latn"}
    ```
 
-## String Sorting
+## Sorting Strings
 
 Users in different regions have different requirements for string sorting. [Collator](../reference/apis/js-apis-intl.md#collator8) provides APIs to sort character strings specific to a locale.
 
@@ -229,7 +229,7 @@ Users in different regions have different requirements for string sorting. [Coll
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **Collator** object.
@@ -240,7 +240,7 @@ Users in different regions have different requirements for string sorting. [Coll
    let collator = new Intl.Collator();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
+     Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
      The **sensitivity** parameter is used to specify the levels of differences that will be used for string comparison. The value **base** indicates that only characters are compared, but not the accent and capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **accent** indicates that the accent is considered, but not the capitalization. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **case** indicates that the capitalization is considered, but the accent. For example, 'a' != 'b', 'a' == '', 'a'=='A'. The value **variant** indicates that the accent and capitalization are considered. For example, 'a' != 'b', 'a' == '', 'a'=='A'.
    
    ```js
@@ -290,7 +290,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **PluralRules** object.
@@ -301,7 +301,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let pluralRules = new Intl.PluralRules();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8).
+     Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
    
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -313,11 +313,11 @@ According to grammars in certain languages, the singular or plural form of a nou
      
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
-   let number = 1234.5678
+   let number = 1234.5678;
    let categoryResult = pluralRules.select(number); // categoryResult = "other"
    ```
 
-## Formatting Relative Time
+## Formatting the Relative Time
 
 [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) provides APIs to format the relative time for a specific locale.
 
@@ -338,7 +338,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    Importing an incorrect bundle can lead to unexpected API behavior.
    
    ```js
-   import Intl from '@ohos.intl'
+   import Intl from '@ohos.intl';
    ```
 
 2. Instantiate a **RelativeTimeFormat** object.
@@ -349,7 +349,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8).
+     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
    
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
@@ -362,7 +362,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatResult = relativeTimeFormat.format(number, unit); // 2 years later
    ```
 
@@ -373,7 +373,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let number = 2;
-   let unit = "year"
+   let unit = "year";
    let formatPartsResult = relativeTimeFormat.formatToParts(number, unit); // formatPartsResult = [{"type": "integer", "value": "2", "unit": "year"}, {"type":"literal", "value": "years later"}]
    ```
 
@@ -385,11 +385,3 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
-
--[`International`: Internationalization (ArkTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)

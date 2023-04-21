@@ -6,7 +6,7 @@ When adding a module, you must declare its dependencies in **BUILD.gn**. **deps*
 
 **Dependency Types**
 
-![Dependency Types](figure/dependency_types.png)
+![Dependency Types](figures/dependency_types.png)
 
 The dependency between modules can be classified into **deps** (left in the figure above) and **external_deps** (right in the figure above).
 
@@ -55,8 +55,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                     # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
-    part_name = "part2"   # (Mandatory) Name of the component to which the module belongs.
+    ]                      # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
+    part_name = "part2"    # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -64,17 +64,21 @@ The dependency between modules can be classified into **deps** (left in the figu
 
 ## Using Sanitizer
 
-When adding a module, you can enable the Sanitizer, such as the integer overflow check and control-flow integrity (CFI), provided by the compiler as required. You can also enable the debug or release mode and configure a blocklist. Each configuration item is optional. It is **false** by default. You can also leave it empty. 
+When adding a module, you can enable the Sanitizer, such as the integer overflow check and control-flow integrity (CFI), provided by the compiler as required. You can also enable the debug or release mode and configure a blocklist. Each configuration item is optional and **false** by default. You can also leave it empty. 
 
 Sanitizer configuration example:
 
 ``` shell
   ohos_shared_library("example") {
     sanitize = {
-      cfi = true
-      integer_overflow = true                
-      debug = true                           # Optional. The debug mode is disabled by default.
-      blocklist = "./blocklist.txt"          # Optional. Enter the path of the blocklist.
+      cfi = true                            # Enable the CFI check.
+      cfi_cross_dso = true                  # Enable the cross-DSO CFI check.
+      integer_overflow = true               # Enable the integer overflow check.
+      boundary_sanitize = true              # Enable the bounds check.
+      ubsan = true                          # Enable some UBSAN options.
+      all_ubsan = true                      # Enable all UBSAN options.
+      debug = true                          # Enable the debug mode, which is disabled by default.
+      blocklist = "./blocklist.txt"         # Path of the blocklist.
     }
     ...
   }
@@ -82,10 +86,13 @@ Sanitizer configuration example:
 
 **Supported Sanitizer Types**
 
-Currently, the following two types of Sanitizers are supported:
+Currently, Sanitizers provides the following functions:
 
-- Integer overflow check: provides check of unsigned integer overflow (unsigned_integer_overflow), check of signed integer overflow (signed_integer_overflow), or both (integer_overflow).
-- CFI: prevents malware attacks from redirecting the control flow of a program.
+- **integer_overflow**: provides check of unsigned integer overflow (unsigned_integer_overflow), check of signed integer overflow (signed_integer_overflow), or both (integer_overflow).
+- CFI: provides CFI and cross-DSO CFI checks.
+- **boundary_sanitize**: provides the bounds check.
+- **ubsan**: checks some Undefined Behavior Sanitizer (UBSAN) options, including **bool**, **integer-divide-by-zero**, **return**, **returns-nonnull-attribute**, **shift-exponent**, **unreachable**, and **vla-bound**.
+- **all_ubsan**: checks all UBSAN options.
 
 **Release and Debug Modes**
 
@@ -94,6 +101,7 @@ Currently, the following two types of Sanitizers are supported:
 - Debug mode: If debug mode is enabled, abundant error-related information is provided to help locate faults. When an error occurs, the application will be resumed instead of being interrupted to further identify subsequent errors.
 
 - Release mode: If release mode is enabled, the application will be directly interrupted when an error occurs. This can protect the system against errors or maliciously attacks.
+
 
 **Blocklist**
 
@@ -179,7 +187,7 @@ The **out/rk3568/.ninja_log** file records the build start time and end time (ms
 
 The four columns are start time, end time, modified timestamp (mtime), and command hash from left to right.
 
-![Ninja_Trace](figure/Ninja_Trace.png)
+![Ninja_Trace](figures/Ninja_Trace.png)
 
 You can graphically display the build time as follows:
 
@@ -190,3 +198,69 @@ You can graphically display the build time as follows:
   1. Click **Success** under **Static Check**.
 
   2. Click **Output** in the **Output** column. The **build.trace.html** file is displayed in the **build_trace** column on the left. Click the file to open it.
+
+## Customizing the chip_prod Image
+
+### When to Use
+
+The different capabilities for the products in the same chip solution are placed in the **chip_prod** partition. You need to generate the **chip_prod.img** specific to the product.
+
+### Procedure
+1. Configure the **config.json** file.
+   
+   In the **config.json** file, add **chipprod_config_path**, which specifies the path of the product definition file.
+   The file is named **chip_product_list.gni**, and in the **chip_product_list = ["productA", "productB", ...]** format.
+   
+   Example:
+   
+   To customize **chip_prod.img** for **MyProduct**, modify the **//vendor/Product vendor/MyProduct/config.json** as follows:
+   
+   ```shell
+	{
+        "product_name": "MyProduct",                                 # Product name.
+        "version": "3.0",                                            # config.json version, which is 3.0.
+        "chipprod_config_path": "",                                  # (Optional) Path of the chipprod configuration file.
+   "subsystems": [
+          {
+            "subsystem": "arkui",                                    # Subsystem of the product. 
+            "components": [
+              {
+                  "component": "ace_engine",
+                  "features":[ "ace_engine_feature_enable_web = true",
+                    "ace_engine_feature_enable_accessibility = true" ] }   
+            ]
+          },
+          {
+           ...
+          }
+         ...
+      More subsystems and components.
+        }
+   }
+   ```
+   
+2. Configure the module.
+
+   If the configuration file has different product configurations, for example, to generate **chip_prod.img** for product A, you need to configure **install_images** and **module_install_dir** for module compilation.
+
+   The following uses **ohos_prebuilt_executable** as an example:
+
+   ```shell
+   ohos_prebuilt_executable("moduleXXX"){
+   install_images = [ "chip_prod" ]
+   module_install_dir = "productA/etc/***"     # The path must start with productA.
+   }
+   ```
+
+3. Run the build command.
+```shell
+./build.sh --product-name {product_name} --build-target chip_prod_image
+```
+
+4. Generate the images.
+   If products A and B are defined (**chip_product_list = ["productA", "productB"]**) and a module is installed in the products, the following images are generated:
+   
+   ```
+   images/productA/chip_prod.img
+   images/productB/chip_prod.img
+   ```

@@ -22,28 +22,28 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| path   | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | path   | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description          |
-| --------------------- | -------------- |
-| Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+  | Type                 | Description          |
+  | --------------------- | -------------- |
+  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
 
 **Example**
 
   ```js
   let path = "/dev";
-  statfs.getFreeSize(path).then((number) => {
+  statvfs.getFreeSize(path).then((number) => {
     console.info("getFreeSize promise successfully, Size: " + number);
   }).catch((err) => {
     console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getFreeSize
+## statvfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -53,16 +53,16 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
 
 **Example**
 
   ```js
   let path = "/dev";
-  statfs.getFreeSize(path, (err, number) => {
+  statvfs.getFreeSize(path, (err, number) => {
     if (err) {
       console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -71,7 +71,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
   });
   ```
 
-## statfs.getTotalSize
+## statvfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -81,28 +81,28 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ---- | ------ | ---- | ---------------------------- |
-| path | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ---- | ------ | ---- | ---------------------------- |
+  | path | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description        |
-| --------------------- | ------------ |
-| Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
 
 **Example**
 
   ```js
   let path = "/dev";
-  statfs.getTotalSize(path).then((number) => {
+  statvfs.getTotalSize(path).then((number) => {
     console.info("getTotalSize promise successfully, Size: " + number);
   }).catch((err) => {
     console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
-## statfs.getTotalSize
+## statvfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -112,16 +112,16 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
 
 **Example**
 
   ```js
   let path = "/dev";
-  statfs.getTotalSize(path, (err, number) => {
+  statvfs.getTotalSize(path, (err, number) => {
     if (err) {
       console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
     } else {

@@ -17,6 +17,7 @@ This component contains the child component **[\<GridItem>](ts-container-gridite
 Grid(scroller?: Scroller)
 
 **Parameters**
+
 | Name      | Type                                    | Mandatory  | Description                   |
 | --------- | ---------------------------------------- | ---- | ----------------------- |
 | scroller  | [Scroller](ts-container-scroll.md#scroller) | No   | Scroller, which can be bound to scrollable components.|

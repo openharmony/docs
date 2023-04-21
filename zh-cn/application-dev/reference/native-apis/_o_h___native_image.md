@@ -20,7 +20,7 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [native_image.h](native__image_8h.md) | 定义获取和使用NativeImage的相关函数。 |
+| [native_image.h](native__image_8h.md) | 定义获取和使用NativeImage的相关函数。<br>引用文件：<native_image/native_image.h> |
 
 
 ### 函数

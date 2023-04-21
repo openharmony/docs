@@ -67,6 +67,7 @@ ohos_shared_library("helloworld") {
   sanitize = {
     # 各个Sanitizer开关
     cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
     integer_overflow = [boolean]  # 整数溢出检测
     boundary_sanitize = [boolean] # 边界检测
     ubsan = [boolean]             # 部分ubsan选项
@@ -114,6 +115,7 @@ ohos_static_library("helloworld") {
   sanitize = {
     # 各个Sanitizer开关
     cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
     integer_overflow = [boolean]  # 整数溢出检测
     boundary_sanitize = [boolean] # 边界检测
     ubsan = [boolean]             # 部分ubsan选项
@@ -152,6 +154,7 @@ ohos_executable("helloworld") {
   sanitize = {
     # 各个Sanitizer开关
     cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
     integer_overflow = [boolean]  # 整数溢出检测
     boundary_sanitize = [boolean] # 边界检测
     ubsan = [boolean]             # 部分ubsan选项
@@ -201,6 +204,7 @@ ohos_source_set("helloworld") {
   sanitize = {
     # 各个Sanitizer开关
     cfi = [boolean]               # 控制流完整性检测
+    cfi_cross_dso = [boolean]     # 开启跨so调用的控制流完整性检测
     integer_overflow = [boolean]  # 整数溢出检测
     boundary_sanitize = [boolean] # 边界检测
     ubsan = [boolean]             # 部分ubsan选项

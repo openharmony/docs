@@ -185,7 +185,7 @@ OpenHarmony归档组织地址：[https://gitee.com/openharmony-retired](https://
 
 ## 示例教程
 
-Samples：[示例代码](https://gitee.com/openharmony/app_samples)
+Samples：[示例代码](https://gitee.com/openharmony/applications_app_samples)
 
 Codelabs：[教程指导](https://gitee.com/openharmony/codelabs)
 

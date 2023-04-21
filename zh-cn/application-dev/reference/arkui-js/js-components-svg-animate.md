@@ -75,7 +75,7 @@
 <div class="container">
   <svg width="400" height="400">
     <rect x="20" y="20" width="100" height="100" fill="red" rx="0" ry="20">
-      <animate attributeName="rx" values="0;30" dur="1000" repeatCount="10" fill="freeze" calcMode="linear"></animate>
+      <animate attributeName="rx" values="0;30" dur="1000" repeatCount="indefinite" fill="freeze" calcMode="linear"></animate>
     </rect>
   </svg>
 </div>

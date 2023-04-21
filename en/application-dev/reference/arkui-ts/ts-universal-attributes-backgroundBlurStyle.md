@@ -10,17 +10,16 @@ You can apply background blur effects to a component.
 
 ## Attributes
 
-| Name                 | Type                    | Description                    |
+| Name                 | Parameter                    | Description                    |
 | -------------------- | ----------------------- | ------------------------ |
-| backgroundBlurStyle  | [BlurStyle](#blurstyle) | Style of the blur between the background and content for the current component. The input parameter indicates a blur material.|
+| backgroundBlurStyle  | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10) | Background blur style applied between the content and the background.<br>**value**: settings of the background blur style, including the blur radius, mask color, mask opacity, and saturation.<br>**options**: background blur options. This parameter is optional.<br>This API is supported in ArkTS widgets.|
+ 
+## BackgroundBlurStyleOptions<sup>10+</sup>
 
-## BlurStyle
-
-  | Name      | Description     |
-  | ------- | ---------- |
-  | Thin    | Thin material.    |
-  | Regular | Regular material. |
-  | Thick   | Thick material.      |
+| Name| Type| Mandatory| Description|
+| ----------- | ------| ------ | ------ |
+| colorMode<sup>10+</sup> | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No| Color mode used for the background blur.<br>Default value: **ThemeColorMode.System**|
+| adaptiveColor<sup>10+</sup> | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | No| Adaptive color mode.<br>Default value: **AdaptiveColor.Default**|
 
 ## Example
 
@@ -28,16 +27,16 @@ You can apply background blur effects to a component.
 // xxx.ets
 @Entry
 @Component
-struct Index {
+struct BackgroundBlurStyleDemo {
   build() {
     Column() {
       Row() {
         Text("Thin Material")
       }
-      .width(350)
-      .height(300)
-      .backgroundBlurStyle(BlurStyle.Thin)
-      .position({ x: "15%", y: "30%" })
+      .width('50%')
+      .height('50%')
+      .backgroundBlurStyle(BlurStyle.Thin, { colorMode: ThemeColorMode.Light, adaptiveColor: AdaptiveColor.Default })
+      .position({ x: '15%', y: '30%' })
     }
     .height('100%')
     .width('100%')

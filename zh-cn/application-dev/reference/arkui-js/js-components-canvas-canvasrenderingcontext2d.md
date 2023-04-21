@@ -584,7 +584,7 @@ fillRect(x: number, y: number, width:number, height: number): void
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
 ```
 
@@ -620,7 +620,7 @@ clearRect(x: number, y: number, width:number, height: number): void
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 500px; height: 500px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1025,7 +1025,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 

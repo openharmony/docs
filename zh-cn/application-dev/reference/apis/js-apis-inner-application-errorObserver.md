@@ -22,15 +22,53 @@ onUnhandledException(errMsg: string): void;
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-    }
-}
+  onUnhandledException(errorMsg) {
+    console.error('onUnhandledException, errorMsg: ', errorMsg);
+  }
+};
 
 try {
-    errorManager.on("error", observer);
+    errorManager.on('error', observer);
 } catch (error) {
-    console.log('registerErrorObserver' + ' failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+    console.error('registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}');
+}
+```
+
+## ErrorObserver.onException
+
+onException?(errObject: Error): void;
+
+将在应用运行异常时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| errObject | Error | 是 | 有关异常事件名字、消息和错误堆栈信息的对象。 |
+
+**示例：**
+
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+
+let observer = {
+  onUnhandledException(errorMsg) {
+    console.error('onUnhandledException, errorMsg: ', errorMsg);
+  },
+  onException(errorObj) {
+    console.log('onException, name: ', errorObj.name);
+    console.log('onException, message: ', errorObj.message);
+    if (typeof(errorObj.stack) === 'string') {
+        console.log('onException, stack: ', errorObj.stack);
+    }
+  }
+};
+
+try {
+    errorManager.on('error', observer);
+} catch (error) {
+    console.error('registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}');
 }
 ```

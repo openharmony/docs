@@ -189,7 +189,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
         OH_Drawing_CreateFontCollection());
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
     // 设置文字内容
-    const char* text = "OpenHarmony\n";
+    const char* text = "Hello World\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);

@@ -18,7 +18,8 @@ UIAbilityContext是[UIAbility](js-apis-app-ability-uiAbility.md)的上下文环�
 | config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。 |
 
 > **关于示例代码的说明：**
-> - 本文档中的示例，通过this.context获取UIAbilityContext，this代表的是继承自UIAbility的UIAbility实例，若需要在页面中使用UIAbilityContext的能力，请参照[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)
+>
+> 在本文档的示例中，通过`this.context`来获取`UIAbilityContext`，其中`this`代表继承自`UIAbility`的`UIAbility`实例。如需要在页面中使用`UIAbilityContext`提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## UIAbilityContext.startAbility
 
@@ -28,7 +29,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -58,30 +59,30 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
 
-  try {
-    this.context.startAbility(want, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbility(want, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbility
@@ -92,7 +93,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -123,34 +124,34 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let options = {
-    windowMode: 0
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0
+};
 
-  try {
-    this.context.startAbility(want, options, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbility(want, options, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbility
@@ -161,7 +162,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -197,33 +198,33 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
-  let options = {
-    windowMode: 0,
-  };
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
 
-  try {
-    this.context.startAbility(want, options)
-      .then(() => {
-        // 执行正常业务
-        console.log('startAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbility(want, options)
+    .then(() => {
+      // 执行正常业务
+      console.info('startAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbilityForResult
@@ -237,7 +238,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -267,31 +268,31 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
 
-  try {
-    this.context.startAbilityForResult(want, (error, result) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode)
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResult(want, (err, result) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityForResult succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbilityForResult
@@ -300,12 +301,12 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 启动一个Ability。Ability被启动后，有如下情况(callback形式):
  - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死Ability会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式, 不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -336,34 +337,34 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let options = {
-    windowMode: 0,
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
 
-  try {
-    this.context.startAbilityForResult(want, options, (error, result) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode)
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResult(want, options, (err, result) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityForResult succeed');
+  });
+} catch (paramError) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -378,7 +379,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -415,32 +416,32 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
 let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
 };
 let options = {
-    windowMode: 0,
+  windowMode: 0,
 };
 
 try {
-    this.context.startAbilityForResult(want, options)
-        .then((result) => {
-        // 执行正常业务
-        console.log("startAbilityForResult succeed, result.resultCode = " + result.resultCode);
+  this.context.startAbilityForResult(want, options)
+    .then((result) => {
+      // 执行正常业务
+      console.info('startAbilityForResult succeed');
     })
-        .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-                    ' error.message: ' + JSON.stringify(error.message));
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
     });
-} catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(paramError.code) +
-                ' error.message: ' + JSON.stringify(paramError.message));
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
 
@@ -452,7 +453,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -487,33 +488,32 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.startAbilityForResultWithAccount(want, accountId, (error, result) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-      result.resultCode + ' result.want = ' + JSON.stringify(result.want))
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResultWithAccount(want, accountId, (err, result) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityForResultWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -525,7 +525,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -561,35 +561,35 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
-  let options = {
-    windowMode: 0
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
+let options = {
+  windowMode: 0
+};
 
-  try {
-    this.context.startAbilityForResultWithAccount(want, accountId, options, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log("startAbilityForResultWithAccount succeed")
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResultWithAccount(want, accountId, options, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityForResultWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -601,7 +601,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -642,36 +642,35 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
-  let options = {
-    windowMode: 0
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
+let options = {
+  windowMode: 0
+};
 
-  try {
-    this.context.startAbilityForResultWithAccount(want, accountId, options)
-      .then((result) => {
-        // 执行正常业务
-        console.log("startAbilityForResultWithAccount succeed, result.resultCode = " +
-        result.resultCode)
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityForResultWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResultWithAccount(want, accountId, options)
+    .then((result) => {
+      // 执行正常业务
+      console.info('startAbilityForResultWithAccount succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 ## UIAbilityContext.startServiceExtensionAbility
 
@@ -703,31 +702,31 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
 
-  try {
-    this.context.startServiceExtensionAbility(want, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
+try {
+  this.context.startServiceExtensionAbility(want)
+    .then(() => {
       // 执行正常业务
-      console.log('startServiceExtensionAbility succeed');
+      console.info('startServiceExtensionAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startServiceExtensionAbility
@@ -759,31 +758,31 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
 
-  try {
-    this.context.startServiceExtensionAbility(want)
-      .then(() => {
-        // 执行正常业务
-        console.log('startServiceExtensionAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startServiceExtensionAbility(want)
+    .then(() => {
+      // 执行正常业务
+      console.info('startServiceExtensionAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (paramError) {
+  // 处理入参错误异常
+  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
@@ -819,32 +818,32 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startServiceExtensionAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startServiceExtensionAbilityWithAccount(want, accountId, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startServiceExtensionAbilityWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
@@ -879,32 +878,32 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.startServiceExtensionAbilityWithAccount(want, accountId)
-      .then(() => {
-        // 执行正常业务
-        console.log('startServiceExtensionAbilityWithAccount succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startServiceExtensionAbilityWithAccount(want, accountId)
+    .then(() => {
+      // 执行正常业务
+      console.info('startServiceExtensionAbilityWithAccount succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 ## UIAbilityContext.stopServiceExtensionAbility
 
@@ -935,31 +934,31 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
 
-  try {
-    this.context.stopServiceExtensionAbility(want, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('stopServiceExtensionAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.stopServiceExtensionAbility(want, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('stopServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.stopServiceExtensionAbility
@@ -990,31 +989,31 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
 
-  try {
-    this.context.stopServiceExtensionAbility(want)
-      .then(() => {
-        // 执行正常业务
-        console.log('stopServiceExtensionAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('stopServiceExtensionAbility failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.stopServiceExtensionAbility(want)
+    .then(() => {
+      // 执行正常业务
+      console.info('stopServiceExtensionAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`stopServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
@@ -1049,32 +1048,32 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('stopServiceExtensionAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('stopServiceExtensionAbilityWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.stopServiceExtensionAbilityWithAccount
@@ -1108,32 +1107,32 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
-      .then(() => {
-        // 执行正常业务
-        console.log('stopServiceExtensionAbilityWithAccount succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('stopServiceExtensionAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
+    .then(() => {
+      // 执行正常业务
+      console.info('stopServiceExtensionAbilityWithAccount succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`stopServiceExtensionAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.terminateSelf
@@ -1161,24 +1160,24 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
   try {
-    this.context.terminateSelf((error) => {
-      if (error.code) {
+    this.context.terminateSelf((err) => {
+      if (err.code) {
         // 处理业务逻辑错误
-        console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
         return;
       }
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     });
-  } catch (error) {
+  } catch (err) {
     // 捕获同步的参数错误
-    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
+    console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1208,6 +1207,8 @@ terminateSelf(): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -1215,17 +1216,15 @@ terminateSelf(): Promise&lt;void&gt;;
     this.context.terminateSelf()
       .then(() => {
         // 执行正常业务
-        console.log('terminateSelf succeed');
+        console.info('terminateSelf succeed');
       })
-      .catch((error) => {
+      .catch((err) => {
         // 处理业务逻辑错误
-        console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
+        console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
       });
   } catch (error) {
     // 捕获同步的参数错误
-    console.log('terminateSelf failed, error.code: ' + JSON.stringify(error.code) +
-    ' error.message: ' + JSON.stringify(error.message));
+    console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -1256,36 +1255,36 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  }
-  let resultCode = 100;
-  // 返回给接口调用方AbilityResult信息
-  let abilityResult = {
-    want,
-    resultCode
-  }
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给接口调用方AbilityResult信息
+let abilityResult = {
+  want,
+  resultCode
+};
 
-  try {
-    this.context.terminateSelfWithResult(abilityResult, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('terminateSelfWithResult succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.terminateSelfWithResult(abilityResult, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('terminateSelfWithResult succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -1320,36 +1319,36 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  }
-  let resultCode = 100;
-  // 返回给接口调用方AbilityResult信息
-  let abilityResult = {
-    want,
-    resultCode
-  }
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let resultCode = 100;
+// 返回给接口调用方AbilityResult信息
+let abilityResult = {
+  want,
+  resultCode
+};
 
-  try {
-    this.context.terminateSelfWithResult(abilityResult)
-      .then(() => {
-        // 执行正常业务
-        console.log('terminateSelfWithResult succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('terminateSelfWithResult failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.terminateSelfWithResult(abilityResult)
+    .then(() => {
+      // 执行正常业务
+      console.info('terminateSelfWithResult succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`terminateSelfWithResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.connectServiceExtensionAbility
@@ -1382,34 +1381,36 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let options = {
-    onConnect(elementName, remote) {
-      console.log('----------- onConnect -----------')
-    },
-    onDisconnect(elementName) {
-      console.log('----------- onDisconnect -----------')
-    },
-    onFailed(code) {
-      console.log('----------- onFailed -----------')
-    }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
+};
 
-  let connection = null;
-  try {
-    connection = this.context.connectServiceExtensionAbility(want, options);
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+let connection = null;
+try {
+  connection = this.context.connectServiceExtensionAbility(want, options);
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`connectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -1448,42 +1449,44 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "ServiceExtensionAbility"
-  };
-  let accountId = 100;
-  let options = {
-    onConnect(elementName, remote) {
-      console.log('----------- onConnect -----------')
-    },
-    onDisconnect(elementName) {
-      console.log('----------- onDisconnect -----------')
-    },
-    onFailed(code) {
-      console.log('----------- onFailed -----------')
-    }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
+};
 
-  let connection = null;
-  try {
-    connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+let connection = null;
+try {
+  connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`connectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
-断开与ServiceExtensionAbility的连接（promise形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1503,40 +1506,40 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
+// connection为connectServiceExtensionAbility中的返回值
+let connection = 1;
 
-  try {
-    this.context.disconnectServiceExtensionAbility(connection)
-      .then(() => {
-        // 执行正常业务
-        console.log('disconnectServiceExtensionAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // 处理入参错误异常
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-断开与ServiceExtensionAbility的连接（callback形式）。
+断开与ServiceExtensionAbility的连接，断开连接之后需要将连接成功时返回的remote对象置空（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1551,33 +1554,33 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
+// connection为connectServiceExtensionAbility中的返回值
+let connection = 1;
 
-  try {
-    this.context.disconnectServiceExtensionAbility(connection, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('disconnectServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('disconnectServiceExtensionAbility succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // 处理入参错误异常
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbilityByCall
@@ -1588,7 +1591,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -1615,79 +1618,73 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   后台启动：
 
   ```ts
-  let caller = undefined;
+let caller;
 
-  // 后台启动Ability，不配置parameters
-  let wantBackground = {
-    bundleName: "com.example.myservice",
-    moduleName: "entry",
-    abilityName: "EntryAbility",
-    deviceId: ""
-  };
+// 后台启动Ability，不配置parameters
+let wantBackground = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility',
+  deviceId: ''
+};
 
-  try {
-    this.context.startAbilityByCall(wantBackground)
-      .then((obj) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCall succeed');
-      }).catch((error) => {
-      // 处理业务逻辑错误
-      console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityByCall(wantBackground)
+    .then((obj) => {
+      // 执行正常业务
+      caller = obj;
+      console.info('startAbilityByCall succeed');
+    }).catch((err) => {
+    // 处理业务逻辑错误
+    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
-  前台启动：
+前台启动：
 
   ```ts
-  let caller = undefined;
+let caller;
 
-  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
-  let wantForeground = {
-    bundleName: "com.example.myservice",
-    moduleName: "entry",
-    abilityName: "EntryAbility",
-    deviceId: "",
-    parameters: {
-      "ohos.aafwk.param.callAbilityToForeground": true
-    }
-  };
-
-  try {
-    this.context.startAbilityByCall(wantForeground)
-      .then((obj) => {
-        // 执行正常业务
-        caller = obj;
-        console.log('startAbilityByCall succeed');
-      }).catch((error) => {
-      // 处理业务逻辑错误
-      console.log('startAbilityByCall failed, error.code: ' + JSON.stringify(error.code) +
-      ' error.message: ' + JSON.stringify(error.message));
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
+// 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
+let wantForeground = {
+  bundleName: 'com.example.myapplication',
+  moduleName: 'entry',
+  abilityName: 'EntryAbility',
+  deviceId: '',
+  parameters: {
+    'ohos.aafwk.param.callAbilityToForeground': true
   }
+};
+
+try {
+  this.context.startAbilityByCall(wantForeground)
+    .then((obj) => {
+      // 执行正常业务
+      caller = obj;
+      console.info('startAbilityByCall succeed');
+    }).catch((error) => {
+    // 处理业务逻辑错误
+    console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+  });
+} catch (paramError) {
+  // 处理入参错误异常
+  console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startAbilityWithAccount
@@ -1698,7 +1695,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -1733,32 +1730,32 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityWithAccount(want, accountId, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -1770,7 +1767,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -1806,35 +1803,35 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
-  let options = {
-    windowMode: 0
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
+let options = {
+  windowMode: 0
+};
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, options, (error) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbilityWithAccount succeed');
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityWithAccount(want, accountId, options, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityWithAccount succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -1846,7 +1843,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验该权限。
@@ -1881,42 +1878,42 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
-  };
-  let accountId = 100;
-  let options = {
-    windowMode: 0
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let accountId = 100;
+let options = {
+  windowMode: 0
+};
 
-  try {
-    this.context.startAbilityWithAccount(want, accountId, options)
-      .then(() => {
-        // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('startAbilityWithAccount failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityWithAccount(want, accountId, options)
+    .then(() => {
+      // 执行正常业务
+      console.info('startAbilityWithAccount succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityWithAccount failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.setMissionLabel
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-设置ability在任务中显示的名称（callback形式）。
+设置UIAbility在任务中显示的名称（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1927,11 +1924,20 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 | label | string | 是 | 显示名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  this.context.setMissionLabel("test", (result) => {
-    console.log('setMissionLabel:' + JSON.stringify(result));
+  this.context.setMissionLabel('test', (result) => {
+    console.info(`setMissionLabel: ${JSON.stringify(result)}`);
   });
   ```
 
@@ -1939,7 +1945,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 setMissionLabel(label: string): Promise&lt;void&gt;;
 
-设置ability在任务中显示的名称（promise形式）。
+设置UIAbility在任务中显示的名称（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1962,20 +1968,22 @@ setMissionLabel(label: string): Promise&lt;void&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  this.context.setMissionLabel("test").then(() => {
-    console.log('success');
-  }).catch((error) => {
-    console.log('failed:' + JSON.stringify(error));
+  this.context.setMissionLabel('test').then(() => {
+    console.info('success');
+  }).catch((err) => {
+    console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
   });
   ```
 ## UIAbilityContext.setMissionIcon
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
-设置当前ability在任务中显示的图标（callback形式）。
+设置当前ability在任务中显示的图标, 图标大小最大为600M（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1995,10 +2003,13 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
   import image from '@ohos.multimedia.image';
+  
   let imagePixelMap;
   let color = new ArrayBuffer(0);
   let initializationOptions = {
@@ -2012,10 +2023,10 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
       imagePixelMap = data;
     })
     .catch((err) => {
-      console.log('--------- createPixelMap fail, err: ---------', err)
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
     });
   this.context.setMissionIcon(imagePixelMap, (err) => {
-    console.log('---------- setMissionIcon fail, err: -----------', err);
+    console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
   })
   ```
 
@@ -2024,7 +2035,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
-设置当前ability在任务中显示的图标（promise形式）。
+设置当前ability在任务中显示的图标, 图标大小最大为600M（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2049,6 +2060,8 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -2065,21 +2078,21 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
       imagePixelMap = data;
     })
     .catch((err) => {
-      console.log('--------- createPixelMap fail, err: ---------', err)
+      console.error(`createPixelMap failed, code is ${err.code}, message is ${err.message}`);
     });
   this.context.setMissionIcon(imagePixelMap)
     .then(() => {
-      console.log('-------------- setMissionIcon success -------------');
+      console.info('setMissionIcon succeed');
     })
     .catch((err) => {
-      console.log('-------------- setMissionIcon fail, err: -------------', err);
+      console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
     });
   ```
 ## UIAbilityContext.restoreWindowStage
 
 restoreWindowStage(localStorage: LocalStorage) : void;
 
-恢复ability中的window stage数据。
+恢复UIAbility中的WindowStage数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2096,6 +2109,8 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
@@ -2107,7 +2122,7 @@ restoreWindowStage(localStorage: LocalStorage) : void;
 
 isTerminating(): boolean;
 
-查询ability是否在terminating状态。
+查询UIAbility是否在terminating状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2122,13 +2137,14 @@ isTerminating(): boolean;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
   ```ts
   let isTerminating = this.context.isTerminating();
-  console.log('ability state :' + isTerminating);
+  console.info(`ability state is ${isTerminating}`);
   ```
 
 ## UIAbilityContext.requestDialogService
@@ -2139,7 +2155,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2151,33 +2167,51 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | want |[Want](js-apis-application-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | 是 | 执行结果回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
-  import dialogRequest from '@ohos.app.ability.dialogRequest';
+import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-  let want = {
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    abilityName: "AuthAccountServiceExtension"
-  };
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'AuthAccountServiceExtension'
+};
 
-  try {
-    this.context.requestDialogService(want, (error, result) => {
-      if (error && error.code) {
-        // 处理业务逻辑错误
-        console.log('requestDialogService failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log("requestDialogService succeed, result = " + JSON.stringify(result));
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('requestDialogService failed, error.code: ' + JSON.stringify(paramError.code) +
-    ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.requestDialogService(want, (err, result) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
   ## UIAbilityContext.requestDialogService
@@ -2188,7 +2222,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
- - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
  - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -2206,29 +2240,48 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;;
 | -------- | -------- |
 | Promise&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md)&gt; | Promise形式返回执行结果。
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
   ```ts
 import dialogRequest from '@ohos.app.ability.dialogRequest';
 
 let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "AuthAccountServiceExtension"
+  bundleName: 'com.example.myapplication',
+  abilityName: 'AuthAccountServiceExtension'
 };
 
 try {
-    this.context.requestDialogService(want)
-        .then((result) => {
-        // 执行正常业务
-        console.log("requestDialogService succeed, result = " + JSON.stringify(result));
+  this.context.requestDialogService(want)
+    .then((result) => {
+      // 执行正常业务
+      console.info('requestDialogService succeed, result = ${JSON.stringify(result)}');
     })
-        .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('requestDialogService failed, error= ' + JSON.stringify(error));
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
     });
-} catch (paramError) {
-    // 处理入参错误异常
-    console.log('requestDialogService failed, error.code: ' + JSON.stringify(paramError.code) +
-                ' error.message: ' + JSON.stringify(paramError.message));
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
 }
   ```

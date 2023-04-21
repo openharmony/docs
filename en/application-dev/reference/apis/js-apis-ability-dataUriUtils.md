@@ -1,4 +1,4 @@
-# @ohos.ability.dataUriUtils (dataUriUtils)
+# @ohos.ability.dataUriUtils (DataUriUtils)
 
 The **DataUriUtils** module provides APIs to process URI objects. You can use the APIs to attach an ID to the end of a given URI and obtain, delete, or update the ID attached to the end of a given URI. This module will be replaced by the **app.ability.dataUriUtils** module in the near future. You are advised to use the **[@ohos.app.ability.dataUriUtils](js-apis-app-ability-dataUriUtils.md)** module.
 
@@ -35,7 +35,7 @@ Obtains the ID attached to the end of a given URI.
 **Example**
 
 ```ts
-let id = dataUriUtils.getId("com.example.dataUriUtils/1221");
+let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
 ```
 
 
@@ -66,9 +66,9 @@ Attaches an ID to the end of a given URI.
 ```ts
 let id = 1122;
 let uri = dataUriUtils.attachId(
-    "com.example.dataUriUtils",
+    'com.example.dataUriUtils',
 	id,
-)
+);
 ```
 
 
@@ -96,7 +96,7 @@ Deletes the ID from the end of a given URI.
 **Example**
 
 ```ts
-let uri = dataUriUtils.deleteId("com.example.dataUriUtils/1221")
+let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
 ```
 
 
@@ -127,7 +127,7 @@ Updates the ID in a given URI.
 ```ts
 let id = 1122;
 let uri = dataUriUtils.updateId(
-    "com.example.dataUriUtils/1221",
+    'com.example.dataUriUtils/1221',
 	id
-)
+);
 ```

@@ -585,7 +585,7 @@ Fills a rectangle on the canvas.
 ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 500px; height: 500px; "></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
 ```
 
@@ -621,7 +621,7 @@ Clears the content in a rectangle on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 500px; height: 500px;"></canvas>
+    <canvas ref="canvas" style="width: 500px; height: 500px; background-color: #ffff00;"></canvas>
   </div>
   ```
 

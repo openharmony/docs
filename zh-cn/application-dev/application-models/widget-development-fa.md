@@ -321,7 +321,7 @@ async function deleteFormInfo(formId: string) {
 // ...
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[数据管理开发指导](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -361,7 +361,7 @@ onUpdate(formId) {
 ![widget-development-fa](figures/widget-development-fa.png)
 
 > **说明：**
-> 当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
+> FA模型当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。
   
@@ -547,6 +547,4 @@ onUpdate(formId) {
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
 
 
-- [FormAbility：FA模型卡片（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormAbility)
-
-- [FormLauncher：卡片使用方（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormLauncher)
+- [FaModel：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

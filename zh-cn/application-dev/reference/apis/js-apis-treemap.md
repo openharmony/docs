@@ -8,15 +8,16 @@ TreeMap和[HashMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-文档中存在泛型的使用，涉及以下泛型标记符:
+文档中存在泛型的使用，涉及以下泛型标记符：
 
-- K: Key, 键
+- K：Key，键
 
-- V: Value, 值
+- V：Value，值
 
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -126,9 +127,8 @@ hasKey(key: K): boolean
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasKey("squirrel");
+let result = treeMap.hasKey("squirrel");
 ```
 
 
@@ -164,9 +164,8 @@ hasValue(value: V): boolean
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasValue(123);
+let result = treeMap.hasValue(123);
 ```
 
 
@@ -304,7 +303,7 @@ let map = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // 将treeMap中的所有元素添加到map中
 map.forEach((value, key) => {
-    console.log("test" + value, key); // 打印结果 12 demo、356 sparrow、123 squirrel
+  console.log("value" + value, "key" + key); // 打印结果 12 demo、356 sparrow、123 squirrel
 })
 ```
 
@@ -380,7 +379,7 @@ remove(key: K): V
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-treeMap.remove("sparrow");
+let result = treeMap.remove("sparrow");
 ```
 
 
@@ -566,7 +565,7 @@ while(temp != undefined) {
 
 values(): IterableIterator&lt;V&gt;
 
-返回包含此映射中键值对的新迭代器对象。
+返回包含此映射中键值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -636,7 +635,7 @@ let treeMap = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
-  console.log("value:" + value, key);
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

@@ -13,7 +13,7 @@ For details about the APIs, see [Distributed KV Store](../reference/apis/js-apis
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | Creates a **KvManager** object for database management.           |
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** object for database management.           |
 | getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Creates and obtains a KV store.|
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | Inserts and updates data.                                            |
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data.                                                  |
@@ -117,16 +117,10 @@ The following uses a single KV store as an example to describe the development p
        bundleName: 'com.example.datamanagertest',
        context:context,
      }
-     distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
-       if (err) {
-         console.error(`Failed to create KVManager. code is ${err.code},message is ${err.message}`);
-         return;
-       }
-       console.log('Created KVManager successfully');
-       kvManager = manager;
-     });
+     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+     console.log("Created KVManager successfully");
    } catch (e) {
-     console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+     console.error(`Failed to create KVManager. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -150,14 +144,14 @@ The following uses a single KV store as an example to describe the development p
      };
      kvManager.getKVStore('storeId', options, function (err, store) {
        if (err) {
-         console.error(`Failed to get KVStore: code is ${err.code},message is ${err.message}`);
+         console.error(`Failed to get KVStore: code is ${err.code}, message is ${err.message}`);
          return;
        }
        console.log('Obtained KVStore successfully');
        kvStore = store;
      });
    } catch (e) {
-     console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+     console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -175,7 +169,7 @@ The following uses a single KV store as an example to describe the development p
            console.log(`dataChange callback call data: ${data}`);
        });
    }catch(e){
-       console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+       console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -192,13 +186,13 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to put data. Code is ${err.code}, message is ${err.message}`);
                return;
            }
-           console.log('Put data successfully');
+           console.log("Put data successfully");
        });
    }catch (e) {
-       console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
+       console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -215,20 +209,20 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to put data. Code is ${err.code}, message is ${err.message}`);
                return;
            }
-           console.log('Put data successfully');
+           console.log("Put data successfully");
            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Failed to get data.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to obtain data. Code is ${err.code}, message is ${err.message}`);
                return;
            }
                console.log(`Obtained data successfully:${data}`);
            });
        });
    }catch (e) {
-       console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
+       console.error(`Failed to obtain data. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 
@@ -262,7 +256,7 @@ The following uses a single KV store as an example to describe the development p
                // 1000 indicates that the maximum delay is 1000 ms.
                kvStore.sync(deviceIds, distributedKVStore.SyncMode.PUSH_ONLY, 1000);
            } catch (e) {
-                console.error(`An unexpected error occurred. code is ${e.code},message is ${e.message}`);
+                console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
            }
        }
    });

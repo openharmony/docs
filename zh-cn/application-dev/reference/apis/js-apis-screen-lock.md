@@ -12,11 +12,13 @@
 import screenlock from '@ohos.screenLock';
 ```
 
-## EventType
+## EventType<sup>9+</sup>
 
 定义系统事件类型。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口。
 
 | 事件类型            | 说明                     |
 | ------------------ | ------------------------ |
@@ -35,15 +37,17 @@ import screenlock from '@ohos.screenLock';
 | screenlockEnabled  | 表示锁屏是否启用。       |
 | serviceRestart     | 表示锁屏服务进行重启。   |
 
-## SystemEvent
+## SystemEvent<sup>9+</sup>
 
 定义系统事件回调参数结构。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
+**系统接口**：此接口为系统接口
+
 | 名称    | 类型   | 必填 |       说明        |
 | --------- | ------ | ---- | ------------- |
-| eventType   | [EventType](#eventtype) | 是   | 系统事件类型。 |
+| eventType   | [EventType](#eventtype9) | 是   | 系统事件类型。 |
 | params | string | 是   | 系统事件参数。 |
 
 ## screenlock.isLocked<sup>9+</sup>
@@ -53,6 +57,8 @@ isLocked(): boolean
 判断屏幕是否锁屏。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口
 
 **返回值：** 
 
@@ -66,26 +72,6 @@ isLocked(): boolean
 let isLocked = screenlock.isLocked();
 ```
 
-## screenlock.isSecure<sup>9+</sup>
-
-isSecure(): boolean
-
-判断当前设备的屏幕锁定是否安全（安全屏幕锁定意味着解锁屏幕需要密码、图案或其他用户身份识别）。
-
-**系统能力：** SystemCapability.MiscServices.ScreenLock
-
-**返回值：** 
-
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示当前设备的屏幕锁定安全；返回false表示当前设备的屏幕锁定不安全。 |
-
-**示例：** 
-
-```js
-let isSecure = screenlock.isSecure();
-```
-
 ## screenlock.unlock<sup>9+</sup>
 
 unlock(callback: AsyncCallback&lt;boolean&gt;): void
@@ -93,6 +79,8 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 解锁屏幕。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -128,6 +116,8 @@ unlock(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
+**系统接口**：此接口为系统接口
+
 **返回值：** 
 
 | 类型                | 说明                                                         |
@@ -160,7 +150,9 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
@@ -196,7 +188,9 @@ lock(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **返回值：** 
 
@@ -230,13 +224,15 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
 | 参数名   | 类型                        | 必填 | 说明               |
 | -------- | ------------------------- | ---- | ----------------- |
-| callback | Callback\<[SystemEvent](#systemevent)> | 是   | 锁屏相关的系统事件回调函数。 |
+| callback | Callback\<[SystemEvent](#systemevent9)> | 是   | 锁屏相关的系统事件回调函数。 |
 
 **返回值：** 
 
@@ -266,19 +262,21 @@ try {
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: string, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
+sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 应用发送事件到锁屏服务。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
 | 参数名    | 类型            | 必填 | 说明                             |
 | --------- | ------------------------ | ---- | -------------------- |
-| event     | string                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| event     | String                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number                   | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                 |
 
@@ -304,19 +302,21 @@ screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: string, parameter: number): Promise&lt;boolean&gt;
+sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 应用发送事件到锁屏服务。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口。
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
+**系统接口**：此接口为系统接口
 
 **参数：** 
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | --------------------------------------- |
-| event     | string | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| event     | String | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 
 **返回值：** 
@@ -343,7 +343,7 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -373,7 +373,7 @@ isScreenLocked(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isLocked<sup>9+</sup>](#screenlockislocked9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -401,7 +401,7 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -431,7 +431,7 @@ isSecureMode(): Promise&lt;boolean&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.isSecure<sup>9+</sup>](#screenlockissecure9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -458,7 +458,7 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -488,7 +488,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 > **说明：**
 > 
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[screenlock.unlock<sup>9+</sup>](#screenlockunlock9)代替。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 

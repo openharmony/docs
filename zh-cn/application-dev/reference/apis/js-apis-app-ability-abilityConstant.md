@@ -35,10 +35,11 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| START_ABILITY          | 1    | 通过[startAbility](js-apis-ability-context.md#abilitycontextstartability)接口启动ability。 |
-| CALL | 2    | 通过[startAbilityByCall](js-apis-ability-context.md#abilitycontextstartabilitybycall)接口启动ability。 |
+| START_ABILITY          | 1    | 通过[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动ability。 |
+| CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
+| SHARE<sup>10+</sup>           | 5    | 通过[acquireShareData](js-apis-app-ability-abilityManager.md#acquiresharedata)接口启动ability。 |
 
 **示例：**
 
@@ -48,7 +49,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-            console.log("The ability has been started by the way of startAbility.");
+            console.log('The ability has been started by the way of startAbility.');
         }
     }
 }
@@ -74,7 +75,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onCreate(want, launchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
-            console.log("The ability has exit last because the ability was not responding.");
+            console.log('The ability has exit last because the ability was not responding.');
         }
     }
 }
@@ -99,7 +100,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
-        return AbilityConstant.OnConinueResult.AGREE;
+        return AbilityConstant.OnContinueResult.AGREE;
     }
 }
 ```
@@ -109,6 +110,8 @@ class MyAbility extends UIAbility {
 启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称                        | 值 | 说明                 |
 | ---                         | --- | ---                  |
@@ -122,18 +125,18 @@ class MyAbility extends UIAbility {
 
 ```ts
 let want = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility"
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility'
 };
 let option = {
     windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FULLSCREEN
 };
 
 // 确保从上下文获取到context
-this.context.startAbility(want, option).then(()={
-    console.log("Succeed to start ability.");
+this.context.startAbility(want, option).then(()=>{
+    console.log('Succeed to start ability.');
 }).catch((error)=>{
-    console.log("Failed to start ability with error: " + JSON.stringify(error));
+    console.error('Failed to start ability with error: ${JSON.stringify(error)}');
 });
 ```
 
@@ -157,7 +160,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onMemoryLevel(level) {
         if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-            console.log("The memory of device is critical, please release some memory.");
+            console.log('The memory of device is critical, please release some memory.');
         }
     }
 }
@@ -209,7 +212,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class MyAbility extends UIAbility {
     onSaveState(reason, wantParam) {
         if (reason === AbilityConstant.StateType.CONTINUATION) {
-            console.log("Save the ability data when the ability continuation.");
+            console.log('Save the ability data when the ability continuation.');
         } 
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }

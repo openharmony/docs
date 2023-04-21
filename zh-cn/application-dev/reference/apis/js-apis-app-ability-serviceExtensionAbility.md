@@ -49,7 +49,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
   ```ts
   class ServiceExt extends ServiceExtension {
     onCreate(want) {
-      console.log('onCreate, want:' + want.abilityName);
+      console.log('onCreate, want: ${want.abilityName}');
     }
   }
   ```
@@ -98,7 +98,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
   ```ts
   class ServiceExt extends ServiceExtension {
     onRequest(want, startId) {
-      console.log('onRequest, want:' + want.abilityName);
+      console.log('onRequest, want: ${want.abilityName}');
     }
   }
   ```
@@ -106,7 +106,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
 
 ## ServiceExtensionAbility.onConnect
 
-onConnect(want: Want): rpc.RemoteObject;
+onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>;
 
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
 
@@ -129,7 +129,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 **示例：**
 
   ```ts
-  import rpc from '@ohos.rpc'
+  import rpc from '@ohos.rpc';
   class StubTest extends rpc.RemoteObject{
       constructor(des) {
           super(des);
@@ -139,8 +139,8 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   }
   class ServiceExt extends ServiceExtension {
     onConnect(want) {
-      console.log('onConnect , want:' + want.abilityName);
-      return new StubTest("test");
+      console.log('onConnect , want: ${want.abilityName}');
+      return new StubTest('test');
     }
   }
   ```
@@ -148,7 +148,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 ## ServiceExtensionAbility.onDisconnect
 
-onDisconnect(want: Want): void;
+onDisconnect(want: Want): void | Promise\<void>;
 
 Extension的生命周期回调，客户端执行断开连接服务时回调。
 
@@ -167,7 +167,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
   ```ts
   class ServiceExt extends ServiceExtension {
     onDisconnect(want) {
-      console.log('onDisconnect, want:' + want.abilityName);
+      console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -193,7 +193,7 @@ Extension的生命周期回调，当所有以前的客户端都断开连接之�
   ```ts
   class ServiceExt extends ServiceExtension {
     onReconnect(want) {
-      console.log('onReconnect, want:' + want.abilityName);
+      console.log('onReconnect, want: ${want.abilityName}');
     }
   }
   ```
@@ -219,7 +219,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
   ```ts
   class ServiceExt extends ServiceExtension {
       onConfigurationUpdate(config) {
-          console.log('onConfigurationUpdate, config:' + JSON.stringify(config));
+          console.log('onConfigurationUpdate, config: ${JSON.stringify(config)}');
       }
   }
   ```
@@ -245,8 +245,8 @@ onDump(params: Array\<string>): Array\<string>;
   ```ts
   class ServiceExt extends ServiceExtension {
       onDump(params) {
-          console.log('dump, params:' + JSON.stringify(params));
-          return ["params"]
+          console.log('dump, params: ${JSON.stringify(params)}');
+          return ['params'];
       }
   }
   ```

@@ -22,8 +22,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let formContext = this.context; // 获取FormExtensionContext
     // ...
     let dataObj1 = {
-      temperature: "11c",
-      "time": "11:00"
+      temperature: '11c',
+      'time': '11:00'
     };
     let obj1 = formBindingData.createFormBindingData(dataObj1);
     return obj1;
@@ -41,6 +41,18 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.Form
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
 **参数：**
 
 | 参数名 |                类型               | 必填 |              说明               |
@@ -56,18 +68,18 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    console.log('FormExtensionAbility onFormEvent, formId: ${formId}, message:${message}');
     let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
       parameters: {
-        "message": message
+        'message': message
       }
     };
     this.context.startAbility(want, (error, data) => {
       if (error) {
-        console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
+        console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
       } else {
         console.log('FormExtensionContext startAbility success');
       }
@@ -98,6 +110,18 @@ startAbility(want: Want): Promise&lt;void&gt;
 | ------------ | ---------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
 **示例：**
 
 ```ts
@@ -106,19 +130,19 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId, message) {
     // 当触发卡片message事件时，执行startAbility
-    console.log('FormExtensionAbility onFormEvent, formId:' + formId + ", message:" + message);
+    console.log('FormExtensionAbility onFormEvent, formId:${formId}, message:${message}');
     let want = {
-      deviceId: "",
-      bundleName: "com.example.formstartability",
-      abilityName: "EntryAbility",
+      deviceId: '',
+      bundleName: 'com.example.formstartability',
+      abilityName: 'EntryAbility',
       parameters: {
-        "message": message
+        'message': message
       }
     };
     this.context.startAbility(want).then(() => {
-      console.info("StartAbility Success");
+      console.info('StartAbility Success');
     }).catch((error) => {
-      console.info("StartAbility failed");
+      console.error('StartAbility failed');
     });
   }
 };

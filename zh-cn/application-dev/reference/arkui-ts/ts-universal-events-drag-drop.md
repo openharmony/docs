@@ -10,7 +10,7 @@
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按150ms可触发拖拽事件。优先级：长按手势配置时间小于等于150ms时，长按手势优先触发，否则拖拽事件优先触发。 |
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按500ms可触发拖拽事件。优先级：长按手势配置时间小于等于500ms时，长按手势优先触发，否则拖拽事件优先触发。 |
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
@@ -40,8 +40,8 @@
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| getX() | number | 当前拖拽点x轴坐标，单位为vp。 |
-| getY() | number | 当前拖拽点y轴坐标，单位为vp。 |
+| getX() | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
+| getY() | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 
 ## 示例
 
@@ -67,7 +67,7 @@ struct DragExample {
   @State bananaVisible: Visibility = Visibility.Visible
   private dragList: string[] = ['apple', 'orange', 'banana']
   @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
-  @State index: number = 0
+  @State idx: number = 0
 
   // 自定义拖拽过程中显示的内容
   @Builder pixelMapBuilder() {
@@ -104,7 +104,7 @@ struct DragExample {
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.eventType = 'Down'
-                this.index = index
+                this.idx = index
               }
               if (event.type === TouchType.Up) {
                 this.eventType = 'Up'
@@ -157,7 +157,7 @@ struct DragExample {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
         }
-        this.fruitVisible[this.index] = Visibility.None
+        this.fruitVisible[this.idx] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }

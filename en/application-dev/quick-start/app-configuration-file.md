@@ -13,15 +13,15 @@ This document gives an overview of the **app.json5** configuration file. To star
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "description": "$string:description_application",
-    "distributedNotificationEnabled": true,
     "minAPIVersion": 9,
     "targetAPIVersion": 9,
     "apiReleaseType": "Release",
     "debug": false,
-    "entityType": "media",
     "car": {
       "minAPIVersion": 8,
-    }
+    },
+    "targetBundleName": "com.application.test",
+    "targetPriority": 50
   },
 }
 ```
@@ -30,11 +30,12 @@ This document gives an overview of the **app.json5** configuration file. To star
 As shown above, the **app.json5** file contains several tags.
 
 
-**Table 1** Tags in the app.json5 file
+  **Table 1** Tags in the app.json5 file
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | bundleName | Bundle name, which uniquely identifies an application.  The value must comply with the following rules:<br>- Consists of letters, digits, underscores (_), and periods (.).<br>- Starts with a letter.<br>- Contains 7 to 127 bytes.<br>You are advised to use the reverse domain name notation, for example, *com.example.demo*, where the first part is the domain suffix **com**, the second part is the vendor/individual name, and the third part is the application name, which can be of multiple levels.<br>If an application is built with the system source code, you are advised to name it in *com.ohos.demo* notation, where **ohos** signifies that the application is an OpenHarmony system application.| String| No|
+| bundleType| Bundle type, which is used to distinguish applications and atomic services.<br>- **app**: The bundle is a common application.<br>- **atomicService**: The bundle is an atomic service.<br>- **shared**: The bundle is a shared object application. | String| Yes (initial value: **"app"**)|
 | debug | Whether the application can be debugged. This tag is generated during compilation and building in DevEco Studio.<br>- **true**: The application can be debugged.<br>- **false**: The application cannot be debugged.| Boolean| Yes (initial value: **false**)|
 | icon | [Icon of the application](../application-models/application-component-configuration-stage.md). The value is an icon resource index.| String| No|
 | label | [Name of the application](../application-models/application-component-configuration-stage.md). The value is a string resource index.| String| No|
@@ -46,11 +47,12 @@ As shown above, the **app.json5** file contains several tags.
 | minAPIVersion | Minimum API version required for running the application.| Number| Yes (initial value: value of **compatibleSdkVersion** in **build-profile.json5**)|
 | targetAPIVersion | Target API version required for running the application.| Number| Yes (initial value: value of **compileSdkVersion** in **build-profile.json5**)|
 | apiReleaseType | Type of the target API version required for running the application. The value can be **"CanaryN"**, **"BetaN"**, or **"Release"**, where **N** represents a positive integer.<br>- **Canary**: indicates a restricted release.<br>- **Beta**: indicates a publicly released beta version.<br>- **Release**: indicates a publicly released official version.<br>The value is set by DevEco Studio reading the stage of the SDK in use.| String| Yes (initial value: set by DevEco Studio)|
-| distributedNotificationEnabled | Whether distributed notification is enabled for the application. When distributed notification is enabled and device A and device B where the application is installed are on the same distributed network, the devices behave in this way: If device A receives a message, device B will receive a distributed notification prompting the user to check the message received on device A.<br>- **true**: Distributed notification is enabled.<br>- **false**: Distributed notification is not enabled.| Boolean| Yes (initial value: **false**)|
-| entityType | Type of the application. The options are as follows:<br>- game<br>- media<br>- communication<br>- news<br>- travel<br>- utility<br>- shopping<br>- education<br>- kids<br>- business<br>- photography<br>- unspecified| String| Yes (initial value: **"unspecified"**)|
-| multiProjects | Whether the application supports joint development of multiple projects.<br>- **true**: The application supports joint development of multiple projects.<br>- **false**: The application does not support joint development of multiple projects.| Boolean| Yes (initial value: **false**)|
+| multiProjects | Whether the application supports joint development of multiple projects.<br>- **true**: The application supports joint development of multiple projects.<br>- **false**: The application does not support joint development of multiple projects. For details about multi-project development, see [Multi-Project Build](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/ohos-building-overview-0000001263360495-V3#section71471033104216).| Boolean| Yes (initial value: **false**)|
+| assanEnabled | Whether to enable AddressSanitizer (ASan) to detect memory corruption issues such as buffer overflows.<br>- **true**: ASan is enabled.<br>- **false**: ASan is disabled. Note that ASan is not available in the Release version.| Boolean| Yes (initial value: **false**)|
 | tablet | Tablet-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on tablets, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | tv | TV-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on TVs, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | wearable | Wearable-specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on wearables, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | car | Head unit–specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on head units, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
 | default | Default device–specific configuration, which includes **minAPIVersion** and **distributedNotificationEnabled** attributes.<br>When running on default devices, the application applies the attribute settings under this tag and ignores the general counterparts.| Object| Yes (initial value: general settings in the **app.json5** file)|
+|targetBundleName|Target application name of the bundle. The value rule and range are the same as those of **bundleName**.|String|Yes (if the initial value is used, the target application is not an application with the overlay feature)|
+|targetPriority|Priority of the application. When **targetBundleName** is set, the application is an application with the overlay feature. The value ranges from 1 to 100.|Number|Yes (initial value: **1**)|

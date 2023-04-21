@@ -25,7 +25,7 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | color | &lt;color&gt; | - | 否 | 设置文本段落的文本颜色。 |
-| font-size | &lt;length&gt; | 30px | 否 | 设置文本段落的文本尺寸。 |
+| font-size | &lt;length&gt; | 16px | 否 | 设置文本段落的文本尺寸。 |
 | font-style | string | normal | 否 | 设置文本段落的字体样式，见[text组件font-style的样式属性](js-service-widget-basic-text.md#样式)。 |
 | font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 设置文本段落的字体粗细，见[text组件font-weight的样式属性](js-service-widget-basic-text.md#样式)。 |
 | text-decoration | string | none | 否 | 设置文本段落的文本修饰，见[text组件text-decoration样式属性](js-service-widget-basic-text.md#样式)。 |

@@ -11,12 +11,15 @@ You can set the touch target for components that support universal click events,
 ## Attributes
 
 
-| Name            | Type                                         | Description                                     |
-| -------------- | --------------------------------------------- | ----------------------------------------- |
-| responseRegion | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>} |
+| Name          | Type                                                    | Description                                                        |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| responseRegion | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Rectangle
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name       | Type                      | Mandatory  | Description                            |
 | ------ | ----------------------------- | -----| -------------------------------- |
 | x      | [Length](ts-types.md#length)  | No  | X coordinate of the touch point relative to the upper left corner of the component.<br>Default value: **0vp**|

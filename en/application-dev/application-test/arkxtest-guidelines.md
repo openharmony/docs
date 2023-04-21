@@ -48,7 +48,7 @@ arkXtest is divided into two parts: unit test framework and UI test framework.
 
 Software for writing test scripts: DevEco Studio 3.0 or later
 
-Hardware for running test scripts: PC connected to a OpenHarmony device, such as the RK3568 development board
+Hardware for running test scripts: PC connected to an OpenHarmony device, such as the RK3568 development board
 
 ### Setting Up the Environment
 
@@ -63,8 +63,8 @@ Hardware for running test scripts: PC connected to a OpenHarmony device, such as
 ## Writing a Unit Test Script
 
 ```TS
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 export default function abilityTest() {
@@ -108,7 +108,7 @@ You write a UI test script based on the unit test framework, adding the invoking
 In this example, the UI test script is written based on the preceding unit test script. First, add the dependency package, as shown below:
 
 ```js
-import {UiDriver,BY,UiComponent,MatchPattern} from '@ohos.uitest'
+import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
 ```
 
 Then, write specific test code. Specifically, implement the click action on the started application page and add checkpoint check cases.
@@ -131,16 +131,16 @@ export default function abilityTest() {
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
       })
       //ui test code
-      //init uidriver
-      var driver = await UiDriver.create();
+      //init driver
+      var driver = await Driver.create();
       await driver.delayMs(1000);
-      //find button by text 'Next'
-      var button = await driver.findComponent(BY.text('Next'));
+      //find button on text 'Next'
+      var button = await driver.findComponent(ON.text('Next'));
       //click button
       await button.click();
       await driver.delayMs(1000);
       //check text
-      await driver.assertComponentExist(BY.text('after click'));
+      await driver.assertComponentExist(ON.text('after click'));
       await driver.pressBack();
       done();
     })
@@ -195,13 +195,15 @@ The framework supports multiple test case execution modes, which are triggered b
 | itName       | Test case to be executed.                                        | {itName}                                                     | -s itName testAttributeIt                 |
 | timeout      | Timeout interval for executing a test case.                                       | Positive integer (unit: ms). If no value is set, the default value 5000 is used.                       | -s timeout 15000                          |
 | breakOnError | Whether to enable break-on-error mode. When this mode is enabled, the test execution process exits if a test assertion error or any other error occurs.| **true**/**false** (default value)                                          | -s breakOnError true                      |
+| random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small                             |
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small       |
+| stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
 
-Configure hdc-related environment variables, and then perform the following:
+> Before running commands in the CLI, make sure hdc-related environment variables have been configured.
 
 - Open the CLI.
 - Run the **aa test** commands.
@@ -260,10 +262,16 @@ Example 9: Execute test cases at the specified level.
   hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
 ```
 
-Example 10: Execute test cases with the specified level.
+Example 10: Execute test cases with the specified size.
 
 ```shell  
   hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+```
+
+Example 11: Execute test cases for a specified number of times.
+
+```shell  
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
 ```
 
 **Viewing the Test Result**
@@ -394,11 +402,11 @@ Run the following command, restart the device, and execute the test case again:
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-#### The failure log contains "uitest-api dose not allow calling concurrently"
+#### The failure log contains "uitest-api does not allow calling concurrently"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "uitest-api dose not allow calling concurrently".
+The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently".
 
 **Possible Causes**
 
@@ -412,11 +420,11 @@ The UI test case fails to be executed. The HiLog file contains the error message
 
 2. Do not execute UI test cases in multiple processes.
 
-#### The failure log contains "dose not exist on current UI! Check if the UI has changed after you got the widget object"
+#### The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "dose not exist on current UI! Check if the UI has changed after you got the widget object".
+The UI test case fails to be executed. The HiLog file contains the error message "does not exist on current UI! Check if the UI has changed after you got the widget object".
 
 **Possible Causes**
 

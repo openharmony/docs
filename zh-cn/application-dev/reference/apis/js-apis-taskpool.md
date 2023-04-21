@@ -13,7 +13,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import taskpool from '@ohos.taskpool';
 ```
 
@@ -58,12 +58,13 @@ Task的构造函数。
 
 **示例：**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
+
 let task = new taskpool.Task(func, "this is my first Task");
 ```
 
@@ -109,14 +110,19 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
 **示例：**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
 
-let value = taskpool.execute(func, 100);
+async function taskpoolTest() {
+  let value = await taskpool.execute(func, 100);
+  console.log("taskpool result: " + value);
+}
+
+taskpoolTest();
 ```
 
 ## taskpool.execute
@@ -152,14 +158,20 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 
 **示例：**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
-let task = new taskpool.Task(func, "this is my first Task");
-let value = taskpool.execute(task);
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = await taskpool.execute(task);
+  console.log("taskpool result: " + value);
+}
+
+taskpoolTest();
 ```
 
 ## taskpool.cancel
@@ -187,15 +199,24 @@ cancel(task: Task): void
 
 **示例：**
 
-```js
+```ts
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
-let task = new taskpool.Task(func, "this is first Task");
-let value = taskpool.execute(task);
-taskpool.cancel(task);
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = await taskpool.execute(task);
+  try {
+    taskpool.cancel(task);
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolTest();
 ```
 
 ## 其他说明
@@ -204,40 +225,125 @@ taskpool.cancel(task);
 序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。
 
 ### 注意事项
-taskpool任务只支持引用入参传递或者import的变量，不支持使用闭包变量。
+- 仅支持在Stage模型且module的compileMode为esmodule的project中使用taskpool api。确认module的compileMode方法：查看当前module的build-profile.json5，在buildOption中补充"compileMode": "esmodule"。
+- taskpool任务只支持引用入参传递或者import的变量，不支持使用闭包变量，使用装饰器@Concurrent进行拦截。
+- taskpool任务只支持普通函数或者async函数，不支持类成员函数或者匿名函数，使用装饰器@Concurrent进行拦截。
+- 装饰器@Concurrent仅支持在ets文件使用，在ts文件中创建taskpool任务需使用"use concurrent"。
 
-```js
-// 1. 引用入参传递
+### 简单使用
+
+**示例一**
+
+```ts
+// 支持普通函数、引用入参传递
+@Concurrent
 function func(args) {
-    "use concurrent"
     console.log("func: " + args);
     return args;
 }
 
-let task = new taskpool.Task(func, "create task, then execute");
-let val1 = taskpool.execute(task);
+async function taskpoolTest() {
+  // taskpool.execute(task)
+  let task = new taskpool.Task(func, "create task, then execute");
+  let val1 = await taskpool.execute(task);
+  console.log("taskpool.execute(task) result: " + val1);
 
-let val2 = taskpool.execute(func, "execute task by func");
+  // taskpool.execute(function)
+  let val2 = await taskpool.execute(func, "execute task by func");
+  console.log("taskpool.execute(function) result: " + val2);
+}
+
+taskpoolTest();
 ```
 
-```js
-// 2. 引用import变量
+**示例二**
 
-// b.ts
+```ts
+// b.ets
 export var c = 2000;
+```
+```ts
+// 引用import变量
+// a.ets(与b.ets位于同一目录中)
+import { c } from "./b";
 
-// a.ts
-import { c } from './b'
-
+@Concurrent
 function test(a) {
-    "use concurrent"
     console.log(a);
     console.log(c);
     return a;
 }
 
-let task = new taskpool.Task(test, "create task, then execute");
-let val1 = taskpool.execute(task);
+async function taskpoolTest() {
+  // taskpool.execute(task)
+  let task = new taskpool.Task(test, "create task, then execute");
+  let val1 = await taskpool.execute(task);
+  console.log("taskpool.execute(task) result: " + val1);
 
-let val2 = taskpool.execute(test, "execute task by func");
+  // taskpool.execute(function)
+  let val2 = await taskpool.execute(test, "execute task by func");
+  console.log("taskpool.execute(function) result: " + val2);
+}
+
+taskpoolTest();
+```
+
+**示例三**
+
+```ts
+// 支持async函数
+@Concurrent
+async function task() {
+  let ret = await Promise.all([
+    new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+  ]);
+  return ret;
+}
+
+async function taskpoolTest() {
+  taskpool.execute(task).then((result) => {
+    console.log("TaskPoolTest task result: " + result);
+  });
+}
+
+taskpoolTest();
+```
+
+**示例四**
+
+```ts
+// 在ts文件中创建taskpool任务需使用"use concurrent"
+// c.ts
+function test1(n) {
+    "use concurrent"
+    return n;
+}
+export async function taskpoolTest1() {
+    console.log("taskpoolTest1 start");
+    var task = new taskpool.Task(test1, 100);
+    var result = await taskpool.execute(task);
+    console.log("taskpoolTest1 result:" + result);
+}
+
+async function test2() {
+    "use concurrent"
+    var ret = await Promise.all([
+        new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+    ]);
+    return ret;
+}
+export async function taskpoolTest2() {
+    console.log("taskpoolTest2 start");
+    taskpool.execute(test2).then((result) => {
+        console.log("TaskPoolTest2 result: " + result);
+    });
+}
+```
+
+```ts
+// a.ets(与c.ts在同一目录中)
+import { taskpoolTest1, taskpoolTest2 } from "./c";
+
+taskpoolTest1();
+taskpoolTest2();
 ```

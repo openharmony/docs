@@ -11,7 +11,7 @@
 
 | 名称       | 类型     |     必填|       说明      |
 | --------  | --------    | --------| --------        |
-| uri   | string |      是    | 指示待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  |
+| uri   | string |      是    | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。  |
 | type   | featureAbility.DataAbilityOperationType |      是    | 指示数据操作类型。  |
 | valuesBucket?   |  rdb.ValuesBucket |      否    | 指示要操作的数据值。  |
 | valueBackReferences?   | rdb.ValuesBucket |      否    | 指示包含一组键值对的valuesBucket对象。  |

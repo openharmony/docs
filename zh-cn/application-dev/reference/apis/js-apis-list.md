@@ -1,16 +1,18 @@
 # @ohos.util.List (线性容器List)
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 List底层通过单向链表实现，每个节点有一个指向后一个元素的引用。当需要查询元素时，必须从头遍历，插入、删除效率高，查询效率低。List允许元素为null。
 
 List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，可以快速地在头尾进行增删，而List是单向链表，无法双向操作。
 
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用List高效操作。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- T: Type, 类
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- T：Type，类
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -159,9 +161,8 @@ has(element: T): boolean
 
 ```ts
 let list = new List();
-let result = list.has("squirrel");
 list.add("squirrel");
-let result1 = list.has("squirrel");
+let result = list.has("squirrel");
 ```
 
 ### get
@@ -287,7 +288,6 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-list.getIndexOf(2);
 let result = list.getIndexOf(2);
 ```
 
@@ -326,14 +326,11 @@ let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
-list.add(2);
-let obj1 = new List();
-obj1.add(2);
-obj1.add(4);
-obj1.add(5);
-list.equal(obj1);
-let obj2 = {name : "Dylon", age : "13"};
-let result = list.equal(obj2);
+let obj = new List();
+obj.add(2);
+obj.add(4);
+obj.add(5);
+let result = list.equal(obj);
 ```
 
 ### removeByIndex
@@ -456,11 +453,9 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-list.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+list.replaceAllElements((value) => {
+  // 用户操作逻辑根据实际场景进行添加。
+  return value;
 });
 ```
 
@@ -505,7 +500,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.forEach((value, index) => {
-  console.log("value: " + value, index);
+    console.log("value:" + value, "index:" + index);
 });
 ```
 
@@ -588,9 +583,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-let result = list.getSubList(2, 4);
-let result1 = list.getSubList(4, 3);
-let result2 = list.getSubList(2, 6);
+let result = list.getSubList(1, 3);
 ```
 
 ### clear
@@ -658,7 +651,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.set(2, "b");
+let result = list.set(2, "b");
 ```
 
 ### convertToArray

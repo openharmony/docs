@@ -47,15 +47,21 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.xx.xx", routeAddr:"192.168.xx.xx",
-    gateAddr:"192.168.xx.xx", maskAddr:"255.255.xx.xx", dnsAddr0:"1.1.xx.xx", dnsAddr1:"2.2.xx.xx"},
-    (error) => {
-        if (error) {
-            console.log("setIfaceConfig callback error = " + error);
-        } else {
-            console.log("setIfaceConfig callback ok ");
-        }
-    });
+ethernet.setIfaceConfig("eth0", {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1",
+  domain: "2.2.2.2"
+}, (error) => {
+  if (error) {
+    console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+  } else {
+    console.log("setIfaceConfig callback ok ");
+  }
+});
 ```
 
 ## ethernet.setIfaceConfig
@@ -99,11 +105,18 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```js
-ethernet.setIfaceConfig("eth0", {mode:ethernet.STATIC,ipAddr:"192.168.xx.xx", routeAddr:"192.168.xx.xx",
-    gateAddr:"192.168.xx.xx", maskAddr:"255.255.xx.xx", dnsAddr0:"1.1.xx.xx", dnsAddr1:"2.2.xx.xx"}).then(() => {
-    console.log("setIfaceConfig promiss ok ");
-}).catch((error) => {
-    console.log("setIfaceConfig promiss error = " + error);
+ethernet.setIfaceConfig("eth0", {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1",
+  domain: "2.2.2.2"
+}).then(() => {
+  console.log("setIfaceConfig promise ok ");
+}).catch(error => {
+  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -141,17 +154,17 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 
 ```js
 ethernet.getIfaceConfig("eth0", (error, value) => {
-    if (error) {
-        console.log("getIfaceConfig  callback error = " + error);
-    } else {
-        console.log("getIfaceConfig callback mode = " + value.mode);
-        console.log("getIfaceConfig callback ipAddr = " + value.ipAddr);
-        console.log("getIfaceConfig callback routeAddr = " + value.routeAddr);
-        console.log("getIfaceConfig callback gateAddr = " + value.gateAddr);
-        console.log("getIfaceConfig callback maskAddr = " + value.maskAddr);
-        console.log("getIfaceConfig callback dns0Addr = " + value.dns0Addr);
-        console.log("getIfaceConfig callback dns1Addr = " + value.dns1Addr);
-    }
+  if (error) {
+    console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
+  } else {
+    console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+    console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+    console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
+    console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+    console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+    console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+    console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
+  }
 });
 ```
 
@@ -194,15 +207,15 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 ```js
 ethernet.getIfaceConfig("eth0").then((data) => {
-    console.log("getIfaceConfig promiss mode = " + data.mode);
-    console.log("getIfaceConfig promiss ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig promiss routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig promiss gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig promiss maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig promiss dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig promiss dns1Addr = " + data.dns1Addr);
-}).catch((error) => {
-    console.log("getIfaceConfig promiss error = " + error);
+  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.log("getIfaceConfig promise domain = " + JSON.stringify(data.domain));
+}).catch(error => {
+  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -241,9 +254,9 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 ```js
 ethernet.isIfaceActive("eth0", (error, value) => {
   if (error) {
-    console.log("whether2Activate callback error = " + error);
+    console.log("whether2Activate callback error = " + JSON.stringify(error));
   } else {
-    console.log("whether2Activate callback = " + value);
+    console.log("whether2Activate callback = " + JSON.stringify(value));
   }
 });
 ```
@@ -287,9 +300,9 @@ isIfaceActive(iface: string): Promise\<number>
 
 ```js
 ethernet.isIfaceActive("eth0").then((data) => {
-  console.log("isIfaceActive promiss = " + data);
-}).catch((error) => {
-  console.log("isIfaceActive promiss error = " + error);
+  console.log("isIfaceActive promise = " + JSON.stringify(data));
+}).catch(error => {
+  console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -324,11 +337,11 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 ```js
 ethernet.getAllActiveIfaces((error, value) => {
   if (error) {
-    console.log("getAllActiveIfaces callback error = " + error);
+    console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
-      console.log("getAllActiveIfaces callback value.length = " + value.length);
+    console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
     for (let i = 0; i < value.length; i++) {
-      console.log("getAllActiveIfaces callback = " + value[i]);
+      console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
     }
   }
 });
@@ -364,13 +377,81 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 
 ```js
 ethernet.getAllActiveIfaces().then((data) => {
-    console.log("getAllActiveIfaces promiss data.length = " + data.length);
+  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promiss  = " + data[i]);
+    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
-}).catch((error) => {
-  console.log("getAllActiveIfaces promiss error = " + error);
+}).catch(error => {
+  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
+```
+
+## ethernet.on('interfaceStateChange')<sup>10+</sup>
+
+on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
+
+注册网卡热插拔事件，使用callback方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
+| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.      |
+| 401     | Parameter error.                             |
+
+**示例：**
+
+```js
+ ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+});
+```
+
+## ethernet.off('interfaceStateChange')<sup>10+</sup>
+
+off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
+
+注销网卡热插拔事件，使用callback方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明       |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
+| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                      |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.                           |
+| 401     | Parameter error.                             |
+
+**示例：**
+
+```js
+ethernet.off('interfaceStateChange');
 ```
 
 ## InterfaceConfiguration
@@ -379,7 +460,7 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 | 名称          | 类型                    | 必填 | 说明                                                         |
 | ------------ | ----------------------- | ---|------------------------------------------------------------ |
@@ -396,7 +477,7 @@ ethernet.getAllActiveIfaces().then((data) => {
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetManager.Ethernet。
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |

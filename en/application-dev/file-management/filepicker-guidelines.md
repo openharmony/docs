@@ -9,11 +9,10 @@ FilePicker provides the following modes:
 ## Development Guidelines
 
 > **NOTE**
->
 > FilePicker supports only the applications developed based on the stage model.
 > For details about the stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
 
-You can use [AbilityContext.startAbilityForResult(want, options)](../reference/apis/js-apis-ability-context.md##abilitycontextstartabilityforresult-1) with different parameters to start different FilePicker modes.
+You can use [AbilityContext.startAbilityForResult(want, options)](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-1) with different parameters to start FilePicker in different modes.
 
 You need to use [Want](../reference/apis/js-apis-application-want.md) to specify **bundleName** and **abilityName** to start FilePicker. For details, see the following sample code.
 
@@ -32,8 +31,7 @@ ArkTS sample code:
 // Start FilePicker to select a file.
 globalThis.context.startAbilityForResult(
     {
-        bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        action: "ohos.want.action.OPEN_FILE",
         parameters: {
             'startMode': 'choose', //choose or save
         }
@@ -44,8 +42,7 @@ globalThis.context.startAbilityForResult(
 // Start FilePicker to save a file.
 globalThis.context.startAbilityForResult(
     {
-        bundleName: "com.ohos.filepicker",
-        abilityName: "MainAbility",
+        action: "ohos.want.action.CREATE_FILE",
         parameters: {
             'startMode': 'save', //choose or save
             'saveFile': 'test.jpg',

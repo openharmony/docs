@@ -6,13 +6,14 @@ TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放�
 
 **推荐使用场景：** 一般需要存储有序集合的场景，可以使用TreeSet。
 
-文档中存在泛型的使用,涉及以下泛型标记符:
+文档中存在泛型的使用，涉及以下泛型标记符：
 
-- T: Type, 类
+- T：Type，类
 
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -122,9 +123,8 @@ has(value: T): boolean
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.has(123);
 treeSet.add(123);
-let result1 = treeSet.has(123);
+let result = treeSet.has(123);
 ```
 
 
@@ -438,7 +438,7 @@ treeSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-返回包含此映射中键值对的新迭代器对象。
+返回包含此映射中键值的新迭代器对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -508,7 +508,7 @@ let treeSet = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
 treeSet.forEach((value, key) => {
-  console.log("value:" + value, key)
+    console.log("value:" + value, "key:" + key);
 });
 ```
 

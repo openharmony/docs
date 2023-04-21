@@ -33,7 +33,7 @@ Obtains the device serial number. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -82,7 +82,7 @@ Obtains the device serial number. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -124,7 +124,7 @@ Obtains the device version number. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -173,7 +173,7 @@ Obtains the device version number. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
@@ -215,7 +215,7 @@ Obtains the device name. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
@@ -264,7 +264,7 @@ Obtains the device name. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |

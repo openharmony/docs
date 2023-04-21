@@ -1,5 +1,9 @@
 # DeviceUsageStatistics Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 10000001 Memory Operation Failure
 
 **Error Message**
@@ -58,7 +62,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-IPC communication failed.
+IPC failed.
 
 **Description**
 
@@ -94,7 +98,7 @@ Check whether the application exists.
 
 **Error Message**
 
-Get application info failed.
+Failed to get the application information.
 
 **Description**
 
@@ -114,7 +118,7 @@ Check whether the input parameters are valid and whether the application exists.
 
 **Error Message**
 
-Get system or actual time operation failed.
+Failed to get the system time.
 
 **Description**
 
@@ -132,7 +136,7 @@ Try again later or restart the device.
 
 **Error Message**
 
-Application group operation failed. The application group are the the same or do not need te be updated.
+Repeated operation on the application group.
 
 **Description**
 
@@ -150,7 +154,7 @@ Do not repeatedly set application groups, or register or deregister a callback f
 
 **Error Message**
 
-Get application group info failed. The application group infomation cannot be found.
+Failed to get the application group information.
 
 **Description**
 

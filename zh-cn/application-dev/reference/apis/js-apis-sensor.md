@@ -2661,7 +2661,7 @@ try {
 ## sensor.getAngleVariation<sup>9+</sup>
 
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 计算两个旋转矩阵之间的角度变化。
 
@@ -2717,7 +2717,7 @@ try {
 
 ## sensor.getAngleVariation<sup>9+</sup>
 
-getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 得到两个旋转矩阵之间的角度变化。
 
@@ -2777,7 +2777,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
+getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 根据旋转矢量获取旋转矩阵。
 
@@ -2819,7 +2819,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup>
 
-getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
+getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt; 
 
 根据旋转矢量获取旋转矩阵。
 
@@ -2866,7 +2866,7 @@ try {
 ## sensor.transformRotationMatrix<sup>9+</sup> 
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
-        callback: AsyncCallback<Array&lt;number&gt;>): void
+        callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 根据指定坐标系映射旋转矩阵。
 
@@ -2913,7 +2913,7 @@ try {
 
 ## sensor.transformRotationMatrix<sup>9+</sup>
 
-transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 根据指定坐标系映射旋转矩阵。
 
@@ -2964,7 +2964,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup> 
 
-getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 根据旋转向量计算归一化四元数。
 
@@ -3006,7 +3006,7 @@ try {
 
 ## sensor.getQuaternion<sup>9+</sup>
 
-getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转向量计算归一化四元数。
 
@@ -3052,7 +3052,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void 
 
 根据旋转矩阵计算设备方向。
 
@@ -3101,7 +3101,7 @@ try {
 
 ## sensor.getOrientation<sup>9+</sup>
 
-getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转矩阵计算设备的方向。
 
@@ -3193,7 +3193,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
@@ -3239,7 +3239,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
-getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 获取设备上的所有传感器信息。
 
@@ -3249,7 +3249,7 @@ getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
 
 | 参数名   | 类型                                           | 必填 | 说明             |
 | -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 回调函数，返回传感器属性列表。 |
+| callback | AsyncCallback&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 回调函数，返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -3279,7 +3279,7 @@ try {
 
 ## sensor.getSensorList<sup>9+</sup>
 
- getSensorList(): Promise< Array&lt;Sensor&gt;>
+ getSensorList(): Promise&lt;Array&lt;Sensor&gt;&gt;
 
 获取设备上的所有传感器信息。
 
@@ -3289,7 +3289,7 @@ try {
 
 | 参数名  | 类型                                     | 必填 | 说明             |
 | ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | Promise对象，返回传感器属性列表。 |
+| promise | Promise&lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | Promise对象，返回传感器属性列表。 |
 
 **错误码**： 
 
@@ -5584,7 +5584,7 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation successed. Data obtained: " + data);
+    console.info("Operation succeeded. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
@@ -5618,7 +5618,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 ```js
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
-        console.info("Operation successed.");
+        console.info("Operation succeeded.");
         for (var i=0; i < data.length; i++) {
             console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
         }
@@ -5718,7 +5718,7 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
   "Operation failed. Error code: " + err.code + ", message: " + err.message);
           return;
       }
-          console.info("Successed to get getAltitude interface get data: " + data);
+          console.info("Succeeded to get getAltitude interface get data: " + data);
   });
   ```
 
@@ -5783,7 +5783,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-          console.info("Successed to get getGeomagneticDip interface get data: " + data);
+          console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
   })
   ```
 
@@ -5814,7 +5814,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('getGeomagneticDip_promise successed', data);
+          console.info('getGeomagneticDip_promise succeeded', data);
       }).catch((err) => {
            console.error("Operation failed");
   })
@@ -5882,7 +5882,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
   ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
-          console.info('getAngleModifiy_promise success');
+          console.info('getAngleModify_promise success');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
@@ -6022,7 +6022,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
   ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info('createQuaternion_promise successed');
+          console.info('createQuaternion_promise succeeded');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
@@ -6058,7 +6058,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
+      console.info("SensorJsAPI--->Succeeded to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }

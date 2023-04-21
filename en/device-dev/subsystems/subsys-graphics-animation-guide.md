@@ -181,6 +181,6 @@ A UI animator is implemented by calling the callback function you set for each t
 4.  Click the buttons in the lower part of the following figure to verify that the animation effects are as expected.
 
     **Figure  1**  Animator effect<a name="fig17833181682317"></a>  
-    ![](figure/animator-effect.gif "animator-effect")
+    ![](figures/animator-effect.gif "animator-effect")
 
 

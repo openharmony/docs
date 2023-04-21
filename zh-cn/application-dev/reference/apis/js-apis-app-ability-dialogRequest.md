@@ -49,9 +49,9 @@ getRequestInfo(want: Want): RequestInfo
      onRequest(want, startId) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
-            var requestInfo = dialogRequest.getRequestInfo(want)
+            var requestInfo = dialogRequest.getRequestInfo(want);
         } catch(err) {
-            console.error('getRequestInfo err= ' + JSON.stringify(err))
+            console.error('getRequestInfo err= ${JSON.stringify(err)}');
         }
      }
 
@@ -104,9 +104,9 @@ getRequestCallback(want: Want): RequestCallback
      onRequest(want, startId) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
-            var requestCallback = dialogRequest.getRequestCallback(want)
+            var requestCallback = dialogRequest.getRequestCallback(want);
         } catch(err) {
-            console.error('getRequestInfo err= ' + JSON.stringify(err))
+            console.error('getRequestInfo err= ${JSON.stringify(err)}');
         }
      }
 
@@ -145,18 +145,18 @@ getRequestCallback(want: Want): RequestCallback
      onRequest(want, startId) {
        console.info(TAG, `onRequest, want: ${want.abilityName}`);
        try {
-            var requestInfo = dialogRequest.getRequestInfo(want)
+            var requestInfo = dialogRequest.getRequestInfo(want);
             window.bindDialogTarget(requestInfo, () => {
                 console.info('Dialog Window Need Destroy.');
             }, (err) => {
                 if (err.code) {
-                    console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+                    console.error('Failed to bind dialog target. Cause: ${JSON.stringify(err)}');
                     return;
                 }
                 console.info('Succeeded in binding dialog target.');
             });
         } catch(err) {
-            console.error('getRequestInfo err= ' + JSON.stringify(err))
+            console.error('getRequestInfo err= ${JSON.stringify(err)}');
         }
      }
 
@@ -243,7 +243,7 @@ setRequestResult(result: RequestResult): void;
             };
             requestCallback.setRequestResult(myResult);
         } catch(err) {
-            console.error('getRequestInfo err= ' + JSON.stringify(err))
+            console.error('getRequestInfo err= ${JSON.stringify(err)}');
         }
      }
 

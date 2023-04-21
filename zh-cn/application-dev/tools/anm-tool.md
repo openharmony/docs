@@ -1,6 +1,10 @@
 # anm工具
 
-Advanced Notification Manager（通知管理工具，简称anm）是实现通知打印、设置通知参数等功能的工具，为开发者提供基本的通知调试和测试能力。通过该工具，开发者可以在hdc shell中，发送命令以执行各种系统操作，例如打印已发布通知详细信息、设置通知缓存个数、使能通知等。
+Advanced Notification Manager（通知管理工具，简称anm）是实现通知打印、设置通知参数等功能的工具，为开发者提供基本的通知调试和测试能力，例如打印已发布通知详细信息、设置通知缓存个数、使能通知等。
+
+> **说明：**
+>
+> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
 
 ### help
 

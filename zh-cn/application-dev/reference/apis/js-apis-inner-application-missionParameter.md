@@ -15,17 +15,21 @@
 import distributedMissionManager from '@ohos.distributedMissionManager';
 
 let missionParameter = {
-    deviceId: "123456",
+    deviceId: '123456',
     fixConflict: true,
     tag: 123
 };
 try {
     distributedMissionManager.startSyncRemoteMissions(missionParameter,
-        (err, data) => {
-            console.log("startSyncRemoteMissions, data: " + JSON.stringify(data));
+        (error, data) => {
+            if (error && error.code !== 0) {
+                console.error('startSyncRemoteMissions fail, error: ${JSON.stringify(error)}');
+            } else {
+                console.log('startSyncRemoteMissions success, data: ${JSON.stringify(data)}');
+            }
         }
     );
 } catch (err) {
-    console.error('startSyncRemoteMissions fail: ' + JSON.stringify(err));
+    console.error('startSyncRemoteMissions fail: ${JSON.stringify(err)}');
 }
 ```
