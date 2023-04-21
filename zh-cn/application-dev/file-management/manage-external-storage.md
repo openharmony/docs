@@ -5,6 +5,7 @@
 外置存储设备的管理由StorageManager和StorageDaemon两个服务完成。StorageDaemon实现底层的的监听挂载等功能；StorageManager则对系统应用提供状态变更通知、查询和管理能力。
 
 **图1** 外置存储设备管理示意图  
+
 ![External storage device management](figures/external-storage-device-management.png)
 
 - 插入外卡时，StorageDaemon进程通过netlink监听获取到外卡插入事件，创建对应的磁盘设备以及卷设备，此时，已创建的卷设备状态为卸载状态（UNMOUNTED）。
@@ -18,7 +19,6 @@
   - 当用户选择弹出时，卷状态设备更改为正在弹出状态（EJECTING），并发送COMMON_EVENT_VOLUME_EJECT广播。StorageDaemon进程将卷设备卸载成功后，卷状态更改为卸载状态（UNMOUNTED），并发送COMMON_EVENT_VOLUME_UNMOUNTED广播。
 
 - 当卷设备处于卸载状态时，拔出卷设备会删除相关卷设备信息，并发送COMMON_EVENT_VOLUME_REMOVED广播。
-
 
 ## 接口说明
 
@@ -36,7 +36,6 @@
 | usual.event.data.VOLUME_BAD_REMOVAL | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID | 
 | usual.event.data.VOLUME_EJECT | id：卷设备ID<br/>diskId：卷设备所属磁盘设备ID<br/>volumeState：卷设备状态 | 
 
-
 ## 开发步骤
 
 开发者通过订阅卷设备相关的广播事件来感知外置存储的插入，通过广播传递的信息获取卷设备信息后可以对卷设备进行查询以及管理操作。
@@ -53,7 +52,6 @@
    - 卷设备异常移除："usual.event.data.VOLUME_BAD_REMOVAL"
    - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"
 
-     
    ```ts
    import CommonEvent from '@ohos.commonEventManager';
    import volumeManager from '@ohos.file.volumeManager';
@@ -71,7 +69,7 @@
    ```
 
 3. 收到广播通知后获取卷设备信息。
-     
+
    ```ts
    CommonEvent.subscribe(subscriber, function (err, data) {
      if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
