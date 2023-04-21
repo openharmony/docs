@@ -810,7 +810,7 @@ try {
 
 getPosition(): number
 
-获取结果集中当前的读取位置。读取位置会因[moveToFirst](#moveToFirst)、[moveToLast](#moveToLast)等操作而发生变化。
+获取结果集中当前的读取位置。读取位置会因[moveToFirst](#movetofirst)、[moveToLast](#movetolast)等操作而发生变化。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
