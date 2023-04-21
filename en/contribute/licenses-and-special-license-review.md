@@ -45,7 +45,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
   - [PHP License 3.01](http://www.php.net/license/3_01.txt)
   - [MX4J License](http://mx4j.sourceforge.net/docs/ch01s06.html)
 
-- [Boost Software License (BSL-1.0)](https://opensource.org/licenses/BSL-1.0)
+- Boost Software License (BSL-1.0)
 
 - BSD License:
 
@@ -70,7 +70,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - [University of Illinois/NCSA](http://opensource.org/licenses/UoI-NCSA.php)
 
-- [X.Net](http://opensource.org/licenses/xnet.php)
+- X.Net
 
 - [zlib/libpng](http://opensource.org/licenses/zlib-license.php)
 
@@ -88,7 +88,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - [Adobe Postcript(R) AFM files](https://spdx.org/licenses/APAFML.html)
 
-- [Boost Software License Version 1.0](http://www.opensource.org/licenses/BSL-1.0)
+- Boost Software License Version 1.0
 
 - [WTF Public License](http://www.wtfpl.net/)
 
@@ -96,7 +96,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - [UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND      SOFTWARE](http://www.unicode.org/copyright.html#Exhibit1)
 
-- [Zope Public License 2.0](https://opensource.org/licenses/ZPL-2.0)
+- Zope Public License 2.0
 
 - ACE license
 
@@ -106,7 +106,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - Google "Additional IP Rights Grant  (Patents)" file
 
-- [Historical Permission Notice and Disclaimer](https://opensource.org/licenses/HPND)
+- Historical Permission Notice and Disclaimer
 
 ### Licenses for Unacceptable Third-Party Dependencies
 
@@ -124,7 +124,7 @@ In principle, the OpenHarmony project will not accept third-party dependencies t
 - Creative Commons Non-Commercial variants
 - [Sun Community Source License 3.0](http://jcp.org/aboutJava/communityprocess/SCSL3.0.rtf)
 - [GNU GPL 3](http://www.opensource.org/licenses/gpl-license.php)
-- [GNU Affero GPL 3](http://www.opensource.org/licenses/agpl-v3.html)
+- GNU Affero GPL 3
 - [BSD-4-Clause](https://spdx.org/licenses/BSD-4-Clause.html)/[BSD-4-Clause (University of California-Specific)](https://spdx.org/licenses/BSD-4-Clause-UC.html)     
 - Facebook BSD+Patents license
 - [NPL 1.0](https://spdx.org/licenses/NPL-1.0.html)/[NPL 1.1](https://spdx.org/licenses/NPL-1.1.html)
