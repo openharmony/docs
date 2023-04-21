@@ -16,7 +16,6 @@ TS语言的使用在生成器函数中存在以下限制：
 
 错误示例：
 
-
 ```
 build() {
   let a: number = 1 // invalid: variable declaration not allowed
@@ -54,7 +53,7 @@ build() {
 
 1. 通过resourceManager的RawFile接口获取Uint8Array格式数据。
 
-2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。快快快
+2. 通过String.fromCharCode将Uint8Array格式数据转化为String类型。
 
 参考文档：[资源管理](../reference/apis/js-apis-resource-manager.md)
 
@@ -85,8 +84,6 @@ resourceManager.getRawFile(path, (error, value) => {
 适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
 
 Page和Ability打包后会对import的对象分别形成两个不同的闭包，即打包出两个Global对象。因此，所引用的静态变量并不是同一对象，所以无法通过class静态变量方式定义全局变量。建议使用AppStorage进行全局变量管理。
-
-参考文档：[应用程序的数据存储](../quick-start/arkts-state-mgmt-application-level.md)
 
 ## Stage模型下如何获取资源
 
@@ -180,7 +177,7 @@ systemTime.getCurrentTime(false)和new Date().getTime()一样，都是返回1970
 
 适用于：OpenHarmony SDK3.2.6.5, API9 Stage模型
 
-对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;），具体用法请参考[BuilderParam](../quick-start/arkts-dynamic-ui-elememt-building.md#builderparam8)。
+对\@BuilderParam修饰的属性进行赋值时不带参数（如：content: this.specificParam），则此属性的类型需定义成无返回值的函数（如：\@BuilderParam content: () =&gt; void）；若带参数（如：callContent: this.specificParam1("111")），则此属性的类型需定义成any（如：\@BuilderParam callContent: any;）。
 
 ## ArkTS如何把string转成byte数组
 
@@ -247,8 +244,6 @@ OpenHarmony推荐使用worker来处理多线程场景。
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
 通过\@Observed配合\@ObjectLink装饰符实现。
-
-参考文档：[Observed和ObjectLink数据管理](../quick-start/arkts-state-mgmt-page-level.md#observed和objectlink数据管理)
 
 ## 如何实现字符串编解码
 

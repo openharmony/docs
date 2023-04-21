@@ -1,6 +1,6 @@
 # 数据管理开发常见问题
 
-## 如何将PixelMap的数据存储到数据库中。 
+## 如何将PixelMap的数据存储到数据库中
 
 适用于：OpenHarmony SDK 3.2.3.5版本
 
@@ -16,7 +16,6 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 示例：
 
-  
 ```
  hdc_std file recv /data/app/el2/100/database/com.xxxx.xxxx/entry/db/test.db ./test.db
 ```
@@ -62,12 +61,8 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 - 分布式数据管理KV数据模型Value最大支持4M。
 
-参考文档：[首选项概述](../database/database-preference-overview.md)、[分布式数据服务概述](../database/database-mdds-overview.md)
-
 ## Stage模型数据共享DataShare开发
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API 9
 
 Stage模型DataShare不可与FA模型DataAbility混用，连接的服务端应用需使用DataShareExtensionAbility实现。
-
-参考文档：[数据共享开发指导](../database/database-datashare-guidelines.md)

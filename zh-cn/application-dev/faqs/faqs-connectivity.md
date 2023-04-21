@@ -18,7 +18,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 错误码28代表CURLE_OPERATION_TIMEDOUT，操作超时。网络请求底层使用libcurl库，更多错误码可以查看相应文档。
 
-参考文档：[Response常用错误码](../reference/apis/js-apis-http.md#response常用错误码)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+参考文档：[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## \@ohos.net.http.d.ts的response错误码返回6是什么意思？
 
@@ -26,7 +26,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 6表示地址无法解析主机，可以尝试ping一下request中的url，确认是否可以ping通。
 
-更多错误码参考[Response常用错误码](../reference/apis/js-apis-http.md#response常用错误码)或者[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+更多错误码参考[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 ## 调用camera拍摄的照片怎么上传到服务器
 
@@ -44,7 +44,7 @@ HttpRequestOptions中的header是一个Object类型，可以直接在header里�
 
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
-1. 鼠标移到extraData, ctrl+鼠标左键，跳转到sdk中，里面有关于extraData的传参说明。可以发现文档中对extraData的定义是这样的 extraData?: string | Object,也就是extraData支持string 和 Object两种类型。
+1. 鼠标移到extraData, ctrl+鼠标左键，跳转到sdk中，里面有关于extraData的传参说明。可以发现文档中对extraData的定义为 extraData?: string | Object，也就是extraData支持string 和 Object两种类型。
 
 2. 这两种写法都可以实现：
   a.extraData:"data to send"；
