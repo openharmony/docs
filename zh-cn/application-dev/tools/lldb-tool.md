@@ -44,8 +44,8 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 - 检查线程状态
 - 检查栈帧状态
 
-其他更多功能参考：[LLDB工具使用指导](https://gitee.com/xwx1135370/docs/blob/lldb_tool_master/zh-cn/application-dev/tools/lldb-tool.md#311-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E5%85%B1%E4%BA%AB%E5%BA%93)
+其他更多功能参考：[LLDB工具使用指导](https://gitee.com/xwx1135370/third_party_llvm-project/blob/readme/lldb/README_zh.md)
 
 ## 具体使用命令
-[LLDB工具使用指导](https://gitee.com/xwx1135370/docs/blob/lldb_tool_master/zh-cn/application-dev/tools/lldb-tool.md#311-%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E5%85%B1%E4%BA%AB%E5%BA%93)
+[LLDB工具使用指导](https://gitee.com/xwx1135370/third_party_llvm-project/blob/readme/lldb/README_zh.md)
 
