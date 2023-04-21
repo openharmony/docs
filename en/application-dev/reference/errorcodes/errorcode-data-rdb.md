@@ -81,3 +81,22 @@ The column value is null, or the column data type is incompatible with the API c
 1. Check whether the result set is empty.
 2. Check whether the row number and column number of the result set are out of range.
 3. Check whether the column data type is supported.
+
+## 14800047 WAL File Size Exceeds the Default Limit
+
+**Error Message**
+
+The WAL file size exceeds the default limit.
+
+**Description**
+
+The WAL file size exceeds 200 MB, which is the default limit.
+
+**Possible Causes**
+
+Data is added, deleted, and modified continuously without closing the read transaction or result set.
+
+**Solution**
+
+1. Check for unclosed result sets or transactions.
+2. Closes all result sets or transactions.
