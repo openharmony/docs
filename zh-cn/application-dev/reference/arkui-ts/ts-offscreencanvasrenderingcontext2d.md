@@ -12,6 +12,8 @@
 
 OffscreenCanvasRenderingContext2D(width: number, height: number, setting: RenderingContextSettings)
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名  | 参数类型                                                     | 必填 | 参数描述                             |
@@ -23,25 +25,25 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 ## 属性
 
-| 名称                                       | 类型                                       | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle)                  | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
-| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。                               |
-| [strokeStyle](#strokestyle)              | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
-| [lineCap](#linecap)                      | CanvasLineCap                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>-&nbsp;默认值：'butt'。 |
-| [lineJoin](#linejoin)                    | CanvasLineJoin                           | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>-&nbsp;默认值：'miter'。 |
-| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>-&nbsp;默认值：10。 |
-| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。 |
-| [textAlign](#textalign)                  | CanvasTextAlign                          | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>-&nbsp;默认值：'left'。 |
-| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>-&nbsp;默认值：'alphabetic'。 |
-| [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
-| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。    <br/>-&nbsp;默认值：0.0。 |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                   | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>-&nbsp;默认值：'source-over'。 |
-| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>-&nbsp;默认值：0.0。 |
-| [shadowColor](#shadowcolor)              | string                                   | 设置绘制阴影时的阴影颜色。                            |
-| [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。                      |
-| [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。                      |
-| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。 |
+| 名称                                                  | 类型                                                         | 描述                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [fillStyle](#fillstyle)                               | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineWidth](#linewidth)                               | number                                                       | 设置绘制线条的宽度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [strokeStyle](#strokestyle)                           | string&nbsp;\|&nbsp;[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineCap](#linecap)                                   | CanvasLineCap                                                | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>-&nbsp;默认值：'butt'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>-&nbsp;默认值：'miter'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [miterLimit](#miterlimit)                             | number                                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>-&nbsp;默认值：10。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [textAlign](#textalign)                               | CanvasTextAlign                                              | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>-&nbsp;默认值：'left'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>-&nbsp;默认值：'alphabetic'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [globalAlpha](#globalalpha)                           | number                                                       | 设置透明度，0.0为完全透明，1.0为完全不透明。                 |
+| [lineDashOffset](#linedashoffset)                     | number                                                       | 设置画布的虚线偏移量，精度为float。    <br/>-&nbsp;默认值：0.0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>-&nbsp;默认值：'source-over'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowBlur](#shadowblur)                             | number                                                       | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>-&nbsp;默认值：0.0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowColor](#shadowcolor)                           | string                                                       | 设置绘制阴影时的阴影颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | 设置绘制阴影时和原有对象的水平偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowOffsetY](#shadowoffsety)                       | number                                                       | 设置绘制阴影时和原有对象的垂直偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
@@ -700,6 +702,8 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 填充一个矩形。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 说明            |
@@ -747,6 +751,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 绘制具有边框的矩形，矩形内部不填充。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 说明           |
@@ -793,6 +799,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
 clearRect(x: number, y: number, w: number, h: number): void
 
 删除指定区域内的绘制内容。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -843,6 +851,8 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 绘制填充类文本。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数       | 类型     | 必填   | 默认值  | 说明              |
@@ -890,6 +900,8 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 strokeText(text: string, x: number, y: number): void
 
 绘制描边类文本。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -939,6 +951,8 @@ measureText(text: string): TextMetrics
 
 该方法返回一个文本测算的对象，通过该对象可以获取指定文本的宽度值。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 说明         |
@@ -947,9 +961,9 @@ measureText(text: string): TextMetrics
 
  **返回值：**
 
-| 类型          | 说明      |
-| ----------- | ------- |
-| TextMetrics | 文本的尺寸信息 |
+| 类型        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| TextMetrics | 文本的尺寸信息<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **TextMetrics类型描述:**
 
@@ -1009,6 +1023,8 @@ stroke(path?: Path2D): void
 
 进行边框绘制操作。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型                                       | 必填   | 默认值  | 描述           |
@@ -1058,6 +1074,8 @@ beginPath(): void
 
 创建一个新的绘制路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **示例：**
 
   ```ts
@@ -1100,6 +1118,8 @@ beginPath(): void
 moveTo(x: number, y: number): void
 
 路径从当前点移动到指定点。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -1149,6 +1169,8 @@ lineTo(x: number, y: number): void
 
 从当前点到指定点进行路径连接。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述        |
@@ -1197,6 +1219,8 @@ closePath(): void
 
 结束当前路径形成一个封闭路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **示例：**
 
   ```ts
@@ -1239,6 +1263,8 @@ closePath(): void
 createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | null
 
 通过指定图像和重复方式创建图片填充的模板。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -1294,6 +1320,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 创建三次贝赛尔曲线的路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述             |
@@ -1346,6 +1374,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 创建二次贝赛尔曲线的路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述          |
@@ -1395,6 +1425,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 绘制弧线路径。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -1447,6 +1479,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数     | 类型     | 必填   | 默认值  | 描述              |
@@ -1496,6 +1530,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 在规定的矩形区域绘制一个椭圆。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -1549,6 +1585,8 @@ rect(x: number, y: number, w: number, h: number): void
 
 创建矩形路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述            |
@@ -1597,6 +1635,8 @@ fill(fillRule?: CanvasFillRule): void
 
 对封闭路径进行填充。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:** 
 
 | 参数       | 类型             | 必填   | 默认值       | 描述                                       |
@@ -1637,6 +1677,8 @@ fill(fillRule?: CanvasFillRule): void
 fill(path: Path2D, fillRule?: CanvasFillRule): void
 
 对封闭路径进行填充。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数:** 
 
@@ -1695,6 +1737,8 @@ clip(fillRule?: CanvasFillRule): void
 
 设置当前路径为剪切路径。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:** 
 
 | 参数       | 类型             | 必填   | 默认值       | 描述                                       |
@@ -1740,6 +1784,8 @@ clip(fillRule?: CanvasFillRule): void
 clip(path:Path2D, fillRule?: CanvasFillRule): void
 
 设置封闭路径为剪切路径。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数:** 
 
@@ -1797,6 +1843,8 @@ filter(filter: string): void
 
 为Canvas图形设置各类滤镜效果。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数:**
 
 | 参数     | 类型     | 必填   | 默认值  | 说明           |
@@ -1810,12 +1858,16 @@ getTransform(): Matrix2D
 
 获取当前被应用到上下文的转换矩阵。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ### resetTransform
 
 resetTransform(): void
 
 使用单位矩阵重新设置当前变形。该接口为空接口。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 
 ### direction
@@ -1824,12 +1876,16 @@ direction(direction: CanvasDirection): void
 
 绘制文本时，描述当前文本方向的属性。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 ### rotate
 
 rotate(angle: number): void
 
 针对当前坐标轴进行顺时针旋转。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -1875,6 +1931,8 @@ rotate(angle: number): void
 scale(x: number, y: number): void
 
 设置canvas画布的缩放变换属性，后续的绘制操作将按照缩放比例进行缩放。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -1923,6 +1981,8 @@ scale(x: number, y: number): void
 transform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
@@ -1987,6 +2047,8 @@ setTransform(a: number, b: number, c: number, d: number, e: number, f: number): 
 
 setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述                   |
@@ -2040,6 +2102,8 @@ translate(x: number, y: number): void
 
 移动当前坐标系的原点。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述       |
@@ -2090,6 +2154,8 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number):void
 
 进行图像绘制。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
 
  **参数：**
 
@@ -2144,6 +2210,8 @@ createImageData(sw: number, sh: number): ImageData
 
 根据宽高创建ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认   | 描述            |
@@ -2155,6 +2223,8 @@ createImageData(sw: number, sh: number): ImageData
 createImageData(imageData: ImageData): ImageData
 
 根据已创建的ImageData对象创建新的ImageData对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -2217,6 +2287,8 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述              |
@@ -2276,6 +2348,8 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：**
 
 | 参数          | 类型     | 必填   | 默认值          | 描述                            |
@@ -2331,6 +2405,8 @@ setLineDash(segments: number[]): void
 
 设置画布的虚线样式。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数       | 类型       | 描述                  |
@@ -2374,6 +2450,8 @@ setLineDash(segments: number[]): void
 getLineDash(): number[]
 
 获得当前画布的虚线样式。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：** 
 
@@ -2481,6 +2559,8 @@ imageSmoothingQuality(quality: imageSmoothingQuality)
 
 用于设置图像平滑度。该接口为空接口。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **参数：** 
 
 | 参数      | 类型                    | 描述                                       |
@@ -2544,6 +2624,8 @@ restore(): void
 
 对保存的绘图上下文进行恢复。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **示例：**
 
   ```ts
@@ -2585,6 +2667,8 @@ save(): void
 
 对当前的绘图上下文进行保存。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
  **示例：** 
 
   ```ts
@@ -2625,6 +2709,8 @@ save(): void
 createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
 创建一个线性渐变色。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
  **参数：**
 
@@ -2678,6 +2764,8 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 创建一个径向渐变色。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
   **参数：**
 
 | 参数   | 类型     | 必填   | 默认值  | 描述                |
@@ -2729,3 +2817,5 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 ## CanvasPattern
 
 一个Object对象, 通过[createPattern](#createpattern)方法创建。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。

@@ -59,7 +59,7 @@ onCommand()与onConnect()的区别在于：
           {
             "name": ".ServiceAbility",
             "type": "service",
-            "exported": true
+            "visible": true
             ...
           }
         ]

@@ -8,18 +8,18 @@
 
 ## 使用AudioRenderer播放对端的通话声音
 
-  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRenderInfo参数和音频数据来源。audioRenderInfo参数中，音频内容类型需设置为语音，CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信，STREAM_USAGE_VOICE_COMMUNICATION。
+  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音，CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信，STREAM_USAGE_VOICE_COMMUNICATION。
   
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
 const TAG = 'VoiceCallDemoForAudioRenderer';
-// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRenderInfo参数和音频数据来源
+// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
 export default class VoiceCallDemoForAudioRenderer {
   private renderModel = undefined;
   private audioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
-    channels: audio.AudioChannel.CHANNEL_2, // 通道数
+    channels: audio.AudioChannel.CHANNEL_2, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
   }
@@ -60,7 +60,7 @@ export default class VoiceCallDemoForAudioRenderer {
   // 开始一次音频渲染
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.renderModel.state) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
+    if (stateGroup.indexOf(this.renderModel.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动渲染
       console.error(TAG + 'start failed');
       return;
     }
@@ -91,7 +91,7 @@ export default class VoiceCallDemoForAudioRenderer {
           }
         });
       });
-      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，停止渲染
+      if (this.renderModel.state === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为STATE_RELEASED，停止渲染
         fs.close(file);
         await this.renderModel.stop();
       }
@@ -105,7 +105,7 @@ export default class VoiceCallDemoForAudioRenderer {
   }
   // 暂停渲染
   async pause() {
-    // 只有渲染器状态为running的时候才能暂停
+    // 只有渲染器状态为STATE_RUNNING的时候才能暂停
     if (this.renderModel.state !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
@@ -119,7 +119,7 @@ export default class VoiceCallDemoForAudioRenderer {
   }
   // 停止渲染
   async stop() {
-    // 只有渲染器状态为running或paused的时候才可以停止
+    // 只有渲染器状态为STATE_RUNNING或STATE_PAUSED的时候才可以停止
     if (this.renderModel.state !== audio.AudioState.STATE_RUNNING && this.renderModel.state !== audio.AudioState.STATE_PAUSED) {
       console.info('Renderer is not running or paused.');
       return;
@@ -133,7 +133,7 @@ export default class VoiceCallDemoForAudioRenderer {
   }
   // 销毁实例，释放资源
   async release() {
-    // 渲染器状态不是released状态，才能release
+    // 渲染器状态不是STATE_RELEASED状态，才能release
     if (this.renderModel.state === audio.AudioState.STATE_RELEASED) {
       console.info('Renderer already released');
       return;
@@ -161,7 +161,7 @@ export default class VoiceCallDemoForAudioCapturer {
   private audioCapturer = undefined;
   private audioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率
-    channels: audio.AudioChannel.CHANNEL_1, // 通道数
+    channels: audio.AudioChannel.CHANNEL_1, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
   }
@@ -198,7 +198,7 @@ export default class VoiceCallDemoForAudioCapturer {
   // 开始一次音频采集
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动采集
+    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
       console.error(`${TAG}: start failed`);
       return;
     }

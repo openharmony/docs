@@ -17,7 +17,7 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
   "srcLanguage": "ets",
   "description": "$string:description_dataability",
   "type": "data",
-  "exported": true,
+  "visible": true,
   "uri": "dataability://ohos.samples.etsdataability.DataAbility",
   "readPermission":"ohos.permission.READ_CONTACTS",
   "writePermission":"ohos.permission.WRITE_CONTACTS"

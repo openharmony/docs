@@ -66,7 +66,7 @@
        let tempDir = this.context.getApplicationContext().tempDir;
        let tmpFile = tempDir + '/file' + Date.now();
        request.downloadFile(this.context, {
-         url: netFile, filePath: tmpFile
+         url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
        }).then((task) => {
          task.on('complete', function callback() {
            console.info('ArkTSCard download complete:' + tmpFile);

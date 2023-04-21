@@ -1,4 +1,4 @@
-# @ohos.file.fileUri (File URI)
+# @ohos.file.fileuri (File URI)
 
 The **fileUri** module allows the uniform resource identifier (URI) of a file to be obtained based on the file path. With the file URI, you can use the APIs provided by [@ohos.file.fs](js-apis-file-fs.md) to operate the file.
 
@@ -9,7 +9,7 @@ The **fileUri** module allows the uniform resource identifier (URI) of a file to
 ## Modules to Import
 
 ```js
-import fileUri from "@ohos.file.fileUri";
+import fileuri from "@ohos.file.fileuri";
 ```
 
 Before using this module, you need to obtain the path of the file in the application sandbox. The following is an example:
@@ -57,5 +57,5 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```js
 let filePath = pathDir + "test.txt";
-let uri = fileUri.getUriFromPath(filePath);
+let uri = fileuri.getUriFromPath(filePath);
   ```

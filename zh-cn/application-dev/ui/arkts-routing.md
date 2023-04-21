@@ -11,11 +11,11 @@
   **图1** 页面跳转  
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页是否会替换当前页。
+Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl()：目标页不会替换当前页，而是压入[页面栈](../application-models/page-mission-stack.md)。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl()：目标页面不会替换当前页，而是压入[页面栈](../application-models/page-mission-stack.md)。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
 
-- router.replaceUrl()：目标页会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
+- router.replaceUrl()：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 
 >**说明：** 
 >
@@ -23,9 +23,9 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 同时，Router模块提供了两种实例模式，分别是Standard和Single。这两种模式决定了目标url是否会对应多个实例。
 
-- Standard：标准实例模式，也是默认情况下的实例模式。每次调用该方法都会新建一个目标页，并压入栈顶。
+- Standard：多实例模式，也是默认情况下的跳转模式。目标页面会被添加到页面栈顶，无论栈中是否存在相同url的页面。
 
-- Single：单实例模式。即如果目标页的url在页面栈中已经存在同url页面，则离栈顶最近的同url页面会被移动到栈顶，并重新加载；如果目标页的url在页面栈中不存在同url页面，则按照标准模式跳转。
+- Single：单实例模式。如果目标页面的url已经存在于页面栈中，则会将离栈顶最近的同url页面移动到栈顶，该页面成为新建页。如果目标页面的url在页面栈中不存在同url页面，则按照默认的多实例模式进行跳转。
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
@@ -54,7 +54,7 @@ import router from '@ohos.router';
 
   >**说明：**
   >
-  >标准实例模式下，router.RouterMode.Standard参数可以省略。
+  >多实例模式下，router.RouterMode.Standard参数可以省略。
 
 - 场景二：有一个登录页（Login）和一个个人中心页（Profile），希望从登录页成功登录后，跳转到个人中心页。同时，销毁登录页，在返回时直接退出应用。这种场景下，可以使用replaceUrl()方法，并且使用Standard实例模式（或者省略）。
 
@@ -76,7 +76,7 @@ import router from '@ohos.router';
 
   >**说明：**
   >
-  >标准实例模式下，router.RouterMode.Standard参数可以省略。
+  >多实例模式下，router.RouterMode.Standard参数可以省略。
 
 - 场景三：有一个设置页（Setting）和一个主题切换页（Theme），希望从设置页点击主题选项，跳转到主题切换页。同时，需要保证每次只有一个主题切换页存在于页面栈中，在返回时直接回到设置页。这种场景下，可以使用pushUrl()方法，并且使用Single实例模式。
 
@@ -115,7 +115,7 @@ import router from '@ohos.router';
 
 以上是不带参数传递的场景。
 
-如果需要在跳转时传递一些数据给目标页，则可以在调用Router模块的方法时，添加一个params属性，并指定一个对象作为参数。例如：
+如果需要在跳转时传递一些数据给目标页面，则可以在调用Router模块的方法时，添加一个params属性，并指定一个对象作为参数。例如：
 
 
 ```ts
@@ -150,7 +150,7 @@ function onJumpClick(): void {
 }
 ```
 
-在目标页中，可以通过调用Router模块的[getParams()](../reference/apis/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
+在目标页面中，可以通过调用Router模块的[getParams()](../reference/apis/js-apis-router.md#routergetparams)方法来获取传递过来的参数。例如：
 
 
 ```ts
@@ -162,7 +162,7 @@ const age = params['info'].age; // 获取age属性的值
 
 ## 页面返回
 
-当用户在一个页面完成操作后，通常需要返回到上一个页面或者指定页面，这就需要用到页面返回功能。在返回的过程中，可能需要将数据传递给目标页，这就需要用到数据传递功能。
+当用户在一个页面完成操作后，通常需要返回到上一个页面或者指定页面，这就需要用到页面返回功能。在返回的过程中，可能需要将数据传递给目标页面，这就需要用到数据传递功能。
 
   **图2** 页面返回  
 
@@ -195,7 +195,7 @@ import router from '@ohos.router';
   });
   ```
 
-  这种方式可以返回到指定页面，需要指定目标页的路径。目标页必须存在于页面栈中才能够返回。
+  这种方式可以返回到指定页面，需要指定目标页面的路径。目标页面必须存在于页面栈中才能够返回。
 
 - 方式三：返回到指定页面，并传递自定义参数信息。
 
@@ -209,9 +209,9 @@ import router from '@ohos.router';
   });
   ```
 
-  这种方式不仅可以返回到指定页面，还可以在返回的同时传递自定义参数信息。这些参数信息可以在目标页中通过调用router.getParams()方法进行获取和解析。
+  这种方式不仅可以返回到指定页面，还可以在返回的同时传递自定义参数信息。这些参数信息可以在目标页面中通过调用router.getParams()方法进行获取和解析。
 
-在目标页中，在需要获取参数的位置调用router.getParams()方法即可，例如在onPageShow()生命周期回调中：
+在目标页面中，在需要获取参数的位置调用router.getParams()方法即可，例如在onPageShow()生命周期回调中：
 
 
 ```ts
@@ -276,7 +276,7 @@ message：string类型，表示询问框的内容。
 
 如果调用成功，则会在目标界面开启页面返回询问框；如果调用失败，则会抛出异常，并通过err.code和err.message获取错误码和错误信息。
 
-当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页；选择“确认”将触发router.back()方法，并根据参数决定如何执行跳转。
+当用户点击“返回”按钮时，会弹出确认对话框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发router.back()方法，并根据参数决定如何执行跳转。
 
 ### 自定义询问框
 
@@ -323,4 +323,4 @@ function onBackClick() {
 }
 ```
 
-当用户点击“返回”按钮时，会弹出自定义的询问框，询问用户是否确认返回。选择“取消”将停留在当前页目标页；选择“确认”将触发router.back()方法，并根据参数决定如何执行跳转。
+当用户点击“返回”按钮时，会弹出自定义的询问框，询问用户是否确认返回。选择“取消”将停留在当前页目标页面；选择“确认”将触发router.back()方法，并根据参数决定如何执行跳转。

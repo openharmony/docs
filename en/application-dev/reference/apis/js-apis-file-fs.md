@@ -1,11 +1,9 @@
 # @ohos.file.fs (File Management)
 
-The **fs** module provides APIs for file operations, including basic file management, directory management, file information statistics, and stream read and write.
+The **fs** module provides APIs for file operations, including basic file management, directory management, file information statistics, and data read and write using a stream.
 
-> **NOTE**
->
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> **NOTE**<br>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -13,9 +11,13 @@ The **fs** module provides APIs for file operations, including basic file manage
 import fs from '@ohos.file.fs';
 ```
 
+## Error Code Description
+
+The APIs of this module supports processing of error codes. For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the file or directory in the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on a file or folder, obtain the application sandbox path of the file or folder as follows:
 
 **Stage Model**
 
@@ -55,7 +57,7 @@ Obtains detailed file information. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.|
+| file   | string\|number | Yes  | Application sandbox path or file descriptor (FD) of the file.|
 
 **Return value**
 
@@ -86,7 +88,7 @@ Obtains detailed file information. This API uses an asynchronous callback to ret
 
 | Name  | Type                              | Mandatory| Description                          |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string\|number                            | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.    |
+| file     | string\|number                            | Yes  | Application sandbox path or FD of the file.    |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the file information obtained.|
 
 **Example**
@@ -113,7 +115,7 @@ Obtains detailed file information synchronously.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.|
+| file   | string\|number | Yes  | Application sandbox path or FD of the file.|
 
 
 **Return value**
@@ -141,13 +143,13 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
 
 **Return value**
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return a Boolean value.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the file exists; the value **false** means the opposite.|
 
 **Example**
 
@@ -175,7 +177,7 @@ Checks whether a file exists. This API uses an asynchronous callback to return t
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                    | Yes  | Path of the file in the application sandbox.                                  |
+| path     | string                    | Yes  | Application sandbox path of the file.                                  |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.                |
 
 **Example**
@@ -205,7 +207,13 @@ Synchronously checks whether a file exists.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | boolean | Returns **true** if the file exists; returns **false** otherwise.|
 
 **Example**
 
@@ -409,7 +417,7 @@ Creates a directory. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the directory in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the directory.                                  |
 
 **Return value**
 
@@ -441,7 +449,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                    | Yes  | Path of the directory in the application sandbox.                                  |
+| path     | string                    | Yes  | Application sandbox path of the directory.                                  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is created asynchronously.                            |
 
 **Example**
@@ -470,7 +478,7 @@ Synchronously creates a directory.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the directory in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the directory.                                  |
 
 **Example**
 
@@ -492,7 +500,7 @@ Opens a file. This API uses a promise to return the result. File uniform resourc
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox or URI of the file.                                  |
+| path   | string | Yes  | Application sandbox path or URI of the file.                                  |
 | mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
@@ -525,7 +533,7 @@ Opens a file. This API uses an asynchronous callback to return the result. File 
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | Yes  | Path of the file in the application sandbox or URI of the file.                                  |
+| path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
 | mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Example**
@@ -553,7 +561,7 @@ Synchronously opens a file. File URIs are supported.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox or URI of the file.                                  |
+| path   | string | Yes  | Application sandbox path or URI of the file.                                  |
 | mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is open in write-only or read/write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the open file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
@@ -688,7 +696,7 @@ Deletes a directory. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the directory in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the directory.|
 
 **Return value**
 
@@ -720,7 +728,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| path     | string                    | Yes  | Path of the directory in the application sandbox.|
+| path     | string                    | Yes  | Application sandbox path of the directory.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is deleted asynchronously.  |
 
 **Example**
@@ -749,7 +757,7 @@ Synchronously deletes a directory.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the directory in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the directory.|
 
 **Example**
 
@@ -771,7 +779,7 @@ Deletes a file. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the file in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -803,7 +811,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
-| path     | string                    | Yes  | Path of the file in the application sandbox.|
+| path     | string                    | Yes  | Application sandbox path of the file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is deleted asynchronously.  |
 
 **Example**
@@ -832,7 +840,7 @@ Synchronously deletes a file.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Path of the file in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Example**
 
@@ -955,8 +963,8 @@ Truncates a file. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.      |
-| len    | number | No  | File length, in bytes, after truncation.|
+| file   | string\|number | Yes  | Application sandbox path or FD of the file.      |
+| len    | number | No  | File length, in bytes, after truncation. The default value is **0**.|
 
 **Return value**
 
@@ -989,8 +997,8 @@ Truncates a file. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                     | Mandatory| Description                            |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| file     | string\|number                    | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.      |
-| len      | number                    | No  | File length, in bytes, after truncation.|
+| file     | string\|number                    | Yes  | Application sandbox path or FD of the file.      |
+| len      | number                    | No  | File length, in bytes, after truncation. The default value is **0**.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.  |
 
 **Example**
@@ -1020,8 +1028,8 @@ Synchronously truncates a file.
 
 | Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | Yes  | Path of the file in the application sandbox or file descriptor (FD) of the file.      |
-| len    | number | No  | File length, in bytes, after truncation.|
+| file   | string\|number | Yes  | Application sandbox path or FD of the file.      |
+| len    | number | No  | File length, in bytes, after truncation. The default value is **0**.|
 
 **Example**
 
@@ -1044,7 +1052,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filePath | string | Yes  | Path of the file in the application sandbox.                                  |
+| filePath | string | Yes  | Application sandbox path of the file.                                  |
 | options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
@@ -1077,7 +1085,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| filePath | string                      | Yes  | Path of the file in the application sandbox.                                  |
+| filePath | string                      | Yes  | Application sandbox path of the file.                                  |
 | options  | Object                      | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the content read.                        |
 
@@ -1107,7 +1115,7 @@ Synchronously reads the text of a file.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filePath | string | Yes  | Path of the file in the application sandbox.                                  |
+| filePath | string | Yes  | Application sandbox path of the file.                                  |
 | options  | Object | No  | The options are as follows:<br>- **offset** (number): position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the file length.<br>- **encoding** (string): format of the string to be encoded. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
@@ -1136,7 +1144,7 @@ Obtains information about a symbolic link. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | Yes  | Path of the symbolic link in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -1168,7 +1176,7 @@ Obtains information about a symbolic link. This API uses an asynchronous callbac
 
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
-| path     | string                             | Yes  | Path of the symbolic link in the application sandbox.|
+| path     | string                             | Yes  | Application sandbox path of the file.|
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the symbolic link information obtained.      |
 
 **Example**
@@ -1196,7 +1204,7 @@ Obtains information about a symbolic link synchronously.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| path   | string | Yes  | Path of the file in the application sandbox.|
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -1215,7 +1223,7 @@ Obtains information about a symbolic link synchronously.
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file or directory. This API uses a promise to return the result.
+Renames a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1223,8 +1231,8 @@ Renames a file or directory. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Path of the file to rename in the application sandbox.|
-| newPath | string | Yes  | Path of the renamed file in the application sandbox.  |
+| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
 
 **Return value**
 
@@ -1248,7 +1256,7 @@ Renames a file or directory. This API uses a promise to return the result.
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file or directory. This API uses an asynchronous callback to return the result.
+Renames a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1256,9 +1264,9 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 | Name  | Type                     | Mandatory| Description                        |
 | -------- | ------------------------- | ---- | ---------------------------- |
-| oldPath | string | Yes  | Path of the file to rename in the application sandbox.|
-| newPath | string | Yes  | Path of the renamed file in the application sandbox.  |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously renamed.  |
+| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file or folder is asynchronously renamed.  |
 
 **Example**
 
@@ -1278,7 +1286,7 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or directory synchronously.
+Renames a file or folder synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1286,8 +1294,8 @@ Renames a file or directory synchronously.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Path of the file to rename in the application sandbox.|
-| newPath | string | Yes  | Path of the renamed file in the application sandbox.  |
+| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
 
 **Example**
 
@@ -1486,8 +1494,8 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| target  | string | Yes  | Path of the source file in the application sandbox.    |
-| srcPath | string | Yes  | Path of the symbolic link in the application sandbox.|
+| target  | string | Yes  | Application sandbox path of the source file.    |
+| srcPath | string | Yes  | Application sandbox path of the symbolic link.|
 
 **Return value**
 
@@ -1519,8 +1527,8 @@ Creates a symbolic link based on a file path. This API uses an asynchronous call
 
 | Name  | Type                     | Mandatory| Description                            |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| target   | string                    | Yes  | Path of the source file in the application sandbox.        |
-| srcPath  | string                    | Yes  | Path of the symbolic link in the application sandbox.    |
+| target   | string                    | Yes  | Application sandbox path of the source file.        |
+| srcPath  | string                    | Yes  | Application sandbox path of the symbolic link.    |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the symbolic link is created asynchronously.|
 
 **Example**
@@ -1549,8 +1557,8 @@ Synchronously creates a symbolic link based on a file path.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| target  | string | Yes  | Path of the source file in the application sandbox.    |
-| srcPath | string | Yes  | Path of the symbolic link in the application sandbox.|
+| target  | string | Yes  | Application sandbox path of the source file.    |
+| srcPath | string | Yes  | Application sandbox path of the symbolic link.|
 
 **Example**
 
@@ -1575,8 +1583,8 @@ Lists all files in a directory. This API uses a promise to return the result.<br
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
-  | options | Object | No   | File filtering options.|
+  | path | string | Yes   | Application sandbox path of the folder.|
+  | options | Object | No   | File filtering options. The files are not filtered by default.|
 
 **options parameters**
 
@@ -1628,8 +1636,8 @@ Lists all files in a directory. This API uses an asynchronous callback to return
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
-  | options | Object | No   | File filtering options.|
+  | path | string | Yes   | Application sandbox path of the folder.|
+  | options | Object | No   | File filtering options. The files are not filtered by default.|
   | callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback invoked to return the file names listed.             |
 
 **options parameters**
@@ -1679,8 +1687,8 @@ Lists all files in a directory synchronously. This API supports recursive listin
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Path of the directory in the application sandbox.|
-  | options | Object | No   | File filtering options.|
+  | path | string | Yes   | Application sandbox path of the folder.|
+  | options | Object | No   | File filtering options. The files are not filtered by default.|
 
 **options parameters**
 
@@ -1727,8 +1735,8 @@ Moves a file. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Path of the file to move in the application sandbox.|
-  | dest | string | Yes   | Destination path of the file in the application sandbox.|
+  | src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
 
 **Example**
@@ -1755,8 +1763,8 @@ Moves a file. This API uses an asynchronous callback to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Path of the file to move in the application sandbox.|
-  | dest | string | Yes   | Destination path of the file in the application sandbox.|
+  | src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
@@ -1786,8 +1794,8 @@ Moves a file synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Path of the source file in the application sandbox.|
-  | dest | string | Yes   | Destination path of the file in the application sandbox.|
+  | src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
 
 **Example**
@@ -1887,7 +1895,7 @@ Synchronously creates a temporary directory.
 
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
-Opens a file stream based on the file path. This API uses a promise to return the result.
+Creates a stream based on the file path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1895,7 +1903,7 @@ Opens a file stream based on the file path. This API uses a promise to return th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
 | mode   | string | Yes  | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
@@ -1920,7 +1928,7 @@ Opens a file stream based on the file path. This API uses a promise to return th
 
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-Opens a file stream based on the file path. This API uses an asynchronous callback to return the result.
+Creates a stream based on the file path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1928,7 +1936,7 @@ Opens a file stream based on the file path. This API uses an asynchronous callba
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                  | Yes  | Path of the file in the application sandbox.                                  |
+| path     | string                                  | Yes  | Application sandbox path of the file.                                  |
 | mode     | string                                  | Yes  | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
 
@@ -1949,7 +1957,7 @@ Opens a file stream based on the file path. This API uses an asynchronous callba
 
 createStreamSync(path: string, mode: string): Stream
 
-Synchronously opens a stream based on the file path.
+Synchronously creates a stream based on the file path.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -1957,7 +1965,7 @@ Synchronously opens a stream based on the file path.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Path of the file in the application sandbox.                                  |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
 | mode   | string | Yes  | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
@@ -1978,7 +1986,7 @@ Synchronously opens a stream based on the file path.
 
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
-Opens a file stream based on the file descriptor. This API uses a promise to return the result.
+Opens a stream based on the file descriptor. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2013,7 +2021,7 @@ Opens a file stream based on the file descriptor. This API uses a promise to ret
 
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-Opens a file stream based on the file descriptor. This API uses an asynchronous callback to return the result.
+Opens a stream based on the file descriptor. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2244,7 +2252,7 @@ Checks whether this file is a symbolic link.
 
 ## Stream
 
-Provides file stream management. Before calling any API of the **Stream** class, use **createStream()** to create a **Stream** instance synchronously or asynchronously.
+Provides a stream for file operations. Before calling any API of the **Stream** class, use **createStream()** to create a **Stream** instance synchronously or asynchronously.
 
 
 ### close
@@ -2693,7 +2701,7 @@ Unlocks this file synchronously.
 
 ## OpenMode
 
-Defines the constants of the **mode** parameter used in **open()**. It species the mode for opening a file.
+Defines the constants of the **mode** parameter used in **open()**. It specifies the mode for opening a file.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
