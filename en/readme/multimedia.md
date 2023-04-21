@@ -83,7 +83,7 @@ Hardware-based decoding and encoding functions of audio and video data are devic
 
 You can use the APIs in any of the provided classes based on your development requirements.
 
--   For details about how to call media APIs to implement the video recording, preview, and playback, see  [Multimedia Development Guide](https://gitee.com/openharmony/docs/tree/master/en/application-dev/media).
+-   For details about how to call media APIs to implement the video recording, preview, and playback, see  [Multimedia Development Guide](../application-dev/media).
 -   For a simple player, use  **Player**  and  **Recorder**  classes to quickly implement the playback and recording features.
 -   The  **CameraKit**  class provides a group of effective methods for controlling a camera, which facilitates the camera development.
 -   You can create a  **CameraKit**  object and register various callbacks to respond to many events in the multimedia module. Then, create a  **Camera**  object to operate camera resources, for example, to start preview, recording, and stream capturing, and set related parameters.
