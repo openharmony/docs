@@ -3,32 +3,21 @@
 ## 简介
 
 MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
-
-> **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-mdns.md)。
-
-## 基本概念
-
 - 本地服务：局域网内服务的提供方，比如打印机、扫描器等。
-
-## 约束
-
-- 开发语言：C++ JS
-- 系统：linux内核
-- 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-## 场景介绍
 
 MDNS管理的典型场景有：
 
 - 管理本地服务，通过对本地服务的创建，删除和解析等，管理本地服务。
 - 发现本地服务，通过DiscoveryService对象，对指定类型的本地服务状态变化进行监听。
 
+> **说明：**
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-mdns.md)。
+
 以下分别介绍具体开发方式。
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[以太网连接](../reference/apis/js-apis-net-mdns.md)。
+完整的JS API说明以及实例代码请参考：[mDNS链接](../reference/apis/js-apis-net-mdns.md)。
 
 | 类型 | 接口 | 功能说明 |
 | ---- | ---- | ---- |
