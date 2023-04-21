@@ -37,7 +37,6 @@ struct AttrAnimationExample {
         .rotate({ angle: this.rotateAngle })
         .animation({
           curve: Curve.EaseOut,
-          iterations: 1,
           playMode: PlayMode.AlternateReverse
         })
     }.width('100%').margin({ top: 20 })

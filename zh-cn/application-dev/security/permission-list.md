@@ -496,7 +496,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用。
+允许应用安装、卸载其他应用（除了企业InHouse应用）。
 
 **权限级别**：system_core
 
@@ -967,6 +967,16 @@
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 允许设备管理员设置包安装管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
 
 **权限级别**：system_basic
 
@@ -1757,3 +1767,33 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+允许应用安装、卸载其他企业InHouse应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+允许应用代理授权URI。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE

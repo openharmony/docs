@@ -57,13 +57,6 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onConfigurationUpdate(config:&nbsp;Configuration):&nbsp;void | 当系统配置更新时调用。 |
 | onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;any&nbsp;} | 卡片提供方接收卡片分享的通知接口。 |
 
-FormExtensionAbility类还拥有成员context，为FormExtensionContext类，具体的API介绍详见[接口文档](../reference/apis/js-apis-inner-application-formExtensionContext.md)。
-
-| 接口名 | 描述 |
-| -------- | -------- |
-| startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 回调形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
-| startAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt; | Promise形式拉起一个卡片所属应用的UIAbility（系统接口，三方应用不支持调用，需申请后台拉起权限）。 |
-
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
 | 接口名 | 描述 |
@@ -181,7 +174,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEntrance": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
@@ -324,7 +317,7 @@ export default class EntryFormAbility extends FormExtension {
 }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[轻量级数据存储开发指导](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 

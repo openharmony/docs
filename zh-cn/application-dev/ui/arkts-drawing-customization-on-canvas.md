@@ -245,6 +245,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   ![drawimage](figures/drawimage.PNG)
 
 - 其他方法。
+
   Canvas中还提供其他类型的方法。渐变（[CanvasGradient对象](../reference/arkui-ts/ts-components-canvas-canvasgradient.md)）相关的方法：[createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient)（创建一个线性渐变色）、[createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient)（创建一个径向渐变色）等。
 
   ```ts
@@ -270,7 +271,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 ## 场景示例
 
-- 规则基础形状绘制：
+- 规则基础形状绘制。
 
   ```ts
   @Entry

@@ -1,5 +1,7 @@
 # @ohos.contact (Contacts)
 
+The **contact** module provides contact management functions, such as adding, deleting, and updating contacts.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -7,7 +9,7 @@
 
 ## Modules to Import
 
-```js
+```
 import contact from '@ohos.contact';
 ```
 
@@ -183,7 +185,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
-Updates a contact based on the specified contact information and attributes. This API uses an asynchronous callback to return the result.
+Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -234,7 +236,6 @@ Updates a contact based on the specified contact information and attributes. Thi
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
-
 | Type               | Description                                             |
 | ------------------- | ------------------------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -418,7 +419,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries my card based on the specified contact attributes. This API uses an asynchronous callback to return the result.
+Queries my card. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -463,7 +464,6 @@ Queries my card based on the specified contact attributes. This API uses a promi
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
-
 | Type                              | Description                                       |
 | ---------------------------------- | ------------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
@@ -487,8 +487,6 @@ Queries my card based on the specified contact attributes. This API uses a promi
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
-
-**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -516,8 +514,6 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
-
-**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -573,7 +569,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries contacts based on the specified key and application. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -608,7 +604,7 @@ Queries contacts based on the specified key and application. This API uses an as
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries contacts based on the specified key and attributes. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -641,7 +637,7 @@ Queries contacts based on the specified key and attributes. This API uses an asy
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries contacts based on the specified key, application, and attributes. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -660,7 +656,6 @@ Queries contacts based on the specified key, application, and attributes. This A
 
   ```js
   contact.queryContact('xxx', {
-      holderId: 0
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -695,7 +690,6 @@ Queries contacts based on the specified key, application, and attributes. This A
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                    |
 
 **Return Value**
-
 | Type                              | Description                                           |
 | ---------------------------------- | ----------------------------------------------- |
 | Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
@@ -704,7 +698,6 @@ Queries contacts based on the specified key, application, and attributes. This A
 
   ```js
   let promise = contact.queryContact('xxx', {
-      holderId: 0
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -752,7 +745,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts based on the specified application. This API uses an asynchronous callback to return the result.
+Queries all contacts. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -786,7 +779,7 @@ Queries all contacts based on the specified application. This API uses an asynch
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts based on the specified attributes. This API uses an asynchronous callback to return the result.
+Queries all contacts. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -818,7 +811,7 @@ Queries all contacts based on the specified attributes. This API uses an asynchr
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts based on the specified application and attributes. This API uses an asynchronous callback to return the result.
+Queries all contacts. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -869,7 +862,6 @@ Queries all contacts based on the specified application and attributes. This API
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
 
 **Return Value**
-
 | Type                                           | Description                                               |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
@@ -926,7 +918,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number and application. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -961,7 +953,7 @@ Queries contacts based on the specified phone number and application. This API u
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number and attributes. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -994,7 +986,7 @@ Queries contacts based on the specified phone number and attributes. This API us
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number, application, and attributes. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1104,7 +1096,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address and application. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1122,7 +1114,7 @@ Queries contacts based on the specified email address and application. This API 
 
   ```js
   contact.queryContactsByEmail('xxx@email.com', {
-       holderId: 0,
+      holderId: 0,
       bundleName: "",
       displayName: ""
   }, (err, data) => {
@@ -1139,7 +1131,7 @@ Queries contacts based on the specified email address and application. This API 
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address and attributes. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1172,7 +1164,7 @@ Queries contacts based on the specified email address and attributes. This API u
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address, application, and attributes. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1281,7 +1273,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-Queries all groups of this contact based on the specified application. This API uses an asynchronous callback to return the result.
+Queries all groups of this contact. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1440,7 +1432,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-Queries the key of a contact based on the specified contact ID and application. This API uses an asynchronous callback to return the result.
+Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1525,7 +1517,7 @@ Defines a contact.
 
 ### Attributes
 
-| Name             | Type                               | Readable| Writable| Description                                  |
+|       Name       |                   Type                 | Readable| Writable| Description                                  |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
 | id                | number                                  | Yes  | No  | Contact ID.                          |
 | key               | string                                  | Yes  | No  | Contact key.                         |
@@ -1587,7 +1579,7 @@ If **null** is passed, all attributes are queried by default.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name      | Type                 | Readable| Writable| Description            |
+| Name      |            Type          | Readable| Writable| Description            |
 | ---------- | ------------------------- | ---- | ---- | ---------------- |
 | attributes | [Attribute](#attribute)[] | Yes  | Yes  | List of contact attributes.|
 
@@ -1668,7 +1660,7 @@ Defines a contact's email.
 
 ### Attributes
 
-| Name       | Type| Readable| Writable| Description            |
+| Name       |   Type  | Readable| Writable| Description            |
 | ----------- | -------- | ---- | ---- | ---------------- |
 | email       | string   | Yes  | Yes  | Email addresses      |
 | labelName   | string   | Yes  | Yes  | Name of the mailbox type.|
@@ -1702,11 +1694,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type| Readable| Writable| Description      |
-| ----------- | -------- | ---- | ---- | ---------- |
-| bundleName  | string   | Yes  | No  | Bundle name.    |
-| displayName | string   | Yes  | No  | Application name.|
-| holderId    | number   | Yes  | Yes  | Application ID.  |
+| Name       | Type  | Readable| Writable| Description        |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundleName  | string | Yes  | No  | Bundle name.|
+| displayName | string | Yes  | No  | Application name.  |
+| holderId    | number | Yes  | Yes  | Application ID.    |
 
 
 **Example**
@@ -1746,7 +1738,7 @@ Defines a contact's event.
 
 ### Attributes
 
-| Name     | Type| Readable| Writable| Description          |
+|    Name  |   Type  | Readable| Writable| Description          |
 | --------- | -------- | ---- | ---- | -------------- |
 | eventDate | string   | Yes  | Yes  | Event date.  |
 | labelName | string   | Yes  | Yes  | Event type.|
@@ -1777,7 +1769,7 @@ Defines a contact group.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   | Type| Readable| Writable| Description              |
+| Name   |   Type  | Readable| Writable| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
 | groupId | number   | Yes  | Yes  | ID of a contact group.  |
 | title   | string   | Yes  | Yes  | Name of a contact group.|
@@ -1825,7 +1817,7 @@ Enumerates IM addresses.
 
 ### Attributes
 
-| Name     | Type| Readable| Writable| Description              |
+| Name     |   Type  | Readable| Writable| Description              |
 | --------- | -------- | ---- | ---- | ------------------ |
 | imAddress | string   | Yes  | Yes  | IM address.    |
 | labelName | string   | Yes  | Yes  | IM name.|
@@ -1858,7 +1850,7 @@ Defines a contact's name.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name              | Type| Readable| Writable| Description                       |
+| Name              |   Type  | Readable| Writable| Description                       |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
 | familyName         | string   | Yes  | Yes  | Family name.         |
 | familyNamePhonetic | string   | Yes  | Yes  | Family name in pinyin.     |
@@ -1897,7 +1889,7 @@ Defines a contact's nickname.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name    | Type| Readable| Writable| Description          |
+| Name    |   Type  | Readable| Writable| Description          |
 | -------- | -------- | ---- | ---- | -------------- |
 | nickName | string   | Yes  | Yes  | Contact nickname.|
 
@@ -1926,7 +1918,7 @@ Defines a contact's note.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type| Readable| Writable| Description              |
+| Name       |   Type  | Readable| Writable| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
 | noteContent | string   | Yes  | Yes  | Notes of the contact.|
 
@@ -1955,7 +1947,7 @@ Defines a contact's organization.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name | Type| Readable| Writable| Description      |
+| Name |   Type  | Readable| Writable| Description      |
 | ----- | -------- | ---- | ---- | ---------- |
 | name  | string   | Yes  | Yes  | Organization name.|
 | title | string   | Yes  | Yes  | Organization title.|
@@ -2017,7 +2009,7 @@ Defines a contact's phone number.
 
 ### Attributes
 
-| Name       | Type| Readable| Writable| Description              |
+| Name       |   Type  | Readable| Writable| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
 | labelName   | string   | Yes  | Yes  | Phone number type.|
 | phoneNumber | string   | Yes  | Yes  | Phone number.        |
@@ -2049,7 +2041,7 @@ Defines a contact's portrait.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name| Type| Readable| Writable| Description          |
+| Name|   Type  | Readable| Writable| Description          |
 | ---- | -------- | ---- | ---- | -------------- |
 | uri  | string   | Yes  | Yes  | Contact portrait.|
 
@@ -2091,7 +2083,7 @@ Defines a contact's postal address.
 
 ### Attributes
 
-| Name         | Type| Readable| Writable| Description                      |
+| Name         |   Type  | Readable| Writable| Description                      |
 | ------------- | -------- | ---- | ---- | -------------------------- |
 | city          | string   | Yes  | Yes  | City where the contact is located.        |
 | country       | string   | Yes  | Yes  | Country/Region where the contact is located.        |
@@ -2153,7 +2145,7 @@ Defines a contact's relationship.
 
 ### Attributes
 
-| Name        | Type| Readable| Writable| Description          |
+| Name        |   Type  | Readable| Writable| Description          |
 | ------------ | -------- | ---- | ---- | -------------- |
 | labelName    | string   | Yes  | Yes  | Relationship type.|
 | relationName | string   | Yes  | Yes  | Relationship name.    |
@@ -2199,12 +2191,11 @@ Defines a contact's SIP address.
 
 ### Attributes
 
-| Name      | Type| Readable| Writable| Description                             |
+| Name      |   Type  | Readable| Writable| Description                             |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
 | labelName  | string   | Yes  | Yes  | SIP address type.|
 | sipAddress | string   | Yes  | Yes  | SIP address.        |
 | labelId    | number   | Yes  | Yes  | SIP address ID.    |
-
 
 **Example**
 
@@ -2230,7 +2221,7 @@ Defines a contact's website.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   | Type| Readable| Writable| Description              |
+| Name   |   Type  | Readable| Writable| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
 | website | string   | Yes  | Yes  | Website of the contact.|
 

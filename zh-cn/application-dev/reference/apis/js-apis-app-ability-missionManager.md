@@ -122,6 +122,14 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -208,6 +216,14 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -624,6 +640,14 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -667,6 +691,14 @@ lockMission(missionId: number): Promise&lt;void&gt;;
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
@@ -701,6 +733,14 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 任务ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 ```ts
@@ -743,6 +783,14 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -924,6 +972,14 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | missionId | number | 是 | 任务ID。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -962,6 +1018,14 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | missionId | number | 是 | 任务ID。 |
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1006,6 +1070,14 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | promise方式返回执行结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

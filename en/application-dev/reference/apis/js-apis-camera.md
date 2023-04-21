@@ -99,10 +99,10 @@ Defines the camera output capability.
 
 | Name                          | Type                                              | Mandatory| Description               |
 | ----------------------------- | -------------------------------------------------- | --- |------------------- |
-| previewProfiles               | Array<[Profile](#profile)\>                        | Yes | Supported preview profiles.   |
-| photoProfiles                 | Array<[Profile](#profile)\>                        | Yes | Supported shooting profiles.   |
-| videoProfiles                 | Array<[VideoProfile](#videoprofile)\>              | Yes | Supported video recording profiles.   |
-| supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
+| previewProfiles               | Array\<[Profile](#profile)\>                        | Yes | Supported preview profiles.   |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        | Yes | Supported shooting profiles.   |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | Yes | Supported video recording profiles.   |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
 
 ## CameraErrorCode
 
@@ -128,7 +128,7 @@ Implements camera management. Before calling any API in **CameraManager**, you m
 
 ### getSupportedCameras
 
-getSupportedCameras(): Array<CameraDevice\>
+getSupportedCameras(): Array\<CameraDevice\>
 
 Obtains supported cameras. This API returns the result synchronously.
 
@@ -138,7 +138,7 @@ Obtains supported cameras. This API returns the result synchronously.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-|  Array<[CameraDevice](#cameradevice)>            | An array of supported cameras.                  |
+|  Array\<[CameraDevice](#cameradevice)>            | An array of supported cameras.                  |
 
 **Example**
 
@@ -149,7 +149,7 @@ let cameras = cameraManager.getSupportedCameras();
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(cameraDevice:CameraDevice): CameraOutputCapability
+getSupportedOutputCapability(camera:CameraDevice): CameraOutputCapability
 
 Obtains the output capability supported by a camera. This API returns the result synchronously.
 
@@ -459,7 +459,7 @@ try {
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes:Array<MetadataObjectType\>): MetadataOutput
+createMetadataOutput(metadataObjectTypes:Array\<MetadataObjectType\>): MetadataOutput
 
 Creates a **MetadataOutput** instance. This API returns the result synchronously.
 
@@ -469,7 +469,7 @@ Creates a **MetadataOutput** instance. This API returns the result synchronously
 
 | Name                 | Type                                              | Mandatory| Description                         |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
 
 **Return value**
 
@@ -534,7 +534,7 @@ try {
 
 ### on('cameraStatus')
 
-on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
+on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 Listens for camera status changes. This API uses an asynchronous callback to return the result.
 
@@ -545,7 +545,7 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
 | type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained. This event is triggered and the corresponding information is returned only when the device is enabled or disabled.|
-| callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.|                 |
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.|                 |
 
 **Example**
 
@@ -558,7 +558,7 @@ cameraManager.on('cameraStatus', (cameraStatusInfo) => {
 
 ### on('cameraMute')
 
-on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
+on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 Listens for camera mute status changes. This API uses an asynchronous callback to return the result.
 
@@ -683,7 +683,7 @@ Provides camera information used in **[CaptureSession](#capturesession)**.
 
 ### open
 
-open\(callback: AsyncCallback<void\>\): void
+open\(callback: AsyncCallback\<void\>\): void
 
 Opens this camera. This API uses an asynchronous callback to return the result.
 
@@ -693,7 +693,7 @@ Opens this camera. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                 | Mandatory| Description                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -719,7 +719,7 @@ cameraInput.open((err) => {
 
 ### open
 
-open(): Promise<void\>
+open(): Promise\<void\>
 
 Opens this camera. This API uses a promise to return the result.
 
@@ -729,7 +729,7 @@ Opens this camera. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -753,7 +753,7 @@ cameraInput.open().then(() => {
 
 ### close
 
-close\(callback: AsyncCallback<void\>\): void
+close\(callback: AsyncCallback\<void\>\): void
 
 Closes this camera. This API uses an asynchronous callback to return the result.
 
@@ -763,7 +763,7 @@ Closes this camera. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -787,7 +787,7 @@ cameraInput.close((err) => {
 
 ### close
 
-close(): Promise<void\>
+close(): Promise\<void\>
 
 Closes this camera. This API uses a promise to return the result.
 
@@ -797,7 +797,7 @@ Closes this camera. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -819,7 +819,7 @@ cameraInput.close().then(() => {
 
 ### on('error')
 
-on(type: 'error', cameraDevice:CameraDevice, callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', camera:CameraDevice, callback: ErrorCallback\<BusinessError\>): void
 
 Listens for **CameraInput** errors. This API uses a callback to return the result.
 
@@ -831,7 +831,7 @@ Listens for **CameraInput** errors. This API uses a callback to return the resul
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera. For example, if the device is unavailable or a conflict occurs, the error information is returned.|
 | cameraDevice   | [CameraDevice](#cameradevice)    | Yes  | **CameraDevice** object.|
-| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
+| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).  |
 
 **Example**
 
@@ -875,7 +875,7 @@ Enumerates the focus modes.
 
 | Name                       | Value  | Description         |
 | -------------------------- | ---- | ------------ |
-| FOCUS_MODE_MANUAL          | 0    | Manual focus. The focal length of the camera can be manually set to change the focus position. However, the focal point cannot be set. |
+| FOCUS_MODE_MANUAL          | 0    | Manual focus. The focal length of the camera can be manually set to change the focus position. However, the focal point cannot be set.    |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | Continuous auto focus. The focal point cannot be set.|
 | FOCUS_MODE_AUTO            | 2    | Auto focus. The focal point can be set by calling [setFocusPoint](#setfocuspoint), and auto focus is performed once based on the focal point. After the auto focus operation is complete (regardless of whether the focus is successful or fails), the focus mode is locked. To enable the camera to initiate another auto focus, the application must call **CONTINUOUS_AUTO** again.   |
 | FOCUS_MODE_LOCKED          | 3    | Focus locked. The focal point cannot be set.    |
@@ -945,7 +945,7 @@ try {
 
 ### commitConfig
 
-commitConfig(callback: AsyncCallback<void\>): void
+commitConfig(callback: AsyncCallback\<void\>): void
 
 Commits the configuration for this **CaptureSession** instance. This API uses an asynchronous callback to return the result.
 
@@ -955,7 +955,7 @@ Commits the configuration for this **CaptureSession** instance. This API uses an
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -980,7 +980,7 @@ captureSession.commitConfig((err) => {
 
 ### commitConfig
 
-commitConfig(): Promise<void\>
+commitConfig(): Promise\<void\>
 
 Commits the configuration for this **CaptureSession** instance. This API uses a promise to return the result.
 
@@ -990,7 +990,7 @@ Commits the configuration for this **CaptureSession** instance. This API uses a 
 
 | Type           | Description                     |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1094,7 +1094,7 @@ try {
 
 ### addOutput
 
-addOutput(previewOutput: CameraOutput): void
+addOutput(cameraOutput: CameraOutput): void
 
 Adds a [CameraOutput](#cameraoutput) instance to the session.
 
@@ -1104,7 +1104,7 @@ Adds a [CameraOutput](#cameraoutput) instance to the session.
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | **PreviewOutput** instance to add.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
 
 **Return value**
 
@@ -1125,7 +1125,7 @@ For details about the error codes, see [CameraErrorCode](#cameraerrorcode).
 
 ```js
 try {
-    captureSession.addOutput(previewOutput);
+    captureSession.addOutput(cameraOutput);
 } catch (error) {
     // If the operation fails, error.code is returned and processed.
     console.log(error.code);
@@ -1134,7 +1134,7 @@ try {
 
 ### removeOutput
 
-removeOutput(previewOutput: CameraOutput): void
+removeOutput(cameraOutput: CameraOutput): void
 
 Removes a [CameraOutput](#cameraoutput) instance from the session.
 
@@ -1144,7 +1144,7 @@ Removes a [CameraOutput](#cameraoutput) instance from the session.
 
 | Name          | Type                            | Mandatory| Description                     |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | **PreviewOutput** instance to remove.|
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
 
 **Return value**
 
@@ -1174,7 +1174,7 @@ try {
 
 ### start
 
-start\(callback: AsyncCallback<void\>\): void
+start\(callback: AsyncCallback\<void\>\): void
 
 Starts this **CaptureSession**. This API uses an asynchronous callback to return the result.
 
@@ -1184,7 +1184,7 @@ Starts this **CaptureSession**. This API uses an asynchronous callback to return
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1209,7 +1209,7 @@ captureSession.start((err) => {
 
 ### start
 
-start\(\): Promise<void\>
+start\(\): Promise\<void\>
 
 Starts this **CaptureSession**. This API uses a promise to return the result.
 
@@ -1219,7 +1219,7 @@ Starts this **CaptureSession**. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1242,7 +1242,7 @@ captureSession.start().then(() => {
 
 ### stop
 
-stop\(callback: AsyncCallback<void\>\): void
+stop\(callback: AsyncCallback\<void\>\): void
 
 Stops this **CaptureSession**. This API uses an asynchronous callback to return the result.
 
@@ -1252,7 +1252,7 @@ Stops this **CaptureSession**. This API uses an asynchronous callback to return 
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1276,7 +1276,7 @@ captureSession.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 Stops this **CaptureSession**. This API uses a promise to return the result.
 
@@ -1286,7 +1286,7 @@ Stops this **CaptureSession**. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1308,7 +1308,7 @@ captureSession.stop().then(() => {
 
 ### release
 
-release\(callback: AsyncCallback<void\>\): void
+release\(callback: AsyncCallback\<void\>\): void
 
 Releases this **CaptureSession**. This API uses an asynchronous callback to return the result.
 
@@ -1318,7 +1318,7 @@ Releases this **CaptureSession**. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1342,7 +1342,7 @@ captureSession.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 Releases this **CaptureSession**. This API uses a promise to return the result.
 
@@ -1352,7 +1352,7 @@ Releases this **CaptureSession**. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -1709,7 +1709,7 @@ try {
 
 ### getExposureBiasRange
 
-getExposureBiasRange(): Array<number\>
+getExposureBiasRange(): Array\<number\>
 
 Obtains the exposure compensation values of the device.
 
@@ -1719,7 +1719,7 @@ Obtains the exposure compensation values of the device.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| Array<number\>   | An array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Array\<number\>   | An array of compensation values. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2032,7 +2032,7 @@ try {
 
 ### getZoomRatioRange
 
-getZoomRatioRange(): Array<number\>
+getZoomRatioRange(): Array\<number\>
 
 Obtains the supported zoom ratio range.
 
@@ -2042,7 +2042,7 @@ Obtains the supported zoom ratio range.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| Array<number\>   | Callback used to return an array containing the minimum and maximum zoom ratios. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Array\<number\>   | Callback used to return an array containing the minimum and maximum zoom ratios. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2249,7 +2249,7 @@ try {
 
 ### on('focusStateChange')
 
-on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 Listens for focus state changes. This API uses an asynchronous callback to return the result.
 
@@ -2260,7 +2260,7 @@ Listens for focus state changes. This API uses an asynchronous callback to retur
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
-| callback | AsyncCallback<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change. |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
@@ -2272,7 +2272,7 @@ captureSession.on('focusStateChange', (focusState) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 Listens for **CaptureSession** errors. This API uses a callback to return the errors.
 
@@ -2283,7 +2283,7 @@ Listens for **CaptureSession** errors. This API uses a callback to return the er
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as **beginConfig()**, **commitConfig()**, and **addInput**.|
-| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
+| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).       |
 
 **Example**
 
@@ -2303,7 +2303,7 @@ Implements preview output. It inherits **[CameraOutput](#cameraoutput)**.
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 Starts to output preview streams. This API uses an asynchronous callback to return the result.
 
@@ -2313,7 +2313,7 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2337,7 +2337,7 @@ previewOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 Starts to output preview streams. This API uses a promise to return the result.
 
@@ -2347,7 +2347,7 @@ Starts to output preview streams. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2369,7 +2369,7 @@ previewOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 Stops outputting preview streams. This API uses an asynchronous callback to return the result.
 
@@ -2379,7 +2379,7 @@ Stops outputting preview streams. This API uses an asynchronous callback to retu
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2395,7 +2395,7 @@ previewOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 Stops outputting preview streams. This API uses a promise to return the result.
 
@@ -2405,7 +2405,7 @@ Stops outputting preview streams. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -2419,7 +2419,7 @@ previewOutput.stop().then(() => {
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 Releases output resources. This API uses an asynchronous callback to return the result.
 
@@ -2429,7 +2429,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2453,7 +2453,7 @@ previewOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 Releases output resources. This API uses a promise to return the result.
 
@@ -2463,7 +2463,7 @@ Releases output resources. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2485,7 +2485,7 @@ previewOutput.release().then(() => {
 
 ### on('frameStart')
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 Listens for preview frame start events. This API uses an asynchronous callback to return the result.
 
@@ -2496,7 +2496,7 @@ Listens for preview frame start events. This API uses an asynchronous callback t
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure for the first time.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview starts as long as this event is returned.                    |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The preview starts as long as this event is returned.                    |
 
 **Example**
 
@@ -2508,7 +2508,7 @@ previewOutput.on('frameStart', () => {
 
 ### on('frameEnd')
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 Listens for preview frame end events. This API uses an asynchronous callback to return the result.
 
@@ -2519,7 +2519,7 @@ Listens for preview frame end events. This API uses an asynchronous callback to 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and returned when the last frame of preview ends.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The preview ends as long as this event is returned.                |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The preview ends as long as this event is returned.                |
 
 **Example**
 
@@ -2531,7 +2531,7 @@ previewOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 Listens for **PreviewOutput** errors. This API uses a callback to return the errors.
 
@@ -2542,7 +2542,7 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the use of a preview-related API such as **start()** or **release()**.|
-| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
+| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode). |
 
 **Example**
 
@@ -2609,7 +2609,7 @@ Implements output information used in a shooting session. This class inherits fr
 
 ### capture
 
-capture(callback: AsyncCallback<void\>): void
+capture(callback: AsyncCallback\<void\>): void
 
 Captures a photo with the default shooting parameters. This API uses an asynchronous callback to return the result.
 
@@ -2619,7 +2619,7 @@ Captures a photo with the default shooting parameters. This API uses an asynchro
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2644,7 +2644,7 @@ photoOutput.capture((err) => {
 
 ### capture
 
-capture(): Promise<void\>
+capture(): Promise\<void\>
 
 Captures a photo with the default shooting parameters. This API uses a promise to return the result.
 
@@ -2654,7 +2654,7 @@ Captures a photo with the default shooting parameters. This API uses a promise t
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2677,7 +2677,7 @@ photoOutput.capture().then(() => {
 
 ### capture
 
-capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
+capture(setting: PhotoCaptureSetting, callback: AsyncCallback\<void\>): void
 
 Captures a photo with the specified shooting parameters. This API uses an asynchronous callback to return the result.
 
@@ -2688,7 +2688,7 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 | Name     | Type                                        | Mandatory| Description                 |
 | -------- | ------------------------------------------- | ---- | -------------------- |
 | setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.            |
-| callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
+| callback | AsyncCallback\<void\>                        | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
 
 **Error codes**
 
@@ -2725,7 +2725,7 @@ photoOutput.capture(settings, (err) => {
 
 ### capture
 
-capture(setting?: PhotoCaptureSetting): Promise<void\>
+capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
 Captures a photo with the specified shooting parameters. This API uses a promise to return the result.
 
@@ -2741,7 +2741,7 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 | Type           | Description                    |
 | -------------- | ------------------------ |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2785,7 +2785,7 @@ let isSupported = photoOutput.isMirrorSupported();
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 Releases output resources. This API uses an asynchronous callback to return the result.
 
@@ -2795,7 +2795,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2819,7 +2819,7 @@ photoOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 Releases output resources. This API uses a promise to return the result.
 
@@ -2829,7 +2829,7 @@ Releases output resources. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -2851,7 +2851,7 @@ photoOutput.release().then(() => {
 
 ### on('captureStart')
 
-on(type: 'captureStart', callback: AsyncCallback<number\>): void
+on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 
 Listens for shooting start events. This API uses an asynchronous callback to return the capture ID.
 
@@ -2862,7 +2862,7 @@ Listens for shooting start events. This API uses an asynchronous callback to ret
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and returned when the bottom layer starts exposure each time a photo is taken.|
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the capture ID.           |
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the capture ID.           |
 
 **Example**
 
@@ -2874,7 +2874,7 @@ photoOutput.on('captureStart', (captureId) => {
 
 ### on('frameShutter')
 
-on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
+on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 
 Listens for frame shutter events. This API uses an asynchronous callback to return the event information.
 
@@ -2885,7 +2885,7 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photographing request can be delivered as long as this event is returned.            |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result. A new photographing request can be delivered as long as this event is returned.            |
 
 **Example**
 
@@ -2898,7 +2898,7 @@ photoOutput.on('frameShutter', (frameShutterInfo) => {
 
 ### on('captureEnd')
 
-on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
+on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 
 Listens for shooting end events. This API uses an asynchronous callback to return the event information.
 
@@ -2909,7 +2909,7 @@ Listens for shooting end events. This API uses an asynchronous callback to retur
 | Name    | Type          | Mandatory| Description                                      |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
-| callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
 
@@ -2922,7 +2922,7 @@ photoOutput.on('captureEnd', (captureEndInfo) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 Listens for **PhotoOutput** errors. This API uses a callback to return the errors.
 
@@ -2933,7 +2933,7 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a photographing-related API.|
-| callback | ErrorCallback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
+| callback | ErrorCallback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).            |
 
 **Example**
 
@@ -2971,7 +2971,7 @@ Implements output information used in a video recording session. This class inhe
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 Starts video recording. This API uses an asynchronous callback to return the result.
 
@@ -2981,7 +2981,7 @@ Starts video recording. This API uses an asynchronous callback to return the res
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3006,7 +3006,7 @@ videoOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 Starts video recording. This API uses a promise to return the result.
 
@@ -3016,7 +3016,7 @@ Starts video recording. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3039,7 +3039,7 @@ videoOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 Stops video recording. This API uses an asynchronous callback to return the result.
 
@@ -3049,7 +3049,7 @@ Stops video recording. This API uses an asynchronous callback to return the resu
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -3065,7 +3065,7 @@ videoOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 Stops video recording. This API uses a promise to return the result.
 
@@ -3075,7 +3075,7 @@ Stops video recording. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -3089,7 +3089,7 @@ videoOutput.stop().then(() => {
 
 ### release
 
-release(callback: AsyncCallback<void\>): void
+release(callback: AsyncCallback\<void\>): void
 
 Releases output resources. This API uses an asynchronous callback to return the result.
 
@@ -3099,7 +3099,7 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3123,7 +3123,7 @@ videoOutput.release((err) => {
 
 ### release
 
-release(): Promise<void\>
+release(): Promise\<void\>
 
 Releases output resources. This API uses a promise to return the result.
 
@@ -3133,7 +3133,7 @@ Releases output resources. This API uses a promise to return the result.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise<void\>| Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\> | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3155,7 +3155,7 @@ videoOutput.release().then(() => {
 
 ### on('frameStart')
 
-on(type: 'frameStart', callback: AsyncCallback<void\>): void
+on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 Listens for video recording start events. This API uses an asynchronous callback to return the result.
 
@@ -3166,7 +3166,7 @@ Listens for video recording start events. This API uses an asynchronous callback
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created. The event is triggered and the corresponding information is returned when the bottom layer starts exposure for the first time.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.  The recording starts as long as this event is returned.                    |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  The recording starts as long as this event is returned.                    |
 
 **Example**
 
@@ -3178,7 +3178,7 @@ videoOutput.on('frameStart', () => {
 
 ### on('frameEnd')
 
-on(type: 'frameEnd', callback: AsyncCallback<void\>): void
+on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 Listens for video recording stop events. This API uses an asynchronous callback to return the result.
 
@@ -3189,7 +3189,7 @@ Listens for video recording stop events. This API uses an asynchronous callback 
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and returned when the last frame of recording is complete.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. The recording ends as long as this event is returned.                     |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. The recording ends as long as this event is returned.                     |
 
 **Example**
 
@@ -3201,7 +3201,7 @@ videoOutput.on('frameEnd', () => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 Listens for errors that occur during video recording. This API uses a callback to return the result.
 
@@ -3212,7 +3212,7 @@ Listens for errors that occur during video recording. This API uses a callback t
 | Name    | Type      | Mandatory| Description                                   |
 | -------- | ----------- | ---- | -------------------------------------- |
 | type     | string      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **videoOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a recording-related API such as **start()** and **release()**.|
-| callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
+| callback | Callback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).                |
 
 **Example**
 
@@ -3228,7 +3228,7 @@ Implements metadata streams. It inherits **[CameraOutput](#cameraoutput)**.
 
 ### start
 
-start(callback: AsyncCallback<void\>): void
+start(callback: AsyncCallback\<void\>): void
 
 Starts to output metadata. This API uses an asynchronous callback to return the result.
 
@@ -3238,7 +3238,7 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3263,7 +3263,7 @@ metadataOutput.start((err) => {
 
 ### start
 
-start(): Promise<void\>
+start(): Promise\<void\>
 
 Starts to output metadata. This API uses a promise to return the result.
 
@@ -3273,7 +3273,7 @@ Starts to output metadata. This API uses a promise to return the result.
 
 | Type                    | Description                    |
 | ----------------------  | ------------------------ |
-| Promise<void\>         | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| Promise\<void\>          | Promise used to return the result. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
 
 **Error codes**
 
@@ -3296,7 +3296,7 @@ metadataOutput.start().then(() => {
 
 ### stop
 
-stop(callback: AsyncCallback<void\>): void
+stop(callback: AsyncCallback\<void\>): void
 
 Stops outputting metadata. This API uses an asynchronous callback to return the result.
 
@@ -3306,7 +3306,7 @@ Stops outputting metadata. This API uses an asynchronous callback to return the 
 
 | Name    | Type                        | Mandatory| Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| callback | AsyncCallback<void\>       | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\>       | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -3322,7 +3322,7 @@ metadataOutput.stop((err) => {
 
 ### stop
 
-stop(): Promise<void\>
+stop(): Promise\<void\>
 
 Stops outputting metadata. This API uses a promise to return the result.
 
@@ -3332,7 +3332,7 @@ Stops outputting metadata. This API uses a promise to return the result.
 
 | Type                   | Description                       |
 | ----------------------  | --------------------------- |
-| Promise<void\>        | Promise used to return the result.|
+| Promise\<void\>         | Promise used to return the result.|
 
 **Example**
 
@@ -3346,7 +3346,7 @@ metadataOutput.stop().then(() => {
 
 ### on('metadataObjectsAvailable')
 
-on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObject\>\>): void
+on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObject\>\>): void
 
 Listens for metadata objects. This API uses an asynchronous callback to return the result.
 
@@ -3357,7 +3357,7 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 | Name     | Type        | Mandatory| Description                                 |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding metadata is returned when valid metadata is detected.|
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the metadata.|
+| callback | Callback\<Array\<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the metadata.|
 
 **Example**
 
@@ -3369,7 +3369,7 @@ metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
 
 ### on('error')
 
-on(type: 'error', callback: ErrorCallback<BusinessError\>): void
+on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 
 Listens for metadata errors. This API uses an asynchronous callback to return the result.
 
@@ -3380,7 +3380,7 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created. This event is triggered and the corresponding error message is returned when an error occurs during the calling of a metadata-related API such as **start()** and **release()**.|
-| callback | Callback<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
+| callback | Callback\<BusinessError\> | Yes  | Callback used to return an error code defined in [CameraErrorCode](#cameraerrorcode).           |
 
 **Example**
 
@@ -3416,6 +3416,8 @@ Defines a rectangle.
 ## MetadataObject
 
 Implements camera metadata, which is the data source of [CameraInput](#camerainput). The metadata is obtained through metadataOutput.on('metadataObjectsAvailable').
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name     | Type                           | Mandatory | Description             |
 | -------- | ------------------------------- | ---- | -----------------|

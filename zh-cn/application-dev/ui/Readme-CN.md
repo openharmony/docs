@@ -6,15 +6,15 @@
   - 开发布局
     - [布局概述](arkts-layout-development-overview.md)
     - 构建布局
-        - [线性布局](arkts-layout-development-linear.md)
-        - [层叠布局](arkts-layout-development-stack-layout.md)
-        - [弹性布局](arkts-layout-development-flex-layout.md)
-        - [相对布局](arkts-layout-development-relative-layout.md)
-        - [栅格布局](arkts-layout-development-grid-layout.md)
-        - [媒体查询](arkts-layout-development-media-query.md)
-        - [创建列表](arkts-layout-development-create-list.md)
-        - [创建网格](arkts-layout-development-create-grid.md)
-        - [创建轮播](arkts-layout-development-create-looping.md)
+      - [线性布局](arkts-layout-development-linear.md)
+      - [层叠布局](arkts-layout-development-stack-layout.md)
+      - [弹性布局](arkts-layout-development-flex-layout.md)
+      - [相对布局](arkts-layout-development-relative-layout.md)
+      - [栅格布局](arkts-layout-development-grid-layout.md)
+      - [媒体查询](arkts-layout-development-media-query.md)
+      - [创建列表](arkts-layout-development-create-list.md)
+      - [创建网格](arkts-layout-development-create-grid.md)
+      - [创建轮播](arkts-layout-development-create-looping.md)
     - [改善布局性能](arkts-layout-development-performance-boost.md)
   - 添加组件
     - 添加常用组件
@@ -53,7 +53,7 @@
     - 使用通用事件
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
-      - [焦点事件（毕雪峰 00579046）](arkts-common-events-focus-event.md)
+      - [焦点事件](arkts-common-events-focus-event.md)
     - 使用手势事件
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)

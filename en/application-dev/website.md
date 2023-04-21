@@ -1132,7 +1132,6 @@
       - [@ohos.systemParameter (System Parameter)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.systemTime (System Time and Time Zone)](reference/apis/js-apis-system-time.md)
       - [@ohos.usb (USB Management)](reference/apis/js-apis-usb-deprecated.md)
-      - [@ohos.usbV9 (USB Management)](reference/apis/js-apis-usb.md)
       - [@system.app (Application Context)](reference/apis/js-apis-system-app.md)
       - [@system.battery (Battery Information)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (Bluetooth)](reference/apis/js-apis-system-bluetooth.md)
@@ -1281,5 +1280,4 @@
   - [Native API Usage](faqs/faqs-native.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-party-library.md)
   - [IDE Usage](faqs/faqs-ide.md)
-  - [hdc_std Command Usage](faqs/faqs-hdc-std.md)
   - [Development Board](faqs/faqs-development-board.md)

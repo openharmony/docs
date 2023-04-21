@@ -311,12 +311,12 @@
          ```json
          "abilities":[{
              "name": ".CalleeAbility",
-             "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+             "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
              "launchType": "singleton",
              "description": "$string:CalleeAbility_desc",
              "icon": "$media:icon",
              "label": "$string:CalleeAbility_label",
-             "visible": true
+             "exported": true
          }]
          ```
      2. 导入UIAbility模块。

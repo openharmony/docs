@@ -232,3 +232,26 @@ struct Child {
   }
 }
 ```
+
+## Restrictions on Naming Custom Components, Classes, and Functions
+
+The name of a custom component, class, or function cannot be the same as any system component name.
+
+Example:
+
+```
+// Rect.ets
+export class Rect {
+  constructor(){}
+}
+// Index.ets
+// ERROR: The module name 'Rect' can not be the same as the inner component name.
+import { Rect } from './Rect';
+@Entry
+@Component
+struct Index {
+  build() {
+    
+  }
+}
+```

@@ -100,7 +100,7 @@
     - [hdc使用指导](subsys-toolchain-hdc-guide.md)
     - [hiperf使用指导](subsys-toolchain-hiperf.md)
     - [HiDumper使用指导](subsys-dfx-hidumper.md)
-- 电源管理
+- 电源
     - 显示管理
         - [系统亮度范围定制开发指导](subsys-power-brightness-customization.md)
     - 电池管理
@@ -110,3 +110,15 @@
         - [充电限流限压定制开发指导](subsys-power-charge-current-voltage-limit.md)
         - [充电类型定制开发指导](subsys-power-charge-type-customization.md)
         - [关机充电动画开发指导](subsys-power-poweroff-charge-animation.md)
+    - 耗电统计
+        - [耗电统计定制开发指导](subsys-power-stats-power-average-customization.md)
+    - 热管理
+        - [充电空闲状态定制开发指导](subsys-thermal_charging_idle_state.md)
+        - [热管控定制开发指导](subsys-thermal_control.md)
+        - [热检测定制开发指导](subsys-thermal_detection.md)
+        - [热等级定制开发指导](subsys-thermal_level.md)
+        - [热日志定制开发指导](subsys-thermal_log.md)
+        - [热策略定制开发指导](subsys-thermal_policy.md)
+        - [热场景定制开发指导](subsys-thermal_scene.md)
+    - 电源管理
+        - [电源模式定制开发指导](subsys-power-mode-customization.md)

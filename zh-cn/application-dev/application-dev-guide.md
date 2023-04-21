@@ -33,7 +33,7 @@
 - [安全](security/userauth-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/database-mdds-overview.md)
+- [数据管理](database/data-mgmt-overview.md)
 - [文件管理](file-management/file-management-overview.md)
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)

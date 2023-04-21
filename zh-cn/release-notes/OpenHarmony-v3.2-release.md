@@ -42,7 +42,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
   - Ability生命周期和窗口显示/焦点事件分离，统一了多设备形态下组件的生命周期，有利于多设备应用开发。
   - Ability与UI职责分离且具备RPC调用能力，原生支持组件级的跨设备迁移与协同，有利于分布式应用开发。
 
-- 提供Extension机制，借助Extension，应用在与其他应用或系统进行交互时向他们提供自定义功能和内容，例如：应用可以作为卡片显示在系统桌面或者系统闲时执行后台任务等。当前支持的常用Extenson有：FormExtensionAbility、WorkSchedulerExtensionAbility、InputMethodExtensionAbility、AccessibilityExtensionAbility等。
+- 提供Extension机制，借助Extension，应用在与其他应用或系统进行交互时向他们提供自定义功能和内容，例如：应用可以作为卡片显示在系统桌面或者系统闲时执行后台任务等。当前支持的常用Extension有：FormExtensionAbility、WorkSchedulerExtensionAbility、InputMethodExtensionAbility、AccessibilityExtensionAbility等。
 
 - 原子化服务支持分包预加载，提升服务首次加载性能。
 
@@ -120,7 +120,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 在支持RAW流的基础上，新增COMMON流传输能力，将未加密音视频流交由软总线进行加解密，调用者只需要把原始的音视频流数据传递给软总线，软总线保障数据的安全传输。
 
-- 支持传输链路（WLAN/WiFi P2P/蓝牙BR）动态选择。根据双端设备支持的传输链路以及业务调用软总线传输接口（SendFile、SendSteam、SendMessage、SendBytes）进行链路选择。例如当需要传输流数据时，优先选择WLAN（5G频段）进行传输，如果WLAN不可用，则选择其它链路（例如WiFi P2P）进行传输。
+- 支持传输链路（WLAN/WiFi P2P/蓝牙BR）动态选择。根据双端设备支持的传输链路以及业务调用软总线传输接口（SendFile、SendStream、SendMessage、SendBytes）进行链路选择。例如当需要传输流数据时，优先选择WLAN（5G频段）进行传输，如果WLAN不可用，则选择其它链路（例如WiFi P2P）进行传输。
 
 
 
@@ -189,7 +189,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 支持文件系统外置存储挂载卸载、格式化等能力，支持外置存储读写访问能力。
 
-- 增强文件管理IO接口能力：新增list file接口提供目录遍历能力、新增RamdomAccess接口提供大文件快速随机访问能力。
+- 增强文件管理IO接口能力，新增list file接口提供目录遍历能力。
 
 
 ### 图形显示 &amp; 窗口
@@ -433,7 +433,7 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 
 - 支持应用/服务开发环境的诊断功能，能够检测开发环境是否完备，确保开发者拥有良好的开发体验。若检查结果中存在不满足的检查项，建议您根据修复建议进行调整。
 
-- 提供基础模板和卡片模板，支持Stage工程下创建ArkTS服务卡片，帮助开发者快速开发应用和服务。
+- 提供基础模板和卡片模板，支持在基于Stage模型的应用中添加ArkTS卡片。
 
 - 支持OpenHarmony工程添加Extension Ability模板，具体请参考在模块中添加Ability。
 
@@ -607,12 +607,7 @@ API变更请参考:
 | 无障碍 | [AccessibilityExtensionAbility示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTS |
 | 企业管理 | [企业设备管理ExtensionAbility](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility) | 企业设备管理扩展能力，是MDM应用必备组件。当开发者为企业开发MDM（Mobile Device Management）应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。 | ArkTS |
 | 任务管理 | [任务延时调度](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | 本示例使用\@ohos.WorkSchedulerExtensionAbility 、\@ohos.net.http 、\@ohos.notification 、\@ohos.bundle 、\@ohos.fileio 等接口，实现了设置后台任务、下载更新包 、保存更新包、发送通知 、安装更新包实现升级的功能。 | ArkTS |
-| 网络 | [上传](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Upload) | 本示例主要展示Request服务向三方应用提供系统上传服务能力，通过\@ohos.request，\@ohos.multimedia.mediaLibrary等接口去实现图片的选取与上传。 | ArkTS |
-| 任务管理 | [短时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask) | 本示例主要展示后台任务中的短时任务。通过\@ohos.resourceschedule.backgroundTaskManager，\@ohos.app.ability.quickFixManager等接口实现应用热更新的方式去展现短时任务机制。 | ArkTS |
-| 任务管理 | [长时任务](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask) | 本示例展示后台任务的长时任务。通过使用\@ohos.resourceschedule.backgroundTaskManager实现后台播放音乐时避免进入挂起（Suspend）状态。 | ArkTS |
-| 元能力 | [ArkTS卡片计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSFormCalc) | 本示例展示了使用ArkTS卡片开发的计算器模型。 | ArkTS |
-| 元能力 | [ArkTS卡片Canvas小游戏](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/CanvasGame) | 本示例展示了如何通过ArkTS卡片的Canvas自定义绘制能力实现一个简单的五子棋游戏卡片。<br/>- 使用Canvas绘制棋盘和黑白棋子的落子。<br/>- 通过卡片支持的点击事件进行交互，让用户在棋盘上进行黑白棋子的对局。<br/>- 通过TS的逻辑代码实现五子棋输赢判定、回退等逻辑计算，整个游戏过程无需拉起FormExtensionAbility。 | ArkTS |
-| 元能力 | [ArkTs音乐卡片](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ArkTSCard/ArkTSCardMusicSample) | 本示例展示了如何通过ArkTs卡片实现一个简单的音乐卡片。 | ArkTS |
+
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 

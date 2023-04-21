@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 | 名称         | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | 否   | DataAbilityHelper二级模块。                                |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | 否   | PacMap二级模块。 |
+| PacMap   | [PacMap](js-apis-inner-application-pacMap.md)               | 否   | PacMap二级模块。 |
 | DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | 否   | DataAbilityOperation二级模块。 |
 | DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | 否   | DataAbilityResult二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | 否   | AbilityResult二级模块。 |

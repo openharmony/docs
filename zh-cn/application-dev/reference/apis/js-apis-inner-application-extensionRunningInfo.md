@@ -32,8 +32,8 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 let upperLimit = 1;
 function getExtensionInfos() {
     abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
-        if (error && error.code) {
-            console.error('getForegroundApplications failed, error.code: ${error.code}, error.message: ${error.message}');
+        if (error) {
+            console.error('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }
 

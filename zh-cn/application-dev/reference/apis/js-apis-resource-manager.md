@@ -2057,6 +2057,47 @@ getStringSync(resId: number): string
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resId: number, ...args: Array<string | number>): string
+
+用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源ID值对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------------- |
+| 9001001  | If the resId invalid.                               |
+| 9001002  | If the resource not found by resId.                 |
+| 9001006  | If the resource re-ref too much.                    |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resource: Resource): string
@@ -2101,6 +2142,52 @@ getStringSync(resource: Resource): string
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resource: Resource, ...args: Array<string | number>): string
+
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | resource对象对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  try {
+    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
+
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
@@ -2139,6 +2226,47 @@ getStringByNameSync(resName: string): string
     console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
+
+### getStringByNameSync<sup>10+</sup>
+
+getStringByNameSync(resName: string, ...args: Array<string | number>): string
+
+用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源名称对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+| 9001008  | If the resource obtained by resName formatting error. |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
 
 ### getBoolean<sup>9+</sup>
 

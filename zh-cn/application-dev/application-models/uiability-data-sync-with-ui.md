@@ -124,14 +124,14 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    let entryAbilityWant;
-   
+
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-   
+
      // 页面展示
      build() {
        // ...
@@ -161,7 +161,7 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-   
+
    export default class UIAbilityB extends UIAbility {
        onCreate(want, launch) {
            // UIAbilityB从globalThis读取name并输出
@@ -194,7 +194,7 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-   
+
    export default class ServiceExtAbility extends Extension {
        onCreate(want) {
            // ServiceExtAbility从globalThis读取name并输出
@@ -247,7 +247,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
    }
    ```
-   
+
 3. 在UIAbilityB文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，并且命名为相同的名称。
 
    ```ts
@@ -277,7 +277,7 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
    }
    ```
-   
+
 5. 在UIAbilityB实例切换至后台，将UIAbilityA实例从后台切换回到前台。此时UIAbilityA的onCreate生命周期不会再次进入。
 
    ```ts
@@ -309,4 +309,4 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
 
 ## 使用AppStorage/LocalStorage进行数据同步
 
-ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../quick-start/arkts-state-mgmt-application-level.md)。
+ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../quick-start/arkts-application-state-management-overview.md)。

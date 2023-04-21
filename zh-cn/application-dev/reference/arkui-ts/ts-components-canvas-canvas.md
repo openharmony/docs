@@ -32,8 +32,7 @@ Canvas(context?: CanvasRenderingContext2D)
 
 | 名称                            | 参数   | 描述                   |
 | ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | 无    | Canvas组件初始化完成时的事件回调，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-
+| onReady(event: () => void) | 无    | Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调，当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发onAreaChange事件、不触发onReady事件。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **示例：**
 

@@ -150,6 +150,8 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -186,6 +188,8 @@ Locks the screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Return value**
@@ -219,6 +223,8 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 Registers a callback for system events related to screen locking. This API can be called only by system screen lock applications.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 
@@ -262,6 +268,8 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -299,6 +307,8 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 Sends an event to the screen lock service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
+
+**Required permissions**: ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
 **System API**: This is a system API.
 

@@ -192,12 +192,20 @@ Example of the metadata attribute:
 
 **By default, application icons cannot be hidden from the home screen in OpenHarmony.**
 
-The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system creates a default icon for the application and displays it on the home screen.<br>
-Touching this icon will direct the user to the application details screen in **Settings**.
+The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system creates a default icon for the application and displays it on the home screen.
+
+Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
+
 To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
+**Objectives**:
 
-**Setting the application icon to be displayed on the home screen**:<br>Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
+
+**Setting the application icon to be displayed on the home screen**:
+
+Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+
 ```
 {
   "module":{
@@ -220,36 +228,37 @@ To hide an application icon from the home screen, you must configure the **Allow
 }
 ```
 
-**Querying an application icon:**
+**Display rules of application icons and labels on the home screen:**
 * The HAP file contains Page ability configuration.
-  * The application icon is set under **abilities** in the **config.json** file.
+  * The application icon on the home screen is set under **abilities** in the **config.json** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the icon configured for the ability.
-      * The returned home screen label is the label configured for the ability. If no label is configured, the bundle name is returned.
-      * The returned component name is the component name of the ability.
-      * When the user touches the home screen icon, the home screen of the ability is displayed.
+      * The application icon displayed on the home screen is the icon configured for the Page ability.
+      * The application label displayed on the home screen is the label configured for the Page ability. If no label is configured, the bundle name is returned.
+      * The name of the Page ability is displayed.
+      * When the user touches the home screen icon, the home screen of the Page ability is displayed.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon is not set under **abilities** in the **config.json** file.
+  * The application icon on the home screen is not set under **abilities** in the **config.json** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the default icon.
-      *The returned home screen label is the bundle name of the application.
-      * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-      * Touching the home screen icon will direct the user to the application details screen.
+      * The application icon displayed on the home screen is the default icon.
+      * The application label displayed on the home screen is the bundle name of the application.
+      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
 * The HAP file does not contain Page ability configuration.
   * The application does not have the privilege to hide its icon from the home screen.
-    * The returned home screen icon is the default icon.
-    *The returned home screen label is the bundle name of the application.
-    * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-    * Touching the home screen icon will direct the user to the application details screen.
+    * The application icon displayed on the home screen is the default icon.
+    * The application label displayed on the home screen is the bundle name of the application.
+    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
   * The application has the privilege to hide its icon from the home screen.
     * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
 
-> **NOTE**
-> 
-> The icon and label displayed on the application details page may be different from those displayed on the home screen. For non-Page abilities, they are the entry icon and label set under **abilities**, if any.
+Note: The label displayed on the application details screen may be different from that displayed on the home screen. For non-Page abilities, it is the entry label set (if any).<br><br>
+
+**Figure 1** Application details screen
+
+![Application details screen](figures/application_details.jpg)
+
 
 **Table 8** Internal structure of the abilities attribute
 
@@ -411,39 +420,6 @@ Example of the **skills** attribute structure:
   }
 ]
 ```
-
-**Enhanced implicit query**
-
-URI-level prefix matching is supported.
-
-When only **scheme** or a combination of **scheme** and **host** or **scheme**, **host**, and **port** are configured in the configuration file, the configuration is successful if a URI prefixed with the configuration file is passed in.
-
-  * The query enhancement involves the following APIs:<br>
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>;
-  * Configuration requirements<br>
-    abilities -> skills -> uris object<br>
-    Configuration 1: only **scheme = 'http'**
-    Configuration 2: only **(scheme = 'http') + (host = 'www.example.com')**
-    Configuration 3: only **(scheme = 'http') + (host = 'www.example.com') + (port = '8080')**
-  * Prefix match<br>
-    If the value of **uri** under [want](../application-models/want-overview.md) is obtained by calling the **queryAbilityInfo** API:<br>
-    1. uri = 'https://': No matches<br>
-    2. uri = 'http://': Matches configuration 1<br>
-    3. uri = 'https://www.example.com': No matches<br>
-    4. uri = 'https://www.exa.com': No matches<br>
-    5. uri = 'http://www.exa.com': Matches configuration 1<br>
-    6. uri = 'http://www.example.com': Matches configuration 1 and configuration 2<br>
-    7. uri = 'https://www.example.com:8080': No matches<br>
-    8. uri = 'http://www.exampleaa.com:8080': Matches configuration 1<br>
-    9. uri = 'http://www.example.com:9180': Matches configuration 1 and configuration 2<br>
-    10. uri = 'http://www.example.com:8080': Matches configuration 1, configuration 2, and configuration 3<br>
-    11. uri = 'https://www.example.com:9180/query/student/name' : No matches<br>
-    12. uri = 'http://www.exampleap.com:8080/query/student/name': Matches configuration 1<br>
-    13. uri = 'http://www.example.com:9180/query/student/name': Matches configuration 1 and configuration 2<br>
-    14. uri = 'http://www.example.com:8080/query/student/name': Matches configuration 1, configuration 2, and configuration 3<br>
 
 ## Internal Structure of the reqPermissions Attribute
 

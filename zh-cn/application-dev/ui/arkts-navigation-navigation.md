@@ -15,6 +15,7 @@ NavRouter是和Navigation搭配使用的特殊子组件，默认提供点击响�
 Navigation组件通过mode属性设置页面的显示模式。
 
 - 自适应模式
+
   Navigation组件默认为自适应模式，此时mode属性为NavigationMode.Auto。自适应模式下，当设备宽度大于520vp时，Navigation组件采用分栏模式，反之采用单页面模式。
 
 
@@ -152,7 +153,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 ## 设置菜单栏
 
-菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **图5** 设置了3个图标的菜单栏  
 

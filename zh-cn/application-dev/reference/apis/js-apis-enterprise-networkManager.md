@@ -16,7 +16,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-获取所有活动的网络接口，使用callback形式返回网络接口名称数组。
+指定设备管理员应用获取所有活动的网络接口，使用callback形式返回网络接口名称数组。
 
 **需要权限：** ohos.permission.GET_NETWORK_INFO
 
@@ -28,8 +28,8 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | 是    | callback方式返回网络接口名称数组       |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为网络接口名称数组，否则err为错误对象。     |
 
 **错误码**：
 
@@ -60,7 +60,7 @@ networkManager.getAllNetworkInterfaces(admin, (error, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-获取所有活动的网络接口，使用promise形式返回网络接口名称数组。
+指定设备管理员应用获取所有活动的网络接口，使用Promise形式返回网络接口名称数组。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -72,13 +72,13 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise方式返回网络接口名称数组  |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise结果，返回网络接口名称数组。  |
 
 **错误码**：
 
@@ -107,7 +107,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取设备IP地址，使用callback形式返回设备IP地址。
+指定设备管理员应用根据networkInterface获取设备IP地址，使用callback形式返回设备IP地址。
 
 **需要权限：** ohos.permission.GET_NETWORK_INFO
 
@@ -119,9 +119,9 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| networkInterface    | string     | 是    | 指定网络接口                  |
-| callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备IP地址       |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| networkInterface    | string     | 是    | 指定网络接口。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为IP地址，否则err为错误对象。       |
 
 **错误码**：
 
@@ -152,7 +152,7 @@ networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-获取设备IP地址，使用promise形式返回设备IP地址。
+指定设备管理员应用根据networkInterface获取设备IP地址，使用Promise形式返回设备IP地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -164,14 +164,14 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
-| networkInterface    | string     | 是    | 指定网络接口                  |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise方式返回设备IP地址  |
+| Promise&lt;string&gt; | Promise结果，返回设备IP地址。  |
 
 **错误码**：
 
@@ -200,7 +200,7 @@ networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取设备MAC地址，使用callback形式返回设备MAC地址。
+指定设备管理员应用根据networkInterface获取设备MAC地址，使用callback形式返回设备MAC地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -212,9 +212,9 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
-| networkInterface    | string     | 是    | 指定网络接口                  |
-| callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备MAC地址       |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| networkInterface    | string     | 是    | 指定网络接口。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备MAC地址，否则err为错误对象。       |
 
 **错误码**：
 
@@ -245,7 +245,7 @@ networkManager.getMac(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-获取设备MAC地址，使用promise形式返回设备IP地址。
+指定设备管理员应用根据networkInterface获取设备MAC地址，使用Promise形式返回设备IP地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -257,14 +257,14 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
-| networkInterface    | string     | 是    | 指定网络接口                  |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
+| networkInterface    | string     | 是    | 指定网络接口。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise方式返回设备MAC地址  |
+| Promise&lt;string&gt; | Promise结果，返回设备MAC地址。  |
 
 **错误码**：
 

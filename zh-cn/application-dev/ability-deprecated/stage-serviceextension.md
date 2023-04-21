@@ -33,8 +33,8 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         "icon": "$media:icon",
         "description": "service",
         "type": "service",
-        "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "exported": true,
+        "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 
