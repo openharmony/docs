@@ -930,6 +930,7 @@ try {
         resultSet = result;
         do {
           moved = resultSet.moveToNext();
+          const entry  = resultSet.getEntry();
           console.info("moveToNext succeed: " + moved);
         } while (moved)
     }).catch((err) => {
@@ -1000,15 +1001,10 @@ move(offset: number): boolean
 try {
     let resultSet;
     let moved;
-    let position = -1;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
-        while (position != 3) {
-            moved = resultSet.moveToNext();
-            position = resultSet.getPosition();
-        }
-        moved = resultSet.move(2); //将读取位置从绝对位置为3的位置移动2行，即移动到绝对位置为5，行数为6的位置
+        moved = resultSet.move(2); //若当前位置为0，将读取位置从绝对位置为0的位置移动2行，即移动到绝对位置为2，行数为3的位置
         console.info(`Succeeded in moving.moved = ${moved}`);
     }).catch((err) => {
         console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
