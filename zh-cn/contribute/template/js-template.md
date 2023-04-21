@@ -18,7 +18,7 @@
 | 10   | @system api                       | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    **系统接口：** 此接口为系统接口。 |
 | 11   | @FAModelOnly<br/>@StageModelOnly  | 1. 如果某个模块均只针对某模型实现，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口仅可在FA模型/Stage模型下使用。<br/>2. 如果某个接口只针对某模型实现，则需要在描述中增加：<br/>    **模型约束：** 此接口仅可在FA模型/Stage模型下使用。 |
 | 12   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象。无返回结果的Promise对象。 |
-| 13   | 示例代码语言                      | 所有的示例代码采用代码块的样式，并标记开发语言。<br/>JS和eTS通用的标注`js`；仅eTS可用的，标注`ts`。 |
+| 13   | 示例代码语言                      | 所有的示例代码采用代码块的样式，并标记开发语言。<br/>JS和ArkTS通用的标注`js`；仅ArkTS可用的，标注`ts`。 |
 | 14   | 链接写法                          | 格式：[链接文字]\(链接内容)<br/>跨文件夹链接：[指南]\(\.\./../xxx/xxx.md)，一个`../`表示上移一层文件夹。<br/>页面内链接：[接口A<sup>7+</sup>]\(#xxxa7)，页面内链接和需要链接到的标题保持一致，全小写无特殊符号无标签。 |
 
 下面进入具体每个API的写作。
