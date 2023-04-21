@@ -76,4 +76,4 @@ onAppear方法只是定位完Canvas的位置，onReady方法才是测量完成�
 
 4. 使用应用侧的端口0给HTML侧消息端口1发送消息。
 
-使用参考：[Web组件](../reference/arkui-ts/ts-basic-components-web.md#postmessage9)
+使用参考：[Web组件](../reference/arkui-ts/ts-basic-components-web.md)

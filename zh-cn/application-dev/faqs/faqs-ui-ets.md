@@ -306,7 +306,7 @@ fontColor( '#7F000000' )
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
-在Page页面返回时，系统会调用\@Entry修饰的自定义组件的onBackPress()回调，可以在回调函数中实现相关业务诉求。参考[自定义组件生命周期回调函数](../ui/ui-ts-custom-component-lifecycle-callbacks.md)
+在Page页面返回时，系统会调用\@Entry修饰的自定义组件的onBackPress()回调，可以在回调函数中实现相关业务诉求。参考[自定义组件生命周期回调函数](../reference/arkui-ts/ts-custom-component-lifecycle.md)
 
 ## TextInput组件密码模式下，右边的眼睛图标是否支持自定义？
 
@@ -355,12 +355,6 @@ onSubmit事件在回车键或软键盘回车触发该回调，参数为当前软
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
 
 页面路由栈支持的最大页面数量是32，当超出此限制时，使用router.push接口页面无法完成跳转 。
-
-## ArkUI是否支持通过代码动态创建组件
-
-适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
-
-支持使用[条件渲染](../quick-start/arkts-rendering-control.md#条件渲染)和[循环渲染](../quick-start/arkts-rendering-control.md#循环渲染)等方式进行动态创建组件。
 
 ## 页面路由携带PixelMap对象参数，跳转页面无法获取
 
@@ -545,12 +539,6 @@ id添加为唯一值，成为关键字。
 
 基于OpenHarmony开发的应用，默认字体'HarmonyOS Sans'，且当前只支持这种字体。
 
-## Ability与UI页面推荐的数据交互方式是什么
-
-适用于：OpenHarmony SDK 3.2.7.5版本，API9 Stage模型
-
-推荐使用[LocalStorage](../quick-start/arkts-state-mgmt-application-level.md#localstorage)。
-
 ## 父组件如何与其孙子组件进行状态同步
 
 适用于：OpenHarmony SDK 3.2.6.5版本，API9 Stage模型
@@ -622,8 +610,6 @@ RichText底层是web，可以参考html的语法，在div上加上的overflow：
 ## 如何实现应用数据持久化存储
 
 通过PersistentStorage类实现管理应用持久化数据，可以将特定标记的持久化数据链接到AppStorage中，并由AppStorage接口访问对应持久化数据。
-
-参考文档：[持久化数据管理](../quick-start/arkts-state-mgmt-application-level.md#persistentstorage)
 
 示例：
 

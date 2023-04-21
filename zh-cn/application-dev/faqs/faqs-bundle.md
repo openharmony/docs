@@ -14,7 +14,7 @@
 
 通过可以context.abilityInfo.bundleName获取。
 
-参考文档：[AbilityContext](../reference/apis/js-apis-ability-context.md)、[AbilityInfo](../reference/apis/js-apis-bundle-AbilityInfo.md)
+参考文档：[AbilityInfo](../reference/apis/js-apis-bundle-AbilityInfo.md)
 
 ## 如何获取应用图标
 
