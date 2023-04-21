@@ -3072,7 +3072,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInfo\>): void;
+getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
 
 以异步的方法获取指定bundleName的provision配置文件信息，使用callback形式返回结果。
 
@@ -3086,7 +3086,7 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInf
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | 是   | 指定应用的bundleName |
+| bundleName | string | 是   | 指定应用的bundleName。 |
 | callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
 
 **错误码：**
@@ -3119,7 +3119,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void;
+getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
 
 以异步的方法获取指定bundleName和userId的provision配置文件信息，使用callback形式返回结果。
 
@@ -3133,8 +3133,8 @@ getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | 是   | 指定应用的bundleName |
-| userId | number | 是 | 指定用户ID, 可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID. |
+| bundleName | string | 是   | 指定应用的bundleName。 |
+| userId | number | 是 | 指定用户ID, 可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
 | callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
 
 
@@ -3170,7 +3170,7 @@ try {
 
 ### bundleManager.getAppProvisionInfo<sup>10+</sup>
 
-function getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>;
+getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>;
 
 以异步的方法根据bundleName和userId获取应用的provision配置文件信息，使用Promise形式返回结果。
 
@@ -3184,7 +3184,7 @@ function getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppP
 
 | 参数名   | 类型         | 必填 | 说明          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| bundleName | string | 是 | 指定的bundleName |
+| bundleName | string | 是 | 指定的bundleName。 |
 | userId | number | 否 | 指定的用户ID，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
 
 
