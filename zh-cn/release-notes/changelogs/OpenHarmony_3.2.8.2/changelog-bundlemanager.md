@@ -21,7 +21,7 @@
 |   @ohos.bundle.innerBundleManager.d.ts   |   [@ohos.bundle.launcherBundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.launcherBundleManager.d.ts)      |
 |  @ohos.bundle.innerBundleManager.d.ts |  [@ohos.bundle.bundleMonitor.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleMonitor.d.ts) |
 |   @ohos.bundle.defaultAppManager.d.ts   |   [@ohos.bundle.defaultAppManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.defaultAppManager.d.ts)     |
-|   @ohos.distributedBundle.d.ts   |   [@ohos.bundle.distributedBundle.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundle.d.ts)     |
+|   @ohos.distributedBundle.d.ts   |   [@ohos.bundle.distributedBundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.distributedBundleManager.d.ts)     |
 |  无  |  [@ohos.bundle.appControl.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.appControl.d.ts)  |
 |  @system.package.d.ts |  无 |
 
@@ -70,7 +70,7 @@ import distributedBundle form '@ohos.bundle.distributedBundle'
 | bundle/bundleInfo.d.ts           | [bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts) |
 | bundle/bundleInstaller.d.ts      | [@ohos.bundle.installer.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.installer.d.ts) |
 | bundle/bundleStatusCallback.d.ts | [@ohos.bundle.bundleMonitor.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleMonitor.d.ts) |
-| bundle/customizeData.d.ts        | [bundleManager/metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/metadata.d.ts) |
+| bundle/customizeData.d.ts        | [bundleManager/metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/Metadata.d.ts) |
 | bundle/dispatchInfo.d.ts         | [bundleManager/dispatchInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/DispatchInfo.d.ts) |
 | bundle/elementName.d.ts          | [bundleManager/elementName.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ElementName.d.ts) |
 | bundle/extensionAbilityInfo.d.ts | [bundleManager/extensionAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ExtensionAbilityInfo.d.ts) |
@@ -78,7 +78,6 @@ import distributedBundle form '@ohos.bundle.distributedBundle'
 | bundle/launcherAbilityInfo.d.ts  | [bundleManager/launcherAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/LauncherAbilityInfo.d.ts) |
 | bundle/metadata.d.ts             | [bundleManager/metadata.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/Metadata.d.ts) |
 | bundle/moduleInfo.d.ts           | [bundleManager/hapModuleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/HapModuleInfo.d.ts) |
-| bundle/packInfo.d.ts             | [bundleManager/packInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/PackInfo.d.ts) |
 | bundle/PermissionDef.d.ts        | [bundleManager/permissionDef.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/PermissionDef.d.ts) |
 | bundle/remoteAbilityInfo.d.ts    | [bundleManager/remoteAbilityInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/RemoteAbilityInfo.d.ts) |
 | bundle/shortcutInfo.d.ts         | [bundleManager/shortcutInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/ShortcutInfo.d.ts) |
@@ -168,7 +167,7 @@ import appControl form '@ohos.bundle.appControl'
 
 ## cl.bundlemanager.4 BundleInfo结构体变更，包管理原有bundle/bundleInfo.d.ts字段全部废弃变更为bundleManager/bundleInfo.d.ts，涉及字段属性变化。
 
-包管理原有bundle/bundleInfo.d.ts字段全部废弃。由老的[bundle/bundleInfo.d.ts]((https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundle/BundleInfo.d.ts))变更为[bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts)，涉及字段属性变化。
+包管理原有bundle/bundleInfo.d.ts字段全部废弃。由老的[bundle/bundleInfo.d.ts]((https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundle/bundleInfo.d.ts))变更为[bundleManager/bundleInfo.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/bundleManager/BundleInfo.d.ts)，涉及字段属性变化。
 
 
 **变更影响**<br>
