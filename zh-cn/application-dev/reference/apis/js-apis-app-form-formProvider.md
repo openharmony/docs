@@ -32,7 +32,14 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -77,7 +84,14 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -115,7 +129,13 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -162,7 +182,13 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -196,11 +222,13 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的卡片信息。 |
 
 **错误码：**
-
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 
 **示例：**
@@ -238,7 +266,10 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -287,7 +318,10 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -331,8 +365,12 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -381,8 +419,12 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -436,8 +478,12 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
-以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -476,6 +522,16 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回是否支持发布一张卡片到使用方。|
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -529,6 +585,15 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回是否支持发布一张卡片到使用方。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
