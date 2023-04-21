@@ -1,13 +1,5 @@
 # Ability框架开发常见问题
 
-## Stage模型中是否有类似FA模型的DataAbility的开发指导文档
-
-适用于：OpenHarmony SDK 3.2.3.5版本， API9 Stage模型
-
-Stage模型中DataShareExtensionAbility提供了向其他应用共享以及管理其数据的方法。
-
-参考文档：[数据共享开发指导](../database/database-datashare-guidelines.md)
-
 ## 拉起Ability在界面上没反应
 
 适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
@@ -54,7 +46,7 @@ build() {
 
 方式二：使用箭头函数。
 
-## 如何解决must have required property 'startWindowIcon'报错 
+## 如何解决must have required property 'startWindowIcon'报错
 
 适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
 
@@ -83,27 +75,19 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 
 使用Ability的onConfigurationUpdated回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。
 
-参考文档：[Ability开发指导](../ability/stage-ability.md)
-
 ## Stage模型是否推荐用globalThis去获取Context
 
 适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
 
 不推荐，Stage模型使用globalThis去获取Context是错误的使用方式。在Stage模型中，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，共用一个global对象。在同一个js虚拟机内的不同的Ability中使用globalThis获取Context，存在被覆盖从而发生错误的风险。
 
-推荐使用方式参考：[Stage模型的Context详细介绍](../ability/context-userguide.md#stage模型的context详细介绍)。
+推荐使用方式参考：[Stage模型的Context详细介绍](../application-models/application-context-stage.md)。
 
-## 如何在应用A中去获取应用B的Hap包的安装路径
+## 如何在应用A中去获取应用B的HAP的安装路径
 
 适用于：OpenHarmony SDK 3.0以上版本， API9 Stage模型
 
-首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过包名获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
-
-## 调用方使用startAbilityForResult，被调用方如何返回数据
-
-适用于：OpenHarmony SDK3.0, API9 Stage模型
-
-被调用方使用AbilityContext.terminateSelfWithResult方法，销毁被调用方ability，传递参数给startAbilityForResult回调函数，具体用法请参考[AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextterminateselfwithresult)
+首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过Bundle名称获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
 
 ## FA卡片上架后在用户的服务中心展示时可否触发生命周期，从而实现用户没有打开过FA应用的情况下获取到用户的登录信息？
 

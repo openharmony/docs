@@ -4,9 +4,9 @@
 
 使用于：OpenHarmony SDK 3.2.5.5版本
 
-1.通过业务日志打印，定位崩溃的代码位置。
+1. 通过业务日志打印，定位崩溃的代码位置。
 
-2.通过Crash文件查看报错信息，Crash文件路径是：/data/log/faultlog/faultlogger/。
+2. 通过Crash文件查看报错信息，Crash文件路径是：/data/log/faultlog/faultlogger/。
 
 ## UiTest测试框架无法获取控件问题
 

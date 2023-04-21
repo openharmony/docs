@@ -6,7 +6,6 @@
 
 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启，控制web网页中localStorage的使用，对sessionStorage未做控制
 
-
 ## Web组件加载的html页面内如何检测网络状态
 
 适用于：OpenHarmony SDK 3.2.7.5版本，API9 Stage模型
@@ -77,4 +76,4 @@ onAppear方法只是定位完Canvas的位置，onReady方法才是测量完成�
 
 4. 使用应用侧的端口0给HTML侧消息端口1发送消息。
 
-使用参考：[Web组件](../reference/arkui-ts/ts-basic-components-web.md#postmessage9)
+使用参考：[Web组件](../reference/arkui-ts/ts-basic-components-web.md)

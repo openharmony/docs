@@ -42,7 +42,7 @@ cameraInput = await this.cameraManager.createCameraInput(cameraId)
 Applicable to: OpenHarmony SDK 3.2.5.6, stage model of API version 9
 
 1. Create an **ImageSource** instance based on the input URI.
-     
+   
    ```
    let path = this.context.getApplicationContext().fileDirs + "test.jpg";
    const imageSourceApi = image.createImageSource(path);
@@ -52,7 +52,7 @@ Applicable to: OpenHarmony SDK 3.2.5.6, stage model of API version 9
    - Set **desiredSize** to specify the target size after scaling. If the values are all set to **0**, scaling will not be performed.
    - Set **desiredRegion** to specify the target rectangular area after cropping. If the values are all set to **0**, cropping will not be performed.
    - Set **rotateDegrees** to specify the rotation angle. The image will be rotated clockwise at the center.
-        
+     
       ```
       const decodingOptions = {
         desiredSize: {
@@ -85,7 +85,7 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 1. Configure the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** in the **module.json5** file.
    Example:
 
-     
+   
    ```
    {
      "module" : {
@@ -104,10 +104,14 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
    ```
 
 2. Call **requestPermissionsFromUser** to request the permissions from end users in the form of a dialog box. This operation is required because the grant mode of both permissions is **user_grant**.
-     
+   
    ```
+   import abilityAccessCtrl from '@ohos.abilityAccessCtrl.d.ts';
+   
    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
-   context.requestPermissionsFromUser(permissions).then((data) => {
+   let atManager = abilityAccessCtrl.createAtManager();
+   // context is the ability-level context of the initiator UIAbility.
+   atManager.requestPermissionsFromUser(context, permissions).then((data) => {
        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
    }).catch((error) => {
        console.log("Failed to request permission from user with error: " + JSON.stringify(error))

@@ -9,7 +9,6 @@ Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 - Method 2: Run the screenshot script. Connect to the development board to a computer running Windows. Create a text file on the computer, copy the following script content to the file, change the file name extension to **.bat** (the HDC environment variables must be configured in advance), and click **Run**. The screenshot is saved to the same directory as the **.bat** script file.
   Example:
 
-  
   ```
   set filepath=/data/%date:~0,4%%date:~5,2%%date:~8,2%%time:~1,1%%time:~3,2%%time:~6,2%.png
   echo %filepath%
@@ -29,10 +28,11 @@ Applicable to: DevEco Studio 3.0.0.991
    ![en-us_image_0000001361254285](figures/en-us_image_0000001361254285.png)
 
 2. Set the profile parameters as follows:
+   
    Device type : default
-
+   
    Resolution: 720\*1280
-
+   
    DPI: 240
 
 ## What should I do if Device Manager incorrectly identifies a development board as FT232R USB UART even when the development board already has a driver installed?

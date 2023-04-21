@@ -46,7 +46,7 @@
    >
    > 下面代码示例中的url仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
    > 
-   > - 如果使用本地资源播放，必须确认相应的资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
+   > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
    > 
    > - 如果使用网络播放路径，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
    > 
@@ -61,7 +61,7 @@
 
 6. 视频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
 
-7. (可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+7. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
 
 8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 

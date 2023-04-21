@@ -17,7 +17,7 @@ Reference: [Notification](../reference/apis/js-apis-notification.md#notification
 Example:
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import WantAgent from '@ohos.app.ability.wantAgent';
 
 async function publishNotification() {
   let wantAgentInfo = {
