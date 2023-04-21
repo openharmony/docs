@@ -42,6 +42,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -78,6 +81,9 @@ udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -747,6 +753,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -783,6 +792,9 @@ tcp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
