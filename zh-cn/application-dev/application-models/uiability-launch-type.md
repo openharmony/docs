@@ -6,7 +6,7 @@ UIAbility的启动模式是指UIAbility实例在启动时的不同呈现状态�
 
 - [singleton（单实例模式）](#singleton启动模式)
 
-- [multiton（标准实例模式）](#multiton启动模式)
+- [multiton（多实例模式）](#multiton启动模式)
 
 - [specified（指定实例模式）](#specified启动模式)
 
@@ -17,8 +17,8 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 
 每次调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，如果应用进程中该类型的UIAbility实例已经存在，则复用系统中的UIAbility实例。系统中只存在唯一一个该UIAbility实例，即在最近任务列表中只存在一个该类型的UIAbility实例。
 
-**图1** 单实例模式演示效果   
-![uiability-launch-type1](figures/uiability-launch-type1.png)  
+**图1** 单实例模式演示效果  
+![uiability-launch-type1](figures/uiability-launch-type1.gif)  
 
 > **说明**：应用的UIAbility实例已创建，该UIAbility配置为单实例模式，再次调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例。由于启动的还是原来的UIAbility实例，并未重新创建一个新的UIAbility实例，此时只会进入该UIAbility的[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调，不会进入其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[onWindowStageCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。
 
@@ -42,10 +42,10 @@ singleton启动模式为单实例模式，也是默认情况下的启动模式�
 
 ## multiton启动模式
 
-multiton启动模式为标准实例模式，每次调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，都会在应用进程中创建一个新的该类型UIAbility实例。即在最近任务列表中可以看到有多个该类型的UIAbility实例。这种情况下可以将UIAbility配置为multiton（标准实例模式）。
+multiton启动模式为多实例模式，每次调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，都会在应用进程中创建一个新的该类型UIAbility实例。即在最近任务列表中可以看到有多个该类型的UIAbility实例。这种情况下可以将UIAbility配置为multiton（多实例模式）。
 
-**图2** 标准实例模式演示效果   
-![uiability-launch-type2](figures/uiability-launch-type2.png)  
+**图2** 多实例模式演示效果  
+![uiability-launch-type2](figures/uiability-launch-type2.gif)  
 
 multiton启动模式的开发使用，在[module.json5配置文件](../quick-start/module-configuration-file.md)中的`launchType`字段配置为`multiton`即可。
 
@@ -69,8 +69,8 @@ multiton启动模式的开发使用，在[module.json5配置文件](../quick-sta
 
 specified启动模式为指定实例模式，针对一些特殊场景使用（例如文档应用中每次新建文档希望都能新建一个文档实例，重复打开一个已保存的文档希望打开的都是同一个文档实例）。
 
-**图3** 指定实例模式演示效果    
-![uiability-launch-type3](figures/uiability-launch-type3.png)  
+**图3** 指定实例模式演示效果   
+![uiability-launch-type3](figures/uiability-launch-type3.gif)  
 
 例如有两个UIAbility：EntryAbility和SpecifiedAbility，SpecifiedAbility配置为指定实例模式启动，需要从EntryAbility的页面中启动SpecifiedAbility。
 

@@ -47,7 +47,7 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
         }
       ],
       "orientation": "unspecified",
-      "exported": true,
+      "visible": true,
       "srcPath": "EntryAbility",
       "name": ".EntryAbility",
       "srcLanguage": "ets",

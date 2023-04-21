@@ -8,13 +8,13 @@
 
 ## 使用AudioRenderer播放对端的通话声音
 
-  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRenderInfo参数和音频数据来源。audioRenderInfo参数中，音频内容类型需设置为语音，CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信，STREAM_USAGE_VOICE_COMMUNICATION。
+  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音，CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信，STREAM_USAGE_VOICE_COMMUNICATION。
   
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
 const TAG = 'VoiceCallDemoForAudioRenderer';
-// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRenderInfo参数和音频数据来源
+// 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
 export default class VoiceCallDemoForAudioRenderer {
   private renderModel = undefined;
   private audioStreamInfo = {

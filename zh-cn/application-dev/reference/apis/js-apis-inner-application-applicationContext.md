@@ -291,6 +291,15 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -320,6 +329,15 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -347,6 +365,14 @@ killAllProcesses(): Promise\<void\>;
 | -------- | -------- |
 | Promise\<void\> | 以Promise方式返回杀死应用所在的进程结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -367,6 +393,14 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 | 类型 | 说明 |
 | -------- | -------- |
 |AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

@@ -28,31 +28,13 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -125,31 +107,13 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -211,31 +175,13 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -321,31 +267,13 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -422,31 +350,13 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -533,31 +443,13 @@ getUid(agent: WantAgent): Promise\<number\>
 | Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -635,31 +527,14 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -747,31 +622,14 @@ getWant(agent: WantAgent): Promise\<Want\>
 | Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -848,31 +706,13 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -958,31 +798,13 @@ cancel(agent: WantAgent): Promise\<void\>
 | Promise\<void\> | 以Promise形式获取异步返回结果。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1056,33 +878,6 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
-
-**错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
-| 错误码ID    | 错误信息            |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
 
 **示例：**
 
@@ -1166,33 +961,6 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
 | callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
-
-**错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
-| 错误码ID    | 错误信息            |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
 
 **示例：**
 
@@ -1280,33 +1048,6 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
 
-**错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
-| 错误码ID    | 错误信息            |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
-
 **示例：**
 
 ```ts
@@ -1382,31 +1123,14 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -1490,31 +1214,14 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
 **错误码：**
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The applicaiotn dose not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 

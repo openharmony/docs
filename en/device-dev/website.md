@@ -391,7 +391,9 @@
        - [Audio/Video Playback Development](subsystems/subsys-multimedia-video-play-guide.md)
        - [Audio/Video Recording Development](subsystems/subsys-multimedia-video-record-guide.md)     
   -  [Utils Development](subsystems/subsys-utils-guide.md)  
-  -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+  - AI
+     - [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsystems/subsys-ai-nnrt-guide.md)
   -  Data Management
      - RDB
        - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
@@ -454,7 +456,24 @@
      - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
      - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview Development](subsystems/subsys-dfx-hiview.md)
-  
+  -  Power
+     - Power Consumption Statistics
+       - [Power Consumption Statistics Customization](subsystems/subsys-power-stats-power-average-customization.md)
+     - Battery Management
+       - [Battery Level and LED Color Mapping Customization](subsystems/subsys-power-level-LED-color.md)
+       - [Battery Temperature Protection Customization](subsystems/subsys-power-temperature-protection.md)
+       - [Battery Level Customization](subsystems/subsys-power-battery-level-customization.md)
+       - [Charging Current and Voltage Limit Customization](subsystems/subsys-power-charge-current-voltage-limit.md)
+       - [Charging Type Customization](subsystems/subsys-power-charge-type-customization.md)
+       - [Power-off Charging Animation Customization](subsystems/subsys-power-poweroff-charge-animation.md)
+     - Thermal Management
+       - [Charging Idle State Customization](subsystems/subsys-thermal_charging_idle_state.md)
+       - [Thermal Control Customization](subsystems/subsys-thermal_control.md)
+       - [Thermal Detection Customization](subsystems/subsys-thermal_detection.md)
+       - [Thermal Level Customization](subsystems/subsys-thermal_level.md)
+       - [Thermal Log Customization](subsystems/subsys-thermal_log.md)
+       - [Thermal Policy Customization](subsystems/subsys-thermal_policy.md)
+       - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)  
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)

@@ -23,7 +23,7 @@ The [universal attributes](js-service-widget-common-attributes.md) are supported
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | color | &lt;color&gt; | - | No| Font color of the modified text.|
-| font-size | &lt;length&gt; | 30px | No| Font size of the modified text.|
+| font-size | &lt;length&gt; | 16px | No| Font size of the modified text.|
 | font-style | string | normal | No| Font style of the modified text. For details, see **font-style** of the [**\<text>**](js-service-widget-basic-text.md#styles) component.|
 | font-weight | number \| string | normal | No| Font weight of the modified text. For details, see **font-weight** of the [**\<text>**](js-service-widget-basic-text.md##styles) component.|
 | text-decoration | string | none | No| Text decoration of the modified text. For details, see **text-decoration** of the [**\<text>**](js-service-widget-basic-text.md#styles) component.|
