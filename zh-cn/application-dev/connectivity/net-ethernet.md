@@ -162,9 +162,9 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 import ethernet from '@ohos.net.ethernet'
 
 // 订阅interfaceStateChange事件
-ethernet.on('interfaceStateChange', ((data) => {
+ethernet.on('interfaceStateChange', (data) => {
   console.log(JSON.stringify(data));
-}));
+});
 
 // 取消事件订阅
 ethernet.off('interfaceStateChange');
