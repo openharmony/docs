@@ -1607,7 +1607,7 @@ connect(device: string): boolean
 连接设备的HFP服务。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.connect](js-apis-bluetoothManager.md#connect1)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1641,7 +1641,7 @@ disconnect(device: string): boolean
 断开连接设备的HFP服务。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.disconnect](js-apis-bluetoothManager.md#disconnect1)替代。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1675,7 +1675,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 订阅HFP连接状态变化事件。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.on('connectionStateChange')](js-apis-bluetoothManager.md#onconnectionstatechange1)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1709,7 +1709,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 取消订阅HFP连接状态变化事件。
 
 > **说明：**<br/>
-> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[bluetoothManager.HandsFreeAudioGatewayProfile.off('connectionStateChange')](js-apis-bluetoothManager.md#offconnectionstatechange1)替代。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2470,7 +2470,7 @@ connect(): boolean
 client端发起连接远端蓝牙低功耗设备。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.connect](js-apis-bluetoothManager.md#connect-3)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.connect](js-apis-bluetoothManager.md#connect3)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2497,7 +2497,7 @@ disconnect(): boolean
 client端断开与远端蓝牙低功耗设备的连接。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect-4)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.disconnect](js-apis-bluetoothManager.md#disconnect4)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2524,7 +2524,7 @@ close(): boolean
 关闭客户端功能，注销client在协议栈的注册，调用该接口后[GattClientDevice](#gattclientdevice)实例将不能再使用。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.close](js-apis-bluetoothManager.md#close1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2598,7 +2598,7 @@ getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getServices](js-apis-bluetoothManager.md#getservices1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2686,7 +2686,7 @@ readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharac
 client端读取蓝牙低功耗设备特定服务的特征值。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.readCharacteristicValue](js-apis-bluetoothManager.md#readcharacteristicvalue1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2782,7 +2782,7 @@ readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.readDescriptorValue](js-apis-bluetoothManager.md#readdescriptorvalue1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3169,7 +3169,7 @@ getDeviceName(): Promise&lt;string&gt;
 client获取远端蓝牙低功耗设备名。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getDeviceName](js-apis-bluetoothManager.md#getdevicename1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -3236,7 +3236,7 @@ getRssiValue(): Promise&lt;number&gt;
 client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
 
 > **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[bluetoothManager.GattClientDevice.getRssiValue](js-apis-bluetoothManager.md#getrssivalue1)替代。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 

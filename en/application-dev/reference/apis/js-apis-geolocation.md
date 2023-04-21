@@ -555,7 +555,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 Obtains the current location. This API uses a promise to return the result. 
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation2).
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -882,7 +882,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation-1).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation1).
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -954,7 +954,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. 
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname-1).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname1).
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -1026,7 +1026,7 @@ Obtains the number of cached GNSS locations.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize-1).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize1).
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -1091,7 +1091,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations-1).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations1).
 
 **Required permissions**: ohos.permission.LOCATION
 

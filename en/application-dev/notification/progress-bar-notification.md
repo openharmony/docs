@@ -9,7 +9,7 @@ In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#n
 
 | Name| Description|
 | -------- | -------- |
-| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate).<br>Only the progress-type template is supported.|
+| isSupportTemplate(templateName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [isSupportTemplate()](../reference/apis/js-apis-inner-notification-notificationTemplate.md).<br>Only the progress-type template is supported.|
 
 
 ## How to Develop

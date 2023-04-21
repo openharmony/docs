@@ -555,7 +555,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 获取当前位置，使用Promise方式异步返回结果。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation2)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -882,7 +882,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation-1)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -954,7 +954,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
 
 > **说明：**<br/>
-> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname-1)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1026,7 +1026,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 > **说明：**<br/>
 > 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize-1)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.getCachedGnssLocationsSize](js-apis-geoLocationManager.md#geolocationmanagergetcachedgnsslocationssize1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
@@ -1091,7 +1091,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 > **说明：**<br/>
 > 从API version 8开始支持。
-> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations-1)替代。
+> 从API version 9开始废弃，建议使用[geoLocationManager.flushCachedGnssLocations](js-apis-geoLocationManager.md#geolocationmanagerflushcachedgnsslocations1)替代。
 
 **需要权限**：ohos.permission.LOCATION
 
