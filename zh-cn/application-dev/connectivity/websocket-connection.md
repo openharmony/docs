@@ -85,4 +85,4 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
 
 针对WebSocket连接的开发，有以下相关实例可供参考：
 
-- [`WebSocket`：WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/WebSocket)
+- [`WebSocket`：WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)

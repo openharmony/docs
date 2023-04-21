@@ -309,8 +309,3 @@ URI示例：
    );
    ```
 
-## 相关实例
-
-针对DataAbility开发，有以下相关实例可供参考：
-
-- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

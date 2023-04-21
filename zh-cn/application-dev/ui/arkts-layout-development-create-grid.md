@@ -336,4 +336,4 @@ Grid() {
 
 如需详细了解网格布局的实现，请参考以下示例：
 
-- [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/EtsDistributedCalc)
+- [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
