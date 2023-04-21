@@ -1,8 +1,8 @@
 # 应用模型
 
 - 应用模型概述
-  - [OpenHarmony应用模型的构成要素](application-model-composition.md)
-  - [OpenHarmony应用模型解读](application-model-description.md)
+  - [应用模型的构成要素](application-model-composition.md)
+  - [应用模型解读](application-model-description.md)
 - Stage模型开发指导
   - [Stage模型开发概述](stage-model-development-overview.md)
   - Stage模型应用组件
