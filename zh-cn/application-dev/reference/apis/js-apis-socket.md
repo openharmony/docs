@@ -42,6 +42,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -78,6 +81,9 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -733,6 +739,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方法作为异步方法。
 
+> **说明：**
+> 客户端使用该方法创建socket。
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -769,6 +778,9 @@ tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 bind(address: NetAddress): Promise\<void\>
 
 绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方法作为异步方法。
+
+> **说明：**
+> 客户端使用该方法创建socket。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1605,7 +1617,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1648,7 +1660,7 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -1680,7 +1692,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1720,7 +1732,7 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let promiseBind = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promiseBind = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promiseBind.then(() => {
   console.log('bind success');
 }).catch((err) => {
@@ -1760,7 +1772,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1772,7 +1784,7 @@ tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: {on: true, linger: 10},
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -1784,7 +1796,6 @@ tls.setExtraOptions({
   }
   console.log('setExtraOptions success');
 });
-
 ```
 
 ### setExtraOptions<sup>9+</sup>
@@ -1818,7 +1829,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1829,7 +1840,7 @@ let promise = tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: {on: true, linger: 10},
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -1881,7 +1892,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1912,7 +1923,7 @@ tlsTwoWay.connect(options, (err, data) => {
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1980,7 +1991,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2012,7 +2023,7 @@ tlsTwoWay.connect(options).then(data => {
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
