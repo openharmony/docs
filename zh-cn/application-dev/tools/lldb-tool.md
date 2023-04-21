@@ -37,7 +37,7 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 
 > 其中Mac平台的工具有arm64架构和x86_64架构区分。可根据”组件形态“进行区分，其中mac-sdk-full和mac-sdk-public的适用于x86_64架构。mac-sdk-m1-full和mac-sdk-m1-public的适用于arm64架构。
 >
-### 常见使用使用场景：linux平台调试程序
+## 常见使用使用场景：linux平台调试程序
 ## 调试器提供功能
 - 将程序加载到LLDB
 - 设置断点
