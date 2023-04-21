@@ -194,7 +194,7 @@ For details, see the following:
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 ### Samples & Codelabs
 
