@@ -21,7 +21,6 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 - 增加基础的ArkTS卡片开发能力：支持卡片交互、能动态更新内容；统一卡片和页面的开发范式，页面的布局可以直接复用到卡片布局中，提升卡片开发体验和开发效率。
 - 系统默认支持纯文本、纯图片复制、粘贴、拖拽，无需开发者处理复制、粘贴、拖拽事件。
 - 支持多级菜单和分组菜单。
-- 支持切换深色模式/浅色模式，仅系统应用支持。
 
  **UI界面开发支持一次开发适配多屏幕规格** 
 
@@ -596,7 +595,7 @@ API变更请参考:
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 ### Samples
 
