@@ -336,3 +336,23 @@ console.timeLog('timer1', value);
 console.timeEnd('timer1');
 // timer1: 513.22ms
 ```
+
+## console.trace<sup>10+</sup>
+
+trace(...arguments: Object[]): void
+
+打印当前堆栈。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| arguments | Object | 否    | 需要打印的其他日志。 |
+
+**示例：**
+```
+console.trace();
+console.trace("Show the trace");
+```
