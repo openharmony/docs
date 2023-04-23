@@ -32,10 +32,25 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 - mac(x86)平台RK3568调试(arm架构调试)
 - mac(x86)平台原型机调试(aarch64架构调试)
 - mac(x86)平台模拟器调试
+- linux平台RK3568调试(arm架构调试)
+- linux平台原型机调试(aarch64架构调试)
+> 
+典型使用场景：linux平台连接arm架构RK3568远程调试
 >
-## 常见使用使用场景：
+将lldb-server推送到设备，命令行窗口1：
 >
-linux平台调试程序
+`hdc file send xx/lldb-server /data/local/tmp`
+`hdc shell ./data/local/tmp/lldb-server p --server --listen "*:8080"`
+启动lldb，命令行窗口2：
+
+```
+./lldb
+(lldb) platform select remote-ohos
+(lldb) platform connect connect://localhost:8080
+```
+
+
+>
 ## 调试器提供功能
 - 将程序加载到LLDB
 - 设置断点
