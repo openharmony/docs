@@ -7,6 +7,7 @@
 详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
 1. 创建Surface。
+     
      XComponent组件为预览流提供的Surface，而XComponent的能力由UI提供，相关介绍可参考[XComponent组件参考](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
      
    ```ts
@@ -69,7 +70,7 @@
   })
   ```
 
-- 通过注册固定的frameEnd回调函数获取监听预览启动结果，previewOutput创建成功时即可监听，预览完成最后一帧时触发，有该事件返回结果则认为预览流已结束。
+- 通过注册固定的frameEnd回调函数获取监听预览结束结果，previewOutput创建成功时即可监听，预览完成最后一帧时触发，有该事件返回结果则认为预览流已结束。
     
   ```ts
   previewOutput.on('frameEnd', () => {
