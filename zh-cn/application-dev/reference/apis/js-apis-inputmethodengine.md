@@ -56,7 +56,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodAbility(): InputMethodAbility
 
-为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件、创建/销毁输入法应用面板等。
+为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
