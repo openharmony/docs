@@ -48,7 +48,7 @@ RK3568设备上运行可执行文件：
 将lldb-server推送到设备，命令行窗口1：
 >
 ```
-hdc file send xx/lldb-server /data/local/tmp
+hdc file send lldb-server /data/local/tmp
 hdc shell ./data/local/tmp/lldb-server p --server --listen "*:8080"
 ```
 >
