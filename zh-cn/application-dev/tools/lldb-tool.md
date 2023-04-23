@@ -37,6 +37,14 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 > 
 典型使用场景：linux平台连接arm架构RK3568远程调试
 >
+设备上运行可执行文件：
+>
+
+```
+./filename
+```
+
+>
 将lldb-server推送到设备，命令行窗口1：
 >
 ```
@@ -50,6 +58,12 @@ hdc shell ./data/local/tmp/lldb-server p --server --listen "*:8080"
 ./lldb
 (lldb) platform select remote-ohos
 (lldb) platform connect connect://localhost:8080
+```
+打断点，以及后续调试操作，命令行窗口2：
+
+```
+breakpoint set --file <filename> --line <linenum>
+process attach --name process-name
 ```
 
 
