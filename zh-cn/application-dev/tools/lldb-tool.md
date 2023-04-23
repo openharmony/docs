@@ -37,7 +37,7 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 > 
 典型使用场景：linux平台连接arm架构RK3568远程调试
 >
-设备上运行可执行文件：
+RK3568设备上运行可执行文件：
 >
 
 ```
