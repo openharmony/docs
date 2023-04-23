@@ -96,7 +96,7 @@
    try {
      const options = {
        createIfMissing: true, // 当数据库文件不存在时是否创建数据库，默认创建
-       encrypt: false, // 当数据库文件不存在时是否创建数据库，默认创建 
+       encrypt: false, // 设置数据库文件是否加密，默认不加密 
        backup: false, // 设置数据库文件是否备份，默认备份
        autoSync: true, // 设置数据库文件是否自动同步。默认为false，即手动同步；设置为true时，表示自动同步
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION, // 设置要创建的数据库类型，默认为多设备协同数据库
