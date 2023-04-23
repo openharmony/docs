@@ -102,7 +102,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - [Oracle Universal Permissive License (UPL) Version 1.0](https://oss.oracle.com/licenses/upl/)
 
-- [Open Grid Forum License](https://www.ogf.org/ogf/doku.php/about/copyright)
+- Open Grid Forum License
 
 - Google "Additional IP Rights Grant  (Patents)" file
 
@@ -122,7 +122,7 @@ In principle, the OpenHarmony project will not accept third-party dependencies t
 - [Confluent Community License Version 1.0](https://www.confluent.io/confluent-community-license/)
 - [Any license including the Commons Clause License Condition v1.0](https://commonsclause.com/)
 - Creative Commons Non-Commercial variants
-- [Sun Community Source License 3.0](http://jcp.org/aboutJava/communityprocess/SCSL3.0.rtf)
+- Sun Community Source License 3.0
 - [GNU GPL 3](http://www.opensource.org/licenses/gpl-license.php)
 - GNU Affero GPL 3
 - [BSD-4-Clause](https://spdx.org/licenses/BSD-4-Clause.html)/[BSD-4-Clause (University of California-Specific)](https://spdx.org/licenses/BSD-4-Clause-UC.html)     
