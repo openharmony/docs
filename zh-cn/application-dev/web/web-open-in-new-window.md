@@ -6,7 +6,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
 > **说明：**
 >
-> 如果开发者在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口返回值设置成null。
+> 如果开发者在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/arkui-ts/ts-basic-components-web.md##setwebcontroller9)接口返回值设置成null。
 
 
 如下面的本地示例，当用户点击“新窗口中打开网页”按钮时，应用侧会在[onWindowNew()](../reference/arkui-ts/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件。
