@@ -19,5 +19,4 @@
 - [启动恢复开发常见问题](faqs-startup.md)
 - [分布式DeviceProfrofile开发常见问题](faqs-distributed-device-profile.md)
 - [SDK使用常见问题](faqs-sdk.md)
-- [Sample使用常见问题](faqs-application.md)
 - [三四方库使用常见问题](faqs-third-fourth-party-library.md)

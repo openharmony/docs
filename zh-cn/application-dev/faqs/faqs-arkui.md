@@ -953,7 +953,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[@Link](../quick-start/arkts-state-mgmt-page-level.md#link)
+[@Link](../ui/ts-component-state-link.md#link)
 
 ## 父组件如何与孙子组件进行状态同步
 
