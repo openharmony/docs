@@ -41,6 +41,7 @@ lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 >
 `hdc file send xx/lldb-server /data/local/tmp`
 `hdc shell ./data/local/tmp/lldb-server p --server --listen "*:8080"`
+>
 启动lldb，命令行窗口2：
 
 ```
