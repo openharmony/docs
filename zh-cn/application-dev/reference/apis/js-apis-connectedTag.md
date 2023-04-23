@@ -28,6 +28,23 @@ init(): boolean
 | -------- | -------- |
 | boolean | true:初始化成功，&nbsp;false:初始化失败。 |
 
+## connectedTag.initialize<sup>9+</sup>
+
+initialize(): void
+
+初始化有源标签芯片。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.ConnectedTag
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
 ## connectedTag.uninit
 
 uninit(): boolean
@@ -43,6 +60,23 @@ uninit(): boolean
 | **类型** | **说明** |
 | -------- | -------- |
 | boolean | true:卸载操作成功，&nbsp;false:卸载操作失败。 |
+
+## connectedTag.uninitialize<sup>9+</sup>
+
+uninitialize(): void
+
+卸载有源标签芯片资源。
+
+**需要权限:** ohos.permission.NFC_TAG
+
+**系统能力:** SystemCapability.Communication.ConnectedTag
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
 
@@ -72,6 +106,41 @@ connectedTag.readNdefTag().then((data) => {
 });
 ```
 
+## connectedTag.read<sup>9+</sup>
+
+read(): Promise&lt;number[]&gt;
+
+读取有源标签内容，使用promise方式作为异步方法。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.ConnectedTag
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;number[]&gt; | 返回读取有源标签内容。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.read().then((data) => {
+    console.log("connectedTag read Promise data = " + data);
+}).catch((err)=> {
+    console.log("connectedTag read Promise err: " + err);
+});
+```
+
 ## connectedTag.readNdefTag
 
 readNdefTag(callback: AsyncCallback&lt;string&gt;): void
@@ -98,6 +167,43 @@ connectedTag.readNdefTag((err, data)=> {
         console.log("connectedTag readNdefTag AsyncCallback err: " + err);
     } else {
         console.log("connectedTag readNdefTag AsyncCallback data: " + data);
+    }
+});
+```
+
+## connectedTag.read<sup>9+</sup>
+
+read(callback: AsyncCallback&lt;number[]&gt;): void
+
+读取有源标签内容，使用AsyncCallback方式作为异步方法。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.ConnectedTag
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number[]&gt; | 是 | 读取有源标签内容回调函数。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.read((err, data)=> {
+    if (err) {
+        console.log("connectedTag read AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag read AsyncCallback data: " + data);
     }
 });
 ```
@@ -137,6 +243,48 @@ connectedTag.writeNdefTag(rawData).then(() => {
 });
 ```
 
+## connectedTag.write<sup>9+</sup>
+
+write(data: number[]): Promise&lt;void&gt;
+
+写入内容到有源标签，使用promise方式作为异步方法。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.ConnectedTag
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| data | number[] | 是 | 有源标签内容, 由十六进制数字组成，范围从0x00至0xFF。 |
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回值。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+connectedTag.write(rawData).then(() => {
+    console.log("connectedTag write NdefTag Promise success.");
+}).catch((err)=> {
+    console.log("connectedTag write NdefTag Promise err: " + err);
+});
+```
+
 ## connectedTag.writeNdefTag
 
 writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
@@ -165,6 +313,45 @@ connectedTag.writeNdefTag(rawData, (err)=> {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
     } else {
         console.log("connectedTag writeNdefTag AsyncCallback success.");
+    }
+});
+```
+
+## connectedTag.write<sup>9+</sup>
+
+write(data: number[], callback: AsyncCallback&lt;void&gt;): void
+
+写入内容到有源标签，使用AsyncCallback方式作为异步方法。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.ConnectedTag
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| data | number[] | 是 | 有源标签内容, 由十六进制数字组成，范围从0x00至0xFF。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 读取有源标签内容回调函数。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**示例：**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+connectedTag.write(rawData, (err)=> {
+    if (err) {
+        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag write NdefTag AsyncCallback success.");
     }
 });
 ```
