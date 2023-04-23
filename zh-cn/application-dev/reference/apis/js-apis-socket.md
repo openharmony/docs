@@ -1947,7 +1947,6 @@ let callback = value => {
 tls.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tls.off('message', callback);
-tls.off('message');
 ```
 ### on('connect' | 'close')
 
@@ -2011,7 +2010,6 @@ let callback2 = () => {
 tls.on('close', callback2);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tls.off('close', callback2);
-tls.off('close');
 ```
 
 ### on('error')
@@ -2066,7 +2064,6 @@ let callback = err => {
 tls.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tls.off('error', callback);
-tls.off('error');
 ```
 
 ### connect<sup>9+</sup>
