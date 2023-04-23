@@ -47,12 +47,11 @@ struct ColoringStrategyExample {
       // Draw a circle with a diameter of 150 and set its foreground color to the inverse of the component background color.
       Circle({ width: 150, height: 200 })
         .backgroundColor(Color.Black)
-        .foregroungColor(ColoringStrategy.Invert)
+        .foregroundColor(ColoringStrategy.INVERT)
     }.width('100%')
   }
 }
 ```
-
 ![foregroundColor_circle](figures/ColoringStrategy_circle.png)
 
 ### Example 3
@@ -64,9 +63,9 @@ struct ColoringStrategyExample {
 struct foregroundColorInherit {
   build() {
     Column() {
-      Button('Foreground Color Set to Orange').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
+      Button('Foreground Color: Set to Orange').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
       Divider()
-      Button ('Foreground Color Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
+      Button ('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
     }.foregroundColor(Color.Red)
   }
 }
