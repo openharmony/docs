@@ -76,15 +76,15 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取编辑客户端代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型                                  | 说明             |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | 编辑客户端代理。 |
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端编辑事件监听代理。 |
 
 **示例：**
 
@@ -120,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-为输入法应用获取编辑客户端代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
+为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
 
 > **说明：**
 >
@@ -130,9 +130,9 @@ createKeyboardDelegate(): KeyboardDelegate
 
 **返回值：**
 
-| 类型                                  | 说明             |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | 编辑客户端代理。 |
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端编辑事件监听代理。 |
 
 **示例：**
 
