@@ -3,10 +3,9 @@
 LLDB（Low Lever Debugger）是新一代高性能调试器。当前Openharmony中的LLDB工具是在[llvm15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)基础上适配演进出来的工具。LLDB支持在桌面和Openharmony设备或模拟器上调试。
 ## 工具获取
 通过OpenHarmony的SDK获取，[获取路径](http://ci.openharmony.cn/dailys/dailybuilds)
-
+>
 lldb工具在SDK中的路径：**\ohos-sdk\\\[system]\native\llvm
 > **说明：system可选windows/linux/darwin**
->
 具体使用方法：以windows平台为例
 
 - 解压sdk，直接在lldb工具所在路径\**\ohos-sdk\windows\native\llvm\bin运行lldb.exe即可。
@@ -45,12 +44,13 @@ RK3568设备上运行可执行文件：
 ```
 
 >
-将lldb-server推送到设备，命令行窗口1：
+将lldb-server推送到设备，运行lldb-server，命令行窗口1：
 >
 ```
 hdc file send lldb-server /data/local/tmp
 hdc shell ./data/local/tmp/lldb-server p --server --listen "*:8080"
 ```
+> **说明：其中/data/local/tmp为设备上指定的目录，8080为监听端口，均可自定义**
 >
 启动lldb，选择远端ohos并连接，命令行窗口2：
 
