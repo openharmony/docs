@@ -64,6 +64,9 @@ httpRequest.request(
 );
 ```
 
+> **说明：**
+> console.info()输出的数据中包含换行符会导致数据出现截断现象。
+
 ## http.createHttp
 
 createHttp(): HttpRequest
