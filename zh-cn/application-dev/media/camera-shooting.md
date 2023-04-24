@@ -141,7 +141,7 @@
   })
   ```
 
-- 通过注册固定的frameShutter回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo)。
+- 通过注册固定的captureEnd回调函数获取监听拍照结束结果，photoOutput创建成功时即可监听，该事件返回结果为拍照完全结束后的相关信息[CaptureEndInfo](../reference/apis/js-apis-camera.md#captureendinfo)。
     
   ```ts
   photoOutput.on('captureEnd', (captureEndInfo) => {
