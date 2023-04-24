@@ -2,7 +2,6 @@
 
 本模块面向输入法应用（包括系统输入法应用、三方输入法应用），为输入法应用提供能力，功能包括：创建软键盘窗口、插入/删除字符、选中文本、物理键盘按键事件监听等。
 
-
 > **说明：**
 >
 >本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -57,15 +56,15 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodAbility(): InputMethodAbility
 
-获取服务端实例。
+为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型                                    | 说明         |
-| --------------------------------------- | ------------ |
-| [InputMethodAbility](#inputmethodability) | 服务端实例。 |
+| 类型                                      | 说明               |
+| ----------------------------------------- | ------------------ |
+| [InputMethodAbility](#inputmethodability) | 输入法应用客户端。 |
 
 **示例：**
 
@@ -77,15 +76,15 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-获取客户端监听实例。
+为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型                                  | 说明             |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | 客户端监听实例。 |
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端编辑事件监听代理。 |
 
 **示例：**
 
@@ -97,7 +96,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-获取服务端实例。
+为输入法应用获取输入法应用客户端实例[InputMethodEngine](#inputmethodengine-1)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件等。
 
 > **说明：**
 >
@@ -107,9 +106,9 @@ getInputMethodEngine(): InputMethodEngine
 
 **返回值：**
 
-| 类型                                    | 说明         |
-| --------------------------------------- | ------------ |
-| [InputMethodEngine](#inputmethodengine-1) | 服务端实例。 |
+| 类型                                      | 说明               |
+| ----------------------------------------- | ------------------ |
+| [InputMethodEngine](#inputmethodengine-1) | 输入法应用客户端。 |
 
 **示例：**
 
@@ -121,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-获取客户端监听实例。
+为输入法应用获取客户端编辑事件监听代理实例[KeyboardDelegate](#keyboarddelegate)。输入法应用获取该实例可订阅物理键盘按键事件、选中文本变化事件等。
 
 > **说明：**
 >
@@ -131,9 +130,9 @@ createKeyboardDelegate(): KeyboardDelegate
 
 **返回值：**
 
-| 类型                                  | 说明             |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | 客户端监听实例。 |
+| 类型                                  | 说明                     |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | 客户端编辑事件监听代理。 |
 
 **示例：**
 
