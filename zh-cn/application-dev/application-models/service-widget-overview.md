@@ -6,7 +6,8 @@
 
 ## 服务卡片架构
 
-  **图1** 服务卡片架构  
+  **图1** 服务卡片架构
+
 ![WidgetArchitecture](figures/WidgetArchitecture.png)
 
 卡片的基本概念：
@@ -23,7 +24,8 @@
 
 卡片的常见使用步骤如下。
 
-  **图2** 卡片常见使用步骤  
+  **图2** 卡片常见使用步骤
+
 ![WidgetUse](figures/WidgetUse.png)
 
 1. 长按“桌面图标”，弹出操作菜单。
