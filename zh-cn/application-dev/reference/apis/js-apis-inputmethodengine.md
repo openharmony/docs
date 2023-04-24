@@ -596,7 +596,7 @@ try {
 }
 
 try {
-  inputMethodEngine.getInputMethodAbility().destroyPanel((err) => {
+  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
     if(err !== undefined) {
       console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
       return;
@@ -648,7 +648,7 @@ try {
 }
 
 try {
-  inputMethodEngine.getInputMethodAbility().destroyPanel().then(() => {
+  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
     console.log('Succeed in destroying panel.');
   }).catch((err) => {
     console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
