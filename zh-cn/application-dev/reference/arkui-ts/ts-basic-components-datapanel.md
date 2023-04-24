@@ -56,7 +56,7 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 ## DataPanelShadowOption<sup>10+</sup>
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 <br/>默认值：5vp。 |
+| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 若数据值小于等于0则置为默认值。<br/>默认值：5vp。 |
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors值相同。 |
 | offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5vp。 |
 | offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5vp。 |
@@ -79,7 +79,7 @@ LinearGradient(colorStops: ColorStop[])
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
-| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值）。|
+| offset | [Length](ts-types.md#Length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。|
 
 
 
