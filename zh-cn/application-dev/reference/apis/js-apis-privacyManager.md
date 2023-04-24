@@ -549,14 +549,14 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 否    | 默认值false。 |
-| deviceId  | string         | 否    | 目标应用所在设备的ID。                                 |
-| bundleName | string         | 否    | 目标应用的包名。 |
-| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。                                 |
-| beginTime | number         | 否    | 查询的起始时间，单位：ms，默认值0，不设定起始时间。 |
-| endTime | number         | 否    | 查询的终止时间，单位：ms，默认值0，不设定终止时间。 |
-| flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 查询方式，默认值FLAG_PERMISSION_USAGE_SUMMARY。 |
+| tokenId  | number         | 否    | 目标应用的身份标识。<br/> 默认查询所有应用。         |
+| isRemote | boolean         | 否    | 指定是否查询远端设备。<br/> 默认值：false，默认查询本端设备。 |
+| deviceId  | string         | 否    | 目标应用所在设备的ID。<br/> 默认设备ID为本端设备ID。   |
+| bundleName | string         | 否    | 目标应用的包名。<br/> 默认查询所有应用。 |
+| permissionNames  | Array&lt;Permissions&gt;         | 否    | 需要查询的权限集合。<br/> 默认查询所有权限的使用记录。               |
+| beginTime | number         | 否    | 查询的起始时间，单位：ms。<br/>默认值0，不设定起始时间。 |
+| endTime | number         | 否    | 查询的终止时间，单位：ms。<br/>默认值0，不设定终止时间。 |
+| flag | [PermissionUsageFlag](#permissionusageflag)         | 是    | 指定查询方式。 |
 
 ## PermissionUsedResponse
 
@@ -566,9 +566,9 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| beginTime | number         | 否    | 查询记录的起始时间，单位：ms。 |
-| endTime | number         | 否    | 查询记录的终止时间，单位：ms。 |
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 否    | 应用的权限使用记录集合。                                 |
+| beginTime | number         | 是    | 查询记录的起始时间，单位：ms。 |
+| endTime | number         | 是    | 查询记录的终止时间，单位：ms。 |
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | 是    | 应用的权限使用记录集合。                                 |
 
 ## BundleUsedRecord
 
@@ -578,11 +578,11 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | 否    | 目标应用的身份标识。                                 |
-| isRemote | boolean         | 否    | 默认值false。 |
-| deviceId  | string         | 否    | 目标应用所在设备的ID。                                 |
-| bundleName | string         | 否    | 目标应用的包名。 |
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 否    | 每个应用的权限使用记录集合。                                 |
+| tokenId  | number         | 是    | 目标应用的身份标识。                                 |
+| isRemote | boolean         | 是    | 默认值false。 |
+| deviceId  | string         | 是    | 目标应用所在设备的ID。                                 |
+| bundleName | string         | 是    | 目标应用的包名。 |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 是    | 每个应用的权限使用记录集合。                                 |
 
 ## PermissionUsedRecord
 
@@ -592,14 +592,14 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | 否    | 权限名。                                 |
-| accessCount | number         | 否    | 该权限访问总次数。 |
-| rejectCount | number         | 否    | 该权限拒绝总次数。 |
-| lastAccessTime | number         | 否    | 最后一次访问时间，单位：ms。 |
-| lastRejectTime | number         | 否    | 最后一次拒绝时间，单位：ms。 |
-| lastAccessDuration | number         | 否    | 最后一次访问时长，单位：ms。 |
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 否    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
+| permissionName  | Permissions         | 是    | 权限名。                                 |
+| accessCount | number         | 是    | 该权限访问总次数。 |
+| rejectCount | number         | 是    | 该权限拒绝总次数。 |
+| lastAccessTime | number         | 是    | 最后一次访问时间，单位：ms。 |
+| lastRejectTime | number         | 是    | 最后一次拒绝时间，单位：ms。 |
+| lastAccessDuration | number         | 是    | 最后一次访问时长，单位：ms。 |
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 访问记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | 是    | 拒绝记录集合，当flag为FLAG_PERMISSION_USAGE_SUMMARY时生效，默认查询10条。                                 |
 
 ## UsedRecordDetail
 
@@ -609,9 +609,9 @@ try {
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| status  | number         | 否    | 访问状态。                                 |
-| timestamp | number         | 否    | 访问时的时间戳，单位：ms。 |
-| accessDuration  | number         | 否    | 访问时长，单位：ms。                                 |
+| status  | number         | 是    | 访问状态。                                 |
+| timestamp | number         | 是    | 访问时的时间戳，单位：ms。 |
+| accessDuration  | number         | 是    | 访问时长，单位：ms。                                 |
 
 ## PermissionActiveStatus
 
