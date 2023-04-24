@@ -23,6 +23,17 @@ ohos_app_scope
 ohos_js_assets
 ohos_resources
 
+#rust模板
+ohos_rust_executable
+ohos_rust_shared_library
+ohos_rust_static_library
+ohos_rust_proc_macro
+ohos_rust_shared_ffi
+ohos_rust_static_ffi
+ohos_rust_cargo_crate
+ohos_rust_systemtest
+ohos_rust_unittest
+
 #其他常用模板
 #配置文件
 ohos_prebuilt_etc
@@ -315,9 +326,11 @@ ohos_prebuilt_static_library("helloworld") {
 
 ### Hap模板
 
-hap模板详见：[ HAP编译构建指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md)
+hap模板详见：[ HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
 
+### Rust模板
 
+rust模板详见：[ Rust模块配置规则和指导](subsys-build-rust-compilation.md)
 
 ### 其他常用模板
 
