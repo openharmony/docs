@@ -108,7 +108,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 > **说明：** 
 >
-> List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+> Grid组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ## 事件
 
