@@ -350,17 +350,12 @@ struct MainProgram {
       }
 
       Row() {
-        Column(       
-          // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
-          MyComponent({ customCounter: this.mainCounter })
-          // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
-          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-        }.width('40%')
-      }
-
-      Row() {
-        Text('').width(480).height(10)
-      }
+        Column()
+        // customCounter必须从父组件初始化，因为MyComponent的customCounter成员变量缺少本地初始化；此处，customCounter2可以不做初始化。
+        MyComponent({ customCounter: this.mainCounter })
+        // customCounter2也可以从父组件初始化，父组件初始化的值会覆盖子组件customCounter2的本地初始化的值
+        MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+      }.width('40%')
     }
   }
 }
