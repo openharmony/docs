@@ -15,7 +15,7 @@
 
 **图片名称以开发板名称命名。*
 
-*参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3861.md*
+*参考文档：*[Hi3861开发板介绍](../../device-dev/quick-start/quickstart-appendix-hi3861.md)
 
 ********
 ## 开发板规格
