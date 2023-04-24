@@ -61,7 +61,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -188,7 +188,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -229,7 +229,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -317,7 +317,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 ```js
 const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
@@ -345,7 +345,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```js
 const color = new ArrayBuffer(96);\
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
@@ -421,7 +421,7 @@ getBytesNumberPerRow(): number
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
@@ -466,7 +466,7 @@ release():Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -495,7 +495,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Uint88Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -1112,7 +1112,7 @@ imagePackerApi.release().then(()=>{
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Code
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称                   | 类型                               | 可读 | 可写 | 说明           |
 | ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
