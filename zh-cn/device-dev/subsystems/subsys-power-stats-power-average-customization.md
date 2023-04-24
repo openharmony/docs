@@ -191,7 +191,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 6. 耗电统计配置文件定制成功后，耗电统计会根据定制的耗电基准进行计算。
 
-7. 通过batterystatistics模块提供的[JS API](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.batteryStatistics.d.ts)或[Inner API](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/interfaces/innerkits/include/battery_stats_client.h)可以获得详细的耗电信息，验证定制的耗电基准。
+7. 通过batterystatistics模块提供的[JS API](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.batteryStatistics.d.ts)或[Inner API](https://gitee.com/openharmony/powermgr_battery_statistics/blob/master/interfaces/inner_api/include/battery_stats_client.h)可以获得详细的耗电信息，验证定制的耗电基准。
 
 ## 参考 
 
