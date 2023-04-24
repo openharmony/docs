@@ -5388,7 +5388,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
 | constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
-| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否锁屏                      |
+| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证                      |
 | photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间          |
