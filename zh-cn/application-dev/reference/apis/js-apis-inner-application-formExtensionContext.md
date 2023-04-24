@@ -65,7 +65,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         'message': message
       }
     };
-    this.context.startAbility(want, (error, data) => {
+    this.context.startAbility(want, (error) => {
       if (error) {
         console.error('FormExtensionContext startAbility, error:${JSON.stringify(error)}');
       } else {

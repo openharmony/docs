@@ -41,12 +41,12 @@ import formProvider from '@ohos.app.form.formProvider';
 
 let formId = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider setFormNextRefreshTime success`);
+      return;
     }
+    console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -130,12 +130,12 @@ import formProvider from '@ohos.app.form.formProvider';
 let formId = '12400633174999288';
 try {
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error, data) => {
+  formProvider.updateForm(formId, obj, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider updateForm success`);
+      return;
     }
+    console.log(`formProvider updateForm success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -220,9 +220,9 @@ try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -264,9 +264,9 @@ try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -365,9 +365,9 @@ try {
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -415,9 +415,9 @@ try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -517,9 +517,9 @@ try {
           formProvider.requestPublishForm(want, (error, data) => {
             if (error) {
               console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-            } else {
-              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+              return;
             }
+            console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
           });
         } catch (error) {
           console.error(`catch error, code: ${error.code}, message: ${error.message})`);
