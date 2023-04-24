@@ -326,11 +326,11 @@ ohos_prebuilt_static_library("helloworld") {
 
 ### Hap模板
 
-hap模板详见：[ HAP编译构建指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md)
+hap模板详见：[ HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
 
 ### Rust模板
 
-rust模板详见：[ Rust模块配置规则和指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-build-rust-compilation.md)
+rust模板详见：[ Rust模块配置规则和指导](subsys-build-rust-compilation.md)
 
 ### 其他常用模板
 
