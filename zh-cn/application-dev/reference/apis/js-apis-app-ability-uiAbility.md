@@ -1,8 +1,8 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-Ability模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
+UIAbility模块提供对Ability生命周期、上下文环境等调用管理的能力，包括Ability创建、销毁、转储客户端信息等。
 
-该模块提供以下Ability相关的常用功能：
+该模块提供以下UIAbility相关的常用功能：
 
 - [Caller](#caller)：通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
 - [Callee](#callee)：通用组件服务端注册和解除客户端caller通知送信的callback接口。
@@ -15,7 +15,7 @@ Ability模块提供对Ability生命周期、上下文环境等调用管理的能
 ## 导入模块
 
 ```ts
-import Ability from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 ```
 
 ## 属性
@@ -29,11 +29,11 @@ import Ability from '@ohos.app.ability.UIAbility';
 | lastRequestWant | [Want](js-apis-app-ability-want.md) | 是 | 否 | Ability最后请求时的参数。| 
 | callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
 
-## Ability.onCreate
+## UIAbility.onCreate
 
 onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
 
-Ability创建时回调，执行初始化业务逻辑操作。
+UIAbility创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -41,13 +41,13 @@ Ability创建时回调，执行初始化业务逻辑操作。
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-app-ability-want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 | 
+  | want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 | 
   | param | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
 
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onCreate(want, param) {
           console.log('onCreate, want:' + want.abilityName);
       }
@@ -55,7 +55,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
   ```
 
 
-## Ability.onWindowStageCreate
+## UIAbility.onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
@@ -72,7 +72,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onWindowStageCreate(windowStage) {
           console.log('onWindowStageCreate');
       }
@@ -80,7 +80,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
   ```
 
 
-## Ability.onWindowStageDestroy
+## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
@@ -91,7 +91,7 @@ onWindowStageDestroy(): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onWindowStageDestroy() {
           console.log('onWindowStageDestroy');
       }
@@ -99,7 +99,7 @@ onWindowStageDestroy(): void
   ```
 
 
-## Ability.onWindowStageRestore
+## UIAbility.onWindowStageRestore
 
 onWindowStageRestore(windowStage: window.WindowStage): void
 
@@ -116,7 +116,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onWindowStageRestore(windowStage) {
           console.log('onWindowStageRestore');
       }
@@ -124,18 +124,18 @@ onWindowStageRestore(windowStage: window.WindowStage): void
   ```
 
 
-## Ability.onDestroy
+## UIAbility.onDestroy
 
 onDestroy(): void;
 
-Ability生命周期回调，在销毁时回调，执行资源清理等操作。
+UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onDestroy() {
           console.log('onDestroy');
       }
@@ -143,18 +143,18 @@ Ability生命周期回调，在销毁时回调，执行资源清理等操作。
   ```
 
 
-## Ability.onForeground
+## UIAbility.onForeground
 
 onForeground(): void;
 
-Ability生命周期回调，当应用从后台转到前台时触发。
+UIAbility生命周期回调，当应用从后台转到前台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onForeground() {
           console.log('onForeground');
       }
@@ -162,18 +162,18 @@ Ability生命周期回调，当应用从后台转到前台时触发。
   ```
 
 
-## Ability.onBackground
+## UIAbility.onBackground
 
 onBackground(): void;
 
-Ability生命周期回调，当应用从前台转到后台时触发。
+UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onBackground() {
           console.log('onBackground');
       }
@@ -181,7 +181,7 @@ Ability生命周期回调，当应用从前台转到后台时触发。
   ```
 
 
-## Ability.onContinue
+## UIAbility.onContinue
 
 onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
 
@@ -215,7 +215,7 @@ onContinue(wantParam : {[key: string]: any}): AbilityConstant.OnContinueResult;
   ```
 
 
-## Ability.onNewWant
+## UIAbility.onNewWant
 
 onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
 
@@ -241,7 +241,7 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
    }
   ```
 
-## Ability.onDump
+## UIAbility.onDump
 
 onDump(params: Array\<string>): Array\<string>;
 
@@ -258,7 +258,7 @@ onDump(params: Array\<string>): Array\<string>;
 **示例：**
     
   ```ts
-  class myAbility extends Ability {
+  class myUIAbility extends UIAbility {
       onDump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ['params'];
@@ -267,11 +267,11 @@ onDump(params: Array\<string>): Array\<string>;
   ```
 
 
-## Ability.onSaveState
+## UIAbility.onSaveState
 
 onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;
 
-该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存Ability状态。
+该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -286,7 +286,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any})
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | AbilityConstant.OnSaveResult | 是否同意保存当前Ability的状态。 |
+  | AbilityConstant.OnSaveResult | 是否同意保存当前UIAbility的状态。 |
 
 **示例：**
 
@@ -339,7 +339,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{ // 自定义的Parcelable数据结构
     name:''
     str:''
@@ -363,7 +363,7 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   };
   let method = 'call_Function'; // 约定的通知消息字符串
   let caller;
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -420,7 +420,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
     name:''
     str:''
@@ -444,7 +444,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
   };
   let method = 'call_Function';
   let caller;
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -492,9 +492,9 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   let caller;
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -533,9 +533,9 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.application.Ability';
+  import UIAbility from '@ohos.application.Ability';
   let caller;
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -584,9 +584,9 @@ release(): void;
 **示例：**
     
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   let caller;
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
       this.context.startAbilityByCall({
         bundleName: 'com.example.myservice',
@@ -742,7 +742,7 @@ on(method: string, callback: CalleeCallback): void;
 **示例：**
 
   ```ts
-  import Ability from '@ohos.app.ability.UIAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
   class MyMessageAble{
       name:''
       str:''
@@ -771,7 +771,7 @@ on(method: string, callback: CalleeCallback): void;
       pdata.readParcelable(msg);
       return new MyMessageAble('test1', 'Callee test');
   }
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
@@ -811,7 +811,7 @@ off(method: string): void;
   ```ts
   import Ability from '@ohos.app.ability.UIAbility';
   let method = 'call_Function';
-  export default class MainAbility extends Ability {
+  export default class MainUIAbility extends UIAbility {
     onCreate(want, launchParam) {
       console.log('Callee onCreate is called');
       try {
