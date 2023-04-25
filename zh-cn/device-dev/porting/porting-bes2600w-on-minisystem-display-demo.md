@@ -2,7 +2,7 @@
 
 # 轻量带屏解决方案之恒玄芯片移植案例
 
-本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`graphic_ui`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
+本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
 
 ## 编译构建
 
@@ -1313,7 +1313,7 @@ aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
 ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE,JS引擎及其依赖)
       |
-graphic_ui + graphic_utils      (图形框架)
+arkui_ui_lite + graphic_utils      (图形框架)
       |
 giflib + libjpeg + libpng + qrcodegen + freetype... (图形第三方库)
 ```
