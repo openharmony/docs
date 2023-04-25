@@ -172,6 +172,8 @@ try {
 }
 ```
 
+## zlib.compressFile<sup>9+</sup>
+
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
 压缩文件，压缩的结果通过promise返回，成功时返回null，失败时返回错误码。
@@ -235,7 +237,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](js-apis-inner-app-context.md)，[Stage模型](js-apis-inner-application-context.md)。 |
 | outFile                 | string              | 是   | 指定的解压后的目录路径。                                       |
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                               |
-| AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数。                                             |
+| AsyncCallback<**void**> | callback            | 否   | 解压的回调函数。                                             |
 
 **相关错误码**
 
@@ -270,6 +272,8 @@ try {
     console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
+
+## zlib.decompressFile<sup>9+</sup>
 
 decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 
