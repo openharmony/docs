@@ -383,7 +383,7 @@ zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-list.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-logs.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-logs.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease
@@ -454,7 +454,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-timer.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-timer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-treemap.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-treeset.md @ge-yafang
