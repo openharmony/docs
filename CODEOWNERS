@@ -304,6 +304,8 @@ zh-cn/application-dev/reference/apis/js-apis-treeset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vector.md@ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-worker.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-xml.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-logs.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-timer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-uitest.md @ningningW
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
