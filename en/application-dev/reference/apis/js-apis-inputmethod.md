@@ -9,7 +9,7 @@ The **inputMethod** module provides an input method framework, which can be used
 
 ## Modules to Import
 
-```js
+```
 import inputMethod from '@ohos.inputMethod';
 ```
 
@@ -239,7 +239,7 @@ Switches to another subtype of the current input method. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -256,9 +256,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -295,7 +295,7 @@ Switches to another subtype of the current input method. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 
 **Return value**
 
@@ -317,9 +317,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -352,7 +352,7 @@ Obtains the current input method subtype.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md) | Current input method subtype.|
 
 **Example**
 
@@ -375,7 +375,7 @@ Switches to a specified subtype of a specified input method. This API uses an as
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -391,25 +391,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -440,7 +424,7 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 
 **Return value**
 
@@ -461,25 +445,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
@@ -856,7 +824,7 @@ Enables listening for the input method and subtype change event. This API uses a
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | Yes| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -879,7 +847,7 @@ Disables listening for the input method and subtype change event. This API uses 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | No| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -900,7 +868,7 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | InputMethodProperty| Yes| Input method to which the subtypes belong.|
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -952,7 +920,7 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -996,7 +964,7 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -1035,7 +1003,7 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
