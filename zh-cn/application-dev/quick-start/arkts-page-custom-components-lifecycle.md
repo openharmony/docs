@@ -19,7 +19,7 @@
 - [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
 
 
-组件生命周期，即一般用\@Component装饰的自定义组件，提供以下生命周期接口：
+组件生命周期，即一般用\@Component装饰的自定义组件的生命周期，提供以下生命周期接口：
 
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
