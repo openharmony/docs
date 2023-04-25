@@ -80,9 +80,9 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 ## PixelMap<sup>7+</sup>
 
-Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use **createPixelMap** to create a **PixelMap** object.
+Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use **createPixelMap** to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
- ### Attributes
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -950,7 +950,7 @@ Creates an **ImageSource** instance based on the URI.
 ```js
 // Stage model
 const context = getContext(this);
-const path = context.getCacheDir() + "/test.jpg";
+const path = context.cacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
@@ -2227,7 +2227,7 @@ Creates an **ImageCreator** instance by specifying the image width, height, form
 
 | Type                          | Description                                   |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|    
+| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
 
 **Example**
 
@@ -2729,7 +2729,7 @@ Describes image properties.
 
 ## PropertyKey<sup>7+</sup>
 
-Describes the exchangeable image file format (EXIF) information of an image.
+Describes the exchangeable image file format (EXIF) data of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
