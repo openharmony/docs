@@ -497,7 +497,7 @@
 
 ### 接口说明
 
-  **表5** Call API接口功能介绍
+  **表5** API接口功能介绍
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -520,7 +520,7 @@
          import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
          ```
 
-     2. 停止退出使用startAbility接口启动的跨设备ServiceExtension应用。
+     2. 使用context的接口停止退出使用startAbility接口启动的跨设备ServiceExtension应用。
      
          ```ts
             let deviceId = "device ID obtained from manager"
@@ -541,7 +541,7 @@
             })
          ```
 
-     3. 停止退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
+     3. 使用context的接口停止退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
      
          ```ts
             let deviceId = "device ID obtained from manager"
