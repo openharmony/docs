@@ -255,7 +255,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+let outFileDir = '/xxx';
 let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -263,7 +263,7 @@ let options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFile, options, (errData) => {
+    zlib.decompressFile(inFile, outFileDir, options, (errData) => {
         if (errData !== null) {
             console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
         }
@@ -303,7 +303,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
 import zlib from '@ohos.zlib';
 let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+let outFileDir = '/xxx';
 let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
@@ -311,7 +311,7 @@ let options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFile, options).then((data) => {
+    zlib.decompressFile(inFile, outFileDir, options).then((data) => {
         console.info('decompressFile success');
     }).catch((errData) => {
         console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
