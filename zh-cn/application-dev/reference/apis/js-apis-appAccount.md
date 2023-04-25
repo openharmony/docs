@@ -2085,30 +2085,32 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 **示例：**
 
   ```js
-  var sessionId = "";
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  onCreate(want, param) {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    try {
-      appAccountManager.getAuthCallback(sessionId, (err, callback) => {
-        if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log("getAuthCallback err: "  + JSON.stringify(err));
-            return;
-        }
-        var result = {
-          accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
-          },
-          tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      try {
+        appAccountManager.getAuthCallback(sessionId, (err, callback) => {
+          if (err != null) {
+              console.log("getAuthCallback err: "  + JSON.stringify(err));
+              return;
           }
-        }; 
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      });
-    } catch (err) {
-        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+          var result = {
+            accountInfo: {
+              name: "Lisi",
+              owner: "com.example.accountjsdemo",
+            },
+            tokenInfo: {
+              token: "xxxxxx",
+              authType: "getSocialData"
+            }
+          }; 
+          callback.onResult(0, result);
+        });
+      } catch (err) {
+          console.log("getAuthCallback exception: "  + JSON.stringify(err));
+      }
     }
   }
   ```
@@ -2144,28 +2146,30 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 **示例：**
 
   ```js
-  var sessionId = "";
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  onCreate(want, param) {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    try {
-      appAccountManager.getAuthCallback(sessionId).then((callback) => {
-      var result = {
-        accountInfo: {
-          name: "Lisi",
-          owner: "com.example.accountjsdemo",
-        },
-        tokenInfo: {
-          token: "xxxxxx",
-          authType: "getSocialData"
-        }
-      };
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      }).catch((err) => {
-        console.log("getAuthCallback err: "  + JSON.stringify(err));
-      });
-    } catch (err) {
-      console.log("getAuthCallback exception: "  + JSON.stringify(err));
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      try {
+        appAccountManager.getAuthCallback(sessionId).then((callback) => {
+        var result = {
+          accountInfo: {
+            name: "Lisi",
+            owner: "com.example.accountjsdemo",
+          },
+          tokenInfo: {
+            token: "xxxxxx",
+            authType: "getSocialData"
+          }
+        };
+        callback.onResult(0, result);
+        }).catch((err) => {
+          console.log("getAuthCallback err: "  + JSON.stringify(err));
+        });
+      } catch (err) {
+        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+      }
     }
   }
   ```
@@ -4279,22 +4283,24 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 **示例：**
 
   ```js
-  var sessionId = "";
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  onCreate(want, param) {
-    sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
-      if (err.code != account_appAccount.ResultCode.SUCCESS) {
-          console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
-          return;
-      }
-      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                    [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-    });
-  };
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
+        if (err.code != account_appAccount.ResultCode.SUCCESS) {
+            console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+            return;
+        }
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      });
+    }
+  }
   ```
 
 ### getAuthenticatorCallback<sup>(deprecated)</sup>
@@ -4324,19 +4330,21 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 **示例：**
 
   ```js
-  var sessionId = "";
-  let appAccountManager = account_appAccount.createAppAccountManager();
-  onCreate(want, param) {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                    [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-    }).catch((err) => {
-      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
-    });
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      }).catch((err) => {
+        console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      });
+    }
   }
   ```
 

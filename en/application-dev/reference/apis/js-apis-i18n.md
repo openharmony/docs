@@ -2112,6 +2112,75 @@ Obtains the sequence of the year, month, and day in the specified locale.
   ```
 
 
+## Normalizer<sup>10+</sup>
+
+### getInstance<sup>10+</sup>
+
+static getInstance(mode: NormalizerMode): Normalizer
+
+Obtains a **Normalizer** object for text normalization.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                       |
+| ------ | ------ | ---- | ------------------------- |
+| mode | [NormalizerMode](#normalizermode10) | Yes   | Text normalization mode.|
+
+**Return value**
+
+| Type    | Description                 |
+| ------ | ------------------- |
+| [Normalizer](#normalizer10) | **Normalizer** object for text normalization.|
+
+**Example**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  ```
+
+
+### normalize<sup>10+</sup>
+
+normalize(text: string): string
+
+Normalizes text strings.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                       |
+| ------ | ------ | ---- | ------------------------- |
+| text | string | Yes   | Text strings to be normalized.|
+
+**Return value**
+
+| Type    | Description                 |
+| ------ | ------------------- |
+| string | Normalized text strings.|
+
+**Example**
+  ```js
+  let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  ```
+
+
+## NormalizerMode<sup>10+</sup>
+
+Enumerates text normalization modes.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| NFC | 1 | NFC.|
+| NFD | 2 | NFD.|
+| NFKC | 3 | NFKC.|
+| NFKD | 4 | NFKD.|
+
+
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string

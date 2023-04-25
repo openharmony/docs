@@ -311,12 +311,12 @@
          ```json
          "abilities":[{
              "name": ".CalleeAbility",
-             "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+             "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
              "launchType": "singleton",
              "description": "$string:CalleeAbility_desc",
              "icon": "$media:icon",
              "label": "$string:CalleeAbility_label",
-             "visible": true
+             "exported": true
          }]
          ```
      2. 导入UIAbility模块。
@@ -397,7 +397,7 @@
        import Ability from '@ohos.app.ability.UIAbility';
        ```
    2. 获取Caller通信接口。
-       Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际业务需要做相应处理。
+       Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease和onRemoteStateChange监听。应用开发者根据实际业务需要做相应处理。
 
        
        ```ts
@@ -418,6 +418,14 @@
                        console.info(`remote caller onRelease is called ${msg}`);
                    })
                    console.info('remote caller register OnRelease succeed');
+                   // 注册caller的协同场景下跨设备组件状态变化监听通知
+                   try {
+                        caller.onRemoteStateChange((str) => {
+                            console.log('Remote state changed ' + str);
+                        });
+                    } catch (error) {
+                        console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                    }
                }
            }).catch((error) => {
                console.error(`get remote caller failed with ${error}`);

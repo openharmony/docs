@@ -485,8 +485,8 @@ async function createTonePlayerBefore(){
 
 | 名称      |  值       | 说明     |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 0x1 << 0 | 第一声道。 |
+| CHANNEL_2 | 0x1 << 1 | 第二声道。 |
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -2088,16 +2088,13 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-### on('interrupt')<sup>(deprecated)</sup>
+### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
-
-> **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2129,14 +2126,11 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-### off('interrupt')<sup>(deprecated)</sup>
+### off('interrupt')
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 取消监听音频打断事件（删除监听事件，取消打断）。
-
-> **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3918,20 +3912,20 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
     if (err) {
-      console.error(`Result ERROR: ${JSON.stringify(err)}`);
+      console.error(`Result ERROR: ${err}`);
     } else {
-      console.info('device descriptor: ' + JSON.stringify(desc));
+      console.info(`device descriptor: ${desc}`);
     }
   });
 }
 ```
 
-### getPreferOutputDeviceForRendererInfo<sup>9+</sup>
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
 根据音频信息，返回优先级最高的输出设备，使用promise方式异步返回结果。
@@ -3950,19 +3944,27 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 | --------------------- | --------------------------- |
 | Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise返回优先级最高的输出设备信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
 **示例：**
 
 ```js
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
-    console.info('device descriptor: ' + JSON.stringify(desc));
+    console.info(`device descriptor: ${desc}`);
   }).catch((err) => {
-    console.error(`Result ERROR: ${JSON.stringify(err)}`);
+    console.error(`Result ERROR: ${err}`);
   })
 }
 ```
@@ -3973,6 +3975,8 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 订阅最高优先级输出设备变化事件，使用callback获取最高优先级输出设备。
 
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
 **参数：**
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
@@ -3981,16 +3985,24 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。              |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 获取优先级最高的输出设备信息。                         |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
 **示例：**
 
 ```js
 let rendererInfo = {
     content : audio.ContentType.CONTENT_TYPE_MUSIC,
     usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0 };
+    rendererFlags : 0 }
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
-  console.info('device descriptor: ' + JSON.stringify(desc));
+  console.info(`device descriptor: ${desc}`);
 });
 ```
 
@@ -4008,6 +4020,14 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 监听方法的回调函数。                         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[音频错误码](../errorcodes/errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
 
 **示例：**
 
@@ -5044,7 +5064,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+与[on('interrupt')](#oninterrupt)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -5784,7 +5804,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+与[on('interrupt')](#oninterrupt)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -6294,7 +6314,7 @@ tonePlayer.release().then(() => {
 音频打断/获取焦点事件的回调方法。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用[InterruptEvent](#interruptevent9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 

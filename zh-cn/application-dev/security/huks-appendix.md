@@ -52,7 +52,6 @@
 | ECC/NoDigest     |  9+   |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
 | ED25519/NoDigest     |  8+       | NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |是|
 | SM2/SM3|9+      | |是|
-| SM2/NoDigest |9+      | |否|
 
 ### 密钥协商算法
 

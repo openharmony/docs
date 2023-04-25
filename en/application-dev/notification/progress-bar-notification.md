@@ -3,7 +3,7 @@
 
 The progress notification is a commonly used notification type, mainly used to display the progress of an ongoing operation, such as file downloading. When publishing a progress notification through the notification subsystem, you can use the readily available template by specifying the related attributes, such as the template name and template data.
 
-In the [NotificationTemplate](../reference/apis/js-apis-notificationManager.md#notificationtemplate), which can only be of the progress type, **data** indicates custom template data.
+In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
 ## Available APIs
 

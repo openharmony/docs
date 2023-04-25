@@ -6,7 +6,7 @@
 
 -   [OpenHarmony API Governance Charter](../design/OpenHarmony-API-governance.md)
 -   [OpenHarmony Security Design Specifications](OpenHarmony-security-design-guide.md)
--   [OpenHarmony Build Specifications](https://gitee.com/openharmony/community/blob/master/sig/sig-buildsystem/sig-build-system.md)
+-   [OpenHarmony Build Specifications](https://gitee.com/openharmony/community/blob/master/sig/sig_buildsystem/sig_build_system.md)
 
 ### Coding Style
 

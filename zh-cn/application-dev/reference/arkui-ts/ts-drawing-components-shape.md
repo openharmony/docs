@@ -21,7 +21,7 @@
 
 Shape(value?: PixelMap)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持使用PixelMap对象。
 
 **参数：**
 
@@ -52,8 +52,6 @@ Shape(value?: PixelMap)
 
 ## 示例
 
-### 示例1
-
 ```ts
 // xxx.ets
 @Entry
@@ -70,6 +68,8 @@ struct ShapeExample {
         Ellipse().width(300).height(50).offset({ x: 0, y: 60 })
         Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 })
       }
+      .width(350)
+      .height(140)
       .viewPort({ x: -2, y: -2, width: 304, height: 130 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -83,6 +83,8 @@ struct ShapeExample {
       Shape() {
         Rect().width(300).height(50)
       }
+      .width(350)
+      .height(80)
       .viewPort({ x: 0, y: 0, width: 320, height: 70 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -91,6 +93,8 @@ struct ShapeExample {
       Shape() {
         Rect().width(300).height(50)
       }
+      .width(350)
+      .height(80)
       .viewPort({ x: -5, y: -5, width: 320, height: 70 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -101,6 +105,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -109,6 +115,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -118,6 +126,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -126,6 +136,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -135,7 +147,9 @@ struct ShapeExample {
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }
-      .viewPort({ x: -80, y: -5, width: 310, height: 90 })
+      .width(300)
+      .height(200)
+      .viewPort({ x: -20, y: -5, width: 310, height: 90 })
       .fill(0x317AF7)
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -147,3 +161,4 @@ struct ShapeExample {
 ```
 
 ![zh-cn_image_0000001184628104](figures/zh-cn_image_0000001184628104.png)
+、

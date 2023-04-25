@@ -1,4 +1,4 @@
-# 位置服务
+# @ohos.geolocation (位置服务)
 
 位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
@@ -1486,7 +1486,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 位置服务中的错误码信息。
 
 > **说明：**<br/>
-> 从API version 9开始废弃。
+> 从API version 9开始废弃，建议使用[位置服务子系统错误码](../errorcodes/errorcode-geoLocationManager.md)替代。
 
 **需要权限**：ohos.permission.LOCATION
 

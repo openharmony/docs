@@ -130,7 +130,7 @@ text {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import prompt from '@ohos.promptAction';
 
 export default {
     data: {

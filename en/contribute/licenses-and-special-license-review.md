@@ -24,9 +24,9 @@ In principle, the code contributed to the OpenHarmony project must be source cod
 
 It is recommended that the code contributed to the OpenHarmony project be distributed using a license in the license trustlist, which includes:
 
-- [Apache License 2.0 (Apache-2.0)](https://opensource.org/licenses/Apache-2.0) (applicable to user-mode code)
-- [3-clause BSD License (BSD-3-Clause)](https://opensource.org/licenses/BSD-3-Clause) (applicable to LiteOS kernel code)
-- [GNU General Public License version 2 (GPL-2.0)](https://opensource.org/licenses/GPL-2.0) (applicable to Linux kernel code)
+- Apache License 2.0 (Apache-2.0) (applicable to user-mode code)
+- 3-clause BSD License (BSD-3-Clause) (applicable to LiteOS kernel code)
+- GNU General Public License version 2 (GPL-2.0) (applicable to Linux kernel code)
 
 ##  Licenses for Third-Party Dependencies
 
@@ -36,43 +36,43 @@ In addition to the code contributed, the OpenHarmony project may introduce or de
 
 Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony project recommends that third-party dependencies using the following licenses be preferentially accepted:
 
-- [Academic Free License 3.0 (AFL-3.0)](https://opensource.org/licenses/AFL-3.0)
+- Academic Free License 3.0 (AFL-3.0)
 
-- [Apache License 2.0 (Apache-2.0)](https://opensource.org/licenses/Apache-2.0)
+- Apache License 2.0 (Apache-2.0)
 
-- [Apache Software License 1.1](https://www.apache.org/licenses/LICENSE-1.1). Including variants:
+- Apache Software License 1.1. Including variants:
 
-  - [PHP License 3.01](http://www.php.net/license/3_01.txt)
-  - [MX4J License](http://mx4j.sourceforge.net/docs/ch01s06.html)
+  - PHP License 3.01
+  - MX4J License
 
-- [Boost Software License (BSL-1.0)](https://opensource.org/licenses/BSL-1.0)
+- Boost Software License (BSL-1.0)
 
 - BSD License:
 
-  - [3-clause BSD License](https://opensource.org/licenses/BSD-3-Clause)
-  - [2-clause BSD License](https://opensource.org/licenses/BSD-2-Clause)
+  - 3-clause BSD License
+  - 2-clause BSD License
   - DOM4J License
-  - [PostgreSQL License](http://opensource.org/licenses/postgresql)
+  - PostgreSQL License
 
-- [ISC](https://opensource.org/licenses/ISC)
+- ISC
 
 - ICU
 
-- [MIT License (MIT)](https://opensource.org/licenses/MIT) / X11
+- MIT License (MIT) / X11
 
-- [MIT No Attribution License (MIT-0)](https://opensource.org/licenses/MIT-0)
+- MIT No Attribution License (MIT-0)
 
-- [Mulan Permissive Software License v2 (MulanPSL-2.0)](https://opensource.org/licenses/MulanPSL-2.0)
+- Mulan Permissive Software License v2 (MulanPSL-2.0)
 
-- [The Unlicense](https://opensource.org/licenses/unlicense)
+- The Unlicense
 
-- [W3C License (W3C)](https://opensource.org/licenses/W3C)
+- W3C License (W3C)
 
-- [University of Illinois/NCSA](http://opensource.org/licenses/UoI-NCSA.php)
+- University of Illinois/NCSA
 
-- [X.Net](http://opensource.org/licenses/xnet.php)
+- X.Net
 
-- [zlib/libpng](http://opensource.org/licenses/zlib-license.php)
+- zlib/libpng
 
 - FSF autoconf license
 
@@ -80,57 +80,57 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - OOXML XSD ECMA License
 
-- [Microsoft Public License (MsPL)](http://www.opensource.org/licenses/ms-pl.html)
+- Microsoft Public License (MsPL)
 
-- [Python Software Foundation License](http://www.opensource.org/licenses/PythonSoftFoundation.php)
+- Python Software Foundation License
 
-- [Python Imaging Library Software License](https://github.com/python-pillow/Pillow/blob/master/LICENSE)
+- Python Imaging Library Software License
 
-- [Adobe Postcript(R) AFM files](https://spdx.org/licenses/APAFML.html)
+- Adobe Postcript(R) AFM files
 
-- [Boost Software License Version 1.0](http://www.opensource.org/licenses/BSL-1.0)
+- Boost Software License Version 1.0
 
-- [WTF Public License](http://www.wtfpl.net/)
+- WTF Public License
 
-- [The Romantic WTF public license](https://github.com/pygy/gosub/blob/master/LICENSE)
+- The Romantic WTF public license
 
-- [UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND      SOFTWARE](http://www.unicode.org/copyright.html#Exhibit1)
+- UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND      SOFTWARE
 
-- [Zope Public License 2.0](https://opensource.org/licenses/ZPL-2.0)
+- Zope Public License 2.0
 
 - ACE license
 
-- [Oracle Universal Permissive License (UPL) Version 1.0](https://oss.oracle.com/licenses/upl/)
+- Oracle Universal Permissive License (UPL) Version 1.0
 
-- [Open Grid Forum License](https://www.ogf.org/ogf/doku.php/about/copyright)
+- Open Grid Forum License
 
 - Google "Additional IP Rights Grant  (Patents)" file
 
-- [Historical Permission Notice and Disclaimer](https://opensource.org/licenses/HPND)
+- Historical Permission Notice and Disclaimer
 
 ### Licenses for Unacceptable Third-Party Dependencies
 
 In principle, the OpenHarmony project will not accept third-party dependencies that use the following licenses, since these licenses do not support commercial use or contain unreasonable restrictions or obligations:
 
 - Intel Simplified Software License
-- [JSR-275 License](https://github.com/unitsofmeasurement/jsr-275/blob/0.9.3/LICENSE.txt)
-- [Microsoft Limited Public License](https://www.openhub.net/licenses/mslpl)
-- [Amazon Software License (ASL)](https://aws.amazon.com/asl/) 
+- JSR-275 License
+- Microsoft Limited Public License
+- Amazon Software License (ASL)
 - Java SDK for Satori RTM  license
-- [Redis Source Available License (RSAL)](https://redislabs.com/community/licenses/) 
+- Redis Source Available License (RSAL)
 - Booz Allen Public License
-- [Confluent Community License Version 1.0](https://www.confluent.io/confluent-community-license/)
-- [Any license including the Commons Clause License Condition v1.0](https://commonsclause.com/)
+- Confluent Community License Version 1.0
+- Any license including the Commons Clause License Condition v1.0
 - Creative Commons Non-Commercial variants
-- [Sun Community Source License 3.0](http://jcp.org/aboutJava/communityprocess/SCSL3.0.rtf)
-- [GNU GPL 3](http://www.opensource.org/licenses/gpl-license.php)
-- [GNU Affero GPL 3](http://www.opensource.org/licenses/agpl-v3.html)
-- [BSD-4-Clause](https://spdx.org/licenses/BSD-4-Clause.html)/[BSD-4-Clause (University of California-Specific)](https://spdx.org/licenses/BSD-4-Clause-UC.html)     
+- Sun Community Source License 3.0
+- GNU GPL 3
+- GNU Affero GPL 3
+- BSD-4-Clause   
 - Facebook BSD+Patents license
-- [NPL 1.0](https://spdx.org/licenses/NPL-1.0.html)/[NPL 1.1](https://spdx.org/licenses/NPL-1.1.html)
+- NPL 1.0/NPL 1.1
 - The Solipsistic Eclipse Public License 
-- [The "Don't Be A Dick" Public License](https://dbad-license.org/) 
-- [JSON License](http://www.json.org/license.html) 
+- The "Don't Be A Dick" Public License
+- JSON License
 
 ## Rules for Introducing Special Licenses
 

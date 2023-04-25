@@ -216,6 +216,7 @@
          - [动态加载与链接](kernel/kernel-small-bundles-linking.md)
          - [虚拟动态共享库](kernel/kernel-small-bundles-share.md)
          - [轻量级进程间通信](kernel/kernel-small-bundles-ipc.md)
+         - [容器隔离](kernel/kernel-small-bundles-container.md)
          - 文件系统
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
@@ -475,6 +476,28 @@
      - [HiChecker开发指导](subsystems/subsys-dfx-hichecker.md)
      - [Faultlogger开发指导](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview开发指导](subsystems/subsys-dfx-hiview.md)
+  -  电源
+     - 显示管理
+       - [系统亮度范围定制开发指导](subsystems/subsys-power-brightness-customization.md)
+     - 电池管理
+       - [电量与LED灯颜色的定制开发指导](subsystems/subsys-power-level-LED-color.md)
+       - [电池温度保护定制开发指导](subsystems/subsys-power-temperature-protection.md)
+       - [电量等级定制开发指导](subsystems/subsys-power-battery-level-customization.md)
+       - [充电限流限压定制开发指导](subsystems/subsys-power-charge-current-voltage-limit.md)
+       - [充电类型定制开发指导](subsystems/subsys-power-charge-type-customization.md)
+       - [关机充电动画开发指导](subsystems/subsys-power-poweroff-charge-animation.md)
+     - 耗电统计
+       - [耗电统计定制开发指导](subsystems/subsys-power-stats-power-average-customization.md)
+     - 热管理
+       - [充电空闲状态定制开发指导](subsystems/subsys-thermal_charging_idle_state.md)
+       - [热管控定制开发指导](subsystems/subsys-thermal_control.md)
+       - [热检测定制开发指导](subsystems/subsys-thermal_detection.md)
+       - [热等级定制开发指导](subsystems/subsys-thermal_level.md)
+       - [热日志定制开发指导](subsystems/subsys-thermal_log.md)
+       - [热策略定制开发指导](subsystems/subsys-thermal_policy.md)
+       - [热场景定制开发指导](subsystems/subsys-thermal_scene.md)
+     - 电源管理
+       - [电源模式定制开发指导](subsystems/subsys-power-mode-customization.md)
 
 - 专题
   - HPM Part
@@ -518,7 +541,7 @@
   - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hdc使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具
@@ -826,5 +849,3 @@
         - [osThreadAttr_t](reference/kernel/cmsis/os_thread_attr__t.md)
         - [osTimerAttr_t](reference/kernel/cmsis/os_timer_attr__t.md)
         - [osVersion_t](reference/kernel/cmsis/os_version__t.md)
-
-   

@@ -1119,7 +1119,7 @@ updateCapacity(newCapacity: number): void
 
 ```js
 let pro = new util.LRUCache();
-let result = pro.updateCapacity(100);
+pro.updateCapacity(100);
 ```
 
 
@@ -1954,7 +1954,7 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
-range.contains(tempMiDF);
+let result = range.contains(tempMiDF);
   ```
 
 

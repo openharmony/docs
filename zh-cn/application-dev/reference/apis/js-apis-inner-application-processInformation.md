@@ -20,7 +20,7 @@ import appManager from '@ohos.app.ability.appManager';
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((error, data) => { 
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('getRunningProcessInformation fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('getRunningProcessInformation success, data: ${JSON.stringify(data)}');

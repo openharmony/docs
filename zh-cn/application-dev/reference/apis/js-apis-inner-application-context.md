@@ -26,7 +26,7 @@ import common from '@ohos.app.ability.common';
 | filesDir | string | 是    | 否    | 文件目录。 |
 | databaseDir | string | 是    | 否    | 数据库目录。 |
 | preferencesDir | string | 是    | 否    | preferences目录。 |
-| bundleCodeDir | string | 是    | 否    | 安装包目录。 |
+| bundleCodeDir | string | 是    | 否    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
 | distributedFilesDir | string | 是    | 否    | 分布式文件目录。 |
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | 是    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。 |
 | area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 是    | 否    | 文件分区信息。 |
@@ -52,14 +52,6 @@ createBundleContext(bundleName: string): Context;
 | 类型 | 说明 |
 | -------- | -------- |
 | Context | 安装包的上下文。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -92,14 +84,6 @@ createModuleContext(moduleName: string): Context;
 | -------- | -------- |
 | Context | 模块的上下文。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -131,14 +115,6 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 | 类型 | 说明 |
 | -------- | -------- |
 | Context | 模块的上下文。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

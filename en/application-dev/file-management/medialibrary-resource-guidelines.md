@@ -147,7 +147,7 @@ async function example() {
 ## Obtaining Images and Videos in an Album
 
 You can obtain media assets in an album in either of the following ways:
-- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified, as described in [Querying Media Assets with the Specfied Album Name](#querying-media-assets-with-the-specified-album-name).
+- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified, as described in [Querying Media Assets with the Specified Album Name](#querying-media-assets-with-the-specified-album-name).
 - Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it.
 
 **Prerequisites**

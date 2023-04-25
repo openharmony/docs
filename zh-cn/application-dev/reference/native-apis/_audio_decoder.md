@@ -3,7 +3,7 @@
 
 ## 概述
 
-AudioDecoder模块提供用于音频解码功能的函数。
+AudioDecoder模块提供用于音频解码功能的函数。该模块在部分设备上可能不支持，可以通过[CanIUse](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/syscap.md)接口确认。
 
 @syscap SystemCapability.Multimedia.Media.AudioDecoder
 

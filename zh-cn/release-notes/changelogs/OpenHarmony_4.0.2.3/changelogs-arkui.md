@@ -116,24 +116,24 @@
 通过构造函数方法初始化成员变量，需要遵循如下规则：
 
 | **从父组件中的变量(右)到子组件中的变量(下)** | **regular** | **@State** | **@Link** | **@Prop** | **@Provide** | **@Consume** | **@ObjectLink** |
-|---------------------------------|----------------------------|------------|-----------|-----------|--------------|--------------|------------------|
-| **regular**                    | 支持                         | 支持         | 支持        | 支持        | 不支持            | 不支持            | 支持               |
-| **@State**                     | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
-| **@Link**                      | 不支持                          | 支持(1)      | 支持(1)     | 支持(1)     | 支持(1)        | 支持(1)        | 支持(1)            |
-| **@Prop**                      | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
-| **@Provide**                   | 支持                         | 支持         | 支持        | 支持        | 支持           | 支持           | 支持               |
-| **@Consume**                   | 不支持                          | 不支持          | 不支持         | 不支持         | 不支持            | 不支持            | 不支持                |
-| **@ObjectLink**                | 不支持                          | 不支持      | 不支持         | 不支持         | 不支持            | 不支持            | 不支持                |
+| -------------------------- | ----------- | ---------- | --------- | --------- | ------------ | ------------ | --------------- |
+| **regular**                | 支持          | 支持         | 支持        | 支持        | 不支持          | 不支持          | 支持              |
+| **@State**                 | 支持          | 支持         | 支持        | 支持        | 支持           | 支持           | 支持              |
+| **@Link**                  | 不支持         | 支持(1)      | 支持(1)     | 支持(1)     | 支持(1)        | 支持(1)        | 支持(1)           |
+| **@Prop**                  | 支持          | 支持         | 支持        | 支持        | 支持           | 支持           | 支持              |
+| **@Provide**               | 支持          | 支持         | 支持        | 支持        | 支持           | 支持           | 支持              |
+| **@Consume**               | 不支持         | 不支持        | 不支持       | 不支持       | 不支持          | 不支持          | 不支持             |
+| **@ObjectLink**            | 不支持         | 不支持        | 不支持       | 不支持       | 不支持          | 不支持          | 不支持             |
 
 | **从父组件中的变量(右)到子组件中的变量(下)** | **@StorageLink** | **@StorageProp** | **@LocalStorageLink** | **@LocalStorageProp** |
-|------------------|------------------|------------------|-----------------------|------------------------|
-| **regular**                   | 支持               | 不支持                | 不支持                     | 不支持              |
-| **@State**                    | 支持               | 支持               | 支持                    | 支持                     |
-| **@Link**                     | 支持(1)            | 支持(1)            | 支持(1)                 | 支持(1)                  |
-| **@Prop**                     | 支持               | 支持               | 支持                    | 支持                     |
-| **@Provide**                  | 支持               | 支持               | 支持                    | 支持                     |
-| **@Consume**                  | 不支持             | 不支持              | 不支持                  | 不支持                   |
-| **@ObjectLink**               | 不支持             | 不支持              | 不支持                  | 不支持                   |
+| -------------------------- | ---------------- | ---------------- | --------------------- | --------------------- |
+| **regular**                | 支持               | 不支持              | 不支持                   | 不支持                   |
+| **@State**                 | 支持               | 支持               | 支持                    | 支持                    |
+| **@Link**                  | 支持(1)            | 支持(1)            | 支持(1)                 | 支持(1)                 |
+| **@Prop**                  | 支持               | 支持               | 支持                    | 支持                    |
+| **@Provide**               | 支持               | 支持               | 支持                    | 支持                    |
+| **@Consume**               | 不支持              | 不支持              | 不支持                   | 不支持                   |
+| **@ObjectLink**            | 不支持              | 不支持              | 不支持                   | 不支持                   |
 
 > **说明**
 >
@@ -211,8 +211,8 @@
 
 **适配指导**
 1. 构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行。
-如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
-2. @ObjectLink的使用指导请参考文档[@ObjectLink使用指导](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md)。
+  如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
+2. @ObjectLink的使用指导请参考文档[@ObjectLink使用指导](../../../application-dev/quick-start/arkts-observed-and-objectlink.md)。
 
 ## cl.arkui.3 List组件和Scroll组件onScrollBegin事件变更
 
@@ -224,13 +224,13 @@ onScrollBegin事件不能再使用，需要使用onScrollFrameBegin事件。
 
 **关键接口/组件变更**
 
-|       旧事件定义        |    新事件定义           |
-|------------------  | ------------------- | 
+| 旧事件定义                                    | 新事件定义                                    |
+| ---------------------------------------- | ---------------------------------------- |
 | onScrollBegin(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number }) |
 
 onScrollFrameBegin事件说明参考API接口文档：
-- [Scroll组件事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md#%E4%BA%8B%E4%BB%B6)
-- [List组件事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md#%E4%BA%8B%E4%BB%B6)
+- [Scroll组件事件](../../../application-dev/reference/arkui-ts/ts-container-scroll.md#事件)
+- [List组件事件](../../../application-dev/reference/arkui-ts/ts-container-list.md#事件)
 
 **适配指导**
 

@@ -32,8 +32,8 @@ import missionManager from '@ohos.app.ability.missionManager';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+      if (error) {
+          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -41,8 +41,8 @@ import missionManager from '@ohos.app.ability.missionManager';
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err.code) {
-          console.error('getMissionInfos failed, err.code: ${err.code}, err.message: ${err.message}');
+        if (err) {
+          console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
           return;
         }
 

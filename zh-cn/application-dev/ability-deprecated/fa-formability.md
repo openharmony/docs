@@ -230,7 +230,7 @@ FormProvider类具体的API详见[接口文档](../reference/apis/js-apis-applic
        }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[通过用户首选项实现数据持久化](../database/data-persistence-by-preferences.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -400,7 +400,3 @@ onUpdate(formId) {
      }
    }
    ```
-## 相关实例
-
-针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

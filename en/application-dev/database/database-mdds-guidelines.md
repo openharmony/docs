@@ -169,7 +169,7 @@ The following uses a single KV store as an example to describe the development p
            console.log(`dataChange callback call data: ${data}`);
        });
    }catch(e){
-       console.error(`An unexpected error occured. Code is ${e.code}, message is ${e.message}`);
+       console.error(`An unexpected error occurred. Code is ${e.code}, message is ${e.message}`);
    }
    ```
 

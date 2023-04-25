@@ -358,7 +358,9 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -437,7 +439,9 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -505,10 +509,10 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -542,6 +546,14 @@ release(): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -574,6 +586,57 @@ release(): void;
   }
   ```
 
+  ## Caller.onRemoteStateChange
+
+ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+
+注册协同场景下跨设备组件状态变化监听通知。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 返回onRemoteStateChange回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+    
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  let caller;
+  let dstDeviceId: string;
+  export default class MainAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+          this.context.startAbilityByCall({
+              bundleName: 'com.example.myservice',
+              abilityName: 'MainUIAbility',
+              deviceId: dstDeviceId
+          }).then((obj) => {
+              caller = obj;
+              try {
+                  caller.onRemoteStateChange((str) => {
+                      console.log('Remote state changed ' + str);
+                  });
+              } catch (error) {
+                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+              }
+          }).catch((err) => {
+              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+          })；
+      }
+  }
+  ```
+
 ## Caller.on
 
  on(type: 'release', callback: OnReleaseCallback): void;
@@ -593,7 +656,7 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -638,13 +701,6 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
-
 **示例：**
     
   ```ts
@@ -686,13 +742,6 @@ off(type: 'release'): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
     
@@ -745,7 +794,8 @@ on(method: string, callback: CalleeCallback): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -810,7 +860,8 @@ off(method: string): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -840,6 +891,16 @@ off(method: string): void;
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
+
+## OnRemoteStateChangeCallback
+
+(msg: string): void;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称 | 可读 | 可写 | 类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | 是 | 否 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
 
 ## CalleeCallback
 

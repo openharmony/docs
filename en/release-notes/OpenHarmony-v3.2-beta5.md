@@ -165,25 +165,7 @@ To use the full SDK, you must download the source code, build the source code, a
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
-
-
-### Samples
-
-**Table 4** New samples
-
-| Subsystem| Name| Introduction| Programming Language|
-| -------- | -------- | -------- | -------- |
-| Web subsystem| [JS Injection and Execution](https://gitee.com/openharmony/applications_app_samples/tree/master/Web/RunJsInWeb)| This sample is based on HTML5 games. It uses the ArkUI component **\<button>** to implement basic game control. This sample demonstrates the JS injection and execution capabilities of the WebView component and the communication capabilities between native applications and HTML5.| ArkTS|
-| Multimedia subsystem| [QR code scanning](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan)| The sample app is used to scan QR code. With the app, you can select a QR code image from a folder to identify the QR code information.| ArkTS|
-| ArkUI | [Typical Setting Page of One-Time Development for Multi-Device Deployment](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Settings)| This sample shows a typical page for setting an application. The page has different display effects in the small window and large window, reflecting the capability of one-time development for multi-device deployment.| ArkTS|
-| File management subsystem| [File Management](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/FileManager)| This sample demonstrates file management. It uses the [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md), [userFileManager](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-userfilemanager.md) and [fileio](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-fileio.md) APIs to add and access media library files and files in the application sandbox.| ArkTS|
-| Multimedia subsystem| [Screen Recording](https://gitee.com/openharmony/applications_app_samples/tree/master/media/ScreenRecorder)| This sample illustrates how to implement screen (including audio) recording. The main task of screen recording is to create a virtual screen, capture graphics frames displayed on the screen, encode the video, and save the encoded video to a file.| ArkTS|
-| Window Manager| [Screen Detection](https://gitee.com/openharmony/applications_app_samples/tree/master/device/ScreenDetector)| The sample app monitors the number of connected screens in real time. A maximum of five virtual screens can be created, and the screen attributes can be displayed by clicking the corresponding rectangle.| ArkTS|
-| Ability framework| [Game Widget on the Stage Model](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormGame)| This sample shows how to develop a simple game widget on the stage model.| ArkTS|
-
-
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
+For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ## Resolved Issues
@@ -211,4 +193,3 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | I6BRTS | Invoking the **rdb::executeSql** interface may cause memory leakage.| Memory leakage occurs when the **rdb::executeSql** interface is repeatedly called during initialization. This interface is called only during application initialization, and therefore the impact of memory leakage is controllable.| 2023-02-10|
 | I6AZ4T | Memory leakage exists for applications with the **\<textInput>** component.| Memory leakage occurs when the **\<textInput>** component is repeatedly called at a high frequency. The root cause is that the memory is not reclaimed during the calling of the third-party library flutter. We will first check whether the problem is caused by the open-source flutter component.| 2023-02-10|
 
-<!--no_check-->

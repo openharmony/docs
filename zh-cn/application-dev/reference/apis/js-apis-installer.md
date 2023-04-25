@@ -149,6 +149,64 @@ try {
     console.error('getBundleInstaller failed. Cause: ' + error.message);
 }
 ```
+## BundleInstaller.install
+install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+
+以异步方法安装应用，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名           | 类型                                                 | 必填 | 说明                                                         |
+| --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
+| 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
+| 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
+| 17700015 | Failed to install the HAPs because they have different configuration information. |
+| 17700016 | Failed to install the HAP because of insufficient system disk space. |
+| 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
+| 17700018 | Failed to install because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
+| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
+| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install because enterprise device management disallow install. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let hapFilePaths = ['/data/storage/el2/base/haps/entry/files/'];
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.install(hapFilePaths, err => {
+            if (err) {
+                console.error('install failed:' + err.message);
+            } else {
+                console.info('install successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
 
 ## BundleInstaller.install
 
@@ -209,9 +267,9 @@ try {
     installer.getBundleInstaller().then(data => {
         data.install(hapFilePaths, installParam)
             .then((data) => {
-                console.info('install success: ' + JSON.stringify(data));
+                console.info('install successfully: ' + JSON.stringify(data));
         }).catch((error) => {
-            console.error('install failed:' + err.message);
+            console.error('install failed:' + error.message);
         });
     }).catch(error => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
@@ -247,7 +305,8 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17700004 | The specified user ID is not found.                          |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
@@ -270,6 +329,287 @@ try {
             } else {
                 console.info('uninstall successfully.');
             }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.uninstall
+
+uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+
+以异步方法卸载应用，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型                                                 | 必填 | 说明                                           |
+| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
+| bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundle name is not found. |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = 'com.ohos.demo';
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(bundleName, err => {
+            if (err) {
+                console.error('uninstall failed:' + err.message);
+            } else {
+                console.info('uninstall successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+## BundleInstaller.uninstall
+
+uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+
+以异步方法卸载应用，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                          | 是   | 待卸载应用的包名。                                           |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The specified userId is not existed. |
+| 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
+| 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = 'com.ohos.demo';
+let installParam = {
+    userId: 100,
+    isKeepData: false,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.uninstall(bundleName, installParam)
+            .then((data) => {
+                console.info('uninstall successfully: ' + JSON.stringify(data));
+        }).catch((error) => {
+            console.error('uninstall failed:' + error.message);
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.recover
+
+recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+
+以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型                                                 | 必填 | 说明                                           |
+| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
+| bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
+| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = 'com.ohos.demo';
+let installParam = {
+    userId: 100,
+    isKeepData: false,
+    installFlag: 1
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.recover(bundleName, installParam, err => {
+            if (err) {
+                console.error('recover failed:' + err.message);
+            } else {
+                console.info('recover successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+
+## BundleInstaller.recover
+
+recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+
+以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型                                                 | 必填 | 说明                                           |
+| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
+| bundleName | string                                               | 是   | 待恢复应用的包名。                               |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 17700001 | The specified bundle name is not found. |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = 'com.ohos.demo';
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.recover(bundleName, err => {
+            if (err) {
+                console.error('recover failed:' + err.message);
+            } else {
+                console.info('recover successfully.');
+            }
+        });
+    }).catch(error => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    console.error('getBundleInstaller failed. Cause: ' + error.message);
+}
+```
+
+## BundleInstaller.recover
+
+recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+
+以异步方法回滚应用到初次安装时的状态，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型                          | 必填 | 说明                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName | string                          | 是   | 待卸载应用的包名。                                           |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = 'com.ohos.demo';
+let installParam = {
+    userId: 100,
+    isKeepData: false,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then(data => {
+        data.recover(bundleName, installParam)
+            .then((data) => {
+                console.info('recover successfully: ' + JSON.stringify(data));
+        }).catch((error) => {
+            console.error('recover failed:' + error.message);
         });
     }).catch(error => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
@@ -391,63 +731,6 @@ try {
     console.error('getBundleInstaller failed. Cause: ' + error.message);
 }
 ```
-
-## BundleInstaller.recover
-
-recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
-
-以异步方法回滚应用，使用callback形式返回结果。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.INSTALL_BUNDLE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名      | 类型                                                 | 必填 | 说明                                           |
-| ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
-| installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为undefined，否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 17700004 | The specified user ID is not found. |
-
-**示例：**
-
-```ts
-import installer from '@ohos.bundle.installer';
-let bundleName = 'com.ohos.demo';
-let installParam = {
-    userId: 100,
-    isKeepData: false,
-    installFlag: 1
-};
-
-try {
-    installer.getBundleInstaller().then(data => {
-        data.recover(bundleName, installParam, err => {
-            if (err) {
-                console.error('recover failed:' + err.message);
-            } else {
-                console.info('recover successfully.');
-            }
-        });
-    }).catch(error => {
-        console.error('getBundleInstaller failed. Cause: ' + error.message);
-    });
-} catch (error) {
-    console.error('getBundleInstaller failed. Cause: ' + error.message);
-}
-```
-
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
@@ -476,7 +759,7 @@ try {
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
 | crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
-| sharedBundleDirPaths | Array\<String> | 否 |共享包文件所在路径。 |
+| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径。 |
 
 ## UninstallParam<sup>10+</sup>
 

@@ -480,9 +480,3 @@ export class VideoRecorderDemo {
   }
 }
 ```
-
-### AVRecorder App
-
-The AVRecorder app provides a complete audio and video recording process, which includes creating an instance, setting recording parameters, obtaining the input surface, starting, pausing, resuming, and stopping recording, and releasing resources.
-
-For details about the code, see [AVRecorderDemo]([multimedia_player_framework: Implementation of media playback and recording](https://gitee.com/openharmony/multimedia_player_framework/tree/master/test/appdemo/AVRecorderDemo)).

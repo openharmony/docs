@@ -115,4 +115,4 @@ Table 1 Part attribute review form
 >
 > For modified parts, provide a before and after comparison of the part attributes. For deleted parts, provide the plan for stopping part maintenance. Exercise caution when deleting or modifying parts and evaluate the impact on existing versions.
 
-3. After the review is passed, create a part repository and modify the manifest according to [SIG Management Regulations](https://gitee.com/openharmony/community/blob/master/sig/README-EN.md). After the SIG is incubated, incorporate it into the main code library of OpenHarmony.
+3. After the review is passed, create a part repository and modify the manifest according to [SIG Management Regulations](https://gitee.com/openharmony/community/blob/master/sig/README_EN.md). After the SIG is incubated, incorporate it into the main code library of OpenHarmony.

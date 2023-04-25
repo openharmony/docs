@@ -301,4 +301,4 @@ export default {
 
 针对picker开发，有以下相关实例可供参考：
 
-- [`Picker`：滑动选择器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Picker)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)

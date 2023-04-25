@@ -230,7 +230,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
    同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
-   ```ets
+   ```ts
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
    
    @Component
@@ -339,7 +339,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntrance标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
    {
@@ -350,9 +350,9 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }
@@ -366,4 +366,4 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
 
-[Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/KikaInput)
+- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
