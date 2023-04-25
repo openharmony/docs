@@ -13,7 +13,7 @@
 
 - [通过跨设备Call调用实现多端协同](#通过跨设备call调用实现多端协同)
 
-- [停止退出跨设备拉起的ServiceExtensionAbility组件](#停止退出跨设备拉起的ServiceExtensionAbility组件)
+- [停止退出跨设备拉起的serviceextensionability组件](#停止退出跨设备拉起的serviceextensionability组件)
 
 
 ## 多端协同流程
@@ -488,7 +488,7 @@
    }
    ```
 
-## 停止退出跨设备拉起的ServiceExtensionAbility组件
+## 停止退出跨设备拉起的serviceextensionability组件
 
 停止退出跨设备拉起的ServiceExtensionAbility组件。
 
