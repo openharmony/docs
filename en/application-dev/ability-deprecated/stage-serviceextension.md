@@ -33,8 +33,8 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
         "icon": "$media:icon",
         "description": "service",
         "type": "service",
-        "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "exported": true,
+        "srcEnty": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 
@@ -44,7 +44,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
     ```js
     import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
     import rpc from '@ohos.rpc'
-
+    
     class StubTest extends rpc.RemoteObject {
         constructor(des) {
             super(des);
