@@ -1910,7 +1910,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1918,7 +1920,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -1951,7 +1953,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1959,7 +1963,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为全屏显示状态(该全屏状态下状态栏、导航栏仍然显示)。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
@@ -5149,7 +5153,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                      | 必填 | 说明                                           |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏)。true表示全屏；false表示非全屏。 |
+| isFullScreen | boolean                   | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏）。true表示全屏；false表示非全屏。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
 
 **示例：**
@@ -5205,7 +5209,9 @@ promise.then(()=> {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5217,7 +5223,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 | 参数名             | 类型                      | 必填 | 说明                                                         |
 | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5237,7 +5243,9 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5249,7 +5257,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                                         |
 | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
