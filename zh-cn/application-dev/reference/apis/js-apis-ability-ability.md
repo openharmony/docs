@@ -15,15 +15,15 @@ import ability from '@ohos.ability.ability';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称         | 类型                 | 必填 | 描述                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | 否   | DataAbilityHelper二级模块。                                |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | 否   | PacMap二级模块。 |
-| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | 否   | DataAbilityOperation二级模块。 |
-| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | 否   | DataAbilityResult二级模块。 |
-| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | 否   | AbilityResult二级模块。 |
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | 否   | ConnectOptions二级模块。 |
-| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | 否   | StartAbilityParameter二级模块。 |
+| 名称         | 类型                 | 描述                                                         |
+| ----------- | -------------------- | ------------------------------------------------------------ |
+| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | DataAbilityHelper二级模块。                                |
+| PacMap   | [PacMap](js-apis-inner-application-pacMap.md)               | PacMap二级模块。 |
+| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | DataAbilityOperation二级模块。 |
+| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | DataAbilityResult二级模块。 |
+| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
+| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
+| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | StartAbilityParameter二级模块。 |
 
 **示例：**
 ```ts
