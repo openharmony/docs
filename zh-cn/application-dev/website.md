@@ -241,7 +241,7 @@
     - 分布式数据对象
       - [分布式数据对象概述](database/database-distributedobject-overview.md)
       - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
-  - 任务管理
+  - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [后台任务开发指导](task-management/background-task-dev-guide.md)
