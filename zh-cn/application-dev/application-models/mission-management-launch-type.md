@@ -1,4 +1,4 @@
-# 任务管理与启动模式
+# 任务（Mission）与启动模式
 
 
 如前文所述，一个UIAbility实例对应一个任务。UIAbility实例个数与UIAbility配置的启动模式有关。在FA模型下，通过config.json配置文件中的“launchType”属性配置；在Stage模型下，通过[module.json5配置文件](../quick-start/module-configuration-file.md)中的“launchType”属性配置。
