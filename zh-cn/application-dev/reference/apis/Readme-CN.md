@@ -95,7 +95,7 @@
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
-- 资源调度
+- 后台任务(Background Task)
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
