@@ -31,7 +31,7 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -71,7 +71,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AccelerometerUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -112,7 +112,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。      |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LightResponse。 |
-| options  | [Options](#options)                             | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。   |
+| options  | [Options](#options)                             | 否   | 设置上报频率，默认值为200000000ns。                 |
 
 **错误码**： 
 
@@ -148,7 +148,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为AmbientTemperatureResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -184,7 +184,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。              |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为BarometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -220,7 +220,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 | -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。              |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GravityResponse。 |
-| options  | [Options](#options)                                 | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。     |
+| options  | [Options](#options)                                 | 否   | 设置上报频率，默认值为200000000ns。                   |
 
 **错误码**： 
 
@@ -260,7 +260,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。              |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -301,7 +301,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为GyroscopeUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -342,7 +342,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 | -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
 | type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。              |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HallResponse。 |
-| options  | [Options](#options)                           | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。  |
+| options  | [Options](#options)                           | 否   | 设置上报频率，默认值为200000000ns。                |
 
 **错误码**： 
 
@@ -380,7 +380,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。             |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HeartRateResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -416,7 +416,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。              |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为HumidityResponse。 |
-| options  | [Options](#options)                                   | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。      |
+| options  | [Options](#options)                                   | 否   | 设置上报频率，默认值为200000000ns。                    |
 
 **错误码**： 
 
@@ -455,7 +455,7 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELEROMETER。        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -493,7 +493,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -531,7 +531,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为MagneticFieldUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -580,7 +580,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 | -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。              |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为OrientationResponse。 |
-| options  | [Options](#options)                                         | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。         |
+| options  | [Options](#options)                                         | 否   | 设置上报频率，默认值为200000000ns。                       |
 
 **示例：**
 
@@ -620,7 +620,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。              |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **示例：**
 
@@ -651,7 +651,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为PedometerDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -687,7 +687,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。              |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                     | 否   | 设置上报频率，默认值为200000000ns。                     |
 
 **错误码**： 
 
@@ -724,7 +724,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为RotationVectorResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -764,7 +764,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SignificantMotionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                          |
 
 **错误码**： 
 
@@ -801,7 +801,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 回调函数，异步上报的传感器数据固定为WearDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| options  | [Options](#options)                                          | 否   | 设置上报频率，默认值为200000000ns。                         |
 
 **错误码**： 
 
@@ -3851,7 +3851,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | 是   | 要订阅的加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。     |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
 
@@ -3883,7 +3883,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | 是   | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -3903,7 +3903,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 是   | 要订阅的未校准加速度计传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -3935,10 +3935,9 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 | -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | 是   | 要订阅的重力传感器类型为SENSOR_TYPE_ID_GRAVITY。            |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
-| options  | [Options](#options)                                 | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                 | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -3967,7 +3966,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | 是   | 要订阅的陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。         |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -3998,7 +3997,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | 是   | 要订阅的未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率。                                 |
 
 **示例：** 
   ```js
@@ -4030,7 +4029,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | 是   | 要订阅的大幅动作传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4059,7 +4058,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | 是   | 要订阅的计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4088,7 +4087,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | 是   | 要订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。           |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4115,7 +4114,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | 是   | 要订阅的环境温度传感器类型为SENSOR_TYPE_ID_AMBIENT_TEMPERATURE。 |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
 
@@ -4143,7 +4142,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | 是   | 要订阅的磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。      |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
 
@@ -4173,7 +4172,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 是   | 要订阅的未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4205,7 +4204,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | 是   | 要订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。         |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4232,7 +4231,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | 是   | 要订阅的湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。            |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
-| options  | [Options](#options)                                   | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                   | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
 
@@ -4260,7 +4259,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | 是   | 要订阅的气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。         |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
-| options  | [Options](#options)                                     | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
 
@@ -4288,7 +4287,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | 是   | 要订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。                |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
-| options  | [Options](#options)                           | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                           | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4315,7 +4314,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 | -------- | ------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | 是   | 要订阅的环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。    |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | 是   | 注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
-| options  | [Options](#options)                                    | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。       |
+| options  | [Options](#options)                                    | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
 
@@ -4343,7 +4342,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | 是   | 要订阅的方向传感器类型为SENSOR_TYPE_ID_ORIENTATION           |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
-| options  | [Options](#options)                                         | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                         | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4391,7 +4390,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | 是   | 要订阅的旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。 |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
@@ -4421,7 +4420,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | 是   | 要订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。  |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：** 
   ```js
