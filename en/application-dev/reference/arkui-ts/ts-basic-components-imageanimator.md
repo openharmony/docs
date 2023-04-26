@@ -17,8 +17,9 @@ Not supported
 
 ImageAnimator()
 
-
 ## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name    | Type                 |Description                  |
 | ---------- | ----------------------- |-------- |
@@ -42,8 +43,9 @@ ImageAnimator()
 | left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**   |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**              |
 
-
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |

@@ -45,6 +45,113 @@ A drag event is triggered when a component is dragged.
 
 ## Example
 
+### Example 1
+
+```ts
+@Observed
+class ClassA {
+  public name: string
+  public bol: boolean
+
+  constructor(name: string, bol: boolean) {
+    this.name = name
+    this.bol = bol
+  }
+}
+
+@Extend(Text) function textStyle() {
+  .width('25%')
+  .height(35)
+  .fontSize(16)
+  .textAlign(TextAlign.Center)
+  .backgroundColor(0xAFEEEE)
+}
+
+@Entry
+@Component
+struct DragExample {
+  @State arr: ClassA[] = [new ClassA('A', true), new ClassA('B', true), new ClassA('C', true)]
+  @State dragIndex: number = 0
+
+  changeIndex(index1: number, index2: number) {// Exchange the array position.
+    [this.arr[index1], this.arr[index2]] = [this.arr[index2], this.arr[index1]];
+  }
+
+  build() {
+    Column() {
+      Row({ space: 15 }) {
+        List({ space: 20 }) {
+          ForEach(this.arr, (item, index) => {
+            ListItem() {
+              Column() {
+                Child({ a: this.arr[index] })
+              }
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.dragIndex = index // Obtain the index of the current dragged child component.
+                  console.info('onTouch' + this.dragIndex)
+                }
+              })
+            }
+          })
+        }
+        .listDirection(Axis.Horizontal)
+        .onDrop((event: DragEvent, extraParams: string) => { // The component bound to this event can be used as the drop target. When the dragging stops within the component scope, the callback is triggered.
+          let jsonString = JSON.parse(extraParams);
+          this.changeIndex(this.dragIndex, jsonString.insertIndex)
+        })
+      }.padding({ top: 10, bottom: 10 }).margin(10)
+
+    }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink a: ClassA
+
+  @Builder pixelMapBuilder() {
+    Column() {
+      Text(this.a.name)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
+    }
+  }
+
+  build() {
+    Column() {
+      Text(this.a.name)
+        .textStyle()
+        .visibility(this.a.bol ? Visibility.Visible : Visibility.None)
+        .onDragStart(() => { // The callback is triggered when the component bound to this event is dragged for the first time.
+          this.a.bol = false // Control the visibility.
+          return this.pixelMapBuilder() // Set the image displayed during dragging.
+        })
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Up) {
+            this.a.bol = true
+          }
+        })
+      Text('')
+        .width('25%')
+        .height(35)
+        .fontSize(16)
+        .textAlign(TextAlign.Center)
+        .border({ width: 5, color: 'red' })
+        .visibility(!this.a.bol ? Visibility.Visible : Visibility.None)
+    }
+  }
+}
+```
+
+![drag-drop](figures/drag-drop.gif)
+
+### Example 2
+
 ```ts
 // xxx.ets
 @Extend(Text) function textStyle () {
