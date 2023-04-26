@@ -3,6 +3,7 @@
 该模块为基础文件操作API，提供基础文件操作能力，包括文件基本管理、文件目录管理、文件信息统计、文件流式读写等常用功能。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -10,10 +11,6 @@
 ```js
 import fs from '@ohos.file.fs';
 ```
-
-## 错误码说明
-
-本模块支持对错误码进行处理，错误码及其适配方式请参考文档：[文件管理错误码](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 使用说明
 
@@ -65,6 +62,10 @@ stat(file: string|number): Promise&lt;Stat&gt;
   | ---------------------------- | ---------- |
   | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件的具体信息。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -90,6 +91,10 @@ stat(file: string|number, callback: AsyncCallback&lt;Stat&gt;): void
 | -------- | ---------------------------------- | ---- | ------------------------------ |
 | file     | string\|number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件的信息之后的回调。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -117,12 +122,15 @@ statSync(file: string|number): Stat
 | ------ | ------ | ---- | -------------------------- |
 | file   | string\|number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
 
-
 **返回值：**
 
   | 类型            | 说明         |
   | ------------- | ---------- |
   | [Stat](#stat) | 表示文件的具体信息。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -151,6 +159,10 @@ access(path: string): Promise&lt;boolean&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;boolean&gt; | Promise对象。返回boolean，表示文件是否存在。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -163,7 +175,6 @@ access(path: string): Promise&lt;boolean&gt;
     console.info("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.access
 
@@ -178,7 +189,11 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | 是   | 文件应用沙箱路径。                                   |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件是否存在的回调。                 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 异步检查文件是否存在的回调，如果存在，回调返回true，否则返回false。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -213,7 +228,11 @@ accessSync(path: string): boolean
 
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
-  | boolean | 返回boolean，表示文件是否存在。 |
+  | boolean | 返回true，表示文件存在；返回false，表示文件不存在。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -250,6 +269,10 @@ close(file: File|number): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -278,6 +301,10 @@ close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
   | file       | [File](#file)\|number                  | 是    | 已打开的File对象或已打开的文件描述符fd。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -305,6 +332,10 @@ closeSync(file: File|number): void
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
   | file   | [File](#file)\|number | 是    | 已打开的File对象或已打开的文件描述符fd。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -336,6 +367,10 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -364,6 +399,10 @@ copyFile(src: string|number, dest: string|number, mode?: number, callback: Async
   | dest     | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -396,6 +435,10 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
   | dest | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -403,7 +446,6 @@ copyFileSync(src: string|number, dest: string|number, mode?: number): void
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFileSync(srcPath, dstPath);
   ```
-
 
 ## fs.mkdir
 
@@ -425,6 +467,10 @@ mkdir(path: string): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -435,7 +481,6 @@ mkdir(path: string): Promise&lt;void&gt;
       console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.mkdir
 
@@ -452,6 +497,10 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 | path     | string                    | 是   | 目录的应用沙箱路径。                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步创建目录操作完成之后的回调。                             |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -464,7 +513,6 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
     }
   });
   ```
-
 
 ## fs.mkdirSync
 
@@ -480,13 +528,16 @@ mkdirSync(path: string): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 目录的应用沙箱路径。                                   |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let dirPath = pathDir + "/testDir";
   fs.mkdirSync(dirPath);
   ```
-
 
 ## fs.open
 
@@ -508,6 +559,10 @@ open(path: string, mode?: number): Promise&lt;File&gt;
   | 类型                    | 说明          |
   | --------------------- | ----------- |
   | Promise&lt;[File](#file)&gt; | Promise对象。返回File对象。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -535,6 +590,10 @@ open(path: string, mode?: number, callback: AsyncCallback&lt;File&gt;): void
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
 | mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -570,6 +629,10 @@ openSync(path: string, mode?: number): File
   | ------ | ----------- |
   | [File](#file) | 打开的File对象。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -600,6 +663,10 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | 类型                                 | 说明     |
   | ---------------------------------- | ------ |
   | Promise&lt;number&gt; | Promise对象。返回读取的结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -633,6 +700,10 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
   | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。                             |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -649,7 +720,6 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     }
   });
   ```
-
 
 ## fs.readSync
 
@@ -673,6 +743,10 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
   | ------ | -------- |
   | number | 实际读取的长度。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -682,7 +756,6 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
   let num = fs.readSync(file.fd, buf);
   fs.closeSync(file);
   ```
-
 
 ## fs.rmdir
 
@@ -704,6 +777,10 @@ rmdir(path: string): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -714,7 +791,6 @@ rmdir(path: string): Promise&lt;void&gt;
       console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.rmdir
 
@@ -731,6 +807,10 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 | path     | string                    | 是   | 目录的应用沙箱路径。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步删除目录之后的回调。   |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -743,7 +823,6 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
     }
   });
   ```
-
 
 ## fs.rmdirSync
 
@@ -759,13 +838,16 @@ rmdirSync(path: string): void
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | 是   | 目录的应用沙箱路径。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let dirPath = pathDir + "/testDir";
   fs.rmdirSync(dirPath);
   ```
-
 
 ## fs.unlink
 
@@ -787,6 +869,10 @@ unlink(path: string): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -797,7 +883,6 @@ unlink(path: string): Promise&lt;void&gt;
       console.info("remove file failed with error message: " + err.message + ", error code: " + err.codeor);
   });
   ```
-
 
 ## fs.unlink
 
@@ -814,6 +899,10 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 | path     | string                    | 是   | 文件的应用沙箱路径。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步删除文件之后的回调。   |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -826,7 +915,6 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
     }
   });
   ```
-
 
 ## fs.unlinkSync
 
@@ -841,6 +929,10 @@ unlinkSync(path: string): void
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | 是   | 文件的应用沙箱路径。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -872,6 +964,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   | --------------------- | -------- |
   | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -884,7 +980,6 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
     console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.write
 
@@ -903,6 +998,10 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -917,7 +1016,6 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
     }
   });
   ```
-
 
 ## fs.writeSync
 
@@ -940,6 +1038,10 @@ writeSync(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; l
   | 类型     | 说明       |
   | ------ | -------- |
   | number | 实际写入的长度。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -972,6 +1074,10 @@ truncate(file: string|number, len?: number): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -983,7 +1089,6 @@ truncate(file: string|number, len?: number): Promise&lt;void&gt;
       console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.truncate
 
@@ -1001,6 +1106,10 @@ truncate(file: string|number, len?: number, callback: AsyncCallback&lt;void&gt;)
 | len      | number                    | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1014,7 +1123,6 @@ truncate(file: string|number, len?: number, callback: AsyncCallback&lt;void&gt;)
     }
   });
   ```
-
 
 ## fs.truncateSync
 
@@ -1031,6 +1139,10 @@ truncateSync(file: string|number, len?: number): void
 | file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1038,7 +1150,6 @@ truncateSync(file: string|number, len?: number): void
   let len = 5;
   fs.truncateSync(filePath, len);
   ```
-
 
 ## fs.readText
 
@@ -1061,6 +1172,10 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
   | --------------------- | ---------- |
   | Promise&lt;string&gt; | Promise对象。返回读取文件的内容。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1071,7 +1186,6 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
       console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.readText
 
@@ -1089,6 +1203,10 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 | options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回读取文件的内容。                         |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1101,7 +1219,6 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
     }
   });
   ```
-
 
 ## fs.readTextSync
 
@@ -1123,6 +1240,10 @@ readTextSync(filePath: string, options?: { offset?: number; length?: number; enc
   | 类型   | 说明                 |
   | ------ | -------------------- |
   | string | 返回读取文件的内容。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1152,6 +1273,10 @@ lstat(path: string): Promise&lt;Stat&gt;
   | ---------------------------- | ---------- |
   | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1162,7 +1287,6 @@ lstat(path: string): Promise&lt;Stat&gt;
       console.info("get link status failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.lstat
 
@@ -1178,6 +1302,10 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
 | path     | string                             | 是   | 文件的应用沙箱路径。 |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 回调函数，返回文件的具体信息。       |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1212,6 +1340,10 @@ lstatSync(path: string): Stat
   | ------------- | ---------- |
   | [Stat](#stat) | 表示文件的具体信息。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1240,6 +1372,10 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1267,6 +1403,10 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 | oldPath | string | 是   | 文件的应用沙箱原路径。 |
 | newPath | string | 是   | 文件的应用沙箱新路径。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步重命名文件之后的回调。   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1297,6 +1437,10 @@ renameSync(oldPath: string, newPath: string): void
 | oldPath | string | 是   | 文件的应用沙箱原路径。 |
 | newPath | string | 是   | 文件的应用沙箱新路径。   |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1304,7 +1448,6 @@ renameSync(oldPath: string, newPath: string): void
   let dstFile = pathDir + "/new.txt";
   fs.renameSync(srcFile, dstFile);
   ```
-
 
 ## fs.fsync
 
@@ -1326,6 +1469,10 @@ fsync(fd: number): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1337,7 +1484,6 @@ fsync(fd: number): Promise&lt;void&gt;
       console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.fsync
 
@@ -1353,6 +1499,10 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | 是    | 已打开的文件描述符。    |
   | Callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件数据同步之后的回调。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1384,6 +1534,10 @@ fsyncSync(fd: number): void
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 已打开的文件描述符。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1392,7 +1546,6 @@ fsyncSync(fd: number): void
   fs.fsyncSync(file.fd);
   fs.closeSync(file);
   ```
-
 
 ## fs.fdatasync
 
@@ -1414,6 +1567,10 @@ fdatasync(fd: number): Promise&lt;void&gt;
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1426,7 +1583,6 @@ fdatasync(fd: number): Promise&lt;void&gt;
     console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.fdatasync
 
@@ -1442,6 +1598,10 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | 是    | 已打开的文件描述符。      |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1472,6 +1632,10 @@ fdatasyncSync(fd: number): void
   | ---- | ------ | ---- | ------------ |
   | fd   | number | 是    | 已打开的文件描述符。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1480,7 +1644,6 @@ fdatasyncSync(fd: number): void
   let stat = fs.fdatasyncSync(file.fd);
   fs.closeSync(file);
   ```
-
 
 ## fs.symlink
 
@@ -1502,6 +1665,10 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   | 类型                  | 说明                           |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1531,6 +1698,10 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 | srcPath  | string                    | 是   | 符号链接文件的应用沙箱路径。     |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步创建符号链接信息之后的回调。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1559,6 +1730,10 @@ symlinkSync(target: string, srcPath: string): void
 | ------- | ------ | ---- | ---------------------------- |
 | target  | string | 是   | 源文件的应用沙箱路径。     |
 | srcPath | string | 是   | 符号链接文件的应用沙箱路径。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1599,6 +1774,10 @@ listFile(path: string, options?: {
   | 类型                   | 说明         |
   | --------------------- | ---------- |
   | Promise&lt;string[]&gt; | Promise对象。返回文件名数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1647,6 +1826,10 @@ listFile(path: string, options?: {
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
   | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1704,6 +1887,10 @@ listFileSync(path: string, options?: {
   | --------------------- | ---------- |
   | string[] | 返回文件名数组。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1746,6 +1933,10 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1782,6 +1973,10 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | dest | string | 是    | 目标应用沙箱路径。 |
   | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件夹之后的回调。              |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1825,6 +2020,10 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1853,6 +2052,10 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void
   | dest | string | 是    | 目的文件的应用沙箱路径。 |
   | mode | number | 否    | 移动模式。若mode为0，移动位置存在同名文件时，强制移动覆盖。若mode为1，移动位置存在同名文件时，抛出异常。默认为0。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件之后的回调。              |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1884,6 +2087,10 @@ moveFile(src: string, dest: string, mode?: number): void
   | dest | string | 是    | 目的文件的应用沙箱路径。 |
   | mode | number | 否    | 移动模式。若mode为0，移动位置存在同名文件时，强制移动覆盖。若mode为1，移动位置存在同名文件时，抛出异常。默认为0。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1913,6 +2120,10 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
   | --------------------- | ---------- |
   | Promise&lt;string&gt; | Promise对象。返回生成的唯一目录路径。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1922,7 +2133,6 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
       console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.mkdtemp
 
@@ -1938,6 +2148,10 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
   | -------- | --------------------------- | ---- | --------------------------- |
   | prefix   | string                      | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
   | callback | AsyncCallback&lt;string&gt; | 是    | 异步创建临时目录之后的回调。              |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -1971,6 +2185,10 @@ mkdtempSync(prefix: string): string
   | ------ | ---------- |
   | string | 产生的唯一目录路径。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -1997,6 +2215,10 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
   | 类型                                | 说明        |
   | --------------------------------- | --------- |
   | Promise&lt;[Stream](#stream)&gt; | Promise对象。返回文件流的结果。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2025,6 +2247,10 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 | path     | string                                  | 是   | 文件的应用沙箱路径。                                   |
 | mode     | string                                  | 是   | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
 | callback | AsyncCallback&lt;[Stream](#stream)&gt; | 是   | 异步打开文件流之后的回调。                                   |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2060,6 +2286,10 @@ createStreamSync(path: string, mode: string): Stream
   | ------------------ | --------- |
   | [Stream](#stream) | 返回文件流的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2089,6 +2319,10 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   | --------------------------------- | --------- |
   | Promise&lt;[Stream](#stream)&gt; | Promise对象。返回文件流的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2101,7 +2335,6 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
       console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ## fs.fdopenStream
 
@@ -2118,6 +2351,10 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
   | callback | AsyncCallback&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2155,6 +2392,10 @@ fdopenStreamSync(fd: number, mode: string): Stream
   | ------------------ | --------- |
   | [Stream](#stream) | 返回文件流的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2187,6 +2428,10 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
   | 类型                | 说明        |
   | ------------------ | --------- |
   | [Watcher](#watcher10) | 返回Watcher对象。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2255,7 +2500,6 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。        |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
 
-
 ### isBlockDevice
 
 isBlockDevice(): boolean
@@ -2269,6 +2513,10 @@ isBlockDevice(): boolean
   | 类型      | 说明               |
   | ------- | ---------------- |
   | boolean | 表示文件是否是块特殊设备。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2291,13 +2539,16 @@ isCharacterDevice(): boolean
   | ------- | ----------------- |
   | boolean | 表示文件是否是字符特殊设备。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let filePath = pathDir + "/test.txt";
   let isCharacterDevice = fs.statSync(filePath).isCharacterDevice();
   ```
-
 
 ### isDirectory
 
@@ -2313,13 +2564,16 @@ isDirectory(): boolean
   | ------- | ------------- |
   | boolean | 表示文件是否是目录。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let dirPath = pathDir + "/test";
   let isDirectory = fs.statSync(dirPath).isDirectory(); 
   ```
-
 
 ### isFIFO
 
@@ -2335,13 +2589,16 @@ isFIFO(): boolean
   | ------- | --------------------- |
   | boolean | 表示文件是否是&nbsp;FIFO。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let filePath = pathDir + "/test.txt";
   let isFIFO = fs.statSync(filePath).isFIFO(); 
   ```
-
 
 ### isFile
 
@@ -2357,13 +2614,16 @@ isFile(): boolean
   | ------- | --------------- |
   | boolean | 表示文件是否是普通文件。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let filePath = pathDir + "/test.txt";
   let isFile = fs.statSync(filePath).isFile();
   ```
-
 
 ### isSocket
 
@@ -2379,13 +2639,16 @@ isSocket(): boolean
   | ------- | -------------- |
   | boolean | 表示文件是否是套接字。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
   let filePath = pathDir + "/test.txt";
   let isSocket = fs.statSync(filePath).isSocket(); 
   ```
-
 
 ### isSymbolicLink
 
@@ -2401,6 +2664,10 @@ isSymbolicLink(): boolean
   | ------- | --------------- |
   | boolean | 表示文件是否是符号链接。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2411,7 +2678,6 @@ isSymbolicLink(): boolean
 ## Stream
 
 文件流，在调用Stream的方法前，需要先通过createStream()方法（同步或异步）来构建一个Stream实例。
-
 
 ### close
 
@@ -2427,6 +2693,10 @@ close(): Promise&lt;void&gt;
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | Promise对象。返回表示异步关闭文件流的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2438,7 +2708,6 @@ close(): Promise&lt;void&gt;
       console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ### close
 
@@ -2453,6 +2722,10 @@ close(callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                        | 必填   | 说明            |
   | -------- | ------------------------- | ---- | ------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2476,6 +2749,10 @@ closeSync(): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2498,6 +2775,10 @@ flush(): Promise&lt;void&gt;
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | Promise对象。返回表示异步刷新文件流的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2509,7 +2790,6 @@ flush(): Promise&lt;void&gt;
       console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ### flush
 
@@ -2524,6 +2804,10 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                        | 必填   | 说明             |
   | -------- | ------------------------- | ---- | -------------- |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步刷新文件流后的回调函数。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2546,6 +2830,10 @@ flushSync(): void
 同步刷新文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2576,6 +2864,10 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   | --------------------- | -------- |
   | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2587,7 +2879,6 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
       console.info("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ### write
 
@@ -2604,6 +2895,10 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
   | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2642,6 +2937,10 @@ writeSync(buffer: ArrayBuffer|string, options?: { offset?: number; length?: numb
   | ------ | -------- |
   | number | 实际写入的长度。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2671,6 +2970,10 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   | ---------------------------------- | ------ |
   | Promise&lt;number&gt; | Promise对象。返回读取的结果。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2684,7 +2987,6 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
       console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
-
 
 ### read
 
@@ -2701,6 +3003,10 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   | buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
   | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读. |
   | callback | AsyncCallback&lt;number&gt; | 是    | 异步从流文件读取数据之后的回调。                         |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2738,6 +3044,10 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   | 类型     | 说明       |
   | ------ | -------- |
   | number | 实际读取的长度。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2779,6 +3089,10 @@ lock(exclusive?: boolean): Promise\<void>
   | ---------------------------------- | ------ |
   | Promise&lt;void&gt; | Promise对象。无返回值。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2804,6 +3118,10 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
   | ------- | ----------- | ---- | ---------------------------------------- |
   | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步文件上锁之后的回调。   |     
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2832,6 +3150,10 @@ tryLock(exclusive?: boolean): void
   | ------- | ----------- | ---- | ---------------------------------------- |
   | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |    
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2847,6 +3169,10 @@ unlock(): void
 以同步方式给文件解锁。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
@@ -2871,6 +3197,10 @@ start(): void
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
 **示例：**
 
   ```js
@@ -2889,6 +3219,10 @@ stop(): void
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
 
 **示例：**
 
