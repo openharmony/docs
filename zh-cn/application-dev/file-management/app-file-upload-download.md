@@ -7,8 +7,9 @@
 开发者可以使用上传下载模块（[ohos.request](../reference/apis/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程使用系统服务代理完成。
 
 > **说明：**
+>
 > 当前上传应用文件功能，仅支持上传应用缓存文件路径（cacheDir）下的文件。
-> 
+>
 > 使用上传下载模块，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
 
 以下示例代码演示了如何将应用缓存文件路径下的文件上传至网络服务器。
@@ -64,13 +65,14 @@ try {
 开发者可以使用上传下载模块（[ohos.request](../reference/apis/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](app-file-access.md)一致。文件下载过程使用系统服务代理完成。
 
 > **说明：**
+>
 > 当前网络资源文件仅支持下载至应用文件目录。
-> 
+>
 > 使用上传下载模块，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
 
 以下示例代码演示了如何将网络资源文件下载到应用文件目录：
 
-```
+```ts
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
 import common from '@ohos.app.ability.common';

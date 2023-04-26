@@ -6,7 +6,7 @@
 
 详细的API说明请参考[Camera API参考](../reference/apis/js-apis-camera.md)。
 
-1. 创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis/js-apis-media.md)能力，导入media接口的方法如下。
+1. 导入media模块。创建拍照输出流的SurfaceId以及拍照输出的数据，都需要用到系统提供的[media接口](../reference/apis/js-apis-media.md)能力，导入media接口的方法如下。
      
    ```ts
    import media from '@ohos.multimedia.media';
@@ -138,7 +138,7 @@
   })
   ```
 
-- 通过注册固定的frameEnd回调函数获取监听预览启动结果，videoOutput创建成功时即可监听，录像完成最后一帧时触发，有该事件返回结果则认为录像流已结束。
+- 通过注册固定的frameEnd回调函数获取监听录像结束结果，videoOutput创建成功时即可监听，录像完成最后一帧时触发，有该事件返回结果则认为录像流已结束。
     
   ```ts
   videoOutput.on('frameEnd', () => {

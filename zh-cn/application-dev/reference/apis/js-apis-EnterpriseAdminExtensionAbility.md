@@ -110,7 +110,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStart(bundleName: string): void
 
-应用卸载事件回调。
+应用启动事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -136,7 +136,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStop(bundleName: string): void
 
-应用卸载事件回调。
+应用停止事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 

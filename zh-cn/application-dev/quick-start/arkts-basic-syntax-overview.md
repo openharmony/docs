@@ -23,7 +23,7 @@
 
 - [自定义组件](arkts-create-custom-components.md)：可复用的UI单元，可组合其他组件，如上述被\@Component装饰的struct Hello。
 
-- 系统组件：ArkUI框架中默认内置的基础和容器组件，可直接被开发者调用，比如示例中的Column 、 Text 、 Divider 、 Button。
+- 系统组件：ArkUI框架中默认内置的基础和容器组件，可直接被开发者调用，比如示例中的Column、Text、Divider、Button。
 
 - 属性方法：组件可以通过链式调用配置多项属性，如fontSize()、width()、height()、color()等。
 

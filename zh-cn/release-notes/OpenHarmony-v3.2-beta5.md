@@ -170,7 +170,7 @@ API变更清单请参考：[API差异报告](api-change/v3.2-beta5/Readme.md)
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -181,7 +181,7 @@ API变更清单请参考：[API差异报告](api-change/v3.2-beta5/Readme.md)
 | -------- | -------- | -------- | -------- |
 | 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
 | ArkUI | [一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
-| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
+| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userFileManager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
 | 元能力 | [图库卡片](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/GalleryForm) | 本示例是模拟图库卡片，实现对图库中的照片在卡片中显示，定时刷新卡片内容等功能。 | ArkTs |
 
 

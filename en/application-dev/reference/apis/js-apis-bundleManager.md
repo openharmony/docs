@@ -98,12 +98,12 @@ Enumerates the types of Extension abilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/widget-development-stage.md): provides APIs for widget development.|
+| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md): provides APIs for widget development.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler-dev-guide.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/database-datashare-guidelines.md): enables applications to read and write data.|
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
@@ -113,6 +113,7 @@ Enumerates the types of Extension abilities.
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
+| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of Extension abilities.|
 
 
@@ -187,7 +188,7 @@ Enumerates the display orientations of the ability. This attribute applies only 
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.|
 | LOCKED                             |12|Locked.|
 
-### CompatiblePolicy
+### CompatiblePolicy<sup>10+</sup>
 
 Defines the version compatibility type of the shared library.
 
@@ -3069,3 +3070,167 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllSharedBundleInfo failed. Cause: %{public}s', err.message);
 }
 ```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+Obtains the provision configuration file information based on the given bundle name. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | Yes  | Bundle name.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision configuration file information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+Obtains the provision configuration file information based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | Yes  | Bundle name.|
+| userId | number | Yes| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision configuration file information obtained.|
+
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>;
+
+Obtains the provision configuration file information based on the given bundle name and user ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name  | Type        | Mandatory| Description         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | No| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
+
+
+**Return value**
+
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Promise used to return the provision configuration file obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+```
+
+ <!--no_check--> 

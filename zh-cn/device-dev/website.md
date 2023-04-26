@@ -216,6 +216,7 @@
          - [动态加载与链接](kernel/kernel-small-bundles-linking.md)
          - [虚拟动态共享库](kernel/kernel-small-bundles-share.md)
          - [轻量级进程间通信](kernel/kernel-small-bundles-ipc.md)
+         - [容器隔离](kernel/kernel-small-bundles-container.md)
          - 文件系统
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
@@ -540,7 +541,7 @@
   - [xdevice测试调度框架使用指导](device-test/xdevice.md)
   - 调测工具
     - [bytrace使用指导](subsystems/subsys-toolchain-bytrace-guide.md)
-    - [hdc 使用指导](subsystems/subsys-toolchain-hdc-guide.md)
+    - [hdc使用指导](subsystems/subsys-toolchain-hdc-guide.md)
     - [hiperf 使用指南](subsystems/subsys-toolchain-hiperf.md)
 - [XTS认证](device-test/xts.md)
 - 工具

@@ -33,12 +33,14 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -86,12 +88,15 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -140,6 +145,8 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system application to call the interface.   |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -147,6 +154,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -201,6 +209,8 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -208,6 +218,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -254,6 +265,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -294,6 +306,7 @@ cancel(id: number, label?: string): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -328,6 +341,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -361,6 +375,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -399,6 +414,7 @@ cancelAll(): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -436,9 +452,13 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -482,9 +502,13 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -519,9 +543,11 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -557,9 +583,11 @@ addSlot(type: SlotType): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -594,9 +622,13 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -644,9 +676,13 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -685,6 +721,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -730,6 +767,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -763,6 +801,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -801,6 +840,7 @@ getSlots(): Promise\<Array\<NotificationSlot\>>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -834,6 +874,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -873,6 +914,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -906,6 +948,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -937,6 +980,7 @@ removeAllSlots(): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -975,6 +1019,9 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1021,6 +1068,9 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1062,6 +1112,9 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1113,6 +1166,9 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1153,6 +1209,9 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1201,6 +1260,9 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1240,6 +1302,9 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1286,6 +1351,9 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1327,6 +1395,9 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1378,6 +1449,9 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1412,10 +1486,11 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -1447,10 +1522,11 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600012  | No memory space.                    |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -1493,6 +1569,9 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1542,6 +1621,9 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1586,6 +1668,9 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1637,6 +1722,9 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1678,6 +1766,9 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1729,6 +1820,9 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1768,6 +1862,9 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1810,6 +1907,9 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1842,6 +1942,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1880,6 +1981,7 @@ getActiveNotificationCount(): Promise\<number\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1912,6 +2014,7 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1950,6 +2053,7 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1983,6 +2087,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2023,6 +2128,7 @@ cancelGroup(groupName: string): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2062,6 +2168,9 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2109,6 +2218,9 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2149,9 +2261,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2197,9 +2313,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2241,10 +2361,14 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2293,10 +2417,14 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2339,9 +2467,13 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2381,9 +2513,13 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2419,10 +2555,14 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2470,10 +2610,14 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600008  | The user is not exist.              |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -2508,6 +2652,9 @@ notificationManager.getDoNotDisturbDate(userId).then((data) => {
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2550,6 +2697,9 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2583,6 +2733,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2629,6 +2780,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2664,6 +2816,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2696,6 +2849,7 @@ requestEnableNotification(): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2735,6 +2889,9 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2780,6 +2937,9 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2816,6 +2976,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2857,6 +3018,7 @@ isDistributedEnabled(): Promise\<boolean>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2898,6 +3060,9 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2951,6 +3116,9 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2996,6 +3164,9 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3050,6 +3221,9 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3093,6 +3267,9 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3135,6 +3312,9 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3175,6 +3355,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -3182,6 +3365,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -3241,6 +3425,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -3248,6 +3435,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600005  | Notification slot is not enabled.         |
 | 1600008  | The user is not exist.                    |
 | 1600009  | Over max number notifications per second. |
+| 1600012  | No memory space.                          |
 
 **示例：**
 
@@ -3303,6 +3491,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3356,6 +3547,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3402,6 +3596,9 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3452,6 +3649,9 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3495,6 +3695,9 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3549,6 +3752,9 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3591,6 +3797,9 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3645,6 +3854,9 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3689,6 +3901,9 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3741,6 +3956,9 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |

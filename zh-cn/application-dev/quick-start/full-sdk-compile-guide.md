@@ -1,4 +1,4 @@
-# full-SDK编译指南
+# 如何编译full-SDK
 
 **full-SDK**是提供OpenHarmony全量接口的SDK，包含了系统应用所需要的高权限API，用于厂商开发应用。
 

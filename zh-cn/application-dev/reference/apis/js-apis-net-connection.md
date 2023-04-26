@@ -1169,6 +1169,11 @@ connection.getAddressesByName(host).then(function (data) {
 
 网络连接的句柄。
 
+> **说明：**
+> 设备从无网络到有网络会触发netAvailable事件、netCapabilitiesChange事件和netConnectionPropertiesChange事件；
+> 设备从有网络到无网络状态会触发netLost事件；
+> 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
+
 ### register
 
 register(callback: AsyncCallback\<void>): void

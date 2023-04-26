@@ -78,9 +78,9 @@ Image支持加载存档图、多媒体像素图两种类型。
       @Entry
       @Component
       struct Index {
-        private imgDatas: string[] = [];
+        @State imgDatas: string[] = [];
         // 获取照片url集
-        async getAllImg() {
+        getAllImg() {
           let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
@@ -89,29 +89,31 @@ Image支持加载存档图、多媒体像素图两种类型。
             PhotoSelectOptions.maxSelectNumber = 5;
             let photoPicker = new picker.PhotoViewPicker();
             photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
-              result = PhotoSelectResult.photoUris;
+              this.imgDatas = PhotoSelectResult.photoUris;
+              console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err) => {
               console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
             });
           } catch (err) {
             console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
-          return result;
         }
 
         // aboutToAppear中调用上述函数，获取图库的所有图片url，存在imgDatas中
         async aboutToAppear() {
-          this.imgDatas = await this.getAllImg();
+          this.getAllImg();
         }
         // 使用imgDatas的url加载图片。
         build() {
-          Grid() {
-            ForEach(this.imgDatas, item => {
-              GridItem() {
-                Image(item)
-                  .width(200)
-              }
-            }, item => JSON.stringify(item))
-          }
+          Column() {
+            Grid() {
+              ForEach(this.imgDatas, item => {
+                GridItem() {
+                  Image(item)
+                    .width(200)
+                }
+              }, item => JSON.stringify(item))
+            }
+          }.width('100%').height('100%')
         }
       }
       ```

@@ -15,7 +15,7 @@ import measure from '@ohos.measure'
 
 ## measure.measureText
 
-measureText(options: MeasureOptions): double
+measureText(options: MeasureOptions): number
 
 计算指定文本单行布局下的宽度。
 
@@ -31,7 +31,7 @@ measureText(options: MeasureOptions): double
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| double        | 文本宽度。<br/>**说明:** 单位px。 |
+| number        | 文本宽度。<br/>**说明:** 单位px。 |
 
 
 **示例：**

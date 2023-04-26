@@ -233,6 +233,7 @@
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
+  - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
@@ -412,7 +413,6 @@
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
   - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
-  - [@ohos.usbV9 (USB Management)](js-apis-usb.md)
   - [@system.app (Application Context)](js-apis-system-app.md)
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)

@@ -2947,7 +2947,7 @@ try {
 
 ### bundleManager.getSharedBundleInfo<sup>10+</sup>
 
-function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
+getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取指定的共享包信息，使用Promise形式返回结果。
 
@@ -3037,7 +3037,7 @@ try {
 
 ### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
-function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
+getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
 
 以异步的方法获取所有的共享包信息，使用Promise形式返回结果。
 
@@ -3070,3 +3070,164 @@ try {
 }
 ```
 
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+以异步的方法获取指定bundleName的provision配置文件信息，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是   | 指定应用的bundleName。 |
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
+
+以异步的方法获取指定bundleName和userId的provision配置文件信息，使用callback形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是   | 指定应用的bundleName。 |
+| userId | number | 是 | 指定用户ID, 可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | 是   | 回调函数，当获取成功时，err为null，data为指定bundleName的provision配置文件信息。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed: %{public}s', err.message);
+}
+```
+
+### bundleManager.getAppProvisionInfo<sup>10+</sup>
+
+getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>;
+
+以异步的方法根据bundleName和userId获取应用的provision配置文件信息，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明          |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName | string | 是 | 指定的bundleName。 |
+| userId | number | 否 | 指定的用户ID，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Promise对象，返回应用的provision配置文件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+
+**示例：**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import hilog from '@ohos.hilog';
+let bundleName = "com.ohos.myapplication";
+let userId = 100;
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+
+try {
+    bundleManager.getAppProvisionInfo(bundleName, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAppProvisionInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch(err => {
+        hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
+}
+```

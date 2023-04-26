@@ -1,10 +1,10 @@
 # 音频录制流管理
 
-对于播放音频类的应用，开发者需要关注该应用的音频流的状态以做出相应的操作，比如监听到状态为结束时，及时提示用户录制已结束。
+对于录制音频类的应用，开发者需要关注该应用的音频流的状态以做出相应的操作，比如监听到状态为结束时，及时提示用户录制已结束。
 
 ## 读取或监听应用内音频流状态变化
 
-参考[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)或[audio.createAudioCapturer](../reference/apis/js-apis-audio.md#audiocreateaudiocapturer8)，完成AudioRenderer的创建，然后可以通过以下两种方式查看音频流状态的变化：
+参考[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)或[audio.createAudioCapturer](../reference/apis/js-apis-audio.md#audiocreateaudiocapturer8)，完成AudioCapturer的创建，然后可以通过以下两种方式查看音频流状态的变化：
 
 - 方法1：直接查看AudioCapturer的[state](../reference/apis/js-apis-audio.md#属性)：
     

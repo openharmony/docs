@@ -974,6 +974,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
+
+允许设备管理员设置应用运行管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1628,6 +1648,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+允许应用获取端云同步管理能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+允许应用使用端云同步能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -1777,6 +1817,16 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
 
 ## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
 

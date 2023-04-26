@@ -16,7 +16,7 @@ import dateTimeManager from '@ohos.enterprise.dateTimeManager'
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-设置系统时间。使用callback异步回调。
+指定设备管理员应用设置系统时间。使用callback形式返回设置结果。 
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -30,7 +30,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | time  | number | 是 | 时间戳(ms)。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -59,7 +59,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-设置系统时间。使用Promise异步回调。
+指定设备管理员应用设置系统时间。使用Promise形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -106,7 +106,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
-禁止修改系统时间。使用callback异步回调。
+指定设备管理员应用禁止修改系统时间。使用callback形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -120,7 +120,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | disallow  | boolean | 是 | true 表示禁止修改系统时间，false表示允许修改系统时间。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当禁止修改系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -149,7 +149,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
-禁止修改系统时间。使用Promise异步回调。
+指定设备管理员应用禁止修改系统时间。使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -168,7 +168,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理员应用禁止修改系统时间失败时抛出错误对象。 |
 
 **错误码**：
 
@@ -196,7 +196,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
-查询是否允许修改系统时间。使用callback异步回调。
+指定设备管理员应用查询是否允许修改系统时间。使用callback形式返回是否禁止修改系统时间策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -209,7 +209,7 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| callback | AsyncCallback\<boolean> | 是 | 回调函数。callbac方式返回是否禁止修改系统时间策略。true表示禁止修改系统时间，否则表示允许修改系统时间。 |
+| callback | AsyncCallback\<boolean> | 是 | 回调函数，callbac方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
 
 **错误码**：
 
@@ -238,7 +238,7 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
-查询是否允许修改系统时间。使用Promise异步回调。
+指定设备管理员应用查询是否允许修改系统时间。使用Promise形式返回是否禁止修改系统时间策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -256,7 +256,7 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise对象。promise方式返回是否禁止修改系统时间策略。true表示禁止修改系统时间，否则表示允许修改系统时间。 |
+| Promise\<boolean> | Promise对象。promise方式返回是否禁止修改系统时间策略，true表示禁止修改系统时间，否则表示允许修改系统时间。 |
 
 **错误码**：
 

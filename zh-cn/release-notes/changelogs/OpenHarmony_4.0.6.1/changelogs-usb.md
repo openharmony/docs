@@ -20,4 +20,4 @@
 
 **适配指导**
 
-请参考各接口的[API参考](../../../application-dev/reference/errorcodes/errorcode-universal.md)
+请参考各接口的[API文档](../../../application-dev/reference/apis/js-apis-usbManager.md)

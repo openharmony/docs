@@ -66,7 +66,7 @@ import window from '@ohos.window';
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏和Dock栏，各设备系统定义可能不同。 |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏，各设备系统定义可能不同。 |
 | TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
@@ -2050,7 +2050,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2058,7 +2060,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean                   | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -2091,7 +2093,9 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2099,7 +2103,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为全屏显示状态(该全屏状态下状态栏、导航栏仍然显示)。true表示全屏显示；false表示非全屏显示。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
@@ -4159,7 +4163,7 @@ promise.then((pixelMap)=> {
 
 opacity(opacity: number): void
 
-设置窗口透明度。
+设置窗口不透明度。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4167,9 +4171,9 @@ opacity(opacity: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                  |
-| ------- | ------ | ---- | --------------------- |
-| opacity | number | 是   | 透明度，范围0.0~1.0。 |
+| 参数名  | 类型   | 必填 | 说明                                                        |
+| ------- | ------ | ---- | ----------------------------------------------------------- |
+| opacity | number | 是   | 不透明度，范围0.0~1.0。0.0表示完全透明，1.0表示完全不透明。 |
 
 **错误码：**
 
@@ -4194,7 +4198,7 @@ try {
 
 scale(scaleOptions: ScaleOptions): void
 
-设置窗口缩放参数。
+设置窗口缩放参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4235,7 +4239,7 @@ try {
 
 rotate(rotateOptions: RotateOptions): void
 
-设置窗口旋转参数。
+设置窗口旋转参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4277,7 +4281,7 @@ try {
 
 translate(translateOptions: TranslateOptions): void
 
-设置窗口平移参数。
+设置窗口平移参数。仅支持在[自定义系统窗口的显示与隐藏动画](../../windowmanager/system-window-stage.md#自定义系统窗口的显示与隐藏动画)中使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4285,9 +4289,9 @@ translate(translateOptions: TranslateOptions): void
 
 **参数：**
 
-| 参数名           | 类型                                   | 必填 | 说明       |
-| ---------------- | -------------------------------------- | ---- | ---------- |
-| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数。 |
+| 参数名           | 类型                                   | 必填 | 说明                 |
+| ---------------- | -------------------------------------- | ---- | -------------------- |
+| translateOptions | [TranslateOptions](#translateoptions9) | 是   | 平移参数，单位为px。 |
 
 **错误码：**
 
@@ -5381,7 +5385,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                      | 必填 | 说明                                           |
 | ------------ | ------------------------- | ---- | ---------------------------------------------- |
-| isFullScreen | boolean                   | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏)。true表示全屏；false表示非全屏。 |
+| isFullScreen | boolean                   | 是   | 是否设为全屏状态（该全屏状态隐藏状态栏导航栏）。true表示全屏；false表示非全屏。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                     |
 
 **示例：**
@@ -5437,7 +5441,9 @@ promise.then(()=> {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏显示状态，使用callback异步回调。
+设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5449,7 +5455,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 | 参数名             | 类型                      | 必填 | 说明                                                         |
 | ------------------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean                   | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 | callback           | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -5469,7 +5475,9 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err) => {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏显示状态，使用Promise异步回调。
+设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -5481,7 +5489,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                                         |
 | ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为全屏显示状态（该全屏状态下状态栏、导航栏仍然显示）。true表示全屏；false表示非全屏。 |
+| isLayoutFullScreen | boolean | 是   | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 

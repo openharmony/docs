@@ -29,7 +29,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 | userId     | number | Yes  | User ID.|
 
 **Return value**
@@ -45,7 +45,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 **Example**
 
@@ -55,12 +55,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getLauncherAbilityInfo('com.example.demo', 100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -80,7 +81,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 | userId     | number | Yes  | User ID.|
 
 **Return value**
@@ -96,7 +97,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified userId is not found.       |
+| 17700004 | The specified user ID is not found.       |
 
 **Example**
 
@@ -107,10 +108,10 @@ try {
     launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100).then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -144,7 +145,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 Example
 
@@ -154,12 +155,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100, (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 ## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
@@ -192,7 +194,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
-| 17700004 | The specified userId is not found.      |
+| 17700004 | The specified user ID is not found.      |
 
 **Example**
 
@@ -203,10 +205,10 @@ try {
     launcherBundleManager.getAllLauncherAbilityInfo(100).then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -224,7 +226,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -248,12 +250,13 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo", (errData, data) => {
         if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+        } else {
+            console.log("data is " + JSON.stringify(data));
         }
-        console.log("data is " + JSON.stringify(data));
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```
 
@@ -271,7 +274,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes  | Bundle name of the application.|
+| bundleName | string | Yes  | Bundle name.|
 
 **Return value**
 
@@ -296,9 +299,9 @@ try {
     launcherBundleManager.getShortcutInfo("com.example.demo").then(data => {
         console.log("data is " + JSON.stringify(data));
     }).catch (errData => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
 } catch (errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 }
 ```

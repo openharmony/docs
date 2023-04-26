@@ -5,6 +5,8 @@ The **\<QRCode>** component is used to display a QR code.
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> 
+> The number of pixels of the **\<QRCode>** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
 
 
 ## Child Components
@@ -22,7 +24,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes| Content of the QR code.|
+| value | string | Yes| Content of the QR code. A maximum of 256 characters are supported. If the number of characters exceeds 256, the first 256 characters are used.|
 
 ## Attributes
 

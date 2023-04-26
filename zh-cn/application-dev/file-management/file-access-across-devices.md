@@ -1,8 +1,6 @@
 # 跨设备文件访问
 
-
 分布式文件系统为应用提供了跨设备文件访问的能力，开发者在多个设备安装同一应用时，通过[基础文件接口](app-file-access.md)，可跨设备读写其他设备该应用分布式文件路径（/data/storage/el2/distributedfiles/）下的文件。例如：多设备数据流转的场景，设备组网互联之后，设备A上的应用可访问设备B同应用分布式路径下的文件，当期望应用文件被其他设备访问时，只需将文件移动到分布式文件路径即可。
-
 
 ## 开发步骤
 
@@ -14,7 +12,6 @@
 
    设备A上在分布式路径下创建测试文件，并写入内容。示例中的context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-     
    ```ts
    import fs from '@ohos.file.fs';
    
@@ -38,7 +35,6 @@
 
    设备B上在分布式路径下读取测试文件。
 
-     
    ```ts
    import fs from '@ohos.file.fs';
    

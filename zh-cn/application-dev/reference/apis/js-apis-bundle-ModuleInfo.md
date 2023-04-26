@@ -12,4 +12,4 @@
 | 名称            | 类型   | 可读 | 可写 | 说明     |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | 是   | 否   | 模块名称。 |
-| moduleSourceDir | string | 是   | 否   | 安装目录。 |
+| moduleSourceDir | string | 是   | 否   | 安装目录。不能拼接路径访问资源文件，请使用[资源管理接口](js-apis-resource-manager.md)访问资源。 |
