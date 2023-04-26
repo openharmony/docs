@@ -19,7 +19,7 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 | Name| Type| Readable| Writable| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | label | string | Yes| No| No| Label of the input method subtype.|
-| name | string | Yes| No| Yes| Name of the input method subtype.|
+| name | string | Yes| No| Yes| Bundle name of the input method. |
 | id | string | Yes| No| Yes| ID of the input method subtype.|
 | mode | string | Yes| No| No| Mode of the input method subtype, including **upper** (uppercase) and **lower** (lowercase).|
 | locale | string | Yes| No| Yes| Locale of the input method subtype.|
