@@ -155,34 +155,35 @@ file_api部件fileio接口返回值不包含错误码error.code，现进行错�
 **关键接口/组件变更**
 
 为适配统一的API异常处理方式，对fileio相关接口进行废弃，并新增对应接口，原接口位于@ohos.fileio，新接口位于@ohos.file.fs。新增接口支持统一的错误码异常处理规范，功能上与原接口保持一致，参数上有微调，以下为规格调整的接口列表。
+废弃与新增方法同名，请在列表中对应查看。
 
 | 模块名                    | 方法/属性/枚举/常量                                          | 变更类型 |
 | ------------------------- | ------------------------------------------------------------ | -------- |
-| @ohos.fileio        |  **function** access(path: string, mode?: number, callback?: AsyncCallback<void>): void \| Promise<void> | 废弃     |
+| @ohos.fileio        |  **function** access(path: string, mode?: number, callback?: AsyncCallback\<void>): void \| Promise\<void> | 废弃     |
 | @ohos.fileio        |  **function** accessSync(path: string, mode?: number): void | 废弃     |
-| @ohos.file.fs |  **function**  access(path: string, callback?: AsyncCallback<boolean>): void \| Promise<boolean> | 新增     |
+| @ohos.file.fs |  **function**  access(path: string, callback?: AsyncCallback\<boolean>): void \| Promise\<boolean> | 新增     |
 | @ohos.file.fs |  **function** accessSync(path: string): boolean | 新增     |
-| @ohos.fileio        |  **function** close(fd: number, callback?: AsyncCallback<void>): void \| Promise<void> | 废弃     |
+| @ohos.fileio        |  **function** close(fd: number, callback?: AsyncCallback\<void>): void \| Promise\<void> | 废弃     |
 | @ohos.fileio        |  **function** closeSync(fd: number): void | 废弃     |
-| @ohos.file.fs |  **function** close(file: File \| number, callback?: AsyncCallback<void>): void \| Promise<void> | 新增     |
+| @ohos.file.fs |  **function** close(file: File \| number, callback?: AsyncCallback\<void>): void \| Promise\<void> | 新增     |
 | @ohos.file.fs |  **function** closeSync(file: File \| number): void | 新增     |
-| @ohos.fileio        |  **function** mkdir(path: string, mode?: number, callback?: AsyncCallback<void>): void \| Promise<void> | 废弃     |
+| @ohos.fileio        |  **function** mkdir(path: string, mode?: number, callback?: AsyncCallback\<void>): void \| Promise\<void> | 废弃     |
 | @ohos.fileio        |  **function** mkdirSync(path: string, mode?: number): void | 废弃     |
-| @ohos.file.fs |  **function** mkdir(path: string, callback?: AsyncCallback<void>): void \| Promise<void> | 新增     |
+| @ohos.file.fs |  **function** mkdir(path: string, callback?: AsyncCallback\<void>): void \| Promise\<void> | 新增     |
 | @ohos.file.fs |  **function** mkdirSync(path: string): void | 新增     |
-| @ohos.fileio        |  **function** readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }, callback?: AsyncCallback<string>): void \| Promise<string> | 废弃     |
+| @ohos.fileio        |  **function** readText(filePath: string, options?: { position?: number; length?: number; encoding?: string; }, callback?: AsyncCallback\<string>): void \| Promise\<string> | 废弃     |
 | @ohos.fileio        |  **function** readTextSync(filePath: string, options?: { position?: number; length?: number; encoding?: string; }): string | 废弃     |
-| @ohos.file.fs |  **function** readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }, callback?: AsyncCallback<string>): void \| Promise<string> | 新增     |
+| @ohos.file.fs |  **function** readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }, callback?: AsyncCallback\<string>): void \| Promise\<string> | 新增     |
 | @ohos.file.fs |  **function** readTextSync(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): string | 新增     |
-| @ohos.fileio        |  **function** Stream.read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }, callback?: AsyncCallback<ReadOut>): void \| Promise<ReadOut> | 废弃     |
+| @ohos.fileio        |  **function** Stream.read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }, callback?: AsyncCallback\<ReadOut>): void \| Promise\<ReadOut> | 废弃     |
 | @ohos.fileio        |  **function** Stream.readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; position?: number; }): number | 废弃     |
-| @ohos.file.fs |  **function** Stream.read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }, callback?: AsyncCallback<number>): void \| Promise<number> | 新增     |
+| @ohos.file.fs |  **function** Stream.read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }, callback?: AsyncCallback\<number>): void \| Promise\<number> | 新增     |
 | @ohos.file.fs |  **function** Stream.readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number | 新增     |
-| @ohos.fileio        |  **function** Stream.write(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }, callback?: AsyncCallback<number>): void \| Promise<void> | 废弃     |
+| @ohos.fileio        |  **function** Stream.write(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }, callback?: AsyncCallback\<number>): void \| Promise\<void> | 废弃     |
 | @ohos.fileio        |  **function** Stream.writeSync(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; position?: number; encoding?: string; }): number | 废弃     |
-| @ohos.file.fs |  **function** Stream.write(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; encoding?: string; }, callback?: AsyncCallback<number>): void \| Promise<void> | 新增     |
+| @ohos.file.fs |  **function** Stream.write(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; encoding?: string; }, callback?: AsyncCallback\<number>): void \| Promise\<void> | 新增     |
 | @ohos.file.fs |  **function** Stream.writeSync(buffer: ArrayBuffer \| string, options?: { offset?: number; length?: number; encoding?: string; }): number | 新增     |
 
 **适配指导**
 
-@ohos.file.fs新增统一的API异常处理方式，可参考错误码[适配指导](../../../application-dev/reference/errorcodes/errorcode-filemanagement.md#错误码适配指导)。
+@ohos.file.fs新增统一的API异常处理方式，具体示例代码请参考[接口文档](../../../application-dev/reference/apis/js-apis-file-fs.md)。
