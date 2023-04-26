@@ -49,7 +49,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -92,7 +92,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -128,7 +128,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 try {
     sensor.on(sensor.SensorId.AMBIENT_LIGHT, function (data) {
         console.info('The ambient light intensity: ' + data.intensity);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -164,7 +164,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 try {
     sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
         console.info('Temperature: ' + data.temperature);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -200,7 +200,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 try {
     sensor.on(sensor.SensorId.BAROMETER, function (data) {
         console.info('Atmospheric pressure: ' + data.pressure);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -238,7 +238,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -278,7 +278,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -322,7 +322,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -358,7 +358,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 try {
     sensor.on(sensor.SensorId.HALL, function (data) {
         console.info('Hall status: ' + data.status);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -396,7 +396,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 try {
     sensor.on(sensor.SensorId.HEART_RATE, function (data) {
         console.info('Heart rate: ' + data.heartRate);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -432,7 +432,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 try {
     sensor.on(sensor.SensorId.HUMIDITY, function (data) {
         console.info('Humidity: ' + data.humidity);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -473,7 +473,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -511,7 +511,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -552,7 +552,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -590,7 +590,7 @@ try {
         console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
         console.info('The device rotates at an angle around the X axis: ' + data.beta);
         console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -628,7 +628,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 try {
     sensor.on(sensor.SensorId.PEDOMETER, function (data) {
         console.info('Step count: ' + data.steps);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -667,7 +667,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 try {
     sensor.on(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
         console.info('Pedometer scalar: ' + data.scalar);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -703,7 +703,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 try {
     sensor.on(sensor.SensorId.PROXIMITY, function (data) {
         console.info('Distance: ' + data.distance);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -743,7 +743,7 @@ try {
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
         console.info('Scalar quantity: ' + data.w);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -780,7 +780,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 try {
     sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
         console.info('Scalar data: ' + data.scalar);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -817,7 +817,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 try {
     sensor.on(sensor.SensorId.WEAR_DETECTION, function (data) {
         console.info('Wear status: ' + data.value);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -3851,7 +3851,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | 是   | 要订阅的加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。     |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表列表，设置上报频率，默认值为200000000ns。        |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。        |
 
 **示例：** 
 
@@ -3861,7 +3861,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3915,7 +3915,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3945,7 +3945,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3976,7 +3976,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4010,7 +4010,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4037,7 +4037,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4066,7 +4066,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4095,7 +4095,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4123,7 +4123,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4153,7 +4153,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4185,7 +4185,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4212,7 +4212,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4240,7 +4240,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4268,7 +4268,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4295,7 +4295,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4323,7 +4323,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
       console.info(' Illumination: ' + data.intensity);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4352,7 +4352,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4401,7 +4401,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
       console.info('Z-coordinate component: ' + data.z);
       console.info('Scalar quantity: ' + data.w);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4428,7 +4428,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 

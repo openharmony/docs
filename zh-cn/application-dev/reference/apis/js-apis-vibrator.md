@@ -52,7 +52,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -129,7 +129,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式。                                     |
-| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -145,7 +145,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -237,7 +237,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -253,7 +253,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -338,7 +338,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明                                                   |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | 是   | 振动效果id                                             |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当返回true则表示支持该effectId，否则不支持。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
 
 **示例：** 
 
@@ -419,7 +419,7 @@ try {
                     console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
                 });
             } catch (error) {
-                console.error('exception in, error:' + JSON.stringify(error));
+                console.error('Exception in, error:' + JSON.stringify(error));
             }
         }
     }, (error) => {
@@ -566,7 +566,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -633,7 +633,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -708,7 +708,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。                                     |
-| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
