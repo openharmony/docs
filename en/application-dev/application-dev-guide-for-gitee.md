@@ -24,6 +24,8 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
+
+- [Web](web/web-component-overview.md)
 - [Notification](notification/Readme-EN.md)
 - [Window Manager](windowmanager/Readme-EN.md)
 - [WebGL](webgl/Readme-EN.md)
@@ -32,7 +34,8 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Connectivity](connectivity/Readme-EN.md)
 - [Telephony Service](telephony/Readme-EN.md)
 - [Data Management](database/Readme-EN.md)
-- [Background Task Management](task-management/Readme-EN.md)
+- [File Management](file-management/Readme-EN.md)
+- [Task Management](task-management/Readme-EN.md)
 - [Device Management](device/Readme-EN.md)
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
 - [DFX](dfx/Readme-EN.md)
@@ -40,7 +43,6 @@ Then, equip yourself for developing the key features, with the following guideli
 - [Application Test](application-test/Readme-EN.md)
 - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
 - [Using Native APIs in Application Projects](napi/Readme-EN.md)
-- [File Management](file-management/medialibrary-overview.md)
 
 ### Tools
 
@@ -61,11 +63,10 @@ They are organized as follows:
 - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 - [JS Service Widget UI Components](reference/js-service-widget-ui/Readme-EN.md) 
 - APIs
-    - [JS and TS APIs](reference/apis/Readme-EN.md)
-    - Native APIs
-        -   [Standard Library](reference/native-lib/third_party_libc/musl.md)
-        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
-
+  - [JS and TS APIs](reference/apis/Readme-EN.md)
+  - Native APIs
+    - [Standard Library](reference/native-lib/third_party_libc/musl.md)
+    - [Node_API](reference/native-lib/third_party_napi/napi.md)
 
 ### Readme
 
