@@ -19,9 +19,9 @@ import backup from '@ohos.file.backup';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称       | 类型   | 必填 | 说明                                                                                                   |
-| ---------- | ------ | ---- | ------------------------------------------------------------------------------------------------------ |
-| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。                  |
+| 名称       | 类型   | 必填 | 说明                                                                                           |
+| ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
+| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。          |
 | uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称 |
 
 ## FileData
@@ -93,7 +93,7 @@ onBundleBegin : AsyncCallback&lt;string&gt;
   ```js
   onBundleBegin: (err, bundleName) => {
     if (err) {
-      console.error('onBundleBegin failed with err: ' + err);]
+      console.error('onBundleBegin failed with err: ' + err);
     }
     console.info('onBundleBegin success with bundleName: ' + bundleName);
   }
@@ -168,24 +168,6 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void;
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 回调函数。当获取成功，err为undefined，否则为错误对象。 |
 
-**json configuration example**
-
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : false,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "phone",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
- }
- ```
-
 **示例：**
 
   ```js
@@ -203,23 +185,8 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void;
   }
   ```
 
-## getLocalCapabilities
-
-getLocalCapabilities(): Promise&lt;FileData&gt;;
-
-用于获取一个描述本地能力的Json文件。使用Promise异步回调。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**返回值：**
-
-| 类型                                 | 说明                                                |
-| ------------------------------------ | --------------------------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
-
-**json configuration example**
+  
+**返回的能力文件内容示例：**
 
  ```json
  {
@@ -237,11 +204,27 @@ getLocalCapabilities(): Promise&lt;FileData&gt;;
  }
  ```
 
+## getLocalCapabilities
+
+getLocalCapabilities(): Promise&lt;FileData&gt;;
+
+用于获取一个描述本地能力的Json文件。使用Promise异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 类型                                 | 说明                                                |
+| ------------------------------------ | --------------------------------------------------- |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
+
 **示例：**
 
   ```js
+  import fs from '@ohos.file.fs';
   try {
-    import fs from '@ohos.file.fs';
     let fileData = await backup.getLocalCapabilities();
     console.info('getLocalCapabilities success');
     fs.closeSync(fileData.fd);
@@ -249,6 +232,24 @@ getLocalCapabilities(): Promise&lt;FileData&gt;;
     console.error('getLocalCapabilities failed with err: ' + err);
   }
   ```
+
+  **返回的能力文件内容示例：**
+
+ ```json
+ {
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "phone",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
 
 ## SessionBackup
 
