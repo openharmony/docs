@@ -742,7 +742,7 @@ try {
 | id                | number                                         | 是   | 否   | 屏幕的id。             |
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 
 ### setOrientation
@@ -833,7 +833,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | 是   | 模式索引。                                                   |
+| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -871,7 +871,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明       |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | 是   | 模式索引。 |
+| modeIndex | number | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 
 **返回值：**
 
