@@ -29,7 +29,7 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 时间片跟踪任务名称 |
 | taskId | number | 是 | 时间片跟踪任务id |
-| expectedTime | number | 否 | 期望的耗时时间（单位：ms） |
+| expectedTime | number | 否 | 期望的耗时时间（单位：ms）。可选，默认为空 |
 
 
 **示例：**
