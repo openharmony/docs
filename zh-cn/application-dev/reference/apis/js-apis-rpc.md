@@ -2391,10 +2391,12 @@ readException(): void
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -2410,9 +2412,13 @@ readException(): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -2729,11 +2735,11 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      rpc.MessageSequence.closeFileDescriptor(fd);
+      rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc close file descriptor fail, errorCode " + error.code);
       console.info("rpc close file descriptor fail, errorMessage" + error.message);
@@ -2771,11 +2777,11 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      let newFd = rpc.MessageSequence.dupFileDescriptor(fd);
+      let newFd = rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc dup file descriptor fail, errorCode " + error.code);
       console.info("rpc dup file descriptor fail, errorMessage" + error.message);
@@ -2800,13 +2806,13 @@ containFileDescriptors(): boolean
 
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
   let r1 = sequence.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2845,12 +2851,12 @@ writeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2882,12 +2888,12 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -4846,11 +4852,13 @@ readException(): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **示例：**
- 
-  获取服务
+
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.;featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -4866,9 +4874,13 @@ readException(): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -5158,10 +5170,10 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  rpc.MessageParcel.closeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5187,10 +5199,10 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let newFd = rpc.MessageParcel.dupFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let newFd = rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -5210,12 +5222,12 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let r1 = parcel.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   let containFD = parcel.containFileDescriptors();
   console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
@@ -5244,11 +5256,11 @@ writeFileDescriptor(fd: number): boolean
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   ```
 
@@ -5269,11 +5281,11 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
@@ -5438,6 +5450,7 @@ marshalling(dataOut: MessageSequence): boolean
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
   | boolean | true：封送成功，false：封送失败。
+
 **示例：**
 
   ```ts
@@ -5543,6 +5556,7 @@ marshalling(dataOut: MessageParcel): boolean
   | 类型    | 说明                                      |
   | ------- | ----------------------------------------- |
   | boolean | true：封送成功，false：封送失败。
+
 **示例：**
 
   ```ts
@@ -5649,37 +5663,43 @@ asObject(): IRemoteObject
           return this;
       }
   }
-  let remoteObject = new TestAbility().asObject();
+  let remoteObject = new TestAbility("testObject").asObject();
   ```
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
-      onConnect: function (elementName, remoteProxy) {
+      onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
-      onFailed: function () {
+      onFailed: function() {
           console.log("RpcClient: onFailed");
       }
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
-  
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
-  
+
   ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
@@ -6058,7 +6078,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 默认值                      | 说明                              |
+| 名称                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
@@ -6093,10 +6113,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6112,13 +6134,17 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
-  
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
-  
+
   ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6163,10 +6189,12 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6182,11 +6210,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
@@ -6241,10 +6273,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6260,9 +6294,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -6311,11 +6349,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
 **示例：**
-  
-  获取服务
+
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6331,7 +6371,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
   function sendRequestCallback(result) {
       if (result.errCode === 0) {
@@ -6346,7 +6386,11 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       result.data.reclaim();
       result.reply.reclaim();
   }
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
@@ -6358,7 +6402,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   data.writeInt(1);
   data.writeString("hello");
   try {
-      proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+      proxy.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   } catch(error) {
       console.info("rpc send sequence request fail, errorCode " + error.code);
       console.info("rpc send sequence request fail, errorMessage " + error.message);
@@ -6387,10 +6431,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6406,9 +6452,9 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  function sendRequestCallback(result) {
+ function sendRequestCallback(result) {
       if (result.errCode === 0) {
           console.log("sendRequest got result");
           result.reply.readException();
@@ -6421,7 +6467,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       result.data.reclaim();
       result.reply.reclaim();
   }
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -6465,17 +6515,19 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
       onFailed: function() {
@@ -6483,10 +6535,14 @@ getLocalInterface(interface: string): IRemoteBroker
       }
   };
   let want = {
-      "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
@@ -6525,17 +6581,19 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
       onFailed: function() {
@@ -6543,12 +6601,16 @@ queryLocalInterface(interface: string): IRemoteBroker
       }
   };
   let want = {
-      "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.MainAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
 
   ```ts
@@ -6576,15 +6638,17 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6600,13 +6664,17 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
-  
+
   ```ts
   class MyDeathRecipient {
       onRemoteDied() {
@@ -6647,10 +6715,12 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6666,11 +6736,15 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
 
   ```ts
@@ -6685,7 +6759,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6708,10 +6782,12 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6727,12 +6803,16 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-    ```
   
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6775,10 +6855,12 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6794,11 +6876,15 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
 
   ```ts
@@ -6837,10 +6923,12 @@ getDescriptor(): string
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6856,9 +6944,13 @@ getDescriptor(): string
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
@@ -6890,10 +6982,12 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6909,11 +7003,15 @@ getInterfaceDescriptor(): string
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
 
   ```ts
@@ -6937,10 +7035,12 @@ isObjectDead(): boolean
 
 **示例：**
 
-  获取服务
+  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // 仅FA模型需要导入@ohos.ability.featureAbility
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6956,10 +7056,14 @@ isObjectDead(): boolean
   };
   let want = {
       "bundleName": "com.ohos.server",
-      "abilityName": "com.ohos.server.MainAbility",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-    ```
+  
+  // FA模型使用此方法连接服务
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
@@ -6974,7 +7078,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 默认值   | 说明                                                        |
+  | 名称          | 值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
   | TF_SYNC       | 0    | 同步调用标识。                                                  |
   | TF_ASYNC      | 1    | 异步调用标识。                                                  |
@@ -6992,9 +7096,9 @@ MessageOption构造函数。
 
 **参数：**
 
-  | 参数名    | 类型   | 必填 | 说明                                   |
-  | --------- | ------ | ---- | -------------------------------------- |
-  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。 |
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| async  | boolean | 否   | 同步调用或异步调用标志。默认同步调用。 |
 
 
 **示例：**
@@ -7098,7 +7202,7 @@ getFlags(): number
       console.info("error " + error);
   }
   ```
-  
+
 ### setFlags
 
 setFlags(flags: number): void
@@ -7269,11 +7373,11 @@ static getCallingTokenId(): number;
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
- 
+
    | 类型   | 说明                  |
    | ------ | --------------------- |
    | number | 返回调用者的TokenId。 |
-  
+
 **示例：**
 
   ```ts
@@ -7720,9 +7824,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **返回值：**
 
-  | 类型                         | 说明                                          |
-  | ---------------------------- | --------------------------------------------- |
-  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| 类型                         | 说明                                      |
+| ---------------------------- | ----------------------------------------- |
+| Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是RequestResult实例。 |
 
 **示例：**
 
@@ -8259,13 +8363,13 @@ getDescriptor(): string
       }
   }
   let testRemoteObject = new TestRemoteObject("testObject");
+  console.log("RpcServer: descriptor is: " + descriptor);
   try {
       let descriptor = testRemoteObject.getDescriptor();
   } catch(error) {
       console.info("rpc get local interface fail, errorCode " + error.code);
       console.info("rpc get local interface fail, errorMessage " + error.message);
   }
-  console.log("RpcServer: descriptor is: " + descriptor);
   ```
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -8340,8 +8444,8 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
           try {
               this.modifyLocalInterface(this, descriptor);
           } catch(error) {
-              console.info(rpc attach local interface fail, errorCode " + error.code);
-              console.info(rpc attach local interface fail, errorMessage " + error.message);
+              console.info(" rpc attach local interface fail, errorCode " + error.code);
+              console.info(" rpc attach local interface fail, errorMessage " + error.message);
           }
       }
       registerDeathRecipient(recipient: MyDeathRecipient, flags: number) {
@@ -8414,7 +8518,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 映射内存保护类型：
 
-  | 名称       | 默认值  | 说明               |
+  | 名称       | 值  | 说明               |
   | ---------- | --- | ------------------ |
   | PROT_EXEC  | 4   | 映射的内存可执行   |
   | PROT_NONE  | 0   | 映射的内存不可访问 |
@@ -8990,4 +9094,38 @@ readFromAshmem(size: number, offset: number): number[]
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   console.log("RpcTest: read to Ashmem result is  : " + readResult);
-  ```
+ ```
+
+## 获取context
+
+**示例：**
+
+ ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
+  export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate");
+        globalThis.context = this.context;
+    }
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy");
+    }
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate");
+    }
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy");
+    }
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground");
+    }
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground");
+    }
+  };
+ ```
+
