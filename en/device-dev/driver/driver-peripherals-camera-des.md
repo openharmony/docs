@@ -640,7 +640,7 @@ The camera driver development procedure is as follows:
 
 ### Example
 
-There is a [ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init) in the **/drivers/peripheral/camera/hal/init** directory. After the system is started, the executable file **ohos_camera_demo** is generated in the **/vendor/bin** directory. This demo implements basic camera capabilities such as preview and photographing. 
+There is a [ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/test/demo) in the **/drivers/peripheral/camera/hal/test/demo** directory. After the system is started, the executable file **ohos_camera_demo** is generated in the **/vendor/bin** directory. This demo implements basic camera capabilities such as preview and photographing. 
 
 The following uses the demo to describe how to use the HDI to implement **PreviewOn()** and **CaptureON()**.
 
