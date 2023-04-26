@@ -66,7 +66,7 @@
 
    文件选择成功后，返回被选中文档的URI结果集。开发者可以根据结果集中URI做进一步的处理。
 
-   例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据URI获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/ability-deprecated/stage-ability.md)获取。
+   例如通过[文件管理接口](../reference/apis/js-apis-file-fs.md)根据URI获取部分文件属性信息，比如文件大小、访问时间、修改时间等。如有获取文件名称需求，请暂时使用[startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md)获取。
 
    > **说明：**
    >
@@ -98,7 +98,7 @@
    try {
      let result = await context.startAbilityForResult(config, {windowMode: 1});
      if (result.resultCode !== 0) {
-       console.error(`Invoke documentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
+       console.error(`DocumentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
        return;
      }
      // 获取到文档文件的URI
