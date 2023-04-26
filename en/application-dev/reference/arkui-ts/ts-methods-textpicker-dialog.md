@@ -17,10 +17,13 @@ Shows a text picker in the given settings.
 
 | Name| Type| Mandatory|  Description|
 | -------- | -------- | -------- |  -------- |
-| range | string[] \| [Resource](ts-types.md#resource) | Yes|  Data selection range of the picker.|
+| range | string[] \| [Resource](ts-types.md#resource)\|[TextPickerRangeContent](ts-basic-components-textpicker.md#textpickerrangecontent10)[]<sup>10+</sup> | Yes|  Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed.|
 | selected | number | No|  Index of the selected item.<br>Default value: **0**|
 | value       | string           | No   | Text of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
 | defaultPickerItemHeight | number \| string | No| Height of the picker item.|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.|
+| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.|
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.|
 | onAccept | (value: [TextPickerResult](#textpickerresult)) => void | No|  Callback invoked when the OK button in the dialog box is clicked.|
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
 | onChange | (value: [TextPickerResult](#textpickerresult)) => void | No|  Callback invoked when the selected item changes.|
@@ -29,7 +32,7 @@ Shows a text picker in the given settings.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| value | string | Text of the selected item.|
+| value | string | Text of the selected item.<br>**NOTE**<br>For a text list or a list consisting of text and images, **value** indicates the text value of the selected item.<br>For an image list, **value** is empty.|
 | index | number | Index of the selected item in the range.|
 
 ## Example

@@ -1,6 +1,6 @@
 # TimePicker
 
-The **\<TimePicker>** component allows users to select a time from the given range.
+The **\<TimePicker>** component allows users to select a time (with the hour and minute) from the given range.
 
 >  **NOTE**
 >
@@ -20,19 +20,24 @@ Creates a time picker, which is in 24-hour format by default.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| selected | Date | No| Time of the selected item.<br>Default value: current system time|
-
+| Name     | Type| Mandatory  | Description                    |
+| -------- | ---- | ---- | ------------------------ |
+| selected | Date | No   | Time of the selected item.<br>Default value: current system time|
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| useMilitaryTime | boolean | Whether to display time in 24-hour format. The value cannot be modified dynamically.<br>Default value: **false**|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
+| Name                              | Type                                    | Description                                 |
+| -------------------------------- | ---------------------------------------- | ----------------------------------- |
+| useMilitaryTime                  | boolean                                  | Whether to display time in 24-hour format. The value cannot be modified dynamically.<br>Default value: **false**|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width for the top and bottom items.     |
+| textStyle<sup>10+</sup>          | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of all items except the top, bottom, and selected items. |
+| selectedTextStyle<sup>10+</sup>  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width of the selected item.                |
 
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                                      | Description       |
 | ---------------------------------------- | ----------- |
@@ -47,9 +52,6 @@ Creates a time picker, which is in 24-hour format by default.
 
 
 ## Example
-
-
-### Time Picker
 
 ```ts
 // xxx.ets

@@ -116,7 +116,7 @@ onBundleBegin : AsyncCallback&lt;string&gt;
   ```js
   onBundleBegin: (err, bundleName) => {
     if (err) {
-      console.error('onBundleBegin failed with err: ' + err);]
+      console.error('onBundleBegin failed with err: ' + err);
     }
     console.info('onBundleBegin success with bundleName: ' + bundleName);
   }
@@ -227,24 +227,6 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 | 13900025 | No space left on device |
 | 13900042 | Unknown error |
 
-**json configuration example**
-
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : false,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "phone",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
- }
- ```
-
 **示例：**
 
   ```js
@@ -262,7 +244,26 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
   }
   ```
 
-## backup.getLocalCapabilities
+
+**返回的能力文件内容示例：**
+
+ ```json
+ {
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "phone",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
+
+## getLocalCapabilities
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
@@ -289,7 +290,20 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 | 13900025 | No space left on device |
 | 13900042 | Unknown error |
 
-**json configuration example**
+**示例：**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  try {
+    let fileData = await backup.getLocalCapabilities();
+    console.info('getLocalCapabilities success');
+    fs.closeSync(fileData.fd);
+  } catch (err) {
+    console.error('getLocalCapabilities failed with err: ' + err);
+  }
+  ```
+
+  **返回的能力文件内容示例：**
 
  ```json
  {
@@ -306,19 +320,6 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
-
-**示例：**
-
-  ```js
-  try {
-    import fs from '@ohos.file.fs';
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    fs.closeSync(fileData.fd);
-  } catch (err) {
-    console.error('getLocalCapabilities failed with err: ' + err);
-  }
-  ```
 
 ## SessionBackup
 

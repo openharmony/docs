@@ -24,7 +24,7 @@ Sets the disposed status for an application. This API uses a promise to return t
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -75,7 +75,7 @@ Sets the disposed status for an application. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -122,7 +122,7 @@ Obtains the disposed status of an application. This API uses a promise to return
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -171,7 +171,7 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -216,7 +216,7 @@ Deletes the disposed status for an application. This API uses a promise to retur
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -265,7 +265,7 @@ Deletes the disposed status for an application. This API uses an asynchronous ca
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 

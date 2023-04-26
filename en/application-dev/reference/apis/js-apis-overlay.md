@@ -239,7 +239,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
-| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **Example**
@@ -415,7 +415,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -462,7 +462,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -511,7 +511,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -557,7 +557,7 @@ Obtains the information about modules with the overlay feature in another applic
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the array of overlay module information obtained.|
+| Promise\<Array\<OverlayModuleInfo>> | Promise used to return the result, which is an array of **OverlayModuleInfo** objects.|
 
 **Error codes**
 
@@ -565,7 +565,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |
@@ -612,7 +612,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |
@@ -661,7 +661,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
+| 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |

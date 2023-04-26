@@ -216,6 +216,7 @@
          - [动态加载与链接](kernel/kernel-small-bundles-linking.md)
          - [虚拟动态共享库](kernel/kernel-small-bundles-share.md)
          - [轻量级进程间通信](kernel/kernel-small-bundles-ipc.md)
+         - [容器隔离](kernel/kernel-small-bundles-container.md)
          - 文件系统
            - [虚拟文件系统](kernel/kernel-small-bundles-fs-virtual.md)
            - [支持的文件系统](kernel/kernel-small-bundles-fs-support.md)
