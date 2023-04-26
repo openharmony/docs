@@ -291,6 +291,63 @@ try {
 }
 ```
 
+## display.on('privateModeChange')<sup>10+</sup>
+
+on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
+
+Subscribes to privacy mode changes of this display. When there is a privacy window in the foreground of the display, the display is in privacy mode, and the content in the privacy window cannot be captured or recorded.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+
+**Example**
+
+```js
+let callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
+};
+try {
+    display.on("privateModeChange", callback);
+} catch (exception) {
+    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+}
+```
+
+## display.off('privateModeChange')<sup>10+</sup>
+
+off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
+
+Unsubscribes from privacy mode changes of this display. When there is a privacy window in the foreground of the display, the display is in privacy mode, and the content in the privacy window cannot be captured or recorded.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating the event of display private mode changes.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
+
+**Example**
+
+```js
+try {
+    display.off("privateModeChange");
+} catch (exception) {
+    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+}
+```
+
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
