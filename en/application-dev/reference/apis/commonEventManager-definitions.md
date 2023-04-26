@@ -670,9 +670,9 @@ Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
 
-## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_SYSTEM_UPDATE
+## COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED
 Indicates that the list of exempt applications has been updated in the idle mode. This event is available only for system applications.
-- Value: **usual.event.DEVICE_IDLE_EXEMPTION_SYSTEM_UPDATE**
+- Value: **usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED**
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
