@@ -1,7 +1,5 @@
 # Image Processing
 
-The **Image** module provides APIs for image processing. You can use the APIs to create a **PixelMap** object with specified properties or read image pixel data (even in an area).
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -72,15 +70,15 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
 ## PixelMap<sup>7+</sup>
 
-Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use **createPixelMap** to create a **PixelMap** object.
+Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use **createPixelMap** to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
  ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name      | Type   | Readable| Writable| Description                      |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| isEditable | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| Name                   | Type   | Readable| Writable| Description                      |
+| ----------------------- | ------- | ---- | ---- | -------------------------- |
+| isEditable<sup>7+</sup> | boolean | Yes  | No  | Whether the image pixel map is editable.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -92,14 +90,14 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 
 **Parameters**
 
-| Name| Type       | Mandatory| Description                                                                                                 |
-| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling **getPixelBytesNumber**.|
+| Name| Type       | Mandatory| Description                                                        |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written.|
 
 **Return value**
 
 | Type          | Description                                           |
-| -------------- | ----------------------------------------------- |
+| :------------- | :---------------------------------------------- |
 | Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -109,7 +107,7 @@ const readBuffer = new ArrayBuffer(400);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('Failed to read image pixel data.'); // Called if no condition is met.
+    console.log('Failed to read image pixel data.');  // Called if no condition is met.
 })
 ```
 
@@ -123,10 +121,10 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                                                                                 |
-| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling **getPixelBytesNumber**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
+| Name  | Type                | Mandatory| Description                                                        |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                              |
 
 **Example**
 
@@ -212,7 +210,7 @@ image.createPixelMap(color, opts, (err, pixelmap) => {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes image pixel map data to an area. This API uses a promise to return the operation result.
+Writes image pixel map data to an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -266,7 +264,7 @@ image.createPixelMap(color, opts)
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes image pixel map data to an area. This API uses an asynchronous callback to return the operation result.
+Writes image pixel map data to an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -275,7 +273,7 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.          |
-| callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
@@ -461,8 +459,8 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
+| Type          | Description              |
+| -------------- | ------------------ |
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
@@ -671,8 +669,8 @@ Obtains the value of a property with the specified index in this image. This API
 
 **Return value**
 
-| Type            | Description                                                             |
-| ---------------- | ----------------------------------------------------------------- |
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
 | Promise\<string> | Promise used to return the property value. If the operation fails, the default value is returned.|
 
 **Example**
@@ -721,10 +719,10 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                                         |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
-| key      | string                                               | Yes  | Name of the property.                                                 |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | Yes  | Image properties, including the image index and default property value.                         |
+| Name  | Type                                                | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| key      | string                                               | Yes  | Name of the property.                                                |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | Yes  | Image properties, including the image index and default property value.                        |
 | callback | AsyncCallback\<string>                               | Yes  | Callback used to return the property value. If the operation fails, the default value is returned.|
 
 **Example**
@@ -938,8 +936,8 @@ Packs an image. This API uses a promise to return the result.
 **Return value**
 
 | Type                        | Description                                         |
-| ---------------------------- | --------------------------------------------- |
-| Promise\<ArrayBuffer>        | Promise used to return the packed data.|
+| :--------------------------- | :-------------------------------------------- |
+| Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
@@ -999,8 +997,8 @@ Packs an image. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                 | Description                                        |
-| --------------------- | -------------------------------------------- |
+| Type                        | Description                                         |
+| :--------------------------- | :-------------------------------------------- |
 | Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
@@ -1048,8 +1046,8 @@ Releases this **ImagePacker** instance. This API uses a promise to return the re
 
 **Return value**
 
-| Type          | Description                                                  |
-| -------------- | ------------------------------------------------------ |
+| Type          | Description                                                   |
+| :------------- | :------------------------------------------------------ |
 | Promise\<void> | Promise used to return the instance release result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -1103,11 +1101,11 @@ Enumerates the pixel formats of images.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                  | Default Value| Description             |
-| ---------------------- | ------ | ----------------- |
-| UNKNOWN                | 0      | Unknown format.       |
-| RGBA_8888              | 3      | RGBA_8888.|
-| RGB_565                | 2      | RGB_565.    |
+| Name     | Default Value| Description             |
+| --------- | ------ | ----------------- |
+| UNKNOWN   | 0      | Unknown format.       |
+| RGBA_8888 | 3      | RGBA_8888.|
+| RGB_565   | 2      | RGB_565.  |
 
 
 
@@ -1117,11 +1115,11 @@ Defines pixel map initialization options.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                    | Type                              | Readable| Writable| Description          |
-| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| editable                 | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
-| size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
+| Name                  | Type                              | Readable| Writable| Description          |
+| ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
+| editable               | boolean                            | Yes  | Yes  | Whether the image is editable.  |
+| pixelFormat            | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| size                   | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -1157,9 +1155,9 @@ Defines the option for image packing.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
-| Name   | Type  | Readable| Writable| Description                                               |
-| ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.                                         |
+| Name   | Type  | Readable| Writable| Description          |
+| ------- | ------ | ---- | ---- | -------------- |
+| format  | string | Yes  | Yes  | Format of the packed image.    |
 | quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
@@ -1175,25 +1173,26 @@ Describes image properties.
 
 ## PropertyKey<sup>7+</sup>
 
-Describes the exchangeable image file format (EXIF) information of an image.
+Describes the exchangeable image file format (EXIF) data of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name             | Default Value                 | Description                    |
-| ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE   | "BitsPerSample"         | Number of bits per pixel.        |
-| ORIENTATION       | "Orientation"           | Image orientation.              |
-| IMAGE_LENGTH      | "ImageLength"           | Image length.              |
-| IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
-| GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
-| GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.    |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.    |
+| Name             | Default Value           | Description               |
+| ----------------- | ----------------- | ------------------- |
+| BITS_PER_SAMPLE   | "BitsPerSample"   | Number of bits per pixel.   |
+| ORIENTATION       | "Orientation"     | Image orientation.         |
+| IMAGE_LENGTH      | "ImageLength"     | Image length.         |
+| IMAGE_WIDTH       | "ImageWidth"      | Image width.         |
+| GPS_LATITUDE      | "GPSLatitude"     | Image latitude.         |
+| GPS_LONGITUDE     | "GPSLongitude"    | Image longitude.         |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | Latitude reference, for example, N or S.|
+| GPS_LONGITUDE_REF | "GPSLongitudeRef" | Longitude reference, for example, W or E.|
 
 
 ## ResponseCode
 
 Enumerates the response codes returned upon build errors.
+
 
 | Name                               | Value      | Description                                               |
 | ----------------------------------- | -------- | --------------------------------------------------- |
