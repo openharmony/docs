@@ -14,6 +14,8 @@ addColorStop(offset: number, color: string): void
 
 设置渐变断点值，包括偏移和颜色。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 
 **参数：**
 
@@ -45,7 +47,7 @@ struct Page45 {
           grad.addColorStop(0.5, '#ffffff')
           grad.addColorStop(1.0, '#00ff00')
           this.context.fillStyle = grad
-          this.context.fillRect(0, 0, 500, 500)
+          this.context.fillRect(0, 0, 400, 400)
         })
     }
     .width('100%')

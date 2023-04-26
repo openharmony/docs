@@ -25,7 +25,23 @@ Beta is a branch pulled from Master in the OpenHarmony community irregularly. Th
 
 A tag version is a stable and reliable version created by applying patches to an LTS or a Release branch, with the purpose of fixing individual bugs, security vulnerabilities, and other necessary adaptation modifications.
 
-### Commands for Downloading Branches
+The release versions are available in the [**Release Notes** folder](../release-notes).
+
+## Lifecycle Policies
+
+The OpenHarmony community provides maintenance and technical support for Release and LTS branches based on the OpenHarmony Version Lifecycle Management. The OpenHarmony community provides maintenance and technical support based on the *OpenHarmony Version Lifecycle Management*.
+
+### Maintenance Schedule
+
+The following table lists the maintenance schedule of the LTS and Release branches that have been released in the OpenHarmony community.
+
+| Branch Name       | Branch Type| Release Date | End of Proactive Maintenance| End of Maintenance |
+| ------------- | -------- | --------- | ------------ | --------- |
+| 1.0.1-Release | Release  | 2021-03-30| 2022-03-30   | 2023-03-30|
+| 3.0-LTS       | LTS      | 2021-09-30| 2023-09-30   | 2025-03-30|
+| 3.1-Release   | Release  | 2022-03-30| 2023-03-30   | 2024-03-30|
+
+Run the following commands to download the source code of each branch:
 
 | Branch         | Download Command (repo + https)                                    | Download Command (repo + ssh)                                       |
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -34,40 +50,6 @@ A tag version is a stable and reliable version created by applying patches to an
 | 3.1-Release   | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br>repo sync -c<br>repo forall -c 'git lfs pull' |
 
 
-
-## Maintenance Policies
-
-### Lifecycle Policies
-
-OpenHarmony provides lifecycle management services for LTS and Release branches as follows:
-
-#### Release -> Stop proactive maintenance
-
-​	The Release SIG periodically makes and maintains tag version plans to resolve individual bugs, security vulnerabilities, and other major issues to ensure continuously stable and available branches.
-
-#### Stop proactive maintenance -> Stop maintenance
-
-​	The Release SIG no longer proactively plans and releases tag versions. It only fixes security vulnerabilities and major defects in corresponding branches.
-
-### LTS and Release Maintenance Policies
-
-For an LTS branch, the OpenHarmony community provides 2-year proactive maintenance and 1.5-year passive maintenance since its release.
-
-For a Release branch, the OpenHarmony community provides 1-year proactive maintenance and 1-year passive maintenance since its release.
-
-### Branch Merge Policies
-
-The Release SIG is responsible for lifecycle management of an LTS or a Release branch. During the maintenance period, the SIG accepts only code updates that resolve security vulnerabilities, ACTS issues, and other major issues. All code updates can be merged into the branch only after the related pull request has been approved by the [owner](https://gitee.com/openharmony/community/blob/master/zh/BRANCHOWNER).
-
-### Maintenance Schedule
-
-The following table lists the maintenance schedule of the LTS and Release branches that have been released in the OpenHarmony community.
-
-| No. | Branch Name       | Branch Type| Release Date | End of Proactive Maintenance| End of Maintenance |
-| :--- | ------------- | :------- | :-------- | :----------- | :-------- |
-| 1    | 1.0.1-Release | Release  | 2021-03-30| 2022-03-30   | 2023-03-30|
-| 2    | 3.0-LTS       | LTS      | 2021-09-30| 2023-09-30   | 2025-03-30|
-| 3    | 3.1-Release   | Release  | 2022-03-30| 2023-03-30   | 2024-03-30|
 
 ### Version Plan
 

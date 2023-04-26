@@ -19,7 +19,7 @@
 
 ## 开发步骤
 
-1. 申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请`ohos.permission.PUBLISH_AGENT_REMINDER`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. [使能通知开关](../notification/notification-enable.md)，获得用户授权后，才能使用代理提醒功能。
 
@@ -37,7 +37,7 @@
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // 提醒类型为倒计时类型
         triggerTimeInSeconds: 10,
-        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题，支持“关闭”和“延迟”两种类型，其中“延迟”按钮类型需要与snoozeTimes和timeInterval参数结合使用
+        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -73,7 +73,7 @@
         },
         repeatMonths: [1], // 指明重复提醒的月份
         repeatDays: [1], // 指明重复提醒的日期
-        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题，支持“关闭”和“延迟”两种类型，其中“延迟”按钮类型需要与snoozeTimes和timeInterval参数结合使用
+        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -93,7 +93,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 300, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -110,7 +110,7 @@
         hour: 23, // 指明提醒的目标时刻
         minute: 9, // 指明提醒的目标分钟
         daysOfWeek: [2], // 指明每周哪几天需要重复提醒
-        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题，支持“关闭”和“延迟”两种类型，其中“延迟”按钮类型需要与snoozeTimes和timeInterval参数结合使用
+        actionButton: [ // 设置弹出的提醒通知信息上显示的按钮类型和标题
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -130,7 +130,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 300, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容

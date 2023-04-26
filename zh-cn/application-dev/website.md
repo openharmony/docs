@@ -377,7 +377,7 @@
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
     - [文件选择器使用指导](file-management/filepicker-guidelines.md)
-  - 任务管理
+  - 后台任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
@@ -667,7 +667,7 @@
     - [类型说明](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
-  - 组件参考（兼容JS的类Web开发范式）
+  - 组件参考（兼容JS的类Web开发范式-ArkUI.Full）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
       - [通用样式](reference/arkui-js/js-components-common-styles.md)
@@ -768,6 +768,41 @@
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
     - [动态创建组件](reference/arkui-js/js-components-create-elements.md)
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
+  - 组件参考（兼容JS的类Web开发范式-ArkUI.Lite） 
+    - 框架说明
+      - [文件组织](js-framework-file.md)
+      - [js标签配置](js-framework-js-tag.md)
+      - [app.js](js-framework-js-file.md)
+      - 语法
+        - [HML语法参考](js-framework-syntax-hml.md)
+        - [CSS语法参考](js-framework-syntax-css.md)
+        - [JS语法参考](js-framework-syntax-js.md)
+    - 组件通用信息
+      - [通用事件](js-common-events.md)
+      - [通用属性](js-common-attributes.md)
+      - [通用样式](js-common-styles.md)
+      - [动画样式](js-components-common-animation.md)
+    - 容器组件
+      - [div](js-components-container-div.md)
+      - [list](js-components-container-list.md)
+      - [list-item](js-components-container-list-item.md)
+      - [stack](js-components-container-stack.md)
+      - [swiper](js-components-container-swiper.md)
+    - 基础组件
+      - [chart](js-components-basic-chart.md)
+      - [image](js-components-basic-image.md)
+      - [image-animator](js-components-basic-image-animator.md)
+      - [input](js-components-basic-input.md)
+      - [marquee](js-components-basic-marquee.md)
+      - [picker-view](js-components-basic-picker-view.md)
+      - [progress](js-components-basic-progress.md)
+      - [qrcode](js-components-basic-qrcode.md)
+      - [slider](js-components-basic-slider.md)
+      - [switch](js-components-basic-switch.md)
+      - [text](js-components-basic-text.md)
+    - 画布组件
+      - [canvas组件](js-components-canvas-canvas.md)
+      - [CanvasRenderingContext2D对象](js-components-canvas-canvasrenderingcontext2d.md)
   - JS服务卡片UI组件参考
     - JS服务卡片UI框架说明
       - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
@@ -927,6 +962,20 @@
       - [@ohos.notification (Notification模块)(待停用)](reference/apis/js-apis-notification.md)
       - application
         - [EventHub](reference/apis/js-apis-inner-application-eventHub.md)
+      - commonEvent
+        - [CommonEventData](reference/apis/js-apis-inner-commonEvent-commonEventData.md)
+        - [CommonEventPublishData](reference/apis/js-apis-inner-commonEvent-commonEventPublishData.md)
+        - [CommonEventSubscriber](reference/apis/js-apis-inner-commonEvent-commonEventSubscriber.md)
+        - [CommonEventSubscribeInfo](reference/apis/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+      - notification
+        - [NotificationActionButton](reference/apis/js-apis-inner-notification-notificationActionButton.md)
+        - [NotificationCommonDef](reference/apis/js-apis-inner-notification-notificationCommonDef.md)
+        - [NotificationContent](reference/apis/js-apis-inner-notification-notificationContent.md)
+        - [NotificationFlags](reference/apis/js-apis-inner-notification-notificationFlags.md)
+        - [NotificationRequest](reference/apis/js-apis-inner-notification-notificationRequest.md)
+        - [NotificationSlot](reference/apis/js-apis-inner-notification-notificationSlot.md)
+        - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
+        - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -981,7 +1030,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
@@ -1229,8 +1278,9 @@
     - 资源管理
       - [I18n错误码](reference/errorcodes/errorcode-i18n.md)
       - [资源管理错误码](reference/errorcodes/errorcode-resource-manager.md)
-    - 资源调度
+    - 后台任务
       - [backgroundTaskManager错误码](reference/errorcodes/errorcode-backgroundTaskMgr.md)
+      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager错误码](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/errorcodes/errorcode-workScheduler.md)
     - 安全
@@ -1280,7 +1330,6 @@
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
       - [USB服务错误码](reference/errorcodes/errorcode-usb.md)
       - [升级错误码](reference/errorcodes/errorcode-update.md)
-      - [DeviceUsageStatistics错误码](reference/errorcodes/errorcode-DeviceUsageStatistics.md)
     - 定制管理
       - [企业设备管理错误码](reference/errorcodes/errorcode-enterpriseDeviceManager.md)
     - 语言基础类库
@@ -1416,3 +1465,4 @@
   - [IDE使用常见问题](faqs/faqs-ide.md)
   - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
   - [开发板使用常见问题](faqs/faqs-development-board.md)
+<!--no_check-->

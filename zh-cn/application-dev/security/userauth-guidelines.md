@@ -17,33 +17,12 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括查询认证�
 
 | 接口名称    | 功能描述                |
 | ---------- | ----------------------- |
-| getVersion() : number      | 获取认证对象的版本信息。            |
 | getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | 根据指定的认证类型、认证等级，检测当前设备是否支持相应的认证能力。 |
 | getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance | 获取AuthInstance对象，用于执行用户身份认证。 |
 | on(name : AuthEventKey, callback : AuthEvent) : void | 订阅指定类型的用户认证事件。 |
 | off(name : AuthEventKey) : void | 取消订阅特定类型的认证事件。 |
 | start: void  | 执行用户认证。        |
 | cancel: void | 取消本次认证操作。    |
-
-## 获取认证对象的版本信息
-
-### 开发步骤
-
-1. 申请权限。调用[getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9)接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_BIOMETRIC权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
-
-2. 调用[getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9)接口获取版本信息。
-
-    ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    // 获取版本信息
-    try {
-        let version = userIAM_userAuth.getVersion();
-        console.info("auth version = " + version);
-    } catch (error) {
-        console.info("get version failed, error = " + error);
-    }
-    ```
 
 ## 查询当前设备是否支持相应的认证能力
 

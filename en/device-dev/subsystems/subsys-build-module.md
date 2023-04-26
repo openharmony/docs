@@ -369,7 +369,7 @@ The following figure shows the logic for adding a module. Generally, you need to
 
 - Add a module to a new subsystem.
 
-  ![](figure/module_addition_process.png)
+  ![](figures/module_addition_process.png)
 
 **Adding a Module to an Existing Component**
 

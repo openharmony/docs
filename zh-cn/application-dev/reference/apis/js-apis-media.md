@@ -350,7 +350,7 @@ Codec MIME类型枚举。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-playback.md)。
+Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
 
 ### 属性<a name=avplayer_属性></a>
 
@@ -371,6 +371,10 @@ Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-pla
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
 | width<sup>9+</sup>                                  | number                                                       | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | height<sup>9+</sup>                                 | number                                                       | 是   | 否   | 视频高，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
+
+**说明：**
+
+将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个媒体播放器。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
 
 ### on('stateChange')<sup>9+</sup><a name = stateChange_on></a>
 
@@ -470,9 +474,9 @@ AVPlayer回调的**错误分类**<a name = error_info></a>可以分为以下几�
 | 801      | Unsupport Capability: | 不支持该API能力，表示调用无效。                              |
 | 5400101  | No Memory:            | 播放内存不足，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400102  | Operate Not Permit:   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error:             | 播放中发现码流异常。                                         |
+| 5400103  | IO Error:             | 播放中发现码流异常，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 | 5400104  | Network Timeout:      | 网络原因超时响应，[AVPlayerState](#avplayerstate9)会进入error状态。 |
-| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态。 |
+| 5400105  | Service Died:         | 播放进程死亡，[AVPlayerState](#avplayerstate9)会进入error状态，需要调用release后重新创建实例。 |
 | 5400106  | Unsupport Format:     | 不支持的文件格式，[AVPlayerState](#avplayerstate9)会进入error状态。 |
 
 **示例：**
@@ -927,6 +931,14 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```js
+printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
+
 avPlayer.getTrackDescription((error, arrList) => {
     if ((arrList) != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -964,6 +976,14 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 ```js
 let arrayDescription;
+
+printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
 avPlayer.getTrackDescription().then((arrList) => {
     if (arrList != null) {
         arrayDescription = arrList;
@@ -1118,7 +1138,7 @@ setBitrate(bitrate: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#availableBitrates_on)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。 |
+| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#availableBitrates_on)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates时间获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
 
 **示例：**
 
@@ -1183,7 +1203,7 @@ on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): voi
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | HLS协议可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
-| callback | function | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。 |
+| callback | function | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
 
 **示例：**
 
@@ -1553,6 +1573,8 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```js
+import audio from '@ohos.multimedia.audio';
+
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
     console.info('audioInterrupt success,and InterruptEvent info is:' + info)
 })
@@ -1580,7 +1602,7 @@ avPlayer.off('audioInterrupt')
 
 ## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#stateChange_on)事件上报当前状态，状态机之间的切换规则，可参考[AVPlayer播放器开发指导](../../media/avplayer-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#stateChange_on)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1687,7 +1709,11 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过createAVRecorder()构建一个AVRecorder实例。
 
-音视频录制demo可参考：[音视频录制开发指导](../../media/avrecorder.md)
+音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
+
+> **说明：**
+>
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 ### 属性
 
@@ -1740,7 +1766,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -1754,7 +1780,7 @@ let AVRecorderConfig = {
     location : { latitude : 30, longitude : 130 }
 }
 
-AVRecorder.prepare(AVRecorderConfig, (err) => {
+avRecorder.prepare(AVRecorderConfig, (err) => {
     if (err == null) {
         console.info('prepare success');
     } else {
@@ -1811,7 +1837,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -1825,7 +1851,7 @@ let AVRecorderConfig = {
     location : { latitude : 30, longitude : 130 }
 }
 
-AVRecorder.prepare(AVRecorderConfig).then(() => {
+avRecorder.prepare(AVRecorderConfig).then(() => {
     console.info('prepare success');
 }).catch((err) => {
     console.info('prepare failed and catch error is ' + err.message);
@@ -1866,7 +1892,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 ```js
 let surfaceID = null; // 该surfaceID用于传递给相机接口创造videoOutput
 
-AVRecorder.getInputSurface((err, surfaceId) => {
+avRecorder.getInputSurface((err, surfaceId) => {
     if (err == null) {
         console.info('getInputSurface success');
         surfaceID = surfaceId;
@@ -1874,8 +1900,6 @@ AVRecorder.getInputSurface((err, surfaceId) => {
         console.info('getInputSurface failed and error is ' + err.message);
     }
 });
-
-// videoOutput = await cameraManager.createVideoOutput(videoProfiles[0], surfaceID);
 
 ```
 
@@ -1912,14 +1936,12 @@ getInputSurface(): Promise\<string>
 ```js
 let surfaceID = null; // 该surfaceID用于传递给相机接口创造videoOutput
 
-AVRecorder.getInputSurface().then((surfaceId) => {
+avRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
 }).catch((err) => {
     console.info('getInputSurface failed and catch error is ' + err.message);
 });
-
-// videoOutput = await cameraManager.createVideoOutput(videoProfiles[0], surfaceID);
 ```
 
 ### start<sup>9+</sup><a name=avrecorder_start></a>
@@ -1951,7 +1973,7 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.start((err) => {
+avRecorder.start((err) => {
     if (err == null) {
         console.info('start AVRecorder success');
     } else {
@@ -1989,7 +2011,7 @@ start(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.start().then(() => {
+avRecorder.start().then(() => {
     console.info('start AVRecorder success');
 }).catch((err) => {
     console.info('start AVRecorder failed and catch error is ' + err.message);
@@ -2025,7 +2047,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.pause((err) => {
+avRecorder.pause((err) => {
     if (err == null) {
         console.info('pause AVRecorder success');
     } else {
@@ -2063,7 +2085,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.pause().then(() => {
+avRecorder.pause().then(() => {
     console.info('pause AVRecorder success');
 }).catch((err) => {
     console.info('pause AVRecorder failed and catch error is ' + err.message);
@@ -2099,7 +2121,7 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.resume((err) => {
+avRecorder.resume((err) => {
     if (err == null) {
         console.info('resume AVRecorder success');
     } else {
@@ -2137,7 +2159,7 @@ resume(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.resume().then(() => {
+avRecorder.resume().then(() => {
     console.info('resume AVRecorder success');
 }).catch((err) => {
     console.info('resume AVRecorder failed and catch error is ' + err.message);
@@ -2175,7 +2197,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.stop((err) => {
+avRecorder.stop((err) => {
     if (err == null) {
         console.info('stop AVRecorder success');
     } else {
@@ -2215,7 +2237,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.stop().then(() => {
+avRecorder.stop().then(() => {
     console.info('stop AVRecorder success');
 }).catch((err) => {
     console.info('stop AVRecorder failed and catch error is ' + err.message);
@@ -2250,7 +2272,7 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.reset((err) => {
+avRecorder.reset((err) => {
     if (err == null) {
         console.info('reset AVRecorder success');
     } else {
@@ -2287,7 +2309,7 @@ reset(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.reset().then(() => {
+avRecorder.reset().then(() => {
     console.info('reset AVRecorder success');
 }).catch((err) => {
     console.info('reset AVRecorder failed and catch error is ' + err.message);
@@ -2321,7 +2343,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-AVRecorder.release((err) => {
+avRecorder.release((err) => {
     if (err == null) {
         console.info('release AVRecorder success');
     } else {
@@ -2357,7 +2379,7 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-AVRecorder.release().then(() => {
+avRecorder.release().then(() => {
     console.info('release AVRecorder success');
 }).catch((err) => {
     console.info('release AVRecorder failed and catch error is ' + err.message);
@@ -2382,9 +2404,8 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 **示例：**
 
 ```js
-AVRecorder.on('stateChange', async (state, reason) => {
+avRecorder.on('stateChange', async (state, reason) => {
     console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
-    }
 });
 ```
 
@@ -2405,7 +2426,7 @@ off(type: 'stateChange'): void
 **示例：**
 
 ```js
-AVRecorder.off('stateChange');
+avRecorder.off('stateChange');
 ```
 
 ### on('error')<sup>9+</sup><a name=avrecorder_onerror></a>
@@ -2437,7 +2458,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
-AVRecorder.on('error', (err) => {
+avRecorder.on('error', (err) => {
     console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
 ```
@@ -2468,7 +2489,7 @@ off(type: 'error'): void
 **示例：**
 
 ```js
-AVRecorder.off('error');
+avRecorder.off('error');
 ```
 
 ## AVRecorderState<sup>9+</sup>
@@ -2518,7 +2539,7 @@ AVRecorder.off('error');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。                             |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填。                         |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前仅支持VIDEO_AVC和VIDEO_MPEG4。 |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。需要查询设备支持的编码能力（包括编码格式，分辨率大小等）。 |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填。                             |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填。                             |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填。                               |
@@ -2574,8 +2595,6 @@ AVRecorder.off('error');
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
 
-视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
-
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
@@ -2627,7 +2646,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -2698,7 +2717,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -3770,7 +3789,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs';
 
 let audioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
@@ -3814,15 +3833,15 @@ audioPlayer.on('error', (error) => {           //设置'error'事件回调
 let fdPath = 'fd://';
 // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fileio.open(path).then((fdValue) => {
-   fdPath = fdPath + '' + fdValue;
+fs.open(path).then((file) => {
+   fdPath = fdPath + '' + file.fd;
    console.info('open fd success fd is' + fdPath);
+   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 }, (err) => {
    console.info('open fd failed err is' + err);
 }).catch((err) => {
    console.info('open fd failed err is' + err);
 });
-audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 ```
 
 ### on('timeUpdate')
@@ -3900,8 +3919,6 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 > 从API version 8开始支持，从API version 9开始废弃，建议使用[AVPlayer](#avplayer9)替代。
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
-
-视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
 
 ### 属性<a name=videoplayer_属性></a>
 
@@ -4720,8 +4737,6 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
 
 音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个AudioRecorder实例。
-
-音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
 ### prepare<a name=audiorecorder_prepare></a>
 

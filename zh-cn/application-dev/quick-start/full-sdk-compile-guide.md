@@ -1,4 +1,4 @@
-# full-SDK编译指南
+# 如何编译full-SDK
 
 **full-SDK**是提供OpenHarmony全量接口的SDK，包含了系统应用所需要的高权限API，用于厂商开发应用。
 
@@ -22,9 +22,9 @@
 4. 编译：./build.sh --product-name ohos-sdk
 
 
-编译成功后导出即可
+编译成功后导出out/sdk/packages/ohos-sdk/目录下的文件即可
 
 ## 替换SDK
 
-full-SDK编译完成后需要在DevEcoStudio替换使用，具体请参考[full-SDK替换指南](../../application-dev/quick-start/full-sdk-switch-guide.md)。
+full-SDK编译完成后需要在DevEcoStudio替换使用，具体请参考[full-SDK替换指南](full-sdk-switch-guide.md)。
 

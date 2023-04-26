@@ -496,7 +496,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用。
+允许应用安装、卸载其他应用（除了企业InHouse应用）。
 
 **权限级别**：system_core
 
@@ -957,6 +957,36 @@
 ## ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 允许设备管理员设置账户管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+允许设备管理员设置包安装管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
+
+允许设备管理员设置应用运行管理策略。
 
 **权限级别**：system_basic
 
@@ -1618,6 +1648,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+允许应用获取端云同步管理能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+允许应用使用端云同步能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -1715,5 +1765,65 @@
 **权限级别**：system_basic
 
 **授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
+
+允许系统服务访问蜂窝通话SA。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.CONNECT_IMS_SERVICE
+
+允许系统服务访问IMS SA。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
+
+允许应用使用超声波感知。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+允许应用安装、卸载其他企业InHouse应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+允许应用代理授权URI。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
 
 **ACL使能**：TRUE

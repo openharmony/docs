@@ -16,7 +16,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 | Permission                                | Permission Level   | Description                          |
 | ------------------------------------ | ----------- | ------------------------------ |
-| ohos.permission.LISTEN_BUNDLE_CHANGE | system_core | Permission to listen for bundle installation, uninstall, and updates.|
+| ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | Permission to listen for bundle installation, uninstall, and updates.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
@@ -24,7 +24,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name      | Template  | Readable| Writable| Description                      |
 | ---------- | ------ | ---- | ---- | -------------------------- |
@@ -33,13 +33,13 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md).
 
 ## bundleMonitor.on
 
-on(type: BundleChangedEvent, callback: callback\<BundleChangedInfo>): void;
+on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void;
 
 Subscribes to bundle installation, uninstall, and update events.
 
 **Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -66,13 +66,13 @@ try {
 
 ## bundleMonitor.off
 
-off(type: BundleChangedEvent, callback?: callback\<BundleChangedInfo>): void;
+off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void;
 
 Unsubscribes from bundle installation, uninstall, and update events.
 
 **Required permissions**: ohos.permission.LISTEN_BUNDLE_CHANGE
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

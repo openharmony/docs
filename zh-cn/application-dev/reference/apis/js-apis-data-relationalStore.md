@@ -1,12 +1,12 @@
 # @ohos.data.relationalStore (关系型数据库)
 
-关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
 
 该模块提供以下关系型数据库相关的常用功能：
 
 - [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
 - [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
-- [Resultset](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
@@ -30,7 +30,7 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 | 参数名   | 类型                                           | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                                        | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | config   | [StoreConfig](#storeconfig)               | 是   | 与此RDB存储相关的数据库配置。                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是   | 指定callback回调函数，返回RdbStore对象。                   |
 
@@ -108,7 +108,7 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 | 参数名  | 类型                             | 必填 | 说明                                                         |
 | ------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context                          | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | config  | [StoreConfig](#storeconfig) | 是   | 与此RDB存储相关的数据库配置。                                |
 
 **返回值**：
@@ -188,7 +188,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context  | Context                   | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                    | 是   | 数据库名称。                                                 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。                                       |
 
@@ -249,7 +249,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是   | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | name    | string  | 是   | 数据库名称。                                                 |
 
 **返回值**：
@@ -316,6 +316,10 @@ class EntryAbility extends UIAbility {
 ## SecurityLevel
 
 数据库的安全级别枚举。
+
+> **说明：**
+>
+> 若需要进行同步操作，数据库安全等级应不高于对端设备安全等级，具体可见[跨设备同步访问控制机制](../../database/sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -414,8 +418,11 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-
 同步分布式数据库时连接到组网内指定的远程设备。
+
+> **说明：**
+>
+> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -434,8 +441,24 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices
@@ -1227,7 +1250,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
 ### 属性<sup>10+</sup>
 
@@ -1261,6 +1284,14 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 | table    | string                        | 是   | 指定的目标表名。                                           |
 | values   | [ValuesBucket](#valuesbucket) | 是   | 表示要插入到表中的数据行。                                 |
 | callback | AsyncCallback&lt;number&gt;   | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1296,6 +1327,14 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
 | conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                         |
 | callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1336,6 +1375,14 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1375,6 +1422,14 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1407,6 +1462,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 | table    | string                                     | 是   | 指定的目标表名。                                             |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。                                 |
 | callback | AsyncCallback&lt;number&gt;                | 是   | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1461,6 +1524,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1508,6 +1579,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1544,6 +1623,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
 | conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1586,6 +1673,14 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1627,6 +1722,14 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1664,6 +1767,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1710,6 +1821,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1745,6 +1864,14 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1779,6 +1906,14 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
@@ -1809,6 +1944,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | table      | string                                                       | 是   | 指定的目标表名。                              |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -1847,6 +1990,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -2008,24 +2159,42 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据。使用callback异步回调。
 
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                                                        |
-| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| device     | string                                                       | 是   | 指定的远程设备的networkId。                                 |
-| table      | string                                                       | 是   | 指定的目标表名。                                            |
-| predicates | [RdbPredicates](#rdbpredicates)                         | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
-| columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
+| 参数名     | 类型                                         | 必填 | 说明                                                      |
+| ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
+| device     | string                                       | 是   | 指定的远程设备ID。                                        |
+| table      | string                                       | 是   | 指定的目标表名。                                          |
+| predicates | [RdbPredicates](#rdbpredicates)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
+| columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
       console.error(`Failed to remoteQuery, err: ${err}`);
@@ -2043,13 +2212,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
 
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
 | 参数名     | 类型                                 | 必填 | 说明                                             |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| device     | string                               | 是   | 指定的远程设备的networkId。                      |
+| device     | string                               | 是   | 指定的远程设备ID。                   |
 | table      | string                               | 是   | 指定的目标表名。                                 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象，指定查询的条件。      |
 | columns    | Array&lt;string&gt;                  | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
@@ -2063,9 +2236,23 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2084,11 +2271,11 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sql      | string                                                       | 是   | 指定要执行的SQL语句。                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | 是   | SQL语句中参数的值。                                         |
-| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
 
 **示例：**
 
@@ -2113,10 +2300,10 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -2127,7 +2314,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **示例：**
 
 ```js
-let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo']);
+let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2146,22 +2333,30 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                   |
-| -------- | ------------------------------------ | ---- | ---------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。  |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。    |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。 |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-store.executeSql(SQL_CREATE_TABLE, null, function(err) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
     console.error(`ExecuteSql failed, err: ${err}`);
     return;
   }
-  console.info(`Create table done.`);
+  console.info(`Delete table done.`);
 })
 ```
 
@@ -2175,10 +2370,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -2186,13 +2381,21 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = store.executeSql(SQL_CREATE_TABLE);
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Create table done.`);
+    console.info(`Delete table done.`);
 }).catch((err) => {
     console.error(`ExecuteSql failed, err: ${err}`);
 })
@@ -2205,6 +2408,14 @@ beginTransaction():void
 在开始执行SQL语句之前，开始事务。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **示例：**
 
@@ -2488,7 +2699,11 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2498,14 +2713,28 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| device   | string                      | 是   | 远程设备 。                                                  |
-| table    | string                      | 是   | 本地表名。                                                   |
+| device   | string                      | 是   | 远程设备ID 。                                                |
+| table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
 **示例：**
 
 ```js
-store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.error(`ObtainDistributedTableName failed, err: ${err}`);
         return;
@@ -2518,7 +2747,11 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+根据远程设备的本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
+
+> **说明：**
+>
+> 其中device通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2526,10 +2759,10 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明       |
-| ------ | ------ | ---- | ---------- |
-| device | string | 是   | 远程设备。 |
-| table  | string | 是   | 本地表名。 |
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| device | string | 是   | 远程设备ID。         |
+| table  | string | 是   | 远程设备的本地表名。 |
 
 **返回值**：
 
@@ -2540,7 +2773,21 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 **示例：**
 
 ```js
-let promise = store.obtainDistributedTableName("12345678abcde", "EMPLOYEE");
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
@@ -2569,8 +2816,24 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
     console.error(`Sync failed, err: ${err}`);
@@ -2609,12 +2872,28 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 **示例：**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
-promise.then((resultSet) =>{
+promise.then((result) =>{
   console.info(`Sync done.`);
-  for (let i = 0; i < resultSet.length; i++) {
+  for (let i = 0; i < result.length; i++) {
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
@@ -2693,10 +2972,12 @@ try {
 首先需要获取resultSet对象。
 
 ```js
+let resultSet = null;
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("AGE", 18);
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
-promise.then((resultSet) => {
+promise.then((result) => {
+  resultSet = result;
   console.info(`resultSet columnNames: ${resultSet.columnNames}`);
   console.info(`resultSet columnCount: ${resultSet.columnCount}`);
 });
@@ -2867,7 +3148,7 @@ goToRow(position: number): boolean
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 let promise = store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
-  resultSet.(5);
+  resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
   console.error(`query failed, err: ${err}`);

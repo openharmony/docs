@@ -45,7 +45,7 @@ The following table provides only a brief description of related APIs. For detai
 
 The following example illustrates how to log and subscribe to button click events of users.
 
-1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to subscribe to button click events. The complete sample code is as follows: 
+1. Create an ArkTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **entryability** > **EntryAbility.ts**, and double-click **EntryAbility.ts**. Then, add an event watcher to subscribe to button click events. The complete sample code is as follows: 
 
    ```js
    import hilog from '@ohos.hilog';
@@ -146,9 +146,3 @@ The following example illustrates how to log and subscribe to button click event
    HiAppEvent eventPkg.size=124
    HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1670268234523,"tz_":"+0800","pid_":3295,"tid_":3309,"click_time":100}
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the application event logging feature:
-
-- [`JsDotTest`: Event Logging (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)

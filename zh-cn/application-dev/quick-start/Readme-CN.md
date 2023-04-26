@@ -4,14 +4,13 @@
   - [开发准备](start-overview.md)
   - [使用ArkTS语言开发（Stage模型）](start-with-ets-stage.md)
   - [使用ArkTS语言开发（FA模型）](start-with-ets-fa.md)
-  - [使用JS语言开发（FA模型）](start-with-js-fa.md)  
+  - [使用JS语言开发（FA模型）](start-with-js-fa.md)
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
     - 应用程序包结构
       - [Stage模型应用程序包结构](application-package-structure-stage.md)
       - [FA模型应用程序包结构](application-package-structure-fa.md)
-      - [HAR包结构](har-structure.md)
     - 应用程序包多HAP机制
       - [多HAP机制设计目标](multi-hap-objective.md)
       - [多HAP构建视图](multi-hap-build-view.md)
@@ -20,6 +19,15 @@
       - [多HAP运行机制及数据通信方式](multi-hap-principles.md)
     - [应用程序包安装和卸载流程](application-package-install-uninstall.md)
     - [应用程序包更新流程](application-package-update.md)
+    - 共享包
+      - [共享包概述](shared-guide.md)
+      - [HAR](har-package.md)
+      - HSP
+        - [应用内HSP开发指导](in-app-hsp.md)
+        - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
+    - 原子化服务
+      - [原子化服务开发指导](atomicService.md)
+      - [原子化服务空间管理（仅对系统应用开放）](atomicService-aging.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复调试指导](quickfix-debug.md)
@@ -35,12 +43,37 @@
   - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
-  - ArkTS语法（声明式UI）
-    - [基本UI描述](arkts-basic-ui-description.md)
-    - 状态管理
-      - [基本概念](arkts-state-mgmt-concepts.md)
-      - [页面级变量的状态管理](arkts-state-mgmt-page-level.md)
-      - [应用级变量的状态管理](arkts-state-mgmt-application-level.md)
-    - [动态构建UI元素](arkts-dynamic-ui-elememt-building.md)
-    - [渲染控制](arkts-rendering-control.md)
-    - [使用限制与扩展](arkts-restrictions-and-extensions.md)
+  - 基本语法
+    - [基本语法概述](arkts-basic-syntax-overview.md)
+    - [声明式UI描述](arkts-declarative-ui-description.md)
+    - 自定义组件
+      - [创建自定义组件](arkts-create-custom-components.md)
+      - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+    - [\@Builder：自定义构建函数](arkts-builder.md)
+    - [\@BuilderParam：引用\@Builder函数](arkts-builderparam.md)
+    - [\@Styles：定义组件重用样式](arkts-style.md)
+    - [\@Extend：定义扩展组件样式](arkts-extend.md)
+    - [stateStyles：多态样式](arkts-statestyles.md)
+  - 状态管理
+    - [状态管理概述](arkts-state-management-overview.md)
+    - 管理组件拥有的状态
+      - [\@State：组件内状态](arkts-state.md)
+      - [\@Prop：父子单向同步](arkts-prop.md)
+      - [\@Link：父子双向同步](arkts-link.md)
+      - [\@Provide和\@Consume：与后代组件双向同步](arkts-provide-and-consume.md)
+      - [\@Observed和\@ObjectLink：嵌套类对象属性变化](arkts-observed-and-objectlink.md)
+    - 管理应用拥有的状态
+      - [管理应用拥有的状态概述](arkts-application-state-management-overview.md)
+      - [LocalStorage：页面级UI状态存储](arkts-localstorage.md)
+      - [AppStorage：应用全局的UI状态存储](arkts-appstorage.md)
+      - [PersistentStorage：持久化存储UI状态](arkts-persiststorage.md)
+      - [Environment：设备环境查询](arkts-environment.md)
+    - 其他状态管理
+      - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
+      - [\@Watch：状态变量更改通知](arkts-watch.md)
+      - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
+  - 渲染控制
+    - [渲染控制概述](arkts-rendering-control-overview.md)
+    - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
+    - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
+    - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)

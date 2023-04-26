@@ -11,7 +11,7 @@ This section describes some basic concepts for you to better understand the Open
 The ability management framework manages running status of OpenHarmony applications.
 
 **Figure  1**  Architecture of the ability management framework<a name="fig9759195514371"></a>  
-![](figure/architecture-of-the-ability-management-framework.png "architecture-of-the-ability-management-framework")
+![](figures/architecture-of-the-ability-management-framework.png "architecture-of-the-ability-management-framework")
 
 -   **Ability**  is the minimum unit for the system to schedule applications. It is a component that can implement an independent functionality. An application can contain one or more  **Ability**  instances. There are two types of templates that you can use to create an  **Ability**  instance: Page and Service.
     -   An  **Ability using the Page template**  \(Page ability for short\) provides a UI for interacting with users.
@@ -23,14 +23,14 @@ The ability management framework manages running status of OpenHarmony applicati
 -   An  **AbilitySlice**  represents a single screen and its control logic. It is specific to Page abilities. A Page ability may contain one ability slice or multiple ability slices that provide highly relevant capabilities.
 
     **Figure  2**  Relationship between a Page ability and its ability slices<a name="fig1065819910347"></a>  
-    ![](figure/relationship-between-a-page-ability-and-its-ability-slices.png "relationship-between-a-page-ability-and-its-ability-slices")
+    ![](figures/relationship-between-a-page-ability-and-its-ability-slices.png "relationship-between-a-page-ability-and-its-ability-slices")
 
 -   **Lifecycle**  is a general term for all states of an ability, including  **INITIAL**,  **INACTIVE**,  **ACTIVE**, and  **BACKGROUND**.
 
     **Figure  3**  Lifecycle state transition of a Page ability<a name="fig56111543375"></a>  
     
 
-    ![](figure/fig1.png)
+    ![](figures/fig1.png)
 
     -   **OnStart\(\)**
 
@@ -88,7 +88,7 @@ The ability management framework manages running status of OpenHarmony applicati
 The bundle management framework is provided by OpenHarmony for you to manage application bundles.
 
 **Figure  4**  Architecture of the bundle management framework<a name="fig85883251434"></a>  
-![](figure/architecture-of-the-bundle-management-framework.png "architecture-of-the-bundle-management-framework")
+![](figures/architecture-of-the-bundle-management-framework.png "architecture-of-the-bundle-management-framework")
 
 -   **BundleKit**  includes external APIs provided by the Bundle Manager Service, including the APIs for application installation and uninstallation, bundle information query, and bundle state change listeners.
 -   The  **bundle scanning sub-module**  parses pre-installed or installed bundles on the local device and extracts information from them for the bundle management module to manage and make the information persistent for storage.
@@ -104,12 +104,12 @@ The bundle management framework is provided by OpenHarmony for you to manage app
 The Ability Manager Service and Bundle Manager Service are the core modules of the ability management framework and bundle management framework, respectively. The two system-level services are registered and discovered by using the system service framework SAMgr, and they are used by manage abilities and bundles for other processes. The Ability Manager Service and Bundle Manager Service are provided as open APIs in the AbilityKit and BundleKit.
 
 **Figure  5**  Startup of the Ability Manager Service and Bundle Manager Service<a name="fig13121104711910"></a>  
-![](figure/startup-of-the-ability-manager-service-and-bundle-manager-service.png "startup-of-the-ability-manager-service-and-bundle-manager-service")
+![](figures/startup-of-the-ability-manager-service-and-bundle-manager-service.png "startup-of-the-ability-manager-service-and-bundle-manager-service")
 
 OpenHarmony applications can be installed and started after the two services are started.
 
 **Figure  6**  Application startup process<a name="fig756104112311"></a>  
-![](figure/application-startup-process.png "application-startup-process")
+![](figures/application-startup-process.png "application-startup-process")
 
 The home screen is the first OpenHarmony application started by the Ability Manager Service. After the home screen is started, the user can touch any installed OpenHarmony application on the home screen to start the particular application. The figure above shows the interaction process of starting an installed application from the home screen.
 

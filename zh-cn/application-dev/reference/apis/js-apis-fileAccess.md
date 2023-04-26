@@ -6,6 +6,7 @@ fileAccess模块是基于extension机制实现的一个对公共文件访问和�
 >
 >- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >- 本模块接口为系统接口，三方应用不支持调用，当前只支持filepicker、文件管理器调用。
+>- 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
@@ -1017,6 +1018,492 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
   };
   ```
 
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string) : Promise<FileInfo>;
+
+以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 文件(夹)的Uri |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| [FileInfo](#fileinfo) | FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+
+getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
+
+以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | uri | string | 是 | 文件(夹)的Uri |
+  | callback | AsyncCallback&lt;string&gt; | 是 | uri对应的FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库uri为例
+  // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
+  // 开发者应根据自己实际获取的uri进行开发
+  let sourceUri = "datashare:///media/file/6";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
+
+以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | relativePath | string | 是 | 文件(夹)的相对路径 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| [FileInfo](#fileinfo) | FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库relativePath为例
+  // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
+  // 开发者应根据自己实际获取的relativePath进行开发
+  let relativePath = "Download/";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+
+getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileInfo>) : void;
+
+以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | --- | -- |
+  | relativePath | string | 是 | 文件(夹)的相对路径 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | relativePath对应的FileInfo对象 |
+
+**示例：**
+
+  ```js
+  // 以媒体库relativePath为例
+  // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
+  // 开发者应根据自己实际获取的relativePath进行开发
+  let relativePath = "Download/";
+  try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getFileInfoFromRelativePath(relativePath, function (err, fileInfo) {
+      if (err) {
+        console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
+        return;
+      }
+      console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+    });
+  } catch (error) {
+    console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
+  };
+  ```
+
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
+
+通过指定uri和尺寸获取媒体文件的Pixelmap对象，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明        |
+| ------ | ----------------------------------- | ---- | ----------- |
+| uri    | string                              | 是   | 媒体文件uri |
+| size   | [image.Size](js-apis-image.md#size) | 是   | 缩略图尺寸  |
+
+**返回值：**
+
+| 类型                          | 说明               |
+| :---------------------------- | :----------------- |
+| Promise&lt;image.PixelMap&gt; | 返回的Pixelmap对象 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
+// 开发者应根据自己实际获取的uri进行开发
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let pixelMap = await fileAccessHelper.getThumbnail(targetUri, size);
+  let imageInfo = await pixelMap.getImageInfo();    
+  console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+  console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+} catch (error) {
+  console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
+
+## FileAccessHelper.getThumbnail<sup>10+</sup>
+
+ getThumbnail(uri: string, size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;) : void
+
+通过指定uri和尺寸获取媒体文件的Pixelmap对象，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明               |
+| -------- | ----------------------------------- | ---- | ------------------ |
+| uri      | string                              | 是   | 媒体文件uri        |
+| size     | [image.Size](js-apis-image.md#size) | 是   | 缩略图尺寸         |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 返回的Pixelmap对象 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
+// 开发者应根据自己实际获取的uri进行开发
+let targetUri = "datashare:///media/image/100";
+let size = { width: 128, height: 128 };
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.getThumbnail(targetUri, size, async(err, pixelMap) => {
+        if (err) {
+            console.error("Failed to getThumbnail in async, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        let imageInfo = await pixelMap.getImageInfo();
+        console.log("getThumbnail sucess, pixelMap.width: " + imageInfo.size.width);
+        console.log("getThumbnail sucess, pixelMap.height: " + imageInfo.size.height);
+    });
+} catch (error) {
+    console.error("getThumbnail failed, errCode:" + error.code + ", errMessage:" + error.message);
+};
+```
+
+## FileAccessHelper.query<sup>10+</sup>
+
+query(uri:string, metaJson: string) : Promise&lt;string&gt;
+
+通过uri查询文件或目录的相关信息，使用Promise异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                 |
+| -------- | ------ | ---- | ---------------------------------------------------- |
+| uri      | string | 是   | 所选文件或目录的uri（从[FileInfo](#fileinfo)中获取） |
+| metaJson | string | 是   | json字符串，包含查询属性[FILEKEY](#filekey10)        |
+
+**返回值：**
+
+| 类型                  | 说明                             |
+| :-------------------- | :------------------------------- |
+| Promise&lt;string&gt; | 返回json字符串，包括查询属性和值 |
+
+**示例：**
+
+```js
+var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    var fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+    let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
+    console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+} catch (error) {
+     console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
+};
+```
+
+## FileAccessHelper.query<sup>10+</sup>
+
+query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : void
+
+通过uri查询文件或目录的相关信息，使用callback异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                 |
+| -------- | --------------------------- | ---- | ---------------------------------------------------- |
+| uri      | string                      | 是   | 所选文件或目录的uri（从[FileInfo](#fileinfo)中获取） |
+| metaJson | string                      | 是   | json字符串，包含查询属性[FILEKEY](#filekey10)        |
+| callback | AsyncCallback&lt;string&gt; | 是   | 返回json字符串，包括查询属性和值                     |
+
+**示例：**
+
+```js
+var imageFileRelativePath = "Download/queryTest/image/01.jpg";
+var jsonStrSingleRelativepath = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    var fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+    fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err, queryResult)=>{
+        if (err) {
+            console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+    })
+} catch (error) {
+   console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
+};
+```
+
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;CopyResult&gt;&gt;
+
+复制文件或目录，使用 Promise 异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
+| destUri   | string  | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| force     | boolean | 否   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
+
+**返回值：**
+
+| 类型                                                    | 说明                                                         |
+| :------------------------------------------------------ | :----------------------------------------------------------- |
+| Promise&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例 1：force 为空**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
+    if (copyResult.length === 0) {
+        console.log("copy success");
+    } else {
+        for (let i = 0; i < copyResult.length; i++) {
+            console.error("errCode" + copyResult[i].errCode);
+            console.error("errMsg" + copyResult[i].errMsg);
+            console.error("sourceUri" + copyResult[i].sourceUri);
+            console.error("destUri" + copyResult[i].destUri);
+        }
+    }
+} catch (error) {
+    console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+**示例 2：force 为 true**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
+    if (copyResult.length === 0) {
+        console.log("copy success");
+    } else {
+        for (let i = 0; i < copyResult.length; i++) {
+            console.error("errCode" + copyResult[i].errCode);
+            console.error("errMsg" + copyResult[i].errMsg);
+            console.error("sourceUri" + copyResult[i].sourceUri);
+            console.error("destUri" + copyResult[i].destUri);
+        }
+    }
+} catch (error) {
+    console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
+
+复制文件或目录，使用 callback 异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                             | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
+        if (err) {
+            console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        if (copyResult.length === 0) {
+            console.log("copy success");
+        } else {
+            for (let i = 0; i < copyResult.length; i++) {
+                console.error("errCode" + copyResult[i].errCode);
+                console.error("errMsg" + copyResult[i].errMsg);
+                console.error("sourceUri" + copyResult[i].sourceUri);
+                console.error("destUri" + copyResult[i].destUri);
+            }
+        }
+    });
+} catch (error) {
+    console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
+## FileAccessHelper.copy<sup>10+</sup>
+
+copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
+
+复制文件或目录，使用 callback 异步回调。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名    | 类型                                             | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| force     | boolean                                          | 是   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
+| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
+
+**示例：**
+
+```js
+// 以媒体库uri为例
+// 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
+// 开发者应根据自己实际获取的uri进行开发
+let sourceFile = "datashare:///media/file/102";
+let destFile = "datashare:///media/file/101";
+try {
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {
+        if (err) {
+            console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
+            return;
+        }
+        if (copyResult.length === 0) {
+            console.log("copy success");
+        } else {
+            for (let i = 0; i < copyResult.length; i++) {
+                console.error("errCode" + copyResult[i].errCode);
+                console.error("errMsg" + copyResult[i].errMsg);
+                console.error("sourceUri" + copyResult[i].sourceUri);
+                console.error("destUri" + copyResult[i].destUri);
+            }
+        }
+    });
+} catch (error) {
+    console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
 ## RootIterator.next
 
 next( ) : { value: RootInfo, done: boolean }
@@ -1063,6 +1550,7 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | ------ | ------ | -------- | ------ | -------- |
 | deviceType | number | 是 | 否 |设备类型 |
 | uri | string | 是 | 否 | 设备根目录Uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径 |
 | displayName | string | 是 | 否 | 设备名称 |
 | deviceFlags | number | 是 | 否 | 设备支持的能力 |
 
@@ -1079,11 +1567,29 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | 名称 | 类型   | 可读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | 是 | 否 | 文件(夹)的uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径 |
 | fileName | string | 是 | 否 | 文件(夹)的名称 |
 | mode | number | 是 | 否 | 文件(夹)的权限信息 |
 | size | number | 是 | 否 |  文件(夹)的大小 |
 | mtime | number | 是 | 否 |  文件(夹)的修改时间 |
 | mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型 |
+
+## CopyResult<sup>10+</sup>
+
+表示复制操作失败时的返回信息，复制成功时则没有返回信息。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### 属性
+
+| 名称      | 类型   | 可读 | 可写 | 说明                                                   |
+| --------- | ------ | ---- | ---- | ------------------------------------------------------ |
+| sourceUri | string | 是   | 否   | 源文件(夹) uri                                         |
+| destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空 |
+| errCode   | number | 是   | 否   | 错误码                                                 |
+| errMsg    | string | 是   | 否   | 错误信息                                               |
 
 ## OPENFLAGS
 
@@ -1096,3 +1602,20 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 | READ | 0o0 | 读模式。 |
 | WRITE | 0o1 | 写模式。 |
 | WRITE_READ | 0o2 | 读写模式。 |
+
+## FILEKEY<sup>10+</sup>
+
+支持查询的键。
+
+**系统能力：** SystemCapability.FileManagement.UserFileService
+
+| 名称          | 值            | 说明                                |
+| ------------- | ------------- | ----------------------------------- |
+| DISPLAY_NAME  | display_name  | 文件名                              |
+| DATE_ADDED    | date_added    | 文件创建的日期，例如1501925454      |
+| DATE_MODIFIED | date_modified | 文件的修改日期，例如1665310670      |
+| RELATIVE_PATH | relative_path | 相对路径，例如Pictures/Screenshots/ |
+| FILE_SIZE     | size          | 文件（夹）大小（单位：字节）        |
+| WIDTH         | width         | 图像文件的宽度（单位：像素）        |
+| HEIGHT        | height        | 图像文件的高度（单位：像素）        |
+| DURATION      | duration      | 音频和视频文件的时长（单位：毫秒）  |

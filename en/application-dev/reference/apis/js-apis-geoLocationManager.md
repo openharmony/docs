@@ -1,6 +1,6 @@
 # @ohos.geoLocationManager (Geolocation Manager)
 
-The **geoLocationManager** module provides a wide array of location services, including GNSS positioning, network positioning, geocoding, reverse geocoding, and geofencing.
+The **geoLocationManager** module provides location services such as Global Navigation Satellite System (GNSS)-based positioning, network positioning, geofencing, as well as geocoding and reverse geocoding.
 
 > **NOTE**
 >
@@ -21,14 +21,14 @@ If your application needs to access the device location information, it must fir
 
 API versions earlier than 9: Apply for **ohos.permission.LOCATION**.
 
-API version 9 and later: Apply for **ohos.permission.APPROXIMATELY_LOCATION**, or apply for **ohos.permission.APPROXIMATELY_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
+API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, or apply for **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION**. Note that **ohos.permission.LOCATION** cannot be applied for separately.
 
 | API Version| Location Permission| Permission Application Result| Location Accuracy|
 | -------- | -------- | -------- | -------- |
-| Earlier than 9| ohos.permission.LOCATION | Successful| Location accurate to meters.|
-| 9 and later| ohos.permission.LOCATION | Failed| No location obtained.|
-| 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Successful| Location accurate to 5 kilometers.|
-| 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Successful| Location accurate to meters.|
+| Earlier than 9| ohos.permission.LOCATION | Success| Location accurate to meters|
+| 9 and later| ohos.permission.LOCATION | Failure| No location obtained|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
+| 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
 If your application needs to access the device location information when running in the background, it must be configured to be able to run in the background and be granted the **ohos.permission.LOCATION_IN_BACKGROUND** permission. In this way, the system continues to report device location information after your application moves to the background.
 
@@ -99,7 +99,7 @@ Defines a geographic location.
 | addressUrl | string | Yes| No| Website URL.|
 | descriptions | Array&lt;string&gt; | Yes| No| Additional descriptions.|
 | descriptionsSize | number | Yes| No| Total number of additional descriptions. The value must be greater than or equal to **0**. A value smaller than **10** is recommended.|
-| isFromMock | Boolean | Yes| No| Whether the geographic address is obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | Yes| No| Whether the geographical name is from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
 
 ## LocationRequest
@@ -229,12 +229,12 @@ Represents information of the mock reverse geocoding function.
 | Name| Type| Readable|Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | location |  [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Yes| Latitude and longitude information.|
-| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographic address.|
+| geoAddress |  [GeoAddress](#geoaddress) | Yes| Yes|Geographical name.|
 
 
 ## LocationMockConfig
 
-Represents the mock location configuration.
+Represents the information of the mock location function.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -267,25 +267,25 @@ Sets the priority of the location request.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x200 | Priority unspecified.<br>If this option is used, [LocationRequestPriority](#locationrequestpriority) is invalid.|
-| ACCURACY | 0x201 | Location accuracy preferred.<br>This policy mainly uses the GNSS positioning technology. In an open area, the technology can achieve the meter-level location accuracy, depending on the hardware performance of the device. However, in a shielded environment, the location accuracy may significantly decrease.|
-| LOW_POWER | 0x202 | Power efficiency preferred.<br>This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.|
+| ACCURACY | 0x201 | Location accuracy.<br>This policy mainly uses the GNSS positioning technology. In an open area, the technology can achieve the meter-level location accuracy, depending on the hardware performance of the device. However, in a shielded environment, the location accuracy may significantly decrease.|
+| LOW_POWER | 0x202 | Power efficiency.<br>This policy mainly uses the base station positioning, WLAN positioning, and Bluetooth positioning technologies to obtain device location in both indoor and outdoor scenarios. The location accuracy depends on the distribution of surrounding base stations, visible WLANs, and Bluetooth devices and therefore may fluctuate greatly. This policy is recommended and can reduce power consumption when your application does not require high location accuracy or when base stations, visible WLANs, and Bluetooth devices are densely distributed.|
 | FIRST_FIX | 0x203 | Fast location preferred. Use this option if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning, base station positioning, WLAN positioning, and Bluetooth positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios. When all positioning technologies provide a location result, the system provides the most accurate location result for your application. It can lead to significant hardware resource consumption and power consumption.|
 
 
 ## LocationRequestScenario
 
-Sets the scenario of the location request.
+  Sets the scenario of the location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | UNSET | 0x300 | Scenario unspecified.<br>If this option is used, [LocationRequestScenario](#locationrequestscenario) is invalid.|
-| NAVIGATION | 0x301 | Navigation scenario.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
-| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking scenario.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
-| CAR_HAILING | 0x303 | Ride hailing scenario.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
-| DAILY_LIFE_SERVICE | 0x304 | Daily life service scenario.<br>This option is applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>The location result is reported at a minimum interval of 1 second by default.|
-| NO_POWER | 0x305 | Power efficiency scenario.<br>This option is applicable when your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
+| NAVIGATION | 0x301 | Navigation.<br>This option is applicable when your application needs to obtain the real-time location of a mobile device outdoors, such as navigation for driving or walking.<br>In this scenario, GNSS positioning is used to provide location services to ensure the optimal location accuracy of the system.<br>The location result is reported at a minimum interval of 1 second by default.|
+| TRAJECTORY_TRACKING | 0x302 | Trajectory tracking.<br>This option is applicable when your application needs to record user trajectories, for example, the track recording function of sports applications. In this scenario, the GNSS positioning technology is mainly used to ensure the location accuracy.<br>The location result is reported at a minimum interval of 1 second by default.|
+| CAR_HAILING | 0x303 | Ride hailing.<br>This option is applicable when your application needs to obtain the current location of a user who is hailing a taxi.<br>The location result is reported at a minimum interval of 1 second by default.|
+| DAILY_LIFE_SERVICE | 0x304 | Daily life services.<br>This option is applicable when your application only needs the approximate user location for recommendations and push notifications in scenarios such as when the user is browsing news, shopping online, and ordering food.<br>The location result is reported at a minimum interval of 1 second by default.|
+| NO_POWER | 0x305 | Power efficiency. Your application does not proactively start the location service. When responding to another application requesting the same location service, the system marks a copy of the location result to your application. In this way, your application will not consume extra power for obtaining the user location.|
 
 
 ## LocationPrivacyType
@@ -299,7 +299,7 @@ Defines the privacy statement type.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | OTHERS | 0 | Other scenarios. Reserved field.|
-| STARTUP | 1 | Privacy statement displayed in the startup wizard.  |
+| STARTUP | 1 | Privacy statement displayed in the startup wizard. The user needs to choose whether to agree with the statement.|
 | CORE_LOCATION | 2 | Privacy statement displayed when enabling the location service.|
 
 
@@ -323,7 +323,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
 Registers a listener for location changes with a location request initiated.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -368,7 +368,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 Unregisters the listener for location changes with the corresponding location request deleted.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -489,7 +489,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 Registers a listener for cached GNSS location reports.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -533,7 +533,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
 Unregisters the listener for cached GNSS location reports.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -577,7 +577,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
 Registers a listener for GNSS satellite status change events.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -619,7 +619,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
 Unregisters the listener for GNSS satellite status change events.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -662,7 +662,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
 Registers a listener for GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -705,7 +705,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 Unregisters the listener for GNSS NMEA message change events.
 
-**Permission required**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -749,7 +749,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 Registers a listener for status change events of the specified geofence.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -782,12 +782,12 @@ For details about the following error codes, see [Location Error Codes](../error
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
-      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG],
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
@@ -807,7 +807,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
 Unregisters the listener for status change events of the specified geofence.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
@@ -882,7 +882,6 @@ For details about the following error codes, see [Location Error Codes](../error
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
 |3301500 | Failed to query the area information.                                       |
 
 
@@ -924,7 +923,6 @@ For details about the following error codes, see [Location Error Codes](../error
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |3301000 | Location service is unavailable.                                            |
-|3301100 | The location switch is off.                                                 |
 |3301500 | Failed to query the area information.                                       |
 
 **Example**
@@ -951,7 +949,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -999,7 +997,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 Obtains the current location. This API uses an asynchronous callback to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1045,7 +1043,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 Obtains the current location. This API uses a promise to return the result. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1095,7 +1093,7 @@ getLastLocation(): Location
 
 Obtains the last location.
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -1282,7 +1280,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts coordinates into geographic descriptions through reverse geocoding. This API uses an asynchronous callback to return the result. 
+Converts coordinates into geographic description through reverse geocoding. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1326,7 +1324,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-Converts coordinates into geographic descriptions through reverse geocoding. This API uses a promise to return the result. 
+Converts coordinates into geographic description through reverse geocoding. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1373,7 +1371,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-Converts geographic descriptions into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
+Converts geographic description into coordinates through geocoding. This API uses an asynchronous callback to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1417,7 +1415,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-Converts geographic descriptions into coordinates through geocoding. This API uses a promise to return the result. 
+Converts geographic description into coordinates through geocoding. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
@@ -1499,7 +1497,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the number of cached GNSS locations. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1543,7 +1541,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 Obtains the number of cached GNSS locations. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1585,7 +1583,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -1627,7 +1625,7 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
 Obtains all cached GNSS locations and clears the GNSS cache queue. 
 
-**Required permissions**: ohos.permission.APPROXIMATELY_LOCATION
+**Permission required**: ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
@@ -2007,7 +2005,7 @@ For details about the following error codes, see [Location Error Codes](../error
 
 setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
 
-Sets information of the mock reverse geocoding function, including the mapping between a location and geographic name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographic name will be returned.
+Sets information of the mock reverse geocoding function, including the mapping between a location and geographical name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographical name will be returned.
 
 This API can be invoked only after [geoLocationManager.enableReverseGeocodingMock](#geolocationmanagerenablereversegeocodingmock) is called.
 
@@ -2019,7 +2017,7 @@ This API can be invoked only after [geoLocationManager.enableReverseGeocodingMoc
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographic address.|
+  | mockInfos | Array&lt;[ReverseGeocodingMockInfo](#reversegeocodingmockinfo)&gt; | Yes| Array of information of the mock reverse geocoding function, including a location and a geographical name.|
 
 **Error codes**
 
@@ -2069,7 +2067,7 @@ Checks whether a user agrees with the privacy statement of the location service.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | boolean  | boolean | NA | Whether the user agrees with the privacy statement.|
+  | boolean  | boolean | NA | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
 **Error codes**
 
@@ -2108,7 +2106,7 @@ Sets the user confirmation status for the privacy statement of the location serv
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when the location service is enabled.|
-  | isConfirmed | boolean | Yes| Whether the user agrees with the privacy statement.|
+  | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
 **Error codes**
 

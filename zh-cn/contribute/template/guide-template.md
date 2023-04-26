@@ -181,7 +181,7 @@ _已发布的Sample code、Codelabs、Demo工程包，请在此处提供链接�
 
 针对Ability开发，有以下相关实例可供参考：
 
-- [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
+- [UIAbility内和UIAbility间页面的跳转（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility
 
 
 ## 环境准备

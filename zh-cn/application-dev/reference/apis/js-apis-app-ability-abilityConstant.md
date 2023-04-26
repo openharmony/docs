@@ -39,6 +39,7 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | CALL | 2    | 通过[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口启动ability。 |
 | CONTINUATION           | 3    | 跨端设备迁移启动ability。 |
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
+| SHARE<sup>10+</sup>           | 5    | 通过[acquireShareData](js-apis-app-ability-abilityManager.md#acquiresharedata)接口启动ability。 |
 
 **示例：**
 
@@ -99,7 +100,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam) {
-        return AbilityConstant.OnConinueResult.AGREE;
+        return AbilityConstant.OnContinueResult.AGREE;
     }
 }
 ```
@@ -132,7 +133,7 @@ let option = {
 };
 
 // 确保从上下文获取到context
-this.context.startAbility(want, option).then(()={
+this.context.startAbility(want, option).then(()=>{
     console.log('Succeed to start ability.');
 }).catch((error)=>{
     console.error('Failed to start ability with error: ${JSON.stringify(error)}');

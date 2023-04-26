@@ -57,8 +57,12 @@ featureAbility.startAbility(
             uri: ''
         },
     },
-    (err, data) => {
-        console.info('startAbility err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbility fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbility success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -99,7 +103,7 @@ featureAbility.startAbility(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -182,7 +186,7 @@ featureAbility.startAbilityForResult(
    {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -193,8 +197,12 @@ featureAbility.startAbilityForResult(
             uri:''
         },
     },
-    (err, data) => {
-        console.info('startAbilityForResult err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+    (error, data) => {
+        if (error && error.code !== 0) {
+            console.error('startAbilityForResult fail, error: ${JSON.stringify(error)}');
+        } else {
+            console.log('startAbilityForResult success, data: ${JSON.stringify(data)}');
+        }
     }
 );
 ```
@@ -236,7 +244,7 @@ featureAbility.startAbilityForResult(
     {
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -288,7 +296,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -309,8 +317,8 @@ featureAbility.terminateSelfWithResult(
             }
         },
     },
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 );
 ```
@@ -345,7 +353,7 @@ featureAbility.terminateSelfWithResult(
         resultCode: 1,
         want:
         {
-            action: 'action.system.home',
+            action: 'ohos.want.action.home',
             entities: ['entity.system.home'],
             type: 'MIMETYPE',
             flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -389,8 +397,12 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus((err, data) => {
-    console.info('hasWindowFocus err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.hasWindowFocus((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('hasWindowFocus fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('hasWindowFocus success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -435,8 +447,12 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant((err, data) => {
-    console.info('getWant err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+featureAbility.getWant((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWant fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWant success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -482,8 +498,12 @@ Obtains the application context.
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-context.getBundleName((err, data) => {
-    console.info('getBundleName err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}');
+context.getBundleName((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getBundleName fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getBundleName success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -506,8 +526,8 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
-    (err) => {
-        console.error('err: ${JSON.stringify(err)}');
+    (error) => {
+        console.error('error: ${JSON.stringify(error)}');
     }
 )
 ```
@@ -574,7 +594,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -617,7 +637,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -631,8 +651,12 @@ let connectId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connectId, (err) => {
-    console.error('featureAbilityTest disconnectAbility err: ${JSON.stringify(err)}');
+featureAbility.disconnectAbility(connectId, (error) => {
+    if (error && error.code !== 0) {
+        console.error('disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('disconnectAbility success, connectId: ${connectId}');
+    }
 });
 ```
 
@@ -668,7 +692,7 @@ function onDisconnectCallback(element){
     console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
 }
 function onFailedCallback(code){
-    console.log('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+    console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
 }
 let connectId = featureAbility.connectAbility(
     {
@@ -707,8 +731,12 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 **Example**
 
 ```ts
-featureAbility.getWindow((err, data) => {
-    console.info('getWindow err: ${JSON.stringify(err)}, data: ${typeof(data)}');
+featureAbility.getWindow((error, data) => {
+    if (error && error.code !== 0) {
+        console.error('getWindow fail, error: ${JSON.stringify(error)}');
+    } else {
+        console.log('getWindow success, data: ${JSON.stringify(data)}');
+    }
 });
 ```
 
@@ -823,6 +851,6 @@ Enumerates the flags that specify how the Want will be handled.
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for the **Want** object in the **startAbility** API passed to [ohos.app.Context](js-apis-ability-context.md) and must be used together with **flag_ABILITY_NEW_MISSION**.|
+| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | Clears other operation missions. This flag can be set for [Want](js-apis-application-want.md) under the [parameter](js-apis-inner-ability-startAbilityParameter.md) object passed to the [startAbility](#featureabilitystartability) API in **FeatureAbility**. It must be used together with **flag_ABILITY_NEW_MISSION**.|
 | FLAG_ABILITY_NEW_MISSION             | 0x10000000 | Creates a mission on an existing mission stack.                      |
 | FLAG_ABILITY_MISSION_TOP             | 0x20000000 | Reuses an ability instance if it is on the top of an existing mission stack; creates an ability instance otherwise.|

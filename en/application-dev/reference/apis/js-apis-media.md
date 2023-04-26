@@ -357,20 +357,25 @@ For details about the AVPlayer demo, see [AVPlayer Development](../../media/avpl
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
-| Name                                               | Type                                                  | Readable| Writable| Description                                                        |
-| --------------------------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                 | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, and WAV are supported.<br>**Examples of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
-| surfaceId<sup>9+</sup>                              | string                                                 | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
-| loop<sup>9+</sup>                                   | boolean                                                | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, and WAV are supported.<br>**Examples of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
+| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained or the live mode is expected, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.|
+| surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default value of **contentType** is **CONTENT_TYPE_MUSIC**, and the default value of **streamUsage** is **STREAM_USAGE_MEDIA**.<br>It can be set only when the AVPlayer is in the initialized state.|
-| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
-| currentTime<sup>9+</sup>                            | number                                                 | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.|
-| duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live streaming scenarios, **-1** is returned by default.|
-| width<sup>9+</sup>                                  | number                                                 | Yes  | No  | Video width, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
-| height<sup>9+</sup>                                 | number                                                 | Yes  | No  | Video height, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
+| currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.|
+| duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live streaming scenarios, **-1** is returned by default.|
+| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+
+**NOTE**
+
+After the resource handle (FD) is transferred to the AVPlayer, do not use the resource handle to perform read and write operations, including but not limited to transferring it to multiple AVPlayers. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in playback errors.
 
 ### on('stateChange')<sup>9+</sup><a name = stateChange_on></a>
 
@@ -927,6 +932,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
+
 avPlayer.getTrackDescription((error, arrList) => {
     if ((arrList) != null) {
         for (let i = 0; i < arrList.length; i++) {
@@ -964,6 +977,14 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```js
 let arrayDescription;
+
+printfDescription(obj) {
+    for (let item in obj) {
+        let property = obj[item];
+        console.info('audio key is ' + item);
+        console.info('audio value is ' + property);
+    }
+}
 avPlayer.getTrackDescription().then((arrList) => {
     if (arrList != null) {
         arrayDescription = arrList;
@@ -1060,7 +1081,7 @@ Sets the playback speed. This API can be called only when the AVPlayer is in the
 **Example**
 
 ```js
-avPlayer.setSpeed(media.AVPlayerSpeed.SPEED_FORWARD_2_00_X)
+avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
 ```
 
 ### on('speedDone')<sup>9+</sup><a name = speedDone_on></a>
@@ -1553,6 +1574,8 @@ Subscribes to the audio interruption event. When multiple audio and video assets
 **Example**
 
 ```js
+import audio from '@ohos.multimedia.audio';
+
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
     console.info('audioInterrupt success,and InterruptEvent info is:' + info)
 })
@@ -1586,7 +1609,7 @@ Enumerates the states of the [AVPlayer](#avplayer9). Your application can proact
 
 |              Name              |  Type | Description                                                        |
 | :-----------------------------: | :----: | :----------------------------------------------------------- |
-|              idle               | string | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or **reset()** is called.<br>In case **createAVPlayer()** is used, all attributes are set to their default values.<br>In case **reset()** is invoked, the **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** attribute is reset, and other attributes set by the application are retained.|
+|              idle               | string | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or **reset()** is called.<br>In case **createAVPlayer()** is used, all attributes are set to their default values.<br>In case **reset()** is called, the **url<sup>9+</sup>**, **fdSrc<sup>9+</sup>**, or **dataSrc<sup>10+</sup>** attribute and the **loop** attribute are reset, and other attributes are retained.|
 |           initialized           | string | The AVPlayer enters this state after **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** attribute is set in the idle state. In this case, you can configure static attributes such as the window and audio.|
 |            prepared             | string | The AVPlayer enters this state when **prepare()** is called in the initialized state. In this case, the playback engine has prepared the resources.|
 |             playing             | string | The AVPlayer enters this state when **play()** is called in the prepared, paused, or completed state.|
@@ -1607,6 +1630,18 @@ Describes an audio and video file asset. It is used to specify a particular asse
 | fd     | number | Yes  | Resource handle, which is obtained by calling **resourceManager.getRawFileDescriptor**.    |
 | offset | number | Yes  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 | length | number | Yes  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
+
+## AVDataSrcDescriptor<sup>10+</sup>
+
+Defines the descriptor of an audio and video file, which is used in DataSource playback mode.<br>Use scenario: An application can create a playback instance and start playback before it finishes downloading the audio and video resources.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| fileSize     | number | Yes  | Size of the file to play, in bytes. The value **-1** indicates that the size is unknown. If **fileSize** is set to **-1**, the playback mode is similar to the live mode. In this mode, the **seek** and **setSpeed** operations cannot be performed, and the **loop** attribute cannot be set, indicating that loop playback is unavailable.|
+| callback | function | Yes  | Callback used to fill in data.<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.|
+
 
 ## SeekMode<sup>8+</sup>
 
@@ -1742,7 +1777,7 @@ let AVRecorderConfig = {
     location : { latitude : 30, longitude : 130 }
 }
 
-AVRecorder.prepare(AVRecorderConfig, (err) => {
+avRecorder.prepare(AVRecorderConfig, (err) => {
     if (err == null) {
         console.info('prepare success');
     } else {
@@ -1813,7 +1848,7 @@ let AVRecorderConfig = {
     location : { latitude : 30, longitude : 130 }
 }
 
-AVRecorder.prepare(AVRecorderConfig).then(() => {
+avRecorder.prepare(AVRecorderConfig).then(() => {
     console.info('prepare success');
 }).catch((err) => {
     console.info('prepare failed and catch error is ' + err.message);
@@ -1854,7 +1889,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 ```js
 let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-AVRecorder.getInputSurface((err, surfaceId) => {
+avRecorder.getInputSurface((err, surfaceId) => {
     if (err == null) {
         console.info('getInputSurface success');
         surfaceID = surfaceId;
@@ -1862,8 +1897,6 @@ AVRecorder.getInputSurface((err, surfaceId) => {
         console.info('getInputSurface failed and error is ' + err.message);
     }
 });
-
-// videoOutput = await cameraManager.createVideoOutput(videoProfiles[0], surfaceID);
 
 ```
 
@@ -1900,14 +1933,12 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 ```js
 let surfaceID = null; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
-AVRecorder.getInputSurface().then((surfaceId) => {
+avRecorder.getInputSurface().then((surfaceId) => {
     console.info('getInputSurface success');
     surfaceID = surfaceId;
 }).catch((err) => {
     console.info('getInputSurface failed and catch error is ' + err.message);
 });
-
-// videoOutput = await cameraManager.createVideoOutput(videoProfiles[0], surfaceID);
 ```
 
 ### start<sup>9+</sup><a name=avrecorder_start></a>
@@ -1939,7 +1970,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.start((err) => {
+avRecorder.start((err) => {
     if (err == null) {
         console.info('start AVRecorder success');
     } else {
@@ -1977,7 +2008,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.start().then(() => {
+avRecorder.start().then(() => {
     console.info('start AVRecorder success');
 }).catch((err) => {
     console.info('start AVRecorder failed and catch error is ' + err.message);
@@ -2013,7 +2044,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.pause((err) => {
+avRecorder.pause((err) => {
     if (err == null) {
         console.info('pause AVRecorder success');
     } else {
@@ -2051,7 +2082,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.pause().then(() => {
+avRecorder.pause().then(() => {
     console.info('pause AVRecorder success');
 }).catch((err) => {
     console.info('pause AVRecorder failed and catch error is ' + err.message);
@@ -2087,7 +2118,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.resume((err) => {
+avRecorder.resume((err) => {
     if (err == null) {
         console.info('resume AVRecorder success');
     } else {
@@ -2125,7 +2156,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.resume().then(() => {
+avRecorder.resume().then(() => {
     console.info('resume AVRecorder success');
 }).catch((err) => {
     console.info('resume AVRecorder failed and catch error is ' + err.message);
@@ -2163,7 +2194,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.stop((err) => {
+avRecorder.stop((err) => {
     if (err == null) {
         console.info('stop AVRecorder success');
     } else {
@@ -2203,7 +2234,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.stop().then(() => {
+avRecorder.stop().then(() => {
     console.info('stop AVRecorder success');
 }).catch((err) => {
     console.info('stop AVRecorder failed and catch error is ' + err.message);
@@ -2238,7 +2269,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.reset((err) => {
+avRecorder.reset((err) => {
     if (err == null) {
         console.info('reset AVRecorder success');
     } else {
@@ -2275,7 +2306,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.reset().then(() => {
+avRecorder.reset().then(() => {
     console.info('reset AVRecorder success');
 }).catch((err) => {
     console.info('reset AVRecorder failed and catch error is ' + err.message);
@@ -2309,7 +2340,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.release((err) => {
+avRecorder.release((err) => {
     if (err == null) {
         console.info('release AVRecorder success');
     } else {
@@ -2345,7 +2376,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.release().then(() => {
+avRecorder.release().then(() => {
     console.info('release AVRecorder success');
 }).catch((err) => {
     console.info('release AVRecorder failed and catch error is ' + err.message);
@@ -2370,9 +2401,8 @@ Subscribes to AVRecorder state changes. An application can subscribe to only one
 **Example**
 
 ```js
-AVRecorder.on('stateChange', async (state, reason) => {
+avRecorder.on('stateChange', async (state, reason) => {
     console.info('case state has changed, new state is :' + state + ',and new reason is : ' + reason);
-    }
 });
 ```
 
@@ -2393,7 +2423,7 @@ Unsubscribes from AVRecorder state changes.
 **Example**
 
 ```js
-AVRecorder.off('stateChange');
+avRecorder.off('stateChange');
 ```
 
 ### on('error')<sup>9+</sup><a name=avrecorder_onerror></a>
@@ -2425,7 +2455,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.on('error', (err) => {
+avRecorder.on('error', (err) => {
     console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
 ```
@@ -2456,7 +2486,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-AVRecorder.off('error');
+avRecorder.off('error');
 ```
 
 ## AVRecorderState<sup>9+</sup>
@@ -2486,7 +2516,7 @@ Describes the audio and video recording parameters.
 | audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.                  |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.                                   |
-| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory. |
+| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.|
 | rotation        | number                                   | No  | Rotation angle of the recorded video. The value can only be 0, 90, 180, or 270.                 |
 | location        | [Location](#location)                    | No  | Geographical location of the recorded video.                                            |
 
@@ -3759,7 +3789,7 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed. |
+| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed.|
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -4874,7 +4904,7 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resources are released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset. |
+| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resources are released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**

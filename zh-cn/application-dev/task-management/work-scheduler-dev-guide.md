@@ -186,7 +186,7 @@ try{
 try{
   workScheduler.isLastWorkTimeOut(500, (error, res) =>{
     if (error) {
-      onsole.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
     } else {
       console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
     }

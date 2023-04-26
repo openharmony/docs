@@ -1,7 +1,7 @@
-# Starting a Remote PageAbility
+# Starting a Remote PageAbility (for System Applications Only)
 
 
-This feature applies only to system applications. The **startAbility()** method in the **featureAbility** class is used to start a remote PageAbility.
+The **startAbility()** method in the **featureAbility** class is used to start a remote PageAbility.
 
 
 In addition to **'\@ohos.ability.featureAbility'**, you must import **'\@ohos.distributedHardware.deviceManager'**, which provides account-independent distributed device networking capabilities. Then you can use **getTrustedDeviceListSync** of the **DeviceManager** module to obtain the remote device ID and pass the remote device ID in the **want** parameter for starting the remote PageAbility.

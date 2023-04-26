@@ -1,6 +1,6 @@
-# JS API Changes of the Utils Subsystem
+# JS API Changes of the Compiler and Runtime Subsystem
 
-The table below lists the APIs changes of the Utils subsystem in OpenHarmony 3.2 Beta2 over OpenHarmony 3.2 Beta1.
+The table below lists the APIs changes of the compiler and runtime subsystem in OpenHarmony 3.2 Beta2 over OpenHarmony 3.2 Beta1.
 
 ## API Changes
 

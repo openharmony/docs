@@ -17,33 +17,12 @@ Before authentication, you must specify the [authentication type](../reference/a
 
 | API   | Description               |
 | ---------- | ----------------------- |
-| getVersion() : number      | Obtains the version information of an authentication object.           |
 | getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void | Checks whether the device supports the specified authentication type and level.|
 | getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance | Obtains an **AuthInstance** instance for user authentication.|
 | on(name : AuthEventKey, callback : AuthEvent) : void | Subscribes to the user authentication events of the specified type.|
 | off(name : AuthEventKey) : void | Unsubscribes from the user authentication events of the specific type.|
 | start: void  | Starts user authentication.       |
 | cancel: void | Cancel this user authentication.   |
-
-## Obtaining Authentication Object Version Information
-
-### How to Develop
-
-1. Apply for the permission.<br> Configure the **ohos.permission.ACCESS_BIOMETRIC** permission in **requestPermissions** in the **module.json5** file. For more information, see [module.json5](../quick-start/module-configuration-file.md).
-
-2. Use [getVersion](../reference/apis/js-apis-useriam-userauth.md#useriam_userauthgetversion9) to obtain the version information.
-
-    ```js
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-    // Obtain version information.
-    try {
-        let version = userIAM_userAuth.getVersion();
-        console.info("auth version = " + version);
-    } catch (error) {
-        console.info("get version failed, error = " + error);
-    }
-    ```
 
 ## Checking Authentication Capabilities Supported by a Device
 

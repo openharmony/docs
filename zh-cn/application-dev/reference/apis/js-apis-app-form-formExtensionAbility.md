@@ -273,7 +273,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onShareForm
 
-onShareForm?(formId: string): { [key: string]: any }
+onShareForm?(formId: string): { [key: string]: Object }
 
 卡片提供方接收卡片分享的通知接口。
 

@@ -10,7 +10,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| foregroundColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-types.md#ColoringStrategy) | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
+| foregroundColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-types.md#coloringstrategy) | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
 
 ## 示例
 
@@ -47,12 +47,11 @@ struct ColoringStrategyExample {
       // 绘制一个直径为150的圆，设置前景色为组件背景色的反色
       Circle({ width: 150, height: 200 })
         .backgroundColor(Color.Black)
-        .foregroungColor(ColoringStrategy.Invert)
+        .foregroundColor(ColoringStrategy.INVERT)
     }.width('100%')
   }
 }
 ```
-
 ![foregroundColor_circle](figures/ColoringStrategy_circle.png)
 
 ### 示例3

@@ -183,8 +183,6 @@ Checks whether the tag is connected.
 > **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.isConnected](#tagsessionisconnected9).
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -210,8 +208,6 @@ console.log("isTagConnected: " + isTagConnected);
 isConnected(): boolean
 
 Checks whether the tag is connected.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 

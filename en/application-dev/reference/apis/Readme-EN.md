@@ -125,6 +125,20 @@
   - [@ohos.notification (Notification) (To Be Deprecated Soon)](js-apis-notification.md)
   - application
     - [EventHub](js-apis-inner-application-eventHub.md)
+  - commonEvent
+    - [CommonEventData](js-apis-inner-commonEvent-commonEventData.md)
+    - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
+    - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
+    - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
+  - notification
+    - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)
+    - [NotificationCommonDef](js-apis-inner-notification-notificationCommonDef.md)
+    - [NotificationContent](js-apis-inner-notification-notificationContent.md)
+    - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
+    - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
+    - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
+    - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
 - Bundle Management 
   - [@ohos.bundle.appControl (appControl)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
@@ -149,13 +163,18 @@
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
+
 - UI Page
   - [@ohos.animator (Animator)](js-apis-animator.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
+  - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
+  - [@ohos.measure (Text Measurement)](js-apis-measure.md)
+  - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
+
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -168,24 +187,29 @@
   - webgl
     - [WebGL](js-apis-webgl.md)
     - [WebGL2](js-apis-webgl2.md)
-- Media
+
+- Multimedia
   - [@ohos.multimedia.audio (Audio Management)](js-apis-audio.md)
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
-- Resource Management
+
+- Resource Manager
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
-- Background Tasks
+
+- Background Task
   - [@ohos.distributedMissionManager (Distributed Mission Management)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
   - [@ohos.resourceschedule.workScheduler (Work Scheduler)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.WorkSchedulerExtensionAbility (Work Scheduler Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
-  
+  - application
+    - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
+
 - Security
   - [@ohos.abilityAccessCtrl (Ability Access Control)](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager (Privacy Management)](js-apis-privacyManager.md)
@@ -194,9 +218,9 @@
   - [@ohos.security.huks (HUKS)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (Facial Authentication)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
-  - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
+
 - Data Management
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (DataShare)](js-apis-data-dataShare.md)
@@ -204,23 +228,25 @@
   - [@ohos.data.dataShareResultSet (DataShare Result Set)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
-  - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
+  - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
-  - data/rdb
-    - [resultSet (Result Set)](js-apis-data-resultset.md)
+
 - File Management
+  - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
+  - [@ohos.file.fileUri (File URI)](js-apis-file-fileUri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
+  - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
   - [@ohos.file.securityLabel (Data Label)](js-apis-file-securityLabel.md)
   - [@ohos.file.statvfs (File System Space Statistics)](js-apis-file-statvfs.md)
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
-  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
+  - [@ohos.fileShare (File Sharing)](js-apis-fileShare.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -230,16 +256,21 @@
   - [@ohos.telephony.radio (Network Search)](js-apis-radio.md)
   - [@ohos.telephony.sim (SIM Management)](js-apis-sim.md)
   - [@ohos.telephony.sms (SMS)](js-apis-sms.md)
+
 - Network Management
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (Ethernet Connection Management)](js-apis-net-ethernet.md)
   - [@ohos.net.http (Data Request)](js-apis-http.md)
+  - [@ohos.net.policy (Network Policy Management)](js-apis-net-policy.md)
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
+  - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
+
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
+  - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -247,11 +278,12 @@
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
   - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md)
-  - [@ohos.wifi (To Be Deprecated)](js-apis-wifi.md)
-  - [@ohos.wifiext (To Be Deprecated)](js-apis-wifiext.md)
+  - [@ohos.wifi (WLAN)(To Be Deprecated Soon)](js-apis-wifi.md)
+  - [@ohos.wifiext (WLAN Extension)(To Be Deprecated Soon)](js-apis-wifiext.md)
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
+
 - Basic Features
   - [@ohos.accessibility (Accessibility)](js-apis-accessibility.md)
   - [@ohos.accessibility.config (System Accessibility Configuration)](js-apis-accessibility-config.md)
@@ -280,7 +312,7 @@
   - [console (Log)](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
   - application
-    - [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)
+    - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
   - imf
     - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
 
@@ -288,6 +320,7 @@
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
   - [@ohos.batteryStatistics (Battery Statistics)](js-apis-batteryStatistics.md)
   - [@ohos.brightness (Screen Brightness)](js-apis-brightness.md)
+  - [@ohos.charger (Charging Type)](js-apis-charger.md)
   - [@ohos.deviceInfo (Device Information)](js-apis-device-info.md)
   - [@ohos.distributedHardware.deviceManager (Device Management)](js-apis-device-manager.md)
   - [@ohos.geoLocationManager (Geolocation Manager)](js-apis-geoLocationManager.md)
@@ -311,21 +344,26 @@
   - [@ohos.systemParameterEnhance (System Parameter)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
   - [@ohos.update (Update)](js-apis-update.md)
-  - [@ohos.usbManager (USB Management)](js-apis-usbManager.md)
+  - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
+
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
   - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
-- Custom Management
+
+- Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
+  - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
 
- - Language Base Class Library 
+- Language Base Class Library 
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
@@ -349,9 +387,11 @@
   - [@ohos.util.Vector (Linear Container Vector)](js-apis-vector.md)
   - [@ohos.worker (Worker Startup)](js-apis-worker.md)
   - [@ohos.xml (XML Parsing and Generation)](js-apis-xml.md)
+
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
+
 - APIs No Longer Maintained
   - [@ohos.backgroundTaskManager (Background Task Management)](js-apis-backgroundTaskManager.md)
   - [@ohos.bundle (Bundle)](js-apis-Bundle.md)
@@ -366,17 +406,18 @@
   - [@ohos.fileio (File Management)](js-apis-fileio.md)
   - [@ohos.geolocation (Geolocation)](js-apis-geolocation.md)
   - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
+  - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
   - [@ohos.prompt (Prompt)](js-apis-prompt.md)
   - [@ohos.reminderAgent (Reminder Agent)](js-apis-reminderAgent.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
   - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
-  - [@ohos.usbV9 (USB Management)](js-apis-usb.md)
   - [@system.app (Application Context)](js-apis-system-app.md)
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
   - [@system.brightness (Screen Brightness)](js-apis-system-brightness.md)
+  - [@system.cipher (Cipher Algorithm)](js-apis-system-cipher.md)
   - [@system.configuration (Application Configuration)](js-apis-system-configuration.md)
   - [@system.device (Device Information)](js-apis-system-device.md)
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
@@ -406,3 +447,5 @@
     - [PermissionDef](js-apis-bundle-PermissionDef.md)
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
+  - data/rdb
+    - [resultSet (Result Set)](js-apis-data-resultset.md)

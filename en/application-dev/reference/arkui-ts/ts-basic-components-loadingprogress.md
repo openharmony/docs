@@ -18,11 +18,13 @@ LoadingProgress()
 
 Creates a **\<LoadingProgress>** component.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 ## Attributes
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
 

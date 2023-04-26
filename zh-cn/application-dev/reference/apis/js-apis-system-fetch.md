@@ -14,7 +14,7 @@ import fetch from '@system.fetch';
 ```
 
 
-## fetch.fetch
+## fetch.fetch<sup>3+</sup>
 
 fetch(Object): void
 
@@ -45,7 +45,7 @@ fetch(Object): void
 
 ## FetchResponse
 
-| 参数名 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | code | number | 是 | 否 | 表示服务器的状态code。 |
 | data | string \| Object | 是 | 否 | 返回数据类型由responseType确定，详见表 responseType与success中data关系。 |

@@ -1,6 +1,6 @@
 # @ohos.inputMethod (输入法框架)
 
-本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
+本模块主要面向普通前台应用（备忘录、信息、设置等系统应用与三方应用），提供对输入法的控制、管理能力，包括显示/隐藏输入法软键盘、切换输入法、获取所有输入法列表等。
 
 > **说明：**
 >
@@ -34,9 +34,10 @@ import inputMethod from '@ohos.inputMethod';
 | name<sup>9+</sup>  | string | 是 | 否 | 输入法内部名称。必填。|
 | id<sup>9+</sup>    | string | 是 | 否 | 输入法唯一标识。必填。|
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法对外显示名称。 非必填。|
+| labelId<sup>10+</sup>    | string | 是 | 否 | 输入法对外显示名称资源号。 非必填。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标数据。非必填。 |
 | iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标资源号。非必填。 |
-| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。 必填。|
+| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。 非必填。<br/>**说明：** 从API version 10开始改为非必选参数。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -231,7 +232,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -256,9 +257,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -287,7 +288,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -317,9 +318,9 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -391,25 +392,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -461,25 +446,9 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
@@ -884,7 +853,7 @@ inputMethodController.off('selectByRange');
 
 ### on('selectByMovement')<sup>10+</sup>
 
-on(type: 'selectByMovement', callback: Callback&lt;Range&gt;): void
+on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 订阅输入法应用按光标动作选中文本事件。使用callback异步回调。
 
@@ -1235,8 +1204,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
-
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1274,8 +1241,6 @@ try {
 showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
-
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

@@ -170,7 +170,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
   let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
         if (error.code) {
-          console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
         }
 
@@ -247,7 +247,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -319,7 +319,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -328,7 +328,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.error('getMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('bundleName = ${snapshot.ability.bundleName}');
@@ -382,97 +382,6 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
     });
   ```
 
-## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
-
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
-
-Obtains the low-resolution snapshot of a given mission. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.MANAGE_MISSIONS
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | Yes| Callback used to return the snapshot information obtained.|
-
-**Example**
-
-  ```ts
-  import missionManager from '@ohos.application.missionManager';
-
-  missionManager.getMissionInfos('', 10, (error, missions) => {
-    if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
-        return;
-    }
-    console.log('size = ${missions.length}');
-    console.log('missions = ${JSON.stringify(missions)}');
-    let id = missions[0].missionId;
-
-    missionManager.getLowResolutionMissionSnapShot('', id, (error, snapshot) => {
-      if (error.code) {
-          console.error('getLowResolutionMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
-          return;
-      }
-  	  console.log('bundleName = ${snapshot.ability.bundleName}');
-    });
-  });
-  ```
-
-
-## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
-
-getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
-
-Obtains the low-resolution snapshot of a given mission. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.MANAGE_MISSIONS
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceId | string | Yes| Device ID. It is a null string by default for the local device.|
-  | missionId | number | Yes| Mission ID.|
-
-**Return value**
-
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot.md)&gt; | Promise used to return the snapshot information obtained.|
-
-**Example**
-
-  ```ts
-  import missionManager from '@ohos.application.missionManager';
-
-  let allMissions;
-  missionManager.getMissionInfos('',10).then(function(res){
-    allMissions=res;
-    }).catch(function(error) {
-        console.error('getMissionInfos fail, error: ${error}');
-    });
-    console.log('size = ${allMissions.length}');
-    console.log('missions = ${JSON.stringify(allMissions)}');
-    let id = allMissions[0].missionId;
-
-    let snapshot = missionManager.getLowResolutionMissionSnapShot('', id).catch(function (error){
-        console.error('getLowResolutionMissionSnapShot fail, error: ${error}');
-    });
-  ```
-
-
 ## missionManager.lockMission
 
 lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
@@ -499,7 +408,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -583,7 +492,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -671,7 +580,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -807,7 +716,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -848,7 +757,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');

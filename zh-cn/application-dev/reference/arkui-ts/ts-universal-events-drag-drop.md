@@ -10,7 +10,7 @@
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按150ms可触发拖拽事件。优先级：长按手势配置时间小于等于150ms时，长按手势优先触发，否则拖拽事件优先触发。 |
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按500ms可触发拖拽事件。优先级：长按手势配置时间小于等于500ms时，长按手势优先触发，否则拖拽事件优先触发。 |
 | onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
@@ -45,6 +45,113 @@
 
 ## 示例
 
+### 示例1
+
+```ts
+@Observed
+class ClassA {
+  public name: string
+  public bol: boolean
+
+  constructor(name: string, bol: boolean) {
+    this.name = name
+    this.bol = bol
+  }
+}
+
+@Extend(Text) function textStyle() {
+  .width('25%')
+  .height(35)
+  .fontSize(16)
+  .textAlign(TextAlign.Center)
+  .backgroundColor(0xAFEEEE)
+}
+
+@Entry
+@Component
+struct DragExample {
+  @State arr: ClassA[] = [new ClassA('A', true), new ClassA('B', true), new ClassA('C', true)]
+  @State dragIndex: number = 0
+
+  changeIndex(index1: number, index2: number) { // 交换数组位置
+    [this.arr[index1], this.arr[index2]] = [this.arr[index2], this.arr[index1]];
+  }
+
+  build() {
+    Column() {
+      Row({ space: 15 }) {
+        List({ space: 20 }) {
+          ForEach(this.arr, (item, index) => {
+            ListItem() {
+              Column() {
+                Child({ a: this.arr[index] })
+              }
+              .onTouch((event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.dragIndex = index // 获取当前拖拽子组件的索引
+                  console.info('onTouch' + this.dragIndex)
+                }
+              })
+            }
+          })
+        }
+        .listDirection(Axis.Horizontal)
+        .onDrop((event: DragEvent, extraParams: string) => { // 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
+          let jsonString = JSON.parse(extraParams);
+          this.changeIndex(this.dragIndex, jsonString.insertIndex)
+        })
+      }.padding({ top: 10, bottom: 10 }).margin(10)
+
+    }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink a: ClassA
+
+  @Builder pixelMapBuilder() {
+    Column() {
+      Text(this.a.name)
+        .width('50%')
+        .height(60)
+        .fontSize(16)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .backgroundColor(Color.Yellow)
+    }
+  }
+
+  build() {
+    Column() {
+      Text(this.a.name)
+        .textStyle()
+        .visibility(this.a.bol ? Visibility.Visible : Visibility.None)
+        .onDragStart(() => { // 第一次拖拽此事件绑定的组件时，触发回调。
+          this.a.bol = false // 控制显隐
+          return this.pixelMapBuilder() // 设置拖拽过程中显示的图片。
+        })
+        .onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Up) {
+            this.a.bol = true
+          }
+        })
+      Text('')
+        .width('25%')
+        .height(35)
+        .fontSize(16)
+        .textAlign(TextAlign.Center)
+        .border({ width: 5, color: 'red' })
+        .visibility(!this.a.bol ? Visibility.Visible : Visibility.None)
+    }
+  }
+}
+```
+
+![drag-drop](figures/drag-drop.gif)
+
+### 示例2
+
 ```ts
 // xxx.ets
 @Extend(Text) function textStyle () {
@@ -67,7 +174,7 @@ struct DragExample {
   @State bananaVisible: Visibility = Visibility.Visible
   private dragList: string[] = ['apple', 'orange', 'banana']
   @State fruitVisible: Visibility[] = [Visibility.Visible, Visibility.Visible, Visibility.Visible]
-  @State index: number = 0
+  @State idx: number = 0
 
   // 自定义拖拽过程中显示的内容
   @Builder pixelMapBuilder() {
@@ -104,7 +211,7 @@ struct DragExample {
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.eventType = 'Down'
-                this.index = index
+                this.idx = index
               }
               if (event.type === TouchType.Up) {
                 this.eventType = 'Up'
@@ -157,7 +264,7 @@ struct DragExample {
           this.numbers.splice(jsonString.insertIndex, 0, this.text)
           this.bool = false
         }
-        this.fruitVisible[this.index] = Visibility.None
+        this.fruitVisible[this.idx] = Visibility.None
       })
     }.width('100%').height('100%').padding({ top: 20 }).margin({ top: 20 })
   }

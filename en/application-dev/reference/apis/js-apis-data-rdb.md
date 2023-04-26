@@ -1,13 +1,13 @@
 # @ohos.data.rdb (RDB)
 
-The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
+The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
 This module provides the following RDB-related functions:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing an RDB store.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
@@ -31,7 +31,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
 | version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
@@ -92,7 +92,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name | Type                       | Mandatory| Description                                                        |
 | ------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context                     | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | config  | [StoreConfig](#storeconfig) | Yes  | Configuration of the RDB store.                               |
 | version | number                      | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
 
@@ -156,7 +156,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
 
@@ -214,7 +214,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-app-context.md).|
 | name    | string  | Yes  | Name of the RDB store to delete.                                                |
 
 **Return value**
@@ -349,6 +349,10 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
 
+> **NOTE**
+>
+> The value of **devices** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -366,8 +370,24 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 **Example**
 
 ```js
-let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.inDevices(['12345678abcde'])
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
+let predicates = new data_rdb.RdbPredicates("EMPLOYEE");
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices<sup>8+</sup>
@@ -1154,7 +1174,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 Provides methods to manage an RDB store.
 
-Before using the following APIs, use [executeSql](#executesql8) to initialize the database table structure and related data. For details, see [RDB Development](../../database/database-relational-guidelines.md).
+Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
 ### insert
 
@@ -1269,10 +1289,10 @@ const valueBucket3 = {
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
-        console.log("Failed to batch insert data, status = " + status);
+        console.log("batchInsert is failed, status = " + status);
         return;
     }
-    console.log("Batch inserted data successfully. The number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 })
 ```
 
@@ -1322,9 +1342,9 @@ const valueBucket3 = {
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
-    console.log("Batch inserted data successfully. The number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 }).catch((status) => {
-    console.log("Failed to batch insert data, status = " + status);
+    console.log("batchInsert is failed, status = " + status);
 })
 ```
 
@@ -1340,7 +1360,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
@@ -1376,7 +1396,7 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
 
 **Return value**
@@ -1545,7 +1565,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
@@ -1565,7 +1585,7 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-Queries data in the RDB store using the specified SQL statement. This API uses a promise to return the result.
+Queries data using the specified SQL statement. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1574,7 +1594,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
 
 **Return value**
 
@@ -1585,7 +1605,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 **Example**
 
 ```js
-let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'])
+let promise = rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'")
 promise.then((resultSet) => {
     console.log("ResultSet column names: " + resultSet.columnNames)
     console.log("ResultSet column count: " + resultSet.columnCount)
@@ -1607,19 +1627,19 @@ Executes an SQL statement that contains specified arguments but returns no value
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Example**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+rdbStore.executeSql(SQL_CREATE_TABLE, ['zhangsan'], function(err) {
     if (err) {
         console.info("Failed to execute SQL, err: " + err)
         return
     }
-    console.info('Created table successfully.')
+    console.info('Delete table done.')
 })
 ```
 
@@ -1636,7 +1656,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
 
 **Return value**
 
@@ -1647,10 +1667,10 @@ Executes an SQL statement that contains specified arguments but returns no value
 **Example**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+let promise = rdbStore.executeSql(SQL_DELETE_TABLE)
 promise.then(() => {
-    console.info('Created table successfully.')
+    console.info('Delete table done.')
 }).catch((err) => {
     console.info("Failed to execute SQL, err: " + err)
 })
@@ -1808,7 +1828,11 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses an asynchronous callback to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1818,14 +1842,29 @@ Obtains the distributed table name for a remote device based on the local table 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Remote device.|
-| table | string | Yes| Local table name.|
+| device | string | Yes| ID of the remote device.|
+| table | string | Yes| Local table name of the remote device.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
 **Example**
 
 ```js
-rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+
+rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.info('Failed to obtain DistributedTableName, err: ' + err)
         return
@@ -1838,7 +1877,11 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses a promise to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1848,8 +1891,8 @@ Obtains the distributed table name for a remote device based on the local table 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| device | string | Yes| Remote device.|
-| table | string | Yes| Local table name.|
+| device | string | Yes| ID of the remote device.|
+| table | string | Yes| Local table name of the remote device.|
 
 **Return value**
 
@@ -1860,7 +1903,21 @@ Obtains the distributed table name for a remote device based on the local table 
 **Example**
 
 ```js
-let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName) => {
     console.info('Obtained distributed table name successfully, tableName= ' + tableName)
 }).catch((err) => {
@@ -1889,8 +1946,24 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('Sync failed, err: ' + err)
@@ -1924,13 +1997,29 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to return the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
 
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
-predicates.inDevices(['12345678abcde'])
+predicates.inDevices(deviceIds)
 let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates)
 promise.then((result) =>{
     console.log('Sync done.')

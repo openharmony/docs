@@ -110,7 +110,7 @@
 	"acls":{
 		"allowed-acls":[
 			"ohos.permission.WRITE_AUDIO",
-            "ohos.permission.CAPTURE_SCREEN"
+      "ohos.permission.CAPTURE_SCREEN"
 		]
 	}
 }
@@ -131,7 +131,7 @@
 
 以允许应用读取日历信息为例进行说明。
 
-1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#配置文件权限声明)。
+1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[配置文件权限声明](#配置文件权限声明)。
 
 2. 校验当前是否已经授权。
 

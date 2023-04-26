@@ -1,6 +1,6 @@
 # Web
 
-提供具有网页显示能力的Web组件。
+提供具有网页显示能力的Web组件，[@ohos.web.webview](../apis/js-apis-webview.md)提供web控制能力。
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。 |
+| src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -81,6 +81,43 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
         Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
+  }
+  ```
+
+  加载沙箱路径下的本地资源文件
+
+  1.通过[globalthis](../../application-models/uiability-data-sync-with-ui.md#uiability和page之间使用globalthis)获取沙箱路径。
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  let url = 'file://' + globalThis.filesDir + '/xxx.html'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        // 加载沙箱路径文件。
+        Web({ src: url, controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  2.修改MainAbility.ts。
+  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
+  ```ts
+  // xxx.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import web_webview from '@ohos.web.webview';
+
+  export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+          // 通过在globalThis对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+          globalThis.filesDir = this.context.filesDir
+          console.log("Sandbox path is " + globalThis.filesDir)
+      }
   }
   ```
 
@@ -497,6 +534,7 @@ mediaPlayGestureAccess(access: boolean)
 multiWindowAccess(multiWindow: boolean)
 
 设置是否开启多窗口权限，默认不开启。
+使能多窗口权限时，需要实现onWindowNew事件，示例代码参考[onWindowNew事件](#onwindownew9)。
 
 **参数：**
 
@@ -517,7 +555,7 @@ multiWindowAccess(multiWindow: boolean)
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
+        .multiWindowAccess(false)
       }
     }
   }
@@ -1194,7 +1232,7 @@ struct WebComponent {
 }
   ```
 
-### allowWindowOpenMethod<sup>9+</sup>
+### allowWindowOpenMethod<sup>10+</sup>
 
 allowWindowOpenMethod(flag: boolean)
 
@@ -1224,19 +1262,89 @@ allowWindowOpenMethod(flag: boolean)
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
-    @State multiWindow: boolean = true
-    @State flag: boolean = true
+    dialogController: CustomDialogController = null
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(this.access)
-          .multiWindowAccess(this.multiWindow)
-          .allowWindowOpenMethod(this.flag)
+          .javaScriptAccess(true)
+          //需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            //将新窗口对应WebviewController返回给Web内核。
+            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController)
+          })
+      }
+    }
+  }
+  ```
+
+### mediaOptions<sup>10+</sup>
+
+mediaOptions(options: WebMediaOptions)
+
+设置Web媒体播放的策略，其中包括：Web中的音频在重新获焦后能够自动续播的有效期、应用内多个Web实例的音频是否独占。
+
+> **说明：**
+>
+> - 同一Web实例中的多个音频均视为同一音频。
+> - 该媒体播放策略将同时管控有声视频。
+> - 属性参数更新后需重新播放音频方可生效。
+> - 建议为所有Web组件设置相同的audioExclusive值。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
+| ------ | ----------- | ---- | --------------- | ------------------ |
+| options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
+
+**示例：**
+
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mediaOptions(this.options)
       }
     }
   }
@@ -1826,7 +1934,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh](#refresh)接口），false表示该页面是新加载的。 |
+| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
 
@@ -2011,11 +2119,12 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
   }
   ```
 
-### onUrlLoadIntercept
+### onUrlLoadIntercept<sup>(deprecated)</sup>
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+从API version 10开始不在维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **参数：**
 
@@ -2682,7 +2791,9 @@ onFullScreenExit(callback: () => void)
 
 onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
 
-通知用户新建窗口请求。
+使能multiWindowAccess情况下，通知用户新建窗口请求。
+若不调用event.handler.setWebController接口，会造成render进程阻塞。
+如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
 
 **参数：**
 
@@ -2698,19 +2809,51 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  
+  //在同一page页有两个web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController = null
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.log("onWindowNew...")
-          var popController: web_webview.WebviewController = new web_webview.WebviewController()
-          event.handler.setWebController(popController)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          //需要使能multiWindowAccess
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            //将新窗口对应WebviewController返回给Web内核。
+            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -2953,7 +3096,7 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onFaviconReceived((event) => {
-          console.log('onFaviconReceived:' + JSON.stringify(event))
+          console.log('onFaviconReceived');
           this.icon = event.favicon;
         })
       }
@@ -2989,6 +3132,86 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
           .onAudioStateChanged(event => {
             this.playing = event.playing
             console.debug('onAudioStateChanged playing: ' + this.playing)
+          })
+      }
+    }
+  }
+  ```
+
+### onFirstContentfulPaint<sup>10+</sup>
+
+onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+
+设置网页首次内容绘制回调函数。
+
+**参数：**
+
+| 参数名                 |  参数类型  | 参数描述                            |
+| -----------------------| -------- | ----------------------------------- |
+| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示。|
+| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+          .onFirstContentfulPaint(event => {
+            console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" + 
+              event.navigationStartTick + ", [firstContentfulPaintMs]:" + 
+              event.firstContentfulPaintMs)
+          })
+      }
+    }
+  }
+  ```
+
+### onLoadIntercept<sup>10+</sup>
+
+onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
+
+**参数：**
+
+| 参数名  | 参数类型                                     | 参数描述      |
+| ------- | ---------------------------------------- | --------- |
+| request | [Webresourcerequest](#webresourcerequest) | url请求的相关信息。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| ------- | ------------------------ |
+| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onLoadIntercept((event) => {
+            console.log('url:' + event.data.getRequestUrl())
+            console.log('isMainFrame:' + event.data.isMainFrame())
+            console.log('isRedirect:' + event.data.isRedirect())
+            console.log('isRequestGesture:' + event.data.isRequestGesture())
+            return true
           })
       }
     }
@@ -3093,13 +3316,13 @@ exitFullScreen(): void
 
 setWebController(controller: WebviewController): void
 
-设置WebviewController对象。
+设置WebviewController对象，如果不需要打开新窗口请设置为null。
 
 **参数：**
 
 | 参数名        | 参数类型          | 必填   | 默认值  | 参数描述                      |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的的WebviewController对象。 |
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
 
@@ -3192,6 +3415,18 @@ isRequestGesture(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 返回资源请求是否与手势（如点击）相关联。 |
+
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+获取请求方法。
+
+**返回值：**
+
+| 类型      | 说明                   |
+| ------- | -------------------- |
+| string | 返回请求方法。 |
 
 ## Header
 
@@ -3508,6 +3743,8 @@ confirm(priKeyFile : string, certChainFile : string): void
 ### confirm<sup>10+</sup>
 
 confirm(authUri : string): void
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
 
 通知Web组件使用指定的凭据(从证书管理模块获得)。
 
@@ -3899,6 +4136,15 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | On      | Web深色模式开启。                     |
 | Auto    | Web深色模式跟随系统。                 |
 
+## WebMediaOptions<sup>10+</sup>
+
+Web媒体策略的配置。
+
+| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
+| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
+| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒。 |
+| audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
+
 ## DataResubmissionHandler<sup>9+</sup>
 
 通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
@@ -3979,7 +4225,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
+| WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
 
 **示例：**
 
@@ -4208,7 +4454,7 @@ forward(): void
 
 deleteJavaScriptRegister(name: string)
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refreshdeprecated)接口。
 
 从API version 9开始不再维护，建议使用[deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister)代替。
 
@@ -4489,7 +4735,7 @@ refresh()
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refreshdeprecated)接口生效。
 
 从API version 9开始不再维护，建议使用[registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy)代替。
 
@@ -4686,7 +4932,7 @@ setCookie(url: string, value: string): boolean
 
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url。 |
+| url   | string | 是    | -    | 要设置的cookie所属的url，建议使用完整的url。 |
 | value | string | 是    | -    | cookie的值。         |
 
 **返回值：**

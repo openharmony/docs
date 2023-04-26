@@ -275,9 +275,9 @@ export default class MyFirstAbility extends UIAbility {
         // 2. Register the listener for the ability lifecycle changes through the applicationContext object.
         try {
             globalThis.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-            console.log('registerAbilityLifecycleCallback number: ${JSON.stringify(lifecycleId)}');
+            console.log('registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}');
         } catch (paramError) {
-            console.log('error: ${paramError.code}, ${paramError.message}');
+            console.error('error: ${paramError.code}, ${paramError.message}');
         }
     }
 }
@@ -285,7 +285,7 @@ export default class MyFirstAbility extends UIAbility {
 
 MySecondAbility.ts
 ```ts
-import UIAbility from 'ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class MySecondAbility extends UIAbility {
     onDestroy() {
@@ -293,7 +293,7 @@ export default class MySecondAbility extends UIAbility {
         // 3. Deregister the listener for the ability lifecycle changes through the applicationContext object.
         applicationContext.off('abilityLifecycle', globalThis.lifecycleId, (error) => {
             if (error && error.code !== 0) {
-                console.log('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
+                console.error('unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}');
             } else {
                 console.log('unregisterAbilityLifecycleCallback success.');
             }

@@ -251,7 +251,6 @@ Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 To listen for in-depth changes of **@State** decorated variables, you can use **@Observed** and **@ObjectLink** decorators.
 
-Reference: [@Observed and @ObjectLink](../quick-start/arkts-state-mgmt-page-level.md#observed-and-objectlink)
 
 ## How do I implement character string encoding and decoding?
 

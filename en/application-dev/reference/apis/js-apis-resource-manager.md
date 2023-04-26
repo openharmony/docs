@@ -13,14 +13,15 @@ The Resource Manager module provides APIs to obtain information about applicatio
 import resourceManager from '@ohos.resourceManager';
 ```
 
-## Instruction
+## How to Use
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model.
-For details about how to reference **context** in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let resourceManager = context.resourceManager;
@@ -60,6 +61,7 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
       });
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -76,7 +78,7 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | Yes   | Bundle name of the application.                |
+| bundleName | string                                   | Yes   | Bundle name of the target application.                |
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -116,6 +118,7 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
       console.log("error is " + error);
   });
   ```
+> **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
 
 
 ## resourceManager.getResourceManager
@@ -132,7 +135,7 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of the application.|
+| bundleName | string | Yes   | Bundle name of the target application.|
 
 **Return value**
 
@@ -168,12 +171,12 @@ Enumerates the device types.
 
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
-| DEVICE_TYPE_CAR      | 0x02 | Head unit  |
-| DEVICE_TYPE_PC       | 0x03 | PC  |
-| DEVICE_TYPE_TV       | 0x04 | TV  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone.  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
+| DEVICE_TYPE_CAR      | 0x02 | Head unit.  |
+| DEVICE_TYPE_PC       | 0x03 | PC.  |
+| DEVICE_TYPE_TV       | 0x04 | TV.  |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
 
 
 ## ScreenDensity
@@ -275,7 +278,7 @@ Defines the capability of accessing application resources.
 
 > **NOTE**
 >
-> - The APIs involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
+> - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 
@@ -642,7 +645,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1540,7 +1543,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       
   ```
 
-### closeRawFd<sup>8+</sup>
+### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
@@ -1655,7 +1658,7 @@ Obtains the string corresponding to the specified resource name. This API uses a
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | String corresponding to the resource name.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2033,7 +2036,7 @@ Obtains the string corresponding to the specified resource ID. This API returns 
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Promise used to return the result.|
+| string | String corresponding to the specified resource ID.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2049,6 +2052,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   ```ts
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getStringSync<sup>10+</sup>
+
+getStringSync(resId: number, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource ID and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ----------------------------------------------- |
+| 9001001  | If the resId invalid.                               |
+| 9001002  | If the resource not found by resId.                 |
+| 9001006  | If the resource re-ref too much.                    |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
   } catch (error) {
     console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2072,7 +2116,7 @@ Obtains the string corresponding to the specified resource object. This API retu
 
 | Type    | Description              |
 | ------ | ---------------- |
-| string | Promise used to return the result.|
+| string | String corresponding to the resource object.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2098,6 +2142,52 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resource: Resource, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource object and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  try {
+    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
+
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
@@ -2116,7 +2206,7 @@ Obtains the string corresponding to the specified resource name. This API return
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | String corresponding to the specified resource name.|
+| string | String corresponding to the resource name.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2136,6 +2226,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
+
+### getStringByNameSync<sup>10+</sup>
+
+getStringByNameSync(resName: string, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource name and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+| 9001008  | If the resource obtained by resName formatting error. |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
 
 ### getBoolean<sup>9+</sup>
 
@@ -2392,6 +2523,142 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object corresponding to the specified resource. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type     | Description               |
+| ------- | ----------------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.icon').id
+  };
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptorByName<sup>10+</sup>
+
+getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+
+Obtains the **DrawableDescriptor** object corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity) | number | No   | Screen density. The default value is **0**.|
+
+**Return value**
+
+| Type    | Description       |
+| ------ | --------- |
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon');
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getString<sup>(deprecated)</sup>
 
@@ -2527,7 +2794,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
 
 This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9) instead.
 

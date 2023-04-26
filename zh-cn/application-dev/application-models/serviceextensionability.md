@@ -137,7 +137,7 @@
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册ServiceExtensionAbility，type标签需要设置为“service”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册ServiceExtensionAbility，type标签需要设置为“service”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
    
    ```json
    {
@@ -149,8 +149,8 @@
            "icon": "$media:icon",
            "description": "service",
            "type": "service",
-           "visible": true,
-           "srcEntrance": "./ets/serviceextability/ServiceExtAbility.ts"
+           "exported": true,
+           "srcEntry": "./ets/serviceextability/ServiceExtAbility.ts"
          }
        ]
      }
@@ -287,5 +287,5 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
 针对ServiceExtensionAbility开发，有以下相关示例可供参考：
 
-- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/AbilityConnectServiceExtension)
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)
+- [`AbilityConnectServiceExtension`：Ability与ServiceExtensionAbility通信（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)

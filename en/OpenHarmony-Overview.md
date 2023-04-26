@@ -127,7 +127,7 @@ The following table describes the subsystems of OpenHarmony. For details about t
 | Build      | Provides a compilation and building framework based on Generate Ninja (GN) and Ninja.       | All systems        |
 | Test          | The test-driven development mode is used during the development process. You can develop new cases or modify existing cases to test new or enhanced system features. The test helps you develop high-quality code in the development phase.| All systems        |
 | Data Management      | Provides local data management and distributed data management:<br>- Local application data management for lightweight preference databases and relational databases<br>- Distributed data service to provide applications with the capability to store data in the databases of different devices| Standard system        |
-| Programming Language Runtime| Provides the compilation and execution environment for programs developed with JavaScript or C/C++, basic libraries that support the runtime, and the runtime-associated APIs, compilers, and auxiliary tools.| All systems        |
+| Compiler and Runtime | Provides the compilation and execution environment for programs developed with JavaScript or C/C++, basic libraries that support the runtime, and the runtime-associated APIs, compilers, and auxiliary tools.| All systems        |
 | Distributed Scheduler| Starts, registers, queries, and manages system services.                  | All systems        |
 | JS UI Framework     | OpenHarmony JS UI framework supports web-development-like paradigm.      | All systems        |
 | Multimedia          | Provides easy-to-use APIs for developing multimedia components such as audio, video, and camera, and enables applications to use multimedia resources of the system.| All systems        |
@@ -189,7 +189,7 @@ For details about how to obtain the source code of OpenHarmony, see [Source Code
 
 ## How to Participate
 
-For details about how to join in the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README-EN.md)
+For details about how to join in the OpenHarmony community, see [OpenHarmony Community](https://gitee.com/openharmony/community/blob/master/README_EN.md)
 
 For details about how to contribute, see [How to contribute](contribute/how-to-contribute.md).
 

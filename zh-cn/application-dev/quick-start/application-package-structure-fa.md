@@ -11,7 +11,7 @@ FA模型与Stage模型不同之处在于HAP内部文件存放位置不同，FA�
 
 - assets是HAP所有的资源文件、库文件和代码文件的集合，内部可以分为entry和js文件夹。entry文件夹中存放的是resources目录和resources.index文件。
 
-- resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](../key-features/multi-device-app-dev/resource-usage.md)。
+- resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](resource-categories-and-access.md)。
 
 - resources.index是资源索引表，由IDE调用SDK工具生成。
 

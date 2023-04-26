@@ -20,13 +20,11 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 ## CommonEventManager.publish
 
-```ts
 publish(event: string, callback: AsyncCallback<void>): void
-```
 
 发布公共事件，并在发布后执行相应的回调函数。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -38,6 +36,14 @@ publish(event: string, callback: AsyncCallback<void>): void
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -61,25 +67,31 @@ try {
 
 ## CommonEventManager.publish
 
-```ts
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
 
 以回调的形式发布公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：**SystemCapability.Notification.CommonEvent
 
 **参数：**
 
 | 参数名     | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
-| options  | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
 | callback | syncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -110,13 +122,11 @@ try {
 
 ## CommonEventManager.publishAsUser<sup>
 
-```ts
 publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): void
-```
 
 以回调的形式向指定用户发布公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -131,6 +141,15 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): voi
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -157,13 +176,11 @@ try {
 
 ## CommonEventManager.publishAsUser
 
-```ts
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
 
 以回调形式向指定用户发布公共事件并指定发布信息。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -173,12 +190,21 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | userId   | number | 是 | 表示指定向该用户ID发送此公共事件。 |
-| options  | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
 | callback | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -212,20 +238,26 @@ try {
 
 ## CommonEventManager.createSubscriber
 
-```ts
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void
-```
 
 以回调形式创建订阅者。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
 | 参数名          | 类型                                                         | 必填 | 说明                       |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
-| callback      | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
+| callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **示例：**
 
@@ -258,24 +290,30 @@ try {
 
 ## CommonEventManager.createSubscriber
 
-```ts
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>
-```
 
 以Promise形式创建订阅者。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
 | 参数名          | 类型                                                  | 必填 | 说明           |
 | ------------- | ----------------------------------------------------- | ---- | -------------- |
-| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
+| subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
 
 **返回值：**
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
-| Promise\<[CommonEventSubscriber](#commoneventsubscriber)> | 返回订阅者对象。 |
+| Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **示例：**
 
@@ -299,20 +337,29 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber) 
 
 ## CommonEventManager.subscribe
 
-```ts
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void
-```
 
 以回调形式订阅公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
 | 参数名       | 类型                                                | 必填 | 说明                             |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| subscriber | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
-| callback   | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
+| subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | 是   | 表示订阅者对象。                 |
+| callback   | AsyncCallback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | 是   | 表示接收公共事件数据的回调函数。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -327,7 +374,7 @@ let subscribeInfo = {
 
 //订阅公共事件回调
 function SubscribeCB(err, data) {
-    if (err.code) {
+    if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("subscribe ");
@@ -335,9 +382,10 @@ function SubscribeCB(err, data) {
 }
 
 //创建订阅者回调
-function createCB(err, subscriber) {
+function createCB(err, commonEventSubscriber) {
     if(!err) {
         console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, SubscribeCB);
@@ -359,20 +407,29 @@ try {
 
 ## CommonEventManager.unsubscribe
 
-```ts
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): void
-```
 
 以回调形式取消订阅公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
 | 参数名       | 类型                                             | 必填 | 说明                     |
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
-| subscriber | [CommonEventSubscriber](#commoneventsubscriber) | 是   | 表示订阅者对象。         |
+| subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -391,11 +448,12 @@ function subscribeCB(err, data) {
     }
 }
 //创建订阅者回调
-function createCB(err, subscriber) {
+function createCB(err, commonEventSubscriber) {
     if (err) {
         console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
         //订阅公共事件
         try {
             CommonEventManager.subscribe(subscriber, subscribeCB);
@@ -427,792 +485,93 @@ try {
 }
 ```
 
-## CommonEventSubscriber
+## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
-### getCode
+removeStickyCommonEvent(event: string, callback: AsyncCallback<void>): void
 
-```ts
-getCode(callback: AsyncCallback<number>): void
-```
+以回调形式移除粘性公共事件。
 
-以回调形式获取公共事件代码。
+**系统能力：** SystemCapability.Notification.CommonEvent
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**需要权限**:  ohos.permission.COMMONEVENT_STICKY
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明               |
-| -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<number\> | 是   | 公共事件代码。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取有序公共事件代码回调
-function getCodeCB(err, code) {
-    if (err.code) {
-        console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getCode " + JSON.stringify(code));
-    }
-}
-subscriber.getCode(getCodeCB);
-```
-
-### getCode
-
-```ts
-getCode(): Promise<number>
-```
-
-以Promise形式获取公共事件代码。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<number> | 公共事件代码。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.getCode().then((code) => {
-    console.info("getCode " + JSON.stringify(code));
-}).catch((err) => {
-    console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### setCode
-
-```ts
-setCode(code: number, callback: AsyncCallback<void>): void
-```
-
-以回调形式设置公共事件的代码。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                   |
-| -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | 是   | 公共事件的代码。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//设置有序公共事件的代码回调
-function setCodeCB(err) {
-    if (err.code) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCode");
-    }
-}
-subscriber.setCode(1, setCodeCB);
-```
-
-### setCode
-
-```ts
-setCode(code: number): Promise<void>
-```
-
-以Promise形式设置公共事件的代码。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明               |
-| ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | 公共事件的代码。 |
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.setCode(1).then(() => {
-    console.info("setCode");
-}).catch((err) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### getData
-
-```ts
-getData(callback: AsyncCallback<string>): void
-```
-
-以回调形式获取公共事件的数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                   | 必填 | 说明                 |
-| -------- | ---------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<string> | 是   | 公共事件的数据。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取有序公共事件代码数据回调
-function getDataCB(err, data) {
-    if (err.code) {
-        console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getData " + JSON.stringify(data));
-    }
-}
-subscriber.getData(getDataCB);
-```
-
-### getData
-
-```ts
-getData(): Promise<string>
-```
-
-以Promise形式获取公共事件的数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明               |
-| ---------------- | ------------------ |
-| Promise\<string> | 公共事件的数据。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.getData().then((data) => {
-    console.info("getData " + JSON.stringify(data));
-}).catch((err) => {
-    console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### setData
-
-setData(data: string, callback: AsyncCallback\<void>): void
-
-以回调形式设置公共事件的数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                 |
-| -------- | -------------------- | ---- | -------------------- |
-| data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//设置有序公共事件的结果数据回调
-function setDataCB(err) {
-    if (err.code) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setData");
-    }
-}
-subscriber.setData("publish_data_changed", setDataCB);
-```
-
-### setData
-
-```ts
-setData(data: string): Promise<void>
-```
-
-以Promise形式设置公共事件的果数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| data   | string | 是   | 公共事件的数据。 |
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.setData("publish_data_changed").then(() => {
-    console.info("setData");
-}).catch((err) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### setCodeAndData
-
-```ts
-setCodeAndData(code: number, data: string, callback:AsyncCallback<void>): void
-```
-
-以回调形式设置公共事件代码和数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                   |
-| -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | 是   | 公共事件的代码。   |
-| data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//设置有序公共事件的代码和数据回调
-function setCodeDataCB(err) {
-    if (err.code) {
-        console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCodeDataCallback");
-    }
-}
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
-```
-
-### setCodeAndData
-
-```ts
-setCodeAndData(code: number, data: string): Promise<void>
-```
-
-以Promise形式设置公共事件的代码和数据。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| code   | number | 是   | 公共事件的代码。 |
-| data   | string | 是   | 公共事件的数据。 |
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-    console.info("setCodeAndData");
-}).catch((err) => {
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### isOrderedCommonEvent
-
-```ts
-isOrderedCommonEvent(callback: AsyncCallback<boolean>): void
-```
-
-以回调形式查询当前公共事件的是否为有序公共事件。
-
-返回true代表是有序公共事件，false代表不是有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                               |
-| -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取当前公共事件是否为有序事件的回调
-function isOrderedCB(err, isOrdered) {
-    if (err.code) {
-        console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isOrdered " + JSON.stringify(isOrdered));
-    }
-}
-subscriber.isOrderedCommonEvent(isOrderedCB);
-```
-
-### isOrderedCommonEvent
-
-```ts
-isOrderedCommonEvent(): Promise<boolean>
-```
-
-以Promise形式查询当前公共事件的是否为有序公共事件。
-
-返回true代表是有序公共事件，false代表不是有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型              | 说明                             |
-| ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为有序公共事件。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.isOrderedCommonEvent().then((isOrdered) => {
-    console.info("isOrdered " + JSON.stringify(isOrdered));
-}).catch((err) => {
-    console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### isStickyCommonEvent
-
-```ts
-isStickyCommonEvent(callback: AsyncCallback<boolean>): void
-```
-
-以回调形式检查当前公共事件是否为一个粘性事件。
-
-返回true代表是粘性公共事件，false代表不是粘性公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                               |
-| -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为粘性公共事件。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取当前公共事件是否为粘性事件的回调
-function isStickyCB(err, isSticky) {
-    if (err.code) {
-        console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isSticky " + JSON.stringify(isSticky));
-    }
-}
-subscriber.isStickyCommonEvent(isStickyCB);
-```
-
-### isStickyCommonEvent
-
-```ts
-isStickyCommonEvent(): Promise<boolean>
-```
-
-以Promise形式检查当前公共事件是否为一个粘性事件。
-
-返回true代表是粘性公共事件，false代表不是粘性公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型              | 说明                             |
-| ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为粘性公共事件。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.isStickyCommonEvent().then((isSticky) => {
-    console.info("isSticky " + JSON.stringify(isSticky));
-}).catch((err) => {
-    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### abortCommonEvent
-
-```ts
-abortCommonEvent(callback: AsyncCallback<void>): void
-```
-
-以回调形式取消当前的有序公共事件，取消后，有序公共事件不再向下一个订阅者传递。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                 |
-| -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 取消当前的有序公共事件。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//取消当前有序公共事件的回调
-function abortCB(err) {
-    if (err.code) {
-		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("abortCommonEvent");
-    }
-}
-subscriber.abortCommonEvent(abortCB);
-```
-
-### abortCommonEvent
-
-```ts
-abortCommonEvent(): Promise<void>
-```
-
-以Promise形式取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.abortCommonEvent().then(() => {
-    console.info("abortCommonEvent");
-}).catch((err) => {
-    console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### clearAbortCommonEvent
-
-```ts
-clearAbortCommonEvent(callback: AsyncCallback<void>): void
-```
-
-以回调形式清除当前有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                 |
-| -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//清除当前公共事件取消状态的回调
-function clearAbortCB(err) {
-    if (err.code) {
-        console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("clearAbortCommonEvent");
-    }
-}
-subscriber.clearAbortCommonEvent(clearAbortCB);
-```
-
-### clearAbortCommonEvent
-
-```ts
-clearAbortCommonEvent(): Promise<void>
-```
-
-以Promise形式清除当前有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.clearAbortCommonEvent().then(() => {
-    console.info("clearAbortCommonEvent");
-}).catch((err) => {
-    console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### getAbortCommonEvent
-
-```ts
-getAbortCommonEvent(callback: AsyncCallback<boolean>): void
-```
-
-以回调形式获取当前有序公共事件是否取消的状态。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                               |
-| -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取当前有序公共事件是否取消的回调
-function getAbortCB(err, abortEvent) {
-    if (err.code) {
-        console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("abortCommonEvent " + abortEvent)
-    }
-}
-subscriber.getAbortCommonEvent(getAbortCB);
-```
-
-### getAbortCommonEvent
-
-```ts
-getAbortCommonEvent(): Promise<boolean>
-```
-
-以Promise形式获取当前有序公共事件是否取消的状态。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型              | 说明                               |
-| ----------------- | ---------------------------------- |
-| Promise\<boolean> | 表示当前有序公共事件是否取消的状态。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.getAbortCommonEvent().then((abortEvent) => {
-    console.info("abortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err) => {
-    console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### getSubscribeInfo
-
-```ts
-getSubscribeInfo(callback: AsyncCallback<CommonEventSubscribeInfo>): void
-```
-
-以回调形式获取订阅者的订阅信息。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                                                         | 必填 | 说明                   |
-| -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | 是   | 表示订阅者的订阅信息。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-//获取订阅者信息回调
-function getCB(err, subscribeInfo) {
-    if (err.code) {
-        console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-    }
-}
-subscriber.getSubscribeInfo(getCB);
-```
-
-### getSubscribeInfo
-
-```ts
-getSubscribeInfo(): Promise<CommonEventSubscribeInfo>
-```
-
-以Promise形式获取订阅者的订阅信息。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| Promise\<[CommonEventSubscribeInfo](#commoneventsubscribeinfo)> | 表示订阅者的订阅信息。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.getSubscribeInfo().then((subscribeInfo) => {
-    console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err) => {
-    console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### finishCommonEvent<sup>9+</sup>
-
-```ts
-finishCommonEvent(callback: AsyncCallback<void>): void
-```
-
-以回调形式结束当前有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**参数：**
-
-| 参数名   | 类型                  | 必填 | 说明                              |
+| 参数名   | 类型                 | 必填 | 说明                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示有序公共事件结束后的回调函数。 |
+| event    | string               | 是   | 表示被移除的粘性公共事件。       |
+| callback | AsyncCallback\<void> | 是   | 表示移除粘性公共事件的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
 
 **示例：**
 
-```ts
-let subscriber; //创建成功的订阅者对象
-
-//结束当前有序公共事件的回调
-function finishCB(err) {
-  if (err.code) {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-} else {
-    console.info("FinishCommonEvent");
-}
-
-subscriber.finishCommonEvent(finishCB);
-```
-
-### finishCommonEvent<sup>9+</sup>
 
 ```ts
-finishCommonEvent(): Promise<void\>
-```
-
-以Promise形式结束当前有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
-
-**示例：**
-
-```ts
-let subscriber;	//创建成功的订阅者对象
-
-subscriber.finishCommonEvent().then(() => {
-    console.info("FinishCommonEvent");
-}).catch((err) => {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => {
+    if (err) {
+        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        return;
+    }
+    console.info(`Remove sticky event AsyncCallback success`);
+    }
 });
 ```
 
-## CommonEventData
+## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+removeStickyCommonEvent(event: string): Promise<void>
 
-| 名称       | 类型                 | 可读 | 可写 | 说明                                                    |
-| ---------- |-------------------- | ---- | ---- |  ------------------------------------------------------- |
-| event      | string               | 是  | 否  | 表示当前接收的公共事件名称。                              |
-| bundleName | string               | 是  | 否  | 表示包名称。                                              |
-| code       | number               | 是  | 否  | 表示公共事件的结果代码，用于传递int类型的数据。           |
-| data       | string               | 是  | 否  | 表示公共事件的自定义结果数据，用于传递string类型的数据。 |
-| parameters | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。                                  |
+以Promise形式移除粘性公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**需要权限**:  ohos.permission.COMMONEVENT_STICKY
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| event  | string | 是   | 表示被移除的粘性公共事件。 |
+
+**返回值：**
+
+| 类型           | 说明                         |
+| -------------- | ---------------------------- |
+| Promise\<void> | 表示移除粘性公共事件的对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
+**示例：**
 
 
-## CommonEventPublishData
+```ts
+commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+    console.info(`Remove sticky event AsyncCallback success`);
+}).catch ((err) => {
+    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
-
-| 名称                  | 类型                 | 可读 | 可写 | 说明                         |
-| --------------------- | -------------------- | ---- | ---- | ---------------------------- |
-| bundleName            | string               | 是  | 否  | 表示包名称。                   |
-| code                  | number               | 是  | 否  | 表示公共事件的结果代码。       |
-| data                  | string               | 是  | 否  | 表示公共事件的自定义结果数据。 |
-| subscriberPermissions | Array\<string>       | 是  | 否  | 表示订阅者的权限。             |
-| isOrdered             | boolean              | 是  | 否  | 表示是否是有序事件。           |
-| isSticky              | boolean              | 是  | 否  | 表示是否是粘性事件。仅系统应用或系统服务允许发送粘性事件。 |
-| parameters            | {[key: string]: any} | 是  | 否  | 表示公共事件的附加信息。       |
-
-## CommonEventSubscribeInfo
-
-**系统能力：** `SystemCapability.Notification.CommonEvent`
-
-| 名称                | 类型           | 可读 | 可写 | 说明                                                         |
-| ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| events              | Array\<string> | 是  | 否  | 表示要发送的公共事件。                                         |
-| publisherPermission | string         | 是  | 否  | 表示发布者的权限。                                             |
-| publisherDeviceId   | string         | 是  | 否  | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
-| userId              | number         | 是  | 否  | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-| priority            | number         | 是  | 否  | 表示订阅者的优先级。值的范围是-100到1000。                     |

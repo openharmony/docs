@@ -1,9 +1,9 @@
-# 公共事件取消订阅
+# 取消动态订阅公共事件
 
 
 ## 场景介绍
 
-订阅者完成业务需要时，需要主动取消订阅，订阅者通过调用[unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅事件。
+动态订阅者完成业务需要时，需要主动取消订阅，订阅者通过调用[unsubscribe()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅事件。
 
 
 ## 接口说明
@@ -21,7 +21,7 @@
    import commonEventManager from '@ohos.commonEventManager';
    ```
 
-2. 根据[公共事件订阅](common-event-subscription.md)章节的步骤来订阅某个事件。
+2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
 
 3. 调用CommonEvent中的unsubscribe()方法取消订阅某事件。
    

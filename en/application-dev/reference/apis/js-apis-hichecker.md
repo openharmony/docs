@@ -46,11 +46,11 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 ```js
 try {
     // Add a rule.
-    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);}
+    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // Add multiple rules.
-    hichecker.addCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.addCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -76,9 +76,9 @@ try {
     // Remove a rule.
     hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // Remove multiple rules.
-    hichecker.removeCheckRule(
-        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
-catch (err) {
+    // hichecker.removeCheckRule(
+    //     hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -113,7 +113,7 @@ try {
     // Check whether the added rule exists in the collection of added rules.
     hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
     hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
-catch (err) {
+} catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -122,7 +122,9 @@ catch (err) {
 
 addRule(rule: bigint): void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hichecker.addCheckRule](#hicheckeraddcheckrule9) instead.
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hichecker.addCheckRule](#hicheckeraddcheckrule9).
 
 Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
 
@@ -149,7 +151,9 @@ hichecker.addRule(
 
 removeRule(rule: bigint): void
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hichecker.removeCheckRule](#hicheckerremovecheckrule9) instead.
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hichecker.removeCheckRule](#hicheckerremovecheckrule9).
 
 Removes one or more rules. The removed rules will become ineffective.
 
@@ -200,7 +204,9 @@ hichecker.getRule();   // return 1n;
 
 contains(rule: bigint): boolean
 
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hichecker.containsCheckRule](#hicheckercontainscheckrule9) instead.
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hichecker.containsCheckRule](#hicheckercontainscheckrule9).
 
 Checks whether the specified rule exists in the collection of added rules. If the rule is of the thread level, this operation is performed only on the current thread.
 

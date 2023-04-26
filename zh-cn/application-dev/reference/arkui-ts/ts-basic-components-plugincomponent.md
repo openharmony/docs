@@ -31,8 +31,15 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供者Ability的bundleName。 |
 
+## 属性
+
+除支持[通用属性size](ts-universal-attributes-size.md)，且必须设置size。
 
 ## 事件
+
+仅支持[手势事件](ts-gesture-settings.md)分发给提供方页面，并在提供方页面内部处理。
+
+除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
 
 | 名称                                                                                                                | 功能描述                                                               |
 | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -46,7 +53,7 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 ```ts
 //PluginUserExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component
@@ -102,7 +109,7 @@ struct PluginUserExample {
 
 ```ts
 //PluginProviderExample.ets
-import plugin from "plugin_component.js"
+import plugin from "./plugin_component.js"
 
 @Entry
 @Component

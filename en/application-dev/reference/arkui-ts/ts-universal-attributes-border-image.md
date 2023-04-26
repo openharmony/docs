@@ -10,9 +10,11 @@ You can draw an image around a component.
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | [BorderImageOption](#borderimageoption) | Border image or border gradient.                           |
+| borderImage     | [BorderImageOption](#borderimageoption) | Border image or border gradient.<br>This API is supported in ArkTS widgets.|
 
 ## BorderImageOption
+
+This API is supported in ArkTS widgets.
 
 | Name        | Type                                    | Description                                     |
 | ---------- | ---------------------------------------- | --------------------------------------- |
@@ -23,8 +25,9 @@ You can draw an image around a component.
 | repeat | [RepeatMode](#repeatmode)                               | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch**|
 | fill       | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**              |
 
-
 ## RepeatMode
+
+This API is supported in ArkTS widgets.
 
 | Name     | Description                                 |
 | ------- | ----------------------------------- |

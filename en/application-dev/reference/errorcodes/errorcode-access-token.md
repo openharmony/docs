@@ -1,4 +1,8 @@
-# Ability Access Control Error Codes
+# Application Access Control Error Codes
+
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
 ## 12100001 Invalid Parameters
 

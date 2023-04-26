@@ -1234,9 +1234,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
   
   ```
 
-### getPluralString<sup>9+</sup>
+### getPluralStringValue<sup>9+</sup>
 
-getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。
 
@@ -1273,10 +1273,10 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
       id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralString(resource, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then(value => {
         let str = value;
     }).catch(error => {
-        console.log("getPluralString promise error is " + error);
+        console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1543,7 +1543,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
       
   ```
 
-### closeRawFd<sup>8+</sup>
+### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
@@ -2057,6 +2057,47 @@ getStringSync(resId: number): string
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resId: number, ...args: Array<string | number>): string
+
+用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源ID值对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------------- |
+| 9001001  | If the resId invalid.                               |
+| 9001002  | If the resource not found by resId.                 |
+| 9001006  | If the resource re-ref too much.                    |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resource: Resource): string
@@ -2101,6 +2142,52 @@ getStringSync(resource: Resource): string
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resource: Resource, ...args: Array<string | number>): string
+
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | resource对象对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  try {
+    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
+
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
@@ -2139,6 +2226,47 @@ getStringByNameSync(resName: string): string
     console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
+
+### getStringByNameSync<sup>10+</sup>
+
+getStringByNameSync(resName: string, ...args: Array<string | number>): string
+
+用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> -%d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ---------------------------- |
+| string | 资源名称对应的格式化字符串|
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+| 9001008  | If the resource obtained by resName formatting error. |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
 
 ### getBoolean<sup>9+</sup>
 
@@ -2278,8 +2406,8 @@ getNumber(resId: number): number
 **返回值：**
 
 | 类型     | 说明         |
-| ------ | ---------- |
-| number | 资源ID值对应的数值 |
+| ------ | ---------- | 
+| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2294,13 +2422,13 @@ getNumber(resId: number): number
 **示例：** 
   ```ts
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer对应返回的是原数值
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float对应返回的是真实像素点值
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2324,7 +2452,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值 |
+| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2344,7 +2472,7 @@ getNumber(resource: Resource): number
       id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);
+    this.context.resourceManager.getNumber(resource);// integer对应返回的是原数值, float对应返回的是真实像素点值
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2395,6 +2523,142 @@ getNumberByName(resName: string): number
   }
   ```
 
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+
+用户获取指定资源ID对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptor<sup>10+</sup>
+
+getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+
+用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型      | 说明                |
+| ------- | ----------------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.icon').id
+  };
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDrawableDescriptorByName<sup>10+</sup>
+
+getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+
+用户获取指定资源名称对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，默认为0 |
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon');
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getString<sup>(deprecated)</sup>
 

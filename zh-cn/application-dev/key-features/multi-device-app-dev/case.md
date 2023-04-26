@@ -467,8 +467,8 @@ const globalMessageList:any[] = [
 
   | 断点 | 窗口宽度(vp) | 栅格总列数 | 消息气泡占用的列数 | 接收场景偏移的列数 | 发送场景偏移的列数 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| sm | [320,&nbsp;520) | 12 | 12 | 0 | 0 | 
-| md | [520,&nbsp;840) | 12 | 8 | 0 | 4 | 
+| sm | [320,&nbsp;600) | 12 | 12 | 0 | 0 | 
+| md | [600,&nbsp;840) | 12 | 8 | 0 | 4 | 
 | lg | [840,&nbsp;+∞) | 12 | 8 | 0 | 4 | 
 
   | 默认设备 | 平板 | 
@@ -526,7 +526,7 @@ struct Conversation {
 
 - 通过[Flex组件](../../reference/arkui-ts/ts-container-flex.md)将三个部分组合起来，注意justifyContent: FlexAlign.SpaceBetween配置项是将Flex组件中的元素按照主轴方向均匀分配，其中第一个元素与顶部对齐，最后一个元素与底部对齐。
 
-- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control.md#循环渲染)，显示整个消息列表。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)和[ForEach语法](../../quick-start/arkts-rendering-control-foreach.md)，显示整个消息列表。
 
   | 默认设备 | 平板 | 
   | -------- | -------- |

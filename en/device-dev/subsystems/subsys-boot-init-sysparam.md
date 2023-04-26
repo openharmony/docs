@@ -8,7 +8,7 @@ The parameter management module, namely, sysparam, provides an easy-to-use key-v
 
 Figure 1 System parameter operation primitives
 
-![System parameter operation primitives](figure/system-parameter-operation-primitives.png)
+![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
 
 **Table 1** Description of system parameter operation primitives
 | Operation Primitive| Description|
@@ -96,7 +96,7 @@ Each subsystem defines the system parameters of its own modules, including the s
 
   **Figure 2** UGO rule structure
 
-  ![UGO rule](figure/dac-definition.png)
+  ![UGO rule](figures/dac-definition.png)
 
 - SELinux policy for system parameter configuration
 

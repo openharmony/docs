@@ -19,8 +19,6 @@ getNativeHeapSize(): bigint
 
 获取本应用堆内存的总大小。
 
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
-
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
@@ -29,20 +27,16 @@ getNativeHeapSize(): bigint
 | ------ | --------------------------- |
 | bigint | 返回本应用堆内存总大小，单位为kB。 |
 
-
 **示例：**
   ```js
   let nativeHeapSize = hidebug.getNativeHeapSize();
   ```
-
 
 ## hidebug.getNativeHeapAllocatedSize
 
 getNativeHeapAllocatedSize(): bigint
 
 获取本应用堆内存的已分配内存大小。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -58,14 +52,11 @@ getNativeHeapAllocatedSize(): bigint
   let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
   ```
 
-
 ## hidebug.getNativeHeapFreeSize
 
 getNativeHeapFreeSize(): bigint
 
 获取本应用堆内存的空闲内存大小。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -79,7 +70,6 @@ getNativeHeapFreeSize(): bigint
   ```js
   let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
   ```
-
 
 ## hidebug.getPss
 
@@ -99,7 +89,6 @@ getPss(): bigint
   ```js
   let pss = hidebug.getPss();
   ```
-
 
 ## hidebug.getSharedDirty
 
@@ -135,7 +124,6 @@ getPrivateDirty(): bigint
 | ------ | -------------------------- |
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
-
 **示例：**
   ```js
   let privateDirty = hidebug.getPrivateDirty();
@@ -163,76 +151,6 @@ getCpuUsage(): number
   let cpuUsage = hidebug.getCpuUsage();
   ```
 
-## hidebug.startProfiling<sup>(deprecated)</sup>
-
-startProfiling(filename : string) : void
-
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
-
-启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
-
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
-
-**示例：**
-
-```js
-hidebug.startProfiling("cpuprofiler-20220216");
-// code block
-// ...
-// code block
-hidebug.stopProfiling();
-```
-
-
-
-## hidebug.stopProfiling<sup>(deprecated)</sup>
-
-stopProfiling() : void
-
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
-
-停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
-
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**示例：**
-
-```js
-hidebug.startProfiling("cpuprofiler-20220216");
-// code block
-// ...
-// code block
-hidebug.stopProfiling();
-```
-
-## hidebug.dumpHeapData<sup>(deprecated)</sup>
-
-dumpHeapData(filename : string) : void
-
-> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
-
-虚拟机堆导出。
-
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | 是   | 用户自定义的虚拟机堆文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.heapsnapshot`文件。 |
-
-**示例：**
-
-```js
-hidebug.dumpHeapData("heap-20220216");
-```
-
 ## hidebug.getServiceDump<sup>9+<sup>
 
 getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
@@ -255,7 +173,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 **示例：**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import featureAbility from '@ohos.ability.featureAbility'
 
@@ -263,7 +181,7 @@ let context = featureAbility.getContext();
 context.getFilesDir().then((data) => {
   var path = data + "/serviceInfo.txt"
   console.info("output path: " + path)
-  let fd = fileio.openSync(path, 0o102, 0o666)
+  let fd = fs.openSync(path, 0o102, 0o666)
   var serviceId = 10
   var args = new Array("allInfo")
   try {
@@ -272,7 +190,7 @@ context.getFilesDir().then((data) => {
     console.info(error.code)
     console.info(error.message)
   }
-  fileio.closeSync(fd);
+  fs.closeSync(fd);
 })
 ```
 
@@ -359,4 +277,72 @@ try {
   console.info(error.code)
   console.info(error.message)
 }
+```
+
+## hidebug.startProfiling<sup>(deprecated)</sup>
+
+startProfiling(filename : string) : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
+
+启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
+
+**示例：**
+
+```js
+hidebug.startProfiling("cpuprofiler-20220216");
+// code block
+// ...
+// code block
+hidebug.stopProfiling();
+```
+
+## hidebug.stopProfiling<sup>(deprecated)</sup>
+
+stopProfiling() : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9)替代。
+
+停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**示例：**
+
+```js
+hidebug.startProfiling("cpuprofiler-20220216");
+// code block
+// ...
+// code block
+hidebug.stopProfiling();
+```
+
+## hidebug.dumpHeapData<sup>(deprecated)</sup>
+
+dumpHeapData(filename : string) : void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9)替代。
+
+虚拟机堆导出。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | 是   | 用户自定义的虚拟机堆文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.heapsnapshot`文件。 |
+
+**示例：**
+
+```js
+hidebug.dumpHeapData("heap-20220216");
 ```

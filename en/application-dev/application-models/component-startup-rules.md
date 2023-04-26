@@ -30,7 +30,7 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
   - Verify the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
 
-- **When the startAbilityByCall() method is used, verify the call permission.** For details, see [Using Ability Call to Implement UIAbility Interaction](uiability-intra-device-interaction.md#using-ability-call-to-implement-uiability-interaction) and [Using Cross-Device Ability Call](hop-multi-device-collaboration.md#using-cross-device-ability-call).
+- **When the startAbilityByCall() method is used, verify the call permission.** For details, see [Using Call to Implement UIAbility Interaction](uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction) and [Using Cross-Device Call](hop-multi-device-collaboration.md#using-cross-device-call).
   - Verify the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** permission.
 
 

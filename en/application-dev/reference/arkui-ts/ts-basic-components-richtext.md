@@ -5,7 +5,7 @@ The **\<RichText>** component parses and displays HTML text.
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
+> Set the height when using this component.
 
 
 ## Child Components
@@ -31,6 +31,10 @@ RichText(content:string)
 | onStart(callback: () => void)    | Triggered when web page loading starts.  |
 | onComplete(callback: () => void) | Triggered when web page loading is completed.|
 
+## Attributes
+
+Among the [universal attributes](ts-universal-attributes-size.md), only the **width**, **height**, **size**, and **layoutWeight** attributes are supported.
+
 ## Supported Tags
 
 | Name| Description| Example|
@@ -39,13 +43,13 @@ RichText(content:string)
 | \<p>\</p> | Defines a paragraph.| \<p>This is a paragraph\</p>|
 | \<br/> | Inserts a newline character.| \<p>This is a paragraph\<br/>This is a new paragraph\</p>|
 | \<font/> | Defines the font style for the text contained within it, including the font face, size, and color.| \<font size="3" face="arial" color="red">This is in red\</font> |
-| \<hr/> | Defines a thematic break (such as a shift of topic) on an HTML page and creates a horizontal line.| \<p>This is a paragraph\</p>\<hr/>\<p>This is a paragraph\</p> |
+| \<hr/> | Defines a thematic break (such as a shift of topic) on an HTML page and creates a horizontal line.| \<p>This is text\</p>\<hr/>\<p>This is text\</p> |
 | \<image>\</image> | Defines an image.| \<image src="resource://rawfile/icon.png">\</image> |
 | \<div>\</div> | Defines a generic container that is generally used to group block-level elements. It allows you to apply CSS styles to multiple elements at the same time.| \<div style='color:#0000FF'>\<h3>This is the heading in a div element\</h3>\</div> |
 | \<i>\</i> | Displays text in italic style.| \<i>This is in italic style\</i>|
 | \<u>\</u> | Defines text that should be styled differently or have a non-textual annotation, such as misspelt words or a proper name in Chinese text. It is recommended that you avoid using the \<u> tag where it could be confused with a hyperlink.| \<p>\<u>This is an underlined paragraph\</u>\</p> |
 | \<style>\</style> | Used to embed CSS within an HTML document.| \<style>h1{color:red;}p{color:blue;}\</style> |
-| style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is a paragraph\</p> |
+| style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is text\</p> |
 | \<script>\</script> | Embeds or references a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
 
 ## Example
@@ -66,7 +70,7 @@ struct RichTextExample {
   '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
   '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">Font size: 35px; line height: 45px</p>' +
   '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
-  '<p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>';
+  '<p>This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text. This is text.</p>';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,
@@ -78,6 +82,29 @@ struct RichTextExample {
         .onComplete(() => {
           console.info('RichText onComplete');
         })
+        .width(500)
+        .height(400)
+        .backgroundColor(0XBDDB69)
+      RichText('layoutWeight(1)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92D6CC)
+        .layoutWeight(1)
+      RichText('layoutWeight(2)')
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
+        .size({ width: '100%', height: 110 })
+        .backgroundColor(0X92C48D)
+        .layoutWeight(2)
     }
   }
 }

@@ -28,7 +28,6 @@
     - [Transformation](ts-universal-attributes-transformation.md)
     - [Image Effect Configuration](ts-universal-attributes-image-effect.md)
     - [Shape Clipping](ts-universal-attributes-sharp-clipping.md)
-    - [Text Style](ts-universal-attributes-text-style.md)
     - [Grid](ts-universal-attributes-grid.md)
     - [Gradient Color](ts-universal-attributes-gradient-color.md)
     - [Popup Control](ts-universal-attributes-popup.md)
@@ -42,7 +41,9 @@
     - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
     - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
-  - Gesture Processing
+    - [Foreground Color](ts-universal-attributes-foreground-color.md)
+  - [Universal Text Attributes](ts-universal-attributes-text-style.md)
+  - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
       - [TapGesture](ts-basic-gestures-tapgesture.md)
@@ -53,6 +54,7 @@
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [Combined Gestures](ts-combined-gestures.md)
 - Basic Components
+  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [Checkbox](ts-basic-components-checkbox.md)
@@ -60,11 +62,15 @@
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
+  - [Formcomponent](ts-basic-components-formcomponent.md)
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
   - [LoadingProgress](ts-basic-components-loadingprogress.md)
   - [Marquee](ts-basic-components-marquee.md)
+  - [Menu](ts-basic-components-menu.md)
+  - [MenuItem](ts-basic-components-menuitem.md)
+  - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)
@@ -95,7 +101,6 @@
   - [XComponent](ts-basic-components-xcomponent.md)
 - Container Components
   - [AbilityComponent](ts-container-ability-component.md)
-  - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Badge](ts-container-badge.md)
   - [Column](ts-container-column.md)
   - [ColumnSplit](ts-container-columnsplit.md)

@@ -4,7 +4,7 @@ The **geolocation** module provides a wide array of location services, including
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md) instead.
+> The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md).
 
 ## Applying for Permissions
 
@@ -411,7 +411,7 @@ Registers a listener for status change events of the specified geofence.
           {
               bundleName: "com.example.myapplication",
               abilityName: "EntryAbility",
-              action: "action1",
+              action: "action1"
           }
       ],
       operationType: wantAgent.OperationType.START_ABILITY,
@@ -1486,7 +1486,7 @@ Sets the priority of the location request.
 Enumerates error codes of the location service.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9.
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager](../errorcodes/errorcode-geoLocationManager.md).
 
 **Required permissions**: ohos.permission.LOCATION
 

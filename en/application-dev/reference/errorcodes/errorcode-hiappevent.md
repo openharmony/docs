@@ -1,5 +1,9 @@
 #  Application Event Logging Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 11100001 Application Event Logging Disabled
 
 **Error Message**
@@ -15,6 +19,7 @@ This error code is reported if the **write** API is called to perform applicatio
 The application event logging function is disabled.
 
 **Solution**
+
 Invoke the **configure** API to enable the application event logging function.
 
    ```js
@@ -41,6 +46,7 @@ The specified event domain name does not comply with the following rules:
 - The event domain name is not empty and contains a maximum of 32 characters.
 
 **Solution**
+
 Specify a valid event domain name.
 
 ## 11101002 Invalid Event Name

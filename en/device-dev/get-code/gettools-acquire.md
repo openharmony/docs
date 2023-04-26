@@ -74,6 +74,7 @@ Before using the Docker environment, perform the following operations:
     > 
     > You do not need to obtain the source code for the HPM-based Docker environment.
 
+3.  Perform subsequent operations as a user who has the root permission or has been granted the permission to use Docker.
 
 ## Standalone Docker Environment<a name="section2858536103611"></a>
 
@@ -113,7 +114,7 @@ hb set
 ```
 
 **Figure 1** Setting page<a name="fig7947145854013"></a>  
-![](figure/setting-page.png "setting-page")
+![](figures/setting-page.png "setting-page")
 
 > **NOTE**<br>
 > The mapping between the development board and the building GUI:

@@ -2,7 +2,8 @@
 
 The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,8 +23,8 @@ Defines the authentication result.
 | ------------ | ---------- | ---- | -------------------- |
 | result        | number | Yes  | Authentication result.      |
 | token        | Uint8Array | No  | Token that has passed the user identity authentication.|
-| remainAttempts  | number     | No  | Number of remaining authentication times allowed.|
-| lockoutDuration | number     | No  | Time for which the authentication operation is frozen.|
+| remainAttempts  | number     | No  | Number of remaining authentication attempts.|
+| lockoutDuration | number     | No  | Lock duration of the authentication operation, in milliseconds.|
 
 ## TipInfo<sup>9+</sup>
 
@@ -399,44 +400,6 @@ try {
 }
 ```
 
-## userIAM_userAuth.getVersion<sup>9+</sup>
-
-getVersion(): number
-
-Obtains the version of this authenticator.
-
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
-**System capability**: SystemCapability.UserIAM.UserAuth.Core
-
-**Return value**
-
-| Type  | Description                  |
-| ------ | ---------------------- |
-| number | Authenticator version obtained.|
-
-For details about the error codes, see [User Authentication Error Codes](../errorcodes/errorcode-useriam.md).
-
-**Error codes**
-
-| ID| Error Message|
-| -------- | ------- |
-| 201 | Permission verification failed. |
-| 12500002 | General operation error. |
-
-**Example**
-
-```js
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-try {
-    let version = userIAM_userAuth.getVersion();
-    console.info("auth version = " + version);
-} catch (error) {
-    console.info("get version failed, error = " + error);
-}
-```
-
 ## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
@@ -535,7 +498,7 @@ getVersion() : number
 Obtains the version of this authenticator.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getVersion](#useriam_userauthgetversion9).
+> This API is supported since API version 8 and deprecated since API version 9.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 

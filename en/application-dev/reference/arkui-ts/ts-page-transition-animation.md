@@ -1,6 +1,6 @@
 # Page Transition
 
-The page transition navigates users between pages. You can customize page transitions by configuring the page entrance and exit components in the global **pageTransition** API.
+The page transition navigates users between pages. You can customize page transitions by configuring the page entrance and exit components in the **pageTransition** API.
 
 > **NOTE**
 >
@@ -8,12 +8,12 @@ The page transition navigates users between pages. You can customize page transi
 >
 
 
-| Name               | Parameter                                                        | Description                                                    |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string,<br>delay?: number<br>} | Page entrance animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>**Note**: If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.<br>- **duration**: animation duration, in milliseconds.<br>- **curve**: animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**<br>- **delay**: animation delay, in milliseconds. By default, the animation is played without delay.|
-| PageTransitionExit  | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string,<br>delay?: number<br>} | Page exit animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>**Note**: If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.<br>- **duration**: animation duration, in milliseconds.<br>- **curve**: animation curve. The value range of the string type is the same as that of **PageTransitionEnter**.<br>Default value: **Curve.Linear**<br>- **delay**: animation delay, in milliseconds. By default, the animation is played without delay.|
+| Name               | Parameter                                                        | Mandatory| Description                                                    |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| PageTransitionEnter | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string,<br>delay?: number<br>} | No  | Page entrance animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.<br>- **duration**: animation duration.<br>Unit: ms<br>- **curve**: animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Default value: **0**<br>Unit: ms|
+| PageTransitionExit  | {<br>type?: RouteType,<br>duration?: number,<br>curve?: [Curve](ts-appendix-enums.md#curve) \| string,<br>delay?: number<br>} | No  | Page exit animation.<br>- **type**: route type for the page transition effect to take effect.<br>Default value: **RouteType.None**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.<br>- **duration**: animation duration, in milliseconds.<br>- **curve**: animation curve. The value range of the string type is the same as that of **PageTransitionEnter**.<br>Default value: **Curve.Linear**<br>- **delay**: animation delay.<br>Default value: **0**<br>Unit: ms|
 
-## RouteType enums
+## RouteType
 
 | Name| Description                                                        |
 | ---- | ------------------------------------------------------------ |
@@ -28,7 +28,7 @@ The page transition navigates users between pages. You can customize page transi
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slide     | [SlideEffect](#slideeffect)                          | No  | Slide effect during page transition.<br>Default value: **SlideEffect.Right**|
 | translate | {<br>x? : number \| string,<br>y? : number \| string,<br>z? : number \| string<br>} | No  | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default.<br>- **x**: translation distance along the x-axis.<br>- **y**: translation distance along the y-axis.<br>- **z**: translation distance along the y-axis.|
-| scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | No  | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.<br>- **x**: scale ratio along the x-axis.<br>- **y**: scale ratio along the y-axis.<br>- **z**: scale ratio along the z-axis.<br>- **centerX** and **centerY**: scale center point.<br>- If the center point is 0, it refers to the upper left corner of the component.<br>|
+| scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | No  | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.<br>- **x**: scale ratio along the x-axis.<br>- **y**: scale ratio along the y-axis.<br>- **z**: scale ratio along the z-axis.<br>- **centerX** and **centerY**: scale center point.<br>- If the center point is 0, it refers to the upper left corner of the component. |
 | opacity   | number                                                       | No  | Opacity, which is the opacity value of the start point of entrance or the end point of exit.<br>Default value: **1**|
 
 ## SlideEffect
@@ -43,10 +43,10 @@ The page transition navigates users between pages. You can customize page transi
 
 ## Events
 
-| Name                                                        | Description                                                    |
+| Name                                                         | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type?: RouteType, progress?: number) =&gt; void) | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.|
-| onExit(event: (type?: RouteType, progress?: number) =&gt; void) | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.|
+| onEnter(event: (type?: RouteType, progress?: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress. |
+| onExit(event: (type?: RouteType, progress?: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress. |
 
 
 ## Example

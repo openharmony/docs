@@ -24,14 +24,17 @@ First thing first, familiarize yourself with the two cornerstone frameworks in O
 All applications should be developed on top of these frameworks.
 
 Then, equip yourself for developing the key features, with the following guidelines:
-- [Common Event and Notification](notification/Readme-EN.md)
+
+- [Web](web/web-component-overview.md)
+- [Notification](notification/Readme-EN.md)
 - [Window Manager](windowmanager/Readme-EN.md)
 - [WebGL](webgl/Readme-EN.md)
 - [Media](media/Readme-EN.md)
 - [Security](security/Readme-EN.md)
 - [Connectivity](connectivity/Readme-EN.md)
-- [Telephony](telephony/Readme-EN.md)
+- [Telephony Service](telephony/Readme-EN.md)
 - [Data Management](database/Readme-EN.md)
+- [File Management](file-management/Readme-EN.md)
 - [Task Management](task-management/Readme-EN.md)
 - [Device Management](device/Readme-EN.md)
 - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
@@ -69,3 +72,5 @@ They are organized as follows:
 ### Readme
 
 For details about the principles and basic information of each subsystem, see the README file in [docs/en/readme](../readme).
+
+ <!--no_check--> 

@@ -1,11 +1,11 @@
-# @ohos.data.preferences (Preferences)
+# @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
+The **user preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -22,8 +22,8 @@ import data_preferences from '@ohos.data.preferences';
 
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key. The key must be less than 80 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value. The value must be less than 8192 bytes.|
+| MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 80 bytes.    |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
 ## data_preferences.getPreferences
@@ -38,8 +38,8 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md). |
-| name     | string                                           | Yes  | Name of the **Preferences** instance.|
+| context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                                |
+| name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
 **Example**
@@ -176,12 +176,12 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
-| name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
+| name     | string                                | Yes  | Name of the **Preferences** instance to delete.                             |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Error codes**
 
-For details about the following error codes, see [Preference Error Codes](../errorcodes/errorcode-preferences.md).
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
@@ -258,7 +258,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 **Error codes**
 
-For details about the following error codes, see [Preference Error Codes](../errorcodes/errorcode-preferences.md).
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
@@ -503,7 +503,7 @@ try {
     promise.then((data) => {
         console.info("Got the value of 'startup'. Data: " + data);
     }).catch((err) => {
-        console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
     console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -973,7 +973,7 @@ Unsubscribes from data changes.
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
 | type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events.  |
-| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks used to subscribing to all data changes will be unregistered.|
+| callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks for all data changes will be unregistered.|
 
 **Example**
 

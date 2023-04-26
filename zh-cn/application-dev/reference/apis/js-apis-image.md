@@ -79,7 +79,7 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 ## PixelMap<sup>7+</sup>
 
-图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。
+图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
 
  ### 属性
 
@@ -947,8 +947,18 @@ createImageSource(uri: string): ImageSource
 **示例：**
 
 ```js
-let context = featureAbility.getContext();
-let path = context.getCacheDir() + "test.jpg";
+//Stage模型
+const context = getContext(this);
+const path = context.cacheDir() + "/test.jpg";
+const imageSourceApi = image.createImageSource(path);
+```
+
+```js
+//FA模型
+import featureAbility from '@ohos.ability.featureAbility';
+
+const context = featureAbility.getContext();
+const path = context.getCacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 

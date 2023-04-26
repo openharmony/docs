@@ -51,7 +51,7 @@ For details about the supported specifications, see [HMAC Algorithm Specificatio
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications). |
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [HMAC Algorithm Specifications](../../security/cryptoFramework-overview.md#hmac-algorithm-specifications).|
 
 **Return value**
 
@@ -483,7 +483,7 @@ For details about the supported specifications, see [MD Algorithm Specifications
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications). |
+| algName | string | Yes  | Digest algorithm. For details about the supported algorithms, see [MD Algorithm Specifications](../../security/cryptoFramework-overview.md#md-algorithm-specifications).|
 
 **Return value**
 
@@ -1852,7 +1852,7 @@ Updates the data to encrypt or decrypt by segment. This API uses a promise to re
 
 | Type                           | Description                                            |
 | ------------------------------- | ------------------------------------------------ |
-| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data). |
+| Promise\<[DataBlob](#datablob)> | Promise used to return the **DataBlob** (containing the encrypted or decrypted data).|
 
 **Error codes**
 
@@ -2174,7 +2174,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 Updates the data to be signed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2200,7 +2200,7 @@ update(data : DataBlob) : Promise\<void>;
 Updates the data to be signed. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2266,6 +2266,8 @@ Signs the data. This API uses a promise to return the result.
 | Type          | Description       |
 | -------------- | ----------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
 
 | ID| Error Message              |
 | -------- | ---------------------- |
@@ -2465,7 +2467,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 Updates the data for signature verification. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2491,7 +2493,7 @@ update(data : DataBlob) : Promise\<void>;
 Updates the data for signature verification. This API uses a promise to return the result.
 
 > **NOTE**
-> For details about the sample code for calling **update()** multiple times, see [Signing Data and Verifying Signatures](../../security/cryptoFramework-guidelines.md#signing-data-and-verifying-signatures).
+> For details about the sample code for calling **update()** multiple times, see [Generating and Verifying a Signature](../../security/cryptoFramework-guidelines.md#generating-and-verifying-a-signature).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 

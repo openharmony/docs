@@ -1,5 +1,9 @@
 # 屏幕错误码
 
+> **说明：**
+>
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+
 ## 1400001 无效的显示设备
 **错误信息**<br>
 Invalid display or screen.

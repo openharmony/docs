@@ -17,26 +17,8 @@ import request from '@ohos.request';
 
 ## 限制与约束
 
-在开发FA模型下的应用程序时, 默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
-
-```js
-var config = {
-  "deviceConfig": {
-    "default": {
-      "network": {
-        "cleartextTraffic": true
-      }
-      //...
-    }
-  }
-}
-```
-
-在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
-
-下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
-
 上传目前仅支持HTTP请求，不支持HTTPS。
+下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
 
 ## 常量
 
@@ -97,7 +79,7 @@ var config = {
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-上传，异步方法，使用promise形式返回结果。
+上传，异步方法，使用promise形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -151,7 +133,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-上传，异步方法，使用callback形式返回结果。
+上传，异步方法，使用callback形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -635,6 +617,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
   ```
 
 ## UploadConfig
+上传任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -649,6 +632,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
+上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -661,6 +645,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
+[UploadConfig](#uploadconfig)中的文件列表。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -675,6 +660,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 ## RequestData
+[UploadConfig](#uploadconfig)中的表单数据。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -689,7 +675,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-下载，异步方法，使用promise形式返回结果。
+下载，异步方法，使用promise形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
+
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -737,7 +724,8 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-下载，异步方法，使用callback形式返回结果。
+下载，异步方法，使用callback形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
+
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1675,6 +1663,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadConfig
+下载任务的配置信息。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1687,13 +1676,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;filePath:'/data/storage/el2/base/haps/entry/files/test.txt'：将文件存储在绝对路径下。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：'${featureAbility.getContext().getFilesDir()}/test.txt'，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：'${globalThis.abilityContext.tempDir}/test.txt'并将文件存储在此路径下。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;filePath:'/data/storage/el2/base/haps/entry/files/test.txt'：将文件存储在绝对路径下。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
 | networkType | number | 否 | 设置允许下载的网络类型。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
 
 
 ## DownloadInfo<sup>7+</sup>
+下载任务信息，[query<sup>(deprecated)</sup>](#querydeprecated-1)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1712,3 +1702,5 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | downloadTotalBytes | number | 是 | 下载的文件的总大小（int&nbsp;bytes）。 |
 | description | string | 是 | 待下载文件的描述信息。 |
 | downloadedBytes | number | 是 | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+
+<!--no_check-->

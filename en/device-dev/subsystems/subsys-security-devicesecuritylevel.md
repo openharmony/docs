@@ -16,11 +16,11 @@ The Device Security Level Management (DSLM) module is introduced to manage the s
 
   The following figure shows the OpenHarmony security architecture.
 
-  ![OpenHarmony system security architecture](figure/ohos_system_security_architecture.png)
+  ![OpenHarmony system security architecture](figures/ohos_system_security_architecture.png)
 
   The above figure shows the typical security architecture for a single device. The architecture may vary depending on the risk level as well as the software and hardware resources of the device. The security capabilities of OpenHarmony devices are classified into five levels from SL1 to SL5, based on the industry standard security classification model and actual OpenHarmony service scenarios and device types. In the OpenHarmony ecosystem, higher security levels include all the capabilities of lower security levels by default. The figure below shows the security levels of OpenHarmony devices.
 
-  ![OpenHarmony device security levels](figure/ohos_device_security_level.png)
+  ![OpenHarmony device security levels](figures/ohos_device_security_level.png)
 
   - SL1: SL1 is the lowest security level of OpenHarmony devices. Usually equipped with a lightweight operating system and low-end microprocessors, such devices implement simple services and do not need to process sensitive data. SL1 devices are required to support software integrity protection and eliminate common errors. Devices that cannot meet the requirements of SL1 can only be controlled by OpenHarmony devices. They cannot control OpenHarmony devices for more complex service collaboration.
 
@@ -421,7 +421,7 @@ The fields in the response message are described as follows:
 
 ### Tool
 
-The DSLM module provides a [credential tool](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/dslm_cred_tool.py) to help you better understand the issuing and verification of credentials. This tool is a Python script encapsulated with OpenSSL commands.
+The DSLM module provides a [credential tool](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/standard/dslm_cred_tool.py) to help you better understand the issuing and verification of credentials. This tool is a Python script encapsulated with OpenSSL commands.
 You can use the tool as follows:
 
 1. Initialize the signature key.

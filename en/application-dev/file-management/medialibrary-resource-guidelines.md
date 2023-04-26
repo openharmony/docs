@@ -42,14 +42,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.log('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -75,14 +72,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -108,14 +102,11 @@ async function example() {
   const context = getContext(this);
   let media = mediaLibrary.getMediaLibrary(context);
   const fetchFileResult = await media.getFileAssets(option);
-  fetchFileResult.getFirstObject().then((fileAsset) => {
+  fetchFileResult.getFirstObject().then(async (fileAsset) => {
     console.info('getFirstObject.displayName : ' + fileAsset.displayName);
     for (let i = 1; i < fetchFileResult.getCount(); i++) {
-      fetchFileResult.getNextObject().then((fileAsset) => {
-        console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
-      }).catch((err) => {
-        console.error('Failed to get next object: ' + err);
-      });
+      let fileAsset = await fetchFileResult.getNextObject();
+      console.info('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
     }
   }).catch((err) => {
     console.error('Failed to get first object: ' + err);
@@ -156,7 +147,7 @@ async function example() {
 ## Obtaining Images and Videos in an Album
 
 You can obtain media assets in an album in either of the following ways:
-- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified, as described in [Querying Media Assets with the Specfied Album Name](#querying-media-assets-with-the-specified-album-name).
+- Call [MediaLibrary.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-1) with an album specified, as described in [Querying Media Assets with the Specified Album Name](#querying-media-assets-with-the-specified-album-name).
 - Call [Album.getFileAssets](../reference/apis/js-apis-medialibrary.md#getfileassets7-3) to obtain an **Album** instance, so as to obtain the media assets in it.
 
 **Prerequisites**

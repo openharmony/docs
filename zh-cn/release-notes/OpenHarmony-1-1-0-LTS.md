@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.0 LTS（2021-04-01）
+# OpenHarmony 1.1.0 LTS（2021-04-01）(停止维护)
 
 ## 版本概述
 

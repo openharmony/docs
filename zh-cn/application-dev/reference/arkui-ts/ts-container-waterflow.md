@@ -14,6 +14,9 @@
 
 包含[FlowItem](ts-container-flowitem.md)子组件。
 
+>  **说明：**
+>
+>  WaterFlow子组件的visibility属性设置为None时不显示，但依然会占用子组件对应的网格。
 
 ## 接口
 
@@ -250,7 +253,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: this.itemFoot, scroller: this.scroller }) {
+      WaterFlow({ footer: this.itemFoot.bind(this), scroller: this.scroller }) {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {

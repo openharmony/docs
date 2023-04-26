@@ -1,4 +1,5 @@
 # Quick Start
+
 - Getting Started
   - [Before You Start](start-overview.md)
   - [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md)
@@ -10,7 +11,6 @@
     - Application Package Structure
       - [Application Package Structure in Stage Model](application-package-structure-stage.md)
       - [Application Package Structure in FA Model](application-package-structure-fa.md)
-      - [HAR File Structure](har-structure.md)
     - Multi-HAP Mechanism
       - [Multi-HAP Design Objectives](multi-hap-objective.md)
       - [Multi-HAP Build View](multi-hap-build-view.md)
@@ -18,6 +18,16 @@
       - [Multi-HAP Usage Rules](multi-hap-rules.md)
       - [Multi-HAP Operation Mechanism and Data Communication Modes](multi-hap-principles.md)
     - [Application Installation and Uninstallation Process](application-package-install-uninstall.md)
+    - [Application Package Update Process](application-package-update.md)
+    - Shared Package
+      - [Shared Package Overview](shared-guide.md)
+      - [HAR](har-package.md)
+      - HSP
+        - [In-Application HSP Development](in-app-hsp.md)
+        - [Inter-Application HSP Development (for System Applications Only)](cross-app-hsp.md)
+    - Quick Fix
+      - [Quick Fix Overview](quickfix-principles.md)
+      - [CLI-based Quick Fix Development](quickfix-debug.md)
   - Application Configuration Files in Stage Model
     - [Application Configuration File Overview (Stage Model)](application-configuration-file-overview-stage.md)
     - [app.json5 Configuration File](app-configuration-file.md)

@@ -371,7 +371,6 @@ struct SideBarSample {
 
   @Builder itemBuilder(index: number) {
     Text(images[index].label)
-      .width('100%')
       .fontSize(24)
       .fontWeight(FontWeight.Bold)
       .borderRadius(5)
@@ -470,6 +469,7 @@ struct Item {
       NavDestination() {
         Details({imageSrc: this.imageSrc})
       }.title(this.label)
+      .backgroundColor('#FFFFFF')
     }
   }
 }
@@ -491,7 +491,7 @@ struct NavigationSample {
     .backgroundColor('#F1F3F5')
     .height('100%')
     .width('100%')
-    .navBarWidth('40%')
+    .navBarWidth(360)
     .hideToolBar(true)
     .title('Sample')
   }

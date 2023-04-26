@@ -15,6 +15,8 @@ This component can contain the **\<GridCol>** child component.
 ## APIs
 GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name|Type|Mandatory|Description|
@@ -26,6 +28,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 ## GutterOption
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | Length \| GridRowSizeOption | No  | Gutter in the horizontal direction.   |
@@ -35,50 +39,62 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 Describes the numbers of grid columns for different device width types.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | number | No   | Device of the minimum size.   |
-| sm  | number | No   | Small-sized device.           |
-| md  | number | No   | Medium-sized device.          |
-| lg  | number | No   | Large-sized device.           |
-| xl  | number | No   | Extra-large-sized device.     |
-| xxl | number | No   | Ultra-large-sized device.     |
+| sm  | number | No   | Small-sized device.     |
+| md  | number | No   | Medium-sized device.   |
+| lg  | number | No   | Large-sized device.     |
+| xl  | number | No   | Extra-large-sized device.   |
+| xxl | number | No   | Ultra-large-sized device.   |
 
 ## GridRowSizeOption
 
 Describes the gutter sizes for different device width types.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | Length | No   | Device of the minimum size.   |
-| sm  | Length | No   | Small-sized device.           |
-| md  | Length | No   | Medium-sized device.          |
-| lg  | Length | No   | Large-sized device.           |
-| xl  | Length | No   | Extra-large-sized device.     |
-| xxl | Length | No   | Ultra-large-sized device.     |
+| sm  | Length | No   | Small-sized device.     |
+| md  | Length | No   | Medium-sized device.   |
+| lg  | Length | No   | Large-sized device.     |
+| xl  | Length | No   | Extra-large-sized device.   |
+| xxl | Length | No   | Ultra-large-sized device.   |
 
 ## BreakPoints
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "520vp", "840vp"]**   |
+| value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "600vp", "840vp"]**   |
 | reference  | BreakpointsReference | No   | Breakpoint switching reference.|
 ```ts
   // Enable the xs, sm, and md breakpoints.
   breakpoints: {value: ["100vp", "200vp"]}
   // Enable four breakpoints: xs, sm, md, and lg. The breakpoint range must be monotonically increasing.
-  breakpoints: {value: ["320vp", "520vp", "840vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp"]}
   // Enable five breakpoints: xs, sm, md, lg, and xl. The number of breakpoint ranges cannot exceed the number of breakpoints minus 1.
-  breakpoints: {value: ["320vp", "520vp", "840vp", "1080vp"]}
+  breakpoints: {value: ["320vp", "600vp", "840vp", "1080vp"]}
 ```
 
 ## BreakpointsReference
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | WindowSize | The window is used as a reference.|
 | ComponentSize | The container is used as a reference.|
 
 ## GridRowDirection
+
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | Row | Grid elements are arranged in the row direction.|
@@ -110,7 +126,11 @@ A grid supports a maximum of six breakpoints: xs, sm, md, lg, xl and xxl, whose 
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                      | Type                           | Description                                              |
+| ----------------------- | ----------------------------------- | ------------------------------------------- |
+| alignItems<sup>10+</sup>             | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the **\<GridCol>** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>The alignment mode of the **\<GridCol>** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 
 ## Events
@@ -118,6 +138,8 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 ### onBreakpointChange
 
 onBreakpointChange(callback: (breakpoints: string) => void)
+
+Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 

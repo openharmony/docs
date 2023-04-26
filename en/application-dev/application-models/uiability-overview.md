@@ -3,10 +3,27 @@
 
 ## Overview
 
-UIAbility has the UI and is mainly used for user interaction.
+UIAbility is a type of application component that provides the UI for user interaction.
 
-UIAbility is the basic unit scheduled by the system and provides a window for applications to draw UIs. A UIAbility component can implement a functional module through multiple pages. Each UIAbility component instance corresponds to a mission in **Recents**.
+The following design philosophy is behind UIAbility:
 
+1. Native support for [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md) at the application component level
+
+2. Support for multiple device types and window forms
+
+For details, see [Interpretation of the Application Model](application-model-description.md).
+
+The UIAbility division principles and suggestions are as follows:
+
+UIAbility is the basic unit scheduled by the system and provides a window for applications to draw UIs. An application can contain one or more UIAbility components. For example, for a payment application, you can use two UIAbility components to carry the entry and payment functionalities.
+
+Each UIAbility component instance is displayed as a mission in Recents.
+
+You can develop a single UIAbility or multiple UIAbilities for your application based on service requirements.
+
+- If you want only one mission to be displayed in Recents, use one UIAbility and multiple pages.
+
+- If you want multiple missions to be displayed in Recents or multiple windows to be opened simultaneously, use multiple UIAbilities.
 
 ## Privacy Statement Configuration
 
@@ -32,8 +49,3 @@ To enable an application to properly use a UIAbility component, declare the UIAb
   }
 }
 ```
-
-> **NOTE**
->
-> For the ability composition, see [Adding an Ability to a Module](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/ohos-adding-ability-0000001218280664-V3).
-

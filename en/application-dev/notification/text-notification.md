@@ -127,10 +127,10 @@ The following table describes the APIs for notification publishing. You specify 
    
       Below is an example of the multi-line notification. 
      ![en-us_image_0000001417062446](figures/en-us_image_0000001417062446.png)
-   - In addition to the parameters in the normal text notification, the picture-attached text notification provides the **picture**, **briefText**, and **expandedTitle** parameters. The value of **picture** is a pixel map that does not exceed 2 MB.
+   - In addition to the parameters in the normal text notification, the picture-attached text notification provides the **picture**, **briefText**, and **expandedTitle** parameters. The value of **picture** is a [PixelMap](../reference/apis/js-apis-image.md#pixelmap7) object that does not exceed 2 MB.
      
       ```ts
-      let notificationPicture: PixelMap = undefined; // Obtain the pixel map information.
+      let imagePixelMap: PixelMap = undefined; // Obtain the PixelMap information.
       let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
@@ -141,7 +141,7 @@ The following table describes the APIs for notification publishing. You specify 
                 additionalText: 'test_additionalText',
                 briefText: 'test_briefText',
                 expandedTitle: 'test_expandedTitle',
-                picture: notificationPicture
+                picture: imagePixelMap
               }
           }
       }

@@ -30,8 +30,8 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。     |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
+| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -40,9 +40,13 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -83,7 +87,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -92,9 +96,13 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -133,8 +141,8 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
+| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | 否   | 通知订阅信息。   |
 
 **错误码：**
 
@@ -142,9 +150,13 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **示例：**
 
@@ -178,7 +190,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **错误码：**
@@ -187,6 +199,9 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -201,8 +216,8 @@ function unsubscribeCallback(err) {
         console.info("unsubscribe success");
     }
 }
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback
@@ -226,7 +241,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | 是   | 通知订阅对象。 |
 
 **错误码：**
 
@@ -234,6 +249,9 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -241,8 +259,8 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 **示例：**
 
 ```js
-function onDisconnectCallback(data) {
-	console.info("Cancel callback: " + JSON.stringify(data));
+function onDisconnectCallback() {
+	console.info("subscribe disconnect");
 }
 let subscriber = {
     onDisconnect: onDisconnectCallback
@@ -268,8 +286,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 参数名            | 类型                                | 必填 | 说明                 |
 | --------------- |   ----------------------------------| ---- | -------------------- |
-| bundle          | [BundleOption](#bundleoption)       | 是   | 指定应用的包信息。           |
-| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)       | 是   | 指定应用的包信息。           |
+| notificationKey | [NotificationKey](js-apis-notification.md#notificationkey) | 是   | 通知键值。             |
 | reason          | [RemoveReason](#removereason)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
@@ -279,6 +297,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -324,8 +345,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
-| bundle          | [BundleOption](#bundleoption)    | 是   | 指定应用的包信息。 |
-| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
+| bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | 是   | 指定应用的包信息。 |
+| notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **错误码：**
@@ -334,6 +355,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -372,7 +396,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](#subscribecallbackdata)获取其内部[NotificationRequest](#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -382,6 +406,9 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -428,6 +455,9 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -459,7 +489,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                         |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption](#bundleoption)          | 是   | 指定应用的包信息。                   |
+| bundle   | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | 是   | 指定应用的包信息。                   |
 | callback | AsyncCallback\<void\> | 是   | 删除指定应用的所有通知回调函数。 |
 
 **错误码：**
@@ -468,6 +498,9 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -513,6 +546,9 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -547,7 +583,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](#bundleoption) | 否   | 指定应用的包信息。 |
+| bundle | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | 否   | 指定应用的包信息。 |
 
 **错误码：**
 
@@ -555,6 +591,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -594,6 +633,9 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -639,6 +681,9 @@ removeAll(userId: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -668,7 +713,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 ### onConsume
 
-onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
+onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
 接收到新通知的回调函数。
 
@@ -680,7 +725,7 @@ onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 新接收到的通知信息。 |
+| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 新接收到的通知信息。 |
 
 **示例：**
 
@@ -708,7 +753,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onCancel
 
-onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
+onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
 取消通知的回调函数。
 
@@ -720,7 +765,7 @@ onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](#subscribecallbackdata) | 是 | 需要取消的通知信息。 |
+| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 需要取消的通知信息。 |
 
 **示例：**
 
@@ -748,7 +793,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onUpdate
 
-onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
+onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
 
 更新通知排序的回调函数。
 
@@ -760,7 +805,7 @@ onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](#notificationsortingmap) | 是 | 最新的通知排序列表。 |
+| data | [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) | 是 | 最新的通知排序列表。 |
 
 **示例：**
 
@@ -935,7 +980,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
 
 监听应用通知使能变化。
 
@@ -947,7 +992,7 @@ onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](#enablednotificationcallbackdata)\> | 是 | 回调返回监听到的应用信息。 |
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | 是 | 回调返回监听到的应用信息。 |
 
 **示例：**
 
@@ -1013,104 +1058,6 @@ let subscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-## BundleOption
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称   | 类型   | 可读 | 可写 | 说明   |
-| ------ | ------ |---- | --- |  ------ |
-| bundle | string | 是  | 是  | 应用的包信息。 |
-| uid    | number | 是  | 是  | 用户ID。 |
-
-## NotificationKey
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-| 名称  | 类型   | 可读 | 可写 | 说明     |
-| ----- | ------ | ---- | --- | -------- |
-| id    | number | 是  | 是  | 通知ID。   |
-| label | string | 是  | 是  | 通知标签。 |
-
-## SubscribeCallbackData
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称            | 类型                                              | 可读                                            | 可写                                            | 说明     |
-| --------------- | ------------------------------------------------- | -------- | -------- | -------- |
-| request         | [NotificationRequest](js-apis-notificationManager.md#notificationrequest) | 是 | 否 | 通知内容。 |
-| sortingMap      | [NotificationSortingMap](#notificationsortingmap) | 是 | 否 | 排序信息。 |
-| reason          | number                                            | 是                                           | 否                                           | 删除原因。 |
-| sound           | string                                            | 是                                           | 否                                           | 通知声音。 |
-| vibrationValues | Array\<number\>                                   | 是                                  | 否                                  | 通知震动。 |
-
-
-## EnabledNotificationCallbackData
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称   | 类型    | 可读  | 可写  | 描述             |
-| ------ | ------- | ---------------- | ---------------- | ---------------- |
-| bundle | string  | 是 | 否 | 应用的包名。       |
-| uid    | number  | 是 | 否 | 应用的uid。        |
-| enable | boolean | 是 | 否 | 应用通知使能状态。 |
-
-
-## NotificationSorting
-
-提供有关活动通知的排序信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称     | 类型                                  | 可读 | 可写 | 说明         |
-| -------- | ------------------------------------- | ---- | --- | ------------ |
-| slot     | [NotificationSlot](js-apis-notificationManager.md#notificationslot) | 是  | 否  | 通知通道内容。 |
-| hashCode | string                                | 是  | 否  | 通知唯一标识。 |
-| ranking  | number                                | 是  | 否  | 通知排序序号。 |
-
-
-## NotificationSortingMap
-
-提供关于已订阅的所有通知中活动通知的排序信息
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称           | 类型                                                         | 可读 | 可写 | 说明             |
-| -------------- | ------------------------------------------------------------ | ---- | --- | ---------------- |
-| sortings       | {[key: string]: [NotificationSorting](#notificationsorting)} | 是  | 否  | 通知排序信息数组。 |
-| sortedHashCode | Array\<string\>                                              | 是  | 否  | 通知唯一标识数组。 |
-
-
-## NotificationSubscribeInfo
-
-设置订阅所需通知的发布者的信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-| 名称        | 类型            | 可读 | 可写 | 说明                            |
-| ----------- | --------------- | --- | ---- | ------------------------------- |
-| bundleNames | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。 |
-| userId      | number          | 是  | 是  | 指定订阅哪个用户下发来的通知。    |
-
-
-## NotificationUserInput
-
-保存用户输入的通知消息。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-| 名称     | 类型   | 可读 | 可写 | 说明                          |
-| -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | 是  | 是  | 用户输入时用于标识此输入的key。 |
 
 ## RemoveReason
 

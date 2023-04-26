@@ -18,6 +18,8 @@ This component supports only one child component.
 
 Creates a badge.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Default Value| Description|
@@ -31,6 +33,8 @@ Creates a badge.
 
 Creates a badge based on the given string.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **Parameters**
 
 | Name| Type| Mandatory| Default Value| Description|
@@ -41,6 +45,8 @@ Creates a badge based on the given string.
 
 ## BadgePosition
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 | Name| Description|
 | -------- | -------- |
 | RightTop | The badge is displayed in the upper right corner of the parent component.|
@@ -49,12 +55,17 @@ Creates a badge based on the given string.
 
 ## BadgeStyle
 
-| Name      | Type                                      | Mandatory| Default Value     | Description                                       |
-| ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
-| color      | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.White | Font color.                                 |
-| fontSize   | number \| string                 | No  | 10          | Font size, in vp.                         |
-| badgeSize  | number \| string                 | No  | 16          | Badge size, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
-| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Color.Red   | Badge color.                              |
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name                     | Type                                                        | Mandatory| Default Value           | Description                                                        |
+| ------------------------- | ------------------------------------------------------------ | ---- | ----------------- | ------------------------------------------------------------ |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Color.White       | Font color.                                                  |
+| fontSize                  | number \| string                                   | No  | 10                | Font size, in vp.                                          |
+| badgeSize                 | number \| string                                   | No  | 16                | Badge size, in vp. This parameter cannot be set in percentage. If it is set to an invalid value, the default value is used.|
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Color.Red         | Badge color.                                               |
+| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | FontWeight.Normal | Font weight of the text.                                        |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Color.Red         | Border color of the background.                                              |
+| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | No  | 1.0vp             | Border width of the background.                                              |
 
 ## Example
 

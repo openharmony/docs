@@ -157,7 +157,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo\>\>
 
 Obtains the information of all bundles of the specified user. This API uses a promise to return the result.
 
@@ -201,7 +201,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 Obtains the information of all bundles of the current user. This API uses an asynchronous callback to return the result.
 
@@ -238,7 +238,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllBundleInfo](js-apis-bundleManager.md#bundlemanagergetallbundleinfo) instead.
 
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
 Obtains the information of all bundles of the specified user. This API uses an asynchronous callback to return the result.
 
@@ -426,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Return value**
 
@@ -462,7 +462,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -499,7 +499,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -540,7 +540,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -584,7 +584,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -626,7 +626,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -671,7 +671,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -699,7 +699,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -754,7 +754,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -794,7 +794,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -823,7 +823,7 @@ bundle.getPermissionDef(permissionName).then((data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
 
-getAllApplicationInfo(bundleFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
+getAllApplicationInfo(bundleFlags: number, userId?: number): Promise\<Array\<ApplicationInfo\>\>
 
 Obtains the information about all applications of the specified user. This API uses a promise to return the result.
 
@@ -865,7 +865,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId)
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
 
-getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
+getAllApplicationInfo(bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
 Obtains the information about all applications. This API uses an asynchronous callback to return the result.
 
@@ -1320,7 +1320,7 @@ bundle.isApplicationEnabled(bundleName, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
+queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise\<Array\<AbilityInfo\>\>
 
 Obtains the ability information based on given Want. This API uses a promise to return the result.
 
@@ -1371,7 +1371,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
 Obtains the ability information of the specified user based on given Want. This API uses an asynchronous callback to return the result.
 
@@ -1416,7 +1416,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void;
 
 Obtains the ability information based on given Want. This API uses an asynchronous callback to return the result.
 
