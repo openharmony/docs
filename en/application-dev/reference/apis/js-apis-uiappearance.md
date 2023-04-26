@@ -1,4 +1,4 @@
-# UI Appearance
+# @ohos.uiAppearance (UI Appearance)
 
 The **uiAppearance** module provides basic capabilities for managing the system appearance. It allows for color mode configuration currently, and will introduce more features over time.
 
