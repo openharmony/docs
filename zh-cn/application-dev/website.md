@@ -377,7 +377,7 @@
     - 文件访问框架
       - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
     - [文件选择器使用指导](file-management/filepicker-guidelines.md)
-  - 后台任务管理
+  - 后台任务(Background Task)管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
