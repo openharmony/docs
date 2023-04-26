@@ -186,6 +186,24 @@ The context passed in the API does not exist.
 
 Use the correct context.
 
+## 16000017 Waiting for the Previous Abilities to Finish Startup
+
+**Error Message**
+
+The previous ability is starting, wait start later.
+
+**Description**
+
+Too many abilities need to be started. Due to the limited processing capability of the system, the requests are cached in the queue and processed in sequence.
+
+**Possible Causes**
+
+The system has a large number of concurrent requests.
+
+**Solution**
+
+No action is required. Wait for the previous abilities to finish startup.
+
 ## 100001 Internal Error
 
 **Error Message**
@@ -706,7 +724,7 @@ Internal error.
 
 **Description**
 
-This error code is returned when an error occurs during internal processing, such as memory application or multi-thread processing.
+This error code is reported when an error occurs during internal processing, such as memory application or multi-thread processing.
 
 **Possible Causes**
 
