@@ -412,7 +412,7 @@ export default class FuncAbility extends UIAbility {
    ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 当被调用方[Ability的启动模式](uiability-launch-type.md)设置为standard启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
+> 当被调用方[UIAbility的启动模式](uiability-launch-type.md)设置为standard启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调就不会被用到。
 
 
 ## 通过Call调用实现UIAbility交互（仅对系统应用开放）
@@ -485,12 +485,12 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 在Callee被调用端，需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
 
-1. 配置Ability的启动模式。
+1. 配置UIAbility的启动模式。
    配置module.json5，将CalleeAbility配置为单实例"singleton"。
 
    | Json字段 | 字段说明 |
    | -------- | -------- |
-   | "launchType" | Ability的启动模式，设置为"singleton"类型。 |
+   | "launchType" | UIAbility的启动模式，设置为"singleton"类型。 |
 
    Ability配置标签示例如下：
 
@@ -510,7 +510,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 2. 导入UIAbility模块。
    
    ```ts
-   import Ability from '@ohos.app.ability.UIAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
 
 3. 定义约定的序列化数据。
@@ -542,7 +542,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    ```
 
 4. 实现Callee.on监听及Callee.off解除监听。
-   被调用端Callee的监听函数注册时机，取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在Ability的onCreate注册'MSG_SEND_METHOD'监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
+   被调用端Callee的监听函数注册时机，取决于应用开发者。注册监听之前的数据不会被处理，取消监听之后的数据不会被处理。如下示例在UIAbility的onCreate注册'MSG_SEND_METHOD'监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回，应用开发者根据实际需要做相应处理。具体示例代码如下：
 
    
    ```ts
@@ -562,7 +562,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
-   export default class CalleeAbility extends Ability {
+   export default class CalleeAbility extends UIAbility {
        onCreate(want, launchParam) {
            try {
                this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
@@ -587,11 +587,11 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 1. 导入UIAbility模块。
    
    ```ts
-   import Ability from '@ohos.app.ability.UIAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
 
 2. 获取Caller通信接口。
-   Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际需要做相应处理。
+   UIAbility的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取UIAbility实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease监听。应用开发者根据实际需要做相应处理。
 
    
    ```ts
