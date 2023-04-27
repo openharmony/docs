@@ -64,7 +64,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
 
 **Example**
 
@@ -111,7 +111,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
 
 **Example**
 
@@ -206,9 +206,9 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -265,7 +265,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -317,9 +317,9 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
-| 12100002 | TokenId does not exist. |
-| 12100003 | Permission does not exist. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
+| 12100002 | The specified tokenID does not exist. |
+| 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
 | 12100007 | Service is abnormal. |
 
@@ -375,7 +375,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -452,7 +452,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName is greater than 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -462,10 +462,10 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -513,10 +513,10 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 ```js
 import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -568,7 +568,10 @@ promise.then(data => {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
-Requests permissions from the user in a dialog box. This API uses an asynchronous callback to return the result.
+Requests user authorization in a dialog box opened by a UIAbility. This API uses an asynchronous callback to return the result.
+> **NOTE**
+>
+> The API cannot be called by any non-UIAbility.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -578,7 +581,7 @@ Requests permissions from the user in a dialog box. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Ability context of the application that requests the permissions. |
+| context | Context | Yes| Context of the UIAbility.|
 | permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
 
@@ -610,7 +613,11 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-Requests permissions from the user in a dialog box.  This API uses a promise to return the result.
+Requests user authorization in a dialog box opened by a UIAbility.  This API uses a promise to return the result.
+
+> **NOTE**
+>
+> The API cannot be called by any non-UIAbility.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -620,7 +627,7 @@ Requests permissions from the user in a dialog box.  This API uses a promise to 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Ability context of the application that requests the permissions. |
+| context | Context | Yes| Context of the UIAbility.|
 | permissionList | Array&lt;Permissions&gt; | Yes| Permissions requested. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
@@ -693,6 +700,44 @@ promise.then(data => {
 });
 ```
 
+### checkAccessTokenSync<sup>10+</sup>
+
+checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
+
+Checks whether a permission is granted to an application. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | Token ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).             |
+| permissionName | Permissions | Yes  | Permission to check. For details about the permissions, see the [Application Permission List](../../security/permission-list.md).|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | Permission grant state.|
+
+**Error codes**
+
+For details about the error codes, see [Application Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+
+**Example**
+
+```js
+let atManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
+```
+
 ### GrantStatus
 
 Enumerates the permission grant states.
@@ -730,4 +775,3 @@ Defines detailed information about the permission grant state change.
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
 | tokenID        | number                    | Yes  | No  | Token ID of the application. |
 | permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Application Permission List](../../security/permission-list.md). |
-
