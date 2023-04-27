@@ -80,7 +80,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 指示要停止的工作。  |
-| needCancel | boolean               | 是    | 是否需要取消的工作。 |
+| needCancel | boolean               | 否    | 是否需要取消的工作，默认为不取消。 |
 
 **错误码**：
 
