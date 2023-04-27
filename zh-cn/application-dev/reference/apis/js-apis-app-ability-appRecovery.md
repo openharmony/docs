@@ -11,7 +11,6 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
-
 ## appRecovery.RestartFlag
 
 应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
