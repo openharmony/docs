@@ -4437,12 +4437,12 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
       });
     },
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
@@ -4492,12 +4492,12 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
         freezingTime: 0
       });
     },
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4526,7 +4526,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {
+    authWithToken: (domainAccountInfo, token, callback) => {
       // mock authentication
       // notify authentication result
       callback.onResult(0, {
@@ -4539,7 +4539,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4568,7 +4568,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {
       // mock getting account information
       // notify result
@@ -4583,7 +4583,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4611,7 +4611,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {
       callback({
@@ -4623,7 +4623,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
     },
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4651,7 +4651,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {
@@ -4660,7 +4660,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
       callback({code: 0})
     },
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4688,7 +4688,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
@@ -4697,7 +4697,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
       // notify unbinding result
       callback({code: 0})
     },
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4726,12 +4726,12 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {
       // mock checking operation
       // notify checking result
       callback({code: 0}, true);
@@ -4763,12 +4763,12 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {
       // mock getting operation
       let token = new Uint8Array([0]);
@@ -4811,11 +4811,13 @@ static registerPlugin(plugin: DomainPlugin): void
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   try {
     account_osAccount.DomainAccountManager.registerPlugin(plugin);
