@@ -483,10 +483,10 @@ OpenHarmony 3.2版本完整里程碑如下图所示，阅读本文档了解更�
 - 新增OpenHarmony应用质量要求兼容性测试规范，涵盖UX、性能、功耗、稳定性、兼容性和安全六大方面，规范OpenHarmony应用基础质量要求，详细请参考[官网说明](https://www.openharmony.cn/certification/moreStandard)。
 
 - [SmartPerf-Host](https://gitee.com/openharmony-sig/smartperf/tree/master)性能功耗调试调优工具，为开发者提供一套性能调优平台，支持GUI（图形用户界面）操作进行详细数据分析。3.2版本新增：
-  - 支持功耗分析能力，展示应用各子类别功耗占比信息、资源申请使用记录、功耗异常事件、功耗与系统状态关联信息，详细请参考HiSystemEvent[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_hisystemevent.md)。
-  - 支持Web端抓取trace，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_web_record.md)。
-  - 支持SQL查询和Metrics说明，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_sql_metrics.md)。
-  - 支持内核内存事件分析，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/doc/quickstart_page_fault.md)。
+  - 支持功耗分析能力，展示应用各子类别功耗占比信息、资源申请使用记录、功耗异常事件、功耗与系统状态关联信息，详细请参考HiSystemEvent[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_hisystemevent.md)。
+  - 支持Web端抓取trace，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_web_record.md)。
+  - 支持SQL查询和Metrics说明，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_sql_metrics.md)。
+  - 支持内核内存事件分析，详细请参考[指导](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_page_fault.md)。
 
 - [wukong](https://gitee.com/openharmony/ostest_wukong)软件稳定性工具能力增强：
   - 支持注入滑动、鼠标、字符、系统按键、控件事件，模拟用户多样化随机操作，覆盖真实用户操作场景，挖掘更多稳定性问题。
