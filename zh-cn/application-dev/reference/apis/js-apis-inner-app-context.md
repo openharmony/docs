@@ -490,11 +490,12 @@ context.setDisplayOrientation(orientation).then((data) => {
 });
 ```
 
-## Context.setShowOnLockScreen<sup>7+</sup>
+## Context.setShowOnLockScreen<sup>(deprecated)</sup>
 
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（callback形式）。
+> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](js-apis-window.md#setShowOnLockScreen9)替代。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -516,11 +517,12 @@ context.setShowOnLockScreen(show, (err) => {
 });
 ```
 
-## Context.setShowOnLockScreen<sup>7+</sup>
+## Context.setShowOnLockScreen<sup>(deprecated)</sup>
 
 setShowOnLockScreen(show: boolean): Promise\<void>;
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（Promise形式）。
+> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](js-apis-window.md#setShowOnLockScreen9)替代。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -575,7 +577,7 @@ context.setWakeUpScreen(wakeUp, (err) => {
 
 ## Context.setWakeUpScreen<sup>7+</sup>
 
-setWakeUpScreen(wakeUp: boolean): Promise\<void>; 
+setWakeUpScreen(wakeUp: boolean): Promise\<void>;
 
 设置恢复此功能时是否唤醒屏幕。（Promise形式）。
 
