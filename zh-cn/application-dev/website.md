@@ -241,7 +241,7 @@
     - 分布式数据对象
       - [分布式数据对象概述](database/database-distributedobject-overview.md)
       - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
-  - 后台任务管理
+  - 后台任务(Background Task)管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [后台任务开发指导](task-management/background-task-dev-guide.md)
@@ -664,7 +664,7 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
-    - 后台任务
+    - 后台任务(Background Task)
       - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
       - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
