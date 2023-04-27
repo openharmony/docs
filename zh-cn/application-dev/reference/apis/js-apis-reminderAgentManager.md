@@ -609,6 +609,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转的目标包名。 |
 | abilityName | string | 是 | 指明跳转的目标ability名称。 |
+| uri | string<sup>10+</sup> | 否 | 指明跳转目标的uri信息。（系统接口） |
 
 
 ## MaxScreenWantAgent
