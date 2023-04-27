@@ -29,7 +29,7 @@ import backup from '@ohos.file.backup';
 文件的元数据，包含一个已经打开的文件描述符。FileData在执行备份/恢复时是不可缺少的对象
 
 > **说明：**
-> - FileData使用完成后必须关闭，如不关闭会出现内心泄露问题。关闭的方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.closeSync](js-apis-file-fs.md#fsclosesync)等相关关闭接口
+> - FileData使用完成后必须关闭，如不关闭会出现内存泄露问题。关闭的方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.closeSync](js-apis-file-fs.md#fsclosesync)等相关关闭接口
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
