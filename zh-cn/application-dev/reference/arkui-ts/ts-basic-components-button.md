@@ -69,6 +69,8 @@
 支持[通用事件](ts-universal-events-click.md)。
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -126,3 +128,33 @@ struct ButtonExample {
 ```
 
 ![button](figures/button.gif)
+
+### 示例2 
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SwipeGestureExample {
+  @State count: number = 0
+
+  build() {
+    Column() {
+      Text(`${this.count}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+        })
+      if (this.count <= 0) {
+        Button('count is negative').fontSize(30).height(50)
+      } else if (this.count % 2 === 0) {
+        Button('count is even').fontSize(30).height(50)
+      } else {
+        Button('count is odd').fontSize(30).height(50)
+      }
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![ifButton](figures/ifButton.gif)
