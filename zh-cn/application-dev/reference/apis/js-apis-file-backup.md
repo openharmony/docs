@@ -62,6 +62,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 回调函数。当服务端返向客户端发送文件成功时触发回调，err为undefined，否则为错误对象。
 
 > **说明：**
+>
 > AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的实际去清理，但客户端必须关闭文件句柄。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
@@ -188,7 +189,7 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
 onBackupServiceDied : Callback&lt;undefined&gt;
 
-回调函数，备份服务死亡时触发回调。
+回调函数。备份服务死亡时触发回调。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -244,7 +245,6 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
   }
   ```
 
-
 **返回的能力文件内容示例：**
 
  ```json
@@ -263,7 +263,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
  }
  ```
 
-## getLocalCapabilities
+## backup.getLocalCapabilities
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
