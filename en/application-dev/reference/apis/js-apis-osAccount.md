@@ -4441,7 +4441,9 @@ Authenticates a domain account.
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
   let userAuth = new account_osAccount.UserAuth();
@@ -4494,7 +4496,9 @@ Authenticates a domain account in a pop-up window.
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
@@ -4534,7 +4538,9 @@ Authenticates a domain account by the authorization token.
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
@@ -4576,7 +4582,9 @@ Obtains information about a domain account.
     },
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
@@ -4614,7 +4622,9 @@ Obtains the authentication status of a domain account.
       })
     },
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
@@ -4649,7 +4659,9 @@ Binds a domain account.
       // notify binding result
       callback({code: 0})
     },
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
@@ -4684,6 +4696,84 @@ Unbinds a domain account.
       // mock unbinding operation
       // notify unbinding result
       callback({code: 0})
+    },
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### isAccountTokenValid<sup>10+</sup>
+
+isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether a domain account token is valid.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| token | Uint8Array | Yes| Domain account token to check.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {
+      // mock checking operation
+      // notify checking result
+      callback({code: 0}, true);
+    },
+    getAccessToken: (options, callback) => {}
+  }
+  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  ```
+
+### getAccessToken<sup>10+</sup>
+
+getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the domain access token based on the specified conditions.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| options | [GetDomainAccessTokenOptions](#getdomainaccesstokenoptions10)  | Yes  | Options specified for obtaining the domain access token.|
+| callback   | AsyncCallback&lt;Uint8Array&gt; | Yes  | Callback invoked to return the result.|
+
+**Example**
+  ```js
+  let plugin = {
+    auth: (domainAccountInfo, credential, callback) => {},
+    authWithPopup: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, callback) => {},
+    getAccountInfo: (domain, accountName, callback) => {},
+    getAuthStatusInfo: (domainAccountInfo, callback) => {},
+    bindAccount: (domainAccountInfo, localId, callback) => {},
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    getAccessToken: (options, callback) => {
+      // mock getting operation
+      let token = new Uint8Array([0]);
+      // notify result
+      callback({code: 0}, token);
     }
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -5000,6 +5090,107 @@ Checks whether a domain account exists.
     });
   } catch (err) {
     console.log('hasAccount exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### updateAccountToken<sup>10+</sup>
+
+updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void;
+
+Updates the token of a domain account. An empty token means an invalid token. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| token | Uint8Array  | Yes  | New token of the domain account.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid token. |
+| 12300003 | Account not found. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan",
+    accountId: "123456"
+  }
+  let token = new Uint8Array([0])
+  try {
+    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err) => {
+      if (err != null) {
+        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+      } else {
+        console.log("updateAccountToken successfully");
+      }
+    })
+  } catch (err) {
+    console.log('updateAccountToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### updateAccountToken<sup>10+</sup>
+
+updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Promise&lt;void&gt;
+
+Updates the token of a domain account. An empty token means an invalid token. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
+| token | Uint8Array  | Yes  | New token of the domain account.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid token. |
+| 12300003 | Account not found. |
+
+**Example**
+  ```js
+  let domainAccountInfo = {
+    domain: "CHINA",
+    accountName: "zhangsan",
+    accountId: "123456"
+  }
+  let token = new Uint8Array([0])
+  try {
+    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
+      console.log("updateAccountToken successfully");
+    }).catch((err) => {
+        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -5956,7 +6147,7 @@ Defines the OS account information.
 | localName                      | string                                                       | Yes  | OS account name.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
 | constraints                    | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
-| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
+| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether to verify the OS account.                     |
 | photo<sup>8+</sup>             | string                                                       | No  | Profile photo of the OS account.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
 | lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account.         |
@@ -6086,3 +6277,18 @@ Presents the authentication status information.
 | ----------- | ------ | ---- | ---------- |
 | remainTimes  | number | Yes  | Number of remaining authentication times.  |
 | freezingTime | number | Yes  | Freezing time.|
+
+## GetDomainAccessTokenOptions<sup>10+</sup>
+
+Defines the options for obtaining a domain access token.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name     | Type  | Mandatory| Description      |
+| ----------- | ------ | ---- | ---------- |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.  |
+| domainAccountToken | Uint8Array | Yes  | Token of the domain account.|
+| businessParams | { [key: string]: object } | Yes  | Service parameters customized by the service party based on the request protocol.|
+| callerUid | number | Yes  | Unique identifier of the caller.|
