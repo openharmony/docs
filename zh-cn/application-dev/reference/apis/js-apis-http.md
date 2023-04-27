@@ -335,7 +335,7 @@ httpRequest.destroy();
 
 ```
 
-### on('headerReceive')
+### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
@@ -361,7 +361,7 @@ httpRequest.on('headerReceive', (data) => {
 });
 ```
 
-### off('headerReceive')
+### off('headerReceive')<sup>(deprecated)</sup>
 
 off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
