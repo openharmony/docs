@@ -333,8 +333,6 @@ destroy(): void
 httpRequest.destroy();
 ```
 
-```
-
 ### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
