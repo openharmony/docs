@@ -902,6 +902,98 @@ async function example() {
 }
 ```
 
+### on<sup>10+</sup>
+
+on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
+
+打开对指定uri的监听，使用callback方式返回异步结果。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                        | 必填 | 说明                                                         |
+| --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri       | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值 |
+| forSubUri | boolean                                     | 是   | 是否模糊监听，如果是true注册uri为datashare:///media/album，能监听到所有相册的变化，如果是false只能监听当前uri对应的相册变化 |
+| callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)                      |
+
+**示例：**
+
+```ts
+async function example() {
+    console.info('onDemo');
+    let fileAsset;
+    try {
+        let testFileName = 'testFile' + Date.now() + '.jpg';
+        let fileAsset = await mgr.createPhotoAsset(testFileName);
+        console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+        console.info('createPhotoAsset successfully');
+    } catch (err) {
+        console.error('createPhotoAsset failed, message = ' + err);
+    }
+    let count = 0;
+
+    mgr.on(fileAsset.uri, false, (changeData) => {
+        count++;
+        console.info(JSON.stringify(changeData));
+        //file had changed, do something
+    });
+    fileAsset.favorite(true);
+    //sleep 1s
+    if (count > 0) {
+        console.info('onDemo success');
+    } else {
+        console.error('onDemo fail');
+    }
+}
+```
+
+### off<sup>10+</sup>
+
+ off(uri: string, callback?: Callback&lt;ChangeData&gt;): void
+
+关闭对指定uri的监听，使用callback方式返回异步结果。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri      | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值 |
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | 否   | 解除指定callback方法的监听                                   |
+
+**示例：**
+
+```ts
+async function example() {
+    console.info('offDemo');
+    let count = 0;
+    mgr.on('imageChange', () => {
+        count++;
+        // file had changed, do something
+    });
+    mgr.off('imageChange', () => {
+        // stop listening success
+    });
+    try {
+        let testFileName = 'testFile' + Date.now() + '.jpg';
+        let fileAsset = await mgr.createPhotoAsset(testFileName);
+        console.info('createPhotoAsset file displayName' + fileAsset.displayName);
+        console.info('createPhotoAsset successfully');
+    } catch (err) {
+        console.error('createPhotoAsset failed, message = ' + err);
+    }
+    //sleep 1s
+    if (count == 0) {
+        console.info('offDemo success');
+    } else {
+        console.error('offDemo fail');
+    }
+}
+```
+
 ## FileAsset
 
 提供封装文件属性的方法。
@@ -2466,3 +2558,40 @@ async function example() {
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件 |
 
+## ChangeData<sup>10+</sup>
+
+监听器回调函数的值。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
+
+| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型                                         |
+| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album |
+| subUris | Array&lt;string&gt;         | 是   | 否   | 当uri是Album的uri类型时，更改Album的FileAssets的详细信息     |
+
+## NotifyType<sup>10+</sup>
+
+枚举，notify类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
+
+| 名称                      | 值   | 说明                           |
+| ------------------------- | ---- | ------------------------------ |
+| NOTIFY_ADD                | 0    | 添加文件集或相册通知的类型     |
+| NOTIFY_UPDATE             | 1    | 文件集或相册的更新通知类型     |
+| NOTIFY_REMOVE             | 2    | 删除文件集或相册的通知类型     |
+| NOTIFY_ALBUM_ADD_ASSET    | 3    | 在相册中添加的文件集的通知类型 |
+| NOTIFY_ALBUM_REMOVE_ASSET | 4    | 在相册中删除的文件集的通知类型 |
+
+## DefaultChangeUri<sup>10+</sup>
+
+枚举，DefaultChangeUri子类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
+
+| 名称              | 值                            | 说明                                                         |
+| ----------------- | ----------------------------- | ------------------------------------------------------------ |
+| DEFAULT_PHOTO_URI | datashare:///media/Photo      | 默认PhotoAsset的Uri，与forSubUri{true}一起使用，将接收所有PhotoAsset的更改通知 |
+| DEFAULT_ALBUM_URI | datashare:///media/PhotoAlbum | 默认相册的Uri，与forSubUri{true}一起使用，将接收所有相册的更改通知 |
+| DEFAULT_AUDIO_URI | datashare:///media/Audio      | 默认AudioAsset的Uri，与forSubUri{true}一起使用，将接收所有AudioAsset的更改通知 |
