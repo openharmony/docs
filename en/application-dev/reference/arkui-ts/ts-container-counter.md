@@ -18,6 +18,10 @@ Counter()
 
 Since API version 9, this API is supported in ArkTS widgets.
 
+## Attributes
+
+[Universal attributes](ts-universal-attributes-size.md) are supported.
+
 
 ## Events
 

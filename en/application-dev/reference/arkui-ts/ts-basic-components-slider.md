@@ -24,8 +24,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- | -------- | -------- |
 | value | number | No| Current progress.<br>Default value: **0**|
 | min | number | No| Minimum value.<br>Default value: **0**|
-| max | number | No| Maximum value.<br>Default value: **100**|
-| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]|
+| max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max**, whichever is closer.|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or a percentage, the default value is used.|
 | style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
 | reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
@@ -38,9 +38,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------- |
 | OutSet | The slider is on the slider track.|
 | InSet | The slider is in the slider track.|
-
-
-## Attributes
 
 Except touch target attributes, the universal attributes are supported.
 
@@ -60,7 +57,7 @@ In addition to the **OnAppear** and **OnDisAppear** universal events, the follow
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use **Math.toFixed()** to process the data to the desired precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use the **number.toFixed()** API to process the data to the expected precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
 
 ## SliderChangeMode
 

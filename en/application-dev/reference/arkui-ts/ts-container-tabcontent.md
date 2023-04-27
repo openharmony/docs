@@ -11,6 +11,9 @@ The **\<TabContent>** component is used only in the **\<Tabs>** component. It co
 
 This component supports only one child component.
 
+>  **NOTE**
+>
+>  System components and custom components can be built in, and rendering control types ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) are supported.
 
 ## APIs
 
@@ -24,11 +27,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.|
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.|
 
 >  **NOTE**
 > - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
 > - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+>  - If the **vertical** attribute is **false**, the width and height descriptions are swapped in the preceding two restrictions.
 > - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
 
 ## SubTabBarStyle<sup>9+</sup>
@@ -39,7 +43,7 @@ Implements the subtab style.
 
 constructor(content: string | Resource)
 
-A constructor used to create a **SubTabBarStyle** instance.
+Constructor used to create a **SubTabBarStyle** instance.
 
 **Parameters**
 
