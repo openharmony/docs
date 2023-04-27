@@ -15,7 +15,7 @@ import measure from '@ohos.measure'
 
 ## measure.measureText
 
-measureText(options: MeasureOptions): double
+measureText(options: MeasureOptions): number
 
 计算指定文本单行布局下的宽度。
 
