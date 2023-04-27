@@ -10,10 +10,11 @@
 
 Typical key generation operations involve the following:
 
-- Randomly create a key instance for subsequent encryption and decryption.
-- Convert external or stored binary data into a key instance for subsequent encryption and decryption.
-- Obtain the binary data of a key for storage or transmission.
+1. Randomly create a key instance for subsequent encryption and decryption.
+2. Convert external or stored binary data into a key instance for subsequent encryption and decryption.
+3. Obtain the binary data of a key for storage or transmission.
 > **NOTE**<br>The key instance can be a symmetric key instance (**SymKey**) or an asymmetric key pair instance (**KeyPair**). The **KeyPair** instance consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+
 
 **Available APIs**
 
@@ -43,7 +44,7 @@ Example 1: Randomly generate an asymmetric key pair and obtain its binary data.
 2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
 3. Obtain binary data of the key pair generated.
 
-The following sample code presents how to randomly generate an RSA key (1024 bits and two primes) using promise-based APIs:
+The following sample code demonstrates how to randomly generate an RSA key (1024 bits and two primes) using promise-based APIs.
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -72,7 +73,7 @@ Example 2: Randomly generate a symmetric key and obtain its binary data.
 2. Randomly generate a symmetric key using **SymKeyGenerator**. 
 3. Obtain binary data of the key generated.
 
-The following sample code presents how to randomly generate a 256-bit AES key using promise-based APIs:
+The following example demonstrates how to randomly generate a 256-bit AES key using promise-based APIs.
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -122,20 +123,20 @@ function convertAsyKey() {
 >
 > The public key material to be converted in **convertKey()** must be in the DER format complying with X.509 specifications, and the private key material must be in the DER format complying with PKCS #8 specifications.
 
- 
-
 Example 4: Generate an asymmetric key pair from the binary ECC key data.
 
 1. Obtain the ECC binary key data and encapsulate it into a **DataBlob** instance.
-2. Call **convertKey()** to convert the key binary data (data of the private or public key, or both) into to a **KeyPair** instance.
+2. Call **convertKey()** to convert the key binary data (data of the private or public key, or both) into a **KeyPair** instance.
 
 ```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
 function convertEccAsyKey() {
     let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
@@ -151,7 +152,7 @@ Example 5: Generate a symmetric key from binary data.
 2. Generate a symmetric key from the binary data passed in.
 3. Obtain binary data of the key generated.
 
-The following sample code presents how to generate a 3DES key (192 bits only) using callback-based APIs:
+The following example demonstrates how to generate a 3DES key (192 bits only) using callback-based APIs.
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -200,8 +201,8 @@ function testConvertAesKey() {
 **When to Use**
 
 Important data needs to be encrypted in data storage or transmission for security purposes. Typical encryption and decryption operations involve the following:
-- Encrypt and decrypt data using a symmetric key.
-- Encrypt and decrypt data using an asymmetric key pair.
+1. Encrypt and decrypt data using a symmetric key.
+2. Encrypt and decrypt data using an asymmetric key pair.
 
 **Available APIs**
 
@@ -228,7 +229,7 @@ Example 1: Encrypt and decrypt data using a symmetric key.
 3. Create a **Cipher** instance.
 4. Encrypt or decrypt data.
 
-The following sample code presents how to use the AES-GCM to encrypt and decrypt data with promise-based APIs:
+The following example demonstrates how to use the AES-GCM to encrypt and decrypt data with promise-based APIs.
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -364,7 +365,7 @@ function testAesGcm() {
 }
 ```
 
-The following sample code presents how to use the the 3DES ECB to convert existing data into a key and encrypt and decrypt data using callback-based APIs:
+The following example demonstrates how to use the the 3DES ECB to convert existing data into a key and encrypt and decrypt data using callback-based APIs.
 
 ```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -489,7 +490,7 @@ function test3DesEcb() {
   }
 }
 ```
-The following sample code presents how to call **update()** multiple times to implement AES GCM encryption and decryption by using promise-based APIs:
+The following example demonstrates how to call **update()** multiple times to implement AES GCM encryption and decryption by using promise-based APIs.
 
 ```javascript
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -737,7 +738,7 @@ function decryptMessageCallback() {
   });
 }
 ```
-The following sample code presents how to implement RSA asymmetric encryption and decryption (**doFinal()** is called multiple times):
+The following example demonstrates how to implement RSA asymmetric encryption and decryption (**doFinal()** is called multiple times).
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
@@ -1027,8 +1028,7 @@ function verifyMessageCallback() {
   })
 }
 ```
-The following sample code presents how to call **update()** multiple times to implement signing and signature verification:
-
+The following example demonstrates how to call **update()** multiple times to implement signing and signature verification.
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
@@ -1213,7 +1213,7 @@ function doMdByCallback(algName) {
   });
 }
 ```
-The following sample code presents how to call **update()** multiple times to update the MD:
+The following example demonstrates how to call **update()** multiple times to update the MD.
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
@@ -1289,41 +1289,51 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 
 **How to Develop**
 
-1. Generate an ECC key.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
-2. Generate a shared secret by using the private and public ECC keys.
+1. Use **createKeyAgreement()** to create a **KeyAgreement** object for subsequent key agreement operations.
+2. Use **generateSecret()** provided by **KeyAgreement** to pass in the peer ECC public key object and the ECC private key object generated locally.
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let globalKeyPair;
+let globalSelfPriKey;
+let globalPeerPubKey;
 
 function ecdhPromise() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
-    globalKeyPair = keyPair;
-    return eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  eccGenerator.convertKey(peerPubKeyBlob, null).then((peerKeyPair) => {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    return eccGenerator.generateKeyPair();
+  }).then((keyPair) => {
+    globalSelfPriKey = keyPair.priKey;
+    return eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey);
   }).then((secret) => {
-    console.info("ecdh output is " + secret.data);
+    console.info("ecdh promise output is " + secret.data);
   }).catch((error) => {
     console.error("ecdh error.");
   });
 }
 
 function ecdhCallback() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  eccGenerator.generateKeyPair(function (err, keyPair) {
-    globalKeyPair = keyPair;
-    eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey, function (err, secret) {
-      if (err) {
-        console.error("ecdh error.");
-        return;
-      }
-      console.info("ecdh output is " + secret.data);
+  eccGenerator.convertKey(peerPubKeyBlob, null, function (err, peerKeyPair) {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    eccGenerator.generateKeyPair(function (err, keyPair) {
+      globalSelfPriKey = keyPair.priKey;
+      eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey, function (err, secret) {
+        if (err) {
+          console.error("ecdh error.");
+          return;
+        }
+        console.info("ecdh callback output is " + secret.data);
+      });
     });
-  });
+  })
 }
 ```
 
@@ -1470,7 +1480,7 @@ function doHmacByCallback(algName) {
   });
 }
 ```
-The following sample code presents how to call **update()** multiple times to update the MAC:
+The following example demonstrates how to call **update()** multiple times to update the MAC.
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
