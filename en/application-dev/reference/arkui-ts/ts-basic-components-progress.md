@@ -62,6 +62,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the progress indicator.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | style<sup>8+</sup> | {<br>strokeWidth?: [Length](ts-types.md#length),<br>scaleCount?: number,<br>scaleWidth?: [Length](ts-types.md#length)<br>} | Component style.<br>- **strokeWidth**: stroke width of the progress indicator. It cannot be set in percentage. Since API version 9, if the stroke width of the ring progress bar is greater than or equal to the radius, the width is changed to half of the radius.<br>Default value: **4.0Vp**<br>- **scaleCount**: number of divisions on the determinate ring-type process indicator.<br>Default value: **120**<br>- **scaleWidth**: scale width of the ring progress bar. It cannot be set in percentage. If it is greater than the value of **strokeWidth**, the default scale width is used.<br>Default value: **2.0Vp**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
+## Events
+
+The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
 
@@ -123,4 +126,4 @@ struct ProgressExample {
 }
 ```
 
-![progress](figures/progress.png)
+![progress](figures/arkts-progress.png)
