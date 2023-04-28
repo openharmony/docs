@@ -449,8 +449,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
@@ -502,8 +503,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 import audio from '@ohos.multimedia.audio';
 
 let audioManager = audio.getAudioManager();
+let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
-await audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
     console.info('Promise returned to indicate that the device list is obtained.');
 }).catch((err) => {
