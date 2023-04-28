@@ -21,7 +21,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name | Type| Mandatory | Description|
 | --------| --------| ------ | -------- |
 | name    | string | No| Name of the check box.|
-| group   | string | No| Group name of the check box.|
+| group   | string | No| Group name of the check box.<br>**NOTE**<br>If not used with the **\<CheckboxGroup>** component, this parameter is invalid.|
 
 ## Attributes
 

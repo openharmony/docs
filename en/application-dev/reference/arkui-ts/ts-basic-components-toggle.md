@@ -6,10 +6,6 @@ The **\<Toggle>** component provides a clickable element in the check box, butto
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-
-
-
 ## Child Components
 
 This component can contain child components only when **ToggleType** is set to **Button**.
@@ -54,7 +50,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (isOn: boolean) =&gt; void) | Triggered when the toggle status changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (isOn: boolean) =&gt; void) | Triggered when the toggle status changes.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If **isOn** is **true**, it indicates that the toggle changes from off to on. If **isOn** is **false**, it indicates that the toggle changes from on to off.|
 
 
 ## Example
