@@ -213,7 +213,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 listFile(filter?: Filter) : FileIterator
 
-以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -269,7 +269,7 @@ listFile(filter?: Filter) : FileIterator
 
 scanFile(filter?: Filter) : FileIterator;
 
-以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -377,7 +377,7 @@ next() : { value: FileInfo, done: boolean }
 
 listFile(filter?: Filter) : FileIterator
 
-以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。
+以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -431,7 +431,7 @@ listFile(filter?: Filter) : FileIterator
 
 scanFile(filter?: Filter) : FileIterator
 
-以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。
+以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -977,7 +977,7 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
-以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。目前仅支持设备内移动，跨设备不支持移动。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1021,7 +1021,7 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
 move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void
 
-以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。目前仅支持设备内移动，跨设备不支持移动。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
