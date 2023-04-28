@@ -700,6 +700,40 @@ cacheMode(cacheMode: CacheMode)
   }
   ```
 
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比，默认为100%。
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
+      }
+    }
+  }
+  ```
+
 ### textZoomRatio<sup>9+</sup>
 
 textZoomRatio(textZoomRatio: number)
@@ -3218,6 +3252,34 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
   }
   ```
 
+### onRequestSelected
+
+onRequestSelected(callback: () => void)
+
+当Web组件获得焦点时触发该回调。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRequestSelected(() => {
+            console.log('onRequestSelected')
+          })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -4142,7 +4204,7 @@ Web媒体策略的配置。
 
 | 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒。 |
+| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
 
 ## DataResubmissionHandler<sup>9+</sup>

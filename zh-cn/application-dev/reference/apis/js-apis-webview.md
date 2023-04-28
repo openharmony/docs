@@ -504,7 +504,6 @@ import web_webview from '@ohos.web.webview';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
         try {
             web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
         } catch(error) {
