@@ -23,24 +23,26 @@ Select(options: Array\<[SelectOption](#selectoption)\>)
 
 ## Attributes
 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
 | Name                   | Type                             | Description                                         |
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
 | selected                | number                                | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.<br>If this attribute is not set, the default value **-1** is used, indicating that no option is selected.|
-| value                   | string                                | Text of the drop-down button.                 |
-| font                    | [Font](ts-types.md#font)          | Text font of the drop-down button.                 |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | Text color of the drop-down button.                 |
-| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected option in the drop-down list box.                 |
-| selectedOptionFont      | [Font](ts-types.md#font)          | Text font of the selected option in the drop-down list box.               |
-| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | Text color of the selected option in the drop-down list box.               |
-| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | Background color of an option in the drop-down list box.                     |
-| optionFont              | [Font](ts-types.md#font)          | Text font of an option in the drop-down list box.                   |
-| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | Text color of an option in the drop-down list box.                   |
+| value                   | string                                | Text of the drop-down button. By default, it will be replaced by the content of the selected option.|
+| font                    | [Font](ts-types.md#font)          | Text font of the drop-down button.<br>Default value:<br>{<br>size: '16fp',<br>weight: FontWeight.Medium<br>} |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | Text color of the drop-down button.<br>Default value: **'\#E6FFFFFF'**|
+| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected option in the drop-down list box.<br>Default value: **'\#33007DFF'**|
+| selectedOptionFont      | [Font](ts-types.md#font)          | Text font of the selected option in the drop-down list box.<br>Default value:<br>{<br>size: '16fp',<br>weight: FontWeight.Regular<br>} |
+| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | Text color of the selected option in the drop-down list box.<br>Default value: **'\#ff007dff'**|
+| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | Background color of an option in the drop-down list box.<br>Default value: **'\#ffffffff'**|
+| optionFont              | [Font](ts-types.md#font)          | Text font of an option in the drop-down list box.<br>Default value:<br>{<br>size: '16fp',<br>weight: FontWeight.Regular<br>} |
+| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | Text color of an option in the drop-down list box.<br>Default value: **'\#ff182431'**|
 
 ## Events
 
-| Name                                                        | Description                                                  |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| onSelect(callback: (index: number, value?: string) => void) | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: value of the selected option. |
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onSelect(callback: (index: number, value?: string) => void) | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: value of the selected option.|
 
 ##  Example
 
