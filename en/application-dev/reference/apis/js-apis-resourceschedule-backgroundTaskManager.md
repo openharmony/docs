@@ -256,7 +256,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent from '@ohos.wantAgent';
 
@@ -335,7 +335,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
 import wantAgent from '@ohos.wantAgent';
 
@@ -401,7 +401,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 function callback(error, data) {
@@ -462,7 +462,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 **Example**
 
 ```js
-import Ability from '@ohos.application.Ability'
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 export default class MainAbility extends Ability {
