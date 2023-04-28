@@ -2279,7 +2279,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
+| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2324,7 +2324,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
+| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
