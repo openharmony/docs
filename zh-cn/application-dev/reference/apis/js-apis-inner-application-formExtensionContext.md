@@ -72,7 +72,7 @@ let want = {
     uri: 'key={true,true,false}',
     parameters: {}
 };
-this.context.startAbility(want, (error, data) => {
+this.context.startAbility(want, (error) => {
     if (error) {
       console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
     } else {
