@@ -6,6 +6,7 @@
 选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。
 
 ## 导入模块
+
 ```js
 import picker from '@ohos.file.picker';
 ```
@@ -30,7 +31,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -70,7 +71,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -107,7 +108,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -140,7 +141,7 @@ save(option?: PhotoSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -179,7 +180,7 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -215,7 +216,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -260,7 +261,7 @@ select(option?: DocumentSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -298,7 +299,7 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -333,7 +334,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -367,7 +368,7 @@ save(option?: DocumentSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -406,7 +407,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -442,7 +443,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -487,7 +488,7 @@ select(option?: AudioSelectOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -525,7 +526,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -560,7 +561,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -593,7 +594,7 @@ save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -632,7 +633,7 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -668,7 +669,7 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
