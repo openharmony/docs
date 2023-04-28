@@ -445,7 +445,7 @@ getBundleInfo(bundleName: string, bundleFlags: [number](#bundleflag), userId?: n
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。       |
-| userId      | number | 否   | 表示用户ID。  |
+| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -630,7 +630,7 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), use
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | 是   | 表示要查询的应用Bundle名称。 |
 | appFlags   | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。    |
-| userId     | number | 否   | 表示用户ID。 |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
 
@@ -781,7 +781,7 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), userId?: number): Promise<A
 | 参数名     | 类型   | 必填 | 说明                                             |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。                   |
-| userId      | number | 否   | 表示用户ID。                         |
+| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                      |
 
 **返回值：**
 
@@ -928,7 +928,7 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), userId?: number): Pr
 | 参数名  | 类型   | 必填 | 说明                                                      |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
-| userId   | number | 否   | 表示用户ID。                                  |
+| userId   | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                        |
 
 **返回值：**
 
@@ -1095,7 +1095,7 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), userId?: numb
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | 是   | 表示包含要查询的应用Bundle名称的Want。                 |
 | abilityFlags | [number](#abilityflag) | 是   | 表示指定返回的AbilityInfo所包含的信息。 |
-| userId       | number | 否   | 表示用户ID。                               |
+| userId       | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                       |
 
 **返回值：**
 
@@ -1293,7 +1293,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 | want                  | Want                                          | 是   | 表示包含要查询的应用Bundle名称的Want。                    |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | 是   | 标识extensionAbility的类型。                              |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | 是   | 表示用于指定将返回的ExtensionInfo对象中包含的信息的标志。 |
-| userId                | number                                        | 否   | 表示用户ID。                                              |
+| userId                | number                                        | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。                                              |
 
 **返回值：**
 
@@ -2210,7 +2210,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>;
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ------------------------- |
 | bundleName | string | 是   | 表示应用程序的bundleName。 |
-| userId     | number | 否   | 表示用户ID。               |
+| userId     | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -2312,7 +2312,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | 是   | 表示应用程序的moduleName。   |
 | abilityName  | string | 是   | 表示应用程序的abilityName。  |
-| metadataName | string | 否   | 表示应用程序的metadataName。 |
+| metadataName | string | 否   | 表示应用程序的metadataName，默认值为空。 |
 
 **返回值：**
 
@@ -2432,7 +2432,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | 是   | 表示应用程序的moduleName。           |
 | extensionAbilityName | string | 是   | 表示应用程序的extensionAbilityName。 |
-| metadataName         | string | 否   | 表示应用程序的metadataName。         |
+| metadataName         | string | 否   | 表示应用程序的metadataName，默认值为空。         |
 
 **返回值：**
 
@@ -3185,7 +3185,7 @@ getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvision
 | 参数名   | 类型         | 必填 | 说明          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | 是 | 指定的bundleName。 |
-| userId | number | 否 | 指定的用户ID，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
+| userId | number | 否 | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0，可以通过接口[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)获取当前设备上的用户ID。 |
 
 
 **返回值：**
