@@ -1736,7 +1736,7 @@ Moves a file. This API uses a promise to return the result.
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
-| dest | string | Yes   | Application sandbox path of the destination file.|
+  | dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
 
 **Example**
@@ -1764,7 +1764,7 @@ Moves a file. This API uses an asynchronous callback to return the result.
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
-| dest | string | Yes   | Application sandbox path of the destination file.|
+  | dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is moved.             |
 
@@ -1795,7 +1795,7 @@ Moves a file synchronously.
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
-| dest | string | Yes   | Application sandbox path of the destination file.|
+  | dest | string | Yes   | Application sandbox path of the destination file.|
   | mode | number | No   | Whether to overwrite the file of the same name in the destination directory. The value **0** means to overwrite the file of the same name in the destination directory. The value **1** means to throw an exception if a file of the same name exists in the destination directory. The default value is **0**.|
 
 **Example**
@@ -1938,7 +1938,7 @@ Creates a stream based on the file path. This API uses an asynchronous callback 
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                  | Yes  | Application sandbox path of the file.                                  |
 | mode     | string                                  | Yes  | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
+| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback invoked when the stream is created asynchronously.                                  |
 
 **Example**
 
