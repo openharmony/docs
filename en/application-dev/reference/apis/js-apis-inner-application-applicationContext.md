@@ -283,6 +283,15 @@ Obtains information about the running processes. This API uses a promise to retu
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -312,6 +321,15 @@ Obtains information about the running processes. This API uses an asynchronous c
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -339,6 +357,14 @@ Kills all the processes where the application is located. This API uses a promis
 | -------- | -------- |
 | Promise\<void>> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -363,6 +389,14 @@ Kills all the processes where the application is located. This API uses an async
 | Type| Description|
 | -------- | -------- |
 |AsyncCallback\<void\> | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
