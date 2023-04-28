@@ -209,7 +209,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 | mtime | number | 是 | 否 |  文件(夹)的修改时间 |
 | mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型 |
 
-### listfile
+### listFile
 
 listFile(filter?: Filter) : FileIterator
 
@@ -265,7 +265,7 @@ listFile(filter?: Filter) : FileIterator
   }
   ```
 
-### scanfile
+### scanFile
 
 scanFile(filter?: Filter) : FileIterator;
 
@@ -373,11 +373,13 @@ next() : { value: FileInfo, done: boolean }
 | displayName | string | 是 | 否 | 设备名称 |
 | deviceFlags | number | 是 | 否 | 设备支持的能力 |
 
-### listfile
+### listFile
 
 listFile(filter?: Filter) : FileIterator
 
 以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -432,6 +434,8 @@ listFile(filter?: Filter) : FileIterator
 scanFile(filter?: Filter) : FileIterator
 
 以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

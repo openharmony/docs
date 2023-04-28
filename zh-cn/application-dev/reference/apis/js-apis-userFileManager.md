@@ -575,7 +575,7 @@ delete(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 媒体文件uri |
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1477,7 +1477,7 @@ getCount(): number
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
@@ -1509,7 +1509,7 @@ isAfterLast(): boolean
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
@@ -1613,7 +1613,7 @@ getFirstObject(): Promise&lt;T&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
@@ -1685,7 +1685,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1757,7 +1757,7 @@ getLastObject(): Promise&lt;T&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1833,7 +1833,7 @@ getPositionObject(index: number): Promise&lt;T&gt;
 | ----- | ------ | ---- | -------------- |
 | index | number | 是    | 要获取的文件的索引，从0开始 |
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2011,7 +2011,7 @@ commitModify(): Promise&lt;void&gt;;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
@@ -2118,7 +2118,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | -------- | ------------------------- | ---- | ---------- |
 | options | [FetchOptions](#fetchoptions) | 是   | 检索选项 |
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2204,7 +2204,7 @@ delete(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 相册uri |
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2295,7 +2295,7 @@ recover(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 相册uri |
 
-**返回值：**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
