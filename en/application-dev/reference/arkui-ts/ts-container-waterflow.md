@@ -14,6 +14,9 @@ The **\<WaterFlow>** component is a container that consists of cells formed by r
 
 The [\<FlowItem>](ts-container-flowitem.md) child component is supported.
 
+>  **NOTE**
+>
+>  When the **visibility** attribute of a child component in **\<WaterFlow >** is set to **None**, the child component is not displayed, but still takes up cells.
 
 ## APIs
 
@@ -250,7 +253,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: this.itemFoot, scroller: this.scroller }) {
+      WaterFlow({ footer: this.itemFoot.bind(this), scroller: this.scroller }) {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
