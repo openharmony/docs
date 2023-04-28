@@ -6,6 +6,12 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 > 
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
+## 导入模块
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## 使用说明
 
 可以作为abilityDelegator中的[addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
@@ -43,7 +49,7 @@ let monitor = {
     onAbilityCreate: onAbilityCreateCallback
 };
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
     if (error) {
         console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
