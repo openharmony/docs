@@ -1,10 +1,10 @@
 # @ohos.hidebug (HiDebug)
 
-The **hidebug** module provides APIs for you to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
-
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+The **hidebug** module provides APIs for you to obtain the memory usage of an application, including the static heap memory (native heap) and proportional set size (PSS) occupied by the application process. You can also export VM memory slices and collect VM CPU profiling data.
 
 ## Modules to Import
 
@@ -19,13 +19,11 @@ getNativeHeapSize(): bigint
 
 Obtains the total heap memory size of this application.
 
-This API is defined but not implemented in OpenHarmony 3.1 Release.
-
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
 
-| Type   | Description                 |
+| Type  | Description                       |
 | ------ | --------------------------- |
 | bigint | Total heap memory size of the application, in KB.|
 
@@ -41,8 +39,6 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 getNativeHeapAllocatedSize(): bigint
 
 Obtains the allocated heap memory size of this application.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -64,8 +60,6 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 getNativeHeapFreeSize(): bigint
 
 Obtains the free heap memory size of this application.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -163,76 +157,6 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
   let cpuUsage = hidebug.getCpuUsage();
   ```
 
-## hidebug.startProfiling<sup>(deprecated)</sup>
-
-startProfiling(filename : string) : void
-
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9) instead.
-
-Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
-
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
-
-**Example**
-
-```js
-hidebug.startProfiling("cpuprofiler-20220216");
-// code block
-// ...
-// code block
-hidebug.stopProfiling();
-```
-
-
-
-## hidebug.stopProfiling<sup>(deprecated)</sup>
-
-stopProfiling() : void
-
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9) instead.
-
-Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
-
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**Example**
-
-```js
-hidebug.startProfiling("cpuprofiler-20220216");
-// code block
-// ...
-// code block
-hidebug.stopProfiling();
-```
-
-## hidebug.dumpHeapData<sup>(deprecated)</sup>
-
-dumpHeapData(filename : string) : void
-
-> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9) instead.
-
-Exports the heap data.
-
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**Parameters**
-
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
-
-**Example**
-
-```js
-hidebug.dumpHeapData("heap-20220216");
-```
-
 ## hidebug.getServiceDump<sup>9+<sup>
 
 getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
@@ -251,11 +175,10 @@ Obtains system service information.
 | fd | number | Yes  | File descriptor to which data is written by the API.|
 | args | Array\<string> | Yes  | Parameter list corresponding to the **Dump** API of the system service.|
 
-
 **Example**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs'
 import hidebug from '@ohos.hidebug'
 import featureAbility from '@ohos.ability.featureAbility'
 
@@ -263,7 +186,7 @@ let context = featureAbility.getContext();
 context.getFilesDir().then((data) => {
   var path = data + "/serviceInfo.txt"
   console.info("output path: " + path)
-  let fd = fileio.openSync(path, 0o102, 0o666)
+  let fd = fs.openSync(path, 0o102, 0o666)
   var serviceId = 10
   var args = new Array("allInfo")
   try {
@@ -272,7 +195,7 @@ context.getFilesDir().then((data) => {
     console.info(error.code)
     console.info(error.message)
   }
-  fileio.closeSync(fd);
+  fs.closeSync(fd);
 })
 ```
 
@@ -359,4 +282,80 @@ try {
   console.info(error.code)
   console.info(error.message)
 }
+```
+
+## hidebug.startProfiling<sup>(deprecated)</sup>
+
+startProfiling(filename : string) : void
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9).
+
+Starts the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
+
+**Example**
+
+```js
+hidebug.startProfiling("cpuprofiler-20220216");
+// code block
+// ...
+// code block
+hidebug.stopProfiling();
+```
+
+
+
+## hidebug.stopProfiling<sup>(deprecated)</sup>
+
+stopProfiling() : void
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hidebug.stopJsCpuProfiling](#hidebugstopjscpuprofiling9).
+
+Stops the profiling method. `startProfiling()` and `stopProfiling()` are called in pairs. `startProfiling()` always occurs before `stopProfiling()`; that is, calling the functions in the sequence similar to the following is prohibited: `start->start->stop`, `start->stop->stop`, and `start->start->stop->stop`.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Example**
+
+```js
+hidebug.startProfiling("cpuprofiler-20220216");
+// code block
+// ...
+// code block
+hidebug.stopProfiling();
+```
+
+## hidebug.dumpHeapData<sup>(deprecated)</sup>
+
+dumpHeapData(filename : string) : void
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [hidebug.dumpJsHeapData](#hidebugdumpjsheapdata9).
+
+Exports the heap data.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
+
+**Example**
+
+```js
+hidebug.dumpHeapData("heap-20220216");
 ```

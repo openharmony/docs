@@ -23,7 +23,7 @@ The following table provides only a simple description of the related APIs. For 
 | off(type: 'headersReceive')               | Unregisters the observer for HTTP Response Header events.|
 | once\('headersReceive'\)<sup>8+</sup>     | Registers a one-time observer for HTTP Response Header events.|
 
-## How to Develop
+## How to Develop request APIs
 
 1. Import the **http** namespace from **@ohos.net.http.d.ts**.
 2. Call **createHttp()** to create an **HttpRequest** object.
@@ -42,42 +42,42 @@ let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-    "EXAMPLE_URL",
-    {
-        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-        // You can add header fields based on service requirements.
-        header: {
-            'Content-Type': 'application/json'
-        },
-        // This field is used to transfer data when the POST request is used.
-        extraData: {
-            "data": "data to send",
-        },
-        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
-        usingCache: true, // Optional. The default value is true.
-        priority: 1, // Optional. The default value is 1.
-        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
-        readTimeout: 60000, // Optional. The default value is 60000, in ms.
-        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    }, (err, data) => {
-        if (!err) {
-            // data.result carries the HTTP response. Parse the response based on service requirements.
-            console.info('Result:' + JSON.stringify(data.result));
-            console.info('code:' + JSON.stringify(data.responseCode));
-            // data.header carries the HTTP response header. Parse the content based on service requirements.
-            console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-        } else {
-            console.info('error:' + JSON.stringify(err));
-            // Unsubscribe from HTTP Response Header events.
-            httpRequest.off('headersReceive');
-            // Call the destroy() method to release resources after HttpRequest is complete.
-            httpRequest.destroy();
-        }
+  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // You can add header fields based on service requirements.
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // This field is used to transfer data when the POST request is used.
+    extraData: {
+      "data": "data to send",
+    },
+    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+  }, (err, data) => {
+    if (!err) {
+      // data.result carries the HTTP response. Parse the response based on service requirements.
+      console.info('Result:' + JSON.stringify(data.result));
+      console.info('code:' + JSON.stringify(data.responseCode));
+      // data.header carries the HTTP response header. Parse the content based on service requirements.
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    } else {
+      console.info('error:' + JSON.stringify(err));
+      // Unsubscribe from HTTP Response Header events.
+      httpRequest.off('headersReceive');
+      // Call the destroy() method to release resources after HttpRequest is complete.
+      httpRequest.destroy();
     }
+  }
 );
 ```
+
