@@ -205,7 +205,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
@@ -297,7 +297,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
 
@@ -365,7 +365,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callbac
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 function callback(err, data) {
@@ -422,7 +422,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 Stage model:
 
 ```ts
-import Ability from '@ohos.application.Ability';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 export default class MainAbility extends Ability {
