@@ -328,7 +328,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -378,7 +378,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
@@ -529,7 +529,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**
 
@@ -577,7 +577,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId.    |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**
 
@@ -2231,7 +2231,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2274,7 +2274,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid serialNumber. |
-| 12300003 | the account indicated by serialNumber dose not exist. |
+| 12300003 | The account indicated by serialNumber dose not exist. |
 
 **Example**: Obtain the ID of the OS account whose SN is 12345.
 
@@ -2313,7 +2313,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2356,7 +2356,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 | -------- | ------------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid localId. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**: Obtain the SN of the OS account 100.
 
@@ -2390,7 +2390,7 @@ Subscribes to the OS account activation states, including the states of the acco
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates the state of an OS account activated, and **activating** indicates the state of an OS account being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
 | callback | Callback&lt;number&gt;     | Yes  | Callback invoked to return the ID of the OS account being activated or activated.   |
 
@@ -2432,7 +2432,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** indicates the state of an OS account activated, and **activating** indicates the state of an OS account being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
 | callback | Callback&lt;number&gt;     | No  | Callback to unregister. By default, **0** is returned.                     |
 
@@ -2642,7 +2642,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
 | -------- | ------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**
 
@@ -2689,7 +2689,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
 | -------- | ------------- |
 | 12300001 | system service exception. |
 | 12300002 | invalid name or constraint. |
-| 12300003 | the account indicated by localId dose not exist. |
+| 12300003 | The account indicated by localId dose not exist. |
 
 **Example**
 
@@ -3600,7 +3600,7 @@ Obtains the type of the account to which the current process belongs. This API u
 
 getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the ID of the distributed virtual device. This API uses an asynchronous callback to return the result.
+Obtains the ID of this distributed virtual device. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3630,7 +3630,7 @@ Obtains the ID of the distributed virtual device. This API uses an asynchronous 
 
 getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of the distributed virtual device. This API uses a promise to return the result.
+Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5389,7 +5389,7 @@ Defines the OS account information.
 | localName                      | string                                                       | Yes  | OS account name.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
 | constraints                    | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
-| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether the OS account is verified.                     |
+| isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether to verify the OS account.                     |
 | photo<sup>8+</sup>             | string                                                       | No  | Profile photo of the OS account.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
 | lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account.         |
