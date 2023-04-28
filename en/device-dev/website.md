@@ -457,8 +457,8 @@
      - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
      - [Hiview Development](subsystems/subsys-dfx-hiview.md)
   -  Power
-     - Power Consumption Statistics
-       - [Power Consumption Statistics Customization](subsystems/subsys-power-stats-power-average-customization.md)
+     - Display Management
+       - [System Brightness Customization](subsystems/subsys-power-brightness-customization.md)
      - Battery Management
        - [Battery Level and LED Color Mapping Customization](subsystems/subsys-power-level-LED-color.md)
        - [Battery Temperature Protection Customization](subsystems/subsys-power-temperature-protection.md)
@@ -466,6 +466,8 @@
        - [Charging Current and Voltage Limit Customization](subsystems/subsys-power-charge-current-voltage-limit.md)
        - [Charging Type Customization](subsystems/subsys-power-charge-type-customization.md)
        - [Power-off Charging Animation Customization](subsystems/subsys-power-poweroff-charge-animation.md)
+     - Power Consumption Statistics
+       - [Power Consumption Statistics Customization](subsystems/subsys-power-stats-power-average-customization.md)
      - Thermal Management
        - [Charging Idle State Customization](subsystems/subsys-thermal_charging_idle_state.md)
        - [Thermal Control Customization](subsystems/subsys-thermal_control.md)
@@ -473,7 +475,9 @@
        - [Thermal Level Customization](subsystems/subsys-thermal_level.md)
        - [Thermal Log Customization](subsystems/subsys-thermal_log.md)
        - [Thermal Policy Customization](subsystems/subsys-thermal_policy.md)
-       - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)  
+       - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)
+     - Power Management
+       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)  
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
