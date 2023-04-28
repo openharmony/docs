@@ -32,12 +32,27 @@ Registers an error observer.
   | -------- | -------- |
   | number | Index of the observer.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
 ```ts
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);
+    },
+    onException(errorObj) {
+        console.log('onException, name: ', errorObj.name);
+        console.log('onException, message: ', errorObj.message);
+        if (typeof(errorObj.stack) === 'string') {
+            console.log('onException, stack: ', errorObj.stack);
+        }
     }
 };
 let observerId = -1;
@@ -63,6 +78,14 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the API to call. It is fixed at **"error"**.|
 | observerId | number | Yes| Index of the observer returned by **on()**.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -101,6 +124,14 @@ Deregisters an error observer. This API uses a promise to return the result.
 | Type| Description|
 | -------- | -------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
