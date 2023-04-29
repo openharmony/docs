@@ -11,7 +11,7 @@
 import ethernet from '@ohos.net.ethernet'
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void
 
@@ -64,7 +64,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
@@ -120,7 +120,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void
 
@@ -168,7 +168,7 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
@@ -219,7 +219,7 @@ ethernet.getIfaceConfig("eth0").then((data) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
@@ -261,7 +261,7 @@ ethernet.isIfaceActive("eth0", (error, value) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string): Promise\<number>
 
@@ -306,7 +306,7 @@ ethernet.isIfaceActive("eth0").then((data) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
@@ -347,7 +347,7 @@ ethernet.getAllActiveIfaces((error, value) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(): Promise\<Array\<string>>
 
@@ -403,7 +403,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | Callback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 
@@ -416,8 +416,8 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 **示例：**
 
 ```js
-ethernet.on('interfaceStateChange', (data) => {
-  console.log('on interfaceSharingStateChange：' + JSON.stringify(data.iface) + JSON.stringify(data.active));
+ ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```
 
@@ -438,7 +438,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | Callback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 
@@ -454,7 +454,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 ethernet.off('interfaceStateChange');
 ```
 
-## InterfaceConfiguration
+## InterfaceConfiguration<sup>9+</sup>
 
 以太网连接配置网络信息。
 
@@ -471,7 +471,7 @@ ethernet.off('interfaceStateChange');
 | netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
 
-## IPSetMode
+## IPSetMode<sup>9+</sup>
 
 以太网连接模式。
 

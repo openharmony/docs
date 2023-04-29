@@ -11,7 +11,7 @@
 import connection from '@ohos.net.connection'
 ```
 
-## connection.createNetConnection
+## connection.createNetConnection<sup>8+</sup>
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
@@ -46,7 +46,7 @@ let netConnectionCellular = connection.createNetConnection({
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
@@ -79,7 +79,7 @@ connection.getDefaultNet(function (error, data) {
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(): Promise\<NetHandle>
 
@@ -444,7 +444,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>9+</sup>
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
@@ -477,7 +477,7 @@ connection.getAllNets(function (error, data) {
 });
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>9+</sup>
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
@@ -509,7 +509,7 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>9+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
@@ -547,7 +547,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>9+</sup>
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
@@ -589,7 +589,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>9+</sup>
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
@@ -627,7 +627,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>9+</sup>
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
@@ -734,7 +734,7 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>9+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
@@ -767,7 +767,7 @@ connection.hasDefaultNet(function (error, data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>9+</sup>
 
 hasDefaultNet(): Promise\<boolean>
 
@@ -799,7 +799,7 @@ connection.hasDefaultNet().then(function (data) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>9+</sup>
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -832,7 +832,7 @@ connection.enableAirplaneMode(function (error) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>9+</sup>
 
 enableAirplaneMode(): Promise\<void>
 
@@ -865,7 +865,7 @@ connection.enableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>9+</sup>
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -898,7 +898,7 @@ connection.disableAirplaneMode(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>9+</sup>
 
 disableAirplaneMode(): Promise\<void>
 
@@ -931,7 +931,7 @@ connection.disableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>9+</sup>
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -968,7 +968,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>9+</sup>
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1009,7 +1009,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>9+</sup>
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1046,7 +1046,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>9+</sup>
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1087,7 +1087,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>9+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1124,7 +1124,7 @@ connection.getAddressesByName(host, function (error, data) {
 })
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>9+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1174,7 +1174,7 @@ connection.getAddressesByName(host).then(function (data) {
 > 设备从有网络到无网络状态会触发netLost事件；
 > 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
 
-### register
+### register<sup>10+</sup>
 
 register(callback: AsyncCallback\<void>): void
 
@@ -1208,7 +1208,7 @@ netConnection.register(function (error) {
 })
 ```
 
-### unregister
+### unregister<sup>10+</sup>
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -1640,7 +1640,7 @@ connection.getDefaultNet().then((netHandle) => {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>9+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1679,7 +1679,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>9+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1722,7 +1722,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>9+</sup>
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -1761,7 +1761,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>9+</sup>
 
 getAddressByName(host: string): Promise\<NetAddress>
 
