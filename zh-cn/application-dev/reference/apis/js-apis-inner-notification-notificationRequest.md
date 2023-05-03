@@ -27,7 +27,7 @@
 | isCountDown           | boolean                                       | 是  | 是  | 是否显示倒计时时间。         |
 | isFloatingIcon        | boolean                                       | 是  | 是  | 是否显示状态栏图标。         |
 | label                 | string                                        | 是  | 是  | 通知标签。                   |
-| badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。               |
+| badgeIconStyle        | number                                        | 是  | 是  | 通知角标类型。预留能力，暂未支持。     |
 | showDeliveryTime      | boolean                                       | 是  | 是  | 是否显示分发时间。           |
 | actionButtons         | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             | 是  | 是  | 通知按钮，最多三个按钮。  |
 | smallIcon             | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | 是  | 通知小图标。可选字段，大小不超过30KB。 |
