@@ -2457,7 +2457,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | [ExtendAction](#extendaction10) | 是 | 需要发送的扩展功能对应的枚举类型。 |
+| action | [ExtendAction](#extendaction10) | 是 | 要发送的扩展操作。 |
 
 **返回值：**
 
