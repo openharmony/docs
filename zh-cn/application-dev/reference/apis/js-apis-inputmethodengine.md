@@ -1441,6 +1441,53 @@ keyboardController.hideKeyboard().then(() => {
 });
 ```
 
+## ExtendAction<sup>10+</sup>
+
+对编辑框中文本的扩展编辑操作类型。
+
+**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| SELECT_ALL  | 0 |全选。 |
+| CUT  | 3 |剪切。 |
+| COPY  | 4 |复制。 |
+| PASTE  | 5 |粘贴。 |
+
+## Direction<sup>10+</sup>
+
+输入法光标移动方向。
+
+**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| CURSOR_UP  | 1 |向上。 |
+| CURSOR_DOWN  | 2 |向下。 |
+| CURSOR_LEFT  | 3 |向左。 |
+| CURSOR_RIGHT  | 4 |向右。 |
+
+## Range<sup>10+</sup>
+
+描述选中文本的范围。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+
+## Movement<sup>10+</sup>
+
+描述进行选中文本动作时光标移动的方向。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+
 ## InputClient<sup>9+</sup>
 
 下列API示例中都需使用[on('inputStart')](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
@@ -2136,7 +2183,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。                                             |
+| range    | [Range](#range10) | 是   | 选中文本的范围。                                             |
 | callback | AsyncCallback&lt;void&gt;                                 | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2176,7 +2223,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 | 参数名 | 类型                                                      | 必填 | 说明             |
 | ------ | --------------------------------------------------------- | ---- | ---------------- |
-| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。 |
+| range  | [Range](#range10) | 是   | 选中文本的范围。 |
 
 **返回值：**
 
@@ -2219,7 +2266,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。                                       |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。                                       |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2259,7 +2306,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。 |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。 |
 
 **返回值：**
 
@@ -2310,7 +2357,6 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | parameter error.               |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2357,6 +2403,89 @@ inputClient.getTextIndexAtCursor().then((index) => {
 }).catch((err) => {
     console.error('Failed to getTextIndexAtCursor: ${err.message}');
 });
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
+
+发送扩展编辑操作，输入法应用调用该接口通知编辑控件完成相应扩展操作。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err) => {
+        if (err !== undefined) {
+            console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+            return;
+        }
+        console.info('Succeeded in sending extend action.');
+    });
+} catch(error) {
+    console.error(`Failed to sendExtendAction: ${JSON.stringify(error)}`);
+}
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
+
+发送扩展编辑操作，输入法应用调用该接口通知编辑控件完成相应扩展操作。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| action | [ExtendAction](#extendaction10) | 是 | 需要发送的扩展功能对应的枚举类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                                    |
+| --------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+try {
+    inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
+        console.info('Succeeded in sending extend action.');
+    }).catch((err) => {
+        console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+    });
+} catch(error) {
+    console.error(`Failed to sendExtendAction: ${JSON.stringify(error)}`);
+}
 ```
 
 ## EditorAttribute
