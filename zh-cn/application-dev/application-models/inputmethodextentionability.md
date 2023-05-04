@@ -1,9 +1,7 @@
 # InputMethodExtensionAbility开发指南
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)是inputMethod类型的ExtensionAbility组件，提供输入法框架服务相关扩展能力。
-
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。
-
+## 使用場景
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)是基于输入法场景提供的inputMethod类型的ExtensionAbility组件，主要用于输入法应用的开发。
 
 InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
 
