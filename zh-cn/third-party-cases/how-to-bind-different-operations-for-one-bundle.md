@@ -16,8 +16,8 @@
 本示例将在一个页面中两次引用同一个按钮，然后为两次引用加入不同的处理逻辑，第一次引用中，点击按钮跳转到‘’Hello World!’‘页面；第二次引用中，点击按钮跳转到’‘Hello ArkTS!’‘页面。
 
 #### 环境要求
-- IDE：DevEco Studio 3.1.1.301
-- SDK：3.2.2.6（API9）
+- IDE：DevEco Studio 3.1 Beta1
+- SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
 #### 开发步骤
 **第1步 创建按钮组件**

@@ -6,13 +6,14 @@
 
 ### 效果呈现
 本示例最终效果如下：
+
 ![contactlist](figures\contactlist.gif)
 
 ### 环境要求
 - IDE：DevEco Studio 3.1 Beta1
 - SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
-### 实现原理
+### 实现思路
 本例涉及的四个关键特性及其实现方案如下：
 - 联系人按字母分组展示：通过List组件显示联系人列表，通过ListItemGroup组件实现联系人分组。
 - 联系人右侧呈现字母导航：使用AlphabetIndexer组件实现字母导航，同时通过Stack组件使字母导航浮在联系人列表右侧。
