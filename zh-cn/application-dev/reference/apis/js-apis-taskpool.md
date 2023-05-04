@@ -19,7 +19,7 @@ import taskpool from '@ohos.taskpool';
 
 ## Priority
 
-表示所创建任务（Task）的优先级。（暂未支持）
+表示所创建任务（Task）的优先级。
 
 **系统能力：**  SystemCapability.Utils.Lang
 
@@ -28,6 +28,45 @@ import taskpool from '@ohos.taskpool';
 | HIGH   | 0    | 任务为高优先级。 |
 | MEDIUM | 1 | 任务为中优先级。 |
 | LOW | 2 | 任务为低优先级。 |
+
+**示例：**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+
+  let highCount = 0;
+  let mediumCount = 0;
+  let lowCount = 0;
+  let allCount = 100;
+  for (let i = 0; i < allCount; i++) {
+    taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+      lowCount++;
+      console.log("taskpool lowCount is :" + lowCount);
+    }).catch((e) => {
+      console.error("low task error: " + e);
+    })
+    taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+      mediumCount++;
+      console.log("taskpool mediumCount is :" + mediumCount);
+    }).catch((e) => {
+      console.error("medium task error: " + e);
+    })
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+      highCount++;
+      console.log("taskpool highCount is :" + highCount);
+    }).catch((e) => {
+      console.error("high task error: " + e);
+    })
+  }
+}
+taskpoolTest();
+```
 
 ## Task
 
@@ -46,7 +85,7 @@ Task的构造函数。
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
 | func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -81,7 +120,7 @@ let task = new taskpool.Task(func, "this is my first Task");
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
-任务池执行任务，需要传入待执行的函数和函数所需的参数，此执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -90,7 +129,7 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | func   | Function  | 是   | 执行的逻辑需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | unknown[] | 否   | 执行逻辑的函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| args   | unknown[] | 否   | 执行逻辑的函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
 
@@ -129,16 +168,16 @@ taskpoolTest();
 
 execute(task: Task, priority?: Priority): Promise\<unknown>
 
-任务池执行任务，需要传入已创建的任务，此执行模式可取消任务。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                                 |
-| -------- | --------------------- | ---- | ------------------------------------ |
-| task     | [Task](#task)         | 是   | 需要在任务池中执行的任务。           |
-| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级（暂未支持）。 |
+| 参数名   | 类型                  | 必填 | 说明                                       |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | 是   | 需要在任务池中执行的任务。                  |
+| priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为MEDIUM |
 
 **返回值：**
 
@@ -197,20 +236,80 @@ cancel(task: Task): void
 | 10200015 | If the task is not exist. |
 | 10200016 | If the task is running.   |
 
-**示例：**
+**任务取消成功示例：**
 
 ```ts
-@Concurrent
 function func(args) {
+    "use concurrent";
     console.log("func: " + args);
     return args;
 }
 
 async function taskpoolTest() {
   let task = new taskpool.Task(func, 100);
-  let value = await taskpool.execute(task);
+  taskpool.execute(task);
   try {
     taskpool.cancel(task);
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolTest();
+```
+
+**已执行的任务取消失败示例：**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = taskpool.execute(task);
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 1000) { // 延时1s，确保任务已执行
+    continue;
+  }
+
+  try {
+    taskpool.cancel(task); //任务已执行,取消失败
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolTest();
+```
+
+**正在执行的任务取消失败示例：**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+
+async function taskpoolTest() {
+  let task1 = new taskpool.Task(func, 100);
+  let task2 = new taskpool.Task(func, 200);
+  let task3 = new taskpool.Task(func, 300);
+  let task4 = new taskpool.Task(func, 400);
+  let task5 = new taskpool.Task(func, 500);
+  let task6 = new taskpool.Task(func, 600);
+
+  let res1 = taskpool.execute(task1);
+  let res2 = taskpool.execute(task2);
+  let res3 = taskpool.execute(task3);
+  let res4 = taskpool.execute(task4);
+  let res5 = taskpool.execute(task5);
+  let res6 = taskpool.execute(task6);
+  try {
+    taskpool.cancel(task1); // task1任务正在执行，取消失败
   } catch (e) {
     console.log("taskpool.cancel occur error:" + e);
   }
