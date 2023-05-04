@@ -22,7 +22,7 @@ setTransform(transform?: Matrix2D): void;
 | --------- | --------------------------------------------------------- | ---- | ------ | ---------- |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D对象) | 否   | null   | 转换矩阵。 |
 
-### 示例
+**示例：**
 
 ```typescript
 // xxx.ets
@@ -70,3 +70,4 @@ struct CanvasPatternPage {
 ```
 
 ![CanvasPattern](./figures/canvas_pattern.gif)
+
