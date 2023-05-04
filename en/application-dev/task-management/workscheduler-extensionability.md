@@ -12,7 +12,7 @@ Figure 1 shows the working principle of Work Scheduler.
 
 ![WorkSchedulerExtensionAbility](figures/WorkSchedulerExtensionAbility.png)
 
-An application starts, stops, and obtains Work Scheduler tasks through the [workScheduler APIs](../reference/apis/js-apis-resourceschedule-workScheduler.md). It implements the task starting or stopping execution logic through the [Work Scheduler callbacks](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md).
+An application registers, cancels, and queries Work Scheduler tasks through the [workScheduler APIs](../reference/apis/js-apis-resourceschedule-workScheduler.md). It starts and stops Work Scheduler tasks through the [WorkSchedulerExtensionAbility APIs](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md).
 
 The application service layer detects and determines the conditions. If the preset conditions are met, the application service layer calls back the **WorkSchedulerExtensionAbility** object to start the application and triggers the **onWorkStart** and **onWorkStop** callbacks.
 
@@ -80,27 +80,27 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
 
 3. In the **./entry/src/main/ets** directory under the **entry** module of the project, create a directory named **workAbility**. In the **workAbility** directory, create an ArkTS file named **WorkTest.ets** and implement the callbacks for Work Scheduler.
 
-Import the module.
+    Import the module.
 
-    ```ts
-    import { workAbility } from '@ohos/library';
-    ```
+        ```ts
+        import { workAbility } from '@ohos/library';
+        ```
 
-Inherit from **workAbility** and implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
+    Inherit from **workAbility** and implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
 
-    ```ts
-    export default class WorkTest extends workAbility {
-      onWorkStart(workInfo) {
-        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
-        super.onWorkStart(workInfo);
-      }
-
-      onWorkStopTest(workInfo) {
-        super.onWorkStop(workInfo);
-        console.log(`onWorkStop value`);
-      }
-    }
-    ```
+        ```ts
+        export default class WorkTest extends workAbility {
+          onWorkStart(workInfo) {
+            console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
+            super.onWorkStart(workInfo);
+          }
+           
+          onWorkStopTest(workInfo) {
+            super.onWorkStop(workInfo);
+            console.log(`onWorkStop value`);
+          }
+        }
+        ```
 
 ### Implementing Work Scheduler
 
@@ -177,20 +177,20 @@ Inherit from **workAbility** and implement the lifecycle callbacks for the WorkS
 
 ### Setting the Configuration File
 
-1. Register the WorkSchedulerExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) under the **entry** module. Set **type** to **workScheduler** and **srcEntrance** to the code path of the WorkSchedulerExtensionAbility component.
+1. Register the WorkSchedulerExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) under the **entry** module. Set **type** to **workScheduler** and **srcEnty** to the code path of the WorkSchedulerExtensionAbility component.
    
-  ```json
-  {
-    "module": {
-        "extensionAbilities": [
-          {
-            "name": "WorkTest",
-            "srcEntrance": "./ets/workAbility/WorkTest.ets",
-            "label": "$string:WorkSchedulerExtensionAbility_label",
-            "description": "$string:WorkSchedulerExtensionAbility_desc",
-            "type": "workScheduler"
-          }
-        ]
-    }
-  }
-  ```
+     ```json
+     {
+       "module": {
+           "extensionAbilities": [
+             {
+               "name": "WorkTest",
+               "srcEnty": "./ets/workAbility/WorkTest.ets",
+               "label": "$string:WorkSchedulerExtensionAbility_label",
+               "description": "$string:WorkSchedulerExtensionAbility_desc",
+               "type": "workScheduler"
+             }
+           ]
+       }
+     }
+     ```
