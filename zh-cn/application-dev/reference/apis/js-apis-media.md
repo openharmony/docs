@@ -956,7 +956,7 @@ avPlayer.getTrackDescription((error, arrList) => {
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息，可以在prepared/playing/paused状态调用。
+通过Promise方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1013,7 +1013,7 @@ seek(timeMs: number, mode?:SeekMode): void
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, [duration](#avplayer_duration)]。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，**仅在视频资源播放时设置**。          |
+| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式，**仅在视频资源播放时设置**。 |
 
 **示例：**
 
