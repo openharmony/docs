@@ -122,6 +122,14 @@ Deregisters a mission status listener.
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -208,6 +216,14 @@ Deregisters a mission status listener. This API uses a promise to return the res
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -624,6 +640,14 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -667,6 +691,14 @@ Locks a given mission. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
@@ -701,6 +733,14 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 | -------- | -------- | -------- | -------- |
 | missionId | number | Yes| Mission ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 ```ts
@@ -743,6 +783,14 @@ Unlocks a given mission. This API uses a promise to return the result.
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -924,6 +972,14 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -962,6 +1018,14 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | missionId | number | Yes| Mission ID.|
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1006,6 +1070,14 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
