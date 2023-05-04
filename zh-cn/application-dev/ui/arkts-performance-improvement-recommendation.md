@@ -219,54 +219,6 @@ struct MyComponent {
 
 ![flex1](figures/flex1.PNG)
 
-## 设置List组件的宽高
-
-开发者在使用Scroll容器组件嵌套List子组件时，若不指定List的宽高尺寸，则默认全部加载，如下所示：
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  build() {
-    Scroll() {
-      List() {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            Text(`item value: ${item}`).fontSize(30).margin({ left: 10 })
-          }.height(100)
-        }, (item) => item.toString())
-      }
-    }.backgroundColor(Color.Pink)
-  }
-}
-```
-
-因此，在这种场景下建议开发者设置List子组件的宽高，如下所示：
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  build() {
-    Scroll() {
-      List() {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            Text(`item value: ${item}`).fontSize(30).margin({ left: 10 })
-          }.height(100)
-        }, (item) => item.toString())
-      }.width('100%').height(500)
-    }.backgroundColor(Color.Pink)
-  }
-}
-```
-
-![list1](figures/list1.gif)
-
 ## 减少应用滑动白块
 
 应用通过增大List/Grid控件的cachedCount参数，调整UI的加载范围。cachedCount表示屏幕外List/Grid预加载item的个数。  
