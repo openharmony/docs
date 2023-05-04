@@ -25,11 +25,11 @@ Matrix2D()
 
 >  **说明：**
 >  
->  可使用[px2vp](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-pixel-units.md)接口进行单位转换。
+>  可使用[px2vp](ts-pixel-units.md)接口进行单位转换。
 
 ### scaleX
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -64,7 +64,7 @@ struct Matrix2DScaleX {
 
 ### scaleY
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -99,7 +99,7 @@ struct Matrix2DScaleY {
 
 ### rotateX
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -134,7 +134,7 @@ struct Matrix2DRotateX {
 
 ### rotateY
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -169,7 +169,7 @@ struct Matrix2DRotateY {
 
 ### translateX
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -204,7 +204,7 @@ struct Matrix2DTranslateX {
 
 ### translateY
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -241,7 +241,7 @@ struct Matrix2DTranslateY {
 
 ### identity
 
-identity(): Matrix2D;
+identity(): Matrix2D
 
 创建一个单位矩阵。
 
@@ -255,7 +255,7 @@ identity(): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -277,7 +277,7 @@ struct Matrix2DIdentity {
         Button("matrix identity")
           .onClick(() => {
             var matrix : Matrix2D = new Matrix2D()
-            matrix.identity()
+            matrix = matrix.identity()
             this.printMatrix(this.message, matrix)
           })
       }
@@ -290,7 +290,7 @@ struct Matrix2DIdentity {
 
 ### invert
 
-invert(): Matrix2D;
+invert(): Matrix2D
 
 得到当前矩阵的逆矩阵。
 
@@ -304,7 +304,7 @@ invert(): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -314,8 +314,8 @@ struct Matrix2DInvert {
   printMatrix(title, matrix) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
   }
   build() {
     Row() {
@@ -345,7 +345,7 @@ struct Matrix2DInvert {
 
 ### multiply
 
-multiply(other?: Matrix2D): Matrix2D;
+multiply(other?: Matrix2D): Matrix2D
 
 当前矩阵与目标矩阵相乘。
 
@@ -367,7 +367,7 @@ multiply(other?: Matrix2D): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -377,8 +377,8 @@ struct Matrix2DMultiply {
   printMatrix(title, matrix) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
   }
   build() {
     Row() {
@@ -415,11 +415,11 @@ struct Matrix2DMultiply {
 
 ### rotate<sup>10+</sup>
 
-rotate(degree: number, rx?: number, ry?: number): Matrix2D;
+rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 以旋转点为中心、对当前矩阵进行右乘旋转运算。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -437,7 +437,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -447,8 +447,8 @@ struct Matrix2DRotate {
   printMatrix(title, matrix) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
   }
   build() {
     Row() {
@@ -478,7 +478,7 @@ struct Matrix2DRotate {
 
 ### translate
 
-translate(tx?: number, ty?: number): Matrix2D;
+translate(tx?: number, ty?: number): Matrix2D
 
 对当前矩阵进行左乘平移运算。
 
@@ -499,7 +499,7 @@ translate(tx?: number, ty?: number): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -509,8 +509,8 @@ struct Matrix2DTranslate {
   printMatrix(title, matrix) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
   }
   build() {
     Row() {
@@ -540,7 +540,7 @@ struct Matrix2DTranslate {
 
 ### scale
 
-scale(sx?: number, sy?: number): Matrix2D;
+scale(sx?: number, sy?: number): Matrix2D
 
 对当前矩阵进行右乘缩放运算。
 
@@ -561,7 +561,7 @@ scale(sx?: number, sy?: number): Matrix2D;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -571,8 +571,8 @@ struct Matrix2DScale {
   printMatrix(title, matrix) {
     console.log(title)
     console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
   }
   build() {
     Row() {

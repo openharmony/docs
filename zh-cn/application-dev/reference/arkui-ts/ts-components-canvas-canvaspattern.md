@@ -10,7 +10,7 @@
 
 ### setTransform
 
-setTransform(transform?: Matrix2D): void;
+setTransform(transform?: Matrix2D): void
 
 使用Matrix2D对象作为参数、对当前CanvasPattern进行矩阵变换。
 
@@ -24,7 +24,7 @@ setTransform(transform?: Matrix2D): void;
 
 **示例：**
 
-```typescript
+```ts
 // xxx.ets
 @Entry
 @Component
