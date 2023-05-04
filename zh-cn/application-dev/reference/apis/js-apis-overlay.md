@@ -279,7 +279,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
-| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
@@ -588,7 +588,7 @@ var moduleName = "feature"
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void;
 
 以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
@@ -638,7 +638,7 @@ try {
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void;
 
 以异步方法获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
