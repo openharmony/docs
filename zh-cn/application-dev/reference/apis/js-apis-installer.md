@@ -225,7 +225,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array\<string\>               | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：初始化即为默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -406,7 +406,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：初始化即为默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -576,7 +576,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：初始化即为默认值。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -754,7 +754,7 @@ try {
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 否                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
+| userId                         | number                         | 否                        | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
 | installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装，默认值为应用初次安装 |
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录，默认值为false。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
