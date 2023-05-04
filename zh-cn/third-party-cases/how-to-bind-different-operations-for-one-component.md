@@ -91,6 +91,7 @@
 
     通过以上步骤我们实现了在为同一按钮组件绑定不同的业务处理逻辑，接下来就让我们看下效果吧！
     注意：文中的‘’Hello World!’‘页面和’‘Hello ArkTS!’‘页面不是本文说明的重点，所以本文中不做开发介绍。
+
     ![相同子组件不同业务逻辑](figures/different-operations-one-component.gif)
 
 ### 完整代码
