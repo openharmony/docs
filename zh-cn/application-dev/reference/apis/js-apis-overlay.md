@@ -586,7 +586,7 @@ var moduleName = "feature"
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;<Array&lt;<OverlayModuleInfo&gt;&gt;): void;
 
 以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
@@ -636,7 +636,7 @@ try {
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
 
 以异步方法获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
