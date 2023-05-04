@@ -26,8 +26,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | -------- | -------- | -------- |
 | sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This API is deprecated since API version 9. You are advised to use **sticky** of the [\<List>](ts-container-list.md#attributes) component.|
 | editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
-| swipeAction<sup>9+</sup> | {<br>start?: CustomBuilder,<br>end?:CustomBuilder,<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Component displayed when the list item is swiped out from the screen edge.<br>- **start**: component on the left of the list item when the item is swiped to the right (in vertical list layout) or component above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: component on the right of the list item when the item is swiped to the left (in vertical list layout) or component below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>|
+| selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
+| swipeAction<sup>9+</sup> | {<br>start?: CustomBuilder,<br>end?:CustomBuilder,<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Component displayed when the list item is swiped out from the screen edge.<br>- **start**: component on the left of the list item when the item is swiped to the right (in vertical list layout) or component above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: component on the right of the list item when the item is swiped to the left (in vertical list layout) or component below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.|
 
 ## Sticky<sup>(deprecated)</sup>
 This API is deprecated since API version 9. You are advised to use [stickyStyle](ts-container-list.md#stickystyle9) of the **\<List>** component.
@@ -55,7 +55,7 @@ This API is deprecated since API version 9.
 
 | Name| Description|
 | -------- | -------- |
-| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the **\<ListItem>** changes.<br>**isSelected**: Returns **true** if the **\<ListItem>** is selected by mouse drag; returns **false** otherwise.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the **\<ListItem>** changes.<br>**isSelected**: Returns **true** if the **\<ListItem>** is selected by mouse drag; returns **false** otherwise.|
 
 
 ## Example

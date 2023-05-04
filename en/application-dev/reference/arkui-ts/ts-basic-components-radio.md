@@ -40,7 +40,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, the radio button is selected.<br> - If **isChecked** is **false**, the radio button is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, it indicates that the radio button changes from unselected to selected.<br> - If **isChecked** is **false**, it indicates that the radio button changes from selected to unselected.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## RadioStyle
 

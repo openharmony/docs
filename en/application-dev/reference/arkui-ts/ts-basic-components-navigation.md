@@ -23,86 +23,85 @@ Navigation()
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name            | Type                                    | Description                                      |
-| -------------- | ---------------------------------------- | ---------------------------------------- |
-| title          | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> \| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.                           |
-| subTitle<sup>deprecated</sup>       | string                                   | Subtitle of the page. This attribute is deprecated since API version 9. You are advised to use **title** instead.                                  |
-| menus          | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. When the value type is Array\<[NavigationMenuItem](#navigationmenuitem)>, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, plus excess icons (if any) under the automatically generated **More** icon.     |
-| titleMode      | [NavigationTitleMode](#navigationtitlemode)                      | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
-| toolBar        | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar.<br>**items**: items on the toolbar.    |
-| hideToolBar    | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
-| hideTitleBar   | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.|The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | Width of the navigation bar.<br>Default value: **200vp**|
-| navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition)             | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**|
-| mode<sup>9+</sup> | [NavigationMode](#navigationmode)                       | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**|
-| backButtonIcon<sup>9+</sup> | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource)   | Back button icon on the navigation bar. The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
-| hideNavBar<sup>9+</sup> | boolean                         | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
+| Name                           | Type                                    | Description                                      |
+| ----------------------------- | ---------------------------------------- | ---------------------------------------- |
+| title                         | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> \| [NavigationCommonTitle](#navigationcommontitle)<sup>9+</sup> \| [NavigationCustomTitle](#navigationcustomtitle)<sup>9+</sup> | Page title.<br>**NOTE**<br>When the NavigationCustomTitle type is used to set the height, the **titleMode** attribute does not take effect.<br>When the title string is too long: (1) If no subtitle is set, the string is scaled down, wrapped in two lines, and then clipped with an ellipsis (...); (2) If a subtitle is set, the subtitle is scaled down and then clipped with an ellipsis (...).|
+| subTitle<sup>deprecated</sup> | string                                   | Subtitle of the page. If this attribute is not set, no subtitle is displayed. This attribute is deprecated since API version 9. You are advised to use **title** instead.|
+| menus                         | Array<[NavigationMenuItem](#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Menu items in the upper right corner of the page. If this parameter is not set, no menu item is displayed. When the value type is Array\<[NavigationMenuItem](#navigationmenuitem)>, the menu shows a maximum of three icons in portrait mode and a maximum of five icons in landscape mode, plus excess icons (if any) under the automatically generated **More** icon.|
+| titleMode                     | [NavigationTitleMode](#navigationtitlemode) | Display mode of the page title bar.<br>Default value: **NavigationTitleMode.Free**|
+| toolBar                       | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar. If this attribute is not set, no toolbar is displayed.<br>**items**: items on the toolbar.<br>**NOTE**<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).|
+| hideToolBar                   | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
+| hideTitleBar                  | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
+| hideBackButton                | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.<br>The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.<br>**NOTE**<br>The Back button is available only when **titleMode** is set to **NavigationTitleMode.Mini**.|
+| navBarWidth<sup>9+</sup>      | [Length](ts-types.md#length)             | Width of the navigation bar.<br>Default value: **200**<br>Unit: vp<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
+| navBarPosition<sup>9+</sup>   | [NavBarPosition](#navbarposition)    | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**<br>**NOTE**<br>This attribute is valid only when the **\<Navigation>** component is split.|
+| mode<sup>9+</sup>             | [NavigationMode](#navigationmode)    | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**<br>At the default settings, the component adapts to a single column or two columns based on the component width.|
+| backButtonIcon<sup>9+</sup>   | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](ts-types.md#resource) | Back button icon on the navigation bar. The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
+| hideNavBar<sup>9+</sup>       | boolean                                  | Whether to hide the navigation bar. This attribute is valid only when **mode** is set to **NavigationMode.Split**.|
 
 
 ## NavigationMenuItem
 
-| Name  | Type                   | Mandatory| Description                          |
-| ------ | ----------------------- | ---- | ------------------------------ |
-| value  | string                  | Yes  | Text of a menu item.    |
-| icon   | string                  | No  | Icon path of a menu item.|
-| action | () =&gt; void | No  | Callback invoked when a menu item is selected.    |
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| value  | string                  | Yes   | Text of a menu item.  |
+| icon   | string                  | No   | Icon path of a menu item.|
+| action | () =&gt; void | No   | Callback invoked when a menu item is selected.  |
 
 ## object
 
-| Name  | Type                   | Mandatory| Description                          |
-| ------ | ----------------------- | ---- | ------------------------------ |
-| value  | string                  | Yes  | Text of an option on the toolbar.    |
-| icon   | string                  | No  | Icon path of an option on the toolbar.|
-| action | () =&gt; void | No  | Callback invoked when an option is selected.    |
+| Name    | Type                     | Mandatory  | Description             |
+| ------ | ----------------------- | ---- | --------------- |
+| value  | string                  | Yes   | Text of an option on the toolbar.  |
+| icon   | string                  | No   | Icon path of an option on the toolbar.|
+| action | () =&gt; void | No   | Callback invoked when an option is selected.  |
 
 ## NavigationTitleMode
 
 | Name  | Description                                      |
 | ---- | ---------------------------------------- |
 | Free | When the content is a scrollable component, the main title shrinks as the content scrolls down (the subtitle fades out with its size remaining unchanged) and restores when the content scrolls up to the top.|
-| Mini | The title is fixed at mini mode.                      |
-| Full | The title is fixed at full mode.                         |
+| Mini | The title is fixed at mini mode.                               |
+| Full | The title is fixed at full mode.                               |
 
 ## NavigationCommonTitle
 
-| Name  | Type      | Mandatory| Description     |
-| ------ | --------- | ---- | -------- |
-| main | string | Yes| Main title.|
-| sub | string | Yes| Subtitle.|
+| Name  | Type    | Mandatory  | Description    |
+| ---- | ------ | ---- | ------ |
+| main | string | Yes   | Main title.|
+| sub  | string | Yes   | Subtitle.|
 
 ## NavigationCustomTitle
 
-| Name  | Type                   | Mandatory| Description                          |
-| ------ | ----------------------- | ---- | ------------------------------ |
-| builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes| Content of the title bar.|
-| height | [TitleHeight](#titleheight) \| [Length](ts-types.md#length) | Yes| Height of the title bar.|
+| Name     | Type                                      | Mandatory  | Description      |
+| ------- | ---------------------------------------- | ---- | -------- |
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
+| height  | [TitleHeight](#titleheight) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
 
 ## NavBarPosition
 
-| Name| Description                                      |
-| ---- | ---------------------------------------- |
+| Name   | Description              |
+| ----- | ---------------- |
 | Start | When two columns are displayed, the main column is at the start of the main axis.|
-| End   | When two columns are displayed, the main column is at the end of the main axis. |
+| End   | When two columns are displayed, the main column is at the end of the main axis.|
 
 ## NavigationMode
 
-| Name| Description                                      |
-| ---- | ---------------------------------------- |
-| Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.|
-| Split | The navigation bar and content area are displayed in different columns.|
-| Auto | When the window width is greater than or equal to 520 vp, Split mode is used. Otherwise, the Stack mode is used.|
+| Name   | Description                                      |
+| ----- | ---------------------------------------- |
+| Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.                    |
+| Split | The navigation bar and content area are displayed in different columns.                           |
+| Auto  | When the window width is greater than or equal to 520 vp, Split mode is used. Otherwise, the Stack mode is used.|
 
 ## TitleHeight
 
-| Name| Description                                      |
-| ---- | ---------------------------------------- |
-| MainOnly | Recommended height (56 vp) of the title bar when only the main title is available.|
+| Name         | Description                        |
+| ----------- | -------------------------- |
+| MainOnly    | Recommended height (56 vp) of the title bar when only the main title is available.     |
 | MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist.|
 
 
 >  **NOTE**
->
 >  Among the scrollable components, only **\<List>** is supported.
 
 
@@ -150,7 +149,7 @@ struct NavigationExample {
         .fontSize(14)
         .lineHeight(19)
         .opacity(0.4)
-        .margin({ top: 2 })
+        .margin({ top: 2, bottom: 20 })
     }.alignItems(HorizontalAlign.Start)
   }
 
@@ -195,16 +194,16 @@ struct NavigationExample {
     Column() {
       Navigation() {
         TextInput({ placeholder: 'search...' })
-          .width(336)
+          .width('90%')
           .height(40)
           .backgroundColor('#FFFFFF')
-          .margin({ top: 8, left: 12 })
+          .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.arr, (item) => {
             ListItem() {
               Text('' + item)
-                .width(336)
+                .width('90%')
                 .height(72)
                 .backgroundColor('#FFFFFF')
                 .borderRadius(24)
@@ -216,7 +215,7 @@ struct NavigationExample {
         }
         .height(324)
         .width('100%')
-        .margin({ top: 12, left: 12 })
+        .margin({ top: 12, left: '10%' })
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)

@@ -35,6 +35,14 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 | -------- | -------- | -------- |
 | divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start of the list.<br>- **endMargin**: distance between the divider and the end of the list.|
 
+> **NOTE**
+>
+> The **\<ListItemGroup>** component does not support the universal attribute **[aspectRatio](ts-universal-attributes-layout-constraints.md)**.
+>
+> If the main axis of **\<ListItemGroup>** runs in the vertical direction, the [height](ts-universal-attributes-size.md) setting does not take effect.
+>
+> If the main axis of **\<ListItemGroup>** runs in the horizontal direction, the [width](ts-universal-attributes-size.md) setting does not take effect.
+
 
 ## Example
 
