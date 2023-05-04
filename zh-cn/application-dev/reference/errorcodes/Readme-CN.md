@@ -68,6 +68,7 @@
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
   - [输入法框架错误码](errorcode-inputmethod-framework.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
+  - [锁屏错误码](errorcode-screenlock.md)
   - [时间时区服务错误码](errorcode-time.md)
   - [Webview错误码](errorcode-webview.md)
 - 帐号管理
