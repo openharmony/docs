@@ -7,7 +7,7 @@
 ### 效果呈现
 本示例最终效果如下：
 
-![contactlist](figures\contactlist.gif)
+![contactlist](figures/contactlist.gif)
 
 ### 环境要求
 - IDE：DevEco Studio 3.1 Beta1
@@ -110,7 +110,7 @@ struct ContactList{
 ```
 完成上述代码，我们的框架就搭建起来了，如图：
 
-![contactframe](figures\contactframe.PNG)
+![contactframe](figures/contactframe.PNG)
 
 2、接下来我们为UI框架添加逻辑控制。首先，通过List的onScrollIndex事件获取到列表滑动位置的索引，并将索引同步给右侧字母表的selected属性，从而在滑动联系人时，使右侧字母导航随之变动，关键代码如下：
 ```ts
@@ -146,7 +146,7 @@ struct ContactList{
 ```
 至此，当我们滑动联系人列表时，就可以让右侧字母导航随之变动了。效果如下：
 
-![listtonav](figures\listtonav.gif)
+![listtonav](figures/listtonav.gif)
 
 3、最后，我们通过AlphabetIndexer组件的onSelect事件获取到字母导航选择项的索引，然后通过List组件的scroller控制器控制联系人列表滑动到相同的索引处，从而实现通过右侧字母导航控制联系人列表滑动到指定分组。关键代码如下：
 ```ts
@@ -182,7 +182,7 @@ struct ContactList{
 ```
 至此，当我们在右侧字母导航选择某个字母时就可以控制联系人列表跳转到指定分组了，效果如下：
 
-![navtolist](figures\navtolist.gif)
+![navtolist](figures/navtolist.gif)
 
 ### 完整代码
 通过上述步骤我们已经完成了整个示例的开发，现提供本示例的完整代码供大家参考：
