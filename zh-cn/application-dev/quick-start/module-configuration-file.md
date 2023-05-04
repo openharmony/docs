@@ -93,6 +93,7 @@ module.json5配置文件包含以下标签。
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 | targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
+| [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 
 ## deviceTypes标签
 
@@ -785,6 +786,38 @@ dependencies标签示例：
         "bundleName":"com.share.library",
         "moduleName": "library",
         "versionCode": 10001
+      }
+    ]
+  }
+}
+```
+
+## proxyDatas标签
+
+此标签标识模块提供的数据代理列表。
+
+**表21** **proxyDatas标签说明**
+| 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
+| ----------- | ------------------------------ | -------- | ---------- |
+| uri | 标识用于访问该数据代理的uri，不同的数据代理配置的uri不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 不可缺省。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限。| 字符串   | 可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。| 字符串   | 可缺省，缺省值为空。 |
+| [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 可缺省，缺省值为空。 |
+
+proxyDatas标签示例：
+
+```json
+{
+  "module": {
+    "proxyDatas": [
+      {
+        "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
+        "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission": "ohos.permission.GET_BUNDLE_INFO",
+        "metadata": {
+          "name": "datashare_metadata",
+          "resource": "$profile:datashare"
+        }
       }
     ]
   }
