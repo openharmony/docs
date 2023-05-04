@@ -904,25 +904,7 @@ try {
 
 detach(callback: AsyncCallback&lt;void&gt;): void
 
-解绑定输入法框架。自绘控件通过该接口可以解绑定输入法，解绑定后以下操作不被允许。使用callback异步回调。  
-[showTextInput](#showtextinput10)  
-[hideTextInput](#hidetextinput10)  
-[setCallingWindow](#setcallingwindow10)  
-[updateCursor](#updatecursor10)  
-[changeSelection](#changeselection10)  
-[updateAttribute](#updateattribute10)  
-[on('insertText')](#oninserttext10)  
-[on('deleteLeft' | 'deleteRight')](#ondeleteleft--deleteright10)  
-[on('sendKeyboardStatus')](#onsendkeyboardstatus10)  
-[on('sendFunctionKey')](#onsendfunctionkey10)  
-[on('moveCursor')](#onmovecursor10)  
-[on('handleExtendAction')](#onhandleextendaction10)  
-[off('insertText')](#offinserttext10)  
-[off('deleteLeft' | 'deleteRight')](#offdeleteleft--deleteright10)  
-[off('sendKeyboardStatus')](#offsendkeyboardstatus10)  
-[off('sendFunctionKey')](#offsendfunctionkey10)  
-[off('moveCursor')](#offmovecursor10)  
-[off('handleExtendAction')](#offhandleextendaction10)
+解除与输入法应用的绑定。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -957,7 +939,7 @@ inputMethodController.detach((err) => {
 
 detach(): Promise&lt;void&gt;
 
-解绑定输入法框架。自绘控件通过该接口可以解绑定输入法，解绑定后以下操作不被允许。使用promise异步回调。
+解除与输入法应用的绑定。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
