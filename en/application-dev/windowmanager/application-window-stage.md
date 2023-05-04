@@ -57,7 +57,7 @@ In the stage model, the main window of an application is created and maintained 
 1. Obtain the main window.
    
    Call **getMainWindow** to obtain the main window of the application.
-
+   
 2. Set the properties of the main window.
 
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
@@ -68,7 +68,7 @@ In the stage model, the main window of an application is created and maintained 
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-
+   
    export default class EntryAbility extends UIAbility {
        onWindowStageCreate(windowStage) {
            // 1. Obtain the main window of the application.
@@ -113,7 +113,7 @@ You can create an application subwindow, such as a dialog box, and set its prope
 1. Create a subwindow.
    
    Call **createSubWindow** to create a subwindow.
-
+   
 2. Set the properties of the subwindow.
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
@@ -210,7 +210,7 @@ To create a better video watching and gaming experience, you can use the immersi
 1. Obtain the main window.
    
    Call **getMainWindow** to obtain the main window of the application.
-
+   
 2. Implement the immersive effect. You can use either of the following methods:
    - Method 1: Call **setWindowSystemBarEnable** to hide the navigation bar and status bar.
    - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
@@ -331,7 +331,6 @@ A floating window is created based on an existing task. It is always displayed i
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
@@ -389,4 +388,3 @@ A floating window is created based on an existing task. It is always displayed i
        }
    };
    ```
-
