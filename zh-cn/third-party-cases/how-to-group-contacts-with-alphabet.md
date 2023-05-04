@@ -22,8 +22,9 @@
 
 ### 开发步骤
 针对上述关键特性，具体实现步骤如下：
+
 1、先通过Stack、List、ListItemGroup、AlphabetIndexer等关键组件将UI框架搭建起来。
-先构建列表数据，其中Contact为联系人数据类
+先构建列表数据，其中Contact为联系人数据类。
 ```ts
 contactGroups: object[] = [
    ...
@@ -186,6 +187,7 @@ struct ContactList{
 
 ### 完整代码
 通过上述步骤我们已经完成了整个示例的开发，现提供本示例的完整代码供大家参考：
+
 联系人数据类代码：
 ```ts
 // ListModel.ets
