@@ -1,4 +1,4 @@
-# Matrix2D对象
+# Matrix2D
 
 矩阵对象，可以对矩阵进行缩放、旋转、平移等变换。
 
@@ -8,6 +8,237 @@
 
 ## 接口
 
+Matrix2D()
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+## 属性
+
+| 属性                      | 类型   | 描述                                                         |
+| ------------------------- | ------ | ------------------------------------------------------------ |
+| [scaleX](#scaleX)         | number | 水平缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [scaleY](#scaleY)         | number | 垂直缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateX](#rotateX)       | number | 水平倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateY](#rotateY)       | number | 垂直倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateX](#translateX) | number | 水平平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateY](#translateY) | number | 垂直平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+
+>  **说明：**
+>  
+>  可使用[px2vp](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-pixel-units.md)接口进行单位转换。
+
+### scaleX
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DScaleX {
+  @State message: string = 'Matrix2D ScaleX'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set scaleX")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### scaleY
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DScaleY {
+  @State message: string = 'Matrix2D ScaleY'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set scaleY")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleY = 1
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### rotateX
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DRotateX {
+  @State message: string = 'Matrix2D RotateX'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set rotateX")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.rotateX = Math.sin(45 / Math.PI)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### rotateY
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DRotateY {
+  @State message: string = 'Matrix2D RotateY'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set rotateY")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.rotateY = Math.cos(45 / Math.PI)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### translateX
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DTranslateX {
+  @State message: string = 'Matrix2D TranslateX'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set translateX")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.translateX = 10
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### translateY
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DTranslateY {
+  @State message: string = 'Matrix2D TranslateY'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("Set translateY")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.translateY = 10
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## 方法
+
 ### identity
 
 identity(): Matrix2D;
@@ -15,6 +246,47 @@ identity(): Matrix2D;
 创建一个单位矩阵。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**返回值：**
+
+| 类型                  | 说明       |
+| --------------------- | ---------- |
+| [Matrix2D](#Matrix2D) | 单位矩阵。 |
+
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DIdentity {
+  @State message: string = 'Matrix2D Identity'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix identity")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.identity()
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ### invert
 
@@ -24,13 +296,60 @@ invert(): Matrix2D;
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**返回值：**
+
+| 类型                  | 说明         |
+| --------------------- | ------------ |
+| [Matrix2D](#Matrix2D) | 逆矩阵结果。 |
+
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DInvert {
+  @State message: string = 'Matrix2D Invert'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix invert")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 2
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 10
+            matrix.translateY = 20
+            matrix.invert()
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### multiply
 
 multiply(other?: Matrix2D): Matrix2D;
 
 当前矩阵与目标矩阵相乘。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
 该接口从API version 10开始废弃。
 
@@ -39,6 +358,60 @@ multiply(other?: Matrix2D): Matrix2D;
 | 参数  | 类型     | 必填 | 默认值 | 描述       |
 | ----- | -------- | ---- | ------ | ---------- |
 | other | Matrix2D | 否   | null   | 目标矩阵。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [Matrix2D](#Matrix2D) | 相乘结果矩阵。 |
+
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DMultiply {
+  @State message: string = 'Matrix2D Multiply'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix multiply")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            var other: Matrix2D = new Matrix2D()
+            other.scaleX = 2
+            other.scaleY = 2
+            other.rotateX = 0
+            other.rotateY = 0
+            other.translateX = 10
+            other.translateY = 10
+            other.multiply(other)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ### rotate<sup>10+</sup>
 
@@ -56,6 +429,53 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D;
 | rx     | number | 否   | 0      | 旋转点的水平方向坐标，单位为vp。                             |
 | ry     | number | 否   | 0      | 旋转点的垂直方向坐标，单位为vp。                             |
 
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
+| [Matrix2D](#Matrix2D) | 旋转后结果矩阵对象。 |
+
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DRotate {
+  @State message: string = 'Matrix2D Rotate'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix rotate")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            matrix.rotate(90 / Math.PI, 10, 10)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### translate
 
 translate(tx?: number, ty?: number): Matrix2D;
@@ -70,6 +490,53 @@ translate(tx?: number, ty?: number): Matrix2D;
 | ---- | ------ | ---- | ------ | ---------------------------- |
 | tx   | number | 否   | 0      | 水平方向平移距离，单位为vp。 |
 | ty   | number | 否   | 0      | 垂直方向平移距离，单位为vp。 |
+
+**返回值：**
+
+| 类型                  | 说明                 |
+| --------------------- | -------------------- |
+| [Matrix2D](#Matrix2D) | 平移后结果矩阵对象。 |
+
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DTranslate {
+  @State message: string = 'Matrix2D Translate'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix translate")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            matrix.translate(100, 100)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ### scale
 
@@ -86,17 +553,49 @@ scale(sx?: number, sy?: number): Matrix2D;
 | sx   | number | 否   | 1      | 水平缩放比例系数。 |
 | sy   | number | 否   | 1      | 垂直缩放比例系数。 |
 
-## 属性
+**返回值：**
 
-| 属性       | 类型   | 描述                                                         |
-| ---------- | ------ | ------------------------------------------------------------ |
-| scaleX     | number | 水平缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| scaleY     | number | 垂直缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| rotateX    | number | 水平倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| rotateY    | number | 垂直倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| translateX | number | 水平平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| translateY | number | 垂直平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 类型                  | 说明               |
+| --------------------- | ------------------ |
+| [Matrix2D](#Matrix2D) | 缩放结果矩阵对象。 |
 
->  **说明：**
->  
->  可使用[px2vp](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-pixel-units.md)接口进行单位转换。
+**示例：**
+
+```typescript
+// xxx.ets
+@Entry
+@Component
+struct Matrix2DScale {
+  @State message: string = 'Matrix2D Scale'
+
+  printMatrix(title, matrix) {
+    console.log(title)
+    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
+    ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
+    ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("matrix scale")
+          .onClick(() => {
+            var matrix : Matrix2D = new Matrix2D()
+            matrix.scaleX = 1
+            matrix.scaleY = 1
+            matrix.rotateX = 0
+            matrix.rotateY = 0
+            matrix.translateX = 0
+            matrix.translateY = 0
+            matrix.scale(0.5, 0.5)
+            this.printMatrix(this.message, matrix)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

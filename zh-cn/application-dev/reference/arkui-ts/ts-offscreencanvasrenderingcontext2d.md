@@ -1860,6 +1860,11 @@ getTransform(): Matrix2D
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**返回值：**
+
+| 类型                                                  | 说明       |
+| ----------------------------------------------------- | ---------- |
+| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
 
 ### resetTransform
 

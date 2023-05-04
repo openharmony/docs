@@ -1758,6 +1758,12 @@ getTransform(): Matrix2D
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**返回值：**
+
+| 类型                                                  | 说明       |
+| ----------------------------------------------------- | ---------- |
+| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
+
 
 ### resetTransform
 
@@ -1981,6 +1987,7 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
   ![zh-cn_image_0000001238712421](figures/zh-cn_image_0000001238712421.png)
 
+### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -1988,6 +1995,11 @@ setTransform(transform?: Matrix2D): void
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**参数：**
+
+| 参数      | 类型                                                  | 必填 | 默认值 | 描述       |
+| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否   | null   | 变换矩阵。 |
 
 ### translate
 

@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。从API version 9开始，该接口支持在ArkTS卡片中使用。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 接口
+## 方法
 
 ### setTransform
 
@@ -18,9 +18,9 @@ setTransform(transform?: Matrix2D): void;
 
 **参数：**
 
-| 参数      | 类型                                                      | 必填 | 默认值 | 描述       |
-| --------- | --------------------------------------------------------- | ---- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D对象) | 否   | null   | 转换矩阵。 |
+| 参数      | 类型                                                  | 必填 | 默认值 | 描述       |
+| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否   | null   | 转换矩阵。 |
 
 **示例：**
 
