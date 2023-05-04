@@ -520,13 +520,13 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | -------- | -------- |-------- |
 | NONE  | -1 |NONE。 |
 | TEXT  | 0 |文本类型。 |
-| MULTILINE  |  |多行类型。 |
-| NUMBER  |  |数字类型。 |
-| PHONE  |  |电话号码类型。 |
-| DATETIME  |  |日期类型。 |
-| EMAIL_ADDRESS  |  |邮箱地址类型。 |
-| URL  |  |链接类型。 |
-| VISIBLE_PASSWORD  |  |密码类型。 |
+| MULTILINE  | 1 |多行类型。 |
+| NUMBER  | 2 |数字类型。 |
+| PHONE  | 3 |电话号码类型。 |
+| DATETIME  | 4 |日期类型。 |
+| EMAIL_ADDRESS  | 5 |邮箱地址类型。 |
+| URL  | 6 |链接类型。 |
+| VISIBLE_PASSWORD  | 7 |密码类型。 |
 
 ## EnterKeyType<sup>10+</sup>
 
@@ -537,13 +537,13 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
 | UNSPECIFIED  | 0 |未指定。 |
-| NONE  |  |NONE。 |
-| GO  |  |前往。 |
-| SEARCH  |  |查找。 |
-| SEND  |  |发送。 |
-| NEXT  |  |下一步。 |
-| DONE  |  |完成。 |
-| PREVIOUS  |  |上一步。 |
+| NONE  | 1 |NONE。 |
+| GO  | 2 |前往。 |
+| SEARCH  | 3 |查找。 |
+| SEND  | 4 |发送。 |
+| NEXT  | 5 |下一步。 |
+| DONE  | 6 |完成。 |
+| PREVIOUS  | 7 |上一步。 |
 
 ## KeyboardStatus<sup>10+</sup>
 
@@ -566,9 +566,9 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
 | CURSOR_UP  | 1 |向上。 |
-| CURSOR_DOWN  |  |向下。 |
-| CURSOR_LEFT  |  |向左。 |
-| CURSOR_RIGHT  |  |向右。 |
+| CURSOR_DOWN  | 2 |向下。 |
+| CURSOR_LEFT  | 3 |向左。 |
+| CURSOR_RIGHT  | 4 |向右。 |
 
 ## ExtendAction<sup>10+</sup>
 
@@ -670,25 +670,8 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt;void&gt;): void
 
-用于自绘控件绑定输入法框架。自绘控件开发者必须先调用此接口完成绑定，才可以使用框架提供的以下功能，使用callback异步回调。  
-[showTextInput](#showtextinput10)  
-[hideTextInput](#hidetextinput10)  
-[setCallingWindow](#setcallingwindow10)  
-[updateCursor](#updatecursor10)  
-[changeSelection](#changeselection10)  
-[updateAttribute](#updateattribute10)  
-[on('insertText')](#oninserttext10)  
-[on('deleteLeft' | 'deleteRight')](#ondeleteleft--deleteright10)  
-[on('sendKeyboardStatus')](#onsendkeyboardstatus10)  
-[on('sendFunctionKey')](#onsendfunctionkey10)  
-[on('moveCursor')](#onmovecursor10)  
-[on('handleExtendAction')](#onhandleextendaction10)  
-[off('insertText')](#offinserttext10)  
-[off('deleteLeft' | 'deleteRight')](#offdeleteleft--deleteright10)  
-[off('sendKeyboardStatus')](#offsendkeyboardstatus10)  
-[off('sendFunctionKey')](#offsendfunctionkey10)  
-[off('moveCursor')](#offmovecursor10)  
-[off('handleExtendAction')](#offhandleextendaction10)
+用于自绘控件绑定输入法应用。使用callback异步回调。
+开发者必须先调用此接口完成绑定，才可以使用框架提供的功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -697,7 +680,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | showKeyboard | boolean | 是 | 绑定输入法成功后是否拉起输入法键盘。 |
-| textConfig | [TextConfig](#textconfig10) | 是 | 编辑控件配置。 |
+| textConfig | [TextConfig](#textconfig10) | 是 | 编辑控件配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -2201,50 +2184,6 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 ```js
 inputMethodSetting.off('imeChange');
-```
-
-### on('imeShow'|'imeHide')<sup>9+</sup>
-
-on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
-
-订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                                                         |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeShow’时表示订阅输入法软键盘显示事件。<br/>-type为‘imeHide’时表示订阅输入法软键盘隐藏事件。 |
-| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
-
-**示例：**
-
-```js
-inputMethodSetting.on('imeShow', (info) => {
-    console.info('Succeeded in subscribing imeShow event.');
-});
-```
-
-### off('imeShow'|'imeHide')<sup>9+</sup>
-
-off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
-
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                                                         |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeShow’时表示取消订阅输入法软键盘显示事件。<br/>-type为‘imeHide’时表示取消订阅输入法软键盘隐藏事件。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的输入法软键盘的回调函数。 |
-
-**示例：**
-
-```js
-inputMethodSetting.off('imeShow');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
