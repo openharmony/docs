@@ -104,7 +104,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 Creates an **AVRecorder** instance. This API uses an asynchronous callback to return the result.
 Only one **AVRecorder** instance can be created per device.
 
-To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](js-apis-camera.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -144,7 +144,7 @@ createAVRecorder(): Promise\<AVRecorder>
 Creates an **AVRecorder** instance. This API uses a promise to return the result.
 Only one **AVRecorder** instance can be created per device.
 
-To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](js-apis-camera.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -355,25 +355,25 @@ Enumerates the reasons for the state transition of the **AVPlayer** or **AVRecor
 
 A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](#mediacreateavplayer9) to create an **AVPlayer** instance.
 
-For details about the AVPlayer demo, see [AVPlayer Development](../../media/avplayer-playback.md).
+For details about the audio and video playback demo, see [Audio Playback](../../media/using-avplayer-for-playback.md) and [Video Playback](../../media/video-playback.md).
 
 ### Attributes<a name=avplayer_attributes></a>
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
-| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
-| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, and WAV are supported.<br>**Examples of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
-| surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
-| loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
-| currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.|
-| duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live streaming scenarios, **-1** is returned by default.|
-| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
-| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| Name                                               | Type                                                  | Readable| Writable| Description                                                        |
+| --------------------------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>9+</sup>                                    | string                                                 | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, and WAV are supported.<br>**Examples of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
+| surfaceId<sup>9+</sup>                              | string                                                 | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| loop<sup>9+</sup>                                   | boolean                                                | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT_CROP**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                       | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
+| currentTime<sup>9+</sup>                            | number                                                 | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.|
+| duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                 | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live streaming scenarios, **-1** is returned by default.|
+| width<sup>9+</sup>                                  | number                                                 | Yes  | No  | Video width, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
+| height<sup>9+</sup>                                 | number                                                 | Yes  | No  | Video height, in pixels. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
 
 **NOTE**
 
@@ -477,9 +477,9 @@ The AVPlayer provides the following error types<a name = error_info></a>:
 | 801      | Unsupport Capability: | Unsupported API, causing an invalid call.                             |
 | 5400101  | No Memory:            | Insufficient memory. The [AVPlayer state](#avplayerstate9) is error.|
 | 5400102  | Operate Not Permit:   | Unsupported operation in the current state, causing an invalid call.                      |
-| 5400103  | IO Error:             | Abnormal stream.                                        |
+| 5400103  | IO Error:             | A stream exception is detected during playback. The [AVPlayer state](#avplayerstate9) is error.|
 | 5400104  | Network Timeout:      | The response times out due to a network error. The [AVPlayer state](#avplayerstate9) is error.|
-| 5400105  | Service Died:         | The playback process is dead. The [AVPlayer state](#avplayerstate9) is error.|
+| 5400105  | Service Died:         | The playback process is dead. The [AVPlayer state](#avplayerstate9) is error. In this case, you need to release the instance and then create an instance again.|
 | 5400106  | Unsupport Format:     | Unsupported file format. The [AVPlayer state](#avplayerstate9) is error.|
 
 **Example**
@@ -1141,7 +1141,7 @@ Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. Th
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#availableBitrates_on) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set.|
+| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#availableBitrates_on) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
 
 **Example**
 
@@ -1206,7 +1206,7 @@ Subscribes to available bit rates of HLS streams. This event is reported only af
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'availableBitrates'** in this case. This event is triggered once after the AVPlayer switches to the prepared state.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It returns an array that holds the available bit rates.|
+| callback | function | Yes  | Callback invoked when the event is triggered. It returns an array that holds the available bit rates. If the array length is 0, no bit rate can be set.|
 
 **Example**
 
@@ -1605,7 +1605,7 @@ avPlayer.off('audioInterrupt')
 
 ## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
 
-Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#stateChange_on) event. For details about the rules for state transition, see [AVPlayer Development](../../media/avplayer-playback.md).
+Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#stateChange_on) event. For details about the rules for state transition, see [Audio Playback](../../media/using-avplayer-for-playback.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1700,9 +1700,11 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use **createAVRecorder()** to create an **AVRecorder** instance.
 
-For details about the AVRecorder demo, see [AVRecorder Development](../../media/avrecorder.md).
+For details about the audio and video recording demo, see [Audio Recording](../../media/using-avrecorder-for-recording.md) and [Video Recording](../../media/video-recording.md).
 
-To use the camera to record videos, the camera module is required. For details about how to use the camera APIs, see [Camera Management](js-apis-camera.md). 
+> **NOTE**
+>
+> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](js-apis-camera.md).
 
 ### Attributes
 
@@ -1753,7 +1755,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -1822,7 +1824,7 @@ let AVRecorderProfile = {
     audioSampleRate : 48000,
     fileFormat : media.ContainerFormatType.CFT_MPEG_4,
     videoBitrate : 2000000,
-    videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -2524,7 +2526,7 @@ Describes the audio and video recording profile.
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.                            |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording.                        |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Only **VIDEO_AVC** and **VIDEO_MPEG4** are supported.|
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. You need to query the encoding capabilities (including the encoding format and resolution) supported by the device.|
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording.                            |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording.                            |
 | videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording.                              |
@@ -2581,8 +2583,6 @@ Describes the geographical location of the recorded video.
 
 Implements video recording. Before calling any API in the **VideoRecorder** class, you must use [createVideoRecorder()](#mediacreatevideorecorder9) to create a [VideoRecorder](#videorecorder9) instance.
 
-For details about the video recording demo, see [Video Recording Development](../../media/video-recorder.md).
-
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -2634,7 +2634,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -2705,7 +2705,7 @@ let videoProfile = {
     audioSampleRate : 48000,
     fileFormat : 'mp4',
     videoBitrate : 2000000,
-    videoCodec : 'video/mp4v-es',
+    videoCodec : 'video/avc',
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
@@ -3783,7 +3783,7 @@ Subscribes to the audio playback events.
 **Example**
 
 ```js
-import fileio from '@ohos.fileio'
+import fs from '@ohos.file.fs';
 
 let audioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
 audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
@@ -3827,15 +3827,15 @@ audioPlayer.on('error', (error) => {           // Set the 'error' event callback
 let fdPath = 'fd://';
 // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fileio.open(path).then((fdValue) => {
-   fdPath = fdPath + '' + fdValue;
+fs.open(path).then((file) => {
+   fdPath = fdPath + '' + file.fd;
    console.info('open fd success fd is' + fdPath);
+   audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
 }, (err) => {
    console.info('open fd failed err is' + err);
 }).catch((err) => {
    console.info('open fd failed err is' + err);
 });
-audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
 ```
 
 ### on('timeUpdate')
@@ -3915,8 +3915,6 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer](#avplayer9) instead.
 
 Provides APIs to manage and play video. Before calling any API of **VideoPlayer**, you must use [createVideoPlayer()](#createvideoplayer) to create a **VideoPlayer** instance.
-
-For details about the video playback demo, see [Video Playback Development](../../media/video-playback.md).
 
 ### Attributes<a name=videoplayer_attributes></a>
 
@@ -4737,8 +4735,6 @@ Enumerates the video playback states. You can obtain the state through the **sta
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder](#avrecorder9) instead.
 
 Implements audio recording. Before calling any API of **AudioRecorder**, you must use [createAudioRecorder()](#mediacreateaudiorecorder) to create an **AudioRecorder** instance.
-
-For details about the audio recording demo, see [Audio Recording Development](../../media/audio-recorder.md).
 
 ### prepare<a name=audiorecorder_prepare></a>
 
