@@ -1,0 +1,512 @@
+| Change Type | Old Version | New Version | d.ts File |
+| ---- | ------ | ------ | -------- |
+|Added|NA|Class name: AtManager<br>Method or attribute name: verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: checkAccessToken(tokenID: number, permissionName: Permissions): Promise\<GrantStatus>;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: requestPermissionsFromUser(context: Context, permissionList: Array\<Permissions>, requestCallback: AsyncCallback\<PermissionRequestResult>) : void;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: requestPermissionsFromUser(context: Context, permissionList: Array\<Permissions>) : Promise\<PermissionRequestResult>;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: getVersion(): Promise\<number>;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: on(type: 'permissionStateChange', tokenIDList: Array\<number>, permissionList: Array\<Permissions>, callback: Callback\<PermissionStateChangeInfo>): void;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: AtManager<br>Method or attribute name: off(type: 'permissionStateChange', tokenIDList: Array\<number>, permissionList: Array\<Permissions>, callback?: Callback\<PermissionStateChangeInfo>): void;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeType|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeType<br>Method or attribute name: |@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeType<br>Method or attribute name: PERMISSION_REVOKED_OPER = 0|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeType<br>Method or attribute name: PERMISSION_REVOKED_OPER = 0|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeType<br>Method or attribute name: PERMISSION_GRANTED_OPER = 1|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeType<br>Method or attribute name: PERMISSION_GRANTED_OPER = 1|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeInfo|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeInfo<br>Method or attribute name: |@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeInfo<br>Method or attribute name: change: PermissionStateChangeType;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeInfo<br>Method or attribute name: change: PermissionStateChangeType;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeInfo<br>Method or attribute name: tokenID: number;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeInfo<br>Method or attribute name: tokenID: number;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.abilityAccessCtrl<br>Class name: PermissionStateChangeInfo<br>Method or attribute name: permissionName: Permissions;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Class name: PermissionStateChangeInfo<br>Method or attribute name: permissionName: Permissions;|@ohos.abilityAccessCtrl.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number): Promise\<void>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, callback: AsyncCallback\<void>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function getPermissionUsedRecord(request: PermissionUsedRequest): Promise\<PermissionUsedResponse>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback\<PermissionUsedResponse>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function startUsingPermission(tokenID: number, permissionName: Permissions): Promise\<void>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function startUsingPermission(tokenID: number, permissionName: Permissions, callback: AsyncCallback\<void>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function stopUsingPermission(tokenID: number, permissionName: Permissions): Promise\<void>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function stopUsingPermission(tokenID: number, permissionName: Permissions, callback: AsyncCallback\<void>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function on(type: 'activeStateChange', permissionList: Array\<Permissions>, callback: Callback\<ActiveChangeResponse>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: privacyManager<br>Method or attribute name: function off(type: 'activeStateChange', permissionList: Array\<Permissions>, callback?: Callback\<ActiveChangeResponse>): void;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionActiveStatus|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionActiveStatus<br>Method or attribute name: PERM_INACTIVE = 0|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionActiveStatus<br>Method or attribute name: PERM_ACTIVE_IN_FOREGROUND = 1|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionActiveStatus<br>Method or attribute name: PERM_ACTIVE_IN_BACKGROUND = 2|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: ActiveChangeResponse|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: ActiveChangeResponse<br>Method or attribute name: tokenId: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: ActiveChangeResponse<br>Method or attribute name: permissionName: Permissions;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: ActiveChangeResponse<br>Method or attribute name: deviceId: string;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: ActiveChangeResponse<br>Method or attribute name: activeStatus: PermissionActiveStatus;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsageFlag|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsageFlag<br>Method or attribute name: FLAG_PERMISSION_USAGE_SUMMARY = 0|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsageFlag<br>Method or attribute name: FLAG_PERMISSION_USAGE_DETAIL = 1|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: tokenId: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: isRemote: boolean;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: deviceId: string;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: bundleName: string;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: permissionNames: Array\<Permissions>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: beginTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: endTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRequest<br>Method or attribute name: flag: PermissionUsageFlag;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedResponse|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedResponse<br>Method or attribute name: beginTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedResponse<br>Method or attribute name: endTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedResponse<br>Method or attribute name: bundleRecords: Array\<BundleUsedRecord>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord<br>Method or attribute name: tokenId: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord<br>Method or attribute name: isRemote: boolean;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord<br>Method or attribute name: deviceId: string;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord<br>Method or attribute name: bundleName: string;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: BundleUsedRecord<br>Method or attribute name: permissionRecords: Array\<PermissionUsedRecord>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: permissionName: Permissions;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: accessCount: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: rejectCount: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: lastAccessTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: lastRejectTime: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: lastAccessDuration: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: accessRecords: Array\<UsedRecordDetail>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: PermissionUsedRecord<br>Method or attribute name: rejectRecords: Array\<UsedRecordDetail>;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: UsedRecordDetail|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: UsedRecordDetail<br>Method or attribute name: status: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: UsedRecordDetail<br>Method or attribute name: timestamp: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.privacyManager<br>Class name: UsedRecordDetail<br>Method or attribute name: accessDuration: number;|@ohos.privacyManager.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: INVALID_PARAMS = 401|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: NOT_SUPPORT = 801|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_OUT_OF_MEMORY = 19020001|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_RUNTIME_ERROR = 19020002|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_CRYPTO_OPERATION = 19030001|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_CERT_SIGNATURE_FAILURE = 19030002|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_CERT_NOT_YET_VALID = 19030003|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_CERT_HAS_EXPIRED = 19030004|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY = 19030005|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_KEYUSAGE_NO_CERTSIGN = 19030006|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertResult<br>Method or attribute name: ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE = 19030007|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: DataBlob|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: DataBlob<br>Method or attribute name: data : Uint8Array;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: DataArray|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: DataArray<br>Method or attribute name: data : Array\<Uint8Array>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingFormat|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingFormat<br>Method or attribute name: FORMAT_DER = 0|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingFormat<br>Method or attribute name: FORMAT_PEM = 1|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingBlob|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingBlob<br>Method or attribute name: data : Uint8Array;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: EncodingBlob<br>Method or attribute name: encodingFormat : EncodingFormat;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainData|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainData<br>Method or attribute name: data: Uint8Array;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainData<br>Method or attribute name: count : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainData<br>Method or attribute name: encodingFormat: EncodingFormat;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: verify(key : cryptoFramework.PubKey) : Promise\<void>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getEncoded() : Promise\<EncodingBlob>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getPublicKey() : cryptoFramework.PubKey;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: checkValidityWithDate(date: string) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getVersion() : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSerialNumber() : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getIssuerName() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSubjectName() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getNotBeforeTime() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getNotAfterTime() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSignature() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSignatureAlgName() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSignatureAlgOid() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSignatureAlgParams() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getKeyUsage() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getExtKeyUsage() : DataArray;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getBasicConstraints() : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getSubjectAltNames() : DataArray;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Cert<br>Method or attribute name: getIssuerAltNames() : DataArray;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert<br>Method or attribute name: function createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert<br>Method or attribute name: function createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry<br>Method or attribute name: getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry<br>Method or attribute name: getEncoded() : Promise\<EncodingBlob>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry<br>Method or attribute name: getSerialNumber() : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry<br>Method or attribute name: getCertIssuer() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509CrlEntry<br>Method or attribute name: getRevocationDate() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: isRevoked(cert : X509Cert) : boolean;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getType() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getEncoded() : Promise\<EncodingBlob>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: verify(key : cryptoFramework.PubKey) : Promise\<void>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getVersion() : number;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getIssuerName() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getLastUpdate() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getNextUpdate() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getRevokedCert(serialNumber : number) : X509CrlEntry;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getRevokedCerts(callback : AsyncCallback\<Array\<X509CrlEntry>>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getRevokedCerts() : Promise\<Array\<X509CrlEntry>>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getTbsInfo() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getSignature() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getSignatureAlgName() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getSignatureAlgOid() : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: X509Crl<br>Method or attribute name: getSignatureAlgParams() : DataBlob;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert<br>Method or attribute name: function createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert<br>Method or attribute name: function createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainValidator|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainValidator<br>Method or attribute name: validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainValidator<br>Method or attribute name: validate(certChain : CertChainData) : Promise\<void>;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: CertChainValidator<br>Method or attribute name: readonly algorithm : string;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cert<br>Class name: cert<br>Method or attribute name: function createCertChainValidator(algorithm :string) : CertChainValidator;|@ohos.security.cert.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result<br>Method or attribute name: INVALID_PARAMS = 401|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result<br>Method or attribute name: NOT_SUPPORT = 801|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result<br>Method or attribute name: ERR_OUT_OF_MEMORY = 17620001|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result<br>Method or attribute name: ERR_RUNTIME_ERROR = 17620002|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Result<br>Method or attribute name: ERR_CRYPTO_OPERATION = 17630001|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: DataBlob|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: DataBlob<br>Method or attribute name: data : Uint8Array;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: ParamsSpec|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: ParamsSpec<br>Method or attribute name: algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: IvParamsSpec|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: IvParamsSpec<br>Method or attribute name: iv : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: GcmParamsSpec|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: GcmParamsSpec<br>Method or attribute name: iv : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: GcmParamsSpec<br>Method or attribute name: aad : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: GcmParamsSpec<br>Method or attribute name: authTag : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CcmParamsSpec|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CcmParamsSpec<br>Method or attribute name: iv : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CcmParamsSpec<br>Method or attribute name: aad : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CcmParamsSpec<br>Method or attribute name: authTag : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CryptoMode|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CryptoMode<br>Method or attribute name: ENCRYPT_MODE = 0|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: CryptoMode<br>Method or attribute name: DECRYPT_MODE = 1|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Key|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Key<br>Method or attribute name: getEncoded() : DataBlob;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Key<br>Method or attribute name: readonly format : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Key<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKey|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKey<br>Method or attribute name: clearMem() : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: PriKey|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: PriKey<br>Method or attribute name: clearMem() : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: PubKey|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyPair|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyPair<br>Method or attribute name: readonly priKey : PriKey;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyPair<br>Method or attribute name: readonly pubKey : PubKey;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Random|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Random<br>Method or attribute name: generateRandom(len : number, callback: AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Random<br>Method or attribute name: generateRandom(len : number) : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Random<br>Method or attribute name: setSeed(seed : DataBlob) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createRandom() : Random;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator<br>Method or attribute name: generateKeyPair(callback : AsyncCallback\<KeyPair>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator<br>Method or attribute name: generateKeyPair() : Promise\<KeyPair>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator<br>Method or attribute name: convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator<br>Method or attribute name: convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: AsyKeyGenerator<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator<br>Method or attribute name: generateSymKey(callback : AsyncCallback\<SymKey>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator<br>Method or attribute name: generateSymKey() : Promise\<SymKey>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator<br>Method or attribute name: convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator<br>Method or attribute name: convertKey(key : DataBlob) : Promise\<SymKey>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: SymKeyGenerator<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createAsyKeyGenerator(algName : string) : AsyKeyGenerator;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createSymKeyGenerator(algName : string) : SymKeyGenerator;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: init(key : SymKey, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: init(key : SymKey) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: update(input : DataBlob, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: update(input : DataBlob) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: doFinal(callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: doFinal() : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: getMacLength() : number;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Mac<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createMac(algName : string) : Mac;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: update(input : DataBlob, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: update(input : DataBlob) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: digest(callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: digest() : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: getMdLength() : number;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Md<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createMd(algName : string) : Md;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: init(opMode : CryptoMode, key : Key, params : ParamsSpec, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: update(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: update(data : DataBlob) : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: doFinal(data : DataBlob) : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Cipher<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createCipher(transformation : string) : Cipher;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: init(priKey : PriKey, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: init(priKey : PriKey) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: update(data : DataBlob, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: update(data : DataBlob) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: sign(data : DataBlob) : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Sign<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: init(pubKey : PubKey, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: init(pubKey : PubKey) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: update(data : DataBlob, callback : AsyncCallback\<void>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: update(data : DataBlob) : Promise\<void>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: Verify<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createSign(algName : string) : Sign;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createVerify(algName : string) : Verify;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyAgreement|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyAgreement<br>Method or attribute name: generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataBlob>) : void;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyAgreement<br>Method or attribute name: generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: KeyAgreement<br>Method or attribute name: readonly algName : string;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Module name: ohos.security.cryptoFramework<br>Class name: cryptoFramework<br>Method or attribute name: function createKeyAgreement(algName : string) : KeyAgreement;|@ohos.security.cryptoFramework.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<void>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function abortSession(handle: number, options: HuksOptions) : Promise\<void>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: huks<br>Method or attribute name: function attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksSessionHandle|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksSessionHandle<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksSessionHandle<br>Method or attribute name: handle: number;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksSessionHandle<br>Method or attribute name: handle: number;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksSessionHandle<br>Method or attribute name: challenge?: Uint8Array;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksSessionHandle<br>Method or attribute name: challenge?: Uint8Array;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksReturnResult|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksReturnResult<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksReturnResult<br>Method or attribute name: outData?: Uint8Array;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksReturnResult<br>Method or attribute name: outData?: Uint8Array;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksReturnResult<br>Method or attribute name: properties?: Array\<HuksParam>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksReturnResult<br>Method or attribute name: properties?: Array\<HuksParam>;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksReturnResult<br>Method or attribute name: certChains?: Array\<string>;|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksReturnResult<br>Method or attribute name: certChains?: Array\<string>;|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_PERMISSION_FAIL = 201|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_PERMISSION_FAIL = 201|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_NOT_SUPPORTED_API = 801|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_NOT_SUPPORTED_API = 801|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CRYPTO_FAIL = 12000006|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CRYPTO_FAIL = 12000006|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_SESSION_LIMIT = 12000010|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_SESSION_LIMIT = 12000010|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_EXTERNAL_ERROR = 12000012|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_EXTERNAL_ERROR = 12000012|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksExceptionErrCode<br>Method or attribute name: HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeyDigest<br>Method or attribute name: HUKS_DIGEST_SM3 = 2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeyDigest<br>Method or attribute name: HUKS_DIGEST_SM3 = 2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeySize<br>Method or attribute name: HUKS_SM2_KEY_SIZE_256 = 256|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeySize<br>Method or attribute name: HUKS_SM2_KEY_SIZE_256 = 256|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeySize<br>Method or attribute name: HUKS_SM4_KEY_SIZE_128 = 128|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeySize<br>Method or attribute name: HUKS_SM4_KEY_SIZE_128 = 128|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM2 = 150|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM2 = 150|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM3 = 151|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM3 = 151|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM4 = 152|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksKeyAlg<br>Method or attribute name: HUKS_ALG_SM4 = 152|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUnwrapSuite|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUnwrapSuite<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUnwrapSuite<br>Method or attribute name: HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUnwrapSuite<br>Method or attribute name: HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING = 1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUnwrapSuite<br>Method or attribute name: HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING = 2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUnwrapSuite<br>Method or attribute name: HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING = 2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksImportKeyType|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksImportKeyType<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_PUBLIC_KEY = 0|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_PUBLIC_KEY = 0|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_PRIVATE_KEY = 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_PRIVATE_KEY = 1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_KEY_PAIR = 2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksImportKeyType<br>Method or attribute name: HUKS_KEY_TYPE_KEY_PAIR = 2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUserAuthType|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUserAuthType<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 \<\< 0|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 \<\< 0|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_FACE = 1 \<\< 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_FACE = 1 \<\< 1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_PIN = 1 \<\< 2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksUserAuthType<br>Method or attribute name: HUKS_USER_AUTH_TYPE_PIN = 1 \<\< 2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksAuthAccessType|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksAuthAccessType<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksAuthAccessType<br>Method or attribute name: HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD = 1 \<\< 0|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksAuthAccessType<br>Method or attribute name: HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD = 1 \<\< 0|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksAuthAccessType<br>Method or attribute name: HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL = 1 \<\< 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksAuthAccessType<br>Method or attribute name: HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL = 1 \<\< 1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengeType|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengeType<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_NORMAL = 0|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_NORMAL = 0|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_CUSTOM = 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_CUSTOM = 1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_NONE = 2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengeType<br>Method or attribute name: HUKS_CHALLENGE_TYPE_NONE = 2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengePosition|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengePosition<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_0 = 0|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_0 = 0|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_1|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_2|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_2|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_3|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksChallengePosition<br>Method or attribute name: HUKS_CHALLENGE_POS_3|@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksSecureSignType|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksSecureSignType<br>Method or attribute name: |@ohos.security.huks.d.ts|
+|Added|NA|Module name: ohos.security.huks<br>Class name: HuksSecureSignType<br>Method or attribute name: HUKS_SECURE_SIGN_WITH_AUTHINFO = 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksSecureSignType<br>Method or attribute name: HUKS_SECURE_SIGN_WITH_AUTHINFO = 1|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_IMPORT_KEY_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT \| 25|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_UNWRAP_ALGORITHM_SUITE = HuksTagType.HUKS_TAG_TYPE_UINT \| 26|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_AUTH_ACCESS_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT \| 307|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_SECURE_SIGN_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT \| 308|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CHALLENGE_TYPE = HuksTagType.HUKS_TAG_TYPE_UINT \| 309|@ohos.security.huks.d.ts|
+|Added|NA|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CHALLENGE_POS = HuksTagType.HUKS_TAG_TYPE_UINT \| 310|@ohos.security.huks.d.ts|
+|Added|NA|Module name: PermissionRequestResult<br>Class name: PermissionRequestResult|PermissionRequestResult.d.ts|
+|Added|NA|Module name: PermissionRequestResult<br>Class name: PermissionRequestResult<br>Method or attribute name: permissions: Array\<string>;|PermissionRequestResult.d.ts|
+|Added|NA|Module name: PermissionRequestResult<br>Class name: PermissionRequestResult<br>Method or attribute name: authResults: Array\<number>;|PermissionRequestResult.d.ts|
+|Deprecated version changed|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>;<br>Deprecated version: N/A|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>;<br>Deprecated version: 9<br>Substitute API: ohos.abilityAccessCtrl.AtManager|@ohos.abilityAccessCtrl.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.generateKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.generateKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.deleteKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.deleteKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.importKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.importKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.exportKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.exportKeyItem     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.getKeyItemProperties     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.getKeyItemProperties     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.isKeyItemExist     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.isKeyItemExist     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.initSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.initSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.updateSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.updateSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.finishSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function finish(handle: number, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function finish(handle: number, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.finishSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.abortSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: huks<br>Method or attribute name: function abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: N/A|Class name: huks<br>Method or attribute name: function abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.abortSession     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksHandle<br>Deprecated version: N/A|Class name: HuksHandle<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.HuksSessionHandle     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksResult<br>Deprecated version: N/A|Class name: HuksResult<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.HuksReturnResult     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksErrorCode<br>Deprecated version: N/A|Class name: HuksErrorCode<br>Deprecated version: 9<br>Substitute API: ohos.security.huks.HuksExceptionErrCode     |@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID \| 0<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID \| 0<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES \| 13<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES \| 13<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES \| 16<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES \| 16<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES \| 17<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES \| 17<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT \| 18<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT \| 18<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 201<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 201<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 202<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 202<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 203<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 203<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 204<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 204<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES \| 503<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES \| 503<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES \| 504<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES \| 504<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES \| 505<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES \| 505<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 506<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 506<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES \| 507<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES \| 507<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 508<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 508<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES \| 509<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES \| 509<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 510<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 510<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 512<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 512<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 513<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 513<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10003<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10003<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10004<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10004<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10007<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10007<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT \| 10008<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT \| 10008<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10101<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10101<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT \| 10102<br>Deprecated version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT \| 10102<br>Deprecated version: 9<br>Substitute API: N/A|@ohos.security.huks.d.ts|
+|Deprecated version changed|Class name: Cipher<br>Deprecated version: N/A|Class name: Cipher<br>Deprecated version: 9<br>Substitute API: ohos.security.cryptoFramework.Cipher |@system.cipher.d.ts|
+|Deprecated version changed|Class name: Cipher<br>Method or attribute name: static rsa(options: CipherRsaOptions): void;<br>Deprecated version: N/A|Class name: Cipher<br>Method or attribute name: static rsa(options: CipherRsaOptions): void;<br>Deprecated version: 9<br>Substitute API: N/A|@system.cipher.d.ts|
+|Deprecated version changed|Class name: Cipher<br>Method or attribute name: static aes(options: CipherAesOptions): void;<br>Deprecated version: N/A|Class name: Cipher<br>Method or attribute name: static aes(options: CipherAesOptions): void;<br>Deprecated version: 9<br>Substitute API: N/A|@system.cipher.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID \| 0<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_INVALID = HuksTagType.HUKS_TAG_TYPE_INVALID \| 0<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES \| 13<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PWD = HuksTagType.HUKS_TAG_TYPE_BYTES \| 13<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES \| 16<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_MAIN_KEY = HuksTagType.HUKS_TAG_TYPE_BYTES \| 16<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES \| 17<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_FACTOR = HuksTagType.HUKS_TAG_TYPE_BYTES \| 17<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT \| 18<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_DERIVE_ALG = HuksTagType.HUKS_TAG_TYPE_UINT \| 18<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 201<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACTIVE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 201<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 202<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ORIGINATION_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 202<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 203<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USAGE_EXPIRE_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 203<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 204<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CREATION_DATETIME = HuksTagType.HUKS_TAG_TYPE_ULONG \| 204<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES \| 503<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_BRAND = HuksTagType.HUKS_TAG_TYPE_BYTES \| 503<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES \| 504<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_DEVICE = HuksTagType.HUKS_TAG_TYPE_BYTES \| 504<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES \| 505<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_PRODUCT = HuksTagType.HUKS_TAG_TYPE_BYTES \| 505<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 506<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SERIAL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 506<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES \| 507<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_IMEI = HuksTagType.HUKS_TAG_TYPE_BYTES \| 507<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 508<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MEID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 508<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES \| 509<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MANUFACTURER = HuksTagType.HUKS_TAG_TYPE_BYTES \| 509<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 510<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_MODEL = HuksTagType.HUKS_TAG_TYPE_BYTES \| 510<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 512<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_SOCID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 512<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 513<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ATTESTATION_ID_UDID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 513<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_ALIAS = HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_SECURE_KEY_UUID = HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PROCESS_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PACKAGE_NAME = HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10003<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_ACCESS_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10003<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10004<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_USES_TIME = HuksTagType.HUKS_TAG_TYPE_UINT \| 10004<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_CRYPTO_CTX = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10007<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_KEY_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10007<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT \| 10008<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_PAYLOAD_LEN = HuksTagType.HUKS_TAG_TYPE_UINT \| 10008<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_IS_KEY_HANDLE = HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10101<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_VERSION = HuksTagType.HUKS_TAG_TYPE_UINT \| 10101<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Initial version changed|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT \| 10102<br>Initial version: N/A|Class name: HuksTag<br>Method or attribute name: HUKS_TAG_OS_PATCHLEVEL = HuksTagType.HUKS_TAG_TYPE_UINT \| 10102<br>Initial version: 8|@ohos.security.huks.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>;<br>|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: string): Promise\<GrantStatus>;<br>|Class name: AtManager<br>Method or attribute name: verifyAccessToken(tokenID: number, permissionName: Permissions): Promise\<GrantStatus>;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise\<number>;<br>|Class name: AtManager<br>Method or attribute name: grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permissionFlags: number): Promise\<void>;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback\<number>): void;<br>|Class name: AtManager<br>Method or attribute name: grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permissionFlags: number, callback: AsyncCallback\<void>): void;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise\<number>;<br>|Class name: AtManager<br>Method or attribute name: revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permissionFlags: number): Promise\<void>;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback\<number>): void;<br>|Class name: AtManager<br>Method or attribute name: revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permissionFlags: number, callback: AsyncCallback\<void>): void;<br>|@ohos.abilityAccessCtrl.d.ts|
+|Function changed|Class name: AtManager<br>Method or attribute name: getPermissionFlags(tokenID: number, permissionName: string): Promise\<number>;<br>|Class name: AtManager<br>Method or attribute name: getPermissionFlags(tokenID: number, permissionName: Permissions): Promise\<number>;<br>|@ohos.abilityAccessCtrl.d.ts|
