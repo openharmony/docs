@@ -10,7 +10,7 @@
 - [如何按字母分组展示联系人](how-to-group-contacts-with-alphabet.md)
 - [如何实现列表项的新增和删除](how-to-add-delete-listitems.md)
 - [如何通过显示动画实现书籍翻页动效](book-flip-animation.md)
-- [如何为同一组件在不同场景下绑定不同的业务逻辑](how-to-bind-different-operations-for-one-component.md)
+- [如何为同一组件在不同场景下绑定不同的业务逻辑](different-operations-for-one-component.md)
 
 
 
