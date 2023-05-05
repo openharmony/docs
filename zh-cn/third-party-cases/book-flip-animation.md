@@ -1,21 +1,21 @@
-## 如何通过显示动画实现书籍翻页动效
+# 如何通过显示动画实现书籍翻页动效
 
-### 场景介绍
+## 场景介绍
 
 翻页动效是应用开发中常见的动效场景，常见的如书籍翻页、日历翻页等。本文就为大家举例讲解如何通过ArkUI提供的显示动画接口[animateTo](../application-dev/reference/arkui-ts/ts-explicit-animation.md/)实现书籍翻页的效果。
 
-### 效果呈现
+## 效果呈现
 
 本例最终实现效果如下：
 
 ![翻页动效示例图](figures/book-flip-animation.gif)
 
-### 环境要求
+## 环境要求
 
 - IDE：DevEco Studio 3.1 Beta1
 - SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
-### 实现思路
+## 实现思路
 
 如图，我们分上下两层、左右两侧建立4个文本组件（下文用A、B、C、D代称），左右两侧分别代表打开书籍的左右两面，上下两层堆叠放置。
 当B沿旋转轴旋转180度覆盖在A上时，就体现为翻页效果。一个翻页动作的完成包括以下几步：
@@ -31,7 +31,7 @@
 
 ![翻页动效](figures/book-flip-logic.png)
 
-### 开发步骤
+## 开发步骤
 
 1. 创建文本组件
     首先，我们看到动效中用到了4个文本组件，我们可以定义一个文本组件，然后对其进行重复调用。创建时我们为其添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md/)属性，用来控制组件的旋转。
@@ -179,7 +179,7 @@
     ```
     通过以上步骤我们就可以实现翻页动效了。
 
-### 完整代码
+## 完整代码
 示例完整代码如下：
 ```
 @Component
