@@ -89,7 +89,7 @@ sensor.unsubscribeAccelerometer();
 ```js
 sensor.subscribeCompass({
   success: function(ret) {
-    console.log('get data direction:' + ret.direction);
+    console.log('Get data direction:' + ret.direction);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -133,7 +133,7 @@ sensor.unsubscribeCompass();
 ```js
 sensor.subscribeProximity({
   success: function(ret) {
-    console.log('get data distance:' + ret.distance);
+    console.log('Get data distance:' + ret.distance);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -177,7 +177,7 @@ sensor.unsubscribeProximity();
 ```js
 sensor.subscribeLight({
   success: function(ret) {
-    console.log('get data intensity:' + ret.intensity);
+    console.log('Get data intensity:' + ret.intensity);
   },
   fail: function(data, code) {
     console.error('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -223,7 +223,7 @@ sensor.unsubscribeLight();
 ```js
 sensor.subscribeStepCounter({
   success: function(ret) {
-    console.log('get step value:' + ret.steps);
+    console.log('Get step value:' + ret.steps);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -255,7 +255,7 @@ sensor.unsubscribeStepCounter();
 
 subscribeBarometer(options: SubscribeBarometerOptions): void
 
-订阅气压传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
+订阅气压计传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -270,7 +270,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 ```js
 sensor.subscribeBarometer({
   success: function(ret) {
-    console.log('get data value:' + ret.pressure);
+    console.log('Get data value:' + ret.pressure);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -286,7 +286,7 @@ sensor.subscribeBarometer({
 
 unsubscribeBarometer(): void
 
-取消订阅气压传感器。
+取消订阅气压计传感器。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -318,7 +318,7 @@ sensor.unsubscribeBarometer();
 ```js
 sensor.subscribeHeartRate({
   success: function(ret) {
-    console.log('get heartrate value:' + ret.heartRate);
+    console.log('Get heartrate value:' + ret.heartRate);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -334,7 +334,7 @@ sensor.subscribeHeartRate({
 
 unsubscribeHeartRate(): void
 
-取消订阅心率。
+取消订阅心率传感器。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -365,7 +365,7 @@ sensor.unsubscribeHeartRate();
 ```js
 sensor.subscribeOnBodyState({
   success: function(ret) {
-    console.log('get on-body state value:' + ret.value);
+    console.log('Get on-body state value:' + ret.value);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -409,7 +409,7 @@ sensor.unsubscribeOnBodyState();
 ```js
 sensor.getOnBodyState({
   success: function(ret) {
-    console.log('on body state: ' + ret.value);
+    console.log('On body state: ' + ret.value);
   },
   fail: function(data, code) {
     console.log('Subscription failed. Code: ' + code + '; Data: ' + data);
@@ -470,7 +470,7 @@ sensor.unsubscribeDeviceOrientation();
 
  subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
-观察陀螺仪数据变化。
+观察陀螺仪传感器数据变化。
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
@@ -507,7 +507,7 @@ sensor.subscribeGyroscope({
 
 unsubscribeGyroscope(): void
 
-取消订阅陀螺仪数据。
+取消订阅陀螺仪传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -643,12 +643,12 @@ sensor.unsubscribeGyroscope();
 
 | 名称    | 类型                                    | 必填 | 说明                             |
 | ------- | --------------------------------------- | ---- | -------------------------------- |
-| success | [BarometerResponse](#barometerresponse) | 是   | 气压传感器数据改变后的回调函数。 |
+| success | [BarometerResponse](#barometerresponse) | 是   | 气压计传感器数据改变后的回调函数。 |
 | fail    | Function                                | 否   | 接口调用失败的回调函数。         |
 
 ## BarometerResponse 
 
-气压传感器数据改变后的回调函数。
+气压计传感器数据改变后的回调函数。
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -710,7 +710,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称     | 类型                                        | 必填 | 说明                     |
 | -------- | ------------------------------------------- | ---- | ------------------------ |
-| success  | [OnBodyStateResponse](#onbodystateresponse) | 否   | 接口调用成功的回调函数。 |
+| success  | [OnBodyStateResponse](#onbodystateresponse) | 是   | 接口调用成功的回调函数。 |
 | fail     | Function                                    | 否   | 接口调用失败的回调函数。 |
 | complete | Function                                    | 否   | 接口调用结束的回调函数。 |
 
@@ -754,7 +754,7 @@ sensor.unsubscribeGyroscope();
 
 ## GyroscopeResponse<sup>6+</sup> 
 
-感应到陀螺仪数据变化后的回调函数。
+感应到陀螺仪传感器数据变化后的回调函数。
 
 **需要权限**：ohos.permission.GYROSCOPE
 
