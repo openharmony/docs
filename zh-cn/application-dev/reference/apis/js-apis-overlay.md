@@ -401,7 +401,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的overlay module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的overlay module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
 
 **返回值：**
 
@@ -551,7 +551,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的目标module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
 
 **返回值：**
 
