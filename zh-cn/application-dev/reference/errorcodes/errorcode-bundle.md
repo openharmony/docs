@@ -544,4 +544,17 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 1. 通过-s参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
+## 17700044 安装包设置的多进程配置项与系统配置项设置矛盾
+**错误信息**<br/>
+Failed to install because the isolationMode does not match the system.
+
+**错误描述**<br/>
+安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
+
+**可能原因**<br/>
+1. 设备支持隔离模式，即supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
+2. 设备不支持隔离模式，即supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
+
+**处理步骤**<br/>
+1. 按照设备的隔离模式正确配置HAP字段isolationMode。
 <!--no_check-->

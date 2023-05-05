@@ -1857,3 +1857,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TURE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+允许应用访问hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+允许应用修改hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

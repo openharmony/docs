@@ -3,7 +3,8 @@
 该模块提供通过PATH获取文件统一资源标志符（Uniform Resource Identifier，URI），后续可通过使用[@ohos.file.fs](js-apis-file-fs.md)进行相关open、read、write等操作，实现文件分享。
 
 > **说明：**
-> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -46,11 +47,10 @@ getUriFromPath(path: string): string
 
 **错误码：**  
 
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md#错误码适配指导)
-  | 错误码ID                     | 错误信息        |
-  | ---------------------------- | ---------- |
-  | 401 | The input parameter is invalid |
-
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | The input parameter is invalid |
 
 **示例：**
 

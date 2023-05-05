@@ -403,7 +403,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | Callback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 
@@ -416,8 +416,8 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 **示例：**
 
 ```js
- ethernet.on('interfaceStateChange', (data) => {
-  console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange：' + JSON.stringify(data.iface) + JSON.stringify(data.active));
 });
 ```
 
@@ -438,7 +438,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | Callback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 

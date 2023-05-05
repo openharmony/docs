@@ -2,6 +2,12 @@
 
 进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated等方法回调给开发者。
 
+## 导入模块
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。

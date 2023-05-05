@@ -61,7 +61,8 @@
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50
+  "targetPriority": 50,
+  "isolationMode": "nonisolationFirst"
 }
 ```
 
@@ -93,6 +94,7 @@ module.json5配置文件包含以下标签。
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 | targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
+| isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
 
 ## deviceTypes标签
 

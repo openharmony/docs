@@ -1309,7 +1309,7 @@ changeFlag(flag: PanelFlag): void
 **示例：**
 
 ```js
-let panelFlag = inputMethodEngine.getInputMethodAbility().PanelFlag.FLG_FIXED;
+let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
 panel.changeFlag(panelFlag);
 ```
 

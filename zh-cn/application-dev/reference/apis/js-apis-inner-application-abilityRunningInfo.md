@@ -6,6 +6,12 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态的定义�
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import abilitymanager from '@ohos.app.ability.abilityManager';
+```
+
 ## 使用说明
 
 通过abilityManager中[getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos)方法获取。

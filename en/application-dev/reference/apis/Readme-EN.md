@@ -266,7 +266,6 @@
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
-  - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
 
 - Connectivity
   - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
@@ -355,6 +354,7 @@
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)

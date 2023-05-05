@@ -14,12 +14,6 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 import request from '@ohos.request';
 ```
 
-
-## 限制与约束
-
-上传目前仅支持HTTP请求，不支持HTTPS。
-下载服务器需要支持HTTP协议的head方法，能够通过Content-length获取下载数据大小，否则下载任务失败，可通过[on('fail')<sup>7+</sup>](#onfail7)查看失败原因。
-
 ## 常量
 
 **需要权限**：ohos.permission.INTERNET
@@ -35,7 +29,7 @@ import request from '@ohos.request';
 | NETWORK_WIFI | number | 0x00010000 | 使用WLAN时允许下载的位标志。 |
 
 ### 下载任务的错误码
-下载相关[on('fail')<sup>7+</sup>](#onfail7)/[off('fail')<sup>7+</sup>](#offfail7)/[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口可能返回的错误码。
+下载[on('fail')<sup>7+</sup>](#onfail7)事件callback的错误参数、[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的failedReason字段取值。
 
 | 名称 | 参数类型 | 数值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -53,7 +47,7 @@ import request from '@ohos.request';
 
 
 ### 下载任务暂停原因
-下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口可能返回的任务暂停原因
+下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。
 
 | 名称 | 参数类型 | 数值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -64,7 +58,7 @@ import request from '@ohos.request';
 | PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | 未知原因导致暂停下载。 |
 
 ### 下载任务状态码
-下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口可能返回的任务状态码
+下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的status字段取值。
 
 | 名称 | 参数类型 | 数值 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -274,7 +268,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
 
-开启上传任务监听，异步方法，使用callback形式返回结果。
+订阅上传任务进度监听，同步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -297,10 +291,10 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  uploadTask.on('progress', function callback(uploadedSize, totalSize) {
+  let upProgressCallback = (uploadedSize, totalSize) => {
       console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
-  }
-  );
+  };
+  uploadTask.on('progress', upProgressCallback);
   ```
 
 
@@ -308,7 +302,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-开启上传任务监听，异步方法，使用callback形式返回结果。
+订阅上传任务HTTP标头监听，同步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -330,10 +324,10 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  uploadTask.on('headerReceive', function callback(headers){   
+  let headerCallback = (headers) => {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
-  }
-  );
+  };
+  uploadTask.on('headerReceive', headerCallback);
   ```
 
 
@@ -341,7 +335,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-开启上传任务监听，异步方法，使用callback形式返回结果。
+订阅上传任务完成或失败监听，同步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -363,19 +357,19 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 **示例：**
 
   ```js
-  uploadTask.on('complete', function callback(taskStates) {
+  let upCompleteCallback = (taskStates) => {
     for (let i = 0; i < taskStates.length; i++ ) {
-      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+        console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
-  }
-  );
+  };
+  uploadTask.on('complete', upComplete);
 
-  uploadTask.on('fail', function callback(taskStates) {
+  let upFailCallback = (taskStates) => {
     for (let i = 0; i < taskStates.length; i++ ) {
       console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
-  }
-  );
+  };
+  uploadTask.on('fail', upFailCallback);
   ```
 
 
@@ -383,7 +377,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-关闭上传任务监听，异步方法，使用callback形式返回结果。
+删除上传任务进度监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -394,22 +388,12 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
-  | callback | function | 否 | 上传任务的回调函数。 |
-
-  回调函数的参数：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件的大小，单位为B。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为B。 |
+  | callback | function | 否 | 需要删除的上传任务进度的回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
 
 **示例：**
 
   ```js
-  uploadTask.off('progress', function callback(uploadedSize, totalSize) {
-      console.info('uploadedSize: ' + uploadedSize, 'totalSize: ' + totalSize);
-  }
-  );
+  uploadTask.off('progress', upProgressCallback);
   ```
 
 
@@ -417,7 +401,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-关闭上传任务监听，异步方法，使用callback形式返回结果。
+删除上传任务HTTP标头监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -428,28 +412,19 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 否 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
-
-  回调函数的参数：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+  | callback | function | 否 | HTTP&nbsp;Response&nbsp;需要删除的Header事件的回调函数。<br/>header：HTTP&nbsp;Response&nbsp;Header。 |
 
 **示例：**
 
   ```js
-  uploadTask.off('headerReceive', function callback(headers) {
-      console.info("upOnHeader headers:" + JSON.stringify(headers));
-  }
-  );
+  uploadTask.off('headerReceive', headerCallback);
   ```
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-关闭上传任务监听，异步方法，使用callback形式返回结果。
+删除上传任务完成或失败监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -460,30 +435,14 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 上传任务完成或失败的回调函数。 |
-
-  回调函数的参数
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要删除的上传任务完成或失败的回调函数。<br/>taskstates：上传任务返回结果 |
 
 **示例：**
 
   ```js
-  uploadTask.off('complete', function callback(taskStates) {
-    for (let i = 0; i < taskStates.length; i++ ) {
-      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
-    }
-  }
-  );
+  uploadTask.off('complete', upCompleteCallback);
 
-  uploadTask.off('fail', function callback(taskStates) {
-    for (let i = 0; i < taskStates.length; i++ ) {
-      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
-    }
-  }
-  );
+  uploadTask.off('fail', upFailCallback);
   ```
 
 ### delete<sup>9+</sup>
@@ -848,7 +807,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
 
-开启下载任务监听，异步方法，使用callback形式返回结果。
+订阅下载任务进度监听，同步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -859,7 +818,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 是 | 下载的回调函数。 |
+  | callback | function | 是 | 下载任务进度的回调函数。 |
 
   回调函数的参数：
 
@@ -871,10 +830,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
+  let progresCallbanck = (receivedSize, totalSize) => {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-  }
-  );
+  };
+  downloadTask.on('progress', progresCallbanck);
   ```
 
 
@@ -882,7 +841,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-关闭下载任务监听，异步方法，使用callback形式返回结果。
+删除下载任务进度监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -893,22 +852,12 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 否 | 下载任务的回调函数。 |
-
-  回调函数的参数：
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为B。|
-| totalSize | number | 是 | 下载文件的总大小，单位为B。|
+  | callback | function | 否 | 需要删除的下载任务进度的回调。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
 
 **示例：**
 
   ```js
-  downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
-      console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-  }
-  );
+  downloadTask .off('progress',progresCallbanck);
   ```
 
 
@@ -916,7 +865,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
-开启下载任务相关的监听，异步方法，使用callback形式返回。
+订阅下载任务相关的监听，异步方法，使用callback形式返回。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -927,15 +876,15 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型。<br>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
-  | callback | function | 是 | 回调函数。 |
+  | callback | function | 是 | 下载任务相关的回调函数。|
 
 **示例：**
 
   ```js
-  downloadTask.on('complete', function callback() {
+  let completeCallback = () => {
       console.info('Download task completed.');
-  }
-  );
+  };
+  downloadTask.on('complete', completeCallback);
   ```
 
 
@@ -943,7 +892,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-取消下载任务相关的监听，异步方法，使用callback形式返回。
+删除下载任务相关的监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -954,15 +903,12 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
-  | callback | function | 否 | 回调函数。 |
+  | callback | function | 否 | 需要删除的下载任务相关的回调。 |
 
 **示例：**
 
   ```js
-  downloadTask.off('complete', function callback() {
-      console.info('Download task completed.');
-  }
-  );
+  downloadTask.off('complete', completeCallback);
   ```
 
 
@@ -970,7 +916,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
 on(type: 'fail', callback: (err: number) =&gt; void): void
 
-开启下载任务失败监听，异步方法，使用callback形式返回结果。
+订阅下载任务失败监听，同步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -991,11 +937,11 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 **示例：**
 
-  ```js 
-  downloadTask.on('fail', function callBack(err) {
+  ```js
+  let failCallback = (err) => {
       console.info('Download task failed. Cause:' + err);
-  }
-  );
+  };
+  downloadTask.on('fail', failCallback);
   ```
 
 
@@ -1003,7 +949,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-取消下载任务失败监听，异步方法，使用callback形式返回结果。
+删除下载任务失败监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1014,21 +960,12 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
-  | callback | function | 否 | 取消下载失败的回调函数。 |
-
-  回调函数的参数
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| err | number | 是 | 下载失败的错误码。错误原因见[下载任务的错误码](#下载任务的错误码)。 |
+  | callback | function | 否 | 需要删除的下载失败的回调函数。<br/>err：下载失败的错误码。 |
 
 **示例：**
 
   ```js
-  downloadTask.off('fail', function callBack(err) {
-      console.info('Download task failed. Cause:' + err);
-  } 
-  );
+  downloadTask.off('fail', failCallback);
   ```
 
 ### delete<sup>9+</sup>
@@ -1673,34 +1610,33 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
-| enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
-| enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
+| enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
+| enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
 | filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;filePath:'/data/storage/el2/base/haps/entry/files/test.txt'：将文件存储在绝对路径下。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
-| networkType | number | 否 | 设置允许下载的网络类型。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
+| networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
-| background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
+| background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
 
 
 ## DownloadInfo<sup>7+</sup>
-下载任务信息，[query<sup>(deprecated)</sup>](#querydeprecated-1)接口的回调参数。
+下载任务信息，[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口的回调参数。
 
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| downloadId | number | 是 | 下载的文件ID。 |
-| failedReason | number | 否 | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
-| fileName | string | 是 | 下载的文件名。 |
-| filePath | string | 是 | 存储文件的URI。 |
-| pausedReason | number | 否 | 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
-| status | number | 是 | 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
-| targetURI | string | 是 | 下载文件的URI。 |
-| downloadTitle | string | 是 | 下载任务名称。 |
-| downloadTotalBytes | number | 是 | 下载的文件的总大小（int&nbsp;bytes）。 |
-| description | string | 是 | 待下载文件的描述信息。 |
-| downloadedBytes | number | 是 | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
-
+| 名称 | 类型 | 说明 |
+| -------- | ------ |---------------- |
+| downloadId | number | 下载任务ID。 |
+| failedReason | number | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
+| fileName | string | 下载的文件名。 |
+| filePath | string | 存储文件的URI。 |
+| pausedReason | number | 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
+| status | number | 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
+| targetURI | string | 下载文件的URI。 |
+| downloadTitle | string | 下载任务名称。 |
+| downloadTotalBytes | number | 下载的文件的总大小（int&nbsp;bytes）。 |
+| description | string | 待下载任务的描述信息。 |
+| downloadedBytes | number | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
 <!--no_check-->

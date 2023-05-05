@@ -44,7 +44,7 @@
 5. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的网络属性，未设置过的以太网络默认为DHCP模式，获取自动分配的网络属性。
 
 ```js
-   // 从@ohos.net.ethernet中导入ethernet命名空间
+// 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
 
 // getAllActiveIfaces获取所有活动的网络设备名称
@@ -96,7 +96,7 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 6. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的静态网络属性。
 
 ```js
-   // 从@ohos.net.ethernet中导入ethernet命名空间
+// 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
 
 // getAllActiveIfaces获取所有活动的网络设备名称
@@ -158,13 +158,13 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 4. 调用该对象的off()方法，取消订阅interfaceStateChange事件。
 
 ```js
-   // 从@ohos.net.ethernet中导入ethernet命名空间
+// 从@ohos.net.ethernet中导入ethernet命名空间
 import ethernet from '@ohos.net.ethernet'
 
 // 订阅interfaceStateChange事件
-ethernet.on('interfaceStateChange', ((data) => {
+ethernet.on('interfaceStateChange', (data) => {
   console.log(JSON.stringify(data));
-}));
+});
 
 // 取消事件订阅
 ethernet.off('interfaceStateChange');

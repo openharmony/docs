@@ -61,7 +61,7 @@ bundleManager.AddAllowedInstallBundles(wantTemp, appIds, (error) => {
 
 addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用添加包安装白名单接口，添加至白名单的应用允许在指定用户下安装，否则不允许安装，使用callback形式返回是否添加成功。
+指定设备管理员应用添加包安装白名单接口，添加至白名单的应用允许在指定用户（通过userId指定）下安装，否则不允许安装，使用callback形式返回是否添加成功。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -203,7 +203,7 @@ bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (error) => {
 
 removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用移除包安装白名单接口，在白名单存在的情况下，不在包安装白名单中的应用不允许在指定用户下安装，使用callback形式返回移除结果。
+指定设备管理员应用移除包安装白名单接口，在白名单存在的情况下，不在包安装白名单中的应用不允许在指定用户（通过userId指定）下安装，使用callback形式返回移除结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -343,7 +343,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, (error) => {
 
 getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-指定管理员应用获取指定用户下的包安装白名单接口，使用callback形式返回获取包安装白名单。
+指定管理员应用获取指定用户（通过userId指定）下的包安装白名单接口，使用callback形式返回获取包安装白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -387,7 +387,7 @@ bundleManager.getAllowedInstallBundles(wantTemp, 100, (error) => {
 
 getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-指定管理员应用获取管理员用户下包安装白名单接口，使用promise形式返回获取包安装白名单。
+如果调用接口时传入参数userId，指定管理员应用获取指定用户下包安装白名单接口，如果调用接口时没有传入参数userId，指定管理员应用获取当前用户下包安装白名单接口，使用promise形式返回获取包安装白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 

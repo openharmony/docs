@@ -4,9 +4,8 @@ fileAccess模块是基于extension机制实现的一个对公共文件访问和�
 
 >**说明：**
 >
->- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->- 本模块接口为系统接口，三方应用不支持调用，当前只支持filepicker、文件管理器调用。
->- 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口，三方应用不支持调用，当前只支持FilePicker、文件管理器调用。
 
 ## 导入模块
 
@@ -16,9 +15,11 @@ import fileAccess from '@ohos.file.fileAccess';
 
 ## fileAccess.getFileAccessAbilityInfo
 
-getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
+getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
 
 以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -28,7 +29,11 @@ getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
   | 类型 | 说明 |
   | --- | -- |
-  | Promise&lt;Array&lt;Want&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
+  | Promise&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 表示当前系统配置fileAccess的所有文件管理类服务 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -46,9 +51,11 @@ getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
 
 ## fileAccess.getFileAccessAbilityInfo
 
-getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
+getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 
 以异步方法获取系统内extension配置为fileAccess类型的所有Want信息。使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -58,7 +65,11 @@ getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
+  | callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | 是 | 表示当前系统配置fileAccess的所有文件管理类服务 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -84,6 +95,8 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
 以同步方法创建连接指定wants的helper对象。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -92,14 +105,18 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | context | Context | 是 | 代表ability的上下文的能力 |
-  | wants | Array&lt;Want&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
+  | context | [Context](js-apis-inner-application-context.md) | 是 | 代表ability的上下文的能力 |
+  | wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | 是 | Want是一种基本通信组件，主要用于服务拉起 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
-  | FileAccessHelper | 提供文件访问和操作能力的helper对象 |
+  | [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作能力的helper对象 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -131,6 +148,8 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 以同步方法创建连接当前系统内所有文件管理服务的helper对象。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -139,13 +158,17 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
-  | context | Context | 是 | ability的上下文的能力 |
+  | context | [Context](js-apis-inner-application-context.md) | 是 | ability的上下文的能力 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
-  | FileAccessHelper | 提供文件访问和操作的能力的helper对象 |
+  | [FileAccessHelper](#fileaccesshelper) | 提供文件访问和操作的能力的helper对象 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -164,99 +187,35 @@ createFileAccessHelper(context: Context) : FileAccessHelper
   }
   ```
 
-## FileAccessHelper.getRoots
+## FileInfo
 
-getRoots( ) : Promise&lt;RootIterator&gt;
+表示文件(夹)属性信息和接口能力。
 
-以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用Promise异步回调。
-该方法返回迭代器对象RootIterator，然后通过[next](#rootiteratornext)方法返回[RootInfo](#rootinfo)。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | --- | -- |
-  | Promise&lt;RootIterator&gt; | 根设备目录信息组成迭代器对象 |
-
-**示例：**
-
-  ```js
-  async getRoots() {
-    let rootIterator = null;
-    let rootinfos = [];
-    let isDone = false;
-    try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      rootIterator = await fileAccessHelper.getRoots();
-      if (!rootIterator) {
-        console.error("getRoots interface returns an undefined object");
-        return;
-      }
-      while (!isDone) {
-        let result = rootIterator.next();
-        console.log("next result = " + JSON.stringify(result));
-        isDone = result.done;
-        if (!isDone)
-          rootinfos.push(result.value);
-      }
-    } catch (error) {
-      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
-    }
-  }
-  ```
-
-## FileAccessHelper.getRoots
-
-getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
-
-以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用callback异步回调。
-callback带回迭代器对象RootIterator，然后通过[next](#rootiteratornext)方法返回[RootInfo](#rootinfo)。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**参数：**
+### 属性
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;RootIterator&gt; | 是 | 根设备目录信息组成迭代器对象 |
+| 名称 | 类型   | 可读 | 可写 | 说明     |
+| ------ | ------ | -------- | ------ | -------- |
+| uri | string | 是 | 否 | 文件(夹)的uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径 |
+| fileName | string | 是 | 否 | 文件(夹)的名称 |
+| mode | number | 是 | 否 | 文件(夹)的权限信息 |
+| size | number | 是 | 否 |  文件(夹)的大小 |
+| mtime | number | 是 | 否 |  文件(夹)的修改时间 |
+| mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型 |
 
-**示例：**
-
-  ```js
-  async getRoots() {
-    let rootinfos = [];
-    let isDone = false;
-    try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      fileAccessHelper.getRoots(function (err, rootIterator) {
-        if (err) {
-          console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
-          return;
-        }
-        while (!isDone) {
-          let result = rootIterator.next();
-          console.log("next result = " + JSON.stringify(result));
-          isDone = result.done;
-          if (!isDone)
-            rootinfos.push(result.value);
-        }
-      });
-    } catch (error) {
-      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
-    }
-  }
-  ```
-
-## RootInfo.listfile
+### listFile
 
 listFile(filter?: Filter) : FileIterator
 
-以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -266,114 +225,17 @@ listFile(filter?: Filter) : FileIterator
 
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | -- | -- |
-  | filter | Filter | 否 | 过滤器对象  |
-
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | --- | -- |
-  | FileIterator | 文件(夹)信息的迭代器对象FileIterator |
-
-**示例：**
-
-  ```js
-  // rootinfos 从getRoots()获取
-  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo = rootinfos[0];
-  let fileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = rootInfo.listFile();
-    // 含过滤器实现的listFile
-    // let fileIterator = rootInfo.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        fileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## RootInfo.scanFile
-
-scanFile(filter?: Filter) : FileIterator
-
-以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | Filter | 否 | 过滤器对象  |
+  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
-  | FileIterator | 文件信息的迭代器对象FileIterator |
+  | [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
 
-**示例：**
+**错误码：**
 
-  ```js
-  // rootInfos 从 getRoots()获取
-  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo = rootInfos[0];
-  let fileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = rootInfo.scanFile();
-    // 含过滤器实现的scanFile
-    // let fileIterator = rootInfo.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        fileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## FileInfo.listfile
-
-listFile(filter?: Filter) : FileIterator
-
-以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | -- | -- |
-  | filter | Filter | 否 | 过滤器对象  |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | --- | -- |
-  | FileIterator | 文件(夹)信息的迭代器对象FileIterator |
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -403,11 +265,13 @@ listFile(filter?: Filter) : FileIterator
   }
   ```
 
-## FileInfo.scanfile
+### scanFile
 
 scanFile(filter?: Filter) : FileIterator;
 
-以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -417,14 +281,17 @@ scanFile(filter?: Filter) : FileIterator;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | -- | -- |
-  | filter | Filter | 否 | 过滤器对象  |
-
+  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
 
 **返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
-  | FileIterator | 文件信息的迭代器对象FileIterator |
+  | [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -454,7 +321,307 @@ scanFile(filter?: Filter) : FileIterator;
   }
   ```
 
-## FileAccessHelper.createFile
+## FileIterator
+
+表示文件夹的迭代器对象。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### next
+
+next() : { value: FileInfo, done: boolean }
+
+可以通过next同步方法获取下一级文件(夹)信息。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| {value: [FileInfo](#fileinfo), done: boolean} | 通过next遍历文件夹，直到done返回true结束；value字段返回fileInfo。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+## RootInfo
+
+表示设备的根属性信息和接口能力。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### 属性
+
+| 名称 | 类型   | 可读 | 可写 | 说明     |
+| ------ | ------ | -------- | ------ | -------- |
+| deviceType | number | 是 | 否 |设备类型 |
+| uri | string | 是 | 否 | 设备根目录Uri |
+| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径 |
+| displayName | string | 是 | 否 | 设备名称 |
+| deviceFlags | number | 是 | 否 | 设备支持的能力 |
+
+### listFile
+
+listFile(filter?: Filter) : FileIterator
+
+以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备过滤，外置存储设备不支持过滤。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | --- | -- |
+  | [FileIterator](#fileiterator) | 文件(夹)信息的迭代器对象FileIterator |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```js
+  // rootinfos 从getRoots()获取
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
+  let rootInfo = rootinfos[0];
+  let fileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = rootInfo.listFile();
+    // 含过滤器实现的listFile
+    // let fileIterator = rootInfo.listFile(filter);
+    if (!fileIterator) {
+      console.error("listFile interface returns an undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+### scanFile
+
+scanFile(filter?: Filter) : FileIterator
+
+以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#next)方法返回[FileInfo](#fileinfo)。目前仅支持内置存储设备。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | 否 | 过滤器对象  |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | --- | -- |
+  | [FileIterator](#fileiterator) | 文件信息的迭代器对象FileIterator |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```js
+  // rootInfos 从 getRoots()获取
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
+  let rootInfo = rootInfos[0];
+  let fileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = rootInfo.scanFile();
+    // 含过滤器实现的scanFile
+    // let fileIterator = rootInfo.scanFile(filter);
+    if (!fileIterator) {
+      console.error("scanFile interface returns undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+## RootIterator
+
+表示设备根目录的迭代器对象。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### next
+
+next() : { value: RootInfo, done: boolean }
+
+通过next同步方法获取下一级设备根目录。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| {value: [RootInfo](#rootinfo), done: boolean} | 通过next遍历文件夹，直到done返回true结束；value字段返回rootInfo。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+## FileAccessHelper
+
+FileAccessHelper对象。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+### getRoots
+
+getRoots() : Promise&lt;RootIterator&gt;
+
+以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用Promise异步回调。
+该方法返回迭代器对象RootIterator，然后通过[next](#next-1)方法返回[RootInfo](#rootinfo)。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | -- |
+| Promise&lt;[RootIterator](#rootiterator)&gt; | 根设备目录信息组成迭代器对象 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```js
+  async getRoots() {
+    let rootIterator = null;
+    let rootinfos = [];
+    let isDone = false;
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      rootIterator = await fileAccessHelper.getRoots();
+      if (!rootIterator) {
+        console.error("getRoots interface returns an undefined object");
+        return;
+      }
+      while (!isDone) {
+        let result = rootIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone)
+          rootinfos.push(result.value);
+      }
+    } catch (error) {
+      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+  ```
+
+### getRoots
+
+getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void
+
+以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用callback异步回调。
+callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返回[RootInfo](#rootinfo)。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | 是 | 根设备目录信息组成迭代器对象 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+**示例：**
+
+  ```js
+  async getRoots() {
+    let rootinfos = [];
+    let isDone = false;
+    try {
+      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+      fileAccessHelper.getRoots(function (err, rootIterator) {
+        if (err) {
+          console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        while (!isDone) {
+          let result = rootIterator.next();
+          console.log("next result = " + JSON.stringify(result));
+          isDone = result.done;
+          if (!isDone)
+            rootinfos.push(result.value);
+        }
+      });
+    } catch (error) {
+      console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
+  ```
+
+### createFile
 
 createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
@@ -466,16 +633,20 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 表示需要创建文件的父目录的Uri |
-  | displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 表示需要创建文件的父目录的Uri |
+| displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;string&gt; | 新创建的文件的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -499,9 +670,9 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   };
   ```
 
-## FileAccessHelper.createFile
+### createFile
 
-createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 以异步方法创建文件到指定目录，返回新文件uri。使用callback异步回调。
 
@@ -511,11 +682,15 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 表示需要创建文件的父目录的Uri |
-  | displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 表示需要创建文件的父目录的Uri |
+| displayName | string | 是 | 待创建文件的名称，默认本地文件需要添加后缀 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -539,7 +714,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
   };
   ```
 
-## FileAccessHelper.mkDir
+### mkDir
 
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
@@ -551,16 +726,20 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri |
-  | displayName | string | 是 | 待创建文件夹的名称|
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri |
+| displayName | string | 是 | 待创建文件夹的名称|
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;string&gt; | 新创建的文件夹的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -584,9 +763,9 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   };
   ```
 
-## FileAccessHelper.mkDir
+### mkDir
 
-mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 以异步方法创建文件夹到指定目录，返回文件夹uri。使用callback异步回调。
 
@@ -596,11 +775,15 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri |
-  | displayName | string | 是 | 待创建文件夹的名称|
-  | callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件夹的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| parentUri | string | 是 | 表示需要创建文件夹的父目录的Uri |
+| displayName | string | 是 | 待创建文件夹的名称|
+| callback | AsyncCallback&lt;string&gt; | 是 | 新创建的文件夹的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -624,28 +807,32 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
   };
   ```
 
-## FileAccessHelper.openFile
+### openFile
 
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 以异步方法打开文件，返回文件描述符。使用Promise异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 待打开文件的uri |
-  | flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 待打开文件的uri |
+| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;number&gt; | 文件描述符 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -662,23 +849,27 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
   };
   ```
 
-## FileAccessHelper.openFile
+### openFile
 
-openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void;
+openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void
 
 以异步方法打开文件，返回文件描述符。使用callback异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 待打开文件的uri |
-  | flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 文件描述符 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 待打开文件的uri |
+| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 文件描述符 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -701,27 +892,31 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
   };
   ```
 
-## FileAccessHelper.delete
+### delete
 
 delete(uri: string) : Promise&lt;number&gt;
 
 以异步方法删除文件(夹)，返回错误码。使用Promise异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 待删除文件(夹)的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 待删除文件(夹)的uri |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;number&gt | 删除操作的错误码 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -740,22 +935,26 @@ delete(uri: string) : Promise&lt;number&gt;
   };
   ```
 
-## FileAccessHelper.delete
+### delete
 
-delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void;
+delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 
 以异步方法删除文件(夹)，返回错误码。使用callback异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 待删除文件(夹)的uri |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 删除操作的错误码 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 待删除文件(夹)的uri |
+| callback | AsyncCallback&lt;number&gt; | 是 | 删除操作的错误码 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -778,28 +977,32 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void;
   };
   ```
 
-## FileAccessHelper.move
+### move
 
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
-以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。目前仅支持设备内移动，跨设备不支持移动。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | sourceFile | string | 是 | 待移动的源文件(夹)的uri |
-  | destFile | string | 是 | 目标文件夹的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| sourceFile | string | 是 | 待移动的源文件(夹)的uri |
+| destFile | string | 是 | 目标文件夹的uri |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----- | ------ |
 | Promise&lt;string&gt; | 新路径下的文件(夹)的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -818,23 +1021,27 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
   };
   ```
 
-## FileAccessHelper.move
+### move
 
-move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void;
+move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void
 
-以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。
+以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用callback异步回调。目前仅支持设备内移动，跨设备不支持移动。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | sourceFile | string | 是 | 待移动的源文件(夹)的uri |
-  | destFile | string | 是 | 目标文件夹的uri |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 新路径下的文件(夹)的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| sourceFile | string | 是 | 待移动的源文件(夹)的uri |
+| destFile | string | 是 | 目标文件夹的uri |
+| callback | AsyncCallback&lt;string&gt; | 是 | 新路径下的文件(夹)的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -858,28 +1065,32 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
   };
   ```
 
-## FileAccessHelper.rename
+### rename
 
 rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
 以异步方法重命名文件(夹)，返回重命名后的文件(夹)的Uri。使用Promise异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 源文件(夹)的uri |
-  | displayName | string | 是 | 文件(夹)名，支持带后缀 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 源文件(夹)的uri |
+| displayName | string | 是 | 文件(夹)名，支持带后缀 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;string&gt; | 重命名后的文件(夹)的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -897,23 +1108,27 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
   };
   ```
 
-## FileAccessHelper.rename
+### rename
 
-rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 以异步方法重命名文件(夹)，返回重命名后的文件(夹)的Uri。使用callback异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 源文件(夹)的uri |
-  | displayName | string | 是 | 文件(夹)名，支持带后缀 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 重命名后的文件(夹)的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 源文件(夹)的uri |
+| displayName | string | 是 | 文件(夹)名，支持带后缀 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 重命名后的文件(夹)的uri |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -936,27 +1151,31 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
   };
   ```
 
-## FileAccessHelper.access
+### access
 
 access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
 以异步方法判断文件(夹)是否存在。使用Promise异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | 是 | 文件(夹)的uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| sourceFileUri | string | 是 | 文件(夹)的uri |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
 | Promise&lt;boolean&gt; | 文件(夹)是否存在 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -977,22 +1196,26 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
   };
   ```
 
-## FileAccessHelper.access
+### access
 
-access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
+access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 
 以异步方法判断文件(夹)是否存在。使用callback异步回调。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | sourceFileUri | string | 是 | 文件(夹)的uri |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 文件(夹)是否存在 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| sourceFileUri | string | 是 | 文件(夹)的uri |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 文件(夹)是否存在 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
 
 **示例：**
 
@@ -1018,11 +1241,11 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
   };
   ```
 
-## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+### getFileInfoFromUri<sup>10+</sup>
 
-getFileInfoFromUri(uri: string) : Promise<FileInfo>;
+getFileInfoFromUri(uri: string) : Promise\<FileInfo>
 
-以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+以异步方法获取uri对应的FileInfo对象。使用promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1030,15 +1253,15 @@ getFileInfoFromUri(uri: string) : Promise<FileInfo>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | uri | string | 是 | 文件(夹)的Uri |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| uri | string | 是 | 文件(夹)的Uri |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
-| [FileInfo](#fileinfo) | FileInfo对象 |
+| Promise\<[FileInfo](#fileinfo)> | FileInfo对象 |
 
 **示例：**
 
@@ -1055,11 +1278,11 @@ getFileInfoFromUri(uri: string) : Promise<FileInfo>;
   };
   ```
 
-## FileAccessHelper.getFileInfoFromUri<sup>10+</sup>
+### getFileInfoFromUri<sup>10+</sup>
 
-getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
+getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
 
-以异步方法获取uri对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+以异步方法获取uri对应的FileInfo对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1070,7 +1293,7 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | uri | string | 是 | 文件(夹)的Uri |
-  | callback | AsyncCallback&lt;string&gt; | 是 | uri对应的FileInfo对象 |
+  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | 是 | uri对应的FileInfo对象 |
 
 **示例：**
 
@@ -1094,11 +1317,11 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback<FileInfo>) : void;
   ```
 
 
-## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+### getFileInfoFromRelativePath<sup>10+</sup>
 
-getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
+getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
 
-以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用promise异步回调。
+以异步方法获取relativePath对应的FileInfo对象。使用promise异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1106,15 +1329,15 @@ getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | relativePath | string | 是 | 文件(夹)的相对路径 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| relativePath | string | 是 | 文件(夹)的相对路径 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | --- | -- |
-| [FileInfo](#fileinfo) | FileInfo对象 |
+| Promise\<[FileInfo](#fileinfo)> | FileInfo对象 |
 
 **示例：**
 
@@ -1131,11 +1354,11 @@ getFileInfoFromRelativePath(relativePath: string) : Promise<FileInfo>;
   };
   ```
 
-## FileAccessHelper.getFileInfoFromRelativePath<sup>10+</sup>
+### getFileInfoFromRelativePath<sup>10+</sup>
 
-getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileInfo>) : void;
+getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileInfo>) : void
 
-以异步方法获取relativePath对应的[FileInfo](#fileinfo)对象。使用callback异步回调。
+以异步方法获取relativePath对应的FileInfo对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -1143,10 +1366,10 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileIn
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | --- | --- | --- | -- |
-  | relativePath | string | 是 | 文件(夹)的相对路径 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | relativePath对应的FileInfo对象 |
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | -- |
+| relativePath | string | 是 | 文件(夹)的相对路径 |
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | 是 | relativePath对应的FileInfo对象 |
 
 **示例：**
 
@@ -1169,7 +1392,7 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback<FileIn
   };
   ```
 
-## FileAccessHelper.getThumbnail<sup>10+</sup>
+### getThumbnail<sup>10+</sup>
 
 getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
 
@@ -1190,7 +1413,7 @@ getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
 
 | 类型                          | 说明               |
 | :---------------------------- | :----------------- |
-| Promise&lt;image.PixelMap&gt; | 返回的Pixelmap对象 |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 返回的Pixelmap对象 |
 
 **示例：**
 
@@ -1211,7 +1434,7 @@ try {
 };
 ```
 
-## FileAccessHelper.getThumbnail<sup>10+</sup>
+### getThumbnail<sup>10+</sup>
 
  getThumbnail(uri: string, size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;) : void
 
@@ -1227,7 +1450,7 @@ try {
 | -------- | ----------------------------------- | ---- | ------------------ |
 | uri      | string                              | 是   | 媒体文件uri        |
 | size     | [image.Size](js-apis-image.md#size) | 是   | 缩略图尺寸         |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 返回的Pixelmap对象 |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是   | 返回的Pixelmap对象 |
 
 **示例：**
 
@@ -1253,7 +1476,7 @@ try {
 };
 ```
 
-## FileAccessHelper.query<sup>10+</sup>
+### query<sup>10+</sup>
 
 query(uri:string, metaJson: string) : Promise&lt;string&gt;
 
@@ -1291,7 +1514,7 @@ try {
 };
 ```
 
-## FileAccessHelper.query<sup>10+</sup>
+### query<sup>10+</sup>
 
 query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : void
 
@@ -1305,8 +1528,8 @@ query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : voi
 
 | 参数名   | 类型                        | 必填 | 说明                                                 |
 | -------- | --------------------------- | ---- | ---------------------------------------------------- |
-| uri      | string                      | 是   | 所选文件或目录的uri（从[FileInfo](#fileinfo)中获取） |
-| metaJson | string                      | 是   | json字符串，包含查询属性[FILEKEY](#filekey10)        |
+| uri      | string | 是   | 所选文件或目录的uri（从[FileInfo](#fileinfo)中获取） |
+| metaJson | string | 是   | json字符串，包含查询属性[FILEKEY](#filekey10)        |
 | callback | AsyncCallback&lt;string&gt; | 是   | 返回json字符串，包括查询属性和值                     |
 
 **示例：**
@@ -1329,7 +1552,7 @@ try {
 };
 ```
 
-## FileAccessHelper.copy<sup>10+</sup>
+### copy<sup>10+</sup>
 
 copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;CopyResult&gt;&gt;
 
@@ -1405,7 +1628,7 @@ try {
 }
 ```
 
-## FileAccessHelper.copy<sup>10+</sup>
+### copy<sup>10+</sup>
 
 copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
 
@@ -1421,7 +1644,7 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
 | destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
-| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
 **示例：**
 
@@ -1454,7 +1677,7 @@ try {
 }
 ```
 
-## FileAccessHelper.copy<sup>10+</sup>
+### copy<sup>10+</sup>
 
 copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
 
@@ -1471,7 +1694,7 @@ copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback
 | sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
 | destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
 | force     | boolean                                          | 是   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
-| callback  | &lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
 **示例：**
 
@@ -1504,76 +1727,6 @@ try {
 }
 ```
 
-## RootIterator.next
-
-next( ) : { value: RootInfo, done: boolean }
-
-RootIterator表示设备根目录的迭代器对象，可以通过next同步方法获取下一级设备根目录。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService。
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | -- |
-| {value: RootInfo, done: boolean} | 通过next遍历文件夹，直到done返回true结束；value字段返回rootInfo。|
-
-## FileIterator.next
-
-next( ) : { value: FileInfo, done: boolean }
-
-FileIterator表示文件夹的迭代器对象，可以通过next同步方法获取下一级文件(夹)信息。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService。
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-**返回值：**
-
-| 类型 | 说明 |
-| --- | -- |
-| {value: FileInfo, done: boolean} | 通过next遍历文件夹，直到done返回true结束；value字段返回fileInfo。|
-
-## RootInfo
-
-表示设备的根属性信息和接口能力。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService。
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-### 属性
-
-| 名称 | 类型   | 可读 | 可写 | 说明     |
-| ------ | ------ | -------- | ------ | -------- |
-| deviceType | number | 是 | 否 |设备类型 |
-| uri | string | 是 | 否 | 设备根目录Uri |
-| relativePath<sup>10+</sup> | string | 是 | 否 | 根目录的相对路径 |
-| displayName | string | 是 | 否 | 设备名称 |
-| deviceFlags | number | 是 | 否 | 设备支持的能力 |
-
-## FileInfo
-
-表示文件(夹)属性信息和接口能力。
-
-**系统能力**：SystemCapability.FileManagement.UserFileService。
-
-**需要权限**：ohos.permission.FILE_ACCESS_MANAGER
-
-### 属性
-
-| 名称 | 类型   | 可读 | 可写 | 说明     |
-| ------ | ------ | -------- | ------ | -------- |
-| uri | string | 是 | 否 | 文件(夹)的uri |
-| relativePath<sup>10+</sup> | string | 是 | 否 | 文件(夹)的相对路径 |
-| fileName | string | 是 | 否 | 文件(夹)的名称 |
-| mode | number | 是 | 否 | 文件(夹)的权限信息 |
-| size | number | 是 | 否 |  文件(夹)的大小 |
-| mtime | number | 是 | 否 |  文件(夹)的修改时间 |
-| mimeType | string | 是 | 否 |  文件(夹)的媒体资源类型 |
-
 ## CopyResult<sup>10+</sup>
 
 表示复制操作失败时的返回信息，复制成功时则没有返回信息。
@@ -1582,10 +1735,8 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-### 属性
-
-| 名称      | 类型   | 可读 | 可写 | 说明                                                   |
-| --------- | ------ | ---- | ---- | ------------------------------------------------------ |
+| 名称      | 类型   | 可读 | 可写 | 说明                |
+| --------- | ------ | ---- | ---- | ----------------- |
 | sourceUri | string | 是   | 否   | 源文件(夹) uri                                         |
 | destUri   | string | 是   | 否   | 产生冲突的目标文件的 uri。如果非冲突导致的错误，则为空 |
 | errCode   | number | 是   | 否   | 错误码                                                 |
@@ -1593,7 +1744,9 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 
 ## OPENFLAGS
 
-目前支持的文件打开的标志位。
+枚举，目前支持的文件打开的标志位。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
@@ -1605,17 +1758,19 @@ FileIterator表示文件夹的迭代器对象，可以通过next同步方法获�
 
 ## FILEKEY<sup>10+</sup>
 
-支持查询的键。
+枚举，支持查询的键。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称          | 值            | 说明                                |
 | ------------- | ------------- | ----------------------------------- |
-| DISPLAY_NAME  | display_name  | 文件名                              |
-| DATE_ADDED    | date_added    | 文件创建的日期，例如1501925454      |
-| DATE_MODIFIED | date_modified | 文件的修改日期，例如1665310670      |
-| RELATIVE_PATH | relative_path | 相对路径，例如Pictures/Screenshots/ |
-| FILE_SIZE     | size          | 文件（夹）大小（单位：字节）        |
-| WIDTH         | width         | 图像文件的宽度（单位：像素）        |
-| HEIGHT        | height        | 图像文件的高度（单位：像素）        |
-| DURATION      | duration      | 音频和视频文件的时长（单位：毫秒）  |
+| DISPLAY_NAME  | 'display_name'  | 文件名                              |
+| DATE_ADDED    | 'date_added'   | 文件创建的日期，例如1501925454      |
+| DATE_MODIFIED | 'date_modified' | 文件的修改日期，例如1665310670      |
+| RELATIVE_PATH | 'relative_path' | 相对路径，例如Pictures/Screenshots/ |
+| FILE_SIZE     | 'size'          | 文件（夹）大小（单位：字节）        |
+| WIDTH         | 'width'         | 图像文件的宽度（单位：像素）        |
+| HEIGHT        | 'height'        | 图像文件的高度（单位：像素）        |
+| DURATION      | 'duration'      | 音频和视频文件的时长（单位：毫秒）  |

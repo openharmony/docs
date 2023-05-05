@@ -213,7 +213,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 每个值的有效范围是[0, 1], 矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -222,7 +222,7 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-builder.md#builder)。 |
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 

@@ -504,7 +504,6 @@ import web_webview from '@ohos.web.webview';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
         try {
             web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
         } catch(error) {
@@ -2638,7 +2637,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
 | autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
-| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保持网页失败会返回null。                   |
+| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
 
@@ -2662,7 +2661,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
@@ -2727,7 +2726,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true)

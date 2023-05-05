@@ -120,3 +120,5 @@
         - [Thermal Log Customization](subsys-thermal_log.md)
         - [Thermal Policy Customization](subsys-thermal_policy.md)
         - [Thermal Scene Customization](subsys-thermal_scene.md)
+    - Power Management
+        - [Power Mode Customization](subsys-power-mode-customization.md)

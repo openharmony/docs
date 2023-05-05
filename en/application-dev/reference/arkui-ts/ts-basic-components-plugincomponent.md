@@ -31,8 +31,15 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 | source     | string | Component template name.               |
 | bundleName | string | Bundle name of the provider ability.|
 
+## Attributes
+
+The universal attribute [size](ts-universal-attributes-size.md) is supported and must be set.
 
 ## Events
+
+Only the [gesture event](ts-gesture-settings.md) can be distributed to the provider page and processed inside the provider page.
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                                                                                                               | Description                                                              |
 | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

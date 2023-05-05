@@ -5,7 +5,7 @@ The **\<Flex>** component allows for flexible layout of child components.
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[\<Column>](ts-container-column.md)** or **[\<Row>](ts-container-row.md)** instead under scenarios where consistently high performance is required.
 > - If the main axis of the **\<Flex>** component is not set, it follows the size of the parent container. On the contrary, if the main axis of the [\<Column>](ts-container-column.md) or [\<Row>](ts-container-row.md) component is not set, it follows the size of their child component.
 
 
@@ -26,11 +26,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
 | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.               |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**. |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.|
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                   |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                  |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
 
 
 ## Example

@@ -63,8 +63,8 @@ Enables application recovery. After this API is called, the first ability that i
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | No| Scenario for saving the application state. By default, the state is saved when a fault occurs.|
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | No| Application state saving mode. By default, the application state is written to the local file cache.|
 
-**Example**    
-
+**Example**
+    
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -87,19 +87,17 @@ restartApp(): void;
 Restarts the current process and starts the first ability that is displayed when the application is started. If the state of this ability is saved, the saved state data is passed into the **wantParam** attribute in the **want** parameter of the **OnCreate** lifecycle callback of the ability.
 
 In API version 10, the ability specified by [setRestartWant](#apprecoverysetrestartwant) is started. If no ability is specified, the following rules are used:
-
 - If the ability of the current application running in the foreground supports recovery, that ability is started.
-
 - If multiple abilities that support recovery is running in the foreground, only the last ability is started.
-
 - If no ability is running in the foreground, none of them is started.
 
 This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**Example**    
 
+**Example**
+    
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
@@ -132,8 +130,8 @@ Saves the application state. This API can be used together with the APIs of [err
 | -------- | -------- |
 | boolean | Whether the application state is saved. The value **true** is returned if the application state is saved, and **false** is returned otherwise.|
 
-**Example**    
-
+**Example**
+    
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
 import errorManager from '@ohos.app.ability.errorManager';
@@ -160,6 +158,12 @@ Saves the ability state, which will be used for recovery. This API can be used t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| No| UIAbility context.|
+
 **Return value**
 
 | Type| Description|
@@ -183,6 +187,12 @@ setRestartWant(want: Want): void;
 Sets an ability that will be recovered. The ability must be a UIAbility in the current bundle.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md)| Yes| Want of the target ability. You can set the **bundleName** and **abilityName** fields in **Want** to specify the ability.|
 
 **Example**
 

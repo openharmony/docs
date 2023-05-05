@@ -1634,7 +1634,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-rdbStore.executeSql(SQL_CREATE_TABLE, ['zhangsan'], function(err) {
+rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
     if (err) {
         console.info("ExecuteSql failed, err: " + err)
         return

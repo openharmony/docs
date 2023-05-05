@@ -57,17 +57,18 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
    ```js
    import workScheduler from '@ohos.resourceschedule.workScheduler';
    ```
-
+   
    Import the **WorkSchedulerExtensionAbility** module.
+   
    ```js
-   import WorkSchedulerExtensionAbility from    '@ohos.WorkSchedulerExtensionAbility';
+   import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
    ```
-
+   
 2. Develop an ExtensionAbility to execute a Work Scheduler task. For details about the ExtensionAbility, see [ExtensionAbility Component Overview](../application-models/extensionability-overview.md) and [WorkSchedulerExtensionAbility Development](./workscheduler-extensionability.md).
 
    ```ts
    import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-
+   
    export default class MyExtension extends WorkSchedulerExtensionAbility {
        onWorkStart(workInfo) {
            console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
@@ -78,12 +79,11 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
    }
    ```
 
-
 3. Start a Work Scheduler task.
 
    ```ts
    import workScheduler from '@ohos.resourceschedule.workScheduler';
-    
+       
    let workInfo = {
        workId: 1,
        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -102,16 +102,15 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
      workScheduler.startWork(workInfo);
      console.info('workschedulerLog startWork success');
    } catch (error) {
-     console.error(`workschedulerLog startwork failed. code is       ${error.code} message is ${error.message}`);
+     console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
    }
    ```
-
 
 4. Stop the Work Scheduler task.
 
    ```ts
    import workScheduler from '@ohos.resourceschedule.workScheduler';
-
+   
    let workInfo = {
        workId: 1,
        batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
@@ -124,17 +123,15 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
          mykey1: "string value",
          mykey2: true,
          mykey3: 1.5
-       }
+     }
    }
    try{
-       workScheduler.stopWork(workInfo, false);
-       console.info('workschedulerLog stopWork success');
+     workScheduler.stopWork(workInfo, false);
+     console.info('workschedulerLog stopWork success');
    } catch (error) {
-       console.error(`workschedulerLog stopWork failed. code is    ${error.code} message is ${error.message}`);
+     console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
    }
-   
    ```
-
 
 5. Obtain a specified Work Scheduler task.
 
@@ -142,15 +139,15 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
    try{
      workScheduler.getWorkStatus(50, (error, res) => {
        if (error) {
-         console.error(`workschedulerLog getWorkStatus failed. code is    ${error.code} message is ${error.message}`);
+         console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
        } else {
          for (let item in res) {
-           console.info(`workschedulerLog getWorkStatus success, ${item}    is: ${res[item]}`);
+           console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
          }
        }
      });
    } catch (error) {
-     console.error(`workschedulerLog getWorkStatus failed. code is    ${error.code} message is ${error.message}`);
+     console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
    }
    ```
 
@@ -160,13 +157,13 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
    try{
      workScheduler.obtainAllWorks((error, res) =>{
        if (error) {
-         console.error(`workschedulerLog obtainAllWorks failed. code is    ${error.code} message is ${error.message}`);
+         console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
        } else {
-         console.info(`workschedulerLog obtainAllWorks success, data is:    ${JSON.stringify(res)}`);
+         console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
        }
      });
    } catch (error) {
-     console.error(`workschedulerLog obtainAllWorks failed. code is    ${error.code} message is ${error.message}`);
+     console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
    }
    ```
 
@@ -177,7 +174,7 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
      workScheduler.stopAndClearWorks();
      console.info(`workschedulerLog stopAndClearWorks success`);
    } catch (error) {
-     console.error(`workschedulerLog stopAndClearWorks failed. code is    ${error.code} message is ${error.message}`);
+     console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
    }
    ```
 
@@ -187,7 +184,7 @@ onWorkStop(work: WorkInfo): void | Called when the Work Scheduler task stops.
    try{
      workScheduler.isLastWorkTimeOut(500, (error, res) =>{
        if (error) {
-         onsole.error(`workschedulerLog isLastWorkTimeOut failed. code   is ${error.code} message is ${error.message}`);
+         console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
        } else {
          console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
        }

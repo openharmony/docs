@@ -54,8 +54,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TouchType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name  | Description                          |
 | ------ | ------------------------------ |
 | Down   | A finger is pressed.              |
@@ -64,8 +62,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Cancel | A touch event is canceled.          |
 
 ## MouseButton
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description            |
 | ------- | ---------------- |
@@ -77,8 +73,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None    | No button.        |
 
 ## MouseAction
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description          |
 | ------- | -------------- |
@@ -109,7 +103,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## AnimationStatus
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 10, this API is supported in ArkTS widgets.
 
 | Name   | Description              |
 | ------- | ------------------ |
@@ -120,7 +114,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FillMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 10, this API is supported in ArkTS widgets.
 
 | Name     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
@@ -142,16 +136,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## KeyType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name| Description      |
 | ---- | ---------- |
 | Down | The key is pressed.|
 | Up   | The key is released.|
 
 ## KeySource
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                |
 | -------- | -------------------- |
@@ -171,8 +161,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | End      | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Week
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                  |
 | -------- | ---------------------- |
@@ -242,8 +230,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## RelateType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name  | Description                             |
 | ------ | ------------------------------- |
 | FILL    | The current child component is scaled to fill the parent component.     |
@@ -307,12 +293,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration of the flex container is used.                                    |
-| Start    | The items in the flex container are aligned with the cross-start edge.                      |
-| Center   | The items in the flex container are centered along the cross axis.                      |
-| End      | The items in the flex container are aligned with the cross-end edge.                      |
-| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
-| Baseline | The items in the flex container are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
+| Auto     | The default configuration of the container (**\<Flex>** or **\<GridRow>**) is used.                                    |
+| Start    | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-start edge.                      |
+| Center   | The items in the container (**\<Flex>** or **\<GridRow>**) are centered along the cross axis.                      |
+| End      | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-end edge.                      |
+| Stretch  | The items in the container (**\<Flex>** or **\<GridRow>**) are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Baseline | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
 
 ## FlexDirection
 
@@ -383,8 +369,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None        | No gradient.      |
 
 ## SharedTransitionEffectType
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name       | Description      |
 | ----------- | ---------- |
@@ -458,16 +442,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ResponseType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name      | Description                      |
 | ---------- | -------------------------- |
 | LongPress  | The menu is displayed when the component is long-pressed.    |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
 ## HoverEffect<sup>8+</sup>
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Description                        |
 | --------- | ---------------------------- |
@@ -477,8 +457,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None      | No effect.                |
 
 ## Placement<sup>8+</sup>
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name         | Description                                                        |
 | ------------- | ------------------------------------------------------------ |
@@ -506,8 +484,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | LocalDevice | Intra-device copy is allowed.|
 
 ## HitTestMode<sup>9+</sup>
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name       | Description                |
 | ----------- | -------------------- |

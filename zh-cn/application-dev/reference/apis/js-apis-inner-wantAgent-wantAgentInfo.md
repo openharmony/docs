@@ -2,6 +2,12 @@
 
 定义触发WantAgent所需要的信息，可以作为[getWantAgent](js-apis-app-ability-wantAgent.md#wantagentgetwantagent)的入参创建指定的WantAgent对象。
 
+## 导入模块
+
+```ts
+import wantAgent from '@ohos.app.ability.wantAgent';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称           | 类型                            | 必填 | 说明                   |
