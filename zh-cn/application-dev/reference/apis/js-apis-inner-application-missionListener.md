@@ -2,6 +2,12 @@
 
 定义系统任务状态监听，可以通过[registerMissionListener](js-apis-application-missionManager.md#missionmanagerregistermissionlistener)注册。
 
+## 导入模块
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
