@@ -4562,7 +4562,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
 **错误码：**
 
@@ -4632,7 +4632,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
 **错误码：**
 
@@ -4769,7 +4769,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。                                               |
 
 **错误码：**
 
@@ -4822,7 +4822,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                      | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。                 |
 
 **示例：**
 

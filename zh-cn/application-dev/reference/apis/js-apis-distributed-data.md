@@ -128,8 +128,8 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ------ |------ | ------ |
-| userId | string | 否  | 指示要设置的用户ID。 |
-| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型。 |
+| userId | string | 否  | 指示要设置的用户ID，默认为0。 |
+| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型，默认为SAME_USER_ID。 |
 
 
 ## UserType
@@ -548,7 +548,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | 是    | 取消订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
-| deathCallback  | Callback&lt;void&gt;  | 否    | 回调函数。 |
+| deathCallback  | Callback&lt;void&gt;  | 否    | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。 |
 
 
 **示例：**
@@ -580,7 +580,7 @@ try {
 | autoSync  | boolean | 否 |设置数据库文件是否自动同步。默认为false，即手动同步；设置为true时，表示自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值，默认不使用schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -2295,7 +2295,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 
 
@@ -2333,7 +2333,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -3780,7 +3780,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
 **示例：**
 
@@ -3895,7 +3895,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -3931,7 +3931,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。  |
 
 **示例：**
 
@@ -5258,7 +5258,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒），默认为0。  |
 
 **示例：**
 
@@ -5373,7 +5373,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -5409,7 +5409,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。  |
 
 **示例：**
 
