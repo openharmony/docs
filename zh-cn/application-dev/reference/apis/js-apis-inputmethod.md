@@ -682,8 +682,12 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 ```js
 try {
-    let textConfig: inputMethod.TextConfig = {inputAttribute: {textInputType: inputMethodController.TextInputType.TEXT, 
-        enterKeyType: inputMethodController.EnterKeyType.GO}};
+    let textConfig: inputMethod.TextConfig = {
+        inputAttribute: {
+            textInputType: 0,
+            enterKeyType: 1
+        }
+    };
     inputMethodController.attach(true, textConfig, (err) => {
         if (err !== undefined) {
             console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -731,8 +735,12 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 ```js
 try {
-    let textConfig: inputMethod.TextConfig = {inputAttribute: {textInputType: inputMethodController.TextInputType.TEXT, 
-        enterKeyType: inputMethodController.EnterKeyType.GO}};
+    let textConfig: inputMethod.TextConfig = {
+        inputAttribute: {
+            textInputType: 0,
+            enterKeyType: 1
+        }
+    };
     inputMethodController.attach(true, textConfig).then(() => {
         console.info('Succeeded in attaching inputMethod.');
     }).catch((err) => {
@@ -809,7 +817,7 @@ showTextInput(): Promise&lt;void&gt;
 
 ```js
 inputMethodController.showTextInput().then(() => {
-    console.info('Succeeded in showing inputMethod.');
+    console.info('Succeeded in showing text input.');
 }).catch((err) => {
     console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
@@ -849,7 +857,7 @@ inputMethodController.hideTextInput((err) => {
         console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
         return;
     }
-    console.info('Succeeded in hiding inputMethod.');
+    console.info('Succeeded in hiding text input.');
 });
 ```
 
@@ -882,15 +890,11 @@ hideTextInput(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-try {
-    inputMethodController.hideTextInput().then(() => {
-        console.info('Succeeded in hiding inputMethod.');
-    }).catch((err) => {
-        console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
-    })
-} catch(err) {
-    console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
-}
+inputMethodController.hideTextInput().then(() => {
+  console.info('Succeeded in hiding inputMethod.');
+}).catch((err) => {
+  console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
+})
 ```
 
 ### detach<sup>10+</sup>
@@ -965,7 +969,8 @@ inputMethodController.detach().then(() => {
 
 setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
-避让窗口。将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。使用callback异步回调。
+设置要避让的窗口。使用callback异步回调。
+比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -973,7 +978,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 当前绑定到输入方法的应用程序的窗口ID。 |
+| windowId | number | 是 | 要避让的窗口id。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1007,7 +1012,8 @@ try {
 
 setCallingWindow(windowId: number): Promise&lt;void&gt;
 
-避让窗口。将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。使用promise异步回调。
+设置要避让的窗口。使用promise异步回调。
+比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1015,7 +1021,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 当前绑定到输入方法的应用程序的窗口ID。 |
+| windowId | number | 是 | 要避让的窗口id。 |
 
 **返回值：**
 
@@ -1052,7 +1058,8 @@ try {
 
 updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
-更新当前编辑框内光标信息。当光标信息发生变化时，可调用该接口更新光标信息，从而被输入法应用感知到光标变化。使用callback异步回调。
+更新当前编辑框内光标信息。使用callback异步回调。
+当光标信息发生变化时，可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1093,7 +1100,8 @@ try {
 
 updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
-更新当前编辑控件内的光标信息。当光标信息发生变化时，编辑控件可调用该接口更新光标信息，从而被输入法应用感知到光标变化。使用promise异步回调。
+更新当前编辑控件内的光标信息。使用promise异步回调。
+当光标信息发生变化时，编辑控件可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1251,8 +1259,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 ```js
 try {
-    inputMethodController.updateAttribute({textInputType: inputMethod.TextInputType.TEXT, 
-        enterKeyType: inputMethod.EnterKeyType.GO}, (err) => {
+    inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}, (err) => {
         if (err !== undefined) {
             console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
             return;
@@ -1298,8 +1305,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 ```js
 try {
-    inputMethodController.updateAttribute({textInputType: inputMethod.TextInputType.TEXT, 
-        enterKeyType: inputMethod.EnterKeyType.GO}).then(() => {
+    inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}).then(() => {
         console.info('Succeeded in updating attribute.');
     }).catch((err) => {
         console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
@@ -1636,7 +1642,6 @@ try {
 } catch(error) {
     console.error(`Failed to subscribe insertText: ${JSON.stringify(error)}`);
 }
-
 ```
 
 ### off('insertText')<sup>10+</sup>
@@ -1653,23 +1658,10 @@ off(type: 'insertText'): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
-
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('insertText');
-    console.info('Succeeded in unsubscribing insertText.');
-} catch(error) {
-    console.error(`Failed to unsubscribe insertText: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('insertText');
 ```
 
 ### on('deleteLeft' | 'deleteRight')<sup>10+</sup>
@@ -1729,30 +1721,11 @@ off(type: 'deleteLeft' | 'deleteRight'): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘deleteLeft’时表示取消订阅输入法应用向左删除的事件监听。 <br/>-type为‘deleteRight’时表示取消订阅输入法应用向右删除的事件监听。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
-
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('deleteLeft');
-    console.info('Succeeded in unsubscribing deleteLeft.');
-} catch(error) {
-    console.error(`Failed to unsubscribe deleteLeft: ${JSON.stringify(error)}`);
-}
-
-try {
-    inputMethodController.off('deleteRight');
-    console.info('Succeeded in unsubscribing deleteRight.');
-} catch(error) {
-    console.error(`Failed to unsubscribe deleteRight: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('deleteLeft');
+inputMethodController.off('deleteRight');
 ```
 
 ### on('sendKeyboardStatus')<sup>10+</sup>
@@ -1804,23 +1777,10 @@ off(type: 'sendKeyboardStatus'): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
-
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('sendKeyboardStatus');
-    console.info('Succeeded in unsubscribing sendKeyboardStatus.');
-} catch(error) {
-    console.error(`Failed to unsubscribe sendKeyboardStatus: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('sendKeyboardStatus');
 ```
 
 ### on('sendFunctionKey')<sup>10+</sup>
@@ -1872,23 +1832,10 @@ off(type: 'sendFunctionKey'): void
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
-
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('sendFunctionKey');
-    console.info('Succeeded in unsubscribing sendFunctionKey.');
-} catch(error) {
-    console.error(`Failed to unsubscribe sendFunctionKey: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('sendFunctionKey');
 ```
 
 ### on('moveCursor')<sup>10+</sup>
@@ -1910,8 +1857,8 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
 
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
+| 错误码ID | 错误信息                           |
+| -------- | -------------------------------- |
 | 12800009 | Input method client is detached. |
 
 **示例：**
@@ -1936,27 +1883,14 @@ off(type: 'moveCursor'): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
+| 参数名  | 类型    | 必填 | 说明  |
+| ------ | ------ | ---- | ---- |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘moveCursor’时表示取消订阅输入法应用发送移动光标事件监听。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
 
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('moveCursor');
-    console.info('Succeeded in unsubscribing moveCursor.');
-} catch(error) {
-    console.error(`Failed to unsubscribe moveCursor: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('moveCursor');
 ```
 
 ### on('handleExtendAction')<sup>10+</sup>
@@ -2008,23 +1942,10 @@ off(type: 'handleExtendAction'): void
 | ------ | ------ | ---- | ------- |
 | type   | string | 是   | 设置监听类型。<br/>-type为‘handleExtendAction’时表示取消订阅输入法应用发送扩展代码事件监听。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                             |
-| -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
-
 **示例：**
 
 ```js
-try {
-    inputMethodController.off('handleExtendAction');
-    console.info('Succeeded in unsubscribing handleExtendAction.');
-} catch(error) {
-    console.error(`Failed to unsubscribe handleExtendAction: ${JSON.stringify(error)}`);
-}
+inputMethodController.off('handleExtendAction');
 ```
 
 ### on('selectByRange')<sup>10+</sup>
