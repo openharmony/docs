@@ -45,6 +45,9 @@
     - [图像球面效果设置](ts-universal-attributes-sphericalEffect.md)
     - [图像渐亮效果设置](ts-universal-attributes-lightUpEffect.md)
     - [图像像素扩展效果设置](ts-universal-attributes-pixelStretchEffect.md)
+    - 模态转场设置
+      - [全屏模态转场](ts-universal-attributes-modal-transition.md)
+      - [半模态转场](ts-universal-attributes-sheet-transition.md)
   - [文本通用属性](ts-universal-attributes-text-style.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
