@@ -37,7 +37,7 @@ import inputMethod from '@ohos.inputMethod';
 | labelId<sup>10+</sup>    | string | 是 | 否 | 输入法对外显示名称资源号。 非必填。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标数据。非必填。 |
 | iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标资源号。非必填。 |
-| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。 非必填。<br/>**说明：** 从API version 10开始改为非必选参数。|
+| extra<sup>10+</sup>    | object | 是 | 是 | 输入法扩展信息。 非必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -226,7 +226,7 @@ getCurrentInputMethod(): InputMethodProperty
 let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
@@ -282,7 +282,7 @@ try {
 }
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
@@ -582,20 +582,6 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | CUT  | 3 |剪切。 |
 | COPY  | 4 |复制。 |
 | PASTE  | 5 |粘贴。 |
-
-## InputWindowInfo<sup>10+</sup>
-
-输入法软键盘的窗口信息。
-
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| name<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的名称。|
-| left<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的x坐标。|
-| top<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的y坐标。|
-| width<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的宽度。|
-| height<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的高度。|
 
 ## FunctionKey<sup>10+</sup>
 
