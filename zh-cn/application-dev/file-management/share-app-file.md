@@ -12,15 +12,13 @@
 
 文件URI的格式为：
 
-  格式为file://&lt;bundleName&gt;/&lt;path&gt;/\#networkid=&lt;networkid&gt;
+  格式为file://&lt;bundleName&gt;/&lt;path&gt;
 
 - file：文件URI的标志。
 
 - bundleName：该文件资源的属主。
 
 - path：文件资源在应用沙箱中的路径。
-
-- networkid：为可选项，用于分布式文件系统标志该文件资源所归属的设备；当不需要区分文件位置时，该选项可不填写。
 
 ## 分享文件给其他应用
 
