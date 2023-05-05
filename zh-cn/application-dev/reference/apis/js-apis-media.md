@@ -954,7 +954,7 @@ avPlayer.getTrackDescription((error, arrList) => {
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息，可以在prepared/playing/paused状态调用。
+通过Promise方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1011,7 +1011,7 @@ seek(timeMs: number, mode?:SeekMode): void
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, [duration](#avplayer_duration)]。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，**仅在视频资源播放时设置**。          |
+| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式，**仅在视频资源播放时设置**。 |
 
 **示例：**
 
@@ -2520,8 +2520,8 @@ avRecorder.off('error');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270。                  |
-| location        | [Location](#location)                    | 否   | 录制的地理位置。                                             |
+| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
 通过audioSourceType和videoSourceType区分纯音频录制、纯视频录制或音视频录制。纯音频录制时，仅需要设置audioSourceType；纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
@@ -3357,9 +3357,9 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
-| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
-| location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                   | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+| rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| location        | [Location](#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -4321,7 +4321,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                                                   |
+| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式。            |
 
 **返回值：**
 
