@@ -68,7 +68,7 @@ httpRequest.request(
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
 
-## http.createHttp
+## http.createHttp<sup>6+</sup>
 
 createHttp(): HttpRequest
 
@@ -94,7 +94,7 @@ let httpRequest = http.createHttp();
 
 HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp()](#httpcreatehttp)创建一个任务。
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -145,7 +145,7 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -231,7 +231,7 @@ httpRequest.request("EXAMPLE_URL",
   });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -1028,7 +1028,7 @@ httpResponseCache.delete().then(() => {
 });
 ```
 
-## HttpDataType<sup>9+</sup>
+## HttpDataType<sup>6+</sup>
 
 http的数据类型。
 

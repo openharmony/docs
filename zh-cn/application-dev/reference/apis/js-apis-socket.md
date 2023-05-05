@@ -12,7 +12,7 @@
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance<sup>9+</sup>
+## socket.constructUDPSocketInstance<sup>7+</sup>
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -32,11 +32,11 @@ constructUDPSocketInstance(): UDPSocket
 let udp = socket.constructUDPSocketInstance();
 ```
 
-## UDPSocket<sup>9+</sup>
+## UDPSocket<sup>7+</sup>
 
 UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constructUDPSocketInstance](#socketconstructudpsocketinstance)创建UDPSocket对象。
 
-### bind<sup>9+</sup>
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -73,7 +73,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### bind<sup>9+</sup>
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -114,7 +114,7 @@ promise.then(() => {
 });
 ```
 
-### send<sup>9+</sup>
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -160,7 +160,7 @@ udp.send({
 })
 ```
 
-### send<sup>9+</sup>
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -210,7 +210,7 @@ promise.then(() => {
 });
 ```
 
-### close<sup>9+</sup>
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -239,7 +239,7 @@ udp.close(err => {
 })
 ```
 
-### close<sup>9+</sup>
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -267,7 +267,7 @@ promise.then(() => {
 });
 ```
 
-### getState<sup>9+</sup>
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -312,7 +312,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### getState<sup>9+</sup>
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
@@ -351,7 +351,7 @@ promise.then(err => {
 });
 ```
 
-### setExtraOptions<sup>9+</sup>
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -404,7 +404,7 @@ udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
 })
 ```
 
-### setExtraOptions<sup>9+</sup>
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
@@ -460,7 +460,7 @@ promise.then(() => {
 });
 ```
 
-### on('message')<sup>9+</sup>
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -491,7 +491,7 @@ udp.on('message', value => {
 });
 ```
 
-### off('message')<sup>9+</sup>
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -529,7 +529,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-### on('listening' | 'close')<sup>9+</sup>
+### on('listening' | 'close')<sup>7+</sup>
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -556,7 +556,7 @@ udp.on('close', () => {
 });
 ```
 
-### off('listening' | 'close')<sup>9+</sup>
+### off('listening' | 'close')<sup>7+</sup>
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
@@ -594,7 +594,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-### on('error')<sup>9+</sup>
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -618,7 +618,7 @@ udp.on('error', err => {
 });
 ```
 
-### off('error')<sup>9+</sup>
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -649,7 +649,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-## NetAddress<sup>9+</sup>
+## NetAddress<sup>7+</sup>
 
 目标地址信息。
 
@@ -661,7 +661,7 @@ udp.off('error');
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
 | family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
 
-## UDPSendOptions<sup>9+</sup>
+## UDPSendOptions<sup>7+</sup>
 
 UDPSocket发送参数。
 
@@ -672,7 +672,7 @@ UDPSocket发送参数。
 | data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
-## UDPExtraOptions<sup>9+</sup>
+## UDPExtraOptions<sup>7+</sup>
 
 UDPSocket连接的其他属性。
 
@@ -686,7 +686,7 @@ UDPSocket连接的其他属性。
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。 |
 
-## SocketStateBase<sup>9+</sup>
+## SocketStateBase<sup>7+</sup>
 
 Socket的状态信息。
 
@@ -698,7 +698,7 @@ Socket的状态信息。
 | isClose     | boolean | 是   | 是否关闭。 |
 | isConnected | boolean | 是   | 是否连接。 |
 
-## SocketRemoteInfo<sup>9+</sup>
+## SocketRemoteInfo<sup>7+</sup>
 
 Socket的连接信息。
 
@@ -717,7 +717,7 @@ UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
-## socket.constructTCPSocketInstance<sup>9+</sup>
+## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -1869,7 +1869,7 @@ promise.then(() => {
 });
 ```
 
-### on('message')
+### on('message')<sup>9+</sup>
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
 
@@ -1900,7 +1900,7 @@ tls.on('message', value => {
 });
 ```
 
-### off('message')
+### off('message')<sup>9+</sup>
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1936,7 +1936,7 @@ tls.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 tls.off('message', callback);
 ```
-### on('connect' | 'close')
+### on('connect' | 'close')<sup>9+</sup>
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1963,7 +1963,7 @@ tls.on('close', () => {
 });
 ```
 
-### off('connect' | 'close')
+### off('connect' | 'close')<sup>9+</sup>
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
@@ -2000,7 +2000,7 @@ tls.on('close', callback2);
 tls.off('close', callback2);
 ```
 
-### on('error')
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2024,7 +2024,7 @@ tls.on('error', err => {
 });
 ```
 
-### off('error')
+### off('error')<sup>9+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 

@@ -444,7 +444,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getAllNets<sup>9+</sup>
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
@@ -477,7 +477,7 @@ connection.getAllNets(function (error, data) {
 });
 ```
 
-## connection.getAllNets<sup>9+</sup>
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
@@ -509,7 +509,7 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
-## connection.getConnectionProperties<sup>9+</sup>
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
@@ -547,7 +547,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getConnectionProperties<sup>9+</sup>
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
@@ -589,7 +589,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities<sup>9+</sup>
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
@@ -627,7 +627,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities<sup>9+</sup>
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
@@ -734,7 +734,7 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
-## connection.hasDefaultNet<sup>9+</sup>
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
@@ -767,7 +767,7 @@ connection.hasDefaultNet(function (error, data) {
 })
 ```
 
-## connection.hasDefaultNet<sup>9+</sup>
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(): Promise\<boolean>
 
@@ -799,7 +799,7 @@ connection.hasDefaultNet().then(function (data) {
 })
 ```
 
-## connection.enableAirplaneMode<sup>9+</sup>
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -832,7 +832,7 @@ connection.enableAirplaneMode(function (error) {
 })
 ```
 
-## connection.enableAirplaneMode<sup>9+</sup>
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(): Promise\<void>
 
@@ -865,7 +865,7 @@ connection.enableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode<sup>9+</sup>
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -898,7 +898,7 @@ connection.disableAirplaneMode(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode<sup>9+</sup>
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(): Promise\<void>
 
@@ -931,7 +931,7 @@ connection.disableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.reportNetConnected<sup>9+</sup>
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -968,7 +968,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetConnected<sup>9+</sup>
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1009,7 +1009,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected<sup>9+</sup>
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1046,7 +1046,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected<sup>9+</sup>
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1087,7 +1087,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.getAddressesByName<sup>9+</sup>
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1124,7 +1124,7 @@ connection.getAddressesByName(host, function (error, data) {
 })
 ```
 
-## connection.getAddressesByName<sup>9+</sup>
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1174,7 +1174,7 @@ connection.getAddressesByName(host).then(function (data) {
 > 设备从有网络到无网络状态会触发netLost事件；
 > 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
 
-### register<sup>10+</sup>
+### register<sup>8+</sup>
 
 register(callback: AsyncCallback\<void>): void
 
@@ -1208,7 +1208,7 @@ netConnection.register(function (error) {
 })
 ```
 
-### unregister<sup>10+</sup>
+### unregister<sup>8+</sup>
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -1640,7 +1640,7 @@ connection.getDefaultNet().then((netHandle) => {
 })
 ```
 
-### getAddressesByName<sup>9+</sup>
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1679,7 +1679,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressesByName<sup>9+</sup>
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1722,7 +1722,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName<sup>9+</sup>
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -1761,7 +1761,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName<sup>9+</sup>
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string): Promise\<NetAddress>
 
