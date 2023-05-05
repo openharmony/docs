@@ -52,10 +52,10 @@ try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
         .then(() => {
             console.info('setOverlayEnabled success');
-        }).catch((error) => {
+        }).catch((err) => {
             console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
+} catch (err) {
     console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
@@ -93,13 +93,13 @@ var isEnabled = false;
 
 try {
     overlay.setOverlayEnabled(moduleName, isEnabled, (error, data) => {
-        if (error) {
+        if (err) {
             console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabled success');
     });
-} catch (error) {
+} catch (err) {
     console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
@@ -152,10 +152,10 @@ try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
-        }).catch((error) => {
+        }).catch((err) => {
             console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
+} catch (err) {
     console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
@@ -201,13 +201,13 @@ var isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (error, data) => {
-        if (error) {
+        if (err) {
             console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabledByBundleName successfully');
     });
-} catch (error) {
+} catch (err) {
     console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
@@ -288,13 +288,13 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 var moduleName = "feature"
 try {
     overlay.getOverlayModuleInfo(moduleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
@@ -373,13 +373,13 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 var targetModuleName = "feature"
 try {
     overlay.getTargetOverlayModuleInfos(targetModuleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
@@ -475,13 +475,13 @@ var moduleName = "feature"
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
@@ -521,13 +521,13 @@ var bundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
@@ -623,13 +623,13 @@ var moduleName = "feature"
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
@@ -669,13 +669,13 @@ var targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (error, data) => {
-        if (error) {
+        if (err) {
             console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
+} catch (err) {
     console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
