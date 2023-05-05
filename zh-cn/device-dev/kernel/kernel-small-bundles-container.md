@@ -26,7 +26,7 @@ LiteOS-A内核容器隔离功能包含7个容器：UTS容器、PID容器、Mount
 
 PID容器通过 unshare/setns 切换时，切换子进程的容器，而本进程容器不变。
 
-通过在子进程ProcessCB中添加对应容器集合Container和用户容器，完成对容器功能的支持，并通过编译开关控制特性的开启和关闭。
+通过在进程ProcessCB中添加对应容器集合Container和用户容器，完成对容器功能的支持，并通过编译开关控制特性的开启和关闭。
 
  - 每个进程ProcessCB包含一个Container指针，该指针指向真正分配的Container结构。通过这种方式，进程可单独拥有一个Container结构，也可共享同一个Container结构。 进一步分解，在Container结构中，包含各容器指针，分别指向UTS容器、PID容器、Network容器、Mount容器、TIME容器、IPC容器。
 
@@ -40,9 +40,7 @@ PID容器通过 unshare/setns 切换时，切换子进程的容器，而本进�
 
 #### **UTS容器**
 
-UTS 容器用于对主机名和域名进行隔离。
-
-每一个进程对应有一个自己的UTS  Container，用来隔离容器的内核名称、版本等信息，不同容器查看到的都是属于自己的信息，相互间不能查看。
+UTS 容器用于对主机名和域名、版本等信息进行隔离，不同UTS容器内查看到的都是属于自己的信息，相互间不能查看。
 
 #### **Mount容器**
 
@@ -52,7 +50,7 @@ UTS 容器用于对主机名和域名进行隔离。
 
 - 文件挂载容器的基础实现，创建进程时根据clone传入的参数flag在各自进程创建文件挂载容器，将挂载信息从全局更改为与文件挂载容器相关联。
 
-- 创建容器后，修改获取当前挂载信息的实现，将从全局或者更改为当前文件挂载容器中获取，使进程挂载、卸载或者访问挂载文件操作不会对其他进程挂载信息产生影响或者访问到其他进程的文件挂载信息。
+- 创建容器后，修改获取当前挂载信息的实现，将从全局更改为当前文件挂载容器中获取，使进程挂载、卸载或者访问挂载文件操作不会对其他进程挂载信息产生影响或者访问到其他进程的文件挂载信息。
 
 #### **PID容器**
 
@@ -61,7 +59,7 @@ UTS 容器用于对主机名和域名进行隔离。
   进程容器主要用于进程的隔离，特点如下:
 
 - 容器间的进程ID相互独立。
-- 父容器可以看到子容器中的进程，且同一个进程在父容器中的进程ID和子容器中的进程ID相互独立。
+- 父PID容器可以看到子PID容器中的进程，且同一个进程在父PID容器中的进程ID和子PID容器中的进程ID相互独立。
 - 子容器无法看到父容器中的进程。
 - 在根容器下可以看到系统的所有进程。
 
@@ -124,9 +122,9 @@ Capabilities的类型如下表：
 
 容器（当前进程的time_for_children容器）中时钟的偏移量记录在`/proc/PID/timens_offsets`文件中，通过修改该文件，可以对应修改TIME容器的偏移信息。这些偏移是相对于初始时间容器中的时钟值表示的。
 
-当前，创建TIME Container的唯一方法是通过使用`CLONE_NEWTIME`标志调用`unshare`。该调用将创建一个新的TIME Container，但不会将调用过程放在新的容器中。而是调用进程的随后创建的子级将放置在新的容器中。
+当前，创建TIME Container的唯一方法是通过使用`CLONE_NEWTIME`标志调用`unshare`。该调用将创建一个新的TIME Container，但不会将调用进程放在新的容器中，而是调用进程随后创建的子进程放置在新的容器中。
 
-这允许时钟偏移，用于新的容器的第一进程被放置在容器之前进行设置`/proc/PID/timens_offsets`文件。
+这个容器的时钟偏移（/proc/PID/timens_offsets），需要在新的容器的第一个进程创建前进行设置。
 
 #### **IPC容器**  
 
@@ -186,27 +184,22 @@ int clone(int (*fn)(void *), void *stack, int flags, void *arg, ...
 - **unshare 接口**
 
   通过 unshare接口，将当前进程脱离当前所属容器，并转移到一个新建的容器。函数原型：
+
   ```
   int unshare(int flags);
   ```
 
-  参考其他内核的实现，PID容器特殊处理，PID容器通过 unshare/setns 切换时， 是切换子进程的容器，而本进程容器仍然保持不变。
-
-  方法是，本进程将新建的容器记录下来，创建子进程时再根据记录信息进行容器归属。
-
-  这一点上，与其他容器（如Network容器）有区别，其他容器的setns、unshare操作是直接对已有进程生效。
-
-  可以一句话总结为： PID容器的setns和unshare操作，是针对后代进程的PID容器。
+  说明：PID容器和TIME容器调用unshare时，当前进程的容器不会发生变化，当前进程创建的子进程会被放到新的容器中。
 
 - **setns接口**
 
-  通过 setns接口，将当前进程脱离当前所属容器，并转移到一个已有的容器。便于灵活切换进程容器。
-
-  PID容器通过 setns 转移时， 是切换子进程的容器，而本进程容器仍然保持不变。同上文。函数原型：
+  通过 setns接口，将当前进程脱离当前所属容器，并转移到一个已有的容器。便于灵活切换进程容器。函数原型：
 
   ```
   int setns(int fd, int nstype);
   ```
+
+  说明：PID容器和TIME容器调用setns时，当前进程的容器不会发生变化，当前进程创建的子进程会被放到新的容器中。
 
 ### 销毁容器
 
@@ -220,7 +213,7 @@ int kill(pid_t pid, int sig);
 
 ### 查询容器信息
 
-容器隔离之后，系统用户可使用 ls 命令访问 /proc/[pid]/container/ 目录进行查看和确认。
+系统用户可使用 ls 命令访问 /proc/[pid]/container/ 目录进行查看和确认。
 
 ```
 ls -l /proc/[pid]/container
@@ -257,8 +250,8 @@ ls -l /proc/[pid]/container
 | -r--r--r-- | u:0  | g:0    | sched.period     | 调度周期配置                      | 单位：us                                                     |
 | -r--r--r-- | u:0  | g:0    | sched.quota      | 调度配额配置                      | 单位：us                                                     |
 | -r--r--r-- | u:0  | g:0    | devices.list     | 报告plimits中的进程访问的设备     | 输出格式：[type name access]                                 |
-| -r--r--r-- | u:0  | g:0    | devices.deny     | 指定plimits中的进程可以访问的设备 | 写入格式：["type name access" >> device.deny]                |
-| -r--r--r-- | u:0  | g:0    | devices.allow    | 报告plimits中的进程不能访问的设备 | 写入格式：["type name access" >> device.allow]               |
+| -r--r--r-- | u:0  | g:0    | devices.deny     | 指定plimits中的进程不能访问的设备 | 写入格式：["type name access" >> device.deny]                |
+| -r--r--r-- | u:0  | g:0    | devices.allow    | 报告plimits中的进程可以访问的设备 | 写入格式：["type name access" >> device.allow]               |
 | -r--r--r-- | u:0  | g:0    | ipc.stat         | ipc对象申请统计信息               | 输出格式：[mq count:  mq failed count:  <br/> shm size:  shm failed count: ] |
 | -r--r--r-- | u:0  | g:0    | ipc.shm_limit    | 共享内存大小上限                  | 单位：byte                                                   |
 | -r--r--r-- | u:0  | g:0    | ipc.mq_limit     | 消息个数上限                      | 0~最大64位正整数                                             |
@@ -312,9 +305,7 @@ inum = CONTAINER_IDEX_BASE + (unsigned int)i;
 | CLONE_NEWUTS  | 为子进程新建UTSNAME容器      | 将当前进程转移到指定UTSNAME容器  | 为本进程新建UTSNAME容器          |
 | CLONE_NEWNET  | 为子进程新建Network容器  | 将当前进程转移到指定Network容器 | 为本进程新建Network容器      |
 
-- 容器功能采用编译宏、编译脚本中参数结合，完成特性的开关控制。
-
-  - 容器编译宏定义:
+- 容器功能采用编译宏，完成特性的开关控制。
 
   ```
   // 容器功能总编译宏
@@ -328,16 +319,7 @@ inum = CONTAINER_IDEX_BASE + (unsigned int)i;
   LOSCFG_TIME_CONTAINER
   LOSCFG_IPC_CONTAINER
   ```
-
-  - 测试用例编译宏定义: enable打开，disable关闭，默认关闭。
-  ```
-  LOSCFG_USER_TEST_MNT_CONTAINER
-  LOSCFG_USER_TEST_PID_CONTAINER
-  LOSCFG_USER_TEST_NET_CONTAINER
-  LOSCFG_USER_TEST_USER_CONTAINER
-  LOSCFG_USER_TEST_TIME_CONTAINER
-  LOSCFG_USER_TEST_IPC_CONTAINER
-  ```
+  
 
 ### 开发实例
 
