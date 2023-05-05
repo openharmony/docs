@@ -148,8 +148,6 @@ Input method manager service error.
 
 通过ps -A|grep inputmethod查看是否存在输入法服务的进程号，如果存在，则服务正常。
 
-通过ps -A|grep inputmethod查看是否存在输入法服务的进程号，如果存在，则服务正常。
-
 ## 12800009 输入法客户端未绑定
 
 **错误信息**
