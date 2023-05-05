@@ -4769,7 +4769,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。 |
 
 **错误码：**
 
@@ -4822,7 +4822,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                      | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。  |
 
 **示例：**
 
