@@ -442,9 +442,9 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
+| 参数名    | 类型 | 必填  | 说明 |
+| -------- | --- | ---- | --- |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                           |
 
 **示例：**
@@ -465,9 +465,9 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
+| 参数名   | 类型  | 必填 | 说明   |
+| ------- | ----- | ---- | ---- |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 回调函数，返回设置的输入法子类型。  |
 
 **示例：**
@@ -702,9 +702,9 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                         |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
+| 参数名    | 类型     | 必填  | 说明  |
+| -------- | ------- | ---- | ----- |
+| type     | string  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
 | callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 回调函数，返回按键信息。  |
 
 **示例：**
@@ -730,9 +730,9 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明                                                         |
-| -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                         | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示订阅光标变化事件。 |
+| 参数名    | 类型  | 必填  | 说明  |
+| -------- | ---- | ---- | ----- |
+| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示订阅光标变化事件。 |
 | callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。 |
 
 **示例：**
@@ -755,9 +755,9 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
   **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示光标变化。 |
+| 参数名    | 类型  | 必填  | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示光标变化。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。<br/> |
 
 
@@ -778,9 +778,9 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| 参数名    | 类型   | 必填 | 说明   |
+| -------- | ----- | ---- | ---- |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
 
 **示例：**
@@ -804,9 +804,9 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| 参数名   | 类型  | 必填 | 说明     |
+| -------- | ------- | ---- | ------- |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。<br/> |
 
 **示例：**
@@ -1283,7 +1283,7 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | 'show'\|'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
@@ -2264,9 +2264,9 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。                                       |
+| 参数名   | 类型  | 必填 | 说明   |
+| -------- | ------ | ---- | ------ |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。  |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2996,8 +2996,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **参数：**
 
-| 参数名                         | 类型                          | 必填                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 参数名    | 类型   | 必填  | 说明   |
+| -------- | ----- | ----- | ----- |
 | callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  回调函数。当编辑框的属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
 **示例：**
