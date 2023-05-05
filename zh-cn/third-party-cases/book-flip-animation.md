@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-翻页动效是应用开发中常见的动效场景，常见的如书籍翻页、日历翻页等。本文就为大家举例讲解如何通过ArkUI提供的显示动画接口[animateTo](../application-dev/reference/arkui-ts/ts-explicit-animation.md/)实现书籍翻页的效果。
+翻页动效是应用开发中常见的动效场景，常见的如书籍翻页、日历翻页等。本文就为大家举例讲解如何通过ArkUI提供的显示动画接口[animateTo](../application-dev/reference/arkui-ts/ts-explicit-animation.md)实现书籍翻页的效果。
 
 ## 效果呈现
 
@@ -34,8 +34,8 @@
 ## 开发步骤
 
 1. 创建文本组件
-    首先，我们看到动效中用到了4个文本组件，我们可以定义一个文本组件，然后对其进行重复调用。创建时我们为其添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md/)属性，用来控制组件的旋转。
-    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以我们为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md/)装饰器，用来控制变量传递。具体代码如下：
+    首先，我们看到动效中用到了4个文本组件，我们可以定义一个文本组件，然后对其进行重复调用。创建时我们为其添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)属性，用来控制组件的旋转。
+    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以我们为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
     ```
     @Component
     struct BookCard{
@@ -68,7 +68,7 @@
     }
     ```
 2. 创建父组件框架
-    由于文本组件分为上下两层，所以我们在父组件中采用[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md/)组件进行层叠布局。同时使用[Divider](../application-dev/reference/arkui-ts/ts-basic-components-divider.md/)组件作为书籍两个页面间的分隔线。具体代码如下：
+    由于文本组件分为上下两层，所以我们在父组件中采用[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md)组件进行层叠布局。同时使用[Divider](../application-dev/reference/arkui-ts/ts-basic-components-divider.md)组件作为书籍两个页面间的分隔线。具体代码如下：
     ```
     @Entry
     @Component
@@ -107,7 +107,7 @@
     最后我们通过以下几点来为静态的组件添加动效：
     - 根据**实现思路**章节的分析，在父组件中定义对应的变量，并在调用子组件时分别传入子组件。
     - 自定义book_animate函数，在其中使用animateTo方法添加动画效果，同时控制动画的时长，以及动画过程中各元素状态的改变。
-    - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md/#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md/)方法重复调用book_animate函数，以实现连续翻页动效。
+    - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md/#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md)方法重复调用book_animate函数，以实现连续翻页动效。
     具体代码如下：
     ```
     @Entry
