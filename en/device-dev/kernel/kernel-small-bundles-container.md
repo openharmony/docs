@@ -4,7 +4,7 @@
 
 Container provides a mechanism to isolate global resources, such as process identifiers (PIDs), host information, and user information. The container mechanism allows the processes in different containers to have independent global resources. Changing system resources in a container does not affect processes in other containers.
 
-The LiteOS-A kernel container isolation function involves seven containers: UTS container, PID container, Mount container, Network container, Time container, IPC container, and User container. The container information is stored in the **container** and **credentials** structs of the process control block (ProcessCB).
+The LiteOS-A kernel container isolation function involves seven containers: UTS container, PID container, Mount container, Network container, Time container, IPC container, and User container. The container information is stored in the **container** and **credentials** structs of the process control block (**ProcessCB**) struct.
 
 The following table lists the LiteOS-A containers.
 
@@ -26,7 +26,7 @@ The container-based resource isolation can be further classified into the follow
 
 For the PID container, **unshare()** or **setns()** changes the container of the child process (not the process).
 
-You can add a **Container** struct and a **Credentials** struct to the **ProcessCB** of a process to implement the container functionalities. You can also enable or disable specific container by using compiler switches.
+You can add a **Container** struct and a **Credentials** struct to the **ProcessCB** of a process to implement container functionalities. You can also enable or disable specific container by using compiler switches.
 
  - The **ProcessCB** struct of each process contains a pointer to the **Container** struct allocated. This allows a process to have an independent **Container** struct or share a **Container** struct. The **Container** struct contains pointers to the UTS, PID, Network, Mount, Time, and IPC containers.
 
@@ -69,8 +69,8 @@ The Network container isolates the system's network devices and network stacks.
 
 The Network container isolates the TCP/IP protocol stacks and network device resources.
 
- - Transport layer isolation: The Network container isolates port numbers. The available port numbers in a Network container range from 0 to 65535. A process is bound to the port number of its own container. Processes of different network containers can be bound to the same TCP/UDP port number without affecting each other.
- - IP layer isolation: The Network container isolates IP resources. Each container has its own IP resources. Changing the IP address in a Network container does not affect other network containers.
+ - Transport layer isolation: The Network container isolates port numbers. The available port numbers in a Network container range from 0 to 65535. A process is bound to the port number of its own container. Processes of different Network containers can be bound to the same TCP/UDP port number without affecting each other.
+ - IP layer isolation: The Network container isolates IP resources. Each container has its own IP resources. Changing the IP address in a Network container does not affect other Network containers.
  - Network device isolation: The Network container isolates network interface cards (NICs). Each container has its own NICs. The NICs in different Network containers are isolated from each other and cannot communicate with each other. You can configure veth-pair to implement communication between different containers.
 
 #### **User Container**
@@ -124,7 +124,7 @@ The clock offset in the time_for_children container of the current process is re
 
 Currently, the only way to create a Time container is to call **unshare()** with the **CLONE_NEWTIME** flag. The Time container created holds the child process created by the calling process instead of the calling process.
 
-You need to set the clock offset (**/proc/PID/timens_offsets**) for this container before the first process of the new container is created.
+You need to set the clock offset (**/proc/PID/timens_offsets**) for this container before the first process of the container is created.
 
 #### **IPC Container** 
 
@@ -144,21 +144,21 @@ As a result, the operations on the message queue and shared memory in different 
 
 During the system initialization process, a root container is created for initial processes (processes 0, 1, and 2). The root container types include all of the seven containers.
 
-You can use **clone()** (with the container flag specified) to create a container for the child process. If the container flag is not specified, the child process reuses the parent process container.
+You can use **clone()** with the container flag specified to create a container for a process. If the container flag is not specified, the process reuses its parent process container.
 
 ![ContainerBase](figures/container-002.png)
 
 
 
-#### Process of Changing a Container
+#### Process of Switching a Container
 
-Use **unshare()** to remove a process from the current container and associate the process with a new container. The following figure uses the IPC container as an example.
+Use **unshare()** to move a process to a newly created container. The following figure uses the IPC container as an example.
 
 <img src="figures/container-003.png" alt="ContainerBase" style="zoom:80%;" />
 
 ## How to Develop
 
-The following describes how to create, change, and destroy a container.
+The following describes how to create, switch, and destroy a container.
 
 ### Creating a Container
 
@@ -173,39 +173,39 @@ int clone(int (*fn)(void *), void *stack, int flags, void *arg, ...
              /* pid_t *parent_tid, void *tls, pid_t *child_tid */ );
 ```
 
- - When using **clone()** to create a process, you can also specify a container to isolate resources (such as the UTS information) for the process.
+ - When using **clone()** to create a process, you can specify a container to isolate resources (such as the UTS information) for the process.
 
- - If no container-related flag is specified, the process shares the containers of its parent process.
+ - If no container flag is specified, the process shares the containers of its parent process.
 
 ### Switching a Container
 
- You can use either of the following interfaces to associate a process with another container:
+ You can use either of the following interfaces to move a process to another container:
 
 - **unshare**
 
-  **unshare()** reassociates a process with a newly created container. The function prototype is as follows:
+  Use **unshare()** to move a process to a newly created container. The function prototype is as follows:
 
   ```
   int unshare(int flags);
   ```
 
-  **NOTE**<br>For the PID or Time container, **unshare()** associates the child process (not the process itself) with the new container created.
+  **NOTE**<br>For the PID or Time container, **unshare()** moves the child process (not the process itself) to a new container created.
 
 - **setns**
 
-  ** setns()** reassociates a process with another existing container. The function prototype is as follows:
+  Use **setns()** to move a process to another existing container. The function prototype is as follows:
 
   ```
   int setns(int fd, int nstype);
   ```
 
-  **NOTE**<br>For the PID or Time container, **setns()** associates the child process (not the process itself) with another container.
+  **NOTE**<br>For the PID or Time container, **setns()** moves the child process (not the process itself) to another container.
 
 ### Destroying a Container
 
-When a process is terminated, it exits all containers and the reference count decrements. When the reference count decrements to 0, you need to destroy the container.
+When a process is terminated, it exits all containers and the container reference count decrements. When the reference count decrements to 0, you need to destroy the container.
 
-You can use **kill()** to send a specified signal to a process to terminate or exit it. The function prototype is as follows:
+You can use **kill()** to send a specified signal to the process to terminate or exit it. The function prototype is as follows:
 
 ```
 int kill(pid_t pid, int sig);
@@ -233,12 +233,12 @@ ls -l /proc/[pid]/container
 
 ### plimits
 
-plimits sets the resource limits of process groups. **/proc/plimits** is the root directory of plimits.
+plimits sets resource limits of process groups. **/proc/plimits** is the root directory of plimits.
 
 - The plimits file system is a pseudo file system used to implement mappings between files and plimits variables. With this file system, you can modify kernel variables through operations on files. For example, you can modify the **memory.limit** file to restrict memory allocation.
 - In the plimits file system, files can be read and written, and directories can be added or deleted.
 - A plimits directory maps a plimits group. When a directory is created, the files (mapped to the control variables of the limiter) in the directory are automatically created.
-- Files for a limiter are created by group. For example, when a memory limiter is created, all files required, instead of a single file, are created at a time.
+- Files for a limiter are created by group. For example, when a memory limiter is created, all files required, instead of a single file, are created.
 
 The macro **LOSCFG_PROCESS_LIMITS** specifies the setting of plimits. **y** means to enable plimits, and **n** (default) means the opposite.
 
@@ -267,7 +267,7 @@ The **devices** parameter is described as follows:
 | type (Device Type)                           | name (Device Name)| access (Permission)             |
 | -------------------------------------------- | ----------------- | ---------------------------------- |
 | a - All devices, which can be character devices or block devices.| /                 | r - Allow the process to read the specified device.          |
-| b: block device                                   | /                 | w - Allow the process to write to the specified device.          |
+| b - Block device                                   | /                 | w - Allow the process to write to the specified device.          |
 | c - Character device                                | /                 | m - Allow the process to generate a file that does not exist.|
 
 ## Reference
@@ -278,7 +278,7 @@ The **devices** parameter is described as follows:
 
 **LOSCFG_KERNEL_CONTAINER_DEFAULT_LIMIT** specifies the maximum number of containers of each type supported by the kernel.
 
-The initialization of the **proc/sys/user** directory generates the **max_net_container**, **max_ipc_container**, **max_time_container**, **max_uts_container**, **max_user_container**, **max_pid_container**, and **max_mnt_container** files, and binds the pseudo files and kernel parameters. You can modify the kernel parameters by configuring the pseudo files. New containers can be created if the number of containers is less than the limit. Otherwise, NULL is returned.
+The initialization of the **proc/sys/user** directory generates the **max_net_container**, **max_ipc_container**, **max_time_container**, **max_uts_container**, **max_user_container**, **max_pid_container**, and **max_mnt_container** files, and binds the pseudo files and kernel parameters. You can modify the kernel parameters by configuring the pseudo files. New containers can be created if the number of containers is less than the maximum. Otherwise, NULL is returned.
 
 #### **Unique Container ID**
 
@@ -295,12 +295,12 @@ inum = CONTAINER_IDEX_BASE + (unsigned int)i;
 
 - When **clone()**, **setns()**, and **unshare()** are used, flags complying with POSIX must be passed in. The flags are described as follows:
 
-| FLAG          | clone                        | setns                            | unshare                          |
+| Flag         | clone                        | setns                            | unshare                          |
 | ------------- | ---------------------------- | -------------------------------- | -------------------------------- |
 | CLONE_NEWNS   | Create a Mount container for a child process.    | Move this process to the specified Mount container.| Create a Mount container for this process.        |
 | CLONE_NEWPID  | Create a PID container for a child process.         | Move this process to the specified PID container.     | Create a PID container for a new child process. |
 | CLONE_NEWIPC  | Create an IPC container for a child process.         | Move this process to the specified IPC container.     | Create an IPC container for this process.             |
-| CLONE_NEWTIME | Create a timer container for the parent process of this process.| Not supported currently                        | Create a timer container for a new child process.|
+| CLONE_NEWTIME | Create a Time container for the parent process of this process.| Not supported currently                        | Create a Time container for a new child process.|
 | CLONE_NEWUSER | Create a User container for a child process.        | Move this process to the specified User container.    | Create a User container for this process.            |
 | CLONE_NEWUTS  | Create a UTS container for a child process.     | Move this process to the specified UTS container. | Create a UTS container for this process.         |
 | CLONE_NEWNET  | Create a Network container for a child process. | Move this process to the specified Network container.| Create a Network container for this process.     |
