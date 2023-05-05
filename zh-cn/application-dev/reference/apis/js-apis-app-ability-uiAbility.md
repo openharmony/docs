@@ -132,6 +132,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **示例：**
     
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDestroy() {
@@ -140,6 +141,16 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
   }
   ```
 
+在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+
+  ```ts
+class MyUIAbility extends UIAbility {
+    async onDestroy() {
+        console.log('onDestroy');
+        // 调用异步函数...
+    }
+}
+  ```
 
 ## UIAbility.onForeground
 
