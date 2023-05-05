@@ -2551,4 +2551,3 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
     console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
 })
 ```
-
