@@ -537,7 +537,7 @@ multiWindowAccess(multiWindow: boolean)
 
 Sets whether to enable the multi-window permission.
 
-Enabling the multi-window permission requires implementation of the **onWindowNew** event. For details about the sample code, see [onWindowNew](#onwindownew9).
+Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
 
 **Parameters**
 
@@ -698,6 +698,40 @@ Sets the cache mode.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .cacheMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+Sets the text zoom ratio of the page. The default value is **100**, which indicates 100%.
+
+This API is deprecated since API version 9. You are advised to use [textZoomRatio<sup>9+</sup>](#textzoomratio9) instead.
+
+**Parameters**
+
+| Name          | Type  | Mandatory  | Default Value | Description           |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
       }
     }
   }
@@ -1937,7 +1971,7 @@ Called when loading of the web page is complete. This API is used by an applicat
 | Name        | Type   | Description                                    |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | URL to be accessed.                                 |
-| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh](#refresh) API, and **false** means the opposite.|
+| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh) API, and **false** means the opposite.|
 
 **Example**
 
@@ -3099,7 +3133,7 @@ Called when this web page receives a new favicon.
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onFaviconReceived((event) => {
-          console.log('onFaviconReceived:' + JSON.stringify(event))
+          console.log('onFaviconReceived');
           this.icon = event.favicon;
         })
       }
@@ -3215,6 +3249,34 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
             console.log('isRedirect:' + event.data.isRedirect())
             console.log('isRequestGesture:' + event.data.isRequestGesture())
             return true
+          })
+      }
+    }
+  }
+  ```
+
+### onRequestSelected
+
+onRequestSelected(callback: () => void)
+
+Called when the **\<Web>** component obtains the focus.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRequestSelected(() => {
+            console.log('onRequestSelected')
           })
       }
     }
@@ -4145,7 +4207,7 @@ Describes the web-based media playback policy.
 
 | Name          | Type      | Readable| Writable| Mandatory| Description                        |
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds.|
+| resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
 | audioExclusive |  boolean  |  Yes | Yes  |  No | Whether the audio of multiple **\<Web>** instances in an application is exclusive.   |
 
 ## DataResubmissionHandler<sup>9+</sup>
@@ -4228,7 +4290,7 @@ Obtains the cookie management object of the **\<Web>** component.
 
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated).|
 
 **Example**
 
@@ -4457,7 +4519,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
 
 deleteJavaScriptRegister(name: string)
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refresh) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister).
 
@@ -4738,7 +4800,7 @@ This API is deprecated since API version 9. You are advised to use [refresh<sup>
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refresh) API for the registration to take effect.
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refreshdeprecated) API for the registration to take effect.
 
 This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
 
