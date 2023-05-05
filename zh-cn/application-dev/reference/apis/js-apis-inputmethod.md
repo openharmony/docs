@@ -657,6 +657,7 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt;void&gt;): void
 
 用于自绘控件绑定输入法应用。使用callback异步回调。
+
 必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -705,6 +706,7 @@ try {
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 用于自绘控件绑定输入法应用。使用callback异步回调。
+
 必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -756,6 +758,7 @@ try {
 showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 进入文本编辑状态。使用callback异步回调。
+
 编辑控件与输入法应用绑定成功后，可调用该接口去拉起软键盘。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -793,6 +796,7 @@ inputMethodController.showTextInput((err) => {
 showTextInput(): Promise&lt;void&gt;
 
 进入文本编辑状态。使用promise异步回调。
+
 编辑控件与输入法应用绑定成功后，可调用该接口去拉起软键盘。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -828,7 +832,9 @@ inputMethodController.showTextInput().then(() => {
 hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 退出文本编辑状态。使用callback异步回调。
+
 编辑控件可调用该接口退出编辑状态。若调用该接口时当前软键盘处于显示状态，则调用该接口后软键盘会被隐藏。
+
 调用该接口不解除与输入法应用的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -866,7 +872,9 @@ inputMethodController.hideTextInput((err) => {
 hideTextInput(): Promise&lt;void&gt;
 
 退出文本编辑状态。使用promise异步回调。
+
 编辑控件可调用该接口退出编辑状态。若调用该接口时当前软键盘处于显示状态，则调用该接口后软键盘会被隐藏。
+
 调用该接口不解除与输入法应用的绑定，再次调用[showTextInput](#showtextinput10)时，可重新进入编辑状态。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -970,6 +978,7 @@ inputMethodController.detach().then(() => {
 setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置要避让的窗口。使用callback异步回调。
+
 比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1013,6 +1022,7 @@ try {
 setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 设置要避让的窗口。使用promise异步回调。
+
 比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1059,6 +1069,7 @@ try {
 updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 更新当前编辑框内光标信息。使用callback异步回调。
+
 当光标信息发生变化时，可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1101,6 +1112,7 @@ try {
 updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 更新当前编辑控件内的光标信息。使用promise异步回调。
+
 当光标信息发生变化时，编辑控件可调用该接口更新光标信息，从而被输入法应用感知到光标变化。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1320,6 +1332,7 @@ try {
 stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 结束输入会话。使用callback异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1364,6 +1377,7 @@ try {
 stopInputSession(): Promise&lt;boolean&gt;
 
 结束输入会话。使用promise异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1406,6 +1420,7 @@ try {
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 显示软键盘。使用callback异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
@@ -1444,6 +1459,7 @@ inputMethodController.showSoftKeyboard((err) => {
 showSoftKeyboard(): Promise&lt;void&gt;
 
 显示软键盘。使用Promise异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
@@ -1480,6 +1496,7 @@ inputMethodController.showSoftKeyboard().then(() => {
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏软键盘。使用callback异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
@@ -1518,6 +1535,7 @@ inputMethodController.hideSoftKeyboard((err) => {
 hideSoftKeyboard(): Promise&lt;void&gt;
 
 隐藏软键盘。使用Promise异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
@@ -1554,6 +1572,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 结束输入会话。使用callback异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 > **说明：** 
@@ -1589,6 +1608,7 @@ inputMethodController.stopInput((error, result) => {
 stopInput(): Promise&lt;boolean&gt;
 
 结束输入会话。使用promise异步回调。
+
 需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 > **说明：** 

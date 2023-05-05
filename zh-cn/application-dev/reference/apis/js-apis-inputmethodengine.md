@@ -484,7 +484,9 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用callback异步回调。
+创建输入法应用面板。使用callback异步回调。
+
+仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -526,7 +528,9 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用promise异步回调。
+创建输入法应用面板。使用promise异步回调。
+
+仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1046,6 +1050,7 @@ try {
 resize(width: number, height: number): Promise\<void>;
 
 改变当前面板大小，使用Promise异步回调。
+
 面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1116,6 +1121,7 @@ try {
 moveTo(x: number, y: number): Promise\<void>
 
 移动面板位置，使用callback异步回调。
+
 对FLG_FIXED状态的panel不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -2268,8 +2274,8 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
-| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。  |
-| callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| movement | [Movement](#movement10)   | 是   | 选中时光标移动的方向。  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2412,6 +2418,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
 
 发送扩展编辑操作。使用callback异步回调。
+
 输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -2453,6 +2460,7 @@ try {
 sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 发送扩展编辑操作。使用promise异步回调。
+
 输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
