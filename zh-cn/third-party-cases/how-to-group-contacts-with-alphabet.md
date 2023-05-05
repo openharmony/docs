@@ -336,4 +336,4 @@ struct ContactList{
 }
 ```
 ## 参考
-[创建列表](../application-dev/ui/arkts-layout-development-create-list.md/)
+[创建列表](../application-dev/ui/arkts-layout-development-create-list.md)
