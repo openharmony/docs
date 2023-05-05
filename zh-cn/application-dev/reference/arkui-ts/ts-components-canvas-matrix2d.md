@@ -343,7 +343,7 @@ struct Matrix2DInvert {
 }
 ```
 
-### multiply
+### multiply<sup>(deprecated) </sup>
 
 multiply(other?: Matrix2D): Matrix2D
 
