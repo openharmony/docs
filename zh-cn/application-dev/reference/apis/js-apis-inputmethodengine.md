@@ -2411,7 +2411,8 @@ inputClient.getTextIndexAtCursor().then((index) => {
 
 sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
 
-发送扩展编辑操作，输入法应用调用该接口通知编辑控件完成相应扩展操作。使用callback异步回调。
+发送扩展编辑操作。使用callback异步回调。
+输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2451,7 +2452,8 @@ try {
 
 sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
-发送扩展编辑操作，输入法应用调用该接口通知编辑控件完成相应扩展操作。使用promise异步回调。
+发送扩展编辑操作。使用promise异步回调。
+输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

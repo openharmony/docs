@@ -1319,7 +1319,8 @@ try {
 
 stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
-结束输入会话。通过点击输入框实现输入会话的开启之后该接口的调用才可生效。使用callback异步回调。
+结束输入会话。使用callback异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1362,7 +1363,8 @@ try {
 
 stopInputSession(): Promise&lt;boolean&gt;
 
-结束输入会话。通过点击输入框实现输入会话的开启之后此接口才可生效。使用promise异步回调。
+结束输入会话。使用promise异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1403,7 +1405,8 @@ try {
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-显示软键盘。需要与输入框绑定使用。当点击输入框后，才可通过该接口的调用显示出当前输入法的软键盘。使用callback异步回调。
+显示软键盘。使用callback异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1440,7 +1443,8 @@ inputMethodController.showSoftKeyboard((err) => {
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
-显示软键盘。需要与输入框绑定使用。当点击输入框后，才可通过该接口的调用显示出当前输入法的软键盘。使用Promise异步回调。
+显示软键盘。使用Promise异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过该接口的调用显示出当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1475,7 +1479,8 @@ inputMethodController.showSoftKeyboard().then(() => {
 
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏软键盘。需要与输入框绑定使用。点击输入框后，才可以使用该接口的调用隐藏软键盘。使用callback异步回调。
+隐藏软键盘。使用callback异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1512,7 +1517,8 @@ inputMethodController.hideSoftKeyboard((err) => {
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
-隐藏软键盘。需要与输入框绑定使用。点击输入框后，才可以使用该接口的调用隐藏软键盘。使用Promise异步回调。
+隐藏软键盘。使用Promise异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口隐藏当前输入法的软键盘。
 
 **需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。
 
@@ -1547,7 +1553,8 @@ inputMethodController.hideSoftKeyboard().then(() => {
 
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
-结束输入会话。通过点击输入框实现输入会话的开启之后该接口的调用才可生效。使用callback异步回调。
+结束输入会话。使用callback异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 > **说明：** 
 >
@@ -1581,7 +1588,8 @@ inputMethodController.stopInput((error, result) => {
 
 stopInput(): Promise&lt;boolean&gt;
 
-结束输入会话。通过点击输入框实现输入会话的开启之后该接口的调用才可生效。使用promise异步回调。
+结束输入会话。使用promise异步回调。
+需要与编辑控件（如：输入框）绑定使用。当点击编辑控件后，才可通过调用该接口结束输入会话。
 
 > **说明：** 
 >
