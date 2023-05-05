@@ -107,7 +107,7 @@
     最后我们通过以下几点来为静态的组件添加动效：
     - 根据**实现思路**章节的分析，在父组件中定义对应的变量，并在调用子组件时分别传入子组件。
     - 自定义book_animate函数，在其中使用animateTo方法添加动画效果，同时控制动画的时长，以及动画过程中各元素状态的改变。
-    - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md/#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md)方法重复调用book_animate函数，以实现连续翻页动效。
+    - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md)方法重复调用book_animate函数，以实现连续翻页动效。
     具体代码如下：
     ```
     @Entry
