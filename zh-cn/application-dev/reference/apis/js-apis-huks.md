@@ -1773,10 +1773,12 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 名称                    | 值   | 说明                           |
-| ----------------------- | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP       | 0    | 表示通过本地直接管理密钥。     |
-| HUKS_STORAGE_PERSISTENT | 1    | 表示通过HUKS service管理密钥。 |
+| 名称                                          | 值   | 说明                           |
+| --------------------------------------------  | ---- | ------------------------------ |
+| HUKS_STORAGE_TEMP                             | 0    | 表示通过本地直接管理密钥。     |
+| HUKS_STORAGE_PERSISTENT                       | 1    | 表示通过HUKS service管理密钥。 |
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示密钥只存储在huks中。       |
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示密钥从huks中导出，不存储。 |
 
 ## HuksSendType
 
@@ -1811,6 +1813,17 @@ async function huksAbort() {
 | HUKS_KEY_TYPE_PUBLIC_KEY  | 0    | 表示导入的密钥类型为公钥。     |
 | HUKS_KEY_TYPE_PRIVATE_KEY | 1    | 表示导入的密钥类型为私钥。     |
 | HUKS_KEY_TYPE_KEY_PAIR    | 2    | 表示导入的密钥类型为公私钥对。 |
+
+## HuksRsaPssSaltLenType<sup>10+</sup>
+
+表示Rsa在签名验签、padding为pss时需指定的salt_len类型。
+
+**系统能力**：SystemCapability.Security.Huks
+
+| 名称                                       | 值   | 说明                         |
+| ------------------------------------------ | ---- | ---------------------------- |
+| HUKS_RSA_PSS_SALT_LEN_DIGEST<sup>10+</sup> | 0    | 表示以摘要长度设置salt_len。 |
+| HUKS_RSA_PSS_SALT_LEN_MAX<sup>10+</sup>    | 1    | 表示以最大长度设置salt_len。 |
 
 ## HuksUserAuthType<sup>9+</sup>
 
@@ -1920,6 +1933,8 @@ async function huksAbort() {
 | HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。                   |
 | HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。                     |
 | HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。                 |
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | 表示派生密钥/协商密钥的存储类型。 |
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | 表示rsa_pss_salt_length的类型。 |
 | HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
 | HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
 | HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                                 |
@@ -1934,6 +1949,7 @@ async function huksAbort() {
 | HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | 表示生成或导入密钥时，指定该密钥的签名类型。 |
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择 |
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。 |
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | 表示密钥认证用途的tag |
 | HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。    |
 | HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。                      |
