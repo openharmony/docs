@@ -79,28 +79,28 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     ```
 
 3. In the **./entry/src/main/ets** directory under the **entry** module of the project, create a directory named **workAbility**. In the **workAbility** directory, create an ArkTS file named **WorkTest.ets** and implement the callbacks for Work Scheduler.
-
-    Import the module.
-
-    ```ts
-       import { workAbility } from '@ohos/library'
+   
+Import the module.
+   
+ ```ts
+    import { workAbility } from '@ohos/library'
     ```
-
-    Inherit from **workAbility** and implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
-
-    ```ts
-       export default class WorkTest extends workAbility {
-         onWorkStart(workInfo) {
-           console.log(`onWorkStartTest start     ${JSON.stringify(workInfo)}`);
-           super.onWorkStart(workInfo);
-         }
-      
-   onWorkStopTest(workInfo) {
+   
+Inherit from **workAbility** and implement the lifecycle callbacks for the WorkSchedulerExtensionAbility.
+   
+ ```ts
+    export default class WorkTest extends workAbility {
+      onWorkStart(workInfo) {
+        console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
+        super.onWorkStart(workInfo);
+      }
+   
+      onWorkStopTest(workInfo) {
         super.onWorkStop(workInfo);
         console.log(`onWorkStop value`);
       }
     }
-   ```
+    ```
 
 ### Implementing Work Scheduler
 
@@ -113,7 +113,7 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     ```
 
     Encapsulate the APIs for starting and stopping Work Scheduler tasks.
-    
+
     ```ts
     export default class DelayWork {
       private workInfo = {
@@ -136,7 +136,7 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
           });
         }
       }
-    
+
       // Stop the Work Scheduler task.
       stopWork(bundleName: string, abilityName: string) {
         this.workInfo.bundleName = bundleName;
@@ -156,7 +156,7 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     ```
 
     Add the **Upgrade** button, which, when being clicked, will call the API encapsulated in **library** to start the Work Scheduler task. In the API, **bundleName** and **abilityName** are passed in, where the value of **abilityName** is **WorkTest**.
-    
+
     ```ts
     Button($r('app.string.upgrade'))
       .width('60%')
@@ -168,25 +168,24 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
     ```
 
     When the component is destructed, it calls the API to stop the Work Scheduler task.
-    
+
     ```ts
     aboutToDisappear() {
       this.work.stopWork('ohos.samples.workscheduler', 'WorkTest');
     }
     ```
 
-
 ### Setting the Configuration File
 
-1. Register the WorkSchedulerExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) under the **entry** module. Set **type** to **workScheduler** and **srcEntrance** to the code path of the WorkSchedulerExtensionAbility component.
+1. Register the WorkSchedulerExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) under the **entry** module. Set **type** to **workScheduler** and **srcEnty** to the code path of the WorkSchedulerExtensionAbility component.
    
-    ```json
-    {
+     ```json
+     {
        "module": {
            "extensionAbilities": [
              {
                "name": "WorkTest",
-               "srcEntrance": "./ets/workAbility/WorkTest.ets",
+               "srcEntry": "./ets/workAbility/WorkTest.ets",
                "label": "$string:WorkSchedulerExtensionAbility_label",
                "description": "$string:WorkSchedulerExtensionAbility_desc",
                "type": "workScheduler"
@@ -194,4 +193,14 @@ To create a WorkScheduler project in DevEco Studio, perform the following steps:
            ]
        }
      }
-    ```
+     ```
+
+## Restrictions
+
+To minimize the abuse of **WorkSchedulerExtensionAbility** by third-party applications, the following APIs cannot be invoked in **WorkSchedulerExtensionAbility**:
+
+- @ohos.backgroundTaskManager.d.ts
+- @ohos.resourceschedule.backgroundTaskManager.d.ts
+- @ohos.multimedia.camera.d.ts
+- @ohos.multimedia.audio.d.ts
+- @ohos.multimedia.media.d.ts

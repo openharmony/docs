@@ -7,7 +7,7 @@
 | 动画类型 | 特点                                       |
 | ---- | ---------------------------------------- |
 | 显式动画 | 闭包内的变化均会触发动画，包括由数据变化引起的组件的增删、组件属性的变化等，可以做较为复杂的动画。 | 较复杂的动画场景 |
-| 属性动画 | 动画设置简单，属性变化时自动触发动画。                      | 
+| 属性动画 | 动画设置简单，属性变化时自动触发动画。                      |
 
 
 ## 使用显式动画产生布局更新动画
@@ -226,9 +226,9 @@ struct LayoutChange2 {
         .height(this.myHeight)
         // animation只对其上面的type、width、height属性生效，时长为1000ms，曲线为Ease
         .animation({ duration: 1000, curve: Curve.Ease })
+        // animation对下面的backgroundColor、margin属性不生效
         .backgroundColor(this.myColor)
         .margin(20)
-        // animation对下面的backgroundColor、margin属性不生效
 
       Button("area: click me")
         .fontSize(12)

@@ -8,7 +8,7 @@
 
 - [AudioRenderer](using-audiorenderer-for-playback.md)：用于音频输出的的ArkTS/JS API，仅支持PCM格式，需要应用需要持续写入音频数据进行工作。应用可以在输入前添加数据预处理，如设定音频文件的采样率、位宽等，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体播放应用开发。
 
-- [OpenSLES](using-opensl-es-for-playback.md)：一套跨平台标准化的音频Native API，目前阶段唯一的音频类Native API，同样提供音频输出能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输出功能的播放应用使用。
+- [OpenSL ES](using-opensl-es-for-playback.md)：一套跨平台标准化的音频Native API，目前阶段唯一的音频类Native API，同样提供音频输出能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输出功能的播放应用使用。
 
 - [TonePlayer](using-toneplayer-for-playback.md)：拨号和回铃音播放ArkTS/JS API，只能在固定的类型范围内选择播放内容，无需输入媒体资源或音频数据，适用于拨号盘按键和通话回铃音的特定场景。该功能当前仅对系统应用开放。
 
