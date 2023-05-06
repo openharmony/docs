@@ -490,10 +490,7 @@
 
 ## 退出由跨设备拉起的serviceextensionability组件
 
-退出由跨设备拉起的ServiceExtensionAbility组件。
-
 下面介绍退出由跨设备拉起的ServiceExtensionAbility组件的方法。
-
 
 ### 接口说明
 
