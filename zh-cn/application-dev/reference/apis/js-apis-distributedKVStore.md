@@ -444,7 +444,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
@@ -500,7 +500,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
@@ -555,7 +555,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
@@ -619,7 +619,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
