@@ -2292,8 +2292,6 @@ try {
 }
   ```
 
-##
-
 ## ServiceExtensionContext.startAbilityByCallWithAccount
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
@@ -2302,7 +2300,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 使用规则：
  - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
- - 其他场景下，startAbilityByCallWithAccount接口使用规则与[startAbilityByCall使用规则一致](#uiabilitycontextstartabilitybycall)
+ - 其他场景下，startAbilityByCallWithAccount接口使用规则与[startAbilityByCall使用规则保持一致](#uiabilitycontextstartabilitybycall)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
