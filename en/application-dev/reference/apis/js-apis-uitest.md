@@ -144,7 +144,7 @@ Describes the injected simulated mouse button.
 ## On<sup>9+</sup>
 
 Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.
-The API capabilities provided by the **On** class exhibit the following features: 1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore) and [ON.isAfter](#isafter) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
+The API capabilities provided by the **On** class exhibit the following features: 1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
 
 ```js
 ON.text('123').type('button');
@@ -542,7 +542,7 @@ Specifies that the target component is within the given application window.
 **Example**
 
 ```js
-let on = ON.inWindow(ON.inWindow('com.uitestScene.acts')); // Create an On object using the static constructor ON, specifying that the target component is within the given application window.
+let on = ON.inWindow('com.uitestScene.acts'); // Create an On object using the static constructor ON, specifying that the target component is within the given application window.
 ```
 
 ## Component<sup>9+</sup>
@@ -1553,7 +1553,7 @@ Searches this **Driver** object for the target component that matches the given 
 
 | Type                             | Description                             |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component)> | Promise used to return the found component.|
+| Promise\<[Component](#component9)> | Promise used to return the found component.|
 
 **Error codes**
 

@@ -46,7 +46,7 @@ $ diff.exe -s Example.z.so -d Example.z.so -p Example.z.so.diff
 
 基于上述的patch.json、.abc快速修复文件和.so快速修复文件，可以通过本地OpenHarmony SDK路径的`toolchains`文件夹下的`app_packing_tool.jar`生成.hqf包，执行打包命令如下：
 ```shell
-$ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path libs --ets-patch patchs --out-path entry-default-unsigned.hqf --force true
+$ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path libs --ets-path patchs --out-path entry-default-unsigned.hqf --force true
 ```
 
 命令行参数介绍：

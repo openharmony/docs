@@ -932,6 +932,11 @@ Indicates that the HTTP proxy configuration has changed.
 - Value: **usual.event.HTTP_PROXY_CHANGE**
 - Required subscriber permissions: none
 
+## COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED<sup>10+<sup>
+Indicates that the domain account status has changed.
+- Value: **usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED**
+- Required subscriber permissions: none
+
 ## COMMON_EVENT_SIM_STATE_CHANGED<sup>10+<sup>
 Indicates that the SIM card state has changed.
 - Value: **usual.event.SIM_STATE_CHANGED**
