@@ -1,4 +1,4 @@
-# @ohos.cooperate (键鼠穿越)
+# @ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)
 
 键鼠穿越功能模块，提供两台或多台设备组网协同后键鼠共享能力，实现键鼠输入设备的跨设备协同操作。
 
@@ -11,52 +11,64 @@
 ## 导入模块
 
 ```js
-import cooperate from '@ohos.cooperate'
+import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 ```
 
-## cooperate.prepare
+## inputDeviceCooperate.enable
 
-prepare(callback: AsyncCallback<void>): void;
+enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-准备键鼠穿越，使用AsyncCallback异步方式返回结果。
+开启、关闭键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名    | 类型      | 必填  | 说明    |
 | -------- | ------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;void&gt;  | 是 |回调函数，异步返回准备键鼠穿越的结果。   |
+| enable   | boolean                   | 是   | 键鼠穿越使能状态。 |
+| callback | AsyncCallback&lt;void&gt;  | 是  |回调函数，异步返回键鼠穿越开启、关闭结果。   |
+
+
 
 **示例**：
 
 ```js
 try {
-  cooperate.prepare((error) => {
+  inputDeviceCooperate.enable(true, (error) => {
     if (error) {
-      console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Keyboard mouse crossing prepare success.`);
+    console.log(`Keyboard mouse crossing enable success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## cooperate.prepare
+## inputDeviceCooperate.enable
 
-prepare(): Promise&lt;void&gt;
+enable(enable: boolean): Promise&lt;void&gt;
 
-准备键鼠穿越，使用Promise异步方式返回结果。
+开启、关闭键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**系统能力**： SystemCapability.MultimodalInput.Input.Cooperator
+
+**参数**：
+
+| 参数名     | 类型     | 必填  | 说明                                                                                 |
+| --------- | ------- | ---- | -------------------------------------------------------------------                 |
+| enable    | boolean | 是   | 键鼠穿越使能状态。                   |
+
+
 
 **返回值**：
 
 | 参数                 | 说明                     |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise对象，异步返回准备键鼠穿越的结果。 |
+| Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
 
 
 
@@ -64,107 +76,48 @@ prepare(): Promise&lt;void&gt;
 
 ```js
 try {
-  cooperate.prepare().then(() => {
-    console.log(`Keyboard mouse crossing prepare success.`);
+  inputDeviceCooperate.enable(true).then(() => {
+    console.log(`Keyboard mouse crossing enable success.`);
   }, (error) => {
-    console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
+## inputDeviceCooperate.start
 
-
-## cooperate.unprepare
-
-unprepare(callback: AsyncCallback<void>): void;
-
-取消准备键鼠穿越，使用AsyncCallback异步方式返回结果。
-
-**系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
-
-| 参数名   | 类型                | 必填 | 说明                                       |
-| -------- | ------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback<void> | 是   | 回调函数，异步返回取消准备键鼠穿越的结果。 |
-
-**示例**：
-
-```js
-try {
-  cooperate.unprepare((error) => {
-    if (error) {
-      console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
-    }
-    console.log(`Keyboard mouse crossing unprepare success.`);
-  });
-} catch (error) {
-  console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-```
-
-
-
-## cooperate.unprepare
-
-unprepare(): Promise<void>;
-
-取消准备键鼠穿越，使用Promise异步方式返回结果。
-
-**系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
-
-**返回值**：
-
-| 参数          | 说明                                          |
-| ------------- | --------------------------------------------- |
-| Promise<void> | Promise对象，异步返回取消准备键鼠穿越的结果。 |
-
-```js
-try {
-  cooperate.unprepare().then(() => {
-    console.log(`Keyboard mouse crossing unprepare success.`);
-  }, (error) => {
-    console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-```
-
-
-
-## cooperate.activate
-
-activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback<void>): void;
+start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCallback\<void>): void
 
 启动键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
-| inputDeviceId | number                       |  是   | 待穿越输入设备标识符。 |
-| callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回启动键鼠穿越的结果。 |
+| sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
+| callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止状态。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](../errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
+| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                |
+| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。                |
 
 **示例**：
 
 ```js
-let targetNetworkId = "networkId";
-let inputDeviceId = 0;
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
-  cooperate.activate(targetNetworkId, inputDeviceId, (error) => {
+  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error) => {
     if (error) {
       console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -176,20 +129,20 @@ try {
 }
 ```
 
-## cooperate.activate
+## inputDeviceCooperate.start
 
-activate(targetNetworkId: string, inputDeviceId: number): Promise<void>;
+start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 启动键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| targetNetworkId | string                       |  是   | 键鼠穿越目标设备描述符。             |
-| inputDeviceId | number                       |  是   | 待穿越输入设备标识符 |
+| sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
+| srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 
 
 
@@ -197,23 +150,24 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise<void>;
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
-| Promise\<void>         | Promise对象，异步返回启动键鼠穿越结果。     |
+| Promise\<void>         | Promise对象，异步返回键鼠穿越启动、关闭结果。       |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](../errorcodes/errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](../errorcodes/errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 20900001 | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
+| 4400001  | 当调用键鼠穿越接口传入无效的设备描述符参数时，系统会产生此错误码。                 |
+| 4400002  | 当调用键鼠穿越接口时穿越状态异常，系统会产生此错误码。               |
 
 **示例**：
 
 ```js
-let targetNetworkId = "networkId";
-let inputDeviceId = 0;
+let sinkDeviceDescriptor = "descriptor";
+let srcInputDeviceId = 0;
 try {
- cooperate.activate(targetNetworkId, inputDeviceId).then(() => {
+  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
   }, (error) => {
     console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -223,20 +177,19 @@ try {
 }
 ```
 
-## cooperate.deactivate
+## inputDeviceCooperate.stop
 
-deactivate(isUnchained: boolean, callback: AsyncCallback<void>): void;
+stop(callback: AsyncCallback\<void>): void
 
 停止键鼠穿越，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                          | 必填  | 说明                            |
 | --------             | ---------------------------- | ----  | ----------------------------   |
-| isUnchained | boolean | 是 | 是否关闭跨设备链路 |
-| callback             | AsyncCallback\<void>         |  是   | 回调函数，异步返回停止键鼠穿越的结果。       |
+| callback             | AsyncCallback\<void>         |  是   | 回调函数，异步返回停止键鼠穿越结果。        |
 
 
 
@@ -244,7 +197,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback<void>): void;
 
 ```js
 try {
-  cooperate.deactivate(false, (error) => {
+  inputDeviceCooperate.stop((error) => {
     if (error) {
       console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -256,21 +209,13 @@ try {
 }
 ```
 
-## cooperate.deactivate
+## inputDeviceCooperate.stop
 
-deactivate(isUnchained: boolean): Promise<void>;
+stop(): Promise\<void>
 
 停止键鼠穿越，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
-
-**参数**：
-
-| 参数名      | 类型    | 必填 | 说明               |
-| ----------- | ------- | ---- | ------------------ |
-| isUnchained | boolean | 是   | 是否关闭跨设备链路 |
-
-
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **返回值**：
 
@@ -278,13 +223,11 @@ deactivate(isUnchained: boolean): Promise<void>;
 | --------             | ----------------------------   |
 | Promise\<void>       |  Promise对象，异步返回停止键鼠穿越结果。      |
 
-
-
 **示例**：
 
 ```js
 try {
-  cooperate.deactivate(false).then(() => {
+  inputDeviceCooperate.stop().then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
   }, (error) => {
     console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -294,27 +237,27 @@ try {
 }
 ```
 
-## cooperate.getCrossingSwitchState
+## inputDeviceCooperate.getState
 
-getCrossingSwitchState(networkId: string, callback: AsyncCallback<boolean>): void;
+getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>): void
 
-获取目标设备键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
+获取键鼠穿越开关的状态，使用AsyncCallback异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
-| networkId | string                       |  是    | 键鼠穿越目标设备描述符。             |
-| callback             | AsyncCallback<boolean> |  是    | 回调函数，异步返回目标设备的键鼠穿越开关状态 |
+| deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。             |
+| callback             | AsyncCallback<{ state: boolean }> |  是    | 回调函数，异步返回键鼠穿越开关状态。        |
 
 **示例**：
 
 ```js
-let deviceDescriptor = "networkId";
+let deviceDescriptor = "descriptor";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor, (error, data) => {
+  inputDeviceCooperate.getState(deviceDescriptor, (error, data) => {
     if (error) {
       console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -326,19 +269,19 @@ try {
 }
 ```
 
-## cooperate.getCrossingSwitchState
+## inputDeviceCooperate.getState
 
-getCrossingSwitchState(networkId: string): Promise<boolean>;
+getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
-获取目标设备键鼠穿越开关的状态，使用Promise异步方式返回结果。
+获取键鼠穿越开关的状态，使用Promise异步方式返回结果。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                          | 必填   | 说明                            |
 | --------             | ---------                    | ----  | ----------------------------    |
-| networkId | string                       |  是    | 键鼠穿越目标设备描述符。            |
+| deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。            |
 
 
 
@@ -346,16 +289,16 @@ getCrossingSwitchState(networkId: string): Promise<boolean>;
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
-| Promise<boolean> | Promise对象，异步返回目标设备的键鼠穿越开关状态 |
+| Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。        |
 
 
 
 **示例**：
 
 ```js
-let deviceDescriptor = "networkId";
+let deviceDescriptor = "descriptor";
 try {
-  cooperate.getCrossingSwitchState(deviceDescriptor).then((data) => {
+  inputDeviceCooperate.getState(deviceDescriptor).then((data) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error) => {
     console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -365,20 +308,20 @@ try {
 }
 ```
 
-## on('cooperate')
+## on('cooperation')
 
-on(type: 'cooperate', callback: Callback<{ networkId: string, msg: CooperateMsg }>): void;
+on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, eventMsg: EventMsg }>): void
 
 注册监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
-| type                 | string                                                          |  是  | 监听类型，取值为”cooperate“ |
-| callback             | Callback<{ networkId: string, msg: [CooperateMsg](#CooperateMsg) }> |  是  | 回调函数，异步返回键鼠穿越状态消息 |
+| type                 | string                                                          |  是  | 注册类型，取值”cooperation“。         |
+| callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 回调函数，异步返回键鼠穿越事件。    |
 
 
 
@@ -386,7 +329,7 @@ on(type: 'cooperate', callback: Callback<{ networkId: string, msg: CooperateMsg 
 
 ```js
 try {
-  cooperate.on('cooperate', (data) => {
+  inputDeviceCooperate.on('cooperation', (data) => {
     console.log(`Keyboard mouse crossing event: ${JSON.stringify(data)}`);
   });
 } catch (error) {
@@ -394,19 +337,19 @@ try {
 }
 ```
 
-## off('cooperate')
+## off('cooperation')
 
-off(type: 'cooperate', callback?: Callback<void>): void;
+off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
-取消监听键鼠穿越状态。
+关闭监听键鼠穿越状态。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
 **参数**：
 
 | 参数名                | 类型                                                              | 必填    | 说明                           |
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
-| type                 | string                                                           |  是    | 监听类型，取值为“cooperate” |
+| type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
 | callback             | AsyncCallback\<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
 
@@ -420,8 +363,8 @@ function callback(event) {
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate", callback);
+  inputDeviceCooperate.on('cooperation', callback);
+  inputDeviceCooperate.off("cooperation", callback);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
@@ -433,25 +376,23 @@ function callback(event) {
   return false;
 }
 try {
-  cooperate.on('cooperate', callback);
-  cooperate.off("cooperate");
+  inputDeviceCooperate.on('cooperation', callback);
+  inputDeviceCooperate.off("cooperation");
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-##  CooperateMsg  
+## EventMsg
 
-键鼠穿越状态通知消息
+键鼠穿越事件。
 
-**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+**系统能力**：SystemCapability.MultimodalInput.Input.Cooperator
 
-| 名称                       | 值                             | 说明                              |
-| --------                     |  -----------------               |  -----------------               |
-| COOPERATE_PREPARE |  0    |  键鼠穿越消息，表示键鼠穿越准备。     |
-| COOPERATE_UNPREPARE |  1  |  键鼠穿越消息，表示键鼠穿越取消准备。  |
-| COOPERATE_ACTIVATE |  2   |  键鼠穿越消息，表示键鼠穿越启动。    |
-| COOPERATE_ACTIVATE_SUCCESS | 3 | 键鼠穿越状态，表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL | 4 | 键鼠穿越状态，表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS | 5 | 键鼠穿越状态，表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL | 6 | 键鼠穿越状态，表示键鼠穿越停止失败。 |
+| 名称                       | 值        | 说明                              |
+| --------                     | --------- |  -----------------               |
+| MSG_COOPERATE_INFO_START     | 200       |  键鼠穿越消息，表示键鼠穿越开始。       |
+| MSG_COOPERATE_INFO_SUCCESS   | 201       |  键鼠穿越消息，表示键鼠穿越成功。      |
+| MSG_COOPERATE_INFO_FAIL      | 202       |  键鼠穿越消息，表示键鼠穿越失败。      |
+| MSG_COOPERATE_STATE_ON       | 500       |  键鼠穿越状态，表示键鼠穿越状态开启。   |
+| MSG_COOPERATE_STATE_OFF      | 501       |  键鼠穿越状态，表示键鼠穿越状态关闭。   |
