@@ -509,16 +509,16 @@
      1. 导入接口模块
 
         ```ts
-         import Ability from '@ohos.app.ability.UIAbility';
-         ```
+        import Ability from '@ohos.app.ability.UIAbility';
+        ```
         or
         ```ts
-         import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-         ```
+        import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+        ```
 
      2. 退出使用startAbility接口启动的跨设备ServiceExtension应用。
 
-         ```ts
+        ```ts
             let deviceId = "device ID obtained from manager"
             let want = {
                 deviceId: deviceId,
@@ -535,11 +535,11 @@
             }).catch((err) => {
                 console.info("start ability err is " + JSON.stringify(err))
             })
-         ```
+        ```
 
      3. 退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
 
-         ```ts
+        ```ts
             let deviceId = "device ID obtained from manager"
             let want = {
                 deviceId: deviceId,
@@ -564,4 +564,4 @@
                 }
             }
             this.context.connectServiceExtensionAbility(want, connectOptions)
-         ```
+        ```
