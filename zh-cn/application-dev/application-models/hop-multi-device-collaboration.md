@@ -501,14 +501,13 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 停止退出启动的ServiceExtensionAbility，Promise形式接口。 |
-| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 停止退出启动的ServiceExtensionAbility，callback形式接口。 |
+| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility，Promise形式接口。 |
+| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility，callback形式接口。 |
 
 
 ### 开发步骤
 
-1. 退出由跨设备远程启动的ServiceExtension应用。
-     使用stopServiceExtensionAbility接口退出由startAbility接口或connectServiceExtensionAbility接口拉起的跨设备ServiceExtension应用。
+1. 使用stopServiceExtensionAbility接口退出由startAbility接口或connectServiceExtensionAbility接口拉起的跨设备ServiceExtension应用。
 
      1. 导入接口模块
 
