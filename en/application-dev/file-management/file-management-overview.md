@@ -23,6 +23,3 @@ The file systems can be classified into the following types based on the file st
 **Figure 1** Files in an OS
 
 ![File classification model](figures/file-classification-model.png)
-
-
-<!--no_check-->
