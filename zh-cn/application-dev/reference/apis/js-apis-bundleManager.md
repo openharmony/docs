@@ -400,7 +400,6 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.    |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -586,7 +585,6 @@ getApplicationInfo(bundleName: string, appFlags: [number](#applicationflag), cal
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**
@@ -736,14 +734,6 @@ getAllBundleInfo(bundleFlags: [number](#bundleflag), callback: AsyncCallback<Arr
 | bundleFlags | [number](#bundleflag) | 是   | 指定返回的BundleInfo所包含的信息。   |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<BundleInfo>；否则为错误对象。 |
 
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
-
 **示例：**
 
 ```ts
@@ -882,14 +872,6 @@ getAllApplicationInfo(appFlags: [number](#applicationflag), callback: AsyncCallb
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | 是   | 指定返回的ApplicationInfo所包含的信息。                       |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的Array\<ApplicationInfo>；否则为错误对象。 |
-
-**错误码：**
-
-错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                         |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
 
 **示例：**
 
@@ -1049,7 +1031,6 @@ queryAbilityInfo(want: Want, abilityFlags: [number](#abilityflag), callback: Asy
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
 
@@ -1246,7 +1227,6 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: [ExtensionAbilityTyp
 | -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.            |
 
 **示例：**
@@ -2170,7 +2150,6 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **示例：**

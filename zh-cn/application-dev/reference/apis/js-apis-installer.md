@@ -424,7 +424,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700001 | The specified bundle name is not found. |
-| 17700004 | The specified userId is not existed. |
+| 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
 
