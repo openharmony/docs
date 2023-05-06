@@ -13,6 +13,8 @@
 
 - [通过跨设备Call调用实现多端协同](#通过跨设备call调用实现多端协同)
 
+- [退出由跨设备拉起的ServiceExtensionAbility组件](#退出由跨设备拉起的serviceextensionability组件)
+
 
 ## 多端协同流程
 
@@ -485,3 +487,81 @@
        }
    }
    ```
+
+## 退出由跨设备拉起的ServiceExtensionAbility组件
+
+下面介绍退出由跨设备拉起的ServiceExtensionAbility组件的方法。
+
+### 接口说明
+
+  **表5** API接口功能介绍
+
+| 接口名 | 描述 |
+| -------- | -------- |
+| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility，Promise形式接口。 |
+| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility，callback形式接口。 |
+
+
+### 开发步骤
+
+1. 使用stopServiceExtensionAbility接口退出由startAbility接口或connectServiceExtensionAbility接口拉起的跨设备ServiceExtension应用。
+
+     1. 导入接口模块
+
+        ```ts
+        import Ability from '@ohos.app.ability.UIAbility';
+        ```
+        or
+        ```ts
+        import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+        ```
+
+     2. 退出使用startAbility接口启动的跨设备ServiceExtension应用。
+
+        ```ts
+            let deviceId = "device ID obtained from manager"
+            let want = {
+                deviceId: deviceId,
+                bundleName: "com.acts.actsstopserviceextensionmanualtest",
+                abilityName: "ServiceAbility",
+            };
+            this.context.startAbility(want).then(() => {
+                console.info("start ability success")
+                this.context.stopServiceExtensionAbility(want).then(() => {
+                    console.info("stop service extension ability success")
+                }).catch((err) => {
+                    console.info("stop service extension ability err is " + JSON.stringify(err))
+                })
+            }).catch((err) => {
+                console.info("start ability err is " + JSON.stringify(err))
+            })
+        ```
+
+     3. 退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
+
+        ```ts
+            let deviceId = "device ID obtained from manager"
+            let want = {
+                deviceId: deviceId,
+                bundleName: "com.acts.actsstopserviceextensionmanualtest",
+                abilityName: "ServiceAbility",
+            };
+            let context = this.context;
+            let connectOptions = {
+                onConnect(elementName, remote) {
+                    console.info("onConnect called elementName is {" + JSON.stringify(elementName) + "}" + " remote is {" + JSON.stringify(remote) + "}");
+                    context.stopServiceExtensionAbility(want).then(() => {
+                        console.info("stop service extension ability success")
+                    }).catch((err) => {
+                        console.info("stop service extension ability err is " + JSON.stringify(err))
+                    })
+                },
+                onDisconnect(elementName) {
+                    console.info("onDisconnect called elementName is {" + JSON.stringify(elementName) + "}");
+                },
+                onFailed(code) {
+                    console.info("onFailed called elementName is {" + JSON.stringify(code) + "}");
+                }
+            }
+            this.context.connectServiceExtensionAbility(want, connectOptions)
+        ```
