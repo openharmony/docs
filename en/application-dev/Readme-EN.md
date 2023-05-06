@@ -24,6 +24,12 @@
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
       - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
+      - Shared Package
+        - [Shared Package Overview](quick-start/shared-guide.md)
+        - [HAR](quick-start/har-package.md)
+        - HSP
+          - [In-Application HSP Development](quick-start/in-app-hsp.md)
+          - [Inter-Application HSP Development (for System Applications Only)](quick-start/cross-app-hsp.md)
     - Application Configuration Files in Stage Model
       - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
@@ -36,18 +42,44 @@
     - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
-    - ArkTS Syntax (Declarative UI)
-      - [Basic UI Description](quick-start/arkts-basic-ui-description.md)
-      - State Management
-        - [Basic Concepts](quick-start/arkts-state-mgmt-concepts.md)
-        - [State Management with Page-level Variables](quick-start/arkts-state-mgmt-page-level.md)
-        - [State Management with Application-level Variables](quick-start/arkts-state-mgmt-application-level.md)
-      - [Dynamic UI Element Building](quick-start/arkts-dynamic-ui-elememt-building.md)
-      - [Rendering Control](quick-start/arkts-rendering-control.md)
-      - [Restrictions and Extensions](quick-start/arkts-restrictions-and-extensions.md)
+    - Basic Syntax
+      - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
+      - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
+      - Custom Component
+        - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
+        - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+      - [\@Builder: Custom Builder Function](quick-start/arkts-builder.md)
+      - [\@BuilderParam: @Builder Function Reference](quick-start/arkts-builderparam.md)
+      - [\@Styles: Definition of Resusable Styles](quick-start/arkts-style.md)
+      - [\@Extend: Extension of Built-in Components](quick-start/arkts-extend.md)
+      - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
+    - State Management
+      - [State Management Overview](quick-start/arkts-state-management-overview.md)
+      - Component State Management
+        - [\@State: State Owned by Component](quick-start/arkts-state.md)
+        - [\@Prop: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
+        - [\@Link: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
+        - [\@Provide and \@Consume: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
+      - Application State Management
+        - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
+        - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
+        - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
+        - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
+        - [Environment: Device Environment Query](quick-start/arkts-environment.md)
+      - Other State Management Features
+        - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
+        - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+    - Rendering Control
+      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
+      - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
 - Development
   - [Application Models](application-models/Readme-EN.md)
   - [UI Development](ui/Readme-EN.md)
+  - [Web](web/Readme-EN.md)
   - [Notification](notification/Readme-EN.md)
   - [Window Manager](windowmanager/Readme-EN.md)
   - [WebGL](webgl/Readme-EN.md)
@@ -81,8 +113,10 @@
     - [ArkTS and JS APIs](reference/apis/Readme-EN.md)
     - [Error Codes](reference/errorcodes/Readme-EN.md)
     - Native APIs
+      - [Native APIs](reference/native-apis/Readme-EN.md)
       - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
 - [FAQs](faqs/Readme-EN.md)
 - Contribution
   - [How to Contribute](../contribute/documentation-contribution.md)
+<!--no_check-->

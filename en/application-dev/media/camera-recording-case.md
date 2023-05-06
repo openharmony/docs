@@ -1,4 +1,4 @@
-# Video Recording Sample
+# Camera Recording Sample
 
 ## Development Process
 

@@ -1,4 +1,4 @@
-# File
+# File Management
 
 - [File Management Overview](file-management-overview.md)
 - Application File
@@ -20,4 +20,4 @@
 - Distributed File System
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)
-  - [Access Files Across Devices](file-access-across-devices.md)
+  - [Accessing Files Across Devices](file-access-across-devices.md)

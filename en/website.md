@@ -195,7 +195,7 @@
   
 - OpenHarmony Third-Party Components
   - [OpenHarmony Third-Party Components](third-party-components/third-party-components-introduction.md)  
-  - [Using OpenHarmony JS and TS Third-Party Components](third-party-components/npm-third-party-guide.md)
+  - [Using OpenHarmony JS and TS Third-Party Components](third-party-components/ohpm-third-party-guide.md)
 
 - Contribution
   - [How to Contribute](contribute/how-to-contribute.md)
