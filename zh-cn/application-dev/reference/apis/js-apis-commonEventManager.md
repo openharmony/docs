@@ -575,3 +575,86 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 });
 ```
 
+## CommonEventManager.setStaticSubscribeEventState<sup>10+</sup>
+
+setStaticSubscribeEventState(enable: boolean, callback: AsyncCallback<void>): void;
+
+以回调形式为当前应用设置静态订阅事件使能或去使能状态。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                             |
+| -------- | -------------------- | ---- | -------------------------------- |
+| enable    | bool               | 是   | 表示静态订阅事件使能状态。       |
+| callback | AsyncCallback\<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
+**示例：**
+
+
+```ts
+CommonEventManager.setStaticSubscribeEventState(true, (err) => {
+    if (err) {
+        console.info(`Set static subscribe event state failed, errCode: ${err.code}, errMes: ${err.message}`);
+        return;
+    }
+    console.info(`Set static subscribe event state success`);
+    }
+});
+```
+
+## CommonEventManager.setStaticSubscribeEventState<sup>10+</sup>
+
+setStaticSubscribeEventState(enable: boolean): Promise<void>;
+
+以Promise形式为当前应用设置静态订阅事件使能或去使能状态。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| enable  | bool | 是   | 表示静态订阅事件使能状态。 |
+
+**返回值：**
+
+| 类型           | 说明                         |
+| -------------- | ---------------------------- |
+| Promise\<void> | 表示设置静态订阅事件使能状态的对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
+**示例：**
+
+
+```ts
+commonEventManager.setStaticSubscribeEventState(true).then(() => {
+    console.info(`Set static subscribe event state success`);
+}).catch ((err) => {
+    console.info(`Set static subscribe event state failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
