@@ -276,7 +276,7 @@
    })
    ```
 
-6. 退出远端ServiceExtensionAbility。
+6. 退出远端ServiceExtensionAbility。使用本接口可以使由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility应用退出，不只是断开与ServiceExtensionAbility之间的链接。
 
    ```ts
    // 退出跨设备启动的ServiceExtensionAbility
