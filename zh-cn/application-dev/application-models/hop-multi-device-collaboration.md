@@ -517,7 +517,7 @@
          ```
 
      2. 退出使用startAbility接口启动的跨设备ServiceExtension应用。
-     
+
          ```ts
             let deviceId = "device ID obtained from manager"
             let want = {
@@ -538,7 +538,7 @@
          ```
 
      3. 退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
-     
+
          ```ts
             let deviceId = "device ID obtained from manager"
             let want = {
