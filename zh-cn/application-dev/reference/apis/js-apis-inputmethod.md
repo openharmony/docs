@@ -128,26 +128,26 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 ```js
 let im = inputMethod.getCurrentInputMethod();
 let prop = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
+  packageName: im.packageName,
+  methodId: im.methodId,
+  name: im.packageName,
+  id: im.methodId,
+  extra: {}
 }
 try{
-    inputMethod.switchInputMethod(prop, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in switching inputmethod.');
-        } else {
-            console.error('Failed to switchInputMethod.');
-        }
-    });
+  inputMethod.switchInputMethod(prop, (err, result) => {
+    if (err) {
+      console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in switching inputmethod.');
+    } else {
+      console.error('Failed to switchInputMethod.');
+    }
+  });
 } catch(err) {
-    console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
+  console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -185,24 +185,24 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 ```js
 let im = inputMethod.getCurrentInputMethod();
 let prop = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
+  packageName: im.packageName,
+  methodId: im.methodId,
+  name: im.packageName,
+  id: im.methodId,
+  extra: {}
 }
 try {
-    inputMethod.switchInputMethod(prop).then((result) => {
-        if (result) {
-            console.info('Succeeded in switching inputmethod.');
-        } else {
-            console.error('Failed to switchInputMethod.');
-        }
-    }).catch((err) => {
-        console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethod.switchInputMethod(prop).then((result) => {
+    if (result) {
+      console.info('Succeeded in switching inputmethod.');
+    } else {
+      console.error('Failed to switchInputMethod.');
+    }
+  }).catch((err) => {
     console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to switchInputMethod: ' + JSON.stringify(err));
 }
 ```
 
@@ -256,29 +256,29 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 ```js
 try {
-    inputMethod.switchCurrentInputMethodSubtype({
-      id: "ServiceExtAbility",
-      label: "",
-      name: "com.example.kikakeyboard",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in switching currentInputMethodSubtype.');
-        } else {
-            console.error('Failed to switchCurrentInputMethodSubtype');
-        }
-    });
+  inputMethod.switchCurrentInputMethodSubtype({
+    id: "ServiceExtAbility",
+    label: "",
+    name: "com.example.kikakeyboard",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+  }, (err, result) => {
+    if (err) {
+      console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in switching currentInputMethodSubtype.');
+    } else {
+      console.error('Failed to switchCurrentInputMethodSubtype');
+    }
+  });
 } catch(err) {
-    console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
+  console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -317,27 +317,27 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 ```js
 try {
-    inputMethod.switchCurrentInputMethodSubtype({
-      id: "ServiceExtAbility",
-      label: "",
-      name: "com.example.kikakeyboard",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
-        if (result) {
-            console.info('Succeeded in switching currentInputMethodSubtype.');
-        } else {
-            console.error('Failed to switchCurrentInputMethodSubtype.');
-        }
-    }).catch((err) => {
-        console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethod.switchCurrentInputMethodSubtype({
+    id: "ServiceExtAbility",
+    label: "",
+    name: "com.example.kikakeyboard",
+    mode: "upper",
+    locale: "",
+    language: "",
+    icon: "",
+    iconId: 0,
+    extra: {}
+  }).then((result) => {
+    if (result) {
+      console.info('Succeeded in switching currentInputMethodSubtype.');
+    } else {
+      console.error('Failed to switchCurrentInputMethodSubtype.');
+    }
+  }).catch((err) => {
     console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to switchCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -394,19 +394,19 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 let im = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
-        if (err !== undefined) {
-            console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in switching currentInputMethodAndSubtype.');
-        } else {
-            console.error('Failed to switchCurrentInputMethodAndSubtype.');
-        }
-    });
+  inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
+    if (err) {
+      console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
+    } else {
+      console.error('Failed to switchCurrentInputMethodAndSubtype.');
+    }
+  });
 } catch (err) {
-    console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
+  console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -448,17 +448,17 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 let im = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
-        if (result) {
-            console.info('Succeeded in switching currentInputMethodAndSubtype.');
-        } else {
-            console.error('Failed to switchCurrentInputMethodAndSubtype.');
-        }
-    }).catch((err) => {
-        console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
+    if (result) {
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
+    } else {
+      console.error('Failed to switchCurrentInputMethodAndSubtype.');
+    }
+  }).catch((err) => {
     console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -683,21 +683,21 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 ```js
 try {
-    let textConfig: inputMethod.TextConfig = {
-        inputAttribute: {
-            textInputType: 0,
-            enterKeyType: 1
-        }
-    };
-    inputMethodController.attach(true, textConfig, (err) => {
-        if (err !== undefined) {
-            console.error(`Failed to attach: ${JSON.stringify(err)}`);
-            return;
-        }
-        console.info('Succeeded in attaching the inputMethod.');
-    });
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+  inputMethodController.attach(true, textConfig, (err) => {
+    if (err) {
+      console.error(`Failed to attach: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('Succeeded in attaching the inputMethod.');
+  });
 } catch(error) {
-    console.error(`Failed to attach: ${JSON.stringify(error)}`);
+  console.error(`Failed to attach: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -737,19 +737,19 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 ```js
 try {
-    let textConfig: inputMethod.TextConfig = {
-        inputAttribute: {
-            textInputType: 0,
-            enterKeyType: 1
-        }
-    };
-    inputMethodController.attach(true, textConfig).then(() => {
-        console.info('Succeeded in attaching inputMethod.');
-    }).catch((err) => {
-        console.error(`Failed to attach: ${JSON.stringify(err)}`);
-    })
+  let textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: 0,
+      enterKeyType: 1
+    }
+  };
+  inputMethodController.attach(true, textConfig).then(() => {
+    console.info('Succeeded in attaching inputMethod.');
+  }).catch((err) => {
+    console.error(`Failed to attach: ${JSON.stringify(err)}`);
+  })
 } catch(error) {
-    console.error(`Failed to attach: ${JSON.stringify(error)}`);
+  console.error(`Failed to attach: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -783,11 +783,11 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodController.showTextInput((err) => {
-    if (err !== undefined) {
-        console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
-        return;
-    }
-    console.info('Succeeded in showing the inputMethod.');
+  if (err) {
+    console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.info('Succeeded in showing the inputMethod.');
 });
 ```
 
@@ -821,9 +821,9 @@ showTextInput(): Promise&lt;void&gt;
 
 ```js
 inputMethodController.showTextInput().then(() => {
-    console.info('Succeeded in showing text input.');
+  console.info('Succeeded in showing text input.');
 }).catch((err) => {
-    console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
+  console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -859,11 +859,11 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodController.hideTextInput((err) => {
-    if (err !== undefined) {
-        console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
-        return;
-    }
-    console.info('Succeeded in hiding text input.');
+  if (err) {
+    console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.info('Succeeded in hiding text input.');
 });
 ```
 
@@ -932,11 +932,11 @@ detach(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodController.detach((err) => {
-    if (err !== undefined) {
-        console.error(`Failed to detach: ${JSON.stringify(err)}`);
-        return;
-    }
-    console.info('Succeeded in detaching inputMethod.');
+  if (err) {
+    console.error(`Failed to detach: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.info('Succeeded in detaching inputMethod.');
 });
 ```
 
@@ -967,9 +967,9 @@ detach(): Promise&lt;void&gt;
 
 ```js
 inputMethodController.detach().then(() => {
-    console.info('Succeeded in detaching inputMethod.');
+  console.info('Succeeded in detaching inputMethod.');
 }).catch((error) => {
-    console.error(`Failed to detach: ${JSON.stringify(error)}`);
+  console.error(`Failed to detach: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1004,16 +1004,16 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    let windowId: number = 2000;
-    inputMethodController.setCallingWindow(windowId, (err) => {
-        if (err !== undefined) {
-            console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
-            return;
-        }
-        console.info('Succeeded in setting callingWindow.');
-    });
+  let windowId: number = 2000;
+  inputMethodController.setCallingWindow(windowId, (err) => {
+    if (err) {
+      console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('Succeeded in setting callingWindow.');
+  });
 } catch(error) {
-    console.error(`Failed to setCallingWindow: ${JSON.stringify(error)}`);
+  console.error(`Failed to setCallingWindow: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1053,14 +1053,14 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 ```js
 try {
-    let windowId: number = 2000;
-    inputMethodController.setCallingWindow(windowId).then(() => {
-        console.info('Succeeded in setting callingWindow.');
-    }).catch((err) => {
-        console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
-    })
+  let windowId: number = 2000;
+  inputMethodController.setCallingWindow(windowId).then(() => {
+    console.info('Succeeded in setting callingWindow.');
+  }).catch((err) => {
+    console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+  })
 } catch(error) {
-    console.error(`Failed to setCallingWindow: ${JSON.stringify(error)}`);
+  console.error(`Failed to setCallingWindow: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1095,15 +1095,15 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    inputMethodController.updateCursor({left: 0, top: 0, width: 600, height: 800}, (err) => {
-        if (err !== undefined) {
-            console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
-            return;
-        }
-        console.info('Succeeded in updating cursorInfo.');
-    });
+  inputMethodController.updateCursor({left: 0, top: 0, width: 600, height: 800}, (err) => {
+    if (err) {
+      console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('Succeeded in updating cursorInfo.');
+  });
 } catch(error) {
-    console.error(`Failed to updateCursor: ${JSON.stringify(error)}`);
+  console.error(`Failed to updateCursor: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1143,13 +1143,13 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 ```js
 try {
-    inputMethodController.updateCursor({left: 0, top: 0, width: 600, height: 800}).then(() => {
-        console.info('Succeeded in updating cursorInfo.');
-    }).catch((err) => {
-        console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
-    })
+  inputMethodController.updateCursor({left: 0, top: 0, width: 600, height: 800}).then(() => {
+    console.info('Succeeded in updating cursorInfo.');
+  }).catch((err) => {
+    console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
+  })
 } catch(error) {
-    console.error(`Failed to updateCursor: ${JSON.stringify(error)}`);
+  console.error(`Failed to updateCursor: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1184,15 +1184,15 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 ```js
 try {
-    inputMethodController.changeSelection('text', 0, 5, (err) => {
-        if (err !== undefined) {
-            console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
-            return;
-        }
-        console.info('Succeeded in changing selection.');
-    });
+  inputMethodController.changeSelection('text', 0, 5, (err) => {
+    if (err) {
+      console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('Succeeded in changing selection.');
+  });
 } catch(error) {
-    console.error(`Failed to changeSelection: ${JSON.stringify(error)}`);
+  console.error(`Failed to changeSelection: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1232,13 +1232,13 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 ```js
 try {
-    inputMethodController.changeSelection('test', 0, 5).then(() => {
-        console.info('Succeeded in changing selection.');
-    }).catch((err) => {
-        console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
-    })
+  inputMethodController.changeSelection('test', 0, 5).then(() => {
+    console.info('Succeeded in changing selection.');
+  }).catch((err) => {
+    console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
+  })
 } catch(error) {
-    console.error(`Failed to changeSelection: ${JSON.stringify(error)}`);
+  console.error(`Failed to changeSelection: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1271,15 +1271,15 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 ```js
 try {
-    inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}, (err) => {
-        if (err !== undefined) {
-            console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
-            return;
-        }
-        console.info('Succeeded in updating attribute.');
-    });
+  inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}, (err) => {
+    if (err) {
+      console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info('Succeeded in updating attribute.');
+  });
 } catch(error) {
-    console.error(`Failed to updateAttribute: ${JSON.stringify(error)}`);
+  console.error(`Failed to updateAttribute: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1317,13 +1317,13 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 ```js
 try {
-    inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}).then(() => {
-        console.info('Succeeded in updating attribute.');
-    }).catch((err) => {
-        console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
-    })
+  inputMethodController.updateAttribute({textInputType: 0, enterKeyType: 1}).then(() => {
+    console.info('Succeeded in updating attribute.');
+  }).catch((err) => {
+    console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
+  })
 } catch(error) {
-    console.error(`Failed to updateAttribute: ${JSON.stringify(error)}`);
+  console.error(`Failed to updateAttribute: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1356,19 +1356,19 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-    inputMethodController.stopInputSession((error, result) => {
-        if (error !== undefined) {
-            console.error('Failed to stopInputSession: ' + JSON.stringify(error));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in stopping inputSession.');
-        } else {
-            console.error('Failed to stopInputSession.');
-        }
-    });
+  inputMethodController.stopInputSession((error, result) => {
+    if (error) {
+      console.error('Failed to stopInputSession: ' + JSON.stringify(error));
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in stopping inputSession.');
+    } else {
+      console.error('Failed to stopInputSession.');
+    }
+  });
 } catch(error) {
-    console.error('Failed to stopInputSession: ' + JSON.stringify(error));
+  console.error('Failed to stopInputSession: ' + JSON.stringify(error));
 }
 ```
 
@@ -1401,17 +1401,17 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 ```js
 try {
-    inputMethodController.stopInputSession().then((result) => {
-        if (result) {
-            console.info('Succeeded in stopping inputSession.');
-        } else {
-            console.error('Failed to stopInputSession.');
-        }
-    }).catch((err) => {
-        console.error('Failed to stopInputSession: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethodController.stopInputSession().then((result) => {
+    if (result) {
+      console.info('Succeeded in stopping inputSession.');
+    } else {
+      console.error('Failed to stopInputSession.');
+    }
+  }).catch((err) => {
     console.error('Failed to stopInputSession: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to stopInputSession: ' + JSON.stringify(err));
 }
 ```
 
@@ -1446,11 +1446,11 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodController.showSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('Succeeded in showing softKeyboard.');
-    } else {
-        console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info('Succeeded in showing softKeyboard.');
+  } else {
+    console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
+  }
 })
 ```
 
@@ -1485,9 +1485,9 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 ```js
 inputMethodController.showSoftKeyboard().then(() => {
-    console.log('Succeeded in showing softKeyboard.');
+  console.log('Succeeded in showing softKeyboard.');
 }).catch((err) => {
-    console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
+  console.error('Failed to showSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -1522,11 +1522,11 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodController.hideSoftKeyboard((err) => {
-    if (err === undefined) {
-        console.info('Succeeded in hiding softKeyboard.');
-    } else {
-        console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info('Succeeded in hiding softKeyboard.');
+  } else {
+    console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
+  }
 })
 ```
 
@@ -1561,9 +1561,9 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 ```js
 inputMethodController.hideSoftKeyboard().then(() => {
-    console.log('Succeeded in hiding softKeyboard.');
+  console.log('Succeeded in hiding softKeyboard.');
 }).catch((err) => {
-    console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
+  console.error('Failed to hideSoftKeyboard: ' + JSON.stringify(err));
 });
 ```
 
@@ -1591,15 +1591,15 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 inputMethodController.stopInput((error, result) => {
-    if (error !== undefined) {
-        console.error('Failed to stopInput: ' + JSON.stringify(error));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in stopping input.');
-    } else {
-        console.error('Failed to stopInput.');
-    }
+  if (error) {
+    console.error('Failed to stopInput: ' + JSON.stringify(error));
+    return;
+  }
+  if (result) {
+    console.info('Succeeded in stopping input.');
+  } else {
+    console.error('Failed to stopInput.');
+  }
 });
 ```
 
@@ -1627,13 +1627,13 @@ stopInput(): Promise&lt;boolean&gt;
 
 ```js
 inputMethodController.stopInput().then((result) => {
-    if (result) {
-        console.info('Succeeded in stopping input.');
-    } else {
-        console.error('Failed to stopInput.');
-    }
+  if (result) {
+    console.info('Succeeded in stopping input.');
+  } else {
+    console.error('Failed to stopInput.');
+  }
 }).catch((err) => {
-    console.error('Failed to stopInput: ' + err);
+  console.error('Failed to stopInput: ' + err);
 })
 ```
 
@@ -1664,11 +1664,11 @@ on(type: 'insertText', callback: (text: string) => void): void;
 
 ```js
 try {
-    inputMethodController.on('insertText', (text) => {
-        console.info(`Succeeded in subscribing insertText: ${text}`);
-    });
+  inputMethodController.on('insertText', (text) => {
+    console.info(`Succeeded in subscribing insertText: ${text}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe insertText: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe insertText: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1719,19 +1719,19 @@ on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
 
 ```js
 try {
-    inputMethodController.on('deleteLeft', (length) => {
-        console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
-    });
+  inputMethodController.on('deleteLeft', (length) => {
+    console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(error)}`);
 }
 
 try {
-    inputMethodController.on('deleteRight', (length) => {
-        console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
-    });
+  inputMethodController.on('deleteRight', (length) => {
+    console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe deleteRight: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe deleteRight: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1783,11 +1783,11 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 
 ```js
 try {
-    inputMethodController.on('sendKeyboardStatus', (keyBoardStatus) => {
-        console.info(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
-    });
+  inputMethodController.on('sendKeyboardStatus', (keyBoardStatus) => {
+    console.info(`Succeeded in subscribing sendKeyboardStatus, keyBoardStatus: ${keyBoardStatus}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1838,11 +1838,11 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 ```js
 try {
-    inputMethodController.on('sendFunctionKey', (functionKey) => {
-        console.info(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
-    });
+  inputMethodController.on('sendFunctionKey', (functionKey) => {
+    console.info(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1893,11 +1893,11 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 ```js
 try {
-    inputMethodController.on('moveCursor', (direction) => {
-        console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
-    });
+  inputMethodController.on('moveCursor', (direction) => {
+    console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe moveCursor: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe moveCursor: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1948,11 +1948,11 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 ```js
 try {
-    inputMethodController.on('handleExtendAction', (action) => {
-        console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
-    });
+  inputMethodController.on('handleExtendAction', (action) => {
+    console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+  });
 } catch(error) {
-    console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(error)}`);
+  console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -1995,7 +1995,7 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 
 ```js
 inputMethodController.on('selectByRange', (range) => {
-    console.info('Succeeded in subscribing selectByRange: start: ' + range.start + " , end: " + range.end);
+  console.info('Succeeded in subscribing selectByRange: start: ' + range.start + " , end: " + range.end);
 });
 ```
 
@@ -2038,7 +2038,7 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 ```js
 inputMethodController.on('selectByMovement', (movement) => {
-    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+  console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
 });
 ```
 
@@ -2085,7 +2085,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 
 ```js
 inputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
-    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+  console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
 });
 ```
 
@@ -2138,22 +2138,22 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 ```js
 let inputMethodProperty = {
-    packageName: 'com.example.kikakeyboard',
-    methodId: 'com.example.kikakeyboard',
-    name: 'com.example.kikakeyboard',
-    id: 'com.example.kikakeyboard',
-    extra:{}
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'com.example.kikakeyboard',
+  name: 'com.example.kikakeyboard',
+  id: 'com.example.kikakeyboard',
+  extra:{}
 }
 try {
-    inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
-        if (err !== undefined) {
-            console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in listing inputMethodSubtype.');
-    });
+  inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
+    if (err) {
+      console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in listing inputMethodSubtype.');
+  });
 } catch (err) {
-    console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
+  console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -2190,20 +2190,20 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 ```js
 let inputMethodProperty = {
-    packageName: 'com.example.kikakeyboard',
-    methodId: 'com.example.kikakeyboard',
-    name: 'com.example.kikakeyboard',
-    id: 'com.example.kikakeyboard',
-    extra:{}
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'com.example.kikakeyboard',
+  name: 'com.example.kikakeyboard',
+  id: 'com.example.kikakeyboard',
+  extra:{}
 }
 try {
-    inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
-        console.info('Succeeded in listing inputMethodSubtype.');
-    }).catch((err) => {
-        console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
+    console.info('Succeeded in listing inputMethodSubtype.');
+  }).catch((err) => {
     console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to listInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -2234,15 +2234,15 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 ```js
 try {
-    inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
-        if (err !== undefined) {
-            console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in listing currentInputMethodSubtype.');
-    });
+  inputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
+    if (err) {
+      console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in listing currentInputMethodSubtype.');
+  });
 } catch(err) {
-    console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
+  console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -2273,13 +2273,13 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 ```js
 try {
-    inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
-        console.info('Succeeded in listing currentInputMethodSubtype.');
-    }).catch((err) => {
-        console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
+    console.info('Succeeded in listing currentInputMethodSubtype.');
+  }).catch((err) => {
     console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to listCurrentInputMethodSubtype: ' + JSON.stringify(err));
 }
 ```
 
@@ -2311,15 +2311,15 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 ```js
 try {
-    inputMethodSetting.getInputMethods(true, (err,data) => {
-        if (err !== undefined) {
-            console.error('Failed to getInputMethods: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in getting inputMethods.');
-    });
+  inputMethodSetting.getInputMethods(true, (err,data) => {
+    if (err) {
+      console.error('Failed to getInputMethods: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeeded in getting inputMethods.');
+  });
 } catch (err) {
-    console.error('Failed to getInputMethods: ' + JSON.stringify(err));
+  console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -2356,13 +2356,13 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 ```js
 try {
-    inputMethodSetting.getInputMethods(true).then((data) => {
-        console.info('Succeeded in getting inputMethods.');
-    }).catch((err) => {
-        console.error('Failed to getInputMethods: ' + JSON.stringify(err));
-    })
-} catch(err) {
+  inputMethodSetting.getInputMethods(true).then((data) => {
+    console.info('Succeeded in getting inputMethods.');
+  }).catch((err) => {
     console.error('Failed to getInputMethods: ' + JSON.stringify(err));
+  })
+} catch(err) {
+  console.error('Failed to getInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -2392,15 +2392,15 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 try {
-    inputMethodSetting.showOptionalInputMethods((err, data) => {
-        if (err !== undefined) {
-            console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in showing optionalInputMethods.');
-    });
+  inputMethodSetting.showOptionalInputMethods((err, data) => {
+    if (err) {
+      console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in showing optionalInputMethods.');
+  });
 } catch (err) {
-    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
+  console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 }
 ```
 
@@ -2430,9 +2430,9 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 ```js
 inputMethodSetting.showOptionalInputMethods().then((data) => {
-    console.info('Succeeded in showing optionalInputMethods.');
+  console.info('Succeeded in showing optionalInputMethods.');
 }).catch((err) => {
-    console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
+  console.error('Failed to showOptionalInputMethods: ' + JSON.stringify(err));
 })
 ```
 
@@ -2458,11 +2458,11 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 ```js
 inputMethodSetting.listInputMethod((err,data) => {
-    if (err !== undefined) {
-        console.error('Failed to listInputMethod: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in listing inputMethod.');
+  if (err) {
+    console.error('Failed to listInputMethod: ' + JSON.stringify(err));
+    return;
+  }
+  console.log('Succeeded in listing inputMethod.');
  });
 ```
 
@@ -2488,9 +2488,9 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 ```js
 inputMethodSetting.listInputMethod().then((data) => {
-    console.info('Succeeded in listing inputMethod.');
+  console.info('Succeeded in listing inputMethod.');
 }).catch((err) => {
-    console.error('Failed to listInputMethod: ' + JSON.stringify(err));
+  console.error('Failed to listInputMethod: ' + JSON.stringify(err));
 })
 ```
 
@@ -2516,11 +2516,11 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 inputMethodSetting.displayOptionalInputMethod((err) => {
-    if (err !== undefined) {
-        console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in displaying optionalInputMethod.');
+  if (err) {
+    console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in displaying optionalInputMethod.');
 });
 ```
 
@@ -2546,8 +2546,8 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 ```js
 inputMethodSetting.displayOptionalInputMethod().then(() => {
-    console.info('Succeeded in displaying optionalInputMethod.');
+  console.info('Succeeded in displaying optionalInputMethod.');
 }).catch((err) => {
-    console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
+  console.error('Failed to displayOptionalInputMethod: ' + JSON.stringify(err));
 })
 ```
