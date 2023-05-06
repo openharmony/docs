@@ -31,16 +31,41 @@
       - [module对象内部结构](quick-start/module-structure.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
-    - [初识ArkTS语言](quick-start/arkts-get-started.md)
-    - ArkTS语法（声明式UI）
-      - [基本UI描述](quick-start/arkts-basic-ui-description.md)
+      - [初识ArkTS语言](quick-start/arkts-get-started.md)
+      - 基本语法
+        - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
+        - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
+        - 自定义组件
+          - [创建自定义组件](quick-start/arkts-create-custom-components.md)
+          - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+        - [\@Builder：自定义构建函数](quick-start/arkts-builder.md)
+        - [\@BuilderParam：引用\@Builder函数](quick-start/arkts-builderparam.md)
+        - [\@Styles：定义组件重用样式](quick-start/arkts-style.md)
+        - [\@Extend：定义扩展组件样式](quick-start/arkts-extend.md)
+        - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
       - 状态管理
-        - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
-        - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
-        - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
-      - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
-      - [渲染控制](quick-start/arkts-rendering-control.md)
-      - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
+        - [状态管理概述](quick-start/arkts-state-management-overview.md)
+        - 管理组件拥有的状态
+          - [\@State：组件内状态](quick-start/arkts-state.md)
+          - [\@Prop：父子单向同步](quick-start/arkts-prop.md)
+          - [\@Link：父子双向同步](quick-start/arkts-link.md)
+          - [\@Provide和\@Consume：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
+          - [\@Observed和\@ObjectLink：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
+        - 管理应用拥有的状态
+          - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
+          - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
+          - [AppStorage：应用全局的UI状态存储](quick-start/arkts-appstorage.md)
+          - [PersistentStorage：持久化存储UI状态](quick-start/arkts-persiststorage.md)
+          - [Environment：设备环境查询](quick-start/arkts-environment.md)
+        - 其他状态管理
+          - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
+          - [\@Watch：状态变量更改通知](quick-start/arkts-watch.md)
+          - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+      - 渲染控制
+        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+        - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+        - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+        - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
 - 开发
   - 应用模型
     - 应用模型概述
@@ -174,31 +199,63 @@
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - 基于ArkTS的声明式开发范式
-      - [概述](ui/ui-ts-overview.md)
-      - [声明式UI开发指导](ui/ui-ts-developing-intro.md)
-      - 声明式UI开发实例
-        - [创建简单视图](ui/ui-ts-creating-simple-page.md)
-        - 构建完整实例
-          - [构建食物数据模型](ui/ui-ts-building-data-model.md)
-          - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
-          - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
-          - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
-        - 添加闪屏动画
-          - [绘制图像](ui/ui-ts-drawing-feature.md)
-          - [添加动画效果](ui/ui-ts-animation-feature.md)
-      - [常用组件说明](ui/ui-ts-components-intro.md)
-      - 常见布局开发指导
-        - 自适应布局
-          - [线性布局](ui/ui-ts-layout-linear.md)
-          - [层叠布局](ui/ui-ts-layout-stack.md)
-          - [弹性布局](ui/ui-ts-layout-flex.md)
-          - [网格布局](ui/ui-ts-layout-grid.md)
-        - 响应式布局
-          - [栅格布局](ui/ui-ts-layout-grid-container-new.md)
-          - [媒体查询](ui/ui-ts-layout-mediaquery.md)
-      - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
-      - [Web组件开发指导](ui/ui-ts-components-web.md)
-      - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
+      - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
+      - 开发布局
+        - [布局概述](ui/arkts-layout-development-overview.md)
+        - 构建布局
+          - [线性布局](ui/arkts-layout-development-linear.md)
+          - [层叠布局](ui/arkts-layout-development-stack-layout.md)
+          - [弹性布局](ui/arkts-layout-development-flex-layout.md)
+          - [相对布局](ui/arkts-layout-development-relative-layout.md)
+          - [栅格布局](ui/arkts-layout-development-grid-layout.md)
+          - [媒体查询](ui/arkts-layout-development-media-query.md)
+          - [创建列表](ui/arkts-layout-development-create-list.md)
+          - [创建网格](ui/arkts-layout-development-create-grid.md)
+          - [创建轮播](ui/arkts-layout-development-create-looping.md)
+        - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
+      - 添加组件
+        - 添加常用组件
+          - [按钮](ui/arkts-common-components-button.md)
+          - [单选框](ui/arkts-common-components-radio-button.md)
+          - [切换按钮](ui/arkts-common-components-switch.md)
+          - [进度条](ui/arkts-common-components-progress-indicator.md)
+          - [文本显示](ui/arkts-common-components-text-display.md)
+          - [文本输入](ui/arkts-common-components-text-input.md)
+          - [自定义弹窗](ui/arkts-common-components-custom-dialog.md)
+          - [视频播放](ui/arkts-common-components-video-player.md)
+          - [XComponent](ui/arkts-common-components-xcomponent.md)
+        - 添加气泡和菜单
+          - [气泡提示](ui/arkts-popup-and-menu-components-popup.md)
+          - [菜单](ui/arkts-popup-and-menu-components-menu.md)
+      - 设置页面路由和组件导航
+        - [页面路由](ui/arkts-routing.md)
+        - 组件导航
+          - [Navigation](ui/arkts-navigation-navigation.md)
+          - [Tabs](ui/arkts-navigation-tabs.md)
+      - 显示图形
+        - [显示图片](ui/arkts-graphics-display.md)
+        - [绘制几何图形](ui/arkts-geometric-shape-drawing.md)
+        - [使用画布绘制自定义图形](ui/arkts-drawing-customization-on-canvas.md)
+      - 使用动画
+        - [动画概述](ui/arkts-animation-overview.md)
+        - 页面内的动画
+          - [布局更新动画](ui/arkts-layout-update-animation.md)
+          - [组件内转场动画](ui/arkts-transition-animation-within-component.md)
+          - [弹簧曲线动画](ui/arkts-spring-animation.md)
+        - 页面间的动画
+          - [放大缩小视图](ui/arkts-zoom-animation.md)
+          - [页面转场动画](ui/arkts-page-transition-animation.md)
+      - 支持交互事件
+        - [交互事件概述](ui/arkts-event-overview.md)
+        - 使用通用事件
+          - [触屏事件](ui/arkts-common-events-touch-screen-event.md)
+          - [键鼠事件](ui/arkts-common-events-device-input-event.md)
+          - [焦点事件](ui/arkts-common-events-focus-event.md)
+        - 使用手势事件
+          - [绑定手势方法](ui/arkts-gesture-events-binding.md)
+          - [单一手势](ui/arkts-gesture-events-single-gesture.md)
+          - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
+      - [性能提升的推荐方法](ui/arkts-performance-improvement-recommendation.md)
     - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
@@ -271,6 +328,22 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+  - Web
+    - [Web组件概述](web/web-component-overview.md)
+    - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
+    - 设置基本属性和事件
+      - [设置深色模式](web/web-set-dark-mode.md)
+      - [上传文件](web/web-file-upload.md)
+      - [在新窗口中打开页面](web/web-open-in-new-window.md)
+      - [管理位置权限](web/web-geolocation-permission.md)
+    - 在应用中使用前端页面JavaScript
+      - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
+      - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
+      - [建立应用侧与前端页面数据通道](web/web-app-page-data-channel.md)
+    - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
+    - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
+    - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
+    - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
   - 通知
     - [通知概述](notification/notification-overview.md)
     - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
@@ -1465,4 +1538,4 @@
   - [IDE使用常见问题](faqs/faqs-ide.md)
   - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
   - [开发板使用常见问题](faqs/faqs-development-board.md)
-<!--no_check-->
+    <!--no_check-->
