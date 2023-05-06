@@ -788,6 +788,11 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.QUICK_FIX_APPLY_RESULT
 - 订阅者所需权限： 无
 
+## COMMON_EVENT_QUICK_FIX_REVOKE_RESULT <sup>9+<sup>
+表示撤销快速修复应用补丁的动作结果。
+- 值： usual.event.QUICK_FIX_REVOKE_RESULT
+- 订阅者所需权限： 无
+
 ## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>
 表示HTTP代理的配置信息发生变化。
 - 值：usual.event.HTTP_PROXY_CHANGE
