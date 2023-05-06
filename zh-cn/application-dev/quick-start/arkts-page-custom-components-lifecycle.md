@@ -19,7 +19,7 @@
 - [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)：当用户点击返回按钮时触发。
 
 
-组件生命周期，即一般用\@Component装饰的自定义组件，提供以下生命周期接口：
+组件生命周期，即一般用\@Component装饰的自定义组件的生命周期，提供以下生命周期接口：
 
 
 - [aboutToAppear](../reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
@@ -134,7 +134,7 @@ struct MyComponent {
         Child()
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
-      Button('create or delete Child').onClick(() => {
+      Button('delete Child').onClick(() => {
         this.showChild = false;
       })
       // push到Page2页面，执行onPageHide
@@ -168,7 +168,7 @@ struct Child {
 ```
 
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以生效页面的生命周期方法，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时也声明了组件的生命周期函数。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以生效页面的生命周期方法，所以MyComponent中声明了当前Index页面的页面生命周期函数。MyComponent和其子组件Child也同时声明了组件的生命周期函数。
 
 
 - 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; Child aboutToAppear --&gt; Child build --&gt; Child build执行完毕 --&gt; MyComponent build执行完毕 --&gt; Index onPageShow。
