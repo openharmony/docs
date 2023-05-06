@@ -13,7 +13,6 @@
 
 - [通过跨设备Call调用实现多端协同](#通过跨设备call调用实现多端协同)
 
-
 ## 多端协同流程
 
 多端协同流程如下图所示。
@@ -93,7 +92,6 @@
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbility(want).then(() => {
-       // 其他业务处理
        // ...
        // 退出跨设备启动的ServiceExtensionAbility
        this.context.stopServiceExtensionAbility(want).then(() => {
@@ -276,7 +274,7 @@
    })
    ```
 
-6. 退出远端ServiceExtensionAbility。使用本接口可以使由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility应用退出，不只是断开与ServiceExtensionAbility之间的链接。
+6. 退出远端ServiceExtensionAbility。调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstopserviceextensionability)接口不只是断开与ServiceExtensionAbility之间的链接, 还会退出由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility。
 
    ```ts
    // 退出跨设备启动的ServiceExtensionAbility
