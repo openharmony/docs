@@ -93,12 +93,6 @@
    // context为发起端UIAbility的AbilityContext
    this.context.startAbility(want).then(() => {
        // ...
-       // 退出跨设备启动的ServiceExtensionAbility
-       this.context.stopServiceExtensionAbility(want).then(() => {
-           console.info("stop service extension ability success")
-       }).catch((err) => {
-           console.info("stop service extension ability err is " + JSON.stringify(err))
-       })
    }).catch((err) => {
        // ...
    })
