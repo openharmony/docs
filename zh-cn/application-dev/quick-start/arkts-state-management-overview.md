@@ -106,6 +106,10 @@ ArkUI提供了多种装饰器，通过使用这些装饰器，状态变量不仅
 
 - \@ObjectLink：\@ObjectLink装饰的变量接收\@Observed装饰的class的实例，应用于观察多层嵌套场景，和父组件的数据源构建双向同步。
 
+> **说明：**
+>
+> 仅[\@Observed/\@ObjectLink](arkts-observed-and-objectlink.md)可以观察嵌套场景，其他的状态变量仅能观察第一层，详情见各个装饰器章节的“观察变化和行为表现”小节。
+
 
 [管理应用拥有的状态](arkts-application-state-management-overview.md)，即图中Application级别的状态管理：
 
