@@ -33,7 +33,7 @@ Swiper(controller?: SwiperController)
 
 | 名称                          | 参数类型                               | 描述                                       |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| index                       | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0<br/>**说明：** <br/>设置小于0或大于等于子组件数量时，按照默认值0处理。 |
+| index                       | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0<br/>**说明：** <br/>设置小于0或大于等于子组件数量时，按照默认值0处理。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | autoPlay                    | boolean                                  | 子组件是否自动播放。<br/>默认值：false<br/>**说明：** <br/>loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。 |
 | interval                    | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000                    |
 | indicator<sup>10+</sup>   | [DotIndicator](#dotindicator) \| [DigitIndicator](#digitindicator) \| boolean |  设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |

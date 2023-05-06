@@ -22,7 +22,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 | 参数名 | 参数类型 | 必填   | 参数描述           |
 | ---- | ---------- | -----| -------------- |
 | type | [ToggleType](#toggletype枚举说明) | 是   | 开关的样式。 |
-| isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false |
+| isOn | boolean    | 否   | 开关是否打开，true：打开，false：关闭。<br/>默认值：false<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 
 ## ToggleType枚举说明

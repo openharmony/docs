@@ -41,7 +41,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
+| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controlButton | [ButtonStyle](#buttonstyle对象说明)                            | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
 | sideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length)<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200<br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>受最小宽度和最大宽度限制，不在限制区域内取最近的点。<br/>sideBarWidth优先于侧边栏子组件width，sideBarWidth未设置时默认值优先级低于侧边栏子组件width。 |
