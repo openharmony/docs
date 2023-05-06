@@ -39,7 +39,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。（只有手动触发且Checkbox状态改变时才会触发onChange回调）<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 
