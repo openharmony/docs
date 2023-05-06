@@ -13,7 +13,7 @@
 
 - [通过跨设备Call调用实现多端协同](#通过跨设备call调用实现多端协同)
 
-- [停止退出跨设备拉起的serviceextensionability组件](#停止退出跨设备拉起的serviceextensionability组件)
+- [退出由跨设备拉起的serviceextensionability组件](#退出由跨设备拉起的serviceextensionability组件)
 
 
 ## 多端协同流程
@@ -488,11 +488,11 @@
    }
    ```
 
-## 停止退出跨设备拉起的serviceextensionability组件
+## 退出由跨设备拉起的serviceextensionability组件
 
-停止退出跨设备拉起的ServiceExtensionAbility组件。
+退出由跨设备拉起的ServiceExtensionAbility组件。
 
-下面介绍停止退出跨设备拉起的ServiceExtensionAbility组件的方法。
+下面介绍退出由跨设备拉起的ServiceExtensionAbility组件的方法。
 
 
 ### 接口说明
@@ -507,8 +507,8 @@
 
 ### 开发步骤
 
-1. 停止退出跨设备远程启动的ServiceExtension应用。
-     使用stopServiceExtensionAbility接口停止退出由startAbility接口或connectServiceExtensionAbility接口拉起的跨设备ServiceExtension应用。
+1. 退出由跨设备远程启动的ServiceExtension应用。
+     使用stopServiceExtensionAbility接口退出由startAbility接口或connectServiceExtensionAbility接口拉起的跨设备ServiceExtension应用。
 
      1. 导入接口模块
 
@@ -520,7 +520,7 @@
          import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
          ```
 
-     2. 使用context的接口停止退出使用startAbility接口启动的跨设备ServiceExtension应用。
+     2. 退出使用startAbility接口启动的跨设备ServiceExtension应用。
      
          ```ts
             let deviceId = "device ID obtained from manager"
@@ -541,7 +541,7 @@
             })
          ```
 
-     3. 使用context的接口停止退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
+     3. 退出使用connectServiceExtensionAbility接口启动的跨设备ServiceExtension应用。
      
          ```ts
             let deviceId = "device ID obtained from manager"
