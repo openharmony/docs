@@ -546,7 +546,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700044 安装包设置的多进程配置项与系统配置项设置矛盾
 **错误信息**<br/>
-Failed to install because the isolationMode does not match the system.
+Failed to install the HAP because the isolationMode configured is not supported.
 
 **错误描述**<br/>
 安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
