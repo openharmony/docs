@@ -172,8 +172,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.measure (Text Measurement)](js-apis-measure.md)
-  - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)

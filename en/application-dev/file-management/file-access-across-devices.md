@@ -1,4 +1,4 @@
-# Access Files Across Devices
+# Accessing Files Across Devices
 
 The distributed file system provides cross-device file access capabilities for applications. For the same application installed on multiple devices, you can implement read and write of the files in the application's distributed directory (**/data/storage/el2/distributedfiles/**) across devices by using [ohos.file.fs](app-file-access.md). For example, device A and device B are installed with the same application. After device A and device B are connected to form a Virtual Device, the application on device A can access the files of the same application on Device B. What you need to do is place the files to the distributed directory.
 
