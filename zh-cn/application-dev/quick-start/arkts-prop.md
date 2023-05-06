@@ -275,7 +275,7 @@ struct ReaderComp {
   build() {
     Row() {
       Text(this.title)
-      Text(`... ${this.readIt ? 'I have read' : 'I have bot read it'}`)
+      Text(`... ${this.readIt ? 'I have read' : 'I have not read it'}`)
         .onClick(() => this.readIt = true)
     }
   }
