@@ -1373,7 +1373,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含内容与[startAbilityByCall使用信息保持一致](#uiabilitycontextstartabilitybycall)。 |
+| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含内容与[startAbilityByCall使用信息保持一致](#serviceextensioncontextstartabilitybycall)。 |
 | accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**

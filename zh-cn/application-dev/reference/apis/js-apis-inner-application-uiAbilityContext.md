@@ -2292,7 +2292,7 @@ try {
 }
   ```
 
-## ServiceExtensionContext.startAbilityByCallWithAccount
+## UIAbilityContext.startAbilityByCallWithAccount
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
 
