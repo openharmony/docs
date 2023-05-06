@@ -104,6 +104,22 @@
    })
    ```
 
+5. 退出远端ServiceExtensionAbility。调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口, 退出使用startAbility接口拉起的跨设备ServiceExtensionAbility。
+
+   ```ts
+   let want = {
+       deviceId: getRemoteDeviceId(),
+       bundleName: 'com.example.myapplication',
+       abilityName: 'FuncAbility',
+       moduleName: 'module1', // moduleName非必选
+   }
+   // 退出由startAbility接口跨设备启动的ServiceExtensionAbility
+   this.context.stopServiceExtensionAbility(want).then(() => {
+       console.info("stop service extension ability success")
+   }).catch((err) => {
+       console.info("stop service extension ability err is " + JSON.stringify(err))
+   })
+   ```
 
 ## 通过跨设备启动UIAbility组件实现多端协同（获取返回数据）
 
@@ -274,10 +290,15 @@
    })
    ```
 
-6. 退出远端ServiceExtensionAbility。调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstopserviceextensionability)接口不只是断开与ServiceExtensionAbility之间的链接, 还会退出由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility。
+6. 退出远端ServiceExtensionAbility。调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstopserviceextensionability)接口不只是断开与ServiceExtensionAbility之间的链接, 还会退出由connectServiceExtensionAbility接口拉起的跨设备ServiceExtensionAbility。
 
    ```ts
-   // 退出跨设备启动的ServiceExtensionAbility
+   let want = {
+       "deviceId": getRemoteDeviceId(),
+       "bundleName": "com.example.myapplication",
+       "abilityName": "ServiceExtAbility"
+   };
+   // 退出由connectServiceExtensionAbility接口跨设备启动的ServiceExtensionAbility
    this.context.stopServiceExtensionAbility(want).then(() => {
        console.info("stop service extension ability success")
    }).catch((err) => {
