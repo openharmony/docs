@@ -37,7 +37,7 @@ import inputMethod from '@ohos.inputMethod';
 | labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>10+</sup>    | object | 是 | 是 | 非必填。输入法扩展信息。|
+| extra<sup>10+</sup>    | object | 是 | 是 | 非必填。输入法扩展信息。<br/>**说明：** 从API version 10开始改为非必选参数。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -633,6 +633,20 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+
+## InputWindowInfo<sup>10+</sup>
+
+输入法软键盘的窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| name<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的名称。|
+| left<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的横坐标。|
+| top<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的纵坐标。|
+| width<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的宽度。|
+| height<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的高度。|
 
 ## InputMethodController
 
@@ -2094,6 +2108,50 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 ```js
 inputMethodSetting.off('imeChange');
+```
+
+### on('imeShow'|'imeHide')<sup>10+</sup>
+
+on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明 |
+| -------- | ---- | ---- | ---- |
+| type     | string | 是 | 设置监听类型。<br/>- type为‘imeShow’时表示订阅输入法软键盘显示事件。<br/>- type为‘imeHide’时表示订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+
+**示例：**
+
+```js
+inputMethodSetting.on('imeShow', (info) => {
+    console.info('Succeeded in subscribing imeShow event.');
+});
+```
+
+### off('imeShow'|'imeHide')<sup>10+</sup>
+
+off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string | 是 | 设置监听类型。<br/>- type为‘imeShow’时表示取消订阅输入法软键盘显示事件。<br/>- type为‘imeHide’时表示取消订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的输入法软键盘的回调函数。 |
+
+**示例：**
+
+```js
+inputMethodSetting.off('imeShow');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
