@@ -162,9 +162,9 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 **示例：**
   ```js
-  import wifi from '@ohos.wifi';
+  import wifi from '@ohos.wifiManager';
   
-  wifi.getScanInfos((err, result) => {
+  wifi.getScanResults((err, result) => {
       if (err) {
           console.error("get scan info error");
           return;
@@ -185,7 +185,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
       }
   });
   
-  wifi.getScanInfos().then(result => {
+  wifi.getScanResults().then(result => {
       var len = Object.keys(result).length;
       console.log("wifi received scan info: " + len);
       for (var i = 0; i < len; ++i) {
@@ -623,7 +623,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 connectToCandidateConfig(networkId: number): void
 
-连接到候选网络。
+应用使用该接口连接到自己添加的候选网络（如果当前已经连接到热点，需要先断开连接）。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
@@ -648,7 +648,7 @@ connectToCandidateConfig(networkId: number): void
 
 connectToNetwork(networkId: number): void
 
-连接到指定网络。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 
@@ -675,7 +675,7 @@ connectToNetwork(networkId: number): void
 
 connectToDevice(config: WifiDeviceConfig): void
 
-连接到指定网络。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 
@@ -803,7 +803,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 **示例：**
   ```js
-  import wifi from '@ohos.wifi';
+  import wifi from '@ohos.wifiManager';
   
   wifi.getLinkedInfo((err, data) => {
       if (err) {
@@ -1780,7 +1780,7 @@ p2pConnect(config: WifiP2PConfig): void
 
 **示例：**
   ```js
-  import wifi from '@ohos.wifi';
+  import wifi from '@ohos.wifiManager';
   
   var recvP2pConnectionChangeFunc = result => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -2085,7 +2085,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
   ```js
-  import wifi from '@ohos.wifi';
+  import wifi from '@ohos.wifiManager';
   
   var recvPowerNotifyFunc = result => {
       console.info("Receive power state change event: " + result);
