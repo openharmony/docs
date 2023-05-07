@@ -38,9 +38,9 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 ```js
 class InputMethodExt extends InputMethodExtensionAbility {
-    onCreate(want) {
-        console.log('onCreate, want:' + want.abilityName);
-    }
+  onCreate(want) {
+    console.log('onCreate, want:' + want.abilityName);
+  }
 }
 ```
 
@@ -56,8 +56,8 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 ```js
 class InputMethodExt extends InputMethodExtensionAbility {
-    onDestroy() {
-        console.log('onDestroy');
-    }
+  onDestroy() {
+    console.log('onDestroy');
+  }
 }
 ```
