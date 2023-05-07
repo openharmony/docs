@@ -456,7 +456,7 @@ getInputMethodController(): InputMethodController
 
 > **说明：** 
 >
-> 从API version 6开始支持，从API version 9开始废弃, 建议使用[getController()](#inputmethodgetcontroller9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getController()](#inputmethodgetcontroller9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -480,7 +480,7 @@ getInputMethodSetting(): InputMethodSetting
 
 > **说明：**
 >
-> 从API version 6开始支持，从API version 9开始废弃, 建议使用[getSetting()](#inputmethodgetsetting9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[getSetting()](#inputmethodgetsetting9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1563,7 +1563,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：** 
 >
-> 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[stopInputSession()](#stopinputsession9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1599,7 +1599,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 > **说明：** 
 >
-> 从API version 6开始支持，从API version 9开始废弃, 建议使用[stopInputSession()](#stopinputsession9)替代。
+> 从API version 6开始支持，从API version 9开始废弃，建议使用[stopInputSession()](#stopinputsession9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2125,10 +2125,10 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 ```js
 let inputMethodProperty = {
   name: 'com.example.kikakeyboard',
-  id: 'com.example.kikakeyboard',
+  id: 'propertyId',
 }
 try {
-  inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
+  inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err, data) => {
     if (err) {
       console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
@@ -2174,7 +2174,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 ```js
 let inputMethodProperty = {
   name: 'com.example.kikakeyboard',
-  id: 'com.example.kikakeyboard',
+  id: 'propertyId',
 }
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
@@ -2267,7 +2267,7 @@ try {
 
 getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用callback异步回调。
+获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2291,7 +2291,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 ```js
 try {
-  inputMethodSetting.getInputMethods(true, (err,data) => {
+  inputMethodSetting.getInputMethods(true, (err, data) => {
     if (err) {
       console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
       return;
@@ -2307,7 +2307,7 @@ try {
 
 getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用promise异步回调。
+获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2424,7 +2424,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 > **说明：** 
 >
-> 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getInputMethods](#getinputmethods9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2437,7 +2437,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
 
 ```js
-inputMethodSetting.listInputMethod((err,data) => {
+inputMethodSetting.listInputMethod((err, data) => {
   if (err) {
     console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
     return;
@@ -2454,7 +2454,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[getInputMethods](#getinputmethods9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2482,7 +2482,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2512,7 +2512,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃, 建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[showOptionalInputMethods()](#showoptionalinputmethods9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
