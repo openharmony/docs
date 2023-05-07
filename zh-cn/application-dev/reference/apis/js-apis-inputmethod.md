@@ -126,14 +126,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 **示例：**
 
 ```js
-let im = inputMethod.getCurrentInputMethod();
-let prop = {
-  packageName: im.packageName,
-  methodId: im.methodId,
-  name: im.packageName,
-  id: im.methodId,
-  extra: {}
-}
+let prop = inputMethod.getCurrentInputMethod();
 try{
   inputMethod.switchInputMethod(prop, (err, result) => {
     if (err) {
@@ -183,14 +176,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-let im = inputMethod.getCurrentInputMethod();
-let prop = {
-  packageName: im.packageName,
-  methodId: im.methodId,
-  name: im.packageName,
-  id: im.methodId,
-  extra: {}
-}
+let prop = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(prop).then((result) => {
     if (result) {
@@ -2138,11 +2124,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 ```js
 let inputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
-  methodId: 'com.example.kikakeyboard',
   name: 'com.example.kikakeyboard',
   id: 'com.example.kikakeyboard',
-  extra:{}
 }
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
@@ -2190,11 +2173,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 ```js
 let inputMethodProperty = {
-  packageName: 'com.example.kikakeyboard',
-  methodId: 'com.example.kikakeyboard',
   name: 'com.example.kikakeyboard',
   id: 'com.example.kikakeyboard',
-  extra:{}
 }
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data) => {
