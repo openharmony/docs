@@ -514,13 +514,13 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err) {
-      console.log(`Failed to createPanel: ${JSON.stringify(err)}`);
+      console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log(`Failed to createPanel: ${JSON.stringify(err)}`);
+  console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -562,7 +562,7 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
 }).catch((err) => {
-  console.log(`Failed to create panel: ${JSON.stringify(err)}`);
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 })
 ```
 
@@ -591,26 +591,26 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err) {
-      console.log(`Failed to create panel: ${JSON.stringify(err)}`);
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log(`Failed to create panel: ${JSON.stringify(err)}`);
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
     if(err !== undefined) {
-      console.log(`Failed to destroy panel: ${JSON.stringify(err)}`);
+      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in destroying panel.');
   })
 } catch(err) {
-  console.log(`Failed to destroy panel: ${JSON.stringify(err)}`);
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -643,24 +643,24 @@ let panelInfo: inputMethodEngine.PanelInfo = {
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
     if (err) {
-      console.log(`Failed to create panel: ${JSON.stringify(err)}`);
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log(`Failed to create panel: ${JSON.stringify(err)}`);
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
     console.log('Succeed in destroying panel.');
   }).catch((err) => {
-    console.log(`Failed to destroy panel: ${JSON.stringify(err)}`);
+    console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log(`Failed to destroy panel: ${JSON.stringify(err)}`);
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2177,7 +2177,7 @@ try {
     console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log(`Failed to moveCursor: ${JSON.stringify(err)}`);
+  console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2260,7 +2260,7 @@ try {
     console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log(`Failed to selectByRange: ${JSON.stringify(err)}`);
+  console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2343,7 +2343,7 @@ try {
     console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
 
