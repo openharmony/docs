@@ -965,7 +965,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置要避让的窗口。使用callback异步回调。
 
-比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
+比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。预留能力，当前暂不支持获取windowId。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1009,7 +1009,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 设置要避让的窗口。使用promise异步回调。
 
-比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。
+比如：将当前绑定到输入法的应用程序的窗口ID通知系统，正确设置后，客户端所在的窗口可以避开输入法窗口。预留能力，当前暂不支持获取windowId。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1635,7 +1635,7 @@ on(type: 'insertText', callback: (text: string) => void): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>-type为‘insertText’时表示订阅输入法应用插入文本事件监听。 |
+| type     | string                                                       | 是   | 设置监听类型。<br/>- type为‘insertText’时表示订阅输入法应用插入文本事件监听。 |
 | callback | (text: string) => void | 是   | 回调函数，返回需要插入的文本内容。<br/>开发者需要在回调函数中根据传入的文本内容操作编辑框中的内容。 |
 
 **错误码：**
@@ -1670,7 +1670,7 @@ off(type: 'insertText'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘insertText’时表示取消订阅输入法应用插入文本事件监听。 |
 
 **示例：**
 
@@ -1690,7 +1690,7 @@ on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ----- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>-type为‘deleteLeft’时表示订阅输入法应用向左删除事件监听。 <br/>-type为‘deleteRight’时表示订阅输入法应用向右删除事件监听。|
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘deleteLeft’时表示订阅输入法应用向左删除事件监听。 <br/>- type为‘deleteRight’时表示订阅输入法应用向右删除事件监听。|
 | callback | (length: number) => void | 是   | 回调函数，返回需要向左或向右删除的文本的长度。<br/>开发者需要在回调函数中根据传入的删除长度操作编辑框中相应文本。 |
 
 **错误码：**
@@ -1733,7 +1733,7 @@ off(type: 'deleteLeft' | 'deleteRight'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘deleteLeft’时表示取消订阅输入法应用向左删除的事件监听。 <br/>-type为‘deleteRight’时表示取消订阅输入法应用向右删除的事件监听。|
+| type   | string | 是   | 设置监听类型。<br/>- type为‘deleteLeft’时表示取消订阅输入法应用向左删除的事件监听。 <br/>- type为‘deleteRight’时表示取消订阅输入法应用向右删除的事件监听。|
 
 **示例：**
 
@@ -1754,7 +1754,7 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 
 | 参数名   | 类型  | 必填 | 说明    |
 | -------- | ------ | ---- | ---- |
-| type     | string  | 是   | 设置监听类型。<br/>-type为‘sendKeyboardStatus’时表示订阅输入法应用发送键盘状态事件监听。 |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示订阅输入法应用发送键盘状态事件监听。 |
 | callback | (keyBoardStatus: [KeyboardStatus](#keyboardstatus10)) => void | 是   | 回调函数，返回键盘状态。<br/>开发者需要在回调函数中根据传入的键盘状态做相应动作。 |
 
 **错误码：**
@@ -1789,7 +1789,7 @@ off(type: 'sendKeyboardStatus'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘sendKeyboardStatus’时表示取消订阅输入法应用发送键盘状态事件监听。 |
 
 **示例：**
 
@@ -1809,7 +1809,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 | 参数名   | 类型  | 必填 | 说明     |
 | -------- | -------- | ---- | ----- |
-| type     | string  | 是   | 设置监听类型。<br/>-type为‘sendFunctionKey’时表示订阅输入法应用发送功能键事件监听。 |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示订阅输入法应用发送功能键事件监听。 |
 | callback | (functionKey: [FunctionKey](#functionkey10)) => void | 是   | 回调函数，返回输入法应用发送的功能键信息。<br/>开发者需要根据返回的功能键做相应的操作。 |
 
 **错误码：**
@@ -1844,7 +1844,7 @@ off(type: 'sendFunctionKey'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘sendFunctionKey’时表示取消订阅输入法应用发送FunctionKey事件监听。 |
 
 **示例：**
 
@@ -1864,7 +1864,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘moveCursor’时表示订阅输入法应用移动光标事件监听。 |
+| type     | string | 是   | 设置监听类型。<br/>- type为‘moveCursor’时表示订阅输入法应用移动光标事件监听。 |
 | callback | callback: (direction: [Direction<sup>10+</sup>](#direction10)) => void | 是   | 回调函数，返回光标信息。<br/>开发者需要根据返回的光标移动方向改变光标位置。 |
 
 **错误码：**
@@ -1899,7 +1899,7 @@ off(type: 'moveCursor'): void
 
 | 参数名  | 类型    | 必填 | 说明  |
 | ------ | ------ | ---- | ---- |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘moveCursor’时表示取消订阅输入法应用发送移动光标事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘moveCursor’时表示取消订阅输入法应用发送移动光标事件监听。 |
 
 **示例：**
 
@@ -1919,7 +1919,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | -------- |
-| type     | string    | 是   | 设置监听类型。<br/>-type为‘handleExtendAction’时表示订阅输入法应用发送扩展操作代码事件监听。 |
+| type     | string    | 是   | 设置监听类型。<br/>- type为‘handleExtendAction’时表示订阅输入法应用发送扩展操作代码事件监听。 |
 | callback | callback: (action: [ExtendAction](#extendaction10)) => void | 是   | 回调函数，返回扩展操作类型。<br/>开发者需要在回调函数中根据传入的扩展操作类型做相应的操作。 |
 
 **错误码：**
@@ -1954,7 +1954,7 @@ off(type: 'handleExtendAction'): void
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ------ | ---- | ------- |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘handleExtendAction’时表示取消订阅输入法应用发送扩展代码事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘handleExtendAction’时表示取消订阅输入法应用发送扩展代码事件监听。 |
 
 **示例：**
 
@@ -1974,7 +1974,7 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 
 | 参数名   | 类型     | 必填 | 说明     |
 | -------- | ---- | ---- | ------- |
-| type     | string  | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示订阅输入法应用按范围选中文本事件监听。 |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示订阅输入法应用按范围选中文本事件监听。 |
 | callback | Callback&lt;[Range](#range10)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的范围选中编辑框中相应文本。 |
 
 **示例：**
@@ -1997,7 +1997,7 @@ off(type: 'selectByRange'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘selectByRange’时表示取消订阅输入法应用按范围选中文本事件监听。 |
 
 **示例：**
 
@@ -2017,7 +2017,7 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 | 参数名   | 类型   | 必填 | 说明     |
 | -------- | ----- | ---- | ------ |
-| type     | string  | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示订阅输入法应用按光标移动动作选中文本事件监听。 |
+| type     | string  | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示订阅输入法应用按光标移动动作选中文本事件监听。 |
 | callback | Callback&lt;[Movement](#movement10)&gt; | 是   | 回调函数，返回需要选中的文本的范围。<br/>开发者需要在回调函数中根据传入的光标动作选中编辑框中相应文本。 |
 
 **示例：**
@@ -2040,7 +2040,7 @@ off(type: 'selectByMovement'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
+| type   | string | 是   | 设置监听类型。<br/>- type为‘selectByMovement’时表示取消订阅输入法应用按范围选中文本事件监听。 |
 
 **示例：**
 
@@ -2064,7 +2064,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
+| type     | string                        | 是   | 设置监听类型。<br/>- type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
 | callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 是 | 回调函数，返回输入法属性对象及输入法子类型对象。 |
 
 **示例：**
@@ -2087,7 +2087,7 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 | 参数名   | 类型    | 必填 | 说明          |
 | -------- | --------- | ---- | --------------- |
-| type     | string    | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
+| type     | string    | 是   | 设置监听类型。<br/>- type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
 | callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | 否 | 回调函数，返回取消订阅的输入法属性对象及输入法子类型对象。 |
 
 **示例：**
@@ -2267,7 +2267,9 @@ try {
 
 getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
-获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用callback异步回调。
+获取已激活/未激活输入法列表。使用callback异步回调。
+
+参数enable取true，返回已激活输入法列表；取false返回未激活输入法列表。已激活/未激活为预留概念，当前暂未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2307,7 +2309,9 @@ try {
 
 getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
-获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。已激活/未激活输入法的确切功能当前版本未支持。已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。使用promise异步回调。
+获取已激活/未激活输入法列表。使用promise异步回调。
+
+参数enable取true，返回已激活输入法列表；取false返回未激活输入法列表。已激活/未激活为预留概念，当前暂未支持。当前版本中，已激活输入法包括当前使用的输入法，未激活输入法包括当前输入法以外的其他已安装的输入法。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
