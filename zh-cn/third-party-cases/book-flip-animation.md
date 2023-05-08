@@ -37,7 +37,7 @@
 
     动效中用到了4个文本组件，因此可以先定义一个文本组件，然后对其进行重复调用。同时为文本组件添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)属性，用来控制组件的旋转。
     由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以需要为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
-    ```
+    ```ts
     @Component
     struct BookCard{
       // 为变量添加@Prop装饰器，用于接收父组件的动态传参
@@ -71,7 +71,7 @@
 2. 创建父组件框架。
 
     由于文本组件分为上下两层，所以在父组件中采用[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md)组件进行层叠布局。同时使用[Divider](../application-dev/reference/arkui-ts/ts-basic-components-divider.md)组件作为书籍两个页面间的分隔线。具体代码如下：
-    ```
+    ```ts
     @Entry
     @Component
     struct BookAnimation {
@@ -111,7 +111,7 @@
     - 自定义book_animate函数，在其中使用animateTo方法添加动画效果，同时控制动画的时长，以及动画过程中各元素状态的改变。
     - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md)方法重复调用book_animate函数，以实现连续翻页动效。
     具体代码如下：
-    ```
+    ```ts
     @Entry
     @Component
     struct BookAnimation {
@@ -183,7 +183,7 @@
 
 ## 完整代码
 示例完整代码如下：
-```
+```ts
 @Component
 struct BookCard{
   @Prop num:number
