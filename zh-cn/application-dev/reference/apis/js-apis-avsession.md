@@ -445,13 +445,13 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
 await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
-    console.info('Promise returned to indicate that the device list is obtained.');
+    console.info(`Promise returned to indicate that the device list is obtained.`);
 }).catch((err) => {
     console.info(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 
 avSession.castAudio('all', audioDevices).then(() => {
-    console.info('CreateController : SUCCESS');
+    console.info(`CreateController : SUCCESS`);
 }).catch((err) => {
     console.info(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -498,7 +498,7 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let audioDevices;
 await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
     audioDevices = data;
-    console.info('Promise returned to indicate that the device list is obtained.');
+    console.info(`Promise returned to indicate that the device list is obtained.`);
 }).catch((err) => {
     console.info(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -507,7 +507,7 @@ avSession.castAudio('all', audioDevices, function (err) {
     if (err) {
         console.info(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('CastAudio : SUCCESS ');
+        console.info(`CastAudio : SUCCESS `);
     }
 });
 ```
@@ -622,7 +622,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 ```js
 avSession.on('sessionServiceDie', () => {
-    console.info('on sessionServiceDie  : session is  Died ');
+    console.info(`on sessionServiceDie  : session is  Died `);
 });
 ```
 
@@ -696,7 +696,7 @@ let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false}; 
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
-    console.info('SendSystemAVKeyEvent Successfully');
+    console.info(`SendSystemAVKeyEvent Successfully`);
 }).catch((err) => {
     console.info(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -740,7 +740,7 @@ avSession.sendSystemAVKeyEvent(event, function (err) {
     if (err) {
         console.info(`SendSystemAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SendSystemAVKeyEvent : SUCCESS ');
+        console.info(`SendSystemAVKeyEvent : SUCCESS `);
     }
 });
 ```
@@ -798,7 +798,7 @@ let avcommand = {command:cmd};
 // let cmd : avSession.AVControlCommandType = 'toggleFavorite';
 // let avcommand = {command:cmd, parameter:"false"};
 avSession.sendSystemControlCommand(avcommand).then(() => {
-    console.info('SendSystemControlCommand successfully');
+    console.info(`SendSystemControlCommand successfully`);
 }).catch((err) => {
     console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -855,7 +855,7 @@ avSession.sendSystemControlCommand(avcommand, function (err) {
     if (err) {
         console.info(`SendSystemControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('sendSystemControlCommand successfully');
+        console.info(`sendSystemControlCommand successfully`);
     }
 });
 ```
@@ -931,7 +931,7 @@ let metadata  = {
     nextAssetId: "121279",
 };
 session.setAVMetadata(metadata).then(() => {
-    console.info('SetAVMetadata successfully');
+    console.info(`SetAVMetadata successfully`);
 }).catch((err) => {
     console.info(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -985,7 +985,7 @@ session.setAVMetadata(metadata, function (err) {
     if (err) {
         console.info(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SetAVMetadata successfully');
+        console.info(`SetAVMetadata successfully`);
     }
 });
 ```
@@ -1032,7 +1032,7 @@ let playbackState = {
     isFavorite:true,
 };
 session.setAVPlaybackState(playbackState).then(() => {
-    console.info('SetAVPlaybackState successfully');
+    console.info(`SetAVPlaybackState successfully`);
 }).catch((err) => {
     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1078,7 +1078,7 @@ session.setAVPlaybackState(PlaybackState, function (err) {
     if (err) {
         console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SetAVPlaybackState successfully');
+        console.info(`SetAVPlaybackState successfully`);
     }
 });
 ```
@@ -1144,7 +1144,7 @@ let queueItem_2 = {
 };
 let queueItemsArray = [queueItem_1, queueItem_2];
 session.setAVQueueItems(queueItemsArray).then(() => {
-    console.info('SetAVQueueItems successfully');
+    console.info(`SetAVQueueItems successfully`);
 }).catch((err) => {
     console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1209,7 +1209,7 @@ session.setAVQueueItems(queueItemsArray, function (err) {
     if (err) {
         console.info(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SetAVQueueItems successfully');
+        console.info(`SetAVQueueItems successfully`);
     }
 });
 ```
@@ -1249,7 +1249,7 @@ setAVQueueTitle(title: string): Promise\<void>
 ```js
 let queueTitle = 'QUEUE_TITLE';
 session.setAVQueueTitle(queueTitle).then(() => {
-    console.info('SetAVQueueTitle successfully');
+    console.info(`SetAVQueueTitle successfully`);
 }).catch((err) => {
     console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1288,7 +1288,7 @@ session.setAVQueueTitle(queueTitle, function (err) {
     if (err) {
         console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SetAVQueueTitle successfully');
+        console.info(`SetAVQueueTitle successfully`);
     }
 });
 ```
@@ -1358,7 +1358,7 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
     session.setLaunchAbility(agent).then(() => {
-        console.info('SetLaunchAbility successfully');
+        console.info(`SetLaunchAbility successfully`);
     }).catch((err) => {
         console.info(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     });
@@ -1428,7 +1428,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
         if (err) {
             console.info(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
         } else {
-            console.info('SetLaunchAbility successfully');
+            console.info(`SetLaunchAbility successfully`);
         }
     });
 });
@@ -1689,7 +1689,7 @@ activate(): Promise\<void>
 
 ```js
 session.activate().then(() => {
-    console.info('Activate : SUCCESS ');
+    console.info(`Activate : SUCCESS `);
 }).catch((err) => {
     console.info(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1726,7 +1726,7 @@ session.activate(function (err) {
     if (err) {
         console.info(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('Activate : SUCCESS ');
+        console.info(`Activate : SUCCESS `);
     }
 });
 ```
@@ -1759,7 +1759,7 @@ deactivate(): Promise\<void>
 
 ```js
 session.deactivate().then(() => {
-    console.info('Deactivate : SUCCESS ');
+    console.info(`Deactivate : SUCCESS `);
 }).catch((err) => {
     console.info(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1798,7 +1798,7 @@ session.deactivate(function (err) {
     if (err) {
         console.info(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('Deactivate : SUCCESS ');
+        console.info(`Deactivate : SUCCESS `);
     }
 });
 ```
@@ -1831,7 +1831,7 @@ destroy(): Promise\<void>
 
 ```js
 session.destroy().then(() => {
-    console.info('Destroy : SUCCESS ');
+    console.info(`Destroy : SUCCESS `);
 }).catch((err) => {
     console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1868,7 +1868,7 @@ session.destroy(function (err) {
     if (err) {
         console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('Destroy : SUCCESS ');
+        console.info(`Destroy : SUCCESS `);
     }
 });
 ```
@@ -1902,25 +1902,25 @@ on(type: 'play'|'pause'|'stop'|'playNext'|'playPrevious'|'fastForward'|'rewind',
 
 ```js
 session.on('play', () => {
-    console.info('on play entry');
+    console.info(`on play entry`);
 });
 session.on('pause', () => {
-    console.info('on pause entry');
+    console.info(`on pause entry`);
 });
 session.on('stop', () => {
-    console.info('on stop entry');
+    console.info(`on stop entry`);
 });
 session.on('playNext', () => {
-    console.info('on playNext entry');
+    console.info(`on playNext entry`);
 });
 session.on('playPrevious', () => {
-    console.info('on playPrevious entry');
+    console.info(`on playPrevious entry`);
 });
 session.on('fastForward', () => {
-    console.info('on fastForward entry');
+    console.info(`on fastForward entry`);
 });
 session.on('rewind', () => {
-    console.info('on rewind entry');
+    console.info(`on rewind entry`);
 });
 ```
 
@@ -2744,7 +2744,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 ```js
 let queueItemId = 0;
 controller.skipToQueueItem(queueItemId).then(() => {
-    console.info('SkipToQueueItem successfully');
+    console.info(`SkipToQueueItem successfully`);
 }).catch((err) => {
     console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2783,7 +2783,7 @@ controller.skipToQueueItem(queueItemId, function (err) {
     if (err) {
         console.info(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SkipToQueueItem successfully');
+        console.info(`SkipToQueueItem successfully`);
     }
 });
 ```
@@ -2967,7 +2967,7 @@ let keyItem = {code:0x49, pressedTime:2, deviceId:0};
 let event = {action:2, key:keyItem, keys:[keyItem]};
 
 controller.sendAVKeyEvent(event).then(() => {
-    console.info('SendAVKeyEvent Successfully');
+    console.info(`SendAVKeyEvent Successfully`);
 }).catch((err) => {
     console.info(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3011,7 +3011,7 @@ controller.sendAVKeyEvent(event, function (err) {
     if (err) {
         console.info(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SendAVKeyEvent Successfully');
+        console.info(`SendAVKeyEvent Successfully`);
     }
 });
 ```
@@ -3222,7 +3222,7 @@ destroy(): Promise\<void>
 
 ```js
 controller.destroy().then(() => {
-    console.info('Destroy : SUCCESS ');
+    console.info(`Destroy : SUCCESS `);
 }).catch((err) => {
     console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3259,7 +3259,7 @@ controller.destroy(function (err) {
     if (err) {
         console.info(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('Destroy : SUCCESS ');
+        console.info(`Destroy : SUCCESS `);
     }
 });
 ```
@@ -3342,6 +3342,10 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 通过控制器发送命令到其对应的会话。结果通过Promise异步回调方式返回。
 
+> **说明：**
+>
+> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[注册媒体会话相关监听](#onplaypausestopplaynextplaypreviousfastforwardrewind)。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **系统接口：** 该接口为系统接口
@@ -3385,7 +3389,7 @@ let avCommand = {command:'play'};
 // let avCommand = {command:'setLoopMode', parameter:avSession.LoopMode.LOOP_MODE_SINGLE};
 // let avCommand = {command:'toggleFavorite', parameter:"false"};
 controller.sendControlCommand(avCommand).then(() => {
-    console.info('SendControlCommand successfully');
+    console.info(`SendControlCommand successfully`);
 }).catch((err) => {
     console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3396,6 +3400,10 @@ controller.sendControlCommand(avCommand).then(() => {
 sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void
 
 通过会话控制器发送命令到其对应的会话。结果通过callback异步回调方式返回。
+
+> **说明：**
+>
+> 媒体控制方在使用sendControlCommand命令前，需要确保控制对应的媒体会话注册了对应的监听，注册媒体会话相关监听的方法请参见接口[注册媒体会话相关监听](#onplaypausestopplaynextplaypreviousfastforwardrewind)。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3438,7 +3446,7 @@ controller.sendControlCommand(avCommand, function (err) {
     if (err) {
         console.info(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-        console.info('SendControlCommand successfully');
+        console.info(`SendControlCommand successfully`);
     }
 });
 ```
@@ -3736,7 +3744,7 @@ on(type: 'sessionDestroy', callback: () => void)
 
 ```js
 controller.on('sessionDestroy', () => {
-    console.info('on sessionDestroy : SUCCESS ');
+    console.info(`on sessionDestroy : SUCCESS `);
 });
 ```
 
@@ -4340,3 +4348,5 @@ controller.off('outputDeviceChange');
 | ERR_CODE_COMMAND_INVALID       | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE      | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD      | 6600107 | Too many commands or events.       |
+
+<!--no_check-->
