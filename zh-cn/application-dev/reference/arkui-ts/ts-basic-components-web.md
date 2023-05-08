@@ -3676,7 +3676,7 @@ setResponseData(data: string | number)
 
 | 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
 | ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number | 是   | -      | 要设置的资源响应数据。string表示输入类型是字符串，number表示输入类型是文件句柄。 |
+| data   | string \| number \| Resource| 是   | -      | 要设置的资源响应数据。string表示HTML格式的字符串。number表示沙箱内的文件句柄, web组件在读取完沙箱内文件资源后，会负责关闭此句柄。 Resource表示应用rawfile目录下文件资源|
 
 ### setResponseEncoding<sup>9+</sup>
 
