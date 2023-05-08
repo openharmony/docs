@@ -208,8 +208,6 @@
 | connectServiceExtensionAbility(want:&nbsp;Want,&nbsp;options:&nbsp;ConnectOptions):&nbsp;number; | 连接ServiceExtensionAbility。 |
 | disconnectServiceExtensionAbility(connection:&nbsp;number,&nbsp;callback:AsyncCallback&lt;void&gt;):&nbsp;void; | 断开连接（callback形式）。 |
 | disconnectServiceExtensionAbility(connection:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 断开连接（promise形式）。 |
-| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility，callback形式接口。 |
-| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility，Promise形式接口。 |
 
 
 ### 开发步骤
@@ -275,26 +273,14 @@
 
       getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
-5. 断开连接或退出ServiceExtensionAbility
+5. 断开连接。调用disconnectServiceExtensionAbility()断开与后台服务的连接。
 
    ```ts
-   // 断开与ServiceExtensionAbility的链接时,可以使用disconnectServiceExtensionAbility接口断开与后台服务的连接。
    let connectionId = 1 // 在通过connectServiceExtensionAbility绑定服务时返回的Id
    this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
        console.info('disconnectServiceExtensionAbility success');
    }).catch((error) => {
        console.error('disconnectServiceExtensionAbility failed');
-   })
-   // 退出由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility时,可以调用stopServiceExtensionAbility退出ServiceExtensionAbility
-   let want = {
-       "deviceId": getRemoteDeviceId(),
-       "bundleName": "com.example.myapplication",
-       "abilityName": "ServiceExtAbility"
-   };
-   this.context.stopServiceExtensionAbility(want).then(() => {
-       console.info("stop service extension ability success")
-   }).catch((err) => {
-       console.info("stop service extension ability err is " + JSON.stringify(err))
    })
    ```
 
