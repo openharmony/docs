@@ -273,26 +273,22 @@
 
       getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
-5. 断开连接。调用disconnectServiceExtensionAbility()断开与后台服务的连接。
+5. 断开连接或退出远端ServiceExtensionAbility
 
    ```ts
+   // 断开与ServiceExtensionAbility的链接时,可以使用disconnectServiceExtensionAbility接口断开与后台服务的连接。
    let connectionId = 1 // 在通过connectServiceExtensionAbility绑定服务时返回的Id
    this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
        console.info('disconnectServiceExtensionAbility success');
    }).catch((error) => {
        console.error('disconnectServiceExtensionAbility failed');
    })
-   ```
-
-6. 退出远端ServiceExtensionAbility。调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstopserviceextensionability)接口不只是断开与ServiceExtensionAbility之间的链接, 还会退出由connectServiceExtensionAbility接口拉起的跨设备ServiceExtensionAbility。
-
-   ```ts
+   // 退出由connectServiceExtensionAbility接口拉起的跨设备ServiceExtensionAbility时,可以调用stopServiceExtensionAbility退出ServiceExtensionAbility
    let want = {
        "deviceId": getRemoteDeviceId(),
        "bundleName": "com.example.myapplication",
        "abilityName": "ServiceExtAbility"
    };
-   // 退出由connectServiceExtensionAbility接口跨设备启动的ServiceExtensionAbility
    this.context.stopServiceExtensionAbility(want).then(() => {
        console.info("stop service extension ability success")
    }).catch((err) => {
