@@ -235,7 +235,7 @@ struct MyComponent {
       })
 
       Button(`Click to increase count=${this.count}`).onClick(() => {
-        // The update of the @State decorated variable triggers the update of the <Text> component.
+        // The update of the @State decorated variable triggers the update of the <Button> component.
         this.count += this.increaseBy;
       })
     }
