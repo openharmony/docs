@@ -107,7 +107,7 @@
        abilityName: 'FuncAbility',
        moduleName: 'module1', // moduleName非必选
    }
-   // 退出由startAbility接口跨设备启动的ServiceExtensionAbility
+   // 退出由startAbility接口启动的ServiceExtensionAbility
    this.context.stopServiceExtensionAbility(want).then(() => {
        console.info("stop service extension ability success")
    }).catch((err) => {
@@ -273,7 +273,7 @@
 
       getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
-5. 断开连接或退出远端ServiceExtensionAbility
+5. 断开连接或退出ServiceExtensionAbility
 
    ```ts
    // 断开与ServiceExtensionAbility的链接时,可以使用disconnectServiceExtensionAbility接口断开与后台服务的连接。
@@ -283,7 +283,7 @@
    }).catch((error) => {
        console.error('disconnectServiceExtensionAbility failed');
    })
-   // 退出由connectServiceExtensionAbility接口拉起的跨设备ServiceExtensionAbility时,可以调用stopServiceExtensionAbility退出ServiceExtensionAbility
+   // 退出由connectServiceExtensionAbility接口拉起的ServiceExtensionAbility时,可以调用stopServiceExtensionAbility退出ServiceExtensionAbility
    let want = {
        "deviceId": getRemoteDeviceId(),
        "bundleName": "com.example.myapplication",
