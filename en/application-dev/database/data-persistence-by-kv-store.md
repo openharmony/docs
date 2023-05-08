@@ -21,22 +21,24 @@ The key-value (KV) database stores data in the form of KV pairs. You can use KV 
 
 The following table lists the APIs used for KV data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis/js-apis-distributedKVStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.| 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.| 
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | Obtains the value of the specified key.| 
-| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.| 
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.|
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.|
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.|
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | Obtains the value of the specified key.|
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.|
 
 
 ## How to Develop
 
-1. Create a **KvManager** instance to manage database objects. Example:
+1. Create a **KvManager** instance to manage database objects. 
+
+   Example:
 
    Stage model:
 
-     
+
    ```js
    // Import the module.
    import distributedKVStore from '@ohos.data.distributedKVStore';
@@ -67,7 +69,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
 
    FA model:
 
-     
+
    ```js
    // Import the module.
    import distributedKVStore from '@ohos.data.distributedKVStore';
@@ -90,8 +92,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-2. Create and obtain a KV store. Example:
-     
+2. Create and obtain a KV store. 
+
+   Example:
+
    ```js
    try {
      const options = {
@@ -116,8 +120,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-3. Use **put()** to add data to the KV store. Example:
-     
+3. Use **put()** to add data to the KV store. 
+
+   Example:
+
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -138,8 +144,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    >
    > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the the specified key already exists.
 
-4. Use **get()** to obtain the value of a key. Example:
-     
+4. Use **get()** to obtain the value of a key. 
+
+   Example:
+
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -163,8 +171,10 @@ The following table lists the APIs used for KV data persistence. Most of the API
    }
    ```
 
-5. Use **delete()** to delete the data of the specified key. Example:
-     
+5. Use **delete()** to delete the data of the specified key. 
+
+   Example:
+
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
