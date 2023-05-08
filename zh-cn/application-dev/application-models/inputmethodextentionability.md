@@ -361,6 +361,42 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 
 
+## 限制
+
+为了降低InputMethodExtensionAbility能力被三方应用滥用的风险，在InputMethodExtensionAbility中限制以下接口的调用：
+
+- [@ohos.ability.featureAbility.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.ability.featureAbility.d.ts)
+- [@ohos.ability.particleAbility.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.ability.particleAbility.d.ts)
+- [@ohos.account.distributedAccount.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.account.distributedAccount.d.ts)
+- [@ohos.account.osAccount.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.account.osAccount.d.ts)
+- [@ohos.backgroundTaskManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.backgroundTaskManager.d.ts)
+- [@ohos.bluetooth.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.bluetooth.d.ts)
+- [@ohos.bluetoothManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.bluetoothManager.d.ts)
+- [@ohos.connectedTag.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.connectedTag.d.ts)
+- [@ohos.geolocation.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.geolocation.d.ts)
+- [@ohos.geoLocationManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.geoLocationManager.d.ts)
+- [@ohos.nfc.cardEmulation.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.nfc.cardEmulation.d.ts)
+- [@ohos.nfc.controller.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.nfc.controller.d.ts)
+- [@ohos.nfc.tag.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.nfc.tag.d.ts)
+- [@ohos.reminderAgent.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.reminderAgent.d.ts)
+- [@ohos.reminderAgentManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.reminderAgentManager.d.ts)
+- [@ohos.sensor.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.sensor.d.ts)
+- [@ohos.telephony.call.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.call.d.ts)
+- [@ohos.telephony.data.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.data.d.ts)
+- [@ohos.telephony.observer.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.observer.d.ts)
+- [@ohos.telephony.radio.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.radio.d.ts)
+- [@ohos.telephony.sim.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.sim.d.ts)
+- [@ohos.telephony.sms.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.telephony.sms.d.ts)
+- [@ohos.wallpaper.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.wallpaper.d.ts)
+- [@ohos.wifiext.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.wifiext.d.ts)
+- [@ohos.wifiManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.wifiManager.d.ts)
+- [@ohos.wifiManagerExt.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@ohos.wifiManagerExt.d.ts)
+- [@system.geolocation.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@system.geolocation.d.ts)
+- [@system.sensor.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/@system.sensor.d.ts)
+- [nfctech.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/tag/nfctech.d.ts)
+- [tagSession.d.ts](https://gitee.com/openharmony/interface_sdk-js/tree/master/api/tag/tagSession.d.ts)
+
+
 
 ## 相关示例
 
