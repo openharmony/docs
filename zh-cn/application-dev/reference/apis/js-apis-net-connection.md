@@ -1840,7 +1840,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------ | ------ | --- |------------------------- |
 | host  | string | 否  |  代理服务器主机名。 |
 | port  | number | 否  |  主机端口。 |
-| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
+| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表，列表内元素个数上限为128。 |
 
 ## NetSpecifier
 
