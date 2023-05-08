@@ -33,7 +33,7 @@
 
 ## 通过跨设备启动UIAbility和ServiceExtensionAbility组件实现多端协同（无返回数据）
 
-在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility。
+在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility与ServiceExtensionAbility。
 
 
 ### 接口说明
@@ -43,8 +43,8 @@
 | **接口名** | **描述** |
 | -------- | -------- |
 | startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 启动UIAbility和ServiceExtensionAbility（callback形式）。 |
-| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility，callback形式接口。 |
-| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility，Promise形式接口。 |
+| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility（callback形式）。 |
+| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility（Promise形式）。 |
 
 
 ### 开发步骤
