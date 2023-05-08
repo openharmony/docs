@@ -33,7 +33,8 @@
 
 ## 开发步骤
 
-1. 创建文本组件
+1. 创建文本组件。
+
     首先，我们看到动效中用到了4个文本组件，我们可以定义一个文本组件，然后对其进行重复调用。创建时我们为其添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)属性，用来控制组件的旋转。
     由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以我们为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
     ```
@@ -67,7 +68,8 @@
       }
     }
     ```
-2. 创建父组件框架
+2. 创建父组件框架。
+
     由于文本组件分为上下两层，所以我们在父组件中采用[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md)组件进行层叠布局。同时使用[Divider](../application-dev/reference/arkui-ts/ts-basic-components-divider.md)组件作为书籍两个页面间的分隔线。具体代码如下：
     ```
     @Entry
@@ -102,7 +104,7 @@
     }
     ```
 
-3. 添加翻页动效
+3. 添加翻页动效。
 
     最后我们通过以下几点来为静态的组件添加动效：
     - 根据**实现思路**章节的分析，在父组件中定义对应的变量，并在调用子组件时分别传入子组件。
