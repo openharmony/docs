@@ -231,11 +231,11 @@ struct MyComponent {
       Text(`${this.title.value}`)
       Button(`Click to change title`).onClick(() => {
         // @State变量的更新将触发上面的Text组件内容更新
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'HelloArkUI';
+        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
       })
 
       Button(`Click to increase count=${this.count}`).onClick(() => {
-        // @State变量的更新将触发上面的Text组件内容更新
+        // @State变量的更新将触发该Button组件的内容更新
         this.count += this.increaseBy;
       })
     }

@@ -36,15 +36,15 @@
    let audioDevices;
    await audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
       audioDevices = data;
-      console.info('Promise returned to indicate that the device list is obtained.');
+      console.info(`Promise returned to indicate that the device list is obtained.`);
    }).catch((err) => {
-      console.info(`getDevices : ERROR : ${err.message}`);
+      console.error(`Failed to get devices. Code: ${err.code}, message: ${err.message}`);
    });
    
    AVSessionManager.castAudio('all', audioDevices).then(() => {
-      console.info('createController : SUCCESS');
+      console.info(`createController : SUCCESS`);
    }).catch((err) => {
-      console.info(`createController : ERROR : ${err.message}`);
+      console.error(`Failed to cast audio. Code: ${err.code}, message: ${err.message}`);
    });
    ```
 

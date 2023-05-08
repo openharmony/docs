@@ -41,7 +41,7 @@ CheckboxGroup(options?: { group?: string })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。（只有手动触发且Checkbox或CheckboxGroup状态改变时才会触发onChange回调）<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult对象说明)) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## CheckboxGroupResult对象说明
 
