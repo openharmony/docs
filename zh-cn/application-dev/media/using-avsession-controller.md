@@ -128,7 +128,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    // 注册服务异常监听
    AVSessionManager.on('sessionServiceDie', () => {
       // 服务端异常，应用清理资源
-      console.info('服务端异常');
+      console.info(`服务端异常`);
    })
    ```
 
@@ -153,16 +153,16 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    // 注册会话激活状态变更监听
    controller.on('activeStateChange', (isActive) => {
      if (isActive) {
-       console.info('控制器卡片按键高亮');
+       console.info(`控制器卡片按键高亮`);
      } else {
-       console.info('控制器卡片按键变更为无效');
+       console.info(`控制器卡片按键变更为无效`);
      }
    });
    // 注册会话销毁监听
    controller.on('sessionDestroy', () => {
-      console.info('on sessionDestroy : SUCCESS ');
+      info(`on sessionDestroy : SUCCESS `);
       controller.destroy().then(() => {
-          console.info('destroy : SUCCESS ');
+          console.info(`destroy : SUCCESS`);
       }).catch((err) => {
           console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
       });
@@ -290,14 +290,14 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        command : 'This is my custom command'
      }
      await controller.sendCommonCommand(commandName, args).then(() => {
-       console.info('SendCommonCommand successfully');
+       console.info(`SendCommonCommand successfully`);
      }).catch((err) => {
        console.error(`Failed to send common command. Code: ${err.code}, message: ${err.message}`);
      })
      // 设置指定播放列表单项的ID，供session选择播放
      let queueItemId: number = 0;
      await controller.skipToQueueItem(queueItemId).then(() => {
-       console.info('SkipToQueueItem successfully');
+       console.info(`SkipToQueueItem successfully`);
      }).catch((err) => {
        console.error(`Failed to skip to queue item. Code: ${err.code}, message: ${err.message}`);
      });
@@ -316,7 +316,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        if (err) {
          console.error(`Failed to destroy controller. Code: ${err.code}, message: ${err.message}`);
        } else {
-         console.info('Destroy controller SUCCESS');
+         console.info(`Destroy controller SUCCESS`);
        }
      });
    }

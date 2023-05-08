@@ -74,7 +74,7 @@
        artist: 'ARTIST'
      };
      session.setAVMetadata(metadata).then(() => {
-       console.info('SetAVMetadata successfully');
+       console.info(`SetAVMetadata successfully`);
      }).catch((err) => {
        console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
      });
@@ -87,7 +87,7 @@
        if (err) {
          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
        } else {
-         console.info('SetAVPlaybackState successfully');
+         console.info(`SetAVPlaybackState successfully`);
        }
      });
    }
@@ -132,7 +132,7 @@
      lyric : 'This is my lyric'
    }
    await session.dispatchSessionEvent(eventName, args).then(() => {
-      console.info('Dispatch session event successfully');
+      console.info(`Dispatch session event successfully`);
    }).catch((err) => {
       console.error(`Failed to dispatch session event. Code: ${err.code}, message: ${err.message}`);
    })
@@ -150,7 +150,7 @@
      extra : 'This is my custom meida packet'
    }
    await session.setExtras(extras).then(() => {
-      console.info('Set extras successfully');
+      console.info(`Set extras successfully`);
    }).catch((err) => {
       console.error(`Failed to set extras. Code: ${err.code}, message: ${err.message}`);
    })
@@ -175,23 +175,23 @@
      // 一般在监听器中会对播放器做相应逻辑处理
      // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例
      session.on('play', () => {
-       console.info('on play , do play task');
+       console.info(`on play , do play task`);
        // do some tasks ···
      });
      session.on('pause', () => {
-       console.info('on pause , do pause task');
+       console.info(`on pause , do pause task`);
        // do some tasks ···
      });
      session.on('stop', () => {
-       console.info('on stop , do stop task');
+       console.info(`on stop , do stop task`);
        // do some tasks ···
      });
      session.on('playNext', () => {
-       console.info('on playNext , do playNext task');
+       console.info(`on playNext , do playNext task`);
        // do some tasks ···
      });
      session.on('playPrevious', () => {
-       console.info('on playPrevious , do playPrevious task');
+       console.info(`on playPrevious , do playPrevious task`);
        // do some tasks ···
      });
      session.on('fastForward', () => {
@@ -312,7 +312,7 @@
        if (err) {
          console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
        } else {
-         console.info('Destroy : SUCCESS ');
+         console.info(`Destroy : SUCCESS `);
        }
      });
    }
