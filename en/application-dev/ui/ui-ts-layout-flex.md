@@ -218,7 +218,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
     .backgroundColor(0xAFEEEE)
     ```
     
-    ![zh-cn_image_0000001263339461](figures/mainSpacearound.png)
+    ![en-us_image_0000001263339461](figures/mainSpacearound.png)
 
 - **FlexAlign.SpaceEvenly**: The items are equally distributed along the main axis. The space between the first item and main-start, the space between the last item and main-end, and the space between two adjacent items are the same.
 
@@ -233,7 +233,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
     .backgroundColor(0xAFEEEE)
     ```
     
-    ![zh-cn_image_0000001263139411](figures/mainSpaceevenly.png)
+    ![en-us_image_0000001263139411](figures/mainSpaceevenly.png)
 
 #### Alignment on the Cross Axis
 
