@@ -3975,6 +3975,91 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 });
 ```
 
+## notificationManager.on
+
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+订阅检查通知的回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | checkNotification | 是   | 要侦听的回调的类型。   |
+| callback | (checkInfo: [NotificationCheckInfo](#NotificationCheckInfo)) =>  [NotificationCheckResult](#NotificationCheckResult)    | 是   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.on("checkNotification", OnCheckNotification);
+} catch (error){
+    console.info(`notificationManager.on error: ${JSON.stringify(error)}`);
+}
+function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    if(info.notificationId == 1){
+        return { code: 1, message: "testMsg1"}
+    } else {
+        return { code: 0, message: "testMsg0"}
+    }
+}
+```
+
+## notificationManager.off
+
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+取消订阅检查通知的回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | checkNotification | 是   | 要侦听的回调的类型。   |
+| callback | (checkInfo: [NotificationCheckInfo](#NotificationCheckInfo)) =>  [NotificationCheckResult](#NotificationCheckResult)  | 否   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.off("checkNotification");
+} catch (error){
+    console.info(`notificationManager.off error: ${JSON.stringify(error)}`);
+}
+```
 
 ## DoNotDisturbDate
 
@@ -4067,3 +4152,23 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 | TYPE_NORMAL          | 0   | 一般通知。            |
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
+
+## NotificationCheckInfo
+
+通知检查参数。
+
+
+| 名称                 | 类型       | 说明       |
+| -------------------- | -------- | ---------- |
+| bundleName         | string | bundle名称。 |
+| notificationId | number | 通知Id。 |
+| contentType  | [ContentType](#ContentType) | 通知类型。 |
+
+## NotificationCheckResult
+
+通知检查结果。
+
+| 名称                 | 类型       | 说明       |
+| -------------------- | -------- | ---------- |
+| code         | number | 0-display, 1-no display。 |
+| message | string | 结果信息。 |
