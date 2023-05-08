@@ -33,7 +33,7 @@
 
 ## 通过跨设备启动UIAbility和ServiceExtensionAbility组件实现多端协同（无返回数据）
 
-在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility。
+在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility与ServiceExtensionAbility。
 
 
 ### 接口说明
@@ -43,6 +43,8 @@
 | **接口名** | **描述** |
 | -------- | -------- |
 | startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 启动UIAbility和ServiceExtensionAbility（callback形式）。 |
+| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility（callback形式）。 |
+| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility（Promise形式）。 |
 
 
 ### 开发步骤
@@ -98,6 +100,22 @@
    })
    ```
 
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+
+   ```ts
+   let want = {
+       deviceId: getRemoteDeviceId(),
+       bundleName: 'com.example.myapplication',
+       abilityName: 'FuncAbility',
+       moduleName: 'module1', // moduleName非必选
+   }
+   // 退出由startAbility接口启动的ServiceExtensionAbility
+   this.context.stopServiceExtensionAbility(want).then(() => {
+       console.info("stop service extension ability success")
+   }).catch((err) => {
+       console.info("stop service extension ability err is " + JSON.stringify(err))
+   })
+   ```
 
 ## 通过跨设备启动UIAbility组件实现多端协同（获取返回数据）
 
