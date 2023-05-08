@@ -461,7 +461,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp;mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp;mode为1，<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
 
 **返回值：**
 
@@ -480,7 +480,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0).then(() => {
-      console.info("copy directory succeed");
+    console.info("copy directory succeed");
   }).catch((err) => {
     if (err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
@@ -507,7 +507,7 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
   | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp;mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp;mode为1，<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步复制文件夹之后的回调。              |
 
 **错误码：**
