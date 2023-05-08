@@ -606,13 +606,13 @@ setStaticSubscribeEventState(enable: boolean, callback: AsyncCallback<void>): vo
 
 
 ```ts
+import CommonEventManager from '@ohos.commonEventManager'
 CommonEventManager.setStaticSubscribeEventState(true, (err) => {
-    if (err) {
-        console.info(`Set static subscribe event state failed, errCode: ${err.code}, errMes: ${err.message}`);
-        return;
-    }
-    console.info(`Set static subscribe event state success`);
-    }
+  if (err.code) {
+    console.info(`Set static subscribe event state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+    return;
+  }
+  console.info(`Set static subscribe event state callback success`);
 });
 ```
 
@@ -652,9 +652,10 @@ setStaticSubscribeEventState(enable: boolean): Promise<void>;
 
 
 ```ts
-commonEventManager.setStaticSubscribeEventState(true).then(() => {
-    console.info(`Set static subscribe event state success`);
+import CommonEventManager from '@ohos.commonEventManager'
+CommonEventManager.setStaticSubscribeEventState(false).then(() => {
+  console.info(`Set static subscribe event state promise success`);
 }).catch ((err) => {
-    console.info(`Set static subscribe event state failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.info(`Set static subscribe event state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
