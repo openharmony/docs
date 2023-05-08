@@ -4328,7 +4328,7 @@ resend(): void
   }
   ```
 
-###  cancel<sup>9+</sup>
+### cancel<sup>9+</sup>
 
 cancel(): void
 
