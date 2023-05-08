@@ -23,10 +23,10 @@ import wallpaper from '@ohos.wallpaper';
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
-| DEFAULT | 0 |默认资源。 |
+| DEFAULT | 0 |默认为图片资源。 |
 | PICTURE | 1 |图片资源。 |
 | VIDEO | 2 |视频资源。 |
-| PACKAGE | 3 |package资源。 |
+| PACKAGE | 3 |包资源。 |
 
 
 ## WallpaperType<sup>7+</sup>
@@ -63,7 +63,7 @@ import wallpaper from '@ohos.wallpaper';
 
 setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-将指定资源设置为指定类型的动态壁纸
+将视频资源设置为桌面或锁屏的动态壁纸
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -101,7 +101,7 @@ try {
 
 setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将指定资源设置为指定类型的动态壁纸
+将视频资源设置为桌面或锁屏的动态壁纸
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -141,7 +141,7 @@ try {
 
 on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
 
-订阅壁纸颜色变化结果上报事件。
+订阅壁纸变化通知事件。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -151,8 +151,8 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换变化后触发该事件。 |
-| callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸壁纸类型。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
+| callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
 
 **示例：**
 
@@ -171,7 +171,7 @@ try {
 
 off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
 
-取消订阅壁纸变化结果上报事件。
+取消订阅壁纸变化通知事件。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -181,8 +181,8 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换变化后触发该事件。 |
-| callback | function | 否 |   表示要取消的壁纸变化的回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
+| callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
 
 **示例：**
 
