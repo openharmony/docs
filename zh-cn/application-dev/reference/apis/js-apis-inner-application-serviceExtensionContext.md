@@ -1424,7 +1424,7 @@ try {
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需求携带启动参数时可以选择此API。
+当开发者需要携带启动参数时可以选择此API。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
