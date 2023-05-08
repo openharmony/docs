@@ -3668,7 +3668,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number \| Resource)
+setResponseData(data: string | number \| Resource<sup>10+</sup>)
 
 设置资源响应数据。
 
