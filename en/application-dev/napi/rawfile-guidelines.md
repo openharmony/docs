@@ -33,15 +33,15 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
 2. Add dependencies.
 
-After a project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
+   After a project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
 
-1. Open the **src/main/cpp/CMakeLists.txt** file, and add **librawfile.z.so** and **libhilog_ndk.z.so** to **target_link_libraries**.
+   1. Open the **src/main/cpp/CMakeLists.txt** file, and add **librawfile.z.so** and **libhilog_ndk.z.so** to **target_link_libraries**.
 
     ```c++
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so librawfile.z.so)
     ```
 
-2. Open the **src/main/cpp/types/libentry/index.d.ts** file, and declare the application functions **getFileList**, **getRawFileContent**, and **getRawFileDescriptor**.
+   2. Open the **src/main/cpp/types/libentry/index.d.ts** file, and declare the application functions **getFileList**, **getRawFileContent**, and **getRawFileDescriptor**.
 
     ```c++
     import resourceManager from '@ohos.resourceManager';
@@ -52,7 +52,7 @@ After a project is created, the **cpp** directory is created under the project. 
 
 3. Modify the source file.
 
-1. Open the **src/main/cpp/hello.cpp** file. During initialization, the file maps the external JavaScript APIs **getFileList**, **getRawFileContent**, and **getRawFileDescriptor** to C++ native APIs **GetFileList**, **GetRawFileContent**, and **GetRawFileDescriptor**.
+   1. Open the **src/main/cpp/hello.cpp** file. During initialization, the file maps the external JavaScript APIs **getFileList**, **getRawFileContent**, and **getRawFileDescriptor** to C++ native APIs **GetFileList**, **GetRawFileContent**, and **GetRawFileDescriptor**.
 
     ```c++
     EXTERN_C_START
@@ -70,7 +70,7 @@ After a project is created, the **cpp** directory is created under the project. 
     EXTERN_C_END
     ```
 
-2. Add the three functions to the **src/main/cpp/hello.cpp** file.
+   2. Add the three functions to the **src/main/cpp/hello.cpp** file.
 
     ```c++
     static napi_value GetFileList(napi_env env, napi_callback_info info)
@@ -78,7 +78,7 @@ After a project is created, the **cpp** directory is created under the project. 
     static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
     ```
 
-3. Obtain JavaScript resource objects from the **hello.cpp** file, and convert them to native resource objects. Then, call the native APIs to obtain the raw file list, raw file content, and raw file descriptor {fd, offset, length}. The sample code is as follows:
+   3. Obtain JavaScript resource objects from the **hello.cpp** file, and convert them to native resource objects. Then, call the native APIs to obtain the raw file list, raw file content, and raw file descriptor {fd, offset, length}. The sample code is as follows:
 
     ```c++
     // Example 1: Use GetFileList to obtain the raw file list.
@@ -256,11 +256,11 @@ After a project is created, the **cpp** directory is created under the project. 
 
 4. Call APIs on the JavaScript side.
 
-1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
+   1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
 
-2. Obtain the JavaScript resource object, that is, **resourceManager**.
+   2. Obtain the JavaScript resource object, that is, **resourceManager**.
     
-3. Call **getFileList**, that is, the native API declared in **src/main/cpp/types/libentry/index.d.ts**. When calling the API, pass the JavaScript resource object and the relative path of the raw file. The sample code is as follows:
+   3. Call **getFileList**, that is, the native API declared in **src/main/cpp/types/libentry/index.d.ts**. When calling the API, pass the JavaScript resource object and the relative path of the raw file. The sample code is as follows:
 
     ```js
     import hilog from '@ohos.hilog';
