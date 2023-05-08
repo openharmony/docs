@@ -2291,3 +2291,206 @@ try {
   console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
+    ## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startRecentAbility(want, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+    ## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0
+};
+
+try {
+  this.context.startRecentAbility(want, options, (err) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+    ## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
+
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以Promise的形式返回开发者。
+
+使用规则：
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 需要启动Ability的want信息。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
+**示例：**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
+
+try {
+  this.context.startRecentAbility(want, options)
+    .then(() => {
+      // 执行正常业务
+      console.info('startRecentAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
