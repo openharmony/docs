@@ -212,7 +212,7 @@ Creates and obtains a KV store. This API uses a promise to return the result.
 
 | Type                                   | Description       |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store instance created. |
+| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store instance created.|
 
 **Example**
 
@@ -485,7 +485,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise&lt;string[]&gt;| Promise used to return the IDs of all created KV stores. |
+| Promise&lt;string[]&gt;| Promise used to return the IDs of all created KV stores.|
 
 **Example**
 
@@ -3754,7 +3754,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
+Synchronizes the KV store manually.
 > **NOTE**<br/>
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
@@ -3825,7 +3825,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data changes.                              |
 
 **Example**
 
@@ -5175,7 +5175,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
+Synchronizes the KV store manually.
 
 > **NOTE**<br/>
 >
@@ -5247,7 +5247,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the result.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data changes.                              |
 
 **Example**
 

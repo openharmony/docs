@@ -1,14 +1,14 @@
 # @ohos.data.distributedKVStore (Distributed KV Store)
 
-The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. The APIs provided by this module can be used to save data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
+The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
 The **distributedKVStore** module provides the following functions:
 
 - [KVManager](#kvmanager): provides a **KVManager** instance to obtain KV store information.
-- [KVStoreResultSet](#kvstoreresultset): provides APIs for obtaining KV store result sets.
-- [Query](#query): provides APIs for setting predicates and querying data using predicates.
-- [SingleKVStore](#singlekvstore): provides APIs for querying data in single KV stores and synchronizing data. The single KV stores manage data without distinguishing devices.
-- [DeviceKVStore](#devicekvstore): provides APIs for querying in device KV stores and synchronizing data. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
+- [KVStoreResultSet](#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
+- [Query](#query): provides APIs for setting predicates for data query.
+- [SingleKVStore](#singlekvstore): provides APIs for querying and synchronizing data in single KV stores. The single KV stores manage data without distinguishing devices.
+- [DeviceKVStore](#devicekvstore): provides APIs for querying and synchronizing data in device KV stores. This class inherits from [SingleKVStore](#singlekvstore). The device KV stores manage data by device.
 
 > **NOTE**
 >
@@ -1832,7 +1832,7 @@ try {
 
 limit(total: number, offset: number): Query
 
-Creates a **Query** object to specify the number of results and where to start.
+Creates a **Query** object to specify the number of records of the query result and where to start.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4484,7 +4484,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
@@ -4554,7 +4554,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**<br/>
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
