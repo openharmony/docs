@@ -27,11 +27,11 @@ This document describes how to use the native Rawfile APIs to manage raw file di
 
    The following describes how to obtain the raw file list, raw file content, and raw file descriptor on the JavaScript side as an example.
 
-1. Create a project.
+**1. Create a project.**
 
 ![Creating a C++ application](figures/rawfile1.png)
 
-2. Add dependencies.
+**2. Add dependencies.**
 
    After a project is created, the **cpp** directory is created under the project. The directory contains files such as **libentry/index.d.ts**, **hello.cpp**, and **CMakeLists.txt**.
 
@@ -254,7 +254,7 @@ This document describes how to use the native Rawfile APIs to manage raw file di
     }
     ```
 
-4. Call APIs on the JavaScript side.
+**4. Call APIs on the JavaScript side.**
 
    1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
 
