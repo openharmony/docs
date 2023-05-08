@@ -15,7 +15,7 @@ import wallpaper from '@ohos.wallpaper';
 ```
 ## WallpaperResourceType<sup>10+</sup>
 
-定义壁纸的资源枚举类型。
+定义壁纸资源的枚举类型。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -63,7 +63,7 @@ import wallpaper from '@ohos.wallpaper';
 
 setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-将视频资源设置为桌面或锁屏的动态壁纸
+将视频资源设置为桌面或锁屏的动态壁纸。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -101,7 +101,7 @@ try {
 
 setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-将视频资源设置为桌面或锁屏的动态壁纸
+将视频资源设置为桌面或锁屏的动态壁纸。
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
