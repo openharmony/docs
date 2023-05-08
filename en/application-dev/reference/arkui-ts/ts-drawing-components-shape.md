@@ -21,7 +21,7 @@ The following child components are supported: **[\<Rect>](ts-drawing-components-
 
 Shape(value?: PixelMap)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 9, this API is supported in ArkTS widgets, except that **PixelMap** objects are not supported.
 
 **Parameters**
 
@@ -51,8 +51,6 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | Mesh effect. The first parameter is an array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap. The second parameter is the number of columns in the mesh matrix. The third parameter is the number of rows in the mesh matrix.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
-
-### Example 1
 
 ```ts
 // xxx.ets
