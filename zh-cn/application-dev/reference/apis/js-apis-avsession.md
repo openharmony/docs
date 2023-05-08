@@ -1091,8 +1091,6 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise<void\>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名  | 类型                                 | 必填 | 说明                               |
@@ -1158,8 +1156,6 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback<void\>): voi
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
@@ -1222,8 +1218,6 @@ setAVQueueTitle(title: string): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明           |
@@ -1262,8 +1256,6 @@ setAVQueueTitle(title: string, callback: AsyncCallback\<void\>): void
 设置媒体播放列表名称。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1442,14 +1434,15 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
 | args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
+
+> **说明：**
+> 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
 
 **返回值：**
 
@@ -1485,8 +1478,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**系统接口：** 该接口为系统接口
-
 **参数：**
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
@@ -1494,6 +1485,9 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 | event | string | 是   | 需要设置的会话事件的名称 |
 | args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
 | callback | AsyncCallback<void\>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
+
+> **说明：**
+> 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -1513,6 +1507,87 @@ let args = {
 await session.dispatchSessionEvent(eventName, args, (err) => {
     if(err) {
         console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    }
+})
+```
+
+### setExtras<sup>10+</sup>
+
+setExtras(extras: {[key: string]: Object}): Promise\<void>
+
+媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名  | 类型                                          | 必填 | 说明                                                        |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对 |
+
+> **说明：**
+> 参数extras支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise对象。当自定义媒体数据包设置成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let extras = {
+    extras : "This is custom media packet"
+}
+await session.setExtras(extras).catch((err) => {
+    console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+})
+```
+
+### setExtras<sup>10+</sup>
+
+setExtras(extras: {[key: string]: Object}, callback: AsyncCallback<void>): void
+
+媒体提供方设置键值对形式的自定义媒体数据包, 结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名  | 类型                                          | 必填 | 说明                                                        |
+| ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
+| extras | {[key: string]: any} | 是   | 需要传递的自定义媒体数据包键值对 |
+| callback | AsyncCallback<void\>                          | 是   | 回调函数。当自定义媒体数据包设置成功，err为undefined，否则返回错误对象。 |
+
+> **说明：**
+> 参数extras支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```js
+let extras = {
+    extras : "This is custom media packet"
+}
+await session.setExtras(extras, (err) => {
+    if(err) {
+        console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
     }
 })
 ```
@@ -2170,7 +2245,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
-| callback | (commonCommand: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，commonCommand为变化的自定义控制命令名，args为自定义控制命令的参数。          |
+| callback | (commonCommand: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，commonCommand为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与sendCommand方法设置的参数内容完全一致。          |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -2927,6 +3002,74 @@ controller.getOutputDevice(function (err, deviceInfo) {
 });
 ```
 
+### getExtras<sup>10+</sup>
+
+getExtras(): Promise\<{[key: string]: Object}>
+
+获取媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| Promise<{[key: string]: Object}\>   | Promise对象，返回媒体提供方设置的自定义媒体数据包，数据包的内容与setExtras设置的内容完全一致。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+let extras = await controller.getExtras().catch((err) => {
+    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getExtras<sup>10+</sup>
+
+getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
+
+获取媒体提供方设置的自定义媒体数据包,结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<{[key: string]: Object}\> | 是   | 回调函数，返回媒体提供方设置的自定义媒体数据包，数据包的内容与setExtras设置的内容完全一致。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+
+**示例：**
+```js
+controller.getExtras(function (err, extras) {
+    if (err) {
+        console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+        console.info(`getExtras : SUCCESS : assetId : ${metadata.assetId}`);
+    }
+});
+```
+
 ### sendAVKeyEvent
 
 sendAVKeyEvent(event: KeyEvent): Promise\<void>
@@ -3466,6 +3609,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | command | string | 是   | 需要设置的自定义控制命令的名称 |
 | args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
 
+> **说明：**
+> 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -3511,6 +3657,9 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | command | string | 是   | 需要设置的自定义控制命令的名称 |
 | args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
 | callback | AsyncCallback<void\>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
+
+> **说明：**
+> 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -3715,6 +3864,40 @@ controller.on('queueTitleChange', (title) => {
 });
 ```
 
+### on('extrasChange')<sup>10+</sup>
+
+on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
+
+媒体控制器设置自定义媒体数据包事件变化的监听器。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'extrasChange'`：当媒体提供方设置自定义媒体数据包时，触发该事件。 |
+| callback | (extras: {[key:string]: object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+| 6600103  | The session controller does not exist. |
+| 401      | Parameter check failed                 |
+
+**示例：**
+
+```js
+controller.on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+});
+```
+
 ### on('sessionDestroy')
 
 on(type: 'sessionDestroy', callback: () => void)
@@ -3852,7 +4035,7 @@ controller.on('outputDeviceChange', (device) => {
 
 off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
-控制器取消监听元数据变化的事件。
+媒体控制器取消监听元数据变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3882,7 +4065,7 @@ controller.off('metadataChange');
 
 off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
-控制器取消监听播放状态变化的事件。
+媒体控制器取消监听播放状态变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3912,7 +4095,7 @@ controller.off('playbackStateChange');
 
 off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Obejct}) => void): void
 
-控制器取消监听会话事件的变化通知。
+媒体控制器取消监听会话事件的变化通知。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3942,7 +4125,7 @@ controller.off('sessionEvent');
 
 off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
 
-控制器取消监听播放列表变化的事件。
+媒体控制器取消监听播放列表变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3972,7 +4155,7 @@ controller.off('queueItemsChange');
 
 off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
-控制器取消监听播放列表名称变化的事件。
+媒体控制器取消监听播放列表名称变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3998,11 +4181,43 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 controller.off('queueTitleChange');
 ```
 
+### off('extrasChange')<sup>10+</sup>
+
+off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): void
+
+媒体控制器取消监听自定义媒体数据包变化事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                                                                    |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
+| type     | string                  | 是   | 取消对应的监听事件，支持事件`'extrasChange'`。                                                         |
+| callback | ({[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------                       |
+| 6600101  | Session service exception.             |
+| 6600103  | The session controller does not exist. |
+| 401      | Parameter check failed                 |
+
+**示例：**
+
+```js
+controller.off('extrasChange');
+```
+
 ### off('sessionDestroy')
 
 off(type: 'sessionDestroy', callback?: () => void)
 
-控制器取消监听会话的销毁事件。
+媒体控制器取消监听会话的销毁事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4032,7 +4247,7 @@ controller.off('sessionDestroy');
 
 off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
-控制器取消监听会话激活状态变化的事件。
+媒体控制器取消监听会话激活状态变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4062,7 +4277,7 @@ controller.off('activeStateChange');
 
 off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void)
 
-控制器取消监听会话有效命令变化的事件。
+媒体控制器取消监听会话有效命令变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4092,7 +4307,7 @@ controller.off('validCommandChange');
 
 off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void
 
-控制器取消监听分布式设备变化的事件。
+媒体控制器取消监听分布式设备变化的事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4269,6 +4484,8 @@ controller.off('outputDeviceChange');
 | bufferedTime | number                                | 否   | 缓冲时间 |
 | loopMode     | [LoopMode](#loopmode)                 | 否   | 循环模式 |
 | isFavorite   | boolean                               | 否   | 是否收藏 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
 
 ## PlaybackPosition
 
