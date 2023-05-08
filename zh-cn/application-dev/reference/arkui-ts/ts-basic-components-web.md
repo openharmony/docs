@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
  
 **示例：**
 
@@ -223,7 +223,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -4702,7 +4702,7 @@ clearHistory(): void
 setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
-从API version 9开始不在维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
+从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
 **参数：**
 
@@ -4742,7 +4742,7 @@ setCookie(url: string, value: string): boolean
 saveCookie(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
-从API version 9开始不在维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
+从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 **返回值：**
 
