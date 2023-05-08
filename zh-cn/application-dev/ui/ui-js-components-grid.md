@@ -215,7 +215,7 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     list:[
@@ -226,7 +226,7 @@ export default {
     fresh:false
   },
   refresh(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'refreshing'
     })
     var that = this;
@@ -234,7 +234,7 @@ export default {
     setTimeout(function () {
       that.fresh = false;
       that.list.unshift({src: 'common/images/4.png',id:'4'});
-      prompt.showToast({
+      promptAction.showToast({
         message: 'succeed'
       })
     }, 2000)
