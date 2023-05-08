@@ -13,6 +13,7 @@
 
 - [通过跨设备Call调用实现多端协同](#通过跨设备call调用实现多端协同)
 
+
 ## 多端协同流程
 
 多端协同流程如下图所示。
@@ -44,6 +45,7 @@
 | startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 启动UIAbility和ServiceExtensionAbility（callback形式）。 |
 | stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility，callback形式接口。 |
 | stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility，Promise形式接口。 |
+
 
 ### 开发步骤
 
@@ -295,6 +297,7 @@
        console.info("stop service extension ability err is " + JSON.stringify(err))
    })
    ```
+
 
 ## 通过跨设备Call调用实现多端协同
 
