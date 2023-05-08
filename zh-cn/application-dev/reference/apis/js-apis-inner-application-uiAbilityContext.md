@@ -2291,7 +2291,7 @@ try {
   console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
-    ## UIAbilityContext.startRecentAbility
+  ## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
 
@@ -2315,6 +2315,8 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -2330,8 +2332,6 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2356,11 +2356,12 @@ try {
   console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
-    ## UIAbilityContext.startRecentAbility
+## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+当开发者需求携带启动参数时可以选择此API。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -2381,6 +2382,8 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -2396,8 +2399,6 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -2426,11 +2427,12 @@ try {
   console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
-    ## UIAbilityContext.startRecentAbility
+## UIAbilityContext.startRecentAbility
 
 startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以Promise的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
+当开发者期望启动结果以Promise形式返回时可以选择此API。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
@@ -2450,6 +2452,8 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -2465,8 +2469,6 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
