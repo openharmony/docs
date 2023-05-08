@@ -642,11 +642,11 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| name<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的名称。|
-| left<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的横坐标。|
-| top<sup>10+</sup>  | string | 是 | 是 | 输入法窗口左上顶点的纵坐标。|
-| width<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的宽度。|
-| height<sup>10+</sup>  | string | 是 | 是 | 输入法窗口的高度。|
+| name  | string | 是 | 是 | 输入法窗口的名称。|
+| left  | string | 是 | 是 | 输入法窗口左上顶点的横坐标。|
+| top  | string | 是 | 是 | 输入法窗口左上顶点的纵坐标。|
+| width  | string | 是 | 是 | 输入法窗口的宽度。|
+| height  | string | 是 | 是 | 输入法窗口的高度。|
 
 ## InputMethodController
 
