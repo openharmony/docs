@@ -82,7 +82,7 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 **示例：**
 
 ```js
-let wallpaperPath = "/data/storage/el2/base/haps/test.mp4";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
     wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
         if (error) {
@@ -125,7 +125,7 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let wallpaperPath = "/data/storage/el2/base/haps/test.mp4";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
     wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
         console.log(`success to setVideo.`);
@@ -377,7 +377,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/storage/el2/base/haps/js.jpeg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
@@ -437,7 +437,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/storage/el2/base/haps/js.jpeg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setImage.`);
 }).catch((error) => {
@@ -1065,7 +1065,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
@@ -1127,7 +1127,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setWallpaper.`);
   }).catch((error) => {
