@@ -460,8 +460,8 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
+  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp;mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp;mode为1，<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
 
 **返回值：**
 
@@ -476,7 +476,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
 **示例：**
 
   ```js
-  // copy directory from srcPath to destPath/srcPath
+  // copy directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.copyDir(srcPath, destPath, 0).then(() => {
@@ -506,8 +506,8 @@ copyDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp; mode为0，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为1，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。|
+  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
+  | mode | number | 否    | 复制模式。默认mode为0。<br/>-&nbsp;mode为0，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp;mode为1，<br/>-&nbsp; mode为1，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。|
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步复制文件夹之后的回调。              |
 
 **错误码：**
@@ -2011,8 +2011,8 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
 
 **返回值：**
 
@@ -2027,7 +2027,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 **示例：**
 
   ```js
-  // move directory from srcPath to destPath/srcPath
+  // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1).then(() => {
@@ -2057,8 +2057,8 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | src | string | 是    | 源文件夹的应用沙箱路径。 |
-  | dest | string | 是    | 目标应用沙箱路径。 |
-  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标路径存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至此目标文件夹下，此目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标路径存在与源文件夹名冲突的文件夹，若此目标文件夹下存在与源文件夹下同名文件，则强制覆盖此目标文件夹下所有同名文件。目标文件夹下未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标路径下，目标文件夹与源文件夹内容完全一致。目标文件夹下所有原始文件将不会保留。|
+  | dest | string | 是    | 目标文件夹的应用沙箱路径。 |
+  | mode | number | 否    | 移动模式。默认mode为0。<br/>-&nbsp;mode为0，文件夹级别抛异常。若目标文件夹存在与源文件夹名冲突的文件夹，则抛出异常。<br/>-&nbsp;mode为1，文件级别抛异常。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则抛出异常。源文件夹下未冲突的文件全部移动至目标文件夹下，目标文件夹下未冲突文件将继续保留，且冲突文件信息将在抛出异常的data属性中以Array\<[ConflictFiles](#conflictfiles)>形式提供。<br/>-&nbsp; mode为2，文件级别强制覆盖。目标文件夹下存在与源文件夹名冲突的文件夹，若冲突文件夹下存在同名文件，则强制覆盖冲突文件夹下所有同名文件，未冲突文件将继续保留。<br/>-&nbsp; mode为3，文件夹级别强制覆盖。移动源文件夹至目标文件夹下，目标文件夹下移动的文件夹内容与源文件夹完全一致。若目标文件夹下存在与源文件夹名冲突的文件夹，该文件夹下所有原始文件将不会保留。|
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步移动文件夹之后的回调。              |
 
 **错误码：**
@@ -2068,7 +2068,7 @@ moveDir(src: string, dest: string, mode?: number, callback: AsyncCallback\<void>
 **示例：**
 
   ```js
-  // move directory from srcPath to destPath/srcPath
+  // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1, (err) => {
