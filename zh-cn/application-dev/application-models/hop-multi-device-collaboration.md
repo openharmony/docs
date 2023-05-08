@@ -100,7 +100,7 @@
    })
    ```
 
-5. 退出ServiceExtensionAbility时，调用[stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口，退出使用startAbility接口拉起的ServiceExtensionAbility。（当前只支持ServiceExtensionAbility的stop动作，暂不涉及UIAbility的stop动作）。
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility的退出由用户手动通过任务管理退出）
 
    ```ts
    let want = {
