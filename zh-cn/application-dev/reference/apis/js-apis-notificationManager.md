@@ -3992,7 +3992,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | checkNotification | 是   | 要侦听的回调的类型。   |
-| callback | (checkInfo: [NotificationCheckInfo](#NotificationCheckInfo)) =>  [NotificationCheckResult](#NotificationCheckResult)    | 是   | 消息验证函数指针。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)    | 是   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -4039,7 +4039,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | type | checkNotification | 是   | 要侦听的回调的类型。   |
-| callback | (checkInfo: [NotificationCheckInfo](#NotificationCheckInfo)) =>  [NotificationCheckResult](#NotificationCheckResult)  | 否   | 消息验证函数指针。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -4162,7 +4162,7 @@ try{
 | -------------------- | -------- | ---------- |
 | bundleName         | string | bundle名称。 |
 | notificationId | number | 通知Id。 |
-| contentType  | [ContentType](#ContentType) | 通知类型。 |
+| contentType  | [ContentType](#contenttype) | 通知类型。 |
 
 ## NotificationCheckResult
 
