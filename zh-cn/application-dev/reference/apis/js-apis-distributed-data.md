@@ -129,7 +129,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ------ |------ | ------ |
 | userId | string | 否  | 指示要设置的用户ID，默认为'0'。 |
-| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型，默认为SAME_USER_ID。 |
+| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型，默认为0。 |
 
 
 ## UserType
