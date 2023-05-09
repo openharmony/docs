@@ -643,10 +643,10 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name  | string | 是 | 是 | 输入法窗口的名称。|
-| left  | string | 是 | 是 | 输入法窗口左上顶点的横坐标。|
-| top  | string | 是 | 是 | 输入法窗口左上顶点的纵坐标。|
-| width  | string | 是 | 是 | 输入法窗口的宽度。|
-| height  | string | 是 | 是 | 输入法窗口的高度。|
+| left  | number | 是 | 是 | 输入法窗口左上顶点的横坐标，单位为px。|
+| top  | number | 是 | 是 | 输入法窗口左上顶点的纵坐标，单位为px。|
+| width  | number | 是 | 是 | 输入法窗口的宽度，单位为px。|
+| height  | number | 是 | 是 | 输入法窗口的高度，单位为px。|
 
 ## InputMethodController
 
