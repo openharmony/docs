@@ -37,7 +37,7 @@ import inputMethod from '@ohos.inputMethod';
 | labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>10+</sup>    | object | 是 | 是 | 非必填。输入法扩展信息。|
+| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -212,13 +212,13 @@ getCurrentInputMethod(): InputMethodProperty
 let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -268,13 +268,13 @@ try {
 }
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -633,6 +633,20 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
+
+## InputWindowInfo<sup>10+</sup>
+
+输入法软键盘的窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| name  | string | 是 | 是 | 输入法窗口的名称。|
+| left  | number | 是 | 是 | 输入法窗口左上顶点的横坐标，单位为px。|
+| top  | number | 是 | 是 | 输入法窗口左上顶点的纵坐标，单位为px。|
+| width  | number | 是 | 是 | 输入法窗口的宽度，单位为px。|
+| height  | number | 是 | 是 | 输入法窗口的高度，单位为px。|
 
 ## InputMethodController
 
@@ -2094,6 +2108,54 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 
 ```js
 inputMethodSetting.off('imeChange');
+```
+
+### on('imeShow'|'imeHide')<sup>10+</sup>
+
+on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明 |
+| -------- | ---- | ---- | ---- |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+
+**示例：**
+
+```js
+inputMethodSetting.on('imeShow', (info) => {
+    console.info('Succeeded in subscribing imeShow event.');
+});
+```
+
+### off('imeShow'|'imeHide')<sup>10+</sup>
+
+off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+取消订阅输入法软键盘显示或隐藏事件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示取消订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示取消订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```js
+inputMethodSetting.off('imeShow');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
