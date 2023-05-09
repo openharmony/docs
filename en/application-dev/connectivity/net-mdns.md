@@ -94,7 +94,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 
 1. Connect the device to the Wi-Fi network.
 2. Import the **mdns** namespace from **@ohos.net.mdns**.
-3. Creates a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
+3. Create a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
 4. Subscribe to mDNS service discovery status changes.
 5. Enable discovery of mDNS services on the LAN.
 6. Stop searching for mDNS services on the LAN.
