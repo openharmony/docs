@@ -9,7 +9,7 @@ Application recovery helps to restore the application state and save temporary d
 
 In API version 9, application recovery is supported only for a single ability of the application developed using the stage model. Application state saving and automatic restart are performed when a JsError occurs.
 
-In API version 10, application recovery is also supported for multiple abilities of the application developed using the stage model. Application state storage and restore are performed when an AppFreeze occurs. If an application is killed in control mode, the application state will be restored upon next startup.
+In API version 10, application recovery is applicable to multiple abilities of an application developed using the stage model. Application state storage and restore are performed when an AppFreeze occurs. If an application is killed in control mode, the application state will be restored upon next startup.
 
 ## Available APIs
 
@@ -218,6 +218,23 @@ export default class EntryAbility extends Ability {
         console.log("[Demo] EntryAbility onSaveState")
         wantParams["myData"] = "my1234567";
         return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
+}
+```
+
+#### Restart Flag for the Failed Ability
+
+If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import wantConstant from '@ohos.app.ability.wantConstant';
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
+            want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
+            console.log("This ability need to recovery");
+        }
     }
 }
 ```
