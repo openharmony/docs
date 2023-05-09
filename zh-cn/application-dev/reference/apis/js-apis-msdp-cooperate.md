@@ -378,7 +378,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 | 参数名                | 类型                                                             | 必填 | 说明                            |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  是  | 监听类型，取值为”cooperate“ |
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#CooperateMsg) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息 |
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsg) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息 |
 
 
 
@@ -440,7 +440,7 @@ try {
 }
 ```
 
-##  CooperateMsg  
+##  CooperateMsg
 
 键鼠穿越的消息通知。 
 
