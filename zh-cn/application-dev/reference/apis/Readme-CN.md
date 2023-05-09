@@ -167,6 +167,7 @@
 
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
+  - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
