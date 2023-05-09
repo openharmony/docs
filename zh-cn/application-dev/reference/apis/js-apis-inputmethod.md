@@ -218,7 +218,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -274,7 +274,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
