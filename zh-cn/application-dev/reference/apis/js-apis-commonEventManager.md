@@ -608,10 +608,10 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 ```ts
 CommonEventManager.setStaticSubscriberState(true, (err) => {
     if (err.code) {
-        console.info(`Set static subscribe event state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Set static subscribe event state callback success`);
+    console.info(`Set static subscriber state callback success`);
 });
 ```
 
@@ -652,8 +652,8 @@ setStaticSubscriberState(enable: boolean): Promise<void>;
 
 ```ts
 CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscribe event state promise success`);
+    console.info(`Set static subscriber state promise success`);
 }).catch ((err) => {
-    console.info(`Set static subscribe event state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
