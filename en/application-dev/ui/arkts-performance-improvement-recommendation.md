@@ -1,16 +1,16 @@
 # Recommendations for Improving Performance
 
-If developers use low-performance code to implement functions, the normal running of applications may not be affected, but the performance of applications may be adversely affected. This section lists some performance improvement scenarios for developers to avoid performance deterioration caused by application implementation.
+Poor-performing code may work, but will take away from your application performance. This topic presents a line-up of recommendations that you can take to improve your implementation, thereby avoiding possible performance drop.
 
-## Lazy data loading is recommended.
+## Lazy Loading
 
-If developers directly use the cyclic rendering mode when using a long list, as shown in the following figure, all list elements are loaded at a time. On one hand, the page startup takes a long time, affecting user experience. On the other hand, the pressure and traffic on the server increase, increasing the system load.
+When developing a long list, use of loop rendering, as in the code snippet below, can greatly slow down page loading and increase server load.
 
 ```ts
 @Entry
 @Component
 struct MyComponent {
-  The @State arr: number[] = Array.from(Array(100), (v,k) =>k); // constructs an array ranging from 0 to 99 and from 0 to 99.
+  @State arr: number[] = Array.from(Array(100), (v,k) =>k);  // Construct an array of 0 to 99.
   build() {
     List() {
       ForEach(this.arr, (item: number) => {
@@ -23,7 +23,7 @@ struct MyComponent {
 }
 ```
 
-The preceding code loads all 100 list elements during page loading, which is not required. We want to iteratively load data from the data source and create corresponding components. Therefore, data lazy loading is required, as shown in the following figure.
+The preceding code snippet loads all of the 100 list elements at a time during page loading. This is generally not desirable. Instead, what we need is to load data from the data source and create corresponding components on demand. This can be achieved through lazy loading. The sample code is as follows:
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -129,11 +129,11 @@ struct MyComponent {
 
 ![LazyForEach1](figures/LazyForEach1.gif)
 
-The preceding code initializes and loads only three list elements during page loading. Each time a list element is clicked, a list element is added.
+The preceding code initializes only three list elements during page loading and loads a new list item each time a list element is clicked.
 
-## Use conditional rendering to replace display and hiding control.
+## Prioritizing Conditional Rendering over Visibility Control
 
-As shown in the following figure, when developers use the visibility common attribute to control the display/hide status of a component, the component still needs to be re-created, causing performance loss.
+Use of the visibility attribute to hide or show a component, as in the code snippet below, results in re-creation of the component, leading to performance drop.
 
 ```ts
 @Entry
@@ -183,9 +183,9 @@ struct MyComponent {
 
 ![isVisible](figures/isVisible.gif)
 
-## Replacing Flex with Column/Row
+## Prioritizing Flex over Column/Row
 
-By default, the Flex container component has shrink, which causes secondary layout. As a result, the page rendering performance deteriorates to some extent.
+By default, the flex container needs to re-lay out flex items to comply with the **flexShrink** and **flexGrow** settings. This may result in drop in rendering performance.
 
 ```ts
 @Entry
@@ -201,7 +201,7 @@ struct MyComponent {
 }
 ```
 
-In the preceding code, Flex can be replaced with Column and Row to avoid negative impacts caused by Flex secondary layout while ensuring that the page layout effect is the same.
+To avoid the preceding issue, replace **Flex** with **Column** and **Row**, which can create the same page layout as **Flex** does.
 
 ```ts
 @Entry
@@ -219,9 +219,9 @@ struct MyComponent {
 
 ![flex1](figures/flex1.PNG)
 
-## Sets the width and height of the List component.
+## Setting Width and Height for \<List> Components
 
-When developers use the Scroll container component to embed the List child component, if the width and height of the List child component are not specified, all child components are loaded by default, as shown in the following figure.
+When a **\<List>** component is nested within a **\<Scroll>** component, all of its content will be loaded if its width and height is not specified, which may result in performance drop.
 
 ```ts
 @Entry
@@ -243,7 +243,7 @@ struct MyComponent {
 }
 ```
 
-Therefore, in this scenario, you are advised to set the width and height of the List child component as follows:
+Therefore, in the above scenario, you are advised to set the width and height for the **\<List>** component as follows:
 
 ```ts
 @Entry
@@ -267,11 +267,11 @@ struct MyComponent {
 
 ![list1](figures/list1.gif)
 
-## Reduce application sliding white blocks.
+## Minimizing White Blocks During Swiping
 
-To minimize white blocks during swiping, expand the UI loading range by increasing the value of **cachedCount** for the **\<List>** and **\<Grid>** components. cachedCount indicates the number of items preloaded in the off-screen List/Grid. 
-If you need to request a network image, you can download the content in advance before the item slides to the screen to reduce the number of white blocks. 
-The following is an example of using the cachedCount parameter:
+To minimize white blocks during swiping, expand the UI loading range by increasing the value of **cachedCount** for the **\<List>** and **\<Grid>** components. **cachedCount** indicates the number of list or grid items preloaded outside of the screen. 
+If an item needs to request an online image, set **cachedCount** as appropriate so that the image is downloaded in advance before the item comes into view on the screen, thereby reducing the number of white blocks. 
+The following is an example of using **cachedCount**:
 
 ```ts
 @Entry
@@ -290,7 +290,7 @@ struct MyComponent {
             })
         }
       })
-    }.cachedCount(3) //Increase the value. The appear log range will be enlarged.
+    }.cachedCount(3) // Increase the number of list or grid items preloaded outside of the screen.
   }
 }
 
@@ -314,5 +314,5 @@ class MyDataSource implements IDataSource {
 ```
 ![list2](figures/list2.gif)
 
-**Instructions:**
+**Instructions**
 A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
