@@ -1,6 +1,6 @@
 # @ohos.util (util工具函数)
 
-该模块主要提供常用的工具函数，实现字符串编解码（TextEncoder，TextDecoder）、有理数运算（RationalNumber）、缓冲区管理（LruBuffer）、范围判断（Scope）、Base64编解码（Base64）、内置对象类型检查（Types）等功能。
+该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)）等功能。
 
 > **说明：**
 >
@@ -337,6 +337,8 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## TextDecoder
 
+TextDecoder用于将字节数组解码为字符串，可以处理多种编码格式，包括utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
@@ -508,6 +510,8 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ## TextEncoder
 
+TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+
 ### 属性
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
@@ -678,6 +682,8 @@ encode(input?: string): Uint8Array
   ```
 
 ## RationalNumber<sup>8+</sup>
+
+RationalNumber主要是对有理数进行比较，获取分子分母等方法。例如使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
 
 ### constructor<sup>9+</sup>
 
@@ -1062,6 +1068,8 @@ let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
+
+LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。
 
 ### 属性
 
@@ -1668,6 +1676,8 @@ class Temperature{
 
 ## ScopeHelper<sup>9+</sup>
 
+ScopeHelper接口用于描述一个字段的有效范围。ScopeHelper实例的构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
+
 ### constructor<sup>9+</sup>
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
@@ -2023,6 +2033,8 @@ let result = range.clamp(tempMiDF);
 
 ## Base64Helper<sup>9+</sup>
 
+Base64编码表包含A-Z、a-z、0-9这62个字符，以及"+"和"/"这两个特殊字符。在编码时，将原始数据按3个字节一组进行划分，得到若干个6位的数字，然后使用Base64编码表中对应的字符来表示这些数字。如果最后剩余1或2个字节，则需要使用"="字符进行补齐。
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -2223,6 +2235,8 @@ that.decode(array).then(val=>{
   ```
 
 ## types<sup>8+</sup>
+
+types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常或崩溃。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型例如：ArrayBuffer、Map、Set等。
 
 ### constructor<sup>8+</sup>
 
