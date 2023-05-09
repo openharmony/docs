@@ -546,7 +546,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700042 数据代理中的uri配置错误
 **错误信息**<br/>
-Failed to install because the uri in data proxy is wrong.
+Failed to install the HAP because of incorrect URI in the data proxy.
 
 **错误描述**<br/>
 安装应用时，数据代理的uri配置错误。
@@ -561,7 +561,7 @@ Failed to install because the uri in data proxy is wrong.
 
 ## 17700043 数据代理中的权限配置错误
 **错误信息**<br/>
-Failed to install because the apl of permission in non-system data proxy should be system_basic or system_core.
+Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core).
 
 **错误描述**<br/>
 安装应用时，非系统应用的数据代理的权限等级过低，应为system_basic或system_core。
@@ -576,7 +576,7 @@ Failed to install because the apl of permission in non-system data proxy should 
 
 ## 17700044 安装包设置的多进程配置项与系统配置项设置矛盾
 **错误信息**<br/>
-Failed to install because the isolationMode does not match the system.
+Failed to install the HAP because the isolationMode does not match the system.
 
 **错误描述**<br/>
 安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
