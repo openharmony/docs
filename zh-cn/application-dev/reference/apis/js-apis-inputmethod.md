@@ -2116,6 +2116,8 @@ on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void)
 
 订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -2138,6 +2140,8 @@ inputMethodSetting.on('imeShow', (info) => {
 off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
