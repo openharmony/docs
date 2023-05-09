@@ -6,9 +6,9 @@
 ## 效果呈现
 本例效果如下：
 
-![httpforimage](figures\httpforimage.gif)
+![httpforimage](figures/httpforimage.gif)
 
-## 环境要求
+## 运行环境
 - IDE：DevEco Studio 3.1 Beta1
 - SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
@@ -61,7 +61,8 @@
       httpRequest() { 
         let httpRequest = http.createHttp();
         httpRequest.request(
-          "https://images.openharmony.cn/330-%E8%BF%90%E8%90%…%BE/%E6%B4%BB%E5%8A%A8/419/3.2releas-1920-480.jpg", //网络图片地址
+          //网络图片地址
+          "https://images.openharmony.cn/330-%E8%BF%90%E8%90%…%BE/%E6%B4%BB%E5%8A%A8/419/3.2releas-1920-480.jpg", 
           (error, data) => {
             if (error) {
               console.log("error code: " + error.code + ", msg: " + error.message)
@@ -133,7 +134,8 @@ struct NetPic {
   httpRequest() {
     let httpRequest = http.createHttp();
     httpRequest.request(
-      "https://images.openharmony.cn/330-%E8%BF%90%E8%90%…%BE/%E6%B4%BB%E5%8A%A8/419/3.2releas-1920-480.jpg", //网络图片地址
+      //网络图片地址
+      "https://images.openharmony.cn/330-%E8%BF%90%E8%90%…%BE/%E6%B4%BB%E5%8A%A8/419/3.2releas-1920-480.jpg",
       (error, data) => {
         if (error) {
           console.log("error code: " + error.code + ", msg: " + error.message)
