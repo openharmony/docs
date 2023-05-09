@@ -1867,7 +1867,7 @@ try {
 
 ## getRunningFormInfosByFilter
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.formProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
 
@@ -1879,7 +1879,7 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.formProviderFi
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.formProviderFilter | 是   | 卡片提供方应用信息。 |
+| formProviderFilter     | formInfo.FormProviderFilter | 是   | 卡片提供方应用信息。 |
 
 **返回值：**
 
@@ -1920,7 +1920,7 @@ try {
 
 ## getRunningFormInfosByFilter
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.formProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
@@ -1932,7 +1932,7 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.formProviderFi
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.formProviderFilter | 是   | 卡片提供方应用信息。 |
+| formProviderFilter     | formInfo.FormProviderFilter | 是   | 卡片提供方应用信息。 |
 | callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
