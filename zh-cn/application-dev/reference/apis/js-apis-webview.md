@@ -3359,7 +3359,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                               |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
 
 **示例：**

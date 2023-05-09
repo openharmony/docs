@@ -578,9 +578,13 @@
     - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
     - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
     - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
+    - [HiLog开发指导（Native）](dfx/hilog-guidelines.md)
     - 错误管理
       - [错误管理开发指导](dfx/errormanager-guidelines.md)
       - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
+    - 日志分析
+      - [应用无响应(appfreeze)日志分析指导](dfx/appfreeze-guidelines.md)
+      - [进程崩溃(cppcrash)日志分析指导](dfx/cppcrash-guidelines.md)
   - 国际化
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
