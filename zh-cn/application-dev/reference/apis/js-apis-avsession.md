@@ -1133,7 +1133,7 @@ let queueItemDescription_2 = {
     subtitle: 'music_sub_name',
     description: 'music_description',
     icon: PIXELMAP_OBJECT,
-    iconUri: 'http://www.icon.uri.com',
+    iconUri: 'http://www.xxx.com',
     extras: {'extras':'any'}
 };
 let queueItem_2 = {
