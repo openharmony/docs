@@ -1,27 +1,16 @@
-# FormExtensionAbility (Widget)
+# Developing a JS Widget
 
 
-## Widget Overview
-
-FormExtensionAbility provides a service widget (also called widget), which is a set of UI components that display important information or operations specific to an application. It provides users with direct access to a desired application service, without the need to open the application first.
-
-A widget usually appears as a part of the UI of another application (which currently can only be a system application) and provides basic interactive features such as opening a UI page or sending a message.
-
-Before you get started, it would be helpful if you have a basic understanding of the following concepts:
-
-- Widget host: an application that displays the widget content and controls the widget location.
-
-- Widget Manager: a resident agent that provides widget management features such as periodic widget updates.
-
-- Widget provider: an atomic service that provides the widget content to display and controls how widget components are laid out and how they interact with users.
+The following describes how to develop JS widgets based on the web-like development paradigm.
 
 
 ## Working Principles
 
-Figure 1 shows the working principles of the widget framework.
+Below shows the working principles of the widget framework.
 
-**Figure 1** Widget framework working principles in the stage model 
-![form-extension](figures/form-extension.png)
+**Figure 1** Widget framework working principles in the stage model
+
+![JSCardPrinciple](figures/JSCardPrinciple.png)
 
 The widget host consists of the following modules:
 
@@ -50,7 +39,6 @@ The widget provider consists of the following modules:
 - Communication adapter: provided by the OpenHarmony SDK for communication with the Widget Manager. It pushes update data to the Widget Manager.
 
 > **NOTE**
->
 > You only need to develop the widget provider. The system automatically handles the work of the widget host and Widget Manager.
 
 
@@ -58,38 +46,31 @@ The widget provider consists of the following modules:
 
 The **FormExtensionAbility** class has the following APIs. For details, see [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md).
 
-| API| Description|
+| Name| Description|
 | -------- | -------- |
 | onAddForm(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
 | onCastToNormalForm(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdateForm(formId: string): void | Called to notify the widget provider that a widget has been updated.|
 | onChangeFormVisibility(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change in widget visibility.|
 | onFormEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
-| onRemoveForm(formId: string): void| Called to notify the widget provider that a widget has been destroyed.|
+| onRemoveForm(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
 | onConfigurationUpdate(config: Configuration): void | Called when the configuration of the environment where the widget is running is updated.|
-| onShareForm?(formId: string): { [key: string]: any }| Called by the widget provider to receive shared widget data.|
-
-The **FormExtensionAbility** class also has a member context, that is, the FormExtensionContext class. For details, see [FormExtensionContext](../reference/apis/js-apis-inner-application-formExtensionContext.md).
-
-| API| Description|
-| -------- | -------- |
-| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | Starts UIAbility of the application to which a widget belongs. This API uses an asynchronous callback to return the result. (This is a system API and cannot be called by third-party applications. You must apply for the permission to use the API.)|
-| startAbility(want: Want): Promise&lt;void&gt; | Starts UIAbility of the application to which a widget belongs. This API uses a promise to return the result. (This is a system API and cannot be called by third-party applications. You must apply for the permission to use the API.)|
+| onShareForm?(formId: string): { [key: string]: any } | Called by the widget provider to receive shared widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
-| API| Description|
+| Name| Description|
 | -------- | -------- |
 | setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
 | setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
 | updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
-| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;;| Updates a widget. This API uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
 
-| API| Description|
+| Name| Description|
 | -------- | -------- |
-| createFormBindingData(obj?: Object \ string): FormBindingData| | Creates a **FormBindingData** object.|
+| createFormBindingData(obj?: Object \| string): FormBindingData | Creates a **FormBindingData** object.|
 
 
 ## How to Develop
@@ -98,7 +79,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 - [Creating a FormExtensionAbility Instance](#creating-a-formextensionability-instance): Develop the lifecycle callback functions of FormExtensionAbility.
 
-- [Configuring the Widget Configuration File](#configuring-the-widget-configuration-file): Configure the application configuration file **module.json5** and profile configuration file.
+- [Configuring the Widget Configuration Files](#configuring-the-widget-configuration-files): Configure the application configuration file **module.json5** and profile configuration file.
 
 - [Persistently Storing Widget Data](#persistently-storing-widget-data): This operation is a form of widget data exchange.
 
@@ -114,9 +95,10 @@ The widget provider development based on the [stage model](stage-model-developme
 To create a widget in the stage model, implement the lifecycle callbacks of **FormExtensionAbility**. Generate a widget template by referring to [Developing a Service Widget](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425).
 
 1. Import related modules to **EntryFormAbility.ts**.
+
    
    ```ts
-   import FormExtension from '@ohos.app.form.FormExtensionAbility';
+   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
@@ -124,9 +106,10 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    ```
 
 2. Implement the FormExtension lifecycle callbacks in **EntryFormAbility.ts**.
+
    
    ```ts
-   export default class EntryFormAbility extends FormExtension {
+   export default class EntryFormAbility extends FormExtensionAbility {
        onAddForm(want) {
            console.info('[EntryFormAbility] onAddForm');
            // Called when the widget is created. The widget provider should return the widget data binding class.
@@ -175,10 +158,10 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    ```
 
 > **NOTE**
->
 > FormExtensionAbility cannot reside in the background. Therefore, continuous tasks cannot be processed in the widget lifecycle callbacks.
 
-### Configuring the Widget Configuration File
+
+### Configuring the Widget Configuration Files
 
 1. Configure ExtensionAbility information under **extensionAbilities** in the [module.json5 file](../quick-start/module-configuration-file.md). For a FormExtensionAbility, you must specify **metadata**. Specifically, set **name** to **ohos.extension.form** (fixed), and set **resource** to the index of the widget configuration information.
    Example configuration:
@@ -187,11 +170,11 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    ```json
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEntrance": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
@@ -208,19 +191,20 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    ```
 
 2. Configure the widget configuration information. In the **metadata** configuration item of FormExtensionAbility, you can specify the resource index of specific configuration information of the widget. For example, if resource is set to **$profile:form_config**, **form_config.json** in the **resources/base/profile/** directory of the development view is used as the profile configuration file of the widget. The following table describes the internal field structure.
-     **Table 1** Widget profile configuration file
-   
-   | Field| Description| Data Type| Initial Value Allowed|
+
+   **Table 1** Widget profile configuration file
+
+   | Field| Description| Data Type| Default Value Allowed|
    | -------- | -------- | -------- | -------- |
-   | name | Class name of a widget. The value is a string with a maximum of 127 bytes.| String| No|
+   | name | Class name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
    | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
    | src | Full path of the UI code corresponding to the widget.| String| No|
    | window | Window-related configurations.| Object| Yes|
-   | isDefault | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean| No|
-   | colorMode | Color mode of the widget.<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.| String| Yes (initial value: **auto**)|
-   | supportDimensions | Grid styles supported by the widget.<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No|
+   | isDefault | Whether the widget is a default one. Each UIAbility has only one default widget.<br>- **true**: The widget is the default one.<br>- **false**: The widget is not the default one.| Boolean| No|
+   | colorMode | Color mode of the widget.<br>- **auto**: auto-adaptive color mode<br>- **dark**: dark color mode<br>- **light**: light color mode| String| Yes (initial value: **auto**)|
+   | supportDimensions | Grid styles supported by the widget.<br>- **1 * 2**: indicates a grid with one row and two columns.<br>- **2 * 2**: indicates a grid with two rows and two columns.<br>- **2 * 4**: indicates a grid with two rows and four columns.<br>- **4 * 4**: indicates a grid with four rows and four columns.| String array| No|
    | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
-   | updateEnabled | Whether the widget can be updated periodically.<br>**true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>**false**: The widget cannot be updated periodically.| Boolean| No|
+   | updateEnabled | Whether the widget can be updated periodically.<br>- **true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>- **false**: The widget cannot be updated periodically.| Boolean| No|
    | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: **0:0**)|
    | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
    | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
@@ -228,13 +212,14 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    | metaData | Metadata of the widget. This field contains the array of the **customizeData** field.| Object| Yes (initial value: left empty)|
 
    Example configuration:
+
    
    ```json
    {
      "forms": [
        {
          "name": "widget",
-         "description": "This is a widget.",
+         "description": "This is a service widget.",
          "src": "./js/widget/pages/index/index",
          "window": {
            "designWidth": 720,
@@ -271,7 +256,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
     };
     try {
         const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // Put the widget information.
+        // put form info
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
         await storage.flush();
@@ -281,7 +266,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
 }
 
 export default class EntryFormAbility extends FormExtension {
-    // ...
+    ...
     onAddForm(want) {
         console.info('[EntryFormAbility] onAddForm');
 
@@ -310,7 +295,7 @@ const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
         const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
-        // Delete the widget information.
+        // del form info
         await storage.delete(formId);
         console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);
         await storage.flush();
@@ -319,10 +304,10 @@ async function deleteFormInfo(formId: string) {
     }
 }
 
-// ...
+...
 
 export default class EntryFormAbility extends FormExtension {
-    // ...
+    ...
     onRemoveForm(formId) {
         console.info('[EntryFormAbility] onRemoveForm');
         // Delete the persistent widget instance data.
@@ -332,7 +317,7 @@ export default class EntryFormAbility extends FormExtension {
 }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -369,13 +354,10 @@ onUpdateForm(formId) {
 
 You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. This section describes how to develop a page shown below.
 
-![widget-development-stage](figures/widget-development-stage.png)
-
-> **NOTE**
->
-> Only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
+![WidgetCardPage](figures/WidgetCardPage.png)
 
 - HML: uses web-like paradigm components to describe the widget page information.
+
   
   ```html
   <div class="container">
@@ -392,6 +374,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
   ```
 
 - CSS: defines style information about the web-like paradigm components in HML.
+
   
   ```css
   .container {
@@ -433,6 +416,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
   ```
 
 - JSON: defines data and event interaction on the widget UI page.
+
   
   ```json
   {
@@ -455,24 +439,27 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 ### Developing Widget Events
 
-You can set router and message events for components on a widget. The router event applies to ability redirection, and the message event applies to custom click events.
+You can set router and message events for components on a widget. The router event applies to UIAbility redirection, and the message event applies to custom click events.
 
 The key steps are as follows:
 
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
 
 2. Set the router event.
+
    - **action**: **"router"**, which indicates a router event.
-   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name of the stage model created by DevEco Studio is EntryAbility.
-   - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the main ability in the stage model, you can obtain **want** and its **parameters** field.
+   - **abilityName**: name of the UIAbility to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name of the stage model created by DevEco Studio is EntryAbility.
+   - **params**: custom parameters passed to the target UIAbility. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target UIAbility. For example, in the lifecycle function **onCreate** of the main ability in the stage model, you can obtain **want** and its **parameters** field.
 
 3. Set the message event.
+
    - **action**: **"message"**, which indicates a message event.
    - **params**: custom parameters of the message event. Set them as required. The value can be obtained from **message** in the widget lifecycle function **onFormEvent()**.
 
 The following is an example:
 
 - HML file:
+
   
   ```html
   <div class="container">
@@ -489,6 +476,7 @@ The following is an example:
   ```
 
 - CSS file:
+
   
   ```css
   .container {
@@ -530,6 +518,7 @@ The following is an example:
   ```
 
 - JSON file:
+
   
   ```json
   {
@@ -558,52 +547,44 @@ The following is an example:
 
 - Receive the router event and obtain parameters in UIAbility.
 
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility'
   
   export default class EntryAbility extends UIAbility {
       onCreate(want, launchParam) {
+          let params = JSON.parse(want.parameters.params);
           // Obtain the info parameter passed in the router event.
-          if (want.parameters.info === "router info") {
-              // Do something.
-              // console.log("router info:" + want.parameters.info)
+          if (params.info === "router info") {
+              // do something
+              // console.info("router info:" + params.info)
           }
           // Obtain the message parameter passed in the router event.
-          if (want.parameters.message === "router message") {
-              // Do something.
-              // console.log("router message:" + want.parameters.message)
+          if (params.message === "router message") {
+              // do something
+              // console.info("router message:" + params.message)
           }
       }
-      // ...
+      ...
   };
   ```
 
 - Receive the message event in FormExtensionAbility and obtain parameters.
 
+  
   ```ts
   import FormExtension from '@ohos.app.form.FormExtensionAbility';
   
   export default class FormAbility extends FormExtension {
-      // ...
+      ...
       onFormEvent(formId, message) {
           // Obtain the detail parameter passed in the message event.
           let msg = JSON.parse(message)
-          if (msg.params.detail === "message detail") {
-              // Do something.
-              // console.log("message info:" + msg.params.detail)
+          if (msg.detail === "message detail") {
+              // do something
+              // console.info("message info:" + msg.detail)
           }
       }
-      // ...
+      ...
   };
   ```
-
-## Restrictions
-
-To minimize the abuse of **FormExtensionAbility** by third-party applications, the following APIs cannot be invoked in **FormExtensionAbility**:
-
-- @ohos.ability.particleAbility.d.ts
-- @ohos.backgroundTaskManager.d.ts
-- @ohos.resourceschedule.backgroundTaskManager.d.ts
-- @ohos.multimedia.camera.d.ts
-- @ohos.multimedia.audio.d.ts
-- @ohos.multimedia.media.d.ts

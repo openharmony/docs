@@ -24,7 +24,10 @@
       - [HAR](har-package.md)
       - HSP
         - [In-Application HSP Development](in-app-hsp.md)
-        - [Inter-Application HSP Development (for System Applications Only)](cross-app-hsp.md)
+        - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
+    - Atomic Service
+      - [Atomic Service Development](atomicService.md)
+      - [Atomic Service Space Management (for System Applications Only)](atomicService-aging.md)
     - Quick Fix
       - [Quick Fix Overview](quickfix-principles.md)
       - [CLI-based Quick Fix Development](quickfix-debug.md)
@@ -40,12 +43,37 @@
   - [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
     - [Getting Started with ArkTS](arkts-get-started.md)
-    - ArkTS Syntax (Declarative UI)
-      - [Basic UI Description](arkts-basic-ui-description.md)
-      - State Management
-        - [Basic Concepts](arkts-state-mgmt-concepts.md)
-        - [State Management with Page-level Variables](arkts-state-mgmt-page-level.md)
-        - [State Management with Application-level Variables](arkts-state-mgmt-application-level.md)
-      - [Dynamic UI Element Building](arkts-dynamic-ui-elememt-building.md)
-      - [Rendering Control](arkts-rendering-control.md)
-      - [Restrictions and Extensions](arkts-restrictions-and-extensions.md)
+  - Basic Syntax
+    - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
+    - [Declarative UI Description](arkts-declarative-ui-description.md)
+    - Custom Component
+      - [Creating a Custom Component](arkts-create-custom-components.md)
+      - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
+    - [\@Builder: Custom Builder Function](arkts-builder.md)
+    - [\@BuilderParam: @Builder Function Reference](arkts-builderparam.md)
+    - [\@Styles: Definition of Resusable Styles](arkts-style.md)
+    - [\@Extend: Extension of Built-in Components](arkts-extend.md)
+    - [stateStyles: Polymorphic Style](arkts-statestyles.md)
+  - State Management
+    - [State Management Overview](arkts-state-management-overview.md)
+    - Component State Management
+      - [\@State: State Owned by Component](arkts-state.md)
+      - [\@Prop: One-Way Synchronization from Parent to Child Components](arkts-prop.md)
+      - [\@Link: Two-Way Synchronization Between Parent and Child Components](arkts-link.md)
+      - [\@Provide and \@Consume: Two-Way Synchronization with Descendant Components](arkts-provide-and-consume.md)
+      - [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](arkts-observed-and-objectlink.md)
+    - Application State Management
+      - [Application State Management Overview](arkts-application-state-management-overview.md)
+      - [LocalStorage: UI State Storage](arkts-localstorage.md)
+      - [AppStorage: Application-wide UI State Storage](arkts-appstorage.md)
+      - [PersistentStorage: Application State Persistence](arkts-persiststorage.md)
+      - [Environment: Device Environment Query](arkts-environment.md)
+    - Other State Management Features
+      - [Overview of Other State Management Features](arkts-other-state-mgmt-functions-overview.md)
+      - [\@Watch: Getting Notified of State Variable Changes](arkts-watch.md)
+      - [$$ Syntax: Two-Way Synchronization of Built-in Components](arkts-two-way-sync.md)
+  - Rendering Control
+    - [Rendering Control Overview](arkts-rendering-control-overview.md)
+    - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
+    - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
+    - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
