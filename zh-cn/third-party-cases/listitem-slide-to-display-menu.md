@@ -7,6 +7,7 @@
 ## 效果呈现
 
 本示例最终效果如下：
+
 ![listitem-slide](figures/listitem-slide-demo.gif)
 
 ## 环境要求
