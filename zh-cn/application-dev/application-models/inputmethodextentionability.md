@@ -67,7 +67,7 @@
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy();
+       this.keyboardController.destroy();
      }
    }
    ```
@@ -106,7 +106,7 @@
        this.unRegisterListener();		// 注销事件监听
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// 销毁窗口
-       this.mContext.terminateSelf();	// 销毁InputMethodExtensionAbility服务
+       this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
      }
    
      private initWindow(): void		// 初始化窗口
