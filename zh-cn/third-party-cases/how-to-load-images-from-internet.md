@@ -187,6 +187,8 @@ struct NetPic {
 ```
 
 ## 参考
-[图片处理](../application-dev/reference/apis/js-apis-image.md)
-[数据请求](../application-dev/reference/apis/js-apis-http.md)
-[权限申请指导](../application-dev/security/accesstoken-guidelines.md)
+- [图片处理](../application-dev/reference/apis/js-apis-image.md)
+
+- [数据请求](../application-dev/reference/apis/js-apis-http.md)
+
+- [权限申请指导](../application-dev/security/accesstoken-guidelines.md)
