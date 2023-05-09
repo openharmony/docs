@@ -37,7 +37,7 @@ import inputMethod from '@ohos.inputMethod';
 | labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>10+</sup>    | object | 是 | 是 | 非必填。输入法扩展信息。<br/>**说明：** 从API version 10开始改为非必选参数。|
+| extra<sup>9+</sup>    | object | 是 | 是 | **说明：** 早于API version 10的版本：必填；<br/>API version 10及后续版本：非必填。<br/>输入法扩展信息。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
