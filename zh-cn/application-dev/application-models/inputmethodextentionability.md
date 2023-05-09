@@ -103,10 +103,9 @@
    
      public onDestroy(): void			// 应用生命周期销毁
      {
-       this.unRegisterListener();		// 注销事件监听
+       this.unRegisterListener();		// 去注销事件监听
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// 销毁窗口
-       this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
      }
    
      private initWindow(): void		// 初始化窗口
@@ -156,7 +155,7 @@
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "包名/Ability名") {
-           this.onDestroy();
+            this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
          }
        });
      }
