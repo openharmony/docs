@@ -12,9 +12,15 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
 ## 接口说明
 
-媒体会话控制方使用的关键接口如下表所示。接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同。
+媒体会话控制方使用的关键接口包括两类：
+1. 直接通过import得到的AVSessionManager来调用，例如接口`AVSessionManager.createController(sessionId)`。
+2. 通过AVSessionController对象来调用，例如接口`controller.getAVPlaybackState()`。
+
+异步的JavaScript接口返回值有两种返回形式：callback和promise，本说明仅提供callback形式接口，promise和callback只是返回值方式不一样，功能相同。
 
 更多API说明请参见[API文档](../reference/apis/js-apis-avsession.md)。
+
+### 直接通过AVSessionManager调用的接口
 
 | 接口名 | 说明 | 
 | -------- | -------- |
@@ -26,6 +32,25 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 | sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送按键命令。 | 
 | sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 通过会话对应的AVSessionController向会话发送播控命令。 | 
 | sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送播控命令。 | 
+
+### 通过AVSessionController对象调用的接口
+
+| 接口名 | 说明 |
+| -------- | -------- |
+| getAVPlaybackState(callback: AsyncCallback&lt;AVPlaybackState&gt;): void | 获取当前会话播放状态相关信息。 |
+| getAVMetadata(callback: AsyncCallback&lt;AVMetadata&gt;): void | 获取会话元数据。 |
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void | 获取播放设备信息。 |
+| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 发送按键事件到会话。|
+| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void | 获取应用在会话中保存的WantAgent对象。 |
+| isActive(callback: AsyncCallback&lt;boolean&gt;): void | 判断会话是否被激活。 |
+| destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前控制器，销毁后当前控制器不再可用。 |
+| getValidCommands(callback: AsyncCallback&lt;Array&lt;AVControlCommandType&gt;&gt;): void | 获取会话支持的有效命令。 |
+| sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 通过会话控制器发送命令到其对应的会话。 |
+| sendCommonCommand(command: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 通过会话控制器发送自定义命令到其对应的会话。 |
+| getAVQueueItems(callback: AsyncCallback&lt;Array&lt;AVQueueItem&gt;&gt;): void<sup>10+<sup> | 获取当前播放列表相关信息。 |
+| getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | 获取当前播放列表的名称。 |
+| skipToQueueItem(itemId: number, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置指定播放列表单项的ID，发送给session端处理，session端可以选择对这个单项歌曲进行播放。 |
+| getExtras(callback: AsyncCallback&lt;{[key: string]: Object}&gt;): void<sup>10+<sup> | 获取媒体提供方设置的自定义媒体数据包。 |
 
 ## 开发步骤
 
@@ -48,11 +73,11 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
           AVSessionManager.createController(descriptor.sessionId).then((controller) => {
               g_controller.push(controller);
           }).catch((err) => {
-              console.error(`createController : ERROR : ${err.message}`);
+              console.error(`Failed to create controller. Code: ${err.code}, message: ${err.message}`);
           });
       });
    }).catch((err) => {
-      console.error(`getAllSessionDescriptors : ERROR : ${err.message}`);
+      console.error(`Failed to get all session descriptors. Code: ${err.code}, message: ${err.message}`);
    });
    
    ```
@@ -74,7 +99,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      AVSessionManager.createController(session.sessionId).then((controller) => {
        g_controller.push(controller);
      }).catch((err) => {
-       console.info(`createController : ERROR : ${err.message}`);
+       console.error(`Failed to create controller. Code: ${err.code}, message: ${err.message}`);
      });
    });
    
@@ -103,7 +128,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    // 注册服务异常监听
    AVSessionManager.on('sessionServiceDie', () => {
       // 服务端异常，应用清理资源
-      console.info("服务端异常");
+      console.info(`服务端异常`);
    })
    ```
 
@@ -117,6 +142,10 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    - validCommandChange：媒体会话支持的有效命令变化事件。
    - outputDeviceChange：播放设备变化事件。
    - sessionDestroy：媒体会话销毁事件。
+   - sessionEvent: 媒体会话自定义事件变化事件。
+   - extrasChange：媒体会话自定义数据包变化事件。
+   - queueItemsChange: 媒体会话自定义播放列表变化事件。
+   - queueTitleChange: 媒体会话自定义播放列表的名称变化事件。
 
    媒体会话控制方可以根据实际需要监听对应的事件。
 
@@ -124,18 +153,18 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    // 注册会话激活状态变更监听
    controller.on('activeStateChange', (isActive) => {
      if (isActive) {
-       console.info("控制器卡片按键高亮");
+       console.info(`控制器卡片按键高亮`);
      } else {
-       console.info("控制器卡片按键变更为无效");
+       console.info(`控制器卡片按键变更为无效`);
      }
    });
    // 注册会话销毁监听
    controller.on('sessionDestroy', () => {
-      console.info('on sessionDestroy : SUCCESS ');
+      info(`on sessionDestroy : SUCCESS `);
       controller.destroy().then(() => {
-          console.info('destroy : SUCCESS ');
+          console.info(`destroy : SUCCESS`);
       }).catch((err) => {
-          console.info(`destroy : ERROR :${err.message}`);
+          console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
       });
    });
    
@@ -164,6 +193,22 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    controller.on('outputDeviceChange', (device) => {
       console.info(`on outputDeviceChange device isRemote : ${device.isRemote}`);
    });
+   // 注册会话自定义事件变更监听
+   controller.on('sessionEvent', (eventName, eventArgs) => {
+     console.info(`Received new session event, event name is ${eventName}, args are ${JSON.stringify(eventArgs)}`);
+   });
+   // 注册会话自定义媒体数据包变更监听
+   controller.on('extrasChange', (extras) => {
+     console.info(`Received custom media packet, packet data is ${JSON.stringify(extras)}`);
+   });
+   // 注册会话自定义播放列表变更监听
+   controller.on('queueItemsChange', (items) => {
+     console.info(`Caught queue items change, items length is ${items.length}`);
+   });
+   // 注册会话自定义播放标题变更监听
+   controller.on('queueTitleChange', (title) => {
+     console.info(`Caught queue title change, title is ${title}`);
+   });
    ```
 
 4. 获取媒体会话提供方传递的媒体信息，可以用于界面展示，例如在播控中心展示当前播放的曲目及对应的播放状态。
@@ -186,6 +231,24 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      let avPlaybackState: AVSessionManager.AVPlaybackState = await controller.getAVPlaybackState();
      console.info(`get playbackState by controller : ${avPlaybackState.state}`);
      console.info(`get favoriteState by controller : ${avPlaybackState.isFavorite}`);
+     // 获取session的播放列表信息
+     let queueItems: Array<AVSessionManager.AVQueueItem> = await controller.getAVQueueItems();
+     console.info(`get queueItems length by controller : ${queueItems.length}`);
+     // 获取session的播放标题信息
+     let queueTitle: string = await controller.getAVQueueTitle();
+     console.info(`get queueTitle by controller : ${queueTitle}`);
+     // 获取session的自定义媒体数据包
+     let extras: any = await controller.getExtras();
+     console.info(`get custom media packets by controller : ${JSON.stringify(extras)}`);
+     // 获取session对应应用提供的ability信息
+     let agent: WantAgent = await controller.getLaunchAbility();
+     console.info(`get want agent info by controller : ${JSON.stringify(agent)}`);
+     // 获取session的当前播放位置信息
+     let currentTime: number = controller.getRealPlaybackPositionSync();
+     console.info(`get current playback time by controller : ${currentTime}`);
+     // 获取session支持的有效命令
+     let validCommands: Array<AVSessionManager.AVControlCommandType> = await controller.getValidCommands();
+     console.info(`get valid commands by controller : ${JSON.stringify(validCommands)}`);
    }
    ```
 
@@ -193,7 +256,6 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    
    作为媒体会话提供方的音视频应用在监听到相关的播控命令事件后，在相应的逻辑中可以完成对应的操作动作。
 
-     
    ```ts
    async sendCommandToSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例
@@ -222,6 +284,23 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        let avCommand: AVSessionManager.AVControlCommand = {command:'playNext'};
        controller.sendControlCommand(avCommand);
      }
+     // 下发自定义控制命令
+     let commandName: string = 'custom command';
+     let args = {
+       command : 'This is my custom command'
+     }
+     await controller.sendCommonCommand(commandName, args).then(() => {
+       console.info(`SendCommonCommand successfully`);
+     }).catch((err) => {
+       console.error(`Failed to send common command. Code: ${err.code}, message: ${err.message}`);
+     })
+     // 设置指定播放列表单项的ID，供session选择播放
+     let queueItemId: number = 0;
+     await controller.skipToQueueItem(queueItemId).then(() => {
+       console.info(`SkipToQueueItem successfully`);
+     }).catch((err) => {
+       console.error(`Failed to skip to queue item. Code: ${err.code}, message: ${err.message}`);
+     });
    }
    ```
 
@@ -235,9 +314,9 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      // 销毁当前的controller，销毁后这个controller将不在可用
      controller.destroy(function (err) {
        if (err) {
-         console.info(`Destroy controller ERROR : code: ${err.code}, message: ${err.message}`);
+         console.error(`Failed to destroy controller. Code: ${err.code}, message: ${err.message}`);
        } else {
-         console.info('Destroy controller SUCCESS');
+         console.info(`Destroy controller SUCCESS`);
        }
      });
    }

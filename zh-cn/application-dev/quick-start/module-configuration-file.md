@@ -296,7 +296,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，可选标签值：<br/>-&nbsp;multiton：标准实例模式，每次启动创建一个新的实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。 | 字符串 | 可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，标签值是字符串类型（最长255字节）或对描述内容的资源索引，要求采用资源索引方式，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，标签值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
-| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果UIAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
+| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -802,8 +802,8 @@ dependencies标签示例：
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
 | uri | 标识用于访问该数据代理的uri，不同的数据代理配置的uri不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 不可缺省。 |
-| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md) | 字符串   | 可缺省，缺省值为空。 |
-| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md) | 字符串   | 可缺省，缺省值为空。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 可缺省，缺省值为空。 |
 
 proxyDatas标签示例：

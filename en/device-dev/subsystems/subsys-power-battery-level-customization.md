@@ -8,6 +8,7 @@ By default, OpenHarmony provides the battery level based on the current battery 
 
 ### Constraints
 
+ 
 The configuration path for battery level customization is subject to the [configuration policy](https://gitee.com/openharmony/customization_config_policy). In this development guide, `/vendor` is used as an example of the configuration path. During actual development, you need to modify the customization path based on the product configuration policy.
 
 ## How to Develop
@@ -36,7 +37,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ├── battery_config.json
     ```
 
-3. Write the custom `battery_config.json` file by referring to the `battery_config.json` file in the default folder of battery level configuration. For example:
+3. Write the custom `battery_config.json` file by referring to the [battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json) file in the default folder of battery level configuration. For example:
 
     ```json
     {
@@ -54,7 +55,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     **Table 1** Battery level configuration
 
-    | Battery Bevel| Battery Volume| Description|
+    | Battery Level| Battery Volume| Description|
     | -------- | -------- | -------- |
     | shutdown | 5 | Power-off battery level|
     | critical | 10 | Extremely low battery level|
@@ -65,7 +66,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | full | 100 | Full battery level|
 
 
-4. Write the `BUILD.gn` file by referring to the `BUILD.gn` in the default folder of battery level configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
+4. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/BUILD.gn) file in the default folder of battery level configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")               # Reference build/ohos.gni.
@@ -292,6 +293,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 ## Reference
 During development, you can refer to the [default battery level configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json), as shown below:
 
+ 
+
 ```json
 {
     "soc": {
@@ -306,4 +309,4 @@ During development, you can refer to the [default battery level configuration](h
 }
 ``` 
 
-Packing path: `/system/etc/battery`
+Packing path: /system/etc/battery
