@@ -38,8 +38,9 @@
           - 开发卡片事件
             - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
             - [通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
-            - [通过UIAbility刷新卡片内容](arkts-ui-widget-event-uiability.md)
             - [使用router事件跳转到指定页面](arkts-ui-widget-event-router.md)
+            - [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
+            - [通过UIAbility刷新卡片内容](arkts-ui-widget-event-uiability.md)
           - 卡片数据交互
             - [卡片数据交互说明](arkts-ui-widget-interaction-overview.md)
             - [定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
