@@ -26,7 +26,7 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md)                            | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见 [DataAbility说明](../../application-models/dataability-overview.md)。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、webm、TS。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string&nbsp;\|PixelMap&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径。（暂不支持PixelMap类型）         |
+| previewUri          | string&nbsp;\|PixelMap&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径。                                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器。                                             |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
