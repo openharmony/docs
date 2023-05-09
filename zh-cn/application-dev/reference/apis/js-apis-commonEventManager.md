@@ -575,9 +575,9 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 });
 ```
 
-## CommonEventManager.setStaticSubscribeEventState<sup>10+</sup>
+## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscribeEventState(enable: boolean, callback: AsyncCallback<void>): void;
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
 以回调形式为当前应用设置静态订阅事件使能或去使能状态。
 
@@ -606,7 +606,7 @@ setStaticSubscribeEventState(enable: boolean, callback: AsyncCallback<void>): vo
 
 
 ```ts
-CommonEventManager.setStaticSubscribeEventState(true, (err) => {
+CommonEventManager.setStaticSubscriberState(true, (err) => {
     if (err.code) {
         console.info(`Set static subscribe event state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
@@ -615,9 +615,9 @@ CommonEventManager.setStaticSubscribeEventState(true, (err) => {
 });
 ```
 
-## CommonEventManager.setStaticSubscribeEventState<sup>10+</sup>
+## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscribeEventState(enable: boolean): Promise<void>;
+setStaticSubscriberState(enable: boolean): Promise<void>;
 
 以Promise形式为当前应用设置静态订阅事件使能或去使能状态。
 
@@ -651,7 +651,7 @@ setStaticSubscribeEventState(enable: boolean): Promise<void>;
 
 
 ```ts
-CommonEventManager.setStaticSubscribeEventState(false).then(() => {
+CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscribe event state promise success`);
 }).catch ((err) => {
     console.info(`Set static subscribe event state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
