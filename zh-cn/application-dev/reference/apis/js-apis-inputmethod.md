@@ -212,7 +212,7 @@ getCurrentInputMethod(): InputMethodProperty
 let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
@@ -268,7 +268,7 @@ try {
 }
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
