@@ -2124,7 +2124,7 @@ on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void)
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---- |
-| type     | string | 是 | 设置监听类型。<br/>- type为‘imeShow’时表示订阅输入法软键盘显示事件。<br/>- type为‘imeHide’时表示订阅输入法软键盘隐藏事件。 |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示订阅输入法软键盘隐藏事件。 |
 | callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
 
 **示例：**
@@ -2139,7 +2139,7 @@ inputMethodSetting.on('imeShow', (info) => {
 
 off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。
 
 **系统接口**：此接口为系统接口。
 
@@ -2149,8 +2149,8 @@ off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => voi
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型。<br/>- type为‘imeShow’时表示取消订阅输入法软键盘显示事件。<br/>- type为‘imeHide’时表示取消订阅输入法软键盘隐藏事件。 |
-| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的输入法软键盘的回调函数。 |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示取消订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示取消订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
 
