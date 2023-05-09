@@ -10,7 +10,9 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 User applications call **Preference** through the JS interface to read and write data files. You can load the data of a **Preferences** persistence file to a **Preferences** instance. Each file uniquely corresponds to an instance. The system stores the instance in memory through a static container until the instance is removed from the memory or the file is deleted. The following figure illustrates how **Preference** works.
 
-  **Figure 1** Preferences working mechanism 
+The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path).
+
+**Figure 1** Preferences working mechanism 
 
 ![preferences](figures/preferences.jpg)
 
