@@ -32,6 +32,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 | sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送按键命令。 | 
 | sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 通过会话对应的AVSessionController向会话发送播控命令。 | 
 | sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送播控命令。 | 
+| getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void<sup>10+<sup> | 获取历史会话的描述符。 |
 
 ### 通过AVSessionController对象调用的接口
 
@@ -80,6 +81,19 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
       console.error(`Failed to get all session descriptors. Code: ${err.code}, message: ${err.message}`);
    });
    
+   // 获取历史会话的描述符
+   avSession.getHistoricalSessionDescriptors().then((descriptors) => {
+     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
+     if (descriptors.length > 0){
+       console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+       console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+       console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+       console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+       console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
+     }
+   }).catch((err) => {
+     console.error(`Failed to get historical session descriptors, error code: ${err.code}, error message: ${err.message}`);
+   });
    ```
 
 2. 监听AVSession会话状态及AVSession服务状态事件。

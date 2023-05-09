@@ -90,6 +90,46 @@
          console.info(`SetAVPlaybackState successfully`);
        }
      });
+     // 设置一个播放列表
+     let queueItemDescription_1 = {
+       mediaId: '001',
+       title: 'music_name',
+       subtitle: 'music_sub_name',
+       description: 'music_description',
+       icon: PIXELMAP_OBJECT,
+       iconUri: 'http://www.xxx.com',
+       extras: {'extras':'any'}
+     };
+     let queueItem_1 = {
+       itemId: 1,
+       description: queueItemDescription_1
+     };
+     let queueItemDescription_2 = {
+       mediaId: '002',
+       title: 'music_name',
+       subtitle: 'music_sub_name',
+       description: 'music_description',
+       icon: PIXELMAP_OBJECT,
+       iconUri: 'http://www.xxx.com',
+       extras: {'extras':'any'}
+     };
+     let queueItem_2 = {
+       itemId: 2,
+       description: queueItemDescription_2
+     };
+     let queueItemsArray = [queueItem_1, queueItem_2];
+     session.setAVQueueItems(queueItemsArray).then(() => {
+       console.info(`SetAVQueueItems successfully`);
+     }).catch((err) => {
+       console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
+     });
+     // 设置媒体播放列表名称
+     let queueTitle = 'QUEUE_TITLE';
+       session.setAVQueueTitle(queueTitle).then(() => {
+         console.info(`SetAVQueueTitle successfully`);
+       }).catch((err) => {
+       console.info(`Failed to set AVQueueTitle, error code: ${err.code}, error message: ${err.message}`);
+     });
    }
    ```
 
