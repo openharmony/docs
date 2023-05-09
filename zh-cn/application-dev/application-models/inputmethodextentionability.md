@@ -155,7 +155,7 @@
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "包名/Ability名") {
-            this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
+           this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
          }
        });
      }
