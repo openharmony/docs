@@ -22,7 +22,7 @@ Stepper(value?: { index?: number })
 
 | 参数名 | 参数类型 | 必填  | 参数描述 |
 | ------| -------- | --------------- | -------- |
-| index | number   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0 |
+| index | number   | 否 | 设置步骤导航器当前显示StepperItem的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 
 ## 属性

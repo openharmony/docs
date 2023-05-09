@@ -68,7 +68,7 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - The KV stores do not support custom conflict resolution policies for applications.
 
-- A maximum of 16 distributed KV stores can be opened simultaneously for an application.
+- A maximum of 16 KV stores can be opened simultaneously for an application.
 
 - Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
 
