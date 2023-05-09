@@ -71,7 +71,7 @@ The operation timed out.
 
 **Possible Causes**
 
-1. The network connection times out. Default timeout value is 15 seconds, starting from the reporting of buffering start event, and the error message will be reported after timeout.
+1. The network connection times out.
 2. Accessing other modules times out.
 
 **Solution**
