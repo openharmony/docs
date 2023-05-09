@@ -20,6 +20,10 @@
 - 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
 
 
+## 限制条件
+
+使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
 ## 装饰器说明
 
 | \@Observed类装饰器 | 说明                                |
