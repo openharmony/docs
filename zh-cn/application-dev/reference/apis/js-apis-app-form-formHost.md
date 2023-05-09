@@ -1178,6 +1178,101 @@ try {
 }
 ```
 
+## getRunningFormInfos
+
+getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
+
+获取设备上指定应用为卡片使用方的当前卡片信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 回调函数。获取设备上指定应用为卡片使用方的当前卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
+| hostBundleName | string | 否 |  要查询的使用方名称。 <br> 缺省时获取设备上所有卡片使用方的当前卡片信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+try {
+  formHost.getRunningFormInfos((error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
+    }
+  }, 'com.example.ohos.formjsdemo');
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfos
+
+getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+获取设备上指定应用为卡片使用方的当前卡片信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| hostBundleName | string | 否 |  要查询的使用方名称。 <br> 缺省时获取设备上所有卡片使用方的当前卡片信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+try {
+  formHost.getRunningFormInfos('com.example.ohos.formjsdemo').then((data) => {
+    console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## deleteInvalidForms
 
 deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -1463,6 +1558,162 @@ let callback = function(formId) {
 }
 formHost.off('formUninstall', callback);
 ```
+
+## on('formAdd')
+
+ on(type: 'formAdd', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
+| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.on('formAdd', callback);
+formHost.on('formAdd', callback, bundleName);
+```
+
+## off('formAdd')
+
+ off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
+| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.off('formAdd', callback);
+formHost.off('formAdd', callback, bundleName);
+```
+> **说明：**
+> on('formAdd', callback)与off('formAdd', callback)相对应；
+> on('formAdd', callback, bundleName)与off('formAdd', callback, bundleName)相对应；
+> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
+
+## on('formRemove')
+
+ on(type: 'formRemove', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
+| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.on('formRemove', callback);
+formHost.on('formRemove', callback, bundleName);
+```
+
+## off('formRemove')
+
+ off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
+| bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.off('formRemove', callback);
+formHost.off('formRemove', callback, bundleName);
+```
+> **说明：**
+> on('formRemove', callback)与off('formRemove', callback)相对应；
+> on('formRemove', callback, bundleName)与off('formRemove', callback, bundleName)相对应；
+> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
 
 ## notifyFormsVisible
 
