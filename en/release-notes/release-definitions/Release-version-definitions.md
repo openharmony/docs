@@ -4,8 +4,6 @@
 
 To ensure smooth version evolution and continuous stability and reliability of historical versions, the OpenHarmony community periodically pulls branches such as Long Term Support (LTS), Release, and Beta from Master and manages them based on the OpenHarmony lifecycle definition.
 
-![1.png](figures/1.png)
-
 
 ### Master
 
