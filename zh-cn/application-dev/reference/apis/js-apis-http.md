@@ -1030,7 +1030,7 @@ httpResponseCache.delete().then(() => {
 });
 ```
 
-## HttpDataType<sup>6+</sup>
+## HttpDataType<sup>9+</sup>
 
 http的数据类型。
 
