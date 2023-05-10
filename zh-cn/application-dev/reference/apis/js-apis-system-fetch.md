@@ -43,7 +43,7 @@ fetch(Object): void
 | Object | 不设置 | Content-Type默认为application/x-www-form-urlencoded，data按照资源地址规则进行encode拼接作为请求的body。 |
 | Object | application/x-www-form-urlencoded | data按照资源地址规则进行encode拼接作为请求的body。 |
 
-## FetchResponse
+## FetchResponse<sup>3+</sup>
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

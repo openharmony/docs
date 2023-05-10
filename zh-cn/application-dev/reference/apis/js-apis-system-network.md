@@ -21,7 +21,7 @@ ohos.permission.GET_WIFI_INFO
 ohos.permission.GET_NETWORK_INFO
 
 
-## network.getType
+## network.getType<sup>3+</sup>
 
 getType(Object): void
 
@@ -61,7 +61,7 @@ export default {
 ```
 
 
-## network.subscribe
+## network.subscribe<sup>3+</sup>
 
 subscribe(Object): void
 
@@ -101,7 +101,7 @@ export default {
 ```
 
 
-## network.unsubscribe
+## network.unsubscribe<sup>3+</sup>
 
 unsubscribe(): void
 
@@ -120,7 +120,7 @@ export default {
 ```
 
 
-## NetworkResponse
+## NetworkResponse<sup>3+</sup>
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 

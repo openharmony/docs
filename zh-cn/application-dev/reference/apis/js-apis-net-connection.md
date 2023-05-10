@@ -1238,7 +1238,7 @@ netConnection.unregister(function (error) {
 })
 ```
 
-### on('netAvailable')
+### on('netAvailable')<sup>8+</sup>
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
@@ -1277,7 +1277,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netBlockStatusChange')
+### on('netBlockStatusChange')<sup>8+</sup>
 
 on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
 
@@ -1316,7 +1316,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netCapabilitiesChange')
+### on('netCapabilitiesChange')<sup>8+</sup>
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
@@ -1355,7 +1355,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netConnectionPropertiesChange')
+### on('netConnectionPropertiesChange')<sup>8+</sup>
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
 ConnectionProperties }>): void
@@ -1395,7 +1395,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netLost')
+### on('netLost')<sup>8+</sup>
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
@@ -1434,7 +1434,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netUnavailable')
+### on('netUnavailable')<sup>8+</sup>
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
@@ -1473,7 +1473,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-## NetHandle
+## NetHandle<sup>8+</sup>
 
 数据网络的句柄。
 
@@ -1804,7 +1804,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## NetCap
+## NetCap<sup>8+</sup>
 
 网络具体能力。
 
@@ -1818,7 +1818,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
 
-## NetBearType
+## NetBearType<sup>8+</sup>
 
 网络类型。
 
@@ -1842,7 +1842,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | port  | number | 否  |  主机端口。 |
 | exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
 
-## NetSpecifier
+## NetSpecifier<sup>8+</sup>
 
 提供承载数据网络能力的实例。
 
@@ -1853,7 +1853,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
 | bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
-## NetCapabilities
+## NetCapabilities<sup>8+</sup>
 
 网络的能力集。
 
@@ -1866,7 +1866,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
 
-## ConnectionProperties
+## ConnectionProperties<sup>8+</sup>
 
 网络连接信息。
 
@@ -1881,7 +1881,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | dnses     | Array\<[NetAddress](#netaddress)> | 是 |网络地址，参考[NetAddress](#netaddress)。 |
 | mtu           | number                             | 是 |最大传输单元。   |
 
-## RouteInfo
+## RouteInfo<sup>8+</sup>
 
 网络路由信息。
 
@@ -1895,7 +1895,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | hasGateway     | boolean                     | 是 |是否有网关。     |
 | isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
 
-## LinkAddress
+## LinkAddress<sup>8+</sup>
 
 网络链路信息。
 
@@ -1906,7 +1906,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | address      | [NetAddress](#netaddress) | 是 | 链路地址。           |
 | prefixLength | number                    | 是 |链路地址前缀的长度。 |
 
-## NetAddress
+## NetAddress<sup>8+</sup>
 
 网络地址。
 

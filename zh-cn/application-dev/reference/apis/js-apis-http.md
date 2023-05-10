@@ -46,6 +46,7 @@ httpRequest.request(
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+    caPath: "", // 可选，如果设置了此参数，系统将使用用户指定的证书路径,否则将使用系统预设的证书路径。
   }, (err, data) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析
@@ -802,7 +803,7 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 httpRequest.off('dataProgress');
 ```
 
-## HttpRequestOptions
+## HttpRequestOptions<sup>6+</sup>
 
 发起请求可选参数的类型和取值范围。
 
@@ -819,9 +820,10 @@ httpRequest.off('dataProgress');
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。                                |
+| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定的证书路径,否则将使用系统预设的证书路径。                               |
 
-## RequestMethod
+## RequestMethod<sup>6+</sup>
 
 HTTP 请求方法。
 
@@ -838,7 +840,7 @@ HTTP 请求方法。
 | TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
 | CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
-## ResponseCode
+## ResponseCode<sup>6+</sup>
 
 发起请求返回的响应码。
 
@@ -882,7 +884,7 @@ HTTP 请求方法。
 | GATEWAY_TIMEOUT   | 504  | 充当网关或代理的服务器，未及时从远端服务器获取请求。         |
 | VERSION           | 505  | 服务器请求的HTTP协议的版本。                                 |
 
-## HttpResponse
+## HttpResponse<sup>6+</sup>
 
 request方法回调函数的返回值类型。
 
