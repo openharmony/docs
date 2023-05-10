@@ -74,7 +74,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   try {
     this.context.startAbility(want, (error) => {
-      if (error.code) {
+      if (error) {
         // 处理业务逻辑错误
         console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
         ' error.message: ' + JSON.stringify(error.message));
