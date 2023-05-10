@@ -365,7 +365,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 为了降低InputMethodExtensionAbility能力被三方应用滥用的风险，在InputMethodExtensionAbility中限制调用以下模块中的接口。
 
-**注意：** 若导入被限制的API，在编译时不报错，在运行时会返回错误的值，即undefined，导致不生效。
+**注意：** 若导入被限制的模块，在编译时不报错，在运行时会返回错误的值，即undefined，导致不生效。
 
 - [@ohos.ability.featureAbility (FeatureAbility模块)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-featureAbility.md)
 - [@ohos.ability.particleAbility (ParticleAbility模块)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-particleAbility.md)
