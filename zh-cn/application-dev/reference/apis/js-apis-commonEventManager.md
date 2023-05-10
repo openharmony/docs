@@ -607,6 +607,10 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
 ```ts
 CommonEventManager.setStaticSubscriberState(true, (err) => {
+    if (!err) {
+        console.info(`Set static subscriber state callback failed, err is null.`);
+        return;
+    }
     if (err.code) {
         console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
