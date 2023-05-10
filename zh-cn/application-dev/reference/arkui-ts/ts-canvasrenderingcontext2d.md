@@ -59,6 +59,9 @@ RenderingContextSettings(antialias?: boolean)
 | [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [height](#height)                                     | number                                                       | 组件高度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [width](#width)                                       | number                                                       | 组件宽度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingQuality](#imagesmoothingquality)       |ImageSmoothingQuality     | imageSmoothingEnabled为true时，用于设置图像平滑度。可选值为：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质。<br/>默认值：low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [direction](#direction)       |CanvasDirection     | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：继承canvas组件已设定的文本方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [filter](#filter)       |string     | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
 >
@@ -1803,7 +1806,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 
 filter(filter: string): void
 
-为Canvas图形设置各类滤镜效果。该接口为空接口。
+为Canvas图形设置各类滤镜效果。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1811,7 +1814,68 @@ filter(filter: string): void
 
 | 参数     | 类型     | 必填   | 默认值  | 说明           |
 | ------ | ------ | ---- | ---- | ------------ |
-| filter | string | 是    | -    | 接受各类滤镜效果的函数。 |
+| filter | string | 是    | -    | 接受各类滤镜效果的函数。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none' |
+
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct FilterDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            let img = this.img
+
+            ctx.drawImage(img, 0, 0, 100, 100);
+
+            ctx.filter = 'grayscale(50%)';
+            ctx.drawImage(img, 100, 0, 100, 100);
+
+            ctx.filter = 'sepia(60%)';
+            ctx.drawImage(img, 200, 0, 100, 100);
+
+            ctx.filter = 'saturate(30%)';
+            ctx.drawImage(img, 0, 100, 100, 100);
+
+            ctx.filter = 'hue-rotate(90degree)';
+            ctx.drawImage(img, 100, 100, 100, 100);
+
+            ctx.filter = 'invert(100%)';
+            ctx.drawImage(img, 200, 100, 100, 100);
+
+            ctx.filter = 'opacity(25%)';
+            ctx.drawImage(img, 0, 200, 100, 100);
+
+            ctx.filter = 'brightness(0.4)';
+            ctx.drawImage(img, 100, 200, 100, 100);
+
+            ctx.filter = 'contrast(200%)';
+            ctx.drawImage(img, 200, 200, 100, 100);
+
+            ctx.filter = 'blur(5px)';
+            ctx.drawImage(img, 0, 300, 100, 100);
+
+            let result = ctx.toDataURL()
+            console.info(result)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![filterDemo](figures/filterDemo.jpeg)
 
 
 ### getTransform
@@ -1836,10 +1900,42 @@ resetTransform(): void
 
 direction(direction: CanvasDirection): void
 
-绘制文本时，描述当前文本方向的属性。该接口为空接口。
+绘制文本时，描述当前文本方向的属性。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct DirectionDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            ctx.font = '48px serif';
+            ctx.textAlign = 'start'
+            ctx.fillText("Hi ltr!", 200, 50);
+
+            ctx.direction = "rtl";
+            ctx.fillText("Hi rtl!", 200, 100);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![directionDemo](figures/directionDemo.jpeg)
 
 ### rotate
 
@@ -2433,7 +2529,7 @@ getLineDash(): number[]
 
 imageSmoothingQuality(quality: imageSmoothingQuality)
 
-用于设置图像平滑度。该接口为空接口。
+用于设置图像平滑度。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2441,9 +2537,38 @@ imageSmoothingQuality(quality: imageSmoothingQuality)
 
 | 参数      | 类型                    | 描述                                       |
 | ------- | --------------------- | ---------------------------------------- |
-| quality | imageSmoothingQuality | 支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
+| quality | imageSmoothingQuality | 支持如下三种类型：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质 |
 
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageSmoothingQualityDemo {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let ctx = this.context
+            ctx.imageSmoothingEnabled = true
+            ctx.imageSmoothingQuality = 'high'
+            ctx.drawImage(this.img, 0, 0, 400, 200)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![ImageSmoothingQualityDemo](figures/ImageSmoothingQualityDemo.jpeg)
 
 ### transferFromImageBitmap
 
