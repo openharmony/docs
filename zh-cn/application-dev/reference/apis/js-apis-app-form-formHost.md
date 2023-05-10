@@ -1865,7 +1865,7 @@ try {
 }
 ```
 
-## getRunningFormInfosByFilter
+## getRunningFormInfosByFilter<sup>10+</sup>
 
 function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
@@ -1879,24 +1879,21 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFi
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter | 是   | 卡片提供方应用信息。 |
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1932,19 +1929,16 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFi
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter | 是   | 卡片提供方应用信息。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+| formProviderFilter     | formInfo.FormProviderFilter <br />[formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter)| 是   | 卡片提供方应用信息。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; <br />| 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1988,18 +1982,15 @@ function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.Ru
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
+| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2030,18 +2021,15 @@ function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;<br /> | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 |                    |
+| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
