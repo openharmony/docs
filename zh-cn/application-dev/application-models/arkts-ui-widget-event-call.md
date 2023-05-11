@@ -55,12 +55,12 @@
   
   function FunACall(data) {
     // 获取call事件中传递的所有参数
-    console.log('FunACall param:' + JSON.stringify(data.readString()));
+    console.info('FunACall param:' + JSON.stringify(data.readString()));
     return null;
   }
   
   function FunBCall(data) {
-    console.log('FunACall param:' + JSON.stringify(data.readString()));
+    console.info('FunACall param:' + JSON.stringify(data.readString()));
     return null;
   }
   
@@ -72,7 +72,7 @@
         this.callee.on('funA', FunACall);
         this.callee.on('funB', FunBCall);
       } catch (error) {
-        console.log('register failed with error. Cause: ' + JSON.stringify(error));
+        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err)}`);
       }
     }
   
@@ -81,8 +81,8 @@
       try {
         this.callee.off('funA');
         this.callee.off('funB');
-      } catch (error) {
-        console.log('register failed with error. Cause: ' + JSON.stringify(error));
+      } catch (err) {
+        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err)}`);
       }
     }
   };
