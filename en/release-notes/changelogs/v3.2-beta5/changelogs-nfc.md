@@ -1,11 +1,9 @@
 # Changelog of NFC JS APIs in the Communication Subsystem
 
-Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.2(Mr) has the following changes in NFC APIs:
-
 ## cl.nfc.1 API Change
-Deprecated some NFC JS APIs in API versions 6 to 8 because the APIs cannot throw error codes, and added new APIs in API version 9 instead.
+Deprecated some NFC JS APIs in API versions 6 to 8 because the APIs cannot throw exceptions, and replaced them with new APIs in API version 9.
 
-You need to adapt your application.
+You need to adapt your application based on the following information.
 
  **Change Impact**
 
@@ -13,7 +11,7 @@ The deprecated JS APIs in API versions 6 to 8 are affected. Your application nee
 
 **Key API/Component Changes**
 
-| Module                   | Class               | Method/Attribute/Enum/Constant                                         | Change Type|
+| Module                   | Class               | Method/Attribute/Enumeration/Constant                                         | Change Type|
 | ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
 | api/@ohos.nfc.cardEmulation.d.ts        | cardEmulation         | FeatureType  | Deprecated    |
 | api/@ohos.nfc.cardEmulation.d.ts        | cardEmulation         | isSupported  | Deprecated    |
@@ -57,5 +55,4 @@ See the following:
 [@ohos.nfc.tag (Standard NFC Tags)](../../../application-dev/reference/apis/js-apis-nfcTag.md)
 
 [tagSession (Standard NFC Tag Session)](../../../application-dev/reference/apis/js-apis-tagSession.md)
-
 
