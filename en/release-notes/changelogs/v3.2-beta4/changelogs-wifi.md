@@ -1,4 +1,4 @@
-# Wi-Fi Subsystem Changelog
+# Communication Subsystem - WiFi Changelog
 
 
 ## cl.wifi.1 Moving System APIs and APIs of Version 9 to @ohos.wifiManager.d.ts
