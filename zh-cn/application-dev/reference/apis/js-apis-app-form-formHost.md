@@ -1565,6 +1565,8 @@ formHost.off('formUninstall', callback);
 
 订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
+**需要权限**：ohos.permission.REQUIRE_FORM
+
 **系统能力**：SystemCapability.Ability.Form
 
 **参数：**
@@ -1601,6 +1603,8 @@ formHost.on('formAdd', callback, bundleName);
  off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
 取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -1643,6 +1647,8 @@ formHost.off('formAdd', callback, bundleName);
 
 订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
+**需要权限**：ohos.permission.REQUIRE_FORM
+
 **系统能力**：SystemCapability.Ability.Form
 
 **参数：**
@@ -1679,6 +1685,8 @@ formHost.on('formRemove', callback, bundleName);
  off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
 取消订阅卡片删除事件。使用callback异步回调，返回当前删除卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
 
@@ -2108,6 +2116,98 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## acquireFormData<sup>10+</sup>
+
+acquireFormData(formId: string, callback: AsyncCallback\<void>): void
+
+请求卡片提供方数据。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId, (error) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## acquireFormData<sup>10+</sup>
+
+function acquireFormData(formId: string): Promise\<void\>;
+
+请求卡片提供方数据。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId | string | 是   | 卡片标识。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId).then(() => {
+    console.log('formHost acquireFormData success');
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
