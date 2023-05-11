@@ -207,7 +207,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   - **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of the **context2** instance obtained after the module is directly loaded using **import context2 from "libnativerender.so"**.
   - Time sequence: When the **onLoad** event is subject to the surface. The following figure shows the time sequence of the **onLoad** event and the **OnSurfaceCreated** event on the native side.
 
-     ![onLoad] (figures /onLoad.png)
+     ![onLoad](figures /onLoad.png)
 
 - onDestroy event
   Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The following figure shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event on the native side.

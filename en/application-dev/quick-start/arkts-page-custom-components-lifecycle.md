@@ -129,12 +129,12 @@ struct MyComponent {
 
   build() {
     Column() {
-      // When this.showChild is true, the Child child component is created, and Child aboutToAppear is invoked.
+      // When this.showChild is true, the Child component is created, and Child aboutToAppear is invoked.
       if (this.showChild) {
         Child()
       }
-      // When this.showChild is false, the Child child component is deleted, and Child aboutToDisappear is invoked.
-      Button('create or delete Child').onClick(() => {
+      // When this.showChild is false, the Child component is deleted, and Child aboutToDisappear is invoked.
+      Button('delete Child').onClick(() => {
         this.showChild = false;
       })
       // Because of the pushing from the current page to Page2, onPageHide is invoked.

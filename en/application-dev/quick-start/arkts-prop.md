@@ -275,7 +275,7 @@ struct ReaderComp {
   build() {
     Row() {
       Text(this.title)
-      Text(`... ${this.readIt ? 'I have read' : 'I have bot read it'}`)
+      Text(`... ${this.readIt ? 'I have read' : 'I have not read it'}`)
         .onClick(() => this.readIt = true)
     }
   }
@@ -350,17 +350,12 @@ struct MainProgram {
       }
 
       Row() {
-        Column(       
+        Column()
           // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
           MyComponent({ customCounter: this.mainCounter })
           // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
           MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }.width('40%')
-      }
-
-      Row() {
-        Text('').width(480).height(10)
-      }
     }
   }
 }
