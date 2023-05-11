@@ -14,7 +14,7 @@
 
 1. Check whether the identified exception is caused by an incorrect access path of the application source code. You can check the correctness of an access path against [Sandbox File Access Specifications](#sandbox-file-access-specifications).
 2. If the application source code accesses an incorrect path, change the path access policy. Specifically, use the **Context** API rather than the absolute path to access the **/data** directory. For details about the **Context** API, see the following documents:
-   https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/application-context-stage.md
+   https://gitee.com/openharmony/docs/blob/master/en/application-dev/application-models/application-context-stage.md
    https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-ability-context.md
    https://gitee.com/OpenHarmony/docs/blob/master/en/application-dev/reference/apis/js-apis-Context.md
 3. If the exception is caused by a third-party module invoked by the application and the application source code does not use an absolute path to access files, proceed as follows:
