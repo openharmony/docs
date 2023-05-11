@@ -42,12 +42,12 @@
    // 创建订阅者回调
    commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
      if (err) {
-       console.error(`[CommonEvent] CreateSubscriberCallBack err=${JSON.stringify(err)}`);
-     } else {
-       console.info(`[CommonEvent] CreateSubscriber success`);
-       subscriber = data;
-       // 订阅公共事件回调
+       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       return;
      }
+     console.info('Succeeded in creating subscriber.');
+     subscriber = data;
+     // 订阅公共事件回调
    })
    ```
 
@@ -58,12 +58,11 @@
    if (subscriber !== null) {
      commonEventManager.subscribe(subscriber, (err, data) => {
        if (err) {
-         console.error(`[CommonEvent] SubscribeCallBack err=${JSON.stringify(err)}`);
-       } else {
-         console.info(`[CommonEvent] SubscribeCallBack data=${JSON.stringify(data)}`);
+         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         return;
        }
      })
    } else {
-     console.error(`[CommonEvent] Need create subscriber`);
+     console.error(`Need create subscriber`);
    }
    ```
