@@ -138,3 +138,20 @@ import formInfo from '@ohos.app.form.formInfo';
 | ----------- | ---- | ------------ |
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
+
+## RunningFormInfo 
+
+正在运行的卡片信息。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | 是    | 否     | 卡片ID。                   |
+| bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
+| hostBundleName  | string           | 是    | 否     | 卡片使用方包的Bundle名称。                   |
+| visibilityType  | string           | 是    | 否     | 卡片当前可见类型枚举。                       |
+| moduleName  | VisibilityType       | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| dimension    | number      | 是    | 否     | 卡片规格。具体可选规格参考[FormDimension](#formdimension)   |
