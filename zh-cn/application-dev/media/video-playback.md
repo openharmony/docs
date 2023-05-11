@@ -115,7 +115,7 @@ export class AVPlayerDemo {
         case 'playing': // play成功调用后触发该状态机上报
           console.info('AVPlayer state playing called.');
           if (this.count !== 0) {
-            if (this.isSeek === true) {
+            if (this.isSeek) {
               console.info('AVPlayer start to seek.');
               this.avPlayer.seek(this.avPlayer.duration); //seek到视频末尾
             } else {
