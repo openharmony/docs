@@ -108,8 +108,10 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **示例：**
 
@@ -143,8 +145,10 @@ isSharing(): Promise\<boolean>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2202011 | Cannot get network sharing configuration.                      |
 
 **示例：**
 
@@ -277,10 +281,12 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2200004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -325,10 +331,12 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
+| 2200004 | Try to share an unavailable iface.                       |
 | 2202005 | WiFi sharing failed.                         |
 | 2202006 | Bluetooth sharing failed.                    |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -847,6 +855,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -881,6 +890,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -916,6 +926,7 @@ SharingIfaceState }>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -951,6 +962,7 @@ SharingIfaceState }>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -985,6 +997,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -1019,6 +1032,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | System permission denied                          |
 | 401     | Parameter error.                             |
 
 **示例：**

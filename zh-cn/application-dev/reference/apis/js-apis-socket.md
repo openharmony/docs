@@ -737,11 +737,11 @@ constructTCPSocketInstance(): TCPSocket
 let tcp = socket.constructTCPSocketInstance();
 ```
 
-## TCPSocket<sup>9+</sup>
+## TCPSocket<sup>7+</sup>
 
 TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance)创建TCPSocket对象。
 
-### bind<sup>9+</sup>
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -778,7 +778,7 @@ tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### bind<sup>9+</sup>
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -819,7 +819,7 @@ promise.then(() => {
 });
 ```
 
-### connect<sup>9+</sup>
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
@@ -859,7 +859,7 @@ tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, tim
 })
 ```
 
-### connect<sup>9+</sup>
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
@@ -900,7 +900,7 @@ promise.then(() => {
 });
 ```
 
-### send<sup>9+</sup>
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -946,7 +946,7 @@ tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, tim
 })
 ```
 
-### send<sup>9+</sup>
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions): Promise\<void\>
 
@@ -998,7 +998,7 @@ promise1.then(() => {
 });
 ```
 
-### close<sup>9+</sup>
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1033,7 +1033,7 @@ tcp.close(err => {
 })
 ```
 
-### close<sup>9+</sup>
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -1067,7 +1067,7 @@ promise.then(() => {
 });
 ```
 
-### getRemoteAddress<sup>9+</sup>
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
@@ -1108,7 +1108,7 @@ tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, tim
 });
 ```
 
-### getRemoteAddress<sup>9+</sup>
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(): Promise\<NetAddress\>
 
@@ -1151,7 +1151,7 @@ promise1.then(() => {
 });
 ```
 
-### getState<sup>9+</sup>
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -1192,7 +1192,7 @@ let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, fa
 });
 ```
 
-### getState<sup>9+</sup>
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
@@ -1235,7 +1235,7 @@ promise.then(() => {
 });
 ```
 
-### setExtraOptions<sup>9+</sup>
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -1287,7 +1287,7 @@ let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, fa
 });
 ```
 
-### setExtraOptions<sup>9+</sup>
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
@@ -1346,7 +1346,7 @@ promise.then(() => {
 });
 ```
 
-### on('message')<sup>9+</sup>
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1377,7 +1377,7 @@ tcp.on('message', value => {
 });
 ```
 
-### off('message')<sup>9+</sup>
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1415,7 +1415,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-### on('connect' | 'close')<sup>9+</sup>
+### on('connect' | 'close')<sup>7+</sup>
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1442,7 +1442,7 @@ tcp.on('close', () => {
 });
 ```
 
-### off('connect' | 'close')<sup>9+</sup>
+### off('connect' | 'close')<sup>7+</sup>
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
@@ -1480,7 +1480,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-### on('error')<sup>9+</sup>
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1504,7 +1504,7 @@ tcp.on('error', err => {
 });
 ```
 
-### off('error')<sup>9+</sup>
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -1535,7 +1535,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-## TCPConnectOptions<sup>9+</sup>
+## TCPConnectOptions<sup>7+</sup>
 
 TCPSocket连接的参数。
 
@@ -1546,7 +1546,7 @@ TCPSocket连接的参数。
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
 | timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
 
-## TCPSendOptions<sup>9+</sup>
+## TCPSendOptions<sup>7+</sup>
 
 TCPSocket发送请求的参数。
 
@@ -1557,7 +1557,7 @@ TCPSocket发送请求的参数。
 | data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
 
-## TCPExtraOptions<sup>9+</sup>
+## TCPExtraOptions<sup>7+</sup>
 
 TCPSocket连接的其他属性。
 
@@ -2663,7 +2663,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2700,7 +2700,7 @@ send(data: string): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2835,6 +2835,3 @@ TLS通信的协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 类型                                                                   | 说明                   |
-| --------------------------------------------------------------------- | --------------------- |
-|[cert.EncodingBlob](js-apis-cert.md#datablob) | 存储证书的数据和编码格式 |

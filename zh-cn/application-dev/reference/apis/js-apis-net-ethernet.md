@@ -36,13 +36,15 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                    |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **示例：**
 
@@ -94,13 +96,15 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                   |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **示例：**
 
@@ -144,11 +148,12 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -197,11 +202,12 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -243,11 +249,12 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -290,11 +297,12 @@ isIfaceActive(iface: string): Promise\<number>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -329,6 +337,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -370,6 +379,7 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | System permission denied.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -410,7 +420,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.      |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                             |
 
 **示例：**
@@ -445,7 +455,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.                           |
+| 202     | System permission denied.                      |
 | 401     | Parameter error.                             |
 
 **示例：**
