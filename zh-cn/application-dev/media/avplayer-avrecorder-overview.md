@@ -59,6 +59,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 | -------- | -------- |
 | 本地点播 | 协议格式：支持file&nbsp;descriptor，禁止file&nbsp;path |
 | 网络点播 | 协议格式：支持http/https/hls |
+| 网络直播 | 协议格式：支持hls |
 
 支持的音频播放格式如下：
 
