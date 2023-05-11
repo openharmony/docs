@@ -15,15 +15,15 @@ import ability from '@ohos.ability.ability';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name        | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | No  | Level-2 module **DataAbilityHelper**.                               |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | No  | Level-2 module **PacMap**.|
-| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | No  | Level-2 module **DataAbilityOperation**.|
-| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | No  | Level-2 module **DataAbilityResult**.|
-| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | No  | Level-2 module **AbilityResult**.|
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | No  | Level-2 module **ConnectOptions**.|
-| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | No  | Level-2 module **StartAbilityParameter**.|
+| Name        | Type                | Description                                                        |
+| ----------- | -------------------- | ------------------------------------------------------------ |
+| DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | Level-2 module **DataAbilityHelper**.                               |
+| PacMap   | [PacMap](js-apis-inner-application-pacMap.md)               | Level-2 module **PacMap**.|
+| DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | Level-2 module **DataAbilityOperation**.|
+| DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | Level-2 module **DataAbilityResult**.|
+| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
+| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
+| StartAbilityParameter   | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)               | Level-2 module **StartAbilityParameter**.|
 
 **Example**
 ```ts
