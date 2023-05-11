@@ -103,7 +103,7 @@
    
      public onDestroy(): void			// 应用生命周期销毁
      {
-       this.unRegisterListener();		// 去注销事件监听
+       this.unRegisterListener();		// 去注册事件监听
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// 销毁窗口
      }
@@ -229,7 +229,7 @@
 
    同时在resources/base/profile/main_pages.json文件的src字段中添加此文件路径。
 
-   ```ts
+   ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
    
    @Component
